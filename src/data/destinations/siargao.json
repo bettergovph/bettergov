@@ -1,0 +1,58 @@
+{
+  "id": "siargao",
+  "name": "Siargao",
+  "location": "Surigao del Norte",
+  "description": "Known as the \"Surfing Capital of the Philippines,\" Siargao is a teardrop-shaped island with perfect waves, lush mangroves, and a laid-back atmosphere.",
+  "type": "beach",
+  "rating": 4.8,
+  "imageUrl": "https://images.unsplash.com/photo-1586500036706-41963de24d8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+  "imageCredit": "Rolands Varsbergs",
+  "bestTimeToVisit": "September to November",
+  "activities": ["Surfing", "Island Hopping", "Swimming", "Cliff Jumping", "Cave Exploration"],
+  "tags": ["Surfing", "Island Life", "Adventure", "Nature"],
+  "longDescription": "Siargao is a teardrop-shaped island in the Philippine Sea that has gained international recognition as the \"Surfing Capital of the Philippines.\" The island is most famous for Cloud 9, a powerful right-breaking reef wave that has consistently ranked among the top surf spots in the world. Every September, Siargao hosts the international surfing competition, attracting professional surfers from around the globe.\n\nBeyond surfing, Siargao offers a diverse range of natural attractions. The island is home to extensive mangrove forests, particularly in Del Carmen, which can be explored by boat or kayak. The Magpupungko Rock Pools, natural tidal pools that appear during low tide, offer a unique swimming experience. Island hopping to the nearby Naked, Daku, and Guyam islands reveals pristine beaches and excellent snorkeling opportunities.\n\nDespite its growing popularity, Siargao maintains a laid-back, bohemian atmosphere. The main town of General Luna has developed a vibrant scene with surf shops, yoga studios, and an eclectic mix of restaurants and bars. The island's commitment to sustainability is evident in its numerous eco-friendly accommodations and initiatives to protect its natural resources. Whether you're a surfer, nature lover, or someone seeking a relaxed tropical getaway, Siargao offers an authentic Philippine island experience.",
+  "howToGetThere": "To reach Siargao, fly to Sayak Airport (also known as Siargao Airport) from Manila or Cebu. Several airlines operate daily flights to the island. From the airport, take a van or tricycle to General Luna or other parts of the island, which is about a 45-minute drive. Alternatively, you can take a ferry from Surigao City on the mainland, which takes approximately 2-3 hours depending on sea conditions.",
+  "whereToStay": [
+    "Luxury: Nay Palad Hideaway, Isla Cabana Resort, Siargao Bleu Resort and Spa",
+    "Mid-range: Tropical Temple, Sunset Bay Beach Villas, Kermit Siargao",
+    "Budget: Paglaom Hostel, Nine Clouds Homestyle Accommodation, Kokai Resort Bar and Restaurant"
+  ],
+  "nearbyAttractions": [
+    "Cloud 9 Boardwalk - iconic surfing spot with viewing platform",
+    "Magpupungko Rock Pools - natural tidal pools",
+    "Sugba Lagoon - emerald green lagoon perfect for swimming and diving",
+    "Sohoton Cove - hidden lagoons and caves accessible only during low tide",
+    "Taktak Falls - the island's only waterfall"
+  ],
+  "localCuisine": [
+    "Fresh seafood, particularly grilled fish and kinilaw (Filipino ceviche)",
+    "Siargao lechon (roasted pig) with a unique local flavor",
+    "Coconut-based dishes using abundant local coconuts",
+    "International cuisine with a Filipino twist at surf town restaurants",
+    "Fresh fruit smoothie bowls popular in the island's café scene"
+  ],
+  "travelTips": [
+    "Rent a motorbike to explore the island at your own pace",
+    "Bring cash as ATMs are limited and many places don't accept cards",
+    "Pack reef-safe sunscreen and insect repellent",
+    "Learn basic surfing etiquette if you plan to surf at popular spots",
+    "Be mindful of the island's limited resources and participate in eco-friendly practices"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1586500036706-41963de24d8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+      "caption": "Perfect waves for surfing at Cloud 9",
+      "credit": "Rolands Varsbergs"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1602152332276-9d29c2a57a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Pristine beaches around the island",
+      "credit": "Fidel Fernando"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Lush tropical landscapes and palm trees",
+      "credit": "Gian Paul Guinto"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "el-nido",
+  "name": "El Nido",
+  "location": "Palawan",
+  "description": "El Nido is known for its stunning limestone cliffs, secret lagoons, and pristine beaches. It's a gateway to the Bacuit Archipelago with its hidden coves and rich marine life.",
+  "type": "island",
+  "rating": 4.9,
+  "imageUrl": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+  "imageCredit": "Cris Tagupa",
+  "bestTimeToVisit": "December to May",
+  "activities": ["Island Hopping", "Kayaking", "Snorkeling", "Diving", "Beach Camping"],
+  "tags": ["Limestone Cliffs", "Lagoons", "Island Hopping", "Nature"],
+  "longDescription": "El Nido, located at the northern tip of Palawan Island, is a paradise of limestone karst landscapes, hidden lagoons, and pristine beaches. Often described as one of the most beautiful beach destinations in the world, El Nido serves as the gateway to the stunning Bacuit Archipelago, a collection of islands with dramatic rock formations rising from crystal-clear waters.\n\nThe area is famous for its island-hopping tours, categorized as Tours A, B, C, and D, each exploring different islands, lagoons, and beaches. Highlights include the Big and Small Lagoons, Secret Lagoon, Hidden Beach, and Snake Island with its S-shaped sandbar. The underwater world is equally impressive, with vibrant coral reefs and diverse marine life making it a haven for snorkelers and divers.\n\nEl Nido town itself has transformed from a sleepy fishing village to a tourism hub, though it still maintains much of its laid-back charm. The area offers a range of accommodations from luxury resorts on private islands to budget-friendly hostels in town. Despite its growing popularity, El Nido remains a place of extraordinary natural beauty where visitors can disconnect and immerse themselves in nature.",
+  "howToGetThere": "To reach El Nido, fly to Puerto Princesa International Airport, then take a 5-6 hour van or bus ride to El Nido town. Alternatively, direct flights to El Nido Airport (Lio Airport) are available from Manila and Cebu, though these tend to be more expensive. From El Nido town, boats can take you to the various islands and attractions in the Bacuit Archipelago.",
+  "whereToStay": [
+    "Luxury: El Nido Resorts (Miniloc, Lagen, Pangulasian, or Apulit Island), Cauayan Island Resort, Matinloc Resort",
+    "Mid-range: Coco Resort, The Nest El Nido, Maremegmeg Beach Club",
+    "Budget: Outpost Beach Hostel, Spin Designer Hostel, Our Melting Pot Hostel"
+  ],
+  "nearbyAttractions": [
+    "Nacpan Beach - a 4-kilometer stretch of golden sand",
+    "Duli Beach - popular for surfing",
+    "Taraw Cliff for panoramic views (guided climb required)",
+    "Marimegmeg Beach for sunset views",
+    "Lio Beach - a developing eco-tourism estate"
+  ],
+  "localCuisine": [
+    "Fresh seafood grilled on the beach",
+    "Coconut-based dishes like Ginataang Manok (chicken in coconut milk)",
+    "Halo-halo (Filipino shaved ice dessert)",
+    "Kinilaw (Filipino ceviche)",
+    "Tamilok (woodworm) for the adventurous eater"
+  ],
+  "travelTips": [
+    "Book island hopping tours in advance during peak season",
+    "Bring cash as ATMs are limited and many places don't accept cards",
+    "Pack reef-safe sunscreen and insect repellent",
+    "Consider staying in town for more dining options or on the islands for seclusion",
+    "The environmental fee is approximately PHP 200 and valid for 10 days"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+      "caption": "Stunning limestone formations in the Bacuit Archipelago",
+      "credit": "Cris Tagupa"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1573720574697-e81bb555e6b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+      "caption": "Crystal clear lagoons perfect for swimming",
+      "credit": "Cris Tagupa"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80",
+      "caption": "Island hopping adventures around El Nido",
+      "credit": "Christian Paul Del Rosario"
+    }
+  ]
+}

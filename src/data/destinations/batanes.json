@@ -1,0 +1,58 @@
+{
+  "id": "batanes",
+  "name": "Batanes",
+  "location": "Cagayan Valley",
+  "description": "The northernmost province of the Philippines, known for its breathtaking landscapes, rolling hills, stone houses, and pristine beaches.",
+  "type": "island",
+  "rating": 4.8,
+  "imageUrl": "https://images.unsplash.com/photo-1629971234128-08bdcf959a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  "imageCredit": "Jed Villejo",
+  "bestTimeToVisit": "March to June",
+  "activities": ["Biking", "Cultural Tours", "Photography", "Lighthouse Visits", "Beach Hopping"],
+  "tags": ["Rolling Hills", "Stone Houses", "Lighthouses", "Scenic"],
+  "longDescription": "Batanes is the northernmost and smallest province of the Philippines, consisting of ten islands located in the Luzon Strait between Taiwan and mainland Luzon. Only three of these islands—Batan, Sabtang, and Itbayat—are permanently inhabited. What makes Batanes truly special is its untouched beauty, distinctive culture, and dramatic landscapes that seem more reminiscent of New Zealand or Ireland than tropical Southeast Asia.\n\nThe province is characterized by rolling hills, sheer cliffs that drop into the sea, stone houses built to withstand the frequent typhoons, and a pristine environment largely untouched by commercial development. The Ivatan people, the indigenous inhabitants of Batanes, have maintained their unique cultural heritage, including their traditional stone houses (called vahay) with thick walls and cogon grass roofs.\n\nBatanes offers numerous natural and cultural attractions. The Vayang Rolling Hills and Racuh a Payaman (Marlboro Country) provide breathtaking panoramic views of green pastures against the backdrop of the sea. The Basco Lighthouse, Valugan Boulder Beach, and the traditional villages of Sabtang Island offer distinctive experiences for visitors. Despite being one of the country's most remote provinces, Batanes has become a dream destination for many travelers seeking authentic experiences and spectacular landscapes.",
+  "howToGetThere": "The only way to reach Batanes is by air. Regular flights operate from Manila to Basco Airport, the main gateway to Batanes, with the flight taking approximately 2 hours. Some airlines also offer flights from Tuguegarao City or Clark. Due to the province's location and weather conditions, flights can be limited and are subject to cancellation during bad weather, particularly during the typhoon season. It's advisable to book flights well in advance as seats fill up quickly, especially during peak season.",
+  "whereToStay": [
+    "Luxury: Fundacion Pacita, Batanes Resort",
+    "Mid-range: Bernardo's Hotel, Amboy Hometel, Timetravel Lodge",
+    "Budget: DDD Habitat Lodging House, Marfel's Lodge, Shanedel's Inn and Café"
+  ],
+  "nearbyAttractions": [
+    "Vayang Rolling Hills - panoramic views of hills and sea",
+    "Racuh a Payaman (Marlboro Country) - vast pastureland with sea views",
+    "Basco Lighthouse - historic lighthouse with panoramic views",
+    "Sabtang Island - traditional stone villages and beaches",
+    "Valugan Boulder Beach - shoreline of large volcanic boulders"
+  ],
+  "localCuisine": [
+    "Uvud (Ivatan meatballs) - made with minced pork, vegetables, and flour",
+    "Vunes (preserved pork) - similar to adobo but unique to Batanes",
+    "Dibang (flying fish) - local delicacy often served grilled",
+    "Lunis - Ivatan-style adobo using pork fat",
+    "Coconut crab - seasonal delicacy (note: now regulated due to conservation efforts)"
+  ],
+  "travelTips": [
+    "Plan your trip during the dry season (March to June) for the best weather",
+    "Book flights and accommodations well in advance as options are limited",
+    "Bring cash as there are limited ATMs and credit card facilities",
+    "Respect local customs and always ask permission before taking photos of residents or private property",
+    "Prepare for changing weather conditions with appropriate clothing and rain gear"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1629971234128-08bdcf959a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Rolling hills meeting the sea",
+      "credit": "Jed Villejo"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1629971234128-08bdcf959a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Traditional stone houses built to withstand typhoons",
+      "credit": "Jed Villejo"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1629971234128-08bdcf959a7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Dramatic coastline with lighthouse",
+      "credit": "Jed Villejo"
+    }
+  ]
+}

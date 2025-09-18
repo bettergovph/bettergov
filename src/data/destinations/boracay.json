@@ -1,0 +1,58 @@
+{
+  "id": "boracay",
+  "name": "Boracay",
+  "location": "Aklan",
+  "description": "Famous for its pristine white sand beaches and crystal-clear waters, Boracay is a tropical paradise that offers a perfect blend of relaxation and adventure.",
+  "type": "beach",
+  "rating": 4.8,
+  "imageUrl": "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  "imageCredit": "Sean Oulashin",
+  "bestTimeToVisit": "November to May",
+  "activities": ["Swimming", "Snorkeling", "Island Hopping", "Parasailing", "Nightlife"],
+  "tags": ["White Beach", "Island", "Luxury", "Nightlife"],
+  "longDescription": "Boracay is a small island in the central Philippines, known worldwide for its stunning White Beach, a 4-kilometer stretch of powdery white sand lined with palm trees, resorts, restaurants, and bars. After undergoing a six-month rehabilitation in 2018, the island has been restored to its pristine condition with stricter environmental regulations in place.\n\nBeyond White Beach, Boracay offers numerous other attractions. Puka Shell Beach on the northern tip is less crowded and known for its natural beauty. Bulabog Beach on the eastern side is a hub for kiteboarding and windsurfing. The island also features hidden coves, viewpoints like Mount Luho, and vibrant marine life perfect for snorkeling and diving.\n\nBoracay comes alive at night with beachfront dining, fire dancing shows, and a variety of bars and clubs. Despite its small size (just 7 kilometers long), Boracay offers a diverse range of experiences from relaxation to adventure, making it a perfect destination for all types of travelers.",
+  "howToGetThere": "To reach Boracay, fly to either Kalibo International Airport (approximately 2 hours from Boracay) or Caticlan Airport (just 15 minutes from Boracay). From either airport, take a land transfer to Caticlan Jetty Port, then a 15-minute boat ride to Boracay Island. Upon arrival at Boracay, tricycles and e-trikes are available for transportation to your accommodation.",
+  "whereToStay": [
+    "Luxury: Shangri-La Boracay Resort & Spa, The Lind Boracay, Crimson Resort and Spa Boracay",
+    "Mid-range: Coast Boracay, Henann Garden Resort, Astoria Current",
+    "Budget: Frendz Resort & Hostel, MNL Beach Hostel Boracay, Dormitels Boracay"
+  ],
+  "nearbyAttractions": [
+    "Ariel's Point for cliff diving",
+    "Crystal Cove Island",
+    "Crocodile Island for snorkeling",
+    "Motag Living Museum",
+    "Willy's Rock"
+  ],
+  "localCuisine": [
+    "Freshly grilled seafood at D'Talipapa",
+    "Calamansi muffins from Real Coffee & Tea Café",
+    "Chori burger (Filipino chorizo burger)",
+    "Coconut-based dishes and fresh tropical fruits",
+    "Filipino fusion cuisine at Sunny Side Café"
+  ],
+  "travelTips": [
+    "Book accommodations well in advance, especially during peak season",
+    "Bring reef-safe sunscreen to protect the marine environment",
+    "Respect the island's environmental regulations, including no smoking/drinking on the beach",
+    "The island has an environmental fee (approximately PHP 150) collected upon arrival",
+    "Most establishments accept credit cards, but it's good to have cash for small vendors"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Crystal clear waters perfect for swimming",
+      "credit": "Sean Oulashin"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80",
+      "caption": "Stunning sunset views from White Beach",
+      "credit": "Christian Paul Del Rosario"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80",
+      "caption": "Water activities and island hopping adventures",
+      "credit": "Sean Oulashin"
+    }
+  ]
+}

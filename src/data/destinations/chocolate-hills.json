@@ -1,0 +1,58 @@
+{
+  "id": "chocolate-hills",
+  "name": "Chocolate Hills",
+  "location": "Bohol",
+  "description": "A geological formation of more than 1,200 perfectly cone-shaped hills that turn chocolate-brown during the dry season, creating a unique landscape.",
+  "type": "mountain",
+  "rating": 4.6,
+  "imageUrl": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+  "imageCredit": "Eibner Saliba",
+  "bestTimeToVisit": "November to April",
+  "activities": ["Sightseeing", "ATV Rides", "Hiking", "Photography"],
+  "tags": ["Natural Wonder", "Geological Formation", "Scenic Views"],
+  "longDescription": "The Chocolate Hills are one of the Philippines' most iconic natural wonders, consisting of at least 1,268 perfectly cone-shaped hills spread over an area of more than 50 square kilometers. These unusual geological formations, which range from 30 to 120 meters in height, are covered in green grass that turns brown during the dry season, giving them the appearance of chocolate mounds—hence their name.\n\nGeologists believe the hills were formed by the weathering of marine limestone on top of an impermeable layer of clay. Over centuries, the action of rainwater and erosion created these distinctive conical karst hills. While similar formations exist elsewhere in the world, the concentration, uniformity, and perfect conical shape of the Chocolate Hills make them a unique natural phenomenon.\n\nThe main viewing area is located in the town of Carmen, where a viewing deck offers a panoramic vista of the hills stretching to the horizon. For the more adventurous, ATV tours allow visitors to get closer to the hills and explore the surrounding countryside. The Chocolate Hills are not just a natural wonder but also a source of local legends and folklore, with stories suggesting they were formed from the tears of a heartbroken giant or as the aftermath of a battle between giants.",
+  "howToGetThere": "To reach the Chocolate Hills, first fly to Tagbilaran City, the capital of Bohol province. From Tagbilaran, you can take a bus, van, or taxi to the town of Carmen, where the main Chocolate Hills viewing complex is located. The journey from Tagbilaran to Carmen takes approximately 1-1.5 hours. Alternatively, you can book a Bohol countryside tour from Tagbilaran or Panglao Island, which typically includes the Chocolate Hills along with other attractions like the Tarsier Sanctuary and Loboc River Cruise.",
+  "whereToStay": [
+    "Luxury: Bohol Beach Club, Henann Resort Alona Beach, The Bellevue Resort",
+    "Mid-range: Metrocentre Hotel and Convention Center, Bohol Tropics Resort, Bohol Bee Farm Resort",
+    "Budget: Tr3ats Guest House, Coco Farm Hostel, Alona Pawikan Resort"
+  ],
+  "nearbyAttractions": [
+    "Tarsier Sanctuary - home to one of the world's smallest primates",
+    "Loboc River - famous for its river cruises and floating restaurants",
+    "Man-made Forest - a dense mahogany forest with a scenic drive",
+    "Panglao Island - known for its white sand beaches and diving spots",
+    "Hinagdanan Cave - a naturally lit cave with a lagoon"
+  ],
+  "localCuisine": [
+    "Calamay - sticky sweet delicacy made from glutinous rice, coconut milk, and brown sugar",
+    "Sikwate - traditional hot chocolate drink",
+    "Peanut Kisses - peanut-based cookies shaped like the Chocolate Hills",
+    "Ubi Kinampay - purple yam dishes unique to Bohol",
+    "Seafood specialties from Panglao Island"
+  ],
+  "travelTips": [
+    "Visit early in the morning to avoid crowds and heat",
+    "The best views of the Chocolate Hills are during the dry season (February to July) when they turn brown",
+    "Combine your visit with other Bohol attractions for a full day tour",
+    "Wear comfortable shoes if you plan to climb the viewing deck stairs",
+    "Bring a wide-angle camera lens to capture the panoramic views"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Panoramic view of the Chocolate Hills during dry season",
+      "credit": "Eibner Saliba"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "The hills stretching to the horizon",
+      "credit": "Eibner Saliba"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Lush green hills during rainy season",
+      "credit": "Eibner Saliba"
+    }
+  ]
+}

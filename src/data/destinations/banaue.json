@@ -1,0 +1,60 @@
+{
+  "id": "banaue",
+  "name": "Banaue Rice Terraces",
+  "location": "Ifugao",
+  "description": "Often called the \"Eighth Wonder of the World,\" these 2,000-year-old terraces were carved into the mountains by ancestors of the indigenous people.",
+  "type": "cultural",
+  "rating": 4.7,
+  "imageUrl": "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+  "imageCredit": "Alva Pratt",
+  "bestTimeToVisit": "March to July",
+  "activities": ["Trekking", "Cultural Tours", "Photography", "Village Visits"],
+  "tags": ["UNESCO Heritage", "Indigenous Culture", "Mountains", "Hiking"],
+  "longDescription": "The Banaue Rice Terraces are ancient engineering marvels carved into the mountains of Ifugao province by the ancestors of the indigenous Ifugao people. Often referred to as the \"Eighth Wonder of the World,\" these terraces were built largely by hand approximately 2,000 years ago and follow the natural contours of the mountains.\n\nThe terraces demonstrate the remarkable ingenuity of the Ifugao people, featuring an elaborate irrigation system that draws water from the mountaintop forests. They rise to an altitude of about 1,500 meters (4,900 feet) and cover over 10,000 square kilometers of mountainside. If placed end to end, the terraces would stretch more than 22,000 kilometers, circling half the globe.\n\nBeyond their agricultural function, the rice terraces represent the harmony between humans and their environment and are deeply integrated with the Ifugao cultural heritage, including rituals, folk traditions, and sustainable farming practices passed down through generations. The UNESCO World Heritage Site actually encompasses several terrace clusters in the region, including Batad and Bangaan, each offering unique perspectives and trekking experiences.",
+  "howToGetThere": "From Manila, take an 8-10 hour bus ride to Banaue town. Major bus companies like Ohayami Trans and Coda Lines offer overnight trips. Alternatively, you can take a flight to Cauayan Airport in Isabela province, followed by a 3-hour drive to Banaue. From Banaue town, jeepneys and tricycles can take you to various viewpoints and trailheads for the different terrace clusters.",
+  "whereToStay": [
+    "Banaue Hotel and Youth Hostel - government-run hotel with good views",
+    "Banaue Homestay - authentic experience with local families",
+    "Batad Pension and Restaurant - located near the Batad Rice Terraces",
+    "Hillside Inn - budget-friendly option in Banaue town",
+    "Uyami's Green View Restaurant and Homestay - offers good views of the terraces"
+  ],
+  "nearbyAttractions": [
+    "Batad Rice Terraces - amphitheater-like terraces",
+    "Tappiya Waterfall - accessible via trek from Batad",
+    "Bangaan Rice Terraces - UNESCO Heritage Site",
+    "Hapao Rice Terraces - less visited but equally beautiful",
+    "Sagada - nearby town known for hanging coffins and caves"
+  ],
+  "localCuisine": [
+    "Pinikpikan - traditional Ifugao chicken dish",
+    "Etag - preserved pork delicacy",
+    "Binakle - sticky rice cake",
+    "Rice wine (Tapuy) - traditional alcoholic beverage",
+    "Organic red rice grown on the terraces"
+  ],
+  "travelTips": [
+    "Wear proper hiking shoes as paths can be slippery, especially during rainy season",
+    "Hire a local guide for trekking - they provide cultural insights and ensure safety",
+    "Respect local customs and ask permission before taking photos of residents",
+    "Bring warm clothing as mountain temperatures can drop at night",
+    "Allow at least 2-3 days to properly explore the different terrace clusters"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+      "caption": "Panoramic view of the ancient rice terraces",
+      "credit": "Alva Pratt"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+      "caption": "Local Ifugao cultural traditions",
+      "credit": "Alva Pratt"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+      "caption": "Misty mountain views of Ifugao province",
+      "credit": "Alva Pratt"
+    }
+  ]
+}

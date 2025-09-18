@@ -1,0 +1,58 @@
+{
+  "id": "coron",
+  "name": "Coron",
+  "location": "Palawan",
+  "description": "Famous for its limestone karst landscapes, crystal-clear lagoons, and World War II shipwrecks, Coron offers some of the best diving experiences in the world.",
+  "type": "island",
+  "rating": 4.9,
+  "imageUrl": "https://images.unsplash.com/photo-1573720574697-e81bb555e6b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+  "imageCredit": "Cris Tagupa",
+  "bestTimeToVisit": "November to May",
+  "activities": ["Diving", "Snorkeling", "Island Hopping", "Hot Springs", "Kayaking"],
+  "tags": ["Diving", "Shipwrecks", "Lagoons", "Adventure"],
+  "longDescription": "Coron is a stunning archipelago located in the northern part of Palawan province. The area is divided into Coron Island, which is home to the indigenous Tagbanua people and protected as their ancestral domain, and Coron Town on nearby Busuanga Island, which serves as the main tourism hub. Coron has gained international fame for its extraordinary natural beauty both above and below the water.\n\nOne of Coron's most distinctive features is its dramatic limestone karst landscape, with towering cliffs rising from crystal-clear lagoons. Kayangan Lake, often called the cleanest lake in the Philippines, offers visitors a chance to swim in its remarkably clear waters surrounded by limestone formations. Nearby, the Twin Lagoons present a magical experience where fresh and saltwater meet, creating a mesmerizing visual effect.\n\nFor diving enthusiasts, Coron is a paradise. The area is home to numerous Japanese shipwrecks from World War II, creating artificial reefs that now teem with marine life. These well-preserved wrecks, including the Irako Maru and Okikawa Maru, offer diving experiences for various skill levels and provide a fascinating underwater museum of history.\n\nBeyond its natural attractions, Coron Town offers a laid-back atmosphere with a growing selection of restaurants, bars, and accommodations. The town's Maquinit Hot Springs provide a perfect end to a day of exploration, with naturally heated saltwater pools set against a mangrove backdrop.",
+  "howToGetThere": "To reach Coron, fly to Francisco B. Reyes Airport (formerly Busuanga Airport) from Manila or Cebu. The flight takes approximately 1 hour from Manila. From the airport, take a van to Coron Town, which is about a 30-45 minute drive. Alternatively, you can reach Coron by ferry from Manila (approximately 15 hours), El Nido (3-4 hours), or Puerto Princesa (15-20 hours), though schedules vary seasonally.",
+  "whereToStay": [
+    "Luxury: Two Seasons Coron Bayside Hotel, Coron Soleil Garden Resort, The Funny Lion",
+    "Mid-range: Coron Westown Resort, Sunlight Guest Hotel, Corto del Mar Hotel",
+    "Budget: Coron Backpacker Guesthouse, Hop Hostel, Coron Paradise Bed & Breakfast"
+  ],
+  "nearbyAttractions": [
+    "Kayangan Lake - often called the cleanest lake in the Philippines",
+    "Twin Lagoons - where fresh and saltwater meet",
+    "Barracuda Lake - famous for its thermocline layers",
+    "Malcapuya Island - pristine white sand beach",
+    "Calauit Safari Park - African wildlife sanctuary"
+  ],
+  "localCuisine": [
+    "Fresh seafood, particularly grilled fish and squid",
+    "Tamilok (woodworm) - a local delicacy for the adventurous",
+    "Crocodile sisig - a unique twist on the popular Filipino dish",
+    "Danggit lamayo - marinated dried fish",
+    "Cashew products from Coron's cashew plantations"
+  ],
+  "travelTips": [
+    "Book island hopping tours in advance during peak season",
+    "Bring cash as ATMs are limited and many places don't accept cards",
+    "Pack reef-safe sunscreen and a dry bag for island hopping",
+    "If diving, book with reputable dive shops and consider a package for multiple dive sites",
+    "Allow at least 3-4 days to properly explore Coron's attractions"
+  ],
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1573720574697-e81bb555e6b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+      "caption": "Stunning limestone formations and turquoise waters",
+      "credit": "Cris Tagupa"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "caption": "Crystal clear lagoons perfect for swimming",
+      "credit": "Sean Oulashin"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80",
+      "caption": "Island hopping adventures around Coron",
+      "credit": "Christian Paul Del Rosario"
+    }
+  ]
+}

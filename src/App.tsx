@@ -24,6 +24,8 @@ import Hotlines from './pages/philippines/Hotlines'
 import VisaPage from './pages/travel/visa'
 import VisaTypesPage from './pages/travel/visa-types'
 import VisaTypeDetail from './pages/travel/visa-types/[type]'
+import TravelDestinationsPage from './pages/travel/destinations'
+import DestinationDetail from './pages/travel/destinations/[id]'
 import ExecutiveDirectory from './pages/government/executive'
 import ExecutiveLayout from './pages/government/executive/layout'
 import DepartmentsIndex from './pages/government/departments'
@@ -142,13 +144,15 @@ function App() {
                 </React.Suspense>
               }
             />
+            <Route path="/travel/destinations" element={<TravelDestinationsPage />} />
+            <Route path="/travel/destinations/:id" element={<DestinationDetail />} />
 
             {/* Government Routes */}
             <Route
               path="/government"
               element={<GovernmentLayout title="Government" />}
             >
-              <Route index element={<Navigate to="executive" replace />} />
+              <Route index element={<Navigate to="executive\" replace />} />
 
               <Route path="executive" element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
