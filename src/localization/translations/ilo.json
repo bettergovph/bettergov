@@ -46,7 +46,7 @@
     "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
   },
   "data": {
-    "title": "Real-Time Data Services",
+    "title": "Real-Time a Serbisio ti Data",
     "description": "Makaaccesska iti kabaruan nga impormasion iti kasasaad ti panawen ken dagiti rate ti foreign exchange iti intero a Pilipinas.",
     "weatherForecast": "Padto ti Panawen",
     "realtimeConditions": "Real-time a kasasaad",
@@ -56,7 +56,7 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Dadduma pay a Siudad",
-    "forexRates": "Forex Rates",
+    "forexRates": "Dagiti Rate ti Forex",
     "liveExchange": "Live nga panagsukatan ti kuarta",
     "forexDescription": "Bantayan dagiti rate ti foreign exchange manipud iti Bangko Sentral ng Pilipinas (BSP). Agbaliw kadagiti currencies ken kitaen dagiti historical rate trends para kadagiti kangrunaan a world currencies.",
     "usd": "USD",
@@ -65,7 +65,7 @@
     "moreCurrencies": "Dadduma pay a Currencies"
   },
   "promotion": {
-    "philsysTitle": "PhilSys National ID Registration",
+    "philsysTitle": "Pannakarehistro ti PhilSys National ID",
     "philsysDescription": "Agiregistro ita para iti Philippine Identification System (PhilSys) ID card mo. Ti national ID ket agserbi a kas maysa nga ID nga inted ti gobierno para kadagiti amin a lungsuranon.",
     "registerNow": "Agiregistro Ita"
   },
