@@ -194,19 +194,21 @@ const YearlyChart: React.FC = () => {
   }
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={chartData}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" tick={{ fontSize: 9 }} />
-        <YAxis tick={{ fontSize: 9 }} />
-        <Tooltip />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-        <Bar dataKey="Projects" fill="#0088FE" />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full overflow-hidden">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 20, left: 10, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" tick={{ fontSize: 9 }} />
+          <YAxis tick={{ fontSize: 9 }} />
+          <Tooltip />
+          <Legend wrapperStyle={{ fontSize: 10 }} />
+          <Bar dataKey="Projects" fill="#0088FE" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -247,15 +249,15 @@ const RegionChart: React.FC = () => {
   }
 
   return (
-    <div className="h-full relative">
+    <div className="h-full relative w-full overflow-hidden">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={chartData}
             cx="50%"
             cy="50%"
-            outerRadius={110}
-            innerRadius={30}
+            outerRadius={80}
+            innerRadius={20}
             fill="#8884d8"
             dataKey="Projects"
             nameKey="name"
@@ -276,8 +278,7 @@ const RegionChart: React.FC = () => {
               right: 0,
               height: 'auto',
               maxHeight: '150px',
-              overflow: 'visible',
-              whiteSpace: 'nowrap'
+              overflow: 'hidden'
             }} 
           />
         </PieChart>
@@ -340,15 +341,15 @@ const TypeOfWorkChart: React.FC = () => {
   ]
 
   return (
-    <div className="h-full relative">
+    <div className="h-full relative w-full overflow-hidden">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={chartData}
             cx="50%"
             cy="45%"
-            outerRadius={110}
-            innerRadius={30}
+            outerRadius={80}
+            innerRadius={20}
             fill="#8884d8"
             dataKey="count"
             nameKey="value"
@@ -369,7 +370,7 @@ const TypeOfWorkChart: React.FC = () => {
               right: 0,
               height: 'auto',
               maxHeight: '180px',
-              overflow: 'visible'
+              overflow: 'hidden'
             }} 
           />
         </PieChart>
@@ -421,32 +422,45 @@ const ContractorChart: React.FC = () => {
   }
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={chartData}
-        layout="vertical"
-        margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis 
-          type="number" 
-          tick={{ fontSize: 9 }}
-        />
-        <YAxis
-          type="category"
-          dataKey="name"
-          width={120}
-          tick={{ fontSize: 9 }}
-          interval={0}
-        />
-        <Tooltip />
-        <Bar 
-          dataKey="Projects" 
-          fill="#3B82F6"
-        />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full overflow-hidden">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={chartData}
+          layout="vertical"
+          margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            type="number" 
+            tick={{ fontSize: 8 }}
+          />
+          <YAxis
+            type="category"
+            dataKey="name"
+            width={120}
+            tick={{ fontSize: 8 }}
+            interval={0}
+            tickFormatter={(value) => {
+              if (value.length > 20) {
+                return value.substring(0, 20) + '...';
+              }
+              return value;
+            }}
+          />
+          <Tooltip 
+            formatter={(value, name, props) => [
+              `${value} projects`,
+              props.payload.fullName || props.payload.name
+            ]}
+          />
+          <Bar 
+            dataKey="Projects" 
+            fill="#3B82F6"
+          />
+          <Legend wrapperStyle={{ fontSize: 8 }} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -596,14 +610,14 @@ const FloodControlProjects: React.FC = () => {
 
       {/* Main layout with sidebar and content */}
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-6 min-w-0">
           {/* Sidebar for filters - collapsible on mobile */}
           <div
-            className={`md:w-64 flex-shrink-0 transition-all duration-300 ${
+            className={`w-full md:w-64 flex-shrink-0 transition-all duration-300 ${
               showSidebar ? 'block' : 'hidden md:block'
             }`}
           >
-            <div className="bg-white rounded-lg shadow-md p-4 sticky top-20">
+            <div className="bg-white rounded-lg shadow-md p-4 sticky top-20 max-h-[calc(100vh-5rem)] overflow-y-auto">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <Filter className="w-5 h-5 text-blue-600 mr-2" />
@@ -726,7 +740,7 @@ const FloodControlProjects: React.FC = () => {
           </div>
 
           {/* Main content area */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0 flood-control-content">
             {/* Mobile toggle for sidebar */}
             <div className="md:hidden mb-4">
               <Button
@@ -830,18 +844,18 @@ const FloodControlProjects: React.FC = () => {
             </InstantSearch>
 
             {/* Visualizations Section */}
-            <div className="space-y-6 mb-6">
+            <div className="space-y-4 md:space-y-6 mb-6 overflow-x-hidden">
               {/* First Row - Temporal Overview (Most Important) */}
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4 md:gap-6">
                 {/* Projects by Year - Full Width Bar Chart */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <div className="flex items-center mb-4">
+                <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+                  <div className="flex items-center mb-3 md:mb-4">
                     <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />
                     <h2 className="text-lg font-semibold text-gray-800">
                       Projects by Year
                     </h2>
                   </div>
-                  <div className="h-[500px]">
+                  <div className="h-[300px] md:h-[500px] w-full overflow-hidden">
                     {filtersApplied ? (
                       <InstantSearch
                         indexName="bettergov_flood_control"
@@ -859,13 +873,13 @@ const FloodControlProjects: React.FC = () => {
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={yearlyChartData}
-                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                          margin={{ top: 20, right: 20, left: 10, bottom: 5 }}
                         >
                           <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                          <YAxis tick={{ fontSize: 12 }} />
+                          <XAxis dataKey="name" tick={{ fontSize: 10 }} />
+                          <YAxis tick={{ fontSize: 10 }} />
                           <Tooltip />
-                          <Legend wrapperStyle={{ fontSize: 12 }} />
+                          <Legend wrapperStyle={{ fontSize: 10 }} />
                           <Bar dataKey="Projects" fill="#0088FE" />
                         </BarChart>
                       </ResponsiveContainer>
@@ -875,16 +889,16 @@ const FloodControlProjects: React.FC = () => {
               </div>
 
               {/* Second Row - Geographic and Categorical Distribution */}
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
                 {/* Top Regions - Pie Chart */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <div className="flex items-center mb-4">
+                <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+                  <div className="flex items-center mb-3 md:mb-4">
                     <PieChartIcon className="w-5 h-5 text-blue-600 mr-2" />
                     <h2 className="text-lg font-semibold text-gray-800">
                       Top Regions
                     </h2>
                   </div>
-                  <div className="h-[500px]">
+                  <div className="h-[350px] md:h-[500px] w-full overflow-hidden">
                     {filtersApplied ? (
                       <InstantSearch
                         indexName="bettergov_flood_control"
@@ -899,15 +913,15 @@ const FloodControlProjects: React.FC = () => {
                         <RegionChart />
                       </InstantSearch>
                     ) : (
-                      <div className="h-full relative">
+                      <div className="h-full relative w-full">
                         <ResponsiveContainer width="100%" height="100%">
                           <PieChart>
                             <Pie
                               data={regionChartData}
                               cx="50%"
                               cy="50%"
-                              outerRadius={110}
-                              innerRadius={30}
+                              outerRadius={80}
+                              innerRadius={20}
                               fill="#8884d8"
                               dataKey="Projects"
                               nameKey="name"
@@ -946,14 +960,14 @@ const FloodControlProjects: React.FC = () => {
                 </div>
 
                 {/* Types of Work - Pie Chart */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <div className="flex items-center mb-4">
+                <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+                  <div className="flex items-center mb-3 md:mb-4">
                     <PieChartIcon className="w-5 h-5 text-green-600 mr-2" />
                     <h2 className="text-lg font-semibold text-gray-800">
                       Types of Work
                     </h2>
                   </div>
-                  <div className="h-[500px]">
+                  <div className="h-[350px] md:h-[500px] w-full overflow-hidden">
                     {filtersApplied ? (
                       <InstantSearch
                         indexName="bettergov_flood_control"
@@ -968,15 +982,15 @@ const FloodControlProjects: React.FC = () => {
                         <TypeOfWorkChart />
                       </InstantSearch>
                     ) : (
-                      <div className="h-full relative">
+                      <div className="h-full relative w-full">
                         <ResponsiveContainer width="100%" height="100%">
                           <PieChart>
                             <Pie
                               data={typeWorkPieData}
                               cx="50%"
                               cy="45%"
-                              outerRadius={110}
-                              innerRadius={30}
+                              outerRadius={80}
+                              innerRadius={20}
                               fill="#8884d8"
                               dataKey="count"
                               nameKey="value"
@@ -1000,7 +1014,7 @@ const FloodControlProjects: React.FC = () => {
                                 right: 0,
                                 height: 'auto',
                                 maxHeight: '180px',
-                                overflow: 'visible'
+                                overflow: 'hidden'
                               }} 
                             />
                           </PieChart>
@@ -1012,16 +1026,16 @@ const FloodControlProjects: React.FC = () => {
               </div>
 
               {/* Third Row - Stakeholder Analysis */}
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4 md:gap-6">
                 {/* Top Contractors - Full Width Bar Chart */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <div className="flex items-center mb-4">
+                <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+                  <div className="flex items-center mb-3 md:mb-4">
                     <Users className="w-5 h-5 text-orange-600 mr-2" />
                     <h2 className="text-lg font-semibold text-gray-800">
                       Top Contractors
                     </h2>
                   </div>
-                  <div className="h-[600px]">
+                  <div className="h-[400px] md:h-[600px] w-full overflow-hidden">
                     {filtersApplied ? (
                       <InstantSearch
                         indexName="bettergov_flood_control"
@@ -1040,26 +1054,37 @@ const FloodControlProjects: React.FC = () => {
                         <BarChart
                           data={contractorChartData}
                           layout="vertical"
-                          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
+                          margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
                         >
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis 
                             type="number" 
-                            tick={{ fontSize: 9 }}
+                            tick={{ fontSize: 8 }}
                           />
                           <YAxis
                             type="category"
                             dataKey="name"
                             width={120}
-                            tick={{ fontSize: 9 }}
+                            tick={{ fontSize: 8 }}
                             interval={0}
+                            tickFormatter={(value) => {
+                              if (value.length > 20) {
+                                return value.substring(0, 20) + '...';
+                              }
+                              return value;
+                            }}
                           />
-                          <Tooltip />
+                          <Tooltip 
+                            formatter={(value, name, props) => [
+                              `${value} projects`,
+                              props.payload.fullName || props.payload.name
+                            ]}
+                          />
                           <Bar 
                             dataKey="Projects" 
                             fill="#3B82F6"
                           />
-                          <Legend wrapperStyle={{ fontSize: 10 }} />
+                          <Legend wrapperStyle={{ fontSize: 8 }} />
                         </BarChart>
                       </ResponsiveContainer>
                     )}

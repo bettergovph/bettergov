@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scroll on specific pages */
+.no-horizontal-scroll {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent horizontal scroll on flood control page content */
+.flood-control-content {
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for horizontal scrolling tabs */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 /* Leaflet popup fixes for Tailwind CSS conflicts */
 .leaflet-popup-content-wrapper {
   border-radius: 8px !important;
