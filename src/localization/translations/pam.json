@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Malaus a Pagdatang king BetterGov.ph",
-    "subtitle": "Ing volunteer-run portal ning Republika ning Pilipinas. Manintun impormasiun, pag-access kareng serbisyu ning kapamahalan, manatili updated kareng pekabayung balita tungkul king Pilipinas.",
+    "title": "Malawus kayu king BetterGov.ph",
+    "subtitle": "Ini ing portal ning Republika ning Pilipinas, na tatalakaran da reng boluntaryu. Mantun kang impormasyun, lungub ka kareng serbisyung pang-gobyernu, at manatiling makibalu keng pekabayung balita keng Pilipinas",
     "nationalId": "National ID",
     "birthCertificate": "Sertipiku ning Pangabait",
     "businessRegistration": "Pamagpatala ning Negosiu"
@@ -29,8 +29,8 @@
     "philippines": "Ing Pilipinas",
     "services": "Deng Serbisyu",
     "travel": "Pamaglakbe",
-    "government": "Kapamahalan",
-    "flood control projects": "Deng Proyektu king Pamanyabat Bulus"
+    "government": "Gobyernu",
+    "flood control projects": "Deng Proyektu king Pagkontrol ning Baha"
   },
   "joinUs": {
     "stripTitle": "🚀 Makiabe king #CivicTech Revolution",
