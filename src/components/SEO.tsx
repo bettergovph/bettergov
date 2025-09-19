@@ -19,7 +19,7 @@ export default function SEO({
   title,
   description,
   canonical,
-  ogImage = '/ph-logo.png',
+  ogImage = '/ph-logo.webp',
   ogType = 'website',
   noIndex = false,
   keywords = [],

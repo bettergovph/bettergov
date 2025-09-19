@@ -8,6 +8,7 @@ import {
   BookOpen,
   MapPin,
 } from 'lucide-react'
+import clsx from 'clsx'
 
 interface GovernmentLayoutProps {
   title: string
@@ -137,11 +138,12 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
               <Link
                 key={branch.path}
                 to={branch.path}
-                className={`flex flex-col px-3 md:px-4 py-3 md:py-4 transition-all rounded-md shadow-sm ${
+                className={clsx(
+                  'group flex flex-col p-3 md:p-4 transition-all rounded-md shadow-sm',
                   isActive
-                    ? `${branch.color} text-white`
-                    : `bg-white border ${branch.textColor} ${branch.hoverColor} hover:text-white`
-                }`}
+                    ? [branch.color, 'text-white']
+                    : ['bg-white border', branch.textColor, branch.hoverColor, 'hover:text-white']
+                )}
               >
                 <div className="flex items-center gap-1 mb-1">
                   <div className="mr-2 text-xs md:text-sm">{branch.icon}</div>
@@ -149,7 +151,10 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
                     {branch.title}
                   </span>
                 </div>
-                <div className="text-xs md:text-sm text-gray-800">
+                <div className={clsx(
+                  'text-xs md:text-sm transition-colors',
+                  isActive ? 'text-white' : 'text-gray-800 group-hover:text-white'
+                )}>
                   {branch.description}
                 </div>
               </Link>

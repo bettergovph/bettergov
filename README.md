@@ -1,16 +1,16 @@
 # BetterGov.ph
 
-A community-led initiative to create a better and usable Philippine national government website.
+A community-led initiative to create a better and more usable Philippine national government website.
 
 ## Why We're Building This Project
 
 The current state of Philippine government websites, particularly the main portal [www.gov.ph](https://www.gov.ph), presents numerous challenges for citizens:
 
-- The main Gov.ph website is outdated and hasn't been updated for a long time
+- The main Gov.ph website is outdated and has not been updated for a long time
 - Full of broken links and difficult navigation paths
 - Inconsistent formatting and design across pages
 - Poor user experience and accessibility issues
-- Similar problems exist across most government agency websites
+- Similar problems exist across most Philippine government agency websites
 
 These issues create barriers for citizens trying to access essential government services and information.
 
@@ -58,7 +58,7 @@ Found a problem with the website? Help us improve by reporting it!
    - What you were trying to do
    - What you expected to happen
    - What actually happened
-   - Screenshots if applicable
+   - Screenshots, if applicable
 
 Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 
@@ -68,6 +68,23 @@ Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 2. Install dependencies
 3. Set up environment variables
 4. Run the development server
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/bettergov.ph.git
+cd bettergov.ph
+
+# Install dependencies
+npm install
+
+# Set environment variables (example)
+# cp .env.example .env
+# then edit .env as needed
+
+# Start the development server
+npm run dev
+```
+
 
 ## Development
 

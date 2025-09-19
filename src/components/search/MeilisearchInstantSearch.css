@@ -13,7 +13,8 @@
 }
 
 .ais-SearchBox-form {
-  background-color: none;
+  background-color: transparent;
+  border-radius: 100px; /* fallback for background-color: transparent; */
   height: auto;
   line-height: auto;
 }

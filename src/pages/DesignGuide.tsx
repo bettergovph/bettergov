@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardHeader, CardContent } from '../components/ui/Card'
+import { Card, CardHeader, CardContent, CardImage } from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { Phone, Mail, ExternalLink, Award, Building, Globe } from 'lucide-react'
 
@@ -84,7 +84,7 @@ const DesignGuide: React.FC = () => {
           <CardHeader>
             <h2 className="text-2xl font-semibold">Typography</h2>
             <p className="text-gray-800">
-              Plus Jakarta Sans is our primary font family
+              Inter is our primary font family for clean, modern readability
             </p>
           </CardHeader>
           <CardContent>
@@ -116,64 +116,84 @@ const DesignGuide: React.FC = () => {
             <p className="text-gray-800">Our color palette</p>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <h3 className="font-medium mb-4">Primary</h3>
+                <h3 className="font-medium mb-4">Primary (Blue)</h3>
                 <div className="space-y-4">
                   <ColorBlock
                     color="bg-primary-500"
                     name="Primary 500"
-                    value="#0066eb"
+                    value="#3b82f6"
                   />
                   <ColorBlock
                     color="bg-primary-600"
                     name="Primary 600"
-                    value="#0052bc"
+                    value="#2563eb"
                   />
                   <ColorBlock
                     color="bg-primary-700"
                     name="Primary 700"
-                    value="#003d8d"
+                    value="#1d4ed8"
                   />
                 </div>
               </div>
               <div>
-                <h3 className="font-medium mb-4">Secondary</h3>
+                <h3 className="font-medium mb-4">CivicTech (Orange)</h3>
                 <div className="space-y-4">
                   <ColorBlock
-                    color="bg-secondary-500"
-                    name="Secondary 500"
-                    value="#ff4d00"
+                    color="bg-orange-500"
+                    name="Orange 500"
+                    value="#f97316"
                   />
                   <ColorBlock
-                    color="bg-secondary-600"
-                    name="Secondary 600"
-                    value="#cc3e00"
+                    color="bg-orange-600"
+                    name="Orange 600"
+                    value="#ea580c"
                   />
                   <ColorBlock
-                    color="bg-secondary-700"
-                    name="Secondary 700"
-                    value="#992e00"
+                    color="bg-red-500"
+                    name="Red 500"
+                    value="#ef4444"
                   />
                 </div>
               </div>
               <div>
-                <h3 className="font-medium mb-4">Accent</h3>
+                <h3 className="font-medium mb-4">Accent (Pink)</h3>
                 <div className="space-y-4">
                   <ColorBlock
-                    color="bg-accent-500"
-                    name="Accent 500"
-                    value="#f58900"
+                    color="bg-pink-500"
+                    name="Pink 500"
+                    value="#ec4899"
                   />
                   <ColorBlock
-                    color="bg-accent-600"
-                    name="Accent 600"
-                    value="#c46e00"
+                    color="bg-pink-600"
+                    name="Pink 600"
+                    value="#db2777"
                   />
                   <ColorBlock
-                    color="bg-accent-700"
-                    name="Accent 700"
-                    value="#935200"
+                    color="bg-purple-600"
+                    name="Purple 600"
+                    value="#9333ea"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium mb-4">Neutral</h3>
+                <div className="space-y-4">
+                  <ColorBlock
+                    color="bg-gray-500"
+                    name="Gray 500"
+                    value="#6b7280"
+                  />
+                  <ColorBlock
+                    color="bg-gray-700"
+                    name="Gray 700"
+                    value="#374151"
+                  />
+                  <ColorBlock
+                    color="bg-gray-900"
+                    name="Gray 900"
+                    value="#111827"
                   />
                 </div>
               </div>
@@ -363,6 +383,64 @@ const DesignGuide: React.FC = () => {
           </CardContent>
         </Card>
 
+        {/* CivicTech Components */}
+        <Card className="mb-8">
+          <CardHeader>
+            <h2 className="text-2xl font-semibold">CivicTech Components</h2>
+            <p className="text-gray-800">Banner and call-to-action components for community engagement</p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              {/* Strip Banner */}
+              <div>
+                <h3 className="font-medium mb-4">Strip Banner</h3>
+                <div className="relative overflow-hidden bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3 rounded-lg">
+                  <div className="container mx-auto px-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-sm">🚀 Join the #CivicTech Revolution</span>
+                        <span className="hidden md:inline text-sm text-orange-100">
+                          Help build the future of the Philippines and governance through technology
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button className="bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-gray-200">
+                          Join Now
+                        </button>
+                        <span className="text-xs text-orange-200 underline">Discord</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Full Banner */}
+              <div>
+                <h3 className="font-medium mb-4">Full CivicTech Banner</h3>
+                <div className="relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 text-white py-12 rounded-lg">
+                  <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                      Join the <span className="text-yellow-200">#CivicTech</span> Revolution
+                    </h2>
+                    <p className="text-lg mb-6 text-orange-100 max-w-2xl mx-auto">
+                      Help build the future of the Philippines and governance through technology. 
+                      <strong className="text-yellow-200"> Volunteer-led. Open source. Community-driven.</strong>
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <button className="bg-white text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-100">
+                        Join Our Movement
+                      </button>
+                      <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900">
+                        Join Discord
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Updated Profile Section */}
         <Card>
           <CardHeader>
@@ -515,11 +593,11 @@ const DesignGuide: React.FC = () => {
                       </div>
 
                       <div className="flex space-x-4 mt-8">
-                        <Button>
+                        <Button className="bg-primary-600 hover:bg-primary-700 text-white">
                           <Mail className="h-4 w-4 mr-2" />
                           Contact Office
                         </Button>
-                        <Button variant="outline">
+                        <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                           <Globe className="h-4 w-4 mr-2" />
                           Visit Website
                         </Button>
