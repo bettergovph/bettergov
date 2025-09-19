@@ -9,16 +9,21 @@ on:
       - ready_for_review
       - synchronize
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
-    # Skip this workflow if running on a fork
+    timeout-minutes: 5
+    # Skip this workflow if running on a fork (security: secrets not available to forks)
     if: github.event.pull_request.head.repo.full_name == github.repository
 
     steps:
       - name: Send PR Notification to Discord
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_PR_WEBHOOK_URL }}
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
@@ -30,6 +35,10 @@ jobs:
           PR_STATE: ${{ github.event.pull_request.state }}
           PR_DRAFT: ${{ github.event.pull_request.draft }}
           PR_MERGED: ${{ github.event.pull_request.merged }}
+          PR_LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+          PR_ASSIGNEES: ${{ toJSON(github.event.pull_request.assignees.*.login) }}
+          PR_REVIEWERS: ${{ toJSON(github.event.pull_request.requested_reviewers.*.login) }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           # Determine the color and action text based on PR action
           if [ "$PR_ACTION" = "opened" ]; then
@@ -78,6 +87,40 @@ jobs:
             DESCRIPTION="No description provided."
           fi
 
+          # Format labels
+          LABELS_JSON=$(echo "$PR_LABELS" | jq -r 'join(", ")')
+          if [ "$LABELS_JSON" = "" ] || [ "$LABELS_JSON" = "null" ]; then
+            LABELS_DISPLAY="none"
+          else
+            LABELS_DISPLAY="$LABELS_JSON"
+          fi
+
+          # Format reviewers
+          REVIEWERS_JSON=$(echo "$PR_REVIEWERS" | jq -r 'map("@" + .) | join(", ")')
+          if [ "$REVIEWERS_JSON" = "" ] || [ "$REVIEWERS_JSON" = "null" ]; then
+            REVIEWERS_DISPLAY="none"
+          else
+            REVIEWERS_DISPLAY="$REVIEWERS_JSON"
+          fi
+
+          # Format assignees
+          ASSIGNEES_JSON=$(echo "$PR_ASSIGNEES" | jq -r 'map("@" + .) | join(", ")')
+          if [ "$ASSIGNEES_JSON" = "" ] || [ "$ASSIGNEES_JSON" = "null" ]; then
+            ASSIGNEES_DISPLAY="none"
+          else
+            ASSIGNEES_DISPLAY="$ASSIGNEES_JSON"
+          fi
+
+          # Get URLs
+          COMPARE_URL="https://github.com/${{ github.repository }}/pull/$PR_NUMBER/files"
+          CHECKS_URL="https://github.com/${{ github.repository }}/pull/$PR_NUMBER/checks"
+
+          # Generate unique message ID for deduplication
+          MESSAGE_ID="pr-$PR_NUMBER-$PR_ACTION-${PR_SHA:0:7}"
+
+          # Format title with repo name
+          FULL_TITLE="[bettergov] PR #$PR_NUMBER · $PR_TITLE"
+
           # Create JSON payload
           cat <<EOF > payload.json
           {
@@ -85,7 +128,7 @@ jobs:
             "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
             "embeds": [
               {
-                "title": "PR #$PR_NUMBER: $PR_TITLE",
+                "title": "$FULL_TITLE",
                 "description": "$DESCRIPTION",
                 "url": "$PR_URL",
                 "color": $COLOR,
@@ -96,23 +139,43 @@ jobs:
                 },
                 "fields": [
                   {
-                    "name": "Repository",
+                    "name": "📦 Repository",
                     "value": "[${{ github.repository }}](https://github.com/${{ github.repository }})",
                     "inline": true
                   },
                   {
-                    "name": "Branch",
+                    "name": "🔀 Branch",
                     "value": "\`$PR_BRANCH\` → \`$PR_BASE\`",
                     "inline": true
                   },
                   {
-                    "name": "Status",
+                    "name": "📊 Status",
                     "value": "$STATUS",
                     "inline": true
+                  },
+                  {
+                    "name": "🏷️ Labels",
+                    "value": "$LABELS_DISPLAY",
+                    "inline": true
+                  },
+                  {
+                    "name": "👥 Reviewers",
+                    "value": "$REVIEWERS_DISPLAY",
+                    "inline": true
+                  },
+                  {
+                    "name": "👤 Assignees",
+                    "value": "$ASSIGNEES_DISPLAY",
+                    "inline": true
+                  },
+                  {
+                    "name": "🔗 Links",
+                    "value": "[View PR]($PR_URL) • [Diff]($COMPARE_URL) • [Checks]($CHECKS_URL)",
+                    "inline": false
                   }
                 ],
                 "footer": {
-                  "text": "BetterGov.ph • GitHub",
+                  "text": "BetterGov.ph • GitHub • $MESSAGE_ID",
                   "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 },
                 "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
@@ -121,8 +184,32 @@ jobs:
           }
           EOF
 
-          # Send to Discord
-          curl -X POST $DISCORD_WEBHOOK \
-            -H "Content-Type: application/json" \
-            -d @payload.json \
-            --fail-with-body
+          # Send to Discord with retry logic
+          MAX_RETRIES=3
+          RETRY_DELAY=2
+
+          for i in $(seq 1 $MAX_RETRIES); do
+            echo "Attempt $i of $MAX_RETRIES: Sending notification to Discord..."
+
+            if curl -X POST $DISCORD_WEBHOOK \
+              -H "Content-Type: application/json" \
+              -H "X-Message-ID: $MESSAGE_ID" \
+              -d @payload.json \
+              --fail-with-body \
+              --max-time 10 \
+              --retry 2 \
+              --retry-delay 1; then
+              echo "✅ Notification sent successfully"
+              exit 0
+            else
+              echo "⚠️ Attempt $i failed"
+              if [ $i -lt $MAX_RETRIES ]; then
+                echo "Retrying in $RETRY_DELAY seconds..."
+                sleep $RETRY_DELAY
+                RETRY_DELAY=$((RETRY_DELAY * 2))  # Exponential backoff
+              fi
+            fi
+          done
+
+          echo "❌ Failed to send notification after $MAX_RETRIES attempts"
+          exit 1

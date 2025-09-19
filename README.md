@@ -188,7 +188,7 @@ This project includes automated Discord notifications for pull request activitie
 
 2. **Add Webhook URL to GitHub Secrets**
    - Go to repository Settings → Secrets and variables → Actions
-   - Add a new secret named `DISCORD_WEBHOOK_URL`
+   - Add a new secret named `DISCORD_PR_WEBHOOK_URL`
    - Paste your Discord webhook URL as the value
 
 3. **Notifications will be sent automatically for:**

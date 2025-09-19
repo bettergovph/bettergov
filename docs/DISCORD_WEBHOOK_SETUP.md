@@ -30,7 +30,7 @@ This is the simplest method and requires no additional infrastructure.
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
 4. Add the secret:
-   - **Name**: `DISCORD_WEBHOOK_URL`
+   - **Name**: `DISCORD_PR_WEBHOOK_URL`
    - **Value**: Paste the Discord webhook URL from Step 1
 5. Click **Add secret**
 
