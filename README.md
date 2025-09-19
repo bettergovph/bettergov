@@ -171,6 +171,60 @@ test('user can search for services', async ({ page }) => {
 });
 ```
 
+## Discord Integration
+
+This project includes automated Discord notifications for pull request activities. When configured, the system will send notifications to a designated Discord channel whenever pull requests are opened, closed, merged, or updated.
+
+### Setting Up Discord Notifications
+
+#### Option 1: GitHub Actions (Recommended)
+
+1. **Create a Discord Webhook**
+   - Go to your Discord server settings
+   - Navigate to Integrations → Webhooks
+   - Click "New Webhook"
+   - Name it "BetterGov GitHub Bot"
+   - Copy the webhook URL
+
+2. **Add Webhook URL to GitHub Secrets**
+   - Go to repository Settings → Secrets and variables → Actions
+   - Add a new secret named `DISCORD_WEBHOOK_URL`
+   - Paste your Discord webhook URL as the value
+
+3. **Notifications will be sent automatically for:**
+   - New pull requests
+   - Closed pull requests
+   - Merged pull requests
+   - Pull requests marked ready for review
+   - New commits pushed to existing PRs
+
+#### Option 2: Cloudflare Worker Webhook
+
+For more advanced webhook handling, you can deploy the included Cloudflare Worker:
+
+1. **Set up environment variables in Cloudflare:**
+   ```bash
+   wrangler secret put DISCORD_WEBHOOK_URL
+   wrangler secret put GITHUB_WEBHOOK_SECRET
+   ```
+
+2. **Configure GitHub webhook:**
+   - Go to repository Settings → Webhooks
+   - Add webhook URL: `https://your-worker.workers.dev/github-webhook`
+   - Content type: `application/json`
+   - Secret: Use the same value as `GITHUB_WEBHOOK_SECRET`
+   - Events: Select "Pull requests"
+
+### Discord Message Format
+
+The bot sends rich embed messages containing:
+- PR title and number
+- Author information with avatar
+- PR description (truncated if too long)
+- Repository and branch information
+- Current status (Open, Closed, Merged, Draft)
+- Color-coded based on action type
+
 ## License
 
 This project is released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication. This means the work is dedicated to the public domain and can be freely used by anyone for any purpose without restriction under copyright law.

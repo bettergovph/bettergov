@@ -1,0 +1,128 @@
+name: Discord PR Notifications
+
+on:
+  pull_request:
+    types:
+      - opened
+      - closed
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    # Skip this workflow if running on a fork
+    if: github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Send PR Notification to Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_ACTION: ${{ github.event.action }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_BASE: ${{ github.event.pull_request.base.ref }}
+          PR_STATE: ${{ github.event.pull_request.state }}
+          PR_DRAFT: ${{ github.event.pull_request.draft }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+        run: |
+          # Determine the color and action text based on PR action
+          if [ "$PR_ACTION" = "opened" ]; then
+            COLOR="2293317"  # Green
+            ACTION_TEXT="opened a new pull request"
+          elif [ "$PR_ACTION" = "closed" ] && [ "$PR_MERGED" = "true" ]; then
+            COLOR="9056510"  # Purple
+            ACTION_TEXT="merged the pull request"
+          elif [ "$PR_ACTION" = "closed" ]; then
+            COLOR="15680000" # Red
+            ACTION_TEXT="closed the pull request"
+          elif [ "$PR_ACTION" = "reopened" ]; then
+            COLOR="3901635"  # Blue
+            ACTION_TEXT="reopened the pull request"
+          elif [ "$PR_ACTION" = "ready_for_review" ]; then
+            COLOR="16098851" # Amber
+            ACTION_TEXT="marked the pull request ready for review"
+          elif [ "$PR_ACTION" = "synchronize" ]; then
+            COLOR="1092106"  # Cyan
+            ACTION_TEXT="pushed new commits to"
+          else
+            COLOR="7040640"  # Gray
+            ACTION_TEXT="updated the pull request"
+          fi
+
+          # Determine status emoji and text
+          if [ "$PR_DRAFT" = "true" ]; then
+            STATUS="📝 Draft"
+          elif [ "$PR_MERGED" = "true" ]; then
+            STATUS="✅ Merged"
+          elif [ "$PR_STATE" = "open" ]; then
+            STATUS="🔄 Open"
+          else
+            STATUS="❌ Closed"
+          fi
+
+          # Truncate body if too long
+          if [ ${#PR_BODY} -gt 300 ]; then
+            DESCRIPTION="${PR_BODY:0:297}..."
+          else
+            DESCRIPTION="$PR_BODY"
+          fi
+
+          # If body is empty
+          if [ -z "$DESCRIPTION" ]; then
+            DESCRIPTION="No description provided."
+          fi
+
+          # Create JSON payload
+          cat <<EOF > payload.json
+          {
+            "username": "BetterGov GitHub Bot",
+            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "embeds": [
+              {
+                "title": "PR #$PR_NUMBER: $PR_TITLE",
+                "description": "$DESCRIPTION",
+                "url": "$PR_URL",
+                "color": $COLOR,
+                "author": {
+                  "name": "$PR_AUTHOR $ACTION_TEXT",
+                  "icon_url": "https://github.com/$PR_AUTHOR.png",
+                  "url": "https://github.com/$PR_AUTHOR"
+                },
+                "fields": [
+                  {
+                    "name": "Repository",
+                    "value": "[${{ github.repository }}](https://github.com/${{ github.repository }})",
+                    "inline": true
+                  },
+                  {
+                    "name": "Branch",
+                    "value": "\`$PR_BRANCH\` → \`$PR_BASE\`",
+                    "inline": true
+                  },
+                  {
+                    "name": "Status",
+                    "value": "$STATUS",
+                    "inline": true
+                  }
+                ],
+                "footer": {
+                  "text": "BetterGov.ph • GitHub",
+                  "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                },
+                "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
+              }
+            ]
+          }
+          EOF
+
+          # Send to Discord
+          curl -X POST $DISCORD_WEBHOOK \
+            -H "Content-Type: application/json" \
+            -d @payload.json \
+            --fail-with-body
