@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Maogmang Pag-abot sa BetterGov.ph",
-    "subtitle": "An volunteer-run portal kan Republika kan Pilipinas. Maghanap nin impormasyon, pag-access sa mga serbisyo kan gobyerno, magpirmi na updated sa pinakabagong balita tungkol sa Pilipinas."
+    "subtitle": "An volunteer-run portal kan Republika kan Pilipinas. Maghanap nin impormasyon, pag-access sa mga serbisyo kan gobyerno, magpirmi na updated sa pinakabagong balita tungkol sa Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko kan Pagkamundag",
+    "businessRegistration": "Pagparehistro kan Negosyo"
   },
   "services": {
-    "title": "Mga Sikat na Serbisyo"
+    "title": "Mga Sikat na Serbisyo",
+    "governmentServices": "Mga Serbisyo kan Gobyerno",
+    "description": "Makakua nin mga opisyal na serbisyo kan gobyerno nin marikas asin madali. Hanapa an kinakaipuhan mo para sa pagkalungsuranon, negosyo, edukasyon, asin iba pa.",
+    "viewAll": "Hilinga an Gabos na Serbisyo",
+    "viewAllCategory": "Hilinga Gabos"
   },
   "weather": {
     "title": "Mga Update kan Panahon"
@@ -24,5 +31,56 @@
     "travel": "Pagbiyahe",
     "government": "Gobyerno",
     "flood control projects": "Mga Proyekto sa Pagpugol kan Baha"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Mag-iba sa #CivicTech Revolution",
+    "stripSubtitle": "Tabang sa pagtukod kan kaugmaon kan Pilipinas asin pagdumala sa teknolohiya",
+    "joinNow": "Mag-iba Na",
+    "discord": "Discord",
+    "bannerTitle": "Mag-iba sa #CivicTech Revolution",
+    "bannerSubtitle": "Tabang sa pagtukod kan kaugmaon kan Pilipinas asin pagdumala sa teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Mag-iba sa Amang Kalihukan",
+    "or": "o",
+    "joinDiscord": "Mag-iba sa Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakua nin pinakabago na impormasyon sa kondisyon kan panahon asin mga rate kan foreign exchange sa gabos na Pilipinas.",
+    "weatherForecast": "Tagna kan Panahon",
+    "realtimeConditions": "Real-time na kondisyon",
+    "viewArrow": "Hilinga →",
+    "weatherDescription": "Kuhaan an presente na kondisyon kan panahon asin tagna para sa mga importante na syudad sa gabos na Pilipinas. Planuhon an inyong aldaw gamit an tama na pagbasa kan temperatura asin mga paalaala kan panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pang mga Syudad",
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live na pagribay nin kwarta",
+    "forexDescription": "Bantayan an mga rate kan foreign exchange poon sa Bangko Sentral ng Pilipinas (BSP). Mag-convert nin currencies asin hilinga an historical rate trends para sa mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Ibang Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para sa saindong Philippine Identification System (PhilSys) ID card ngunyan. An national ID nagsisilbing sarong ID na pigtao kan gobyerno para sa gabos na mga lungsuranon.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno kan Pilipinas",
+    "description": "Maaram an manungod sa tolong sanga kan gobyerno kan Pilipinas asin kun paano sinda nagtatabang tanganing magserbi sa mga tawo.",
+    "executiveTitle": "Sangang Ehekutibo",
+    "executiveDescription": "Pinamumunuan kan Presidente, responsable sa pagpatupad asin pagpairal kan mga batas.",
+    "legislativeTitle": "Sangang Lehislatura",
+    "legislativeDescription": "Binubuong Senado asin Kamara kan mga Representante, responsable sa paggibo kan mga batas.",
+    "judiciaryTitle": "Sangang Hudikatura",
+    "judiciaryDescription": "Pinamumunuan kan Korte Suprema, responsable sa pagsasabot kan mga batas asin pagpatupad kan hustisya.",
+    "learnMore": "Maaram Pa",
+    "directoryTitle": "Opisyal na Direktoryo",
+    "directoryDescription": "Hanapon an impormasyon sa pagkontak para sa mga opisyal kan gobyerno, mga ahensya, asin mga opisina sa nasyonal asin lokal na antas.",
+    "viewDirectory": "Hilngon an Direktoryo"
   }
 }

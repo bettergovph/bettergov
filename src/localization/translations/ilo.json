@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Naragsak nga Isasangbay iti BetterGov.ph",
-    "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas."
+    "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko ti Pannakaiyanak",
+    "businessRegistration": "Pannakarehistro ti Negosio"
   },
   "services": {
-    "title": "Dagiti Nalatak a Serbisio"
+    "title": "Dagiti Nalatak a Serbisio",
+    "governmentServices": "Dagiti Serbisio ti Gobierno",
+    "description": "Makaaccesska kadagiti opisial a serbisio ti gobierno a napardas ken nalaka. Birukem ti kasapulam para iti kinaagdagi, negosio, edukasion, ken dadduma pay.",
+    "viewAll": "Kitaen Amin a Serbisio",
+    "viewAllCategory": "Kitaen Amin"
   },
   "weather": {
     "title": "Dagiti Update ti Panawen"
@@ -24,5 +31,56 @@
     "travel": "Panagdaliasat",
     "government": "Gobierno",
     "flood control projects": "Dagiti Proyekto ti Panangkontrol iti Layus"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makikadua iti #CivicTech Revolution",
+    "stripSubtitle": "Tumulong a mangibangon iti masakbayan ti Pilipinas ken panagdumala babaen ti teknolohiya",
+    "joinNow": "Makikadua Ita",
+    "discord": "Discord",
+    "bannerTitle": "Makikadua iti #CivicTech Revolution",
+    "bannerSubtitle": "Tumulong a mangibangon iti masakbayan ti Pilipinas ken panagdumala babaen ti teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makikadua iti Tignay mi",
+    "or": "wenno",
+    "joinDiscord": "Makikadua iti Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time a Serbisio ti Data",
+    "description": "Makaaccesska iti kabaruan nga impormasion iti kasasaad ti panawen ken dagiti rate ti foreign exchange iti intero a Pilipinas.",
+    "weatherForecast": "Padto ti Panawen",
+    "realtimeConditions": "Real-time a kasasaad",
+    "viewArrow": "Kitaen →",
+    "weatherDescription": "Alaem ti agdama a kasasaad ti panawen ken dagiti padto para kadagiti kangrunaan a siudad iti intero a Pilipinas. Iplano ti aldaw yo babaen kadagiti umiso a panagbasa ti temperatura ken dagiti ballaag ti panawen.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Dadduma pay a Siudad",
+    "forexRates": "Dagiti Rate ti Forex",
+    "liveExchange": "Live nga panagsukatan ti kuarta",
+    "forexDescription": "Bantayan dagiti rate ti foreign exchange manipud iti Bangko Sentral ng Pilipinas (BSP). Agbaliw kadagiti currencies ken kitaen dagiti historical rate trends para kadagiti kangrunaan a world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Dadduma pay a Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "Pannakarehistro ti PhilSys National ID",
+    "philsysDescription": "Agiregistro ita para iti Philippine Identification System (PhilSys) ID card mo. Ti national ID ket agserbi a kas maysa nga ID nga inted ti gobierno para kadagiti amin a lungsuranon.",
+    "registerNow": "Agiregistro Ita"
+  },
+  "government": {
+    "title": "Gobierno ti Pilipinas",
+    "description": "Ammuen ti maipapan kadagiti tallo a sanga ti gobierno ti Pilipinas ken no kasano ti panagtitinnulongda tapno agserbi kadagiti tattao.",
+    "executiveTitle": "Sanga ti Ehekutibo",
+    "executiveDescription": "Indauluan ti Presidente, responsable iti panangipatungpal ken panangipaipaay kadagiti linteg.",
+    "legislativeTitle": "Sanga ti Lehislatura",
+    "legislativeDescription": "Buklen ti Senado ken Kamara dagiti Representante, responsable iti panagaramid kadagiti linteg.",
+    "judiciaryTitle": "Sanga ti Hudikatura",
+    "judiciaryDescription": "Indauluan ti Korte Suprema, responsable iti panangipatarus kadagiti linteg ken panangipaay iti hustisia.",
+    "learnMore": "Ammuen Pay",
+    "directoryTitle": "Opisyal a Direktorio",
+    "directoryDescription": "Sapulen ti impormasion ti kontak para kadagiti opisyal ti gobierno, ahensia, ken opisina iti nasional ken lokal a lebel.",
+    "viewDirectory": "Kitaen ti Direktorio"
   }
 }

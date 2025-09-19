@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Mabayag ya Sengeg ed BetterGov.ph",
-    "subtitle": "Say volunteer-run portal na Republika na Pilipinas. Anapen so impormasion, pag-access so serbisyo na gobyerno, ontumbok ya updated ed kabalitaan nipaakar ed Pilipinas."
+    "subtitle": "Say volunteer-run portal na Republika na Pilipinas. Anapen so impormasion, pag-access so serbisyo na gobyerno, ontumbok ya updated ed kabalitaan nipaakar ed Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko na Panakayanak",
+    "businessRegistration": "Panag-rehistro na Negosyo"
   },
   "services": {
-    "title": "Saray Popular ya Serbisyo"
+    "title": "Saray Popular ya Serbisyo",
+    "governmentServices": "Saray Serbisyo na Gobyerno",
+    "description": "Maka-access so opisial ya serbisyo na gobyerno ya masinger tan andilusan. Anapen so kaibagaan mo para ed pagkalungsuranon, negosyo, edukasyon, tan duma ni ra.",
+    "viewAll": "Nengnengen so Amin ya Serbisyo",
+    "viewAllCategory": "Nengnengen Amin"
   },
   "weather": {
     "title": "Saray Update ed Panaon"
@@ -24,5 +31,56 @@
     "travel": "Panagbiyahe",
     "government": "Gobyerno",
     "flood control projects": "Saray Proyekto ed Panag-control na Dayat"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makikuyog ed #CivicTech Revolution",
+    "stripSubtitle": "Abig na mangipatakder ed makasingad na Pilipinas tan panag-dumala babaen so teknolohiya",
+    "joinNow": "Makikuyog Na",
+    "discord": "Discord",
+    "bannerTitle": "Makikuyog ed #CivicTech Revolution",
+    "bannerSubtitle": "Abig na mangipatakder ed makasingad na Pilipinas tan panag-dumala babaen so teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makikuyog ed Kalihukan mi",
+    "or": "o",
+    "joinDiscord": "Makikuyog ed Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Maka-access so pinakabago ya impormasyon ed kondisyon na panahon tan saray rate na foreign exchange ed amin ya Pilipinas.",
+    "weatherForecast": "Tagna na Panahon",
+    "realtimeConditions": "Real-time ya kondisyon",
+    "viewArrow": "Nengnengen →",
+    "weatherDescription": "Alaan so kasalungsungan ya kondisyon na panahon tan tagna para ed saray importante ya syudad ed amin ya Pilipinas. Planuen yo so aldaw yo babaen so tumpak ya pagbasa na temperatura tan saray paalaala na panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Duma ni ray Syudad",
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live ya pansalapi palitan",
+    "forexDescription": "Bantayan so saray rate na foreign exchange manipud ed Bangko Sentral ng Pilipinas (BSP). Mag-convert na currencies tan nengnengen so historical rate trends para ed saray pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Duma ni ray Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magrehistro la para ed Philippine Identification System (PhilSys) ID card yo natan. So national ID et mansisilbi ya saya ID ya imbey na gobyerno para ed amin ya lungsuranon.",
+    "registerNow": "Magrehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno na Pilipinas",
+    "description": "Amtaen so nipaakar ed talora ya sanga na gobyerno na Pilipinas tan panon ira nakikuyog ya manserbi ed saray too.",
+    "executiveTitle": "Sanga ya Ehekutibo",
+    "executiveDescription": "Panolo nen Presidente, responsable ed pangipatupad tan panangipairal na saray ley.",
+    "legislativeTitle": "Sanga ya Lehislatura",
+    "legislativeDescription": "Gapo ed Senado tan Kamara na saray Representante, responsable ed panangigawa na saray ley.",
+    "judiciaryTitle": "Sanga ya Hudikatura",
+    "judiciaryDescription": "Panolo nen Korte Suprema, responsable ed panag-interpret na saray ley tan panangipaabot na hustisya.",
+    "learnMore": "Amtaen Pay",
+    "directoryTitle": "Opisyal ya Direktoryo",
+    "directoryDescription": "Anapen so impormasyon ed pakikayarian para ed saray opisyal na gobyerno, saray ahensya, tan saray opisina ed nasyonal tan lokal ya antas.",
+    "viewDirectory": "Nengnengen so Direktoryo"
   }
 }

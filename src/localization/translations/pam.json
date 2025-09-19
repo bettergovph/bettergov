@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Malawus kayu king BetterGov.ph",
-    "subtitle": "Ini ing portal ning Republika ning Pilipinas, na tatalakaran da reng boluntaryu. Mantun kang impormasyun, lungub ka kareng serbisyung pang-gobyernu, at manatiling makibalu keng pekabayung balita keng Pilipinas"
+    "subtitle": "Ini ing portal ning Republika ning Pilipinas, na tatalakaran da reng boluntaryu. Mantun kang impormasyun, lungub ka kareng serbisyung pang-gobyernu, at manatiling makibalu keng pekabayung balita keng Pilipinas",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiku ning Pangabait",
+    "businessRegistration": "Pamagpatala ning Negosiu"
   },
   "services": {
-    "title": "Deng Sikat a Serbisyu"
+    "title": "Deng Sikat a Serbisyu",
+    "governmentServices": "Deng Serbisiu ning Kapamahalan",
+    "description": "Magamit mo reng opisial a serbisiu ning kapamahalan a malagua at malaguang-lagua. Maintun mu ing kailangan mu para king pagkasiudadanu, negosiu, pamagaral, at aliwa pa.",
+    "viewAll": "Lon la Ngan Serbisiu",
+    "viewAllCategory": "Lon la Ngan"
   },
   "weather": {
     "title": "Deng Update king Panahun"
@@ -24,5 +31,56 @@
     "travel": "Pamaglakbe",
     "government": "Gobyernu",
     "flood control projects": "Deng Proyektu king Pagkontrol ning Baha"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makiabe king #CivicTech Revolution",
+    "stripSubtitle": "Saup ya magtikdo king malaus a Pilipinas ampo ing pamuntuk kapamilatan ning teknolohiya",
+    "joinNow": "Makiabe Na",
+    "discord": "Discord",
+    "bannerTitle": "Makiabe king #CivicTech Revolution",
+    "bannerSubtitle": "Saup ya magtikdo king malaus a Pilipinas ampo ing pamuntuk kapamilatan ning teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makiabe king Kaming Panasakmit",
+    "or": "o",
+    "joinDiscord": "Makiabe king Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakua ka keng pekabalyu a impormasyon tungkul king kalagayan ning panaun at deng rate ning foreign exchange king keraklan Pilipinas.",
+    "weatherForecast": "Taya ning Panaun",
+    "realtimeConditions": "Real-time a kalagayan",
+    "viewArrow": "Lon →",
+    "weatherDescription": "Kunin ing kasalungsungan kalagayan ning panaun ampo reng taya para kareng pangunahing lakanbalen king keraklan Pilipinas. Planun yu ing aldaw yu gamit reng tumpak a pagbasa ning temperatura ampo reng pasiguru king panaun.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Aliwa pang Lakanbalen",
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live a pamagpalit pera",
+    "forexDescription": "Bantayan mo reng rate ning foreign exchange ibat king Bangko Sentral ng Pilipinas (BSP). Mag-convert kareng currencies at lon mo reng historical rate trends para kareng pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Aliwa pang Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magpatala na keni king kekayung Philippine Identification System (PhilSys) ID card ngeni. Ing national ID magsilbi yang metung mung ID a miyebili ning kapamahalan para kareng egana-ganang lungsuranun.",
+    "registerNow": "Magpatala Na"
+  },
+  "government": {
+    "title": "Kapamahalan ning Pilipinas",
+    "description": "Abalu nyu ing tungkul kareng atlung sangay ning kapamahalan ning Pilipinas at nanu ing pamag-ugnayan da bang magsilbi kareng tau.",
+    "executiveTitle": "Sangay Ehekutibu",
+    "executiveDescription": "Panibalan ning Pamuntuk, dapat manuparan at payatutupad kareng batas.",
+    "legislativeTitle": "Sangay Lehislatura",
+    "legislativeDescription": "Bibilugan ning Senadu at Kamara ding Representanti, dapat gawang batas.",
+    "judiciaryTitle": "Sangay Hudikatura",
+    "judiciaryDescription": "Panibalan ning Korte Suprema, dapat manintindi kareng batas at magsilbi king katarungan.",
+    "learnMore": "Abalu Pa",
+    "directoryTitle": "Opisyal a Direktoryu",
+    "directoryDescription": "Paintunan ing impormasiun king pamakiugnayan para kareng opisial ning kapamahalan, deng ahensya, ampong opisina king pambansa ampong lokal a lebel.",
+    "viewDirectory": "Lawen ing Direktoryu"
   }
 }
