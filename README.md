@@ -171,6 +171,23 @@ test('user can search for services', async ({ page }) => {
 });
 ```
 
+## Senate Activity Dashboard
+
+Track and visualize Philippine Senate activities, bills, and senator performance. The dashboard provides comprehensive insights into legislative work, voting patterns, and accountability metrics.
+
+### Features
+
+- **Senator Profiles**: View detailed information about each senator including bills authored, voting records, and committee memberships
+- **Bill Tracker**: Monitor the progress of bills through the legislative process with real-time status updates
+- **Voting Analytics**: Analyze voting patterns, party alignments, and participation rates
+- **Performance Metrics**: Track senator productivity, attendance, and legislative success rates
+- **Interactive Visualizations**: Charts and graphs showing trends, comparisons, and historical data
+- **Search & Filter**: Find specific bills, senators, or topics quickly
+
+### Access
+
+Visit `/government/senate/dashboard` to access the Senate Activity Dashboard.
+
 ## License
 
 This project is released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication. This means the work is dedicated to the public domain and can be freely used by anyone for any purpose without restriction under copyright law.
