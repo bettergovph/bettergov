@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import {
   InstantSearch,
-  SearchBox,
-  Hits,
   Configure,
   useHits,
 } from 'react-instantsearch'
@@ -42,7 +40,6 @@ import {
   FilterTitle,
   buildFilterString,
   FilterState,
-  FloodControlProject,
   FloodControlHit,
 } from './shared-components'
 import FloodControlProjectsTab from './tab'
@@ -92,40 +89,10 @@ const COLORS = [
   '#FAAAA3',
 ]
 
-interface HitProps {
-  hit: FloodControlProject
-}
+// Removed unused HitProps interface
 
 // Hit component for search results
-const Hit: React.FC<HitProps> = ({ hit }) => {
-  return (
-    <div className="p-4 border-b border-gray-200 hover:bg-gray-50">
-      <h3 className="text-lg font-semibold text-blue-600">
-        {hit.ProjectDescription || 'Flood Control Project'}
-      </h3>
-      <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
-        <div>
-          <span className="font-medium">Location:</span>{' '}
-          {hit.Municipality && <span>{hit.Municipality}, </span>}
-          {hit.Province && <span>{hit.Province}, </span>}
-          <span>{hit.Region}</span>
-        </div>
-        <div>
-          <span className="font-medium">Contract ID:</span> {hit.ContractID}
-        </div>
-        <div>
-          <span className="font-medium">Type of Work:</span> {hit.TypeofWork}
-        </div>
-        <div>
-          <span className="font-medium">Contract Cost:</span>{' '}
-          {hit.ContractCost
-            ? `₱${Number(hit.ContractCost).toLocaleString()}`
-            : 'N/A'}
-        </div>
-      </div>
-    </div>
-  )
-}
+// Removed unused Hit component
 
 // Statistics Display Component with hardcoded values for better performance
 const DashboardStatistics: React.FC = () => {
@@ -280,27 +247,42 @@ const RegionChart: React.FC = () => {
   }
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={chartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="Projects"
-          nameKey="name"
-          label={({ name }) => name}
-        >
-          {chartData.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="h-full relative">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={chartData}
+            cx="50%"
+            cy="50%"
+            outerRadius={110}
+            innerRadius={30}
+            fill="#8884d8"
+            dataKey="Projects"
+            nameKey="name"
+            label={({ Projects, percent }) => `${Projects} (${(percent * 100).toFixed(1)}%)`}
+            labelLine={true}
+          >
+            {chartData.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
+          <Legend 
+            wrapperStyle={{ 
+              fontSize: 9,
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: 'auto',
+              maxHeight: '150px',
+              overflow: 'visible',
+              whiteSpace: 'nowrap'
+            }} 
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -327,38 +309,72 @@ const TypeOfWorkChart: React.FC = () => {
 
     // Convert to chart data format, sort by frequency descending, and take top 10
     chartData = Object.entries(typeFrequency)
-      .map(([value, count]) => ({ value, count }))
+      .map(([value, count]) => ({ 
+        value: value.length > 40 ? value.substring(0, 40) + '...' : value,
+        count,
+        fullValue: value
+      }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 10)
   } else {
     // Use pre-loaded data for better initial performance
     chartData = typeOfWorkData.TypeofWork.sort(
       (a, b) => b.count - a.count
-    ).slice(0, 10)
+    ).slice(0, 10).map(item => ({
+      value: item.value.length > 40 ? item.value.substring(0, 40) + '...' : item.value,
+      count: item.count,
+      fullValue: item.value
+    }))
   }
 
+  // Improved color palette
+  const IMPROVED_COLORS = [
+    '#3B82F6', // Blue
+    '#10B981', // Green
+    '#F59E0B', // Amber
+    '#EF4444', // Red
+    '#8B5CF6', // Purple
+    '#06B6D4', // Cyan
+    '#84CC16', // Lime
+    '#F97316', // Orange
+  ]
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={chartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="count"
-          nameKey="value"
-          label={({ value }) => value}
-        >
-          {chartData.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="h-full relative">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={chartData}
+            cx="50%"
+            cy="45%"
+            outerRadius={110}
+            innerRadius={30}
+            fill="#8884d8"
+            dataKey="count"
+            nameKey="value"
+            label={({ count, percent }) => `${count} (${(percent * 100).toFixed(1)}%)`}
+            labelLine={true}
+          >
+            {chartData.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={IMPROVED_COLORS[index % IMPROVED_COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
+          <Legend 
+            wrapperStyle={{ 
+              fontSize: 9,
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: 'auto',
+              maxHeight: '180px',
+              overflow: 'visible'
+            }} 
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -387,8 +403,7 @@ const ContractorChart: React.FC = () => {
     // Convert to chart data format, sort by frequency descending, and take top 10
     chartData = Object.entries(contractorFrequency)
       .map(([fullName, Projects]) => ({
-        name:
-          fullName.length > 30 ? fullName.substring(0, 30) + '...' : fullName,
+        name: fullName,
         Projects,
         fullName,
       }))
@@ -399,10 +414,7 @@ const ContractorChart: React.FC = () => {
     chartData = contractorData.Contractor.sort((a, b) => b.count - a.count)
       .slice(0, 10)
       .map((item) => ({
-        name:
-          item.value.length > 30
-            ? item.value.substring(0, 30) + '...'
-            : item.value,
+        name: item.value,
         Projects: item.count,
         fullName: item.value,
       }))
@@ -413,25 +425,26 @@ const ContractorChart: React.FC = () => {
       <BarChart
         data={chartData}
         layout="vertical"
-        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+        margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis type="number" tick={{ fontSize: 9 }} />
+        <XAxis 
+          type="number" 
+          tick={{ fontSize: 9 }}
+        />
         <YAxis
           type="category"
           dataKey="name"
-          width={100}
+          width={120}
           tick={{ fontSize: 9 }}
+          interval={0}
         />
-        <Tooltip
-          formatter={(value, name) => [`${value} projects`, name]}
-          labelFormatter={(label) => {
-            const item = chartData.find((item) => item.name === label)
-            return item ? item.fullName : label
-          }}
+        <Tooltip />
+        <Bar 
+          dataKey="Projects" 
+          fill="#3B82F6"
         />
         <Legend wrapperStyle={{ fontSize: 10 }} />
-        <Bar dataKey="Projects" fill="#FF8042" />
       </BarChart>
     </ResponsiveContainer>
   )
@@ -475,19 +488,29 @@ const FloodControlProjects: React.FC = () => {
   )
     .slice(0, 10)
     .map((item) => ({
-      value: item.value,
+      value: item.value.length > 40 ? item.value.substring(0, 40) + '...' : item.value,
       count: item.count,
+      fullValue: item.value
     }))
+
+  // Improved color palette for charts
+  const IMPROVED_COLORS = [
+    '#3B82F6', // Blue
+    '#10B981', // Green
+    '#F59E0B', // Amber
+    '#EF4444', // Red
+    '#8B5CF6', // Purple
+    '#06B6D4', // Cyan
+    '#84CC16', // Lime
+    '#F97316', // Orange
+  ]
 
   const contractorChartData = contractorData.Contractor.sort(
     (a, b) => b.count - a.count
   )
     .slice(0, 10)
     .map((item) => ({
-      name:
-        item.value.length > 30
-          ? item.value.substring(0, 30) + '...'
-          : item.value,
+      name: item.value,
       Projects: item.count,
       fullName: item.value,
     }))
@@ -807,215 +830,243 @@ const FloodControlProjects: React.FC = () => {
             </InstantSearch>
 
             {/* Visualizations Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              {/* Projects by Year - Bar Chart */}
-              <div className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex items-center mb-4">
-                  <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    Projects by Year
-                  </h2>
-                </div>
-                <div className="h-[300px]">
-                  {filtersApplied ? (
-                    <InstantSearch
-                      indexName="bettergov_flood_control"
-                      searchClient={searchClient}
-                      future={{ preserveSharedStateOnUnmount: true }}
-                    >
-                      <Configure
-                        filters={buildFilterString(filters)}
-                        query={getEffectiveSearchTerm()}
-                        hitsPerPage={1000}
-                      />
-                      <YearlyChart />
-                    </InstantSearch>
-                  ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart
-                        data={yearlyChartData}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            <div className="space-y-6 mb-6">
+              {/* First Row - Temporal Overview (Most Important) */}
+              <div className="grid grid-cols-1 gap-6">
+                {/* Projects by Year - Full Width Bar Chart */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex items-center mb-4">
+                    <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      Projects by Year
+                    </h2>
+                  </div>
+                  <div className="h-[500px]">
+                    {filtersApplied ? (
+                      <InstantSearch
+                        indexName="bettergov_flood_control"
+                        searchClient={searchClient}
+                        future={{ preserveSharedStateOnUnmount: true }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" tick={{ fontSize: 9 }} />
-                        <YAxis tick={{ fontSize: 9 }} />
-                        <Tooltip />
-                        <Legend wrapperStyle={{ fontSize: 10 }} />
-                        <Bar dataKey="Projects" fill="#0088FE" />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  )}
-                </div>
-              </div>
-
-              {/* Top Regions - Pie Chart */}
-              <div className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex items-center mb-4">
-                  <PieChartIcon className="w-5 h-5 text-purple-600 mr-2" />
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    Top Regions
-                  </h2>
-                </div>
-                <div className="h-[300px]">
-                  {filtersApplied ? (
-                    <InstantSearch
-                      indexName="bettergov_flood_control"
-                      searchClient={searchClient}
-                      future={{ preserveSharedStateOnUnmount: true }}
-                    >
-                      <Configure
-                        filters={buildFilterString(filters)}
-                        query={getEffectiveSearchTerm()}
-                        hitsPerPage={1000}
-                      />
-                      <RegionChart />
-                    </InstantSearch>
-                  ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={regionChartData}
-                          cx="50%"
-                          cy="50%"
-                          labelLine={false}
-                          outerRadius={100}
-                          fill="#8884d8"
-                          dataKey="Projects"
-                          nameKey="name"
-                          label={({ name }) => name}
-                        >
-                          {regionChartData.map((_, index) => (
-                            <Cell
-                              key={`cell-${index}`}
-                              fill={COLORS[index % COLORS.length]}
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value, name) => [
-                            `${value} projects`,
-                            name,
-                          ]}
+                        <Configure
+                          filters={buildFilterString(filters)}
+                          query={getEffectiveSearchTerm()}
+                          hitsPerPage={1000}
                         />
-                        <Legend wrapperStyle={{ fontSize: 10 }} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  )}
-                </div>
-              </div>
-
-              {/* Types of Work - Pie Chart */}
-              <div className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex items-center mb-4">
-                  <PieChartIcon className="w-5 h-5 text-green-600 mr-2" />
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    Types of Work
-                  </h2>
-                </div>
-                <div className="h-[300px]">
-                  {filtersApplied ? (
-                    <InstantSearch
-                      indexName="bettergov_flood_control"
-                      searchClient={searchClient}
-                      future={{ preserveSharedStateOnUnmount: true }}
-                    >
-                      <Configure
-                        filters={buildFilterString(filters)}
-                        query={getEffectiveSearchTerm()}
-                        hitsPerPage={1000}
-                      />
-                      <TypeOfWorkChart />
-                    </InstantSearch>
-                  ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={typeWorkPieData}
-                          cx="50%"
-                          cy="50%"
-                          labelLine={false}
-                          outerRadius={100}
-                          fill="#8884d8"
-                          dataKey="count"
-                          nameKey="value"
-                          label={({ value }) => value}
+                        <YearlyChart />
+                      </InstantSearch>
+                    ) : (
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={yearlyChartData}
+                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                         >
-                          {typeWorkPieData.map((_, index) => (
-                            <Cell
-                              key={`cell-${index}`}
-                              fill={COLORS[index % COLORS.length]}
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value, name) => [
-                            `${value} projects`,
-                            name,
-                          ]}
-                        />
-                        <Legend wrapperStyle={{ fontSize: 10 }} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  )}
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                          <YAxis tick={{ fontSize: 12 }} />
+                          <Tooltip />
+                          <Legend wrapperStyle={{ fontSize: 12 }} />
+                          <Bar dataKey="Projects" fill="#0088FE" />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              {/* Top Contractors - Bar Chart */}
-              <div className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex items-center mb-4">
-                  <Users className="w-5 h-5 text-orange-600 mr-2" />
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    Top Contractors
-                  </h2>
-                </div>
-                <div className="h-[300px]">
-                  {filtersApplied ? (
-                    <InstantSearch
-                      indexName="bettergov_flood_control"
-                      searchClient={searchClient}
-                      future={{ preserveSharedStateOnUnmount: true }}
-                    >
-                      <Configure
-                        filters={buildFilterString(filters)}
-                        query={getEffectiveSearchTerm()}
-                        hitsPerPage={1000}
-                      />
-                      <ContractorChart />
-                    </InstantSearch>
-                  ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart
-                        data={contractorChartData}
-                        layout="vertical"
-                        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+              {/* Second Row - Geographic and Categorical Distribution */}
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                {/* Top Regions - Pie Chart */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex items-center mb-4">
+                    <PieChartIcon className="w-5 h-5 text-blue-600 mr-2" />
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      Top Regions
+                    </h2>
+                  </div>
+                  <div className="h-[500px]">
+                    {filtersApplied ? (
+                      <InstantSearch
+                        indexName="bettergov_flood_control"
+                        searchClient={searchClient}
+                        future={{ preserveSharedStateOnUnmount: true }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis type="number" tick={{ fontSize: 9 }} />
-                        <YAxis
-                          type="category"
-                          dataKey="name"
-                          width={100}
-                          tick={{ fontSize: 9 }}
+                        <Configure
+                          filters={buildFilterString(filters)}
+                          query={getEffectiveSearchTerm()}
+                          hitsPerPage={1000}
                         />
-                        <Tooltip
-                          formatter={(value, name) => [
-                            `${value} projects`,
-                            name,
-                          ]}
-                          labelFormatter={(label) => {
-                            const item = contractorChartData.find(
-                              (item) => item.name === label
-                            )
-                            return item ? item.fullName : label
-                          }}
+                        <RegionChart />
+                      </InstantSearch>
+                    ) : (
+                      <div className="h-full relative">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={regionChartData}
+                              cx="50%"
+                              cy="50%"
+                              outerRadius={110}
+                              innerRadius={30}
+                              fill="#8884d8"
+                              dataKey="Projects"
+                              nameKey="name"
+                              label={({ Projects, percent }) => `${Projects} (${(percent * 100).toFixed(1)}%)`}
+                              labelLine={true}
+                            >
+                              {regionChartData.map((_, index) => (
+                                <Cell
+                                  key={`cell-${index}`}
+                                  fill={COLORS[index % COLORS.length]}
+                                />
+                              ))}
+                            </Pie>
+                            <Tooltip
+                              formatter={(value, name) => [
+                                `${value} projects`,
+                                name,
+                              ]}
+                            />
+                            <Legend 
+                              wrapperStyle={{ 
+                                fontSize: 12,
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                height: '80px',
+                                overflow: 'hidden'
+                              }} 
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Types of Work - Pie Chart */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex items-center mb-4">
+                    <PieChartIcon className="w-5 h-5 text-green-600 mr-2" />
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      Types of Work
+                    </h2>
+                  </div>
+                  <div className="h-[500px]">
+                    {filtersApplied ? (
+                      <InstantSearch
+                        indexName="bettergov_flood_control"
+                        searchClient={searchClient}
+                        future={{ preserveSharedStateOnUnmount: true }}
+                      >
+                        <Configure
+                          filters={buildFilterString(filters)}
+                          query={getEffectiveSearchTerm()}
+                          hitsPerPage={1000}
                         />
-                        <Legend wrapperStyle={{ fontSize: 10 }} />
-                        <Bar dataKey="Projects" fill="#FF8042" />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  )}
+                        <TypeOfWorkChart />
+                      </InstantSearch>
+                    ) : (
+                      <div className="h-full relative">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie
+                              data={typeWorkPieData}
+                              cx="50%"
+                              cy="45%"
+                              outerRadius={110}
+                              innerRadius={30}
+                              fill="#8884d8"
+                              dataKey="count"
+                              nameKey="value"
+                              label={({ count, percent }) => `${count} (${(percent * 100).toFixed(1)}%)`}
+                              labelLine={true}
+                            >
+                              {typeWorkPieData.map((_, index) => (
+                                <Cell
+                                  key={`cell-${index}`}
+                                  fill={IMPROVED_COLORS[index % IMPROVED_COLORS.length]}
+                                />
+                              ))}
+                            </Pie>
+                            <Tooltip />
+                            <Legend 
+                              wrapperStyle={{ 
+                                fontSize: 9,
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                height: 'auto',
+                                maxHeight: '180px',
+                                overflow: 'visible'
+                              }} 
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
+
+              {/* Third Row - Stakeholder Analysis */}
+              <div className="grid grid-cols-1 gap-6">
+                {/* Top Contractors - Full Width Bar Chart */}
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <div className="flex items-center mb-4">
+                    <Users className="w-5 h-5 text-orange-600 mr-2" />
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      Top Contractors
+                    </h2>
+                  </div>
+                  <div className="h-[600px]">
+                    {filtersApplied ? (
+                      <InstantSearch
+                        indexName="bettergov_flood_control"
+                        searchClient={searchClient}
+                        future={{ preserveSharedStateOnUnmount: true }}
+                      >
+                        <Configure
+                          filters={buildFilterString(filters)}
+                          query={getEffectiveSearchTerm()}
+                          hitsPerPage={1000}
+                        />
+                        <ContractorChart />
+                      </InstantSearch>
+                    ) : (
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={contractorChartData}
+                          layout="vertical"
+                          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis 
+                            type="number" 
+                            tick={{ fontSize: 9 }}
+                          />
+                          <YAxis
+                            type="category"
+                            dataKey="name"
+                            width={120}
+                            tick={{ fontSize: 9 }}
+                            interval={0}
+                          />
+                          <Tooltip />
+                          <Bar 
+                            dataKey="Projects" 
+                            fill="#3B82F6"
+                          />
+                          <Legend wrapperStyle={{ fontSize: 10 }} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    )}
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             {/* Guidance on Table View */}
