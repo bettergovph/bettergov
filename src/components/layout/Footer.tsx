@@ -1,5 +1,6 @@
 import React from 'react'
-import { Facebook, Twitter, Instagram, Youtube, CheckCircle2  } from 'lucide-react'
+import { Facebook, Instagram, Youtube, CheckCircle2  } from 'lucide-react'
+import { FaXTwitter } from 'react-icons/fa6'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { footerNavigation } from '../../data/navigation'
 import { Link } from 'react-router-dom'
@@ -12,7 +13,7 @@ const Footer: React.FC = () => {
       case 'Facebook':
         return <Facebook className="h-5 w-5" />
       case 'Twitter':
-        return <Twitter className="h-5 w-5" />
+        return <FaXTwitter className="h-5 w-5" />
       case 'Instagram':
         return <Instagram className="h-5 w-5" />
       case 'YouTube':
