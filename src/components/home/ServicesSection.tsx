@@ -60,11 +60,11 @@ const ServicesSection: React.FC = () => {
             <Card
               key={category.slug}
               hoverable
-              className="border-t-4 border-primary-500"
+              className="hover:border-primary-500 border-primary-100 group"
             >
               <CardContent className="flex flex-col h-full p-6">
-                <div className="flex gap-2">
-                  <div className="bg-primary-100 text-primary-600 p-3 rounded-md mb-4 self-start">
+                <div className="flex gap-2 items-center">
+                  <div className="bg-primary-50 text-primary-600 p-3 rounded-full mb-4 self-start transition-colors group-hover:bg-primary-500 group-hover:text-white">
                     {getIcon(category.category)}
                   </div>
 
@@ -102,9 +102,12 @@ const ServicesSection: React.FC = () => {
         <div className="text-center mt-8">
           <Link
             to="/services"
-            className="inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
+            className="inline-flex group gap-3 items-center justify-center rounded-xl font-semibold transition-colors px-8 py-4 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
           >
             View All Services
+            <div className="group-hover:translate-x-1 transition-all">
+              <LucideIcons.ArrowRight size={18} />
+            </div>
           </Link>
         </div>
       </div>

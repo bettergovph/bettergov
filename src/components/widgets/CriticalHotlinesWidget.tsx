@@ -18,8 +18,8 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItem
   const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(0, maxItems);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-      <div className="bg-red-600 px-4 py-3 flex items-center justify-between">
+    <div className="bg-white rounded-3xl shadow-md overflow-hidden border border-gray-200">
+      <div className="bg-red-600 p-4 md:p-6 flex items-center justify-between">
         <div className="flex items-center">
           <AlertCircle className="h-5 w-5 text-white mr-2" />
           <h3 className="font-bold text-white">Critical Emergency Hotlines</h3>
@@ -32,7 +32,7 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItem
         </Link>
       </div>
       
-      <div className="p-4">
+      <div className="p-4 md:p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {displayedHotlines.map((hotline, index) => (
             <div key={index} className="flex flex-col">
