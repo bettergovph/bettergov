@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, ChevronRight, AlertCircle } from 'lucide-react';
+import { Phone, ChevronRight, AlertCircle, ArrowRight } from 'lucide-react';
+import { Card, CardHeader, CardContent } from '../ui/Card';
 import hotlinesData from '../../data/philippines_hotlines.json';
 
 interface Hotline {
@@ -18,8 +19,8 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItem
   const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(0, maxItems);
 
   return (
-    <div className="bg-white rounded-3xl shadow-md overflow-hidden border border-gray-200">
-      <div className="bg-red-600 p-4 md:p-6 flex items-center justify-between">
+    <Card>
+      <CardHeader className="bg-red-600 p-4 md:p-6 flex items-center justify-between">
         <div className="flex items-center">
           <AlertCircle className="h-5 w-5 text-white mr-2" />
           <h3 className="font-bold text-white">Critical Emergency Hotlines</h3>
@@ -30,9 +31,9 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItem
         >
           View all <ChevronRight className="h-4 w-4 ml-1" />
         </Link>
-      </div>
+      </CardHeader>
       
-      <div className="p-4 md:p-6">
+      <CardContent className="p-4 md:p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {displayedHotlines.map((hotline, index) => (
             <div key={index} className="flex flex-col">
@@ -53,17 +54,19 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItem
           ))}
         </div>
         
-        <div className="mt-4 pt-3 border-t border-gray-200 text-center">
+        <div className="mt-4 pt-3 border-t border-gray-200 text-center group">
           <Link 
             to="/philippines/hotlines" 
-            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+            className="inline-flex gap-1 items-center text-sm font-medium text-blue-600 hover:text-blue-800"
           >
-            See all emergency hotlines
-            <ChevronRight className="h-4 w-4 ml-1" />
+            <span>See all emergency hotlines</span>
+            <span className='group-hover:translate-x-1 transition-transform'>
+              <ArrowRight size={16} />
+            </span>
           </Link>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
