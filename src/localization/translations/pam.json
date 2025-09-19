@@ -51,6 +51,11 @@
     "weatherForecast": "Taya ning Panaun",
     "realtimeConditions": "Real-time a kalagayan",
     "viewArrow": "Lon →",
-    "weatherDescription": "Kunin ing kasalungsungan kalagayan ning panaun ampo reng taya para kareng pangunahing lakanbalen king keraklan Pilipinas. Planun yu ing aldaw yu gamit reng tumpak a pagbasa ning temperatura ampo reng pasiguru king panaun."
+    "weatherDescription": "Kunin ing kasalungsungan kalagayan ning panaun ampo reng taya para kareng pangunahing lakanbalen king keraklan Pilipinas. Planun yu ing aldaw yu gamit reng tumpak a pagbasa ning temperatura ampo reng pasiguru king panaun.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Aliwa pang Lakanbalen",
+    "forexRates": "Forex Rates"
   }
 }

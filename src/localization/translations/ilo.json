@@ -51,6 +51,11 @@
     "weatherForecast": "Padto ti Panawen",
     "realtimeConditions": "Real-time a kasasaad",
     "viewArrow": "Kitaen →",
-    "weatherDescription": "Alaem ti agdama a kasasaad ti panawen ken dagiti padto para kadagiti kangrunaan a siudad iti intero a Pilipinas. Iplano ti aldaw yo babaen kadagiti umiso a panagbasa ti temperatura ken dagiti ballaag ti panawen."
+    "weatherDescription": "Alaem ti agdama a kasasaad ti panawen ken dagiti padto para kadagiti kangrunaan a siudad iti intero a Pilipinas. Iplano ti aldaw yo babaen kadagiti umiso a panagbasa ti temperatura ken dagiti ballaag ti panawen.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Dadduma pay a Siudad",
+    "forexRates": "Forex Rates"
   }
 }

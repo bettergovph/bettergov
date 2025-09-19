@@ -35,9 +35,14 @@
     "data.weatherForecast",
     "data.realtimeConditions",
     "data.viewArrow",
-    "data.weatherDescription"
+    "data.weatherDescription",
+    "data.manila",
+    "data.cebu",
+    "data.davao",
+    "data.moreCities",
+    "data.forexRates"
   ],
-  "inProgress": null,
-  "lastUpdated": "2025-09-19T14:14:09.947Z",
+  "inProgress": "data.liveExchange",
+  "lastUpdated": "2025-09-19T16:15:14.400Z",
   "totalEntries": 62
 }

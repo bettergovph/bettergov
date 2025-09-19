@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna sang Panahon",
     "realtimeConditions": "Real-time nga kondisyon",
     "viewArrow": "Lantawa →",
-    "weatherDescription": "Kuhaa ang subong nga kondisyon sang panahon kag tagna para sa mga importante nga syudad sa bug-os nga Pilipinas. Planohon ang inyo adlaw gamit ang sakto nga pagbasa sang temperatura kag mga paalamdaman sang panahon."
+    "weatherDescription": "Kuhaa ang subong nga kondisyon sang panahon kag tagna para sa mga importante nga syudad sa bug-os nga Pilipinas. Planohon ang inyo adlaw gamit ang sakto nga pagbasa sang temperatura kag mga paalamdaman sang panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iban pa nga mga Syudad",
+    "forexRates": "Forex Rates"
   }
 }

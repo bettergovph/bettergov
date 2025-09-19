@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna na Panahon",
     "realtimeConditions": "Real-time ya kondisyon",
     "viewArrow": "Nengnengen →",
-    "weatherDescription": "Alaan so kasalungsungan ya kondisyon na panahon tan tagna para ed saray importante ya syudad ed amin ya Pilipinas. Planuen yo so aldaw yo babaen so tumpak ya pagbasa na temperatura tan saray paalaala na panahon."
+    "weatherDescription": "Alaan so kasalungsungan ya kondisyon na panahon tan tagna para ed saray importante ya syudad ed amin ya Pilipinas. Planuen yo so aldaw yo babaen so tumpak ya pagbasa na temperatura tan saray paalaala na panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Duma ni ray Syudad",
+    "forexRates": "Forex Rates"
   }
 }

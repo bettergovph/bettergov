@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna han Panahon",
     "realtimeConditions": "Real-time nga kondisyon",
     "viewArrow": "Kitaa →",
-    "weatherDescription": "Kuhaa an karon nga kondisyon han panahon ngan tagna para han mga importanti nga syudad ha bug-os nga Pilipinas. Planuhon an inyong adlaw gamit an sakto nga pagbasa han temperatura ngan mga paalaala han panahon."
+    "weatherDescription": "Kuhaa an karon nga kondisyon han panahon ngan tagna para han mga importanti nga syudad ha bug-os nga Pilipinas. Planuhon an inyong adlaw gamit an sakto nga pagbasa han temperatura ngan mga paalaala han panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pa nga mga Syudad",
+    "forexRates": "Forex Rates"
   }
 }

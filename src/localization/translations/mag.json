@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna sa Panahon",
     "realtimeConditions": "Real-time a kondisyon",
     "viewArrow": "Tingnan →",
-    "weatherDescription": "Kuhaun su kasalungsungan a kondisyon sa panahon agun tagna para sa mga importante a syudad sa buong Pilipinas. Planuhun nyu su aldaw nyu gamit su tumpak a pagbasa sa temperatura agun mga paalaala sa panahon."
+    "weatherDescription": "Kuhaun su kasalungsungan a kondisyon sa panahon agun tagna para sa mga importante a syudad sa buong Pilipinas. Planuhun nyu su aldaw nyu gamit su tumpak a pagbasa sa temperatura agun mga paalaala sa panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pa a mga Syudad",
+    "forexRates": "Forex Rates"
   }
 }

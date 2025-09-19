@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna sa Panahon",
     "realtimeConditions": "Real-time nga kondisyon",
     "viewArrow": "Tan-awa →",
-    "weatherDescription": "Kuhaon ang karon nga kondisyon sa panahon ug tagna para sa mga nag-unang siyudad sa tibuok Pilipinas. Pagplano sa inyong adlaw gamit ang tukma nga pagbasa sa temperatura ug mga pasidaan sa panahon."
+    "weatherDescription": "Kuhaon ang karon nga kondisyon sa panahon ug tagna para sa mga nag-unang siyudad sa tibuok Pilipinas. Pagplano sa inyong adlaw gamit ang tukma nga pagbasa sa temperatura ug mga pasidaan sa panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Uban pang mga Siyudad",
+    "forexRates": "Forex Rates"
   }
 }

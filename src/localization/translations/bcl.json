@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna kan Panahon",
     "realtimeConditions": "Real-time na kondisyon",
     "viewArrow": "Hilinga →",
-    "weatherDescription": "Kuhaan an presente na kondisyon kan panahon asin tagna para sa mga importante na syudad sa gabos na Pilipinas. Planuhon an inyong aldaw gamit an tama na pagbasa kan temperatura asin mga paalaala kan panahon."
+    "weatherDescription": "Kuhaan an presente na kondisyon kan panahon asin tagna para sa mga importante na syudad sa gabos na Pilipinas. Planuhon an inyong aldaw gamit an tama na pagbasa kan temperatura asin mga paalaala kan panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pang mga Syudad",
+    "forexRates": "Forex Rates"
   }
 }

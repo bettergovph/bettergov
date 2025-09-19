@@ -51,6 +51,11 @@
     "weatherForecast": "Taya ng Panahon",
     "realtimeConditions": "Real-time na kondisyon",
     "viewArrow": "Tingnan →",
-    "weatherDescription": "Kunin ang kasalukuyang kondisyon ng panahon at taya para sa mga pangunahing lungsod sa buong Pilipinas. Planuhin ang inyong araw gamit ang tumpak na pagbabasa ng temperatura at mga babala sa panahon."
+    "weatherDescription": "Kunin ang kasalukuyang kondisyon ng panahon at taya para sa mga pangunahing lungsod sa buong Pilipinas. Planuhin ang inyong araw gamit ang tumpak na pagbabasa ng temperatura at mga babala sa panahon.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pang mga Lungsod",
+    "forexRates": "Forex Rates"
   }
 }

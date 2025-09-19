@@ -51,6 +51,11 @@
     "weatherForecast": "Tagna sin Panahun",
     "realtimeConditions": "Real-time kalagayan",
     "viewArrow": "Kitaun →",
-    "weatherDescription": "Kawa'un in kasalungsungan kalagayan sin panahun iban tagna para ha manga muhimmat syudad ha katān Pilipinas. Planu niyu in aldaw niyu gamit in tumpak pagbasa sin temperatura iban manga paalaala sin panahun."
+    "weatherDescription": "Kawa'un in kasalungsungan kalagayan sin panahun iban tagna para ha manga muhimmat syudad ha katān Pilipinas. Planu niyu in aldaw niyu gamit in tumpak pagbasa sin temperatura iban manga paalaala sin panahun.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Iba pa Syudad",
+    "forexRates": "Forex Rates"
   }
 }
