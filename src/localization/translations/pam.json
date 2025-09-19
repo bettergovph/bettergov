@@ -1,10 +1,17 @@
 {
   "hero": {
-    "title": "Malawus kayu king BetterGov.ph",
-    "subtitle": "Ini ing portal ning Republika ning Pilipinas, na tatalakaran da reng boluntaryu. Mantun kang impormasyun, lungub ka kareng serbisyung pang-gobyernu, at manatiling makibalu keng pekabayung balita keng Pilipinas"
+    "title": "Malaus a Pagdatang king BetterGov.ph",
+    "subtitle": "Ing volunteer-run portal ning Republika ning Pilipinas. Manintun impormasiun, pag-access kareng serbisyu ning kapamahalan, manatili updated kareng pekabayung balita tungkul king Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiku ning Pangabait",
+    "businessRegistration": "Pamagpatala ning Negosiu"
   },
   "services": {
-    "title": "Deng Sikat a Serbisyu"
+    "title": "Deng Sikat a Serbisyu",
+    "governmentServices": "Deng Serbisiu ning Kapamahalan",
+    "description": "Magamit mo reng opisial a serbisiu ning kapamahalan a malagua at malaguang-lagua. Maintun mu ing kailangan mu para king pagkasiudadanu, negosiu, pamagaral, at aliwa pa.",
+    "viewAll": "Lon la Ngan Serbisiu",
+    "viewAllCategory": "Lon la Ngan"
   },
   "weather": {
     "title": "Deng Update king Panahun"
@@ -22,7 +29,28 @@
     "philippines": "Ing Pilipinas",
     "services": "Deng Serbisyu",
     "travel": "Pamaglakbe",
-    "government": "Gobyernu",
-    "flood control projects": "Deng Proyektu king Pagkontrol ning Baha"
+    "government": "Kapamahalan",
+    "flood control projects": "Deng Proyektu king Pamanyabat Bulus"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makiabe king #CivicTech Revolution",
+    "stripSubtitle": "Saup ya magtikdo king malaus a Pilipinas ampo ing pamuntuk kapamilatan ning teknolohiya",
+    "joinNow": "Makiabe Na",
+    "discord": "Discord",
+    "bannerTitle": "Makiabe king #CivicTech Revolution",
+    "bannerSubtitle": "Saup ya magtikdo king malaus a Pilipinas ampo ing pamuntuk kapamilatan ning teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makiabe king Kaming Panasakmit",
+    "or": "o",
+    "joinDiscord": "Makiabe king Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakua ka keng pekabalyu a impormasyon tungkul king kalagayan ning panaun at deng rate ning foreign exchange king keraklan Pilipinas.",
+    "weatherForecast": "Taya ning Panaun",
+    "realtimeConditions": "Real-time a kalagayan",
+    "viewArrow": "Lon →",
+    "weatherDescription": "Kunin ing kasalungsungan kalagayan ning panaun ampo reng taya para kareng pangunahing lakanbalen king keraklan Pilipinas. Planun yu ing aldaw yu gamit reng tumpak a pagbasa ning temperatura ampo reng pasiguru king panaun."
   }
 }

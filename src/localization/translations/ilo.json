@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Naragsak nga Isasangbay iti BetterGov.ph",
-    "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas."
+    "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko ti Pannakaiyanak",
+    "businessRegistration": "Pannakarehistro ti Negosio"
   },
   "services": {
-    "title": "Dagiti Nalatak a Serbisio"
+    "title": "Dagiti Nalatak a Serbisio",
+    "governmentServices": "Dagiti Serbisio ti Gobierno",
+    "description": "Makaaccesska kadagiti opisial a serbisio ti gobierno a napardas ken nalaka. Birukem ti kasapulam para iti kinaagdagi, negosio, edukasion, ken dadduma pay.",
+    "viewAll": "Kitaen Amin a Serbisio",
+    "viewAllCategory": "Kitaen Amin"
   },
   "weather": {
     "title": "Dagiti Update ti Panawen"
@@ -24,5 +31,26 @@
     "travel": "Panagdaliasat",
     "government": "Gobierno",
     "flood control projects": "Dagiti Proyekto ti Panangkontrol iti Layus"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makikadua iti #CivicTech Revolution",
+    "stripSubtitle": "Tumulong a mangibangon iti masakbayan ti Pilipinas ken panagdumala babaen ti teknolohiya",
+    "joinNow": "Makikadua Ita",
+    "discord": "Discord",
+    "bannerTitle": "Makikadua iti #CivicTech Revolution",
+    "bannerSubtitle": "Tumulong a mangibangon iti masakbayan ti Pilipinas ken panagdumala babaen ti teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makikadua iti Tignay mi",
+    "or": "wenno",
+    "joinDiscord": "Makikadua iti Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makaaccesska iti kabaruan nga impormasion iti kasasaad ti panawen ken dagiti rate ti foreign exchange iti intero a Pilipinas.",
+    "weatherForecast": "Padto ti Panawen",
+    "realtimeConditions": "Real-time a kasasaad",
+    "viewArrow": "Kitaen →",
+    "weatherDescription": "Alaem ti agdama a kasasaad ti panawen ken dagiti padto para kadagiti kangrunaan a siudad iti intero a Pilipinas. Iplano ti aldaw yo babaen kadagiti umiso a panagbasa ti temperatura ken dagiti ballaag ti panawen."
   }
 }

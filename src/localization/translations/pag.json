@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Mabayag ya Sengeg ed BetterGov.ph",
-    "subtitle": "Say volunteer-run portal na Republika na Pilipinas. Anapen so impormasion, pag-access so serbisyo na gobyerno, ontumbok ya updated ed kabalitaan nipaakar ed Pilipinas."
+    "subtitle": "Say volunteer-run portal na Republika na Pilipinas. Anapen so impormasion, pag-access so serbisyo na gobyerno, ontumbok ya updated ed kabalitaan nipaakar ed Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko na Panakayanak",
+    "businessRegistration": "Panag-rehistro na Negosyo"
   },
   "services": {
-    "title": "Saray Popular ya Serbisyo"
+    "title": "Saray Popular ya Serbisyo",
+    "governmentServices": "Saray Serbisyo na Gobyerno",
+    "description": "Maka-access so opisial ya serbisyo na gobyerno ya masinger tan andilusan. Anapen so kaibagaan mo para ed pagkalungsuranon, negosyo, edukasyon, tan duma ni ra.",
+    "viewAll": "Nengnengen so Amin ya Serbisyo",
+    "viewAllCategory": "Nengnengen Amin"
   },
   "weather": {
     "title": "Saray Update ed Panaon"
@@ -24,5 +31,26 @@
     "travel": "Panagbiyahe",
     "government": "Gobyerno",
     "flood control projects": "Saray Proyekto ed Panag-control na Dayat"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makikuyog ed #CivicTech Revolution",
+    "stripSubtitle": "Abig na mangipatakder ed makasingad na Pilipinas tan panag-dumala babaen so teknolohiya",
+    "joinNow": "Makikuyog Na",
+    "discord": "Discord",
+    "bannerTitle": "Makikuyog ed #CivicTech Revolution",
+    "bannerSubtitle": "Abig na mangipatakder ed makasingad na Pilipinas tan panag-dumala babaen so teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makikuyog ed Kalihukan mi",
+    "or": "o",
+    "joinDiscord": "Makikuyog ed Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Maka-access so pinakabago ya impormasyon ed kondisyon na panahon tan saray rate na foreign exchange ed amin ya Pilipinas.",
+    "weatherForecast": "Tagna na Panahon",
+    "realtimeConditions": "Real-time ya kondisyon",
+    "viewArrow": "Nengnengen →",
+    "weatherDescription": "Alaan so kasalungsungan ya kondisyon na panahon tan tagna para ed saray importante ya syudad ed amin ya Pilipinas. Planuen yo so aldaw yo babaen so tumpak ya pagbasa na temperatura tan saray paalaala na panahon."
   }
 }

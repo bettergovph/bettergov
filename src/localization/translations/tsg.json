@@ -8,10 +8,17 @@
   },
   "hero": {
     "title": "Marayaw Pagsūd ha BetterGov.ph",
-    "subtitle": "In volunteer-run portal sin Republika sin Pilipinas. Maghanap kaniyu-niyu, pag-access ha mga serbisyu sin gupirnu, magtuy updated ha kahapusan bayta' pasal ha Pilipinas."
+    "subtitle": "In volunteer-run portal sin Republika sin Pilipinas. Maghanap kaniyu-niyu, pag-access ha mga serbisyu sin gupirnu, magtuy updated ha kahapusan bayta' pasal ha Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiku sin Pag'anak",
+    "businessRegistration": "Pagrehistru sin Pagdagang"
   },
   "services": {
-    "title": "Mga Bantug Serbisyu"
+    "title": "Mga Bantug Serbisyu",
+    "governmentServices": "Mga Serbisyu sin Gupirnu",
+    "description": "Makakawa' sin mga opisyal serbisyu sin gupirnu ha matulin iban magaan. Lungga' in kagunahan mu ha pagkalungsuranun, pagdagang, pag-iskul, iban iba pa.",
+    "viewAll": "Kitaun in Katān Serbisyu",
+    "viewAllCategory": "Kitaun Katān"
   },
   "weather": {
     "title": "Mga Update ha Panahun"
@@ -24,5 +31,26 @@
   },
   "footer": {
     "copyright": "© 2025 BetterGov. Katān luun public domain sagga' bang awn iban kiyabayta'an."
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Mag'apil ha #CivicTech Revolution",
+    "stripSubtitle": "Tabang ha pagtukud sin kaugmaun sin Pilipinas iban pagdumahan ha teknolohiya",
+    "joinNow": "Mag'apil Na",
+    "discord": "Discord",
+    "bannerTitle": "Mag'apil ha #CivicTech Revolution",
+    "bannerSubtitle": "Tabang ha pagtukud sin kaugmaun sin Pilipinas iban pagdumahan ha teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Mag'apil ha Kalihukan natu'",
+    "or": "o",
+    "joinDiscord": "Mag'apil ha Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Kumunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakawa' sin pinakahapus impormasyon ha kalagayan sin panahun iban mga rate sin foreign exchange ha katān Pilipinas.",
+    "weatherForecast": "Tagna sin Panahun",
+    "realtimeConditions": "Real-time kalagayan",
+    "viewArrow": "Kitaun →",
+    "weatherDescription": "Kawa'un in kasalungsungan kalagayan sin panahun iban tagna para ha manga muhimmat syudad ha katān Pilipinas. Planu niyu in aldaw niyu gamit in tumpak pagbasa sin temperatura iban manga paalaala sin panahun."
   }
 }

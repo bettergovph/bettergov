@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Maogmang Pag-abot sa BetterGov.ph",
-    "subtitle": "An volunteer-run portal kan Republika kan Pilipinas. Maghanap nin impormasyon, pag-access sa mga serbisyo kan gobyerno, magpirmi na updated sa pinakabagong balita tungkol sa Pilipinas."
+    "subtitle": "An volunteer-run portal kan Republika kan Pilipinas. Maghanap nin impormasyon, pag-access sa mga serbisyo kan gobyerno, magpirmi na updated sa pinakabagong balita tungkol sa Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko kan Pagkamundag",
+    "businessRegistration": "Pagparehistro kan Negosyo"
   },
   "services": {
-    "title": "Mga Sikat na Serbisyo"
+    "title": "Mga Sikat na Serbisyo",
+    "governmentServices": "Mga Serbisyo kan Gobyerno",
+    "description": "Makakua nin mga opisyal na serbisyo kan gobyerno nin marikas asin madali. Hanapa an kinakaipuhan mo para sa pagkalungsuranon, negosyo, edukasyon, asin iba pa.",
+    "viewAll": "Hilinga an Gabos na Serbisyo",
+    "viewAllCategory": "Hilinga Gabos"
   },
   "weather": {
     "title": "Mga Update kan Panahon"
@@ -24,5 +31,26 @@
     "travel": "Pagbiyahe",
     "government": "Gobyerno",
     "flood control projects": "Mga Proyekto sa Pagpugol kan Baha"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Mag-iba sa #CivicTech Revolution",
+    "stripSubtitle": "Tabang sa pagtukod kan kaugmaon kan Pilipinas asin pagdumala sa teknolohiya",
+    "joinNow": "Mag-iba Na",
+    "discord": "Discord",
+    "bannerTitle": "Mag-iba sa #CivicTech Revolution",
+    "bannerSubtitle": "Tabang sa pagtukod kan kaugmaon kan Pilipinas asin pagdumala sa teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Mag-iba sa Amang Kalihukan",
+    "or": "o",
+    "joinDiscord": "Mag-iba sa Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakua nin pinakabago na impormasyon sa kondisyon kan panahon asin mga rate kan foreign exchange sa gabos na Pilipinas.",
+    "weatherForecast": "Tagna kan Panahon",
+    "realtimeConditions": "Real-time na kondisyon",
+    "viewArrow": "Hilinga →",
+    "weatherDescription": "Kuhaan an presente na kondisyon kan panahon asin tagna para sa mga importante na syudad sa gabos na Pilipinas. Planuhon an inyong aldaw gamit an tama na pagbasa kan temperatura asin mga paalaala kan panahon."
   }
 }

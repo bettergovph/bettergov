@@ -8,10 +8,17 @@
   },
   "hero": {
     "title": "Mapia a Pagdatang sa BetterGov.ph",
-    "subtitle": "Su volunteer-run portal nu Republika nu Pilipinas. Paghanap sa impormasyon, pag-access sa mga serbisyo nu gobyerno, magtanem a updated sa pinakabago a balita tungkul sa Pilipinas."
+    "subtitle": "Su volunteer-run portal nu Republika nu Pilipinas. Paghanap sa impormasyon, pag-access sa mga serbisyo nu gobyerno, magtanem a updated sa pinakabago a balita tungkul sa Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko sa Pagkatawo",
+    "businessRegistration": "Pagparehistro sa Negosyo"
   },
   "services": {
-    "title": "Mga Bantog a Serbisyo"
+    "title": "Mga Bantog a Serbisyo",
+    "governmentServices": "Mga Serbisyo nu Gobyerno",
+    "description": "Makakuwa sa mga opisyal a serbisyo nu gobyerno a madasig agun malagu. Hanapa su kailanganun mo para sa pagkalungsuranon, negosyo, edukasyon, agun iba pa.",
+    "viewAll": "Tingnan Langon a Serbisyo",
+    "viewAllCategory": "Tingnan Langon"
   },
   "weather": {
     "title": "Mga Update sa Panahon"
@@ -24,5 +31,26 @@
   },
   "footer": {
     "copyright": "© 2025 BetterGov. Langun a sulud public domain gawas sa nakaingud a iba."
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Makipag-uban sa #CivicTech Revolution",
+    "stripSubtitle": "Tabang sa pagtukod sa kaugmaon sa Pilipinas agun pagdumala paagi sa teknolohiya",
+    "joinNow": "Makipag-uban Na",
+    "discord": "Discord",
+    "bannerTitle": "Makipag-uban sa #CivicTech Revolution",
+    "bannerSubtitle": "Tabang sa pagtukod sa kaugmaon sa Pilipinas agun pagdumala paagi sa teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Makipag-uban sa Atong Kalihukan",
+    "or": "o",
+    "joinDiscord": "Makipag-uban sa Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakuwa sa pinakabago a impormasyon sa kondisyon sa panahon agun mga rate sa foreign exchange sa buong Pilipinas.",
+    "weatherForecast": "Tagna sa Panahon",
+    "realtimeConditions": "Real-time a kondisyon",
+    "viewArrow": "Tingnan →",
+    "weatherDescription": "Kuhaun su kasalungsungan a kondisyon sa panahon agun tagna para sa mga importante a syudad sa buong Pilipinas. Planuhun nyu su aldaw nyu gamit su tumpak a pagbasa sa temperatura agun mga paalaala sa panahon."
   }
 }

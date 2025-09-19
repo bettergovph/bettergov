@@ -1,10 +1,17 @@
 {
   "hero": {
     "title": "Maupay nga Pag-abot ha BetterGov.ph",
-    "subtitle": "An volunteer-run portal han Republika han Pilipinas. Pamiling hin impormasyon, pag-access han mga serbisyo han gobyerno, magpabilin nga updated ha pinakaurhi nga balita tungod han Pilipinas."
+    "subtitle": "An volunteer-run portal han Republika han Pilipinas. Pamiling hin impormasyon, pag-access han mga serbisyo han gobyerno, magpabilin nga updated ha pinakaurhi nga balita tungod han Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko han Pagkatawo",
+    "businessRegistration": "Pagrehistro han Negosyo"
   },
   "services": {
-    "title": "Mga Sikat nga Serbisyo"
+    "title": "Mga Sikat nga Serbisyo",
+    "governmentServices": "Mga Serbisyo han Gobyerno",
+    "description": "Makakuha han mga opisyal nga serbisyo han gobyerno hin madagmit ngan masayon. Bilngon an imo kinahanglanon para ha pagkalungsuranon, negosyo, edukasyon, ngan iba pa.",
+    "viewAll": "Kitaa an Ngatanan nga Serbisyo",
+    "viewAllCategory": "Kitaa Ngatanan"
   },
   "weather": {
     "title": "Mga Update han Panahon"
@@ -24,5 +31,26 @@
     "travel": "Pagbiyahe",
     "government": "Gobyerno",
     "flood control projects": "Mga Proyekto ha Pagpugong han Baha"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Mag-apil ha #CivicTech Revolution",
+    "stripSubtitle": "Bulig ha pagtukod han kaugmaon han Pilipinas ngan pagdumala pinaagi han teknolohiya",
+    "joinNow": "Mag-apil Na",
+    "discord": "Discord",
+    "bannerTitle": "Mag-apil ha #CivicTech Revolution",
+    "bannerSubtitle": "Bulig ha pagtukod han kaugmaon han Pilipinas ngan pagdumala pinaagi han teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Mag-apil ha Amon Kalihukan",
+    "or": "o",
+    "joinDiscord": "Mag-apil ha Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Komunidad • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Makakuha han pinakabag-o nga impormasyon han kondisyon han panahon ngan mga rate han foreign exchange ha bug-os nga Pilipinas.",
+    "weatherForecast": "Tagna han Panahon",
+    "realtimeConditions": "Real-time nga kondisyon",
+    "viewArrow": "Kitaa →",
+    "weatherDescription": "Kuhaa an karon nga kondisyon han panahon ngan tagna para han mga importanti nga syudad ha bug-os nga Pilipinas. Planuhon an inyong adlaw gamit an sakto nga pagbasa han temperatura ngan mga paalaala han panahon."
   }
 }
