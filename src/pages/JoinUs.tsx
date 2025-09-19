@@ -33,7 +33,7 @@ const JoinUs: React.FC = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bettergov.ph/join-us" />
-        <meta property="og:image" content="https://bettergov.ph/ph-logo.png" />
+        <meta property="og:image" content="https://bettergov.ph/ph-logo.webp" />
       </Helmet>
 
       {/* Hero Section */}

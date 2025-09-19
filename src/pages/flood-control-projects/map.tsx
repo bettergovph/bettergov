@@ -239,12 +239,12 @@ const FloodControlProjectsMap: React.FC = () => {
       setSelectedRegion((prev) =>
         prev
           ? {
-              ...prev,
-              loading: false,
-              projectCount: totalProjects,
-              totalCost: totalCost,
-              description: `${uniqueContractors} contractors`,
-            }
+            ...prev,
+            loading: false,
+            projectCount: totalProjects,
+            totalCost: totalCost,
+            description: `${uniqueContractors} contractors`,
+          }
           : null
       )
     }
@@ -354,9 +354,8 @@ const FloodControlProjectsMap: React.FC = () => {
           <InstantSearch
             indexName="bettergov_flood_control"
             searchClient={searchClient}
-            key={`map-search-${
-              geoSearch ? `${geoSearch.lat}-${geoSearch.lng}` : 'all'
-            }`}
+            key={`map-search-${geoSearch ? `${geoSearch.lat}-${geoSearch.lng}` : 'all'
+              }`}
           >
             <Configure
               hitsPerPage={5000}
@@ -388,6 +387,7 @@ const FloodControlProjectsMap: React.FC = () => {
                 center={initialCenter}
                 zoom={initialZoom}
                 style={{ height: '100%', width: '100%' }}
+                className="z-0"
                 ref={mapRef}
                 whenReady={() => {
                   if (mapRef.current) {
@@ -474,7 +474,7 @@ const FloodControlProjectsMap: React.FC = () => {
               </MapContainer>
 
               {/* Zoom Controls */}
-              <div className="absolute top-4 right-4 z-[1000] flex flex-col gap-2">
+              <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
                 <Button
                   variant="primary"
                   size="sm"

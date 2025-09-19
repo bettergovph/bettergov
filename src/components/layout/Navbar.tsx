@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react'
-import { useLanguage } from '../../contexts/LanguageContext'
+import React, { useState, useRef, useEffect } from 'react'
+import { X, Menu, ChevronDown, Globe, Search, CheckCircle2 } from 'lucide-react'
+import { useLanguage, LANGUAGES } from '../../contexts/LanguageContext'
 import { mainNavigation } from '../../data/navigation'
 import { LanguageType } from '../../types'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
   const { language, setLanguage, translate } = useLanguage()
+  const languageDropdownRef = useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -28,7 +30,23 @@ const Navbar: React.FC = () => {
 
   const changeLanguage = (newLanguage: LanguageType) => {
     setLanguage(newLanguage)
+    setIsLanguageDropdownOpen(false)
   }
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        languageDropdownRef.current &&
+        !languageDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -62,14 +80,34 @@ const Navbar: React.FC = () => {
             >
               Hotlines
             </Link>
-            <div className="hidden md:block relative">
+            <div className="hidden md:block relative" ref={languageDropdownRef}>
               <button
                 className="flex items-center text-xs text-gray-800 hover:text-primary-600 transition-colors"
-                onClick={() => changeLanguage(language === 'en' ? 'fil' : 'en')}
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
               >
                 <Globe className="h-3 w-3 mr-1" />
-                {language === 'en' ? 'English' : 'Filipino'}
+                {LANGUAGES[language]?.nativeName || 'English'}
+                <ChevronDown className={`h-3 w-3 ml-1 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
+
+              {isLanguageDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+                  <div className="py-1">
+                    {Object.entries(LANGUAGES).map(([code, lang]) => (
+                      <button
+                        key={code}
+                        onClick={() => changeLanguage(code as LanguageType)}
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${
+                          language === code ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                        }`}
+                      >
+                        <div className="font-medium">{lang.nativeName}</div>
+                        <div className="text-xs text-gray-500">{lang.name}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -80,11 +118,12 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img
-                src="/ph-logo.png"
+             <CheckCircle2 className="h-12 w-12 mr-3" />
+              {/* <img
+                src="/ph-logo.webp"
                 alt="Philippines Coat of Arms"
                 className="h-12 w-12 mr-3"
-              />
+              /> */}
               <div>
                 <div className="text-black font-bold">BetterGov.ph</div>
                 <div className="text-xs text-gray-800">
