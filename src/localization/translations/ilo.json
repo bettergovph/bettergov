@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Dadduma pay a Siudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live nga panagsukatan ti kuarta",
+    "forexDescription": "Bantayan dagiti rate ti foreign exchange manipud iti Bangko Sentral ng Pilipinas (BSP). Agbaliw kadagiti currencies ken kitaen dagiti historical rate trends para kadagiti kangrunaan a world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Dadduma pay a Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Agiregistro ita para iti Philippine Identification System (PhilSys) ID card mo. Ti national ID ket agserbi a kas maysa nga ID nga inted ti gobierno para kadagiti amin a lungsuranon.",
+    "registerNow": "Agiregistro Ita"
+  },
+  "government": {
+    "title": "Gobierno ti Pilipinas",
+    "description": "Ammuen ti maipapan kadagiti tallo a sanga ti gobierno ti Pilipinas ken no kasano ti panagtitinnulongda tapno agserbi kadagiti tattao.",
+    "executiveTitle": "Sanga ti Ehekutibo",
+    "executiveDescription": "Indauluan ti Presidente, responsable iti panangipatungpal ken panangipaipaay kadagiti linteg.",
+    "legislativeTitle": "Sanga ti Lehislatura",
+    "legislativeDescription": "Buklen ti Senado ken Kamara dagiti Representante, responsable iti panagaramid kadagiti linteg.",
+    "judiciaryTitle": "Sanga ti Hudikatura",
+    "judiciaryDescription": "Indauluan ti Korte Suprema, responsable iti panangipatarus kadagiti linteg ken panangipaay iti hustisia.",
+    "learnMore": "Ammuen Pay",
+    "directoryTitle": "Opisyal a Direktorio",
+    "directoryDescription": "Sapulen ti impormasion ti kontak para kadagiti opisyal ti gobierno, ahensia, ken opisina iti nasional ken lokal a lebel.",
+    "viewDirectory": "Kitaen ti Direktorio"
   }
 }

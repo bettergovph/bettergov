@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Duma ni ray Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live ya pansalapi palitan",
+    "forexDescription": "Bantayan so saray rate na foreign exchange manipud ed Bangko Sentral ng Pilipinas (BSP). Mag-convert na currencies tan nengnengen so historical rate trends para ed saray pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Duma ni ray Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magrehistro la para ed Philippine Identification System (PhilSys) ID card yo natan. So national ID et mansisilbi ya saya ID ya imbey na gobyerno para ed amin ya lungsuranon.",
+    "registerNow": "Magrehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno na Pilipinas",
+    "description": "Amtaen so nipaakar ed talora ya sanga na gobyerno na Pilipinas tan panon ira nakikuyog ya manserbi ed saray too.",
+    "executiveTitle": "Sanga ya Ehekutibo",
+    "executiveDescription": "Panolo nen Presidente, responsable ed pangipatupad tan panangipairal na saray ley.",
+    "legislativeTitle": "Sanga ya Lehislatura",
+    "legislativeDescription": "Gapo ed Senado tan Kamara na saray Representante, responsable ed panangigawa na saray ley.",
+    "judiciaryTitle": "Sanga ya Hudikatura",
+    "judiciaryDescription": "Panolo nen Korte Suprema, responsable ed panag-interpret na saray ley tan panangipaabot na hustisya.",
+    "learnMore": "Amtaen Pay",
+    "directoryTitle": "Opisyal ya Direktoryo",
+    "directoryDescription": "Anapen so impormasyon ed pakikayarian para ed saray opisyal na gobyerno, saray ahensya, tan saray opisina ed nasyonal tan lokal ya antas.",
+    "viewDirectory": "Nengnengen so Direktoryo"
   }
 }

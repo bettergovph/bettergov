@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Aliwa pang Lakanbalen",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live a pamagpalit pera",
+    "forexDescription": "Bantayan mo reng rate ning foreign exchange ibat king Bangko Sentral ng Pilipinas (BSP). Mag-convert kareng currencies at lon mo reng historical rate trends para kareng pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Aliwa pang Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magpatala na keni king kekayung Philippine Identification System (PhilSys) ID card ngeni. Ing national ID magsilbi yang metung mung ID a miyebili ning kapamahalan para kareng egana-ganang lungsuranun.",
+    "registerNow": "Magpatala Na"
+  },
+  "government": {
+    "title": "Kapamahalan ning Pilipinas",
+    "description": "Abalu nyu ing tungkul kareng atlung sangay ning kapamahalan ning Pilipinas at nanu ing pamag-ugnayan da bang magsilbi kareng tau.",
+    "executiveTitle": "Sangay Ehekutibu",
+    "executiveDescription": "Panibalan ning Pamuntuk, dapat manuparan at payatutupad kareng batas.",
+    "legislativeTitle": "Sangay Lehislatura",
+    "legislativeDescription": "Bibilugan ning Senadu at Kamara ding Representanti, dapat gawang batas.",
+    "judiciaryTitle": "Sangay Hudikatura",
+    "judiciaryDescription": "Panibalan ning Korte Suprema, dapat manintindi kareng batas at magsilbi king katarungan.",
+    "learnMore": "Abalu Pa",
+    "directoryTitle": "Opisyal a Direktoryu",
+    "directoryDescription": "Paintunan ing impormasiun king pamakiugnayan para kareng opisial ning kapamahalan, deng ahensya, ampong opisina king pambansa ampong lokal a lebel.",
+    "viewDirectory": "Lawen ing Direktoryu"
   }
 }

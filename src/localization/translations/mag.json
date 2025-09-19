@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iba pa a mga Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live a pagbaylo sa kwarta",
+    "forexDescription": "Bantayan su mga rate sa foreign exchange manipud sa Bangko Sentral ng Pilipinas (BSP). Mag-convert sa currencies agun tingnan su historical rate trends para sa mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Iba pa a Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para sa inyong Philippine Identification System (PhilSys) ID card nganin a aldaw. Su national ID matulungan a isa a ID a bigay nu gobyerno para sa langon a lungsuranon.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno nu Pilipinas",
+    "description": "Matawan nu pasal sa telo a sanga nu gobyerno nu Pilipinas agun unsay pagtabang-tabang ila para magsilbi sa mga taw.",
+    "executiveTitle": "Sanga nu Ehekutibo",
+    "executiveDescription": "Pinamumunuan nu Presidente, responsable sa pagpatupad agun pagpapairal nu mga batas.",
+    "legislativeTitle": "Sanga nu Lehislatura",
+    "legislativeDescription": "Binubuo nu Senado agun Kamara nu mga Representante, responsable sa paggawa nu mga batas.",
+    "judiciaryTitle": "Sanga nu Hudikatura",
+    "judiciaryDescription": "Pinamumunuan nu Korte Suprema, responsable sa pagpaliwanag nu mga batas agun pagpatupad nu katarungan.",
+    "learnMore": "Matawan Pa",
+    "directoryTitle": "Opisyal a Direktoryo",
+    "directoryDescription": "Hanapa su impormasyon sa pakikipag-ugnayan para sa mga opisyal nu gobyerno, mga ahensya, agun mga opisina sa nasudnon agun lokal a lebel.",
+    "viewDirectory": "Tingnan su Direktoryo"
   }
 }

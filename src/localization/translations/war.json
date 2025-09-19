@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iba pa nga mga Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live nga pagbaylo han kwarta",
+    "forexDescription": "Bantay-i an mga rate han foreign exchange tikang ha Bangko Sentral ng Pilipinas (BSP). Mag-convert han currencies ngan kitaa an historical rate trends para han mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Iba pa nga Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para ha iyo Philippine Identification System (PhilSys) ID card yana. An national ID nag-asilbi nga usa nga ID nga ginhatag han gobyerno para ha ngatanan nga mga lungsuranon.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno han Pilipinas",
+    "description": "Hibaro-i an mahitungod ha tulo nga sanga han gobyerno han Pilipinas ngan paunan-o hira nag-uupod pag-alagad ha mga tawo.",
+    "executiveTitle": "Sanga Ehekutibo",
+    "executiveDescription": "Ginpapangulohan han Presidente, responsable ha pagpatuman ngan pagpatuman han mga balaod.",
+    "legislativeTitle": "Sanga Lehislatura",
+    "legislativeDescription": "Gin-uupod han Senado ngan Kamara han mga Representante, responsable ha paghimo han mga balaod.",
+    "judiciaryTitle": "Sanga Hudikatura",
+    "judiciaryDescription": "Ginpapangulohan han Korte Suprema, responsable ha pagsabot han mga balaod ngan pagpatuman han hustisya.",
+    "learnMore": "Hibaro-i Pa",
+    "directoryTitle": "Opisyal nga Direktoryo",
+    "directoryDescription": "Bilnga an impormasyon ha pagkontak para ha mga opisyal han gobyerno, mga ahensya, ngan mga opisina ha nasudnon ngan lokal nga antas.",
+    "viewDirectory": "Kitaa an Direktoryo"
   }
 }

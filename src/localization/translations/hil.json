@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iban pa nga mga Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live nga pagbaylo sang kwarta",
+    "forexDescription": "Bantayi ang mga rate sang foreign exchange halin sa Bangko Sentral ng Pilipinas (BSP). Mag-convert sang currencies kag lantawa ang historical rate trends para sa mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Iban pa nga Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para sa inyo Philippine Identification System (PhilSys) ID card subong. Ang national ID nagasilbi bilang isa ka ID nga ginhatag sang gobyerno para sa tanan nga mga lungsuranon.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno sang Pilipinas",
+    "description": "Tun-i ang nahanungod sa tatlo ka sanga sang gobyerno sang Pilipinas kag paano sila nagabuligay agod mag-alagad sa mga tawo.",
+    "executiveTitle": "Sanga Ehekutibo",
+    "executiveDescription": "Ginapangulohan sang Presidente, responsable sa pagpatuman kag pagpahamtang sang mga kasuguan.",
+    "legislativeTitle": "Sanga Lehislatura",
+    "legislativeDescription": "Ginabuoan sang Senado kag Kamara sang mga Representante, responsable sa paghimo sang mga kasuguan.",
+    "judiciaryTitle": "Sanga Hudikatura",
+    "judiciaryDescription": "Ginapangulohan sang Korte Suprema, responsable sa pagsaysay sang mga kasuguan kag pagpatuman sang hustisya.",
+    "learnMore": "Tun-i Pa",
+    "directoryTitle": "Opisyal nga Direktoryo",
+    "directoryDescription": "Pangitaon ang impormasyon sa pagkontak para sa mga opisyal sang gobyerno, mga ahensya, kag mga opisina sa nasudnon kag lokal nga lebel.",
+    "viewDirectory": "Lantawon ang Direktoryo"
   }
 }

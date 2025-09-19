@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iba pang mga Lungsod",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live na palitan ng pera",
+    "forexDescription": "Subaybayan ang mga rate ng foreign exchange mula sa Bangko Sentral ng Pilipinas (BSP). Mag-convert ng currencies at tingnan ang historical rate trends para sa mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Iba pang Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para sa inyong Philippine Identification System (PhilSys) ID card ngayong araw. Ang national ID ay nagsisilbing iisang ID na inisyu ng gobyerno para sa lahat ng mamamayan.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno ng Pilipinas",
+    "description": "Alamin ang tungkol sa tatlong sangay ng gobyerno ng Pilipinas at kung paano sila nagtutulungan upang maglingkod sa mga tao.",
+    "executiveTitle": "Sangay Ehekutibo",
+    "executiveDescription": "Pinamumunuan ng Presidente, responsable sa pagpapatupad at pagpapairal ng mga batas.",
+    "legislativeTitle": "Sangay Lehislatura",
+    "legislativeDescription": "Binubuo ng Senado at Kamara ng mga Kinatawan, responsable sa paggawa ng mga batas.",
+    "judiciaryTitle": "Sangay Hudikatura",
+    "judiciaryDescription": "Pinamumunuan ng Kataas-taasang Hukuman, responsable sa pagpapaliwanag ng mga batas at pagpapatupad ng katarungan.",
+    "learnMore": "Alamin Pa",
+    "directoryTitle": "Opisyal na Direktoryo",
+    "directoryDescription": "Hanapin ang impormasyon sa pakikipag-ugnayan para sa mga opisyal ng gobyerno, mga ahensya, at mga opisina sa pambansa at lokal na antas.",
+    "viewDirectory": "Tingnan ang Direktoryo"
   }
 }

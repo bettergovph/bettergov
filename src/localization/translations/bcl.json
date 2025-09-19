@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iba pang mga Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live na pagribay nin kwarta",
+    "forexDescription": "Bantayan an mga rate kan foreign exchange poon sa Bangko Sentral ng Pilipinas (BSP). Mag-convert nin currencies asin hilinga an historical rate trends para sa mga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Ibang Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magparehistro na para sa saindong Philippine Identification System (PhilSys) ID card ngunyan. An national ID nagsisilbing sarong ID na pigtao kan gobyerno para sa gabos na mga lungsuranon.",
+    "registerNow": "Magparehistro Na"
+  },
+  "government": {
+    "title": "Gobyerno kan Pilipinas",
+    "description": "Maaram an manungod sa tolong sanga kan gobyerno kan Pilipinas asin kun paano sinda nagtatabang tanganing magserbi sa mga tawo.",
+    "executiveTitle": "Sangang Ehekutibo",
+    "executiveDescription": "Pinamumunuan kan Presidente, responsable sa pagpatupad asin pagpairal kan mga batas.",
+    "legislativeTitle": "Sangang Lehislatura",
+    "legislativeDescription": "Binubuong Senado asin Kamara kan mga Representante, responsable sa paggibo kan mga batas.",
+    "judiciaryTitle": "Sangang Hudikatura",
+    "judiciaryDescription": "Pinamumunuan kan Korte Suprema, responsable sa pagsasabot kan mga batas asin pagpatupad kan hustisya.",
+    "learnMore": "Maaram Pa",
+    "directoryTitle": "Opisyal na Direktoryo",
+    "directoryDescription": "Hanapon an impormasyon sa pagkontak para sa mga opisyal kan gobyerno, mga ahensya, asin mga opisina sa nasyonal asin lokal na antas.",
+    "viewDirectory": "Hilngon an Direktoryo"
   }
 }

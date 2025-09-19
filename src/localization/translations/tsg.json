@@ -56,6 +56,31 @@
     "cebu": "Cebu",
     "davao": "Davao",
     "moreCities": "Iba pa Syudad",
-    "forexRates": "Forex Rates"
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live pagbayluh sin sīn",
+    "forexDescription": "Bantay in mga rate sin foreign exchange dayn ha Bangko Sentral ng Pilipinas (BSP). Mag-convert sin currencies iban kitaun in historical rate trends para ha manga pangunahing world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Iba pa Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Magrehistru na kamu ha kaniyu Philippine Identification System (PhilSys) ID card bihaun. In national ID nag-asilbi hambuuk ID iyunut sin gupirnu para ha katān manga lungsuranun.",
+    "registerNow": "Magrehistru Na"
+  },
+  "government": {
+    "title": "Gupirnu sin Pilipinas",
+    "description": "Kaingatan in pasal ha tū sanga sin gupirnu sin Pilipinas iban biya' diin in pagtabang-tabangan nila bat makasulbi ha manga tau.",
+    "executiveTitle": "Sanga Ehekutibu",
+    "executiveDescription": "Piyapanguluwan sin Presidente, responsable ha pagpatuman iban pagpatuman sin manga sara'.",
+    "legislativeTitle": "Sanga Lehislatura",
+    "legislativeDescription": "Biyugbugbug sin Senadu iban Kamara sin manga Representante, responsable ha paghimū sin manga sara'.",
+    "judiciaryTitle": "Sanga Hudikatura",
+    "judiciaryDescription": "Piyapanguluwan sin Korte Suprema, responsable ha pagtafsīl sin manga sara' iban pagpatuman sin kaadilan.",
+    "learnMore": "Kaingatan Pa",
+    "directoryTitle": "Opisyal Direktoryu",
+    "directoryDescription": "Lungga' in impormasiun sin pagkuntaktu ha manga opisyal sin gupirnu, manga ahensiya, iban manga upis ha nasiunal iban lukal lebel.",
+    "viewDirectory": "Kitaun in Direktoryu"
   }
 }
