@@ -14,12 +14,18 @@ const PromotionBanner: React.FC = () => {
             </p>
           </div>
           <div>
-            <Button
-              className="bg-white text-accent-600 hover:bg-gray-100 shadow-lg px-8 py-3 text-lg"
-              size="lg"
+            <a
+              href="https://register.philsys.gov.ph/#/eng"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Register Now
-            </Button>
+              <Button
+                className="bg-white text-accent-600 hover:bg-gray-100 shadow-lg px-8 py-3 text-lg"
+                size="lg"
+              >
+                Register Now
+              </Button>
+            </a>
           </div>
         </div>
       </div>
