@@ -1,13 +1,15 @@
 import React from 'react'
 import { Card, CardContent } from '../ui/Card'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 const GovernmentSection: React.FC = () => {
+  const { translate } = useLanguage()
+
   const branches = [
     {
       id: 'executive',
-      title: 'Executive Branch',
-      description:
-        'Led by the President, responsible for implementing and enforcing laws.',
+      title: translate('government.executiveTitle'),
+      description: translate('government.executiveDescription'),
       icon: (
         <svg
           className="h-10 w-10 text-primary-600"
@@ -25,9 +27,8 @@ const GovernmentSection: React.FC = () => {
     },
     {
       id: 'legislative',
-      title: 'Legislative Branch',
-      description:
-        'Composed of the Senate and House of Representatives, responsible for making laws.',
+      title: translate('government.legislativeTitle'),
+      description: translate('government.legislativeDescription'),
       icon: (
         <svg
           className="h-10 w-10 text-primary-600"
@@ -46,9 +47,8 @@ const GovernmentSection: React.FC = () => {
     },
     {
       id: 'judiciary',
-      title: 'Judicial Branch',
-      description:
-        'Led by the Supreme Court, responsible for interpreting laws and administering justice.',
+      title: translate('government.judiciaryTitle'),
+      description: translate('government.judiciaryDescription'),
       icon: (
         <svg
           className="h-10 w-10 text-primary-600"
@@ -74,11 +74,10 @@ const GovernmentSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Government of the Philippines
+            {translate('government.title')}
           </h2>
           <p className="text-gray-800 max-w-2xl mx-auto">
-            Learn about the three branches of the Philippine government and how
-            they work together to serve the people.
+            {translate('government.description')}
           </p>
         </div>
 
@@ -95,7 +94,7 @@ const GovernmentSection: React.FC = () => {
                   href={branch.link}
                   className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center transition-colors"
                 >
-                  Learn More
+                  {translate('government.learnMore')}
                   <svg
                     className="ml-1 h-4 w-4"
                     viewBox="0 0 24 24"
@@ -118,19 +117,18 @@ const GovernmentSection: React.FC = () => {
           <div className="md:flex items-center">
             <div className="mb-6 md:mb-0 md:w-2/3 md:pr-8">
               <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                Official Directory
+                {translate('government.directoryTitle')}
               </h3>
               <p className="text-gray-800">
-                Find contact information for government officials, agencies, and
-                offices at national and local levels.
+                {translate('government.directoryDescription')}
               </p>
             </div>
             <div className="md:w-1/3 flex justify-center md:justify-end">
               <a
-                href="/government/directory"
+                href="/government/executive"
                 className="inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
               >
-                View Directory
+                {translate('government.viewDirectory')}
               </a>
             </div>
           </div>

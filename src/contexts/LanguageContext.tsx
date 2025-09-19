@@ -4,8 +4,10 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useCallback,
 } from 'react'
 import { LanguageType } from '../types'
+import enTranslations from '../localization/translations/en.json'
 
 interface LanguageContextType {
   language: LanguageType
@@ -17,69 +19,122 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 )
 
-// Simple translations for demonstration
-const translations: Record<LanguageType, Record<string, string>> = {
-  en: {
-    'navbar.philippines': 'The Philippines',
-    'navbar.home': 'Home',
-    'navbar.services': 'Services',
-    'navbar.travel': 'Travel',
-    'navbar.government': 'Government',
-    'navbar.flood control projects': 'Flood Control Projects',
-    'hero.title': 'Welcome to BetterGov.ph',
-    'hero.subtitle':
-      'The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.',
-    'hero.search': 'Search for services, information, or agencies',
-    'services.title': 'Popular Services',
-    'news.title': 'Latest News and Updates',
-    'weather.title': 'Weather Updates',
-    'forex.title': 'Foreign Exchange Rates',
-    'footer.copyright':
-      '© 2025 BetterGov. All content is public domain unless otherwise specified.',
-    // Add more translations as needed
-  },
-  fil: {
-    'navbar.philippines': 'Pilipinas',
-    'navbar.home': 'Tahanan',
-    'navbar.services': 'Mga Serbisyo',
-    'navbar.travel': 'Paglalakbay',
-    'navbar.government': 'Pamahalaan',
-    'navbar.flood control projects': 'Flood Control Projects',
-    'hero.title':
-      'Maligayang Pagdating sa Unopisyal na Portal ng Republika ng Pilipinas',
-    'hero.subtitle':
-      'I-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita, at humanap ng impormasyon tungkol sa Pilipinas.',
-    'hero.search': 'Maghanap ng mga serbisyo, impormasyon, o ahensya',
-    'services.title': 'Mga Sikat na Serbisyo',
-    'news.title': 'Pinakabagong Balita at Updates',
-    'weather.title': 'Mga Update sa Panahon',
-    'forex.title': 'Palitan ng Pera',
-    'footer.copyright': '© 2025 BetterGov.',
-    // Add more translations as needed
-  },
+// Language metadata
+// Note: 'tgl' is handled as an alias for 'fil' in normalizeLanguage()
+export const LANGUAGES: Record<string, { name: string; nativeName: string }> = {
+  en: { name: 'English', nativeName: 'English' },
+  fil: { name: 'Filipino/Tagalog', nativeName: 'Filipino/Tagalog' },
+  ceb: { name: 'Cebuano', nativeName: 'Bisaya/Sinugboanon' },
+  ilo: { name: 'Ilocano', nativeName: 'Ilokano' },
+  hil: { name: 'Hiligaynon', nativeName: 'Ilonggo' },
+  war: { name: 'Waray', nativeName: 'Waray-Waray' },
+  pam: { name: 'Kapampangan', nativeName: 'Kapampangan' },
+  bcl: { name: 'Bikol', nativeName: 'Bikol Central' },
+  pag: { name: 'Pangasinan', nativeName: 'Pangasinan' },
+  mag: { name: 'Maguindanao', nativeName: 'Maguindanaon' },
+  tsg: { name: 'Tausug', nativeName: 'Bahasa Sūg' },
+  mdh: { name: 'Maranao', nativeName: 'Meranaw' },
+}
+
+// Normalize language codes (fil and tgl are the same)
+const normalizeLanguage = (lang: LanguageType): LanguageType => {
+  if (lang === 'tgl') return 'fil'
+  return lang
+}
+
+// Load translations dynamically
+const loadTranslations = async (lang: LanguageType): Promise<any> => {
+  const normalizedLang = normalizeLanguage(lang)
+
+  if (normalizedLang === 'en') {
+    return enTranslations
+  }
+
+  try {
+    const module = await import(`../localization/translations/${normalizedLang}.json`)
+    return module.default
+  } catch (error) {
+    console.warn(`Translation file for ${normalizedLang} not found, falling back to English`)
+    return enTranslations
+  }
+}
+
+// Get value from nested object using dot notation
+const getNestedValue = (obj: any, path: string): string | undefined => {
+  const keys = path.split('.')
+  let current = obj
+
+  for (const key of keys) {
+    if (current && typeof current === 'object' && key in current) {
+      current = current[key]
+    } else {
+      return undefined
+    }
+  }
+
+  return typeof current === 'string' ? current : undefined
 }
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<LanguageType>('en')
-
-  useEffect(() => {
-    // You could load the language preference from localStorage here
+  // Initialize language from localStorage or default to 'en'
+  const getInitialLanguage = (): LanguageType => {
     const savedLanguage = localStorage.getItem('language') as LanguageType
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fil')) {
-      setLanguage(savedLanguage)
+    const validLanguages: LanguageType[] = ['en', 'fil', 'tgl', 'ceb', 'ilo', 'hil', 'war', 'pam', 'bcl', 'pag', 'mag', 'tsg', 'mdh']
+
+    if (savedLanguage && validLanguages.includes(savedLanguage)) {
+      return savedLanguage
     }
-  }, [])
+    return 'en'
+  }
+
+  const [language, setLanguageState] = useState<LanguageType>(getInitialLanguage)
+  const [translations, setTranslations] = useState<any>(enTranslations)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    // Load translations when language changes
+    setIsLoading(true)
+    loadTranslations(language)
+      .then(data => {
+        setTranslations(data)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        console.error('Error loading translations:', error)
+        setTranslations(enTranslations)
+        setIsLoading(false)
+      })
+
+    // Update localStorage and document lang
     localStorage.setItem('language', language)
-    document.documentElement.lang = language
+    document.documentElement.lang = normalizeLanguage(language)
   }, [language])
 
-  const translate = (key: string): string => {
-    return translations[language][key] || key
-  }
+  const setLanguage = useCallback((lang: LanguageType) => {
+    setLanguageState(lang)
+  }, [])
+
+  const translate = useCallback((key: string): string => {
+    // Try to get translation from current language
+    let value = getNestedValue(translations, key)
+
+    if (value) {
+      return value
+    }
+
+    // Fallback to English if not found
+    if (language !== 'en') {
+      value = getNestedValue(enTranslations, key)
+      if (value) {
+        return value
+      }
+    }
+
+    // Return the key itself as last resort (helps identify missing translations)
+    return key
+  }, [translations, language])
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, translate }}>

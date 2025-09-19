@@ -1,5 +1,4 @@
 import { Env, JinaResponse, JinaRecord } from '../types'
-import crypto from 'crypto'
 
 /**
  * Fetches content from a URL using the Jina.ai API

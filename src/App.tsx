@@ -79,6 +79,7 @@ import SitemapPage from './pages/sitemap'
 import Ideas from './pages/Ideas'
 import JoinUs from './pages/JoinUs'
 import ScrollToTop from './components/ui/ScrollToTop'
+import Discord from './pages/Discord'
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
             <Route path="/ideas" element={<Ideas />} />
             <Route path="/join-us" element={<JoinUs />} />
             <Route path="/sitemap" element={<SitemapPage />} />
+            <Route path="/discord" Component={Discord} />
             <Route path="/philippines/about" element={<AboutPhilippines />} />
             <Route
               path="/philippines/history"

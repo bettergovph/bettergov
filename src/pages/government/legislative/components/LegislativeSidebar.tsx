@@ -42,15 +42,15 @@ export default function LegislativeSidebar() {
           <ul className="space-y-1">
             <li>
               <Link
-                to="/government/legislative/senate-of-the-philippines-19th-congress"
+                to="/government/legislative/senate-of-the-philippines-20th-congress"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'Senate of the Philippines (19th Congress)'
+                  chamberParam === 'Senate of the Philippines (20th Congress)'
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <Building className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
-                <span>Senate of the Philippines (19th Congress)</span>
+                <span>Senate of the Philippines (20th Congress)</span>
               </Link>
             </li>
             <li>

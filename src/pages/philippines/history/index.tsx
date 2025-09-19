@@ -1,46 +1,42 @@
-import React from 'react'
-import { Clock, Flag, Crown, Scale, Star } from 'lucide-react'
-import { Card, CardContent } from '../../../components/ui/Card'
+import React from "react";
+import { Clock, Flag, Crown, Scale, Star } from "lucide-react";
+import { Card, CardContent } from "../../../components/ui/Card";
 
 const PhilippinesHistory: React.FC = () => {
   const timelinePeriods = [
     {
       icon: <Clock className="h-6 w-6" />,
-      title: 'Pre-Colonial Period',
-      period: 'Before 1521',
+      title: "Pre-Colonial Period",
+      period: "Before 1521",
       description:
-        'Indigenous peoples with advanced societies, trade networks, and rich cultures',
-      image:
-        'https://images.pexels.com/photos/5325407/pexels-photo-5325407.jpeg',
+        "Indigenous peoples with advanced societies, trade networks, and rich cultures",
+      image: "/assets/history/pre-colonial-period.webp",
     },
     {
       icon: <Crown className="h-6 w-6" />,
-      title: 'Spanish Colonial Era',
-      period: '1521-1898',
+      title: "Spanish Colonial Era",
+      period: "1521-1898",
       description:
-        'Over 300 years of Spanish rule, introducing Christianity and colonial institutions',
-      image:
-        'https://images.pexels.com/photos/5325407/pexels-photo-5325407.jpeg',
+        "Over 300 years of Spanish rule, introducing Christianity and colonial institutions",
+      image: "/assets/history/spanish-colonial-era.webp",
     },
     {
       icon: <Star className="h-6 w-6" />,
-      title: 'American Period',
-      period: '1898-1946',
+      title: "American Period",
+      period: "1898-1946",
       description:
-        'American administration, introducing modern education and democratic institutions',
-      image:
-        'https://images.pexels.com/photos/5325407/pexels-photo-5325407.jpeg',
+        "American administration, introducing modern education and democratic institutions",
+      image: "/assets/history/american-period.webp",
     },
     {
       icon: <Flag className="h-6 w-6" />,
-      title: 'Independence and Modern Era',
-      period: '1946-Present',
+      title: "Independence and Modern Era",
+      period: "1946-Present",
       description:
-        'Independent republic facing challenges and achievements in nation-building',
-      image:
-        'https://images.pexels.com/photos/5325407/pexels-photo-5325407.jpeg',
+        "Independent republic facing challenges and achievements in nation-building",
+      image: "/assets/history/independence-modern-era.webp",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -106,7 +102,7 @@ const PhilippinesHistory: React.FC = () => {
                           <img
                             src={period.image}
                             alt={period.title}
-                            className="w-full h-48 object-cover rounded-lg"
+                            className="w-full max-h-64 object-cover object-center rounded-lg"
                           />
                         </div>
                       </div>
@@ -263,7 +259,7 @@ const PhilippinesHistory: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PhilippinesHistory
+export default PhilippinesHistory;

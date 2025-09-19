@@ -3,6 +3,7 @@ import * as LucideIcons from 'lucide-react'
 import { Card, CardContent } from '../ui/Card'
 import serviceCategories from '../../data/service_categories.json'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface Subcategory {
   name: string
@@ -16,6 +17,8 @@ interface Category {
 }
 
 const ServicesSection: React.FC = () => {
+  const { translate } = useLanguage()
+
   const getIcon = (category: string) => {
     const iconMap: { [key: string]: keyof typeof LucideIcons } = {
       'Business and Trade': 'Building2',
@@ -47,11 +50,10 @@ const ServicesSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Government Services
+            {translate('services.governmentServices')}
           </h2>
           <p className="text-gray-800 max-w-2xl mx-auto">
-            Access official government services quickly and easily. Find what
-            you need for citizenship, business, education, and more.
+            {translate('services.description')}
           </p>
         </div>
 
@@ -91,7 +93,7 @@ const ServicesSection: React.FC = () => {
                   to={`/services?category=${category.slug}`}
                   className="mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center"
                 >
-                  View All {category.category}
+                  {translate('services.viewAllCategory')} {category.category}
                   <LucideIcons.ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </CardContent>
@@ -104,7 +106,7 @@ const ServicesSection: React.FC = () => {
             to="/services"
             className="inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
           >
-            View All Services
+            {translate('services.viewAll')}
           </Link>
         </div>
       </div>

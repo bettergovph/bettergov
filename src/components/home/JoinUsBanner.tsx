@@ -1,10 +1,13 @@
 import React from 'react';
 import { Users, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const JoinUsBanner: React.FC = () => {
+  const { translate } = useLanguage();
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 py-16 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white">
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
       
       {/* Decorative elements */}
@@ -24,39 +27,41 @@ const JoinUsBanner: React.FC = () => {
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-            Join the <span className="text-yellow-200">#CivicTech</span> Revolution
+            {translate('joinUs.bannerTitle').split('#CivicTech')[0]}
+            <span className="text-yellow-200">#CivicTech</span>
+            {translate('joinUs.bannerTitle').split('#CivicTech')[1]}
           </h2>
           
           <p className="text-lg md:text-xl mb-8 text-orange-100 leading-relaxed max-w-3xl mx-auto">
-            Help build the future of the Philippines and governance through technology. 
-            <strong className="text-yellow-200"> Volunteer-led. Open source. Community-driven.</strong>
+            {translate('joinUs.bannerSubtitle')}
+            <strong className="text-yellow-200"> {translate('joinUs.bannerHighlight')}</strong>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               to="/join-us"
-              className="inline-flex items-center justify-center px-8 py-4 bg-yellow-300 text-gray-900 font-bold rounded-lg hover:bg-yellow-200 transition-all transform hover:scale-105 shadow-lg text-lg"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg text-lg"
             >
               <Users className="h-5 w-5 mr-2" />
-              Join Our Movement
+              {translate('joinUs.joinMovement')}
               <ArrowRight className="h-5 w-5 ml-2" />
             </Link>
             
-            <div className="text-orange-100 font-medium">or</div>
+            <div className="text-orange-100 font-medium">{translate('joinUs.or')}</div>
             
             <a
               href="https://discord.gg/mHtThpN8bT"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-yellow-200 text-yellow-200 font-semibold rounded-lg hover:bg-yellow-200 hover:text-gray-900 transition-all"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all"
             >
-              Join Discord
+              {translate('joinUs.joinDiscord')}
             </a>
           </div>
           
           <div className="mt-8 pt-6 border-t border-white/20">
             <p className="text-orange-200 text-sm">
-              🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space
+              {translate('joinUs.features')}
             </p>
           </div>
         </div>
