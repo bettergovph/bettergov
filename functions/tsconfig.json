@@ -13,7 +13,13 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    /* Import alias */
+    "baseUrl": "..",
+    "paths": {
+      "@functions/*": ["functions/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]
