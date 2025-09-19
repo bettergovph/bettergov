@@ -33,7 +33,6 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@types/react-leaflet": "^3.0.0",
     "clsx": "^2.1.0",
-    "crypto": "^1.0.1",
     "csv-parser": "^3.2.0",
     "date-fns": "^3.3.1",
     "dotenv": "^16.5.0",

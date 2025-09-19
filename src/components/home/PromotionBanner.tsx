@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../ui/Button';
+import { Link } from 'react-router-dom';
 
 const PromotionBanner: React.FC = () => {
   return (
@@ -14,12 +15,14 @@ const PromotionBanner: React.FC = () => {
             </p>
           </div>
           <div>
-            <Button
-              className="bg-white text-accent-600 hover:bg-gray-100 shadow-lg px-8 py-3 text-lg"
-              size="lg"
-            >
-              Register Now
-            </Button>
+            <Link to="https://philsys.gov.ph/registration-process">
+              <Button
+                className="bg-white text-accent-600 hover:bg-gray-100 shadow-lg px-8 py-3 text-lg"
+                size="lg"
+              >
+                Register Now
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

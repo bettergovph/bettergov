@@ -1,5 +1,4 @@
 import { Env, JinaResponse, JinaRecord, CFBrowserResult } from '../types'
-import crypto from 'crypto'
 
 /**
  * Fetches content from a URL using Cloudflare's Browser Rendering API
