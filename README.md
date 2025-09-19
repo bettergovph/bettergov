@@ -80,6 +80,50 @@ npm run dev
 
 # Build for production
 npm run build
+
+# Run tests
+npm test
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## Testing
+
+This project uses Vitest for unit testing and React Testing Library for component testing.
+
+### Running Tests
+
+- `npm test` - Run tests in watch mode
+- `npm run test:ui` - Run tests with interactive UI
+- `npm run test:coverage` - Generate test coverage report
+
+### Test Structure
+
+Tests are co-located with the source files:
+- Component tests: `*.test.tsx` files next to component files
+- Utility tests: `*.test.ts` files next to utility files
+- Test setup: `src/test/setup.ts` for global test configuration
+- Test utilities: `src/test/test-utils.tsx` for custom render functions
+
+### Writing Tests
+
+Example test structure:
+
+```typescript
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import MyComponent from './MyComponent'
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />)
+    expect(screen.getByText('Expected text')).toBeInTheDocument()
+  })
+})
 ```
 
 ## License
