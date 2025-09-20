@@ -147,7 +147,7 @@ const InfoWidgets: React.FC = () => {
             </div>
             <div>
               <div className="overflow-x-auto border border-gray-300 rounded-3xl">
-                <table className="min-w-full divide-y divide-gray-200 ">
+                <table className="divide-y divide-gray-200 table-fixed w-full">
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="pl-6 py-4 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">
@@ -187,12 +187,12 @@ const InfoWidgets: React.FC = () => {
                     ) : (
                       forexRates.map((rate) => (
                         <tr key={rate.code} className="hover:bg-gray-50">
-                          <td className="pl-6 py-2 whitespace-nowrap">
+                          <td className="pl-6 py-2">
                             <div className="flex items-center">
                               <div className="font-medium text-accent-500">
                                 {rate.code}
                               </div>
-                              <div className="text-gray-800 text-sm ml-2">
+                              <div className="text-gray-800 text-sm ml-2 text-ellipsis whitespace-nowrap overflow-hidden">
                                 {rate.currency}
                               </div>
                             </div>
