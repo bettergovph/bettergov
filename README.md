@@ -111,6 +111,30 @@ npm run test:e2e:headed
 npm run test:e2e:debug
 ```
 
+## Continuous Integration
+
+This project uses GitHub Actions for automated testing and quality assurance. The CI pipeline automatically runs on every push and pull request to the main branch.
+
+### Workflows
+
+- **CI** (`.github/workflows/ci.yml`) - Runs linting and build verification
+- **E2E Tests** (`.github/workflows/e2e.yml`) - Runs end-to-end tests using Playwright
+
+### Running CI Checks Locally
+
+Before submitting a pull request, you can run the same checks locally:
+
+```bash
+# Run linting (ESLint)
+npm run lint
+
+# Build the project
+npm run build
+
+# Run E2E tests
+npm run test:e2e
+```
+
 ## Testing
 
 ### End-to-End Testing
