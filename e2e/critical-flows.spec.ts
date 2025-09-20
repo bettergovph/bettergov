@@ -1,11 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Critical User Flows', () => {
-  test('PhilSys National ID registration button should work', async ({ page }) => {
+  test('PhilSys National ID registration button should work', async ({
+    page,
+  }) => {
     await page.goto('/');
 
     // Find the PhilSys registration section
-    const philSysSection = page.locator('text=PhilSys National ID Registration');
+    const philSysSection = page.locator(
+      'text=PhilSys National ID Registration'
+    );
     await expect(philSysSection).toBeVisible();
 
     // Find the Register Now button (it's wrapped in an anchor tag)
@@ -30,7 +34,9 @@ test.describe('Critical User Flows', () => {
     await page.goto('/services');
 
     // Wait for services page to load
-    await expect(page.getByRole('heading', { name: /Government Services/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Government Services/i })
+    ).toBeVisible();
 
     // Find search input
     const searchBox = page.getByPlaceholder(/Search services/i);
@@ -71,7 +77,9 @@ test.describe('Critical User Flows', () => {
     await page.goto('/philippines/hotlines');
 
     // Check page loaded
-    await expect(page.getByRole('heading', { name: /Emergency Hotlines/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Emergency Hotlines/i })
+    ).toBeVisible();
 
     // Check for critical hotline numbers
     await expect(page.getByText('911')).toBeVisible();
@@ -82,7 +90,9 @@ test.describe('Critical User Flows', () => {
     await page.goto('/government/departments');
 
     // Check page loaded
-    await expect(page.getByRole('heading', { name: /Executive Departments/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Executive Departments/i })
+    ).toBeVisible();
 
     // Check for some department cards
     await expect(page.locator('text=/Department of/i').first()).toBeVisible();
@@ -102,7 +112,9 @@ test.describe('Critical User Flows', () => {
     await page.goto('/flood-control-projects');
 
     // Check page loaded
-    await expect(page.getByRole('heading', { name: /Flood Control Projects/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Flood Control Projects/i })
+    ).toBeVisible();
 
     // Check for tabs
     await expect(page.getByRole('tab', { name: /Table View/i })).toBeVisible();

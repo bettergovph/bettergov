@@ -85,7 +85,6 @@ npm install
 npm run dev
 ```
 
-
 ## Development
 
 ```bash
