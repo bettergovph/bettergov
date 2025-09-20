@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Flag, Crown, Star } from 'lucide-react';
+import { Clock, Flag, Crown, Scale } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
@@ -13,7 +13,7 @@ const PhilippinesHistory: React.FC = () => {
       image: '/assets/history/independence-modern-era.webp',
     },
     {
-      icon: <Star className='h-6 w-6' />,
+      icon: <Scale className='h-6 w-6' />,
       title: 'American Period',
       period: '1898-1946',
       description:
