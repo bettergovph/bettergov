@@ -28,7 +28,7 @@ const ForexPage: React.FC = () => {
     const iconName = getCurrencyIconName(code)
     if (!iconName) return null
 
-    const Icon = LucideIcons[iconName as keyof typeof LucideIcons]
+    const Icon = (LucideIcons as unknown as Record<string, React.ComponentType<any>>)[iconName];
     return Icon ? <Icon className={size} /> : null
   }
 
@@ -162,7 +162,7 @@ const ForexPage: React.FC = () => {
                       </div>
                     </div>
                     <span className='font-semibold'>
-                      ₱{rate.rate?.toFixed(2)}
+                      { rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data' }
                     </span>
                   </button>
                 ))}
@@ -195,7 +195,7 @@ const ForexPage: React.FC = () => {
                         Current Rate
                       </div>
                       <div className='text-3xl font-bold text-gray-800'>
-                        ₱{selectedCurrencyData.rate.toFixed(4)}
+                        { selectedCurrencyData.rate ? `₱${selectedCurrencyData.rate.toFixed(4)}` : "Data Unavailable" }
                       </div>
                       <div className='text-xs text-gray-800'>
                         Philippine Peso
@@ -319,7 +319,7 @@ const ForexPage: React.FC = () => {
                           type='text'
                           className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3 bg-gray-50'
                           readOnly
-                          value={(1000 / selectedCurrencyData.rate).toFixed(2)}
+                          value={selectedCurrencyData.rate ? (1000 / selectedCurrencyData.rate).toFixed(2) : "Data Unavailable"}
                         />
                       </div>
                     </div>
