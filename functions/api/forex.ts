@@ -44,6 +44,7 @@ interface BSPApiResponse {
 }
 
 // Core function to fetch currency exchange rates
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function fetchForexData(_env: Env): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
@@ -243,6 +244,7 @@ export async function onRequest(context: {
 export async function scheduled(
   controller: ScheduledController,
   env: Env,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _ctx: ExecutionContext
 ) {
   try {

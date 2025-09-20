@@ -313,6 +313,7 @@ export async function onRequest(context: {
 export async function scheduled(
   controller: ScheduledController,
   env: Env,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _ctx: ExecutionContext
 ) {
   try {

@@ -31,13 +31,13 @@ import {
 import Button from '../../components/ui/Button';
 
 // Import shared components
+import { FilterDropdown, FilterTitle } from './shared-components';
+// Import types and utilities
 import {
-  FilterDropdown,
-  FilterTitle,
   buildFilterString,
   FilterState,
   FloodControlHit,
-} from './shared-components';
+} from './shared-utils';
 import FloodControlProjectsTab from './tab';
 
 // Import lookup data
