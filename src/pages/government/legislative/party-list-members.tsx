@@ -21,7 +21,10 @@ export default function PartyListMembersPage() {
   );
 
   // Extract party list members
-  const partyListMembers = houseData?.party_list_representatives || [];
+  const partyListMembers = useMemo(
+    () => houseData?.party_list_representatives || [],
+    [houseData]
+  );
 
   // Get unique partylist for filtering
   const partyList = useMemo(() => {

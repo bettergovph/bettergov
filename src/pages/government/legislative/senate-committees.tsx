@@ -17,7 +17,10 @@ export default function SenateCommitteesPage() {
   );
 
   // Extract committees
-  const committees = senateData?.permanent_committees || [];
+  const committees = useMemo(
+    () => senateData?.permanent_committees || [],
+    [senateData]
+  );
 
   // Filter committees based on search term
   const filteredCommittees = useMemo(() => {

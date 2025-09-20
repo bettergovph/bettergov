@@ -36,7 +36,6 @@ import {
   FilterTitle,
   buildFilterString,
   FilterState,
-  FloodControlProject,
   FloodControlHit,
 } from './shared-components';
 import FloodControlProjectsTab from './tab';

@@ -11,27 +11,21 @@ const typeReplacements = [
     replacements: [
       { line: 208, from: 'any', to: 'unknown' },
       { line: 220, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   // Weather
   {
     file: 'functions/weather.ts',
-    replacements: [
-      { line: 21, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 21, from: 'any', to: 'unknown' }],
   },
   // API lib
   {
     file: 'src/lib/api.ts',
-    replacements: [
-      { line: 4, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 4, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/lib/forex.ts',
-    replacements: [
-      { line: 15, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 15, from: 'any', to: 'unknown' }],
   },
   // MeilisearchInstantSearch
   {
@@ -41,7 +35,7 @@ const typeReplacements = [
       { line: 119, from: 'any', to: 'unknown' },
       { line: 130, from: 'any', to: 'unknown' },
       { line: 136, from: 'any', to: 'Record<string, unknown>' },
-    ]
+    ],
   },
   // Government pages
   {
@@ -49,7 +43,7 @@ const typeReplacements = [
     replacements: [
       { line: 17, from: 'any', to: 'unknown' },
       { line: 35, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/constitutional/goccs.tsx',
@@ -57,84 +51,70 @@ const typeReplacements = [
       { line: 23, from: 'any', to: 'unknown' },
       { line: 24, from: 'any', to: 'unknown' },
       { line: 32, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/constitutional/sucs.tsx',
     replacements: [
       { line: 24, from: 'any', to: 'unknown' },
       { line: 32, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/departments/[department].tsx',
     replacements: [
       { line: 12, from: 'any', to: 'unknown' },
       { line: 20, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/departments/components/DepartmentsSidebar.tsx',
-    replacements: [
-      { line: 14, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 14, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/pages/government/departments/index.tsx',
     replacements: [
       { line: 22, from: 'any', to: 'unknown' },
       { line: 135, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/executive/other-executive-offices.tsx',
     replacements: [
       { line: 40, from: 'any', to: 'unknown' },
       { line: 41, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/legislative/[chamber].tsx',
     replacements: [
       { line: 11, from: 'any', to: 'unknown' },
       { line: 123, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   {
     file: 'src/pages/government/legislative/house-members.tsx',
-    replacements: [
-      { line: 18, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 18, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/pages/government/legislative/party-list-members.tsx',
-    replacements: [
-      { line: 19, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 19, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/pages/government/legislative/senate-committees.tsx',
-    replacements: [
-      { line: 15, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 15, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/pages/government/local/[region].tsx',
-    replacements: [
-      { line: 29, from: 'any[]', to: 'Array<LocalGovUnit>' },
-    ]
+    replacements: [{ line: 29, from: 'any[]', to: 'Array<LocalGovUnit>' }],
   },
   {
     file: 'src/pages/government/local/components/LocalSidebar.tsx',
-    replacements: [
-      { line: 26, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 26, from: 'any', to: 'unknown' }],
   },
   {
     file: 'src/pages/government/local/index.tsx',
-    replacements: [
-      { line: 36, from: 'any', to: 'unknown' },
-    ]
+    replacements: [{ line: 36, from: 'any', to: 'unknown' }],
   },
   // Map page
   {
@@ -147,34 +127,26 @@ const typeReplacements = [
       { line: 113, from: 'any', to: 'unknown' },
       { line: 120, from: 'any', to: 'GeoJSON.Feature' },
       { line: 146, from: 'any', to: 'unknown' },
-    ]
+    ],
   },
   // Flood control
   {
     file: 'src/pages/flood-control-projects/contractors.tsx',
-    replacements: [
-      { line: 198, from: 'any', to: 'FloodControlProject' },
-    ]
+    replacements: [{ line: 198, from: 'any', to: 'FloodControlProject' }],
   },
   {
     file: 'src/pages/flood-control-projects/table.tsx',
-    replacements: [
-      { line: 360, from: 'any', to: 'FloodControlProject' },
-    ]
+    replacements: [{ line: 360, from: 'any', to: 'FloodControlProject' }],
   },
   // Visa types
   {
     file: 'src/pages/travel/visa-types/[type].tsx',
-    replacements: [
-      { line: 22, from: 'any[]', to: 'VisaType[]' },
-    ]
+    replacements: [{ line: 22, from: 'any[]', to: 'VisaType[]' }],
   },
   {
     file: 'src/pages/travel/visa-types/index.tsx',
-    replacements: [
-      { line: 20, from: 'any[]', to: 'VisaType[]' },
-    ]
-  }
+    replacements: [{ line: 20, from: 'any[]', to: 'VisaType[]' }],
+  },
 ];
 
 function fixFile(filePath, replacements) {
@@ -211,7 +183,9 @@ function fixFile(filePath, replacements) {
       if (newLine !== line) {
         lines[lineIndex] = newLine;
         modified = true;
-        console.log(`  ✓ Line ${replacement.line}: ${replacement.from} → ${replacement.to}`);
+        console.log(
+          `  ✓ Line ${replacement.line}: ${replacement.from} → ${replacement.to}`
+        );
       }
     }
   });
@@ -248,7 +222,10 @@ interface LocalGovUnit {
   province: string | null;
 }`;
 
-      content = content.slice(0, lineEnd + 1) + interfaceCode + content.slice(lineEnd + 1);
+      content =
+        content.slice(0, lineEnd + 1) +
+        interfaceCode +
+        content.slice(lineEnd + 1);
       fs.writeFileSync(fullPath, content);
       console.log('Added LocalGovUnit interface to [region].tsx\n');
     }
@@ -267,7 +244,9 @@ function main() {
     fixFile(file, replacements);
   });
 
-  console.log('✅ Done! Most any types have been replaced with more specific types.');
+  console.log(
+    '✅ Done! Most any types have been replaced with more specific types.'
+  );
 }
 
 main();

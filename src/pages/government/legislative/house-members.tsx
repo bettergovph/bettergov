@@ -20,7 +20,10 @@ export default function HouseMembersPage() {
   );
 
   // Extract house members
-  const houseMembers = houseData?.house_members || [];
+  const houseMembers = useMemo(
+    () => houseData?.house_members || [],
+    [houseData]
+  );
 
   // Get unique provinces/cities for filtering
   const provinces = useMemo(() => {
