@@ -9,6 +9,7 @@ import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
+import Toaster from './components/ui/sonner';
 import Home from './pages/Home';
 import DesignGuide from './pages/DesignGuide';
 import Services from './pages/services';
@@ -20,7 +21,7 @@ import PhilippinesCulture from './pages/philippines/culture';
 import PhilippinesRegions from './pages/philippines/regions';
 import PhilippinesMap from './pages/philippines/map';
 import PublicHolidays from './pages/philippines/holidays';
-import Hotlines from './pages/philippines/Hotlines';
+import Hotlines from './pages/philippines/hotline';
 import VisaPage from './pages/travel/visa';
 import VisaTypesPage from './pages/travel/visa-types';
 import VisaTypeDetail from './pages/travel/visa-types/[type]';
@@ -92,6 +93,7 @@ function App() {
         <div className='min-h-screen flex flex-col'>
           <Navbar />
           <Ticker />
+          <Toaster position='top-right' closeButton />
           <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />} />
@@ -105,17 +107,22 @@ function App() {
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
-
-            <Route path='/philippines'>
-              <Route index element={<Navigate to='about' replace />} />
-              <Route path='about' element={<AboutPhilippines />} />
-              <Route path='history' element={<PhilippinesHistory />} />
-              <Route path='culture' element={<PhilippinesCulture />} />
-              <Route path='regions' element={<PhilippinesRegions />} />
-              <Route path='map' element={<PhilippinesMap />} />
-              <Route path='holidays' element={<PublicHolidays />} />
-              <Route path='hotlines' element={<Hotlines />} />
-            </Route>
+            <Route path='/philippines/about' element={<AboutPhilippines />} />
+            <Route
+              path='/philippines/history'
+              element={<PhilippinesHistory />}
+            />
+            <Route
+              path='/philippines/culture'
+              element={<PhilippinesCulture />}
+            />
+            <Route
+              path='/philippines/regions'
+              element={<PhilippinesRegions />}
+            />
+            <Route path='/philippines/map' element={<PhilippinesMap />} />
+            <Route path='/philippines/holidays' element={<PublicHolidays />} />
+            <Route path='/philippines/hotlines' element={<Hotlines />} />
 
             {/* Data Routes */}
             <Route path='/data/weather' element={<WeatherPage />} />
