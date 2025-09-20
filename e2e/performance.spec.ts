@@ -96,8 +96,10 @@ test.describe('Performance', () => {
     expect(navigationTime).toBeLessThan(2000);
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  test('should handle slow network gracefully', async ({ page, browser }) => {
+  test('should handle slow network gracefully', async ({
+    page: _page,
+    browser,
+  }) => {
     // Create a context with slow network
     const context = await browser.newContext({
       offline: false,

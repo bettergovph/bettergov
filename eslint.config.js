@@ -37,6 +37,14 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'react/prop-types': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
     },
     settings: {
       react: {
