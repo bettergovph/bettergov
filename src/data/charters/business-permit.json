@@ -1,0 +1,274 @@
+{
+  "id": "business-permit-new",
+  "serviceId": "business-permit-application",
+  "title": "New Business Permit Application",
+  "description": "Complete process for obtaining a new business permit involving multiple government agencies",
+  "overview": "Starting a new business requires coordination between DTI, BIR, SSS, PhilHealth, Pag-IBIG, and your local government unit. The process involves business name registration, tax registration, employee benefits setup, and local permits.",
+  "lastUpdated": "2025-01-15T00:00:00.000Z",
+  "version": "1.5",
+
+  "agencies": [
+    {
+      "id": "dti",
+      "name": "Department of Trade and Industry",
+      "shortName": "DTI",
+      "website": "https://dti.gov.ph",
+      "contactInfo": {
+        "hotline": "02-7751-3330"
+      },
+      "color": "#dc2626"
+    },
+    {
+      "id": "bir",
+      "name": "Bureau of Internal Revenue",
+      "shortName": "BIR",
+      "website": "https://bir.gov.ph",
+      "contactInfo": {
+        "hotline": "8538-3200"
+      },
+      "color": "#7c3aed"
+    },
+    {
+      "id": "sss",
+      "name": "Social Security System",
+      "shortName": "SSS",
+      "website": "https://sss.gov.ph",
+      "contactInfo": {
+        "hotline": "8920-6401"
+      },
+      "color": "#059669"
+    },
+    {
+      "id": "philhealth",
+      "name": "Philippine Health Insurance Corporation",
+      "shortName": "PhilHealth",
+      "website": "https://philhealth.gov.ph",
+      "contactInfo": {
+        "hotline": "8441-7442"
+      },
+      "color": "#0891b2"
+    },
+    {
+      "id": "lgu",
+      "name": "Local Government Unit",
+      "shortName": "LGU",
+      "website": "varies",
+      "contactInfo": {
+        "note": "Contact your city/municipality"
+      },
+      "color": "#ea580c"
+    }
+  ],
+
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "Business Name Registration",
+      "description": "Register your business name with DTI (for sole proprietorship) or SEC (for corporation)",
+      "agency": "dti",
+      "duration": {
+        "min": 1,
+        "max": 3,
+        "unit": "days"
+      },
+      "cost": {
+        "amount": 200,
+        "currency": "PHP",
+        "description": "DTI business name registration"
+      },
+      "requirements": [
+        "Proposed business name (3 choices)",
+        "Valid ID",
+        "Completed application form"
+      ],
+      "outputs": ["Business Name Certificate"],
+      "type": "process",
+      "position": { "x": 100, "y": 100 },
+      "connections": ["step-2"]
+    },
+    {
+      "id": "step-2",
+      "title": "BIR Registration",
+      "description": "Register your business with BIR for tax purposes",
+      "agency": "bir",
+      "duration": {
+        "min": 1,
+        "max": 2,
+        "unit": "days"
+      },
+      "cost": {
+        "amount": 500,
+        "currency": "PHP",
+        "description": "Certificate of Registration"
+      },
+      "requirements": [
+        "Business Name Certificate",
+        "BIR Form 1903",
+        "Valid ID",
+        "Lease contract or property title"
+      ],
+      "outputs": [
+        "Certificate of Registration (BIR Form 2303)",
+        "TIN (Tax Identification Number)"
+      ],
+      "type": "process",
+      "position": { "x": 400, "y": 100 },
+      "connections": ["step-3", "step-4", "step-5"]
+    },
+    {
+      "id": "step-3",
+      "title": "SSS Registration",
+      "description": "Register as employer with SSS if you plan to hire employees",
+      "agency": "sss",
+      "duration": {
+        "min": 1,
+        "max": 1,
+        "unit": "days"
+      },
+      "requirements": [
+        "BIR Certificate of Registration",
+        "Business Name Certificate",
+        "SSS Form R-1A"
+      ],
+      "outputs": ["SSS Employer Number"],
+      "type": "external_agency",
+      "position": { "x": 200, "y": 300 },
+      "connections": ["step-6"],
+      "conditions": [
+        {
+          "if": "Will hire employees",
+          "then": "step-6"
+        }
+      ]
+    },
+    {
+      "id": "step-4",
+      "title": "PhilHealth Registration",
+      "description": "Register as employer with PhilHealth for employee health benefits",
+      "agency": "philhealth",
+      "duration": {
+        "min": 1,
+        "max": 1,
+        "unit": "days"
+      },
+      "requirements": [
+        "BIR Certificate of Registration",
+        "Business Name Certificate",
+        "PhilHealth Employer Registration Form"
+      ],
+      "outputs": ["PhilHealth Employer Number"],
+      "type": "external_agency",
+      "position": { "x": 400, "y": 300 },
+      "connections": ["step-6"],
+      "conditions": [
+        {
+          "if": "Will hire employees",
+          "then": "step-6"
+        }
+      ]
+    },
+    {
+      "id": "step-5",
+      "title": "Pag-IBIG Registration",
+      "description": "Register as employer with Pag-IBIG for employee housing fund",
+      "agency": "pagibig",
+      "duration": {
+        "min": 1,
+        "max": 1,
+        "unit": "days"
+      },
+      "requirements": [
+        "BIR Certificate of Registration",
+        "Business Name Certificate"
+      ],
+      "outputs": ["Pag-IBIG Employer ID"],
+      "type": "external_agency",
+      "position": { "x": 600, "y": 300 },
+      "connections": ["step-6"],
+      "conditions": [
+        {
+          "if": "Will hire employees",
+          "then": "step-6"
+        }
+      ]
+    },
+    {
+      "id": "step-6",
+      "title": "Local Business Permit",
+      "description": "Apply for business permit at your local city/municipality",
+      "agency": "lgu",
+      "duration": {
+        "min": 3,
+        "max": 7,
+        "unit": "days"
+      },
+      "cost": {
+        "amount": 5000,
+        "currency": "PHP",
+        "description": "Varies by location and business type"
+      },
+      "requirements": [
+        "All previous certificates",
+        "Barangay clearance",
+        "Location clearance",
+        "Fire safety clearance",
+        "Sanitary permit (if applicable)"
+      ],
+      "outputs": ["Business Permit"],
+      "type": "process",
+      "position": { "x": 400, "y": 500 },
+      "connections": []
+    }
+  ],
+
+  "paths": [
+    {
+      "id": "sole-proprietorship",
+      "name": "Sole Proprietorship (No Employees)",
+      "description": "For single-owner businesses without employees",
+      "estimatedDuration": "5-12 working days",
+      "steps": ["step-1", "step-2", "step-6"]
+    },
+    {
+      "id": "with-employees",
+      "name": "Business with Employees",
+      "description": "For businesses planning to hire employees",
+      "estimatedDuration": "7-15 working days",
+      "steps": ["step-1", "step-2", "step-3", "step-4", "step-5", "step-6"]
+    }
+  ],
+
+  "generalRequirements": [
+    "Filipino citizenship or foreign investor compliance",
+    "Valid business address",
+    "Compliance with zoning requirements",
+    "Payment of all applicable fees"
+  ],
+
+  "importantNotes": [
+    "Processing times may vary by location",
+    "Some steps can be done in parallel",
+    "Additional permits may be required for specific business types",
+    "Consider hiring a business consultant for complex setups",
+    "Renewal required annually"
+  ],
+
+  "relatedServices": [
+    "business-permit-renewal",
+    "tax-registration",
+    "employment-registration"
+  ],
+
+  "category": "Business and Trade",
+  "subcategory": "Business Registration, Certificates and Compliance",
+  "tags": ["business", "permit", "registration", "startup", "entrepreneur"],
+  "difficulty": "complex",
+
+  "totalSteps": 6,
+  "estimatedTotalDuration": "7-15 working days",
+  "estimatedTotalCost": {
+    "min": 700,
+    "max": 5700,
+    "currency": "PHP"
+  }
+}
