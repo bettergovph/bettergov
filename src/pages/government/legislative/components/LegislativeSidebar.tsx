@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Building, LandPlot, Users, BookOpen, GanttChart } from 'lucide-react';
 import { useState } from 'react';

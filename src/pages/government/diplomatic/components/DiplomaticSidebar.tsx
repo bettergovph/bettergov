@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Globe, Building2, Landmark } from 'lucide-react';
 import { useState } from 'react';

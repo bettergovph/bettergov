@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ExternalLink, Phone, Mail, MapPin } from 'lucide-react';
 import departmentsData from '../../../data/directory/departments.json';

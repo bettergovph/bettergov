@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from 'react';
 import { Search, BookOpen } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';

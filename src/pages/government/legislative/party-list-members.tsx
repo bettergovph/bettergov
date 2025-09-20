@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from 'react';
 import { Search, Users, MapPin, Phone } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';

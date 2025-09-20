@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { MapPin, Phone, ExternalLink, Building2, Mail } from 'lucide-react';
 import constitutionalData from '../../../data/directory/constitutional.json';

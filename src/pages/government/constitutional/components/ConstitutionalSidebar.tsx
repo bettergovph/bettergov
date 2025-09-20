@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Building2, Database, GraduationCap } from 'lucide-react';
 import { useState, useMemo } from 'react';

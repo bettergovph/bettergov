@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from 'react';
 import { Search, MapPin, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
