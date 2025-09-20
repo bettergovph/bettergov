@@ -30,54 +30,86 @@ export default function RegionalLGUPage() {
 
     // Add direct cities (if any)
     if (regionData.cities) {
-      regionData.cities.forEach((city: any) => {
-        units.push({
-          ...city,
-          type: 'City',
-          province: null, // These are regional cities, not provincial
-        });
-      });
+      regionData.cities.forEach(
+        (city: {
+          city: string;
+          mayor?: { name: string; contact?: string };
+          vice_mayor?: { name: string; contact?: string };
+          type: string;
+          province?: string;
+        }) => {
+          units.push({
+            ...city,
+            type: 'City',
+            province: null, // These are regional cities, not provincial
+          });
+        }
+      );
     }
 
     // Add direct municipalities (if any)
     if (regionData.municipalities) {
-      regionData.municipalities.forEach((municipality: any) => {
-        units.push({
-          city: municipality.municipality,
-          mayor: municipality.mayor,
-          vice_mayor: municipality.vice_mayor,
-          type: 'Municipality',
-          province: null, // These are regional municipalities, not provincial
-        });
-      });
+      regionData.municipalities.forEach(
+        (municipality: {
+          municipality: string;
+          mayor?: { name: string; contact?: string };
+          vice_mayor?: { name: string; contact?: string };
+        }) => {
+          units.push({
+            city: municipality.municipality,
+            mayor: municipality.mayor,
+            vice_mayor: municipality.vice_mayor,
+            type: 'Municipality',
+            province: null, // These are regional municipalities, not provincial
+          });
+        }
+      );
     }
 
     // Add cities and municipalities from provinces (if any)
     if (regionData.provinces) {
-      regionData.provinces.forEach((province: any) => {
-        // Add cities from this province
-        if (province.cities) {
-          province.cities.forEach((city: any) => {
-            units.push({
-              ...city,
-              type: 'City',
-              province: province.province,
-            });
-          });
+      regionData.provinces.forEach(
+        (province: {
+          province: string;
+          cities?: Array<unknown>;
+          municipalities?: Array<unknown>;
+        }) => {
+          // Add cities from this province
+          if (province.cities) {
+            province.cities.forEach(
+              (city: {
+                city: string;
+                mayor?: { name: string; contact?: string };
+                vice_mayor?: { name: string; contact?: string };
+              }) => {
+                units.push({
+                  ...city,
+                  type: 'City',
+                  province: province.province,
+                });
+              }
+            );
+          }
+          // Add municipalities from this province
+          if (province.municipalities) {
+            province.municipalities.forEach(
+              (municipality: {
+                municipality: string;
+                mayor?: { name: string; contact?: string };
+                vice_mayor?: { name: string; contact?: string };
+              }) => {
+                units.push({
+                  city: municipality.municipality,
+                  mayor: municipality.mayor,
+                  vice_mayor: municipality.vice_mayor,
+                  type: 'Municipality',
+                  province: province.province,
+                });
+              }
+            );
+          }
         }
-        // Add municipalities from this province
-        if (province.municipalities) {
-          province.municipalities.forEach((municipality: any) => {
-            units.push({
-              city: municipality.municipality,
-              mayor: municipality.mayor,
-              vice_mayor: municipality.vice_mayor,
-              type: 'Municipality',
-              province: province.province,
-            });
-          });
-        }
-      });
+      );
     }
 
     return units;
@@ -88,7 +120,13 @@ export default function RegionalLGUPage() {
     if (!searchTerm) return allLocalGovUnits;
 
     return allLocalGovUnits.filter(
-      (unit: any) =>
+      (unit: {
+        city: string;
+        mayor?: { name: string; contact?: string };
+        vice_mayor?: { name: string; contact?: string };
+        type: string;
+        province: string | null;
+      }) =>
         unit.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         unit.mayor?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         unit.vice_mayor?.name

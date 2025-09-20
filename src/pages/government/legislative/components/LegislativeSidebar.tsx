@@ -14,14 +14,14 @@ export default function LegislativeSidebar() {
   // Get unique chambers from the data
   const chambers = legislativeData.map((item: any) => item.chamber);
 
-  // Filter chambers based on search term
-  const filteredChambers = chambers.filter(chamber =>
-    chamber.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter chambers based on search term - Currently unused
+  // const filteredChambers = chambers.filter(chamber =>
+  //   chamber.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
-  const handleChamberSelect = (chamber: string) => {
-    navigate(`/government/legislative/${encodeURIComponent(chamber)}`);
-  };
+  // const handleChamberSelect = (chamber: string) => {
+  //   navigate(`/government/legislative/${encodeURIComponent(chamber)}`);
+  // };
 
   // Check if a path is active
   const isActive = (path: string) => {

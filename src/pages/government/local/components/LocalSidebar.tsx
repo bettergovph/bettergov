@@ -7,7 +7,7 @@ interface LocalSidebarProps {
   currentRegion?: string;
 }
 
-export default function LocalSidebar({ currentRegion }: LocalSidebarProps) {
+export default function LocalSidebar({}: LocalSidebarProps) {
   const regions = lguData.map(regionData => {
     let cityCount = 0;
 

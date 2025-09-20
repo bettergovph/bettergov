@@ -113,7 +113,7 @@ const VisaTypesPage: React.FC = () => {
               Showing results for: &quot;{searchTerm}&quot;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {allVisaTypes.map((visa: any) => (
+              {allVisaTypes.map((visa: VisaType) => (
                 <Link
                   to={`/travel/visa-types/${visa.id}`}
                   key={visa.id}
@@ -183,7 +183,7 @@ const VisaTypesPage: React.FC = () => {
 
                       {/* Visa Types Grid */}
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {category.visaTypes.map((visa: any) => (
+                        {category.visaTypes.map((visa: VisaType) => (
                           <Link
                             to={`/travel/visa-types/${visa.id}`}
                             key={visa.id}

@@ -40,23 +40,23 @@ const allServices = [
   ...uncategorizedServices,
 ];
 
-interface Service {
-  service: string;
-  url: string;
-  id: string;
-  slug: string;
-  published: boolean;
-  category: {
-    name: string;
-    slug: string;
-  };
-  subcategory: {
-    name: string;
-    slug: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
+// interface Service {
+//   service: string;
+//   url: string;
+//   id: string;
+//   slug: string;
+//   published: boolean;
+//   category: {
+//     name: string;
+//     slug: string;
+//   };
+//   subcategory: {
+//     name: string;
+//     slug: string;
+//   };
+//   createdAt: string;
+//   updatedAt: string;
+// }
 
 interface Subcategory {
   name: string;

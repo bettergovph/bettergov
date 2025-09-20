@@ -257,7 +257,7 @@ export async function getCFBrowserContentByUrl(
       `
     )
       .bind(url)
-      .first<any>();
+      .first<unknown>();
 
     if (!page) return null;
 
@@ -269,7 +269,7 @@ export async function getCFBrowserContentByUrl(
       `
     )
       .bind(page.id)
-      .all<any>();
+      .all<unknown>();
 
     // Convert to JinaRecord format for compatibility
     const record: JinaRecord = {

@@ -93,8 +93,7 @@ const getComplexityColor = (complexity: string) => {
 };
 
 const Ideas: React.FC = () => {
-  const [projectIdeas, setProjectIdeas] =
-    useState<ProjectIdea[]>(initialProjectIdeas);
+  const [projectIdeas] = useState<ProjectIdea[]>(initialProjectIdeas);
 
   const handleSubmitIdea = () => {
     const githubUrl =

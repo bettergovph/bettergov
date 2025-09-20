@@ -44,7 +44,7 @@ interface BSPApiResponse {
 }
 
 // Core function to fetch currency exchange rates
-async function fetchForexData(env: Env): Promise<ProcessedForexData> {
+async function fetchForexData(_env: Env): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
@@ -243,7 +243,7 @@ export async function onRequest(context: {
 export async function scheduled(
   controller: ScheduledController,
   env: Env,
-  ctx: ExecutionContext
+  _ctx: ExecutionContext
 ) {
   try {
     // Fetch forex data

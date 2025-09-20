@@ -94,7 +94,10 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
         </h2>
         {hit.description && (
           <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as any} />
+            <Snippet
+              attribute='description'
+              hit={hit as Record<string, unknown>}
+            />
           </p>
         )}
         <div className='text-xs text-gray-800'>
@@ -102,7 +105,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
             <span>
               <Highlight
                 attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as any}
+                hit={hit as unknown}
               />
               {' > '}
             </span>
@@ -113,13 +116,16 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 attribute={
                   hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
                 }
-                hit={hit as any}
+                hit={hit as unknown}
               />{' '}
             </span>
           )}
           {hit.address && (
             <span>
-              <Highlight attribute='address' hit={hit as any} />
+              <Highlight
+                attribute='address'
+                hit={hit as Record<string, unknown>}
+              />
               {' > '}
             </span>
           )}

@@ -19,42 +19,42 @@ export default function ExecutiveSidebar() {
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
 
-  // Group offices by category
-  const officeGroups = useMemo(() => {
-    const offices = executiveData as Office[];
-
-    const groups = {
-      'office-of-the-president': {
-        title: 'Office of the President',
-        offices: offices.filter(office =>
-          office.office.includes('OFFICE OF THE PRESIDENT')
-        ),
-      },
-      'office-of-the-vice-president': {
-        title: 'Office of the Vice President',
-        offices: offices.filter(office =>
-          office.office.includes('OFFICE OF THE VICE PRESIDENT')
-        ),
-      },
-      'presidential-communications-office': {
-        title: 'Presidential Communications Offices',
-        offices: offices.filter(office =>
-          office.office.toLowerCase().includes('communication')
-        ),
-      },
-      'other-executive-offices': {
-        title: 'Other Executive Offices',
-        offices: offices.filter(
-          office =>
-            !office.office.includes('OFFICE OF THE PRESIDENT') &&
-            !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
-            !office.office.toLowerCase().includes('communication')
-        ),
-      },
-    };
-
-    return groups;
-  }, []);
+  // Group offices by category - Currently unused
+  // const officeGroups = useMemo(() => {
+  //   const offices = executiveData as Office[];
+  //
+  //   const groups = {
+  //     'office-of-the-president': {
+  //       title: 'Office of the President',
+  //       offices: offices.filter(office =>
+  //         office.office.includes('OFFICE OF THE PRESIDENT')
+  //       ),
+  //     },
+  //     'office-of-the-vice-president': {
+  //       title: 'Office of the Vice President',
+  //       offices: offices.filter(office =>
+  //         office.office.includes('OFFICE OF THE VICE PRESIDENT')
+  //       ),
+  //     },
+  //     'presidential-communications-office': {
+  //       title: 'Presidential Communications Offices',
+  //       offices: offices.filter(office =>
+  //         office.office.toLowerCase().includes('communication')
+  //       ),
+  //     },
+  //     'other-executive-offices': {
+  //       title: 'Other Executive Offices',
+  //       offices: offices.filter(
+  //         office =>
+  //           !office.office.includes('OFFICE OF THE PRESIDENT') &&
+  //           !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
+  //           !office.office.toLowerCase().includes('communication')
+  //       ),
+  //     },
+  //   };
+  //
+  //   return groups;
+  // }, []);
 
   // Check if a path is active
   const isActive = (path: string) => {

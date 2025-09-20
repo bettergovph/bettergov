@@ -90,36 +90,36 @@ interface HitProps {
   hit: FloodControlProject;
 }
 
-// Hit component for search results
-const Hit: React.FC<HitProps> = ({ hit }) => {
-  return (
-    <div className='p-4 border-b border-gray-200 hover:bg-gray-50'>
-      <h3 className='text-lg font-semibold text-blue-600'>
-        {hit.ProjectDescription || 'Flood Control Project'}
-      </h3>
-      <div className='grid grid-cols-2 gap-2 mt-2 text-sm'>
-        <div>
-          <span className='font-medium'>Location:</span>{' '}
-          {hit.Municipality && <span>{hit.Municipality}, </span>}
-          {hit.Province && <span>{hit.Province}, </span>}
-          <span>{hit.Region}</span>
-        </div>
-        <div>
-          <span className='font-medium'>Contract ID:</span> {hit.ContractID}
-        </div>
-        <div>
-          <span className='font-medium'>Type of Work:</span> {hit.TypeofWork}
-        </div>
-        <div>
-          <span className='font-medium'>Contract Cost:</span>{' '}
-          {hit.ContractCost
-            ? `₱${Number(hit.ContractCost).toLocaleString()}`
-            : 'N/A'}
-        </div>
-      </div>
-    </div>
-  );
-};
+// Hit component for search results - Currently unused
+// const Hit: React.FC<HitProps> = ({ hit }) => {
+//   return (
+//     <div className='p-4 border-b border-gray-200 hover:bg-gray-50'>
+//       <h3 className='text-lg font-semibold text-blue-600'>
+//         {hit.ProjectDescription || 'Flood Control Project'}
+//       </h3>
+//       <div className='grid grid-cols-2 gap-2 mt-2 text-sm'>
+//         <div>
+//           <span className='font-medium'>Location:</span>{' '}
+//           {hit.Municipality && <span>{hit.Municipality}, </span>}
+//           {hit.Province && <span>{hit.Province}, </span>}
+//           <span>{hit.Region}</span>
+//         </div>
+//         <div>
+//           <span className='font-medium'>Contract ID:</span> {hit.ContractID}
+//         </div>
+//         <div>
+//           <span className='font-medium'>Type of Work:</span> {hit.TypeofWork}
+//         </div>
+//         <div>
+//           <span className='font-medium'>Contract Cost:</span>{' '}
+//           {hit.ContractCost
+//             ? `₱${Number(hit.ContractCost).toLocaleString()}`
+//             : 'N/A'}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // Statistics Display Component with hardcoded values for better performance
 const DashboardStatistics: React.FC = () => {
