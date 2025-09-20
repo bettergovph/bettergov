@@ -58,7 +58,7 @@ const MEILISEARCH_SEARCH_API_KEY =
   'your_public_search_key_here';
 
 // Create search client with proper type casting
-const meiliSearchInstance = instantMeiliSearch(
+const { searchClient } = instantMeiliSearch(
   `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
   MEILISEARCH_SEARCH_API_KEY,
   {
@@ -66,10 +66,6 @@ const meiliSearchInstance = instantMeiliSearch(
     keepZeroFacets: true,
   }
 );
-
-// Extract the searchClient from meiliSearchInstance
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const searchClient = meiliSearchInstance.searchClient as any;
 
 // Colors for charts
 const COLORS = [

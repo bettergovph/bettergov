@@ -65,7 +65,7 @@ const MEILISEARCH_SEARCH_API_KEY =
   'your_public_search_key_here';
 
 // Create search client with proper type casting
-const meiliSearchInstance = instantMeiliSearch(
+const { searchClient } = instantMeiliSearch(
   `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
   MEILISEARCH_SEARCH_API_KEY,
   {
@@ -75,7 +75,7 @@ const meiliSearchInstance = instantMeiliSearch(
 );
 
 // Create contractors search client
-const contractorsSearchInstance = instantMeiliSearch(
+const { searchClient: contractorsSearchClient } = instantMeiliSearch(
   `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
   MEILISEARCH_SEARCH_API_KEY,
   {
@@ -83,12 +83,6 @@ const contractorsSearchInstance = instantMeiliSearch(
     keepZeroFacets: true,
   }
 );
-
-// Extract the searchClient from meiliSearchInstance
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const searchClient = meiliSearchInstance.searchClient as any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const contractorsSearchClient = contractorsSearchInstance.searchClient as any;
 
 // Define hit component for search results
 interface FloodControlProject {
