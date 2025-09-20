@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
-import { Search, Building2 } from 'lucide-react'
-import diplomaticData from '../../../data/directory/diplomatic.json'
+import { useState, useMemo } from "react"
+import { Search, Building2 } from "lucide-react"
+import diplomaticData from "../../../data/directory/diplomatic.json"
 import {
   CardGrid,
   Card,
@@ -9,20 +9,20 @@ import {
   CardDescription,
   CardContactInfo,
   CardDivider,
-} from '../../../components/ui/CardList'
+} from "../../../components/ui/CardList"
 
 export default function ConsulatesPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("")
 
   // Get consulates data
   const consulates = useMemo(() => {
-    return diplomaticData['Consulate'] || []
+    return diplomaticData["Consulate"] || []
   }, [])
 
   // Filter consulates based on search term
   const filteredConsulates = useMemo(() => {
     return consulates.filter(
-      (consulate) =>
+      consulate =>
         consulate.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         consulate.office_name
           .toLowerCase()
@@ -50,7 +50,7 @@ export default function ConsulatesPage() {
             placeholder="Search consulates..."
             className="pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function ConsulatesPage() {
               <CardContent>
                 <div className="flex items-center justify-between mb-2">
                   <CardTitle className="text-lg">
-                    {consulate.country || 'N/A'}
+                    {consulate.country || "N/A"}
                   </CardTitle>
                   <div className="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
                     Consulate

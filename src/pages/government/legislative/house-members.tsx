@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
-import { Search, Users, MapPin, Phone } from 'lucide-react'
-import legislativeData from '../../../data/directory/legislative.json'
+import { useState, useMemo } from "react"
+import { Search, Users, MapPin, Phone } from "lucide-react"
+import legislativeData from "../../../data/directory/legislative.json"
 
 interface HouseMember {
   province_city: string
@@ -10,12 +10,12 @@ interface HouseMember {
 }
 
 export default function HouseMembersPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("")
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null)
 
   // Get House of Representatives data
   const houseData = legislativeData.find((item: any) =>
-    item.chamber.includes('House of Representatives')
+    item.chamber.includes("House of Representatives")
   )
 
   // Extract house members
@@ -72,7 +72,7 @@ export default function HouseMembersPage() {
             House Members by Cities/Provinces
           </h1>
           <p className="text-gray-800 mt-1">
-            {houseMembers.length} Representatives from {provinces.length}{' '}
+            {houseMembers.length} Representatives from {provinces.length}{" "}
             cities/provinces
           </p>
         </div>
@@ -85,17 +85,17 @@ export default function HouseMembersPage() {
               placeholder="Search representatives..."
               className="pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
             />
           </div>
 
           <select
             className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            value={selectedProvince || ''}
-            onChange={(e) => setSelectedProvince(e.target.value || null)}
+            value={selectedProvince || ""}
+            onChange={e => setSelectedProvince(e.target.value || null)}
           >
             <option value="">All Cities/Provinces</option>
-            {provinces.map((province) => (
+            {provinces.map(province => (
               <option key={province} value={province}>
                 {province}
               </option>
@@ -128,8 +128,8 @@ export default function HouseMembersPage() {
                   {province}
                 </h2>
                 <p className="text-sm text-gray-800">
-                  {members.length}{' '}
-                  {members.length === 1 ? 'representative' : 'representatives'}
+                  {members.length}{" "}
+                  {members.length === 1 ? "representative" : "representatives"}
                 </p>
               </div>
 

@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
-import { Search, Users, MapPin, Phone } from 'lucide-react'
-import legislativeData from '../../../data/directory/legislative.json'
+import { useState, useMemo } from "react"
+import { Search, Users, MapPin, Phone } from "lucide-react"
+import legislativeData from "../../../data/directory/legislative.json"
 
 interface PartyListMember {
   party_list: string
@@ -9,12 +9,14 @@ interface PartyListMember {
 }
 
 export default function PartyListMembersPage() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedPartyList, setSelectedPartyList] = useState<string | null>(null)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedPartyList, setSelectedPartyList] = useState<string | null>(
+    null
+  )
 
   // Get Party List House of Representatives data
   const houseData = legislativeData.find((item: any) =>
-    item.chamber.includes('House of Representatives')
+    item.chamber.includes("House of Representatives")
   )
 
   // Extract party list members
@@ -23,7 +25,9 @@ export default function PartyListMembersPage() {
   // Get unique partylist for filtering
   const partyList = useMemo(() => {
     const uniquePartyList = Array.from(
-      new Set(partyListMembers.map((member: PartyListMember) => member.party_list))
+      new Set(
+        partyListMembers.map((member: PartyListMember) => member.party_list)
+      )
     ).sort()
     return uniquePartyList
   }, [partyListMembers])
@@ -70,7 +74,7 @@ export default function PartyListMembersPage() {
             House Members by Party List
           </h1>
           <p className="text-gray-800 mt-1">
-            {partyListMembers.length} Representatives from {partyList.length}{' '}
+            {partyListMembers.length} Representatives from {partyList.length}{" "}
             Party List
           </p>
         </div>
@@ -83,17 +87,17 @@ export default function PartyListMembersPage() {
               placeholder="Search representatives..."
               className="pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
             />
           </div>
 
           <select
             className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            value={selectedPartyList || ''}
-            onChange={(e) => setSelectedPartyList(e.target.value || null)}
+            value={selectedPartyList || ""}
+            onChange={e => setSelectedPartyList(e.target.value || null)}
           >
             <option value="">All Party List</option>
-            {partyList.map((pl) => (
+            {partyList.map(pl => (
               <option key={pl} value={pl}>
                 {pl}
               </option>
@@ -126,8 +130,8 @@ export default function PartyListMembersPage() {
                   {partylist}
                 </h2>
                 <p className="text-sm text-gray-800">
-                  {members.length}{' '}
-                  {members.length === 1 ? 'representative' : 'representatives'}
+                  {members.length}{" "}
+                  {members.length === 1 ? "representative" : "representatives"}
                 </p>
               </div>
 

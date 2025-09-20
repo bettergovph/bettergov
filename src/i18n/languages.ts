@@ -1,9 +1,9 @@
-import { LanguageType } from '../types'
+import { LanguageType } from '../types';
 
 export interface LanguageInfo {
-  code: LanguageType
-  name: string
-  nativeName: string
+  code: LanguageType;
+  name: string;
+  nativeName: string;
 }
 
 export const LANGUAGES: Record<LanguageType, LanguageInfo> = {
@@ -19,6 +19,6 @@ export const LANGUAGES: Record<LanguageType, LanguageInfo> = {
   mag: { code: 'mag', name: 'Maguindanao', nativeName: 'Maguindanaon' },
   tsg: { code: 'tsg', name: 'Tausug', nativeName: 'Bahasa Sūg' },
   mdh: { code: 'mdh', name: 'Maranao', nativeName: 'Meranaw' },
-}
+};
 
-export const DEFAULT_LANGUAGE: LanguageType = 'en'
+export const DEFAULT_LANGUAGE: LanguageType = 'en';

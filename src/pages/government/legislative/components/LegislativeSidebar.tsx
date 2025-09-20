@@ -1,11 +1,11 @@
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom'
-import { Building, LandPlot, Users, BookOpen, GanttChart } from 'lucide-react'
-import { useState } from 'react'
-import legislativeData from '../../../../data/directory/legislative.json'
-import StandardSidebar from '../../../../components/ui/StandardSidebar'
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom"
+import { Building, LandPlot, Users, BookOpen, GanttChart } from "lucide-react"
+import { useState } from "react"
+import legislativeData from "../../../../data/directory/legislative.json"
+import StandardSidebar from "../../../../components/ui/StandardSidebar"
 
 export default function LegislativeSidebar() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("")
   const { chamber: chamberParam } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
@@ -14,7 +14,7 @@ export default function LegislativeSidebar() {
   const chambers = legislativeData.map((item: any) => item.chamber)
 
   // Filter chambers based on search term
-  const filteredChambers = chambers.filter((chamber) =>
+  const filteredChambers = chambers.filter(chamber =>
     chamber.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
@@ -44,9 +44,9 @@ export default function LegislativeSidebar() {
               <Link
                 to="/government/legislative/senate-of-the-philippines-20th-congress"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'Senate of the Philippines (20th Congress)'
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                  chamberParam === "Senate of the Philippines (20th Congress)"
+                    ? "bg-primary-50 text-primary-700 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <Building className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
@@ -57,9 +57,9 @@ export default function LegislativeSidebar() {
               <Link
                 to="/government/legislative/senate-committees"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/legislative/senate-committees')
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                  isActive("/government/legislative/senate-committees")
+                    ? "bg-primary-50 text-primary-700 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <BookOpen className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
@@ -79,9 +79,9 @@ export default function LegislativeSidebar() {
               <Link
                 to="/government/legislative/house-of-representatives-20th-congress"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'House of Representatives (20th Congress)'
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                  chamberParam === "House of Representatives (20th Congress)"
+                    ? "bg-primary-50 text-primary-700 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <LandPlot className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
@@ -92,9 +92,9 @@ export default function LegislativeSidebar() {
               <Link
                 to="/government/legislative/house-members"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/legislative/house-members')
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                  isActive("/government/legislative/house-members")
+                    ? "bg-primary-50 text-primary-700 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <Users className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
@@ -105,9 +105,9 @@ export default function LegislativeSidebar() {
               <Link
                 to="/government/legislative/party-list-members"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/legislative/party-list-members')
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                  isActive("/government/legislative/party-list-members")
+                    ? "bg-primary-50 text-primary-700 font-medium"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <Users className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />

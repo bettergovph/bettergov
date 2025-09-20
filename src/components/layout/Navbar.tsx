@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe, Search, CheckCircle2 } from 'lucide-react'
-import { mainNavigation } from '../../data/navigation'
-import { LanguageType } from '../../types'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { LANGUAGES } from '../../i18n/languages'
+import React, { useState } from "react"
+import { X, Menu, ChevronDown, Globe, Search, CheckCircle2 } from "lucide-react"
+import { mainNavigation } from "../../data/navigation"
+import { LanguageType } from "../../types"
+import { Link } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import { LANGUAGES } from "../../i18n/languages"
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const { t, i18n } = useTranslation('common')
+  const { t, i18n } = useTranslation("common")
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -53,6 +53,7 @@ const Navbar: React.FC = () => {
               href="https://www.gov.ph"
               className="text-xs text-gray-800 hover:text-primary-600 transition-colors"
               target="_blank"
+              rel="noreferrer"
             >
               Official Gov.ph
             </a>
@@ -66,7 +67,7 @@ const Navbar: React.FC = () => {
             <div className="hidden md:block">
               <select
                 value={i18n.language}
-                onChange={(e) => changeLanguage(e.target.value as LanguageType)}
+                onChange={e => changeLanguage(e.target.value as LanguageType)}
                 className="text-xs border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
@@ -102,7 +103,7 @@ const Navbar: React.FC = () => {
 
           {/* Desktop navigation */}
           <div className="hidden lg:flex items-center space-x-8 pr-24">
-            {mainNavigation.map((item) => (
+            {mainNavigation.map(item => (
               <div key={item.label} className="relative group">
                 <Link
                   to={item.href}
@@ -120,7 +121,7 @@ const Navbar: React.FC = () => {
                       role="menu"
                       aria-orientation="vertical"
                     >
-                      {item.children.map((child) => (
+                      {item.children.map(child => (
                         <Link
                           key={child.label}
                           to={child.href}
@@ -176,9 +177,9 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`lg:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="container mx-auto px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white">
-          {mainNavigation.map((item) => (
+          {mainNavigation.map(item => (
             <div key={item.label}>
               <button
                 onClick={() => toggleSubmenu(item.label)}
@@ -188,14 +189,14 @@ const Navbar: React.FC = () => {
                 {item.children && (
                   <ChevronDown
                     className={`h-5 w-5 transition-transform ${
-                      activeMenu === item.label ? 'transform rotate-180' : ''
+                      activeMenu === item.label ? "transform rotate-180" : ""
                     }`}
                   />
                 )}
               </button>
               {item.children && activeMenu === item.label && (
                 <div className="pl-6 py-2 space-y-1 bg-gray-50">
-                  {item.children.map((child) => (
+                  {item.children.map(child => (
                     <Link
                       key={child.label}
                       to={child.href}
@@ -242,7 +243,7 @@ const Navbar: React.FC = () => {
               <Globe className="h-5 w-5 text-gray-800 mr-2" />
               <select
                 value={i18n.language}
-                onChange={(e) => changeLanguage(e.target.value as LanguageType)}
+                onChange={e => changeLanguage(e.target.value as LanguageType)}
                 className="text-sm border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
