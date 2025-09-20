@@ -3,7 +3,7 @@
 /**
  * ArcGIS REST JSON to Cloudflare D1 Database Loader
  * Run with: node load_flood_control_arcgis.js
- * 
+ *
  * Requirements:
  * - Node.js
  * - wrangler CLI installed and authenticated
@@ -26,7 +26,7 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
   databaseName: 'bettergov', // Replace with your D1 database name
   jsonFilePath: path.join(__dirname, 'flood_control.json'),
-  batchSize: 50 // Smaller batch size due to more fields
+  batchSize: 50, // Smaller batch size due to more fields
 };
 
 /**
@@ -55,15 +55,21 @@ async function main() {
       process.exit(1);
     }
 
-    console.log(`✅ Found ${arcgisData.features.length} features in ArcGIS data`);
-    
+    console.log(
+      `✅ Found ${arcgisData.features.length} features in ArcGIS data`
+    );
+
     // Process features to extract attributes
-    const processedProjects = arcgisData.features.map(feature => processArcGISFeature(feature));
+    const processedProjects = arcgisData.features.map(feature =>
+      processArcGISFeature(feature)
+    );
 
     // Validate projects
     const validProjects = processedProjects.filter(project => {
       if (!project.global_id) {
-        console.warn(`⚠️  Skipping record without global_id: ${JSON.stringify(project).substring(0, 100)}...`);
+        console.warn(
+          `⚠️  Skipping record without global_id: ${JSON.stringify(project).substring(0, 100)}...`
+        );
         return false;
       }
       return true;
@@ -75,7 +81,6 @@ async function main() {
     await insertProjectsInBatches(validProjects);
 
     console.log('🎉 Import completed successfully!');
-
   } catch (error) {
     console.error('❌ Error during import:', error.message);
     process.exit(1);
@@ -91,19 +96,19 @@ function processArcGISFeature(feature) {
   }
 
   const attr = feature.attributes;
-  
+
   // Generate slug for SEO-friendly URLs
   let slug = null;
   if (attr.ProjectDescription) {
-    const baseSlug = attr.ProjectDescription
-      .toString().toLowerCase()
+    const baseSlug = attr.ProjectDescription.toString()
+      .toLowerCase()
       .replace(/[^\w\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-')     // Replace spaces with hyphens
-      .replace(/^-+/, '')       // Remove leading hyphens
-      .replace(/-+$/, '');      // Remove trailing hyphens
-    
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/^-+/, '') // Remove leading hyphens
+      .replace(/-+$/, ''); // Remove trailing hyphens
+
     // Append ContractID to make it more unique if available
-    slug = attr.ContractID 
+    slug = attr.ContractID
       ? `${baseSlug}-${attr.ContractID.toLowerCase()}`
       : baseSlug;
   }
@@ -112,14 +117,14 @@ function processArcGISFeature(feature) {
     // Primary keys
     global_id: attr.GlobalID || null,
     object_id: attr.ObjectId || null,
-    
+
     // Project identification
     project_id: attr.ProjectID || null,
     project_description: attr.ProjectDescription || null,
     project_component_id: attr.ProjectComponentID || null,
     project_component_description: attr.ProjectComponentDescription || null,
     contract_id: attr.ContractID || null,
-    
+
     // Location information
     region: attr.Region || null,
     province: attr.Province || null,
@@ -128,19 +133,20 @@ function processArcGISFeature(feature) {
     district_engineering_office: attr.DistrictEngineeringOffice || null,
     latitude: attr.Latitude || null,
     longitude: attr.Longitude || null,
-    
+
     // Project details
     implementing_office: attr.ImplementingOffice || null,
     type_of_work: attr.TypeofWork || null,
     infra_type: attr.infra_type || null,
     program: attr.Program || null,
-    
+
     // Financial information
     abc: attr.ABC || parseNumericCost(attr.ABC_String) || null,
     abc_string: attr.ABC_String || null,
-    contract_cost: attr.ContractCost || parseNumericCost(attr.ContractCost_String) || null,
+    contract_cost:
+      attr.ContractCost || parseNumericCost(attr.ContractCost_String) || null,
     contract_cost_string: attr.ContractCost_String || null,
-    
+
     // Temporal information
     infra_year: attr.InfraYear || null,
     funding_year: attr.FundingYear || null,
@@ -148,18 +154,18 @@ function processArcGISFeature(feature) {
     completion_date_actual: formatDate(attr.CompletionDateActual) || null,
     completion_date_original: attr.CompletionDateOriginal || null,
     completion_year: attr.CompletionYear || null,
-    
+
     // Contractor information
     contractor: attr.Contractor || null,
-    
+
     // Metadata
     creation_date: attr.CreationDate || null,
     creator: attr.Creator || null,
     edit_date: attr.EditDate || null,
     editor: attr.Editor || null,
-    
+
     // Additional fields
-    slug: slug
+    slug: slug,
   };
 }
 
@@ -185,12 +191,12 @@ function formatDate(dateStr) {
   try {
     // Handle different date formats
     let date;
-    
+
     // Check if it's already in YYYY-MM-DD format
     if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
       return dateStr;
     }
-    
+
     // Check if it's in MM/DD/YYYY format
     if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) {
       const [month, day, year] = dateStr.split('/');
@@ -198,7 +204,7 @@ function formatDate(dateStr) {
     } else {
       date = new Date(dateStr);
     }
-    
+
     if (isNaN(date.getTime())) return null;
 
     return date.toISOString().split('T')[0];
@@ -218,12 +224,16 @@ async function insertProjectsInBatches(projects) {
     const batch = projects.slice(i, i + CONFIG.batchSize);
     const batchNumber = Math.floor(i / CONFIG.batchSize) + 1;
 
-    console.log(`📦 Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`);
+    console.log(
+      `📦 Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`
+    );
 
     try {
       await insertBatch(batch);
       processedCount += batch.length;
-      console.log(`✅ Batch ${batchNumber} completed. Total processed: ${processedCount}/${projects.length}`);
+      console.log(
+        `✅ Batch ${batchNumber} completed. Total processed: ${processedCount}/${projects.length}`
+      );
     } catch (error) {
       console.error(`❌ Error in batch ${batchNumber}:`, error.message);
       // Continue with next batch instead of failing completely
@@ -255,7 +265,6 @@ async function insertBatch(projects) {
 
     // Clean up temp file
     fs.unlinkSync(tempSqlFile);
-
   } catch (error) {
     // Clean up temp file if it exists
     try {
@@ -263,7 +272,7 @@ async function insertBatch(projects) {
       if (fs.existsSync(tempSqlFile)) {
         fs.unlinkSync(tempSqlFile);
       }
-    } catch { } // Ignore cleanup errors
+    } catch {} // Ignore cleanup errors
 
     throw error;
   }
@@ -310,7 +319,7 @@ function generateBatchInsertSQL(projects) {
       escapeSQL(project.creator),
       project.edit_date,
       escapeSQL(project.editor),
-      escapeSQL(project.slug)
+      escapeSQL(project.slug),
     ];
 
     sql += `
