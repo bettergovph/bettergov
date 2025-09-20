@@ -15,7 +15,7 @@ export default function HouseMembersPage() {
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
 
   // Get House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: unknown) =>
     item.chamber.includes('House of Representatives')
   );
 

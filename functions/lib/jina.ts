@@ -205,7 +205,7 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(url)
-      .first<any>();
+      .first<unknown>();
 
     if (!page) return null;
 
@@ -217,7 +217,7 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(page.id)
-      .all<any>();
+      .all<unknown>();
 
     // Convert to JinaRecord format for compatibility
     const record: JinaRecord = {

@@ -17,7 +17,7 @@ interface VisaCategory {
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes: VisaType[] | any[];
+  visaTypes: VisaType[];
 }
 
 const VisaTypesPage: React.FC = () => {

@@ -4,16 +4,6 @@ import { Building, UserCheck, MessageSquare, Briefcase } from 'lucide-react';
 import { useState } from 'react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: unknown[];
-  bureaus?: unknown[];
-  attached_agency?: unknown[];
-}
-
 export default function ExecutiveSidebar() {
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();

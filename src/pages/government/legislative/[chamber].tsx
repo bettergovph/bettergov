@@ -8,7 +8,7 @@ function LegislativeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
@@ -120,7 +120,7 @@ export default function LegislativeChamber() {
   const { chamber } = useParams<{ chamber: string }>();
 
   const chamberData = legislativeData.find(
-    (item: any) => item.slug === chamber
+    (item: unknown) => item.slug === chamber
   );
 
   if (!chamberData) {

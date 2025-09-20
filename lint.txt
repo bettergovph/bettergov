@@ -6,10 +6,6 @@
 /Users/arke/Projects/bettergov/functions/api/weather.ts
   316:3  error  '_ctx' is defined but never used  @typescript-eslint/no-unused-vars
 
-/Users/arke/Projects/bettergov/functions/lib/jina.ts
-  208:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  220:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /Users/arke/Projects/bettergov/functions/weather.ts
   21:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
@@ -19,104 +15,22 @@
   130:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   136:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/arke/Projects/bettergov/src/lib/api.ts
-  4:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/lib/forex.ts
-  15:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/flood-control-projects/contractors.tsx
-  198:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  198:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/index.tsx
   39:3  error  'FloodControlProject' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/shared-components.tsx
   263:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-/Users/arke/Projects/bettergov/src/pages/flood-control-projects/table.tsx
-  360:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  360:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/constitutional/components/ConstitutionalSidebar.tsx
-  17:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  35:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/constitutional/goccs.tsx
-  23:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  24:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  32:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/constitutional/index.tsx
-  18:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  26:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/constitutional/sucs.tsx
-  23:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  24:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  32:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/departments/[department].tsx
-  12:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  20:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/departments/components/DepartmentsSidebar.tsx
-  14:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/departments/index.tsx
-   22:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  135:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/executive/components/ExecutiveSidebar.tsx
-  7:11  error  'Office' is defined but never used  @typescript-eslint/no-unused-vars
-
-/Users/arke/Projects/bettergov/src/pages/government/executive/other-executive-offices.tsx
-  40:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  41:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/legislative/[chamber].tsx
-   11:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  123:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /Users/arke/Projects/bettergov/src/pages/government/legislative/house-members.tsx
-  18:49  error    Unexpected any. Specify a different type                                                                                                                                                                 @typescript-eslint/no-explicit-any
-  23:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 31) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  23:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 46) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  23:9  warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 31) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  23:9  warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 46) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/party-list-members.tsx
-  19:49  error    Unexpected any. Specify a different type                                                                                                                                                                         @typescript-eslint/no-explicit-any
-  24:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 34) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  24:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 48) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  24:9  warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 34) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  24:9  warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 48) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/senate-committees.tsx
-  15:50  error    Unexpected any. Specify a different type                                                                                                                                                             @typescript-eslint/no-explicit-any
-  20:9   warning  The 'committees' logical expression could make the dependencies of useMemo Hook (at line 29) change on every render. To fix this, wrap the initialization of 'committees' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  20:9  warning  The 'committees' logical expression could make the dependencies of useMemo Hook (at line 29) change on every render. To fix this, wrap the initialization of 'committees' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
-/Users/arke/Projects/bettergov/src/pages/government/local/[region].tsx
-  29:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/local/components/LocalSidebar.tsx
-  10:38  error  '_props' is defined but never used        @typescript-eslint/no-unused-vars
-  26:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/local/index.tsx
-  36:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/philippines/map/index.tsx
-   41:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   50:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   51:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   86:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  113:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  120:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  146:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/travel/visa-types/[type].tsx
-  22:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/travel/visa-types/index.tsx
-  20:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-✖ 59 problems (53 errors, 6 warnings)
+✖ 15 problems (9 errors, 6 warnings)
 

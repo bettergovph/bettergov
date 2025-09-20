@@ -12,7 +12,7 @@ export default function SenateCommitteesPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Get Senate data
-  const senateData = legislativeData.find((item: any) =>
+  const senateData = legislativeData.find((item: unknown) =>
     item.chamber.includes('Senate')
   );
 

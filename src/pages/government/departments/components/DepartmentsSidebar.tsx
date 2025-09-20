@@ -11,7 +11,7 @@ interface Department {
   trunkline?: string;
   website?: string;
   email?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface DepartmentsSidebarProps {

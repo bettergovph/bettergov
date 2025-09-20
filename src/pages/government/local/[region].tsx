@@ -13,6 +13,13 @@ import {
 import SEO from '../../../components/SEO';
 import { getLocalGovSEOData } from '../../../utils/seo-data';
 
+interface LocalGovUnit {
+  city: string;
+  mayor?: { name: string; contact?: string };
+  vice_mayor?: { name: string; contact?: string };
+  type: string;
+  province: string | null;
+}
 export default function RegionalLGUPage() {
   const { region } = useParams<{ region: string }>();
   const [searchTerm, setSearchTerm] = useState('');
@@ -26,7 +33,7 @@ export default function RegionalLGUPage() {
   const allLocalGovUnits = useMemo(() => {
     if (!regionData) return [];
 
-    const units: any[] = [];
+    const units: LocalGovUnit[] = [];
 
     // Add direct cities (if any)
     if (regionData.cities) {

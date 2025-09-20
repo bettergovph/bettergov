@@ -20,8 +20,8 @@ interface SUC {
   trunk_line?: string;
   website?: string;
   email?: string;
-  officials?: any[];
-  [key: string]: any;
+  officials?: unknown[];
+  [key: string]: unknown;
 }
 
 export default function SUCsPage() {
@@ -29,7 +29,7 @@ export default function SUCsPage() {
 
   // Filter SUCs from constitutional data
   const sucs = constitutionalData.filter(
-    (office: any) =>
+    (office: unknown) =>
       office.office_type.includes('State Universities') ||
       office.office_type.includes('SUCs')
   ) as SUC[];
