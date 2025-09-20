@@ -2,64 +2,62 @@ import { useState, useMemo } from 'react'
 import { Search, Users, MapPin, Phone } from 'lucide-react'
 import legislativeData from '../../../data/directory/legislative.json'
 
-interface HouseMember {
-  province_city: string
+interface PartyListMember {
+  party_list: string
   name: string
-  district: string
   contact: string
 }
 
-export default function HouseMembersPage() {
+export default function PartyListMembersPage() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedProvince, setSelectedProvince] = useState<string | null>(null)
+  const [selectedPartyList, setSelectedPartyList] = useState<string | null>(null)
 
-  // Get House of Representatives data
+  // Get Party List House of Representatives data
   const houseData = legislativeData.find((item: any) =>
     item.chamber.includes('House of Representatives')
   )
 
-  // Extract house members
-  const houseMembers = houseData?.house_members || []
+  // Extract party list members
+  const partyListMembers = houseData?.party_list_representatives || []
 
-  // Get unique provinces/cities for filtering
-  const provinces = useMemo(() => {
-    const uniqueProvinces = Array.from(
-      new Set(houseMembers.map((member: HouseMember) => member.province_city))
+  // Get unique partylist for filtering
+  const partyList = useMemo(() => {
+    const uniquePartyList = Array.from(
+      new Set(partyListMembers.map((member: PartyListMember) => member.party_list))
     ).sort()
-    return uniqueProvinces
-  }, [houseMembers])
+    return uniquePartyList
+  }, [partyListMembers])
 
-  // Filter members based on search term and selected province
+  // Filter members based on search term and selected party list
   const filteredMembers = useMemo(() => {
-    return houseMembers.filter((member: HouseMember) => {
+    return partyListMembers.filter((member: PartyListMember) => {
       const matchesSearch =
         member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.province_city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.district.toLowerCase().includes(searchTerm.toLowerCase())
+        member.party_list.toLowerCase().includes(searchTerm.toLowerCase())
 
-      const matchesProvince =
-        !selectedProvince || member.province_city === selectedProvince
+      const matchesPartyList =
+        !selectedPartyList || member.party_list === selectedPartyList
 
-      return matchesSearch && matchesProvince
+      return matchesSearch && matchesPartyList
     })
-  }, [houseMembers, searchTerm, selectedProvince])
+  }, [partyListMembers, searchTerm, selectedPartyList])
 
-  // Group members by province/city
-  const membersByProvince = useMemo(() => {
-    const grouped: Record<string, HouseMember[]> = {}
+  // Group members by party list
+  const membersByPartyList = useMemo(() => {
+    const grouped: Record<string, PartyListMember[]> = {}
 
-    filteredMembers.forEach((member: HouseMember) => {
-      if (!grouped[member.province_city]) {
-        grouped[member.province_city] = []
+    filteredMembers.forEach((member: PartyListMember) => {
+      if (!grouped[member.party_list]) {
+        grouped[member.party_list] = []
       }
-      grouped[member.province_city].push(member)
+      grouped[member.party_list].push(member)
     })
 
-    // Sort provinces alphabetically
+    // Sort party list alphabetically
     return Object.keys(grouped)
       .sort()
-      .reduce((acc: Record<string, HouseMember[]>, province) => {
-        acc[province] = grouped[province]
+      .reduce((acc: Record<string, PartyListMember[]>, partyList) => {
+        acc[partyList] = grouped[partyList]
         return acc
       }, {})
   }, [filteredMembers])
@@ -69,11 +67,11 @@ export default function HouseMembersPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            House Members by Cities/Provinces
+            House Members by Party List
           </h1>
           <p className="text-gray-800 mt-1">
-            {houseMembers.length} Representatives from {provinces.length}{' '}
-            cities/provinces
+            {partyListMembers.length} Representatives from {partyList.length}{' '}
+            Party List
           </p>
         </div>
 
@@ -91,20 +89,20 @@ export default function HouseMembersPage() {
 
           <select
             className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            value={selectedProvince || ''}
-            onChange={(e) => setSelectedProvince(e.target.value || null)}
+            value={selectedPartyList || ''}
+            onChange={(e) => setSelectedPartyList(e.target.value || null)}
           >
-            <option value="">All Cities/Provinces</option>
-            {provinces.map((province) => (
-              <option key={province} value={province}>
-                {province}
+            <option value="">All Party List</option>
+            {partyList.map((pl) => (
+              <option key={pl} value={pl}>
+                {pl}
               </option>
             ))}
           </select>
         </div>
       </div>
 
-      {Object.keys(membersByProvince).length === 0 ? (
+      {Object.keys(membersByPartyList).length === 0 ? (
         <div className="p-8 text-center bg-white rounded-lg border">
           <div className="mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4">
             <Users className="h-6 w-6 text-gray-400" />
@@ -118,14 +116,14 @@ export default function HouseMembersPage() {
         </div>
       ) : (
         <div className="space-y-6">
-          {Object.entries(membersByProvince).map(([province, members]) => (
+          {Object.entries(membersByPartyList).map(([partylist, members]) => (
             <div
-              key={province}
+              key={partylist}
               className="bg-white rounded-lg border overflow-hidden"
             >
               <div className="bg-gray-50 px-4 py-3 border-b">
                 <h2 className="text-lg font-medium text-gray-900">
-                  {province}
+                  {partylist}
                 </h2>
                 <p className="text-sm text-gray-800">
                   {members.length}{' '}
@@ -143,9 +141,6 @@ export default function HouseMembersPage() {
                       <h3 className="font-medium text-gray-900">
                         {member.name}
                       </h3>
-                      <p className="text-sm text-gray-800">
-                        {member.district} District
-                      </p>
                     </div>
 
                     <div className="flex items-center text-sm text-gray-800">

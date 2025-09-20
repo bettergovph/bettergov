@@ -49,6 +49,9 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Check Prettier formatting
+        run: npx prettier --check .
+
   e2e_tests:
     name: Playwright Tests
     runs-on: ubuntu-latest

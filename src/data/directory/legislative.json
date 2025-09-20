@@ -1,5 +1,4 @@
 [
-  
   {
     "slug": "senate-of-the-philippines-20th-congress",
     "branch": "Legislative Branch",
@@ -365,2076 +364,2094 @@
     ]
   },
   {
-    "slug": "house-of-representatives-19th-congress",
+    "slug": "house-of-representatives-20th-congress",
     "branch": "Legislative Branch",
-    "chamber": "House of Representatives (19th Congress)",
+    "chamber": "House of Representatives (20th Congress)",
     "address": "IBP Road, Batasan Hills, 1126 Quezon City",
     "trunkline": "(632) 8931-5001",
     "website": "www.congress.gov.ph",
     "house_leaders": {
       "speaker": {
-        "name": "FERDINAND MARTIN G. ROMUALDEZ",
+        "name": "DY, FAUSTINO \"BOJIE\" G. III",
         "contact": {
-          "contact": "loc. 7396, 7491; 8931-5307"
+          "contact": "8952-2232; local 7242"
         }
       },
       "deputy_speakers": [
         {
-          "name": "Aurelio D. Gonzales Jr.",
+          "name": "GARIN, JANETTE L.",
           "contact": {
-            "contact": "loc. 7461; 8931-5804"
+            "contact": "8442-4283; local 7924"
           }
         },
         {
-          "name": "Yasser Alonto Balindong",
+          "name": "BALINDONG, YASSER ALONTO",
           "contact": {
             "contact": "loc. 7406; 8931-5964"
           }
         },
         {
-          "name": "Roberto V. Puno",
+          "name": "ORTEGA, FRANCISCO PAOLO P., V",
           "contact": {
-            "contact": "loc. 3112; 8952-4148"
+            "contact": "8931-5350; local 7382"
           }
         },
         {
-          "name": "Kristine Singson-Meehan",
+          "name": "SINGSON-MEEHAN, KRISTINE",
           "contact": {
             "contact": "loc. 7573; 8931-5926"
           }
         },
         {
-          "name": "Camille A. Villar",
+          "name": "KHONGHUN, JEFFERSON F.",
           "contact": {
-            "contact": "loc. 7206; 8931-6311"
+            "contact": "8932-8809; local 7239"
           }
         },
         {
-          "name": "Raymond Democrito C. Mendoza",
+          "name": "PUNO, RONALDO V.",
           "contact": {
-            "contact": "loc. 7265; 8951-3011"
+            "contact": "8952-4148; local 3112"
           }
         },
         {
-          "name": "David C. Suarez",
+          "name": "BIRON, FERJENEL G., MD",
           "contact": {
-            "contact": "loc. 7367; 8931-5956"
+            "contact": "8442-4183; local 7992"
           }
         },
         {
-          "name": "Vincent Franco D. Frasco",
+          "name": "EMANO, YEVGENY VINCENTE B.",
           "contact": {
-            "contact": "loc. 7712; 8952-6032"
+            "contact": "8931-5254; local 7266"
           }
         },
         {
-          "name": "Antonio T. Albano",
+          "name": "MENDOZA, RAYMOND DEMOCRITO C.",
           "contact": {
-            "contact": "loc. 7780; 8951-6169"
+            "contact": "8951-3011; local 7265"
           }
         }
       ],
-      "majority_leader": {
-        "name": "Manuel Jose M. Dalipe",
+      "majority_floor_leader": {
+        "name": "MARCOS, FERDINAND ALEXANDER A.",
         "contact": {
-          "contact": "loc. 7212; 8931-5177"
+          "contact": "8931-9838; local 7275"
         }
       },
-      "minority_leader": {
-        "name": "Marcelino C. Libanan",
+      "senior_deputy_majority_floor_leader": {
+        "name": "DEFENSOR, LORENZ R.",
         "contact": {
-          "contact": "loc. 7557; 8931-5922"
+          "contact": "8931-5492; local 7345"
+        }
+      },
+      "minority_floor_leader": {
+        "name": "LIBANAN, MARCELINO C.",
+        "contact": {
+          "contact": "8863-1010; local 7785"
+        }
+      },
+      "senior_deputy_minority_floor_leader": {
+        "name": "ERICE, EDGAR R.",
+        "contact": {
+          "contact": "8931-6615; local 7300"
         }
       }
     },
     "house_members": [
       {
-        "province_city": "Abra",
-        "name": "Bernos, Ching B.",
-        "district": "Lone",
-        "contact": "8283-4433; local 7205"
+        "province_city": "City of Manila",
+        "name": "ABANTE, BIENVENIDO M., JR.",
+        "district": "6th District",
+        "contact": "8442-4422; local 7940"
       },
       {
-        "province_city": "Agusan del Norte",
-        "name": "Aquino, Jose II S.",
-        "district": "1st",
-        "contact": "8442-4399; local 7932"
-      },
-      {
-        "province_city": "Agusan del Norte",
-        "name": "Corvera, Dale B.",
-        "district": "2nd",
-        "contact": "8931-6042; local 7328"
-      },
-      {
-        "province_city": "Agusan del Sur",
-        "name": "Bascug, Alfelito M.",
-        "district": "1st",
-        "contact": "8951-8947; local 7053"
-      },
-      {
-        "province_city": "Agusan del Sur",
-        "name": "Plaza, Eddiebong G.",
-        "district": "2nd",
-        "contact": "8951-8922; local 7055"
-      },
-      {
-        "province_city": "Aklan",
-        "name": "Marquez, Carlito S.",
-        "district": "1st",
-        "contact": "8931-5744; local 7391"
-      },
-      {
-        "province_city": "Aklan",
-        "name": "Haresco, Teodorico Jr. T",
-        "district": "2nd",
-        "contact": "8681-4560; local 7986"
-      },
-      {
-        "province_city": "Albay",
-        "name": "Lagman, Edcel C.",
-        "district": "1st",
-        "contact": "8931-5497; local 7370"
-      },
-      {
-        "province_city": "Albay",
-        "name": "Salceda, Joey S.",
-        "district": "2nd",
-        "contact": "8931-6265; local 7269"
-      },
-      {
-        "province_city": "Albay",
-        "name": "Cabredo, Fernando T.",
-        "district": "3rd",
-        "contact": "8931-5813; local 7213"
-      },
-      {
-        "province_city": "Antipolo City",
-        "name": "Puno, Roberto V.",
-        "district": "1st",
-        "contact": "8952-4148; local 3112"
-      },
-      {
-        "province_city": "Antipolo City",
-        "name": "Acop, Romeo M.",
-        "district": "2nd",
+        "province_city": "City of Antipolo",
+        "name": "ACOP, ROMEO M.",
+        "district": "2nd District",
         "contact": "8442-4034; local 7974"
       },
       {
-        "province_city": "Antique",
-        "name": "Legarda, Antonio Jr. B.",
-        "district": "Lone",
-        "contact": "8931-5426; local 7349"
+        "province_city": "Palawan",
+        "name": "ACOSTA, GIL \"KABARANGAYJR\"",
+        "district": "3rd District",
+        "contact": "8931-5435; local 7426"
       },
       {
-        "province_city": "Apayao",
-        "name": "Bulut-Begtang, Eleanor C.",
-        "district": "Lone",
-        "contact": "8932-6495; local 7330"
-      },
-      {
-        "province_city": "Aurora",
-        "name": "Angara, Rommel Rico T.",
-        "district": "Lone",
-        "contact": "8931-5642; local 7344"
-      },
-      {
-        "province_city": "Bacolod City",
-        "name": "Gasataya, Greg G.",
-        "district": "Lone",
-        "contact": "8355-6801; local 7376"
-      },
-      {
-        "province_city": "Baguio City",
-        "name": "Go, Mark O.",
-        "district": "Lone",
-        "contact": "8931-5528; local 7718"
-      },
-      {
-        "province_city": "Basilan",
-        "name": "Hataman, Mujiv S.",
-        "district": "Lone",
-        "contact": "8442-4366; local 7928"
-      },
-      {
-        "province_city": "Bataan",
-        "name": "Roman, Geraldine B.",
-        "district": "1st",
-        "contact": "8931-5620; local 7375"
-      },
-      {
-        "province_city": "Bataan",
-        "name": "Garcia, Albert S.",
-        "district": "2nd",
-        "contact": "8931-5891; local 7223"
-      },
-      {
-        "province_city": "Bataan",
-        "name": "Garcia, Maria Angela S.",
-        "district": "3rd",
-        "contact": "8442-4021; local 7964"
-      },
-      {
-        "province_city": "Batanes",
-        "name": "Gato, Ciriaco Jr. B.",
-        "district": "Lone",
-        "contact": "8931-6682; local 7246"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Buhain, Eric R.",
-        "district": "1st",
-        "contact": "8931-6567; local 7201"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Luistro, Gerville R.",
-        "district": "2nd",
-        "contact": "8931-5723; local 7413"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Collantes, Ma. Theresa V.",
-        "district": "3rd",
-        "contact": "8931-5408; local 7341"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Bolilia, Lianda B.",
-        "district": "4th",
-        "contact": "8932-7701; local 7716"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Mariño, Mario Vittorio A.",
-        "district": "5th",
-        "contact": "8931-6579; local 7256"
-      },
-      {
-        "province_city": "Batangas",
-        "name": "Romualdez, Ferdinand Martin G. (Caretaker)",
-        "district": "6th",
-        "contact": "8931-5307; local 7396"
-      },
-      {
-        "province_city": "Benguet",
-        "name": "Yap, Eric Go",
-        "district": "Lone",
-        "contact": "8931-5001; local 7790"
-      },
-      {
-        "province_city": "Biliran",
-        "name": "Espina, Gerardo Jr. J.",
-        "district": "Lone",
-        "contact": "8442-4190; local 7994"
-      },
-      {
-        "province_city": "Biñan City",
-        "name": "Alonte, Marlyn B.",
-        "district": "Lone",
-        "contact": "8442-3893; local 7960"
-      },
-      {
-        "province_city": "Bohol",
-        "name": "Chatto, Edgar M.",
-        "district": "1st",
-        "contact": "8931-5258; local 7321"
-      },
-      {
-        "province_city": "Bohol",
-        "name": "Aumentado, Maria Vanessa C.",
-        "district": "2nd",
-        "contact": "8931-5819; local 7390"
-      },
-      {
-        "province_city": "Bohol",
-        "name": "Tutor, Kristine Alexie B.",
-        "district": "3rd",
-        "contact": "8931-5535; local 7385"
-      },
-      {
-        "province_city": "Bukidnon",
-        "name": "Alba, Jose Manuel F.",
-        "district": "1st",
-        "contact": "8951-1223; local 7041"
-      },
-      {
-        "province_city": "Bukidnon",
-        "name": "Flores, Jonathan Keith T.",
-        "district": "2nd",
-        "contact": "8931-5786; local 7225"
-      },
-      {
-        "province_city": "Bukidnon",
-        "name": "Zubiri, Jose Ma. Jr. R.",
-        "district": "3rd",
-        "contact": "8951-8957; local 7017"
-      },
-      {
-        "province_city": "Bukidnon",
-        "name": "Roque, Laarni Lavin",
-        "district": "4th",
-        "contact": "8931-5182; local 7268"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Domingo, Danny A.",
-        "district": "1st",
-        "contact": "8931-5773; local 7358"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Pancho, Augustina Dominique C.",
-        "district": "2nd",
-        "contact": "8931-6248; local 7271"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Silverio, Lorna C.",
-        "district": "3rd",
-        "contact": "8931-4709; local 7396"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Villarica, Linabelle Ruth R.",
-        "district": "4th",
-        "contact": "8951-0943; local 7005"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Cruz, Ambrocio Jr. C.",
-        "district": "5th",
-        "contact": "8931-4586; local 7301"
-      },
-      {
-        "province_city": "Bulacan",
-        "name": "Pleyto, Salvador A.",
-        "district": "6th",
-        "contact": "8442-4281; local 7922"
-      },
-      {
-        "province_city": "Cagayan",
-        "name": "Nolasco, Ramon Jr. C.",
-        "district": "1st",
-        "contact": "8931-6037; local 7342"
-      },
-      {
-        "province_city": "Cagayan",
-        "name": "Vargas-Alfonso, Baby Aline",
-        "district": "2nd",
-        "contact": "8931-5879; local 7202"
-      },
-      {
-        "province_city": "Cagayan",
-        "name": "Lara, Joseph L.",
-        "district": "3rd",
-        "contact": "8931-6478; local 7368"
-      },
-      {
-        "province_city": "Cagayan de Oro City",
-        "name": "Suan, Lordan G.",
-        "district": "1st",
-        "contact": "8931-5868; local 7209"
-      },
-      {
-        "province_city": "Cagayan de Oro City",
-        "name": "Rodriguez, Rufus B.",
-        "district": "2nd",
-        "contact": "8931-5001; local 7801"
-      },
-      {
-        "province_city": "Calamba City",
-        "name": "Hernandez, Charisse Anne C.",
-        "district": "Lone",
-        "contact": "8931-5197; local 7399"
-      },
-      {
-        "province_city": "Caloocan City",
-        "name": "Malapitan, Oscar G.",
-        "district": "1st",
-        "contact": "8931-5249; local 7326"
-      },
-      {
-        "province_city": "Caloocan City",
-        "name": "Cajayon-Uy, Mary Mitzi L.",
-        "district": "2nd",
-        "contact": "8931-5520; local 7336"
-      },
-      {
-        "province_city": "Caloocan City",
-        "name": "Asistio, Dean",
-        "district": "3rd",
-        "contact": "8931-6374; local 7423"
-      },
-      {
-        "province_city": "Camarines Norte",
-        "name": "Tallado, Josefina B.",
-        "district": "1st",
-        "contact": "8931-5448; local 7360"
-      },
-      {
-        "province_city": "Camarines Norte",
-        "name": "Panotes, Rosemarie Conejos",
-        "district": "2nd",
-        "contact": "8931-6498; local 7329"
-      },
-      {
-        "province_city": "Camarines Sur",
-        "name": "Horibata, Tsuyoshi Anthony G.",
-        "district": "1st",
-        "contact": "8931-5473; local 7315"
-      },
-      {
-        "province_city": "Camarines Sur",
-        "name": "Villafuerte, Luis Raymund Jr. F.",
-        "district": "2nd",
-        "contact": "8931-6718; local 7499"
-      },
-      {
-        "province_city": "Camarines Sur",
-        "name": "Bordado, Gabriel Jr. H.",
-        "district": "3rd",
-        "contact": "8931-5832; local 7384"
-      },
-      {
-        "province_city": "Camarines Sur",
-        "name": "Fuentebella, Arnie B.",
-        "district": "4th",
-        "contact": "8931-5345; local 7380"
-      },
-      {
-        "province_city": "Camarines Sur",
-        "name": "Villafuerte, Miguel Luis R.",
-        "district": "5th",
-        "contact": "8951-8919; local 7027"
-      },
-      {
-        "province_city": "Camiguin",
-        "name": "Romualdo, Jurdin Jesus M.",
-        "district": "Lone",
-        "contact": "8931-6067; local 7377"
-      },
-      {
-        "province_city": "Capiz",
-        "name": "Billones, Emmanuel",
-        "district": "1st",
-        "contact": "8931-6733; local 7394"
-      },
-      {
-        "province_city": "Capiz",
-        "name": "Castro, Jane T.",
-        "district": "2nd",
-        "contact": "8951-8946; local 7049"
-      },
-      {
-        "province_city": "Catanduanes",
-        "name": "Rodriguez, Eulogio R.",
-        "district": "Lone",
-        "contact": "8952-4858; local 7047"
+        "province_city": "Lanao Del Sur",
+        "name": "ADIONG, ZIAUR-RAHMAN \"ZIA\" ALONTO",
+        "district": "1st District",
+        "contact": "8931-6645; local 7332"
       },
       {
         "province_city": "Cavite",
-        "name": "Revilla, Ramon Jolo III B.",
-        "district": "1st",
-        "contact": "8650-8407; local 7214"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Mercado-Revilla, Lani",
-        "district": "2nd",
-        "contact": "8962-9957; local 7784"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Advincula, Adrian Jay C.",
-        "district": "3rd",
+        "name": "ADVINCULA, ADRIAN JAY C.",
+        "district": "3rd District",
         "contact": "8442-2500; local 7926"
       },
       {
-        "province_city": "Cavite",
-        "name": "Romualdez, Ferdinand Martin G. (Caretaker)",
-        "district": "4th",
-        "contact": "8931-5307; local 7396"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Loyola, Roy M.",
-        "district": "5th",
-        "contact": "8442-4377; local 7930"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Ferrer, Antonio A.",
-        "district": "6th",
-        "contact": "8931-6004; local 7351"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Remulla, Crispin Diego",
-        "district": "7th",
-        "contact": "8931-5001; local 7794"
-      },
-      {
-        "province_city": "Cavite",
-        "name": "Tolentino, Aniela Bianca D.",
-        "district": "8th",
-        "contact": "8952-2189; local 7039"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Gullas, Rhea Mae A.",
-        "district": "1st",
-        "contact": "8951-8924; local 7007"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Galeos, Edsel A.",
-        "district": "2nd",
-        "contact": "8931-5911; local 7407"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Garcia, Pablo John F.",
-        "district": "3rd",
-        "contact": "8442-4209; local 7908"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Salimbangon, Janice Z.",
-        "district": "4th",
-        "contact": "8931-5740; local 7422"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Frasco, Vincent Franco D.",
-        "district": "5th",
-        "contact": "8952-6032; local 7712"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Lagon, Daphne A.",
-        "district": "6th",
-        "contact": "8952-6264; local 7098"
-      },
-      {
-        "province_city": "Cebu",
-        "name": "Calderon, Peter John D.",
-        "district": "7th",
-        "contact": "8931-6324; local 7226"
-      },
-      {
-        "province_city": "Cebu City",
-        "name": "Del Mar, Rachel Marguerite B.",
-        "district": "1st",
-        "contact": "8951-1019; local 7044"
-      },
-      {
-        "province_city": "Cebu City",
-        "name": "Rama, Eduardo R.",
-        "district": "2nd",
-        "contact": "8442-4128; local 7983"
-      },
-      {
-        "province_city": "Davao City",
-        "name": "Duterte, Paolo Z.",
-        "district": "1st",
-        "contact": "8442-4238; local 7916"
-      },
-      {
-        "province_city": "Davao City",
-        "name": "Garcia, Vincent J.",
-        "district": "2nd",
-        "contact": "8931-6160; local 7334"
-      },
-      {
-        "province_city": "Davao City",
-        "name": "Ungab, Isidro T.",
-        "district": "3rd",
-        "contact": "8931-6367; local 7312"
-      },
-      {
-        "province_city": "Davao de Oro",
-        "name": "Zamora, Maria Carmen S.",
-        "district": "1st",
-        "contact": "8931-5001; local 7793"
-      },
-      {
-        "province_city": "Davao de Oro",
-        "name": "Gonzaga, Ruwel Peter",
-        "district": "2nd",
-        "contact": "8931-6523; local 7245"
-      },
-      {
-        "province_city": "Davao del Norte",
-        "name": "Alvarez, Pantaleon D.",
-        "district": "1st",
-        "contact": "8931-5679; local 7429"
-      },
-      {
-        "province_city": "Davao del Norte",
-        "name": "Dujali, Alan R.",
-        "district": "2nd",
-        "contact": "8931-6730; local 7288"
-      },
-      {
-        "province_city": "Davao del Sur",
-        "name": "Cagas, John Tracy F.",
-        "district": "Lone",
-        "contact": "8442-3895; local 7954"
-      },
-      {
-        "province_city": "Davao Occidental",
-        "name": "Bautista, Claude P.",
-        "district": "Lone",
-        "contact": "8931-5286; local 7365"
-      },
-      {
-        "province_city": "Davao Oriental",
-        "name": "Dayanghirang, Nelson L.",
-        "district": "1st",
-        "contact": "8931-5210; local 7215"
-      },
-      {
-        "province_city": "Davao Oriental",
-        "name": "Almario, Cheeno Miguel D.",
-        "district": "2nd",
-        "contact": "8931-5837; local 7381"
-      },
-      {
-        "province_city": "Dinagat Islands",
-        "name": "Ecleo, Alan 1 B.",
-        "district": "Lone",
-        "contact": "8931-6509; local 7293"
-      },
-      {
-        "province_city": "Eastern Samar",
-        "name": "Abunda, Maria Fe R.",
-        "district": "Lone",
-        "contact": "8931-6313; local 7280"
-      },
-      {
-        "province_city": "General Santos",
-        "name": "Acharon, Loreto B.",
-        "district": "Lone",
-        "contact": "8931-5735; local 7322"
-      },
-      {
-        "province_city": "Guimaras",
-        "name": "Nava, Ma. Lucille L.",
-        "district": "Lone",
-        "contact": "8951-1032; local 7015"
-      },
-      {
-        "province_city": "Ifugao",
-        "name": "Chungalao, Solomon R.",
-        "district": "Lone",
-        "contact": "8931-5374; local 7421"
-      },
-      {
-        "province_city": "Iligan City",
-        "name": "Regencia, Celso G.",
-        "district": "Lone",
-        "contact": "8931-5484; local 7428"
-      },
-      {
-        "province_city": "Ilocos Norte",
-        "name": "Marcos, Ferdinand Alexander A.",
-        "district": "1st",
-        "contact": "8931-9838; local 7275"
-      },
-      {
-        "province_city": "Ilocos Norte",
-        "name": "Barba, Angelo Marcos",
-        "district": "2nd",
-        "contact": "8931-5172; local 7397"
-      },
-      {
-        "province_city": "Ilocos Sur",
-        "name": "Singson, Ronald V.",
-        "district": "1st",
-        "contact": "8442-4154; local 7988"
-      },
-      {
-        "province_city": "Ilocos Sur",
-        "name": "Singson-Meehan, Kristine",
-        "district": "2nd",
-        "contact": "8931-5926; local 7573"
-      },
-      {
-        "province_city": "Iloilo",
-        "name": "Garin, Janette L.",
-        "district": "1st",
-        "contact": "8442-4283; local 7924"
-      },
-      {
-        "province_city": "Iloilo",
-        "name": "Gorriceta, Michael B.",
-        "district": "2nd",
-        "contact": "8931-6722; local 7389"
-      },
-      {
-        "province_city": "Iloilo",
-        "name": "Defensor, Lorenz R.",
-        "district": "3rd",
-        "contact": "8931-5492; local 7345"
-      },
-      {
-        "province_city": "Iloilo",
-        "name": "Biron, Ferjenel G.",
-        "district": "4th",
-        "contact": "8442-4183; local 7992"
-      },
-      {
-        "province_city": "Iloilo",
-        "name": "Tupas, Raul C.",
-        "district": "5th",
-        "contact": "8442-5122; local 7934"
-      },
-      {
-        "province_city": "Iloilo City",
-        "name": "Baronda, Julienne",
-        "district": "Lone",
-        "contact": "8442-3221; local 7944"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Albano, Antonio T.",
-        "district": "1st",
-        "contact": "8931-6169; local 7262"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Go, Ed Christopher S.",
-        "district": "2nd",
-        "contact": "8952-6344; local 7366"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Dy, Ian Paul L.",
-        "district": "3rd",
-        "contact": "8931-5465; local 7402"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Tan, Joseph S.",
-        "district": "4th",
-        "contact": "8931 6235; local 7287"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Dy, Faustino Michael Carlos III T.",
-        "district": "5th",
-        "contact": "8931-5507; local 7410"
-      },
-      {
-        "province_city": "Isabela",
-        "name": "Dy, Faustino V A.",
-        "district": "6th",
-        "contact": "8952-2232; local 7242"
+        "province_city": "Laguna",
+        "name": "AGARAO, BENJAMIN C., JR.",
+        "district": "4th District",
+        "contact": "8931-5369; local 7335"
       },
       {
         "province_city": "Kalinga",
-        "name": "Mangaoang, Allen Jesse C.",
+        "name": "AGYAO, CAROLINE B., MD.",
         "district": "Lone",
         "contact": "8931-6247; local 7401"
       },
       {
-        "province_city": "La Union",
-        "name": "Ortega, Francisco Paulo V. P.",
-        "district": "1st",
-        "contact": "8931-5350; local 7382"
+        "province_city": "Basilan",
+        "name": "ALANO, USTADZ YUSOP T.",
+        "district": "Lone",
+        "contact": "8931-5354; local 7432"
       },
       {
-        "province_city": "La Union",
-        "name": "Garcia, Dante S.",
-        "district": "2nd",
-        "contact": "8931-6261; local 7430"
+        "province_city": "Bukidnon",
+        "name": "ALBA, JOSE MANUEL F.",
+        "district": "1st District",
+        "contact": "8951-1223; local 7041"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "ALBANO, ANTONIO \"TONYPET\" T.",
+        "district": "1st District",
+        "contact": "8931-6169; local 7262"
+      },
+      {
+        "province_city": "Davao Oriental",
+        "name": "ALMARIO, CHEENO MIGUEL D.",
+        "district": "2nd District",
+        "contact": "8931-5837; local 7381"
+      },
+      {
+        "province_city": "City of Makati",
+        "name": "ALMARIO, DENNIS \"ALDEN\" B.",
+        "district": "2nd District",
+        "contact": "8931-5769; local 7338"
+      },
+      {
+        "province_city": "Misamis Occidental",
+        "name": "ALMONTE, JASON P.",
+        "district": "1st District",
+        "contact": "8932-0299; local 7374"
+      },
+      {
+        "province_city": "Palawan",
+        "name": "ALVAREZ, JOSE C.",
+        "district": "2nd District",
+        "contact": "8951-0893; local 7025"
+      },
+      {
+        "province_city": "Negros Occidental",
+        "name": "ALVAREZ, MERCEDES K.",
+        "district": "6th District",
+        "contact": "8931-6640; local 7211"
       },
       {
         "province_city": "Laguna",
-        "name": "Matibag, Ma. Rene Ann Lourdes G.",
-        "district": "1st",
-        "contact": "8951-8669; local 7057"
-      },
-      {
-        "province_city": "Laguna",
-        "name": "Mariano-Hernandez, Ruth",
-        "district": "2nd",
-        "contact": "8931-6055; local 7297"
-      },
-      {
-        "province_city": "Laguna",
-        "name": "Amante, Loreto S.",
-        "district": "3rd",
+        "name": "AMANTE, LORETO S.",
+        "district": "3rd District",
         "contact": "8932-7520; local 7714"
       },
       {
-        "province_city": "Laguna",
-        "name": "Agarao, Maria Jamina Katherine B.",
-        "district": "4th",
-        "contact": "8931-5369; local 7335"
+        "province_city": "Zamboanga Del Norte",
+        "name": "AMATONG, ADRIAN MICHAEL A.",
+        "district": "3rd District",
+        "contact": "8931-5746; local 7353"
       },
       {
-        "province_city": "Lanao del Norte",
-        "name": "Dimaporo, Mohamad Khalid Q.",
-        "district": "Ist",
-        "contact": "8931-6413; local 7232"
+        "province_city": "Aurora",
+        "name": "ANGARA, ROMMEL RICO T.",
+        "district": "Lone",
+        "contact": "8931-5642; local 7344"
       },
       {
-        "province_city": "Lanao del Norte",
-        "name": "Dimaporo, Sittie Aminah Q.",
-        "district": "2nd",
-        "contact": "8931-6411; local 7237"
+        "province_city": "Tarlac",
+        "name": "ANGELES, MARIA CRISTINA C.",
+        "district": "2nd District",
+        "contact": "8931-5610; local 7218"
       },
       {
-        "province_city": "Lanao del Sur",
-        "name": "Adiong, Ziaur-Rahman Alonto",
-        "district": "1st",
-        "contact": "8931-6645; local 7332"
+        "province_city": "City of Butuan",
+        "name": "AQUINO, JOSE \"JOBOY\" S. II",
+        "district": "Lone",
+        "contact": "8442-4399; local 7932"
       },
       {
-        "province_city": "Lanao del Sur",
-        "name": "Balindong, Yasser Alonto",
-        "district": "2nd",
+        "province_city": "Sulu",
+        "name": "ARBISON, MUNIR M.",
+        "district": "2nd District",
+        "contact": "8931-6268; local 7230"
+      },
+      {
+        "province_city": "Pangasinan",
+        "name": "ARENAS, MARIA RACHEL J.",
+        "district": "3rd District",
+        "contact": "8931-5667; local 7236"
+      },
+      {
+        "province_city": "Quezon",
+        "name": "ARROGANCIA, REYNANTE U.",
+        "district": "3rd District",
+        "contact": "8442-4207; local 7998"
+      },
+      {
+        "province_city": "City of Caloocan",
+        "name": "ASISTIO, DEAN",
+        "district": "3rd District",
+        "contact": "8931-6374; local 7423"
+      },
+      {
+        "province_city": "Quezon City",
+        "name": "ATAYDE, JUAN CARLOS \"ARJO\" C.",
+        "district": "1st District",
+        "contact": "8931-6205; local 7244"
+      },
+      {
+        "province_city": "Bohol",
+        "name": "AUMENTADO, MARIA VANESSA \"VANVAN\" C., RN",
+        "district": "2nd District",
+        "contact": "8931-5819; local 7390"
+      },
+      {
+        "province_city": "Dinagat Islands",
+        "name": "BAG-AO, KAKA J.",
+        "district": "Lone",
+        "contact": "8931-5988; local 7296"
+      },
+      {
+        "province_city": "Lanao Del Sur",
+        "name": "BALINDONG, YASSER ALONTO",
+        "district": "2nd District",
         "contact": "8931-5964; local 7406"
       },
       {
-        "province_city": "Lapu-Lapu City",
-        "name": "Chan, Ma. Cynthia K.",
+        "province_city": "City of General Santos",
+        "name": "BAÑAS-NOGRALES, SHIRLYN L.",
         "district": "Lone",
-        "contact": "8931-5674; local 7416"
+        "contact": "8931-5582; local 7418"
       },
       {
-        "province_city": "Las Piñas City",
-        "name": "Villar, Camille A.",
+        "province_city": "Zamboanga Sibugay",
+        "name": "BANCORO, MARLO C.",
+        "district": "1st District",
+        "contact": "8931-6498; local 7329"
+      },
+      {
+        "province_city": "Ilocos Norte",
+        "name": "BARBA, ANGELO MARCOS",
+        "district": "2nd District",
+        "contact": "8936-3255; local 7736"
+      },
+      {
+        "province_city": "Surigao Del Norte",
+        "name": "BARBERS, BERNADETTE S.",
+        "district": "2nd District",
+        "contact": "-; local 7773/ 7774"
+      },
+      {
+        "province_city": "City of Iloilo",
+        "name": "BARONDA, JULIENNE \"JAM\" L.",
+        "district": "Lone",
+        "contact": "8442-3221; local 7944"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "BARZAGA, FRANCISCO \"KIKO\" A.",
+        "district": "4th District",
+        "contact": "8951-8881; local 7003"
+      },
+      {
+        "province_city": "Agusan Del Sur",
+        "name": "BASCUG, ALFELITO \"ALFEL\" M.",
+        "district": "1st District",
+        "contact": "8951-8947; local 7053"
+      },
+      {
+        "province_city": "Davao Occidental",
+        "name": "BAUTISTA, CLAUDE P",
+        "district": "Lone",
+        "contact": "8931-5286; local 7365"
+      },
+      {
+        "province_city": "City of Bacolod",
+        "name": "BENITEZ, ALFREDO \"ALBEE\" B.",
+        "district": "Lone",
+        "contact": "8283-8926; local 7906"
+      },
+      {
+        "province_city": "Negros Occidental",
+        "name": "BENITEZ, JAVIER MIGUEL LOPEZ",
+        "district": "3rd District",
+        "contact": "8952-6052; local 7094"
+      },
+      {
+        "province_city": "Abra",
+        "name": "BERNOS, JB",
         "district": "Lone",
         "contact": "8931-6311; local 7206"
       },
       {
-        "province_city": "Leyte",
-        "name": "Romualdez, Ferdinand Martin G.",
-        "district": "1st",
-        "contact": "8931-5307; local 7396"
+        "province_city": "Iloilo",
+        "name": "BIRON, FERJENEL G., MD",
+        "district": "4th District",
+        "contact": "8442-4183; local 7992"
       },
       {
-        "province_city": "Leyte",
-        "name": "Javier, Lolita T.",
-        "district": "2nd",
-        "contact": "8931-6487; local 7247"
+        "province_city": "City of Taguig",
+        "name": "BOCOBO, JORGE DANIEL S.",
+        "district": "Lone District (2nd Councilor District)",
+        "contact": "8951-8919; local 7027"
       },
       {
-        "province_city": "Leyte",
-        "name": "Veloso-Tuazon, Anna Victoria",
-        "district": "3rd",
-        "contact": "8931-6239; local 7284"
-      },
-      {
-        "province_city": "Leyte",
-        "name": "Gomez, Richard I.",
-        "district": "4th",
-        "contact": "8442-4004; local 7966"
-      },
-      {
-        "province_city": "Leyte",
-        "name": "Cari, Carl Nicolas C.",
-        "district": "5th",
-        "contact": "8931-5154; local 7254"
-      },
-      {
-        "province_city": "Maguindanao del Norte",
-        "name": "Mastura, Bai Dimple I.",
-        "district": "Lone",
-        "contact": "8931-6417; local 7427"
-      },
-      {
-        "province_city": "Maguindanao del Sur",
-        "name": "Paglas, Mohamad P.",
-        "district": "Lone",
-        "contact": "8931-6283; local 7252"
-      },
-      {
-        "province_city": "Makati City",
-        "name": "Peña, Romulo Jr.",
-        "district": "1st",
-        "contact": "8442-4259; local 7918"
-      },
-      {
-        "province_city": "Makati City",
-        "name": "Campos, Luis Jr. N.",
-        "district": "2nd",
-        "contact": "8931-5193; local 7323"
-      },
-      {
-        "province_city": "Malabon City",
-        "name": "Lacson-Noel, Josephine Veronique R.",
-        "district": "Lone",
-        "contact": "8931-5712; local 7264"
-      },
-      {
-        "province_city": "Mandaluyong City",
-        "name": "Gonzales, Neptali II M.",
-        "district": "Lone",
-        "contact": "8995-3583; local 7720"
-      },
-      {
-        "province_city": "Mandaue City",
-        "name": "Ouano-Dizon, Emmarie",
-        "district": "Lone",
-        "contact": "8931-5479; local 7425"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Dionisio, Ernesto Jr. M.",
-        "district": "1st",
-        "contact": "8931-6561; local 7033"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Valeriano, Rolando M.",
-        "district": "2nd",
-        "contact": "8951-1088; local 7035"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Chua, Joel R.",
-        "district": "3rd",
-        "contact": "8931-5501; local 7408"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Maceda, Edward Vera Perez",
-        "district": "4th",
-        "contact": "8931-5415; local 7347"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Tieng, Irwin C.",
-        "district": "5th",
-        "contact": "8951-8948; local 7012"
-      },
-      {
-        "province_city": "Manila",
-        "name": "Abante, Bienvenido Jr. M.",
-        "district": "6th",
-        "contact": "8442-4422; local 7940"
-      },
-      {
-        "province_city": "Marikina City",
-        "name": "Teodoro, Marjorie Ann A.",
-        "district": "1st",
-        "contact": "8951-1027; local 7031"
-      },
-      {
-        "province_city": "Marikina City",
-        "name": "Quimbo, Stella Luz A.",
-        "district": "2nd",
-        "contact": "8931-5422; local 7348"
-      },
-      {
-        "province_city": "Marinduque",
-        "name": "Velasco, Lord Allan Jay Q.",
-        "district": "Lone",
-        "contact": "8951-8880; local 7174"
-      },
-      {
-        "province_city": "Masbate",
-        "name": "Kho, Ricardo T.",
-        "district": "1st",
-        "contact": "8931-5162; local 7308"
-      },
-      {
-        "province_city": "Masbate",
-        "name": "Kho, Olga T.",
-        "district": "2nd",
-        "contact": "8931-6527; local 7283"
-      },
-      {
-        "province_city": "Masbate",
-        "name": "Kho, Wilton T.",
-        "district": "3rd",
-        "contact": "8931-6621; local 7279"
-      },
-      {
-        "province_city": "Misamis Occidental",
-        "name": "Almonte, Jason P.",
-        "district": "1st",
-        "contact": "8932-0299; local 7374"
-      },
-      {
-        "province_city": "Misamis Occidental",
-        "name": "Oaminal, Sancho Fernando F.",
-        "district": "2nd",
-        "contact": "8931-5563; local 7405"
-      },
-      {
-        "province_city": "Misamis Oriental",
-        "name": "Unabia, Christian S.",
-        "district": "1st",
-        "contact": "8931-5769; local 7338"
-      },
-      {
-        "province_city": "Misamis Oriental",
-        "name": "Emano, Yevgeny Vincente B.",
-        "district": "2nd",
-        "contact": "8931-5254; local 7266"
-      },
-      {
-        "province_city": "Mountain Province",
-        "name": "Dalog, Maximo Jr. Y.",
-        "district": "Lone",
-        "contact": "8931-6221; local 7294"
-      },
-      {
-        "province_city": "Muntinlupa City",
-        "name": "Fresnedi, Jaime R.",
-        "district": "Lone",
-        "contact": "8442-4205; local 7996"
-      },
-      {
-        "province_city": "Navotas City",
-        "name": "Tiangco, Tobias M.",
-        "district": "Lone",
-        "contact": "8442-4029; local 7971"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Valmayor, Gerardo Jr. P.",
-        "district": "1st",
-        "contact": "8931-5988; local 7296"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Marañon, Alfredo III D.",
-        "district": "2nd",
-        "contact": "8931-5638; local 7272"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Paduano, Joseph Stephen S. (Caretaker)",
-        "district": "3rd",
-        "contact": "8442-4028; local 7968"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Ferrer, Juliet Marie de Leon",
-        "district": "4th",
-        "contact": "8931-5292; local 7350"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Yulo, Emilio Bernardino L.",
-        "district": "5th",
-        "contact": "8931-5354; local 7432"
-      },
-      {
-        "province_city": "Negros Occidental",
-        "name": "Alvarez, Mercedes K.",
-        "district": "6th",
-        "contact": "8931-6640; local 7211"
-      },
-      {
-        "province_city": "Negros Oriental",
-        "name": "Limkaichong, Jocelyn Sy",
-        "district": "1st",
-        "contact": "8931-6342; local 7222"
-      },
-      {
-        "province_city": "Negros Oriental",
-        "name": "Sagarbarria, Manuel T.",
-        "district": "2nd",
-        "contact": "8931-6575; local 7292"
-      },
-      {
-        "province_city": "Negros Oriental",
-        "name": "Romualdez, Ferdinand Martin G. (Caretaker)",
-        "district": "3rd",
-        "contact": "8931-5307; local 7396"
-      },
-      {
-        "province_city": "Cotabato",
-        "name": "Sacdalan, Joselito S.",
-        "district": "1st",
-        "contact": "8442-4039; local 7980"
-      },
-      {
-        "province_city": "Cotabato",
-        "name": "Caoagdan, Rudy S.",
-        "district": "2nd",
-        "contact": "8931-1995; local 7471"
-      },
-      {
-        "province_city": "Cotabato",
-        "name": "Santos, Ma. Alana Samantha T.",
-        "district": "3rd",
-        "contact": "8931-6142; local 7260"
-      },
-      {
-        "province_city": "Northern Samar",
-        "name": "Daza, Paul Ruiz",
-        "district": "1st",
-        "contact": "8931-6331; local 7231"
-      },
-      {
-        "province_city": "Northern Samar",
-        "name": "Ongchuan, Harris Christopher M.",
-        "district": "2nd",
-        "contact": "8931-5325; local 7337"
-      },
-      {
-        "province_city": "Nueva Ecija",
-        "name": "Suansing, Mikaela Angela B.",
-        "district": "1st",
-        "contact": "8931-5262; local 7258"
-      },
-      {
-        "province_city": "Nueva Ecija",
-        "name": "Violago, Joseph Gilbert F.",
-        "district": "2nd",
-        "contact": "8931-6475; local 7235"
-      },
-      {
-        "province_city": "Nueva Ecija",
-        "name": "Vergara, Rosanna V.",
-        "district": "3rd",
-        "contact": "8931-6113; local 7352"
-      },
-      {
-        "province_city": "Nueva Ecija",
-        "name": "Pascual, Emerson D.",
-        "district": "4th",
-        "contact": "8951-4674; local 7383"
-      },
-      {
-        "province_city": "Nueva Vizcaya",
-        "name": "Cuaresma, Luisa Lloren",
-        "district": "Lone",
-        "contact": "8931-5124; local 7400"
-      },
-      {
-        "province_city": "Occidental Mindoro",
-        "name": "Tarriela, Leody F.",
-        "district": "Lone",
-        "contact": "8931-5711; local 7411"
-      },
-      {
-        "province_city": "Oriental Mindoro",
-        "name": "Panaligan, Arnan C.",
-        "district": "1st",
-        "contact": "8931-5112; local 7387"
-      },
-      {
-        "province_city": "Oriental Mindoro",
-        "name": "Umali, Alfonso Jr. V.",
-        "district": "2nd",
-        "contact": "8442-4129; local 7984"
-      },
-      {
-        "province_city": "Palawan",
-        "name": "Romualdez, Ferdinand Martin G. (Caretaker)",
-        "district": "1st",
-        "contact": "8931-5307; local 7396"
-      },
-      {
-        "province_city": "Palawan",
-        "name": "Alvarez, Jose C.",
-        "district": "2nd",
-        "contact": "8951-0893; local 7025"
-      },
-      {
-        "province_city": "Palawan",
-        "name": "Romualdez, Ferdinand Martin G. (Caretaker)",
-        "district": "3rd",
-        "contact": "8931-5307; local 7396"
+        "province_city": "Batangas",
+        "name": "BOLILIA, AMADO CARLOS A. IV",
+        "district": "4th District",
+        "contact": "8932-7701; local 7716"
       },
       {
         "province_city": "Pampanga",
-        "name": "Lazatin, Carmelo II B.",
-        "district": "1st",
-        "contact": "8931-5435; local 7426"
-      },
-      {
-        "province_city": "Pampanga",
-        "name": "Macapagal-Arroyo, Gloria",
-        "district": "2nd",
-        "contact": "8931-5001; local 7748"
-      },
-      {
-        "province_city": "Pampanga",
-        "name": "Gonzales, Aurelio Jr. D.",
-        "district": "3rd",
-        "contact": "8931-5804; local 7461"
-      },
-      {
-        "province_city": "Pampanga",
-        "name": "Bondoc, Anna York P.",
-        "district": "4th",
+        "name": "BONDOC, ANNA YORK P., MD",
+        "district": "4th District",
         "contact": "8931-6594; local 7251"
       },
       {
-        "province_city": "Pangasinan",
-        "name": "Celeste, Arthur F.",
-        "district": "1st",
-        "contact": "8931-5828; local 7371"
+        "province_city": "Apayao",
+        "name": "BULUT-BEGTANG, ELEANOR C.",
+        "district": "Lone",
+        "contact": "8932-6495; local 7330"
       },
       {
-        "province_city": "Pangasinan",
-        "name": "Cojuanco, Mark O.",
-        "district": "2nd",
-        "contact": "8931-6691; local 7324"
+        "province_city": "Davao Del Sur",
+        "name": "CAGAS, JOHN TRACY F.",
+        "district": "Lone",
+        "contact": "8442-3895; local 7954"
       },
       {
-        "province_city": "Pangasinan",
-        "name": "Arenas, Maria Rachel J.",
-        "district": "3rd",
-        "contact": "8931-5667; local 7236"
-      },
-      {
-        "province_city": "Pangasinan",
-        "name": "De Venecia, Christopher V.P.",
-        "district": "4th",
-        "contact": "8931-6145; local 7203"
-      },
-      {
-        "province_city": "Pangasinan",
-        "name": "Guico, Ramon Jr. N.",
-        "district": "5th",
-        "contact": "8931-5148; local 7276"
-      },
-      {
-        "province_city": "Pangasinan",
-        "name": "Primicias-Agabas, Marlyn L.",
-        "district": "6th",
-        "contact": "8931-5265; local 7404"
-      },
-      {
-        "province_city": "Parañaque City",
-        "name": "Olivarez, Edwin L.",
-        "district": "1st",
-        "contact": "8931-6369; local 7281"
-      },
-      {
-        "province_city": "Parañaque City",
-        "name": "Tambunting, Gus S.",
-        "district": "2nd",
-        "contact": "8951-0292; local 7710"
+        "province_city": "Cebu",
+        "name": "CALDERON, PATRICIA C.",
+        "district": "7th District",
+        "contact": "8931-6324; local 7226"
       },
       {
         "province_city": "Pasay City",
-        "name": "Calixto, Antonino G.",
+        "name": "CALIXTO, ANTONINO G.",
         "district": "Lone",
         "contact": "8952-4146; local 7096"
       },
       {
-        "province_city": "Pasig City",
-        "name": "Romulo, Roman T.",
+        "province_city": "Cotabato",
+        "name": "CAOAGDAN, RUDY S., DPA",
+        "district": "2nd District",
+        "contact": "8931-5172; local 7397"
+      },
+      {
+        "province_city": "Leyte",
+        "name": "CARI, CARL NICOLAS C.",
+        "district": "5th District",
+        "contact": "8931-5154; local 7254"
+      },
+      {
+        "province_city": "Capiz",
+        "name": "CASTRO, JANE T.",
+        "district": "2nd District",
+        "contact": "8951-8946; local 7049"
+      },
+      {
+        "province_city": "Nueva Vizcaya",
+        "name": "CAYTON, TIMOTHY JOSEPH E.",
         "district": "Lone",
-        "contact": "8442-1711; local 7938"
+        "contact": "8931-5740; local 7422"
       },
       {
-        "province_city": "Quezon",
-        "name": "Enverga, Wilfrido Mark M.",
-        "district": "1st",
-        "contact": "8931-6531; local 7355"
+        "province_city": "Pangasinan",
+        "name": "CELESTE, ARTHUR F.",
+        "district": "1st District",
+        "contact": "8931-5828; local 7371"
       },
       {
-        "province_city": "Quezon",
-        "name": "Suarez, David C.",
-        "district": "2nd",
-        "contact": "8931-5956; local 7367"
+        "province_city": "Davao De Oro",
+        "name": "CENIZA, LEONEL \"JHONG\" D.",
+        "district": "2nd District",
+        "contact": "8931-6475; local 7235"
       },
       {
-        "province_city": "Quezon",
-        "name": "Arrogancia, Reynante U.",
-        "district": "3rd",
-        "contact": "8931-5856; local 7409"
+        "province_city": "City of Lapu-Lapu",
+        "name": "CHAN, JUNARD \"AHONG\" Q.",
+        "district": "Lone",
+        "contact": "8931-5674; local 7416"
       },
       {
-        "province_city": "Quezon",
-        "name": "Tan, Keith Micah D.L.",
-        "district": "4th",
-        "contact": "8931-5360; local 7415"
+        "province_city": "City of Manila",
+        "name": "CHUA, JOEL R.",
+        "district": "3rd District",
+        "contact": "8931-5501; local 7408"
+      },
+      {
+        "province_city": "City of Zamboanga",
+        "name": "CHUA-TAI, KATRINA REIKO",
+        "district": "1st District",
+        "contact": "8931-6567; local 7201"
+      },
+      {
+        "province_city": "Ifugao",
+        "name": "CHUNGALAO, SOLOMON R.",
+        "district": "Lone",
+        "contact": "8931-5374; local 7421"
+      },
+      {
+        "province_city": "Tarlac",
+        "name": "COJUANGCO, JAIME EDUARDO MARC D.",
+        "district": "1st District",
+        "contact": "8931-4205; local 7224"
+      },
+      {
+        "province_city": "Pangasinan",
+        "name": "COJUANGCO, MARK O.",
+        "district": "2nd District",
+        "contact": "8931-6691; local 7324"
+      },
+      {
+        "province_city": "Batangas",
+        "name": "COLLANTES, KING GEORGE LEANDRO ANTONIO V.",
+        "district": "3rd District",
+        "contact": "8931-5408; local 7341"
       },
       {
         "province_city": "Quezon City",
-        "name": "Atayde, Juan Carlos C.",
-        "district": "1st",
-        "contact": "8931-6205; local 7244"
-      },
-      {
-        "province_city": "Quezon City",
-        "name": "Tulfo, Ralph Wendel P.",
-        "district": "2nd",
-        "contact": "8931-5320; local 7346"
-      },
-      {
-        "province_city": "Quezon City",
-        "name": "Pumaren, Franz S.",
-        "district": "3rd",
-        "contact": "8931-6385; local 7386"
-      },
-      {
-        "province_city": "Quezon City",
-        "name": "Rillo, Marvin D.",
-        "district": "4th",
-        "contact": "8952-6052; local 7094"
-      },
-      {
-        "province_city": "Quezon City",
-        "name": "Vargas, Patrick Michael D.",
-        "district": "5th",
-        "contact": "8931-6561; local 7333"
-      },
-      {
-        "province_city": "Quezon City",
-        "name": "Co-Pilar, Maria Victoria",
-        "district": "6th",
+        "name": "CO-PILAR, MA. VICTORIA",
+        "district": "6th District",
         "contact": "8931-5504; local 7361"
       },
       {
+        "province_city": "Agusan Del Norte",
+        "name": "CORVERA, DALE B.",
+        "district": "Lone",
+        "contact": "8931-6042; local 7328"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "CRUZ, AGATHA PAULA AGUILAR",
+        "district": "5th District",
+        "contact": "8442-4262; local 7920"
+      },
+      {
+        "province_city": "City of Taguig - Pateros",
+        "name": "CRUZ, RICARDO S., JR.",
+        "district": "Lone",
+        "contact": "88951-8889; local 7009"
+      },
+      {
+        "province_city": "Cotabato",
+        "name": "CRUZADO, EDWIN L. M.D.",
+        "district": "1st District",
+        "contact": "8442-4039; local 7980"
+      },
+      {
         "province_city": "Quirino",
-        "name": "Cua, Midy N.",
+        "name": "CUA, MIDY N.",
         "district": "Lone",
         "contact": "8931-5102; local 7431"
       },
       {
-        "province_city": "Rizal",
-        "name": "Duavit, Michael John R.",
-        "district": "1st",
-        "contact": "8931-5998; local 7357"
+        "province_city": "Mountain Province",
+        "name": "DALOG, MAXIMO Y., JR.",
+        "district": "Lone",
+        "contact": "8931-6221; local 7294"
+      },
+      {
+        "province_city": "Davao Oriental",
+        "name": "DAYANGHIRANG, NELSON \"JR\"",
+        "district": "1st District",
+        "contact": "8931-5210; local 7215"
+      },
+      {
+        "province_city": "Northern Samar",
+        "name": "DAZA, NIKO RAUL S.J.",
+        "district": "1st District",
+        "contact": "8931-5922; local 7233"
+      },
+      {
+        "province_city": "Pangasinan",
+        "name": "DE VENECIA, MA. GEORGINA P.",
+        "district": "4th District",
+        "contact": "8931-6145; local 7203"
+      },
+      {
+        "province_city": "Iloilo",
+        "name": "DEFENSOR, LORENZ R.",
+        "district": "3rd District",
+        "contact": "8931-5492; local 7345"
+      },
+      {
+        "province_city": "Negros Oriental",
+        "name": "DEGAMO, JANICE",
+        "district": "3rd District",
+        "contact": "8931-4586; local 7301"
+      },
+      {
+        "province_city": "City of Cebu",
+        "name": "DEL MAR, RACHEL MARGUERITE B.",
+        "district": "1st District",
+        "contact": "8951-1019; local 7044"
+      },
+      {
+        "province_city": "Batangas",
+        "name": "DIMACUHA, BEVERLEY ROSE A.",
+        "district": "5th District",
+        "contact": "8931-6579; local 7256"
+      },
+      {
+        "province_city": "City of Biñan",
+        "name": "DIMAGUILA, WALFREDO \"ARMAN\" R., JR.",
+        "district": "Lone",
+        "contact": "8442-3893; local 7960"
+      },
+      {
+        "province_city": "Lanao Del Norte",
+        "name": "DIMAPORO, IMELDA QUIBRANZA",
+        "district": "1st District",
+        "contact": "8931-6411; local 7237"
+      },
+      {
+        "province_city": "Lanao Del Norte",
+        "name": "DIMAPORO, SITTIE AMINAH Q.",
+        "district": "2nd District",
+        "contact": "8931-6413; local 7232"
+      },
+      {
+        "province_city": "City of Manila",
+        "name": "DIONISIO, ERNESTO M., JR.",
+        "district": "1st District",
+        "contact": "8951-0892; local 7033"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "DOMINGO, DANILO \"DANNY\" A.",
+        "district": "1st District",
+        "contact": "8931-5773; local 7358"
+      },
+      {
+        "province_city": "City of Baguio",
+        "name": "DOMOGAN, MAURICIO G.",
+        "district": "Lone",
+        "contact": "8931-5193; local 7323"
+      },
+      {
+        "province_city": "City of Davao",
+        "name": "DUTERTE, OMAR VINCENT SANGKOLA",
+        "district": "2nd District",
+        "contact": "8931-5560; local 7313"
+      },
+      {
+        "province_city": "City of Davao",
+        "name": "DUTERTE, PAOLO Z.",
+        "district": "1st District",
+        "contact": "8442-4238; local 7916"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "DY, FAUSTINO \"BOJIE\" G. III",
+        "district": "6th District",
+        "contact": "8952-2232; local 7242"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "DY, FAUSTINO MICHAEL CARLOS III T.",
+        "district": "5th District",
+        "contact": "8931-5507; local 7410"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "DY, IAN PAUL L.",
+        "district": "3rd District",
+        "contact": "8931-5465; local 7402"
+      },
+      {
+        "province_city": "Misamis Oriental",
+        "name": "EMANO, YEVGENY VINCENTE B.",
+        "district": "2nd District",
+        "contact": "8931-5254; local 7266"
+      },
+      {
+        "province_city": "Quezon",
+        "name": "ENVERGA, WILFRIDO MARK M.",
+        "district": "1st District",
+        "contact": "8931-6531; local 7355"
+      },
+      {
+        "province_city": "City of Caloocan",
+        "name": "ERICE, EDGAR R.",
+        "district": "2nd District",
+        "contact": "8931-6615; local 7300"
+      },
+      {
+        "province_city": "Sorsogon",
+        "name": "ESCUDERO, BERNADETTE G.",
+        "district": "1st District",
+        "contact": "8931-4896; local 7327"
+      },
+      {
+        "province_city": "Biliran",
+        "name": "ESPINA, GERARDO \"GERRYBOY\" JR. J.",
+        "district": "Lone",
+        "contact": "8442-4190; local 7994"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "FERRER, ANTONIO A.",
+        "district": "6th District",
+        "contact": "8931-6004; local 7351"
+      },
+      {
+        "province_city": "Negros Occidental",
+        "name": "FERRER, JEFFREY P.",
+        "district": "4th District",
+        "contact": "8931-5292; local 7350"
+      },
+      {
+        "province_city": "Bukidnon",
+        "name": "FLORES, JONATHAN KEITH T.",
+        "district": "2nd District",
+        "contact": "8931-5786; local 7225"
+      },
+      {
+        "province_city": "Sorsogon",
+        "name": "FORTES, WOWO",
+        "district": "2nd District",
+        "contact": "8442-3962; local 7958"
+      },
+      {
+        "province_city": "Cebu",
+        "name": "FRASCO, VINCENT FRANCO \"DUKE\" D.",
+        "district": "5th District",
+        "contact": "8952-6032; local 7712"
+      },
+      {
+        "province_city": "City of Muntinlupa",
+        "name": "FRESNEDI, JAIME R.",
+        "district": "Lone",
+        "contact": "8442-4205; local 7996"
+      },
+      {
+        "province_city": "Camarines Sur",
+        "name": "FUENTEBELLA, ARNIE B.",
+        "district": "4th District",
+        "contact": "8931-5345; local 7380"
+      },
+      {
+        "province_city": "City of Valenzuela",
+        "name": "GALANG, GERALD CLOYD ALEXIS V.",
+        "district": "2nd District",
+        "contact": "8931-5124; local 7400"
+      },
+      {
+        "province_city": "Cebu",
+        "name": "GALEOS, EDSEL A.",
+        "district": "2nd District",
+        "contact": "8931-5911; local 7407"
+      },
+      {
+        "province_city": "Bataan",
+        "name": "GARCIA, ALBERT S.",
+        "district": "2nd District",
+        "contact": "8931-5891; local 7223"
+      },
+      {
+        "province_city": "La Union",
+        "name": "GARCIA, DANTE S.",
+        "district": "2nd District",
+        "contact": "8931-6261; local 7430"
       },
       {
         "province_city": "Rizal",
-        "name": "Tanjuatco, Emigdio III P.",
-        "district": "2nd",
-        "contact": "8931-6689; local 7253"
-      },
-      {
-        "province_city": "Rizal",
-        "name": "Garcia, Jose Arturo Jr. S.",
-        "district": "3rd",
+        "name": "GARCIA, JOSE ARTURO S., JR.",
+        "district": "3rd District",
         "contact": "8931-5469; local 7372"
       },
       {
+        "province_city": "Cebu",
+        "name": "GARCIA, KAREN HOPE F.",
+        "district": "3rd District",
+        "contact": "8442-4209; local 7908"
+      },
+      {
+        "province_city": "Bataan",
+        "name": "GARCIA, MARIA ANGELA S.",
+        "district": "3rd District",
+        "contact": "8442-4021; local 7964"
+      },
+      {
+        "province_city": "Iloilo",
+        "name": "GARIN, JANETTE L.",
+        "district": "1st District",
+        "contact": "8442-4283; local 7924"
+      },
+      {
+        "province_city": "City of Valenzuela",
+        "name": "GATCHALIAN, KENNETH T.",
+        "district": "1st District",
+        "contact": "8442-3983; local 7962"
+      },
+      {
+        "province_city": "Batanes",
+        "name": "GATO, CIRIACO B., JR., MD, FPSO-HNS",
+        "district": "Lone",
+        "contact": "8931-7327; local 7270"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "GO, ED CHRISTOPHER S.",
+        "district": "2nd District",
+        "contact": "8952-6344; local 7366"
+      },
+      {
+        "province_city": "Leyte",
+        "name": "GOMEZ, RICHARD I., DPA",
+        "district": "4th District",
+        "contact": "8442-4004; local 7966"
+      },
+      {
+        "province_city": "City of Mandaluyong",
+        "name": "GONZALES, ALEXANDRIA \"QUEENIE\"",
+        "district": "Lone",
+        "contact": "8952-4056; local 7720"
+      },
+      {
+        "province_city": "Pampanga",
+        "name": "GONZALES, ALYSSA MICHAELA \"MICA\" M.",
+        "district": "3rd District",
+        "contact": "8931-5804; local 7461"
+      },
+      {
+        "province_city": "Eastern Samar",
+        "name": "GONZALES, CHRISTOPHER SHEEN P.",
+        "district": "Lone",
+        "contact": "8931-6733; local 7394"
+      },
+      {
+        "province_city": "City of Santa Rosa",
+        "name": "GONZALES, ROY M.",
+        "district": "Lone",
+        "contact": "8931-6523; local 7245"
+      },
+      {
+        "province_city": "Iloilo",
+        "name": "GORRICETA, KATHRYN JOYCE F., MD.",
+        "district": "2nd District",
+        "contact": "8931-6722; local 7389"
+      },
+      {
+        "province_city": "Pangasinan",
+        "name": "GUICO, RAMON N., JR.",
+        "district": "5th District",
+        "contact": "-; local 7791"
+      },
+      {
+        "province_city": "Capiz",
+        "name": "GUINTU, HOWARD A.",
+        "district": "1st District",
+        "contact": "8951-1006; local 7029"
+      },
+      {
+        "province_city": "Cebu",
+        "name": "GULLAS, RHEA MAE A.",
+        "district": "1st District",
+        "contact": "8951-8924; local 7007"
+      },
+      {
+        "province_city": "City of Calamba",
+        "name": "HERNANDEZ, CHARISSE ANNE C.",
+        "district": "Lone",
+        "contact": "8931-5197; local 7399"
+      },
+      {
         "province_city": "Rizal",
-        "name": "Nograles, Juan Fidel Felipe F.",
-        "district": "4th",
-        "contact": "8951-8929; local 7060"
+        "name": "HERNANDEZ, DENNIS \"TOM\" L.",
+        "district": "4th District",
+        "contact": "8931-5691; local 7248"
+      },
+      {
+        "province_city": "South Cotabato",
+        "name": "HERNANDEZ, FERDINAND L.",
+        "district": "2nd District",
+        "contact": "8442-4131; local 7986/7987"
+      },
+      {
+        "province_city": "Laguna",
+        "name": "HERNANDEZ, RAMIL LAUREL",
+        "district": "2nd District",
+        "contact": "8931-6055; local 7297"
+      },
+      {
+        "province_city": "Zamboanga Sibugay",
+        "name": "HOFER-HASIM, MARLESA \"DOC MARLY\"",
+        "district": "2nd District",
+        "contact": "8931-6121; local 7229"
+      },
+      {
+        "province_city": "Camarines Sur",
+        "name": "HORIBATA, TSUYOSHI ANTHONY \"HORI\" G.",
+        "district": "1st District",
+        "contact": "8442-4067; local 7912"
+      },
+      {
+        "province_city": "Negros Oriental",
+        "name": "IWAY, EMMANUEL L.",
+        "district": "1st District",
+        "contact": "8931-6342; local 7222"
+      },
+      {
+        "province_city": "Leyte",
+        "name": "JAVIER, LOLITA T.",
+        "district": "2nd District",
+        "contact": "8931-6487; local 7247"
+      },
+      {
+        "province_city": "Masbate",
+        "name": "KHO, ANTONIO T.",
+        "district": "1st District",
+        "contact": "8931-5712; local 7264"
+      },
+      {
+        "province_city": "Masbate",
+        "name": "KHO, ELISA \"OLGA\" T.",
+        "district": "2nd District",
+        "contact": "8931-6527; local 7283"
+      },
+      {
+        "province_city": "Masbate",
+        "name": "KHO, WILTON \"TONTON\" T.",
+        "district": "3rd District",
+        "contact": "8931-6621; local 7279"
+      },
+      {
+        "province_city": "Zambales",
+        "name": "KHONGHUN, JEFFERSON F.",
+        "district": "1st District",
+        "contact": "8932-8809; local 7239"
+      },
+      {
+        "province_city": "Zamboanga Del Norte",
+        "name": "LABADLABAD, IRENE G.",
+        "district": "2nd District",
+        "contact": "8931-6714; local 7363"
+      },
+      {
+        "province_city": "Misamis Oriental",
+        "name": "LAGBAS, ATTY. JENNIFER \"KAREN\" A.",
+        "district": "1st District",
+        "contact": "8931-6393; local 7243"
+      },
+      {
+        "province_city": "Davao Del Norte",
+        "name": "LAGDAMEO, JOSE MANUEL \"JM\" F.",
+        "district": "2nd District",
+        "contact": "8442-4028; local 7968"
+      },
+      {
+        "province_city": "City of Makati",
+        "name": "LAGDAMEO, MONIQUE YAZMIN MARIA Q.",
+        "district": "1st District",
+        "contact": "8442-4259; local 7918"
+      },
+      {
+        "province_city": "Albay",
+        "name": "LAGMAN, CIELO KRISEL",
+        "district": "1st District",
+        "contact": "8931-5497; local 7370"
+      },
+      {
+        "province_city": "Cebu",
+        "name": "LAGON, DAPHNE A.",
+        "district": "6th District",
+        "contact": "8952-6264; local 7098"
+      },
+      {
+        "province_city": "Cagayan",
+        "name": "LARA, JOSEPH \"JOJO\" L.",
+        "district": "3rd District",
+        "contact": "8931-6478; local 7368"
+      },
+      {
+        "province_city": "Pampanga",
+        "name": "LAZATIN, CARMELO G. JR",
+        "district": "1st District",
+        "contact": "8931-5679; local 7429"
+      },
+      {
+        "province_city": "Negros Occidental",
+        "name": "LEDESMA, JULIO A., IV",
+        "district": "1st District",
+        "contact": "8931-5258; local 7321"
+      },
+      {
+        "province_city": "Camarines Sur",
+        "name": "LEGACION, NELSON S.",
+        "district": "3rd District",
+        "contact": "8931-5711; local 7437"
+      },
+      {
+        "province_city": "Antique",
+        "name": "LEGARDA, ANTONIO B., JR",
+        "district": "Lone",
+        "contact": "8931-5426; local 7349"
+      },
+      {
+        "province_city": "Batangas",
+        "name": "LEVISTE, LEANDRO LEGARDA",
+        "district": "1st District",
+        "contact": "8931-6077; local 7340"
+      },
+      {
+        "province_city": "Albay",
+        "name": "LORIA, CARLOS ANDES",
+        "district": "2nd District",
+        "contact": "8931-5813; local 7213"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "LOYOLA, ROY M.",
+        "district": "5th District",
+        "contact": "8442-4377; local 7930"
+      },
+      {
+        "province_city": "Batangas",
+        "name": "LUISTRO, ATTY. GERVILLE \"JINKY BITRICS\" R.",
+        "district": "2nd District",
+        "contact": "8931-5723; local 7413"
+      },
+      {
+        "province_city": "South Cotabato",
+        "name": "LUMAYAG, ISIDRO D.",
+        "district": "1st District",
+        "contact": "8931-6212; local 7227"
+      },
+      {
+        "province_city": "Pampanga",
+        "name": "MACAPAGAL-ARROYO, GLORIA",
+        "district": "2nd District",
+        "contact": "-; local 7797"
+      },
+      {
+        "province_city": "City of Manila",
+        "name": "MACEDA, GISELLE MARY L.",
+        "district": "4th District",
+        "contact": "8931-5415; local 7347"
       },
       {
         "province_city": "Romblon",
-        "name": "Madrona, Eleandro Jesus F.",
+        "name": "MADRONA, ELEANDRO JESUS F.",
         "district": "Lone",
         "contact": "8952-4149; local 3115"
       },
       {
-        "province_city": "Samar",
-        "name": "Tan, Stephen James T.",
-        "district": "1st",
-        "contact": "8931-6435; local 7250"
+        "province_city": "City of Caloocan",
+        "name": "MALAPITAN, OSCAR G.",
+        "district": "1st District",
+        "contact": "8931-5249; local 7326"
       },
       {
-        "province_city": "Samar",
-        "name": "Tan, Reynolds Michael T.",
-        "district": "2nd",
-        "contact": "8931-6364; local 7249"
+        "province_city": "Maguindanao del Sur",
+        "name": "MANGUDADATU, ESMAEL G.",
+        "district": "Lone",
+        "contact": "8442-5122; local 7934"
       },
       {
-        "province_city": "San Jose Del Monte City",
-        "name": "Robes, Florida P.",
+        "province_city": "Zambales",
+        "name": "MANIQUIZ, DORIS E.",
+        "district": "2nd District",
+        "contact": "8931-5542; local 7207"
+      },
+      {
+        "province_city": "Negros Occidental",
+        "name": "MARAÑON, ALFREDO D., III",
+        "district": "2nd District",
+        "contact": "8931-5638; local 7272"
+      },
+      {
+        "province_city": "Ilocos Norte",
+        "name": "MARCOS, FERDINAND ALEXANDER A.",
+        "district": "1st District",
+        "contact": "8931-9838; local 7275"
+      },
+      {
+        "province_city": "Aklan",
+        "name": "MARQUEZ, JESUS \"JESS\" R.",
+        "district": "1st District",
+        "contact": "8931-5744; local 7391"
+      },
+      {
+        "province_city": "Maguindanao del Norte",
+        "name": "MASTURA, BAI DIMPLE I.",
+        "district": "Lone",
+        "contact": "8951-0292; local 7710"
+      },
+      {
+        "province_city": "Laguna",
+        "name": "MATIBAG, ANN",
+        "district": "1st District",
+        "contact": "8951-8669; local 7057"
+      },
+      {
+        "province_city": "Surigao Del Norte",
+        "name": "MATUGAS, FRANCISCO \"LALO\" T.",
+        "district": "1st District",
+        "contact": "8931-5243; local 7238"
+      },
+      {
+        "province_city": "Southern Leyte",
+        "name": "MERCADO, ROGER GAVIOLA",
+        "district": "1st District",
+        "contact": "8932-9196; local 7001"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "MERCADO-REVILLA, LANI",
+        "district": "2nd District",
+        "contact": "8962-9957; local 7784"
+      },
+      {
+        "province_city": "Aklan",
+        "name": "MIRAFLORES, FLORENCIO T.",
+        "district": "2nd District",
+        "contact": "8442-4115; local 7976"
+      },
+      {
+        "province_city": "Surigao Del Sur",
+        "name": "MOMO, ROMEO S., SR.",
+        "district": "1st District",
+        "contact": "8442-4070; local 7948"
+      },
+      {
+        "province_city": "Guimaras",
+        "name": "NAVA, JC RAHMAN A., MD",
+        "district": "Lone",
+        "contact": "8951-1032; local 7015"
+      },
+      {
+        "province_city": "Cagayan",
+        "name": "NOLASCO, RAMON C.",
+        "district": "1st District",
+        "contact": "8931-6037; local 7342"
+      },
+      {
+        "province_city": "Misamis Occidental",
+        "name": "OAMINAL, SANCHO FERNANDO \"ANDO\" F.",
+        "district": "2nd District",
+        "contact": "8931-5563; local 7405"
+      },
+      {
+        "province_city": "City of Parañaque",
+        "name": "OLIVAREZ, ERIC L.",
+        "district": "1st District",
+        "contact": "8931-6369; local 7281"
+      },
+      {
+        "province_city": "Northern Samar",
+        "name": "ONGCHUAN, EDWIN",
+        "district": "2nd District",
+        "contact": "8931-5325; local 7337"
+      },
+      {
+        "province_city": "City of Malabon",
+        "name": "ORETA, ANTOLIN A. III",
+        "district": "Lone",
+        "contact": "8951-8945; local 7019"
+      },
+      {
+        "province_city": "La Union",
+        "name": "ORTEGA, FRANCISCO PAOLO P., V",
+        "district": "1st District",
+        "contact": "8931-5350; local 7382"
+      },
+      {
+        "province_city": "City of Mandaue",
+        "name": "OUANO-DIZON, EMMARIE \"LOLYPOP\"",
+        "district": "Lone",
+        "contact": "8931-5479; local 7425"
+      },
+      {
+        "province_city": "Oriental Mindoro",
+        "name": "PANALIGAN, ARNAN C.",
+        "district": "1st District",
+        "contact": "8931-5528; local 7718"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "PANCHO, AUGUSTINA DOMINIQUE \"DITSE TINA\" C.",
+        "district": "2nd District",
+        "contact": "8931-6248; local 7271"
+      },
+      {
+        "province_city": "Camarines Norte",
+        "name": "PANOTES, ROSEMARIE CONEJOS",
+        "district": "2nd District",
+        "contact": "8931-6417; local 7427"
+      },
+      {
+        "province_city": "Nueva Ecija",
+        "name": "PASCUAL, EMERSON D.",
+        "district": "4th District",
+        "contact": "8951-4674; local 7383"
+      },
+      {
+        "province_city": "City of Zamboanga",
+        "name": "PEREZ, JERRY EVANGELISTA",
+        "district": "2nd District",
+        "contact": "8951-8974; local 7051"
+      },
+      {
+        "province_city": "Surigao Del Sur",
+        "name": "PIMENTEL, ALEXANDER TY",
+        "district": "2nd District",
+        "contact": "8442-4071; local 7956"
+      },
+      {
+        "province_city": "Agusan Del Sur",
+        "name": "PLAZA, EDDIEBONG G.",
+        "district": "2nd District",
+        "contact": "8951-8922; local 7055"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "PLEYTO, SALVADOR A.",
+        "district": "6th District",
+        "contact": "8442-4281; local 7922"
+      },
+      {
+        "province_city": "Pangasinan",
+        "name": "PRIMICIAS-AGABAS, MARLYN L.",
+        "district": "6th District",
+        "contact": "8931-5265; local 7404"
+      },
+      {
+        "province_city": "Quezon City",
+        "name": "PUMAREN, FRANZ S",
+        "district": "3rd District",
+        "contact": "8931-6385; local 7386"
+      },
+      {
+        "province_city": "City of Antipolo",
+        "name": "PUNO, RONALDO V.",
+        "district": "1st District",
+        "contact": "8952-4148; local 3112"
+      },
+      {
+        "province_city": "City of Marikina",
+        "name": "QUIMBO, ATTY. MIRO S.",
+        "district": "2nd District",
+        "contact": "8931-5422; local 7348"
+      },
+      {
+        "province_city": "City of Cebu",
+        "name": "RAMA, EDUARDO R.",
+        "district": "2nd District",
+        "contact": "8442-4128; local 7983"
+      },
+      {
+        "province_city": "Batangas",
+        "name": "RECTO, RYAN S.",
+        "district": "6th District",
+        "contact": "8442-4062; local 7946/7947"
+      },
+      {
+        "province_city": "City of Iligan",
+        "name": "REGENCIA, CELSO G.",
+        "district": "Lone",
+        "contact": "8931-6331; local 7231"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "REMULLA, CRISPIN DIEGO D.",
+        "district": "7th District",
+        "contact": "__; local 7794"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "REVILLA, RAMON JOLO III B.",
+        "district": "1st District",
+        "contact": "8931-5731; local 7214"
+      },
+      {
+        "province_city": "Tarlac",
+        "name": "RIVERA, NOEL \"BONG\" N.",
+        "district": "3rd District",
+        "contact": "8931-5456; local 7364"
+      },
+      {
+        "province_city": "City of San Jose Del Monte",
+        "name": "ROBES, ARTURO B.",
         "district": "Lone",
         "contact": "8931-4614; local 7412"
       },
       {
-        "province_city": "San Juan City",
-        "name": "Zamora, Ysabel Maria J.",
+        "province_city": "Catanduanes",
+        "name": "RODRIGUEZ, EULOGIO \"LEO\" R.",
         "district": "Lone",
-        "contact": "8442-4032; local 7973"
+        "contact": "8952-4858; local 7047"
       },
       {
-        "province_city": "Santa Rosa City",
-        "name": "Fernandez, Dan S.",
+        "province_city": "City of Cagayan De Oro",
+        "name": "RODRIGUEZ, RUFUS B.",
+        "district": "2nd District",
+        "contact": "-; local 7801"
+      },
+      {
+        "province_city": "Bataan",
+        "name": "ROMAN, ANTONINO B., III",
+        "district": "1st District",
+        "contact": "8931-5620; local 7375"
+      },
+      {
+        "province_city": "Leyte",
+        "name": "ROMUALDEZ, FERDINAND MARTIN G.",
+        "district": "1st District",
+        "contact": "8931-5510; local 7369"
+      },
+      {
+        "province_city": "Camiguin",
+        "name": "ROMUALDO, JURDIN JESUS M.",
         "district": "Lone",
-        "contact": "8936-6026; local 7740"
+        "contact": "8931-6067; local 7377"
       },
       {
-        "province_city": "Sarangani",
-        "name": "Solon, Steve Chiongbian",
+        "province_city": "City of Pasig",
+        "name": "ROMULO, ROMAN T.",
         "district": "Lone",
-        "contact": "8287-9968; local 7952"
+        "contact": "8442-1711; local 7938"
       },
       {
-        "province_city": "Siquijor",
-        "name": "Villa, Zaldy S.",
-        "district": "Lone",
-        "contact": "8931-5430; local 7362"
+        "province_city": "Bukidnon",
+        "name": "ROQUE, LAARNI LAVIN",
+        "district": "4th District",
+        "contact": "8931-5182; local 7268"
       },
       {
-        "province_city": "Sorsogon",
-        "name": "Escudero, Marie Bernadette G.",
-        "district": "1st",
-        "contact": "8931-4896; local 7327"
-      },
-      {
-        "province_city": "Sorsogon",
-        "name": "Fortes, Wowo",
-        "district": "2nd",
-        "contact": "8931-5560; local 7313"
-      },
-      {
-        "province_city": "South Cotabato",
-        "name": "Lumayag, Isidro D.",
-        "district": "1st",
-        "contact": "8931-6212; local 7227"
-      },
-      {
-        "province_city": "South Cotabato",
-        "name": "Miguel, Peter B.",
-        "district": "2nd",
-        "contact": "8931-6166; local 7316"
-      },
-      {
-        "province_city": "Southern Leyte",
-        "name": "Mercado, Luz V.",
-        "district": "1st",
-        "contact": "8932-9196; local 7001"
-      },
-      {
-        "province_city": "Southern Leyte",
-        "name": "Yap, Christopherson M.",
-        "district": "2nd",
-        "contact": "8931-6119; local 7257"
+        "province_city": "Negros Oriental",
+        "name": "SAGARBARRIA, MA. ISABEL L.",
+        "district": "2nd District",
+        "contact": "8931-6575; local 7292"
       },
       {
         "province_city": "Sultan Kudarat",
-        "name": "Sakaluran, Princess Rihan M.",
-        "district": "1st",
+        "name": "SAKALURAN, RUTH M.",
+        "district": "1st District",
         "contact": "8931-6489; local 7255"
       },
       {
-        "province_city": "Sultan Kudarat",
-        "name": "Suansing, Horacio Jr. P.",
-        "district": "2nd",
-        "contact": "8931-6515; local 7259"
-      },
-      {
-        "province_city": "Sulu",
-        "name": "Tan, Samier A.",
-        "district": "1st",
-        "contact": "8931-5440; local 7433"
-      },
-      {
-        "province_city": "Sulu",
-        "name": "Arbison, Munir Jr. N.",
-        "district": "2nd",
-        "contact": "8931-6268; local 7230"
-      },
-      {
-        "province_city": "Surigao del Norte",
-        "name": "Matugas, Francisco Jose II F.",
-        "district": "1st",
-        "contact": "8931-5243; local 7238"
-      },
-      {
-        "province_city": "Surigao del Norte",
-        "name": "Barbers, Robert Ace S.",
-        "district": "2nd",
-        "contact": "8442-4151; local 7773"
-      },
-      {
-        "province_city": "Surigao del Sur",
-        "name": "Momo, Romeo Sr. S.",
-        "district": "1st",
-        "contact": "8442-4070; local 7948"
-      },
-      {
-        "province_city": "Surigao del Sur",
-        "name": "Pimentel, Johnny Ty",
-        "district": "2nd",
-        "contact": "8442-4071; local 7956"
-      },
-      {
-        "province_city": "Taguig City",
-        "name": "Zamora, Amparo Maria J.",
-        "district": "2nd",
-        "contact": "8442-1039; local 7936"
-      },
-      {
-        "province_city": "Taguig-Pateros",
-        "name": "Cruz, Ricardo Jr. S.",
-        "district": "1st",
-        "contact": "8951-8889; local 7009"
-      },
-      {
-        "province_city": "Tarlac",
-        "name": "Cojuanco, Jaime Eduardo Marc D.",
-        "district": "1st",
-        "contact": "8931-4205; local 7224"
-      },
-      {
-        "province_city": "Tarlac",
-        "name": "Yap, Christian Tell A.",
-        "district": "2nd",
-        "contact": "8931-5135; local 7200"
-      },
-      {
-        "province_city": "Tarlac",
-        "name": "Rivera, Noel N.",
-        "district": "3rd",
-        "contact": "8931-5456; local 7364"
+        "province_city": "Albay",
+        "name": "SALCEDA, ADRIAN E.",
+        "district": "3rd District",
+        "contact": "8931-6265; local 7269"
       },
       {
         "province_city": "Tawi-Tawi",
-        "name": "Sali, Dimszar M.",
+        "name": "SALI, DIMSZAR M.",
         "district": "Lone",
         "contact": "8931-6442; local 7325"
       },
       {
-        "province_city": "Valenzuela City",
-        "name": "Enverga, Wilfrido Mark M. (Caretaker)",
-        "district": "1st",
-        "contact": "8931-6531; local 7355"
+        "province_city": "Marinduque",
+        "name": "SALVACION, REYNALDO P.",
+        "district": "Lone",
+        "contact": "8931-6682; local 7246"
       },
       {
-        "province_city": "Valenzuela City",
-        "name": "Martinez, Eric M.",
-        "district": "2nd",
-        "contact": "8931-7327; local 7270"
+        "province_city": "Nueva Ecija",
+        "name": "SALVADOR, MARIO \"KOKOY\" O.",
+        "district": "2nd District",
+        "contact": "8931-5856; local 7409"
       },
       {
-        "province_city": "Zambales",
-        "name": "Khonghun, Jefferson F.",
-        "district": "1st",
-        "contact": "8932-8809; local 7239"
+        "province_city": "Palawan",
+        "name": "SALVAME, ROSALIE ANG",
+        "district": "1st District",
+        "contact": "8931-6063; local 7306"
       },
       {
-        "province_city": "Zambales",
-        "name": "Maniquiz, Doris E.",
-        "district": "2nd",
-        "contact": "8931-5542; local 7207"
+        "province_city": "Cotabato",
+        "name": "SANTOS, MA. ALANA SAMANTHA TALIÑO",
+        "district": "3rd District",
+        "contact": "8931-6142; local 7260"
       },
       {
-        "province_city": "Zamboanga City",
-        "name": "Olaso, Khymer Adan T.",
-        "district": "1st",
-        "contact": "8931-6393; local 7243"
+        "province_city": "City of Las Piñas",
+        "name": "SANTOS, MARK ANTHONY",
+        "district": "Lone",
+        "contact": "8863-1009; local 7424"
       },
       {
-        "province_city": "Zamboanga City",
-        "name": "Dalipe, Manuel Jose M.",
-        "district": "2nd",
-        "contact": "8931-5177; local 7212"
+        "province_city": "Cebu",
+        "name": "SHIMURA, SUN JUDAL",
+        "district": "4th District",
+        "contact": "8931-6686; local 7282"
       },
       {
-        "province_city": "Zamboanga del Norte",
-        "name": "Uy, Roberto Jr. T.",
-        "district": "1st",
+        "province_city": "Ilocos Sur",
+        "name": "SINGSON, RONALD V.",
+        "district": "1st District",
+        "contact": "8442-4154; local 7988"
+      },
+      {
+        "province_city": "Ilocos Sur",
+        "name": "SINGSON-MEEHAN, KRISTINE",
+        "district": "2nd District",
+        "contact": "8931-5926; local 7573"
+      },
+      {
+        "province_city": "Sarangani",
+        "name": "SOLON, STEVE CHIONGBIAN",
+        "district": "Lone",
+        "contact": "8442-4064; local 7952"
+      },
+      {
+        "province_city": "City of Cagayan De Oro",
+        "name": "SUAN, LORDAN G.",
+        "district": "1st District",
+        "contact": "8931-5868; local 7209"
+      },
+      {
+        "province_city": "Sultan Kudarat",
+        "name": "SUANSING, BELLA VANESSA B.",
+        "district": "2nd District",
+        "contact": "8931-6515; local 7259"
+      },
+      {
+        "province_city": "Nueva Ecija",
+        "name": "SUANSING, MIKAELA ANGELA B.",
+        "district": "1st District",
+        "contact": "8931-5262; local 7258"
+      },
+      {
+        "province_city": "Quezon",
+        "name": "SUAREZ, DAVID \"JAY-JAY\" C.",
+        "district": "2nd District",
+        "contact": "8931-5956; local 7367"
+      },
+      {
+        "province_city": "Quezon City",
+        "name": "SUNTAY, JESUS MANUEL \"BONG\" C.",
+        "district": "4th District",
+        "contact": "8931-9836; local 7295"
+      },
+      {
+        "province_city": "Camarines Norte",
+        "name": "TALLADO, JOSEFINA B.",
+        "district": "1st District",
+        "contact": "8931-5448; local 7360"
+      },
+      {
+        "province_city": "Isabela",
+        "name": "TAN, JOSEPH S.",
+        "district": "4th District",
+        "contact": "8931-6235; local 7287"
+      },
+      {
+        "province_city": "Quezon",
+        "name": "TAN, KEITH MICAH \"ATTY. MIKE\" D.L.",
+        "district": "4th District",
+        "contact": "8931-5360; local 7415"
+      },
+      {
+        "province_city": "Samar",
+        "name": "TAN, REYNOLDS MICHAEL T.",
+        "district": "2nd District",
+        "contact": "8931-6364; local 7249"
+      },
+      {
+        "province_city": "Sulu",
+        "name": "TAN, SAMIER A.",
+        "district": "1st District",
+        "contact": "8931-5440; local 7433"
+      },
+      {
+        "province_city": "Samar",
+        "name": "TAN, STEPHEN JAMES T.",
+        "district": "1st District",
+        "contact": "8931-6435; local 7250"
+      },
+      {
+        "province_city": "Rizal",
+        "name": "TANJUATCO, EMIGDIO P., III",
+        "district": "2nd District",
+        "contact": "8931-6689; local 7253"
+      },
+      {
+        "province_city": "Occidental Mindoro",
+        "name": "TARRIELA, LEODY \"ODIE\" F.",
+        "district": "Lone",
+        "contact": "8931-5711; local 7411"
+      },
+      {
+        "province_city": "City of Marikina",
+        "name": "TEODORO, MARCELINO \"MARCY\" R.",
+        "district": "1st District",
+        "contact": "8951-1027; local 7031"
+      },
+      {
+        "province_city": "City of Navotas",
+        "name": "TIANGCO, TOBIAS \"TOBY\" M.",
+        "district": "Lone",
+        "contact": "8442-4029; local 7971"
+      },
+      {
+        "province_city": "City of Manila",
+        "name": "TIENG, IRWIN C.",
+        "district": "5th District",
+        "contact": "8951-8948; local 7012"
+      },
+      {
+        "province_city": "Cavite",
+        "name": "TOLENTINO, ANIELA BIANCA D.",
+        "district": "8th District",
+        "contact": "8952-2189; local 7309"
+      },
+      {
+        "province_city": "South Cotabato",
+        "name": "TUAN, DIBU S.",
+        "district": "3rd District",
+        "contact": "8931-6166; local 7316"
+      },
+      {
+        "province_city": "Quezon City",
+        "name": "TULFO, RALPH WENDEL P.",
+        "district": "2nd District",
+        "contact": "8931-5320; local 7346"
+      },
+      {
+        "province_city": "Iloilo",
+        "name": "TUPAS, BINKY APRIL M.",
+        "district": "5th District",
+        "contact": "8951-8965; local 7021"
+      },
+      {
+        "province_city": "Bohol",
+        "name": "TUTOR, KRISTINE ALEXIE B.",
+        "district": "3rd District",
+        "contact": "8931-5535; local 7385"
+      },
+      {
+        "province_city": "Oriental Mindoro",
+        "name": "UMALI, ALFONSO V., JR.",
+        "district": "2nd District",
+        "contact": "8442-4129; local 7984"
+      },
+      {
+        "province_city": "City of Davao",
+        "name": "UNGAB, ISIDRO T.",
+        "district": "3rd District",
+        "contact": "8516-0383; local 7312"
+      },
+      {
+        "province_city": "Davao Del Norte",
+        "name": "UY, DE CARLO L.",
+        "district": "1st District",
+        "contact": "8931-5106; local 7354"
+      },
+      {
+        "province_city": "Zamboanga Del Norte",
+        "name": "UY, ROBERTO \"PINPIN\" T. JR.",
+        "district": "1st District",
         "contact": "8931-5395; local 7393"
       },
       {
-        "province_city": "Zamboanga del Norte",
-        "name": "Labadlabad, Glona G.",
-        "district": "2nd",
-        "contact": "8931-6714; local 7363"
+        "province_city": "City of Manila",
+        "name": "VALERIANO, ROLANDO M.",
+        "district": "2nd District",
+        "contact": "8951-1088; local 7035"
       },
       {
-        "province_city": "Zamboanga del Norte",
-        "name": "Amatong, Adrian Michael A.",
-        "district": "3rd",
-        "contact": "8931-5746; local 7353"
+        "province_city": "Quezon City",
+        "name": "VARGAS, PATRICK MICHAEL D.",
+        "district": "5th District",
+        "contact": "8931-6561; local 7333"
       },
       {
-        "province_city": "Zamboanga del Sur",
-        "name": "Yu, Divina Grace C.",
-        "district": "1st",
+        "province_city": "Cagayan",
+        "name": "VARGAS-ALFONSO, BABY ALINE",
+        "district": "2nd District",
+        "contact": "8931-5879; local 7202"
+      },
+      {
+        "province_city": "Leyte",
+        "name": "VELOSO-TUAZON, ANNA VICTORIA",
+        "district": "3rd District",
+        "contact": "8931-6239; local 7284"
+      },
+      {
+        "province_city": "Nueva Ecija",
+        "name": "VERGARA, JULIUS CESAR \"JAY\" V.",
+        "district": "3rd District",
+        "contact": "8931-6113; local 7352"
+      },
+      {
+        "province_city": "Siquijor",
+        "name": "VILLA, ZALDY S.",
+        "district": "Lone",
+        "contact": "8931-5430; local 7362"
+      },
+      {
+        "province_city": "Camarines Sur",
+        "name": "VILLAFUERTE, MIGUEL LUIS R.",
+        "district": "5th District",
+        "contact": "8931-6718; local 7499"
+      },
+      {
+        "province_city": "Camarines Sur",
+        "name": "VILLAFUERTE, VINCENZO RENATO LUIGI R.",
+        "district": "2nd District",
+        "contact": "8442-1039; local 7936"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "VILLARICA, LINABELLE RUTH R.",
+        "district": "4th District",
+        "contact": "8951-0943; local 7005"
+      },
+      {
+        "province_city": "Bulacan",
+        "name": "VIOLAGO, MARK CHOLO I.",
+        "district": "3rd District",
+        "contact": "8931-6509; local 7293"
+      },
+      {
+        "province_city": "City of Parañaque",
+        "name": "YAMSUAN, BRIAN RAYMUND S.",
+        "district": "2nd District",
+        "contact": "8951-8929; local 7060"
+      },
+      {
+        "province_city": "Southern Leyte",
+        "name": "YAP, CHRISTOPHERSON \"COCO\" M.",
+        "district": "2nd District",
+        "contact": "8931-6119; local 7257"
+      },
+      {
+        "province_city": "Benguet",
+        "name": "YAP, ERIC GO",
+        "district": "Lone",
+        "contact": "-; local 7790"
+      },
+      {
+        "province_city": "Bohol",
+        "name": "YAP, JOHN GEESNELL \"BABA\"",
+        "district": "1st District",
+        "contact": "8931-5832; local 7384"
+      },
+      {
+        "province_city": "Rizal",
+        "name": "YNARES, REBECCA MARIA ALCANTARA",
+        "district": "1st District",
+        "contact": "8931-5998; local 7357"
+      },
+      {
+        "province_city": "Zamboanga Del Sur",
+        "name": "YU, JEYZEL VICTORIA C.",
+        "district": "2nd District",
+        "contact": "8442-4151; local 7990"
+      },
+      {
+        "province_city": "Zamboanga Del Sur",
+        "name": "YU, JOSEPH KIM C.",
+        "district": "1st District",
         "contact": "8442-4237; local 7914"
       },
       {
-        "province_city": "Zamboanga del Sur",
-        "name": "Yu, Jeyzel Victoria C.",
-        "district": "2nd",
-        "contact": "8931-6074; local 7343"
+        "province_city": "Negros Occidental",
+        "name": "YULO, EMILIO BERNARDINO L.",
+        "district": "5th District",
+        "contact": "8931-5722; local 7376"
       },
       {
-        "province_city": "Zamboanga Sibugay",
-        "name": "Palma, Wilter Y.",
-        "district": "1st",
-        "contact": "8442-3962; local 7958"
+        "province_city": "Davao De Oro",
+        "name": "ZAMORA, MARIA CARMEN S.",
+        "district": "1st District",
+        "contact": "-; local 7793"
       },
       {
-        "province_city": "Zamboanga Sibugay",
-        "name": "Eudela, Antonieta R.",
-        "district": "2nd",
-        "contact": "8366-4311; local 7305"
+        "province_city": "City of San Juan",
+        "name": "ZAMORA, YSABEL MARIA J.",
+        "district": "Lone",
+        "contact": "8442-4032; local 7973"
+      },
+      {
+        "province_city": "Bukidnon",
+        "name": "ZUBIRI, AUDREY KAY T.",
+        "district": "3rd District",
+        "contact": "8951-8957; local 7017"
       }
     ],
     "party_list_representatives": [
       {
-        "party_list": "1-PACMAN",
-        "name": "Romero, Michael L.",
-        "contact": "8442-4227; local 7942"
-      },
-      {
-        "party_list": "1-RIDER",
-        "name": "Bosita, Bonifacio L.",
-        "contact": "8931-6563; local 7290"
-      },
-      {
-        "party_list": "1-RIDER",
-        "name": "Gutierrez, Ramon Rodrigo L.",
-        "contact": "8931-5883; local 7285"
-      },
-      {
         "party_list": "4PS",
-        "name": "Abalos, JC",
+        "name": "ABALOS, JC M.",
         "contact": "8951-4327; local 7286"
       },
       {
-        "party_list": "4PS",
-        "name": "Libanan, Marcelino C.",
-        "contact": "8931-5922; local 7233"
+        "party_list": "TINGOG",
+        "name": "ACIDRE, JUDE A.",
+        "contact": "8931-6381; local 7267"
       },
       {
-        "party_list": "AAMBIS-OWA",
-        "name": "Colada, Lex Anthony Cris A.",
-        "contact": "8442-4067; local 7912"
+        "party_list": "USWAG ILONGGO",
+        "name": "ANG, JAMES \"JOJO\" JR.",
+        "contact": "8442-4212; local 7910"
+      },
+      {
+        "party_list": "UNITED SENIOR CITIZENS",
+        "name": "AQUINO-MAGSAYSAY, MILAGROS",
+        "contact": "8931-5615; local 7331"
+      },
+      {
+        "party_list": "KAPUSO PM",
+        "name": "ARBISON, MUNIR N., JR.",
+        "contact": "8931-6187; local 7228"
+      },
+      {
+        "party_list": "SWERTE",
+        "name": "AYON, ARLYN P.",
+        "contact": "8931-5162; local 7308"
+      },
+      {
+        "party_list": "TRABAHO",
+        "name": "BAUTISTA, JOHANNE MONICH G.",
+        "contact": "8931-5520; local 7336"
+      },
+      {
+        "party_list": "DUMPER-PTDA",
+        "name": "BAUTISTA-LIM, CLAUDINE DIANA D.",
+        "contact": "8931-5547; local 7373"
+      },
+      {
+        "party_list": "MAGBUBUKID",
+        "name": "BELTRAN, FERDINAND \"B1\" L.",
+        "contact": "8931-5177; local 7212"
+      },
+      {
+        "party_list": "SOLID NORTH PARTY",
+        "name": "BERNOS, CHING B.",
+        "contact": "8931-5270; local 7205"
+      },
+      {
+        "party_list": "AGAP",
+        "name": "BRIONES, NICANOR M.",
+        "contact": "8951-8891; local 7011"
+      },
+      {
+        "party_list": "AKBAYAN",
+        "name": "CENDAÑA, PERCIVAL \"PERCI\"",
+        "contact": "8931-6730; local 7288"
+      },
+      {
+        "party_list": "AKO BICOL",
+        "name": "CO, ELIZALDY S.",
+        "contact": "-; local 7787"
+      },
+      {
+        "party_list": "KABATAAN",
+        "name": "CO, RENEE LOUISE M.",
+        "contact": "8931-6292; local 7291"
+      },
+      {
+        "party_list": "APEC",
+        "name": "DAGOOC, SERGIO C.",
+        "contact": "8931-5735; local 7322"
+      },
+      {
+        "party_list": "PHILRECA",
+        "name": "DE JESUS, PRESLEY C.",
+        "contact": "8931-6160; local 7334"
+      },
+      {
+        "party_list": "ML",
+        "name": "DE LIMA, LEILA M.",
+        "contact": "8931-6074; local 7343"
+      },
+      {
+        "party_list": "AKBAYAN",
+        "name": "DIOKNO, JOSE MANUEL TADEO \"CHEL\" I.",
+        "contact": "8931-6313; local 7280"
+      },
+      {
+        "party_list": "PPP",
+        "name": "DUTERTE, HAROLD JAMES T.",
+        "contact": "8931-5473; local 7315"
+      },
+      {
+        "party_list": "COOP NATCCO",
+        "name": "ESPARES, FELIMON M.",
+        "contact": "8931-6229; local 7273"
+      },
+      {
+        "party_list": "AKO BICOL",
+        "name": "GARBIN, ALFREDO JR. A.",
+        "contact": "8442-4044; local 7978"
+      },
+      {
+        "party_list": "CWS",
+        "name": "GARDIOLA, EDWIN L.",
+        "contact": "8951-0918; local 7039"
+      },
+      {
+        "party_list": "ONE COOP",
+        "name": "GLEPA, MARIA KRISTINA JIHAN B.",
+        "contact": "8931-5586; local 7278"
+      },
+      {
+        "party_list": "1-RIDER PARTYLIST",
+        "name": "GUTIERREZ, RAMON RODRIGO L.",
+        "contact": "8931-5883; local 7285"
+      },
+      {
+        "party_list": "AKBAYAN",
+        "name": "ISMULA, DADAH KIRAM",
+        "contact": "8931-6563; local 7290"
       },
       {
         "party_list": "ABANG LINGKOD",
-        "name": "Paduano, Joseph Stephen S.",
-        "contact": "8442-4028; local 7968"
+        "name": "KO, MANUEL \"MANMAN\" O.",
+        "contact": "8931-5144; local 7305"
       },
       {
-        "party_list": "ABONO",
-        "name": "Estrella, Robert Raymund M.",
-        "contact": "8931-5842; local 7403"
+        "party_list": "MANILA TEACHERS",
+        "name": "LACSON, MA.NINA FRANCESCA P.",
+        "contact": "8931-5634; local 7417"
+      },
+      {
+        "party_list": "AKO BISAYA",
+        "name": "LAGON, SONNY \"SL\" L.",
+        "contact": "8952-4991; local 7190"
+      },
+      {
+        "party_list": "PINOY WORKERS",
+        "name": "LEGAZPI, FRANZ VINCENT F.",
+        "contact": "__; local __"
+      },
+      {
+        "party_list": "4PS",
+        "name": "LIBANAN, MARCELINO C.",
+        "contact": "8863-1010; local 7785"
+      },
+      {
+        "party_list": "ALONA",
+        "name": "LOPEZ, MA. CRISTINA TALAVERA",
+        "contact": "8931-5504; local 7378"
+      },
+      {
+        "party_list": "SSS-GSIS PENSYONADO",
+        "name": "MACASAET, ROLANDO LEDESMA",
+        "contact": "8931-5135; local 7200"
+      },
+      {
+        "party_list": "SAGIP",
+        "name": "MARCOLETA, PAOLO HENRY M.",
+        "contact": "8936-6036; local 7742"
+      },
+      {
+        "party_list": "TUCP",
+        "name": "MENDOZA, RAYMOND DEMOCRITO C.",
+        "contact": "8951-3011; local 7265"
+      },
+      {
+        "party_list": "4K",
+        "name": "MONTES, IRIS MARIE DEMESA",
+        "contact": "8931-5514; local 7414"
+      },
+      {
+        "party_list": "BH",
+        "name": "NAZAL, ROBERT",
+        "contact": "8931-5381; local 7392"
+      },
+      {
+        "party_list": "PUSONG PINOY",
+        "name": "NISAY, JERNIE JETT V.",
+        "contact": "8936-7552; local 7744"
+      },
+      {
+        "party_list": "ASENSO PINOY",
+        "name": "OAMINAL, HENRY \"INDY\" F. JR.",
+        "contact": "8931-5116; local 7320"
+      },
+      {
+        "party_list": "1TAHANAN",
+        "name": "ODUCADO, NATHANIEL M.",
+        "contact": "8931-4709; local 7396"
+      },
+      {
+        "party_list": "SENIOR CITIZENS PARTYLIST",
+        "name": "ORDANES, RODOLFO \"OMPONG\" M.",
+        "contact": "8931-6427; local 7210"
+      },
+      {
+        "party_list": "GP (GALING SA PUSO)",
+        "name": "PADIERNOS, JAN \"ATTY. JP\"",
+        "contact": "8951-1354; local 7023"
+      },
+      {
+        "party_list": "FPJ PANDAY BAYANIHAN",
+        "name": "POE, BRIAN",
+        "contact": "8931-5112; local 7387"
+      },
+      {
+        "party_list": "AGIMAT",
+        "name": "REVILLA, BRYAN B.",
+        "contact": "8931-5631; local 7388"
+      },
+      {
+        "party_list": "BICOL SARO",
+        "name": "RIDON, TERRY L.",
+        "contact": "8951-8923; local 7036"
+      },
+      {
+        "party_list": "ABAMIN",
+        "name": "RODRIGUEZ, MAXIMO B., JR.",
+        "contact": "__; local __"
+      },
+      {
+        "party_list": "TINGOG",
+        "name": "ROMUALDEZ, ANDREW JULIAN K.",
+        "contact": "8931-5148; local 7276"
+      },
+      {
+        "party_list": "TINGOG",
+        "name": "ROMUALDEZ, YEDDA MARIE K.",
+        "contact": "8931-5148; local 7276"
+      },
+      {
+        "party_list": "KAMANGGAGAWA",
+        "name": "SAN FERNANDO, ELIJAH RUMBAOA",
+        "contact": "8931-5484; local 7428"
+      },
+      {
+        "party_list": "AKO ILOCANO AKO",
+        "name": "SINGSON, RICHELLE",
+        "contact": "8931-8534; local 7216"
+      },
+      {
+        "party_list": "KUSUG TAUSUG",
+        "name": "TAN, AIMAN T.",
+        "contact": "8931-3488; local 7434"
+      },
+      {
+        "party_list": "KAMALAYAN",
+        "name": "TANCHAY, CAROLINE L.",
+        "contact": "8442-4366; local 7928"
+      },
+      {
+        "party_list": "KM NGAYON NA",
+        "name": "TERENG, KENNETH PAOLO",
+        "contact": "8931-1995; local 7471"
+      },
+      {
+        "party_list": "TGP",
+        "name": "TEVES, JOSE \"BONG\" J., JR.",
+        "contact": "-; local 7796"
       },
       {
         "party_list": "ACT TEACHERS",
-        "name": "Castro, France L.",
+        "name": "TINIO, ANTONIO L.",
         "contact": "8931-6193; local 7289"
       },
       {
         "party_list": "ACT-CIS",
-        "name": "Tulfo, Erwin T.",
-        "contact": "8931-5001; local 7782"
-      },
-      {
-        "party_list": "ACT-CIS",
-        "name": "Tulfo, Jocelyn P.",
-        "contact": "8931-5388; local 7395"
-      },
-      {
-        "party_list": "ACT-CIS",
-        "name": "Yap, Edvic G.",
-        "contact": "8931-6317; local 7234"
-      },
-      {
-        "party_list": "AGAP",
-        "name": "Briones, Nicanor M.",
-        "contact": "8951-8891; local 7011"
-      },
-      {
-        "party_list": "AGIMAT",
-        "name": "Revilla, Bryan B.",
-        "contact": "8931-5631; local 7388"
-      },
-      {
-        "party_list": "AGRI",
-        "name": "Lee, Wilbert T.",
-        "contact": "8931-6615; local 7300"
-      },
-      {
-        "party_list": "AKBAYAN",
-        "name": "Cendaña, Percival V.",
-        "contact": "8931-6617; local 7304"
-      },
-      {
-        "party_list": "AKO BICOL",
-        "name": "Bongalon, Raul Angelo D.",
-        "contact": "8931-5823; local 7204"
-      },
-      {
-        "party_list": "AKO BICOL",
-        "name": "Co, Elizaldy S.",
-        "contact": "8931-5001; local 7978"
-      },
-      {
-        "party_list": "AKO BISAYA",
-        "name": "Lagon, Sonny L.",
-        "contact": "8952-4991; local 7190"
-      },
-      {
-        "party_list": "AKO ILOCANO AKO",
-        "name": "Singson, Richelle",
-        "contact": "8931-8534; local 7216"
-      },
-      {
-        "party_list": "ALONA",
-        "name": "Villaraza-Suarez, Anna Marie",
-        "contact": "8931-5445; local 7378"
-      },
-      {
-        "party_list": "ANAKALUSUGAN",
-        "name": "Reyes, Ray T.",
-        "contact": "8931-5106; local 7354"
-      },
-      {
-        "party_list": "ANG PROBINSYANO",
-        "name": "Delos Santos, Alfred C.",
-        "contact": "8931-5691; local 7248"
-      },
-      {
-        "party_list": "ANGAT",
-        "name": "Tamayo, Reynaldo S.",
-        "contact": "8931-6187; local 7228"
-      },
-      {
-        "party_list": "APEC",
-        "name": "Dagooc, Sergio C.",
-        "contact": "8931-5582; local 7418"
-      },
-      {
-        "party_list": "API",
-        "name": "Morden, Michael M.",
-        "contact": "8931-6686; local 7282"
-      },
-      {
-        "party_list": "BH",
-        "name": "Herrera, Bernadette",
-        "contact": "8931-5381; local 7392"
-      },
-      {
-        "party_list": "BHW",
-        "name": "Co, Angelica Natasha",
-        "contact": "8932-3993; local 7307"
-      },
-      {
-        "party_list": "BICOL SARO",
-        "name": "Yamsuan, Brian Raymund S.",
-        "contact": "8951-8923; local 7036"
-      },
-      {
-        "party_list": "CIBAC",
-        "name": "Villanueva, Eduardo C.",
-        "contact": "8931-5442; local 7356"
-      },
-      {
-        "party_list": "COOP-NATCCO",
-        "name": "Espares, Felimon M.",
-        "contact": "8931-6229; local 7273"
-      },
-      {
-        "party_list": "CWS",
-        "name": "Gardiola, Edwin L.",
-        "contact": "8951-0918; local 7039"
-      },
-      {
-        "party_list": "DUMPER PTDA",
-        "name": "BautistaLim-, Claudine Diana D.",
-        "contact": "8931-5547; local 7373"
-      },
-      {
-        "party_list": "DUTERTE YOUTH",
-        "name": "Cardema, Drixie Mae S.",
-        "contact": "8931-6026; local 7435"
-      },
-      {
-        "party_list": "GABRIELA",
-        "name": "Brosas, Arlene D.",
-        "contact": "8442-4207; local 7998"
-      },
-      {
-        "party_list": "GP PARTY",
-        "name": "Padienos, Jose Gay G.",
-        "contact": "8951-1354; local 7023"
-      },
-      {
-        "party_list": "KABATAAN",
-        "name": "Manuel, Raoul Danniel A.",
-        "contact": "8931-6292; local 7291"
-      },
-      {
-        "party_list": "KABAYAN",
-        "name": "Salo Ron P.",
-        "contact": "8951-8965; local 7021"
-      },
-      {
-        "party_list": "KALINGA",
-        "name": "Saulog, Irene Gay F.",
-        "contact": "8931-5974; local 7424"
-      },
-      {
-        "party_list": "KUSUG TAUSUG",
-        "name": "Tan-Tambut, Shernee A.",
-        "contact": "8931-3488; local 7434"
+        "name": "TULFO, JOCELYN P.",
+        "contact": "8931-5388/8293-9209; local 7395"
       },
       {
         "party_list": "LPGMA",
-        "name": "Ty, Allan U.",
+        "name": "TY, ALLAN U.",
         "contact": "8931-6697; local 7263"
       },
       {
         "party_list": "MALASAKIT@BAYANIHAN",
-        "name": "Golez, Anthony Rolando Jr. T.",
-        "contact": "8951-8974; local 7051"
+        "name": "VELOSO, GIRLIE E.",
+        "contact": "8931-5311; local 7310"
       },
       {
-        "party_list": "MANILA TEACHERS",
-        "name": "Lacson, Virgilio S.",
-        "contact": "8931-5634; local 7417"
+        "party_list": "CIBAC",
+        "name": "VILLANUEVA, EDUARDO \"BRO. EDDIE\" C.",
+        "contact": "8931-5442; local 7356"
       },
       {
-        "party_list": "MARINO",
-        "name": "Gonzalez, Sandro L.",
-        "contact": "8642-6012; local 7340"
+        "party_list": "ACT-CIS",
+        "name": "YAP, EDVIC G.",
+        "contact": "8931-6317; local 7234"
       },
       {
-        "party_list": "OFW",
-        "name": "Magsino, Marissa",
-        "contact": "8931-9836; local 7295"
+        "party_list": "NANAY",
+        "name": "YATCO, FLORABEL C.",
+        "contact": "8931-6283; local 7252"
       },
       {
-        "party_list": "PATROL",
-        "name": "Bustos, Jorge",
-        "contact": "8931-6121; local 7229"
-      },
-      {
-        "party_list": "PBA",
-        "name": "Nograles, Margarita B.",
-        "contact": "8951-8945; local 7019"
-      },
-      {
-        "party_list": "PHILRECA",
-        "name": "De Jesus, Presley C.",
-        "contact": "8931-6244; local 7437"
-      },
-      {
-        "party_list": "PINUNO",
-        "name": "Guintu, Ivan Howard A.",
-        "contact": "8951-1006; local 7029"
-      },
-      {
-        "party_list": "PROBINSYANO AKO",
-        "name": "Fariñas, Rudys Caesar I G.",
-        "contact": "8442-4115; local 7976"
-      },
-      {
-        "party_list": "PUSONG PINΟΥ",
-        "name": "Nisay, Jernie Jett V.",
-        "contact": "8936-7552; local 7744"
-      },
-      {
-        "party_list": "SAGIP",
-        "name": "Marcoleta, Rodante D.",
-        "contact": "8936-6036; local 7742"
-      },
-      {
-        "party_list": "SAGIP",
-        "name": "Tanchay, Caroline L.",
-        "contact": "8896-9888; local 7920"
-      },
-      {
-        "party_list": "SENIOR CITIZENS",
-        "name": "Ordanes, Rodolfo M.",
-        "contact": "8931-6427; local 7210"
-      },
-      {
-        "party_list": "TGP",
-        "name": "Teves, Jose Jr. J.",
-        "contact": "8931-5001; local 7796"
-      },
-      {
-        "party_list": "TINGOG",
-        "name": "Acidre, Jude A.",
-        "contact": "8931-6381; local 7267"
-      },
-      {
-        "party_list": "TINGOG",
-        "name": "Romualdez, Yedda Marie K.",
-        "contact": "8931-6277; local 7543"
-      },
-      {
-        "party_list": "TUCP",
-        "name": "Mendoza, Raymond Democrito C.",
-        "contact": "8951-3011; local 7265"
-      },
-      {
-        "party_list": "TUTOK TO WIN",
-        "name": "Verzosa, Samuel Jr. S.",
-        "contact": "8931-5514; local 7414"
-      },
-      {
-        "party_list": "UNITED SENIOR CITIZENS",
-        "name": "Aquino-Magsaysay, Milagros",
-        "contact": "8931-5001; local 7331"
-      },
-      {
-        "party_list": "USWAG ILONGGO",
-        "name": "Ang, James Jr. A.",
-        "contact": "8442-5615; local 7910"
+        "party_list": "GABRIELA",
+        "name": "ELAGO, SARAH JANE",
+        "contact": "__; local __"
       }
     ],
     "house_committees": {
       "chairpersons": [
         {
           "committee": "Accounts",
-          "name": "YEDDA MARIE K. ROMUALDEZ"
+          "name": "MARICAR ZAMORA"
         },
         {
           "committee": "Agrarian Reform",
-          "name": "SOLOMON R. CHUNGALAO"
+          "name": "ELEANOR BEGTANG"
         },
         {
           "committee": "Agriculture and Food",
-          "name": "WILFRIDO MARK M. ENVERGA"
+          "name": "MARK ENVERGA"
         },
         {
           "committee": "Appropriations",
-          "name": "ELIZALDY S. CO"
+          "name": "MIKAELA SUANSING"
         },
         {
           "committee": "Aquaculture and Fisheries Resources",
-          "name": "BRIAN RAYMUND S. YAMSUAN"
+          "name": "HORI HORIBATA"
         },
         {
           "committee": "Banks and Financial Intermediaries",
-          "name": "IRWIN C. TIENG"
+          "name": "IRWIN TIENG"
         },
         {
           "committee": "Basic Education and Culture",
-          "name": "ROMAN T. ROMULO"
+          "name": "ROMAN ROMULO"
         },
         {
           "committee": "Civil Service and Professional Regulation",
-          "name": "KRISTINE ALEXIE B. TUTOR"
+          "name": "LAARNI ROQUE"
         },
         {
           "committee": "Climate Change",
-          "name": "EDGAR M. CHATTO"
+          "name": "ANIELA TOLENTINO"
         },
         {
           "committee": "Constitutional Amendments",
-          "name": "RUFUS B. RODRIGUEZ"
+          "name": "RUFUS RODRIGUEZ"
         },
         {
           "committee": "Cooperatives Development",
-          "name": "NICANOR M. BRIONES"
+          "name": "FELIMON ESPARES"
         },
         {
           "committee": "Dangerous Drugs",
-          "name": "ROBERT ACE S. BARBERS"
+          "name": "JONATHAN KEITH FLORES"
         },
         {
           "committee": "Disaster Resilience",
-          "name": "ALAN I B. ECLEO"
+          "name": "JOSEPH LARA"
         },
         {
           "committee": "Ecology",
-          "name": "MARLYN B. ALONTE"
+          "name": "VANVAN AUMENTADO"
         },
         {
           "committee": "Economic Affairs",
-          "name": "GERARDO P. VALMAYOR JR."
+          "name": "ANTONIO LEGARDA JR."
         },
         {
           "committee": "Energy",
-          "name": "LORD ALLAN JAY Q. VELASCO"
+          "name": "JOSE ALVAREZ"
         },
         {
           "committee": "Ethics and Privileges",
-          "name": "FELIMON M. ESPARES"
+          "name": "JONATHAN CLEMENT ABALOS"
         },
         {
-          "committee": "Flagship Programs And Projects",
-          "name": "CLAUDE P. BAUTISTA"
+          "committee": "Flagship Programs and Projects",
+          "name": "JOSE ARTURO GARCIA JR."
         },
         {
           "committee": "Foreign Affairs",
-          "name": "MARIA RACHEL J. ARENAS"
+          "name": "MARIA RACHEL ARENAS"
         },
         {
           "committee": "Games and Amusements",
-          "name": "ANTONIO A. FERRER"
+          "name": "ANTONIO FERRER"
         },
         {
           "committee": "Good Government and Public Accountability",
-          "name": "JOEL R. CHUA"
+          "name": "JOEL CHUA"
         },
         {
           "committee": "Government Enterprises and Privatization",
-          "name": "EDWIN L. OLIVAREZ"
+          "name": "ERIC OLIVAREZ"
         },
         {
           "committee": "Government Reorganization",
-          "name": "JONATHAN KEITH T. FLORES"
+          "name": "SALVADOR PLEYTO"
         },
         {
           "committee": "Health",
-          "name": "CIRIACO B. GATO JR."
+          "name": "JUN GATO"
         },
         {
           "committee": "Higher and Technical Education",
-          "name": "MARK O. GO"
+          "name": "JUDE ACIDRE"
         },
         {
           "committee": "Housing and Urban Development",
-          "name": "FLORIDA P. ROBES"
+          "name": "MARIVIC CO-PILAR"
         },
         {
           "committee": "Human Rights",
-          "name": "BIENVENIDO M. ABANTE JR."
+          "name": "BENNY ABANTE"
         },
         {
           "committee": "Indigenous Cultural Communities and Indigenous Peoples",
-          "name": "ALLEN JESSE C. MANGAOANG"
+          "name": "MAURICIO DOMOGAN"
         },
         {
           "committee": "Information and Communications Technology",
-          "name": "TOBIAS REYNALD M. TIANGCO"
+          "name": "MIGUEL LUIS VILLAFUERTE"
         },
         {
-          "committee": "Inter-parliamentary Relations And Diplomacy",
-          "name": "GLONA G. LABADLABAD"
+          "committee": "Inter-Parliamentary Relations and Diplomacy",
+          "name": "GINA DE VENECIA"
         },
         {
           "committee": "Justice",
-          "name": "JULIET MARIE DE LEON FERRER"
+          "name": "GERVILLE LUISTRO"
         },
         {
           "committee": "Labor and Employment",
-          "name": "JUAN FIDEL FELIPE F. NOGRALES"
+          "name": "JOLO REVILLA"
         },
         {
           "committee": "Legislative Franchises",
-          "name": "GUS S. TAMBUNTING"
+          "name": "JEFFREY FERRER"
         },
         {
           "committee": "Local Government",
-          "name": "MANUEL T. SAGARBARRIA"
+          "name": "FLORENCIO MIRAFLORES"
         },
         {
           "committee": "Metro Manila Development",
-          "name": "ROLANDO M. VALERIANO"
+          "name": "DEAN ASISTIO"
         },
         {
           "committee": "Micro, Small and Medium Enterprise Development",
-          "name": "CHRISTIAN S. UNABIA"
+          "name": "LEODY TARRIELA"
         },
         {
           "committee": "Mindanao Affairs",
-          "name": "YEVGENY VINCENTE B. EMANO"
+          "name": "JASON ALMONTE"
         },
         {
           "committee": "Muslim Affairs",
-          "name": "MOHAMAD KHALID Q. DIMAPORO"
+          "name": "DIMPLE MASTURA"
         },
         {
           "committee": "National Defense and Security",
-          "name": "OSCAR G. MALAPITAN"
+          "name": "OSCAR MALAPITAN"
         },
         {
           "committee": "Natural Resources",
-          "name": "ALFREDO D. MARAÑON III"
+          "name": "ALFREDO MARAÑON III"
         },
         {
           "committee": "North Luzon Growth Quadrangle",
@@ -2442,176 +2459,165 @@
         },
         {
           "committee": "Overseas Workers Affairs",
-          "name": "JUDE A. ACIDRE"
+          "name": "BRYAN REVILLA"
         },
         {
           "committee": "People's Participation",
-          "name": "EMMARIE OUANO-DIZON"
+          "name": "MARCELINO TEODORO"
         },
         {
           "committee": "Population and Family Relations",
-          "name": "IAN PAUL L. DY"
+          "name": "ROGER MERCADO"
         },
         {
           "committee": "Poverty Alleviation",
-          "name": "MICHAEL L. ROMERO"
+          "name": "GLORIA MACAPAGAL ARROYO"
         },
         {
           "committee": "Public Accounts",
-          "name": "JOSEPH STEPHEN S. PADUANO"
+          "name": "TERRY RIDON"
         },
         {
           "committee": "Public Information",
-          "name": "JOSE S. AQUINO II"
+          "name": "LORDAN SUAN"
         },
         {
           "committee": "Public Order and Safety",
-          "name": "DAN S. FERNANDEZ"
+          "name": "ROLANDO VALERIANO"
         },
         {
           "committee": "Public Works and Highways",
-          "name": "ROMEO S. MOMO"
+          "name": "ROMEO MOMO"
         },
         {
           "committee": "Revision of Laws",
-          "name": "EDWARD VERA PEREZ MACEDA"
+          "name": "DINO TANJUATCO"
         },
         {
           "committee": "Rules",
-          "name": "MANUEL JOSE M. DALIPE"
+          "name": "SANDRO MARCOS"
         },
         {
           "committee": "Rural Development",
-          "name": "WILTON T. KHO"
+          "name": "WILTON KHO"
         },
         {
           "committee": "Science and Technology",
-          "name": "CARLITO S. MARQUEZ"
+          "name": "JULES LEDESMA"
         },
         {
           "committee": "Senior Citizens",
-          "name": "RODOLFO M. ORDANES"
+          "name": "MILAGROS MAGSAYSAY"
         },
         {
           "committee": "Social Services",
-          "name": "ROSANNA V. VERGARA"
+          "name": "CHEENO MIGUEL ALMARIO"
         },
         {
           "committee": "Suffrage and Electoral Reforms",
-          "name": "MAXIMO Y. DALOG JR."
+          "name": "VACANT"
         },
         {
           "committee": "Sustainable Development Goals",
-          "name": "EDUARDO C. VILLANUEVA"
+          "name": "JOSE MANUEL ALBA"
         },
         {
           "committee": "Tourism",
-          "name": "ELEANDRO JESUS F. MADRONA"
+          "name": "ELEANDRO JESUS MADRONA"
         },
         {
           "committee": "Trade and Industry",
-          "name": "FERJENEL G. BIRON"
+          "name": "MAXIMO DALOG"
         },
         {
           "committee": "Transportation",
-          "name": "ROMEO M. ACOP"
+          "name": "FRANZ PUMAREN"
         },
         {
           "committee": "Veterans Affairs and Welfare",
-          "name": "JORGE BUSTOS"
+          "name": "RUDY CAOAGDAN"
         },
         {
           "committee": "Visayas Development",
-          "name": "LOLITA T. JAVIER"
+          "name": "LOLITA JAVIER"
         },
         {
           "committee": "Ways and Means",
-          "name": "JOEY S. SALCEDA"
+          "name": "MIRO QUIMBO"
         },
         {
           "committee": "Welfare of Children",
-          "name": "ANGELICA NATASHA CO"
+          "name": "RICHELLE SINGSON-MICHAEL"
         },
         {
           "committee": "Women and Gender Equality",
-          "name": "GERALDINE B. ROMAN"
+          "name": "ANN MATIBAG"
         },
         {
           "committee": "Youth and Sports Development",
-          "name": "FAUSTINO MICHAEL CARLOS T. DY III"
+          "name": "FAUSTINO MICHAEL CARLOS DY III"
         }
       ]
     },
     "special_committees": [
       {
-        "committee": "Ad Hoc Committee on Agriculture Services Convergence Initiative",
-        "chairperson": "MICHAEL JOHN R. DUAVIT"
-      },
-      {
-        "committee": "Ad Hoc Committee on Marawi Rehabilitation and Victims Compensation",
-        "chairperson": "ZIA ALONTO ADIONG"
-      },
-      {
-        "committee": "Ad Hoc Committee on the Relocation Commitee of the House of Representatives Complex",
-        "chairperson": "RICARDO S. CRUZ JR."
-      },
-      {
         "committee": "Bases Conversion",
-        "chairperson": "JEFFERSON F. KHONGHUN"
+        "chairperson": "ARTHUR ROBES"
       },
       {
         "committee": "Bicol Affairs and Economic Development",
-        "chairperson": "JOSEFINA B. TALLADO"
+        "chairperson": "LEO RODRIGUEZ"
       },
       {
         "committee": "Creative Industries",
-        "chairperson": "CHRISTOPHER V.P. DE VENECIA"
+        "chairperson": "JAVI BENITEZ"
       },
       {
         "committee": "East ASEAN Growth Area",
-        "chairperson": "PRINCESS RIHAN M. SAKALURAN"
+        "chairperson": "MAXIMO RODRIGUEZ JR."
       },
       {
         "committee": "Food Security",
-        "chairperson": "LUISA LLOREN CUARESMA"
+        "chairperson": "ADRIAN SALCEDA"
       },
       {
         "committee": "Globalization and WTO",
-        "chairperson": "JOSEPH L. LARA"
+        "chairperson": "ALEXIE TUTOR"
       },
       {
         "committee": "Land Use",
-        "chairperson": "FRANCISCO JOSE F. MATUGAS II"
+        "chairperson": "FRANCISCO MATUGAS"
       },
       {
         "committee": "Nuclear Energy",
-        "chairperson": "MARK O. COJUANGCO"
+        "chairperson": "MARK COJUANGCO"
       },
       {
         "committee": "Peace, Reconciliation and Unity",
-        "chairperson": "SHERNEE A. TAN-TAMBUT"
+        "chairperson": "SAMIER TAN"
       },
       {
-        "committee": "Persons With Disabilities",
-        "chairperson": "ALFELITO M. BASCUG"
+        "committee": "Persons with Disabilities",
+        "chairperson": "ALFEL BASCUG"
       },
       {
         "committee": "Reforestation",
-        "chairperson": "ELEANOR C. BULUT-BEGTANG"
+        "chairperson": "VACANT"
       },
       {
         "committee": "Southern Tagalog Development",
-        "chairperson": "RUTH MARIANO-HERNANDEZ"
+        "chairperson": "RAMIL HERNANDEZ"
       },
       {
         "committee": "Strategic Intelligence",
-        "chairperson": "MARIA CARMEN S. ZAMORA"
+        "chairperson": "ALEXANDER PIMENTEL"
       },
       {
         "committee": "West Philippine Sea",
-        "chairperson": "NEPTALI M. GONZALES II"
+        "chairperson": "MARIA ANGELA GARCIA"
       }
-    ],
+    ]
+    ,
     "secretariat_officials": [
       {
         "role": "Secretary General",
