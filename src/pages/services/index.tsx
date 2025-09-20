@@ -7,6 +7,7 @@ import {
   X,
   Globe,
   ExternalLink,
+  BookOpen,
 } from 'lucide-react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card, CardContent } from '../../components/ui/Card'
@@ -29,6 +30,7 @@ import transportDrivingServices from '../../data/services/transport-driving.json
 import uncategorizedServices from '../../data/services/uncategorized.json'
 import Button from '../../components/ui/Button'
 import { Helmet } from 'react-helmet-async'
+import { getCharterForService } from '../../data/charters'
 
 // Combine all services
 const allServices = [
@@ -77,6 +79,7 @@ interface Category {
 }
 
 const ITEMS_PER_PAGE = 16
+
 
 export default function ServicesPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -274,12 +277,34 @@ export default function ServicesPage() {
           </p>
         </section>
 
-        {/* Featured Services */}
-        {/* <section className="mb-12">
+        {/* Featured Resources */}
+        <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             Featured Resources
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link to="/services/charters" className="group">
+              <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-primary-300 group-hover:transform group-hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-full bg-blue-50 text-blue-600 mr-4">
+                      <CheckCircle2 className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      Citizen's Charters
+                    </h3>
+                  </div>
+                  <p className="text-gray-800 mb-4">
+                    Visual step-by-step guides for government processes. Interactive
+                    flowcharts, timelines, and checklists with progress tracking.
+                  </p>
+                  <div className="flex items-center text-blue-600 font-medium">
+                    <span>Explore Charters</span>
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
             <Link to="/services/websites" className="group">
               <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-primary-300 group-hover:transform group-hover:-translate-y-1">
                 <CardContent className="p-6">
@@ -304,7 +329,7 @@ export default function ServicesPage() {
               </Card>
             </Link>
           </div>
-        </section> */}
+        </section>
 
         {/* Mobile Category Toggle */}
         <div className="md:hidden mb-6">
@@ -492,15 +517,29 @@ export default function ServicesPage() {
                         >
                           {service.url}
                         </a>
-                        <a
-                          href={service.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button className="bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4">
-                            View Service
-                          </Button>
-                        </a>
+                        <div className="flex gap-2">
+                          <a
+                            href={service.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button className="w-full bg-blue-600 text-white rounded-lg px-4 py-1 text-xs">
+                              View Service
+                            </Button>
+                          </a>
+                          {(() => {
+                            const charterId = getCharterForService(service.service)
+                            return charterId ? (
+                              <Link to={`/services/charters/${charterId}`}>
+                                <Button className="bg-green-600 text-white rounded-lg px-3 py-1 text-xs flex items-center gap-1">
+                                  <BookOpen className="h-3 w-3" />
+                                  Guide
+                                </Button>
+                              </Link>
+                            ) : null
+                          })()}
+                        </div>
 
                         {/* <div className="flex items-center text-sm text-gray-800">
                           <time

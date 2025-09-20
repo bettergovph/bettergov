@@ -73,6 +73,8 @@ import ContractorDetail from './pages/flood-control-projects/contractors/[contra
 
 // Services Pages
 import WebsitesDirectory from './pages/services/websites'
+import ChartersIndexPage from './pages/services/charters'
+import CharterDetailPage from './pages/services/charters/[id]'
 
 // Sitemap Page
 import SitemapPage from './pages/sitemap'
@@ -131,8 +133,10 @@ function App() {
             element={<ContractorDetail />}
           />
 
-          {/* Services Routes */}
-          <Route path="/services/websites" element={<WebsitesDirectory />} />
+            {/* Services Routes */}
+            <Route path="/services/websites" element={<WebsitesDirectory />} />
+            <Route path="/services/charters" element={<ChartersIndexPage />} />
+            <Route path="/services/charters/:id" element={<CharterDetailPage />} />
 
           {/* Travel Routes */}
           <Route path="/travel/visa" element={<VisaPage />} />

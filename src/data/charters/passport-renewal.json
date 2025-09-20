@@ -1,0 +1,230 @@
+{
+  "id": "passport-renewal-dfa",
+  "serviceId": "passport-renewal",
+  "title": "Philippine Passport Renewal",
+  "description": "Complete guide for renewing your Philippine passport including online application and appointment booking",
+  "overview": "Renewing your Philippine passport involves online application, document preparation, appointment scheduling, and processing. The entire process typically takes 10-15 working days for regular processing.",
+  "lastUpdated": "2025-01-15T00:00:00.000Z",
+  "version": "2.1",
+
+  "agencies": [
+    {
+      "id": "dfa",
+      "name": "Department of Foreign Affairs",
+      "shortName": "DFA",
+      "website": "https://dfa.gov.ph",
+      "contactInfo": {
+        "hotline": "02-8834-4000",
+        "email": "info@dfa.gov.ph"
+      },
+      "color": "#1e40af"
+    },
+    {
+      "id": "psa",
+      "name": "Philippine Statistics Authority",
+      "shortName": "PSA",
+      "website": "https://psa.gov.ph",
+      "contactInfo": {
+        "hotline": "1388"
+      },
+      "color": "#059669"
+    }
+  ],
+
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "Prepare Required Documents",
+      "description": "Gather all necessary documents before starting the online application",
+      "agency": "self",
+      "duration": {
+        "min": 30,
+        "max": 120,
+        "unit": "minutes"
+      },
+      "requirements": [
+        "Current/expired passport",
+        "Birth certificate (PSA issued)",
+        "Valid government-issued ID",
+        "Marriage certificate (if applicable)",
+        "2x2 ID photos (if photo studio not available at DFA office)"
+      ],
+      "outputs": ["Complete document set"],
+      "type": "document_submission",
+      "position": { "x": 100, "y": 100 },
+      "connections": ["step-2"]
+    },
+    {
+      "id": "step-2",
+      "title": "Online Application",
+      "description": "Fill out the passport application form online through the DFA website",
+      "agency": "dfa",
+      "duration": {
+        "min": 15,
+        "max": 30,
+        "unit": "minutes"
+      },
+      "requirements": [
+        "Internet connection",
+        "Valid email address",
+        "Prepared documents for reference"
+      ],
+      "outputs": [
+        "Application reference number",
+        "Appointment scheduling access"
+      ],
+      "type": "process",
+      "position": { "x": 300, "y": 100 },
+      "connections": ["step-3"]
+    },
+    {
+      "id": "step-3",
+      "title": "Schedule Appointment",
+      "description": "Book an appointment slot at your preferred DFA office",
+      "agency": "dfa",
+      "duration": {
+        "min": 5,
+        "max": 15,
+        "unit": "minutes"
+      },
+      "requirements": [
+        "Application reference number",
+        "Preferred DFA office location",
+        "Available appointment slots"
+      ],
+      "outputs": ["Appointment confirmation"],
+      "type": "process",
+      "position": { "x": 500, "y": 100 },
+      "connections": ["step-4"]
+    },
+    {
+      "id": "step-4",
+      "title": "Pay Application Fee",
+      "description": "Pay the passport renewal fee online or at the DFA office",
+      "agency": "dfa",
+      "duration": {
+        "min": 5,
+        "max": 10,
+        "unit": "minutes"
+      },
+      "cost": {
+        "amount": 950,
+        "currency": "PHP",
+        "description": "Regular processing (10-15 working days)"
+      },
+      "requirements": [
+        "Valid credit/debit card or cash",
+        "Application reference number"
+      ],
+      "outputs": ["Payment confirmation receipt"],
+      "type": "payment",
+      "position": { "x": 700, "y": 100 },
+      "connections": ["step-5"]
+    },
+    {
+      "id": "step-5",
+      "title": "Attend Appointment",
+      "description": "Visit the DFA office on your scheduled appointment date and time",
+      "agency": "dfa",
+      "duration": {
+        "min": 30,
+        "max": 120,
+        "unit": "minutes"
+      },
+      "requirements": [
+        "All original documents",
+        "Appointment confirmation",
+        "Payment receipt",
+        "Valid ID"
+      ],
+      "outputs": [
+        "Biometric data captured",
+        "Document verification completed",
+        "Claim stub received"
+      ],
+      "type": "process",
+      "position": { "x": 500, "y": 300 },
+      "connections": ["step-6"]
+    },
+    {
+      "id": "step-6",
+      "title": "Processing Period",
+      "description": "Wait for passport processing at the DFA facility",
+      "agency": "dfa",
+      "duration": {
+        "min": 10,
+        "max": 15,
+        "unit": "days"
+      },
+      "requirements": ["Patience"],
+      "outputs": ["Processed passport ready for release"],
+      "type": "wait",
+      "position": { "x": 300, "y": 300 },
+      "connections": ["step-7"]
+    },
+    {
+      "id": "step-7",
+      "title": "Passport Release",
+      "description": "Claim your new passport from the DFA office",
+      "agency": "dfa",
+      "duration": {
+        "min": 15,
+        "max": 30,
+        "unit": "minutes"
+      },
+      "requirements": [
+        "Claim stub",
+        "Valid ID",
+        "Representative authorization (if claiming through representative)"
+      ],
+      "outputs": ["New Philippine passport"],
+      "type": "process",
+      "position": { "x": 100, "y": 300 },
+      "connections": []
+    }
+  ],
+
+  "paths": [
+    {
+      "id": "standard-renewal",
+      "name": "Standard Renewal Process",
+      "description": "Regular passport renewal for citizens with complete documents",
+      "estimatedDuration": "10-15 working days",
+      "steps": ["step-1", "step-2", "step-3", "step-4", "step-5", "step-6", "step-7"]
+    }
+  ],
+
+  "generalRequirements": [
+    "Filipino citizenship",
+    "Valid reason for passport renewal",
+    "Complete required documents",
+    "Payment of applicable fees"
+  ],
+
+  "importantNotes": [
+    "Schedule your appointment at least 2 weeks in advance",
+    "Bring original documents for verification",
+    "Processing time may vary during peak seasons",
+    "Expedited processing available for urgent travel (additional fee applies)",
+    "Passport validity: 10 years for adults, 5 years for minors"
+  ],
+
+  "relatedServices": [
+    "passport-application-first-time",
+    "passport-lost-damaged",
+    "authentication-documents"
+  ],
+
+  "category": "Passport and Travel",
+  "subcategory": "Travel",
+  "tags": ["passport", "travel", "dfa", "renewal", "documents"],
+  "difficulty": "medium",
+
+  "totalSteps": 7,
+  "estimatedTotalDuration": "10-15 working days",
+  "estimatedTotalCost": {
+    "min": 950,
+    "max": 950,
+    "currency": "PHP"
+  }
+}
