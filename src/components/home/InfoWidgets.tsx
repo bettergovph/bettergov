@@ -154,7 +154,7 @@ const InfoWidgets: React.FC = () => {
                         Currency
                       </th>
                       <th className="pr-6 py-4 text-right text-xs font-semibold text-gray-800 uppercase tracking-wider">
-                        Rate
+                        Peso Rate
                       </th>
                     </tr>
                   </thead>
