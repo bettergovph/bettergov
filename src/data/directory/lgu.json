@@ -13916,6 +13916,16 @@
         "province": "Davao del Sur",
         "cities": [
           {
+            "city": "Davao City",
+            "mayor": {
+              "name": "RODRIGO ROA DUTERTE"
+            },
+            "vice_mayor": {
+              "name": "SEBASTIAN “BASTE” DUTERTE",
+              "contact": "241-1000 Local 265/266"
+            }
+          },
+          {
             "city": "Digos",
             "mayor": {
               "name": "JOSEF F. CAGAS"
