@@ -159,15 +159,15 @@ Our E2E tests cover:
 E2E tests are located in the `e2e/` directory. Example test structure:
 
 ```typescript
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test';
 
 test('user can search for services', async ({ page }) => {
-  await page.goto('/')
-  await page.getByPlaceholder(/Search for services/i).fill('passport')
-  await page.getByPlaceholder(/Search for services/i).press('Enter')
-  await expect(page).toHaveURL('/search')
-  await expect(page.locator('text=/passport/i')).toBeVisible()
-})
+  await page.goto('/');
+  await page.getByPlaceholder(/Search for services/i).fill('passport');
+  await page.getByPlaceholder(/Search for services/i).press('Enter');
+  await expect(page).toHaveURL('/search');
+  await expect(page.locator('text=/passport/i')).toBeVisible();
+});
 ```
 
 ## License
