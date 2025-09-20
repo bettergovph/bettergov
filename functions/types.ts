@@ -3,10 +3,10 @@ export interface Env {
   WEATHER_KV: KVNamespace;
   FOREX_KV: KVNamespace;
   BROWSER_KV: KVNamespace;
-  
+
   // D1 Database
   BETTERGOV_DB: D1Database;
-  
+
   // Environment variables
   WEATHER_API_KEY?: string;
   OPENWEATHERMAP_API_KEY?: string; // Added this to match the code
@@ -16,6 +16,16 @@ export interface Env {
   JINA_API_KEY?: string;
   CF_ACCOUNT_ID?: string;
   CF_API_TOKEN?: string;
+
+  // GitHub/Discord webhook environment variables
+  DISCORD_WEBHOOK_URL?: string;
+  GITHUB_WEBHOOK_SECRET?: string;
+}
+
+export interface Context {
+  request: Request;
+  env: Env;
+  params?: Record<string, string>;
 }
 
 export interface WeatherData {
