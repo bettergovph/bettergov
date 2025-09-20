@@ -1,0 +1,38 @@
+name: Github Action/Workflow Linter
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: ['*']
+    paths:
+      - '.github/actions/**'
+      - '.github/workflows/**'
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install actionlint
+        uses: supplypike/setup-bin@v4
+        with:
+          uri: 'https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz'
+          name: 'actionlint'
+          version: '1.7.7'
+
+      - name: Run actionlint on changed files
+        run: |
+          echo "::add-matcher::.github/actionlint-matcher.json"
+          
+          changed_files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^.github/workflows/.*\.yml$" || echo "")
+          if [ -z "$changed_files" ]; then
+            echo "No workflow files changed. Skipping lint."
+            exit 0
+          fi
+          echo "Linting the following files:"
+          echo "$changed_files"
+          echo "$changed_files" | xargs actionlint -color
