@@ -71,8 +71,8 @@ Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/bettergov.ph.git
-cd bettergov.ph
+git clone https://github.com/bettergovph/bettergov.git
+cd bettergov
 
 # Install dependencies
 npm install
