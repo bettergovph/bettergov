@@ -1,0 +1,1046 @@
+
+/Users/arke/Projects/bettergov/functions/api/crawl.ts
+   4:3   error  'getContentByUrl' is defined but never used                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  15:11  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  45:16  error  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+
+/Users/arke/Projects/bettergov/functions/api/forex.ts
+   47:31  error  'env' is defined but never used  @typescript-eslint/no-unused-vars
+  246:3   error  'ctx' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/arke/Projects/bettergov/functions/api/weather.ts
+    1:15  error  'WeatherData' is defined but never used   @typescript-eslint/no-unused-vars
+   38:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   60:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   62:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  316:3   error  'ctx' is defined but never used           @typescript-eslint/no-unused-vars
+
+/Users/arke/Projects/bettergov/functions/forex.ts
+  10:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  14:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/functions/lib/cf-browser.ts
+  214:20  error  'linkError' is defined but never used     @typescript-eslint/no-unused-vars
+  260:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  272:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/functions/lib/jina.ts
+  164:20  error  'linkError' is defined but never used     @typescript-eslint/no-unused-vars
+  208:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  220:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/functions/weather.ts
+  21:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/components/search/MeilisearchInstantSearch.tsx
+  111:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  130:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  136:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/components/ui/StandardSidebar.tsx
+  11:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  12:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  25:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  26:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/lib/api.ts
+  4:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/lib/forex.ts
+  15:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/DesignGuide.tsx
+  344:57  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  588:39  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  588:48  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  590:68  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/Ideas.tsx
+    8:3   error  'ChevronUp' is defined but never used                            @typescript-eslint/no-unused-vars
+    9:3   error  'ChevronDown' is defined but never used                          @typescript-eslint/no-unused-vars
+  105:24  error  'setProjectIdeas' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  326:15  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/JoinUs.tsx
+   54:50  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   98:17  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   98:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  116:19  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  199:17  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  204:19  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  204:22  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  204:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  204:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  230:33  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  236:21  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  260:27  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/Search.tsx
+   97:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  105:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  116:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  122:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/flood-control-projects/contractors.tsx
+    9:3   error  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
+   11:3   error  'Table' is defined but never used         @typescript-eslint/no-unused-vars
+   12:3   error  'Map' is defined but never used           @typescript-eslint/no-unused-vars
+  201:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  201:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/flood-control-projects/index.tsx
+    5:3  error  'SearchBox' is defined but never used     @typescript-eslint/no-unused-vars
+    6:3  error  'Hits' is defined but never used          @typescript-eslint/no-unused-vars
+  100:7  error  'Hit' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/arke/Projects/bettergov/src/pages/flood-control-projects/shared-components.tsx
+    2:23  error    'ChevronDown' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
+    2:36  error    'Filter' is defined but never used                                                                                              @typescript-eslint/no-unused-vars
+  263:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/Users/arke/Projects/bettergov/src/pages/flood-control-projects/table.tsx
+   10:3   error  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
+   12:3   error  'Table' is defined but never used         @typescript-eslint/no-unused-vars
+   13:3   error  'Map' is defined but never used           @typescript-eslint/no-unused-vars
+   17:3   error  'Users' is defined but never used         @typescript-eslint/no-unused-vars
+  364:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  364:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/components/ConstitutionalSidebar.tsx
+   16:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   34:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   64:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   69:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   71:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   72:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   76:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   80:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   82:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   83:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   91:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   92:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   93:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  103:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  104:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  107:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  108:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  109:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  117:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  118:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  121:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  122:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  130:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  131:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/goccs.tsx
+   22:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   23:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   31:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   42:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   43:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   44:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   45:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   48:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   53:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   54:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   55:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   65:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   67:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   68:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   69:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   71:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   74:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   78:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   82:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   83:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   88:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   90:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   91:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   92:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   99:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  100:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  101:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  108:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  112:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  113:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  118:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  119:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  122:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  124:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  125:27  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  128:27  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  132:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  142:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  143:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  153:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  154:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/index.tsx
+   17:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   25:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   29:12  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   34:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   36:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   42:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   70:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   79:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   80:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   97:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  109:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  110:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  111:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  119:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  124:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  125:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  160:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  161:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  162:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  163:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  164:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  166:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  169:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  184:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  185:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  186:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  187:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  188:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  189:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  194:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  200:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  201:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  202:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  208:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  209:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  210:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  226:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  227:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  228:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  233:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  237:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  238:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  243:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  244:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/sucs.tsx
+   22:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   23:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   31:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   42:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   43:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   44:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   45:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   48:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   53:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   54:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   55:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   65:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   67:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   68:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   69:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   71:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   74:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   78:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   82:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   83:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   88:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   90:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   91:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   92:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   99:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  100:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  101:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  108:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  112:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  113:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  118:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  119:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  122:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  124:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  125:27  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  128:27  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  132:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  142:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  143:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  153:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  154:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/departments/[department].tsx
+   11:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   19:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   23:12  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   28:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   30:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   36:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   52:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   62:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   63:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   74:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   87:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   88:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   89:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   97:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  102:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  103:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  120:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  121:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  122:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  135:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  137:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  138:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  139:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  142:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  143:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  144:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  149:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  155:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  156:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  161:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  162:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  163:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  168:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  172:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  173:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  180:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  181:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/departments/components/DepartmentsSidebar.tsx
+   3:20  error  'useEffect' is defined but never used     @typescript-eslint/no-unused-vars
+  13:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  40:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  46:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  50:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  51:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  54:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  56:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  57:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  65:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  66:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  67:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/departments/index.tsx
+   21:18  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   32:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   33:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   34:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   35:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   36:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   38:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   41:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   42:31  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   42:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   44:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   48:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   57:5   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   58:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   59:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   60:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   61:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   62:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   67:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   68:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   69:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   74:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   75:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   79:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   80:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   84:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   94:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+   95:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  101:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  103:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  104:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  105:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  110:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  114:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  115:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  120:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  121:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  133:9   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  137:12  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  142:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  144:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  145:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  162:5   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  176:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  177:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  178:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  179:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  196:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  202:5   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  203:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  204:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  205:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  206:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  209:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  216:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  222:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  229:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  230:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  231:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  232:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  233:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  237:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  242:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  243:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  247:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  248:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  250:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  251:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  252:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  258:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  259:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  260:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  266:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  267:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  268:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  275:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  276:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  277:38  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/diplomatic/components/DiplomaticSidebar.tsx
+   4:8   error  'diplomaticData' is defined but never used          @typescript-eslint/no-unused-vars
+   9:21  error  'categoryParam' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  10:9   error  'navigate' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  19:5   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  24:7   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  25:9   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  26:11  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  29:11  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  30:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  31:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  39:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  40:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  43:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  44:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  52:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  53:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  56:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  57:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  65:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  66:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/diplomatic/consulates.tsx
+   37:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   38:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   39:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   40:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   41:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   46:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   47:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   48:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   59:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   60:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   61:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   63:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   66:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   69:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   71:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   72:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   73:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   74:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   77:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   82:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   83:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   87:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   96:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   97:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   98:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  101:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/diplomatic/missions.tsx
+  33:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  34:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  35:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  36:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  39:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  44:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  45:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  46:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  57:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  58:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  59:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  61:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  64:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  67:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  69:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  70:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  71:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  72:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  73:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  77:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  78:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  82:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  91:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  92:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  93:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  96:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/diplomatic/organizations.tsx
+  33:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  34:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  35:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  36:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  39:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  45:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  46:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  47:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  58:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  59:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  60:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  62:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  65:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  68:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  70:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  71:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  72:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  73:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  76:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  81:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  83:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  84:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  94:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  95:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  96:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  97:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/components/ExecutiveSidebar.tsx
+   12:14  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+   13:13  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+   14:21  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+   22:9   error  'officeGroups' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   64:5   error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   69:7   error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   70:9   error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   71:11  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   74:11  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   75:13  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   76:15  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   84:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   85:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   88:13  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   89:15  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   97:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+   98:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  101:13  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  102:15  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  112:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  113:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  116:13  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  117:15  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  125:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+  126:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/office-of-the-president.tsx
+   87:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   88:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   89:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   90:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   99:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  100:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  101:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  102:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  103:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  104:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  107:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  112:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  113:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  114:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  124:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  125:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  126:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  137:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  138:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  139:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  141:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  144:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  147:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  152:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  153:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  163:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  167:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  172:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  175:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  178:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  179:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  194:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  200:21  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  201:23  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  202:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  205:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  207:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  209:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  213:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  216:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  220:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  221:33  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  230:35  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  231:37  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/office-of-the-vice-president.tsx
+   83:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   84:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   92:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   93:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   94:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   95:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   98:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  103:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  104:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  105:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  115:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  116:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  117:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  128:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  129:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  130:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  132:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  135:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  138:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  143:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  144:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  154:23  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  158:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  163:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  166:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  169:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  170:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  185:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  191:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  192:21  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  193:23  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  196:23  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  198:23  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  200:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  204:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  207:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  211:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  212:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  221:33  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  222:35  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/other-executive-offices.tsx
+    5:3   error  'CardList' is defined but never used      @typescript-eslint/no-unused-vars
+   40:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   41:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   90:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   91:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   92:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   93:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   96:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  101:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  102:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  103:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  114:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  115:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  116:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  118:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  121:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  124:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  126:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  127:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  128:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  131:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  133:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/presidential-communications-office.tsx
+   92:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   93:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   94:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   95:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   98:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  103:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  104:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  105:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  116:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  117:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  118:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  120:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  123:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  126:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  128:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  129:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  130:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  131:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  134:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  151:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  152:21  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  163:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  167:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  172:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  175:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  178:31  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  179:33  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  195:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  201:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  202:27  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  203:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  206:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  208:29  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  210:33  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  214:35  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  217:35  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  221:35  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  222:37  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  231:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  232:41  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/legislative/[chamber].tsx
+    2:46  error  'Mail' is defined but never used          @typescript-eslint/no-unused-vars
+   10:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   14:12  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   19:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   21:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   27:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   54:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   63:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   64:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   81:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   93:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   94:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   95:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  103:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  108:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  109:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  122:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  127:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  128:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  131:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  139:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  140:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  141:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  142:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  146:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  148:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  149:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  150:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  155:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  156:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  157:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  162:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  163:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  164:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  174:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  175:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  183:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/legislative/components/LegislativeSidebar.tsx
+    2:47  error  'GanttChart' is defined but never used                    @typescript-eslint/no-unused-vars
+   14:47  error  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+   17:9   error  'filteredChambers' is assigned a value but never used     @typescript-eslint/no-unused-vars
+   21:9   error  'handleChamberSelect' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   31:5   error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   36:7   error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   38:9   error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   39:11  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   42:11  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   43:13  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   44:15  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   52:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   53:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   56:13  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   57:15  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   65:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   66:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   73:9   error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   74:11  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   77:11  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   78:13  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   79:15  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   87:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   88:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   91:13  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+   92:15  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  100:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  101:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  104:13  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  105:15  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  113:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+  114:17  error  'React' must be in scope when using JSX                   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/legislative/house-members.tsx
+    2:25  error    'MapPin' is defined but never used                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   17:49  error    Unexpected any. Specify a different type                                                                                                                                                                 @typescript-eslint/no-explicit-any
+   22:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 30) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+   22:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 45) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+   68:5   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   69:7   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   70:9   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   71:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   74:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   80:9   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   81:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   82:13  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   83:13  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   92:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   97:13  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+   99:15  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  108:9   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  109:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  110:13  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  112:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  115:11  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  120:9   error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  122:13  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  126:15  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  127:17  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  130:17  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  136:15  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  138:19  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  142:21  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  143:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  146:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  151:21  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  152:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+  153:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/legislative/party-list-members.tsx
+    2:25  error    'MapPin' is defined but never used                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   18:49  error    Unexpected any. Specify a different type                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   23:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 33) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+   23:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 47) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
+   70:5   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   71:7   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   72:9   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   73:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   76:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   82:9   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   83:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   84:13  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   85:13  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   94:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+   99:13  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  101:15  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  110:9   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  111:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  112:13  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  114:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  117:11  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  122:9   error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  124:13  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  128:15  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  129:17  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  132:17  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  138:15  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  140:19  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  144:21  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  145:23  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  150:21  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  151:23  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+  152:23  error    'React' must be in scope when using JSX                                                                                                                                                                          react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/legislative/senate-committees.tsx
+  14:50  error    Unexpected any. Specify a different type                                                                                                                                                             @typescript-eslint/no-explicit-any
+  19:9   warning  The 'committees' logical expression could make the dependencies of useMemo Hook (at line 28) change on every render. To fix this, wrap the initialization of 'committees' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  31:5   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  32:7   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  33:9   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  34:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  37:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  42:9   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  43:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  44:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  55:9   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  56:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  57:13  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  59:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  62:11  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  65:9   error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  67:13  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  71:15  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  72:17  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  75:17  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  76:19  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+  79:19  error    'React' must be in scope when using JSX                                                                                                                                                              react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/local/[region].tsx
+   29:18  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   33:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   44:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   57:47  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   60:42  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   70:58  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   91:14  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  105:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  106:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  107:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  108:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  109:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  111:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  114:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  115:27  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  115:48  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  123:5   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  124:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  125:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  126:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  127:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  128:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  131:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  136:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  137:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  138:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  149:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  150:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  151:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  153:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  156:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  159:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  161:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  162:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  163:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  164:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  165:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  167:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  171:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  176:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  177:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  190:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  191:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  192:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  193:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  198:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  199:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  200:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  201:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  204:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  206:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  207:29  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  219:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  220:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  221:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  222:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  227:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  228:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  229:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  230:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  233:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  235:29  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  236:31  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/local/components/LocalLayout.tsx
+   9:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   9:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  10:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/local/components/LocalSidebar.tsx
+   9:40  error  'currentRegion' is defined but never used  @typescript-eslint/no-unused-vars
+  25:66  error  Unexpected any. Specify a different type   @typescript-eslint/no-explicit-any
+  40:5   error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  41:7   error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  42:9   error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  43:11  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  44:13  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  45:15  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  46:17  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  49:17  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  51:21  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  52:23  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  62:25  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  63:27  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  66:27  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  67:29  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+  68:29  error  'React' must be in scope when using JSX    react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/local/index.tsx
+   35:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   63:5   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   64:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   65:7   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   66:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   67:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   68:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   71:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   78:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   79:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   80:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   91:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   92:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   93:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   95:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+   98:13  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  101:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  103:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  108:17  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  109:19  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  110:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  111:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  112:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  115:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  117:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  118:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  124:21  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  125:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  126:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  127:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  129:23  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  130:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+  131:25  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/philippines/about/index.tsx
+  110:73  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  119:61  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  121:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/philippines/culture/index.tsx
+  126:42  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  126:53  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  127:19  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  127:29  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  133:38  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  190:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/philippines/history/index.tsx
+    2:30  error  'Scale' is defined but never used                                @typescript-eslint/no-unused-vars
+  121:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/philippines/map/index.tsx
+   41:40  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+   50:56  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+   51:57  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+   86:37  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  113:30  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  120:50  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  146:30  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  167:9   error  'filteredMapData' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  167:52  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/philippines/regions/index.tsx
+  150:56  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/services/index.tsx
+   8:3   error  'Globe' is defined but never used         @typescript-eslint/no-unused-vars
+   9:3   error  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
+  50:11  error  'Service' is defined but never used       @typescript-eslint/no-unused-vars
+
+/Users/arke/Projects/bettergov/src/pages/services/websites/index.tsx
+  265:71  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/sitemap/index.tsx
+  383:18  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  383:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/arke/Projects/bettergov/src/pages/travel/visa-types/[type].tsx
+    8:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
+   18:8   error  'Button' is defined but never used                               @typescript-eslint/no-unused-vars
+   25:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  210:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  210:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  213:45  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/travel/visa-types/index.tsx
+    5:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
+    6:3   error  'ExternalLink' is defined but never used                         @typescript-eslint/no-unused-vars
+   17:8   error  'Button' is defined but never used                               @typescript-eslint/no-unused-vars
+   24:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  117:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  117:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  120:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  190:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+✖ 932 problems (926 errors, 6 warnings)
+

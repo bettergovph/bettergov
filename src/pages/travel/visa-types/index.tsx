@@ -14,8 +14,6 @@ import {
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '../../../types/visa';
-import Button from '../../../components/ui/Button';
-
 interface VisaCategory {
   id: string;
   name: string;

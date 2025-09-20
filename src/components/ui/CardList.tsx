@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { ExternalLink, MapPin, Phone, Mail } from 'lucide-react';
 
 interface ContactInfo {
