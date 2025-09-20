@@ -77,15 +77,15 @@ export default function LegislativeSidebar() {
           <ul className="space-y-1">
             <li>
               <Link
-                to="/government/legislative/house-of-representatives-19th-congress"
+                to="/government/legislative/house-of-representatives-20th-congress"
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'House of Representatives (19th Congress)'
+                  chamberParam === 'House of Representatives (20th Congress)'
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
                 <LandPlot className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
-                <span>House of Representatives (19th Congress)</span>
+                <span>House of Representatives (20th Congress)</span>
               </Link>
             </li>
             <li>
@@ -98,7 +98,20 @@ export default function LegislativeSidebar() {
                 }`}
               >
                 <Users className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
-                <span>Members by Province</span>
+                <span>Members by City/Province</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/government/legislative/party-list-members"
+                className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
+                  isActive('/government/legislative/party-list-members')
+                    ? 'bg-primary-50 text-primary-700 font-medium'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <Users className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
+                <span>Members by Party List</span>
               </Link>
             </li>
           </ul>
