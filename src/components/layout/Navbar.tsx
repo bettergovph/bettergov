@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex items-center space-x-8 pr-24">
+          <div className="hidden lg:flex items-center space-x-8 pr-24">
             {mainNavigation.map((item) => (
               <div key={item.label} className="relative group">
                 <Link
@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6">
             <Link
               to="/about"
               className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
@@ -159,7 +159,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
@@ -176,8 +176,8 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-        <div className="pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white">
+      <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
+        <div className="container mx-auto px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white">
           {mainNavigation.map((item) => (
             <div key={item.label}>
               <button
