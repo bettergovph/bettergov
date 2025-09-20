@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <ServicesSection />
       {/* <NewsSection /> */}
       <InfoWidgets />
-      <DataSection />
+      {/* <DataSection /> */}
       <JoinUsBanner />
       <PromotionBanner />
       <GovernmentSection />
