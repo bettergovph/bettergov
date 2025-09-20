@@ -1,7 +1,6 @@
 export type LanguageType =
   | 'en'    // English
   | 'fil'   // Filipino (standardized Tagalog)
-  | 'tgl'   // Tagalog (same as Filipino)
   | 'ceb'   // Cebuano/Bisaya
   | 'ilo'   // Ilocano
   | 'hil'   // Hiligaynon/Ilonggo

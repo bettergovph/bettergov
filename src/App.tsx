@@ -40,6 +40,7 @@ import LegislativeLayout from './pages/government/legislative/layout'
 import LegislativeIndex from './pages/government/legislative/index'
 import LegislativeChamber from './pages/government/legislative/[chamber]'
 import HouseMembersPage from './pages/government/legislative/house-members'
+import PartyListMembersPage from './pages/government/legislative/party-list-members'
 import SenateCommitteesPage from './pages/government/legislative/senate-committees'
 
 // Diplomatic Section
@@ -193,6 +194,7 @@ function App() {
               <Route index element={<LegislativeIndex />} />
               <Route path=":chamber" element={<LegislativeChamber />} />
               <Route path="house-members" element={<HouseMembersPage />} />
+              <Route path="party-list-members" element={<PartyListMembersPage />} />
               <Route
                 path="senate-committees"
                 element={<SenateCommitteesPage />}
