@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from '../../contexts/LanguageContext'
+import { useTranslation } from 'react-i18next'
 import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch'
 import { Link } from 'react-router-dom'
 import serviceCategories from '../../data/service_categories.json'
@@ -16,7 +16,7 @@ interface Category {
 }
 
 const Hero: React.FC = () => {
-  const { translate } = useLanguage()
+  const { t } = useTranslation('common')
 
   // Find categories and subcategories by their names to get slugs
   const findCategorySlug = (categoryName: string) => {
@@ -42,13 +42,13 @@ const Hero: React.FC = () => {
 
   const popularServices = [
     {
-      label: translate('hero.nationalId'),
+      label: t('hero.nationalId'),
       href: `/services?category=${findCategorySlug(
         'Certificates and IDs'
       )}&subcategory=${findSubcategorySlug('Certificates and IDs', 'ID')}`,
     },
     {
-      label: translate('hero.birthCertificate'),
+      label: t('hero.birthCertificate'),
       href: `/services?category=${findCategorySlug(
         'Certificates and IDs'
       )}&subcategory=${findSubcategorySlug(
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
       )}`,
     },
     {
-      label: translate('hero.businessRegistration'),
+      label: t('hero.businessRegistration'),
       href: `/services?category=${findCategorySlug(
         'Business and Trade'
       )}&subcategory=${findSubcategorySlug(
@@ -74,10 +74,10 @@ const Hero: React.FC = () => {
           {/* Left section with title and search */}
           <div className="animate-fade-in">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              {translate('hero.title')}
+              {t('hero.title')}
             </h1>
             <p className="text-lg text-blue-200 mb-8 max-w-lg">
-              {translate('hero.subtitle')}
+              {t('hero.subtitle')}
             </p>
             {/* Meilisearch component will be full width and include its own styling */}
             {/* The background of Hero is dark, MeilisearchInstantSearch has a light theme by default */}
@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
           {/* Right section with quick access services */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-slide-in">
             <h2 className="text-2xl font-semibold mb-4">
-              {translate('services.title')}
+              {t('services.title')}
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <Link
