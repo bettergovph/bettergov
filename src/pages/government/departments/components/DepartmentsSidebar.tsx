@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Building2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import departmentsData from '../../../../data/directory/departments.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 

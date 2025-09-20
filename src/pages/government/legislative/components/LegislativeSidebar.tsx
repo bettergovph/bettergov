@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
-import { Building, LandPlot, Users, BookOpen, GanttChart } from 'lucide-react';
+import { Building, LandPlot, Users, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import legislativeData from '../../../../data/directory/legislative.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';

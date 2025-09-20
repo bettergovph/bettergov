@@ -1,18 +1,16 @@
 
 /Users/arke/Projects/bettergov/functions/api/crawl.ts
-   4:3   error  'getContentByUrl' is defined but never used                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
-  15:11  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+  11:11  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
 - If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
 - If you want a type meaning "any object", you probably want `object` instead.
 - If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
-  45:16  error  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  41:16  error  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/functions/api/forex.ts
    47:31  error  'env' is defined but never used  @typescript-eslint/no-unused-vars
   246:3   error  'ctx' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/functions/api/weather.ts
-    1:15  error  'WeatherData' is defined but never used   @typescript-eslint/no-unused-vars
    38:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
    48:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
    60:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -48,31 +46,8 @@
 /Users/arke/Projects/bettergov/src/lib/forex.ts
   15:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/arke/Projects/bettergov/src/pages/DesignGuide.tsx
-  344:57  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  588:39  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  588:48  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  590:68  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
 /Users/arke/Projects/bettergov/src/pages/Ideas.tsx
-    8:3   error  'ChevronUp' is defined but never used                            @typescript-eslint/no-unused-vars
-    9:3   error  'ChevronDown' is defined but never used                          @typescript-eslint/no-unused-vars
-  105:24  error  'setProjectIdeas' is assigned a value but never used             @typescript-eslint/no-unused-vars
-  326:15  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
-/Users/arke/Projects/bettergov/src/pages/JoinUs.tsx
-   54:50  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-   98:17  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-   98:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  116:19  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  199:17  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  204:19  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  204:22  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  204:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  204:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  230:33  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  236:21  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  260:27  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  96:24  error  'setProjectIdeas' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/Search.tsx
    97:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -81,29 +56,18 @@
   122:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/contractors.tsx
-    9:3   error  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
-   11:3   error  'Table' is defined but never used         @typescript-eslint/no-unused-vars
-   12:3   error  'Map' is defined but never used           @typescript-eslint/no-unused-vars
-  201:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  201:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  191:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  191:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/index.tsx
-    5:3  error  'SearchBox' is defined but never used     @typescript-eslint/no-unused-vars
-    6:3  error  'Hits' is defined but never used          @typescript-eslint/no-unused-vars
-  100:7  error  'Hit' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  94:7  error  'Hit' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/shared-components.tsx
-    2:23  error    'ChevronDown' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
-    2:36  error    'Filter' is defined but never used                                                                                              @typescript-eslint/no-unused-vars
   263:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/table.tsx
-   10:3   error  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
-   12:3   error  'Table' is defined but never used         @typescript-eslint/no-unused-vars
-   13:3   error  'Map' is defined but never used           @typescript-eslint/no-unused-vars
-   17:3   error  'Users' is defined but never used         @typescript-eslint/no-unused-vars
-  364:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  364:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  353:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  353:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/constitutional/[office].tsx
   5:11  error  'ConstitutionalIndex' is not defined  react/jsx-no-undef
@@ -131,14 +95,11 @@
   20:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/departments/components/DepartmentsSidebar.tsx
-   4:20  error  'useEffect' is defined but never used     @typescript-eslint/no-unused-vars
   14:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/departments/index.tsx
-   22:18  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   43:31  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-   43:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  134:9   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   22:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  134:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/diplomatic/components/DiplomaticSidebar.tsx
    7:21  error  'categoryParam' is assigned a value but never used  @typescript-eslint/no-unused-vars
@@ -152,29 +113,24 @@
   23:9   error  'officeGroups' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/government/executive/other-executive-offices.tsx
-   6:3   error  'CardList' is defined but never used      @typescript-eslint/no-unused-vars
-  41:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  42:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  33:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/[chamber].tsx
-    3:46  error  'Mail' is defined but never used          @typescript-eslint/no-unused-vars
    11:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   123:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/components/LegislativeSidebar.tsx
-   3:47  error  'GanttChart' is defined but never used                    @typescript-eslint/no-unused-vars
   15:47  error  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
   18:9   error  'filteredChambers' is assigned a value but never used     @typescript-eslint/no-unused-vars
   22:9   error  'handleChamberSelect' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/house-members.tsx
-   3:25  error    'MapPin' is defined but never used                                                                                                                                                                       @typescript-eslint/no-unused-vars
   18:49  error    Unexpected any. Specify a different type                                                                                                                                                                 @typescript-eslint/no-explicit-any
   23:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 31) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
   23:9   warning  The 'houseMembers' logical expression could make the dependencies of useMemo Hook (at line 46) change on every render. To fix this, wrap the initialization of 'houseMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/party-list-members.tsx
-   3:25  error    'MapPin' is defined but never used                                                                                                                                                                               @typescript-eslint/no-unused-vars
   19:49  error    Unexpected any. Specify a different type                                                                                                                                                                         @typescript-eslint/no-explicit-any
   24:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 34) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
   24:9   warning  The 'partyListMembers' logical expression could make the dependencies of useMemo Hook (at line 48) change on every render. To fix this, wrap the initialization of 'partyListMembers' in its own useMemo() Hook  react-hooks/exhaustive-deps
@@ -184,69 +140,13 @@
   20:9   warning  The 'committees' logical expression could make the dependencies of useMemo Hook (at line 29) change on every render. To fix this, wrap the initialization of 'committees' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
 /Users/arke/Projects/bettergov/src/pages/government/local/[region].tsx
-   29:18  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   33:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   44:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   57:47  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   60:42  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   70:58  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-   91:14  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  105:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  106:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  107:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  108:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  109:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  111:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  114:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  115:27  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  115:48  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  123:5   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  124:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  125:7   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  126:9   error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  127:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  128:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  131:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  136:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  137:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  138:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  149:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  150:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  151:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  153:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  156:13  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  159:11  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  161:15  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  162:17  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  163:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  164:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  165:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  167:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  171:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  176:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  177:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  190:19  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  191:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  192:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  193:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  198:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  199:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  200:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  201:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  204:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  206:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  207:29  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  219:21  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  220:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  221:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  222:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  227:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  228:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  229:25  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  230:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  233:27  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  235:29  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
-  236:31  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
+  29:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  33:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  44:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  91:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/local/components/LocalSidebar.tsx
   10:40  error  'currentRegion' is defined but never used  @typescript-eslint/no-unused-vars
@@ -254,23 +154,6 @@
 
 /Users/arke/Projects/bettergov/src/pages/government/local/index.tsx
   36:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/philippines/about/index.tsx
-  110:73  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  119:61  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  121:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
-/Users/arke/Projects/bettergov/src/pages/philippines/culture/index.tsx
-  126:42  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  126:53  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  127:19  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  127:29  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  133:38  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  190:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
-/Users/arke/Projects/bettergov/src/pages/philippines/history/index.tsx
-    2:30  error  'Scale' is defined but never used                                @typescript-eslint/no-unused-vars
-  121:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
 
 /Users/arke/Projects/bettergov/src/pages/philippines/map/index.tsx
    41:40  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
@@ -283,36 +166,17 @@
   167:9   error  'filteredMapData' is assigned a value but never used  @typescript-eslint/no-unused-vars
   167:52  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
 
-/Users/arke/Projects/bettergov/src/pages/philippines/regions/index.tsx
-  150:56  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
 /Users/arke/Projects/bettergov/src/pages/services/index.tsx
-   8:3   error  'Globe' is defined but never used         @typescript-eslint/no-unused-vars
-   9:3   error  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
-  50:11  error  'Service' is defined but never used       @typescript-eslint/no-unused-vars
-
-/Users/arke/Projects/bettergov/src/pages/services/websites/index.tsx
-  265:71  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-
-/Users/arke/Projects/bettergov/src/pages/sitemap/index.tsx
-  383:18  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
-  383:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  43:11  error  'Service' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/[type].tsx
-    8:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
-   23:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  208:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  208:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  211:45  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   11:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  199:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/index.tsx
-    5:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
-    6:3   error  'ExternalLink' is defined but never used                         @typescript-eslint/no-unused-vars
-   22:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  115:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  115:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  118:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  188:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   11:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  107:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  177:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-✖ 218 problems (212 errors, 6 warnings)
+✖ 98 problems (92 errors, 6 warnings)
 

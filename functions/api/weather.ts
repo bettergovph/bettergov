@@ -1,4 +1,4 @@
-import { Env, WeatherData } from '../types';
+import { Env } from '../types';
 
 // Interface for Philippine city coordinates
 interface CityCoordinates {

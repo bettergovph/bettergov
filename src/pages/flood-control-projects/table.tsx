@@ -7,14 +7,10 @@ import { exportMeilisearchData } from '../../lib/exportData';
 import {
   Filter,
   ChevronLeft,
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
   Search,
-  Users,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';

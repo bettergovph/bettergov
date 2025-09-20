@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Flag, Crown, Scale, Star } from 'lucide-react';
+import { Clock, Flag, Crown, Star } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
@@ -118,9 +118,9 @@ const PhilippinesHistory: React.FC = () => {
               </h2>
               <div className='prose max-w-none'>
                 <p className='text-gray-800 leading-relaxed mb-4'>
-                  The Philippines' history spans thousands of years, beginning
-                  with the migration of Austronesian peoples. These early
-                  settlers developed sophisticated societies, trading with
+                  The Philippines&apos; history spans thousands of years,
+                  beginning with the migration of Austronesian peoples. These
+                  early settlers developed sophisticated societies, trading with
                   various Asian civilizations and developing unique cultural
                   traditions.
                 </p>

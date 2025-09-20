@@ -5,7 +5,6 @@ import {
   ExternalLink,
   FileText,
   AlertCircle,
-  Globe,
   Search,
   Briefcase,
   Users,
@@ -205,7 +204,7 @@ const VisaTypeDetail: React.FC = () => {
         {searchTerm.trim() !== '' && (
           <div className='mb-6'>
             <h2 className='text-xl font-semibold text-gray-700 mb-4'>
-              Showing results for: "{searchTerm}"
+              Showing results for: &quot;{searchTerm}&quot;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
               {filteredVisaTypes.map((visa: any) => (

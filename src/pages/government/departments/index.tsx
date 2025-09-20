@@ -40,7 +40,8 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
             Department not found
           </h3>
           <p className='text-gray-800 max-w-md'>
-            The department you're looking for doesn't exist or has been moved.
+            The department you&apos;re looking for doesn&apos;t exist or has
+            been moved.
           </p>
           <Link
             to='/government/departments'

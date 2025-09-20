@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronDown, Filter } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { ScrollArea } from '../../components/ui/ScrollArea';
 
 // Define types

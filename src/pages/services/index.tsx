@@ -1,13 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import {
-  Search,
-  CheckCircle2,
-  Menu,
-  X,
-  Globe,
-  ExternalLink,
-} from 'lucide-react';
+import { Search, CheckCircle2, Menu, X } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';

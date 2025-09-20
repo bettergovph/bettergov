@@ -123,16 +123,17 @@ const PhilippinesCulture: React.FC = () => {
                 </p>
                 <p className='text-gray-800 leading-relaxed mb-4'>
                   The Philippines is known for its warm hospitality, expressed
-                  through the concept of "pakikisama" (companionship) and
-                  "bayanihan" (community spirit). These values are reflected in
-                  daily life, celebrations, and social interactions.
+                  through the concept of &quot;pakikisama&quot; (companionship)
+                  and &quot;bayanihan&quot; (community spirit). These values are
+                  reflected in daily life, celebrations, and social
+                  interactions.
                 </p>
                 <p className='text-gray-800 leading-relaxed'>
                   Filipino arts and crafts, from traditional weaving to modern
                   visual arts, showcase the creativity and skill of the Filipino
-                  people. The country's diverse musical traditions, dances, and
-                  festivals celebrate its rich cultural heritage while embracing
-                  contemporary influences.
+                  people. The country&apos;s diverse musical traditions, dances,
+                  and festivals celebrate its rich cultural heritage while
+                  embracing contemporary influences.
                 </p>
               </div>
             </section>
@@ -187,7 +188,7 @@ const PhilippinesCulture: React.FC = () => {
                   <div>
                     <div className='font-medium text-gray-900'>Weaving</div>
                     <div className='text-sm text-gray-800'>
-                      T'nalak, Piña, Inabel
+                      T&apos;nalak, Piña, Inabel
                     </div>
                   </div>
                   <div>

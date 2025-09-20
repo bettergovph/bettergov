@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { ExternalLink, MapPin, Phone, Globe, Mail } from 'lucide-react';
+import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 // Recursive component to render legislative details

@@ -1,9 +1,5 @@
 import { Env } from '../types';
-import {
-  fetchAndSaveContent,
-  getContentByUrl,
-  setDefaultCrawler,
-} from '../lib/crawler';
+import { fetchAndSaveContent, setDefaultCrawler,  } from '../lib/crawler';
 
 /**
  * Handler for HTTP requests to the web crawling endpoint

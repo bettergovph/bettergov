@@ -94,7 +94,7 @@ export async function onRequest(context: {
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
-  const { request, env } = context;
+  const { request } = context;
   const url = new URL(request.url);
   const symbol = url.searchParams.get('symbol');
   const forceUpdate = url.searchParams.get('update') === 'true';
