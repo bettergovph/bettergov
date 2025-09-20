@@ -14,6 +14,7 @@ import { getDepartmentsSEOData } from '../../../utils/seo-data'
 
 interface Department {
   office_name: string
+  slug: string
   address?: string
   trunkline?: string
   website?: string
@@ -221,7 +222,7 @@ export default function DepartmentsIndex() {
             return (
               <Link
                 to={`/government/departments/${encodeURIComponent(
-                  dept.office_name
+                  dept.slug
                 )}`}
                 key={index}
                 className="block"
