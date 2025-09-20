@@ -88,7 +88,7 @@ const InfoWidgets: React.FC = () => {
                 {t('weather.title')}
               </h3>
             </CardHeader>
-            <CardContent>
+            <CardContent className="@container">
               {isLoadingWeather ? (
                 <div className="flex justify-center items-center h-40">
                   <LucideIcons.Loader className="h-8 w-8 animate-spin text-primary-600" />
@@ -99,7 +99,7 @@ const InfoWidgets: React.FC = () => {
                   <p>{weatherError}</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 @md:grid-cols-4 gap-4">
                   {weatherData.map((location) => (
                     <div
                       key={location.location}
