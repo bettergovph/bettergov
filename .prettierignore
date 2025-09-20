@@ -1,0 +1,42 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore build output
+dist/
+build/
+out/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore logs
+*.log
+
+# Ignore misc
+.DS_Store
+
+# Ignore public assets
+public/
+
+# Ignore generated files
+*.min.js
+*.map
+
+# Ignore next.js build output
+.next/
+
+# Ignore vercel build output
+.vercel/
+
+# Ignore temporary files
+tmp/
+temp/

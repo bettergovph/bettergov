@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "title": "Impormasyon sa Visa ng Pilipinas",
+    "subtitle": "Alamin kung kailangan mo ng visa para bisitahin ang Pilipinas at matuto tungkol sa mga kinakailangan sa pagpasok.",
+    "dataSource": "Opisyal na datos mula sa Bureau of Immigration at Philippine Department of Foreign Affairs",
+    "checkVisaTypes": "Tignan ang mga uri ng visa"
+  },
+  "quickCheck": {
+    "title": "Mabilis na Pagsusuri ng Visa",
+    "description": "Piliin ang inyong bansa ng pagkamamamayan upang suriin ang mga kinakailangan sa visa para sa paglalakbay sa Pilipinas.",
+    "searchPlaceholder": "Hanapin ang inyong bansa...",
+    "searchAriaLabel": "Maghanap ng bansa"
+  },
+  "countryList": {
+    "title": "Piliin ang Inyong Bansa",
+    "noResults": "Walang nahanap na bansa na tumugma sa inyong paghahanap.",
+    "ariaLabel": "Listahan ng mga bansa"
+  },
+  "requirements": {
+    "title": "Mga Kinakailangan sa Visa para sa {{country}}",
+    "visaFree": {
+      "title": "Walang Kinakailangang Visa",
+      "description": "Ang mga mamamayan ng {{country}} ay maaaring pumasok sa Pilipinas nang walang visa hanggang sa {{duration}}."
+    },
+    "visaRequired": {
+      "title": "Kinakailangan ang Visa",
+      "description": "Ang mga mamamayan ng {{country}} ay kailangang mag-apply para sa visa bago maglakbay sa Pilipinas."
+    },
+    "specialCondition": {
+      "title": "May Mga Natatanging Kondisyon",
+      "description": "Ang mga mamamayan ng {{country}} ay maaaring pumasok sa Pilipinas nang walang visa hanggang sa {{duration}} sa ilalim ng mga tukoy na kondisyon."
+    },
+    "entryRequirements": "Mga Kinakailangan sa Pagpasok",
+    "requiredDocuments": "Mga Kinakailangang Dokumento:",
+    "note": "Tala:"
+  },
+  "visaApplication": {
+    "title": "Paano Mag-apply para sa Visa",
+    "eVisa": {
+      "title": "eVisa Portal",
+      "description": "Mag-apply online sa pamamagitan ng opisyal na eVisa system",
+      "action": "Bisitahin ang website"
+    },
+    "embassy": {
+      "title": "Mga Embassy ng Pilipinas",
+      "description": "Hanapin ang pinakamalapit na Embassy o Consulate ng Pilipinas",
+      "action": "Hanapin ang mga lokasyon"
+    }
+  },
+  "defaultMessage": {
+    "title": "Suriin ang Inyong Mga Kinakailangan sa Visa",
+    "description": "Piliin ang inyong bansa mula sa listahan upang suriin kung kailangan ninyo ng visa para bisitahin ang Pilipinas at matuto tungkol sa mga kinakailangan sa pagpasok."
+  },
+  "additionalInfo": {
+    "title": "Mahalagang Impormasyon sa Visa",
+    "temporaryVisa": {
+      "title": "Temporary Visitor's Visa (9a)",
+      "description": "Ang 9(a) Temporary Visitor's Visa ay para sa mga dayuhang nasyonal na bumibisita sa Pilipinas para sa negosyo, turismo, medikal na paggamot, o iba pang pansamantalang layunin.",
+      "learnMore": "Matuto pa tungkol sa Temporary Visitor's Visa"
+    },
+    "visaExtensions": {
+      "title": "Mga Pagpapalawak ng Visa",
+      "description": "Ang mga bisita na nais magpahaba ng kanilang pananatili sa Pilipinas lampas sa kanilang awtorisadong panahon ay maaaring mag-apply para sa extension sa Bureau of Immigration.",
+      "visitWebsite": "Bisitahin ang website ng Bureau of Immigration"
+    },
+    "disclaimer": {
+      "title": "Disclaimer"
+    }
+  }
+}

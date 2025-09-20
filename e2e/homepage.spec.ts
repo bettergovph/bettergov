@@ -14,7 +14,9 @@ test.describe('Homepage', () => {
     await expect(page.getByText('BetterGov.ph').first()).toBeVisible();
 
     // Check hero section
-    await expect(page.getByRole('heading', { name: /Welcome to BetterGov.ph/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Welcome to BetterGov.ph/i })
+    ).toBeVisible();
 
     // Check search input exists
     await expect(page.getByPlaceholder(/Search for services/i)).toBeVisible();
@@ -33,7 +35,9 @@ test.describe('Homepage', () => {
     await page.waitForURL('**/services');
 
     // Check we're on services page
-    await expect(page.getByRole('heading', { name: /Government Services/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Government Services/i })
+    ).toBeVisible();
   });
 
   test('should have working search functionality', async ({ page }) => {
@@ -65,10 +69,14 @@ test.describe('Homepage', () => {
       await menuButton.click();
 
       // Mobile menu should be visible
-      await expect(page.getByRole('button', { name: /Close menu/i })).toBeVisible();
+      await expect(
+        page.getByRole('button', { name: /Close menu/i })
+      ).toBeVisible();
     } else {
       // Desktop navigation should be visible
-      await expect(page.locator('nav').getByText('The Philippines').first()).toBeVisible();
+      await expect(
+        page.locator('nav').getByText('The Philippines').first()
+      ).toBeVisible();
     }
   });
 });

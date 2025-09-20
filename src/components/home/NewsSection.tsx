@@ -1,19 +1,19 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Card, CardImage, CardContent } from '../ui/Card'
-import { useLanguage } from '../../contexts/LanguageContext'
+import { useTranslation } from 'react-i18next'
 import { news } from '../../data/news'
 import { formatDate, truncateText } from '../../lib/utils'
 
 const NewsSection: React.FC = () => {
-  const { translate } = useLanguage()
+  const { t } = useTranslation('common')
 
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            {translate('news.title')}
+            {t('news.title')}
           </h2>
           <a
             href="/news"

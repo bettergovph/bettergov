@@ -7,7 +7,9 @@ test.describe('Performance', () => {
     await page.goto('/');
 
     // Wait for the main content to be visible
-    await expect(page.getByRole('heading', { name: /Welcome to BetterGov.ph/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Welcome to BetterGov.ph/i })
+    ).toBeVisible();
 
     const loadTime = Date.now() - startTime;
 
@@ -20,14 +22,20 @@ test.describe('Performance', () => {
 
     // Get performance metrics
     const metrics = await page.evaluate(() => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      const navigation = performance.getEntriesByType(
+        'navigation'
+      )[0] as PerformanceNavigationTiming;
       const paint = performance.getEntriesByType('paint');
 
       return {
-        domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+        domContentLoaded:
+          navigation.domContentLoadedEventEnd -
+          navigation.domContentLoadedEventStart,
         loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
         firstPaint: paint.find(p => p.name === 'first-paint')?.startTime,
-        firstContentfulPaint: paint.find(p => p.name === 'first-contentful-paint')?.startTime,
+        firstContentfulPaint: paint.find(
+          p => p.name === 'first-contentful-paint'
+        )?.startTime,
       };
     });
 
@@ -78,7 +86,9 @@ test.describe('Performance', () => {
 
     await page.getByRole('link', { name: 'Services' }).first().click();
     await page.waitForURL('**/services');
-    await expect(page.getByRole('heading', { name: /Government Services/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Government Services/i })
+    ).toBeVisible();
 
     const navigationTime = Date.now() - startTime;
 
@@ -86,6 +96,7 @@ test.describe('Performance', () => {
     expect(navigationTime).toBeLessThan(2000);
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   test('should handle slow network gracefully', async ({ page, browser }) => {
     // Create a context with slow network
     const context = await browser.newContext({
@@ -102,7 +113,9 @@ test.describe('Performance', () => {
     await slowPage.goto('/');
 
     // Even on slow network, critical content should appear
-    await expect(slowPage.getByText('BetterGov.ph')).toBeVisible({ timeout: 10000 });
+    await expect(slowPage.getByText('BetterGov.ph')).toBeVisible({
+      timeout: 10000,
+    });
 
     await context.close();
   });

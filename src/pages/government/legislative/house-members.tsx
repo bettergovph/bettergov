@@ -69,11 +69,11 @@ export default function HouseMembersPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            House of Representatives Members
+            House Members by Cities/Provinces
           </h1>
           <p className="text-gray-800 mt-1">
             {houseMembers.length} Representatives from {provinces.length}{' '}
-            provinces/cities
+            cities/provinces
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export default function HouseMembersPage() {
             value={selectedProvince || ''}
             onChange={(e) => setSelectedProvince(e.target.value || null)}
           >
-            <option value="">All Provinces/Cities</option>
+            <option value="">All Cities/Provinces</option>
             {provinces.map((province) => (
               <option key={province} value={province}>
                 {province}

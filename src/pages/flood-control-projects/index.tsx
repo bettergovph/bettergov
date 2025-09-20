@@ -338,27 +338,45 @@ const TypeOfWorkChart: React.FC = () => {
   }
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={chartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={100}
-          fill="#8884d8"
-          dataKey="count"
-          nameKey="value"
-          label={({ value }) => value}
-        >
-          {chartData.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+    <div className="flex items-center justify-center h-full">
+      <div className="w-[60%] pr-2">
+        <ResponsiveContainer width="100%" height={250}>
+          <PieChart>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={90}
+              innerRadius={0}
+              fill="#8884d8"
+              dataKey="count"
+              nameKey="value"
+              className='text-xs'
+              label={({ value }) => value}
+            >
+              {chartData.map((_, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="w-[40%] max-h-[250px] overflow-y-auto pl-2 pr-4">
+        <div className="space-y-2">
+          {chartData.map((item, index) => (
+            <div key={item.value} className="flex items-center text-xs">
+              <div
+                className="w-3 h-3 rounded-full mr-2 flex-shrink-0"
+                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+              ></div>
+              <span className="text-gray-700 leading-tight">{item.value}</span>
+            </div>
           ))}
-        </Pie>
-        <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-      </PieChart>
-    </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -413,15 +431,16 @@ const ContractorChart: React.FC = () => {
       <BarChart
         data={chartData}
         layout="vertical"
-        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+        margin={{ top: 5, right: 30, left: -60, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis type="number" tick={{ fontSize: 9 }} />
         <YAxis
           type="category"
           dataKey="name"
-          width={100}
-          tick={{ fontSize: 9 }}
+          tick={{ fontSize: 7, width: 150 }}
+          interval={0}
+          width={150}
         />
         <Tooltip
           formatter={(value, name) => [`${value} projects`, name]}
@@ -903,7 +922,6 @@ const FloodControlProjects: React.FC = () => {
                   )}
                 </div>
               </div>
-
               {/* Types of Work - Pie Chart */}
               <div className="bg-white rounded-lg shadow-md p-4">
                 <div className="flex items-center mb-4">
@@ -912,7 +930,7 @@ const FloodControlProjects: React.FC = () => {
                     Types of Work
                   </h2>
                 </div>
-                <div className="h-[300px]">
+                <div className="h-[300px] relative">
                   {filtersApplied ? (
                     <InstantSearch
                       indexName="bettergov_flood_control"
@@ -927,35 +945,53 @@ const FloodControlProjects: React.FC = () => {
                       <TypeOfWorkChart />
                     </InstantSearch>
                   ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={typeWorkPieData}
-                          cx="50%"
-                          cy="50%"
-                          labelLine={false}
-                          outerRadius={100}
-                          fill="#8884d8"
-                          dataKey="count"
-                          nameKey="value"
-                          label={({ value }) => value}
-                        >
-                          {typeWorkPieData.map((_, index) => (
-                            <Cell
-                              key={`cell-${index}`}
-                              fill={COLORS[index % COLORS.length]}
+                    <div className="flex items-center justify-center h-full">
+                      <div className="w-[60%] pr-2">
+                        <ResponsiveContainer width="100%" height={250}>
+                          <PieChart>
+                            <Pie
+                              data={typeWorkPieData}
+                              cx="50%"
+                              cy="50%"
+                              labelLine={false}
+                              outerRadius={90}
+                              innerRadius={0}
+                              fill="#8884d8"
+                              dataKey="count"
+                              nameKey="value"
+                              className='text-xs'
+                              label={({ value }) => value}
+                            >
+                              {typeWorkPieData.map((_, index) => (
+                                <Cell
+                                  key={`cell-${index}`}
+                                  fill={COLORS[index % COLORS.length]}
+                                />
+                              ))}
+                            </Pie>
+                            <Tooltip
+                              formatter={(value, name) => [
+                                `${value} projects`,
+                                name,
+                              ]}
                             />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="w-[40%] max-h-[250px] overflow-y-auto pl-2 pr-4">
+                        <div className="space-y-2">
+                          {typeWorkPieData.map((item, index) => (
+                            <div key={item.value} className="flex items-center text-xs">
+                              <div
+                                className="w-3 h-3 rounded-full mr-2 flex-shrink-0"
+                                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                              ></div>
+                              <span className="text-gray-700 leading-tight">{item.value}</span>
+                            </div>
                           ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value, name) => [
-                            `${value} projects`,
-                            name,
-                          ]}
-                        />
-                        <Legend wrapperStyle={{ fontSize: 10 }} />
-                      </PieChart>
-                    </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
@@ -987,15 +1023,16 @@ const FloodControlProjects: React.FC = () => {
                       <BarChart
                         data={contractorChartData}
                         layout="vertical"
-                        margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+                        margin={{ top: 5, right: 30, left: -60, bottom: 5 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="number" tick={{ fontSize: 9 }} />
                         <YAxis
                           type="category"
                           dataKey="name"
-                          width={100}
-                          tick={{ fontSize: 9 }}
+                          tick={{ fontSize: 7, width: 150 }}
+                          interval={0}
+                          width={150}
                         />
                         <Tooltip
                           formatter={(value, name) => [

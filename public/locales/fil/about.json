@@ -1,0 +1,92 @@
+{
+  "title": "Tungkol sa BetterGov.ph",
+  "whyBuilding": {
+    "title": "Bakit Ginagawa Namin Ang Proyektong Ito",
+    "intro": "Ang kasalukuyang estado ng mga website ng gobyerno ng Pilipinas, lalo na ang pangunahing portal",
+    "govPhLink": "www.gov.ph",
+    "challenges": ", ay nagdudulot ng maraming hamon para sa mga mamamayan:",
+    "challengesList": [
+      "Makikinabang ang mga gumagamit ng website na ito sa mga regular na updates upang matiyak na ang mga mamamayan ay may access sa pinakabagong impormasyon at mga serbisyo.",
+      "May oportunidad na mas mapaganda ang nabigasyon ng mga gumagamit ng website sa pamamagitan ng pag-update ng mga links. Kasama na rin dito ang mga gabay para sa mga bagong gumagamit upang mapadali ang kanilang paghahanap",
+      "Ang pagpapatupad ng pamantayan para sa disenyo ng website sa lahat ng pages ay makakalikha ng mas maganda at propesyonal na user experience.",
+      "Ang pagpapahusay sa accessibility features at pangkalahatang user experience ay makakapagdulot ng mas inklusibo at mas madaling paggamit sa mga serbisyo ng gobyerno para sa mga mamamayan.",
+      "Ang mga pagpapabuting ito ay maaaring maging batayan ng mabuting digital presence ng mga ahensya ng pamahalaan."
+    ],
+    "conclusion": "Ang mga isyung ito ay lumilikha ng mga hadlang para sa mga mamamayang sumusubok na ma-access ang mga mahahalagang serbisyo ng gobyerno at impormasyon."
+  },
+  "mission": {
+    "title": "Ang Aming Misyon",
+    "intro": "Kami ay isang volunteer-led initiative na may malinaw na misyon: magbigay ng 'mas magandang' website para sa Pilipinas.",
+    "goalsIntro": "Ang aming mga layunin ay kinabibilangan ng:",
+    "goalsList": [
+      "Pagbuo ng volunteer-run website na sumasalamin sa mga pagpapahalaga at kultura ng mga Filipino",
+      "Paglikha ng mas madaling navigation at search functionality",
+      "Pagtiyak na magagamit ang website maski sa mga may kapansanan.",
+      "Pagbibigay ng tumpak at napapanahon na impormasyon tungkol sa mga serbisyo ng gobyerno",
+      "Pagtatatag ng iisang modelo kung paano dapat gumagana ang mga serbisyo ng gobyerno."
+    ]
+  },
+  "features": {
+    "title": "Mga Tampok",
+    "list": [
+      "Moderno, tumutugon na disenyo na gumagana sa lahat ng device",
+      "Kumpletong talaan ng serbisyo at ahensya ng pamahalaan",
+      "Mas madaling nabigasyon at paghahanap para sa mga gumagamit ng website",
+      "Mga accessibility features para sa mga may kapansanan",
+      "Regular na pag-update sa mga impormasyon."
+    ]
+  },
+  "volunteer": {
+    "title": "Sumali sa Amin Bilang Volunteer",
+    "intro": "Lagi kaming naghahanap ng mga passionate na indibidwal na tutulong na mapabuti ang BetterGov.ph. Kailangan namin ng mga volunteers na may iba't ibang skills:",
+    "technical": {
+      "title": "Technical",
+      "skills": [
+        "Frontend at backend developers",
+        "UX/UI designers",
+        "Accessibility experts",
+        "QA testers"
+      ]
+    },
+    "content": {
+      "title": "Content",
+      "skills": [
+        "Content writers at editors",
+        "Mga translator (para sa Filipino at iba pang mga lengwahe at dayalekto)",
+        "Project managers",
+        "Mga researcher"
+      ]
+    },
+    "callToAction": {
+      "title": "Handa ka na bang gumawa ng pagbabago?",
+      "description": "Kung interesado kayo sa pag-aambag sa proyektong ito, maari kayong makipag-ugnayan sa amin sa",
+      "email": "volunteers@bettergov.ph",
+      "alternative": "o mag-open ng issue sa aming repository."
+    }
+  },
+  "bugReport": {
+    "title": "Mag-report ng Bug",
+    "intro": "Nahanap ninyo ang problema sa website? Tulungan ninyo kaming mapabuti ito sa pamamagitan ng pag-report!",
+    "steps": [
+      "Mag-open ng issue sa aming repository",
+      "Gamitin ang bug report template",
+      "Magbigay ng kasing-detalyado na impormasyon, kasama ang:"
+    ],
+    "bugDetails": [
+      "Ano ang sinusubukan ninyong gawin",
+      "Ano ang inaasahan ninyong mangyayari",
+      "Ano ang talagang nangyari",
+      "Mga screenshot kung maari"
+    ],
+    "alternative": {
+      "text": "Alternatibong paraan, mag-email sa amin sa",
+      "email": "bugs@bettergov.ph"
+    }
+  },
+  "license": {
+    "title": "License",
+    "description": "Ang proyektong ito ay inilabas sa ilalim ng",
+    "ccLink": "Creative Commons CC0",
+    "explanation": "dedication. Ibig sabihin nito na ang gawa ay inilaan sa public domain at maaaring malayang gamitin ng sinuman para sa anumang layunin nang walang paghihigpit sa ilalim ng copyright law."
+  }
+}

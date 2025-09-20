@@ -1,11 +1,17 @@
 import React from 'react'
-import { Facebook, Twitter, Instagram, Youtube, CheckCircle2  } from 'lucide-react'
-import { useLanguage } from '../../contexts/LanguageContext'
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  CheckCircle2,
+} from 'lucide-react'
 import { footerNavigation } from '../../data/navigation'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Footer: React.FC = () => {
-  const { translate } = useLanguage()
+  const { t } = useTranslation('common')
 
   const getSocialIcon = (label: string) => {
     switch (label) {
@@ -34,7 +40,6 @@ const Footer: React.FC = () => {
                 alt="Philippines Coat of Arms"
                 className="h-12 w-12 mr-3"
               /> */}
-
 
               <div>
                 <div className="font-bold">Better Philippines</div>
@@ -91,7 +96,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              {translate('footer.copyright')}
+              {t('footer.copyright')}
             </p>
             <div className="flex space-x-6">
               {/* <a

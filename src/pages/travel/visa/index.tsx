@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   Compass,
   FileCheck,
@@ -17,6 +18,7 @@ type Country = string
 // Using the imported VisaRequirement type from '../../../types/visa'
 
 const VisaPage: React.FC = () => {
+  const { t } = useTranslation('visa')
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [visaRequirement, setVisaRequirement] =
@@ -159,22 +161,16 @@ const VisaPage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Philippines Visa Information
+                {t('hero.title')}
               </h1>
-              <p className="text-xl opacity-90 mb-6">
-                Find out if you need a visa to visit the Philippines and learn
-                about entry requirements.
-              </p>
+              <p className="text-xl opacity-90 mb-6">{t('hero.subtitle')}</p>
               <div className="flex items-center space-x-2 text-sm">
                 <Globe className="h-4 w-4" />
-                <span>
-                  Official data from the Bureau of Immigration and Philippine
-                  Department of Foreign Affairs
-                </span>
+                <span>{t('hero.dataSource')}</span>
               </div>
               <Link to="/travel/visa-types">
                 <Button className="text-xl bg-blue-800 py-8 px-8 mt-6">
-                  Check visa types
+                  {t('hero.checkVisaTypes')}
                 </Button>
               </Link>
             </div>
@@ -182,21 +178,20 @@ const VisaPage: React.FC = () => {
               <div className="bg-white rounded-lg shadow-lg p-6 text-gray-800">
                 <h2 className="text-xl font-semibold mb-4 flex items-center">
                   <Compass className="mr-2 h-5 w-5 text-blue-600" />
-                  Quick Visa Check
+                  {t('quickCheck.title')}
                 </h2>
                 <p className="text-sm text-gray-800 mb-4">
-                  Select your country of citizenship to check visa requirements
-                  for traveling to the Philippines.
+                  {t('quickCheck.description')}
                 </p>
                 <div className="relative">
                   <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Search your country..."
+                    placeholder={t('quickCheck.searchPlaceholder')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    aria-label="Search for a country"
+                    aria-label={t('quickCheck.searchAriaLabel')}
                   />
                 </div>
               </div>
@@ -212,12 +207,12 @@ const VisaPage: React.FC = () => {
           <div className="md:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-semibold mb-4">
-                Select Your Country
+                {t('countryList.title')}
               </h2>
               <div
                 className="h-[800px] overflow-y-auto pr-2"
                 role="listbox"
-                aria-label="Country list"
+                aria-label={t('countryList.ariaLabel')}
               >
                 {filteredCountries.length > 0 ? (
                   filteredCountries.map((country) => (
@@ -238,7 +233,7 @@ const VisaPage: React.FC = () => {
                 ) : (
                   <div className="text-center py-8 text-gray-800">
                     <Search className="mx-auto h-8 w-8 mb-2 opacity-50" />
-                    <p>No countries found matching your search.</p>
+                    <p>{t('countryList.noResults')}</p>
                   </div>
                 )}
               </div>
@@ -250,7 +245,7 @@ const VisaPage: React.FC = () => {
             {selectedCountry ? (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-2xl font-semibold mb-2">
-                  Visa Requirements for {selectedCountry}
+                  {t('requirements.title', { country: selectedCountry })}
                 </h2>
 
                 {visaRequirement && (
@@ -260,12 +255,13 @@ const VisaPage: React.FC = () => {
                         <FileCheck className="h-6 w-6 text-green-600 mr-3 mt-0.5" />
                         <div>
                           <h3 className="font-semibold text-green-800">
-                            Visa-Free Entry
+                            {t('requirements.visaFree.title')}
                           </h3>
                           <p className="text-green-700">
-                            Citizens of {selectedCountry} can enter the
-                            Philippines without a visa for up to{' '}
-                            <strong>{visaRequirement.duration}</strong>.
+                            {t('requirements.visaFree.description', {
+                              country: selectedCountry,
+                              duration: visaRequirement.duration,
+                            })}
                           </p>
                         </div>
                       </div>
@@ -276,11 +272,12 @@ const VisaPage: React.FC = () => {
                         <AlertCircle className="h-6 w-6 text-red-600 mr-3 mt-0.5" />
                         <div>
                           <h3 className="font-semibold text-red-800">
-                            Visa Required
+                            {t('requirements.visaRequired.title')}
                           </h3>
                           <p className="text-red-700">
-                            Citizens of {selectedCountry} need to apply for a
-                            visa before traveling to the Philippines.
+                            {t('requirements.visaRequired.description', {
+                              country: selectedCountry,
+                            })}
                           </p>
                         </div>
                       </div>
@@ -291,13 +288,13 @@ const VisaPage: React.FC = () => {
                         <AlertCircle className="h-6 w-6 text-yellow-600 mr-3 mt-0.5" />
                         <div>
                           <h3 className="font-semibold text-yellow-800">
-                            Special Conditions Apply
+                            {t('requirements.specialCondition.title')}
                           </h3>
                           <p className="text-yellow-700">
-                            Citizens of {selectedCountry} may enter the
-                            Philippines without a visa for up to{' '}
-                            <strong>{visaRequirement.duration}</strong> under
-                            specific conditions.
+                            {t('requirements.specialCondition.description', {
+                              country: selectedCountry,
+                              duration: visaRequirement.duration,
+                            })}
                           </p>
                         </div>
                       </div>
@@ -305,7 +302,7 @@ const VisaPage: React.FC = () => {
 
                     <div className="mt-6">
                       <h3 className="text-lg font-medium mb-2">
-                        Entry Requirements
+                        {t('requirements.entryRequirements')}
                       </h3>
                       <div className="prose prose-sm max-w-none">
                         <p>{visaRequirement.description}</p>
@@ -313,7 +310,7 @@ const VisaPage: React.FC = () => {
                         {visaRequirement.requirements && (
                           <div className="mt-4">
                             <h4 className="text-md font-medium mb-2">
-                              Required Documents:
+                              {t('requirements.requiredDocuments')}
                             </h4>
                             <ul className="list-disc pl-5 space-y-1">
                               {visaRequirement.requirements.map(
@@ -328,7 +325,7 @@ const VisaPage: React.FC = () => {
                         {visaRequirement.additionalInfo && (
                           <div className="mt-4 p-3 bg-blue-50 rounded-md text-blue-800">
                             <p>
-                              <strong>Note:</strong>{' '}
+                              <strong>{t('requirements.note')}</strong>{' '}
                               {visaRequirement.additionalInfo}
                             </p>
                           </div>
@@ -339,7 +336,7 @@ const VisaPage: React.FC = () => {
                     {visaRequirement.type === 'visa-required' && (
                       <div className="mt-6">
                         <h3 className="text-lg font-medium mb-3">
-                          How to Apply for a Visa
+                          {t('visaApplication.title')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <a
@@ -352,12 +349,14 @@ const VisaPage: React.FC = () => {
                               <Globe className="h-5 w-5 text-blue-600" />
                             </div>
                             <div>
-                              <h4 className="font-medium">eVisa Portal</h4>
+                              <h4 className="font-medium">
+                                {t('visaApplication.eVisa.title')}
+                              </h4>
                               <p className="text-sm text-gray-800">
-                                Apply online through the official eVisa system
+                                {t('visaApplication.eVisa.description')}
                               </p>
                               <div className="flex items-center text-blue-600 text-sm mt-1">
-                                <span>Visit website</span>
+                                <span>{t('visaApplication.eVisa.action')}</span>
                                 <ExternalLink className="h-3 w-3 ml-1" />
                               </div>
                             </div>
@@ -373,14 +372,15 @@ const VisaPage: React.FC = () => {
                             </div>
                             <div>
                               <h4 className="font-medium">
-                                Philippine Embassies
+                                {t('visaApplication.embassy.title')}
                               </h4>
                               <p className="text-sm text-gray-800">
-                                Find your nearest Philippine Embassy or
-                                Consulate
+                                {t('visaApplication.embassy.description')}
                               </p>
                               <div className="flex items-center text-blue-600 text-sm mt-1">
-                                <span>Find locations</span>
+                                <span>
+                                  {t('visaApplication.embassy.action')}
+                                </span>
                                 <ExternalLink className="h-3 w-3 ml-1" />
                               </div>
                             </div>
@@ -398,12 +398,10 @@ const VisaPage: React.FC = () => {
                     <Globe className="h-12 w-12 text-blue-600" />
                   </div>
                   <h2 className="text-2xl font-semibold mb-2">
-                    Check Your Visa Requirements
+                    {t('defaultMessage.title')}
                   </h2>
                   <p className="text-gray-800 max-w-md mx-auto">
-                    Select your country from the list to check if you need a
-                    visa to visit the Philippines and learn about entry
-                    requirements.
+                    {t('defaultMessage.description')}
                   </p>
                 </div>
               </div>
@@ -412,18 +410,16 @@ const VisaPage: React.FC = () => {
             {/* Additional Information */}
             <div className="mt-8 bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-semibold mb-4">
-                Important Visa Information
+                {t('additionalInfo.title')}
               </h2>
 
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-medium mb-2">
-                    Temporary Visitor's Visa (9a)
+                    {t('additionalInfo.temporaryVisa.title')}
                   </h3>
                   <p className="text-gray-700">
-                    The 9(a) Temporary Visitor's Visa is for foreign nationals
-                    visiting the Philippines for business, tourism, medical
-                    treatment, or other temporary purposes.
+                    {t('additionalInfo.temporaryVisa.description')}
                   </p>
                   <a
                     href="https://evisa.gov.ph/page/policy?l1=Non-Immigrant%20Visas&l2=9(a)%20Temporary%20Visitors%20Visa"
@@ -431,17 +427,17 @@ const VisaPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 mt-2"
                   >
-                    <span>Learn more about Temporary Visitor's Visa</span>
+                    <span>{t('additionalInfo.temporaryVisa.learnMore')}</span>
                     <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Visa Extensions</h3>
+                  <h3 className="text-lg font-medium mb-2">
+                    {t('additionalInfo.visaExtensions.title')}
+                  </h3>
                   <p className="text-gray-700">
-                    Visitors who wish to extend their stay in the Philippines
-                    beyond their authorized period can apply for an extension at
-                    the Bureau of Immigration.
+                    {t('additionalInfo.visaExtensions.description')}
                   </p>
                   <a
                     href="https://immigration.gov.ph/"
@@ -449,14 +445,16 @@ const VisaPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 mt-2"
                   >
-                    <span>Visit Bureau of Immigration website</span>
+                    <span>
+                      {t('additionalInfo.visaExtensions.visitWebsite')}
+                    </span>
                     <ExternalLink className="h-3 w-3 ml-1" />
                   </a>
                 </div>
 
                 <div className="p-4 bg-yellow-50 rounded-lg">
                   <h3 className="text-lg font-medium mb-2 text-yellow-800">
-                    Disclaimer
+                    {t('additionalInfo.disclaimer.title')}
                   </h3>
                   <p className="text-yellow-700 text-sm">
                     {visaData.sourceInfo.disclaimer}
