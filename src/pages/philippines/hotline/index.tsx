@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import hotlinesData from '../../data/philippines_hotlines.json';
+import hotlinesData from '../../../data/philippines_hotlines.json';
 
 interface Hotline {
   name: string;
@@ -7,6 +7,7 @@ interface Hotline {
   numbers: string[];
   description?: string;
 }
+
 import {
   Phone,
   Search,
