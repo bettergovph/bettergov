@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const generateSlug = (name) => {
+const generateSlug = name => {
   if (!name || typeof name !== 'string') return 'unknown-slug';
   return name
     .toLowerCase()
@@ -14,23 +14,25 @@ const generateSlug = (name) => {
     .replace(/--+/g, '-'); // Replace multiple hyphens with single
 };
 
-const getBestName = (entry) => {
-  return entry.name || 
-         entry.office || 
-         entry.office_name || 
-         entry.agency_name || 
-         entry.organization_name || 
-         entry.chamber || 
-         'Unknown Entry';
+const getBestName = entry => {
+  return (
+    entry.name ||
+    entry.office ||
+    entry.office_name ||
+    entry.agency_name ||
+    entry.organization_name ||
+    entry.chamber ||
+    'Unknown Entry'
+  );
 };
 
-const extractContactInfo = (entry) => {
+const extractContactInfo = entry => {
   if (entry.contact) return entry.contact;
   if (entry.mayor?.contact) return entry.mayor.contact;
   return null;
 };
 
-const extractEmail = (entry) => {
+const extractEmail = entry => {
   if (entry.email) return entry.email;
   if (entry.secretary?.email) return entry.secretary.email;
   if (entry.director?.email) return entry.director.email;
@@ -39,9 +41,14 @@ const extractEmail = (entry) => {
 };
 
 // Process a single entry and add it to the websites array
-const processEntry = (entry, type, allWebsiteEntries, parentDepartment = null) => {
+const processEntry = (
+  entry,
+  type,
+  allWebsiteEntries,
+  parentDepartment = null
+) => {
   if (!entry) return;
-  
+
   const name = getBestName(entry);
   const slug = generateSlug(name);
   const contact = extractContactInfo(entry);
@@ -57,14 +64,14 @@ const processEntry = (entry, type, allWebsiteEntries, parentDepartment = null) =
       address: entry.address || null,
       contact: contact,
       type,
-      parent_department: parentDepartment || null
+      parent_department: parentDepartment || null,
     };
-    
+
     // Check if this entry already exists (by slug and type)
     const existingIndex = allWebsiteEntries.findIndex(
       item => item.slug === slug && item.type === type
     );
-    
+
     if (existingIndex === -1) {
       allWebsiteEntries.push(websiteEntry);
     } else {
@@ -76,7 +83,8 @@ const processEntry = (entry, type, allWebsiteEntries, parentDepartment = null) =
         website: existing.website || entry.website || null,
         address: existing.address || entry.address || null,
         contact: existing.contact || contact,
-        parent_department: existing.parent_department || parentDepartment || null
+        parent_department:
+          existing.parent_department || parentDepartment || null,
       };
     }
   }
@@ -86,10 +94,10 @@ const processEntry = (entry, type, allWebsiteEntries, parentDepartment = null) =
 const processNestedFields = (department, type, allWebsiteEntries) => {
   // Get department name for parent reference
   const departmentName = getBestName(department);
-  
+
   // Process the main department entry
   processEntry(department, type, allWebsiteEntries);
-  
+
   // Process bureaus and services
   const bureausFields = ['bureaus', 'bureaus_and_services'];
   bureausFields.forEach(field => {
@@ -99,31 +107,41 @@ const processNestedFields = (department, type, allWebsiteEntries) => {
       });
     }
   });
-  
+
   // Process agencies under supervision
   const supervisionFields = [
     'under_supervision_and_control',
     'under_administrative_supervision',
     'attached_agencies',
     'attached_corporations',
-    'attached_government_corporations'
+    'attached_government_corporations',
   ];
-  
+
   supervisionFields.forEach(field => {
     if (Array.isArray(department[field])) {
       department[field].forEach(agency => {
-        processEntry(agency, field.replace('_', '-'), allWebsiteEntries, departmentName);
+        processEntry(
+          agency,
+          field.replace('_', '-'),
+          allWebsiteEntries,
+          departmentName
+        );
       });
     }
   });
-  
+
   // Process foreign service establishments
   if (Array.isArray(department.foreign_service_establishments)) {
     department.foreign_service_establishments.forEach(embassy => {
-      processEntry(embassy, 'foreign-service', allWebsiteEntries, departmentName);
+      processEntry(
+        embassy,
+        'foreign-service',
+        allWebsiteEntries,
+        departmentName
+      );
     });
   }
-  
+
   // Process regional offices
   if (Array.isArray(department.regional_offices)) {
     department.regional_offices.forEach(office => {
@@ -133,11 +151,21 @@ const processNestedFields = (department, type, allWebsiteEntries) => {
         const officeName = `${departmentName} - ${office.region} Regional Office`;
         const enhancedOffice = {
           ...office,
-          name: officeName
+          name: officeName,
         };
-        processEntry(enhancedOffice, 'regional-office', allWebsiteEntries, departmentName);
+        processEntry(
+          enhancedOffice,
+          'regional-office',
+          allWebsiteEntries,
+          departmentName
+        );
       } else {
-        processEntry(office, 'regional-office', allWebsiteEntries, departmentName);
+        processEntry(
+          office,
+          'regional-office',
+          allWebsiteEntries,
+          departmentName
+        );
       }
     });
   }
@@ -147,14 +175,20 @@ const main = async () => {
   // Adjusted directoryPath to point to src/data/directory from scripts/
   const directoryPath = path.join(__dirname, '..', 'src', 'data', 'directory');
   // Adjusted outputFilePath to point to src/data/websites.json from scripts/
-  const outputFilePath = path.join(__dirname, '..', 'src', 'data', 'websites.json');
+  const outputFilePath = path.join(
+    __dirname,
+    '..',
+    'src',
+    'data',
+    'websites.json'
+  );
   const allWebsiteEntries = [];
 
   try {
     const files = await fs.readdir(directoryPath);
-    const jsonFiles = files.filter(file => 
-      path.extname(file).toLowerCase() === '.json' && 
-      file !== 'websites.json'
+    const jsonFiles = files.filter(
+      file =>
+        path.extname(file).toLowerCase() === '.json' && file !== 'websites.json'
     );
 
     for (const jsonFile of jsonFiles) {
@@ -163,7 +197,7 @@ const main = async () => {
       const jsonData = JSON.parse(fileContent);
 
       const type = path.basename(jsonFile, '.json');
-      
+
       // Special handling for departments.json with nested structures
       if (jsonFile === 'departments.json' && Array.isArray(jsonData)) {
         jsonData.forEach(department => {
@@ -171,7 +205,7 @@ const main = async () => {
         });
         continue;
       }
-      
+
       // Handle regular JSON files
       if (Array.isArray(jsonData)) {
         jsonData.forEach(entry => {
@@ -185,24 +219,34 @@ const main = async () => {
             if (Array.isArray(region.cities)) {
               region.cities.forEach(city => {
                 processEntry(city, 'lgu', allWebsiteEntries);
-                
+
                 // Also process mayor and vice mayor if they have websites
                 if (city.mayor) {
                   const mayorEntry = {
                     ...city.mayor,
                     name: `${city.mayor.name}, Mayor of ${city.city}`,
-                    address: city.address
+                    address: city.address,
                   };
-                  processEntry(mayorEntry, 'local-official', allWebsiteEntries, city.city);
+                  processEntry(
+                    mayorEntry,
+                    'local-official',
+                    allWebsiteEntries,
+                    city.city
+                  );
                 }
-                
+
                 if (city.vice_mayor) {
                   const viceEntry = {
                     ...city.vice_mayor,
                     name: `${city.vice_mayor.name}, Vice Mayor of ${city.city}`,
-                    address: city.address
+                    address: city.address,
                   };
-                  processEntry(viceEntry, 'local-official', allWebsiteEntries, city.city);
+                  processEntry(
+                    viceEntry,
+                    'local-official',
+                    allWebsiteEntries,
+                    city.city
+                  );
                 }
               });
             }
@@ -222,9 +266,14 @@ const main = async () => {
 
     // Sort entries by name for better readability
     allWebsiteEntries.sort((a, b) => a.name.localeCompare(b.name));
-    
-    await fs.writeFile(outputFilePath, JSON.stringify(allWebsiteEntries, null, 2));
-    console.log(`Successfully extracted ${allWebsiteEntries.length} websites to ${outputFilePath}`);
+
+    await fs.writeFile(
+      outputFilePath,
+      JSON.stringify(allWebsiteEntries, null, 2)
+    );
+    console.log(
+      `Successfully extracted ${allWebsiteEntries.length} websites to ${outputFilePath}`
+    );
   } catch (error) {
     console.error('Error extracting websites:', error);
     console.error(error.stack);

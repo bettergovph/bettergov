@@ -10,7 +10,8 @@ const args = process.argv.slice(2);
 const RESET_INDEX = args.includes('--reset') || args.includes('-r');
 
 // MeiliSearch configuration
-const MEILISEARCH_HOST = process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_HOST =
+  process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
 const MEILISEARCH_API_KEY = process.env.MEILISEARCH_MASTER_KEY || ''; // Use MASTER KEY for admin operations
 
@@ -22,7 +23,15 @@ const client = new MeiliSearch({
 const INDEX_NAME = 'contractors';
 
 // Path to the contractors directory
-const contractorsDir = path.join(__dirname, '..', 'src', 'data', 'flood_control', 'lookups', 'contractors');
+const contractorsDir = path.join(
+  __dirname,
+  '..',
+  'src',
+  'data',
+  'flood_control',
+  'lookups',
+  'contractors'
+);
 
 // Define settings for the contractors index
 const CONTRACTORS_INDEX_SETTINGS = {
@@ -35,14 +44,14 @@ const CONTRACTORS_INDEX_SETTINGS = {
     'incorporation_date',
     'license',
     'sec_registration',
-    'type'
+    'type',
   ],
   sortableAttributes: [
     'company_name',
     'employees',
     'employee_count',
     'incorporation_date',
-    'created_at'
+    'created_at',
   ],
   searchableAttributes: [
     'company_name',
@@ -54,12 +63,16 @@ const CONTRACTORS_INDEX_SETTINGS = {
     'key_personnel.name',
     'key_personnel.role',
     'locations',
-    'related_companies.title'
+    'related_companies.title',
   ],
   displayedAttributes: ['*'],
 };
 
-console.log(RESET_INDEX ? 'Running with --reset flag: Will recreate the index from scratch.' : 'Running in update mode: Will add/update documents in the existing index.');
+console.log(
+  RESET_INDEX
+    ? 'Running with --reset flag: Will recreate the index from scratch.'
+    : 'Running in update mode: Will add/update documents in the existing index.'
+);
 
 // Function to read all contractor JSON files
 async function readContractorFiles(dirPath) {
@@ -84,7 +97,10 @@ async function readContractorFiles(dirPath) {
 
         contractors.push(contractorData);
       } catch (fileError) {
-        console.warn(`Warning: Could not read file ${file}:`, fileError.message);
+        console.warn(
+          `Warning: Could not read file ${file}:`,
+          fileError.message
+        );
       }
     }
 
@@ -106,7 +122,10 @@ function processContractorData(contractor) {
     }
   }
 
-  if (contractor.employee_count && typeof contractor.employee_count === 'string') {
+  if (
+    contractor.employee_count &&
+    typeof contractor.employee_count === 'string'
+  ) {
     const numEmployeeCount = parseInt(contractor.employee_count);
     if (!isNaN(numEmployeeCount)) {
       contractor.employee_count = numEmployeeCount;
@@ -127,7 +146,10 @@ function processContractorData(contractor) {
   }
 
   // Ensure related_companies is an array
-  if (contractor.related_companies && !Array.isArray(contractor.related_companies)) {
+  if (
+    contractor.related_companies &&
+    !Array.isArray(contractor.related_companies)
+  ) {
     contractor.related_companies = [];
   }
 
@@ -145,7 +167,9 @@ function processContractorData(contractor) {
 }
 
 async function main() {
-  console.log(`Starting Meilisearch indexing script for the contractors index: ${INDEX_NAME}`);
+  console.log(
+    `Starting Meilisearch indexing script for the contractors index: ${INDEX_NAME}`
+  );
 
   try {
     const health = await client.health();
@@ -172,26 +196,38 @@ async function main() {
 
     if (indexExists) {
       if (RESET_INDEX) {
-        console.log(`Index '${INDEX_NAME}' exists and --reset flag was provided. Deleting index...`);
+        console.log(
+          `Index '${INDEX_NAME}' exists and --reset flag was provided. Deleting index...`
+        );
         await client.deleteIndex(INDEX_NAME);
         console.log(`Index '${INDEX_NAME}' deleted successfully.`);
 
         // Create a new index
-        const task = await client.createIndex(INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${INDEX_NAME}' recreated successfully.`);
-        const settingsTask = await client.index(INDEX_NAME).updateSettings(CONTRACTORS_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(INDEX_NAME)
+          .updateSettings(CONTRACTORS_INDEX_SETTINGS);
         console.log(`Settings updated for new index '${INDEX_NAME}'.`);
       } else {
         console.log(`Index '${INDEX_NAME}' already exists. Updating settings.`);
-        const task = await client.index(INDEX_NAME).updateSettings(CONTRACTORS_INDEX_SETTINGS);
+        const task = await client
+          .index(INDEX_NAME)
+          .updateSettings(CONTRACTORS_INDEX_SETTINGS);
         console.log(`Settings updated for index '${INDEX_NAME}'.`);
       }
     } else {
       console.log(`Index '${INDEX_NAME}' not found. Creating...`);
       try {
-        const task = await client.createIndex(INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${INDEX_NAME}' created successfully.`);
-        const settingsTask = await client.index(INDEX_NAME).updateSettings(CONTRACTORS_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(INDEX_NAME)
+          .updateSettings(CONTRACTORS_INDEX_SETTINGS);
         console.log(`Settings updated for index '${INDEX_NAME}'.`);
       } catch (createError) {
         console.error(`Error creating index '${INDEX_NAME}':`, createError);
@@ -213,7 +249,9 @@ async function main() {
       return;
     }
 
-    console.log(`Preparing ${contractorData.length} contractor documents for indexing...`);
+    console.log(
+      `Preparing ${contractorData.length} contractor documents for indexing...`
+    );
 
     const documentsToIndex = contractorData.map((contractor, index) => {
       // Process the contractor data to ensure proper typing
@@ -228,7 +266,9 @@ async function main() {
     });
 
     if (documentsToIndex.length > 0) {
-      console.log(`Indexing ${documentsToIndex.length} contractor documents...`);
+      console.log(
+        `Indexing ${documentsToIndex.length} contractor documents...`
+      );
 
       // Get a reference to the index and add documents
       const index = client.index(INDEX_NAME);
@@ -243,7 +283,6 @@ async function main() {
       // Log some sample data for verification
       console.log('Sample contractor data:');
       console.log(JSON.stringify(documentsToIndex.slice(0, 2), null, 2));
-
     } else {
       console.log(`No contractor documents to index for '${INDEX_NAME}'.`);
     }
@@ -254,7 +293,7 @@ async function main() {
   console.log(`Meilisearch indexing script for '${INDEX_NAME}' finished.`);
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(
     'An unexpected error occurred during Meilisearch indexing:',
     error

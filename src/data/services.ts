@@ -36,7 +36,7 @@ export const services: ServiceItem[] = [
   {
     id: '5',
     title: "Driver's License",
-    description: 'Apply for or renew your driver\'s license online',
+    description: "Apply for or renew your driver's license online",
     icon: 'Car',
     url: '/services/drivers-license',
     category: 'transportation',
@@ -72,7 +72,7 @@ export const services: ServiceItem[] = [
     icon: 'BadgeCheck',
     url: '/services/national-id',
     category: 'citizenship',
-  }
+  },
 ];
 
 export const popularServices = services;

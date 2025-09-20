@@ -3,7 +3,7 @@
 /**
  * Local JSON to Cloudflare D1 Database Loader
  * Run with: node load_flood_control.js
- * 
+ *
  * Requirements:
  * - Node.js
  * - wrangler CLI installed and authenticated
@@ -20,7 +20,7 @@ const execAsync = promisify(exec);
 const CONFIG = {
   databaseName: 'bettergov', // Replace with your D1 database name
   jsonFilePath: './flood_control.json',
-  batchSize: 100 // Number of records to process in each batch
+  batchSize: 100, // Number of records to process in each batch
 };
 
 /**
@@ -52,14 +52,18 @@ async function main() {
     const contracts = JSON.parse(jsonText);
 
     console.log(`✅ Parsed ${contracts.length} contract records`);
-    
+
     // Process contracts to ensure they have the right format
-    const processedContracts = contracts.map(contract => processContract(contract));
+    const processedContracts = contracts.map(contract =>
+      processContract(contract)
+    );
 
     // Validate contracts
     const validContracts = processedContracts.filter(contract => {
       if (!contract.contract_id) {
-        console.warn(`⚠️  Skipping record without contract_id: ${JSON.stringify(contract)}`);
+        console.warn(
+          `⚠️  Skipping record without contract_id: ${JSON.stringify(contract)}`
+        );
         return false;
       }
       return true;
@@ -71,7 +75,6 @@ async function main() {
     await insertContractsInBatches(validContracts);
 
     console.log('🎉 Import completed successfully!');
-
   } catch (error) {
     console.error('❌ Error during import:', error.message);
     process.exit(1);
@@ -85,15 +88,21 @@ async function main() {
  */
 function processContract(contract) {
   return {
-    contract_id: contract.contract_id?.toString().trim() || contract.id?.toString().trim() || null,
+    contract_id:
+      contract.contract_id?.toString().trim() ||
+      contract.id?.toString().trim() ||
+      null,
     project_title: contract.project_title?.toString().trim() || null,
     location: contract.location?.toString().trim() || null,
     contractor: contract.contractor?.toString().trim() || null,
     contract_cost_raw: contract.contract_cost_raw?.toString().trim() || null,
-    contract_cost_numeric: typeof contract.contract_cost_numeric === 'number' ? contract.contract_cost_numeric : parseNumericCost(contract.contract_cost_numeric) || null,
+    contract_cost_numeric:
+      typeof contract.contract_cost_numeric === 'number'
+        ? contract.contract_cost_numeric
+        : parseNumericCost(contract.contract_cost_numeric) || null,
     start_date: formatDate(contract.start_date) || null,
     completion_date: formatDate(contract.completion_date) || null,
-    region: contract.region?.toString().trim() || null
+    region: contract.region?.toString().trim() || null,
   };
 }
 
@@ -137,12 +146,16 @@ async function insertContractsInBatches(contracts) {
     const batch = contracts.slice(i, i + CONFIG.batchSize);
     const batchNumber = Math.floor(i / CONFIG.batchSize) + 1;
 
-    console.log(`📦 Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`);
+    console.log(
+      `📦 Processing batch ${batchNumber}/${totalBatches} (${batch.length} records)...`
+    );
 
     try {
       await insertBatch(batch);
       processedCount += batch.length;
-      console.log(`✅ Batch ${batchNumber} completed. Total processed: ${processedCount}/${contracts.length}`);
+      console.log(
+        `✅ Batch ${batchNumber} completed. Total processed: ${processedCount}/${contracts.length}`
+      );
     } catch (error) {
       console.error(`❌ Error in batch ${batchNumber}:`, error.message);
       // Continue with next batch instead of failing completely
@@ -174,7 +187,6 @@ async function insertBatch(contracts) {
 
     // Clean up temp file
     fs.unlinkSync(tempSqlFile);
-
   } catch (error) {
     // Clean up temp file if it exists
     try {
@@ -182,7 +194,7 @@ async function insertBatch(contracts) {
       if (fs.existsSync(tempSqlFile)) {
         fs.unlinkSync(tempSqlFile);
       }
-    } catch { } // Ignore cleanup errors
+    } catch {} // Ignore cleanup errors
 
     throw error;
   }
@@ -204,7 +216,7 @@ function generateBatchInsertSQL(contracts) {
       contract.contract_cost_numeric,
       escapeSQL(contract.start_date),
       escapeSQL(contract.completion_date),
-      escapeSQL(contract.region)
+      escapeSQL(contract.region),
     ];
 
     sql += `
@@ -240,4 +252,4 @@ function escapeSQL(value) {
   return `'${value.toString().replace(/'/g, "''")}'`;
 }
 
-main()
+main();

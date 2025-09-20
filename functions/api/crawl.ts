@@ -1,20 +1,16 @@
-import { Env } from '../types'
-import {
-  fetchAndSaveContent,
-  getContentByUrl,
-  setDefaultCrawler,
-} from '../lib/crawler'
+import { Env } from '../types';
+import { fetchAndSaveContent, setDefaultCrawler } from '../lib/crawler';
 
 /**
  * Handler for HTTP requests to the web crawling endpoint
  * This is a generic interface for crawling web content, currently using Jina.ai
  */
 export async function onRequest(context: {
-  request: Request
-  env: Env
-  params: {}
+  request: Request;
+  env: Env;
+  params: Record<string, unknown>;
 }): Promise<Response> {
-  const { request, env } = context
+  const { request, env } = context;
 
   // Handle CORS preflight requests
   if (request.method === 'OPTIONS') {
@@ -24,26 +20,26 @@ export async function onRequest(context: {
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-    })
+    });
   }
 
   // Only allow GET requests
   if (request.method !== 'GET') {
-    return new Response('Method not allowed', { status: 405 })
+    return new Response('Method not allowed', { status: 405 });
   }
 
   try {
-    const url = new URL(request.url)
-    const targetUrl = url.searchParams.get('url')
-    const forceUpdate = url.searchParams.get('force') === 'true'
-    const crawler = url.searchParams.get('crawler') // 'jina' or 'cfbrowser'
+    const url = new URL(request.url);
+    const targetUrl = url.searchParams.get('url');
+    const forceUpdate = url.searchParams.get('force') === 'true';
+    const crawler = url.searchParams.get('crawler'); // 'jina' or 'cfbrowser'
 
     // Set default crawler if specified
     if (crawler) {
       try {
-        setDefaultCrawler(crawler)
-      } catch (error) {
-        console.warn(`Invalid crawler type: ${crawler}, using default`)
+        setDefaultCrawler(crawler);
+      } catch {
+        console.warn(`Invalid crawler type: ${crawler}, using default`);
       }
     }
 
@@ -61,7 +57,7 @@ export async function onRequest(context: {
             'Access-Control-Allow-Origin': '*',
           },
         }
-      )
+      );
     }
 
     // Check if we already have this URL in the database and it's not a force update
@@ -100,7 +96,7 @@ export async function onRequest(context: {
     // If we don't have content or force update is requested, fetch it
     // if (!content || forceUpdate) {
     if (forceUpdate) {
-      const result = await fetchAndSaveContent(env, targetUrl, crawler)
+      const result = await fetchAndSaveContent(env, targetUrl, crawler);
 
       if (!result.success) {
         // Return the response with CORS headers
@@ -116,7 +112,7 @@ export async function onRequest(context: {
               'Access-Control-Allow-Origin': '*',
             },
           }
-        )
+        );
       }
 
       return new Response(
@@ -131,7 +127,7 @@ export async function onRequest(context: {
             'Access-Control-Allow-Origin': '*',
           },
         }
-      )
+      );
     }
   } catch (error) {
     return new Response(
@@ -146,6 +142,6 @@ export async function onRequest(context: {
           'Access-Control-Allow-Origin': '*',
         },
       }
-    )
+    );
   }
 }

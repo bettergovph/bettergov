@@ -3,6 +3,7 @@
 ## How it works
 
 Translation files live in `public/locales/`:
+
 - `en` - English (required - fallback language)
 - `fil` - Filipino
 - `bcl` - Bikol Central
@@ -17,8 +18,9 @@ Translation files live in `public/locales/`:
 - `war` - Waray
 
 To organize translations better the concept of namespacing is used
+
 - `common.json` - Navigation, buttons, shared text
-- `visa.json` - Visa information pages  
+- `visa.json` - Visa information pages
 - `about.json` - About page
 
 ## For translators
@@ -32,6 +34,7 @@ To organize translations better the concept of namespacing is used
 **Note**: English is the fallback language. If a translation is missing in your language, it will show English instead. So you only need to translate what you can!
 
 Example:
+
 ```json5
 // English
 {
@@ -39,7 +42,7 @@ Example:
   "steps": ["Step 1", "Step 2", "Step 3"]
 }
 
-// Filipino  
+// Filipino
 {
   "title": "Impormasyon sa Visa",
   "steps": ["Hakbang 1", "Hakbang 2", "Hakbang 3"]
@@ -51,15 +54,16 @@ Example:
 ### Using translations in code
 
 ```tsx
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-const { t } = useTranslation('page-name')
-return <h1>{t('title')}</h1>
+const { t } = useTranslation('page-name');
+return <h1>{t('title')}</h1>;
 ```
 
 ### Arrays
+
 ```tsx
-const items = t('items', { returnObjects: true }) as string[]
+const items = t('items', { returnObjects: true }) as string[];
 ```
 
 ### Adding new feature with translation

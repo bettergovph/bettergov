@@ -1,21 +1,21 @@
-import { Env, JinaResponse, JinaRecord } from '../types'
-import { fetchJinaContent, saveJinaContent, getJinaContentByUrl } from './jina'
+import { Env, JinaResponse, JinaRecord } from '../types';
+import { fetchJinaContent, saveJinaContent, getJinaContentByUrl } from './jina';
 import {
   fetchCFBrowserContent,
   saveCFBrowserContent,
   getCFBrowserContentByUrl,
-} from './cf-browser'
+} from './cf-browser';
 
 /**
  * Interface for any web crawler implementation
  */
 export interface WebCrawler {
-  fetchContent(env: Env, url: string): Promise<JinaResponse>
+  fetchContent(env: Env, url: string): Promise<JinaResponse>;
   saveContent(
     env: Env,
     data: JinaResponse
-  ): Promise<{ success: boolean; message: string; id?: string }>
-  getContentByUrl(env: Env, url: string): Promise<JinaRecord | null>
+  ): Promise<{ success: boolean; message: string; id?: string }>;
+  getContentByUrl(env: Env, url: string): Promise<JinaRecord | null>;
 }
 
 /**
@@ -23,18 +23,18 @@ export interface WebCrawler {
  */
 export class JinaCrawler implements WebCrawler {
   async fetchContent(env: Env, url: string): Promise<JinaResponse> {
-    return fetchJinaContent(env, url)
+    return fetchJinaContent(env, url);
   }
 
   async saveContent(
     env: Env,
     data: JinaResponse
   ): Promise<{ success: boolean; message: string; id?: string }> {
-    return saveJinaContent(env, data)
+    return saveJinaContent(env, data);
   }
 
   async getContentByUrl(env: Env, url: string): Promise<JinaRecord | null> {
-    return getJinaContentByUrl(env, url)
+    return getJinaContentByUrl(env, url);
   }
 }
 
@@ -43,18 +43,18 @@ export class JinaCrawler implements WebCrawler {
  */
 export class CFBrowserCrawler implements WebCrawler {
   async fetchContent(env: Env, url: string): Promise<JinaResponse> {
-    return fetchCFBrowserContent(env, url)
+    return fetchCFBrowserContent(env, url);
   }
 
   async saveContent(
     env: Env,
     data: JinaResponse
   ): Promise<{ success: boolean; message: string; id?: string }> {
-    return saveCFBrowserContent(env, data)
+    return saveCFBrowserContent(env, data);
   }
 
   async getContentByUrl(env: Env, url: string): Promise<JinaRecord | null> {
-    return getCFBrowserContentByUrl(env, url)
+    return getCFBrowserContentByUrl(env, url);
   }
 }
 
@@ -62,10 +62,10 @@ export class CFBrowserCrawler implements WebCrawler {
 const crawlers = {
   jina: new JinaCrawler(),
   cfbrowser: new CFBrowserCrawler(),
-}
+};
 
 // Default crawler instance - can be changed based on environment or config
-let defaultCrawler: WebCrawler = crawlers.jina
+let defaultCrawler: WebCrawler = crawlers.jina;
 
 /**
  * Get the active web crawler implementation
@@ -76,11 +76,11 @@ let defaultCrawler: WebCrawler = crawlers.jina
 export function getCrawler(type?: string): WebCrawler {
   // If a specific type is requested, use that
   if (type && type in crawlers) {
-    return crawlers[type as keyof typeof crawlers]
+    return crawlers[type as keyof typeof crawlers];
   }
 
   // Otherwise return the default crawler
-  return defaultCrawler
+  return defaultCrawler;
 }
 
 /**
@@ -89,14 +89,14 @@ export function getCrawler(type?: string): WebCrawler {
  */
 export function setDefaultCrawler(type: string): void {
   if (type in crawlers) {
-    defaultCrawler = crawlers[type as keyof typeof crawlers]
-    console.log(`Default crawler set to: ${type}`)
+    defaultCrawler = crawlers[type as keyof typeof crawlers];
+    console.log(`Default crawler set to: ${type}`);
   } else {
     console.error(
       `Invalid crawler type: ${type}. Available types: ${Object.keys(
         crawlers
       ).join(', ')}`
-    )
+    );
   }
 }
 
@@ -112,7 +112,7 @@ export async function fetchContent(
   url: string,
   crawlerType?: string
 ): Promise<JinaResponse> {
-  return getCrawler(crawlerType).fetchContent(env, url)
+  return getCrawler(crawlerType).fetchContent(env, url);
 }
 
 /**
@@ -127,7 +127,7 @@ export async function saveContent(
   data: JinaResponse,
   crawlerType?: string
 ): Promise<{ success: boolean; message: string; id?: string }> {
-  return getCrawler(crawlerType).saveContent(env, data)
+  return getCrawler(crawlerType).saveContent(env, data);
 }
 
 /**
@@ -142,7 +142,7 @@ export async function getContentByUrl(
   url: string,
   crawlerType?: string
 ): Promise<JinaRecord | null> {
-  return getCrawler(crawlerType).getContentByUrl(env, url)
+  return getCrawler(crawlerType).getContentByUrl(env, url);
 }
 
 /**
@@ -157,25 +157,25 @@ export async function fetchAndSaveContent(
   url: string,
   crawlerType?: string
 ): Promise<{
-  success: boolean
-  data?: JinaResponse
-  message?: string
-  error?: string
+  success: boolean;
+  data?: JinaResponse;
+  message?: string;
+  error?: string;
 }> {
   try {
     // Fetch content using the specified or default crawler
-    const data = await fetchContent(env, url, crawlerType)
+    const data = await fetchContent(env, url, crawlerType);
 
     if (data.error) {
       return {
         success: false,
         message: 'Failed to fetch content from crawler',
         error: data.error,
-      }
+      };
     }
 
     // Save to database
-    const saveResult = await saveContent(env, data, crawlerType)
+    const saveResult = await saveContent(env, data, crawlerType);
 
     if (!saveResult.success) {
       return {
@@ -183,19 +183,19 @@ export async function fetchAndSaveContent(
         data: data,
         message: 'Fetched from crawler but failed to save to database',
         error: saveResult.message,
-      }
+      };
     }
 
     return {
       success: true,
       data: data,
       message: 'Successfully fetched and saved content',
-    }
+    };
   } catch (error) {
     return {
       success: false,
       message: 'Error in fetch and save operation',
       error: (error as Error).message,
-    }
+    };
   }
 }

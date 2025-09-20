@@ -7,7 +7,10 @@ dotenv.config();
 // Load the unique contractors JSON file
 const contractorsData = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, '../src/data/flood_control/lookups/Unique_contractor_with_counts.json'),
+    path.join(
+      __dirname,
+      '../src/data/flood_control/lookups/Unique_contractor_with_counts.json'
+    ),
     'utf-8'
   )
 );
@@ -30,7 +33,10 @@ const jsonSchema = {
     email: { type: 'string' },
     ceo: { type: 'string', description: 'Known CEO or COO' },
     employees: { type: 'number' },
-    description: { type: 'string', description: 'The summary and description of this company' },
+    description: {
+      type: 'string',
+      description: 'The summary and description of this company',
+    },
     address: { type: 'string' },
     license: { type: 'string', description: 'Company licenses' },
     sec_registration: { type: 'string', description: 'The SEC number' },
@@ -41,32 +47,32 @@ const jsonSchema = {
       type: 'array',
       items: {
         type: 'object',
-        properties: { name: { type: 'string' }, role: { type: 'string' } }
-      }
+        properties: { name: { type: 'string' }, role: { type: 'string' } },
+      },
     },
     related_companies: {
       type: 'array',
       description: 'Companies owned by the ceo or key personnel',
       items: {
         type: 'object',
-        properties: { title: { type: 'string' }, url: { type: 'string' } }
-      }
+        properties: { title: { type: 'string' }, url: { type: 'string' } },
+      },
     },
     sources: {
       type: 'array',
       items: {
         type: 'object',
-        properties: { title: { type: 'string' }, url: { type: 'string' } }
-      }
+        properties: { title: { type: 'string' }, url: { type: 'string' } },
+      },
     },
     articles: {
       type: 'array',
       items: {
         type: 'object',
-        properties: { title: { type: 'string' }, url: { type: 'string' } }
-      }
-    }
-  }
+        properties: { title: { type: 'string' }, url: { type: 'string' } },
+      },
+    },
+  },
 };
 
 // Delay helper function (ms)
@@ -77,7 +83,10 @@ const logFilePath = path.join(__dirname, 'contractor_fetch_log.csv');
 
 // Initialize log file with header if it doesn't exist
 if (!fs.existsSync(logFilePath)) {
-  fs.writeFileSync(logFilePath, 'index,slug,company_name,status,error_message,timestamp\n');
+  fs.writeFileSync(
+    logFilePath,
+    'index,slug,company_name,status,error_message,timestamp\n'
+  );
 }
 
 // Function to log results
@@ -88,13 +97,15 @@ function logResult(index, slug, companyName, status, errorMessage = '') {
 }
 
 // Slugify function
-const slugify = (text) => {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+const slugify = text => {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
 };
 
 async function fetchAndSaveProfile(contractor, jsonSchema, index) {
@@ -102,32 +113,41 @@ async function fetchAndSaveProfile(contractor, jsonSchema, index) {
   const slug = slugify(companyName);
 
   try {
-    console.log(`[${index}] Fetching profile for: ${companyName} (slug: ${slug})`);
+    console.log(
+      `[${index}] Fetching profile for: ${companyName} (slug: ${slug})`
+    );
 
     const query = `Give me the company profile details of ${companyName} a construction company from the Philippines in JSON with sources.`;
 
     const payload = {
       model: 'sonar-pro',
       messages: [
-        { role: 'system', content: 'Provide structured data of company profile and include sources.' },
-        { role: 'user', content: query }
+        {
+          role: 'system',
+          content:
+            'Provide structured data of company profile and include sources.',
+        },
+        { role: 'user', content: query },
       ],
-      response_format: { type: 'json_schema', json_schema: { schema: jsonSchema } },
+      response_format: {
+        type: 'json_schema',
+        json_schema: { schema: jsonSchema },
+      },
       max_tokens: 1200,
-      temperature: 0.1
+      temperature: 0.1,
     };
 
     const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      console.log('API Error: ', response)
+      console.log('API Error: ', response);
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
 
@@ -145,20 +165,30 @@ async function fetchAndSaveProfile(contractor, jsonSchema, index) {
       result.sources = (result.sources || []).concat(
         data.search_results.map(s => ({
           title: s.title,
-          url: s.url
+          url: s.url,
         }))
       );
     }
 
     // Ensure the output directory exists
-    const outputDir = path.join(__dirname, '../src/data/flood_control/lookups/contractors');
+    const outputDir = path.join(
+      __dirname,
+      '../src/data/flood_control/lookups/contractors'
+    );
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
     const filename = `${slug}.json`;
     const filepath = path.join(outputDir, filename);
-    fs.writeFileSync(filepath, JSON.stringify({ slug, ...result, created_at: (new Date()).toISOString() }, null, 2));
+    fs.writeFileSync(
+      filepath,
+      JSON.stringify(
+        { slug, ...result, created_at: new Date().toISOString() },
+        null,
+        2
+      )
+    );
     console.log(`[${index}] Saved: ${filename}`);
     logResult(index, slug, companyName, 'saved');
   } catch (error) {
@@ -179,4 +209,4 @@ async function fetchAndSaveProfile(contractor, jsonSchema, index) {
   }
 
   console.log('Finished processing contractors.');
-})()
+})();

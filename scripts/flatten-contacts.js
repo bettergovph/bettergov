@@ -28,7 +28,7 @@ function processObject(obj) {
     if (obj.contact.email) {
       obj.email = obj.contact.email;
     }
-    
+
     // Handle phone if it exists
     if (obj.contact.phone) {
       obj.contact = obj.contact.phone;

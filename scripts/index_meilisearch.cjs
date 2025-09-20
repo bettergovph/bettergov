@@ -10,7 +10,8 @@ const args = process.argv.slice(2);
 const RESET_INDEX = args.includes('--reset') || args.includes('-r');
 
 // __dirname will point to the 'scripts' directory when this JS file is run directly.
-const MEILISEARCH_HOST = process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_HOST =
+  process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
 const MEILISEARCH_API_KEY = process.env.MEILISEARCH_MASTER_KEY || ''; // Use MASTER KEY for admin operations
 
@@ -57,7 +58,13 @@ const COMMON_INDEX_SETTINGS = {
     'published',
     'tags',
   ],
-  sortableAttributes: ['service', 'name', 'office_name', 'category', 'subcategory'],
+  sortableAttributes: [
+    'service',
+    'name',
+    'office_name',
+    'category',
+    'subcategory',
+  ],
   searchableAttributes: [
     'service',
     'name',
@@ -74,7 +81,11 @@ const COMMON_INDEX_SETTINGS = {
   displayedAttributes: ['*'],
 };
 
-console.log(RESET_INDEX ? 'Running with --reset flag: Will recreate the index from scratch.' : 'Running in update mode: Will add/update documents in the existing index.');
+console.log(
+  RESET_INDEX
+    ? 'Running with --reset flag: Will recreate the index from scratch.'
+    : 'Running in update mode: Will add/update documents in the existing index.'
+);
 
 async function main() {
   console.log(
@@ -106,28 +117,43 @@ async function main() {
 
     if (indexExists) {
       if (RESET_INDEX) {
-        console.log(`Index '${SINGLE_INDEX_NAME}' exists and --reset flag was provided. Deleting index...`);
+        console.log(
+          `Index '${SINGLE_INDEX_NAME}' exists and --reset flag was provided. Deleting index...`
+        );
         await client.deleteIndex(SINGLE_INDEX_NAME);
         console.log(`Index '${SINGLE_INDEX_NAME}' deleted successfully.`);
 
         // Create a new index
-        const task = await client.createIndex(SINGLE_INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(SINGLE_INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${SINGLE_INDEX_NAME}' recreated successfully.`);
-        const settingsTask = await client.index(SINGLE_INDEX_NAME).updateSettings(COMMON_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(SINGLE_INDEX_NAME)
+          .updateSettings(COMMON_INDEX_SETTINGS);
         console.log(`Settings updated for new index '${SINGLE_INDEX_NAME}'.`);
       } else {
-        console.log(`Index '${SINGLE_INDEX_NAME}' already exists. Updating settings.`);
+        console.log(
+          `Index '${SINGLE_INDEX_NAME}' already exists. Updating settings.`
+        );
         // const task = await client.index(SINGLE_INDEX_NAME).updateSettings(COMMON_INDEX_SETTINGS);
       }
     } else {
       console.log(`Index '${SINGLE_INDEX_NAME}' not found. Creating...`);
       try {
-        const task = await client.createIndex(SINGLE_INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(SINGLE_INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${SINGLE_INDEX_NAME}' created successfully.`);
-        const settingsTask = await client.index(SINGLE_INDEX_NAME).updateSettings(COMMON_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(SINGLE_INDEX_NAME)
+          .updateSettings(COMMON_INDEX_SETTINGS);
         console.log(`Settings updated for index '${SINGLE_INDEX_NAME}'.`);
       } catch (createError) {
-        console.error(`Error creating index '${SINGLE_INDEX_NAME}':`, createError);
+        console.error(
+          `Error creating index '${SINGLE_INDEX_NAME}':`,
+          createError
+        );
         return;
       }
     }
@@ -150,17 +176,25 @@ async function main() {
           const baseNameForFile = path.basename(filePath, '.json');
           const fileContent = await fs.readFile(filePath, 'utf-8');
           const parsedJson = JSON.parse(fileContent);
-          const documentsFromFile = Array.isArray(parsedJson) ? parsedJson : [parsedJson];
+          const documentsFromFile = Array.isArray(parsedJson)
+            ? parsedJson
+            : [parsedJson];
           let docIndex = 0;
 
-          console.log(`Processing single file ${filePath} with ${documentsFromFile.length} items.`);
+          console.log(
+            `Processing single file ${filePath} with ${documentsFromFile.length} items.`
+          );
 
           for (const doc of documentsFromFile) {
             let itemSlug = doc.slug;
-            const itemIdentifierLog = documentsFromFile.length > 1 ? `${baseNameForFile}[${docIndex}]` : baseNameForFile;
+            const itemIdentifierLog =
+              documentsFromFile.length > 1
+                ? `${baseNameForFile}[${docIndex}]`
+                : baseNameForFile;
 
             if (!itemSlug) {
-              const slugSource = doc.name || doc.title || doc.service || baseNameForFile;
+              const slugSource =
+                doc.name || doc.title || doc.service || baseNameForFile;
               if (slugSource) {
                 itemSlug = slugSource
                   .toString()
@@ -170,13 +204,20 @@ async function main() {
                   .replace(/--+/g, '-')
                   .replace(/^-+/, '')
                   .replace(/-+$/, '');
-                if (documentsFromFile.length > 1 && !doc.name && !doc.title && !doc.service) {
+                if (
+                  documentsFromFile.length > 1 &&
+                  !doc.name &&
+                  !doc.title &&
+                  !doc.service
+                ) {
                   itemSlug = `${itemSlug}-${docIndex}`;
                 }
               } else {
                 itemSlug = `${baseNameForFile}${documentsFromFile.length > 1 ? `-${docIndex}` : ''}`;
               }
-              console.log(`Document from ${baseNameForFile} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`);
+              console.log(
+                `Document from ${baseNameForFile} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`
+              );
             }
 
             const documentData = {
@@ -189,15 +230,18 @@ async function main() {
             docIndex++;
           }
         } catch (fileReadOrParseError) {
-          console.error(`Error processing file ${dataSource.dataPath}:`, fileReadOrParseError);
+          console.error(
+            `Error processing file ${dataSource.dataPath}:`,
+            fileReadOrParseError
+          );
         }
         continue;
       }
-      
+
       // Handle directory case (original code)
       const filesInDir = await fs.readdir(dataSource.dataPath);
       const jsonFiles = filesInDir.filter(
-        (f) => path.extname(f).toLowerCase() === '.json'
+        f => path.extname(f).toLowerCase() === '.json'
       );
 
       if (jsonFiles.length === 0) {
@@ -249,8 +293,9 @@ async function main() {
                   itemSlug = `${itemSlug}-${docIndex}`;
                 }
               } else {
-                itemSlug = `${baseNameForFile}${documentsFromFile.length > 1 ? `-${docIndex}` : ''
-                  }`;
+                itemSlug = `${baseNameForFile}${
+                  documentsFromFile.length > 1 ? `-${docIndex}` : ''
+                }`;
               }
               console.log(
                 `Document from ${fileName} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`
@@ -314,7 +359,7 @@ async function main() {
   );
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(
     'An unexpected error occurred during Meilisearch indexing:',
     error

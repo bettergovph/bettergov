@@ -3,10 +3,10 @@ export interface Env {
   WEATHER_KV: KVNamespace;
   FOREX_KV: KVNamespace;
   BROWSER_KV: KVNamespace;
-  
+
   // D1 Database
   BETTERGOV_DB: D1Database;
-  
+
   // Environment variables
   WEATHER_API_KEY?: string;
   OPENWEATHERMAP_API_KEY?: string; // Added this to match the code

@@ -11,35 +11,35 @@ const FILE_CONFIGS = {
   departments: {
     path: '../src/data/directory/departments.json',
     slugField: 'office_name',
-    isArray: true
+    isArray: true,
   },
   constitutional: {
     path: '../src/data/directory/constitutional.json',
     slugField: 'name',
-    isArray: true
+    isArray: true,
   },
   legislative: {
     path: '../src/data/directory/legislative.json',
     slugField: 'chamber',
-    isArray: true
+    isArray: true,
   },
   diplomatic: {
     path: '../src/data/directory/diplomatic.json',
     slugField: 'country',
     isNested: true,
     nestedKey: 'Diplomatic Mission',
-    isArray: true
+    isArray: true,
   },
   executive: {
     path: '../src/data/directory/executive.json',
     slugField: 'office',
-    isArray: true
+    isArray: true,
   },
   lgu: {
     path: '../src/data/directory/lgu.json',
     slugField: 'region',
-    isArray: true
-  }
+    isArray: true,
+  },
 };
 
 // Function to generate a URL-friendly slug from a string
@@ -99,7 +99,7 @@ async function processFile(fileConfig) {
     if (fileConfig.isNested && fileConfig.nestedKey) {
       updatedContent = {
         ...content,
-        [fileConfig.nestedKey]: updatedItems
+        [fileConfig.nestedKey]: updatedItems,
       };
     } else if (fileConfig.isArray) {
       updatedContent = updatedItems;
@@ -119,7 +119,6 @@ async function processFile(fileConfig) {
     console.log(`   Updated ${updatedCount} items`);
 
     return updatedCount;
-
   } catch (error) {
     console.error(`❌ Error processing ${fileConfig.path}:`, error.message);
     return 0;
