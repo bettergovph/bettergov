@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -13,11 +14,13 @@ export default {
           200: '#99c2f7',
           300: '#66a3f3',
           400: '#3385ef',
-          500: '#0066eb', // primary blue
+          500: '#0066eb',
           600: '#0052bc',
           700: '#003d8d',
           800: '#00295e',
           900: '#00142f',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
           50: '#ffede6',
@@ -25,11 +28,13 @@ export default {
           200: '#ffb799',
           300: '#ff9466',
           400: '#ff7033',
-          500: '#ff4d00', // secondary orange
+          500: '#ff4d00',
           600: '#cc3e00',
           700: '#992e00',
           800: '#661f00',
           900: '#330f00',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         accent: {
           50: '#fef3e6',
@@ -37,11 +42,13 @@ export default {
           200: '#fbd099',
           300: '#f9b866',
           400: '#f7a133',
-          500: '#f58900', // accent yellow/gold
+          500: '#f58900',
           600: '#c46e00',
           700: '#935200',
           800: '#623700',
           900: '#311b00',
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         success: {
           50: '#e6f7ef',
@@ -91,6 +98,34 @@ export default {
           800: '#343a40',
           900: '#212529',
         },
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -98,18 +133,34 @@ export default {
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
         },
         slideIn: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': {
+            transform: 'translateY(10px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
         },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
     },
   },
   plugins: [
     // This is not needed for tailwind v4
-    require("@tailwindcss/container-queries"),
+    require('@tailwindcss/container-queries'),
+    require('tailwindcss-animate'),
   ],
 };

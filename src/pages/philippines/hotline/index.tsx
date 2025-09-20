@@ -1,12 +1,5 @@
-import React, { useState } from 'react'
-import hotlinesData from '../../data/philippines_hotlines.json'
+import React, { useState } from "react";
 
-interface Hotline {
-  name: string
-  category: string
-  numbers: string[]
-  description?: string
-}
 import {
   Phone,
   Search,
@@ -16,72 +9,46 @@ import {
   Bus,
   Droplet,
   Heart,
-} from 'lucide-react'
+} from "lucide-react";
+
+import { ReportModal } from "./ui";
+import useHotlinesData from "./hotlines-data";
 
 const Hotlines: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const filteredHotlines = useHotlinesData().filterHotlines(
+    activeCategory,
+    searchTerm
+  );
 
   const categories = [
-    { id: 'all', name: 'All Hotlines', icon: <Phone className="w-5 h-5" /> },
+    { id: "all", name: "All Hotlines", icon: <Phone className="w-5 h-5" /> },
     {
-      id: 'emergency',
-      name: 'Emergency',
+      id: "emergency",
+      name: "Emergency",
       icon: <AlertCircle className="w-5 h-5" />,
     },
     {
-      id: 'disaster',
-      name: 'Disaster',
+      id: "disaster",
+      name: "Disaster",
       icon: <Umbrella className="w-5 h-5" />,
     },
-    { id: 'security', name: 'Security', icon: <Shield className="w-5 h-5" /> },
-    { id: 'transport', name: 'Transport', icon: <Bus className="w-5 h-5" /> },
-    { id: 'weather', name: 'Weather', icon: <Umbrella className="w-5 h-5" /> },
-    { id: 'utility', name: 'Utilities', icon: <Droplet className="w-5 h-5" /> },
+    { id: "security", name: "Security", icon: <Shield className="w-5 h-5" /> },
+    { id: "transport", name: "Transport", icon: <Bus className="w-5 h-5" /> },
+    { id: "weather", name: "Weather", icon: <Umbrella className="w-5 h-5" /> },
+    { id: "utility", name: "Utilities", icon: <Droplet className="w-5 h-5" /> },
     {
-      id: 'social',
-      name: 'Social Services',
+      id: "social",
+      name: "Social Services",
       icon: <Heart className="w-5 h-5" />,
     },
-  ]
-
-  const getCategoryHotlines = (category: string): Hotline[] => {
-    switch (category) {
-      case 'emergency':
-        return hotlinesData.emergencyHotlines as Hotline[]
-      case 'disaster':
-        return hotlinesData.disasterHotlines as Hotline[]
-      case 'security':
-        return hotlinesData.securityHotlines as Hotline[]
-      case 'transport':
-        return hotlinesData.transportHotlines as Hotline[]
-      case 'weather':
-        return hotlinesData.weatherHotlines as Hotline[]
-      case 'utility':
-        return hotlinesData.utilityHotlines as Hotline[]
-      case 'social':
-        return hotlinesData.socialServicesHotlines as Hotline[]
-      default:
-        return [
-          ...hotlinesData.emergencyHotlines,
-          ...hotlinesData.disasterHotlines,
-          ...hotlinesData.securityHotlines,
-          ...hotlinesData.transportHotlines,
-          ...hotlinesData.weatherHotlines,
-          ...hotlinesData.utilityHotlines,
-          ...hotlinesData.socialServicesHotlines,
-        ] as Hotline[]
-    }
-  }
-
-  const filteredHotlines = getCategoryHotlines(activeCategory).filter(
-    (hotline) =>
-      hotline.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      hotline.numbers.some((number) => number.includes(searchTerm))
-  )
+  ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container relative mx-auto px-4 py-8 border border-red-900">
+      <ReportModal />
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">
           Philippines Emergency Hotlines
@@ -113,8 +80,8 @@ const Hotlines: React.FC = () => {
             onClick={() => setActiveCategory(category.id)}
             className={`flex items-center px-4 py-2 rounded-full ${
               activeCategory === category.id
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-800"
             }`}
           >
             <span className="mr-2">{category.icon}</span>
@@ -143,7 +110,7 @@ const Hotlines: React.FC = () => {
                     <div key={idx} className="flex items-center">
                       <Phone className="h-4 w-4 text-blue-500 mr-2" />
                       <a
-                        href={`tel:${number.replace(/\D/g, '')}`}
+                        href={`tel:${number.replace(/\D/g, "")}`}
                         className="text-blue-600 hover:underline"
                       >
                         {number}
@@ -174,7 +141,7 @@ const Hotlines: React.FC = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Hotlines
+export default Hotlines;
