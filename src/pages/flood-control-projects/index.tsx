@@ -86,9 +86,9 @@ const COLORS = [
   '#FAAAA3',
 ];
 
-interface HitProps {
-  hit: FloodControlProject;
-}
+// interface HitProps {
+//   hit: FloodControlProject;
+// }
 
 // Hit component for search results - Currently unused
 // const Hit: React.FC<HitProps> = ({ hit }) => {

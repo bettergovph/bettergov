@@ -211,7 +211,7 @@ export async function saveCFBrowserContent(
                 now // updated_at
               )
               .run();
-          } catch (linkError) {
+          } catch {
             // Ignore errors on queue insertion - likely duplicate URLs
             console.log(
               'Skipped adding duplicate URL to crawl queue:',

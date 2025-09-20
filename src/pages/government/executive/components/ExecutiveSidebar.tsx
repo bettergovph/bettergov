@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Building, UserCheck, MessageSquare, Briefcase } from 'lucide-react';
-import { useState, useMemo } from 'react';
-import executiveData from '../../../../data/directory/executive.json';
+import { useState } from 'react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 interface Office {
@@ -10,9 +9,9 @@ interface Office {
   address?: string;
   trunkline?: string;
   website?: string;
-  officials: any[];
-  bureaus?: any[];
-  attached_agency?: any[];
+  officials: unknown[];
+  bureaus?: unknown[];
+  attached_agency?: unknown[];
 }
 
 export default function ExecutiveSidebar() {

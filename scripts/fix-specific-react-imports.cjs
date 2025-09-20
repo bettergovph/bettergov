@@ -19,14 +19,16 @@ const filesNeedingReactImport = [
   'src/pages/government/executive/office-of-the-vice-president.tsx',
   'src/pages/government/executive/presidential-communications-office.tsx',
   'src/pages/government/legislative/layout.tsx',
-  'src/pages/government/local/components/LocalLayout.tsx'
+  'src/pages/government/local/components/LocalLayout.tsx',
 ];
 
 let filesFixed = 0;
 let filesSkipped = 0;
 let filesNotFound = 0;
 
-console.log(`Processing ${filesNeedingReactImport.length} files that need React imports...\n`);
+console.log(
+  `Processing ${filesNeedingReactImport.length} files that need React imports...\n`
+);
 
 filesNeedingReactImport.forEach(file => {
   const filePath = path.join(process.cwd(), file);
@@ -41,7 +43,10 @@ filesNeedingReactImport.forEach(file => {
   const content = fs.readFileSync(filePath, 'utf8');
 
   // Check if file already imports React
-  if (content.includes("import React") || content.includes("import * as React")) {
+  if (
+    content.includes('import React') ||
+    content.includes('import * as React')
+  ) {
     console.log(`⏭️  Skipped (already has React): ${file}`);
     filesSkipped++;
     return;
@@ -61,7 +66,12 @@ filesNeedingReactImport.forEach(file => {
 
     // Find the first non-comment line
     for (let i = 0; i < lines.length; i++) {
-      if (!lines[i].trim().startsWith('//') && !lines[i].trim().startsWith('/*') && !lines[i].trim().startsWith('*') && lines[i].trim() !== '') {
+      if (
+        !lines[i].trim().startsWith('//') &&
+        !lines[i].trim().startsWith('/*') &&
+        !lines[i].trim().startsWith('*') &&
+        lines[i].trim() !== ''
+      ) {
         insertIndex = i;
         break;
       }

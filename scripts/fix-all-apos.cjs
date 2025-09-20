@@ -23,8 +23,14 @@ for (const filePath of files) {
     content = content.replace(/&quot;(['"])/g, '"$1');
 
     // Fix &apos; in the middle of attribute values that shouldn't be there
-    content = content.replace(/(['"])([^'"]*?)&apos;([^'"]*?)(['"])/g, "$1$2'$3$4");
-    content = content.replace(/(['"])([^'"]*?)&quot;([^'"]*?)(['"])/g, '$1$2"$3$4');
+    content = content.replace(
+      /(['"])([^'"]*?)&apos;([^'"]*?)(['"])/g,
+      "$1$2'$3$4"
+    );
+    content = content.replace(
+      /(['"])([^'"]*?)&quot;([^'"]*?)(['"])/g,
+      '$1$2"$3$4'
+    );
 
     if (content !== originalContent) {
       fs.writeFileSync(filePath, content);

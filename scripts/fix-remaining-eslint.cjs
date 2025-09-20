@@ -14,13 +14,13 @@ function fixUnescapedEntities(content) {
   // Look for patterns like >{text}'s or >{text}"
 
   // Fix apostrophes in common patterns
-  content = content.replace(/>([^<]*)'s/g, ">$1&apos;s");
-  content = content.replace(/>([^<]*)'t/g, ">$1&apos;t");
-  content = content.replace(/>([^<]*)'ll/g, ">$1&apos;ll");
-  content = content.replace(/>([^<]*)'ve/g, ">$1&apos;ve");
-  content = content.replace(/>([^<]*)'re/g, ">$1&apos;re");
-  content = content.replace(/>([^<]*)'d/g, ">$1&apos;d");
-  content = content.replace(/>([^<]*)'m/g, ">$1&apos;m");
+  content = content.replace(/>([^<]*)'s/g, '>$1&apos;s');
+  content = content.replace(/>([^<]*)'t/g, '>$1&apos;t');
+  content = content.replace(/>([^<]*)'ll/g, '>$1&apos;ll');
+  content = content.replace(/>([^<]*)'ve/g, '>$1&apos;ve');
+  content = content.replace(/>([^<]*)'re/g, '>$1&apos;re');
+  content = content.replace(/>([^<]*)'d/g, '>$1&apos;d');
+  content = content.replace(/>([^<]*)'m/g, '>$1&apos;m');
 
   // Fix quotes in text content (be more conservative)
   // This is tricky because we don't want to break actual string literals
@@ -33,7 +33,10 @@ function removeUnusedImports(content, unusedVars) {
   for (const varName of unusedVars) {
     // Remove from import statements
     // Pattern 1: import { A, B, C } from 'module' - remove specific import
-    const importRegex = new RegExp(`(import\\s*{[^}]*?)\\s*,?\\s*${varName}\\s*,?\\s*([^}]*}\\s*from)`, 'g');
+    const importRegex = new RegExp(
+      `(import\\s*{[^}]*?)\\s*,?\\s*${varName}\\s*,?\\s*([^}]*}\\s*from)`,
+      'g'
+    );
     content = content.replace(importRegex, (match, before, after) => {
       // Clean up extra commas
       let result = before + after;
@@ -44,7 +47,10 @@ function removeUnusedImports(content, unusedVars) {
     });
 
     // Pattern 2: If it's the only import, remove the entire line
-    const soleImportRegex = new RegExp(`^import\\s*{\\s*${varName}\\s*}\\s*from\\s*['"][^'"]+['"];?\\s*$`, 'gm');
+    const soleImportRegex = new RegExp(
+      `^import\\s*{\\s*${varName}\\s*}\\s*from\\s*['"][^'"]+['"];?\\s*$`,
+      'gm'
+    );
     content = content.replace(soleImportRegex, '');
   }
 
@@ -65,26 +71,35 @@ for (const file of filesWithUnescapedEntities) {
     // Manual fixes for specific files based on the errors
     if (file === 'src/pages/DesignGuide.tsx') {
       // Line 344: 's
-      content = content.replace("The component's", "The component&apos;s");
+      content = content.replace("The component's", 'The component&apos;s');
       // Line 588: quotes
       content = content.replace('"max-width"', '&quot;max-width&quot;');
       // Line 590: 's
-      content = content.replace("that's", "that&apos;s");
+      content = content.replace("that's", 'that&apos;s');
     } else if (file === 'src/pages/Ideas.tsx') {
       // Line 326: 's
-      content = content.replace("Let's work", "Let&apos;s work");
+      content = content.replace("Let's work", 'Let&apos;s work');
     } else if (file === 'src/pages/JoinUs.tsx') {
       // Multiple apostrophes and quotes need escaping
-      content = content.replace("We're building", "We&apos;re building");
-      content = content.replace("that's truly", "that&apos;s truly");
-      content = content.replace("citizen's needs", "citizen&apos;s needs");
-      content = content.replace("you're passionate", "you&apos;re passionate");
-      content = content.replace("Let's build", "Let&apos;s build");
-      content = content.replace('"If you\'re not embarrassed', '&quot;If you&apos;re not embarrassed');
-      content = content.replace('you\'re too late."', 'you&apos;re too late.&quot;');
-      content = content.replace("Philippines' future", "Philippines&apos; future");
-      content = content.replace("We're looking", "We&apos;re looking");
-      content = content.replace("don't just", "don&apos;t just");
+      content = content.replace("We're building", 'We&apos;re building');
+      content = content.replace("that's truly", 'that&apos;s truly');
+      content = content.replace("citizen's needs", 'citizen&apos;s needs');
+      content = content.replace("you're passionate", 'you&apos;re passionate');
+      content = content.replace("Let's build", 'Let&apos;s build');
+      content = content.replace(
+        '"If you\'re not embarrassed',
+        '&quot;If you&apos;re not embarrassed'
+      );
+      content = content.replace(
+        'you\'re too late."',
+        'you&apos;re too late.&quot;'
+      );
+      content = content.replace(
+        "Philippines' future",
+        'Philippines&apos; future'
+      );
+      content = content.replace("We're looking", 'We&apos;re looking');
+      content = content.replace("don't just", 'don&apos;t just');
     }
 
     if (content !== originalContent) {
@@ -99,9 +114,16 @@ for (const file of filesWithUnescapedEntities) {
 // Files with unused imports to clean
 const unusedImports = {
   'src/pages/Ideas.tsx': ['ChevronUp', 'ChevronDown'],
-  'src/pages/flood-control-projects/contractors.tsx': ['BarChart3', 'Table', 'Map'],
+  'src/pages/flood-control-projects/contractors.tsx': [
+    'BarChart3',
+    'Table',
+    'Map',
+  ],
   'src/pages/flood-control-projects/index.tsx': ['SearchBox', 'Hits'],
-  'src/pages/flood-control-projects/shared-components.tsx': ['ChevronDown', 'Filter'],
+  'src/pages/flood-control-projects/shared-components.tsx': [
+    'ChevronDown',
+    'Filter',
+  ],
 };
 
 console.log('\nRemoving unused imports...');

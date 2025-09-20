@@ -25,7 +25,7 @@ for (let i = 0; i < lines.length; i++) {
           filesWithErrors.get(filePath).push({
             line: parseInt(lineNum),
             char: errorMatch[1],
-            fullLine: lines[j]
+            fullLine: lines[j],
           });
         }
         break;
@@ -68,9 +68,18 @@ for (const [filePath, errors] of filesWithErrors) {
           line = line.replace(/(>[^<]*)(hadn't)([^<]*<)/g, '$1hadn&apos;t$3');
           line = line.replace(/(>[^<]*)(doesn't)([^<]*<)/g, '$1doesn&apos;t$3');
           line = line.replace(/(>[^<]*)(didn't)([^<]*<)/g, '$1didn&apos;t$3');
-          line = line.replace(/(>[^<]*)(couldn't)([^<]*<)/g, '$1couldn&apos;t$3');
-          line = line.replace(/(>[^<]*)(shouldn't)([^<]*<)/g, '$1shouldn&apos;t$3');
-          line = line.replace(/(>[^<]*)(wouldn't)([^<]*<)/g, '$1wouldn&apos;t$3');
+          line = line.replace(
+            /(>[^<]*)(couldn't)([^<]*<)/g,
+            '$1couldn&apos;t$3'
+          );
+          line = line.replace(
+            /(>[^<]*)(shouldn't)([^<]*<)/g,
+            '$1shouldn&apos;t$3'
+          );
+          line = line.replace(
+            /(>[^<]*)(wouldn't)([^<]*<)/g,
+            '$1wouldn&apos;t$3'
+          );
           line = line.replace(/(>[^<]*)(it's)([^<]*<)/g, '$1it&apos;s$3');
           line = line.replace(/(>[^<]*)(that's)([^<]*<)/g, '$1that&apos;s$3');
           line = line.replace(/(>[^<]*)(what's)([^<]*<)/g, '$1what&apos;s$3');
@@ -104,7 +113,10 @@ for (const [filePath, errors] of filesWithErrors) {
           line = line.replace(/(>[^<]*)(\w)s'([^<]*<)/g, '$1$2s&apos;$3');
         } else if (error.char === '"') {
           // Replace quotes in JSX text content
-          line = line.replace(/(>[^<]*)"([^"]*)"([^<]*<)/g, '$1&quot;$2&quot;$3');
+          line = line.replace(
+            /(>[^<]*)"([^"]*)"([^<]*<)/g,
+            '$1&quot;$2&quot;$3'
+          );
         }
 
         lines[lineIndex] = line;

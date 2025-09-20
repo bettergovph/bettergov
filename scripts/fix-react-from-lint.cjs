@@ -18,7 +18,10 @@ for (let i = 0; i < lines.length; i++) {
         const filePath = lines[j].split(':')[0];
         if (filePath.endsWith('.tsx') || filePath.endsWith('.jsx')) {
           // Convert absolute path to relative
-          const relativePath = filePath.replace('/Users/arke/Projects/bettergov/', '');
+          const relativePath = filePath.replace(
+            '/Users/arke/Projects/bettergov/',
+            ''
+          );
           filesWithReactErrors.add(relativePath);
         }
         break;
@@ -27,7 +30,9 @@ for (let i = 0; i < lines.length; i++) {
   }
 }
 
-console.log(`Found ${filesWithReactErrors.size} files with React import errors\n`);
+console.log(
+  `Found ${filesWithReactErrors.size} files with React import errors\n`
+);
 
 let filesFixed = 0;
 let filesSkipped = 0;
@@ -47,7 +52,10 @@ filesWithReactErrors.forEach(file => {
   const content = fs.readFileSync(filePath, 'utf8');
 
   // Check if file already imports React
-  if (content.includes("import React from") || content.includes("import * as React from")) {
+  if (
+    content.includes('import React from') ||
+    content.includes('import * as React from')
+  ) {
     console.log(`⏭️  Skipped (already has React): ${file}`);
     filesSkipped++;
     return;
@@ -61,9 +69,10 @@ filesWithReactErrors.forEach(file => {
   if (importMatch) {
     // Add React import as the first import
     const firstImportIndex = content.indexOf(importMatch[0]);
-    newContent = content.slice(0, firstImportIndex) +
-                 "import React from 'react';\n" +
-                 content.slice(firstImportIndex);
+    newContent =
+      content.slice(0, firstImportIndex) +
+      "import React from 'react';\n" +
+      content.slice(firstImportIndex);
   } else {
     // No imports found, add at the beginning
     newContent = "import React from 'react';\n" + content;

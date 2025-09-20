@@ -5,7 +5,10 @@ const path = require('path');
 
 // Parse lint.txt to get unused import errors
 function parseUnusedImports() {
-  const lintContent = fs.readFileSync(path.join(__dirname, '..', 'lint.txt'), 'utf8');
+  const lintContent = fs.readFileSync(
+    path.join(__dirname, '..', 'lint.txt'),
+    'utf8'
+  );
   const lines = lintContent.split('\n');
   const errors = [];
   let currentFile = null;
@@ -17,13 +20,15 @@ function parseUnusedImports() {
     }
     // Check for unused variable error
     else if (line.includes('is defined but never used') && currentFile) {
-      const match = line.match(/^\s*(\d+):(\d+)\s+error\s+'([^']+)'\s+is defined but never used/);
+      const match = line.match(
+        /^\s*(\d+):(\d+)\s+error\s+'([^']+)'\s+is defined but never used/
+      );
       if (match) {
         errors.push({
           file: currentFile,
           line: parseInt(match[1]),
           column: parseInt(match[2]),
-          variable: match[3]
+          variable: match[3],
         });
       }
     }
@@ -43,7 +48,9 @@ function fixUnusedImports(errors) {
     errorsByFile[error.file].push(error);
   });
 
-  console.log(`\n🧹 Removing unused imports from ${Object.keys(errorsByFile).length} files...\n`);
+  console.log(
+    `\n🧹 Removing unused imports from ${Object.keys(errorsByFile).length} files...\n`
+  );
 
   Object.entries(errorsByFile).forEach(([filePath, fileErrors]) => {
     if (!fs.existsSync(filePath)) {
@@ -63,9 +70,15 @@ function fixUnusedImports(errors) {
         // Named imports: import { Foo, Bar } from 'module'
         new RegExp(`import\\s*{([^}]*\\b${varName}\\b[^}]*)}\\s*from`, 'g'),
         // Default import: import Foo from 'module'
-        new RegExp(`import\\s+${varName}\\s+from\\s+['"][^'"]+['"];?\\s*$`, 'gm'),
+        new RegExp(
+          `import\\s+${varName}\\s+from\\s+['"][^'"]+['"];?\\s*$`,
+          'gm'
+        ),
         // Type import: import type { Foo } from 'module'
-        new RegExp(`import\\s+type\\s*{([^}]*\\b${varName}\\b[^}]*)}\\s*from`, 'g'),
+        new RegExp(
+          `import\\s+type\\s*{([^}]*\\b${varName}\\b[^}]*)}\\s*from`,
+          'g'
+        ),
       ];
 
       patterns.forEach(pattern => {
@@ -85,7 +98,9 @@ function fixUnusedImports(errors) {
             }
 
             // Rebuild import statement
-            const importType = match.includes('import type') ? 'import type' : 'import';
+            const importType = match.includes('import type')
+              ? 'import type'
+              : 'import';
             return match.replace(imports, ` ${filtered.join(', ')} `);
           });
         } else {
@@ -100,7 +115,10 @@ function fixUnusedImports(errors) {
 
       // Also check for destructured variables that might not be imports
       // const { unused } = something;
-      const destructurePattern = new RegExp(`const\\s*{([^}]*\\b${varName}\\b[^}]*)}`, 'g');
+      const destructurePattern = new RegExp(
+        `const\\s*{([^}]*\\b${varName}\\b[^}]*)}`,
+        'g'
+      );
       content = content.replace(destructurePattern, (match, vars) => {
         const varList = vars.split(',').map(v => v.trim());
         const filtered = varList.filter(v => {
@@ -119,13 +137,18 @@ function fixUnusedImports(errors) {
     content = content.replace(/\n\s*\n\s*\n/g, '\n\n');
 
     // Remove empty import lines
-    content = content.replace(/^import\s*{\s*}\s*from\s*['"][^'"]+['"];?\s*$/gm, '');
+    content = content.replace(
+      /^import\s*{\s*}\s*from\s*['"][^'"]+['"];?\s*$/gm,
+      ''
+    );
 
     // Check if content was modified
     const originalContent = fs.readFileSync(filePath, 'utf8');
     if (content !== originalContent) {
       fs.writeFileSync(filePath, content);
-      console.log(`  ✅ ${path.basename(filePath)} - Removed: ${unusedVars.join(', ')}`);
+      console.log(
+        `  ✅ ${path.basename(filePath)} - Removed: ${unusedVars.join(', ')}`
+      );
       modified = true;
     } else {
       console.log(`  ℹ️  ${path.basename(filePath)} - No changes needed`);

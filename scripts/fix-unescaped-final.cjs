@@ -5,71 +5,105 @@ const fixes = [
   {
     file: 'src/pages/government/departments/index.tsx',
     fixes: [
-      { line: 43, find: "The President's", replace: "The President&apos;s" },
-      { line: 43, find: "nation's policies", replace: "nation&apos;s policies" }
-    ]
+      { line: 43, find: "The President's", replace: 'The President&apos;s' },
+      {
+        line: 43,
+        find: "nation's policies",
+        replace: 'nation&apos;s policies',
+      },
+    ],
   },
   {
     file: 'src/pages/government/local/index.tsx',
     fixes: [
-      { line: 115, find: "The region you're looking for doesn't", replace: "The region you&apos;re looking for doesn&apos;t" }
-    ]
+      {
+        line: 115,
+        find: "The region you're looking for doesn't",
+        replace: 'The region you&apos;re looking for doesn&apos;t',
+      },
+    ],
   },
   {
     file: 'src/pages/government/local/[region].tsx',
     fixes: [
-      { line: 115, find: "The region you're looking for doesn't", replace: "The region you&apos;re looking for doesn&apos;t" }
-    ]
+      {
+        line: 115,
+        find: "The region you're looking for doesn't",
+        replace: 'The region you&apos;re looking for doesn&apos;t',
+      },
+    ],
   },
   {
     file: 'src/pages/philippines/about/index.tsx',
     fixes: [
-      { line: 158, find: "it's a cultural", replace: "it&apos;s a cultural" }
-    ]
+      { line: 158, find: "it's a cultural", replace: 'it&apos;s a cultural' },
+    ],
   },
   {
     file: 'src/pages/philippines/culture/index.tsx',
     fixes: [
-      { line: 228, find: "\"Respect for elders\"", replace: "&quot;Respect for elders&quot;" },
-      { line: 228, find: "\"Filipino hospitality\"", replace: "&quot;Filipino hospitality&quot;" }
-    ]
+      {
+        line: 228,
+        find: '"Respect for elders"',
+        replace: '&quot;Respect for elders&quot;',
+      },
+      {
+        line: 228,
+        find: '"Filipino hospitality"',
+        replace: '&quot;Filipino hospitality&quot;',
+      },
+    ],
   },
   {
     file: 'src/pages/philippines/history/index.tsx',
     fixes: [
-      { line: 51, find: "Philippines' journey", replace: "Philippines&apos; journey" }
-    ]
+      {
+        line: 51,
+        find: "Philippines' journey",
+        replace: 'Philippines&apos; journey',
+      },
+    ],
   },
   {
     file: 'src/pages/philippines/regions/index.tsx',
-    fixes: [
-      { line: 235, find: "Region I's", replace: "Region I&apos;s" }
-    ]
+    fixes: [{ line: 235, find: "Region I's", replace: 'Region I&apos;s' }],
   },
   {
     file: 'src/pages/services/websites/index.tsx',
     fixes: [
-      { line: 105, find: "View the website's", replace: "View the website&apos;s" }
-    ]
+      {
+        line: 105,
+        find: "View the website's",
+        replace: 'View the website&apos;s',
+      },
+    ],
   },
   {
     file: 'src/pages/sitemap/index.tsx',
     fixes: [
-      { line: 115, find: "\"Ilocos Region\"", replace: "&quot;Ilocos Region&quot;" }
-    ]
+      {
+        line: 115,
+        find: '"Ilocos Region"',
+        replace: '&quot;Ilocos Region&quot;',
+      },
+    ],
   },
   {
     file: 'src/pages/travel/visa-types/index.tsx',
     fixes: [
-      { line: 76, find: "\"Balikbayan\"", replace: "&quot;Balikbayan&quot;" }
-    ]
+      { line: 76, find: '"Balikbayan"', replace: '&quot;Balikbayan&quot;' },
+    ],
   },
   {
     file: 'src/pages/travel/visa-types/[type].tsx',
     fixes: [
-      { line: 115, find: "\"temporary visitor\"", replace: "&quot;temporary visitor&quot;" }
-    ]
-  }
+      {
+        line: 115,
+        find: '"temporary visitor"',
+        replace: '&quot;temporary visitor&quot;',
+      },
+    ],
+  },
 ];
 
 console.log('Fixing unescaped entities in specific files...\n');

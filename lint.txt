@@ -1,33 +1,12 @@
 
-/Users/arke/Projects/bettergov/functions/api/crawl.ts
-  11:11  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
-- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
-- If you want a type meaning "any object", you probably want `object` instead.
-- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
-  41:16  error  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
-
 /Users/arke/Projects/bettergov/functions/api/forex.ts
-   47:31  error  'env' is defined but never used  @typescript-eslint/no-unused-vars
-  246:3   error  'ctx' is defined but never used  @typescript-eslint/no-unused-vars
+   47:31  error  '_env' is defined but never used  @typescript-eslint/no-unused-vars
+  246:3   error  '_ctx' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/functions/api/weather.ts
-   38:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   48:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   60:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-   62:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  316:3   error  'ctx' is defined but never used           @typescript-eslint/no-unused-vars
-
-/Users/arke/Projects/bettergov/functions/forex.ts
-  10:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  14:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/functions/lib/cf-browser.ts
-  214:20  error  'linkError' is defined but never used     @typescript-eslint/no-unused-vars
-  260:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  272:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  316:3  error  '_ctx' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/functions/lib/jina.ts
-  164:20  error  'linkError' is defined but never used     @typescript-eslint/no-unused-vars
   208:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   220:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
@@ -46,21 +25,12 @@
 /Users/arke/Projects/bettergov/src/lib/forex.ts
   15:60  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/arke/Projects/bettergov/src/pages/Ideas.tsx
-  96:24  error  'setProjectIdeas' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-/Users/arke/Projects/bettergov/src/pages/Search.tsx
-   97:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  105:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  116:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  122:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/contractors.tsx
   198:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   198:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/index.tsx
-  94:7  error  'Hit' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  39:3  error  'FloodControlProject' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/shared-components.tsx
   263:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
@@ -68,9 +38,6 @@
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/table.tsx
   360:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   360:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/constitutional/[office].tsx
-  5:11  error  'ConstitutionalIndex' is not defined  react/jsx-no-undef
 
 /Users/arke/Projects/bettergov/src/pages/government/constitutional/components/ConstitutionalSidebar.tsx
   17:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -101,16 +68,8 @@
    22:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   135:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/arke/Projects/bettergov/src/pages/government/diplomatic/components/DiplomaticSidebar.tsx
-   7:21  error  'categoryParam' is assigned a value but never used  @typescript-eslint/no-unused-vars
-   8:9   error  'navigate' is assigned a value but never used       @typescript-eslint/no-unused-vars
-  17:6   error  'StandardSidebar' is not defined                    react/jsx-no-undef
-
 /Users/arke/Projects/bettergov/src/pages/government/executive/components/ExecutiveSidebar.tsx
-  13:14  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
-  14:13  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
-  15:21  error  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
-  23:9   error  'officeGroups' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  7:11  error  'Office' is defined but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/government/executive/other-executive-offices.tsx
   40:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -119,11 +78,6 @@
 /Users/arke/Projects/bettergov/src/pages/government/legislative/[chamber].tsx
    11:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   123:12  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/government/legislative/components/LegislativeSidebar.tsx
-  15:47  error  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  18:9   error  'filteredChambers' is assigned a value but never used     @typescript-eslint/no-unused-vars
-  22:9   error  'handleChamberSelect' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 /Users/arke/Projects/bettergov/src/pages/government/legislative/house-members.tsx
   18:49  error    Unexpected any. Specify a different type                                                                                                                                                                 @typescript-eslint/no-explicit-any
@@ -141,42 +95,28 @@
 
 /Users/arke/Projects/bettergov/src/pages/government/local/[region].tsx
   29:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  33:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  44:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  57:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  60:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  70:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  91:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/local/components/LocalSidebar.tsx
-  10:40  error  'currentRegion' is defined but never used  @typescript-eslint/no-unused-vars
-  26:66  error  Unexpected any. Specify a different type   @typescript-eslint/no-explicit-any
+  10:38  error  '_props' is defined but never used        @typescript-eslint/no-unused-vars
+  26:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/government/local/index.tsx
   36:68  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/philippines/map/index.tsx
-   41:40  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-   50:56  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-   51:57  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-   86:37  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-  113:30  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-  120:50  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-  146:30  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-  167:9   error  'filteredMapData' is assigned a value but never used  @typescript-eslint/no-unused-vars
-  167:52  error  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
-
-/Users/arke/Projects/bettergov/src/pages/services/index.tsx
-  43:11  error  'Service' is defined but never used  @typescript-eslint/no-unused-vars
+   41:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   50:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   51:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   86:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  113:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  120:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  146:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/[type].tsx
-   22:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  210:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  22:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/index.tsx
-   20:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  116:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  186:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-✖ 98 problems (92 errors, 6 warnings)
+✖ 59 problems (53 errors, 6 warnings)
 

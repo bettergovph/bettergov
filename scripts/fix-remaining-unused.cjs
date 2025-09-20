@@ -9,74 +9,74 @@ const fixes = [
     file: 'functions/api/crawl.ts',
     line: 41,
     variable: 'error',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'functions/api/forex.ts',
     line: 47,
     variable: 'env',
-    fix: 'remove-param'
+    fix: 'remove-param',
   },
   {
     file: 'functions/api/forex.ts',
     line: 246,
     variable: 'ctx',
-    fix: 'remove-param'
+    fix: 'remove-param',
   },
   {
     file: 'functions/api/weather.ts',
     line: 316,
     variable: 'ctx',
-    fix: 'remove-param'
+    fix: 'remove-param',
   },
   {
     file: 'src/pages/Ideas.tsx',
     line: 96,
     variable: 'setProjectIdeas',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'src/pages/flood-control-projects/index.tsx',
     line: 94,
     variable: 'Hit',
-    fix: 'remove-destructure'
+    fix: 'remove-destructure',
   },
   {
     file: 'src/pages/government/executive/components/ExecutiveSidebar.tsx',
     line: 23,
     variable: 'officeGroups',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'src/pages/government/legislative/components/LegislativeSidebar.tsx',
     line: 18,
     variable: 'filteredChambers',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'src/pages/government/legislative/components/LegislativeSidebar.tsx',
     line: 22,
     variable: 'handleChamberSelect',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'src/pages/government/local/components/LocalSidebar.tsx',
     line: 10,
     variable: 'currentRegion',
-    fix: 'remove-destructure'
+    fix: 'remove-destructure',
   },
   {
     file: 'src/pages/philippines/map/index.tsx',
     line: 167,
     variable: 'filteredMapData',
-    fix: 'comment-out'
+    fix: 'comment-out',
   },
   {
     file: 'src/pages/services/index.tsx',
     line: 43,
     variable: 'Service',
-    fix: 'remove-type'
-  }
+    fix: 'remove-type',
+  },
 ];
 
 function fixFile(filePath, fileFixtures) {
@@ -102,7 +102,11 @@ function fixFile(filePath, fileFixtures) {
       switch (fix.fix) {
         case 'comment-out':
           // Comment out the line or part of it
-          if (line.includes(`const ${fix.variable}`) || line.includes(`const [${fix.variable}`) || line.includes(`const { ${fix.variable}`)) {
+          if (
+            line.includes(`const ${fix.variable}`) ||
+            line.includes(`const [${fix.variable}`) ||
+            line.includes(`const { ${fix.variable}`)
+          ) {
             newLine = `  // ${line.trim()} // Unused variable`;
           }
           break;
@@ -117,11 +121,17 @@ function fixFile(filePath, fileFixtures) {
 
         case 'remove-destructure':
           // Remove from destructuring
-          if (line.includes(`{ ${fix.variable}`) || line.includes(`, ${fix.variable}`)) {
+          if (
+            line.includes(`{ ${fix.variable}`) ||
+            line.includes(`, ${fix.variable}`)
+          ) {
             // Remove the variable from destructuring
-            newLine = line.replace(new RegExp(`,?\\s*${fix.variable}\\s*,?`, 'g'), (match) => {
-              return match.startsWith(',') ? ',' : '';
-            });
+            newLine = line.replace(
+              new RegExp(`,?\\s*${fix.variable}\\s*,?`, 'g'),
+              match => {
+                return match.startsWith(',') ? ',' : '';
+              }
+            );
             // Clean up double commas
             newLine = newLine.replace(/,\s*,/g, ',');
             // Clean up trailing comma before }
@@ -152,7 +162,9 @@ function fixFile(filePath, fileFixtures) {
       if (newLine !== line) {
         lines[lineIndex] = newLine;
         modified = true;
-        console.log(`  ✓ Fixed ${fix.variable} at ${path.basename(filePath)}:${fix.line}`);
+        console.log(
+          `  ✓ Fixed ${fix.variable} at ${path.basename(filePath)}:${fix.line}`
+        );
       }
     }
   });
