@@ -162,7 +162,7 @@ const ForexPage: React.FC = () => {
                       </div>
                     </div>
                     <span className='font-semibold'>
-                      ₱{rate.rate?.toFixed(2)}
+                      {rate.rate ? '₱' + rate.rate?.toFixed(2) : 'N/A'}
                     </span>
                   </button>
                 ))}
@@ -195,7 +195,7 @@ const ForexPage: React.FC = () => {
                         Current Rate
                       </div>
                       <div className='text-3xl font-bold text-gray-800'>
-                        ₱{selectedCurrencyData.rate.toFixed(4)}
+                        {selectedCurrencyData.rate ? '₱' + selectedCurrencyData.rate.toFixed(4) :  'N/A' }
                       </div>
                       <div className='text-xs text-gray-800'>
                         Philippine Peso
@@ -319,7 +319,7 @@ const ForexPage: React.FC = () => {
                           type='text'
                           className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3 bg-gray-50'
                           readOnly
-                          value={(1000 / selectedCurrencyData.rate).toFixed(2)}
+                          value={selectedCurrencyData.rate ? (1000 / selectedCurrencyData.rate).toFixed(2) : 'N/A'}
                         />
                       </div>
                     </div>
