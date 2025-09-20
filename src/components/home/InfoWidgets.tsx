@@ -19,7 +19,7 @@ const InfoWidgets: React.FC = () => {
   // Function to get weather icon component
   const getWeatherIcon = (iconName: string) => {
     const Icon = LucideIcons[iconName as keyof typeof LucideIcons]
-    return Icon ? <Icon className="h-8 w-8" /> : null
+    return Icon ? <Icon className="h-16 w-16" /> : null
   }
 
   // Fetch weather data
@@ -77,18 +77,25 @@ const InfoWidgets: React.FC = () => {
   }, [])
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Weather Widget */}
-          <Card>
-            <CardHeader className="bg-primary-50">
+          <div>
+            <div className='pb-6 flex items-center justify-between flex-wrap gap-4'>
               <h3 className="text-xl font-semibold text-gray-900 flex items-center">
                 <LucideIcons.Cloud className="h-5 w-5 mr-2 text-primary-600" />
                 {translate('weather.title')}
               </h3>
-            </CardHeader>
-            <CardContent>
+              <a
+                  href="/data/weather"
+                  className="text-primary-600 text-sm hover:underline flex items-center gap-1"
+                >
+                  <span>Detailed Forecast</span>
+                  <LucideIcons.ArrowRight size={16} />
+                </a>
+            </div>
+            <div>
               {isLoadingWeather ? (
                 <div className="flex justify-center items-center h-40">
                   <LucideIcons.Loader className="h-8 w-8 animate-spin text-primary-600" />
@@ -99,56 +106,54 @@ const InfoWidgets: React.FC = () => {
                   <p>{weatherError}</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                   {weatherData.map((location) => (
-                    <div
-                      key={location.location}
-                      className="flex flex-col items-center p-3 rounded-lg border border-gray-100 bg-white uppercase"
-                    >
-                      <div className="text-accent-500 mb-1">
-                        {getWeatherIcon(location.icon)}
-                      </div>
-                      <div className="font-semibold text-lg">
-                        {location.location}
-                      </div>
-                      <div className="text-2xl font-bold">
-                        {location.temperature}°C
-                      </div>
-                      <div className="text-sm text-gray-800 text-center">
-                        {location.condition}
-                      </div>
-                    </div>
+                    <Card key={location.location} className='shadow-none bg-transparent border-gray-300'>
+                      <CardContent className="flex flex-col items-center p-3 rounded-lg uppercase">
+                        <div className="font-semibold text-lg tracking-wide">
+                          {location.location}
+                        </div>
+                        <div className="text-accent-500 mb-1 pt-2">
+                          {getWeatherIcon(location.icon)}
+                        </div>
+                        <div className="text-4xl font-medium">
+                          {location.temperature}°C
+                        </div>
+                        <div className="text-xs text-gray-700 text-center pt-4 tracking-wide font-semibold">
+                          {location.condition}
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               )}
-              <div className="text-right mt-4">
-                <a
-                  href="/data/weather"
-                  className="text-primary-600 text-sm hover:underline"
-                >
-                  Detailed Forecast
-                </a>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Forex Widget */}
-          <Card>
-            <CardHeader className="bg-primary-50">
+          <div>
+            <div className="pb-6 flex items-center justify-between flex-wrap gap-4">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center">
                 <LucideIcons.BarChart3 className="h-5 w-5 mr-2 text-primary-600" />
                 {translate('forex.title')}
               </h3>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
+              <a
+                href="/data/forex"
+                className="text-primary-600 text-sm hover:underline flex items-center gap-1"
+              >
+                <span>More Currencies</span>
+                <LucideIcons.ArrowRight size={16} />
+              </a>
+            </div>
+            <div>
+              <div className="overflow-x-auto border border-gray-300 rounded-3xl">
+                <table className="min-w-full divide-y divide-gray-200 ">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-3 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
+                      <th className="pl-6 py-4 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">
                         Currency
                       </th>
-                      <th className="px-3 py-3 text-right text-xs font-medium text-gray-800 uppercase tracking-wider">
+                      <th className="pr-6 py-4 text-right text-xs font-semibold text-gray-800 uppercase tracking-wider">
                         ₱ Rate
                       </th>
                     </tr>
@@ -182,9 +187,9 @@ const InfoWidgets: React.FC = () => {
                     ) : (
                       forexRates.map((rate) => (
                         <tr key={rate.code} className="hover:bg-gray-50">
-                          <td className="px-3 py-2 whitespace-nowrap">
+                          <td className="pl-6 py-2 whitespace-nowrap">
                             <div className="flex items-center">
-                              <div className="font-medium text-gray-900">
+                              <div className="font-medium text-accent-500">
                                 {rate.code}
                               </div>
                               <div className="text-gray-800 text-sm ml-2">
@@ -192,8 +197,8 @@ const InfoWidgets: React.FC = () => {
                               </div>
                             </div>
                           </td>
-                          <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
-                            ₱{rate.rate.toFixed(2)}
+                          <td className="pr-6 py-2 tracking-wider whitespace-nowrap text-right text-sm font-medium">
+                            <span className='text-gray-600 mr-1 text-xs'>₱</span>{rate.rate.toFixed(2)}
                           </td>
                         </tr>
                       ))
@@ -201,22 +206,16 @@ const InfoWidgets: React.FC = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="text-right mt-4">
-                <a
-                  href="/data/forex"
-                  className="text-primary-600 text-sm hover:underline"
-                >
-                  More Currencies
-                </a>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Emergency Hotlines Widget */}
-          <div className="lg:col-span-1">
+          <div className='lg:col-span-2'>
             <CriticalHotlinesWidget maxItems={4} />
           </div>
+          
         </div>
+        
       </div>
     </section>
   )
