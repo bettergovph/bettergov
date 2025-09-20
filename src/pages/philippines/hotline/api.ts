@@ -1,11 +1,28 @@
-import { toast } from "sonner";
-import { useState } from "react";
-import axios from "axios";
+import { toast } from 'sonner';
+import { useState } from 'react';
 
 const useMailerApi = () => {
-  const api = axios.create({
-    baseURL: import.meta.env.VITE_MAILER_API,
-  });
+  // const api = axios.create({
+  //   baseURL: import.meta.env.VITE_MAILER_API,
+  // });
+  const api = async <T>(path: string, options: RequestInit) => {
+    const baseUrl = import.meta.env.VITE_MAILER_API as string;
+    const res = await fetch(baseUrl + path, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+      ...options,
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(errorText || `Request failed with status ${res.status}`);
+    }
+    const data = await res.text();
+
+    return data ? (JSON.parse(data) as T) : {};
+  };
 
   /**
    * Use this hook for sending an outdated hotline report
@@ -21,20 +38,20 @@ const useMailerApi = () => {
     }) => {
       try {
         setLoading(true);
-        const response = await api.post<{ message: string }>(
-          "/hotlines/outdated",
-          payload
-        );
-        toast.success("Report sent", {
-          description: "Your report was successfully sent",
+        const response = await api<{ message: string }>('/hotlines/outdated', {
+          method: 'post',
+          body: JSON.stringify(payload),
         });
-        return response.data;
+        toast.success('Report sent', {
+          description: 'Your report was successfully sent',
+        });
+        return response;
       } catch (error) {
         setError(true);
-        toast.error("Failed to send", {
-          description: "Your report was not sent",
+        toast.error('Failed to send', {
+          description: 'Your report was not sent',
         });
-        console.error("Failed to send hotline report:", error);
+        console.error('Failed to send hotline report:', error);
       } finally {
         setLoading(false);
       }
