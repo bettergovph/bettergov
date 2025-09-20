@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Malawus kayu king BetterGov.ph",
+    "subtitle": "Ini ing portal ning Republika ning Pilipinas, na tatalakaran da reng boluntaryu. Mantun kang impormasyun, lungub ka kareng serbisyung pang-gobyernu, at manatiling makibalu keng pekabayung balita keng Pilipinas"
+  },
+  "services": {
+    "title": "Deng Sikat a Serbisyu"
+  },
+  "weather": {
+    "title": "Deng Update king Panahun"
+  },
+  "forex": {
+    "title": "Foreign Exchange Rates"
+  },
+  "news": {
+    "title": "Pekabayung Balita ampong Updates"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. Ing eganaganang laman at impormasyun ay parti ning publiku maliban mu nung ali ya makasulat."
+  },
+  "navbar": {
+    "philippines": "Ing Pilipinas",
+    "services": "Deng Serbisyu",
+    "travel": "Pamaglakbe",
+    "government": "Gobyernu",
+    "flood control projects": "Deng Proyektu king Pagkontrol ning Baha"
+  }
+}

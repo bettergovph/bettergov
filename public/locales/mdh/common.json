@@ -1,0 +1,28 @@
+{
+  "navbar": {
+    "philippines": "Pilipinas",
+    "services": "Mga Serbisyo",
+    "travel": "Paglakbay",
+    "government": "Gobyerno",
+    "flood control projects": "Mga Proyekto sa Pagkontrol sa Olo"
+  },
+  "hero": {
+    "title": "Mapiya a Pagdatang sa BetterGov.ph",
+    "subtitle": "So volunteer-run portal o Republika o Pilipinas. Tomimpo sa impormasyon, pag-access sa mga serbisyo o gobyerno, magtanem a updated sa pinakabago a balita makalangon sa Pilipinas."
+  },
+  "services": {
+    "title": "Mga Bantog a Serbisyo"
+  },
+  "weather": {
+    "title": "Mga Update sa Panahon"
+  },
+  "forex": {
+    "title": "Pagbaylo sa Sapi"
+  },
+  "news": {
+    "title": "Pinakabago a Balita ago Updates"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. Langon a sulud public domain gawas ko aya a nakasaad a iba."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Naragsak nga Isasangbay iti BetterGov.ph",
+    "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas."
+  },
+  "services": {
+    "title": "Dagiti Nalatak a Serbisio"
+  },
+  "weather": {
+    "title": "Dagiti Update ti Panawen"
+  },
+  "forex": {
+    "title": "Panagsukat ti Kuarta"
+  },
+  "news": {
+    "title": "Kabaruan a Damag ken Updates"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. Amin a linaon ket public domain malaksid no adda sabali a naibaga."
+  },
+  "navbar": {
+    "philippines": "Pilipinas",
+    "services": "Dagiti Serbisio",
+    "travel": "Panagdaliasat",
+    "government": "Gobierno",
+    "flood control projects": "Dagiti Proyekto ti Panangkontrol iti Layus"
+  }
+}

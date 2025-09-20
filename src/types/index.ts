@@ -1,4 +1,17 @@
-export type LanguageType = 'en' | 'fil'
+export type LanguageType =
+  | 'en'    // English
+  | 'fil'   // Filipino (standardized Tagalog)
+  | 'tgl'   // Tagalog (same as Filipino)
+  | 'ceb'   // Cebuano/Bisaya
+  | 'ilo'   // Ilocano
+  | 'hil'   // Hiligaynon/Ilonggo
+  | 'war'   // Waray
+  | 'pam'   // Kapampangan
+  | 'bcl'   // Bikol
+  | 'pag'   // Pangasinan
+  | 'mag'   // Maguindanao
+  | 'tsg'   // Tausug
+  | 'mdh'   // Maranao
 
 export interface NewsItem {
   id: string

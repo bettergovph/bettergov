@@ -130,10 +130,10 @@ const PhilippinesMap: React.FC = () => {
       fillColor: isSelected
         ? '#6D28D9'
         : isHovered
-        ? '#A78BFA'
-        : isFilteredOut
-        ? '#D1D5DB'
-        : '#EDE9FE',
+          ? '#A78BFA'
+          : isFilteredOut
+            ? '#D1D5DB'
+            : '#EDE9FE',
       weight: isSelected || isHovered ? 2 : 1,
       opacity: 1,
       color: isSelected || isHovered ? '#4C1D95' : '#A78BFA',
@@ -203,7 +203,7 @@ const PhilippinesMap: React.FC = () => {
         </div>
 
         {/* Zoom Controls - Leaflet has its own, but we can add custom ones */}
-        <div className="absolute top-20 right-4 z-[1000] flex flex-col gap-2">
+        <div className="absolute top-20 right-4 z-10 flex flex-col gap-2">
           <Button
             variant="primary"
             size="sm"
@@ -267,9 +267,8 @@ const PhilippinesMap: React.FC = () => {
 
       {/* Details Panel */}
       <div
-        className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
-          selectedRegion ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${selectedRegion ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         {selectedRegion && (
           <div className="h-full flex flex-col">

@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react'
-import { useLanguage } from '../../contexts/LanguageContext'
+import { X, Menu, ChevronDown, Globe, Search, CheckCircle2 } from 'lucide-react'
 import { mainNavigation } from '../../data/navigation'
 import { LanguageType } from '../../types'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LANGUAGES } from '../../i18n/languages'
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const { language, setLanguage, translate } = useLanguage()
+  const { t, i18n } = useTranslation('common')
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -27,7 +28,7 @@ const Navbar: React.FC = () => {
   }
 
   const changeLanguage = (newLanguage: LanguageType) => {
-    setLanguage(newLanguage)
+    i18n.changeLanguage(newLanguage)
   }
 
   return (
@@ -62,14 +63,18 @@ const Navbar: React.FC = () => {
             >
               Hotlines
             </Link>
-            <div className="hidden md:block relative">
-              <button
-                className="flex items-center text-xs text-gray-800 hover:text-primary-600 transition-colors"
-                onClick={() => changeLanguage(language === 'en' ? 'fil' : 'en')}
+            <div className="hidden md:block">
+              <select
+                value={i18n.language}
+                onChange={(e) => changeLanguage(e.target.value as LanguageType)}
+                className="text-xs border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
               >
-                <Globe className="h-3 w-3 mr-1" />
-                {language === 'en' ? 'English' : 'Filipino'}
-              </button>
+                {Object.entries(LANGUAGES).map(([code, lang]) => (
+                  <option key={code} value={code}>
+                    {lang.nativeName}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
@@ -80,11 +85,12 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img
-                src="/ph-logo.png"
+              <CheckCircle2 className="h-12 w-12 mr-3" />
+              {/* <img
+                src="/ph-logo.webp"
                 alt="Philippines Coat of Arms"
                 className="h-12 w-12 mr-3"
-              />
+              /> */}
               <div>
                 <div className="text-black font-bold">BetterGov.ph</div>
                 <div className="text-xs text-gray-800">
@@ -102,7 +108,7 @@ const Navbar: React.FC = () => {
                   to={item.href}
                   className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
                 >
-                  {translate(`navbar.${item.label.toLowerCase()}`)}
+                  {t(`navbar.${item.label.toLowerCase()}`)}
                   {item.children && (
                     <ChevronDown className="ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors" />
                   )}
@@ -178,7 +184,7 @@ const Navbar: React.FC = () => {
                 onClick={() => toggleSubmenu(item.label)}
                 className="w-full flex justify-between items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500"
               >
-                {translate(`navbar.${item.label.toLowerCase()}`)}
+                {t(`navbar.${item.label.toLowerCase()}`)}
                 {item.children && (
                   <ChevronDown
                     className={`h-5 w-5 transition-transform ${
@@ -234,29 +240,17 @@ const Navbar: React.FC = () => {
           <div className="px-4 py-3 border-t border-gray-200">
             <div className="flex items-center">
               <Globe className="h-5 w-5 text-gray-800 mr-2" />
-              <div className="space-x-2">
-                <button
-                  onClick={() => changeLanguage('en')}
-                  className={`text-sm ${
-                    language === 'en'
-                      ? 'font-semibold text-primary-600'
-                      : 'text-gray-800'
-                  }`}
-                >
-                  English
-                </button>
-                <span className="text-gray-400">|</span>
-                <button
-                  onClick={() => changeLanguage('fil')}
-                  className={`text-sm ${
-                    language === 'fil'
-                      ? 'font-semibold text-primary-600'
-                      : 'text-gray-800'
-                  }`}
-                >
-                  Filipino
-                </button>
-              </div>
+              <select
+                value={i18n.language}
+                onChange={(e) => changeLanguage(e.target.value as LanguageType)}
+                className="text-sm border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600"
+              >
+                {Object.entries(LANGUAGES).map(([code, lang]) => (
+                  <option key={code} value={code}>
+                    {lang.nativeName}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>

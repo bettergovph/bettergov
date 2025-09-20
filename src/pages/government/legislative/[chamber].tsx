@@ -38,6 +38,7 @@ function LegislativeDetailSection({
 
   // Skip these keys as they're displayed in the header
   const skipKeys = [
+    'slug',
     'branch',
     'chamber',
     'address',
