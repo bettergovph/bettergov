@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import executiveData from '../../../data/directory/executive.json';

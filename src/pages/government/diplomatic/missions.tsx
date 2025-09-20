@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from 'react';
 import { Search, Globe } from 'lucide-react';
 import diplomaticData from '../../../data/directory/diplomatic.json';

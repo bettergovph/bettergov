@@ -43,10 +43,10 @@
   136:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/components/ui/StandardSidebar.tsx
-  11:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
-  12:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
-  25:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
-  26:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+   9:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  10:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  23:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  24:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
 
 /Users/arke/Projects/bettergov/src/lib/api.ts
   4:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -103,6 +103,17 @@
     2:36  error    'Filter' is defined but never used                                                                                              @typescript-eslint/no-unused-vars
   263:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
+/Users/arke/Projects/bettergov/src/pages/flood-control-projects/tab.tsx
+  10:5  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  11:7  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  19:9  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  22:7  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  30:9  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  33:7  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  41:9  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  44:7  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  52:9  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
 /Users/arke/Projects/bettergov/src/pages/flood-control-projects/table.tsx
    10:3   error  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
    12:3   error  'Table' is defined but never used         @typescript-eslint/no-unused-vars
@@ -110,6 +121,10 @@
    17:3   error  'Users' is defined but never used         @typescript-eslint/no-unused-vars
   364:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   364:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/[office].tsx
+  4:10  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  4:11  error  'ConstitutionalIndex' is not defined     react/jsx-no-undef
 
 /Users/arke/Projects/bettergov/src/pages/government/constitutional/components/ConstitutionalSidebar.tsx
    16:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -225,6 +240,11 @@
   238:15  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
   243:9   error  'React' must be in scope when using JSX   react/react-in-jsx-scope
   244:11  error  'React' must be in scope when using JSX   react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/constitutional/layout.tsx
+  7:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  7:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  8:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
 
 /Users/arke/Projects/bettergov/src/pages/government/constitutional/sucs.tsx
    22:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -402,27 +422,32 @@
   276:23  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
   277:38  error  'React' must be in scope when using JSX                          react/react-in-jsx-scope
 
+/Users/arke/Projects/bettergov/src/pages/government/departments/layout.tsx
+  7:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  7:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  8:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
 /Users/arke/Projects/bettergov/src/pages/government/diplomatic/components/DiplomaticSidebar.tsx
-   4:8   error  'diplomaticData' is defined but never used          @typescript-eslint/no-unused-vars
-   9:21  error  'categoryParam' is assigned a value but never used  @typescript-eslint/no-unused-vars
-  10:9   error  'navigate' is assigned a value but never used       @typescript-eslint/no-unused-vars
-  19:5   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  24:7   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  25:9   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+   6:21  error  'categoryParam' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   7:9   error  'navigate' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  16:5   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  16:6   error  'StandardSidebar' is not defined                    react/jsx-no-undef
+  21:7   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  22:9   error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  23:11  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
   26:11  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  29:11  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  30:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  31:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  39:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  40:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  43:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  44:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  52:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  53:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  56:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  57:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  65:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
-  66:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  27:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  28:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  36:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  37:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  40:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  41:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  49:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  50:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  53:13  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  54:15  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  62:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
+  63:17  error  'React' must be in scope when using JSX             react/react-in-jsx-scope
 
 /Users/arke/Projects/bettergov/src/pages/government/diplomatic/consulates.tsx
    37:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
@@ -451,6 +476,11 @@
    97:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
    98:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
   101:19  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/diplomatic/layout.tsx
+  7:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  7:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  8:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
 
 /Users/arke/Projects/bettergov/src/pages/government/diplomatic/missions.tsx
   33:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
@@ -534,6 +564,11 @@
   117:15  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
   125:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
   126:17  error  'React' must be in scope when using JSX            react/react-in-jsx-scope
+
+/Users/arke/Projects/bettergov/src/pages/government/executive/layout.tsx
+  7:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  7:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  8:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
 
 /Users/arke/Projects/bettergov/src/pages/government/executive/office-of-the-president.tsx
    87:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
@@ -798,6 +833,11 @@
   152:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
   153:23  error    'React' must be in scope when using JSX                                                                                                                                                                  react/react-in-jsx-scope
 
+/Users/arke/Projects/bettergov/src/pages/government/legislative/layout.tsx
+  7:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  7:39  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  8:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
 /Users/arke/Projects/bettergov/src/pages/government/legislative/party-list-members.tsx
     2:25  error    'MapPin' is defined but never used                                                                                                                                                                               @typescript-eslint/no-unused-vars
    18:49  error    Unexpected any. Specify a different type                                                                                                                                                                         @typescript-eslint/no-explicit-any
@@ -1026,21 +1066,19 @@
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/[type].tsx
     8:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
-   18:8   error  'Button' is defined but never used                               @typescript-eslint/no-unused-vars
-   25:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  210:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  210:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  213:45  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   23:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  208:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  208:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  211:45  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
 
 /Users/arke/Projects/bettergov/src/pages/travel/visa-types/index.tsx
     5:3   error  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
     6:3   error  'ExternalLink' is defined but never used                         @typescript-eslint/no-unused-vars
-   17:8   error  'Button' is defined but never used                               @typescript-eslint/no-unused-vars
-   24:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  117:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  117:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
-  120:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
-  190:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   22:27  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  115:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  115:49  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  118:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  188:56  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
 
-✖ 932 problems (926 errors, 6 warnings)
+✖ 956 problems (950 errors, 6 warnings)
 

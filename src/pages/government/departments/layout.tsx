@@ -1,3 +1,4 @@
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import DepartmentsSidebar from './components/DepartmentsSidebar';
 import GovernmentPageContainer from '../GovernmentPageContainer';
