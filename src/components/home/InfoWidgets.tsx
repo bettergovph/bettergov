@@ -154,7 +154,7 @@ const InfoWidgets: React.FC = () => {
                         Currency
                       </th>
                       <th className="pr-6 py-4 text-right text-xs font-semibold text-gray-800 uppercase tracking-wider">
-                        ₱ Rate
+                        Rate
                       </th>
                     </tr>
                   </thead>
@@ -198,7 +198,7 @@ const InfoWidgets: React.FC = () => {
                             </div>
                           </td>
                           <td className="pr-6 py-2 tracking-wider whitespace-nowrap text-right text-sm font-medium">
-                            <span className='text-gray-600 mr-1 text-xs'>₱</span>{rate.rate.toFixed(2)}
+                            {rate.rate.toFixed(2)}
                           </td>
                         </tr>
                       ))
