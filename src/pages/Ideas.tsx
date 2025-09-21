@@ -5,8 +5,6 @@ import {
   Users,
   Star,
   TrendingUp,
-  ChevronUp,
-  ChevronDown,
   Github,
   Plus,
 } from 'lucide-react';
@@ -102,53 +100,9 @@ const getComplexityColor = (complexity: string) => {
 };
 
 const Ideas: React.FC = () => {
-  const [projectIdeas, setProjectIdeas] =
+  const [projectIdeas] =
     useState<ProjectIdea[]>(initialProjectIdeas);
-  const [userVotes, setUserVotes] = useState<
-    Record<string, 'up' | 'down' | null>
-  >({});
 
-  const handleVote = (ideaId: string, voteType: 'up' | 'down') => {
-    const currentVote = userVotes[ideaId];
-
-    setProjectIdeas(prev =>
-      prev.map(idea => {
-        if (idea.id === ideaId) {
-          let newUpvotes = idea.upvotes;
-          let newDownvotes = idea.downvotes;
-
-          // Remove previous vote if exists
-          if (currentVote === 'up') {
-            newUpvotes--;
-          } else if (currentVote === 'down') {
-            newDownvotes--;
-          }
-
-          // Add new vote if different from current
-          if (currentVote !== voteType) {
-            if (voteType === 'up') {
-              newUpvotes++;
-            } else {
-              newDownvotes++;
-            }
-          }
-
-          return {
-            ...idea,
-            upvotes: newUpvotes,
-            downvotes: newDownvotes,
-          };
-        }
-        return idea;
-      })
-    );
-
-    // Update user vote state
-    setUserVotes(prev => ({
-      ...prev,
-      [ideaId]: currentVote === voteType ? null : voteType,
-    }));
-  };
 
   const handleSubmitIdea = () => {
     const githubUrl =
@@ -368,7 +322,7 @@ const Ideas: React.FC = () => {
             Have an Idea?
           </h2>
           <p className='text-gray-700 mb-6 max-w-2xl mx-auto'>
-            We're always looking for innovative ways to improve government
+            We&apos;re always looking for innovative ways to improve government
             services and citizen engagement. Submit your ideas via GitHub or
             learn more about our mission.
           </p>
