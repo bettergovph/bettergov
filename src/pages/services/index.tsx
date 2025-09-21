@@ -78,7 +78,7 @@ export default function ServicesPage() {
   // Reset page when category/subcategory changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategorySlug, selectedSubcategorySlug]);
+  }, [selectedCategorySlug, selectedSubcategorySlug, setCurrentPage]);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
