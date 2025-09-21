@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Building2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import departmentsData from '../../../../data/directory/departments.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
@@ -20,7 +20,7 @@ interface DepartmentsSidebarProps {
 export default function DepartmentsSidebar({
   onDepartmentSelect,
 }: DepartmentsSidebarProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm] = useState('');
   const { department: departmentParam } = useParams();
   const navigate = useNavigate();
   const departments = departmentsData as Department[];
@@ -37,11 +37,7 @@ export default function DepartmentsSidebar({
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search departments...'
-    >
+    <StandardSidebar>
       {filteredDepartments.length === 0 ? (
         <div className='p-4 text-center text-sm text-gray-800'>
           No departments found

@@ -2,11 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Users } from 'lucide-react';
 import lguData from '../../../../data/directory/lgu.json';
 
-interface LocalSidebarProps {
-  currentRegion?: string;
-}
-
-export default function LocalSidebar({ currentRegion }: LocalSidebarProps) {
+export default function LocalSidebar() {
   const regions = lguData.map(regionData => {
     let cityCount = 0;
 
