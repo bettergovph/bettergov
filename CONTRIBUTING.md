@@ -12,7 +12,7 @@ Thank you for considering contributing to this project. Contributions of all kin
 2. **Clone Your Fork**
 
    ```bash
-    git clone https://github.com/bettergovph/bettergov.git
+    git clone https://github.com/YOUR-USERNAME/bettergov.git
     cd bettergov
    ```
 
