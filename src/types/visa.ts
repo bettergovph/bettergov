@@ -2,10 +2,12 @@ export interface VisaSubtype {
   id: string;
   name: string;
   description: string;
-  requirements: string[] | {
-    businessOwners?: string[];
-    employees?: string[];
-  };
+  requirements:
+    | string[]
+    | {
+        businessOwners?: string[];
+        employees?: string[];
+      };
 }
 
 export interface VisaType {
