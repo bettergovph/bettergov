@@ -131,7 +131,7 @@ const PhilippinesHistory: React.FC = () => {
               </h2>
               <div className='prose max-w-none'>
                 <p className='text-gray-800 leading-relaxed mb-4'>
-                  The Philippines&apos;&apos; history spans thousands of years,
+                  The Philippines&apos; history spans thousands of years,
                   beginning with the migration of Austronesian peoples. These
                   early settlers developed sophisticated societies, trading with
                   various Asian civilizations and developing unique cultural
