@@ -311,9 +311,9 @@ export async function onRequest(context: {
 }
 
 export async function scheduled(
-  controller: ScheduledController,
+  _controller: ScheduledController,
   env: Env,
-  ctx: ExecutionContext
+  _ctx: ExecutionContext
 ) {
   try {
     // Fetch weather data for all cities

@@ -1,9 +1,5 @@
 import { Env } from '../types';
-import {
-  fetchAndSaveContent,
-  getContentByUrl,
-  setDefaultCrawler,
-} from '../lib/crawler';
+import { fetchAndSaveContent, setDefaultCrawler } from '../lib/crawler';
 
 /**
  * Handler for HTTP requests to the web crawling endpoint
@@ -12,7 +8,7 @@ import {
 export async function onRequest(context: {
   request: Request;
   env: Env;
-  params: {};
+  params: Record<string, unknown>;
 }): Promise<Response> {
   const { request, env } = context;
 
@@ -100,7 +96,7 @@ export async function onRequest(context: {
     // If we don't have content or force update is requested, fetch it
     // if (!content || forceUpdate) {
     if (forceUpdate) {
-      const result = await fetchAndSaveContent(env, targetUrl, crawler);
+      const result = await fetchAndSaveContent(env, targetUrl, crawler || undefined);
 
       if (!result.success) {
         // Return the response with CORS headers
@@ -133,6 +129,21 @@ export async function onRequest(context: {
         }
       );
     }
+
+    // If we get here, no content was fetched
+    return new Response(
+      JSON.stringify({
+        error: 'No content available',
+        status: 'error',
+      }),
+      {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   } catch (error) {
     return new Response(
       JSON.stringify({
