@@ -138,6 +138,15 @@ export default function ServicesPage() {
     });
   };
 
+  const handleLoadMoreService = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCurrentPage(prev => prev + 1);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   // const currentCategoryData = selectedCategory
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -406,10 +415,10 @@ export default function ServicesPage() {
                   </div>
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar
-                  className='flex select-none touch-none p-0.5 bg-gray-100 transition-colors hover:bg-gray-200 rounded-full'
+                  className='flex select-none touch-none p-0.5 bg-gray-100 transition-colors hover:bg-gray-200 rounded-full w-2'
                   orientation='vertical'
                 >
-                  <ScrollArea.Thumb className='flex-1 bg-gray-300 rounded-full relative' />
+                  <ScrollArea.Thumb className='flex-1 bg-blue-600 hover:bg-gray-700 rounded-full relative transition-colors' />
                 </ScrollArea.Scrollbar>
               </ScrollArea.Root>
             </div>
@@ -419,59 +428,53 @@ export default function ServicesPage() {
           <main className='flex-1'>
             <h2 className='sr-only'>Available Services</h2>
             <div
-              className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'
+              className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 transition-all duration-300 ease-in-out'
               role='list'
               aria-label='List of government services'
+              tabIndex={-1}
             >
               {paginatedServices.map((service, index) => (
                 <article key={index} className='h-full' role='listitem'>
                   <Card hoverable className='bg-white h-full'>
-                    <CardContent className='p-4 md:p-6'>
-                      <div className='flex items-start justify-between mb-4'>
-                        <div>
-                          <h3 className='text-lg font-semibold text-gray-900'>
-                            {service.service}
-                          </h3>
-                          <div className='mt-2 flex flex-wrap gap-2'>
-                            <Link
-                              to={`/services?category=${service.category.slug}`}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
-                            >
-                              {service.category.name}
-                            </Link>
-                            <Link
-                              to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
-                            >
-                              {service.subcategory.name}
-                            </Link>
+                    <CardContent className='p-4 md:p-6 h-full border'>
+                      <div className='flex flex-col justify-between h-full '>
+                        <div className='flex items-start justify-between mb-4'>
+                          <div>
+                            <h3 className='text-lg font-semibold text-gray-900'>
+                              {service.service}
+                            </h3>
+                            <div className='mt-2 flex flex-wrap gap-2'>
+                              <Link
+                                to={`/services?category=${service.category.slug}`}
+                                className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
+                              >
+                                {service.category.name}
+                              </Link>
+                              <Link
+                                to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
+                                className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
+                              >
+                                {service.subcategory.name}
+                              </Link>
+                            </div>
                           </div>
+                          <CheckCircle2
+                            className='h-5 w-5 text-success-500 flex-shrink-0'
+                            aria-hidden='true'
+                          />
                         </div>
-                        <CheckCircle2
-                          className='h-5 w-5 text-success-500 flex-shrink-0'
-                          aria-hidden='true'
-                        />
-                      </div>
-                      <div className='space-y-3'>
-                        <a
-                          href={service.url}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='text-gray-800 text-sm hover:text-primary-600 transition-colors break-all line-clamp-1'
-                        >
-                          {service.url}
-                        </a>
-                        <a
-                          href={service.url}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          <Button className='bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4'>
-                            View Service
-                          </Button>
-                        </a>
+                        <div className='space-y-3'>
+                          <a
+                            href={service.url}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                          >
+                            <Button className='bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4'>
+                              View Service
+                            </Button>
+                          </a>
 
-                        {/* <div className="flex items-center text-sm text-gray-800">
+                          {/* <div className="flex items-center text-sm text-gray-800">
                           <time
                             dateTime={new Date().toISOString()}
                             className="text-xs md:text-sm"
@@ -479,6 +482,7 @@ export default function ServicesPage() {
                             Last verified: {formatDate(new Date())}
                           </time>
                         </div> */}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -490,18 +494,7 @@ export default function ServicesPage() {
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
               <div className='mt-6 md:mt-8 text-center'>
                 <button
-                  onClick={() => {
-                    setCurrentPage(prev => prev + 1);
-                    // Focus management for better keyboard navigation
-                    setTimeout(() => {
-                      const nextPageFirstItem = document.querySelector(
-                        '[role="listitem"]:last-child'
-                      );
-                      if (nextPageFirstItem instanceof HTMLElement) {
-                        nextPageFirstItem.focus();
-                      }
-                    }, 100);
-                  }}
+                  onClick={handleLoadMoreService}
                   className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                   aria-label={`Load more services, showing ${Math.min(
                     filteredServices.length - currentPage * ITEMS_PER_PAGE,
