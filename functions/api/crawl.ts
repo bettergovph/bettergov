@@ -1,7 +1,6 @@
 import { Env } from '../types';
 import {
   fetchAndSaveContent,
-  getContentByUrl,
   setDefaultCrawler,
 } from '../lib/crawler';
 
@@ -42,7 +41,7 @@ export async function onRequest(context: {
     if (crawler) {
       try {
         setDefaultCrawler(crawler);
-      } catch (error) {
+      } catch {
         console.warn(`Invalid crawler type: ${crawler}, using default`);
       }
     }
@@ -64,41 +63,7 @@ export async function onRequest(context: {
       );
     }
 
-    // Check if we already have this URL in the database and it's not a force update
-    // const content = await getContentByUrl(env, targetUrl)
-
-    // if (content) {
-    //   // Convert links_summary back to object
-    //   let linksSummary = []
-    //   try {
-    //     if (content.links_summary) {
-    //       linksSummary = JSON.parse(content.links_summary)
-    //     }
-    //   } catch (e) {
-    //     console.error('Error parsing links_summary:', e)
-    //   }
-
-    //   // Return the cached content
-    //   return new Response(
-    //     JSON.stringify({
-    //       success: true,
-    //       data: content,
-    //       message: 'Content retrieved from cache',
-    //       cached: true,
-    //       crawler: crawler || 'default',
-    //       links_summary: linksSummary,
-    //     }),
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': '*',
-    //       },
-    //     }
-    //   )
-    // }
-
-    // If we don't have content or force update is requested, fetch it
-    // if (!content || forceUpdate) {
+    // If force update is requested, fetch it
     if (forceUpdate) {
       const result = await fetchAndSaveContent(env, targetUrl, crawler);
 

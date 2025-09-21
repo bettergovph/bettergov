@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Users, MapPin, Phone } from 'lucide-react';
+import { Search, Users, Phone } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 interface PartyListMember {
