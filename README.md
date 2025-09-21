@@ -65,14 +65,22 @@ Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 ## Setup
 
 1. Clone the repository
-2. Install dependencies
-3. Set up environment variables
-4. Run the development server
+2. Use the correct Node.js version (recommended)
+3. Install dependencies
+4. Set up environment variables
+5. Run the development server
 
 ```bash
 # Clone the repository
 git clone https://github.com/bettergovph/bettergov.git
 cd bettergov
+
+# Use the Node.js version specified in .nvmrc (recommended)
+# If you have nvm installed:
+nvm use
+
+# Or if you have fnm installed:
+fnm use
 
 # Install dependencies
 npm install
