@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import {
   InstantSearch,
   SearchBox,
@@ -7,17 +7,17 @@ import {
   Snippet,
   Configure,
   Stats,
-} from 'react-instantsearch'
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
-import 'instantsearch.css/themes/satellite.css' // Or your preferred theme
-import './MeilisearchInstantSearch.css' // For custom styles
+} from 'react-instantsearch';
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import 'instantsearch.css/themes/satellite.css'; // Or your preferred theme
+import './MeilisearchInstantSearch.css'; // For custom styles
 
 const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost'
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700'
+  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
 const MEILISEARCH_SEARCH_API_KEY =
   import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here'
+  'your_public_search_key_here';
 
 const { searchClient } = instantMeiliSearch(
   `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
@@ -48,50 +48,50 @@ const { searchClient } = instantMeiliSearch(
       ],
     },
   }
-)
+);
 
 interface HitProps {
   hit: {
     // [key: string]: any // Allow any string keys for hit attributes
     // objectID: string
-    name?: string
-    office_name?: string
-    office?: string
-    service?: string
-    website?: string
+    name?: string;
+    office_name?: string;
+    office?: string;
+    service?: string;
+    website?: string;
     category?:
       | string
       | {
-          name: string
-          slug: string
-        }
-    address?: string
+          name: string;
+          slug: string;
+        };
+    address?: string;
     subcategory?:
       | string
       | {
-          name: string
-          slug: string
-        }
-    description?: string
-    slug?: string
-    url?: string
+          name: string;
+          slug: string;
+        };
+    description?: string;
+    slug?: string;
+    url?: string;
     // Add other fields you expect in your search results
-  }
+  };
 }
 
 const Hit: React.FC<HitProps> = ({ hit }) => {
-  const title = hit.service || hit.name || hit.office_name || hit.office
-  const link = hit.url || `/directory/${hit.slug}`
+  const title = hit.service || hit.name || hit.office_name || hit.office;
+  const link = hit.url || `/directory/${hit.slug}`;
 
   return (
-    <article className="hit-item p-4 border-b border-gray-200 hover:bg-gray-50">
+    <article className='hit-item p-4 border-b border-gray-200 hover:bg-gray-50'>
       <a
         href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
+        target='_blank'
+        rel='noopener noreferrer'
+        className='block'
       >
-        <h2 className="text-lg font-semibold text-blue-600 hover:underline">
+        <h2 className='text-lg font-semibold text-blue-600 hover:underline'>
           {title}
           {/* <Highlight
             attribute={
@@ -107,11 +107,11 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
           /> */}
         </h2>
         {hit.description && (
-          <p className="text-sm text-gray-800 mt-1">
-            <Snippet attribute="description" hit={hit as any} />
+          <p className='text-sm text-gray-800 mt-1'>
+            <Snippet attribute='description' hit={hit as any} />
           </p>
         )}
-        <div className="text-xs text-gray-800">
+        <div className='text-xs text-gray-800'>
           {hit.category && (
             <span>
               <Highlight
@@ -133,24 +133,24 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
           )}
           {hit.address && (
             <span>
-              <Highlight attribute="address" hit={hit as any} />
+              <Highlight attribute='address' hit={hit as any} />
               {' > '}
             </span>
           )}
         </div>
         {(hit.url || hit.website) && (
-          <p className="text-xs text-blue-500 mt-1 truncate">
+          <p className='text-xs text-blue-500 mt-1 truncate'>
             {hit.url || hit.website}
           </p>
         )}
       </a>
     </article>
-  )
-}
+  );
+};
 
 const MeilisearchInstantSearch: React.FC = () => {
-  const [hasInteracted, setHasInteracted] = useState(false)
-  const searchContainerRef = useRef<HTMLDivElement>(null)
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   // Handle click outside to close search results
   useEffect(() => {
@@ -159,32 +159,32 @@ const MeilisearchInstantSearch: React.FC = () => {
         searchContainerRef.current &&
         !searchContainerRef.current.contains(event.target as Node)
       ) {
-        setHasInteracted(false)
+        setHasInteracted(false);
       }
-    }
+    };
 
     // Handle escape key press to close search results
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setHasInteracted(false)
+        setHasInteracted(false);
       }
-    }
+    };
 
     // Add event listeners
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleEscapeKey)
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
 
     // Clean up event listeners
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleEscapeKey)
-    }
-  }, [setHasInteracted])
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [setHasInteracted]);
 
   return (
     <InstantSearch
       searchClient={searchClient}
-      indexName="bettergov"
+      indexName='bettergov'
       initialUiState={{
         bettergov: {
           query: undefined,
@@ -193,11 +193,11 @@ const MeilisearchInstantSearch: React.FC = () => {
       }}
     >
       <Configure hitsPerPage={10} />
-      <div className="ais-InstantSearch rounded-lg">
-        <div className="mb-2 w-full" ref={searchContainerRef}>
+      <div className='ais-InstantSearch rounded-lg'>
+        <div className='mb-2 w-full' ref={searchContainerRef}>
           <SearchBox
-            placeholder="Search for services, directory items..."
-            className="w-full"
+            placeholder='Search for services, directory items...'
+            className='w-full'
             onFocus={() => setHasInteracted(true)}
             classNames={{
               root: 'mb-2',
@@ -212,7 +212,7 @@ const MeilisearchInstantSearch: React.FC = () => {
           />
 
           {hasInteracted && (
-            <div className="bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2">
+            <div className='bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-800 p-2 text-right text-xs',
@@ -220,7 +220,7 @@ const MeilisearchInstantSearch: React.FC = () => {
               />
               <Hits
                 hitComponent={Hit}
-                className="w-full"
+                className='w-full'
                 classNames={{
                   list: 'w-full p-0',
                   item: 'w-full  py-0 px-0 border-none',
@@ -231,7 +231,7 @@ const MeilisearchInstantSearch: React.FC = () => {
         </div>
       </div>
     </InstantSearch>
-  )
-}
+  );
+};
 
-export default MeilisearchInstantSearch
+export default MeilisearchInstantSearch;
