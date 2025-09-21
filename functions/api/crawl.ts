@@ -38,7 +38,7 @@ export async function onRequest(context: {
     if (crawler) {
       try {
         setDefaultCrawler(crawler);
-      } catch (error) {
+      } catch {
         console.warn(`Invalid crawler type: ${crawler}, using default`);
       }
     }
