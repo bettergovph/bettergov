@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { NuqsAdapter } from 'nuqs/adapters/react';
+import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
