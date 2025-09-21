@@ -21,7 +21,12 @@ import transportDrivingServices from '../../data/services/transport-driving.json
 import uncategorizedServices from '../../data/services/uncategorized.json';
 import Button from '../../components/ui/Button';
 import { Helmet } from 'react-helmet-async';
-import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
+import {
+  parseAsString,
+  parseAsInteger,
+  useQueryState,
+  useQueryStates,
+} from 'nuqs';
 
 // Combine all services
 const allServices = [
@@ -65,7 +70,10 @@ export default function ServicesPage() {
     defaultValue: '',
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useQueryState(
+    'page',
+    parseAsInteger.withDefault(1)
+  );
 
   // Reset page when category/subcategory changes
   useEffect(() => {
