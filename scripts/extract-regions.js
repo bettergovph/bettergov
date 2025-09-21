@@ -20,17 +20,15 @@ async function extractRegions() {
     // Extract region data
     const regions = lguData.map(region => ({
       name: region.region,
-      slug: region.slug || generateSlug(region.region)
+      slug: region.slug || generateSlug(region.region),
     }));
 
     // Write the extracted regions to a new JSON file
-    await writeFile(
-      outputFilePath,
-      JSON.stringify(regions, null, 2),
-      'utf8'
-    );
+    await writeFile(outputFilePath, JSON.stringify(regions, null, 2), 'utf8');
 
-    console.log(`✅ Successfully extracted ${regions.length} regions to ${outputFilePath}`);
+    console.log(
+      `✅ Successfully extracted ${regions.length} regions to ${outputFilePath}`
+    );
   } catch (error) {
     console.error('❌ Error processing LGU data:', error);
     process.exit(1);
@@ -42,8 +40,8 @@ function generateSlug(name) {
   return name
     .toLowerCase()
     .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')      // Replace spaces with hyphens
-    .replace(/--+/g, '-')      // Replace multiple hyphens with single hyphen
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/--+/g, '-') // Replace multiple hyphens with single hyphen
     .trim();
 }
 
