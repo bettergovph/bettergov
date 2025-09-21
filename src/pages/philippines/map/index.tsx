@@ -267,7 +267,6 @@ const PhilippinesMap: React.FC = () => {
         )}
       </div>
 
-      {/* Details Panel */}
       {selectedRegion && (
         <div
           className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
