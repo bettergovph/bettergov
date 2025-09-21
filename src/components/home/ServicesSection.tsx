@@ -1,6 +1,6 @@
 import React from 'react';
 import * as LucideIcons from 'lucide-react';
-import { Card, CardContent } from '../ui/Card';
+import { Card, CardContent, CardHeader } from '../ui/Card';
 import serviceCategories from '../../data/service_categories.json';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -62,40 +62,42 @@ const ServicesSection: React.FC = () => {
             <Card
               key={category.slug}
               hoverable
-              className="hover:border-primary-500 border-primary-100 group"
+              className='hover:border-primary-500 border-primary-200 group border-t-4 flex flex-col h-full'
             >
-              <CardContent className="flex flex-col h-full p-6">
-                <div className="flex gap-2 items-center">
-                  <div className="bg-primary-50 text-primary-600 p-3 rounded-full mb-4 self-start transition-colors group-hover:bg-primary-500 group-hover:text-white">
-                    {getIcon(category.category)}
-                  </div>
-
-                  <h3 className='text-lg font-semibold mb-4 text-gray-900'>
-                    {category.category}
-                  </h3>
+              <CardHeader className='flex gap-3 items-center'>
+                <div className='bg-primary-50 text-primary-600 p-3 rounded-md self-start transition-colors group-hover:bg-primary-500 group-hover:text-white'>
+                  {getIcon(category.category)}
                 </div>
+                <h3 className='text-lg font-semibold text-gray-900'>
+                  {category.category}
+                </h3>
+              </CardHeader>
 
-                <ul className='space-y-2 mb-6 flex-grow'>
-                  {category.subcategories.slice(0, 3).map(subcategory => (
-                    <li key={subcategory.slug}>
-                      <Link
-                        to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
-                        className='text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center'
-                      >
-                        <span className='w-1.5 h-1.5 bg-gray-300 rounded-full mr-2'></span>
-                        {subcategory.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to={`/services?category=${category.slug}`}
-                  className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
-                >
-                  {t('services.viewAllCategory')} {category.category}
-                  <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
-                </Link>
+              <CardContent className='h-full flex flex-col justify-between'>
+                <div>
+                  <ul className='space-y-2 mb-6 flex-grow'>
+                    {category.subcategories.slice(0, 3).map(subcategory => (
+                      <li key={subcategory.slug}>
+                        <Link
+                          to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
+                          className='text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center'
+                        >
+                          <span className='w-1.5 h-1.5 bg-gray-300 rounded-full mr-2'></span>
+                          {subcategory.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <Link
+                    to={`/services?category=${category.slug}`}
+                    className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
+                  >
+                    {t('services.viewAllCategory')} {category.category}
+                    <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -103,11 +105,11 @@ const ServicesSection: React.FC = () => {
 
         <div className='text-center mt-8'>
           <Link
-            to="/services"
-            className="inline-flex group gap-3 items-center justify-center rounded-xl font-semibold transition-colors px-8 py-4 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
+            to='/services'
+            className='inline-flex group gap-3 items-center justify-center rounded-xl font-semibold transition-colors px-8 py-4 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
           >
             {t('services.viewAll')}
-            <div className="group-hover:translate-x-1 transition-all">
+            <div className='group-hover:translate-x-1 transition-all'>
               <LucideIcons.ArrowRight size={18} />
             </div>
           </Link>
