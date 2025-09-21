@@ -15,8 +15,8 @@ export default function GovernmentPageContainer({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className={`min-h-screen bg-gray-50 ${className}`}>
-      <div className='container mx-auto px-4 py-6 md:py-8'>
+    <div className={`min-h-screen md:bg-gray-50 ${className}`}>
+      <div className='container mx-auto sm:px-4 py-6 md:py-8'>
         {/* Mobile Sidebar Toggle */}
         {sidebar && (
           <div className='md:hidden mb-4'>
