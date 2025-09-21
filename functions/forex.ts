@@ -7,11 +7,11 @@ import { Env } from './types';
 
 interface RateItem {
   symbol: string;
-  [key: string]: any;
+  [key: string]: string | number;
 }
 
 interface ForexCachedData {
-  metadata: Record<string, any>;
+  metadata: Record<string, string | number | boolean>;
   rates: RateItem[];
 }
 
