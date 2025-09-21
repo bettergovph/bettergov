@@ -126,16 +126,7 @@ const PublicHolidays: React.FC = () => {
         </p>
       </div>
 
-      <div className='space-y-12'>
-        <HolidayTable title='A. Regular Holidays' holidays={regularHolidays} />
-
-        <HolidayTable
-          title='B. Special (Non-Working) Holidays'
-          holidays={specialHolidays}
-        />
-      </div>
-
-      <div className='mt-12 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
+      <div className='mb-6 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
         <div className='flex'>
           <div className='flex-shrink-0'>
             <svg
@@ -159,6 +150,15 @@ const PublicHolidays: React.FC = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className='space-y-12'>
+        <HolidayTable title='A. Regular Holidays' holidays={regularHolidays} />
+
+        <HolidayTable
+          title='B. Special (Non-Working) Holidays'
+          holidays={specialHolidays}
+        />
       </div>
     </div>
   );
