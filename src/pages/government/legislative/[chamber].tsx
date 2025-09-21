@@ -7,7 +7,7 @@ function LegislativeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
@@ -44,7 +44,7 @@ function LegislativeDetailSection({
     'address',
     'trunkline',
     'website',
-  ]
+  ];
 
   if (isSimpleObject) {
     const cols = Object.keys(data).length > 4 ? Object.keys(data).length : 4;
@@ -61,18 +61,18 @@ function LegislativeDetailSection({
           // Special handling for email fields
           if (key === 'email' && value) {
             return (
-              <div key={key} className="text-sm">
-                <div className="flex items-start">
-                  <Mail className="h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
+              <div key={key} className='text-sm'>
+                <div className='flex items-start'>
+                  <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                   <a
                     href={`mailto:${value}`}
-                    className="text-primary-600 hover:underline leading-relaxed"
+                    className='text-primary-600 hover:underline leading-relaxed'
                   >
                     {String(value)}
                   </a>
                 </div>
               </div>
-            )
+            );
           }
 
           return (
@@ -135,7 +135,7 @@ export default function LegislativeChamber() {
   const { chamber } = useParams<{ chamber: string }>();
 
   const chamberData = legislativeData.find(
-    (item: any) => item.slug === chamber
+    (item: { slug: string }) => item.slug === chamber
   );
 
   if (!chamberData) {
