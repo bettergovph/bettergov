@@ -10,13 +10,13 @@ interface Committee {
 export default function SenateCommitteesPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Get Senate data
-  const senateData = legislativeData.find((item: any) =>
-    item.chamber.includes('Senate')
-  );
-
-  // Extract committees
-  const committees = senateData?.permanent_committees || [];
+  // Get Senate data and extract committees
+  const committees = useMemo(() => {
+    const senateData = legislativeData.find((item: { chamber: string }) =>
+      item.chamber.includes('Senate')
+    );
+    return senateData?.permanent_committees || [];
+  }, []);
 
   // Filter committees based on search term
   const filteredCommittees = useMemo(() => {

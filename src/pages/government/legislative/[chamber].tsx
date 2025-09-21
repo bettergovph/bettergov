@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { ExternalLink, MapPin, Phone, Globe, Mail } from 'lucide-react';
+import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 // Recursive component to render legislative details
@@ -7,7 +7,7 @@ function LegislativeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
@@ -118,8 +118,17 @@ function LegislativeDetailSection({
 export default function LegislativeChamber() {
   const { chamber } = useParams<{ chamber: string }>();
 
+  interface LegislativeItem {
+    slug: string;
+    chamber: string;
+    address?: string;
+    trunkline?: string;
+    website?: string;
+    [key: string]: unknown;
+  }
+
   const chamberData = legislativeData.find(
-    (item: any) => item.slug === chamber
+    (item: LegislativeItem) => item.slug === chamber
   );
 
   if (!chamberData) {

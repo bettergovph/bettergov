@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Users, MapPin, Phone } from 'lucide-react';
+import { Search, Users, Phone } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 interface PartyListMember {
@@ -14,13 +14,13 @@ export default function PartyListMembersPage() {
     null
   );
 
-  // Get Party List House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
-    item.chamber.includes('House of Representatives')
-  );
-
-  // Extract party list members
-  const partyListMembers = houseData?.party_list_representatives || [];
+  // Get Party List House of Representatives data and extract party list members
+  const partyListMembers = useMemo(() => {
+    const houseData = legislativeData.find((item: { chamber: string }) =>
+      item.chamber.includes('House of Representatives')
+    );
+    return houseData?.party_list_representatives || [];
+  }, []);
 
   // Get unique partylist for filtering
   const partyList = useMemo(() => {
