@@ -48,6 +48,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.513.0",
     "meilisearch": "^0.50.0",
+    "nuqs": "^2.6.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-helmet-async": "^2.0.5",
