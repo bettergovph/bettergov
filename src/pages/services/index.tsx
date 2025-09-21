@@ -1,34 +1,28 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
-import {
-  Search,
-  CheckCircle2,
-  Menu,
-  X,
-  Globe,
-  ExternalLink,
-} from 'lucide-react'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { Card, CardContent } from '../../components/ui/Card'
-import SearchInput from '../../components/ui/SearchInput'
-import serviceCategories from '../../data/service_categories.json'
+import { useState, useMemo } from 'react';
+import { Search, CheckCircle2, Menu, X } from 'lucide-react';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { Card, CardContent } from '../../components/ui/Card';
+import SearchInput from '../../components/ui/SearchInput';
+import serviceCategories from '../../data/service_categories.json';
 
 // Import all service files
-import businessTradeServices from '../../data/services/business-trade.json'
-import certificatesIdsServices from '../../data/services/certificates-ids.json'
-import contributionsServices from '../../data/services/contributions.json'
-import disasterWeatherServices from '../../data/services/disaster-weather.json'
-import educationServices from '../../data/services/education.json'
-import employmentServices from '../../data/services/employment.json'
-import healthServices from '../../data/services/health.json'
-import housingServices from '../../data/services/housing.json'
-import passportTravelServices from '../../data/services/passport-travel.json'
-import socialServices from '../../data/services/social-services.json'
-import taxServices from '../../data/services/tax.json'
-import transportDrivingServices from '../../data/services/transport-driving.json'
-import uncategorizedServices from '../../data/services/uncategorized.json'
-import Button from '../../components/ui/Button'
-import { Helmet } from 'react-helmet-async'
+import businessTradeServices from '../../data/services/business-trade.json';
+import certificatesIdsServices from '../../data/services/certificates-ids.json';
+import contributionsServices from '../../data/services/contributions.json';
+import disasterWeatherServices from '../../data/services/disaster-weather.json';
+import educationServices from '../../data/services/education.json';
+import employmentServices from '../../data/services/employment.json';
+import healthServices from '../../data/services/health.json';
+import housingServices from '../../data/services/housing.json';
+import passportTravelServices from '../../data/services/passport-travel.json';
+import socialServices from '../../data/services/social-services.json';
+import taxServices from '../../data/services/tax.json';
+import transportDrivingServices from '../../data/services/transport-driving.json';
+import uncategorizedServices from '../../data/services/uncategorized.json';
+import Button from '../../components/ui/Button';
+import { Helmet } from 'react-helmet-async';
+import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
+import { Link } from 'react-router-dom';
 
 // Combine all services
 const allServices = [
@@ -45,172 +39,147 @@ const allServices = [
   ...taxServices,
   ...transportDrivingServices,
   ...uncategorizedServices,
-]
-
-interface Service {
-  service: string
-  url: string
-  id: string
-  slug: string
-  published: boolean
-  category: {
-    name: string
-    slug: string
-  }
-  subcategory: {
-    name: string
-    slug: string
-  }
-  createdAt: string
-  updatedAt: string
-}
+];
 
 interface Subcategory {
-  name: string
-  slug: string
+  name: string;
+  slug: string;
 }
 
 interface Category {
-  category: string
-  slug: string
-  subcategories: Subcategory[]
+  category: string;
+  slug: string;
+  subcategories: Subcategory[];
 }
 
-const ITEMS_PER_PAGE = 16
+const ITEMS_PER_PAGE = 16;
 
 export default function ServicesPage() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState('all')
-  const [selectedSubcategorySlug, setSelectedSubcategorySlug] = useState('all')
-  const [currentPage, setCurrentPage] = useState(1)
+  const [
+    { category: selectedCategorySlug, subcategory: selectedSubcategorySlug },
+    setQueryParams,
+  ] = useQueryStates({
+    category: parseAsString.withDefault('all'),
+    subcategory: parseAsString.withDefault('all'),
+  });
+  const [searchQuery, setSearchQuery] = useQueryState('search', {
+    defaultValue: '',
+  });
 
-  // Set initial category and subcategory from URL params
-  useEffect(() => {
-    const categoryParam = searchParams.get('category')
-    const subcategoryParam = searchParams.get('subcategory')
-
-    if (categoryParam) {
-      setSelectedCategorySlug(categoryParam)
-    }
-    if (subcategoryParam) {
-      setSelectedSubcategorySlug(subcategoryParam)
-    }
-  }, [searchParams])
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
-    if (selectedCategorySlug === 'all') return null
+    if (selectedCategorySlug === 'all') return null;
     return (serviceCategories.categories as Category[]).find(
-      (cat) => cat.slug === selectedCategorySlug
-    )
-  }, [selectedCategorySlug])
+      cat => cat.slug === selectedCategorySlug
+    );
+  }, [selectedCategorySlug]);
 
   // Find selected subcategory object
   const selectedSubcategory = useMemo(() => {
-    if (!selectedCategory || selectedSubcategorySlug === 'all') return null
+    if (!selectedCategory || selectedSubcategorySlug === 'all') return null;
     return selectedCategory.subcategories.find(
-      (subcat) => subcat.slug === selectedSubcategorySlug
-    )
-  }, [selectedCategory, selectedSubcategorySlug])
+      subcat => subcat.slug === selectedSubcategorySlug
+    );
+  }, [selectedCategory, selectedSubcategorySlug]);
 
   const filteredServices = useMemo(() => {
-    let filtered = allServices
+    let filtered = allServices;
 
     if (searchQuery) {
-      const query = searchQuery.toLowerCase()
+      const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        (service) =>
+        service =>
           service.service.toLowerCase().includes(query) ||
           service.category.name.toLowerCase().includes(query) ||
           service.subcategory.name.toLowerCase().includes(query)
-      )
+      );
     }
 
     if (selectedCategory) {
       filtered = filtered.filter(
-        (service) => service.category.slug === selectedCategory.slug
-      )
+        service => service.category.slug === selectedCategory.slug
+      );
 
       if (selectedSubcategory) {
         filtered = filtered.filter(
-          (service) => service.subcategory.slug === selectedSubcategory.slug
-        )
+          service => service.subcategory.slug === selectedSubcategory.slug
+        );
       }
     }
 
-    return filtered
-  }, [searchQuery, selectedCategory, selectedSubcategory])
+    return filtered;
+  }, [searchQuery, selectedCategory, selectedSubcategory]);
 
   const paginatedServices = filteredServices.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
-  )
+  );
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query)
-    setCurrentPage(1)
-  }
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
 
   const handleCategoryChange = (categorySlug: string) => {
-    setSelectedCategorySlug(categorySlug)
-    setSelectedSubcategorySlug('all')
-    setCurrentPage(1)
-    setSearchParams(categorySlug === 'all' ? {} : { category: categorySlug })
-  }
+    setCurrentPage(1);
+    setQueryParams({
+      category: categorySlug,
+      subcategory: null,
+    });
+  };
 
   const handleSubcategoryChange = (subcategorySlug: string) => {
-    setSelectedSubcategorySlug(subcategorySlug)
-    setCurrentPage(1)
-    setSearchParams(
-      subcategorySlug === 'all'
-        ? { category: selectedCategorySlug }
-        : { category: selectedCategorySlug, subcategory: subcategorySlug }
-    )
-  }
+    setCurrentPage(1);
+    setQueryParams({
+      category: selectedCategorySlug,
+      subcategory: subcategorySlug,
+    });
+  };
 
   // const currentCategoryData = selectedCategory
 
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Dynamically generate SEO meta tags based on selected category & subcategory
   const { metaTitle, metaDescription, metaKeywords, canonicalUrl } =
     useMemo(() => {
-      const baseTitle = 'Government Services Directory | BetterGov.ph'
+      const baseTitle = 'Government Services Directory | BetterGov.ph';
       const baseDescription =
-        'Browse and search a comprehensive directory of Philippine government services across categories and subcategories.'
+        'Browse and search a comprehensive directory of Philippine government services across categories and subcategories.';
 
-      const phrases: string[] = []
+      const phrases: string[] = [];
       if (selectedCategory) {
-        phrases.push(selectedCategory.category)
+        phrases.push(selectedCategory.category);
       }
       if (selectedSubcategory) {
-        phrases.push(selectedSubcategory.name)
+        phrases.push(selectedSubcategory.name);
       }
 
       const title = phrases.length
         ? `${phrases.join(' – ')} | BetterGov.ph`
-        : baseTitle
+        : baseTitle;
 
       const description = phrases.length
         ? `Explore Philippine government services for ${phrases.join(
             ' '
           )}. Find online resources, requirements, and assistance.`
-        : baseDescription
+        : baseDescription;
 
       const keywords = [
         'philippine government services',
         'online services',
         'public service directory',
         'government portal',
-        ...phrases.map((p) => p.toLowerCase()),
-      ].join(', ')
+        ...phrases.map(p => p.toLowerCase()),
+      ].join(', ');
 
-      let canonical = 'https://bettergov.ph/services'
+      let canonical = 'https://bettergov.ph/services';
       if (selectedCategorySlug !== 'all') {
-        canonical += `?category=${selectedCategorySlug}`
+        canonical += `?category=${selectedCategorySlug}`;
         if (selectedSubcategorySlug !== 'all') {
-          canonical += `&subcategory=${selectedSubcategorySlug}`
+          canonical += `&subcategory=${selectedSubcategorySlug}`;
         }
       }
 
@@ -219,38 +188,38 @@ export default function ServicesPage() {
         metaDescription: description,
         metaKeywords: keywords,
         canonicalUrl: canonical,
-      }
+      };
     }, [
       selectedCategory,
       selectedSubcategory,
       selectedCategorySlug,
       selectedSubcategorySlug,
-    ])
+    ]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className='min-h-screen bg-gray-50'>
       <Helmet key={canonicalUrl}>
         <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={metaKeywords} />
-        <link rel="canonical" href={canonicalUrl} />
+        <meta name='description' content={metaDescription} />
+        <meta name='keywords' content={metaKeywords} />
+        <link rel='canonical' href={canonicalUrl} />
 
         {/* Open Graph / Social */}
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://gov.ph/ph-logo.webp" />
+        <meta property='og:title' content={metaTitle} />
+        <meta property='og:description' content={metaDescription} />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content={canonicalUrl} />
+        <meta property='og:image' content='https://gov.ph/ph-logo.webp' />
       </Helmet>
-      <div className="container mx-auto px-4 py-6 md:py-12">
+      <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}
-        <header className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <header className='text-center mb-8 md:mb-12'>
+          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
             {selectedCategory?.category
               ? `${selectedCategory?.category} Government Services`
               : 'Government Services'}
           </h1>
-          <p className="text-sm md:text-lg text-gray-800 max-w-2xl mx-auto">
+          <p className='text-sm md:text-lg text-gray-800 max-w-2xl mx-auto'>
             Access official government services quickly and easily. Find what
             you need for citizenship, business, education, and more.
           </p>
@@ -258,18 +227,18 @@ export default function ServicesPage() {
 
         {/* Search Bar */}
         <section
-          aria-label="Search services"
-          className="max-w-2xl mx-auto mb-8 md:mb-12"
+          aria-label='Search services'
+          className='max-w-2xl mx-auto mb-8 md:mb-12'
         >
           <SearchInput
-            placeholder="Search for services..."
+            placeholder='Search for services...'
             onSearch={handleSearch}
-            icon={<Search className="h-5 w-5 text-gray-400" />}
-            size="lg"
-            aria-label="Search government services"
-            role="searchbox"
+            icon={<Search className='h-5 w-5 text-gray-400' />}
+            size='lg'
+            aria-label='Search government services'
+            role='searchbox'
           />
-          <p className="sr-only" id="search-description">
+          <p className='sr-only' id='search-description'>
             Search for government services by name, category, or description
           </p>
         </section>
@@ -307,12 +276,12 @@ export default function ServicesPage() {
         </section> */}
 
         {/* Mobile Category Toggle */}
-        <div className="md:hidden mb-6">
+        <div className='md:hidden mb-6'>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-sm text-gray-900 font-medium"
+            className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-sm text-gray-900 font-medium'
             aria-expanded={sidebarOpen}
-            aria-controls="categories-sidebar"
+            aria-controls='categories-sidebar'
             aria-label={`${sidebarOpen ? 'Close' : 'Open'} categories menu`}
           >
             <span>
@@ -321,35 +290,35 @@ export default function ServicesPage() {
                 `(${selectedCategory?.category})`}
             </span>
             {sidebarOpen ? (
-              <X className="h-5 w-5 text-gray-800" aria-hidden="true" />
+              <X className='h-5 w-5 text-gray-800' aria-hidden='true' />
             ) : (
-              <Menu className="h-5 w-5 text-gray-800" aria-hidden="true" />
+              <Menu className='h-5 w-5 text-gray-800' aria-hidden='true' />
             )}
           </button>
         </div>
 
-        <div className="flex flex-col md:flex-row md:gap-8">
+        <div className='flex flex-col md:flex-row md:gap-8'>
           {/* Categories Sidebar */}
           <div
-            id="categories-sidebar"
+            id='categories-sidebar'
             className={`${
               sidebarOpen ? 'block' : 'hidden'
             } md:block w-full md:w-64 md:flex-shrink-0 mb-6 md:mb-0`}
-            role="navigation"
-            aria-label="Service categories"
+            role='navigation'
+            aria-label='Service categories'
           >
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <h2 className="font-semibold text-gray-900 mb-4 text-lg">
+            <div className='bg-white rounded-lg shadow-sm p-4'>
+              <h2 className='font-semibold text-gray-900 mb-4 text-lg'>
                 Categories
               </h2>
-              <ScrollArea.Root className="h-[calc(60vh)] md:h-[calc(100vh-400px)]">
-                <ScrollArea.Viewport className="h-full w-full">
-                  <div className="space-y-1 pr-4" role="list">
-                    <div role="listitem">
+              <ScrollArea.Root className='h-[calc(60vh)] md:h-[calc(100vh-400px)]'>
+                <ScrollArea.Viewport className='h-full w-full'>
+                  <div className='space-y-1 pr-4' role='list'>
+                    <div role='listitem'>
                       <button
                         onClick={() => {
-                          handleCategoryChange('all')
-                          setSidebarOpen(false)
+                          handleCategoryChange('all');
+                          setSidebarOpen(false);
                         }}
                         className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                           selectedCategorySlug === 'all'
@@ -362,17 +331,17 @@ export default function ServicesPage() {
                       >
                         All Services
                         {selectedCategorySlug === 'all' && (
-                          <span className="sr-only"> (selected)</span>
+                          <span className='sr-only'> (selected)</span>
                         )}
                       </button>
                     </div>
                     {(serviceCategories.categories as Category[]).map(
-                      (category) => (
-                        <div key={category.slug} role="listitem">
+                      category => (
+                        <div key={category.slug} role='listitem'>
                           <button
                             onClick={() => {
-                              handleCategoryChange(category.slug)
-                              setSidebarOpen(false)
+                              handleCategoryChange(category.slug);
+                              setSidebarOpen(false);
                             }}
                             className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                               selectedCategorySlug === category.slug
@@ -391,7 +360,7 @@ export default function ServicesPage() {
                           >
                             {category.category}
                             {selectedCategorySlug === category.slug && (
-                              <span className="sr-only"> (selected)</span>
+                              <span className='sr-only'> (selected)</span>
                             )}
                           </button>
 
@@ -402,15 +371,15 @@ export default function ServicesPage() {
                                 ? 'block'
                                 : 'hidden'
                             }`}
-                            role="region"
+                            role='region'
                             aria-label={`${category.category} subcategories`}
                           >
-                            {category.subcategories.map((subcategory) => (
+                            {category.subcategories.map(subcategory => (
                               <button
                                 key={subcategory.slug}
                                 onClick={() => {
-                                  handleSubcategoryChange(subcategory.slug)
-                                  setSidebarOpen(false)
+                                  handleSubcategoryChange(subcategory.slug);
+                                  setSidebarOpen(false);
                                 }}
                                 className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
                                   selectedSubcategorySlug === subcategory.slug
@@ -426,7 +395,7 @@ export default function ServicesPage() {
                                 {subcategory.name}
                                 {selectedSubcategorySlug ===
                                   subcategory.slug && (
-                                  <span className="sr-only"> (selected)</span>
+                                  <span className='sr-only'> (selected)</span>
                                 )}
                               </button>
                             ))}
@@ -437,67 +406,67 @@ export default function ServicesPage() {
                   </div>
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar
-                  className="flex select-none touch-none p-0.5 bg-gray-100 transition-colors hover:bg-gray-200 rounded-full"
-                  orientation="vertical"
+                  className='flex select-none touch-none p-0.5 bg-gray-100 transition-colors hover:bg-gray-200 rounded-full'
+                  orientation='vertical'
                 >
-                  <ScrollArea.Thumb className="flex-1 bg-gray-300 rounded-full relative" />
+                  <ScrollArea.Thumb className='flex-1 bg-gray-300 rounded-full relative' />
                 </ScrollArea.Scrollbar>
               </ScrollArea.Root>
             </div>
           </div>
 
           {/* Services Grid */}
-          <main className="flex-1">
-            <h2 className="sr-only">Available Services</h2>
+          <main className='flex-1'>
+            <h2 className='sr-only'>Available Services</h2>
             <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
-              role="list"
-              aria-label="List of government services"
+              className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'
+              role='list'
+              aria-label='List of government services'
             >
               {paginatedServices.map((service, index) => (
-                <article key={index} className="h-full" role="listitem">
-                  <Card hoverable className="bg-white h-full">
-                    <CardContent className="p-4 md:p-6">
-                      <div className="flex items-start justify-between mb-4">
+                <article key={index} className='h-full' role='listitem'>
+                  <Card hoverable className='bg-white h-full'>
+                    <CardContent className='p-4 md:p-6'>
+                      <div className='flex items-start justify-between mb-4'>
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className='text-lg font-semibold text-gray-900'>
                             {service.service}
                           </h3>
-                          <div className="mt-2 flex flex-wrap gap-2">
+                          <div className='mt-2 flex flex-wrap gap-2'>
                             <Link
                               to={`/services?category=${service.category.slug}`}
-                              className="inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors"
+                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
                             >
                               {service.category.name}
                             </Link>
                             <Link
                               to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
-                              className="inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
                             >
                               {service.subcategory.name}
                             </Link>
                           </div>
                         </div>
                         <CheckCircle2
-                          className="h-5 w-5 text-success-500 flex-shrink-0"
-                          aria-hidden="true"
+                          className='h-5 w-5 text-success-500 flex-shrink-0'
+                          aria-hidden='true'
                         />
                       </div>
-                      <div className="space-y-3">
+                      <div className='space-y-3'>
                         <a
                           href={service.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-800 text-sm hover:text-primary-600 transition-colors break-all line-clamp-1"
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='text-gray-800 text-sm hover:text-primary-600 transition-colors break-all line-clamp-1'
                         >
                           {service.url}
                         </a>
                         <a
                           href={service.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          target='_blank'
+                          rel='noopener noreferrer'
                         >
-                          <Button className="bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4">
+                          <Button className='bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4'>
                             View Service
                           </Button>
                         </a>
@@ -519,21 +488,21 @@ export default function ServicesPage() {
 
             {/* Load More Button */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
-              <div className="mt-6 md:mt-8 text-center">
+              <div className='mt-6 md:mt-8 text-center'>
                 <button
                   onClick={() => {
-                    setCurrentPage((prev) => prev + 1)
+                    setCurrentPage(prev => prev + 1);
                     // Focus management for better keyboard navigation
                     setTimeout(() => {
                       const nextPageFirstItem = document.querySelector(
                         '[role="listitem"]:last-child'
-                      )
+                      );
                       if (nextPageFirstItem instanceof HTMLElement) {
-                        nextPageFirstItem.focus()
+                        nextPageFirstItem.focus();
                       }
-                    }, 100)
+                    }, 100);
                   }}
-                  className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                   aria-label={`Load more services, showing ${Math.min(
                     filteredServices.length - currentPage * ITEMS_PER_PAGE,
                     ITEMS_PER_PAGE
@@ -547,7 +516,7 @@ export default function ServicesPage() {
             )}
 
             {/* Status message for screen readers */}
-            <div className="sr-only" aria-live="polite" aria-atomic="true">
+            <div className='sr-only' aria-live='polite' aria-atomic='true'>
               Showing{' '}
               {Math.min(paginatedServices.length, ITEMS_PER_PAGE * currentPage)}{' '}
               of {filteredServices.length} services
@@ -556,5 +525,5 @@ export default function ServicesPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

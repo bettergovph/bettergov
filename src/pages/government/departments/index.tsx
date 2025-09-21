@@ -157,7 +157,14 @@ function DepartmentDetailSection({
   }
 
   // Skip these keys as they're displayed in the header
-  const skipKeys = ['office_name', 'address', 'trunkline', 'website', 'email', 'slug'];
+  const skipKeys = [
+    'office_name',
+    'address',
+    'trunkline',
+    'website',
+    'email',
+    'slug',
+  ];
 
   const entries = Object.entries(data).filter(
     ([key]) => !skipKeys.includes(key)
@@ -208,7 +215,7 @@ export default function DepartmentsIndex() {
   return (
     <>
       <SEO {...seoData} />
-      <div className='space-y-8'>
+      <div className='space-y-8 @container'>
         <div>
           <h1 className='text-3xl font-bold text-gray-900 mb-2'>
             Government Departments
@@ -220,7 +227,7 @@ export default function DepartmentsIndex() {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
           {departments.map((dept, index) => {
             // Extract department name without "DEPARTMENT OF" prefix for cleaner display
             const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
