@@ -268,12 +268,12 @@ const PhilippinesMap: React.FC = () => {
       </div>
 
       {/* Details Panel */}
-      <div
-        className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
-          selectedRegion ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {selectedRegion && (
+      {selectedRegion && (
+        <div
+          className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
+            selectedRegion ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
           <div className='h-full flex flex-col'>
             <div className='p-6 border-b border-gray-200'>
               <div className='flex items-start justify-between'>
@@ -382,8 +382,8 @@ const PhilippinesMap: React.FC = () => {
               </div>
             </ScrollArea>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
