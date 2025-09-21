@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   MapPin,
@@ -157,7 +158,14 @@ function DepartmentDetailSection({
   }
 
   // Skip these keys as they're displayed in the header
-  const skipKeys = ['office_name', 'address', 'trunkline', 'website', 'email', 'slug'];
+  const skipKeys = [
+    'office_name',
+    'address',
+    'trunkline',
+    'website',
+    'email',
+    'slug',
+  ];
 
   const entries = Object.entries(data).filter(
     ([key]) => !skipKeys.includes(key)

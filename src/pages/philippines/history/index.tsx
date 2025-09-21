@@ -162,35 +162,31 @@ const PhilippinesHistory: React.FC = () => {
                 </h3>
                 <div className='space-y-4'>
                   <div>
-                    <div className='font-medium text-gray-900'>
-                      {'José Rizal'}
-                    </div>
+                    <div className='font-medium text-gray-900'>José Rizal</div>
                     <div className='text-sm text-gray-800'>
-                      {'National Hero, Writer, Reformist'}
+                      National Hero, Writer, Reformist
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Andrés Bonifacio'}
+                      Andrés Bonifacio
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'Revolutionary Leader'}
+                      Revolutionary Leader
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Emilio Aguinaldo'}
+                      Emilio Aguinaldo
                     </div>
-                    <div className='text-sm text-gray-800'>
-                      {'First President'}
-                    </div>
+                    <div className='text-sm text-gray-800'>First President</div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Corazon Aquino'}
+                      Corazon Aquino
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'Democracy Icon, Former President'}
+                      Democracy Icon, Former President
                     </div>
                   </div>
                 </div>
@@ -205,32 +201,32 @@ const PhilippinesHistory: React.FC = () => {
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'March 16, 1521'}
+                      March 16, 1521
                     </div>
-                    <div className='text-gray-900'>{'Arrival of Magellan'}</div>
+                    <div className='text-gray-900'>Arrival of Magellan</div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'June 12, 1898'}
+                      June 12, 1898
                     </div>
                     <div className='text-gray-900'>
-                      {'Declaration of Independence'}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {'July 4, 1946'}
-                    </div>
-                    <div className='text-gray-900'>
-                      {'Recognition of Independence'}
+                      Declaration of Independence
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'February 25, 1986'}
+                      July 4, 1946
                     </div>
                     <div className='text-gray-900'>
-                      {'EDSA People Power Revolution'}
+                      Recognition of Independence
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      February 25, 1986
+                    </div>
+                    <div className='text-gray-900'>
+                      EDSA People Power Revolution
                     </div>
                   </div>
                 </div>
