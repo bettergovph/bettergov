@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react'
+import { ExternalLink, MapPin, Phone, Globe, Mail } from 'lucide-react'
 import legislativeData from '../../../data/directory/legislative.json'
 
 // Recursive component to render legislative details
@@ -136,7 +136,7 @@ export default function LegislativeChamber() {
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-lg  shadow-sm">
-        <div>
+        <div className="">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {chamberData.chamber}
           </h1>
