@@ -262,7 +262,7 @@ const WebsitesDirectory: React.FC = () => {
                   No websites found
                 </h3>
                 <p className='mt-1 text-gray-800'>
-                  Try adjusting your search or filter to find what you're
+                  Try adjusting your search or filter to find what you&apos;re
                   looking for.
                 </p>
               </div>

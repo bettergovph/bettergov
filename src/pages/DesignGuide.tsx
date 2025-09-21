@@ -341,7 +341,7 @@ const DesignGuide: React.FC = () => {
                         Digital Government Initiatives
                       </h3>
                       <p className='text-gray-800 mb-4'>
-                        Latest updates on the government's digital
+                        Latest updates on the government&apos;s digital
                         transformation projects and e-services.
                       </p>
                       <Button variant='link'>Read More</Button>
@@ -585,9 +585,9 @@ const DesignGuide: React.FC = () => {
                         </h3>
                         <div className='prose max-w-none'>
                           <p className='text-gray-800 leading-relaxed'>
-                            Ferdinand "Bongbong" Romualdez Marcos Jr. serves as
+                            Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos Jr. serves as
                             the 17th President of the Philippines, assuming
-                            office on June 30, 2022. As the country's chief
+                            office on June 30, 2022. As the country&apos;s chief
                             executive, he leads the implementation of laws and
                             policies aimed at national development and public
                             welfare.

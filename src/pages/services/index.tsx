@@ -5,8 +5,6 @@ import {
   CheckCircle2,
   Menu,
   X,
-  Globe,
-  ExternalLink,
 } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { Card, CardContent } from '../../components/ui/Card';
@@ -46,24 +44,6 @@ const allServices = [
   ...transportDrivingServices,
   ...uncategorizedServices,
 ];
-
-interface Service {
-  service: string;
-  url: string;
-  id: string;
-  slug: string;
-  published: boolean;
-  category: {
-    name: string;
-    slug: string;
-  };
-  subcategory: {
-    name: string;
-    slug: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface Subcategory {
   name: string;

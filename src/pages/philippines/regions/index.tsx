@@ -147,7 +147,7 @@ const PhilippinesRegions: React.FC = () => {
                 </p>
                 <p className='text-gray-800 leading-relaxed mb-4'>
                   Each region showcases unique traditions, dialects, and
-                  cuisines, contributing to the country's rich cultural
+                  cuisines, contributing to the country&apos;s rich cultural
                   tapestry. From the mountain tribes of the Cordilleras to the
                   seafaring communities of the Visayas, the diversity of
                   Filipino regional cultures is remarkable.

@@ -38,7 +38,16 @@ interface RegionProperties {
 }
 
 // Wikipedia data cache
-const wikipediaCache = new Map<string, any>();
+interface WikipediaData {
+  extract?: string;
+  content_urls?: {
+    desktop?: {
+      page?: string;
+    };
+  };
+}
+
+const wikipediaCache = new Map<string, WikipediaData>();
 
 const PhilippinesMap: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
@@ -47,8 +56,8 @@ const PhilippinesMap: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState('');
   // GeoJSON data expects FeatureCollection structure
-  const [mapData] = useState<GeoJSON.FeatureCollection<any, RegionProperties>>(
-    philippinesRegionsData as GeoJSON.FeatureCollection<any, RegionProperties>
+  const [mapData] = useState<GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>>(
+    philippinesRegionsData as GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
   );
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const mapRef = useRef<L.Map>(null);
@@ -58,9 +67,9 @@ const PhilippinesMap: React.FC = () => {
   const initialZoom = 6;
 
   // Fetch Wikipedia data
-  const fetchWikipediaData = useCallback(async (regionName: string) => {
+  const fetchWikipediaData = useCallback(async (regionName: string): Promise<WikipediaData | null> => {
     if (wikipediaCache.has(regionName)) {
-      return wikipediaCache.get(regionName);
+      return wikipediaCache.get(regionName) || null;
     }
     setIsLoadingDetails(true);
     try {
@@ -70,7 +79,7 @@ const PhilippinesMap: React.FC = () => {
         )}`
       );
       if (!response.ok) throw new Error('Wikipedia data not found');
-      const data = await response.json();
+      const data: WikipediaData = await response.json();
       wikipediaCache.set(regionName, data);
       return data;
     } catch (err) {
@@ -83,7 +92,7 @@ const PhilippinesMap: React.FC = () => {
 
   // Handle region click
   const onRegionClick = useCallback(
-    async (feature: GeoJSON.Feature<any, RegionProperties>) => {
+    async (feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>) => {
       if (!feature.properties) return;
       const props = feature.properties;
       const regionName = props.name;
@@ -110,14 +119,14 @@ const PhilippinesMap: React.FC = () => {
   );
 
   const getRegionName = (
-    feature: GeoJSON.Feature<any, RegionProperties>
+    feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>
   ): string => {
     const props = feature.properties;
     return props?.name || '';
   };
 
   // Style for GeoJSON features
-  const regionStyle = (feature?: GeoJSON.Feature<any, RegionProperties>) => {
+  const regionStyle = (feature?: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>) => {
     if (!feature) return {};
     const regionName = getRegionName(feature);
     const isSelected = selectedRegion?.id === regionName;
@@ -143,7 +152,7 @@ const PhilippinesMap: React.FC = () => {
 
   // Event handlers for each feature
   const onEachFeature = (
-    feature: GeoJSON.Feature<any, RegionProperties>,
+    feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>,
     layer: Layer
   ) => {
     layer.on({
@@ -163,8 +172,9 @@ const PhilippinesMap: React.FC = () => {
     });
   };
 
-  // Filtered GeoJSON data based on search query
-  const filteredMapData: GeoJSON.FeatureCollection<any, RegionProperties> = {
+  // Note: filteredMapData is computed but not used in render - kept for potential future use
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const filteredMapData: GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties> = {
     ...mapData,
     features: mapData.features.filter(feature => {
       if (!searchQuery) return true;
