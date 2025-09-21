@@ -74,12 +74,12 @@ const DataSection: React.FC = () => {
             <div className='p-6'>
               <div className='flex items-center justify-between mb-4'>
                 <div className='flex items-center'>
-                  <TrendingUp className='h-5 w-5 text-green-600 mr-2' />
+                  <TrendingUp className='h-5 w-5 text-green-700 mr-2' />
                   <span className='text-gray-700 font-medium'>
                     {t('data.liveExchange')}
                   </span>
                 </div>
-                <span className='text-green-600 font-semibold'>
+                <span className='text-green-700 font-semibold'>
                   {t('data.viewArrow')}
                 </span>
               </div>

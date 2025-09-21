@@ -70,7 +70,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       path: '/government/departments',
       color: 'bg-green-600',
       hoverColor: 'hover:bg-green-700',
-      textColor: 'text-green-600',
+      textColor: 'text-green-700',
     },
     {
       title: 'Constitutional Bodies',

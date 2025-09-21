@@ -108,7 +108,7 @@ const AccessibilityPage: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'compliant':
-        return <CheckCircle className='h-5 w-5 text-green-600' />;
+        return <CheckCircle className='h-5 w-5 text-green-700' />;
       case 'partial':
         return <AlertCircle className='h-5 w-5 text-yellow-600' />;
       default:
@@ -205,7 +205,7 @@ const AccessibilityPage: React.FC = () => {
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircle className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
+                          <CheckCircle className='h-4 w-4 text-green-700 mt-0.5 mr-2 flex-shrink-0' />
                           <span className='text-sm text-gray-800'>{item}</span>
                         </li>
                       ))}

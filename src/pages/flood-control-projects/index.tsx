@@ -131,7 +131,7 @@ const DashboardStatistics: React.FC = () => {
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
             Total Contract Cost
           </h3>
-          <p className='text-2xl font-bold text-green-600'>
+          <p className='text-2xl font-bold text-green-700'>
             ₱{stats.totalCost.toLocaleString()}
           </p>
         </div>
@@ -767,7 +767,7 @@ const FloodControlProjects: React.FC = () => {
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
                         Total Contract Cost
                       </h3>
-                      <p className='text-2xl font-bold text-green-600'>
+                      <p className='text-2xl font-bold text-green-700'>
                         ₱547,603,497,105
                       </p>
                     </div>
@@ -885,7 +885,7 @@ const FloodControlProjects: React.FC = () => {
               {/* Types of Work - Pie Chart */}
               <div className='bg-white rounded-lg shadow-md p-4'>
                 <div className='flex items-center mb-4'>
-                  <PieChartIcon className='w-5 h-5 text-green-600 mr-2' />
+                  <PieChartIcon className='w-5 h-5 text-green-700 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     Types of Work
                   </h2>

@@ -252,7 +252,7 @@ const VisaPage: React.FC = () => {
                   <div className='mt-6'>
                     {visaRequirement.type === 'visa-free' && (
                       <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-                        <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
+                        <FileCheck className='h-6 w-6 text-green-700 mr-3 mt-0.5' />
                         <div>
                           <h3 className='font-semibold text-green-800'>
                             {t('requirements.visaFree.title')}

@@ -170,7 +170,7 @@ const Ideas: React.FC = () => {
             <div className='text-sm text-gray-600'>Categories</div>
           </div>
           <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
-            <div className='text-2xl font-bold text-green-600'>
+            <div className='text-2xl font-bold text-green-700'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-sm text-gray-600'>Simple Projects</div>
@@ -237,8 +237,8 @@ const Ideas: React.FC = () => {
                           onClick={() => handleVote(idea.id, 'up')}
                           className={`p-1 rounded transition-colors ${
                             userVotes[idea.id] === 'up'
-                              ? 'bg-green-100 text-green-600'
-                              : 'text-gray-400 hover:text-green-600 hover:bg-green-50'
+                              ? 'bg-green-100 text-green-700'
+                              : 'text-gray-400 hover:text-green-700 hover:bg-green-50'
                           }`}
                           aria-label={`Upvote ${idea.title}`}
                         >
