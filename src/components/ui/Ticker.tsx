@@ -180,7 +180,7 @@ const Ticker: React.FC = () => {
                   key={data.location}
                   className='flex flex-col items-center justify-center uppercase space-x-0 sm:flex-row sm:space-x-2'
                 >
-                  <span className='text-[11px] sm:text-xs font-medium text-accent-100'>
+                  <span className='text-xs font-medium text-accent-100'>
                     {data.location}
                   </span>
                   <span className='text-xs text-white'>
