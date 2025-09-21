@@ -143,14 +143,9 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className='px-4 md:px-0 pb-12'>
-        {isMainPage ? (
-          <div className='space-y-6'></div>
-        ) : (
-          children || <Outlet />
-        )}
-      </div>
+      {!isMainPage && (
+        <div className='px-4 md:px-0 pb-12'>{children || <Outlet />}</div>
+      )}
     </div>
   );
 }
