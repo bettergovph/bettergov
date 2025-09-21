@@ -60,6 +60,7 @@ const Navbar: React.FC = () => {
               href='https://www.gov.ph'
               className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
               target='_blank'
+              rel='noreferrer'
             >
               Official Gov.ph
             </a>
