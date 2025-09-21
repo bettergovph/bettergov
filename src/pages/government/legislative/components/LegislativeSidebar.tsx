@@ -1,26 +1,11 @@
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
-import { Building, LandPlot, Users, BookOpen, GanttChart } from 'lucide-react';
-import { useState } from 'react';
-import legislativeData from '../../../../data/directory/legislative.json';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { Building, LandPlot, Users, BookOpen } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function LegislativeSidebar() {
-  const [searchTerm, setSearchTerm] = useState('');
   const { chamber: chamberParam } = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
 
-  // Get unique chambers from the data
-  const chambers = legislativeData.map((item: any) => item.chamber);
-
-  // Filter chambers based on search term
-  const filteredChambers = chambers.filter(chamber =>
-    chamber.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleChamberSelect = (chamber: string) => {
-    navigate(`/government/legislative/${encodeURIComponent(chamber)}`);
-  };
 
   // Check if a path is active
   const isActive = (path: string) => {
@@ -28,11 +13,7 @@ export default function LegislativeSidebar() {
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search legislative...'
-    >
+    <StandardSidebar>
       <nav className='p-2 space-y-4 pt-4'>
         {/* Senate Section */}
         <div>

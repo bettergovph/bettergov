@@ -44,7 +44,7 @@ interface BSPApiResponse {
 }
 
 // Core function to fetch currency exchange rates
-async function fetchForexData(env: Env): Promise<ProcessedForexData> {
+async function fetchForexData(): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
@@ -103,7 +103,7 @@ export async function onRequest(context: {
     // Always fetch fresh data if update=true is specified
     if (forceUpdate) {
       // Fetch fresh forex data
-      const forexData = await fetchForexData(env);
+      const forexData = await fetchForexData();
 
       // Store the data in KV
       await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
@@ -185,7 +185,7 @@ export async function onRequest(context: {
     }
 
     // If no cached data, fetch fresh data
-    const forexData = await fetchForexData(env);
+    const forexData = await fetchForexData();
 
     // Store the data in KV
     await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
@@ -242,12 +242,11 @@ export async function onRequest(context: {
 
 export async function scheduled(
   controller: ScheduledController,
-  env: Env,
-  ctx: ExecutionContext
+  env: Env
 ) {
   try {
     // Fetch forex data
-    const forexData = await fetchForexData(env);
+    const forexData = await fetchForexData();
 
     // Store the data in Cloudflare KV
     await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {

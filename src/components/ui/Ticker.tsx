@@ -5,7 +5,6 @@ import {
   Euro as EuroSign,
   PoundSterling,
   Loader,
-  Cloud,
 } from 'lucide-react';
 import { ForexRate, WeatherData } from '../../types';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
