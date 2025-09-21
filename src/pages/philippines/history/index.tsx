@@ -4,35 +4,35 @@ import { Clock, Flag, Crown, Scale } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
-  const { t } = useTranslation('philippines-history');
+  const { t } = useTranslation('about-philippines');
 
   const timelinePeriods = [
     {
       icon: <Flag className='h-6 w-6' />,
-      title: t('timeline.periods.independence.title'),
-      period: t('timeline.periods.independence.period'),
-      description: t('timeline.periods.independence.description'),
+      title: t('history.timeline.periods.independence.title'),
+      period: t('history.timeline.periods.independence.period'),
+      description: t('history.timeline.periods.independence.description'),
       image: '/assets/history/independence-modern-era.webp',
     },
     {
       icon: <Scale className='h-6 w-6' />,
-      title: t('timeline.periods.american.title'),
-      period: t('timeline.periods.american.period'),
-      description: t('timeline.periods.american.description'),
+      title: t('history.timeline.periods.american.title'),
+      period: t('history.timeline.periods.american.period'),
+      description: t('history.timeline.periods.american.description'),
       image: '/assets/history/american-period.webp',
     },
     {
       icon: <Crown className='h-6 w-6' />,
-      title: t('timeline.periods.spanish.title'),
-      period: t('timeline.periods.spanish.period'),
-      description: t('timeline.periods.spanish.description'),
+      title: t('history.timeline.periods.spanish.title'),
+      period: t('history.timeline.periods.spanish.period'),
+      description: t('history.timeline.periods.spanish.description'),
       image: '/assets/history/spanish-colonial-era.webp',
     },
     {
       icon: <Clock className='h-6 w-6' />,
-      title: t('timeline.periods.preColonial.title'),
-      period: t('timeline.periods.preColonial.period'),
-      description: t('timeline.periods.preColonial.description'),
+      title: t('history.timeline.periods.preColonial.title'),
+      period: t('history.timeline.periods.preColonial.period'),
+      description: t('history.timeline.periods.preColonial.description'),
       image: '/assets/history/pre-colonial-period.webp',
     },
   ];
@@ -53,14 +53,14 @@ const PhilippinesHistory: React.FC = () => {
           <div className='container mx-auto px-4'>
             <div className='max-w-3xl'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                {t('hero.title')}
+                {t('history.hero.title')}
               </h1>
               <p className='text-xl text-white/90 leading-relaxed'>
-                {t('hero.description')}
+                {t('history.hero.description')}
               </p>
               <p className='text-xs'>
                 <a href='https://www.pexels.com/photo/women-dancing-in-red-traditional-clothing-in-festival-19376770/'>
-                  {t('hero.photoCredit')}
+                  {t('history.hero.photoCredit')}
                 </a>
               </p>
             </div>
@@ -75,7 +75,7 @@ const PhilippinesHistory: React.FC = () => {
           <div className='lg:col-span-2'>
             <section className='mb-12'>
               <h2 className='text-3xl font-bold text-gray-900 mb-8'>
-                {t('timeline.title')}
+                {t('history.timeline.title')}
               </h2>
               <div className='relative'>
                 {/* Timeline line */}
@@ -123,11 +123,13 @@ const PhilippinesHistory: React.FC = () => {
 
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('overview.title')}
+                {t('history.overview.title')}
               </h2>
               <div className='prose max-w-none'>
                 {(
-                  t('overview.paragraphs', { returnObjects: true }) as string[]
+                  t('history.overview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
                 ).map((paragraph: string, index: number) => (
                   <p key={index} className='text-gray-800 leading-relaxed mb-4'>
                     {paragraph}
@@ -142,39 +144,39 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('keyFigures.title')}
+                  {t('history.keyFigures.title')}
                 </h3>
                 <div className='space-y-4'>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {t('keyFigures.figures.rizal.name')}
+                      {t('history.keyFigures.figures.rizal.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {t('keyFigures.figures.rizal.description')}
+                      {t('history.keyFigures.figures.rizal.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {t('keyFigures.figures.bonifacio.name')}
+                      {t('history.keyFigures.figures.bonifacio.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {t('keyFigures.figures.bonifacio.description')}
+                      {t('history.keyFigures.figures.bonifacio.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {t('keyFigures.figures.aguinaldo.name')}
+                      {t('history.keyFigures.figures.aguinaldo.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {t('keyFigures.figures.aguinaldo.description')}
+                      {t('history.keyFigures.figures.aguinaldo.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {t('keyFigures.figures.aquino.name')}
+                      {t('history.keyFigures.figures.aquino.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {t('keyFigures.figures.aquino.description')}
+                      {t('history.keyFigures.figures.aquino.description')}
                     </div>
                   </div>
                 </div>
@@ -184,39 +186,39 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('importantDates.title')}
+                  {t('history.importantDates.title')}
                 </h3>
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('importantDates.dates.magellan.date')}
+                      {t('history.importantDates.dates.magellan.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('importantDates.dates.magellan.event')}
+                      {t('history.importantDates.dates.magellan.event')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('importantDates.dates.independence.date')}
+                      {t('history.importantDates.dates.independence.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('importantDates.dates.independence.event')}
+                      {t('history.importantDates.dates.independence.event')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('importantDates.dates.recognition.date')}
+                      {t('history.importantDates.dates.recognition.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('importantDates.dates.recognition.event')}
+                      {t('history.importantDates.dates.recognition.event')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('importantDates.dates.edsa.date')}
+                      {t('history.importantDates.dates.edsa.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('importantDates.dates.edsa.event')}
+                      {t('history.importantDates.dates.edsa.event')}
                     </div>
                   </div>
                 </div>
@@ -226,32 +228,32 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('relatedLinks.title')}
+                  {t('history.relatedLinks.title')}
                 </h3>
                 <nav className='space-y-2'>
                   <a
                     href='/philippines/about'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.about')}
+                    {t('history.relatedLinks.items.about')}
                   </a>
                   <a
                     href='/philippines/culture'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.culture')}
+                    {t('history.relatedLinks.items.culture')}
                   </a>
                   <a
                     href='/philippines/regions'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.regions')}
+                    {t('history.relatedLinks.items.regions')}
                   </a>
                   <a
                     href='/philippines/tourism'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.tourism')}
+                    {t('history.relatedLinks.items.tourism')}
                   </a>
                 </nav>
               </CardContent>

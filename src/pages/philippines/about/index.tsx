@@ -9,28 +9,28 @@ const AboutPhilippines: React.FC = () => {
   const facts = [
     {
       icon: <Globe2 className='h-6 w-6' />,
-      title: t('facts.items.geography.title'),
-      description: t('facts.items.geography.description'),
+      title: t('about.facts.items.geography.title'),
+      description: t('about.facts.items.geography.description'),
     },
     {
       icon: <Users className='h-6 w-6' />,
-      title: t('facts.items.population.title'),
-      description: t('facts.items.population.description'),
+      title: t('about.facts.items.population.title'),
+      description: t('about.facts.items.population.description'),
     },
     {
       icon: <Building2 className='h-6 w-6' />,
-      title: t('facts.items.capital.title'),
-      description: t('facts.items.capital.description'),
+      title: t('about.facts.items.capital.title'),
+      description: t('about.facts.items.capital.description'),
     },
     {
       icon: <Mountain className='h-6 w-6' />,
-      title: t('facts.items.landscape.title'),
-      description: t('facts.items.landscape.description'),
+      title: t('about.facts.items.landscape.title'),
+      description: t('about.facts.items.landscape.description'),
     },
     {
       icon: <Sun className='h-6 w-6' />,
-      title: t('facts.items.climate.title'),
-      description: t('facts.items.climate.description'),
+      title: t('about.facts.items.climate.title'),
+      description: t('about.facts.items.climate.description'),
     },
   ];
 
@@ -50,10 +50,10 @@ const AboutPhilippines: React.FC = () => {
           <div className='container mx-auto px-4'>
             <div className='max-w-3xl'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                {t('hero.title')}
+                {t('about.hero.title')}
               </h1>
               <p className='text-xl text-white/90 leading-relaxed'>
-                {t('hero.description')}
+                {t('about.hero.description')}
               </p>
             </div>
           </div>
@@ -67,7 +67,7 @@ const AboutPhilippines: React.FC = () => {
           <div className='lg:col-span-2 space-y-8'>
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('facts.title')}
+                {t('about.facts.title')}
               </h2>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {facts.map((fact, index) => (
@@ -92,11 +92,13 @@ const AboutPhilippines: React.FC = () => {
 
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('overview.title')}
+                {t('about.overview.title')}
               </h2>
               <div className='prose max-w-none'>
                 {(
-                  t('overview.paragraphs', { returnObjects: true }) as string[]
+                  t('about.overview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
                 ).map((paragraph: string, index: number) => (
                   <p key={index} className='text-gray-800 leading-relaxed mb-4'>
                     {paragraph}
@@ -111,47 +113,47 @@ const AboutPhilippines: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('keyInformation.title')}
+                  {t('about.keyInformation.title')}
                 </h3>
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('keyInformation.items.officialLanguages.label')}
+                      {t('about.keyInformation.items.officialLanguages.label')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('keyInformation.items.officialLanguages.value')}
+                      {t('about.keyInformation.items.officialLanguages.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('keyInformation.items.government.label')}
+                      {t('about.keyInformation.items.government.label')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('keyInformation.items.government.value')}
+                      {t('about.keyInformation.items.government.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('keyInformation.items.currency.label')}
+                      {t('about.keyInformation.items.currency.label')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('keyInformation.items.currency.value')}
+                      {t('about.keyInformation.items.currency.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('keyInformation.items.timeZone.label')}
+                      {t('about.keyInformation.items.timeZone.label')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('keyInformation.items.timeZone.value')}
+                      {t('about.keyInformation.items.timeZone.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {t('keyInformation.items.majorCities.label')}
+                      {t('about.keyInformation.items.majorCities.label')}
                     </div>
                     <div className='text-gray-900'>
-                      {t('keyInformation.items.majorCities.value')}
+                      {t('about.keyInformation.items.majorCities.value')}
                     </div>
                   </div>
                 </div>
@@ -161,32 +163,32 @@ const AboutPhilippines: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('relatedLinks.title')}
+                  {t('about.relatedLinks.title')}
                 </h3>
                 <nav className='space-y-2'>
                   <a
                     href='/philippines/history'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.history')}
+                    {t('about.relatedLinks.items.history')}
                   </a>
                   <a
                     href='/philippines/culture'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.culture')}
+                    {t('about.relatedLinks.items.culture')}
                   </a>
                   <a
                     href='/philippines/regions'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.regions')}
+                    {t('about.relatedLinks.items.regions')}
                   </a>
                   <a
                     href='/philippines/tourism'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    {t('relatedLinks.items.tourism')}
+                    {t('about.relatedLinks.items.tourism')}
                   </a>
                 </nav>
               </CardContent>
