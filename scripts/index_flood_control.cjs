@@ -12,7 +12,8 @@ const args = process.argv.slice(2);
 const RESET_INDEX = args.includes('--reset') || args.includes('-r');
 
 // MeiliSearch configuration
-const MEILISEARCH_HOST = process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_HOST =
+  process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
 const MEILISEARCH_API_KEY = process.env.MEILISEARCH_MASTER_KEY || ''; // Use MASTER KEY for admin operations
 
@@ -24,23 +25,30 @@ const client = new MeiliSearch({
 const INDEX_NAME = 'bettergov_flood_control';
 
 // Path to the CSV file
-const csvFilePath = path.join(__dirname, '..', 'src', 'data', 'flood_control', 'flood_control.csv');
+const csvFilePath = path.join(
+  __dirname,
+  '..',
+  'src',
+  'data',
+  'flood_control',
+  'flood_control.csv'
+);
 
 // Define settings for the flood control index
 const FLOOD_CONTROL_INDEX_SETTINGS = {
   filterableAttributes: [
-    'region', 
-    'contractor', 
+    'region',
+    'contractor',
     'start_date',
     'completion_date',
-    'contract_cost_numeric'
+    'contract_cost_numeric',
   ],
   sortableAttributes: [
-    'region', 
-    'contractor', 
+    'region',
+    'contractor',
     'start_date',
     'completion_date',
-    'contract_cost_numeric'
+    'contract_cost_numeric',
   ],
   searchableAttributes: [
     'project_title',
@@ -49,26 +57,32 @@ const FLOOD_CONTROL_INDEX_SETTINGS = {
     'region',
     'contract_id',
     'data_contractor',
-    'data_location'
+    'data_location',
   ],
   displayedAttributes: ['*'],
 };
 
-console.log(RESET_INDEX ? 'Running with --reset flag: Will recreate the index from scratch.' : 'Running in update mode: Will add/update documents in the existing index.');
+console.log(
+  RESET_INDEX
+    ? 'Running with --reset flag: Will recreate the index from scratch.'
+    : 'Running in update mode: Will add/update documents in the existing index.'
+);
 
 // Function to parse CSV data
 async function parseCSVFile(filePath) {
   return new Promise((resolve, reject) => {
     const results = [];
-    
+
     createReadStream(filePath)
       .pipe(csv())
-      .on('data', (data) => results.push(data))
+      .on('data', data => results.push(data))
       .on('end', () => {
-        console.log(`Successfully parsed ${results.length} records from CSV file`);
+        console.log(
+          `Successfully parsed ${results.length} records from CSV file`
+        );
         resolve(results);
       })
-      .on('error', (error) => {
+      .on('error', error => {
         reject(error);
       });
   });
@@ -77,19 +91,19 @@ async function parseCSVFile(filePath) {
 // Function to generate a slug for each record
 function generateSlug(record) {
   // Generate a slug based on project_title and contract_id
-  const baseSlug = record.project_title 
-    ? record.project_title.toString().toLowerCase()
+  const baseSlug = record.project_title
+    ? record.project_title
+        .toString()
+        .toLowerCase()
         .replace(/\s+/g, '-')
         .replace(/[^\w-]+/g, '')
         .replace(/--+/g, '-')
         .replace(/^-+/, '')
         .replace(/-+$/, '')
     : '';
-    
+
   // Append contract_id to make it more unique if available
-  return record.contract_id 
-    ? `${baseSlug}-${record.contract_id}` 
-    : baseSlug;
+  return record.contract_id ? `${baseSlug}-${record.contract_id}` : baseSlug;
 }
 
 // Process numeric fields to ensure they are stored as numbers
@@ -105,7 +119,9 @@ function processNumericFields(record) {
 }
 
 async function main() {
-  console.log(`Starting Meilisearch indexing script for the flood control index: ${INDEX_NAME}`);
+  console.log(
+    `Starting Meilisearch indexing script for the flood control index: ${INDEX_NAME}`
+  );
 
   try {
     const health = await client.health();
@@ -132,26 +148,38 @@ async function main() {
 
     if (indexExists) {
       if (RESET_INDEX) {
-        console.log(`Index '${INDEX_NAME}' exists and --reset flag was provided. Deleting index...`);
+        console.log(
+          `Index '${INDEX_NAME}' exists and --reset flag was provided. Deleting index...`
+        );
         await client.deleteIndex(INDEX_NAME);
         console.log(`Index '${INDEX_NAME}' deleted successfully.`);
 
         // Create a new index
-        const task = await client.createIndex(INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${INDEX_NAME}' recreated successfully.`);
-        const settingsTask = await client.index(INDEX_NAME).updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(INDEX_NAME)
+          .updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
         console.log(`Settings updated for new index '${INDEX_NAME}'.`);
       } else {
         console.log(`Index '${INDEX_NAME}' already exists. Updating settings.`);
-        const task = await client.index(INDEX_NAME).updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
+        const task = await client
+          .index(INDEX_NAME)
+          .updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
         console.log(`Settings updated for index '${INDEX_NAME}'.`);
       }
     } else {
       console.log(`Index '${INDEX_NAME}' not found. Creating...`);
       try {
-        const task = await client.createIndex(INDEX_NAME, { primaryKey: 'slug' });
+        const task = await client.createIndex(INDEX_NAME, {
+          primaryKey: 'slug',
+        });
         console.log(`Index '${INDEX_NAME}' created successfully.`);
-        const settingsTask = await client.index(INDEX_NAME).updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
+        const settingsTask = await client
+          .index(INDEX_NAME)
+          .updateSettings(FLOOD_CONTROL_INDEX_SETTINGS);
         console.log(`Settings updated for index '${INDEX_NAME}'.`);
       } catch (createError) {
         console.error(`Error creating index '${INDEX_NAME}':`, createError);
@@ -167,38 +195,41 @@ async function main() {
   try {
     console.log(`Processing CSV data from ${csvFilePath}`);
     const csvData = await parseCSVFile(csvFilePath);
-    
+
     if (!csvData || csvData.length === 0) {
       console.log('No data found in CSV file or file is empty.');
       return;
     }
-    
+
     console.log(`Preparing ${csvData.length} documents for indexing...`);
-    
+
     const documentsToIndex = csvData.map((record, index) => {
       // Process the record to ensure numeric fields are proper numbers
       const processedRecord = processNumericFields(record);
-      
+
       // Generate a slug for the record
-      const itemSlug = generateSlug(processedRecord) || `flood-control-${index}`;
-      
+      const itemSlug =
+        generateSlug(processedRecord) || `flood-control-${index}`;
+
       return {
         ...processedRecord,
         id: processedRecord.contract_id || itemSlug,
         slug: itemSlug,
-        type: 'flood_control'
+        type: 'flood_control',
       };
     });
-    
+
     if (documentsToIndex.length > 0) {
-      console.log(`Indexing ${documentsToIndex.length} flood control documents...`);
-      
+      console.log(
+        `Indexing ${documentsToIndex.length} flood control documents...`
+      );
+
       // Get a reference to the index and add documents
       const index = client.index(INDEX_NAME);
       const task = await index.addDocuments(documentsToIndex, {
         primaryKey: 'slug',
       });
-      
+
       console.log(
         `${documentsToIndex.length} documents successfully processed for index '${INDEX_NAME}'. Task ID: ${task.taskUid}`
       );
@@ -212,7 +243,7 @@ async function main() {
   console.log(`Meilisearch indexing script for '${INDEX_NAME}' finished.`);
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(
     'An unexpected error occurred during Meilisearch indexing:',
     error
