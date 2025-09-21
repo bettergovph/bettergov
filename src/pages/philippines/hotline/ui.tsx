@@ -1,4 +1,4 @@
-import Button from "../../../components/ui/Button";
+import Button from '../../../components/ui/Button';
 import {
   Dialog,
   DialogContent,
@@ -6,10 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../components/ui/dialog";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../../../components/ui/dialog';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
   FormControl,
@@ -17,26 +17,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../../components/ui/form";
-import { cn } from "../../../lib/utils";
-import { useMailerApi } from "./api";
-import { Input } from "../../../components/ui/input";
-import { useEffect, useState } from "react";
-import { Loader2, Mail } from "lucide-react";
-import { TooltipWrapper } from "../../../components/ui/tooltip";
+} from '../../../components/ui/form';
+import { cn } from '../../../lib/utils';
+import { useMailerApi } from './api';
+import { Input } from '../../../components/ui/input';
+import { useEffect, useState } from 'react';
+import { Loader2, Mail } from 'lucide-react';
+import { TooltipWrapper } from '../../../components/ui/tooltip';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../../components/ui/select";
-import useHotlinesData, { Hotline } from "./hotlines-data";
+} from '../../../components/ui/select';
+import useHotlinesData, { Hotline } from './hotlines-data';
 
 const reportSchema = z.object({
-  organizationId: z.string().min(1, "This is required"),
-  outdated_hotline: z.string().min(1, "This is required"),
-  updated_hotline: z.string().min(1, "This is required"),
+  organizationId: z.string().min(1, 'This is required'),
+  outdated_hotline: z.string().min(1, 'This is required'),
+  updated_hotline: z.string().min(1, 'This is required'),
 });
 
 const ReportModal: React.FC = () => {
@@ -47,9 +47,9 @@ const ReportModal: React.FC = () => {
   const form = useForm<z.infer<typeof reportSchema>>({
     resolver: zodResolver(reportSchema),
     defaultValues: {
-      organizationId: "",
-      outdated_hotline: "",
-      updated_hotline: "",
+      organizationId: '',
+      outdated_hotline: '',
+      updated_hotline: '',
     },
   });
 
@@ -64,27 +64,27 @@ const ReportModal: React.FC = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <TooltipWrapper
-        content="Report a Hotline"
+        content='Report a Hotline'
         sideOffset={5}
         delayDuration={300}
       >
         <DialogTrigger asChild>
           <Button
-            variant="ghost"
-            className="fixed bottom-6 right-6 rounded-full shadow-xl px-4 py-6 bg-blue-600 hover:bg-blue-700 text-white transition-transform transform hover:scale-110 focus:ring-4 focus:ring-blue-300"
-            aria-label="Send a Report"
+            variant='ghost'
+            className='fixed bottom-6 right-6 rounded-full shadow-xl px-4 py-6 bg-blue-600 hover:bg-blue-700 text-white transition-transform transform hover:scale-110 focus:ring-4 focus:ring-blue-300'
+            aria-label='Send a Report'
           >
-            <Mail className="h-10 w-5" />
+            <Mail className='h-10 w-5' />
           </Button>
         </DialogTrigger>
       </TooltipWrapper>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-gray-900">
+          <DialogTitle className='text-xl font-semibold text-gray-900'>
             Send a Report
           </DialogTitle>
-          <DialogDescription className="text-gray-600 mt-1">
+          <DialogDescription className='text-gray-600 mt-1'>
             Help us keep the hotline information accurate. Please provide the
             updated details below.
           </DialogDescription>
@@ -92,7 +92,7 @@ const ReportModal: React.FC = () => {
         <div>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(async (data) => {
+              onSubmit={form.handleSubmit(async data => {
                 const payload = {
                   organization: hotline!.name,
                   outdated_hotline: data.outdated_hotline,
@@ -101,34 +101,34 @@ const ReportModal: React.FC = () => {
                 await sendOutdatedHotlineReport(payload);
                 setOpen(false);
               })}
-              className="space-y-8"
+              className='space-y-8'
             >
               <FormField
                 control={form.control}
-                name="organizationId"
+                name='organizationId'
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                       <FormLabel>Organization</FormLabel>
                       <FormMessage />
                     </div>
                     <Select
-                      onValueChange={(value) => {
+                      onValueChange={value => {
                         const hotline = getHotlineById(value);
                         setHotline(hotline!);
                         field.onChange(hotline!.id!);
                       }}
                       value={field.value}
-                      name="organizationId"
+                      name='organizationId'
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Choose the organization" />
+                          <SelectValue placeholder='Choose the organization' />
                         </SelectTrigger>
                       </FormControl>
 
-                      <SelectContent className="w-[500px]">
-                        {getHotlines().map((hotline) => (
+                      <SelectContent className='w-[500px]'>
+                        {getHotlines().map(hotline => (
                           <SelectItem value={hotline.id!} key={hotline.id}>
                             {hotline.name}
                           </SelectItem>
@@ -140,10 +140,10 @@ const ReportModal: React.FC = () => {
               />
               <FormField
                 control={form.control}
-                name="outdated_hotline"
+                name='outdated_hotline'
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                       <FormLabel>Outdated Hotline</FormLabel>
                       <FormMessage />
                     </div>
@@ -151,15 +151,15 @@ const ReportModal: React.FC = () => {
                       onValueChange={field.onChange}
                       value={field.value}
                       disabled={!hotline}
-                      name="outdated_hotline"
+                      name='outdated_hotline'
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Choose the outdated number" />
+                          <SelectValue placeholder='Choose the outdated number' />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent className="w-[500px]">
-                        {hotline?.numbers.map((number) => (
+                      <SelectContent className='w-[500px]'>
+                        {hotline?.numbers.map(number => (
                           <SelectItem value={number} key={number}>
                             {number}
                           </SelectItem>
@@ -171,30 +171,30 @@ const ReportModal: React.FC = () => {
               />
               <FormField
                 control={form.control}
-                name="updated_hotline"
+                name='updated_hotline'
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                       <FormLabel>New Hotline</FormLabel>
                       <FormMessage />
                     </div>
                     <FormControl>
                       <Input
-                        placeholder="Input the new hotline here"
+                        placeholder='Input the new hotline here'
                         {...field}
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <div className="flex justify-end">
+              <div className='flex justify-end'>
                 <Button
-                  type="submit"
-                  className={cn(isLoading ?? "animate-spin")}
-                  disabled={isError || isLoading}
+                  type='submit'
+                  className={cn(isLoading ?? 'animate-spin')}
+                  disabled={isLoading}
                 >
-                  {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-                  {isLoading ? "Sending..." : "Send"}
+                  {isLoading && <Loader2 className='h-4 w-4 animate-spin' />}
+                  {isLoading ? 'Sending...' : 'Send'}
                 </Button>
               </div>
             </form>
