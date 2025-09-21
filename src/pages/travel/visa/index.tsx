@@ -12,6 +12,7 @@ import visaData from '../../../data/visa/philippines_visa_policy.json';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
 import Button from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { useQueryState } from 'nuqs';
 
 type Country = string;
 
@@ -20,7 +21,7 @@ type Country = string;
 const VisaPage: React.FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useQueryState('country');
   const [visaRequirement, setVisaRequirement] =
     useState<VisaRequirement | null>(null);
   const [allCountries, setAllCountries] = useState<Country[]>([]);
