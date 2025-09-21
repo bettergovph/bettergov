@@ -380,7 +380,7 @@ const SitemapPage: React.FC = () => {
 
           <div className='mt-8 text-center text-sm text-gray-800'>
             <p>
-              Can't find what you're looking for? Try using our{' '}
+              Can&apos;t find what you&apos;re looking for? Try using our{' '}
               <Link to='/search' className='text-primary-600 hover:underline'>
                 search feature
               </Link>

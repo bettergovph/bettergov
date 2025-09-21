@@ -107,7 +107,7 @@ const AboutPhilippines: React.FC = () => {
                   to its independence in 1946.
                 </p>
                 <p className='text-gray-800 leading-relaxed mb-4'>
-                  Today, the Philippines stands as one of Southeast Asia's most
+                  Today, the Philippines stands as one of Southeast Asia&apos;s most
                   dynamic economies, blending traditional values with modern
                   development. The country is known for its warm hospitality,
                   diverse cultural heritage, stunning natural landscapes, and
@@ -116,9 +116,9 @@ const AboutPhilippines: React.FC = () => {
                 <p className='text-gray-800 leading-relaxed'>
                   Filipino culture is a unique fusion of indigenous, Asian,
                   European, and American influences, reflected in its art,
-                  music, cuisine, and traditions. The nation's biodiversity,
+                  music, cuisine, and traditions. The nation&apos;s biodiversity,
                   featuring unique species and ecosystems, makes it one of the
-                  world's most environmentally significant countries.
+                  world&apos;s most environmentally significant countries.
                 </p>
               </div>
             </section>

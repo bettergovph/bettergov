@@ -51,7 +51,7 @@ const JoinUs: React.FC = () => {
               Revolution
             </h1>
             <p className='text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed'>
-              Together with industry veterans, we're building{' '}
+              Together with industry veterans, we&apos;re building{' '}
               <strong>BetterGov.ph</strong> — making government transparent,
               efficient, and accessible to every Filipino.
             </p>
@@ -95,7 +95,7 @@ const JoinUs: React.FC = () => {
               Our Mission
             </h2>
             <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-              We're not just building websites — we're building the future of
+              We&apos;re not just building websites — we&apos;re building the future of
               governance in the Philippines.
             </p>
           </div>
@@ -113,7 +113,7 @@ const JoinUs: React.FC = () => {
                 and accessible to citizens.
               </p>
               <p className='text-lg text-gray-800 leading-relaxed'>
-                We've seen a surge of wonderful and impressive tech ideas being
+                We&apos;ve seen a surge of wonderful and impressive tech ideas being
                 launched recently. Our goal is to{' '}
                 <strong>support, promote, consolidate, and empower</strong>{' '}
                 these builders!
@@ -196,12 +196,12 @@ const JoinUs: React.FC = () => {
               </div>
             </div>
             <h2 className='text-4xl md:text-6xl font-black mb-12 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300'>
-              WE'RE DONE WAITING
+              WE&apos;RE DONE WAITING
             </h2>
             <div className='bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-lg rounded-3xl p-10 md:p-16 border border-white/20 shadow-2xl'>
               <blockquote className='text-xl md:text-3xl font-bold leading-relaxed space-y-8 text-center'>
                 <p className='text-yellow-300 text-2xl md:text-4xl font-black uppercase tracking-wider'>
-                  "WE'RE ANGRY. YOU'RE ANGRY."
+                  &ldquo;WE&apos;RE ANGRY. YOU&apos;RE ANGRY.&rdquo;
                 </p>
                 <p className='text-white text-xl md:text-2xl'>
                   But we can contribute in our own ways —{' '}
@@ -227,13 +227,13 @@ const JoinUs: React.FC = () => {
                 <p className='text-white text-lg md:text-xl'>
                   We will keep building{' '}
                   <strong className='text-yellow-300'>RELENTLESSLY</strong>{' '}
-                  without anyone's permission. Open source, public,{' '}
+                  without anyone&apos;s permission. Open source, public,{' '}
                   <strong>HIGH QUALITY</strong> sites.
                 </p>
               </blockquote>
               <div className='mt-12 pt-8 border-t-2 border-gradient-to-r from-yellow-300 to-orange-300'>
                 <p className='text-yellow-300 font-black text-xl md:text-2xl uppercase tracking-wide'>
-                  WE'RE LOOKING FOR PEOPLE SMARTER THAN US!
+                  WE&apos;RE LOOKING FOR PEOPLE SMARTER THAN US!
                 </p>
               </div>
             </div>
@@ -257,7 +257,7 @@ const JoinUs: React.FC = () => {
             </h2>
             <p className='text-xl text-blue-100 mb-8'>
               Join our community of builders, dreamers, and changemakers.
-              Together, we'll create the government technology the Philippines
+              Together, we&apos;ll create the government technology the Philippines
               deserves.
             </p>
 
