@@ -1,18 +1,11 @@
 import { ReactNode } from 'react';
-import { Search } from 'lucide-react';
 
 interface StandardSidebarProps {
-  searchTerm: string;
-  onSearchChange: (value: string) => void;
-  searchPlaceholder: string;
   children: ReactNode;
 }
 
 export default function StandardSidebar({
   children,
-  searchTerm,
-  onSearchChange,
-  searchPlaceholder,
 }: StandardSidebarProps) {
   return (
     <div className='w-full md:w-64 flex-shrink-0'>
