@@ -1,17 +1,10 @@
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Building, LandPlot, Users, BookOpen } from 'lucide-react';
-import { useState } from 'react';
-import legislativeData from '../../../../data/directory/legislative.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function LegislativeSidebar() {
-  const [searchTerm, setSearchTerm] = useState('');
   const { chamber: chamberParam } = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
-
-  // Get unique chambers from the data
-  const chambers = legislativeData.map((item: any) => item.chamber);
 
 
   // Check if a path is active

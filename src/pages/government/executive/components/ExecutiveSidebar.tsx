@@ -1,21 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Building, UserCheck, MessageSquare, Briefcase } from 'lucide-react';
-import { useState, useMemo } from 'react';
-import executiveData from '../../../../data/directory/executive.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: any[];
-  bureaus?: any[];
-  attached_agency?: any[];
-}
-
 export default function ExecutiveSidebar() {
-  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
 
 
