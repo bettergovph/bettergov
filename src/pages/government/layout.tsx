@@ -16,35 +16,6 @@ interface GovernmentLayoutProps {
   children?: React.ReactNode;
 }
 
-interface BranchCardProps {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  path: string;
-  color: string;
-}
-
-const BranchCard: React.FC<BranchCardProps> = ({
-  title,
-  description,
-  icon,
-  path,
-  color,
-}) => (
-  <Link
-    to={path}
-    className={`flex flex-col h-full bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden`}
-  >
-    <div className={`p-3 md:p-4 ${color} text-white flex items-center`}>
-      <div className='mr-2 md:mr-3'>{icon}</div>
-      <h3 className='text-base md:text-lg font-semibold'>{title}</h3>
-    </div>
-    <div className='p-3 md:p-4 flex-grow'>
-      <p className='text-xs md:text-sm text-gray-800'>{description}</p>
-    </div>
-  </Link>
-);
-
 export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
   // Get current path to highlight active tab
   const location = useLocation();
@@ -172,37 +143,9 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className='px-4 md:px-0 pb-12'>
-        {isMainPage ? (
-          <div className='space-y-6'>
-            <div>
-              <h1 className='text-xl md:text-2xl font-bold mb-2'>
-                Philippine Government
-              </h1>
-              <p className='text-sm md:text-base text-gray-800'>
-                Explore the different branches and agencies of the Philippine
-                government
-              </p>
-            </div>
-
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-              {branches.map(branch => (
-                <BranchCard
-                  key={branch.path}
-                  title={branch.title}
-                  description={branch.description}
-                  icon={branch.icon}
-                  path={branch.path}
-                  color={branch.color}
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          children || <Outlet />
-        )}
-      </div>
+      {!isMainPage && (
+        <div className='px-4 md:px-0 pb-12'>{children || <Outlet />}</div>
+      )}
     </div>
   );
 }
