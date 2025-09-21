@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FileText,
-  Globe,
-  ExternalLink,
   ChevronRight,
   Search,
   Briefcase,
@@ -14,14 +12,13 @@ import {
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '../../../types/visa';
-import Button from '../../../components/ui/Button';
 
 interface VisaCategory {
   id: string;
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes: VisaType[] | any[];
+  visaTypes: VisaType[] | unknown[];
 }
 
 const VisaTypesPage: React.FC = () => {
@@ -114,10 +111,10 @@ const VisaTypesPage: React.FC = () => {
         {searchTerm.trim() !== '' && (
           <div className='mb-6'>
             <h2 className='text-xl font-semibold text-gray-700 mb-4'>
-              Showing results for: "{searchTerm}"
+              Showing results for: &ldquo;{searchTerm}&rdquo;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {allVisaTypes.map((visa: any) => (
+              {allVisaTypes.map((visa: unknown) => (
                 <Link
                   to={`/travel/visa-types/${visa.id}`}
                   key={visa.id}
@@ -187,7 +184,7 @@ const VisaTypesPage: React.FC = () => {
 
                       {/* Visa Types Grid */}
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {category.visaTypes.map((visa: any) => (
+                        {category.visaTypes.map((visa: unknown) => (
                           <Link
                             to={`/travel/visa-types/${visa.id}`}
                             key={visa.id}
