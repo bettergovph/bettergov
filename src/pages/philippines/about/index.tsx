@@ -1,192 +1,203 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Mail, AlertTriangle, Users, Heart } from 'lucide-react'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Globe2, Users, Building2, Mountain, Sun } from 'lucide-react';
+import { Card, CardContent } from '../../../components/ui/Card';
 
-const AboutPage: React.FC = () => {
-  const { t } = useTranslation('about')
+const AboutPhilippines: React.FC = () => {
+  const { t } = useTranslation('about-philippines');
+
+  const facts = [
+    {
+      icon: <Globe2 className='h-6 w-6' />,
+      title: t('about.facts.items.geography.title'),
+      description: t('about.facts.items.geography.description'),
+    },
+    {
+      icon: <Users className='h-6 w-6' />,
+      title: t('about.facts.items.population.title'),
+      description: t('about.facts.items.population.description'),
+    },
+    {
+      icon: <Building2 className='h-6 w-6' />,
+      title: t('about.facts.items.capital.title'),
+      description: t('about.facts.items.capital.description'),
+    },
+    {
+      icon: <Mountain className='h-6 w-6' />,
+      title: t('about.facts.items.landscape.title'),
+      description: t('about.facts.items.landscape.description'),
+    },
+    {
+      icon: <Sun className='h-6 w-6' />,
+      title: t('about.facts.items.climate.title'),
+      description: t('about.facts.items.climate.description'),
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-6 md:py-8">
-        <div className="bg-white rounded-lg border shadow-sm p-6 md:p-8 md:py-24 mt-4">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              {t('title')}
-            </h1>
-
-            <div className="prose prose-lg max-w-none">
-              <section className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {t('whyBuilding.title')}
-                </h2>
-                <p className="mb-4 text-gray-700">
-                  {t('whyBuilding.intro')}
-                  <a
-                    href="https://www.gov.ph"
-                    className="text-blue-600 hover:text-blue-800 mx-1"
-                  >
-                    {t('whyBuilding.govPhLink')}
-                  </a>
-                  {t('whyBuilding.challenges')}
-                </p>
-                <ul className="list-disc pl-6 mb-6 text-gray-700 leading-relaxed">
-                  {(
-                    t('whyBuilding.challengesList', {
-                      returnObjects: true,
-                    }) as string[]
-                  ).map((challenge: string, index: number) => (
-                    <li key={index} className="mb-2">
-                      {challenge}
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-gray-700">{t('whyBuilding.conclusion')}</p>
-              </section>
-
-              <section className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {t('mission.title')}
-                </h2>
-                <p className="mb-4 text-gray-700">{t('mission.intro')}</p>
-                <p className="mb-4 text-gray-700">{t('mission.goalsIntro')}</p>
-                <ul className="list-disc pl-6 mb-6 text-gray-700">
-                  {(
-                    t('mission.goalsList', { returnObjects: true }) as string[]
-                  ).map((goal: string, index: number) => (
-                    <li key={index}>{goal}</li>
-                  ))}
-                </ul>
-              </section>
-
-              <section className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {t('features.title')}
-                </h2>
-                <ul className="list-disc pl-6 mb-6 text-gray-700">
-                  {(
-                    t('features.list', { returnObjects: true }) as string[]
-                  ).map((feature: string, index: number) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </section>
-
-              <section className="mb-10">
-                <h2 className="flex items-center text-2xl font-bold text-gray-800 mb-4">
-                  <Users className="mr-2 h-6 w-6 text-blue-600" />
-                  {t('volunteer.title')}
-                </h2>
-                <p className="mb-4 text-gray-700">{t('volunteer.intro')}</p>
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-800 mb-2">
-                      {t('volunteer.technical.title')}
-                    </h3>
-                    <ul className="list-disc pl-6 text-gray-700">
-                      {(
-                        t('volunteer.technical.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-800 mb-2">
-                      {t('volunteer.content.title')}
-                    </h3>
-                    <ul className="list-disc pl-6 text-gray-700">
-                      {(
-                        t('volunteer.content.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="bg-blue-100 p-6 rounded-lg flex items-start">
-                  <Heart className="h-6 w-6 text-red-500 mr-3 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800 mb-2">
-                      {t('volunteer.callToAction.title')}
-                    </p>
-                    <p className="text-gray-700 mb-4">
-                      {t('volunteer.callToAction.description')}
-                      <a
-                        href="mailto:volunteers@bettergov.ph"
-                        className="text-blue-600 hover:text-blue-800 mx-1"
-                      >
-                        {t('volunteer.callToAction.email')}
-                      </a>
-                      {t('volunteer.callToAction.alternative')}
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="mb-10">
-                <h2 className="flex items-center text-2xl font-bold text-gray-800 mb-4">
-                  <AlertTriangle className="mr-2 h-6 w-6 text-amber-500" />
-                  {t('bugReport.title')}
-                </h2>
-                <p className="mb-4 text-gray-700">{t('bugReport.intro')}</p>
-                <ol className="list-decimal pl-6 mb-6 text-gray-700">
-                  {(
-                    t('bugReport.steps', { returnObjects: true }) as string[]
-                  ).map((step: string, index: number) => (
-                    <li key={index}>
-                      {step}
-                      {index === 2 && (
-                        <ul className="list-disc pl-6 mt-2">
-                          {(
-                            t('bugReport.bugDetails', {
-                              returnObjects: true,
-                            }) as string[]
-                          ).map((detail: string, detailIndex: number) => (
-                            <li key={detailIndex}>{detail}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ol>
-                <div className="bg-amber-50 p-4 rounded-lg flex items-center">
-                  <Mail className="h-5 w-5 text-amber-600 mr-2" />
-                  <p className="text-gray-700">
-                    {t('bugReport.alternative.text')}
-                    <a
-                      href="mailto:bugs@bettergov.ph"
-                      className="text-blue-600 hover:text-blue-800 mx-1"
-                    >
-                      {t('bugReport.alternative.email')}
-                    </a>
-                  </p>
-                </div>
-              </section>
-
-              <section>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {t('license.title')}
-                </h2>
-                <p className="mb-4 text-gray-700">
-                  {t('license.description')}
-                  <a
-                    href="https://creativecommons.org/publicdomain/zero/1.0/"
-                    className="text-blue-600 hover:text-blue-800 mx-1"
-                  >
-                    {t('license.ccLink')}
-                  </a>
-                  {t('license.explanation')}
-                </p>
-              </section>
+    <div className='min-h-screen bg-gray-50'>
+      {/* Hero Section */}
+      <div className='relative h-[60vh] overflow-hidden'>
+        <div className='absolute inset-0'>
+          <img
+            src='https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg'
+            alt='Philippine landscape'
+            className='w-full h-full object-cover'
+          />
+          <div className='absolute inset-0 bg-black/50' />
+        </div>
+        <div className='relative h-full flex items-center'>
+          <div className='container mx-auto px-4'>
+            <div className='max-w-3xl'>
+              <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
+                {t('about.hero.title')}
+              </h1>
+              <p className='text-xl text-white/90 leading-relaxed'>
+                {t('about.hero.description')}
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default AboutPage
+      {/* Main Content */}
+      <div className='container mx-auto px-4 py-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+          {/* Quick Facts */}
+          <div className='lg:col-span-2 space-y-8'>
+            <section>
+              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
+                {t('about.facts.title')}
+              </h2>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                {facts.map((fact, index) => (
+                  <Card key={index}>
+                    <CardContent className='p-6'>
+                      <div className='flex items-start space-x-4'>
+                        <div className='p-3 bg-primary-100 rounded-lg text-primary-600'>
+                          {fact.icon}
+                        </div>
+                        <div>
+                          <h3 className='text-lg font-semibold text-gray-900 mb-2'>
+                            {fact.title}
+                          </h3>
+                          <p className='text-gray-800'>{fact.description}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
+                {t('about.overview.title')}
+              </h2>
+              <div className='prose max-w-none'>
+                {(
+                  t('about.overview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((paragraph: string, index: number) => (
+                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <div className='space-y-6'>
+            <Card>
+              <CardContent className='p-6'>
+                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
+                  {t('about.keyInformation.title')}
+                </h3>
+                <div className='space-y-3'>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.officialLanguages.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.officialLanguages.value')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.government.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.government.value')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.currency.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.currency.value')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.timeZone.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.timeZone.value')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.majorCities.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.majorCities.value')}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className='p-6'>
+                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
+                  {t('about.relatedLinks.title')}
+                </h3>
+                <nav className='space-y-2'>
+                  <a
+                    href='/philippines/history'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
+                  >
+                    {t('about.relatedLinks.items.history')}
+                  </a>
+                  <a
+                    href='/philippines/culture'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
+                  >
+                    {t('about.relatedLinks.items.culture')}
+                  </a>
+                  <a
+                    href='/philippines/regions'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
+                  >
+                    {t('about.relatedLinks.items.regions')}
+                  </a>
+                  <a
+                    href='/philippines/tourism'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
+                  >
+                    {t('about.relatedLinks.items.tourism')}
+                  </a>
+                </nav>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutPhilippines;
