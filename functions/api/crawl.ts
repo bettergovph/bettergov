@@ -63,8 +63,7 @@ export async function onRequest(context: {
       );
     }
 
-    // If we don't have content or force update is requested, fetch it
-    // if (!content || forceUpdate) {
+    // If force update is requested, fetch it
     if (forceUpdate) {
       const result = await fetchAndSaveContent(env, targetUrl, crawler);
 
