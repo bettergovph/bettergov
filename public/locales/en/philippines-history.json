@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "title": "History of the Philippines",
+    "description": "Journey through time and discover the rich tapestry of events, people, and movements that shaped the Philippine nation.",
+    "photoCredit": "Photo credit"
+  },
+  "timeline": {
+    "title": "Historical Timeline",
+    "periods": {
+      "independence": {
+        "title": "Independence and Modern Era",
+        "period": "1946-Present",
+        "description": "Independent republic facing challenges and achievements in nation-building"
+      },
+      "american": {
+        "title": "American Period",
+        "period": "1898-1946",
+        "description": "American administration, introducing modern education and democratic institutions"
+      },
+      "spanish": {
+        "title": "Spanish Colonial Era",
+        "period": "1521-1898",
+        "description": "Over 300 years of Spanish rule, introducing Christianity and colonial institutions"
+      },
+      "preColonial": {
+        "title": "Pre-Colonial Period",
+        "period": "Before 1521",
+        "description": "Indigenous peoples with advanced societies, trade networks, and rich cultures"
+      }
+    }
+  },
+  "overview": {
+    "title": "Historical Overview",
+    "paragraphs": [
+      "The Philippines' history spans thousands of years, beginning with the migration of Austronesian peoples. These early settlers developed sophisticated societies, trading with various Asian civilizations and developing unique cultural traditions.",
+      "The arrival of Ferdinand Magellan in 1521 marked the beginning of Spanish colonization, which would last for over three centuries. This period saw the widespread adoption of Christianity and the establishment of colonial institutions that would significantly influence Filipino society.",
+      "Following the Spanish-American War, the Philippines came under American rule, leading to significant changes in education, governance, and society. The country achieved independence in 1946 and has since worked to build a modern nation while preserving its rich cultural heritage."
+    ]
+  },
+  "keyFigures": {
+    "title": "Key Historical Figures",
+    "figures": {
+      "rizal": {
+        "name": "José Rizal",
+        "description": "National Hero, Writer, Reformist"
+      },
+      "bonifacio": {
+        "name": "Andrés Bonifacio",
+        "description": "Revolutionary Leader"
+      },
+      "aguinaldo": {
+        "name": "Emilio Aguinaldo",
+        "description": "First President"
+      },
+      "aquino": {
+        "name": "Corazon Aquino",
+        "description": "Democracy Icon, Former President"
+      }
+    }
+  },
+  "importantDates": {
+    "title": "Important Dates",
+    "dates": {
+      "magellan": {
+        "date": "March 16, 1521",
+        "event": "Arrival of Magellan"
+      },
+      "independence": {
+        "date": "June 12, 1898",
+        "event": "Declaration of Independence"
+      },
+      "recognition": {
+        "date": "July 4, 1946",
+        "event": "Recognition of Independence"
+      },
+      "edsa": {
+        "date": "February 25, 1986",
+        "event": "EDSA People Power Revolution"
+      }
+    }
+  },
+  "relatedLinks": {
+    "title": "Related Links",
+    "items": {
+      "about": "About",
+      "culture": "Culture",
+      "regions": "Regions",
+      "tourism": "Tourism"
+    }
+  }
+}

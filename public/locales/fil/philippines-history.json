@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "title": "Kasaysayan ng Pilipinas",
+    "description": "Maglakbay sa panahon at tuklasin ang mayamang pagkakakapalpal ng mga pangyayari, tao, at kilusang bumuo sa bansang Pilipino.",
+    "photoCredit": "Photo credit"
+  },
+  "timeline": {
+    "title": "Timeline ng Kasaysayan",
+    "periods": {
+      "independence": {
+        "title": "Kalayaan at Modernong Panahon",
+        "period": "1946-Kasalukuyan",
+        "description": "Malayang republika na humaharap sa mga hamon at tagumpay sa pagbuo ng bansa"
+      },
+      "american": {
+        "title": "Panahon ng mga Amerikano",
+        "period": "1898-1946",
+        "description": "Pamamahala ng mga Amerikano, nagpakilala ng modernong edukasyon at demokratikong institusyon"
+      },
+      "spanish": {
+        "title": "Panahon ng Kolonyang Espanyol",
+        "period": "1521-1898",
+        "description": "Mahigit 300 taon ng pamamahala ng mga Espanyol, nagpakilala ng Kristiyanismo at mga institusyong kolonyal"
+      },
+      "preColonial": {
+        "title": "Pre-Colonial na Panahon",
+        "period": "Bago ang 1521",
+        "description": "Mga katutubong tao na may mga advanced na lipunan, network ng kalakalan, at mayamang kultura"
+      }
+    }
+  },
+  "overview": {
+    "title": "Buod ng Kasaysayan",
+    "paragraphs": [
+      "Ang kasaysayan ng Pilipinas ay umaabot sa libu-libong taon, nagsimula sa pagdating ng mga Austronesian. Ang mga unang naninirahan ay nakabuo ng mga sopistikadong lipunan, nakikipagkalakalan sa iba't ibang sibilisasyong Asyano at nakabuo ng mga natatanging tradisyong kultural.",
+      "Ang pagdating ni Ferdinand Magellan noong 1521 ay nagtanda ng simula ng kolonisasyon ng mga Espanyol, na tumagal ng mahigit tatlong siglo. Sa panahong ito ay nakita ang malawakang pagtanggap ng Kristiyanismo at pagtatatag ng mga institusyong kolonyal na malaking naging impluwensya sa lipunang Pilipino.",
+      "Kasunod ng Spanish-American War, ang Pilipinas ay napunta sa pamamahala ng mga Amerikano, na nagdulot ng mga makabuluhang pagbabago sa edukasyon, pamahalaan, at lipunan. Nakamit ng bansa ang kalayaan noong 1946 at mula noon ay nagsikap na makabuo ng modernong bansa habang pinapanatili ang mayamang pamana sa kultura."
+    ]
+  },
+  "keyFigures": {
+    "title": "Mga Mahahalagang Tauhan sa Kasaysayan",
+    "figures": {
+      "rizal": {
+        "name": "José Rizal",
+        "description": "Pambansang Bayani, Manunulat, Reporma"
+      },
+      "bonifacio": {
+        "name": "Andrés Bonifacio",
+        "description": "Lider ng Rebolusyon"
+      },
+      "aguinaldo": {
+        "name": "Emilio Aguinaldo",
+        "description": "Unang Pangulo"
+      },
+      "aquino": {
+        "name": "Corazon Aquino",
+        "description": "Simbolo ng Demokrasya, Dating Pangulo"
+      }
+    }
+  },
+  "importantDates": {
+    "title": "Mahahalagang Petsa",
+    "dates": {
+      "magellan": {
+        "date": "Marso 16, 1521",
+        "event": "Pagdating ni Magellan"
+      },
+      "independence": {
+        "date": "Hunyo 12, 1898",
+        "event": "Deklarasyon ng Kalayaan"
+      },
+      "recognition": {
+        "date": "Hulyo 4, 1946",
+        "event": "Pagkilala sa Kalayaan"
+      },
+      "edsa": {
+        "date": "Pebrero 25, 1986",
+        "event": "EDSA People Power Revolution"
+      }
+    }
+  },
+  "relatedLinks": {
+    "title": "Mga Kaugnay na Link",
+    "items": {
+      "about": "Tungkol",
+      "culture": "Kultura",
+      "regions": "Mga Rehiyon",
+      "tourism": "Turismo"
+    }
+  }
+}
