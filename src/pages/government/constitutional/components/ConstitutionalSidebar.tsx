@@ -13,7 +13,7 @@ interface ConstitutionalOffice {
   trunk_line?: string;
   website?: string;
   email?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface ConstitutionalSidebarProps {
@@ -31,7 +31,7 @@ export default function ConstitutionalSidebar({
   // Only include constitutional offices (exclude GOCCs and SUCs)
   const offices = useMemo(() => {
     return constitutionalData.filter(
-      (office: any) =>
+      (office: ConstitutionalOffice) =>
         !office.office_type.includes('Government-Owned') &&
         !office.office_type.includes('GOCCs') &&
         !office.office_type.includes('State Universities') &&

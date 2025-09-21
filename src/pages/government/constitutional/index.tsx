@@ -14,7 +14,7 @@ interface ConstitutionalOffice {
   trunk_line?: string;
   website?: string;
   email?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Recursive component to render office details
@@ -22,7 +22,7 @@ function OfficeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
