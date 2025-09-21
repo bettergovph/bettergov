@@ -1,4 +1,4 @@
-import { Env, JinaResponse, JinaRecord, CFBrowserResult } from '../types'
+import { Env, JinaResponse, JinaRecord, CFBrowserResult } from '../types';
 
 /**
  * Fetches content from a URL using Cloudflare's Browser Rendering API
@@ -10,15 +10,15 @@ export async function fetchCFBrowserContent(
   env: Env,
   url: string
 ): Promise<JinaResponse> {
-  console.log('Fetching content from Cloudflare Browser API for URL:', url)
+  console.log('Fetching content from Cloudflare Browser API for URL:', url);
   // Check if API credentials are available
-  const accountId = env.CF_ACCOUNT_ID
-  const apiToken = env.CF_API_TOKEN
+  const accountId = env.CF_ACCOUNT_ID;
+  const apiToken = env.CF_API_TOKEN;
 
   if (!accountId || !apiToken) {
     throw new Error(
       'Cloudflare account ID or API token not found in environment variables'
-    )
+    );
   }
 
   try {
@@ -74,23 +74,23 @@ export async function fetchCFBrowserContent(
           },
         }),
       }
-    )
+    );
 
     if (!response.ok) {
       throw new Error(
         `Cloudflare Browser API error: ${response.status} ${response.statusText}`
-      )
+      );
     }
 
     // Parse the response
-    const cfResponse = (await response.json()) as CFBrowserResult
+    const cfResponse = (await response.json()) as CFBrowserResult;
 
-    console.log('Cloudflare Browser response:', cfResponse)
+    console.log('Cloudflare Browser response:', cfResponse);
 
     if (!cfResponse.success) {
       throw new Error(
         `Cloudflare Browser API error: ${cfResponse.errors.join(', ')}`
-      )
+      );
     }
 
     // Format the response to match JinaResponse
@@ -101,11 +101,11 @@ export async function fetchCFBrowserContent(
       content: cfResponse.result.content || '',
       links_summary: cfResponse.result.links || [],
       timestamp: Date.now(),
-    }
+    };
 
-    return jinaResponse
+    return jinaResponse;
   } catch (error) {
-    console.error('Error fetching from Cloudflare Browser API:', error)
+    console.error('Error fetching from Cloudflare Browser API:', error);
     return {
       id: crypto.randomUUID(),
       url: url,
@@ -114,7 +114,7 @@ export async function fetchCFBrowserContent(
       timestamp: Date.now(),
       status: 'error',
       error: (error as Error).message,
-    }
+    };
   }
 }
 
@@ -131,8 +131,8 @@ export async function saveCFBrowserContent(
 ): Promise<{ success: boolean; message: string; id?: string }> {
   try {
     // Generate a UUID for the page if not provided
-    const pageId = data.id || crypto.randomUUID()
-    const now = new Date().toISOString()
+    const pageId = data.id || crypto.randomUUID();
+    const now = new Date().toISOString();
 
     // Insert the page data
     await env.BETTERGOV_DB.prepare(
@@ -165,13 +165,13 @@ export async function saveCFBrowserContent(
         now, // created_at
         now // updated_at
       )
-      .run()
+      .run();
 
     // Process and save links if available
     if (data.links_summary && data.links_summary.length > 0) {
       for (let i = 0; i < data.links_summary.length; i++) {
-        const link = data.links_summary[i]
-        const linkId = crypto.randomUUID()
+        const link = data.links_summary[i];
+        const linkId = crypto.randomUUID();
 
         await env.BETTERGOV_DB.prepare(
           `
@@ -188,11 +188,11 @@ export async function saveCFBrowserContent(
             i, // position_in_page
             now // created_at
           )
-          .run()
+          .run();
 
         // Optionally add to crawl queue
         if (link.link && link.link.startsWith('http')) {
-          const queueId = crypto.randomUUID()
+          const queueId = crypto.randomUUID();
           try {
             await env.BETTERGOV_DB.prepare(
               `
@@ -210,13 +210,13 @@ export async function saveCFBrowserContent(
                 now, // created_at
                 now // updated_at
               )
-              .run()
+              .run();
           } catch (linkError) {
             // Ignore errors on queue insertion - likely duplicate URLs
             console.log(
               'Skipped adding duplicate URL to crawl queue:',
               link.link
-            )
+            );
           }
         }
       }
@@ -226,13 +226,13 @@ export async function saveCFBrowserContent(
       success: true,
       message: 'Content saved to database',
       id: pageId,
-    }
+    };
   } catch (error) {
-    console.error('Error saving to database:', error)
+    console.error('Error saving to database:', error);
     return {
       success: false,
       message: `Database error: ${(error as Error).message}`,
-    }
+    };
   }
 }
 
@@ -257,9 +257,9 @@ export async function getCFBrowserContentByUrl(
       `
     )
       .bind(url)
-      .first<any>()
+      .first<any>();
 
-    if (!page) return null
+    if (!page) return null;
 
     // Get links for this page
     const links = await env.BETTERGOV_DB.prepare(
@@ -269,7 +269,7 @@ export async function getCFBrowserContentByUrl(
       `
     )
       .bind(page.id)
-      .all<any>()
+      .all<any>();
 
     // Convert to JinaRecord format for compatibility
     const record: JinaRecord = {
@@ -280,12 +280,12 @@ export async function getCFBrowserContentByUrl(
       links_summary: links?.results ? JSON.stringify(links.results) : '',
       timestamp: new Date(page.last_crawled).getTime(),
       created_at: page.last_crawled,
-    }
+    };
 
-    return record
+    return record;
   } catch (error) {
-    console.error('Error retrieving from database:', error)
-    return null
+    console.error('Error retrieving from database:', error);
+    return null;
   }
 }
 
@@ -299,25 +299,25 @@ export async function fetchAndSaveCFBrowserContent(
   env: Env,
   url: string
 ): Promise<{
-  success: boolean
-  data?: JinaResponse
-  message?: string
-  error?: string
+  success: boolean;
+  data?: JinaResponse;
+  message?: string;
+  error?: string;
 }> {
   try {
     // Fetch from Cloudflare Browser API
-    const data = await fetchCFBrowserContent(env, url)
+    const data = await fetchCFBrowserContent(env, url);
 
     if (data.error) {
       return {
         success: false,
         message: 'Failed to fetch content from Cloudflare Browser API',
         error: data.error,
-      }
+      };
     }
 
     // Save to database
-    const saveResult = await saveCFBrowserContent(env, data)
+    const saveResult = await saveCFBrowserContent(env, data);
 
     if (!saveResult.success) {
       return {
@@ -326,19 +326,19 @@ export async function fetchAndSaveCFBrowserContent(
         message:
           'Fetched from Cloudflare Browser API but failed to save to database',
         error: saveResult.message,
-      }
+      };
     }
 
     return {
       success: true,
       data: data,
       message: 'Successfully fetched and saved content',
-    }
+    };
   } catch (error) {
     return {
       success: false,
       message: 'Error in fetch and save operation',
       error: (error as Error).message,
-    }
+    };
   }
 }
