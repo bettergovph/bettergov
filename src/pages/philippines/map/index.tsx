@@ -56,8 +56,13 @@ const PhilippinesMap: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState('');
   // GeoJSON data expects FeatureCollection structure
-  const [mapData] = useState<GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>>(
-    philippinesRegionsData as GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
+  const [mapData] = useState<
+    GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
+  >(
+    philippinesRegionsData as GeoJSON.FeatureCollection<
+      GeoJSON.Geometry,
+      RegionProperties
+    >
   );
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const mapRef = useRef<L.Map>(null);
@@ -67,28 +72,31 @@ const PhilippinesMap: React.FC = () => {
   const initialZoom = 6;
 
   // Fetch Wikipedia data
-  const fetchWikipediaData = useCallback(async (regionName: string): Promise<WikipediaData | null> => {
-    if (wikipediaCache.has(regionName)) {
-      return wikipediaCache.get(regionName) || null;
-    }
-    setIsLoadingDetails(true);
-    try {
-      const response = await fetch(
-        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-          regionName + ', Philippines'
-        )}`
-      );
-      if (!response.ok) throw new Error('Wikipedia data not found');
-      const data: WikipediaData = await response.json();
-      wikipediaCache.set(regionName, data);
-      return data;
-    } catch (err) {
-      console.error('Error fetching Wikipedia data:', err);
-      return null;
-    } finally {
-      setIsLoadingDetails(false);
-    }
-  }, []);
+  const fetchWikipediaData = useCallback(
+    async (regionName: string): Promise<WikipediaData | null> => {
+      if (wikipediaCache.has(regionName)) {
+        return wikipediaCache.get(regionName) || null;
+      }
+      setIsLoadingDetails(true);
+      try {
+        const response = await fetch(
+          `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
+            regionName + ', Philippines'
+          )}`
+        );
+        if (!response.ok) throw new Error('Wikipedia data not found');
+        const data: WikipediaData = await response.json();
+        wikipediaCache.set(regionName, data);
+        return data;
+      } catch (err) {
+        console.error('Error fetching Wikipedia data:', err);
+        return null;
+      } finally {
+        setIsLoadingDetails(false);
+      }
+    },
+    []
+  );
 
   // Handle region click
   const onRegionClick = useCallback(
@@ -126,7 +134,9 @@ const PhilippinesMap: React.FC = () => {
   };
 
   // Style for GeoJSON features
-  const regionStyle = (feature?: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>) => {
+  const regionStyle = (
+    feature?: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>
+  ) => {
     if (!feature) return {};
     const regionName = getRegionName(feature);
     const isSelected = selectedRegion?.id === regionName;
@@ -174,7 +184,10 @@ const PhilippinesMap: React.FC = () => {
 
   // Note: filteredMapData is computed but not used in render - kept for potential future use
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const filteredMapData: GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties> = {
+  const filteredMapData: GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    RegionProperties
+  > = {
     ...mapData,
     features: mapData.features.filter(feature => {
       if (!searchQuery) return true;
