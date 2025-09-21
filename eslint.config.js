@@ -37,10 +37,12 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'react/prop-types': 'off',
+      'react/react-in-jsx-scope': 'off', // Not needed with React 17+ JSX transform
     },
     settings: {
       react: {
         version: 'detect',
+        runtime: 'automatic', // Use automatic JSX runtime
       },
     },
   }
