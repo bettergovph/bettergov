@@ -1,0 +1,92 @@
+{
+  "title": "Mahitungod sa BetterGov.ph",
+  "whyBuilding": {
+    "title": "Ngano nga Among Gitukod Kining Proyekto",
+    "intro": "Ang kahimtang karon sa mga website sa kagamhanan sa Pilipinas, ilabina ang pangunang ganghaan",
+    "govPhLink": "www.gov.ph",
+    "challenges": ", naghatag og daghang hagit sa mga lungsoranon:",
+    "challengesList": [
+      "Mapuslan kini sa kanunayng pag-update sa unod sa panid aron ang mga lungsoranon makadangat sa labing bag-ong kasayuran ug mga serbisyo.",
+      "Adunay kahigayonan sa pagpahapsay sa paglugway-lugway sa paggamit pinaagi sa pagrepaso ug pag-ayo sa mga link, ug sa pagpahinayhay sa mga agianan aron dali makakaplag ang mga bisita sa ilang gikinahanglan.",
+      "Ang pagtuman sa parehas nga laraw ug pormat sa tanang panid makatabang sa paghimo og mas huyangay ug propesyonal nga kasinatian sa tiggamit.",
+      "Ang pagpaayo sa mga bahin sa kapuslanan (accessibility) ug sa kinatibuk-ang kasinatian sa tiggamit maghimo sa mga serbisyo sa kagamhanan nga mas apil ug mas sayon gamiton para sa tanan.",
+      "Kining mga pagpaayo mahimong mahimong ehemplo alang sa ubang website sa mga ahensya sa kagamhanan, aron mamugna ang mas hiusa ug epektibong presensya sa digital nga kagamhanan."
+    ],
+    "conclusion": "Kining mga isyu nagpamugos og mga babag sa mga lungsoranon nga nagtinguha sa pag-abot sa mga hinungdanong serbisyo ug kasayuran sa kagamhanan."
+  },
+  "mission": {
+    "title": "Among Misyon",
+    "intro": "Usa kami ka inisyatiba nga gidala sa mga boluntaryo nga may klarong tumong: paghatag og usa ka “mas maayong” website para sa Pilipinas.",
+    "goalsIntro": "Among mga tumong naglakip sa:",
+    "goalsList": [
+      "Pagtukod og website nga gidumala sa mga boluntaryo nga namalandong sa mga bili ug kultura sa Pilipino",
+      "Paghimo og sayon sabton nga paggiyá (navigation) ug pagpangita",
+      "Pagsiguro nga magamit sa tanan, lakip ang mga adunay kakulian",
+      "Paghatag og husto ug napapanahong kasayuran mahitungod sa mga serbisyo sa kagamhanan",
+      "Pagpahimutang og ehemplo kon unsaon ug unsay angay sa digital nga mga serbisyo sa kagamhanan"
+    ]
+  },
+  "features": {
+    "title": "Mga Bahin",
+    "list": [
+      "Bag-ong dagway nga mosibo sa tanang matang sa gamit",
+      "Hingpit nga talaan sa mga serbisyo ug mga ahensya sa kagamhanan",
+      "Sayon gamiton nga paggiyá ug pagpangita",
+      "Mga bahin sa kapuslanan para sa mga tiggamit nga adunay kakulian",
+      "Kanunay nga pag-update ug pag-amuma"
+    ]
+  },
+  "volunteer": {
+    "title": "Apil Isip Boluntaryo",
+    "intro": "Kanunay kaming nangita og madasigon nga mga tawo aron motabang sa pagpaayo sa BetterGov.ph. Nanginahanglan kami og boluntaryo nga may lain-laing kahanas:",
+    "technical": {
+      "title": "Technical",
+      "skills": [
+        "Frontend and backend developers",
+        "UX/UI designers",
+        "Accessibility experts",
+        "QA testers"
+      ]
+    },
+    "content": {
+      "title": "Content",
+      "skills": [
+        "Content writers and editors",
+        "Translators (for Filipino and other local languages)",
+        "Project managers",
+        "Researchers"
+      ]
+    },
+    "callToAction": {
+      "title": "Andam nang mohimo og kausaban?",
+      "description": "Kon interesado kang motampo, palihug pagkontak kanamo sa",
+      "email": "volunteers@bettergov.ph",
+      "alternative": "o pag-abli og isyu sa among repositorya."
+    }
+  },
+  "bugReport": {
+    "title": "I-report ang Sayop",
+    "intro": "Nakaplagan ba nimo og problema ang website? Tabangi kami sa pagpaayo pinaagi sa pag-report!",
+    "steps": [
+      "Ablihi ang usa ka isyu sa among repositorya",
+      "Gamita ang hulma sa pag-report sa sayop",
+      "Ihatag ang pinakadaghan nga detalye nga mahimo, lakip ang:"
+    ],
+    "bugDetails": [
+      "Unsay imong gituyo nga buhaton",
+      "Unsay imong gilauman nga mahitabo",
+      "Unsay tinuod nga nahitabo",
+      "Screenshot kon angay"
+    ],
+    "alternative": {
+      "text": "Usab, mahimo nimo kami e-mail-an sa",
+      "email": "bugs@bettergov.ph"
+    }
+  },
+  "license": {
+    "title": "Lisensya",
+    "description": "Kining proyekto gipagawas ubos sa",
+    "ccLink": "Creative Commons CC0",
+    "explanation": "nga paghalad. Nagpasabot kini nga ang buhat gihalad sa publikong dominyo ug mahimong gamiton sa bisan kinsa, sa bisan unsang katuyoan, nga walay pagpugong ilawom sa balaod sa copyright."
+  }
+}
