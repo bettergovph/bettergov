@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   MapPin,
@@ -15,17 +14,23 @@ import { getDepartmentsSEOData } from '../../../utils/seo-data';
 
 interface Department {
   office_name: string;
+  slug: string;
   address?: string;
   trunkline?: string;
   website?: string;
   email?: string;
+  secretary?: {
+    name: string;
+    contact?: string;
+    email?: string;
+  };
   [key: string]: unknown;
 }
 
 // Component to display department details
 function DepartmentDetail({ departmentName }: { departmentName: string }) {
   const departments = departmentsData as Department[];
-  const department = departments.find(d => d.office_name === departmentName);
+  const department = departments.find(d => d.slug === departmentName);
   const seoData = getDepartmentsSEOData(departmentName);
 
   if (!department) {
@@ -152,7 +157,7 @@ function DepartmentDetailSection({
   }
 
   // Skip these keys as they're displayed in the header
-  const skipKeys = ['office_name', 'address', 'trunkline', 'website', 'email'];
+  const skipKeys = ['office_name', 'address', 'trunkline', 'website', 'email', 'slug'];
 
   const entries = Object.entries(data).filter(
     ([key]) => !skipKeys.includes(key)
@@ -222,9 +227,7 @@ export default function DepartmentsIndex() {
 
             return (
               <Link
-                to={`/government/departments/${encodeURIComponent(
-                  dept.office_name
-                )}`}
+                to={`/government/departments/${encodeURIComponent(dept.slug)}`}
                 key={index}
                 className='block'
               >

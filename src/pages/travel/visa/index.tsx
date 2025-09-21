@@ -156,7 +156,7 @@ const VisaPage: React.FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       {/* Hero Section */}
-      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16'>
+      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4'>
         <div className='container mx-auto max-w-6xl'>
           <div className='flex flex-col md:flex-row items-center justify-between'>
             <div className='md:w-1/2 mb-8 md:mb-0'>
@@ -174,7 +174,7 @@ const VisaPage: React.FC = () => {
                 </Button>
               </Link>
             </div>
-            <div className='md:w-1/3'>
+            <div className='self-start md:w-1/3'>
               <div className='bg-white rounded-lg shadow-lg p-6 text-gray-800'>
                 <h2 className='text-xl font-semibold mb-4 flex items-center'>
                   <Compass className='mr-2 h-5 w-5 text-blue-600' />

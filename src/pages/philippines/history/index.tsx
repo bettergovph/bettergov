@@ -1,16 +1,24 @@
 import React from 'react';
-import { Clock, Flag, Crown, Star } from 'lucide-react';
+import { Clock, Flag, Crown, Scale } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
   const timelinePeriods = [
     {
-      icon: <Clock className='h-6 w-6' />,
-      title: 'Pre-Colonial Period',
-      period: 'Before 1521',
+      icon: <Flag className='h-6 w-6' />,
+      title: 'Independence and Modern Era',
+      period: '1946-Present',
       description:
-        'Indigenous peoples with advanced societies, trade networks, and rich cultures',
-      image: '/assets/history/pre-colonial-period.webp',
+        'Independent republic facing challenges and achievements in nation-building',
+      image: '/assets/history/independence-modern-era.webp',
+    },
+    {
+      icon: <Scale className='h-6 w-6' />,
+      title: 'American Period',
+      period: '1898-1946',
+      description:
+        'American administration, introducing modern education and democratic institutions',
+      image: '/assets/history/american-period.webp',
     },
     {
       icon: <Crown className='h-6 w-6' />,
@@ -21,20 +29,12 @@ const PhilippinesHistory: React.FC = () => {
       image: '/assets/history/spanish-colonial-era.webp',
     },
     {
-      icon: <Star className='h-6 w-6' />,
-      title: 'American Period',
-      period: '1898-1946',
+      icon: <Clock className='h-6 w-6' />,
+      title: 'Pre-Colonial Period',
+      period: 'Before 1521',
       description:
-        'American administration, introducing modern education and democratic institutions',
-      image: '/assets/history/american-period.webp',
-    },
-    {
-      icon: <Flag className='h-6 w-6' />,
-      title: 'Independence and Modern Era',
-      period: '1946-Present',
-      description:
-        'Independent republic facing challenges and achievements in nation-building',
-      image: '/assets/history/independence-modern-era.webp',
+        'Indigenous peoples with advanced societies, trade networks, and rich cultures',
+      image: '/assets/history/pre-colonial-period.webp',
     },
   ];
 
@@ -76,39 +76,50 @@ const PhilippinesHistory: React.FC = () => {
           {/* Timeline */}
           <div className='lg:col-span-2'>
             <section className='mb-12'>
-              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
+              <h2 className='text-3xl font-bold text-gray-900 mb-8'>
                 Historical Timeline
               </h2>
-              <div className='space-y-8'>
-                {timelinePeriods.map((period, index) => (
-                  <Card key={index}>
-                    <CardContent className='p-6'>
-                      <div className='flex items-start space-x-4'>
-                        <div className='p-3 bg-primary-100 rounded-lg text-primary-600'>
-                          {period.icon}
-                        </div>
-                        <div className='flex-1'>
-                          <div className='flex items-center justify-between mb-2'>
-                            <h3 className='text-xl font-semibold text-gray-900'>
-                              {period.title}
-                            </h3>
-                            <span className='text-sm font-medium text-primary-600'>
+              <div className='relative'>
+                {/* Timeline line */}
+                <div className='absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300'></div>
+
+                <div className='space-y-12'>
+                  {timelinePeriods.map((period, index) => (
+                    <div key={index} className='relative flex items-start'>
+                      {/* Timeline node */}
+                      <div className='absolute left-0 w-16 h-16 bg-white rounded-full border-4 border-primary-500 shadow-lg flex items-center justify-center z-10'>
+                        <div className='text-primary-600'>{period.icon}</div>
+                      </div>
+
+                      {/* Content */}
+                      <div className='ml-24 flex-1'>
+                        <div className='bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow'>
+                          {/* Period header */}
+                          <div className='bg-primary-50 px-6 py-3 border-b border-primary-100'>
+                            <span className='text-lg font-bold text-primary-700'>
                               {period.period}
                             </span>
                           </div>
-                          <p className='text-gray-800 mb-4'>
-                            {period.description}
-                          </p>
-                          <img
-                            src={period.image}
-                            alt={period.title}
-                            className='w-full max-h-64 object-cover object-center rounded-lg'
-                          />
+
+                          {/* Main content */}
+                          <div className='p-6'>
+                            <h3 className='text-2xl font-bold text-gray-900 mb-3'>
+                              {period.title}
+                            </h3>
+                            <p className='text-gray-700 mb-4 leading-relaxed'>
+                              {period.description}
+                            </p>
+                            <img
+                              src={period.image}
+                              alt={period.title}
+                              className='w-full h-48 object-cover rounded-lg'
+                            />
+                          </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
 
@@ -151,31 +162,35 @@ const PhilippinesHistory: React.FC = () => {
                 </h3>
                 <div className='space-y-4'>
                   <div>
-                    <div className='font-medium text-gray-900'>José Rizal</div>
+                    <div className='font-medium text-gray-900'>
+                      {'José Rizal'}
+                    </div>
                     <div className='text-sm text-gray-800'>
-                      National Hero, Writer, Reformist
+                      {'National Hero, Writer, Reformist'}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      Andrés Bonifacio
+                      {'Andrés Bonifacio'}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      Revolutionary Leader
+                      {'Revolutionary Leader'}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      Emilio Aguinaldo
+                      {'Emilio Aguinaldo'}
                     </div>
-                    <div className='text-sm text-gray-800'>First President</div>
+                    <div className='text-sm text-gray-800'>
+                      {'First President'}
+                    </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      Corazon Aquino
+                      {'Corazon Aquino'}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      Democracy Icon, Former President
+                      {'Democracy Icon, Former President'}
                     </div>
                   </div>
                 </div>
@@ -190,32 +205,32 @@ const PhilippinesHistory: React.FC = () => {
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      March 16, 1521
+                      {'March 16, 1521'}
                     </div>
-                    <div className='text-gray-900'>Arrival of Magellan</div>
+                    <div className='text-gray-900'>{'Arrival of Magellan'}</div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      June 12, 1898
+                      {'June 12, 1898'}
                     </div>
                     <div className='text-gray-900'>
-                      Declaration of Independence
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      July 4, 1946
-                    </div>
-                    <div className='text-gray-900'>
-                      Recognition of Independence
+                      {'Declaration of Independence'}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      February 25, 1986
+                      {'July 4, 1946'}
                     </div>
                     <div className='text-gray-900'>
-                      EDSA People Power Revolution
+                      {'Recognition of Independence'}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {'February 25, 1986'}
+                    </div>
+                    <div className='text-gray-900'>
+                      {'EDSA People Power Revolution'}
                     </div>
                   </div>
                 </div>
