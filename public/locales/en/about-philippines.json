@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "title": "About the Philippines",
+    "description": "Discover the Pearl of the Orient Seas, a nation of vibrant culture, rich history, and natural wonders spread across thousands of islands."
+  },
+  "facts": {
+    "title": "Quick Facts",
+    "items": {
+      "geography": {
+        "title": "Geography",
+        "description": "An archipelago of over 7,640 islands located in Southeast Asia"
+      },
+      "population": {
+        "title": "Population",
+        "description": "Home to over 110 million people across diverse ethnic groups"
+      },
+      "capital": {
+        "title": "Capital",
+        "description": "Manila serves as the capital, with Metro Manila as the economic center"
+      },
+      "landscape": {
+        "title": "Landscape",
+        "description": "Features mountains, volcanoes, tropical rainforests, and beautiful beaches"
+      },
+      "climate": {
+        "title": "Climate",
+        "description": "Tropical maritime climate with three distinct seasons"
+      }
+    }
+  },
+  "overview": {
+    "title": "Overview",
+    "paragraphs": [
+      "The Philippines is a sovereign archipelagic country located in Southeast Asia, comprising over 7,640 islands. Named after King Philip II of Spain, the country has a rich history spanning thousands of years, from ancient indigenous cultures to colonial periods under Spanish and American rule, leading to its independence in 1946.",
+      "Today, the Philippines stands as one of Southeast Asia's most dynamic economies, blending traditional values with modern development. The country is known for its warm hospitality, diverse cultural heritage, stunning natural landscapes, and vibrant democracy.",
+      "Filipino culture is a unique fusion of indigenous, Asian, European, and American influences, reflected in its art, music, cuisine, and traditions. The nation's biodiversity, featuring unique species and ecosystems, makes it one of the world's most environmentally significant countries."
+    ]
+  },
+  "keyInformation": {
+    "title": "Key Information",
+    "items": {
+      "officialLanguages": {
+        "label": "Official Languages",
+        "value": "Filipino (Tagalog), English"
+      },
+      "government": {
+        "label": "Government",
+        "value": "Presidential Constitutional Republic"
+      },
+      "currency": {
+        "label": "Currency",
+        "value": "Philippine Peso (₱)"
+      },
+      "timeZone": {
+        "label": "Time Zone",
+        "value": "UTC+8 (Philippine Standard Time)"
+      },
+      "majorCities": {
+        "label": "Major Cities",
+        "value": "Manila, Quezon City, Davao, Cebu"
+      }
+    }
+  },
+  "relatedLinks": {
+    "title": "Related Links",
+    "items": {
+      "history": "History",
+      "culture": "Culture",
+      "regions": "Regions",
+      "tourism": "Tourism"
+    }
+  }
+}
