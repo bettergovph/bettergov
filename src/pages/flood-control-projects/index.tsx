@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  InstantSearch,
-  Configure,
-  useHits,
-} from 'react-instantsearch';
+import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
@@ -38,10 +34,10 @@ import Button from '../../components/ui/Button';
 import {
   FilterDropdown,
   FilterTitle,
-  buildFilterString,
   FilterState,
   FloodControlHit,
 } from './shared-components';
+import { buildFilterString } from './utils';
 import FloodControlProjectsTab from './tab';
 
 // Import lookup data
@@ -88,8 +84,6 @@ const COLORS = [
   '#D0ED57',
   '#FAAAA3',
 ];
-
-
 
 // Statistics Display Component with hardcoded values for better performance
 const DashboardStatistics: React.FC = () => {
