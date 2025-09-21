@@ -53,8 +53,13 @@ jobs:
         run: npx prettier --check .
 
   e2e_tests:
-    name: Playwright Tests
+    name: Playwright Tests (Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
 
     steps:
       - uses: actions/checkout@v4
@@ -67,14 +72,69 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
       - name: Run E2E Tests
-        run: npm run test:e2e
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        id: test-run
 
-      - name: Upload Playwright report
+      - name: Check blob report exists
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -d "blob-report" ] && [ "$(ls -A blob-report)" ]; then
+            echo "Blob report generated successfully"
+          else
+            echo "Warning: No blob report generated for shard ${{ matrix.shardIndex }}"
+            mkdir -p blob-report
+            echo "{\"shard\": ${{ matrix.shardIndex }}, \"status\": \"no-tests\"}" > blob-report/shard-info.json
+          fi
+
+      - name: Upload blob report
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: blob-report/
+          retention-days: 30
+
+  merge_reports:
+    name: Merge Playwright Reports
+    needs: [e2e_tests]
+    runs-on: ubuntu-latest
+    if: ${{ !cancelled() }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Playwright dependencies only
+        run: npm install @playwright/test
+
+      - name: Download all blob reports
+        uses: actions/download-artifact@v4
+        with:
+          path: all-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: List downloaded reports for debugging
+        run: ls -la all-reports/ || echo "No reports directory found"
+
+      - name: Merge Playwright reports
+        run: |
+          if [ -d "all-reports" ] && [ "$(ls -A all-reports)" ]; then
+            npx playwright merge-reports --reporter html ./all-reports
+          else
+            echo "Warning: No blob reports found to merge"
+            mkdir -p playwright-report
+            echo "<html><body><h1>No test reports available</h1></body></html>" > playwright-report/index.html
+          fi
+
+      - name: Upload merged Playwright report
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
