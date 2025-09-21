@@ -436,7 +436,7 @@ export default function ServicesPage() {
               {paginatedServices.map((service, index) => (
                 <article key={index} className='h-full' role='listitem'>
                   <Card hoverable className='bg-white h-full'>
-                    <CardContent className='p-4 md:p-6 h-full border'>
+                    <CardContent className='p-4 md:p-6 h-full'>
                       <div className='flex flex-col justify-between h-full '>
                         <div className='flex items-start justify-between mb-4'>
                           <div>
