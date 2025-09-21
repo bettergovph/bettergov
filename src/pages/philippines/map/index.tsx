@@ -163,15 +163,6 @@ const PhilippinesMap: React.FC = () => {
     });
   };
 
-  // Filtered GeoJSON data based on search query
-  const filteredMapData: GeoJSON.FeatureCollection<any, RegionProperties> = {
-    ...mapData,
-    features: mapData.features.filter(feature => {
-      if (!searchQuery) return true;
-      const name = getRegionName(feature);
-      return name.toLowerCase().includes(searchQuery.toLowerCase());
-    }),
-  };
 
   // Effect to update GeoJSON layer when search query changes (to re-apply styles for filtered out items)
   useEffect(() => {
