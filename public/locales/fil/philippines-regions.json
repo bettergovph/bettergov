@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "title": "Mga Rehiyon ng Pilipinas",
+    "description": "Tuklasin ang lahat ng {{count}} administratibong rehiyon ng Pilipinas at ang kanilang mga local government units."
+  },
+  "sections": {
+    "administrativeRegions": {
+      "title": "Mga Administratibong Rehiyon",
+      "localGovUnits": "Mga Local Government Units",
+      "viewLGUs": "Tingnan ang mga LGU"
+    },
+    "regionalOverview": {
+      "title": "Buod ng mga Rehiyon",
+      "paragraphs": [
+        "Ang Pilipinas ay nahahati sa tatlong pangunahing heograpiyang dibisyon: Luzon, Visayas, at Mindanao. Ang mga ito ay higit pang nahahati sa 17 rehiyon, bawat isa ay may sariling administrative center, cultural identity, at economic focus.",
+        "Bawat rehiyon ay nagpapakita ng mga natatanging tradisyon, diyalekto, at lutuin, na nag-aambag sa mayamang cultural tapestry ng bansa. Mula sa mga mountain tribes ng Cordilleras hanggang sa mga seafaring communities ng Visayas, ang diversity ng mga Filipino regional cultures ay kamangha-mangha.",
+        "Ang mga rehiyon ay nag-iiba rin sa kanilang mga economic activities, mula sa industrial at service-oriented na National Capital Region hanggang sa mga agricultural heartlands ng Central Luzon at ang mga resource-rich na probinsya ng Mindanao."
+      ]
+    }
+  },
+  "sidebar": {
+    "quickFacts": {
+      "title": "Mabibiling Katotohanan",
+      "totalRegions": {
+        "label": "Kabuuang Rehiyon",
+        "value": "18 Administratibong Rehiyon"
+      },
+      "provinces": {
+        "label": "Mga Probinsya",
+        "value": "82 Probinsya"
+      },
+      "cities": {
+        "label": "Mga Lungsod",
+        "value": "149 Lungsod"
+      },
+      "municipalities": {
+        "label": "Mga Munisipalidad",
+        "value": "1,493 Munisipalidad"
+      }
+    },
+    "regionalLanguages": {
+      "title": "Mga Rehiyonal na Wika",
+      "regions": {
+        "luzon": {
+          "name": "Luzon",
+          "languages": "Tagalog, Ilocano, Bicolano"
+        },
+        "visayas": {
+          "name": "Visayas",
+          "languages": "Cebuano, Hiligaynon, Waray"
+        },
+        "mindanao": {
+          "name": "Mindanao",
+          "languages": "Cebuano, Maguindanaon, Tausug"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Mga Kaugnay na Link",
+      "interactiveMap": "Interactive Map",
+      "localGovernmentUnits": "Mga Local Government Units",
+      "governmentDepartments": "Mga Departamento ng Pamahalaan",
+      "aboutPhilippines": "Tungkol sa Pilipinas"
+    }
+  }
+}

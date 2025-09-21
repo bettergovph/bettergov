@@ -11,7 +11,14 @@ i18n
     fallbackLng: 'en',
     debug: false,
     defaultNS: 'common',
-    ns: ['common', 'visa', 'about', 'about-philippines', 'philippines-history'],
+    ns: [
+      'common',
+      'visa',
+      'about',
+      'about-philippines',
+      'philippines-history',
+      'philippines-regions',
+    ],
 
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
