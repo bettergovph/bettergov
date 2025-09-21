@@ -7,14 +7,10 @@ import { exportMeilisearchData } from '../../lib/exportData';
 import {
   Filter,
   ChevronLeft,
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
   Search,
-  Users,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -53,8 +49,22 @@ const meiliSearchInstance = instantMeiliSearch(
 );
 
 // Extract the searchClient from meiliSearchInstance
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const searchClient = meiliSearchInstance.searchClient as any;
+interface SearchRequest {
+  indexName: string;
+  params?: Record<string, unknown>;
+}
+
+interface SearchClient {
+  search(requests: SearchRequest[]): Promise<{
+    results: Array<{
+      hits: unknown[];
+      nbHits: number;
+    }>;
+  }>;
+  searchForFacetValues?(requests: SearchRequest[]): Promise<unknown>;
+}
+
+const searchClient = meiliSearchInstance.searchClient as SearchClient;
 
 // Define filter dropdown component props
 interface FilterDropdownProps {
@@ -361,7 +371,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
   const { hits, results } = useHits();
 
   // Sort hits based on current sort field and direction
-  const sortedHits = [...hits].sort((a: any, b: any) => {
+  const sortedHits = [...hits].sort((a: FloodControlProject, b: FloodControlProject) => {
     // Handle special case for ContractCost which needs numeric sorting
     if (sortField === 'ContractCost') {
       const costA = parseFloat(a[sortField] || '0');
