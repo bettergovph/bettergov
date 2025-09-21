@@ -54,6 +54,7 @@ function OfficeDetailSection({
   // Skip these keys as they're displayed in the header
   const skipKeys = [
     'name',
+    'slug',
     'office_type',
     'description',
     'address',
