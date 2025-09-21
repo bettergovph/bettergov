@@ -37,8 +37,18 @@ interface RegionProperties {
   // Add other properties from your GeoJSON if needed
 }
 
+// Wikipedia data interface
+interface WikipediaData {
+  extract?: string;
+  content_urls?: {
+    desktop?: {
+      page?: string;
+    };
+  };
+}
+
 // Wikipedia data cache
-const wikipediaCache = new Map<string, unknown>();
+const wikipediaCache = new Map<string, WikipediaData>();
 
 const PhilippinesMap: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
@@ -170,15 +180,18 @@ const PhilippinesMap: React.FC = () => {
     });
   };
 
-  // Filtered GeoJSON data based on search query - Currently unused
-  // const filteredMapData: GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties> = {
-  //   ...mapData,
-  //   features: mapData.features.filter(feature => {
-  //     if (!searchQuery) return true;
-  //     const name = getRegionName(feature);
-  //     return name.toLowerCase().includes(searchQuery.toLowerCase());
-  //   }),
-  // };
+  // Filtered GeoJSON data based on search query
+  const _filteredMapData: GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    RegionProperties
+  > = {
+    ...mapData,
+    features: mapData.features.filter(feature => {
+      if (!searchQuery) return true;
+      const name = getRegionName(feature);
+      return name.toLowerCase().includes(searchQuery.toLowerCase());
+    }),
+  };
 
   // Effect to update GeoJSON layer when search query changes (to re-apply styles for filtered out items)
   useEffect(() => {
@@ -273,12 +286,13 @@ const PhilippinesMap: React.FC = () => {
       </div>
 
       {/* Details Panel */}
-      <div
-        className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
-          selectedRegion ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {selectedRegion && (
+
+      {selectedRegion && (
+        <div
+          className={`absolute right-0 top-40 h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-[1001] ${
+            selectedRegion ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
           <div className='h-full flex flex-col'>
             <div className='p-6 border-b border-gray-200'>
               <div className='flex items-start justify-between'>
@@ -387,8 +401,8 @@ const PhilippinesMap: React.FC = () => {
               </div>
             </ScrollArea>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
