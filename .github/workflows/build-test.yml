@@ -76,6 +76,18 @@ jobs:
 
       - name: Run E2E Tests
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        continue-on-error: true
+        id: test-run
+
+      - name: Check blob report exists
+        run: |
+          if [ -d "blob-report" ] && [ "$(ls -A blob-report)" ]; then
+            echo "Blob report generated successfully"
+          else
+            echo "Warning: No blob report generated for shard ${{ matrix.shardIndex }}"
+            mkdir -p blob-report
+            echo "{\"shard\": ${{ matrix.shardIndex }}, \"status\": \"no-tests\"}" > blob-report/shard-info.json
+          fi
 
       - name: Upload blob report
         uses: actions/upload-artifact@v4
@@ -84,6 +96,12 @@ jobs:
           name: blob-report-${{ matrix.shardIndex }}
           path: blob-report/
           retention-days: 30
+
+      - name: Report test status
+        if: steps.test-run.outcome == 'failure'
+        run: |
+          echo "Tests failed in shard ${{ matrix.shardIndex }}"
+          exit 1
 
   merge_reports:
     name: Merge Playwright Reports
@@ -109,9 +127,20 @@ jobs:
         with:
           path: all-reports
           pattern: blob-report-*
+          merge-multiple: true
+
+      - name: List downloaded reports for debugging
+        run: ls -la all-reports/ || echo "No reports directory found"
 
       - name: Merge Playwright reports
-        run: npx playwright merge-reports --reporter html ./all-reports
+        run: |
+          if [ -d "all-reports" ] && [ "$(ls -A all-reports)" ]; then
+            npx playwright merge-reports --reporter html ./all-reports
+          else
+            echo "Warning: No blob reports found to merge"
+            mkdir -p playwright-report
+            echo "<html><body><h1>No test reports available</h1></body></html>" > playwright-report/index.html
+          fi
 
       - name: Upload merged Playwright report
         uses: actions/upload-artifact@v4
