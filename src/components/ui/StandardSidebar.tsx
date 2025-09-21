@@ -4,9 +4,7 @@ interface StandardSidebarProps {
   children: ReactNode;
 }
 
-export default function StandardSidebar({
-  children,
-}: StandardSidebarProps) {
+export default function StandardSidebar({ children }: StandardSidebarProps) {
   return (
     <div className='w-full md:w-64 flex-shrink-0'>
       <div className='md:sticky md:top-6 space-y-4'>
