@@ -45,6 +45,7 @@ const PhilippinesHistory: React.FC = () => {
           <img
             src='https://images.pexels.com/photos/19376770/pexels-photo-19376770/free-photo-of-women-dancing-in-red-traditional-clothing-in-festival.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             alt='Historical Philippines'
+            loading='lazy'
             className='w-full h-full object-cover'
           />
           <div className='absolute inset-0 bg-black/50' />
@@ -110,6 +111,7 @@ const PhilippinesHistory: React.FC = () => {
                             <img
                               src={period.image}
                               alt={period.title}
+                              loading='lazy'
                               className='w-full h-48 object-cover rounded-lg'
                             />
                           </div>
