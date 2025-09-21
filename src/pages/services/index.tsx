@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Search, CheckCircle2, Menu, X } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { Card, CardContent } from '../../components/ui/Card';
@@ -74,11 +74,6 @@ export default function ServicesPage() {
     'page',
     parseAsInteger.withDefault(1)
   );
-
-  // Reset page when category/subcategory changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategorySlug, selectedSubcategorySlug, setCurrentPage]);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
