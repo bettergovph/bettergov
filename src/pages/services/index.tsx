@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Search, CheckCircle2, Menu, X } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { Card, CardContent } from '../../components/ui/Card';
@@ -22,7 +22,6 @@ import uncategorizedServices from '../../data/services/uncategorized.json';
 import Button from '../../components/ui/Button';
 import { Helmet } from 'react-helmet-async';
 import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
-import { Link } from 'react-router-dom';
 
 // Combine all services
 const allServices = [
@@ -67,6 +66,11 @@ export default function ServicesPage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset page when category/subcategory changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategorySlug, selectedSubcategorySlug]);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -433,18 +437,30 @@ export default function ServicesPage() {
                             {service.service}
                           </h3>
                           <div className='mt-2 flex flex-wrap gap-2'>
-                            <Link
-                              to={`/services?category=${service.category.slug}`}
+                            <button
+                              onClick={() => {
+                                setQueryParams({
+                                  category: service.category.slug,
+                                  subcategory: null,
+                                });
+                                setCurrentPage(1);
+                              }}
                               className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
                             >
                               {service.category.name}
-                            </Link>
-                            <Link
-                              to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
+                            </button>
+                            <button
+                              onClick={() => {
+                                setQueryParams({
+                                  category: service.category.slug,
+                                  subcategory: service.subcategory.slug,
+                                });
+                                setCurrentPage(1);
+                              }}
                               className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
                             >
                               {service.subcategory.name}
-                            </Link>
+                            </button>
                           </div>
                         </div>
                         <CheckCircle2
