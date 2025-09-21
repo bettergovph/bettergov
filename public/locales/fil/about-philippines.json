@@ -53,7 +53,7 @@
           "value": "Piso (₱)"
         },
         "timeZone": {
-          "label": "Oras na Zona",
+          "label": "Time Zone",
           "value": "UTC+8 (Philippine Standard Time)"
         },
         "majorCities": {
