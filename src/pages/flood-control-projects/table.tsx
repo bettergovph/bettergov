@@ -357,22 +357,24 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
   const { hits, results } = useHits();
 
   // Sort hits based on current sort field and direction
-  const sortedHits = [...hits].sort((a: any, b: any) => {
-    // Handle special case for ContractCost which needs numeric sorting
-    if (sortField === 'ContractCost') {
-      const costA = parseFloat(a[sortField] || '0');
-      const costB = parseFloat(b[sortField] || '0');
-      return sortDirection === 'asc' ? costA - costB : costB - costA;
+  const sortedHits = [...hits].sort(
+    (a: Record<string, unknown>, b: Record<string, unknown>) => {
+      // Handle special case for ContractCost which needs numeric sorting
+      if (sortField === 'ContractCost') {
+        const costA = parseFloat(a[sortField] || '0');
+        const costB = parseFloat(b[sortField] || '0');
+        return sortDirection === 'asc' ? costA - costB : costB - costA;
+      }
+
+      // String comparison for other fields
+      const valueA = a[sortField]?.toString().toLowerCase() || '';
+      const valueB = b[sortField]?.toString().toLowerCase() || '';
+
+      if (valueA < valueB) return sortDirection === 'asc' ? -1 : 1;
+      if (valueA > valueB) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
     }
-
-    // String comparison for other fields
-    const valueA = a[sortField]?.toString().toLowerCase() || '';
-    const valueB = b[sortField]?.toString().toLowerCase() || '';
-
-    if (valueA < valueB) return sortDirection === 'asc' ? -1 : 1;
-    if (valueA > valueB) return sortDirection === 'asc' ? 1 : -1;
-    return 0;
-  });
+  );
 
   const handleSort = (field: string) => {
     if (sortField === field) {

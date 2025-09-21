@@ -36,8 +36,8 @@ interface Office {
   trunkline?: string;
   website?: string;
   officials: (Official | OfficeDivision)[];
-  bureaus?: any[];
-  attached_agency?: any[];
+  bureaus?: Array<{ name?: string; [key: string]: unknown }>;
+  attached_agency?: Array<{ name?: string; [key: string]: unknown }>;
 }
 
 export default function OtherExecutiveOfficesPage() {
