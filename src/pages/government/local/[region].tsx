@@ -26,11 +26,25 @@ export default function RegionalLGUPage() {
   const allLocalGovUnits = useMemo(() => {
     if (!regionData) return [];
 
-    const units: any[] = [];
+    interface LocalGovUnit {
+      city: string;
+      mayor?: {
+        name: string;
+        contact?: string;
+      };
+      vice_mayor?: {
+        name: string;
+        contact?: string;
+      };
+      type: string;
+      province: string | null;
+    }
+
+    const units: LocalGovUnit[] = [];
 
     // Add direct cities (if any)
     if (regionData.cities) {
-      regionData.cities.forEach((city: any) => {
+      regionData.cities.forEach((city: LocalGovUnit) => {
         units.push({
           ...city,
           type: 'City',
@@ -41,7 +55,17 @@ export default function RegionalLGUPage() {
 
     // Add direct municipalities (if any)
     if (regionData.municipalities) {
-      regionData.municipalities.forEach((municipality: any) => {
+      regionData.municipalities.forEach((municipality: {
+        municipality: string;
+        mayor?: {
+          name: string;
+          contact?: string;
+        };
+        vice_mayor?: {
+          name: string;
+          contact?: string;
+        };
+      }) => {
         units.push({
           city: municipality.municipality,
           mayor: municipality.mayor,
@@ -54,10 +78,24 @@ export default function RegionalLGUPage() {
 
     // Add cities and municipalities from provinces (if any)
     if (regionData.provinces) {
-      regionData.provinces.forEach((province: any) => {
+      regionData.provinces.forEach((province: {
+        province: string;
+        cities?: LocalGovUnit[];
+        municipalities?: {
+          municipality: string;
+          mayor?: {
+            name: string;
+            contact?: string;
+          };
+          vice_mayor?: {
+            name: string;
+            contact?: string;
+          };
+        }[];
+      }) => {
         // Add cities from this province
         if (province.cities) {
-          province.cities.forEach((city: any) => {
+          province.cities.forEach((city: LocalGovUnit) => {
             units.push({
               ...city,
               type: 'City',
@@ -67,7 +105,17 @@ export default function RegionalLGUPage() {
         }
         // Add municipalities from this province
         if (province.municipalities) {
-          province.municipalities.forEach((municipality: any) => {
+          province.municipalities.forEach((municipality: {
+            municipality: string;
+            mayor?: {
+              name: string;
+              contact?: string;
+            };
+            vice_mayor?: {
+              name: string;
+              contact?: string;
+            };
+          }) => {
             units.push({
               city: municipality.municipality,
               mayor: municipality.mayor,
@@ -88,7 +136,7 @@ export default function RegionalLGUPage() {
     if (!searchTerm) return allLocalGovUnits;
 
     return allLocalGovUnits.filter(
-      (unit: any) =>
+      (unit: LocalGovUnit) =>
         unit.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         unit.mayor?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         unit.vice_mayor?.name
@@ -112,7 +160,7 @@ export default function RegionalLGUPage() {
             Region not found
           </h3>
           <p className='text-gray-800'>
-            The region you're looking for doesn't exist or may have been moved.
+            The region you&apos;re looking for doesn&apos;t exist or may have been moved.
           </p>
         </div>
       </>

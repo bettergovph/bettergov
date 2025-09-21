@@ -32,7 +32,10 @@ export default function LocalGovernmentIndex() {
 
       // Count cities and municipalities in provinces (if any)
       if (regionData.provinces) {
-        cityCount += regionData.provinces.reduce((total, province: any) => {
+        cityCount += regionData.provinces.reduce((total, province: {
+          cities?: unknown[];
+          municipalities?: unknown[];
+        }) => {
           const cities = province.cities?.length || 0;
           const municipalities = province.municipalities?.length || 0;
           return total + cities + municipalities;
