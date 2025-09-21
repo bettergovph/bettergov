@@ -2,7 +2,7 @@
 
 ## Reporting Vulnerabilities
 
-If you discover a security vulnerability in BetterGov.ph, please report it responsibly by emailing [bugs@bettergov.ph](mailto:bugs@bettergov.ph).
+If you discover a security vulnerability in BetterGov.ph, please report it responsibly by emailing [security@bettergov.ph](mailto:security@bettergov.ph).
 
 When reporting, please include:
 
@@ -23,4 +23,4 @@ We follow responsible disclosure practices. Please do not publicly disclose the 
 
 ## Contact
 
-For any security-related inquiries, contact us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph).
+For any security-related inquiries, contact us at [security@bettergov.ph](mailto:security@bettergov.ph).
