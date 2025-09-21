@@ -368,7 +368,7 @@ const Ideas: React.FC = () => {
             Have an Idea?
           </h2>
           <p className='text-gray-700 mb-6 max-w-2xl mx-auto'>
-            We're always looking for innovative ways to improve government
+            We&apos;re always looking for innovative ways to improve government
             services and citizen engagement. Submit your ideas via GitHub or
             learn more about our mission.
           </p>

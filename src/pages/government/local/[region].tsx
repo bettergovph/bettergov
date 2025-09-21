@@ -112,7 +112,7 @@ export default function RegionalLGUPage() {
             Region not found
           </h3>
           <p className='text-gray-800'>
-            The region you're looking for doesn't exist or may have been moved.
+            The region you&apos;re looking for doesn&apos;t exist or may have been moved.
           </p>
         </div>
       </>
