@@ -6,10 +6,7 @@ import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
 import {
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
   Search,
@@ -198,7 +195,7 @@ const TableHits: React.FC<{
   const { hits, results } = useHits();
 
   // Sort hits based on current sort field and direction
-  const sortedHits = [...hits].sort((a: any, b: any) => {
+  const sortedHits = [...hits].sort((a: FloodControlHit, b: FloodControlHit) => {
     // Handle special case for ContractCost which needs numeric sorting
     if (sortField === 'ContractCost') {
       const costA = parseFloat(a[sortField] || '0');
