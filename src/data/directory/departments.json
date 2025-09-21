@@ -896,7 +896,7 @@
         "email": "asec.rec007@dar.gov.ph"
       },
       {
-        "name": "vacant",
+        "name": "VACANT",
         "role": "Policy, Planning and Research Office",
         "contact": "8426-9288",
         "email": "asec.ppro@dar.gov.ph"
@@ -5328,7 +5328,7 @@
       }
     ],
     "public_assistance_desk": {
-      "director": "vacant",
+      "director": "VACANT",
       "office": "Defense Communications Service",
       "contact": "8982-5611"
     },
@@ -5506,7 +5506,7 @@
         "email": "malig.medmier@dpwh.gov.ph"
       },
       {
-        "name": "vacant",
+        "name": "VACANT",
         "role": "Legal Services",
         "contact": "5304-3232",
         "email": "versoza.mel_john@dpwh.gov.ph"
