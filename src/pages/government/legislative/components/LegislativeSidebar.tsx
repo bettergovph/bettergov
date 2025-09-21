@@ -29,7 +29,8 @@ export default function LegislativeSidebar() {
               <Link
                 to='/government/legislative/senate-of-the-philippines-20th-congress'
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  location.pathname === '/government/legislative/senate-of-the-philippines-20th-congress'
+                  location.pathname ===
+                  '/government/legislative/senate-of-the-philippines-20th-congress'
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
@@ -64,7 +65,8 @@ export default function LegislativeSidebar() {
               <Link
                 to='/government/legislative/house-of-representatives-20th-congress'
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  location.pathname === '/government/legislative/house-of-representatives-20th-congress'
+                  location.pathname ===
+                  '/government/legislative/house-of-representatives-20th-congress'
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}

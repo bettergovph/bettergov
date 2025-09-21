@@ -18,14 +18,20 @@ export default function LocalSidebar() {
 
     // Count cities and municipalities in provinces (if any)
     if (regionData.provinces) {
-      cityCount += regionData.provinces.reduce((total, province: {
-        cities?: unknown[];
-        municipalities?: unknown[];
-      }) => {
-        const cities = province.cities?.length || 0;
-        const municipalities = province.municipalities?.length || 0;
-        return total + cities + municipalities;
-      }, 0);
+      cityCount += regionData.provinces.reduce(
+        (
+          total,
+          province: {
+            cities?: unknown[];
+            municipalities?: unknown[];
+          }
+        ) => {
+          const cities = province.cities?.length || 0;
+          const municipalities = province.municipalities?.length || 0;
+          return total + cities + municipalities;
+        },
+        0
+      );
     }
 
     return {

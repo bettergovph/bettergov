@@ -55,33 +55,8 @@ export default function RegionalLGUPage() {
 
     // Add direct municipalities (if any)
     if (regionData.municipalities) {
-      regionData.municipalities.forEach((municipality: {
-        municipality: string;
-        mayor?: {
-          name: string;
-          contact?: string;
-        };
-        vice_mayor?: {
-          name: string;
-          contact?: string;
-        };
-      }) => {
-        units.push({
-          city: municipality.municipality,
-          mayor: municipality.mayor,
-          vice_mayor: municipality.vice_mayor,
-          type: 'Municipality',
-          province: null, // These are regional municipalities, not provincial
-        });
-      });
-    }
-
-    // Add cities and municipalities from provinces (if any)
-    if (regionData.provinces) {
-      regionData.provinces.forEach((province: {
-        province: string;
-        cities?: LocalGovUnit[];
-        municipalities?: {
+      regionData.municipalities.forEach(
+        (municipality: {
           municipality: string;
           mayor?: {
             name: string;
@@ -91,21 +66,25 @@ export default function RegionalLGUPage() {
             name: string;
             contact?: string;
           };
-        }[];
-      }) => {
-        // Add cities from this province
-        if (province.cities) {
-          province.cities.forEach((city: LocalGovUnit) => {
-            units.push({
-              ...city,
-              type: 'City',
-              province: province.province,
-            });
+        }) => {
+          units.push({
+            city: municipality.municipality,
+            mayor: municipality.mayor,
+            vice_mayor: municipality.vice_mayor,
+            type: 'Municipality',
+            province: null, // These are regional municipalities, not provincial
           });
         }
-        // Add municipalities from this province
-        if (province.municipalities) {
-          province.municipalities.forEach((municipality: {
+      );
+    }
+
+    // Add cities and municipalities from provinces (if any)
+    if (regionData.provinces) {
+      regionData.provinces.forEach(
+        (province: {
+          province: string;
+          cities?: LocalGovUnit[];
+          municipalities?: {
             municipality: string;
             mayor?: {
               name: string;
@@ -115,17 +94,44 @@ export default function RegionalLGUPage() {
               name: string;
               contact?: string;
             };
-          }) => {
-            units.push({
-              city: municipality.municipality,
-              mayor: municipality.mayor,
-              vice_mayor: municipality.vice_mayor,
-              type: 'Municipality',
-              province: province.province,
+          }[];
+        }) => {
+          // Add cities from this province
+          if (province.cities) {
+            province.cities.forEach((city: LocalGovUnit) => {
+              units.push({
+                ...city,
+                type: 'City',
+                province: province.province,
+              });
             });
-          });
+          }
+          // Add municipalities from this province
+          if (province.municipalities) {
+            province.municipalities.forEach(
+              (municipality: {
+                municipality: string;
+                mayor?: {
+                  name: string;
+                  contact?: string;
+                };
+                vice_mayor?: {
+                  name: string;
+                  contact?: string;
+                };
+              }) => {
+                units.push({
+                  city: municipality.municipality,
+                  mayor: municipality.mayor,
+                  vice_mayor: municipality.vice_mayor,
+                  type: 'Municipality',
+                  province: province.province,
+                });
+              }
+            );
+          }
         }
-      });
+      );
     }
 
     return units;
@@ -160,7 +166,8 @@ export default function RegionalLGUPage() {
             Region not found
           </h3>
           <p className='text-gray-800'>
-            The region you&apos;re looking for doesn&apos;t exist or may have been moved.
+            The region you&apos;re looking for doesn&apos;t exist or may have
+            been moved.
           </p>
         </div>
       </>
