@@ -50,31 +50,33 @@ const { searchClient } = instantMeiliSearch(
   }
 );
 
+interface SearchHit {
+  name?: string;
+  office_name?: string;
+  office?: string;
+  service?: string;
+  website?: string;
+  category?:
+    | string
+    | {
+        name: string;
+        slug: string;
+      };
+  address?: string;
+  subcategory?:
+    | string
+    | {
+        name: string;
+        slug: string;
+      };
+  description?: string;
+  slug?: string;
+  url?: string;
+  type?: string;
+}
+
 interface HitProps {
-  hit: {
-    name?: string;
-    office_name?: string;
-    office?: string;
-    service?: string;
-    website?: string;
-    category?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    address?: string;
-    subcategory?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    description?: string;
-    slug?: string;
-    url?: string;
-    type?: string;
-  };
+  hit: SearchHit;
 }
 
 const Hit: React.FC<HitProps> = ({ hit }) => {
@@ -94,7 +96,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
         </h2>
         {hit.description && (
           <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as any} />
+            <Snippet attribute='description' hit={hit as SearchHit} />
           </p>
         )}
         <div className='text-xs text-gray-800'>
@@ -102,7 +104,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
             <span>
               <Highlight
                 attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as any}
+                hit={hit as SearchHit}
               />
               {' > '}
             </span>
@@ -113,13 +115,13 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 attribute={
                   hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
                 }
-                hit={hit as any}
+                hit={hit as SearchHit}
               />{' '}
             </span>
           )}
           {hit.address && (
             <span>
-              <Highlight attribute='address' hit={hit as any} />
+              <Highlight attribute='address' hit={hit as SearchHit} />
               {' > '}
             </span>
           )}
