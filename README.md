@@ -48,6 +48,11 @@ We're always looking for passionate individuals to help improve BetterGov.ph. We
 
 If you're interested in contributing, please reach out to us at [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph) or open an issue in this repository.
 
+## Code of Conduct
+
+We are committed to fostering a welcoming and respectful community.  
+Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) before participating.
+
 ## Contributing
 
 We welcome contributions from everyone!  
