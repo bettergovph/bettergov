@@ -1,10 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Globe, Building2, Landmark } from 'lucide-react';
-import { useState } from 'react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function DiplomaticSidebar() {
-  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
 
   // Check if a path is active

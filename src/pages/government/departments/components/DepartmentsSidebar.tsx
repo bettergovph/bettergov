@@ -20,7 +20,7 @@ interface DepartmentsSidebarProps {
 export default function DepartmentsSidebar({
   onDepartmentSelect,
 }: DepartmentsSidebarProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm] = useState('');
   const { department: departmentParam } = useParams();
   const navigate = useNavigate();
   const departments = departmentsData as Department[];
