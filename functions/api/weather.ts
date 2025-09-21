@@ -1,4 +1,4 @@
-import { Env, WeatherData } from '../types';
+import { Env } from '../types';
 
 // Interface for Philippine city coordinates
 interface CityCoordinates {
@@ -312,8 +312,7 @@ export async function onRequest(context: {
 
 export async function scheduled(
   controller: ScheduledController,
-  env: Env,
-  ctx: ExecutionContext
+  env: Env
 ) {
   try {
     // Fetch weather data for all cities

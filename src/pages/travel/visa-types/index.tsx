@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FileText,
-  Globe,
-  ExternalLink,
   ChevronRight,
   Search,
   Briefcase,
@@ -14,7 +12,6 @@ import {
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '../../../types/visa';
-import Button from '../../../components/ui/Button';
 
 interface VisaCategory {
   id: string;
