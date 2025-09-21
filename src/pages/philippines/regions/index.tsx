@@ -106,7 +106,7 @@ const PhilippinesRegions: React.FC = () => {
                             <MapPin className='h-4 w-4 mr-1' />
                             <span>
                               {t(
-                                'sections.administrativeRegions.localGovUnits'
+                                'regions.sections.administrativeRegions.localGovUnits'
                               )}
                             </span>
                           </div>
