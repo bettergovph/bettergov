@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Eye,
   Keyboard,
@@ -11,13 +11,13 @@ import {
   CheckCircle,
   AlertCircle,
   Info,
-} from 'lucide-react'
-import SEO from '../../components/SEO'
+} from 'lucide-react';
+import SEO from '../../components/SEO';
 
 const AccessibilityPage: React.FC = () => {
   const accessibilityFeatures = [
     {
-      icon: <Eye className="h-6 w-6" />,
+      icon: <Eye className='h-6 w-6' />,
       title: 'Visual Accessibility',
       features: [
         'High contrast color schemes',
@@ -28,7 +28,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Keyboard className="h-6 w-6" />,
+      icon: <Keyboard className='h-6 w-6' />,
       title: 'Keyboard Navigation',
       features: [
         'Full keyboard navigation support',
@@ -39,7 +39,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Volume2 className="h-6 w-6" />,
+      icon: <Volume2 className='h-6 w-6' />,
       title: 'Audio & Screen Reader Support',
       features: [
         'Compatible with NVDA, JAWS, and VoiceOver',
@@ -50,7 +50,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <MousePointer className="h-6 w-6" />,
+      icon: <MousePointer className='h-6 w-6' />,
       title: 'Motor Accessibility',
       features: [
         'Large click targets (minimum 44px)',
@@ -61,7 +61,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Smartphone className="h-6 w-6" />,
+      icon: <Smartphone className='h-6 w-6' />,
       title: 'Mobile Accessibility',
       features: [
         'Responsive design for all devices',
@@ -72,7 +72,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Globe className="h-6 w-6" />,
+      icon: <Globe className='h-6 w-6' />,
       title: 'Language & Cognitive Support',
       features: [
         'Clear and simple language',
@@ -82,7 +82,7 @@ const AccessibilityPage: React.FC = () => {
         'Help and documentation available',
       ],
     },
-  ]
+  ];
 
   const wcagCompliance = [
     {
@@ -103,34 +103,34 @@ const AccessibilityPage: React.FC = () => {
       description:
         'We are working towards full compliance with European accessibility standards.',
     },
-  ]
+  ];
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'compliant':
-        return <CheckCircle className="h-5 w-5 text-green-600" />
+        return <CheckCircle className='h-5 w-5 text-green-600' />;
       case 'partial':
-        return <AlertCircle className="h-5 w-5 text-yellow-600" />
+        return <AlertCircle className='h-5 w-5 text-yellow-600' />;
       default:
-        return <Info className="h-5 w-5 text-blue-600" />
+        return <Info className='h-5 w-5 text-blue-600' />;
     }
-  }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'compliant':
-        return 'bg-green-50 border-green-200'
+        return 'bg-green-50 border-green-200';
       case 'partial':
-        return 'bg-yellow-50 border-yellow-200'
+        return 'bg-yellow-50 border-yellow-200';
       default:
-        return 'bg-blue-50 border-blue-200'
+        return 'bg-blue-50 border-blue-200';
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className='min-h-screen bg-gray-50 py-12'>
       <SEO
-        title="Accessibility Statement | BetterGov.ph"
+        title='Accessibility Statement | BetterGov.ph'
         description="Learn about BetterGov.ph's commitment to web accessibility, including WCAG compliance, accessibility features, and how to request assistance."
         keywords={[
           'accessibility',
@@ -142,15 +142,15 @@ const AccessibilityPage: React.FC = () => {
         ]}
       />
 
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+      <div className='container mx-auto px-4'>
+        <div className='max-w-4xl mx-auto'>
           {/* Header */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8 border-b border-gray-200">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8 border-b border-gray-200'>
+              <h1 className='text-3xl font-bold text-gray-900 mb-4'>
                 Accessibility Statement
               </h1>
-              <p className="text-lg text-gray-800">
+              <p className='text-lg text-gray-800'>
                 BetterGov.ph is committed to ensuring digital accessibility for
                 people with disabilities. We are continually improving the user
                 experience for everyone and applying the relevant accessibility
@@ -160,12 +160,12 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Commitment Section */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
                 Our Commitment
               </h2>
-              <div className="prose prose-lg text-gray-800">
+              <div className='prose prose-lg text-gray-800'>
                 <p>
                   We believe that everyone should have equal access to
                   government information and services. Our website is designed
@@ -183,30 +183,30 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Accessibility Features */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Accessibility Features
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {accessibilityFeatures.map((feature, index) => (
                   <div
                     key={index}
-                    className="border border-gray-200 rounded-lg p-6"
+                    className='border border-gray-200 rounded-lg p-6'
                   >
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 rounded-md bg-primary-50 text-primary-600 mr-3">
+                    <div className='flex items-center mb-4'>
+                      <div className='p-2 rounded-md bg-primary-50 text-primary-600 mr-3'>
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className='text-lg font-semibold text-gray-900'>
                         {feature.title}
                       </h3>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start">
-                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                          <span className="text-sm text-gray-800">{item}</span>
+                        <li key={itemIndex} className='flex items-start'>
+                          <CheckCircle className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
+                          <span className='text-sm text-gray-800'>{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -217,12 +217,12 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Standards Compliance */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Standards Compliance
               </h2>
-              <div className="space-y-4">
+              <div className='space-y-4'>
                 {wcagCompliance.map((standard, index) => (
                   <div
                     key={index}
@@ -230,13 +230,13 @@ const AccessibilityPage: React.FC = () => {
                       standard.status
                     )}`}
                   >
-                    <div className="flex items-center mb-2">
+                    <div className='flex items-center mb-2'>
                       {getStatusIcon(standard.status)}
-                      <h3 className="text-lg font-semibold text-gray-900 ml-2">
+                      <h3 className='text-lg font-semibold text-gray-900 ml-2'>
                         {standard.level}
                       </h3>
                     </div>
-                    <p className="text-gray-800">{standard.description}</p>
+                    <p className='text-gray-800'>{standard.description}</p>
                   </div>
                 ))}
               </div>
@@ -244,58 +244,58 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Keyboard Shortcuts */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Keyboard Shortcuts
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <div className='space-y-3'>
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>
                       Skip to main content
                     </span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Tab
                     </kbd>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>
                       Navigate links
                     </span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Tab / Shift+Tab
                     </kbd>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>
                       Activate link/button
                     </span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Enter / Space
                     </kbd>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">Search</span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                <div className='space-y-3'>
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>Search</span>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Ctrl+K
                     </kbd>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>
                       Close modal/menu
                     </span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Escape
                     </kbd>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-medium text-gray-900">
+                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                    <span className='font-medium text-gray-900'>
                       Navigate menu items
                     </span>
-                    <kbd className="px-2 py-1 bg-gray-200 rounded text-sm font-mono">
+                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
                       Arrow Keys
                     </kbd>
                   </div>
@@ -305,12 +305,12 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Feedback and Support */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Feedback and Support
               </h2>
-              <div className="prose prose-lg text-gray-800 mb-6">
+              <div className='prose prose-lg text-gray-800 mb-6'>
                 <p>
                   We welcome your feedback on the accessibility of BetterGov.ph.
                   If you encounter accessibility barriers or have suggestions
@@ -318,38 +318,38 @@ const AccessibilityPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="border border-gray-200 rounded-lg p-6">
-                  <div className="flex items-center mb-4">
-                    <Mail className="h-6 w-6 text-primary-600 mr-3" />
-                    <h3 className="text-lg font-semibold text-gray-900">
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div className='border border-gray-200 rounded-lg p-6'>
+                  <div className='flex items-center mb-4'>
+                    <Mail className='h-6 w-6 text-primary-600 mr-3' />
+                    <h3 className='text-lg font-semibold text-gray-900'>
                       Email Support
                     </h3>
                   </div>
-                  <p className="text-gray-800 mb-3">
+                  <p className='text-gray-800 mb-3'>
                     Send us your accessibility feedback or request assistance.
                   </p>
                   <a
-                    href="mailto:accessibility@bettergov.ph"
-                    className="text-primary-600 hover:text-primary-700 font-medium"
+                    href='mailto:accessibility@bettergov.ph'
+                    className='text-primary-600 hover:text-primary-700 font-medium'
                   >
                     accessibility@bettergov.ph
                   </a>
                 </div>
 
-                <div className="border border-gray-200 rounded-lg p-6">
-                  <div className="flex items-center mb-4">
-                    <Phone className="h-6 w-6 text-primary-600 mr-3" />
-                    <h3 className="text-lg font-semibold text-gray-900">
+                <div className='border border-gray-200 rounded-lg p-6'>
+                  <div className='flex items-center mb-4'>
+                    <Phone className='h-6 w-6 text-primary-600 mr-3' />
+                    <h3 className='text-lg font-semibold text-gray-900'>
                       Phone Support
                     </h3>
                   </div>
-                  <p className="text-gray-800 mb-3">
+                  <p className='text-gray-800 mb-3'>
                     Call us for immediate accessibility assistance.
                   </p>
                   <a
-                    href="tel:+63-2-8888-1000"
-                    className="text-primary-600 hover:text-primary-700 font-medium"
+                    href='tel:+63-2-8888-1000'
+                    className='text-primary-600 hover:text-primary-700 font-medium'
                   >
                     +63 (2) 8888-1000
                   </a>
@@ -359,12 +359,12 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Alternative Formats */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+            <div className='p-6 md:p-8'>
+              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Alternative Formats
               </h2>
-              <div className="prose prose-lg text-gray-800">
+              <div className='prose prose-lg text-gray-800'>
                 <p>
                   If you need information from this website in an alternative
                   format, such as:
@@ -386,13 +386,13 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Last Updated */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div className="p-6 md:p-8 text-center">
-              <p className="text-sm text-gray-800">
+          <div className='bg-white rounded-xl shadow-sm overflow-hidden'>
+            <div className='p-6 md:p-8 text-center'>
+              <p className='text-sm text-gray-800'>
                 This accessibility statement was last updated on{' '}
-                <time dateTime="2024-01-15">January 15, 2024</time>.
+                <time dateTime='2024-01-15'>January 15, 2024</time>.
               </p>
-              <p className="text-sm text-gray-800 mt-2">
+              <p className='text-sm text-gray-800 mt-2'>
                 We review and update this statement regularly to ensure it
                 remains accurate and current.
               </p>
@@ -401,7 +401,7 @@ const AccessibilityPage: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AccessibilityPage
+export default AccessibilityPage;
