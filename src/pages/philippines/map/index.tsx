@@ -256,6 +256,8 @@ const PhilippinesMap: React.FC = () => {
         <MapContainer
           center={initialCenter}
           zoom={initialZoom}
+          ref={mapRef}
+          zoomControl={false}
           style={{ height: '100%', width: '100%' }}
           // whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
           className='z-0'
@@ -284,8 +286,6 @@ const PhilippinesMap: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* Details Panel */}
 
       {selectedRegion && (
         <div

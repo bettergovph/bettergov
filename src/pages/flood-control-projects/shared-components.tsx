@@ -20,6 +20,8 @@ export interface FilterDropdownProps {
   value: string;
   onChange: (value: string) => void;
   searchable?: boolean;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 export const FilterDropdown: React.FC<FilterDropdownProps> = ({
@@ -28,8 +30,9 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
   value,
   onChange,
   searchable = false,
+  isOpen,
+  onToggle,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredOptions =
@@ -44,7 +47,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
       <button
         type='button'
         className='w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded-md bg-white text-sm'
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onToggle}
       >
         <span className='truncate'>{value ? value : `Select ${name}`}</span>
         <ChevronLeft
@@ -77,7 +80,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }`}
                 onClick={() => {
                   onChange('');
-                  setIsOpen(false);
+                  onToggle();
                 }}
               >
                 All
@@ -92,7 +95,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
                   }`}
                   onClick={() => {
                     onChange(option.value);
-                    setIsOpen(false);
+                    onToggle();
                   }}
                 >
                   <div className='flex justify-between items-center'>

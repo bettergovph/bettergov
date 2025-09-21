@@ -467,6 +467,14 @@ const FloodControlProjects: React.FC = () => {
   // Track whether filters or search are applied to conditionally render InstantSearch
   const [filtersApplied, setFiltersApplied] = useState(false);
 
+  // State to manage which dropdown is open
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  // Handle dropdown toggle
+  const handleDropdownToggle = (dropdownName: string) => {
+    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  };
+
   // Precalculated chart data for initial load without Meilisearch
   const yearlyChartData = infraYearData.InfraYear.sort((a, b) =>
     a.value.localeCompare(b.value)
@@ -637,6 +645,8 @@ const FloodControlProjects: React.FC = () => {
                     options={infraYearData.InfraYear}
                     value={filters.InfraYear}
                     onChange={value => handleFilterChange('InfraYear', value)}
+                    isOpen={openDropdown === 'InfraYear'}
+                    onToggle={() => handleDropdownToggle('InfraYear')}
                   />
                 </div>
 
@@ -650,6 +660,8 @@ const FloodControlProjects: React.FC = () => {
                     value={filters.Region}
                     onChange={value => handleFilterChange('Region', value)}
                     searchable
+                    isOpen={openDropdown === 'Region'}
+                    onToggle={() => handleDropdownToggle('Region')}
                   />
                 </div>
 
@@ -663,6 +675,8 @@ const FloodControlProjects: React.FC = () => {
                     value={filters.Province}
                     onChange={value => handleFilterChange('Province', value)}
                     searchable
+                    isOpen={openDropdown === 'Province'}
+                    onToggle={() => handleDropdownToggle('Province')}
                   />
                 </div>
 
@@ -676,6 +690,8 @@ const FloodControlProjects: React.FC = () => {
                     value={filters.TypeofWork}
                     onChange={value => handleFilterChange('TypeofWork', value)}
                     searchable
+                    isOpen={openDropdown === 'TypeofWork'}
+                    onToggle={() => handleDropdownToggle('TypeofWork')}
                   />
                 </div>
 
@@ -691,6 +707,10 @@ const FloodControlProjects: React.FC = () => {
                       handleFilterChange('DistrictEngineeringOffice', value)
                     }
                     searchable
+                    isOpen={openDropdown === 'DistrictEngineeringOffice'}
+                    onToggle={() =>
+                      handleDropdownToggle('DistrictEngineeringOffice')
+                    }
                   />
                 </div>
 
@@ -706,6 +726,8 @@ const FloodControlProjects: React.FC = () => {
                       handleFilterChange('LegislativeDistrict', value)
                     }
                     searchable
+                    isOpen={openDropdown === 'LegislativeDistrict'}
+                    onToggle={() => handleDropdownToggle('LegislativeDistrict')}
                   />
                 </div>
               </div>
