@@ -1,0 +1,232 @@
+{
+  "about": {
+    "hero": {
+      "title": "About the Philippines",
+      "description": "Discover the Pearl of the Orient Seas, a nation of vibrant culture, rich history, and natural wonders spread across thousands of islands."
+    },
+    "facts": {
+      "title": "Quick Facts",
+      "items": {
+        "geography": {
+          "title": "Geography",
+          "description": "An archipelago of over 7,641 islands located in Southeast Asia"
+        },
+        "population": {
+          "title": "Population",
+          "description": "Home to over 110 million people across diverse ethnic groups"
+        },
+        "capital": {
+          "title": "Capital",
+          "description": "Manila serves as the capital, with Metro Manila as the economic center"
+        },
+        "landscape": {
+          "title": "Landscape",
+          "description": "Features mountains, volcanoes, tropical rainforests, and beautiful beaches"
+        },
+        "climate": {
+          "title": "Climate",
+          "description": "Tropical maritime climate with three distinct seasons"
+        }
+      }
+    },
+    "overview": {
+      "title": "Overview",
+      "paragraphs": [
+        "The Philippines is a sovereign archipelagic country located in Southeast Asia, comprising over 7,641 islands. Named after King Philip II of Spain, the country has a rich history spanning thousands of years, from ancient indigenous cultures to colonial periods under Spanish and American rule, leading to its independence in 1946.",
+        "Today, the Philippines stands as one of Southeast Asia's most dynamic economies, blending traditional values with modern development. The country is known for its warm hospitality, diverse cultural heritage, stunning natural landscapes, and vibrant democracy.",
+        "Filipino culture is a unique fusion of indigenous, Asian, European, and American influences, reflected in its art, music, cuisine, and traditions. The nation's biodiversity, featuring unique species and ecosystems, makes it one of the world's most environmentally significant countries."
+      ]
+    },
+    "keyInformation": {
+      "title": "Key Information",
+      "items": {
+        "officialLanguages": {
+          "label": "Official Languages",
+          "value": "Filipino, English"
+        },
+        "government": {
+          "label": "Government",
+          "value": "Presidential Constitutional Republic"
+        },
+        "currency": {
+          "label": "Currency",
+          "value": "Philippine Peso (₱)"
+        },
+        "timeZone": {
+          "label": "Time Zone",
+          "value": "UTC+8 (Philippine Standard Time)"
+        },
+        "majorCities": {
+          "label": "Major Cities",
+          "value": "Manila, Quezon City, Davao, Cebu"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Related Links",
+      "items": {
+        "history": "History",
+        "culture": "Culture",
+        "regions": "Regions",
+        "tourism": "Tourism"
+      }
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "History of the Philippines",
+      "description": "Journey through time and discover the rich tapestry of events, people, and movements that shaped the Philippine nation.",
+      "photoCredit": "Photo credit"
+    },
+    "timeline": {
+      "title": "Historical Timeline",
+      "periods": {
+        "independence": {
+          "title": "Independence and Modern Era",
+          "period": "1946-Present",
+          "description": "Independent republic facing challenges and achievements in nation-building"
+        },
+        "american": {
+          "title": "American Period",
+          "period": "1898-1946",
+          "description": "American administration, introducing modern education and democratic institutions"
+        },
+        "spanish": {
+          "title": "Spanish Colonial Era",
+          "period": "1521-1898",
+          "description": "Over 300 years of Spanish rule, introducing Christianity and colonial institutions"
+        },
+        "preColonial": {
+          "title": "Pre-Colonial Period",
+          "period": "Before 1521",
+          "description": "Indigenous peoples with advanced societies, trade networks, and rich cultures"
+        }
+      }
+    },
+    "overview": {
+      "title": "Historical Overview",
+      "paragraphs": [
+        "The Philippines' history spans thousands of years, beginning with the migration of Austronesian peoples. These early settlers developed sophisticated societies, trading with various Asian civilizations and developing unique cultural traditions.",
+        "The arrival of Ferdinand Magellan in 1521 marked the beginning of Spanish colonization, which would last for over three centuries. This period saw the widespread adoption of Christianity and the establishment of colonial institutions that would significantly influence Filipino society.",
+        "Following the Spanish-American War, the Philippines came under American rule, leading to significant changes in education, governance, and society. The country achieved independence in 1946 and has since worked to build a modern nation while preserving its rich cultural heritage."
+      ]
+    },
+    "keyFigures": {
+      "title": "Key Historical Figures",
+      "figures": {
+        "rizal": {
+          "name": "José Rizal",
+          "description": "National Hero, Writer, Reformist"
+        },
+        "bonifacio": {
+          "name": "Andrés Bonifacio",
+          "description": "Revolutionary Leader"
+        },
+        "aguinaldo": {
+          "name": "Emilio Aguinaldo",
+          "description": "First President"
+        },
+        "aquino": {
+          "name": "Corazon Aquino",
+          "description": "Democracy Icon, Former President"
+        }
+      }
+    },
+    "importantDates": {
+      "title": "Important Dates",
+      "dates": {
+        "magellan": {
+          "date": "March 16, 1521",
+          "event": "Arrival of Magellan"
+        },
+        "independence": {
+          "date": "June 12, 1898",
+          "event": "Declaration of Independence"
+        },
+        "recognition": {
+          "date": "July 4, 1946",
+          "event": "Recognition of Independence"
+        },
+        "edsa": {
+          "date": "February 25, 1986",
+          "event": "EDSA People Power Revolution"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Related Links",
+      "items": {
+        "about": "About",
+        "culture": "Culture",
+        "regions": "Regions",
+        "tourism": "Tourism"
+      }
+    }
+  },
+  "regions": {
+    "hero": {
+      "title": "Regions of the Philippines",
+      "description": "Explore all {{count}} administrative regions of the Philippines and their local government units."
+    },
+    "sections": {
+      "administrativeRegions": {
+        "title": "Administrative Regions",
+        "localGovUnits": "Local Government Units",
+        "viewLGUs": "View LGUs"
+      },
+      "regionalOverview": {
+        "title": "Regional Overview",
+        "paragraphs": [
+          "The Philippines is divided into three main geographical divisions: Luzon, Visayas, and Mindanao. These are further subdivided into 18 regions, each with its own administrative center, cultural identity, and economic focus.",
+          "Each region showcases unique traditions, dialects, and cuisines, contributing to the country's rich cultural tapestry. From the mountain tribes of the Cordilleras to the seafaring communities of the Visayas, the diversity of Filipino regional cultures is remarkable.",
+          "The regions also vary in their economic activities, from the industrial and service-oriented National Capital Region to the agricultural heartlands of Central Luzon and the resource-rich provinces of Mindanao."
+        ]
+      }
+    },
+    "sidebar": {
+      "quickFacts": {
+        "title": "Quick Facts",
+        "totalRegions": {
+          "label": "Total Regions",
+          "value": "18 Administrative Regions"
+        },
+        "provinces": {
+          "label": "Provinces",
+          "value": "82 Provinces"
+        },
+        "cities": {
+          "label": "Cities",
+          "value": "149 Cities"
+        },
+        "municipalities": {
+          "label": "Municipalities",
+          "value": "1,493 Municipalities"
+        }
+      },
+      "regionalLanguages": {
+        "title": "Regional Languages",
+        "regions": {
+          "luzon": {
+            "name": "Luzon",
+            "languages": "Tagalog, Ilocano, Bicolano"
+          },
+          "visayas": {
+            "name": "Visayas",
+            "languages": "Cebuano, Hiligaynon, Waray"
+          },
+          "mindanao": {
+            "name": "Mindanao",
+            "languages": "Cebuano, Maguindanaon, Tausug"
+          }
+        }
+      },
+      "relatedLinks": {
+        "title": "Related Links",
+        "interactiveMap": "Interactive Map",
+        "localGovernmentUnits": "Local Government Units",
+        "governmentDepartments": "Government Departments",
+        "aboutPhilippines": "About the Philippines"
+      }
+    }
+  }
+}
