@@ -6,10 +6,7 @@ import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
 import {
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
   Search,

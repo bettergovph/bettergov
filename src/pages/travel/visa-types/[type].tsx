@@ -5,7 +5,6 @@ import {
   ExternalLink,
   FileText,
   AlertCircle,
-  Globe,
   Search,
   Briefcase,
   Users,
