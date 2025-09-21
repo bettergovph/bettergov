@@ -1,15 +1,15 @@
 // SEO data generators for government pages
 
 export interface GovernmentSEOData {
-  title: string
-  description: string
-  keywords: string[]
-  canonical: string
-  jsonLd?: object
+  title: string;
+  description: string;
+  keywords: string[];
+  canonical: string;
+  jsonLd?: object;
   breadcrumbs?: Array<{
-    name: string
-    url: string
-  }>
+    name: string;
+    url: string;
+  }>;
 }
 
 const baseKeywords = [
@@ -18,11 +18,11 @@ const baseKeywords = [
   'Government Services',
   'Republic of the Philippines',
   'Official Government Portal',
-]
+];
 
 export function getExecutiveSEOData(officeName?: string): GovernmentSEOData {
-  const baseTitle = 'Executive Branch'
-  const title = officeName ? `${officeName} - ${baseTitle}` : baseTitle
+  const baseTitle = 'Executive Branch';
+  const title = officeName ? `${officeName} - ${baseTitle}` : baseTitle;
 
   return {
     title,
@@ -78,16 +78,16 @@ export function getExecutiveSEOData(officeName?: string): GovernmentSEOData {
         addressLocality: 'Manila',
       },
     },
-  }
+  };
 }
 
 export function getDepartmentsSEOData(
   departmentName?: string
 ): GovernmentSEOData {
-  const baseTitle = 'Government Departments'
+  const baseTitle = 'Government Departments';
   const title = departmentName
     ? `${departmentName.replace('DEPARTMENT OF ', '')} - ${baseTitle}`
-    : baseTitle
+    : baseTitle;
 
   return {
     title,
@@ -136,14 +136,14 @@ export function getDepartmentsSEOData(
         addressLocality: 'Manila',
       },
     },
-  }
+  };
 }
 
 export function getConstitutionalSEOData(
   officeName?: string
 ): GovernmentSEOData {
-  const baseTitle = 'Constitutional Bodies'
-  const title = officeName ? `${officeName} - ${baseTitle}` : baseTitle
+  const baseTitle = 'Constitutional Bodies';
+  const title = officeName ? `${officeName} - ${baseTitle}` : baseTitle;
 
   return {
     title,
@@ -187,12 +187,12 @@ export function getConstitutionalSEOData(
         ? `${officeName} - Philippine Constitutional Body`
         : 'A directory of Philippine Constitutional Bodies',
     },
-  }
+  };
 }
 
 export function getLegislativeSEOData(chamberName?: string): GovernmentSEOData {
-  const baseTitle = 'Legislative Branch'
-  const title = chamberName ? `${chamberName} - ${baseTitle}` : baseTitle
+  const baseTitle = 'Legislative Branch';
+  const title = chamberName ? `${chamberName} - ${baseTitle}` : baseTitle;
 
   return {
     title,
@@ -235,12 +235,12 @@ export function getLegislativeSEOData(chamberName?: string): GovernmentSEOData {
         ? `${chamberName} - Philippine Legislative Branch`
         : 'A directory of the Philippine Legislative Branch',
     },
-  }
+  };
 }
 
 export function getDiplomaticSEOData(category?: string): GovernmentSEOData {
-  const baseTitle = 'Diplomatic Missions'
-  const title = category ? `${category} - ${baseTitle}` : baseTitle
+  const baseTitle = 'Diplomatic Missions';
+  const title = category ? `${category} - ${baseTitle}` : baseTitle;
 
   return {
     title,
@@ -285,12 +285,12 @@ export function getDiplomaticSEOData(category?: string): GovernmentSEOData {
         ? `Philippine ${category} - Diplomatic Missions`
         : 'A directory of Philippine Diplomatic Missions',
     },
-  }
+  };
 }
 
 export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
-  const baseTitle = 'Local Government Units'
-  const title = regionName ? `${regionName} - ${baseTitle}` : baseTitle
+  const baseTitle = 'Local Government Units';
+  const title = regionName ? `${regionName} - ${baseTitle}` : baseTitle;
 
   return {
     title,
@@ -346,5 +346,5 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
         name: 'Philippines',
       },
     },
-  }
+  };
 }

@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import * as LucideIcons from 'lucide-react'
-import { Card, CardHeader, CardContent } from '../ui/Card'
-import { WeatherData, ForexRate } from '../../types'
-import { useTranslation } from 'react-i18next'
-import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget'
-import { fetchWeatherData } from '../../lib/weather'
-import { fetchForexData } from '../../lib/forex'
+import React, { useState, useEffect } from 'react';
+import * as LucideIcons from 'lucide-react';
+import { Card, CardHeader, CardContent } from '../ui/Card';
+import { WeatherData, ForexRate } from '../../types';
+import { useTranslation } from 'react-i18next';
+import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
+import { fetchWeatherData } from '../../lib/weather';
+import { fetchForexData } from '../../lib/forex';
 
 const InfoWidgets: React.FC = () => {
-  const { t } = useTranslation('common')
-  const [weatherData, setWeatherData] = useState<WeatherData[]>([])
-  const [forexRates, setForexRates] = useState<ForexRate[]>([])
-  const [isLoadingWeather, setIsLoadingWeather] = useState<boolean>(true)
-  const [isLoadingForex, setIsLoadingForex] = useState<boolean>(true)
-  const [weatherError, setWeatherError] = useState<string | null>(null)
-  const [forexError, setForexError] = useState<string | null>(null)
+  const { t } = useTranslation('common');
+  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
+  const [forexRates, setForexRates] = useState<ForexRate[]>([]);
+  const [isLoadingWeather, setIsLoadingWeather] = useState<boolean>(true);
+  const [isLoadingForex, setIsLoadingForex] = useState<boolean>(true);
+  const [weatherError, setWeatherError] = useState<string | null>(null);
+  const [forexError, setForexError] = useState<string | null>(null);
 
   // Function to get weather icon component
   const getWeatherIcon = (iconName: string) => {
@@ -26,32 +26,32 @@ const InfoWidgets: React.FC = () => {
   useEffect(() => {
     const getWeatherData = async () => {
       try {
-        setIsLoadingWeather(true)
-        setWeatherError(null)
+        setIsLoadingWeather(true);
+        setWeatherError(null);
 
-        const transformedData = await fetchWeatherData()
-        setWeatherData(transformedData)
+        const transformedData = await fetchWeatherData();
+        setWeatherData(transformedData);
       } catch (error) {
-        console.error('Error fetching weather data:', error)
+        console.error('Error fetching weather data:', error);
         setWeatherError(
           error instanceof Error
             ? error.message
             : 'Failed to fetch weather data'
-        )
+        );
       } finally {
-        setIsLoadingWeather(false)
+        setIsLoadingWeather(false);
       }
-    }
+    };
 
-    getWeatherData()
-  }, [])
+    getWeatherData();
+  }, []);
 
   // Fetch forex data
   useEffect(() => {
     const getForexData = async () => {
       try {
-        setIsLoadingForex(true)
-        setForexError(null)
+        setIsLoadingForex(true);
+        setForexError(null);
 
         // Get forex data for the top 6 currencies
         const transformedData = await fetchForexData([
@@ -61,20 +61,20 @@ const InfoWidgets: React.FC = () => {
           'GBP',
           'AUD',
           'SGD',
-        ])
-        setForexRates(transformedData)
+        ]);
+        setForexRates(transformedData);
       } catch (error) {
-        console.error('Error fetching forex data:', error)
+        console.error('Error fetching forex data:', error);
         setForexError(
           error instanceof Error ? error.message : 'Failed to fetch forex data'
-        )
+        );
       } finally {
-        setIsLoadingForex(false)
+        setIsLoadingForex(false);
       }
-    }
+    };
 
-    getForexData()
-  }, [])
+    getForexData();
+  }, []);
 
   return (
     <section className="py-12">
@@ -97,12 +97,12 @@ const InfoWidgets: React.FC = () => {
             </div>
             <div>
               {isLoadingWeather ? (
-                <div className="flex justify-center items-center h-40">
-                  <LucideIcons.Loader className="h-8 w-8 animate-spin text-primary-600" />
+                <div className='flex justify-center items-center h-40'>
+                  <LucideIcons.Loader className='h-8 w-8 animate-spin text-primary-600' />
                 </div>
               ) : weatherError ? (
-                <div className="text-center p-4 text-red-500">
-                  <LucideIcons.AlertCircle className="h-8 w-8 mx-auto mb-2" />
+                <div className='text-center p-4 text-red-500'>
+                  <LucideIcons.AlertCircle className='h-8 w-8 mx-auto mb-2' />
                   <p>{weatherError}</p>
                 </div>
               ) : (
@@ -158,20 +158,20 @@ const InfoWidgets: React.FC = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className='bg-white divide-y divide-gray-200'>
                     {isLoadingForex ? (
                       <tr>
-                        <td colSpan={3} className="px-3 py-8 text-center">
-                          <LucideIcons.Loader className="h-6 w-6 animate-spin mx-auto text-primary-600" />
+                        <td colSpan={3} className='px-3 py-8 text-center'>
+                          <LucideIcons.Loader className='h-6 w-6 animate-spin mx-auto text-primary-600' />
                         </td>
                       </tr>
                     ) : forexError ? (
                       <tr>
                         <td
                           colSpan={3}
-                          className="px-3 py-4 text-center text-red-500"
+                          className='px-3 py-4 text-center text-red-500'
                         >
-                          <LucideIcons.AlertCircle className="h-6 w-6 mx-auto mb-2" />
+                          <LucideIcons.AlertCircle className='h-6 w-6 mx-auto mb-2' />
                           <p>{forexError}</p>
                         </td>
                       </tr>
@@ -179,7 +179,7 @@ const InfoWidgets: React.FC = () => {
                       <tr>
                         <td
                           colSpan={3}
-                          className="px-3 py-4 text-center text-gray-800"
+                          className='px-3 py-4 text-center text-gray-800'
                         >
                           No forex data available
                         </td>
@@ -218,7 +218,7 @@ const InfoWidgets: React.FC = () => {
         
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default InfoWidgets
+export default InfoWidgets;

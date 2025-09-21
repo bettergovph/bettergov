@@ -110,6 +110,6 @@ export default {
   },
   plugins: [
     // This is not needed for tailwind v4
-    require("@tailwindcss/container-queries"),
+    require('@tailwindcss/container-queries'),
   ],
 };

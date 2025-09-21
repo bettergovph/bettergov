@@ -23,8 +23,13 @@ interface CriticalHotlinesWidgetProps {
   maxItems?: number;
 }
 
-const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({ maxItems = 4 }) => {
-  const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(0, maxItems);
+const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
+  maxItems = 4,
+}) => {
+  const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(
+    0,
+    maxItems
+  );
 
   return (
     <div>
