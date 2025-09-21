@@ -315,10 +315,7 @@ export async function onRequest(context: {
   }
 }
 
-export async function scheduled(
-  _controller: ScheduledController,
-  env: Env
-) {
+export async function scheduled(_controller: ScheduledController, env: Env) {
   try {
     // Fetch weather data for all cities
     const weatherData = await fetchWeatherData(env);
