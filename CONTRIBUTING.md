@@ -277,4 +277,4 @@ We use Pull Requests (PRs) to review and merge changes. Follow these steps when 
 [commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [issues]: https://github.com/bettergovph/bettergov/issues/new
 [forking]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
-[discord]: https://discord.com
+[discord]: https://discord.gg/mHtThpN8bT
