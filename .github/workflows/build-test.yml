@@ -76,10 +76,10 @@ jobs:
 
       - name: Run E2E Tests
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-        continue-on-error: true
         id: test-run
 
       - name: Check blob report exists
+        if: ${{ !cancelled() }}
         run: |
           if [ -d "blob-report" ] && [ "$(ls -A blob-report)" ]; then
             echo "Blob report generated successfully"
@@ -96,12 +96,6 @@ jobs:
           name: blob-report-${{ matrix.shardIndex }}
           path: blob-report/
           retention-days: 30
-
-      - name: Report test status
-        if: steps.test-run.outcome == 'failure'
-        run: |
-          echo "Tests failed in shard ${{ matrix.shardIndex }}"
-          exit 1
 
   merge_reports:
     name: Merge Playwright Reports
