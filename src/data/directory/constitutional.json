@@ -1592,7 +1592,7 @@
     "officials": [
       {
         "role": "General Manager",
-        "name": "vacant"
+        "name": "VACANT"
       }
     ],
     "email": "info@ndc.gov.ph"
@@ -2211,7 +2211,7 @@
     "officials": [
       {
         "role": "President",
-        "name": "vacant"
+        "name": "VACANT"
       }
     ],
     "email": "info@doftaxacademy.gov.ph"
@@ -2238,7 +2238,7 @@
     "officials": [
       {
         "role": "Chairperson and President",
-        "name": "vacant"
+        "name": "VACANT"
       }
     ]
   },
@@ -3167,7 +3167,7 @@
         "name": "ENYA MARIE D. APOSTOL"
       }
     ],
-    "email": "universitypresident@minsu.edu..ph"
+    "email": "universitypresident@minsu.edu.ph"
   },
   {
     "slug": "occidental-mindoro-state-college",
