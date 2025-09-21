@@ -55,7 +55,6 @@ const PhilippinesRegions: React.FC = () => {
           <img
             src='https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg'
             alt='Philippine Regions'
-            loading='lazy'
             className='w-full h-full object-cover'
           />
           <div className='absolute inset-0 bg-black/50' />

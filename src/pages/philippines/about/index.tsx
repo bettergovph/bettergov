@@ -43,7 +43,6 @@ const AboutPhilippines: React.FC = () => {
           <img
             src='https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg'
             alt='Philippine landscape'
-            loading='lazy'
             className='w-full h-full object-cover'
           />
           <div className='absolute inset-0 bg-black/50' />
@@ -108,19 +107,18 @@ const AboutPhilippines: React.FC = () => {
                   to its independence in 1946.
                 </p>
                 <p className='text-gray-800 leading-relaxed mb-4'>
-                  Today, the Philippines stands as one of Southeast Asia&apos;s
-                  most dynamic economies, blending traditional values with
-                  modern development. The country is known for its warm
-                  hospitality, diverse cultural heritage, stunning natural
-                  landscapes, and vibrant democracy.
+                  Today, the Philippines stands as one of Southeast Asia&apos;s most
+                  dynamic economies, blending traditional values with modern
+                  development. The country is known for its warm hospitality,
+                  diverse cultural heritage, stunning natural landscapes, and
+                  vibrant democracy.
                 </p>
                 <p className='text-gray-800 leading-relaxed'>
                   Filipino culture is a unique fusion of indigenous, Asian,
                   European, and American influences, reflected in its art,
-                  music, cuisine, and traditions. The nation&apos;s
-                  biodiversity, featuring unique species and ecosystems, makes
-                  it one of the world&apos;s most environmentally significant
-                  countries.
+                  music, cuisine, and traditions. The nation&apos;s biodiversity,
+                  featuring unique species and ecosystems, makes it one of the
+                  world&apos;s most environmentally significant countries.
                 </p>
               </div>
             </section>

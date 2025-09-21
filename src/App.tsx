@@ -101,22 +101,17 @@ function App() {
             <Route path='/join-us' element={<JoinUs />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
-            <Route path='/philippines/about' element={<AboutPhilippines />} />
-            <Route
-              path='/philippines/history'
-              element={<PhilippinesHistory />}
-            />
-            <Route
-              path='/philippines/culture'
-              element={<PhilippinesCulture />}
-            />
-            <Route
-              path='/philippines/regions'
-              element={<PhilippinesRegions />}
-            />
-            <Route path='/philippines/map' element={<PhilippinesMap />} />
-            <Route path='/philippines/holidays' element={<PublicHolidays />} />
-            <Route path='/philippines/hotlines' element={<Hotlines />} />
+
+            <Route path='/philippines'>
+              <Route index element={<Navigate to='about' replace />} />
+              <Route path='about' element={<AboutPhilippines />} />
+              <Route path='history' element={<PhilippinesHistory />} />
+              <Route path='culture' element={<PhilippinesCulture />} />
+              <Route path='regions' element={<PhilippinesRegions />} />
+              <Route path='map' element={<PhilippinesMap />} />
+              <Route path='holidays' element={<PublicHolidays />} />
+              <Route path='hotlines' element={<Hotlines />} />
+            </Route>
 
             {/* Data Routes */}
             <Route path='/data/weather' element={<WeatherPage />} />
@@ -146,22 +141,25 @@ function App() {
             <Route path='/services/websites' element={<WebsitesDirectory />} />
 
             {/* Travel Routes */}
-            <Route path='/travel/visa' element={<VisaPage />} />
-            <Route path='/travel/visa-types' element={<VisaTypesPage />} />
-            <Route
-              path='/travel/visa-types/:type'
-              element={
-                <React.Suspense
-                  fallback={
-                    <div className='flex items-center justify-center min-h-screen'>
-                      Loading...
-                    </div>
-                  }
-                >
-                  <VisaTypeDetail />
-                </React.Suspense>
-              }
-            />
+            <Route path='/travel'>
+              <Route index element={<Navigate to='visa' replace />} />
+              <Route path='visa' element={<VisaPage />} />
+              <Route path='visa-types' element={<VisaTypesPage />} />
+              <Route
+                path='visa-types/:type'
+                element={
+                  <React.Suspense
+                    fallback={
+                      <div className='flex items-center justify-center min-h-screen'>
+                        Loading...
+                      </div>
+                    }
+                  >
+                    <VisaTypeDetail />
+                  </React.Suspense>
+                }
+              />
+            </Route>
 
             {/* Government Routes */}
             <Route

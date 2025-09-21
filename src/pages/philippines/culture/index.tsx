@@ -53,7 +53,6 @@ const PhilippinesCulture: React.FC = () => {
           <img
             src='https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg'
             alt='Filipino Culture'
-            loading='lazy'
             className='w-full h-full object-cover'
           />
           <div className='absolute inset-0 bg-black/50' />
@@ -100,7 +99,6 @@ const PhilippinesCulture: React.FC = () => {
                           <img
                             src={aspect.image}
                             alt={aspect.title}
-                            loading='lazy'
                             className='w-full h-48 object-cover rounded-lg'
                           />
                         </div>
@@ -125,17 +123,16 @@ const PhilippinesCulture: React.FC = () => {
                 </p>
                 <p className='text-gray-800 leading-relaxed mb-4'>
                   The Philippines is known for its warm hospitality, expressed
-                  through the concept of &quot;pakikisama&quot; (companionship)
-                  and &quot;bayanihan&quot; (community spirit). These values are
-                  reflected in daily life, celebrations, and social
-                  interactions.
+                  through the concept of &ldquo;pakikisama&rdquo; (companionship) and
+                  &ldquo;bayanihan&rdquo; (community spirit). These values are reflected in
+                  daily life, celebrations, and social interactions.
                 </p>
                 <p className='text-gray-800 leading-relaxed'>
                   Filipino arts and crafts, from traditional weaving to modern
                   visual arts, showcase the creativity and skill of the Filipino
-                  people. The country&apos;s diverse musical traditions, dances,
-                  and festivals celebrate its rich cultural heritage while
-                  embracing contemporary influences.
+                  people. The country&apos;s diverse musical traditions, dances, and
+                  festivals celebrate its rich cultural heritage while embracing
+                  contemporary influences.
                 </p>
               </div>
             </section>

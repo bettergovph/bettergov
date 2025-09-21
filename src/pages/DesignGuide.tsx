@@ -332,7 +332,6 @@ const DesignGuide: React.FC = () => {
                     <CardImage
                       src='https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg'
                       alt='Article thumbnail'
-                      loading='lazy'
                     />
                     <CardContent>
                       <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 mb-2'>
@@ -354,7 +353,6 @@ const DesignGuide: React.FC = () => {
                       <CardImage
                         src='https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg'
                         alt='Article with overlay'
-                        loading='lazy'
                       />
                       <div className='absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-6'>
                         <div className='text-white'>
@@ -587,12 +585,12 @@ const DesignGuide: React.FC = () => {
                         </h3>
                         <div className='prose max-w-none'>
                           <p className='text-gray-800 leading-relaxed'>
-                            Ferdinand &quot;Bongbong&quot; Romualdez Marcos Jr.
-                            serves as the 17th President of the Philippines,
-                            assuming office on June 30, 2022. As the
-                            country&apos;s chief executive, he leads the
-                            implementation of laws and policies aimed at
-                            national development and public welfare.
+                            Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos Jr. serves as
+                            the 17th President of the Philippines, assuming
+                            office on June 30, 2022. As the country&apos;s chief
+                            executive, he leads the implementation of laws and
+                            policies aimed at national development and public
+                            welfare.
                           </p>
                           <p className='text-gray-800 leading-relaxed mt-4'>
                             Prior to his presidency, he served in various

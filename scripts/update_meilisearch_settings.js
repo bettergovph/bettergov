@@ -8,7 +8,8 @@ import { fileURLToPath } from 'url';
 dotenv.config();
 
 // Constants
-const MEILISEARCH_HOST = process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_HOST =
+  process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
 const MEILISEARCH_API_KEY = process.env.MEILISEARCH_MASTER_KEY || ''; // Use MASTER KEY for admin operations
 const INDEX_NAME = 'bettergov_flood_control';
@@ -28,7 +29,7 @@ async function updateSettings() {
     // Update the settings
     await client.index(INDEX_NAME).updateSettings({
       pagination: {
-        maxTotalHits: 10000
+        maxTotalHits: 10000,
       },
       searchableAttributes: [
         'ProjectDescription',
@@ -39,7 +40,7 @@ async function updateSettings() {
         'ProjectID',
         'Province',
         'LegislativeDistrict',
-        'DistrictEngineeringOffice'
+        'DistrictEngineeringOffice',
       ],
       filterableAttributes: [
         'slug',
@@ -57,7 +58,7 @@ async function updateSettings() {
         'LegislativeDistrict',
         'DistrictEngineeringOffice',
         'GlobalID',
-        '_geo'
+        '_geo',
       ],
     });
 
@@ -73,14 +74,14 @@ async function updateSettings() {
         'incorporation_date',
         'license',
         'sec_registration',
-        'type'
+        'type',
       ],
       sortableAttributes: [
         'company_name',
         'employees',
         'employee_count',
         'incorporation_date',
-        'created_at'
+        'created_at',
       ],
       searchableAttributes: [
         'company_name',
@@ -92,7 +93,7 @@ async function updateSettings() {
         'key_personnel.name',
         'key_personnel.role',
         'locations',
-        'related_companies.title'
+        'related_companies.title',
       ],
     });
 
