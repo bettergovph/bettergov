@@ -33,6 +33,10 @@ Our goals include:
 - User-friendly navigation and search
 - Accessibility features for users with disabilities
 - Regular updates and maintenance
+- **AI Assistant** (New):
+  - Duplicate detection for idea submissions to reduce redundancy
+  - Emergency announcements integration for critical alerts
+  - Smart guidance for new contributors
 
 ## Join Us as a Volunteer
 
