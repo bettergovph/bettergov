@@ -50,6 +50,13 @@ const { searchClient } = instantMeiliSearch(
   }
 );
 
+interface MeilisearchHit {
+  objectID: string;
+  _highlightResult?: Record<string, unknown>;
+  _snippetResult?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
 interface HitProps {
   hit: {
     // [key: string]: any // Allow any string keys for hit attributes
@@ -103,12 +110,12 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 ? 'office_name'
                 : 'office'
             }
-            hit={hit as any}
+            hit={hit as MeilisearchHit}
           /> */}
         </h2>
         {hit.description && (
           <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as any} />
+            <Snippet attribute='description' hit={hit as MeilisearchHit} />
           </p>
         )}
         <div className='text-xs text-gray-800'>
@@ -116,7 +123,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
             <span>
               <Highlight
                 attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as any}
+                hit={hit as MeilisearchHit}
               />
               {' > '}
             </span>
@@ -127,13 +134,13 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 attribute={
                   hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
                 }
-                hit={hit as any}
+                hit={hit as MeilisearchHit}
               />{' '}
             </span>
           )}
           {hit.address && (
             <span>
-              <Highlight attribute='address' hit={hit as any} />
+              <Highlight attribute='address' hit={hit as MeilisearchHit} />
               {' > '}
             </span>
           )}
