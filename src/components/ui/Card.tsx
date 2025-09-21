@@ -16,8 +16,8 @@ const Card = ({
   return (
     <div
       className={cn(
-        "bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden",
-        hoverable && "transition-all duration-300",
+        'bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden',
+        hoverable && 'transition-all duration-300',
         className
       )}
       role='article'
