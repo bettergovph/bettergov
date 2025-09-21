@@ -1,13 +1,13 @@
-name: 💡 Idea or Content Request
-description: Have a idea or content for the website? Please suggest! (Please submit a feature request for technical topics)
+name: 💡 Content Request
+description: Have a content for the website? Please suggest! (Please submit a feature request for technical topics)
 title: "✨ <description>"
-labels: ["idea"]
+labels: ["Content Request"]
 body:
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: A brief description of the idea or content request you propose, also include what you tried and what worked.
+      description: A brief description of the content you propose.
     validations:
       required: true
   - type: textarea
@@ -31,7 +31,7 @@ body:
     id: extrainfo
     attributes:
       label: Additional information
-      description: Is there anything else we should know about this idea?
+      description: Is there anything else we should know about this content request?
     validations:
       required: false
   - type: markdown

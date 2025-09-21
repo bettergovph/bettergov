@@ -1,7 +1,7 @@
 name: 💡 Feature Request
-description: Have a feature request? Please suggest!
+description: Have an idea or feature request? Please suggest!
 title: "✨ <description>"
-labels: ["idea"]
+labels: ["Feature Request"]
 body:
   - type: textarea
     id: description
