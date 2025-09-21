@@ -9,9 +9,20 @@ interface Office {
   address?: string;
   trunkline?: string;
   website?: string;
-  officials: any[];
-  bureaus?: any[];
-  attached_agency?: any[];
+  officials: {
+    name: string;
+    role: string;
+    email?: string;
+    contact?: string;
+  }[];
+  bureaus?: {
+    bureau: string;
+    [key: string]: unknown;
+  }[];
+  attached_agency?: {
+    agency: string;
+    [key: string]: unknown;
+  }[];
 }
 
 export default function ExecutiveSidebar() {
@@ -19,7 +30,7 @@ export default function ExecutiveSidebar() {
   const location = useLocation();
 
   // Group offices by category
-  const officeGroups = useMemo(() => {
+  useMemo(() => {
     const offices = executiveData as Office[];
 
     const groups = {
