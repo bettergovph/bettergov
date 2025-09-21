@@ -10,7 +10,7 @@ import DataSection from '../components/home/DataSection';
 
 const Home: React.FC = () => {
   return (
-    <main className="flex-grow">
+    <main className='flex-grow'>
       <JoinUsStrip />
       <Hero />
       <ServicesSection />

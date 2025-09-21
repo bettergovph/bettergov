@@ -1,58 +1,58 @@
-import { useNavigate, useParams } from 'react-router-dom'
-import { Building2 } from 'lucide-react'
-import { useState, useEffect } from 'react'
-import departmentsData from '../../../../data/directory/departments.json'
-import StandardSidebar from '../../../../components/ui/StandardSidebar'
+import { useNavigate, useParams } from 'react-router-dom';
+import { Building2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import departmentsData from '../../../../data/directory/departments.json';
+import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 interface Department {
-  office_name: string
-  address?: string
-  trunkline?: string
-  website?: string
-  email?: string
-  [key: string]: any
+  office_name: string;
+  address?: string;
+  trunkline?: string;
+  website?: string;
+  email?: string;
+  [key: string]: any;
 }
 
 interface DepartmentsSidebarProps {
-  onDepartmentSelect?: (department: Department) => void
+  onDepartmentSelect?: (department: Department) => void;
 }
 
 export default function DepartmentsSidebar({
   onDepartmentSelect,
 }: DepartmentsSidebarProps) {
-  const [searchTerm, setSearchTerm] = useState('')
-  const { department: departmentParam } = useParams()
-  const navigate = useNavigate()
-  const departments = departmentsData as Department[]
+  const [searchTerm, setSearchTerm] = useState('');
+  const { department: departmentParam } = useParams();
+  const navigate = useNavigate();
+  const departments = departmentsData as Department[];
 
-  const filteredDepartments = departments.filter((dept) =>
+  const filteredDepartments = departments.filter(dept =>
     dept.office_name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   const handleDeptSelect = (dept: Department) => {
     if (onDepartmentSelect) {
-      onDepartmentSelect(dept)
+      onDepartmentSelect(dept);
     }
-    navigate(`/government/departments/${encodeURIComponent(dept.slug)}`)
-  }
+    navigate(`/government/departments/${encodeURIComponent(dept.slug)}`);
+  };
 
   return (
     <StandardSidebar
       searchTerm={searchTerm}
       onSearchChange={setSearchTerm}
-      searchPlaceholder="Search departments..."
+      searchPlaceholder='Search departments...'
     >
       {filteredDepartments.length === 0 ? (
-        <div className="p-4 text-center text-sm text-gray-800">
+        <div className='p-4 text-center text-sm text-gray-800'>
           No departments found
         </div>
       ) : (
-        <nav className="p-1">
-          <h3 className="px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2">
+        <nav className='p-1'>
+          <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
             Department of
           </h3>
-          <ul className="space-y-1">
-            {filteredDepartments.map((dept) => (
+          <ul className='space-y-1'>
+            {filteredDepartments.map(dept => (
               <li key={dept.slug}>
                 <button
                   onClick={() => handleDeptSelect(dept)}
@@ -62,9 +62,9 @@ export default function DepartmentsSidebar({
                       : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center">
-                    <Building2 className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
-                    <span className="truncate">
+                  <div className='flex items-center'>
+                    <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                    <span className='truncate'>
                       {dept.office_name.replace('DEPARTMENT OF ', '')}
                     </span>
                   </div>
@@ -75,5 +75,5 @@ export default function DepartmentsSidebar({
         </nav>
       )}
     </StandardSidebar>
-  )
+  );
 }
