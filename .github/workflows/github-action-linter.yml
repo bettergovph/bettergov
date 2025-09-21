@@ -27,7 +27,7 @@ jobs:
       - name: Run actionlint on changed files
         run: |
           echo "::add-matcher::.github/actionlint-matcher.json"
-          
+
           changed_files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^.github/workflows/.*\.yml$" || echo "")
           if [ -z "$changed_files" ]; then
             echo "No workflow files changed. Skipping lint."

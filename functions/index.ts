@@ -2,19 +2,19 @@
 import {
   scheduled as getWeatherScheduled,
   onRequest as weatherRequest,
-} from './api/weather'
+} from './api/weather';
 import {
   scheduled as getForexScheduled,
   onRequest as forexRequest,
-} from './api/forex'
-import { onRequest as crawlRequest } from './api/crawl'
-import { onRequest as weatherKVRequest } from './weather'
-import { onRequest as forexKVRequest } from './forex'
-import { Env } from './types'
+} from './api/forex';
+import { onRequest as crawlRequest } from './api/crawl';
+import { onRequest as weatherKVRequest } from './weather';
+import { onRequest as forexKVRequest } from './forex';
+import { Env } from './types';
 
 // Export the scheduled handlers
-export { scheduled as scheduled_getWeather } from './api/weather'
-export { scheduled as scheduled_getForex } from './api/forex'
+export { scheduled as scheduled_getWeather } from './api/weather';
+export { scheduled as scheduled_getForex } from './api/forex';
 
 // Handler for HTTP requests
 export default {
@@ -23,9 +23,9 @@ export default {
     env: Env,
     ctx: ExecutionContext
   ): Promise<void> {
-    console.log('Scheduled update')
-    await getWeatherScheduled(controller, env, ctx)
-    await getForexScheduled(controller, env, ctx)
+    console.log('Scheduled update');
+    await getWeatherScheduled(controller, env, ctx);
+    await getForexScheduled(controller, env, ctx);
   },
 
   async fetch(
@@ -33,93 +33,93 @@ export default {
     env: Env,
     ctx: ExecutionContext
   ): Promise<Response> {
-    const url = new URL(request.url)
-    const path = url.pathname
+    const url = new URL(request.url);
+    const path = url.pathname;
 
     // Add CORS headers to all responses
     const corsHeaders: Record<string, string> = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
-    }
+    };
 
     // Handle OPTIONS requests for CORS
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         headers: corsHeaders,
-      })
+      });
     }
 
     // Route API requests to the appropriate handler
     if (path === '/api/weather') {
-      const response = await weatherRequest({ request, env, ctx })
+      const response = await weatherRequest({ request, env, ctx });
       // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers)
-      Object.keys(corsHeaders).forEach((key) => {
-        newHeaders.set(key, corsHeaders[key])
-      })
+      const newHeaders = new Headers(response.headers);
+      Object.keys(corsHeaders).forEach(key => {
+        newHeaders.set(key, corsHeaders[key]);
+      });
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
-      })
+      });
     }
 
     if (path === '/api/forex') {
-      const response = await forexRequest({ request, env, ctx })
+      const response = await forexRequest({ request, env, ctx });
       // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers)
-      Object.keys(corsHeaders).forEach((key) => {
-        newHeaders.set(key, corsHeaders[key])
-      })
+      const newHeaders = new Headers(response.headers);
+      Object.keys(corsHeaders).forEach(key => {
+        newHeaders.set(key, corsHeaders[key]);
+      });
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
-      })
+      });
     }
 
     // Handle the new KV-only endpoints
     if (path === '/weather') {
-      const response = await weatherKVRequest({ request, env, ctx })
+      const response = await weatherKVRequest({ request, env, ctx });
       // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers)
-      Object.keys(corsHeaders).forEach((key) => {
-        newHeaders.set(key, corsHeaders[key])
-      })
+      const newHeaders = new Headers(response.headers);
+      Object.keys(corsHeaders).forEach(key => {
+        newHeaders.set(key, corsHeaders[key]);
+      });
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
-      })
+      });
     }
 
     if (path === '/forex') {
-      const response = await forexKVRequest({ request, env, ctx })
+      const response = await forexKVRequest({ request, env, ctx });
       // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers)
-      Object.keys(corsHeaders).forEach((key) => {
-        newHeaders.set(key, corsHeaders[key])
-      })
+      const newHeaders = new Headers(response.headers);
+      Object.keys(corsHeaders).forEach(key => {
+        newHeaders.set(key, corsHeaders[key]);
+      });
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
-      })
+      });
     }
 
     if (path === '/api/crawl') {
-      const response = await crawlRequest({ request, env, ctx })
+      const response = await crawlRequest({ request, env, ctx });
       // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers)
-      Object.keys(corsHeaders).forEach((key) => {
-        newHeaders.set(key, corsHeaders[key])
-      })
+      const newHeaders = new Headers(response.headers);
+      Object.keys(corsHeaders).forEach(key => {
+        newHeaders.set(key, corsHeaders[key]);
+      });
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
-      })
+      });
     }
 
     // Simple API to check if the functions are running
@@ -213,7 +213,7 @@ export default {
             ...corsHeaders,
           },
         }
-      )
+      );
     }
 
     // Return 404 for any other routes
@@ -236,6 +236,6 @@ export default {
           ...corsHeaders,
         },
       }
-    )
+    );
   },
-}
+};

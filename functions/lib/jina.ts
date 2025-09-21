@@ -1,4 +1,4 @@
-import { Env, JinaResponse, JinaRecord } from '../types'
+import { Env, JinaResponse, JinaRecord } from '../types';
 
 /**
  * Fetches content from a URL using the Jina.ai API
@@ -11,12 +11,12 @@ export async function fetchJinaContent(
   url: string
 ): Promise<JinaResponse> {
   // Check if API key is available
-  const apiKey = env.JINA_API_KEY
+  const apiKey = env.JINA_API_KEY;
   if (!apiKey) {
-    throw new Error('Jina API key not found in environment variables')
+    throw new Error('Jina API key not found in environment variables');
   }
 
-  console.log('Fetching from Jina API for URL:', url, apiKey)
+  console.log('Fetching from Jina API for URL:', url, apiKey);
   try {
     // Make the request to Jina.ai API
     const response = await fetch(
@@ -31,18 +31,18 @@ export async function fetchJinaContent(
           Accept: 'application/json',
         },
       }
-    )
+    );
 
     if (!response.ok) {
       throw new Error(
         `Jina API error: ${response.status} ${response.statusText}`
-      )
+      );
     }
 
     // Parse the response
-    const data = await response.json()
+    const data = await response.json();
 
-    console.log('Jina response:', data)
+    console.log('Jina response:', data);
 
     // Format the response
     const jinaResponse: JinaResponse = {
@@ -52,11 +52,11 @@ export async function fetchJinaContent(
       content: data.content || '',
       links_summary: data.links_summary || data.links || [],
       timestamp: Date.now(),
-    }
+    };
 
-    return jinaResponse
+    return jinaResponse;
   } catch (error) {
-    console.error('Error fetching from Jina API:', error)
+    console.error('Error fetching from Jina API:', error);
     return {
       id: crypto.randomUUID(),
       url: url,
@@ -65,7 +65,7 @@ export async function fetchJinaContent(
       timestamp: Date.now(),
       status: 'error',
       error: (error as Error).message,
-    }
+    };
   }
 }
 
@@ -81,8 +81,8 @@ export async function saveJinaContent(
 ): Promise<{ success: boolean; message: string; id?: string }> {
   try {
     // Generate a UUID for the page if not provided
-    const pageId = data.id || crypto.randomUUID()
-    const now = new Date().toISOString()
+    const pageId = data.id || crypto.randomUUID();
+    const now = new Date().toISOString();
 
     // Insert the page data
     await env.BETTERGOV_DB.prepare(
@@ -115,13 +115,13 @@ export async function saveJinaContent(
         now, // created_at
         now // updated_at
       )
-      .run()
+      .run();
 
     // Process and save links if available
     if (data.links_summary && data.links_summary.length > 0) {
       for (let i = 0; i < data.links_summary.length; i++) {
-        const link = data.links_summary[i]
-        const linkId = crypto.randomUUID()
+        const link = data.links_summary[i];
+        const linkId = crypto.randomUUID();
 
         await env.BETTERGOV_DB.prepare(
           `
@@ -138,11 +138,11 @@ export async function saveJinaContent(
             i, // position_in_page
             now // created_at
           )
-          .run()
+          .run();
 
         // Optionally add to crawl queue
         if (link.link && link.link.startsWith('http')) {
-          const queueId = crypto.randomUUID()
+          const queueId = crypto.randomUUID();
           try {
             await env.BETTERGOV_DB.prepare(
               `
@@ -160,13 +160,13 @@ export async function saveJinaContent(
                 now, // created_at
                 now // updated_at
               )
-              .run()
+              .run();
           } catch (linkError) {
             // Ignore errors on queue insertion - likely duplicate URLs
             console.log(
               'Skipped adding duplicate URL to crawl queue:',
               link.link
-            )
+            );
           }
         }
       }
@@ -176,13 +176,13 @@ export async function saveJinaContent(
       success: true,
       message: 'Content saved to database',
       id: pageId,
-    }
+    };
   } catch (error) {
-    console.error('Error saving to database:', error)
+    console.error('Error saving to database:', error);
     return {
       success: false,
       message: `Database error: ${(error as Error).message}`,
-    }
+    };
   }
 }
 
@@ -205,9 +205,9 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(url)
-      .first<any>()
+      .first<any>();
 
-    if (!page) return null
+    if (!page) return null;
 
     // Get links for this page
     const links = await env.BETTERGOV_DB.prepare(
@@ -217,7 +217,7 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(page.id)
-      .all<any>()
+      .all<any>();
 
     // Convert to JinaRecord format for compatibility
     const record: JinaRecord = {
@@ -228,12 +228,12 @@ export async function getJinaContentByUrl(
       links_summary: links?.results ? JSON.stringify(links.results) : '',
       timestamp: new Date(page.last_crawled).getTime(),
       created_at: page.last_crawled,
-    }
+    };
 
-    return record
+    return record;
   } catch (error) {
-    console.error('Error retrieving from database:', error)
-    return null
+    console.error('Error retrieving from database:', error);
+    return null;
   }
 }
 
@@ -247,25 +247,25 @@ export async function fetchAndSaveJinaContent(
   env: Env,
   url: string
 ): Promise<{
-  success: boolean
-  data?: JinaResponse
-  message?: string
-  error?: string
+  success: boolean;
+  data?: JinaResponse;
+  message?: string;
+  error?: string;
 }> {
   try {
     // Fetch from Jina API
-    const jinaData = await fetchJinaContent(env, url)
+    const jinaData = await fetchJinaContent(env, url);
 
     if (jinaData.error) {
       return {
         success: false,
         message: 'Failed to fetch content from Jina API',
         error: jinaData.error,
-      }
+      };
     }
 
     // Save to database
-    const saveResult = await saveJinaContent(env, jinaData)
+    const saveResult = await saveJinaContent(env, jinaData);
 
     if (!saveResult.success) {
       return {
@@ -273,19 +273,19 @@ export async function fetchAndSaveJinaContent(
         data: jinaData,
         message: 'Fetched from Jina API but failed to save to database',
         error: saveResult.message,
-      }
+      };
     }
 
     return {
       success: true,
       data: jinaData,
       message: 'Successfully fetched and saved content',
-    }
+    };
   } catch (error) {
     return {
       success: false,
       message: 'Error in fetch and save operation',
       error: (error as Error).message,
-    }
+    };
   }
 }
