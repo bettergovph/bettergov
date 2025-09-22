@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "philippines": "Pilipinas",
+    "services": "Mga Serbisyo",
+    "travel": "Kandarakaw",
+    "government": "Gubyerno",
+    "flood control projects": "Proyekto sa Kapagadil sa Kagkadalem"
+  },
+  "hero": {
+    "title": "Talus Kanu sa BetterGov.ph",
+    "subtitle": "Niya ba su volunteer run a portal nu Republiko nu Pilipinas. Siya ba kantuntulan su impormasyon, serbisyo, endu kanu latest a balita pantag sa Pilipinas."
+  },
+  "services": {
+    "title": "Malibpes Tuntulen a Serbisyo"
+  },
+  "weather": {
+    "title": "Ula-ula na Gay"
+  },
+  "forex": {
+    "title": "Kadtiyakap sa Kulta"
+  },
+  "news": {
+    "title": "Pinakabago a Balita endu Updates"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. All content is public domain unless otherwise specified."
+  },
+  "hotline": {
+    "title": "Katawagan sa Emergency"
+  }
+}

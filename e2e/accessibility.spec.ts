@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Accessibility', () => {
-  test('homepage should not have accessibility violations', async ({ page }) => {
+  test('homepage should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/');
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
@@ -10,7 +12,9 @@ test.describe('Accessibility', () => {
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('services page should not have accessibility violations', async ({ page }) => {
+  test('services page should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/services');
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
@@ -25,7 +29,9 @@ test.describe('Accessibility', () => {
     await page.keyboard.press('Tab');
 
     // First tab should focus on Join Us link
-    const focusedElement = await page.evaluate(() => document.activeElement?.textContent);
+    const focusedElement = await page.evaluate(
+      () => document.activeElement?.textContent
+    );
     expect(focusedElement).toBeTruthy();
 
     // Continue tabbing through navbar
@@ -40,12 +46,14 @@ test.describe('Accessibility', () => {
     await expect(page.url()).not.toBe('http://localhost:5173/');
   });
 
-  test('aria labels should be present on interactive elements', async ({ page }) => {
+  test('aria labels should be present on interactive elements', async ({
+    page,
+  }) => {
     await page.goto('/');
 
     // Check mobile menu button has aria-label
     const menuButton = page.locator('button[aria-label="Open main menu"]');
-    const isMenuPresent = await menuButton.count() > 0;
+    const isMenuPresent = (await menuButton.count()) > 0;
 
     if (isMenuPresent) {
       await expect(menuButton).toHaveAttribute('aria-label', 'Open main menu');
@@ -91,7 +99,7 @@ test.describe('Accessibility', () => {
       return {
         outline: computed.outline,
         boxShadow: computed.boxShadow,
-        border: computed.border
+        border: computed.border,
       };
     });
 

@@ -71,8 +71,8 @@ Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/bettergov.ph.git
-cd bettergov.ph
+git clone https://github.com/bettergovph/bettergov.git
+cd bettergov
 
 # Install dependencies
 npm install
@@ -84,7 +84,6 @@ npm install
 # Start the development server
 npm run dev
 ```
-
 
 ## Development
 
@@ -110,6 +109,40 @@ npm run test:e2e:headed
 # Debug E2E tests
 npm run test:e2e:debug
 ```
+
+## Docker
+
+This project includes Docker support for easy deployment and consistent environments.
+
+### Building and Running
+
+```bash
+# Build the Docker image
+docker build -t bettergov .
+
+# Run the container
+docker run -p 8080:80 bettergov
+
+# Run in detached mode
+docker run -d -p 8080:80 --name bettergov bettergov
+```
+
+**Access the application at:** `http://localhost:8080`
+
+### Docker Compose
+
+```bash
+# Start the service
+docker-compose up
+
+# Start in detached mode
+docker-compose up -d
+
+# Stop the service
+docker-compose down
+```
+
+The Dockerfile uses a multi-stage build with Node.js for building and nginx for serving the static files.
 
 ## Testing
 
