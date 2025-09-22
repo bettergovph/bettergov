@@ -435,6 +435,9 @@ const FloodControlProjectsMap: React.FC = () => {
                           iconSize: [16, 24],
                           iconAnchor: [8, 8],
                           popupAnchor: [0, -25],
+                          shadowUrl: '/marker-shadow.webp',
+                          shadowSize: [41, 41],
+                          shadowAnchor: [12, 41],
                         })}
                       >
                         <Popup>
