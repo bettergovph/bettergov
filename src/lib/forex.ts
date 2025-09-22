@@ -1,30 +1,34 @@
-import { ForexRate } from '../types'
-import { fetchWithCache } from './api'
+import { ForexRate } from '../types';
+import { fetchWithCache } from './api';
 
 /**
  * Fetch forex data from the API
  * @param filterSymbols Optional array of currency symbols to filter by
  * @returns Transformed forex data
  */
-export const fetchForexData = async (filterSymbols?: string[]): Promise<ForexRate[]> => {
-  const data = await fetchWithCache('https://api.bettergov.ph/forex')
+export const fetchForexData = async (
+  filterSymbols?: string[]
+): Promise<ForexRate[]> => {
+  const data = await fetchWithCache('https://api.bettergov.ph/forex');
 
   // Transform API data to match our ForexRate type
-  let transformedData: ForexRate[] = data.rates.map((rate: any) => ({
-    currency: rate.country,
-    code: rate.symbol,
-    rate: rate.phpEquivalent,
-  }))
+  let transformedData: ForexRate[] = data.rates.map(
+    (rate: { country: string; symbol: string; phpEquivalent: number }) => ({
+      currency: rate.country,
+      code: rate.symbol,
+      rate: rate.phpEquivalent,
+    })
+  );
 
   // Filter by symbols if provided
   if (filterSymbols && filterSymbols.length > 0) {
-    transformedData = transformedData.filter((rate) => 
+    transformedData = transformedData.filter(rate =>
       filterSymbols.includes(rate.code)
-    )
+    );
   }
 
-  return transformedData
-}
+  return transformedData;
+};
 
 /**
  * Get currency icon component name based on currency code
@@ -34,14 +38,14 @@ export const fetchForexData = async (filterSymbols?: string[]): Promise<ForexRat
 export const getCurrencyIconName = (code: string): string => {
   switch (code) {
     case 'USD':
-      return 'DollarSign'
+      return 'DollarSign';
     case 'JPY':
-      return 'Pen' // Using Pen as Yen
+      return 'Pen'; // Using Pen as Yen
     case 'EUR':
-      return 'Euro'
+      return 'Euro';
     case 'GBP':
-      return 'PoundSterling'
+      return 'PoundSterling';
     default:
-      return ''
+      return '';
   }
-}
+};

@@ -6,12 +6,16 @@ test.describe('Navigation', () => {
 
     // Test Philippines dropdown menu
     await page.getByText('The Philippines').first().hover();
-    await expect(page.getByRole('menuitem', { name: 'About the Philippines' })).toBeVisible();
+    await expect(
+      page.getByRole('menuitem', { name: 'About the Philippines' })
+    ).toBeVisible();
 
     // Navigate to About Philippines
     await page.getByRole('menuitem', { name: 'About the Philippines' }).click();
     await expect(page.url()).toContain('/philippines/about');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('About the Philippines');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(
+      'About the Philippines'
+    );
 
     // Navigate to Government section
     await page.getByRole('link', { name: 'Government' }).first().click();
@@ -26,7 +30,10 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Click Join Us link
-    await page.getByRole('link', { name: /Join Us/i }).first().click();
+    await page
+      .getByRole('link', { name: /Join Us/i })
+      .first()
+      .click();
     await expect(page.url()).toContain('/join-us');
     await expect(page.getByRole('heading')).toContainText('Join');
   });
@@ -46,7 +53,9 @@ test.describe('Navigation', () => {
     await page.locator('footer').scrollIntoViewIfNeeded();
 
     // Test About link
-    const aboutLink = page.locator('footer').getByRole('link', { name: 'About' });
+    const aboutLink = page
+      .locator('footer')
+      .getByRole('link', { name: 'About' });
     await expect(aboutLink).toBeVisible();
     await aboutLink.click();
     await expect(page.url()).toContain('/about');
@@ -56,7 +65,9 @@ test.describe('Navigation', () => {
     await page.locator('footer').scrollIntoViewIfNeeded();
 
     // Test Sitemap link
-    const sitemapLink = page.locator('footer').getByRole('link', { name: 'Sitemap' });
+    const sitemapLink = page
+      .locator('footer')
+      .getByRole('link', { name: 'Sitemap' });
     await expect(sitemapLink).toBeVisible();
     await sitemapLink.click();
     await expect(page.url()).toContain('/sitemap');

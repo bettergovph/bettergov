@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "title": "Maayong Pag-abot sa BetterGov.ph",
+    "subtitle": "Ang ganghaan nga gidagan sa mga boluntaryo sa Republika sa Pilipinas. Pangitaa ang kasayuran, gamita ang mga serbisyo sa kagamhanan, ug magpabiling nahibalo sa pinakabag-ong balita mahitungod sa Pilipinas.",
+    "nationalId": "Nasudnong ID",
+    "birthCertificate": "Sertipiko sa Pagkatawo",
+    "businessRegistration": "Pagparehistro sa Negosyo"
+  },
+  "services": {
+    "title": "Sikat nga mga Serbisyo",
+    "governmentServices": "Mga Serbisyo sa Kagamhanan",
+    "description": "Dali ug sayon nga magamit ang opisyal nga mga serbisyo sa kagamhanan. Pangitaa ang inyong gikinahanglan para sa pagka-lungsoranon, negosyo, edukasyon, ug uban pa.",
+    "viewAll": "Tan-awa ang Tanang Serbisyo",
+    "viewAllCategory": "Tan-awa ang Tanan"
+  },
+  "weather": {
+    "title": "Mga Kabag-ohan sa Panahon"
+  },
+  "forex": {
+    "title": "Baylohanay sa Salapi"
+  },
+  "news": {
+    "title": "Pinakabag-ong Balita ug mga Update"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. Ang tanang sulod kay public domain gawas kung lahi ang gisulti."
+  },
+  "navbar": {
+    "philippines": "Pilipinas",
+    "services": "Mga Serbisyo",
+    "travel": "Pagbiyahe",
+    "government": "Kagamhanan",
+    "flood control projects": "Mga Proyekto sa Flood Control"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Apil sa #CivicTech nga Rebolusyon",
+    "stripSubtitle": "Tabangi sa pagtukod sa kaugmaon sa Pilipinas ug sa pagdumala pinaagi sa teknolohiya",
+    "joinNow": "Apil Karon",
+    "discord": "Discord",
+    "bannerTitle": "Apil sa #CivicTech nga Rebolusyon",
+    "bannerSubtitle": "Tabangi sa pagtukod sa kaugmaon sa Pilipinas ug sa pagdumala pinaagi sa teknolohiya.",
+    "bannerHighlight": "Gipangulohan sa boluntaryo. Open source. Giduso sa komunidad.",
+    "joinMovement": "Apil sa Among Kalihukan",
+    "or": "o",
+    "joinDiscord": "Apil sa Discord",
+    "features": "🚀 Inprastruktura • 💡 Pag-mentor • 🤝 Komunidad • 🏢 Espasyo sa Opisina"
+  },
+  "data": {
+    "title": "Mga Alagad sa Datos nga Diha-diha Dayon",
+    "description": "Magamit ang napapanahong kasayuran sa kahimtang sa panahon ug sa baylohanang balor sa tibuok Pilipinas.",
+    "weatherForecast": "Panagna sa Panahon",
+    "realtimeConditions": "Mga kahimtang diha-diha dayon",
+    "viewArrow": "Tan-awa →",
+    "weatherDescription": "Kuhaa ang kasamtangang kahimtang sa panahon ug mga panagna alang sa dagkong siyudad sa Pilipinas. Planohi ang imong adlaw uban sa tukmang temperatura ug mga pahimangno sa panahon.",
+    "manila": "Maynila",
+    "cebu": "Sugbo",
+    "davao": "Dabaw",
+    "moreCities": "Dugang nga mga Siyudad",
+    "forexRates": "Mga Baylohanang Balor",
+    "liveExchange": "Aktuwal nga baylohanang balor",
+    "forexDescription": "Subaya ang baylohanang balor gikan sa Bangko Sentral ng Pilipinas (BSP). I-convert ang salapi ug tan-awa ang kasaysayan sa mga balor sa dagkong salapi sa kalibutan.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Dugang nga mga Salapi"
+  },
+  "promotion": {
+    "philsysTitle": "Pagparehistro sa PhilSys National ID",
+    "philsysDescription": "Magparehistro alang sa inyong Philippine Identification System (PhilSys) ID karon. Ang nasudnong ID nag-alagad isip usa ka tinagsa nga ilhanang gipagawas sa kagamhanan para sa tanang lungsoranon.",
+    "registerNow": "Magparehistro Karon"
+  },
+  "government": {
+    "title": "Kagamhanan sa Pilipinas",
+    "description": "Mahibal-an ang tulo ka sanga sa gobyerno sa Pilipinas ug giunsa sila nagtrabaho nga magkauban aron magserbisyo sa mga katawhan.",
+    "executiveTitle": "Ehekutibo nga Sanga",
+    "executiveDescription": "Pinangulohan sa Presidente, may katungdanan sa pagpatuman sa mga balaod.",
+    "legislativeTitle": "Lehislativo nga Sanga",
+    "legislativeDescription": "Gilangkuban sa Senado ug sa Kapulungan sa mga Representante, may katungdanan sa paghimo sa mga balaod.",
+    "judiciaryTitle": "Hudisyal nga Sanga",
+    "judiciaryDescription": "Pinangulohan sa Korte Suprema, may katungdanan sa paghubad sa mga balaod ug sa pagpatuman sa hustisya.",
+    "learnMore": "Hibaloa Pa",
+    "directoryTitle": "Opisyal nga Direktoryo",
+    "directoryDescription": "Pangitaa ang kasayuran sa pagkigdugtong alang sa mga opisyal, mga ahensya, ug mga buhatan sa nasudnon ug lokal nga mga lebel.",
+    "viewDirectory": "Tan-awa ang Direktoryo"
+  }
+}

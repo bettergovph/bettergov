@@ -1,9 +1,9 @@
-import React from 'react'
-import { cn } from '../../lib/utils'
+import React from 'react';
+import { cn } from '../../lib/utils';
 
 interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 export const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
@@ -25,8 +25,8 @@ export const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
       >
         {children}
       </div>
-    )
+    );
   }
-)
+);
 
-ScrollArea.displayName = 'ScrollArea'
+ScrollArea.displayName = 'ScrollArea';

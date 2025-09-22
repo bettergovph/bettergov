@@ -108,7 +108,7 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Access Weather Data via PHILSENSORS",
+    "service": "Access Hydrometeorological Monitoring (e.g., rain, rivers, flood levels) via PHILSENSORS",
     "url": "https://philsensors.asti.dost.gov.ph/",
     "id": "48424831-e361-4ac1-9a14-929e873fcba1",
     "slug": "access-weather-data-via-philsensors",
@@ -126,8 +126,8 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "View Real-time Information on Hazards via Project NOAH",
-    "url": "http://noah.up.edu.ph/#/",
+    "service": "View High-Resolution Hazard Maps on Flooding, Storm Surge, and Landslides via Project NOAH",
+    "url": "https://noah.up.edu.ph/",
     "id": "1efccadd-8e74-4085-9cbc-7064665994ba",
     "slug": "view-real-time-information-on-hazards-via-project-noah",
     "published": true,
