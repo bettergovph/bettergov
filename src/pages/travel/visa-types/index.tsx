@@ -11,16 +11,14 @@ import {
   Compass,
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
-import { VisaType, VisaSubtype } from '../../../types/visa';
+import { VisaType } from '../../../types/visa';
 
 interface VisaCategory {
   id: string;
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes:
-    | VisaType[]
-    | Array<Omit<VisaType, 'subtypes'> & { subtypes?: VisaSubtype[] }>;
+  visaTypes: VisaType[];
 }
 
 const VisaTypesPage: React.FC = () => {
