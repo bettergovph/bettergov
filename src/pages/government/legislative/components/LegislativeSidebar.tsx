@@ -6,7 +6,6 @@ export default function LegislativeSidebar() {
   const { chamber: chamberParam } = useParams();
   const location = useLocation();
 
-
   // Check if a path is active
   const isActive = (path: string) => {
     return location.pathname === path;

@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  Lightbulb,
-  Users,
-  Star,
-  TrendingUp,
-  Github,
-  Plus,
-} from 'lucide-react';
+import { Lightbulb, Users, Star, TrendingUp, Github, Plus } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -101,7 +94,6 @@ const getComplexityColor = (complexity: string) => {
 
 const Ideas: React.FC = () => {
   const [projectIdeas] = useState<ProjectIdea[]>(initialProjectIdeas);
-
 
   const handleSubmitIdea = () => {
     const githubUrl =

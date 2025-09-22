@@ -34,11 +34,10 @@ import Button from '../../components/ui/Button';
 import {
   FilterDropdown,
   FilterTitle,
-  buildFilterString,
-  FilterState,
   // FloodControlProject,
   FloodControlHit,
 } from './shared-components';
+import { buildFilterString, FilterState } from './utils';
 import FloodControlProjectsTab from './tab';
 
 // Import lookup data

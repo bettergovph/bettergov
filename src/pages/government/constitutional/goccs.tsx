@@ -19,8 +19,12 @@ interface GOCC {
   trunk_line?: string;
   website?: string;
   email?: string;
-  officials?: any[];
-  [key: string]: any;
+  officials?: Array<{
+    name?: string;
+    position?: string;
+    [key: string]: unknown;
+  }>;
+  [key: string]: unknown;
 }
 
 export default function GOCCsPage() {
@@ -28,7 +32,7 @@ export default function GOCCsPage() {
 
   // Filter GOCCs from constitutional data
   const goccs = constitutionalData.filter(
-    (office: any) =>
+    (office: GOCC) =>
       office.office_type.includes('Government-Owned') ||
       office.office_type.includes('GOCCs')
   ) as GOCC[];

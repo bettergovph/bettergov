@@ -5,7 +5,6 @@ import StandardSidebar from '../../../../components/ui/StandardSidebar';
 export default function ExecutiveSidebar() {
   const location = useLocation();
 
-
   // Check if a path is active
   const isActive = (path: string) => {
     return location.pathname === path;
