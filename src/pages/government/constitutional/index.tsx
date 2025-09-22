@@ -1,15 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Phone, ExternalLink, Building2, Mail } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
 import { useState, useEffect } from 'react';
 import SEO from '../../../components/SEO';
 import { getConstitutionalSEOData } from '../../../utils/seo-data';
-import {
-  ConstitutionalOfficeSchema,
-  type ConstitutionalOffice,
-} from '../../../types/schema';
-
-const offices = ConstitutionalOfficeSchema.array().parse(constitutionalData);
+import { type ConstitutionalOffice } from '../schema';
+import { constitutionalData as offices } from './data';
 
 // Recursive component to render office details
 function OfficeDetailSection({

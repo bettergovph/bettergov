@@ -7,35 +7,17 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
+import { institutionData } from './data';
 
-interface SUC {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  phone?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  officials?: Array<{
-    name?: string;
-    position?: string;
-    [key: string]: unknown;
-  }>;
-  [key: string]: unknown;
-}
+// Filter SUCs from constitutional data
+const sucs = institutionData.filter(
+  office =>
+    office.office_type.includes('State Universities') ||
+    office.office_type.includes('SUCs')
+);
 
 export default function SUCsPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter SUCs from constitutional data
-  const sucs = constitutionalData.filter(
-    (office: SUC) =>
-      office.office_type.includes('State Universities') ||
-      office.office_type.includes('SUCs')
-  ) as SUC[];
 
   // Filter based on search term
   const filteredSUCs = sucs.filter(suc =>

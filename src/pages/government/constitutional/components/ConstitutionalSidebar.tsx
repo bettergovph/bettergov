@@ -1,27 +1,22 @@
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Building2, Database, GraduationCap } from 'lucide-react';
 import { useState, useMemo } from 'react';
-import constitutionalData from '../../../../data/directory/constitutional.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
-import {
-  type ConstitutionalOffice,
-  ConstitutionalOfficeSchema,
-} from '../../../../types/schema';
+import { type ConstitutionalOffice } from '../../schema';
+import { constitutionalData } from '../data';
 
 interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
 
-const offices = ConstitutionalOfficeSchema.array()
-  .parse(constitutionalData)
-  // Only include constitutional offices (exclude GOCCs and SUCs)
-  .filter(
-    office =>
-      !office.office_type.includes('Government-Owned') &&
-      !office.office_type.includes('GOCCs') &&
-      !office.office_type.includes('State Universities') &&
-      !office.office_type.includes('SUCs')
-  );
+// Only include constitutional offices (exclude GOCCs and SUCs)
+const offices = constitutionalData.filter(
+  office =>
+    !office.office_type.includes('Government-Owned') &&
+    !office.office_type.includes('GOCCs') &&
+    !office.office_type.includes('State Universities') &&
+    !office.office_type.includes('SUCs')
+);
 
 export default function ConstitutionalSidebar({
   onOfficeSelect,

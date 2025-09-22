@@ -7,35 +7,17 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
+import { institutionData } from './data';
 
-interface GOCC {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  phone?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  officials?: Array<{
-    name?: string;
-    position?: string;
-    [key: string]: unknown;
-  }>;
-  [key: string]: unknown;
-}
+// Filter GOCCs from constitutional data
+const goccs = institutionData.filter(
+  office =>
+    office.office_type.includes('Government-Owned') ||
+    office.office_type.includes('GOCCs')
+);
 
 export default function GOCCsPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter GOCCs from constitutional data
-  const goccs = constitutionalData.filter(
-    (office: GOCC) =>
-      office.office_type.includes('Government-Owned') ||
-      office.office_type.includes('GOCCs')
-  ) as GOCC[];
 
   // Filter based on search term
   const filteredGOCCs = goccs.filter(gocc =>
