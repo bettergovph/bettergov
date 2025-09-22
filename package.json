@@ -58,7 +58,8 @@
     "react-router-dom": "^6.22.2",
     "recharts": "^2.15.3",
     "tailwind-merge": "^2.2.1",
-    "wrangler": "^4.19.1"
+    "wrangler": "^4.19.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
