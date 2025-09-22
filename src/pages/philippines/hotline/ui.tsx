@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from '../../../components/ui/form';
 import { cn } from '../../../lib/utils';
-import { useMailerApi } from './api';
+import { useSendOutdatedHotlineReport } from './api';
 import { Input } from '../../../components/ui/input';
 import { useEffect, useState } from 'react';
 import { Loader2, Mail } from 'lucide-react';
@@ -33,15 +33,22 @@ import {
 } from '../../../components/ui/select';
 import useHotlinesData, { Hotline } from './hotlines-data';
 
-const reportSchema = z.object({
-  organizationId: z.string().min(1, 'This is required'),
-  outdated_hotline: z.string().min(1, 'This is required'),
-  updated_hotline: z.string().min(1, 'This is required'),
-});
+const reportSchema = z
+  .object({
+    organizationId: z.string().min(1, 'Choose an organization'),
+    outdated_hotline: z
+      .string()
+      .min(1, 'Choose the outdated hotline you wish to report'),
+    updated_hotline: z.string().min(1, 'Ensure that this field is not empty'),
+  })
+  .refine(data => data.outdated_hotline !== data.updated_hotline, {
+    path: ['updated_hotline'],
+    message: 'The updated hotline must be different from the current one',
+  });
 
 const ReportModal: React.FC = () => {
   const { sendOutdatedHotlineReport, isError, isLoading } =
-    useMailerApi().useSendOutdatedHotlineReport();
+    useSendOutdatedHotlineReport();
 
   const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof reportSchema>>({
