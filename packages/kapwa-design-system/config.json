@@ -1,0 +1,30 @@
+{
+  "source": ["tokens/**/*.json"],
+  "log": {
+    "warnings": "warn",
+    "verbosity": "verbose",
+    "errors": {
+      "brokenReferences": "console"
+    }
+  },
+  "platforms": {
+    "tailwindPreset": {
+      "buildPath": "build/tailwind/",
+      "transformGroup": "tailwind",
+      "files": [
+        {
+          "destination": "cssVarsPlugin.js",
+          "format": "tailwind/css-vars-plugin"
+        },
+        {
+          "destination": "themeColors.js",
+          "format": "tailwind/theme-colors"
+        },
+        {
+          "destination": "preset.js",
+          "format": "tailwind/preset"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@bettergovph/kapwa-design-system",
+  "version": "0.0.1",
+  "description": "Design system for bettergov",
+  "main": "dist/index.js",
+  "type": "module",
+  "types": "index.d.ts",
+  "scripts": {
+    "dev": "tsup src/index.tsx --watch",
+    "lint": "eslint src/",
+    "build": "rollup -c",
+    "build:tokens": "tsx build.ts"
+  },
+  "author": "niculistana",
+  "license": "ISC",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.tsx"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true,
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "external": [
+      "react"
+    ],
+    "loader": {
+      ".css": "local-css"
+    }
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.4.0",
+    "style-dictionary-utils": "^4.1.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.13.0",
+    "rollup-plugin-copy": "^3.5.0"
+  }
+}
