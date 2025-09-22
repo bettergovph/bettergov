@@ -240,10 +240,7 @@ export async function onRequest(context: {
   }
 }
 
-export async function scheduled(
-  controller: ScheduledController,
-  env: Env
-) {
+export async function scheduled(controller: ScheduledController, env: Env) {
   try {
     // Fetch forex data
     const forexData = await fetchForexData();
