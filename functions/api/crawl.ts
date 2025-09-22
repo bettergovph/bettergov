@@ -1,8 +1,5 @@
 import { Env } from '../types';
-import {
-  fetchAndSaveContent,
-  setDefaultCrawler,
-} from '../lib/crawler';
+import { fetchAndSaveContent, setDefaultCrawler } from '../lib/crawler';
 
 /**
  * Handler for HTTP requests to the web crawling endpoint
@@ -11,7 +8,7 @@ import {
 export async function onRequest(context: {
   request: Request;
   env: Env;
-  params: {};
+  params: Record<string, string>;
 }): Promise<Response> {
   const { request, env } = context;
 
