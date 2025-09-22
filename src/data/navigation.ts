@@ -50,11 +50,11 @@ export const mainNavigation: NavigationItem[] = [
     href: '/government',
     children: [
       { label: 'Executive', href: '/government/executive' },
-      { label: 'Legislative', href: '/government/legislative' },
-      { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Departments', href: '/government/departments' },
-      { label: 'Diplomatic', href: '/government/diplomatic' },
+      { label: 'Constitutional', href: '/government/constitutional' },
+      { label: 'Legislative', href: '/government/legislative' },
       { label: 'Local Government', href: '/government/local' },
+      { label: 'Diplomatic', href: '/government/diplomatic' },
     ],
   },
   {
