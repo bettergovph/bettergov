@@ -1,9 +1,9 @@
 import React from 'react';
-import { Facebook, Instagram, Youtube, CheckCircle2 } from 'lucide-react';
-import { FaXTwitter } from 'react-icons/fa6';
+import { CheckCircle2 } from 'lucide-react';
 import { footerNavigation } from '../../data/navigation';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FacebookIcon, InstagramIcon, YouTubeIcon, XIcon } from '../icons';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
@@ -11,13 +11,13 @@ const Footer: React.FC = () => {
   const getSocialIcon = (label: string) => {
     switch (label) {
       case 'Facebook':
-        return <Facebook className='h-5 w-5' />;
+        return <FacebookIcon className='h-5 w-5' />;
       case 'Twitter':
-        return <FaXTwitter className='h-5 w-5' />;
+        return <XIcon className='h-5 w-5' />;
       case 'Instagram':
-        return <Instagram className='h-5 w-5' />;
+        return <InstagramIcon className='h-5 w-5' />;
       case 'YouTube':
-        return <Youtube className='h-5 w-5' />;
+        return <YouTubeIcon className='h-5 w-5' />;
       default:
         return null;
     }
