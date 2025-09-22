@@ -44,7 +44,7 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
 
   return (
     <div>
-      <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-red-50 rounded-xl border-gray-300'>
+      <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-red-50 rounded-xl border-gray-400 shadow-sm'>
         <div className='flex items-center gap-2'>
           <Phone size={18} className='text-red-600' />
           <h3 className='font-semibold text-red-600 text-xl'>
@@ -65,7 +65,7 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
           {displayedHotlines.map((hotline, index) => (
             <Card
               key={index}
-              className='shadow-none border-gray-300 flex flex-col justify-between'
+              className='shadow-none border-gray-400 shadow-sm flex flex-col justify-between'
             >
               <CardHeader className='font-medium flex items-center gap-2 border-b-0'>
                 {getIcon(hotline.name)}

@@ -77,12 +77,12 @@ const InfoWidgets: React.FC = () => {
   }, []);
 
   return (
-    <section className='py-12'>
+    <section className='py-12 bg-gray-50'>
       <div className='container mx-auto px-4'>
         <div className='grid lg:grid-cols-2 gap-12'>
           {/* Weather Widget */}
           <div className='@container'>
-            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-300'>
+            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
                 <LucideIcons.Cloud className='h-5 w-5 mr-2 text-primary-600' />
                 {t('weather.title')}
@@ -110,7 +110,7 @@ const InfoWidgets: React.FC = () => {
                   {weatherData.map(location => (
                     <Card
                       key={location.location}
-                      className='shadow-none bg-transparent border-gray-300'
+                      className='shadow-sm bg-white border-gray-400'
                     >
                       <CardContent className='flex flex-col items-center p-3 rounded-lg uppercase'>
                         <div className='font-semibold text-lg tracking-wide'>
@@ -135,7 +135,7 @@ const InfoWidgets: React.FC = () => {
 
           {/* Forex Widget */}
           <div>
-            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-300'>
+            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
                 <LucideIcons.BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
                 {t('forex.title')}
@@ -149,7 +149,7 @@ const InfoWidgets: React.FC = () => {
               </a>
             </div>
             <div>
-              <div className='overflow-x-auto border border-gray-300 rounded-xl'>
+              <div className='overflow-x-auto border border-gray-400 rounded-xl shadow-sm'>
                 <table className='divide-y divide-gray-200 table-fixed w-full'>
                   <thead className='bg-gray-50'>
                     <tr>
