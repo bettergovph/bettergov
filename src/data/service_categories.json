@@ -213,6 +213,10 @@
       "slug": "tax",
       "subcategories": [
         {
+          "name": "Calculators",
+          "slug": "calculator"
+        },
+        {
           "name": "Certificates",
           "slug": "certificates"
         },
