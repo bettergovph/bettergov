@@ -99,18 +99,12 @@ const Footer: React.FC = () => {
               {t('footer.copyright')}
             </p>
             <div className='flex space-x-6'>
-              {/* <a
-                href="/privacy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+              <Link
+                to='/terms-of-service'
+                className='text-gray-400 hover:text-white text-sm transition-colors'
               >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Terms of Use
-              </a> */}
+                Terms of Service
+              </Link>
               <Link
                 to='https://github.com/bettergovph/bettergov'
                 className='text-gray-400 hover:text-white text-sm transition-colors'
