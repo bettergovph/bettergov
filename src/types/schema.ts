@@ -13,3 +13,5 @@ export const ConstitutionalOfficeSchema = z
     slug: z.string(),
   })
   .catchall(z.unknown());
+
+export type ConstitutionalOffice = z.infer<typeof ConstitutionalOfficeSchema>;

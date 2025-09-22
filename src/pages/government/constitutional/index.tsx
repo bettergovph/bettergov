@@ -7,7 +7,7 @@ import { getConstitutionalSEOData } from '../../../utils/seo-data';
 import {
   ConstitutionalOfficeSchema,
   type ConstitutionalOffice,
-} from '../../../types/constitutional';
+} from '../../../types/schema';
 
 const offices = ConstitutionalOfficeSchema.array().parse(constitutionalData);
 

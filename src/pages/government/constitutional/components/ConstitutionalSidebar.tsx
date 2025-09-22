@@ -4,9 +4,9 @@ import { useState, useMemo } from 'react';
 import constitutionalData from '../../../../data/directory/constitutional.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 import {
-  ConstitutionalOfficeSchema,
   type ConstitutionalOffice,
-} from '../../../../types/constitutional';
+  ConstitutionalOfficeSchema,
+} from '../../../../types/schema';
 
 interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
@@ -56,7 +56,7 @@ export default function ConstitutionalSidebar({
   return (
     <StandardSidebar>
       <nav className='p-2 space-y-4'>
-        {/* TODO: a previous PR breaks the search, adding a temporary one*/}
+        {/* TODO: some PR breaks the search, adding a temporary one*/}
         <div className='mb-4'>
           <input
             type='text'
