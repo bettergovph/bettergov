@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as LucideIcons from 'lucide-react';
-import { Card, CardHeader, CardContent } from '../ui/Card';
+import { Card, CardContent } from '../ui/Card';
 import { WeatherData, ForexRate } from '../../types';
 import { useTranslation } from 'react-i18next';
 import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
@@ -18,9 +18,9 @@ const InfoWidgets: React.FC = () => {
 
   // Function to get weather icon component
   const getWeatherIcon = (iconName: string) => {
-    const Icon = LucideIcons[iconName as keyof typeof LucideIcons]
-    return Icon ? <Icon className="h-16 w-16" /> : null
-  }
+    const Icon = LucideIcons[iconName as keyof typeof LucideIcons];
+    return Icon ? <Icon className='h-16 w-16' /> : null;
+  };
 
   // Fetch weather data
   useEffect(() => {
@@ -77,23 +77,23 @@ const InfoWidgets: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12">
+    <section className='py-12'>
+      <div className='container mx-auto px-4'>
+        <div className='grid lg:grid-cols-2 gap-12'>
           {/* Weather Widget */}
-          <div>
-            <div className='pb-6 flex items-center justify-between flex-wrap gap-4'>
-              <h3 className="text-xl font-semibold text-gray-900 flex items-center">
-                <LucideIcons.Cloud className="h-5 w-5 mr-2 text-primary-600" />
+          <div className='@container'>
+            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-300'>
+              <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
+                <LucideIcons.Cloud className='h-5 w-5 mr-2 text-primary-600' />
                 {t('weather.title')}
               </h3>
               <a
-                  href="/data/weather"
-                  className="text-primary-600 text-sm hover:underline flex items-center gap-1"
-                >
-                  <span>Detailed Forecast</span>
-                  <LucideIcons.ArrowRight size={16} />
-                </a>
+                href='/data/weather'
+                className='text-white text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
+              >
+                <span>Detailed Forecast</span>
+                <LucideIcons.ArrowRight size={16} />
+              </a>
             </div>
             <div>
               {isLoadingWeather ? (
@@ -106,20 +106,23 @@ const InfoWidgets: React.FC = () => {
                   <p>{weatherError}</p>
                 </div>
               ) : (
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  {weatherData.map((location) => (
-                    <Card key={location.location} className='shadow-none bg-transparent border-gray-300'>
-                      <CardContent className="flex flex-col items-center p-3 rounded-lg uppercase">
-                        <div className="font-semibold text-lg tracking-wide">
+                <div className='grid @md:grid-cols-2 @xl:grid-cols-4 gap-4'>
+                  {weatherData.map(location => (
+                    <Card
+                      key={location.location}
+                      className='shadow-none bg-transparent border-gray-300'
+                    >
+                      <CardContent className='flex flex-col items-center p-3 rounded-lg uppercase'>
+                        <div className='font-semibold text-lg tracking-wide'>
                           {location.location}
                         </div>
-                        <div className="text-accent-500 mb-1 pt-2">
+                        <div className='text-accent-500 mb-1 pt-2'>
                           {getWeatherIcon(location.icon)}
                         </div>
-                        <div className="text-4xl font-medium">
+                        <div className='text-4xl font-medium'>
                           {location.temperature}°C
                         </div>
-                        <div className="text-xs text-gray-700 text-center pt-4 tracking-wide font-semibold">
+                        <div className='text-xs text-gray-700 text-center pt-4 tracking-wide font-semibold'>
                           {location.condition}
                         </div>
                       </CardContent>
@@ -132,28 +135,28 @@ const InfoWidgets: React.FC = () => {
 
           {/* Forex Widget */}
           <div>
-            <div className="pb-6 flex items-center justify-between flex-wrap gap-4">
-              <h3 className="text-xl font-semibold text-gray-900 flex items-center">
-                <LucideIcons.BarChart3 className="h-5 w-5 mr-2 text-primary-600" />
+            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-300'>
+              <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
+                <LucideIcons.BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
                 {t('forex.title')}
               </h3>
               <a
-                href="/data/forex"
-                className="text-primary-600 text-sm hover:underline flex items-center gap-1"
+                href='/data/forex'
+                className='text-white text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
               >
                 <span>More Currencies</span>
                 <LucideIcons.ArrowRight size={16} />
               </a>
             </div>
             <div>
-              <div className="overflow-x-auto border border-gray-300 rounded-3xl">
-                <table className="divide-y divide-gray-200 table-fixed w-full">
-                  <thead className="bg-gray-50">
+              <div className='overflow-x-auto border border-gray-300 rounded-xl'>
+                <table className='divide-y divide-gray-200 table-fixed w-full'>
+                  <thead className='bg-gray-50'>
                     <tr>
-                      <th className="pl-6 py-4 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider">
+                      <th className='pl-6 py-4 text-left text-xs font-semibold text-gray-800 uppercase tracking-wider'>
                         Currency
                       </th>
-                      <th className="pr-6 py-4 text-right text-xs font-semibold text-gray-800 uppercase tracking-wider">
+                      <th className='pr-6 py-4 text-right text-xs font-semibold text-gray-800 uppercase tracking-wider'>
                         Peso Rate
                       </th>
                     </tr>
@@ -185,19 +188,19 @@ const InfoWidgets: React.FC = () => {
                         </td>
                       </tr>
                     ) : (
-                      forexRates.map((rate) => (
-                        <tr key={rate.code} className="hover:bg-gray-50">
-                          <td className="pl-6 py-2">
-                            <div className="flex items-center">
-                              <div className="font-medium text-accent-500">
+                      forexRates.map(rate => (
+                        <tr key={rate.code} className='hover:bg-gray-50'>
+                          <td className='pl-6 py-2'>
+                            <div className='flex items-center'>
+                              <div className='font-medium text-accent-500'>
                                 {rate.code}
                               </div>
-                              <div className="text-gray-800 text-sm ml-2 text-ellipsis whitespace-nowrap overflow-hidden">
+                              <div className='text-gray-800 text-sm ml-2 text-ellipsis whitespace-nowrap overflow-hidden'>
                                 {rate.currency}
                               </div>
                             </div>
                           </td>
-                          <td className="pr-6 py-2 tracking-wider whitespace-nowrap text-right text-sm font-medium">
+                          <td className='pr-6 py-2 tracking-wider whitespace-nowrap text-right text-sm font-medium'>
                             {rate.rate.toFixed(2)}
                           </td>
                         </tr>
@@ -210,12 +213,10 @@ const InfoWidgets: React.FC = () => {
           </div>
 
           {/* Emergency Hotlines Widget */}
-          <div className='lg:col-span-2'>
+          <div>
             <CriticalHotlinesWidget maxItems={4} />
           </div>
-          
         </div>
-        
       </div>
     </section>
   );
