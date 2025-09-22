@@ -7,11 +7,13 @@ import { Env } from './types';
 
 interface RateItem {
   symbol: string;
-  [key: string]: any;
+  country?: string;
+  phpEquivalent?: number;
+  [key: string]: unknown;
 }
 
 interface ForexCachedData {
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
   rates: RateItem[];
 }
 

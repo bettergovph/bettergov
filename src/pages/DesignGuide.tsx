@@ -585,12 +585,12 @@ const DesignGuide: React.FC = () => {
                         </h3>
                         <div className='prose max-w-none'>
                           <p className='text-gray-800 leading-relaxed'>
-                            Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos Jr. serves as
-                            the 17th President of the Philippines, assuming
-                            office on June 30, 2022. As the country&apos;s chief
-                            executive, he leads the implementation of laws and
-                            policies aimed at national development and public
-                            welfare.
+                            Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos
+                            Jr. serves as the 17th President of the Philippines,
+                            assuming office on June 30, 2022. As the
+                            country&apos;s chief executive, he leads the
+                            implementation of laws and policies aimed at
+                            national development and public welfare.
                           </p>
                           <p className='text-gray-800 leading-relaxed mt-4'>
                             Prior to his presidency, he served in various

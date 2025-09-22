@@ -11,12 +11,15 @@ export default function SenateCommitteesPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Get Senate data
-  const senateData = legislativeData.find((item: any) =>
+  const senateData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('Senate')
   );
 
   // Extract committees
-  const committees = senateData?.permanent_committees || [];
+  const committees = useMemo(
+    () => senateData?.permanent_committees || [],
+    [senateData]
+  );
 
   // Filter committees based on search term
   const filteredCommittees = useMemo(() => {

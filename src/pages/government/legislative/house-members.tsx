@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Users, MapPin, Phone } from 'lucide-react';
+import { Search, Users, Phone } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 interface HouseMember {
@@ -14,12 +14,15 @@ export default function HouseMembersPage() {
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
 
   // Get House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('House of Representatives')
   );
 
   // Extract house members
-  const houseMembers = houseData?.house_members || [];
+  const houseMembers = useMemo(
+    () => houseData?.house_members || [],
+    [houseData]
+  );
 
   // Get unique provinces/cities for filtering
   const provinces = useMemo(() => {

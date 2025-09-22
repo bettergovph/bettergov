@@ -1,7 +1,7 @@
 // Create a cache for API responses
 type ApiCache = {
   [url: string]: {
-    data: any;
+    data: unknown;
     timestamp: number;
   };
 };

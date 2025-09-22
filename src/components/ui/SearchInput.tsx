@@ -3,7 +3,10 @@ import { Search, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface SearchInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'size'
+  > {
   onSearch?: (value: string) => void;
   className?: string;
   placeholder?: string;
@@ -54,7 +57,7 @@ const SearchInput = ({
           {icon}
         </div>
         <input
-          type='search'
+          type='text'
           className={cn(
             'w-full rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-opacity-20',
             'bg-white text-gray-900 placeholder-gray-500',
