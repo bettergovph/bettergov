@@ -14,7 +14,7 @@ interface ConstitutionalOffice {
   trunk_line?: string;
   website?: string;
   email?: string;
-  slug: string | number;
+  slug: string;
 }
 
 // Recursive component to render office details
