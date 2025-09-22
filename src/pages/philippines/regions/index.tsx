@@ -6,6 +6,7 @@ import { Card, CardContent } from '../../../components/ui/Card';
 import regionsData from '../../../data/regions.json';
 import SEO from '../../../components/SEO';
 import { getLocalGovSEOData } from '../../../utils/seo-data';
+import { formatRomanNumeral } from '../../../lib/utils';
 
 const PhilippinesRegions: React.FC = () => {
   const { t } = useTranslation('about-philippines');
@@ -35,7 +36,8 @@ const PhilippinesRegions: React.FC = () => {
         .join(' ')
         .replace('Ncr', 'NCR')
         .replace('Mimaropa', 'MIMAROPA')
-        .replace('Calabarzon', 'CALABARZON');
+        .replace('Calabarzon', 'CALABARZON')
+        .replace(/\b([ivxlcdm]+)\b/gi, match => formatRomanNumeral(match));
 
       return {
         ...region,

@@ -21,3 +21,10 @@ export function truncateText(text: string, maxLength: number): string {
 export const getRandomNumber = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+export const formatRomanNumeral = (roman: string): string => {
+  if (!/^[ivxlcdmIVXLCDM]*$/.test(roman)) {
+    return roman;
+  }
+  return roman.toUpperCase();
+};
