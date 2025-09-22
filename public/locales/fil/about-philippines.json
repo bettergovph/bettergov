@@ -1,0 +1,232 @@
+{
+  "about": {
+    "hero": {
+      "title": "Tungkol sa Pilipinas",
+      "description": "Tuklasin ang Perlas ng Silanganan, isang bansang mayaman sa kultura, kasaysayan, at likas na yaman na kumalat sa libu-libong isla."
+    },
+    "facts": {
+      "title": "Nakakamanghang Katotohanan",
+      "items": {
+        "geography": {
+          "title": "Heograpiya",
+          "description": "Isang kapuluang binubuo ng mahigit 7,641 isla na matatagpuan sa Timog-Silangang Asya"
+        },
+        "population": {
+          "title": "Populasyon",
+          "description": "Tahanan ng mahigit 110 milyong tao mula sa iba't ibang lahi"
+        },
+        "capital": {
+          "title": "Kabisera",
+          "description": "Ang Maynila ay nagsisilbing kabisera, kasama ang Metro Manila bilang sentro ng ekonomiya"
+        },
+        "landscape": {
+          "title": "Kapaligiran",
+          "description": "May mga bundok, bulkan, tropikal na kagubatan, at magagandang dalampasigan"
+        },
+        "climate": {
+          "title": "Klima",
+          "description": "Tropikal na klima ng dagat na may tatlong magkakaibang panahon"
+        }
+      }
+    },
+    "overview": {
+      "title": "Buod",
+      "paragraphs": [
+        "Ang Pilipinas ay isang soberanong kapuluang bansa na matatagpuan sa Timog-Silangang Asya, na binubuo ng mahigit 7,641 isla. Pinangalanan ayon kay Haring Felipe II ng Espanya, ang bansa ay may mayamang kasaysayan na umabot sa libu-libong taon, mula sa sinaunang katutubo kultura hanggang sa panahon ng pananakop ng mga Espanyol at Amerikano, na humantong sa kalayaan nito noong 1946.",
+        "Sa kasalukuyan, ang Pilipinas ay isa sa mga pinaka-dynamic na ekonomiya sa Timog-Silangang Asya, na pinagsasama ang tradisyonal na pagpapahalaga sa modernong pag-unlad. Kilala ang bansa sa malugod na pagtanggap sa kapwa, magkakaibang pamana sa kultura, kahanga-hangang likas na tanawin, at masigla na demokrasya.",
+        "Ang kulturang Pilipino ay isang natatanging paghahalo ng impluwensyang katutubo, Asyano, Europeo, at Amerikano, na makikita sa sining, musika, pagluluto, at mga tradisyon. Ang mga iba't ibang natatanging uri ng hayop at kapaligiran ay isa sa mga dahilan kung bakit ang Pilipinas ay isa sa mga pinaka-importanteng bansa sa mundo."
+      ]
+    },
+    "keyInformation": {
+      "title": "Mahahalagang Impormasyon",
+      "items": {
+        "officialLanguages": {
+          "label": "Opisyal na mga Wika",
+          "value": "Filipino, Ingles"
+        },
+        "government": {
+          "label": "Pamahalaan",
+          "value": "Presidential Constitutional Republic"
+        },
+        "currency": {
+          "label": "Pera",
+          "value": "Piso (₱)"
+        },
+        "timeZone": {
+          "label": "Time Zone",
+          "value": "UTC+8 (Philippine Standard Time)"
+        },
+        "majorCities": {
+          "label": "Mga Pangunahing Lungsod",
+          "value": "Maynila, Lungsod Quezon, Davao, Cebu"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Mga Kaugnay na Link",
+      "items": {
+        "history": "Kasaysayan",
+        "culture": "Kultura",
+        "regions": "Mga Rehiyon",
+        "tourism": "Turismo"
+      }
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "Kasaysayan ng Pilipinas",
+      "description": "Maglakbay sa panahon at tuklasin ang mga nakakamanghang pangyayari, tao, at kilusang bumuo sa bansang Pilipinas.",
+      "photoCredit": "Photo credit"
+    },
+    "timeline": {
+      "title": "Timeline ng Kasaysayan",
+      "periods": {
+        "independence": {
+          "title": "Kalayaan at Modernong Panahon",
+          "period": "1946-Kasalukuyan",
+          "description": "Malayang republika na humaharap sa mga hamon at tagumpay sa pagbuo ng bansa"
+        },
+        "american": {
+          "title": "Panahon ng mga Amerikano",
+          "period": "1898-1946",
+          "description": "Nagpakilala sa makabagong paraan ng edukasyon at institusyong demokratiko ang pamamahala ng mga Amerikano"
+        },
+        "spanish": {
+          "title": "Panahon ng Kolonyang Espanyol",
+          "period": "1521-1898",
+          "description": "Mahigit 300 taon ng pamamahala ng mga Espanyol, tayo ay naimpluwensiyahan ng Kristiyanismo at mga institusyong kolonyal"
+        },
+        "preColonial": {
+          "title": "Pre-Colonial na Panahon",
+          "period": "Bago ang 1521",
+          "description": "Mga katutubo na may maunlad na lipunan, pakikipag-kalakalan, at mayamang kultura"
+        }
+      }
+    },
+    "overview": {
+      "title": "Ang Kasaysayan",
+      "paragraphs": [
+        "Ang kasaysayan ng Pilipinas ay umaabot sa libu-libong taon at nagsimula ito sa pagdating ng mga Austronesian. Ang mga sinaunang naninirahan ay nakabuo ng mga sopistikadong lipunan, nakikipagkalakalan sa iba't ibang sibilisasyong Asyano at nakabuo ng mga natatanging tradisyong kultural.",
+        "Ang pagdating ni Ferdinand Magellan noong 1521 ay nagbigay pugay sa kolonisasyon ng mga Espanyol, na tumagal ng mahigit tatlong siglo. Sa panahong ito ay nakita ang malawakang pagtanggap ng Kristiyanismo at pagtatatag ng mga institusyong kolonyal na may malaking impluwensya sa lipunang Filipino.",
+        "Kasunod ng Spanish-American War, ang Pilipinas ay napunta sa pamamahala ng mga Amerikano, na nagdulot ng mga makabuluhang pagbabago sa edukasyon, pamahalaan, at lipunan. Nakamit ng bansa ang kalayaan noong 1946 at mula noon ay nagsikap na makabuo ng modernong bansa habang pinapanatili ang mayamang pamana sa kultura."
+      ]
+    },
+    "keyFigures": {
+      "title": "Mga Mahahalagang Tauhan sa Kasaysayan",
+      "figures": {
+        "rizal": {
+          "name": "José Rizal",
+          "description": "Pambansang Bayani, Manunulat, Reporma"
+        },
+        "bonifacio": {
+          "name": "Andrés Bonifacio",
+          "description": "Lider ng Rebolusyon"
+        },
+        "aguinaldo": {
+          "name": "Emilio Aguinaldo",
+          "description": "Unang Pangulo"
+        },
+        "aquino": {
+          "name": "Corazon Aquino",
+          "description": "Simbolo ng Demokrasya, Dating Pangulo"
+        }
+      }
+    },
+    "importantDates": {
+      "title": "Mahahalagang Petsa",
+      "dates": {
+        "magellan": {
+          "date": "Marso 16, 1521",
+          "event": "Pagdating ni Magellan"
+        },
+        "independence": {
+          "date": "Hunyo 12, 1898",
+          "event": "Deklarasyon ng Kalayaan"
+        },
+        "recognition": {
+          "date": "Hulyo 4, 1946",
+          "event": "Pagkilala sa Kalayaan"
+        },
+        "edsa": {
+          "date": "Pebrero 25, 1986",
+          "event": "EDSA People Power Revolution"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Mga Kaugnay na Link",
+      "items": {
+        "about": "Tungkol",
+        "culture": "Kultura",
+        "regions": "Mga Rehiyon",
+        "tourism": "Turismo"
+      }
+    }
+  },
+  "regions": {
+    "hero": {
+      "title": "Mga Rehiyon ng Pilipinas",
+      "description": "Tuklasin ang lahat ng {{count}} administratibong rehiyon ng Pilipinas at ang kanilang mga local government units."
+    },
+    "sections": {
+      "administrativeRegions": {
+        "title": "Mga Administratibong Rehiyon",
+        "localGovUnits": "Mga Local Government Units",
+        "viewLGUs": "Tingnan ang mga LGU"
+      },
+      "regionalOverview": {
+        "title": "Buod ng mga Rehiyon",
+        "paragraphs": [
+          "Ang Pilipinas ay nahahati sa tatlong pangunahing heograpiyang dibisyon: Luzon, Visayas, at Mindanao. Ang mga ito ay higit pang nahahati sa 18 rehiyon, bawat isa ay may sariling sentro ng pamumuno, pagkakakilanlan, at layuning pang-ekonomiya.",
+          "Ang bawat rehiyon ay nagpapakita ng mga natatanging tradisyon, diyalekto, at lutuin, na nag-aambag sa mayamang kultura ng bansa. Mula sa mga Igorot na nakatira sa mga bundok ng Cordilleras hanggang sa mga mangingisda sa Visayas, ang makabuluhang kultura ng mga Filipino ay kamangha-mangha.",
+          "Ang mga rehiyon ay nag-iiba rin sa kanilang mga gawain pang-ekonomiya, mula sa industriyal na National Capital Region hanggang sa mga agrikultura ng Central Luzon at ang mga mayayaman na ari-arian sa probinsya ng Mindanao."
+        ]
+      }
+    },
+    "sidebar": {
+      "quickFacts": {
+        "title": "Mabibiling Katotohanan",
+        "totalRegions": {
+          "label": "Kabuuang Rehiyon",
+          "value": "18 Administratibong Rehiyon"
+        },
+        "provinces": {
+          "label": "Mga Probinsya",
+          "value": "82 Probinsya"
+        },
+        "cities": {
+          "label": "Mga Lungsod",
+          "value": "149 Lungsod"
+        },
+        "municipalities": {
+          "label": "Mga Munisipalidad",
+          "value": "1,493 Munisipalidad"
+        }
+      },
+      "regionalLanguages": {
+        "title": "Mga Rehiyonal na Wika",
+        "regions": {
+          "luzon": {
+            "name": "Luzon",
+            "languages": "Tagalog, Ilocano, Bicolano"
+          },
+          "visayas": {
+            "name": "Visayas",
+            "languages": "Cebuano, Hiligaynon, Waray"
+          },
+          "mindanao": {
+            "name": "Mindanao",
+            "languages": "Cebuano, Maguindanaon, Tausug"
+          }
+        }
+      },
+      "relatedLinks": {
+        "title": "Mga Kaugnay na Link",
+        "interactiveMap": "Interactive Map",
+        "localGovernmentUnits": "Mga Local Government Units",
+        "governmentDepartments": "Mga Departamento ng Pamahalaan",
+        "aboutPhilippines": "Tungkol sa Pilipinas"
+      }
+    }
+  }
+}

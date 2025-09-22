@@ -38,7 +38,10 @@ interface RegionProperties {
 }
 
 // Wikipedia data cache
-const wikipediaCache = new Map<string, any>();
+const wikipediaCache = new Map<
+  string,
+  { content?: string; summary?: string; [key: string]: unknown }
+>();
 
 const PhilippinesMap: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
@@ -47,8 +50,13 @@ const PhilippinesMap: React.FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState('');
   // GeoJSON data expects FeatureCollection structure
-  const [mapData] = useState<GeoJSON.FeatureCollection<any, RegionProperties>>(
-    philippinesRegionsData as GeoJSON.FeatureCollection<any, RegionProperties>
+  const [mapData] = useState<
+    GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
+  >(
+    philippinesRegionsData as GeoJSON.FeatureCollection<
+      GeoJSON.Geometry,
+      RegionProperties
+    >
   );
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const mapRef = useRef<L.Map>(null);
@@ -83,7 +91,7 @@ const PhilippinesMap: React.FC = () => {
 
   // Handle region click
   const onRegionClick = useCallback(
-    async (feature: GeoJSON.Feature<any, RegionProperties>) => {
+    async (feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>) => {
       if (!feature.properties) return;
       const props = feature.properties;
       const regionName = props.name;
@@ -110,14 +118,16 @@ const PhilippinesMap: React.FC = () => {
   );
 
   const getRegionName = (
-    feature: GeoJSON.Feature<any, RegionProperties>
+    feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>
   ): string => {
     const props = feature.properties;
     return props?.name || '';
   };
 
   // Style for GeoJSON features
-  const regionStyle = (feature?: GeoJSON.Feature<any, RegionProperties>) => {
+  const regionStyle = (
+    feature?: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>
+  ) => {
     if (!feature) return {};
     const regionName = getRegionName(feature);
     const isSelected = selectedRegion?.id === regionName;
@@ -143,7 +153,7 @@ const PhilippinesMap: React.FC = () => {
 
   // Event handlers for each feature
   const onEachFeature = (
-    feature: GeoJSON.Feature<any, RegionProperties>,
+    feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>,
     layer: Layer
   ) => {
     layer.on({
@@ -161,16 +171,6 @@ const PhilippinesMap: React.FC = () => {
         }
       },
     });
-  };
-
-  // Filtered GeoJSON data based on search query
-  const filteredMapData: GeoJSON.FeatureCollection<any, RegionProperties> = {
-    ...mapData,
-    features: mapData.features.filter(feature => {
-      if (!searchQuery) return true;
-      const name = getRegionName(feature);
-      return name.toLowerCase().includes(searchQuery.toLowerCase());
-    }),
   };
 
   // Effect to update GeoJSON layer when search query changes (to re-apply styles for filtered out items)

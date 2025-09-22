@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  bettergov:
+    build: .
+    ports:
+      - '8080:80'
+    container_name: bettergov
+    restart: unless-stopped
+    labels:
+      - 'org.opencontainers.image.authors=guerzon@proton.me'
+      - 'org.opencontainers.image.url=https://bettergov.ph'
+      - 'org.opencontainers.image.source=https://github.com/bettergovph/bettergov'

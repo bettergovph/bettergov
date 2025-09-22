@@ -78,7 +78,9 @@
   border-radius: 4px;
   text-decoration: none;
   color: #374151; /* text-gray-700 */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .ais-Pagination-link:hover {

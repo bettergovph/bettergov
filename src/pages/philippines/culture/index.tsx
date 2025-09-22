@@ -1,11 +1,11 @@
-import React from 'react'
-import { Music2, Utensils, Heart, Users, Palette } from 'lucide-react'
-import { Card, CardContent } from '../../../components/ui/Card'
+import React from 'react';
+import { Music2, Utensils, Heart, Users, Palette } from 'lucide-react';
+import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesCulture: React.FC = () => {
   const culturalAspects = [
     {
-      icon: <Music2 className="h-6 w-6" />,
+      icon: <Music2 className='h-6 w-6' />,
       title: 'Music and Dance',
       description:
         'Traditional and modern Filipino performing arts, from Tinikling to contemporary OPM',
@@ -13,14 +13,14 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg',
     },
     {
-      icon: <Utensils className="h-6 w-6" />,
+      icon: <Utensils className='h-6 w-6' />,
       title: 'Cuisine',
       description:
         'Rich culinary traditions blending native, Chinese, Spanish, and American influences',
       image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg',
     },
     {
-      icon: <Heart className="h-6 w-6" />,
+      icon: <Heart className='h-6 w-6' />,
       title: 'Festivals',
       description:
         'Vibrant celebrations showcasing Filipino faith, culture, and community spirit',
@@ -28,7 +28,7 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/1684187/pexels-photo-1684187.jpeg',
     },
     {
-      icon: <Users className="h-6 w-6" />,
+      icon: <Users className='h-6 w-6' />,
       title: 'Social Values',
       description:
         'Strong family ties, respect for elders, and the spirit of Bayanihan',
@@ -36,34 +36,34 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg',
     },
     {
-      icon: <Palette className="h-6 w-6" />,
+      icon: <Palette className='h-6 w-6' />,
       title: 'Arts and Crafts',
       description:
         'Traditional weaving, pottery, and contemporary Filipino visual arts',
       image:
         'https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg',
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className='min-h-screen bg-gray-50'>
       {/* Hero Section */}
-      <div className="relative h-[60vh] overflow-hidden">
-        <div className="absolute inset-0">
+      <div className='relative h-[60vh] overflow-hidden'>
+        <div className='absolute inset-0'>
           <img
-            src="https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg"
-            alt="Filipino Culture"
-            className="w-full h-full object-cover"
+            src='https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg'
+            alt='Filipino Culture'
+            className='w-full h-full object-cover'
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className='absolute inset-0 bg-black/50' />
         </div>
-        <div className="relative h-full flex items-center">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        <div className='relative h-full flex items-center'>
+          <div className='container mx-auto px-4'>
+            <div className='max-w-3xl'>
+              <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
                 Filipino Culture
               </h1>
-              <p className="text-xl text-white/90 leading-relaxed">
+              <p className='text-xl text-white/90 leading-relaxed'>
                 Experience the vibrant tapestry of Filipino traditions, arts,
                 and values that make the Philippines truly unique.
               </p>
@@ -73,33 +73,33 @@ const PhilippinesCulture: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className='container mx-auto px-4 py-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
           {/* Cultural Aspects */}
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          <div className='lg:col-span-2'>
+            <section className='mb-12'>
+              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
                 Cultural Heritage
               </h2>
-              <div className="grid gap-6">
+              <div className='grid gap-6'>
                 {culturalAspects.map((aspect, index) => (
                   <Card key={index}>
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="p-3 bg-primary-100 rounded-lg text-primary-600">
+                    <CardContent className='p-6'>
+                      <div className='flex items-start space-x-4'>
+                        <div className='p-3 bg-primary-100 rounded-lg text-primary-600'>
                           {aspect.icon}
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        <div className='flex-1'>
+                          <h3 className='text-xl font-semibold text-gray-900 mb-2'>
                             {aspect.title}
                           </h3>
-                          <p className="text-gray-800 mb-4">
+                          <p className='text-gray-800 mb-4'>
                             {aspect.description}
                           </p>
                           <img
                             src={aspect.image}
                             alt={aspect.title}
-                            className="w-full h-48 object-cover rounded-lg"
+                            className='w-full h-48 object-cover rounded-lg'
                           />
                         </div>
                       </div>
@@ -110,67 +110,68 @@ const PhilippinesCulture: React.FC = () => {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
                 Cultural Identity
               </h2>
-              <div className="prose max-w-none">
-                <p className="text-gray-800 leading-relaxed mb-4">
+              <div className='prose max-w-none'>
+                <p className='text-gray-800 leading-relaxed mb-4'>
                   Filipino culture is a unique blend of indigenous, Asian, and
                   Western influences, shaped by centuries of trade,
                   colonization, and cultural exchange. At its core lies strong
                   family values, religious faith, and a sense of community that
                   binds the nation together.
                 </p>
-                <p className="text-gray-800 leading-relaxed mb-4">
+                <p className='text-gray-800 leading-relaxed mb-4'>
                   The Philippines is known for its warm hospitality, expressed
-                  through the concept of "pakikisama" (companionship) and
-                  "bayanihan" (community spirit). These values are reflected in
-                  daily life, celebrations, and social interactions.
+                  through the concept of &ldquo;pakikisama&rdquo;
+                  (companionship) and &ldquo;bayanihan&rdquo; (community
+                  spirit). These values are reflected in daily life,
+                  celebrations, and social interactions.
                 </p>
-                <p className="text-gray-800 leading-relaxed">
+                <p className='text-gray-800 leading-relaxed'>
                   Filipino arts and crafts, from traditional weaving to modern
                   visual arts, showcase the creativity and skill of the Filipino
-                  people. The country's diverse musical traditions, dances, and
-                  festivals celebrate its rich cultural heritage while embracing
-                  contemporary influences.
+                  people. The country&apos;s diverse musical traditions, dances,
+                  and festivals celebrate its rich cultural heritage while
+                  embracing contemporary influences.
                 </p>
               </div>
             </section>
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className='space-y-6'>
             <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <CardContent className='p-6'>
+                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
                   Major Festivals
                 </h3>
-                <div className="space-y-4">
+                <div className='space-y-4'>
                   <div>
-                    <div className="font-medium text-gray-900">
+                    <div className='font-medium text-gray-900'>
                       Sinulog Festival
                     </div>
-                    <div className="text-sm text-gray-800">
+                    <div className='text-sm text-gray-800'>
                       Cebu City (January)
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">Ati-Atihan</div>
-                    <div className="text-sm text-gray-800">
+                    <div className='font-medium text-gray-900'>Ati-Atihan</div>
+                    <div className='text-sm text-gray-800'>
                       Kalibo, Aklan (January)
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">Panagbenga</div>
-                    <div className="text-sm text-gray-800">
+                    <div className='font-medium text-gray-900'>Panagbenga</div>
+                    <div className='text-sm text-gray-800'>
                       Baguio City (February)
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">
+                    <div className='font-medium text-gray-900'>
                       MassKara Festival
                     </div>
-                    <div className="text-sm text-gray-800">
+                    <div className='text-sm text-gray-800'>
                       Bacolod City (October)
                     </div>
                   </div>
@@ -179,32 +180,32 @@ const PhilippinesCulture: React.FC = () => {
             </Card>
 
             <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <CardContent className='p-6'>
+                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
                   Traditional Arts
                 </h3>
-                <div className="space-y-3">
+                <div className='space-y-3'>
                   <div>
-                    <div className="font-medium text-gray-900">Weaving</div>
-                    <div className="text-sm text-gray-800">
-                      T'nalak, Piña, Inabel
+                    <div className='font-medium text-gray-900'>Weaving</div>
+                    <div className='text-sm text-gray-800'>
+                      T&apos;nalak, Piña, Inabel
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">Music</div>
-                    <div className="text-sm text-gray-800">
+                    <div className='font-medium text-gray-900'>Music</div>
+                    <div className='text-sm text-gray-800'>
                       Kulintang, Rondalla
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">Dance</div>
-                    <div className="text-sm text-gray-800">
+                    <div className='font-medium text-gray-900'>Dance</div>
+                    <div className='text-sm text-gray-800'>
                       Tinikling, Singkil, Pandanggo
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900">Visual Arts</div>
-                    <div className="text-sm text-gray-800">
+                    <div className='font-medium text-gray-900'>Visual Arts</div>
+                    <div className='text-sm text-gray-800'>
                       Indigenous patterns, Catholic imagery
                     </div>
                   </div>
@@ -213,32 +214,32 @@ const PhilippinesCulture: React.FC = () => {
             </Card>
 
             <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <CardContent className='p-6'>
+                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
                   Related Links
                 </h3>
-                <nav className="space-y-2">
+                <nav className='space-y-2'>
                   <a
-                    href="/philippines/about"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                    href='/philippines/about'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     About
                   </a>
                   <a
-                    href="/philippines/history"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                    href='/philippines/history'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     History
                   </a>
                   <a
-                    href="/philippines/regions"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                    href='/philippines/regions'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     Regions
                   </a>
                   <a
-                    href="/philippines/tourism"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                    href='/philippines/tourism'
+                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     Tourism
                   </a>
@@ -249,7 +250,7 @@ const PhilippinesCulture: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PhilippinesCulture
+export default PhilippinesCulture;
