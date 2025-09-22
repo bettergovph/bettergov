@@ -12,17 +12,16 @@ interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
 
-const validatedData =
-  ConstitutionalOfficeSchema.array().parse(constitutionalData);
-
-// Only include constitutional offices (exclude GOCCs and SUCs)
-const offices = validatedData.filter(
-  office =>
-    !office.office_type.includes('Government-Owned') &&
-    !office.office_type.includes('GOCCs') &&
-    !office.office_type.includes('State Universities') &&
-    !office.office_type.includes('SUCs')
-);
+const offices = ConstitutionalOfficeSchema.array()
+  .parse(constitutionalData)
+  // Only include constitutional offices (exclude GOCCs and SUCs)
+  .filter(
+    office =>
+      !office.office_type.includes('Government-Owned') &&
+      !office.office_type.includes('GOCCs') &&
+      !office.office_type.includes('State Universities') &&
+      !office.office_type.includes('SUCs')
+  );
 
 export default function ConstitutionalSidebar({
   onOfficeSelect,
