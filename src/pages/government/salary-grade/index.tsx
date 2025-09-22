@@ -187,11 +187,38 @@ const plantillaPositionsByGrade: Record<number, string> = {
   32: 'Vice President',
   31: 'Senator; Congressman',
   30: 'Mayor',
+  29: 'Assistant Cabinet Secretary',
   25: 'District Engineer',
+  20: 'Executive Assistant III',
+  11: 'Project Development Officer I',
+  1: 'Administrative Aide I',
+  28: 'Board Chairman I',
+  27: 'Trial Court Judge',
+  26: 'City Government Department Head',
+  24: 'Community Development Officer V',
+  23: 'Court Attorney II',
+  22: 'Engineer IV',
+  21: 'Chief Revenue Officer II',
+  19: 'Engineer III',
+  18: 'Information Officer III',
+  17: 'Court Secretary',
+  16: 'Engineer II',
+  15: 'Energy Regulation Officer II',
+  14: 'Executive Assistant I',
+  13: 'Immigration Officer II',
+  12: 'Instructor I',
+  10: 'Land Examiner I',
+  9: 'Loan Examiner I',
+  8: 'Accounting Clerk III',
+  7: 'Administrative Assistant I',
+  6: 'Agricultural Technician I',
+  5: 'Bailiff I',
+  4: 'Baranggay Health Aide',
+  3: 'Carpenter I',
+  2: 'Cemetery Caretaker',
 };
 
-const isHighlightedGrade = (grade: number) =>
-  [33, 32, 31, 30, 25].includes(grade);
+// All plantilla positions styled uniformly in gray
 
 export default function SalaryGradePage() {
   const allSteps = salarySchedule.flatMap(
@@ -315,7 +342,7 @@ export default function SalaryGradePage() {
                     scope='col'
                     className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                   >
-                    Plantilla Position (reference)
+                    Position Name (examples)
                   </th>
                   <th
                     scope='col'
@@ -343,9 +370,7 @@ export default function SalaryGradePage() {
                     <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
                       SG {row.grade}
                     </td>
-                    <td
-                      className={`px-4 py-4 whitespace-nowrap text-sm ${isHighlightedGrade(row.grade) ? 'font-semibold text-emerald-700' : 'text-gray-700'}`}
-                    >
+                    <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-700'>
                       {plantillaPositionsByGrade[row.grade] || '—'}
                     </td>
                     <td className='px-4 py-4 whitespace-nowrap text-sm font-bold text-blue-900 text-right'>
