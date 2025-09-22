@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "title": "Mabuhay sa BetterGov.ph",
+    "subtitle": "Ang volunteer-run nga portal kang Republika kang Pilipinas. Pangita-a ang impormasyon, ma-access ang mga government services, kag mag-update sa pinakabag-o nga balita bahin sa Pilipinas.",
+    "nationalId": "National ID",
+    "birthCertificate": "Birth Certificate",
+    "businessRegistration": "Business Registration"
+  },
+  "services": {
+    "title": "Mga Sikat nga Services",
+    "governmentServices": "Government Services",
+    "description": "Ma-access ang mga opisyal nga government services nga madasig kag madali. Pangita-a ang imo kinahanglan para sa citizenship, business, education, kag iban pa.",
+    "viewAll": "Lantawa ang Tanan nga Services",
+    "viewAllCategory": "Lantawa ang Tanan"
+  },
+  "weather": {
+    "title": "Mga Weather Updates"
+  },
+  "forex": {
+    "title": "Foreign Exchange Rates"
+  },
+  "news": {
+    "title": "Pinakabag-o nga Balita kag Updates"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov. Ang tanan nga content ay public domain kon wara gin-specify."
+  },
+  "navbar": {
+    "philippines": "Pilipinas",
+    "services": "Services",
+    "travel": "Travel",
+    "government": "Government",
+    "flood control projects": "Flood Control Projects"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Mag-intra sa #CivicTech Revolution",
+    "stripSubtitle": "Bulig sa pagtukod kang buwasdamlag kang Pilipinas kag governance paagi sa teknolohiya",
+    "joinNow": "Mag-intra Tulad",
+    "discord": "Discord",
+    "bannerTitle": "Mag-intra sa #CivicTech Revolution",
+    "bannerSubtitle": "Bulig sa pagtukod kang buwasdamlag kang Pilipinas kag governance paagi sa teknolohiya.",
+    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
+    "joinMovement": "Mag-intra sa Amon nga Hilikuton",
+    "or": "o",
+    "joinDiscord": "Mag-intra sa Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Real-Time Data Services",
+    "description": "Ma-access ang up-to-date nga impormasyon tungod sa weather conditions kag foreign exchange rates sa bug-os nga Pilipinas.",
+    "weatherForecast": "Weather Forecast",
+    "realtimeConditions": "Real-time nga mga kondisyon",
+    "viewArrow": "Lantawa →",
+    "weatherDescription": "Makakuha kang current weather conditions kag forecasts para sa mga major cities sa bug-os nga Pilipinas. Mag-plano kang imo adlaw nga may accurate nga temperature readings kag weather alerts.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Mas Duro nga mga Cities",
+    "forexRates": "Forex Rates",
+    "liveExchange": "Live nga exchange rates",
+    "forexDescription": "Mag-track kang foreign exchange rates halin sa Bangko Sentral ng Pilipinas (BSP). Mag-convert kang currencies kag Mag-lantaw kang historical rate trends para sa mga major world currencies.",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Mas Duro nga mga Currencies"
+  },
+  "promotion": {
+    "philsysTitle": "PhilSys National ID Registration",
+    "philsysDescription": "Mag-rehistro para sa imo Philippine Identification System (PhilSys) ID card subong. Ang national ID naga-serve bilang single government-issued identification document para sa tanan nga citizens.",
+    "registerNow": "Mag-rehistro Tulad"
+  },
+  "government": {
+    "title": "Government kang Pilipinas",
+    "description": "Magtu-on tungod sa tatlo ka branches kang Philippine government kag kon paano sila nagtrabaho para mag-serve sa mga tawo.",
+    "executiveTitle": "Executive Branch",
+    "executiveDescription": "Gin-pangunahan kang Presidente, responsable sa pag-implement kag pag-enforce kang mga balaod.",
+    "legislativeTitle": "Legislative Branch",
+    "legislativeDescription": "Gin-compose kang Senate kag House of Representatives, responsable sa paghimo kang mga balaod.",
+    "judiciaryTitle": "Judicial Branch",
+    "judiciaryDescription": "Gin-pangunahan kang Supreme Court, responsable sa pag-interpret kang mga balaod kag pag-administer kang hustisya.",
+    "learnMore": "Magtu-on Pa",
+    "directoryTitle": "Opisyal nga Directory",
+    "directoryDescription": "Pangita-a ang contact information para sa mga government officials, agencies, kag offices sa national kag local levels.",
+    "viewDirectory": "Lantawa ang Directory"
+  }
+}
