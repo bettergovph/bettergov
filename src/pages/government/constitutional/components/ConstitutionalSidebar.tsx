@@ -17,7 +17,7 @@ const validatedData =
 
 // Only include constitutional offices (exclude GOCCs and SUCs)
 const offices = validatedData.filter(
-  (office: ConstitutionalOffice) =>
+  office =>
     !office.office_type.includes('Government-Owned') &&
     !office.office_type.includes('GOCCs') &&
     !office.office_type.includes('State Universities') &&
