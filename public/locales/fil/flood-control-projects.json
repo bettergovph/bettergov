@@ -38,7 +38,7 @@
   },
   "dataSource": {
     "title": "Tungkol sa Datos na Ito",
-    "description": "Ang dashboard na ito ay nagpapakita ng mga proyektong flood control infrastructure sa buong Pilipinas. Kasama sa datos ang impormasyon tungkol sa mga lokasyon ng proyekto, uri, mga tanggapang nagpapatupad, at marami pa. Gamitin ang mga filter sa sidebar upang tuklasin ang mga tiyak na aspeto ng datos o gamitin ang search functionality upang mahanap ang mga tiyak na proyekto.",
+    "description": "Ang dashboard na ito ay nagpapakita ng mga imprastraktura ng mga proyekto sa pagkontrol ng baha sa buong Pilipinas. Kasama sa datos ang impormasyon tungkol sa mga lokasyon ng proyekto, uri, mga tanggapang nagpapatupad, at marami pa. Gamitin ang mga filter sa sidebar upang tuklasin ang mga tiyak na aspeto ng datos o gamitin ang search functionality upang mahanap ang mga tiyak na proyekto.",
     "sourceLabel": "Pinagkunan:"
   },
   "tooltips": {
