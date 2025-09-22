@@ -1,9 +1,8 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Building, LandPlot, Users, BookOpen } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function LegislativeSidebar() {
-  const { chamber: chamberParam } = useParams();
   const location = useLocation();
 
   // Check if a path is active
@@ -24,7 +23,7 @@ export default function LegislativeSidebar() {
               <Link
                 to='/government/legislative/senate-of-the-philippines-20th-congress'
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'Senate of the Philippines (20th Congress)'
+                  isActive('/government/legislative/senate-of-the-philippines-20th-congress')
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
@@ -59,7 +58,7 @@ export default function LegislativeSidebar() {
               <Link
                 to='/government/legislative/house-of-representatives-20th-congress'
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  chamberParam === 'House of Representatives (20th Congress)'
+                  isActive('/government/legislative/house-of-representatives-20th-congress')
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
