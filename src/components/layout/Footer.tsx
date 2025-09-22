@@ -3,7 +3,12 @@ import { CheckCircle2 } from 'lucide-react';
 import { footerNavigation } from '../../data/navigation';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FacebookIcon, InstagramIcon, YouTubeIcon, XIcon } from '../icons';
+import {
+  SiFacebook,
+  SiInstagram,
+  SiYoutube,
+  SiX,
+} from '@icons-pack/react-simple-icons';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
@@ -11,13 +16,13 @@ const Footer: React.FC = () => {
   const getSocialIcon = (label: string) => {
     switch (label) {
       case 'Facebook':
-        return <FacebookIcon className='h-5 w-5' />;
+        return <SiFacebook className='h-5 w-5' />;
       case 'Twitter':
-        return <XIcon className='h-5 w-5' />;
+        return <SiX className='h-5 w-5' />;
       case 'Instagram':
-        return <InstagramIcon className='h-5 w-5' />;
+        return <SiInstagram className='h-5 w-5' />;
       case 'YouTube':
-        return <YouTubeIcon className='h-5 w-5' />;
+        return <SiYoutube className='h-5 w-5' />;
       default:
         return null;
     }
