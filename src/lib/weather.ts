@@ -45,6 +45,10 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
       temperature: Math.round(data[key].main.temp), // Round temperature to nearest integer
       condition: data[key].weather[0].description,
       icon: mapWeatherIconToLucide(data[key].weather[0].icon),
+      humidity: data[key].main.humidity,
+      windSpeed: data[key].wind.speed,
+      pressure: data[key].main.pressure,
+      visibility: Math.round(data[key].visibility / 1000), // Convert meters to kilometers
     })
   );
 

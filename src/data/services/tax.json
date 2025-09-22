@@ -1,5 +1,23 @@
 [
   {
+    "service": "Calculate Income/VAT Tax and View Tax Requirements and Forms",
+    "url": "https://taxdirectory.bettergov.ph",
+    "id": "b5f9b404-66ba-4fe0-8f97-7e2f207dc1fe",
+    "slug": "tax-directory",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Tax Directory",
+      "slug": "calculator"
+    },
+    "createdAt": "2025-09-22T11:30:06.318Z",
+    "updatedAt": "2025-09-22T11:30:06.318Z"
+  },
+  {
     "service": "Apply for BIR Tax Clearance Certificate",
     "url": "https://www.bir.gov.ph/index.php/tax-clearance/tax-clearance-application-form.html",
     "id": "cd1fc9bf-8428-43e4-b1be-6775627ab8cc",
