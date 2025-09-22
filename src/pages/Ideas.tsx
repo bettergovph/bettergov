@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Lightbulb, Users, Star, TrendingUp, Github, Plus } from 'lucide-react';
+import { Lightbulb, Users, Star, TrendingUp, Plus } from 'lucide-react';
+import { SiGithub } from '@icons-pack/react-simple-icons';
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -190,7 +191,7 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <Github className='h-5 w-5 mr-2' />
+              <SiGithub className='h-5 w-5 mr-2' />
               Submit Idea
             </button>
             <button
@@ -277,7 +278,7 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <Github className='h-5 w-5 mr-2' />
+              <SiGithub className='h-5 w-5 mr-2' />
               Submit via GitHub
             </button>
             <a
