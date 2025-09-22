@@ -39,12 +39,12 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
       'Mental Health Crisis Line': Brain,
     };
     const Icon = icons[hotline_name];
-    return Icon ? <Icon className='h-6 w-6' /> : null;
+    return Icon ? <Icon className='h-5 w-5' /> : null;
   }
 
   return (
     <div>
-      <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-red-50 rounded-xl border-gray-400 shadow-sm'>
+      <div className='mb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 sm:p-2 sm:pl-6 bg-red-50 rounded-xl border-red-200 shadow-sm'>
         <div className='flex items-center gap-2'>
           <Phone size={18} className='text-red-600' />
           <h3 className='font-semibold text-red-600 text-xl'>
@@ -53,7 +53,7 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
         </div>
         <Link
           to='/philippines/hotlines'
-          className='text-white text-sm hover:underline flex items-center gap-1 bg-red-500 hover:bg-red-600 font-semibold px-4 py-2 rounded-md'
+          className='text-white w-full justify-center sm:justify-start sm:w-fit text-sm hover:underline flex items-center gap-1 bg-red-600 hover:bg-red-700 font-semibold px-4 py-2 rounded-md'
         >
           <span>View all</span>
           <ArrowRight size={16} />
@@ -65,11 +65,11 @@ const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
           {displayedHotlines.map((hotline, index) => (
             <Card
               key={index}
-              className='shadow-none border-gray-400 shadow-sm flex flex-col justify-between'
+              className='border-gray-400 shadow-sm flex flex-col justify-between'
             >
-              <CardHeader className='font-medium flex items-center gap-2 border-b-0'>
+              <CardHeader className='font-medium flex items-center justify-center gap-2 border-b-0 text-black/70'>
                 {getIcon(hotline.name)}
-                <span className='text-lg'>{hotline.name}</span>
+                <span className='text-lg text-center'>{hotline.name}</span>
               </CardHeader>
               <CardContent className='flex flex-col items-centerflex-wrap lg:justify-end p-0 md:p-0 border-t divide-y-[1px]'>
                 {hotline.numbers.map((number, idx) => (

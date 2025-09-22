@@ -82,14 +82,14 @@ const InfoWidgets: React.FC = () => {
         <div className='grid lg:grid-cols-2 gap-12'>
           {/* Weather Widget */}
           <div className='@container'>
-            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
+            <div className='mb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 sm:p-2 sm:pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
                 <LucideIcons.Cloud className='h-5 w-5 mr-2 text-primary-600' />
                 {t('weather.title')}
               </h3>
               <a
                 href='/data/weather'
-                className='text-white text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
+                className='text-white w-full justify-center sm:justify-start sm:w-fit text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
               >
                 <span>Detailed Forecast</span>
                 <LucideIcons.ArrowRight size={16} />
@@ -135,14 +135,14 @@ const InfoWidgets: React.FC = () => {
 
           {/* Forex Widget */}
           <div>
-            <div className='mb-4 flex items-center justify-between flex-wrap gap-4 border p-2 pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
+            <div className='mb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 sm:p-2 sm:pl-6 bg-blue-50 rounded-xl border-gray-400 shadow-sm'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
                 <LucideIcons.BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
                 {t('forex.title')}
               </h3>
               <a
                 href='/data/forex'
-                className='text-white text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
+                className='text-white w-full justify-center sm:justify-start sm:w-fit text-sm hover:underline flex items-center gap-1 bg-blue-600 hover:bg-blue-700 font-semibold px-4 py-2 rounded-md'
               >
                 <span>More Currencies</span>
                 <LucideIcons.ArrowRight size={16} />
