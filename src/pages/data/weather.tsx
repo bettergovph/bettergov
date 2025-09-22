@@ -148,19 +148,35 @@ const WeatherPage: React.FC = () => {
                   <div className='grid grid-cols-2 md:grid-cols-4 gap-4 text-center'>
                     <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Humidity</div>
-                      <div className='text-xl font-semibold'>65%</div>
+                      <div className='text-xl font-semibold'>
+                        {selectedCityData.humidity !== undefined
+                          ? `${selectedCityData.humidity}%`
+                          : 'N/A'}
+                      </div>
                     </div>
                     <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Wind</div>
-                      <div className='text-xl font-semibold'>12 km/h</div>
+                      <div className='text-xl font-semibold'>
+                        {selectedCityData.windSpeed !== undefined
+                          ? `${Math.round(selectedCityData.windSpeed * 3.6)} km/h`
+                          : 'N/A'}
+                      </div>
                     </div>
                     <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Pressure</div>
-                      <div className='text-xl font-semibold'>1013 hPa</div>
+                      <div className='text-xl font-semibold'>
+                        {selectedCityData.pressure !== undefined
+                          ? `${selectedCityData.pressure} hPa`
+                          : 'N/A'}
+                      </div>
                     </div>
                     <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Visibility</div>
-                      <div className='text-xl font-semibold'>10 km</div>
+                      <div className='text-xl font-semibold'>
+                        {selectedCityData.visibility !== undefined
+                          ? `${selectedCityData.visibility} km`
+                          : 'N/A'}
+                      </div>
                     </div>
                   </div>
                 </div>
