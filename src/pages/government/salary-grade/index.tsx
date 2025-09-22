@@ -1,4 +1,4 @@
-import { DollarSign, TrendingUp, Info } from 'lucide-react';
+import { TrendingDown, Info, Hash } from 'lucide-react';
 
 type SalarySchedule = {
   grade: number;
@@ -245,7 +245,9 @@ export default function SalaryGradePage() {
         <div className='grid grid-cols-1 md:grid-cols-4 gap-6 mb-8'>
           <div className='bg-white p-6 rounded-lg shadow-md border'>
             <div className='flex items-center'>
-              <DollarSign className='h-8 w-8 text-green-600 mr-3' />
+              <div className='h-8 w-8 text-green-600 mr-3 flex items-center justify-center text-2xl font-bold'>
+                ₱
+              </div>
               <div>
                 <p className='text-sm font-medium text-gray-600'>
                   Highest Salary
@@ -259,7 +261,7 @@ export default function SalaryGradePage() {
 
           <div className='bg-white p-6 rounded-lg shadow-md border'>
             <div className='flex items-center'>
-              <TrendingUp className='h-8 w-8 text-blue-600 mr-3' />
+              <TrendingDown className='h-8 w-8 text-blue-600 mr-3' />
               <div>
                 <p className='text-sm font-medium text-gray-600'>
                   Lowest Salary
@@ -273,7 +275,7 @@ export default function SalaryGradePage() {
 
           <div className='bg-white p-6 rounded-lg shadow-md border'>
             <div className='flex items-center'>
-              <TrendingUp className='h-8 w-8 text-purple-600 mr-3' />
+              <Hash className='h-8 w-8 text-purple-600 mr-3' />
               <div>
                 <p className='text-sm font-medium text-gray-600'>
                   Salary Grades
