@@ -18,7 +18,7 @@ export async function onRequest(context: {
     const cachedData = (await context.env.WEATHER_KV.get(
       'philippines_weather',
       { type: 'json' }
-    )) as Record<string, any> | null;
+    )) as Record<string, unknown> | null;
 
     if (!cachedData) {
       return new Response(

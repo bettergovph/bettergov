@@ -12,11 +12,13 @@ export const fetchForexData = async (
   const data = await fetchWithCache('https://api.bettergov.ph/forex');
 
   // Transform API data to match our ForexRate type
-  let transformedData: ForexRate[] = data.rates.map((rate: any) => ({
-    currency: rate.country,
-    code: rate.symbol,
-    rate: rate.phpEquivalent,
-  }));
+  let transformedData: ForexRate[] = data.rates.map(
+    (rate: { country: string; symbol: string; phpEquivalent: number }) => ({
+      currency: rate.country,
+      code: rate.symbol,
+      rate: rate.phpEquivalent,
+    })
+  );
 
   // Filter by symbols if provided
   if (filterSymbols && filterSymbols.length > 0) {

@@ -29,7 +29,10 @@ const ForexPage: React.FC = () => {
     if (!iconName) return null;
 
     const Icon = (
-      LucideIcons as unknown as Record<string, React.ComponentType<any>>
+      LucideIcons as unknown as Record<
+        string,
+        React.ComponentType<{ className?: string }>
+      >
     )[iconName];
     return Icon ? <Icon className={size} /> : null;
   };

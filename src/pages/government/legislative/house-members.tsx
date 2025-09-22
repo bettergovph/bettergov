@@ -14,12 +14,15 @@ export default function HouseMembersPage() {
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
 
   // Get House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('House of Representatives')
   );
 
   // Extract house members
-  const houseMembers = houseData?.house_members || [];
+  const houseMembers = useMemo(
+    () => houseData?.house_members || [],
+    [houseData]
+  );
 
   // Get unique provinces/cities for filtering
   const provinces = useMemo(() => {

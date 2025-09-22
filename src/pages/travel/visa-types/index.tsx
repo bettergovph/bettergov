@@ -18,7 +18,7 @@ interface VisaCategory {
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes: VisaType[] | any[];
+  visaTypes: VisaType[];
 }
 
 const VisaTypesPage: React.FC = () => {
@@ -114,7 +114,7 @@ const VisaTypesPage: React.FC = () => {
               Showing results for: &ldquo;{searchTerm}&rdquo;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {allVisaTypes.map((visa: any) => (
+              {allVisaTypes.map(visa => (
                 <Link
                   to={`/travel/visa-types/${visa.id}`}
                   key={visa.id}
@@ -184,7 +184,7 @@ const VisaTypesPage: React.FC = () => {
 
                       {/* Visa Types Grid */}
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {category.visaTypes.map((visa: any) => (
+                        {category.visaTypes.map(visa => (
                           <Link
                             to={`/travel/visa-types/${visa.id}`}
                             key={visa.id}
