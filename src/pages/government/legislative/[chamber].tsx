@@ -47,18 +47,80 @@ function LegislativeDetailSection({
   ];
 
   if (isSimpleObject) {
-    const cols = Object.keys(data).length > 4 ? Object.keys(data).length : 4;
-
+    // Responsive table for Secretariat Officials (level 1)
+    if (
+      level === 1 &&
+      typeof data === 'object' &&
+      data !== null &&
+      'role' in data &&
+      'name' in data
+    ) {
+      const obj = data as {
+        role: string;
+        name: string;
+        office?: string;
+        contact?: string;
+        email?: string;
+      };
+      return (
+        <div className='overflow-x-auto w-full'>
+          <table className='min-w-full border-separate border-spacing-y-2'>
+            <tbody>
+              <tr className='bg-white'>
+                <td
+                  className='whitespace-nowrap text-sm font-medium text-gray-900 pr-4 align-top'
+                  style={{ maxWidth: '180px' }}
+                >
+                  {obj.role}
+                </td>
+                <td
+                  className='whitespace-nowrap text-sm text-gray-900 pr-4 align-top'
+                  style={{ maxWidth: '220px' }}
+                >
+                  {obj.name}
+                </td>
+                {obj.office && (
+                  <td
+                    className='whitespace-nowrap text-sm text-gray-700 pr-4 align-top'
+                    style={{ maxWidth: '220px' }}
+                  >
+                    {obj.office}
+                  </td>
+                )}
+                <td
+                  className='whitespace-nowrap text-sm text-gray-700 pr-4 align-top'
+                  style={{ maxWidth: '180px' }}
+                >
+                  {obj.contact}
+                </td>
+                {obj.email && (
+                  <td
+                    className='whitespace-nowrap text-sm pr-4 align-top'
+                    style={{ maxWidth: '220px' }}
+                  >
+                    <div className='flex items-center'>
+                      <Mail className='h-4 w-4 text-gray-400 mr-2 flex-shrink-0' />
+                      <a
+                        href={`mailto:${obj.email}`}
+                        className='text-primary-600 hover:underline break-all'
+                        style={{ wordBreak: 'break-all' }}
+                      >
+                        {String(obj.email)}
+                      </a>
+                    </div>
+                  </td>
+                )}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+    // Fallback for other simple objects
     return (
-      <div
-        className={`mb-4 grid grid-cols-${cols} md:grid-cols-${cols} lg:grid-cols-${cols} gap-x-6 ${
-          level === 1 ? 'rounded-2xl font-bold text-lg' : ''
-        }`}
-      >
+      <div className='mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-6'>
         {Object.entries(data).map(([key, value]) => {
           if (skipKeys.includes(key) || value === undefined) return null;
-
-          // Special handling for email fields
           if (key === 'email' && value) {
             return (
               <div key={key} className='text-sm'>
@@ -66,7 +128,8 @@ function LegislativeDetailSection({
                   <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                   <a
                     href={`mailto:${value}`}
-                    className='text-primary-600 hover:underline leading-relaxed'
+                    className='text-primary-600 hover:underline leading-relaxed break-all'
+                    style={{ wordBreak: 'break-all' }}
                   >
                     {String(value)}
                   </a>
@@ -74,7 +137,6 @@ function LegislativeDetailSection({
               </div>
             );
           }
-
           return (
             <div key={key} className='text-sm'>
               <span className='text-gray-800 leading-relaxed'>
