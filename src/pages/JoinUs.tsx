@@ -95,8 +95,8 @@ const JoinUs: React.FC = () => {
               Our Mission
             </h2>
             <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-              We&apos;re not just building websites — we&apos;re building the future of
-              governance in the Philippines.
+              We&apos;re not just building websites — we&apos;re building the
+              future of governance in the Philippines.
             </p>
           </div>
 
@@ -113,8 +113,8 @@ const JoinUs: React.FC = () => {
                 and accessible to citizens.
               </p>
               <p className='text-lg text-gray-800 leading-relaxed'>
-                We&apos;ve seen a surge of wonderful and impressive tech ideas being
-                launched recently. Our goal is to{' '}
+                We&apos;ve seen a surge of wonderful and impressive tech ideas
+                being launched recently. Our goal is to{' '}
                 <strong>support, promote, consolidate, and empower</strong>{' '}
                 these builders!
               </p>
@@ -257,8 +257,8 @@ const JoinUs: React.FC = () => {
             </h2>
             <p className='text-xl text-blue-100 mb-8'>
               Join our community of builders, dreamers, and changemakers.
-              Together, we&apos;ll create the government technology the Philippines
-              deserves.
+              Together, we&apos;ll create the government technology the
+              Philippines deserves.
             </p>
 
             <div className='flex flex-col sm:flex-row gap-6 justify-center items-center'>

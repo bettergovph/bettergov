@@ -32,11 +32,17 @@ export default function LocalGovernmentIndex() {
 
       // Count cities and municipalities in provinces (if any)
       if (regionData.provinces) {
-        cityCount += regionData.provinces.reduce((total, province: any) => {
-          const cities = province.cities?.length || 0;
-          const municipalities = province.municipalities?.length || 0;
-          return total + cities + municipalities;
-        }, 0);
+        cityCount += regionData.provinces.reduce(
+          (
+            total,
+            province: { cities?: unknown[]; municipalities?: unknown[] }
+          ) => {
+            const cities = province.cities?.length || 0;
+            const municipalities = province.municipalities?.length || 0;
+            return total + cities + municipalities;
+          },
+          0
+        );
       }
 
       return {
@@ -62,8 +68,8 @@ export default function LocalGovernmentIndex() {
   return (
     <>
       <SEO {...seoData} />
-      <div className='space-y-6'>
-        <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
+      <div className='@container space-y-6'>
+        <div className='flex flex-col @lg:flex-row @lg:items-center @lg:justify-between gap-4'>
           <div>
             <h1 className='text-3xl font-bold text-gray-900 mb-2'>
               Local Government Units
@@ -75,7 +81,7 @@ export default function LocalGovernmentIndex() {
             </p>
           </div>
 
-          <div className='relative w-full md:w-64'>
+          <div className='relative w-full lg:w-64'>
             <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
             <input
               type='search'
@@ -98,7 +104,7 @@ export default function LocalGovernmentIndex() {
             <p className='text-gray-800'>Try adjusting your search term.</p>
           </div>
         ) : (
-          <CardGrid columns={3} breakpoint='lg' gap='md'>
+          <CardGrid columns={1} className='@lg:grid-cols-2 @3xl:grid-cols-3'>
             {filteredRegions.map(region => (
               <Link
                 key={region.slug}

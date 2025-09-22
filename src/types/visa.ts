@@ -16,7 +16,7 @@ export interface VisaType {
   description: string;
   url: string;
   minimumRequirements: string[];
-  subtypes: VisaSubtype[];
+  subtypes?: VisaSubtype[];
 }
 
 export interface VisaFreeEntryPolicy {

@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import executiveData from '../../../data/directory/executive.json';
 import {
-  CardList,
   Card,
   CardContent,
   CardTitle,
@@ -37,8 +36,8 @@ interface Office {
   trunkline?: string;
   website?: string;
   officials: (Official | OfficeDivision)[];
-  bureaus?: any[];
-  attached_agency?: any[];
+  bureaus?: Array<{ name?: string; [key: string]: unknown }>;
+  attached_agency?: Array<{ name?: string; [key: string]: unknown }>;
 }
 
 export default function OtherExecutiveOfficesPage() {
