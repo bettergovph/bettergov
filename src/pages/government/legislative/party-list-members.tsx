@@ -15,12 +15,15 @@ export default function PartyListMembersPage() {
   );
 
   // Get Party List House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('House of Representatives')
   );
 
   // Extract party list members
-  const partyListMembers = houseData?.party_list_representatives || [];
+  const partyListMembers = useMemo(
+    () => houseData?.party_list_representatives || [],
+    [houseData]
+  );
 
   // Get unique partylist for filtering
   const partyList = useMemo(() => {

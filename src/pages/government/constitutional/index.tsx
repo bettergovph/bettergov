@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MapPin, Phone, ExternalLink, Building2, Mail } from 'lucide-react';
 import constitutionalData from '../../../data/directory/constitutional.json';
 import { useState, useEffect } from 'react';
@@ -14,7 +14,7 @@ interface ConstitutionalOffice {
   trunk_line?: string;
   website?: string;
   email?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Recursive component to render office details
@@ -22,7 +22,7 @@ function OfficeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
@@ -137,6 +137,7 @@ export default function ConstitutionalIndex() {
   const [selectedOffice, setSelectedOffice] =
     useState<ConstitutionalOffice | null>(null);
   const offices = constitutionalData as ConstitutionalOffice[];
+  const navigate = useNavigate();
 
   // Set selected office based on URL param or first office
   useEffect(() => {
@@ -149,10 +150,13 @@ export default function ConstitutionalIndex() {
       }
     } else if (offices.length > 0) {
       setSelectedOffice(offices[0]);
+      navigate(
+        `/government/constitutional/${encodeURIComponent(offices[0].slug)}`
+      );
     } else {
       setSelectedOffice(null);
     }
-  }, [officeParam, offices]);
+  }, [officeParam, offices, navigate]);
 
   const seoData = getConstitutionalSEOData(selectedOffice?.name);
 
