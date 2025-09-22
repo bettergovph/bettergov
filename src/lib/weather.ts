@@ -48,9 +48,7 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
       humidity: data[key].main.humidity,
       windSpeed: data[key].wind.speed,
       pressure: data[key].main.pressure,
-      visibility: data[key].visibility
-        ? Math.round(data[key].visibility / 1000)
-        : undefined, // Convert meters to kilometers
+      visibility: Math.round(data[key].visibility / 1000), // Convert meters to kilometers
     })
   );
 
