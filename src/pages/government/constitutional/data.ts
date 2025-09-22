@@ -3,5 +3,6 @@ import { ConstitutionalOfficeSchema, GovernmentOfficeSchema } from '../schema';
 
 export const constitutionalData =
   ConstitutionalOfficeSchema.array().parse(constitutionalJSON);
+
 export const institutionData =
-  GovernmentOfficeSchema.array().parse(constitutionalData);
+  GovernmentOfficeSchema.array().parse(constitutionalJSON);
