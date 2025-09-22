@@ -18,7 +18,7 @@ interface VisaCategory {
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes: VisaType[] | Array<Record<string, unknown>>;
+  visaTypes: VisaType[];
 }
 
 const VisaTypesPage: React.FC = () => {
@@ -114,29 +114,23 @@ const VisaTypesPage: React.FC = () => {
               Showing results for: &ldquo;{searchTerm}&rdquo;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {allVisaTypes.map(
-                (visa: {
-                  id: string;
-                  name: string;
-                  [key: string]: unknown;
-                }) => (
-                  <Link
-                    to={`/travel/visa-types/${visa.id}`}
-                    key={visa.id}
-                    className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
-                  >
-                    <div className='p-4'>
-                      <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
-                        {visa.name}
-                        <ChevronRight className='h-5 w-5 text-blue-500' />
-                      </h3>
-                      <p className='text-gray-800 text-sm mb-3 line-clamp-2'>
-                        {visa.description}
-                      </p>
-                    </div>
-                  </Link>
-                )
-              )}
+              {allVisaTypes.map(visa => (
+                <Link
+                  to={`/travel/visa-types/${visa.id}`}
+                  key={visa.id}
+                  className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
+                >
+                  <div className='p-4'>
+                    <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
+                      {visa.name}
+                      <ChevronRight className='h-5 w-5 text-blue-500' />
+                    </h3>
+                    <p className='text-gray-800 text-sm mb-3 line-clamp-2'>
+                      {visa.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         )}
@@ -190,29 +184,23 @@ const VisaTypesPage: React.FC = () => {
 
                       {/* Visa Types Grid */}
                       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {category.visaTypes.map(
-                          (visa: {
-                            id: string;
-                            name: string;
-                            [key: string]: unknown;
-                          }) => (
-                            <Link
-                              to={`/travel/visa-types/${visa.id}`}
-                              key={visa.id}
-                              className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
-                            >
-                              <div className='p-4'>
-                                <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
-                                  {visa.name}
-                                  <ChevronRight className='h-5 w-5 text-blue-500' />
-                                </h3>
-                                <p className='text-gray-800 text-sm mb-3'>
-                                  {visa.description}
-                                </p>
-                              </div>
-                            </Link>
-                          )
-                        )}
+                        {category.visaTypes.map(visa => (
+                          <Link
+                            to={`/travel/visa-types/${visa.id}`}
+                            key={visa.id}
+                            className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
+                          >
+                            <div className='p-4'>
+                              <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
+                                {visa.name}
+                                <ChevronRight className='h-5 w-5 text-blue-500' />
+                              </h3>
+                              <p className='text-gray-800 text-sm mb-3'>
+                                {visa.description}
+                              </p>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   )
