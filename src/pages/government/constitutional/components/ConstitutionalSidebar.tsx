@@ -12,6 +12,18 @@ interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
 
+const validatedData =
+  ConstitutionalOfficeSchema.array().parse(constitutionalData);
+
+// Only include constitutional offices (exclude GOCCs and SUCs)
+const offices = validatedData.filter(
+  (office: ConstitutionalOffice) =>
+    !office.office_type.includes('Government-Owned') &&
+    !office.office_type.includes('GOCCs') &&
+    !office.office_type.includes('State Universities') &&
+    !office.office_type.includes('SUCs')
+);
+
 export default function ConstitutionalSidebar({
   onOfficeSelect,
 }: ConstitutionalSidebarProps) {
@@ -20,21 +32,6 @@ export default function ConstitutionalSidebar({
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Parse and validate constitutional data
-  const validatedData =
-    ConstitutionalOfficeSchema.array().parse(constitutionalData);
-
-  // Only include constitutional offices (exclude GOCCs and SUCs)
-  const offices = useMemo(() => {
-    return validatedData.filter(
-      (office: ConstitutionalOffice) =>
-        !office.office_type.includes('Government-Owned') &&
-        !office.office_type.includes('GOCCs') &&
-        !office.office_type.includes('State Universities') &&
-        !office.office_type.includes('SUCs')
-    );
-  }, [validatedData]);
-
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
     if (!searchTerm) return offices;
@@ -42,7 +39,7 @@ export default function ConstitutionalSidebar({
     return offices.filter(office =>
       office.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [offices, searchTerm]);
+  }, [searchTerm]);
 
   const handleOfficeSelect = (office: ConstitutionalOffice) => {
     if (onOfficeSelect) {
@@ -59,7 +56,7 @@ export default function ConstitutionalSidebar({
   return (
     <StandardSidebar>
       <nav className='p-2 space-y-4'>
-        {/* TODO: a previous commit breaks the search, adding a temporary one*/}
+        {/* TODO: a previous PR breaks the search, adding a temporary one*/}
         <div className='mb-4'>
           <input
             type='text'
