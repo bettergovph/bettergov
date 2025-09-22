@@ -7,7 +7,6 @@ import {
   Globe,
   BookOpen,
   MapPin,
-  DollarSign,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -82,16 +81,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       color: 'bg-red-600',
       hoverColor: 'hover:bg-red-700',
       textColor: 'text-red-600',
-    },
-    {
-      title: 'Salary Grade',
-      description:
-        'Government salary grades and compensation for officials and employees.',
-      icon: <DollarSign className='h-4 w-4' />,
-      path: '/government/salary-grade',
-      color: 'bg-emerald-600',
-      hoverColor: 'hover:bg-emerald-700',
-      textColor: 'text-emerald-600',
     },
   ];
 
