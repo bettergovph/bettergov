@@ -1,32 +1,11 @@
 import React from 'react';
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  CheckCircle2,
-} from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { footerNavigation } from '../../data/navigation';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
-
-  const getSocialIcon = (label: string) => {
-    switch (label) {
-      case 'Facebook':
-        return <Facebook className='h-5 w-5' />;
-      case 'Twitter':
-        return <Twitter className='h-5 w-5' />;
-      case 'Instagram':
-        return <Instagram className='h-5 w-5' />;
-      case 'YouTube':
-        return <Youtube className='h-5 w-5' />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <footer className='bg-gray-900 text-white'>
@@ -59,7 +38,7 @@ const Footer: React.FC = () => {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  {getSocialIcon(link.label)}
+                  {link.label}
                 </Link>
               ))}
             </div>
@@ -100,12 +79,6 @@ const Footer: React.FC = () => {
             </p>
             <div className='flex space-x-6'>
               <Link
-                to='/terms-of-service'
-                className='text-gray-400 hover:text-white text-sm transition-colors'
-              >
-                Terms of Service
-              </Link>
-              <Link
                 to='https://github.com/bettergovph/bettergov'
                 className='text-gray-400 hover:text-white text-sm transition-colors'
               >
@@ -117,12 +90,6 @@ const Footer: React.FC = () => {
               >
                 Sitemap
               </Link>
-              <a
-                href='/accessibility'
-                className='text-gray-400 hover:text-white text-sm transition-colors'
-              >
-                Accessibility
-              </a>
             </div>
           </div>
         </div>
