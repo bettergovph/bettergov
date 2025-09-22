@@ -4,25 +4,12 @@ import constitutionalData from '../../../data/directory/constitutional.json';
 import { useState, useEffect } from 'react';
 import SEO from '../../../components/SEO';
 import { getConstitutionalSEOData } from '../../../utils/seo-data';
-import { z } from 'zod';
+import {
+  ConstitutionalOfficeSchema,
+  type ConstitutionalOffice,
+} from '../../../types/constitutional';
 
-const constitutionalOfficeSchema = z
-  .object({
-    name: z.string(),
-    office_type: z.string(),
-    description: z.string().optional(),
-    address: z.string().optional(),
-    trunklines: z.array(z.string()).optional(),
-    trunk_line: z.string().optional(),
-    website: z.string().optional(),
-    email: z.string().optional(),
-    slug: z.string(),
-  })
-  .catchall(z.unknown());
-
-type ConstitutionalOffice = z.infer<typeof constitutionalOfficeSchema>;
-
-const offices = z.array(constitutionalOfficeSchema).parse(constitutionalData);
+const offices = ConstitutionalOfficeSchema.array().parse(constitutionalData);
 
 // Recursive component to render office details
 function OfficeDetailSection({
@@ -162,7 +149,7 @@ export default function ConstitutionalIndex() {
     } else {
       setSelectedOffice(null);
     }
-  }, [officeParam, offices, navigate]);
+  }, [officeParam, navigate]);
 
   const seoData = getConstitutionalSEOData(selectedOffice?.name);
 
