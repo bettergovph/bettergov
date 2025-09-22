@@ -34,7 +34,7 @@
   },
   "guidance": {
     "needDetailedResults": "Kailangan ng Detalyadong Resulta?",
-    "tableViewDescription": "Bisitahin ang Table view para sa detalyadong mga resulta ng paghahanap, mga column na pwedeng i-sort, at advanced na mga filter."
+    "tableViewDescription": "Bisitahin ang table view para sa detalyadong mga resulta ng paghahanap, mga column na pwedeng i-sort, at advanced na mga filter."
   },
   "dataSource": {
     "title": "Tungkol sa Datos na Ito",
