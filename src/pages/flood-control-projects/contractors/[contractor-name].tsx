@@ -907,11 +907,12 @@ const ContractorDetail: React.FC = () => {
                       <Marker
                         key={project.GlobalID || project.objectID}
                         position={[lat, lng]}
-                        icon={L.icon({
-                          iconUrl: '/marker-icon-2x.png',
-                          iconSize: [16, 24],
+                        icon={L.divIcon({
+                          className: 'custom-div-icon',
+                          html: '<div style="background-color: #3b82f6; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
+                          iconSize: [16, 16],
                           iconAnchor: [8, 8],
-                          popupAnchor: [0, -25],
+                          popupAnchor: [0, -8],
                         })}
                       >
                         <Popup>
