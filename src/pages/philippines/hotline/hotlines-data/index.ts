@@ -1,4 +1,4 @@
-import hotlinesData from "../../../../data/philippines_hotlines.json";
+import hotlinesData from '../../../../data/philippines_hotlines.json';
 
 export interface Hotline {
   id?: string;
@@ -10,20 +10,20 @@ export interface Hotline {
 
 const getCategoryHotlines = (category: string): Hotline[] => {
   switch (category) {
-    case "emergency":
-      return hotlinesData.emergencyHotlines as Hotline[];
-    case "disaster":
-      return hotlinesData.disasterHotlines as Hotline[];
-    case "security":
-      return hotlinesData.securityHotlines as Hotline[];
-    case "transport":
-      return hotlinesData.transportHotlines as Hotline[];
-    case "weather":
-      return hotlinesData.weatherHotlines as Hotline[];
-    case "utility":
-      return hotlinesData.utilityHotlines as Hotline[];
-    case "social":
-      return hotlinesData.socialServicesHotlines as Hotline[];
+    case 'emergency':
+      return hotlinesData.emergencyHotlines;
+    case 'disaster':
+      return hotlinesData.disasterHotlines;
+    case 'security':
+      return hotlinesData.securityHotlines;
+    case 'transport':
+      return hotlinesData.transportHotlines;
+    case 'weather':
+      return hotlinesData.weatherHotlines;
+    case 'utility':
+      return hotlinesData.utilityHotlines;
+    case 'social':
+      return hotlinesData.socialServicesHotlines;
     default:
       return [
         ...hotlinesData.emergencyHotlines,
@@ -33,15 +33,15 @@ const getCategoryHotlines = (category: string): Hotline[] => {
         ...hotlinesData.weatherHotlines,
         ...hotlinesData.utilityHotlines,
         ...hotlinesData.socialServicesHotlines,
-      ] as Hotline[];
+      ];
   }
 };
 
 const filterHotlines = (activeCategory: string, searchTerm: string) => {
   const data = getCategoryHotlines(activeCategory).filter(
-    (hotline) =>
+    hotline =>
       hotline.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      hotline.numbers.some((number) => number.includes(searchTerm))
+      hotline.numbers.some(number => number.includes(searchTerm))
   );
 
   return data;
@@ -49,8 +49,8 @@ const filterHotlines = (activeCategory: string, searchTerm: string) => {
 
 const hotlines: Hotline[] = (() => {
   return Object.values(hotlinesData)
-    .map((item) =>
-      item.map((hotline) => ({
+    .map(item =>
+      item.map(hotline => ({
         ...hotline,
         id: crypto.randomUUID(), // generated once
       }))
@@ -60,7 +60,7 @@ const hotlines: Hotline[] = (() => {
 
 const getHotlines = (search?: string): Hotline[] => {
   if (!search) return hotlines;
-  const filteredHotlines = hotlines.filter((hotline) =>
+  const filteredHotlines = hotlines.filter(hotline =>
     hotline.name.toLowerCase().includes(search)
   );
   return filteredHotlines;
@@ -69,13 +69,13 @@ const getHotlines = (search?: string): Hotline[] => {
 /** Ensure that the hotline name exist  */
 const getHotlineNumbersByHotlineName = (name: string) => {
   const hotline = hotlines.find(
-    (h) => h.name.toLowerCase() === name.toLowerCase()
+    h => h.name.toLowerCase() === name.toLowerCase()
   );
   return hotline?.numbers ?? [];
 };
 
 const getHotlineById = (id: string) => {
-  const hotline = hotlines.find((h) => h.id === id);
+  const hotline = hotlines.find(h => h.id === id);
   return hotline;
 };
 
