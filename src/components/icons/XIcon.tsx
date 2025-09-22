@@ -1,24 +1,14 @@
 import React from 'react';
-import { siX } from 'simple-icons';
+import { SiX } from '@icons-pack/react-simple-icons';
 
 interface XIconProps {
   className?: string;
   size?: number;
+  color?: string;
 }
 
-const XIcon: React.FC<XIconProps> = ({ className = '', size = 20 }) => {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox='0 0 24 24'
-      fill='currentColor'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path d={siX.path} />
-    </svg>
-  );
+const XIcon: React.FC<XIconProps> = ({ className = '', size = 20, color }) => {
+  return <SiX className={className} size={size} color={color} />;
 };
 
 export default XIcon;

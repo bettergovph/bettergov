@@ -1,27 +1,18 @@
 import React from 'react';
-import { siYoutube } from 'simple-icons';
+import { SiYoutube } from '@icons-pack/react-simple-icons';
 
 interface YouTubeIconProps {
   className?: string;
   size?: number;
+  color?: string;
 }
 
 const YouTubeIcon: React.FC<YouTubeIconProps> = ({
   className = '',
   size = 20,
+  color,
 }) => {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox='0 0 24 24'
-      fill='currentColor'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path d={siYoutube.path} />
-    </svg>
-  );
+  return <SiYoutube className={className} size={size} color={color} />;
 };
 
 export default YouTubeIcon;

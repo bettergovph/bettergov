@@ -1,27 +1,18 @@
 import React from 'react';
-import { siInstagram } from 'simple-icons';
+import { SiInstagram } from '@icons-pack/react-simple-icons';
 
 interface InstagramIconProps {
   className?: string;
   size?: number;
+  color?: string;
 }
 
 const InstagramIcon: React.FC<InstagramIconProps> = ({
   className = '',
   size = 20,
+  color,
 }) => {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox='0 0 24 24'
-      fill='currentColor'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path d={siInstagram.path} />
-    </svg>
-  );
+  return <SiInstagram className={className} size={size} color={color} />;
 };
 
 export default InstagramIcon;
