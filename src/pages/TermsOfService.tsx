@@ -247,7 +247,7 @@ const TermsOfService: React.FC = () => {
                 <li>Check for updates or amendments to referenced materials</li>
               </ul>
               <p>
-                We make no guarantee about the continued availability of
+                We make no guarantee as to the continued availability of
                 external links, and users should always verify information
                 through official channels.
               </p>
