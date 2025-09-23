@@ -1,0 +1,51 @@
+{
+  "page": {
+    "title": "Mga Proyekto sa Pagkontrol ng Baha | BetterGov.ph",
+    "description": "Tuklasin ang mga proyekto sa pagkontrol ng baha sa buong Pilipinas",
+    "heading": "Mga Proyekto sa Pagkontrol ng Baha"
+  },
+  "statistics": {
+    "totalProjects": "Kabuuang Proyekto",
+    "totalContractCost": "Kabuuang Halaga ng Kontrata",
+    "uniqueContractors": "Natatanging Mga Kontratista"
+  },
+  "filters": {
+    "title": "Mga Filter",
+    "searchPlaceholder": "Mga proyekto, kontratista, munisipalidad, lalawigan, rehiyon...",
+    "searchProjects": "Maghanap ng Proyekto",
+    "infrastructureYear": "Taon ng Imprastraktura",
+    "region": "Rehiyon",
+    "province": "Lalawigan",
+    "typeOfWork": "Uri ng Trabaho",
+    "districtEngineeringOffice": "District Engineering Office",
+    "legislativeDistrict": "Distritong Pambatas",
+    "showFilters": "Ipakita ang mga Filter"
+  },
+  "charts": {
+    "projectsByYear": "Mga Proyekto ayon sa Taon",
+    "topRegions": "Nangungunang Rehiyon",
+    "typesOfWork": "Mga Uri ng Trabaho",
+    "topContractors": "Nangungunang Kontratista"
+  },
+  "actions": {
+    "exportData": "I-export ang Data",
+    "exporting": "Nag-e-export...",
+    "viewTable": "Tingnan ang Talahanayan"
+  },
+  "guidance": {
+    "needDetailedResults": "Kailangan ng Detalyadong Resulta?",
+    "tableViewDescription": "Bisitahin ang table view para sa detalyadong mga resulta ng paghahanap, mga column na pwedeng i-sort, at advanced na mga filter."
+  },
+  "dataSource": {
+    "title": "Tungkol sa Datos na Ito",
+    "description": "Ang dashboard na ito ay nagpapakita ng mga imprastraktura ng mga proyekto sa pagkontrol ng baha sa buong Pilipinas. Kasama sa datos ang impormasyon tungkol sa mga lokasyon ng proyekto, uri, mga tanggapang nagpapatupad, at marami pa. Gamitin ang mga filter sa sidebar upang tuklasin ang mga tiyak na aspeto ng datos o gamitin ang search functionality upang mahanap ang mga tiyak na proyekto.",
+    "sourceLabel": "Pinagkunan:"
+  },
+  "tooltips": {
+    "projectsFormatter": "mga proyekto"
+  },
+  "alerts": {
+    "exportSuccess": "Matagumpay na na-export ang datos!",
+    "exportError": "Hindi na-export ang datos. Pakisubukan ulit."
+  }
+}
