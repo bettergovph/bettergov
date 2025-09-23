@@ -147,7 +147,7 @@ const TermsOfService: React.FC = () => {
               <p>
                 This limitation applies regardless of whether such damages arise
                 from contract, tort, negligence, strict liability, or any other
-                legal theory.
+                legal theory or otherwise.
               </p>
             </div>
           </section>
