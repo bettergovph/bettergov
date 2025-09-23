@@ -90,10 +90,10 @@ const Navbar: React.FC = () => {
 
       {/* Main navigation */}
       <div className='container mx-auto px-4'>
-        <div className='flex justify-between items-center py-4'>
-          <div className='flex items-center'>
-            <Link to='/' className='flex items-center'>
-              <CheckCircle2 className='h-12 w-12 mr-3' />
+        <div className='flex justify-between items-center py-4 gap-8'>
+          <div className='flex items-center gap-6'>
+            <Link to='/' className='flex items-center gap-3'>
+              <CheckCircle2 className='h-12 w-12' />
               {/* <img
                 src="/ph-logo.webp"
                 alt="Philippines Coat of Arms"
@@ -106,45 +106,46 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
             </Link>
+
+            {/* Desktop navigation */}
+            <div className='hidden lg:flex items-center lg:gap-8'>
+              {mainNavigation.map(item => (
+                <div key={item.label} className='relative group'>
+                  <Link
+                    to={item.href}
+                    className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+                  >
+                    {t(`navbar.${item.label.toLowerCase()}`)}
+                    {item.children && (
+                      <ChevronDown className='ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors' />
+                    )}
+                  </Link>
+                  {item.children && (
+                    <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
+                      <div
+                        className='py-1'
+                        role='menu'
+                        aria-orientation='vertical'
+                      >
+                        {item.children.map(child => (
+                          <Link
+                            key={child.label}
+                            to={child.href}
+                            className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            role='menuitem'
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center space-x-8 pr-24'>
-            {mainNavigation.map(item => (
-              <div key={item.label} className='relative group'>
-                <Link
-                  to={item.href}
-                  className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
-                >
-                  {t(`navbar.${item.label.toLowerCase()}`)}
-                  {item.children && (
-                    <ChevronDown className='ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors' />
-                  )}
-                </Link>
-                {item.children && (
-                  <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
-                    <div
-                      className='py-1'
-                      role='menu'
-                      aria-orientation='vertical'
-                    >
-                      {item.children.map(child => (
-                        <Link
-                          key={child.label}
-                          to={child.href}
-                          className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
-                          role='menuitem'
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className='hidden lg:flex items-center space-x-6'>
+          <div className='hidden lg:flex items-center gap-6'>
             <Link
               to='/about'
               className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
@@ -153,9 +154,9 @@ const Navbar: React.FC = () => {
             </Link>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+              className='flex gap-1 items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
             >
-              <Search className='h-4 w-4 mr-1' />
+              <Search className='h-4 w-4' />
               Search
             </Link>
             {/* <Link

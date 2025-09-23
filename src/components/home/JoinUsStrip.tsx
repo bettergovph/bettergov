@@ -32,7 +32,7 @@ const JoinUsStrip: React.FC = () => {
                 {t('joinUs.stripTitle')}
               </span>
             </div>
-            <span className='hidden md:inline text-sm text-orange-100'>
+            <span className='hidden lg:inline text-sm text-orange-100'>
               {t('joinUs.stripSubtitle')}
             </span>
           </div>
