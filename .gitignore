@@ -38,3 +38,7 @@ functions/.wrangler
 src/data/flood_control/lookups/contractors
 contractor_fetch_log.csv
 wrangler.toml
+
+# Build outputs
+dist-main/
+dist-lazy/
