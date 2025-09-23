@@ -309,7 +309,7 @@ const ResultsStatistics: React.FC<{
   ).size;
 
   return (
-    <div className='bg-white p-4 rounded-lg shadow mb-4'>
+    <div className='bg-white p-4 rounded-lg shadow-sm mb-4'>
       <h3 className='text-lg font-medium text-gray-900 mb-2'>
         Project Statistics
       </h3>
@@ -508,7 +508,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
             </div>
             <div>
               <nav
-                className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+                className='relative z-0 inline-flex rounded-md shadow-xs -space-x-px'
                 aria-label='Pagination'
               >
                 {/* Previous page button */}
@@ -752,7 +752,7 @@ const FloodControlProjectsTable: React.FC = () => {
                   </div>
                   <input
                     type='text'
-                    className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                    className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
                     placeholder='Projects, contractors, municipality, province, region...'
                     value={searchTerm}
                     onChange={e => handleSearchChange(e.target.value)}

@@ -24,7 +24,7 @@ const DataSection: React.FC = () => {
             to='/data/weather'
             className='group bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1'
           >
-            <div className='bg-gradient-to-r from-blue-500 to-blue-700 p-6 flex justify-between items-center'>
+            <div className='bg-linear-to-r from-blue-500 to-blue-700 p-6 flex justify-between items-center'>
               <h3 className='text-2xl font-bold text-white'>
                 {t('data.weatherForecast')}
               </h3>
@@ -65,7 +65,7 @@ const DataSection: React.FC = () => {
             to='/data/forex'
             className='group bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:shadow-lg hover:-translate-y-1'
           >
-            <div className='bg-gradient-to-r from-green-500 to-green-700 p-6 flex justify-between items-center'>
+            <div className='bg-linear-to-r from-green-500 to-green-700 p-6 flex justify-between items-center'>
               <h3 className='text-2xl font-bold text-white'>
                 {t('data.forexRates')}
               </h3>

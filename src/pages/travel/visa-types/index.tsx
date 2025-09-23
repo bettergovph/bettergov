@@ -82,7 +82,7 @@ const VisaTypesPage: React.FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       {/* Hero Section */}
-      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12'>
+      <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-12'>
         <div className='container mx-auto max-w-6xl px-4'>
           <h1 className='text-3xl md:text-4xl font-bold mb-2'>
             Philippines Visa Types
@@ -98,7 +98,7 @@ const VisaTypesPage: React.FC = () => {
             <input
               type='text'
               placeholder='Search visa types...'
-              className='flex-1 p-2 outline-none text-gray-800'
+              className='flex-1 p-2 outline-hidden text-gray-800'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
@@ -118,7 +118,7 @@ const VisaTypesPage: React.FC = () => {
                 <Link
                   to={`/travel/visa-types/${visa.id}`}
                   key={visa.id}
-                  className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
+                  className='bg-white rounded-lg shadow-xs border border-gray-200 hover:shadow-md transition-shadow duration-200'
                 >
                   <div className='p-4'>
                     <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
@@ -140,7 +140,7 @@ const VisaTypesPage: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
             {/* Sidebar */}
             <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-sm border border-gray-200 sticky top-4'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200 sticky top-4'>
                 <div className='p-4 border-b border-gray-200'>
                   <h2 className='font-semibold text-lg text-gray-800'>
                     Visa Categories
@@ -188,7 +188,7 @@ const VisaTypesPage: React.FC = () => {
                           <Link
                             to={`/travel/visa-types/${visa.id}`}
                             key={visa.id}
-                            className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
+                            className='bg-white rounded-lg shadow-xs border border-gray-200 hover:shadow-md transition-shadow duration-200'
                           >
                             <div className='p-4'>
                               <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
@@ -211,7 +211,7 @@ const VisaTypesPage: React.FC = () => {
 
         <div className='mt-10 bg-blue-50 border border-blue-200 rounded-lg p-4'>
           <div className='flex items-start'>
-            <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0' />
+            <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 shrink-0' />
             <div>
               <h3 className='font-medium text-blue-800'>Important Notice</h3>
               <p className='text-sm text-blue-700 mt-1'>

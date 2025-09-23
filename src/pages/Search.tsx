@@ -140,7 +140,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
             </span>
           )}
           {hit.type && (
-            <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded ml-2'>
+            <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-sm ml-2'>
               {hit.type}
             </span>
           )}
@@ -171,7 +171,7 @@ const SearchPage: React.FC = () => {
       <InstantSearch searchClient={searchClient} indexName='bettergov'>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
           <div className='lg:col-span-1'>
-            <div className='bg-white rounded-lg shadow p-4 mb-6'>
+            <div className='bg-white rounded-lg shadow-sm p-4 mb-6'>
               <h3 className='text-lg font-semibold mb-4'>Filter By</h3>
 
               <div className='mb-4'>
@@ -182,9 +182,9 @@ const SearchPage: React.FC = () => {
                     root: '',
                     list: 'space-y-2',
                     item: 'flex items-center',
-                    label: 'ml-2 flex-grow',
+                    label: 'ml-2 grow',
                     checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500',
+                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -199,9 +199,9 @@ const SearchPage: React.FC = () => {
                     root: '',
                     list: 'space-y-2',
                     item: 'flex items-center',
-                    label: 'ml-2 flex-grow',
+                    label: 'ml-2 grow',
                     checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500',
+                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -216,9 +216,9 @@ const SearchPage: React.FC = () => {
                     root: '',
                     list: 'space-y-2',
                     item: 'flex items-center',
-                    label: 'ml-2 flex-grow',
+                    label: 'ml-2 grow',
                     checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500',
+                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -235,7 +235,7 @@ const SearchPage: React.FC = () => {
                   root: 'w-full',
                   form: 'relative',
                   input:
-                    'text-lg w-full p-4 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-150 ease-in-out',
+                    'text-lg w-full p-4 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
                   submit:
                     'absolute top-0 right-0 h-full px-4 text-gray-800 hover:text-blue-600',
                   reset:
@@ -244,7 +244,7 @@ const SearchPage: React.FC = () => {
               />
             </div>
 
-            <div className='bg-white rounded-lg shadow overflow-hidden'>
+            <div className='bg-white rounded-lg shadow-sm overflow-hidden'>
               <div className='p-4 border-b border-gray-200 flex justify-between items-center'>
                 <h2 className='text-xl font-semibold'>Results</h2>
                 <Stats

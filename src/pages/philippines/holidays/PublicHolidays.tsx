@@ -128,7 +128,7 @@ const PublicHolidays: React.FC = () => {
 
       <div className='mb-6 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
         <div className='flex'>
-          <div className='flex-shrink-0'>
+          <div className='shrink-0'>
             <svg
               className='h-5 w-5 text-yellow-400'
               xmlns='http://www.w3.org/2000/svg'

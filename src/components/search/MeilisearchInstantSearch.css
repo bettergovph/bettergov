@@ -97,3 +97,24 @@
   font-size: 0.875rem;
   color: #4b5563; /* text-gray-800 */
 }
+
+input.ais-SearchBox-input:placeholder-shown:not(:focus) {
+  padding-left: 40px; /* Firefox-safe way to 'move' placeholder */
+}
+
+input.ais-SearchBox-input::placeholder {
+  color: #9ca3af; /* text-gray-400 */
+  opacity: 1; /* Firefox otherwise dims it */
+}
+
+form.ais-SearchBox-form {
+  position: relative; /* so ::before can be positioned if needed */
+}
+
+form.ais-SearchBox-form::before {
+  content: ''; /* REQUIRED in Firefox */
+}
+
+form.ais-SearchBox-form:focus-within::before {
+  display: none;
+}

@@ -172,7 +172,7 @@ const ResultsStatistics: React.FC<{
   const estimatedTotalContractCost = avgCostPerProject * totalCount;
 
   return (
-    <div className='bg-white p-6 rounded-t-lg shadow mb-6'>
+    <div className='bg-white p-6 rounded-t-lg shadow-sm mb-6'>
       <div className='flex items-center mb-4'>
         <Building2 className='w-6 h-6 text-blue-600 mr-3' />
         <h3 className='text-xl font-semibold text-gray-900'>{contractor}</h3>
@@ -395,7 +395,7 @@ const TableHits: React.FC<{ selectedContractor: string }> = ({
             </div>
             <div>
               <nav
-                className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+                className='relative z-0 inline-flex rounded-md shadow-xs -space-x-px'
                 aria-label='Pagination'
               >
                 {/* Previous page button */}
@@ -952,7 +952,7 @@ const ContractorDetail: React.FC = () => {
                 </MapContainer>
 
                 {/* Zoom Controls */}
-                <div className='absolute top-4 right-4 z-[1000] flex flex-col gap-2'>
+                <div className='absolute top-4 right-4 z-1000 flex flex-col gap-2'>
                   <Button
                     variant='primary'
                     size='sm'
@@ -972,7 +972,7 @@ const ContractorDetail: React.FC = () => {
                 </div>
 
                 {/* Map Info Panel */}
-                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-xs z-[1000]'>
+                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-xs z-1000'>
                   <h4 className='font-bold text-gray-900 text-sm mb-1'>
                     {contractorProfile?.company_name ||
                       contractor?.value ||

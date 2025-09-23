@@ -126,7 +126,7 @@ const GovernmentSection: React.FC = () => {
             <div className='md:w-1/3 flex justify-center md:justify-end'>
               <a
                 href='/government/executive'
-                className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
+                className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-xs'
               >
                 {t('government.viewDirectory')}
               </a>

@@ -81,9 +81,9 @@ export function Card({
   const baseClasses = 'bg-white rounded-lg border overflow-hidden';
 
   const variantClasses = {
-    default: 'shadow-sm',
+    default: 'shadow-xs',
     featured: 'shadow-md',
-    compact: 'shadow-sm',
+    compact: 'shadow-xs',
   };
 
   const hoverClasses = hover
@@ -159,7 +159,7 @@ export function CardContactInfo({
       {contact.address && (
         <div className='flex items-start'>
           <MapPin
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+            className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`}
           />
           <span className={`text-gray-800 ${textSize}`}>{contact.address}</span>
         </div>
@@ -167,9 +167,7 @@ export function CardContactInfo({
 
       {contact.phone && (
         <div className='flex items-start'>
-          <Phone
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
-          />
+          <Phone className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`} />
           <a
             href={`tel:${contact.phone}`}
             className={`text-gray-800 ${textSize} hover:text-primary-600 transition-colors`}
@@ -181,9 +179,7 @@ export function CardContactInfo({
 
       {contact.email && (
         <div className='flex items-start'>
-          <Mail
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
-          />
+          <Mail className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`} />
           <a
             href={`mailto:${contact.email}`}
             className={`text-primary-600 hover:underline ${textSize}`}
@@ -196,7 +192,7 @@ export function CardContactInfo({
       {contact.website && (
         <div className='flex items-start'>
           <ExternalLink
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+            className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`}
           />
           <a
             href={
