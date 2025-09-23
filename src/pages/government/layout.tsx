@@ -8,7 +8,7 @@ import {
   BookOpen,
   MapPin,
 } from 'lucide-react';
-import clsx from 'clsx';
+import { cn } from '../../lib/utils';
 
 interface GovernmentLayoutProps {
   title: string;
@@ -29,9 +29,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'The President, Vice President, and the Cabinet members who implement and enforce laws.',
       icon: <Landmark className='h-4 w-4' />,
       path: '/government/executive',
-      color: 'bg-blue-600',
-      hoverColor: 'hover:bg-blue-700',
-      textColor: 'text-blue-600',
     },
     {
       title: 'Executive Departments',
@@ -39,9 +36,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'Government departments and agencies responsible for specific areas of governance.',
       icon: <Building2 className='h-4 w-4' />,
       path: '/government/departments',
-      color: 'bg-green-600',
-      hoverColor: 'hover:bg-green-700',
-      textColor: 'text-green-600',
     },
     {
       title: 'Constitutional Bodies',
@@ -49,9 +43,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'Independent bodies created by the Constitution with specific mandates.',
       icon: <BookOpen className='h-4 w-4' />,
       path: '/government/constitutional',
-      color: 'bg-purple-600',
-      hoverColor: 'hover:bg-purple-700',
-      textColor: 'text-purple-600',
     },
     {
       title: 'Legislative Branch',
@@ -59,18 +50,12 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'The Senate and House of Representatives that make laws and policies.',
       icon: <GalleryVertical className='h-4 w-4' />,
       path: '/government/legislative',
-      color: 'bg-amber-600',
-      hoverColor: 'hover:bg-amber-700',
-      textColor: 'text-amber-600',
     },
     {
       title: 'Local Government Units',
       description: 'Local government units of the Philippines.',
       icon: <MapPin className='h-4 w-4' />,
       path: '/government/local',
-      color: 'bg-pink-600',
-      hoverColor: 'hover:bg-pink-700',
-      textColor: 'text-pink-600',
     },
     {
       title: 'Diplomatic Missions',
@@ -78,9 +63,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'Philippine embassies, consulates, and diplomatic missions around the world.',
       icon: <Globe className='h-4 w-4' />,
       path: '/government/diplomatic',
-      color: 'bg-red-600',
-      hoverColor: 'hover:bg-red-700',
-      textColor: 'text-red-600',
     },
   ];
 
@@ -102,37 +84,27 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
 
       {/* Card Tabs Navigation */}
       <div className='mb-8 md:mb-12 overflow-x-auto'>
-        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4'>
+        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>
           {branches.map(branch => {
             const isActive = currentPath.includes(branch.path);
             return (
               <Link
                 key={branch.path}
                 to={branch.path}
-                className={clsx(
-                  'group flex flex-col p-3 md:p-4 transition-all rounded-md shadow-sm',
-                  isActive
-                    ? [branch.color, 'text-white']
-                    : [
-                        'bg-white border',
-                        branch.textColor,
-                        branch.hoverColor,
-                        'hover:text-white',
-                      ]
+                className={cn(
+                  'group flex flex-col p-3 md:p-4 rounded-md shadow-sm ring-1 ring-neutral-300',
+                  'hover:bg-primary-500/95',
+                  isActive && 'text-neutral-50  bg-primary-500'
                 )}
               >
-                <div className='flex items-center gap-1 mb-1'>
+                <div className='flex items-center gap-1 mb-1 group-hover:text-neutral-200'>
                   <div className='mr-2 text-xs md:text-sm'>{branch.icon}</div>
-                  <span className='font-medium text-sm md:text-base'>
-                    {branch.title}
-                  </span>
+                  {branch.title}
                 </div>
                 <div
-                  className={clsx(
-                    'text-xs md:text-sm transition-colors',
-                    isActive
-                      ? 'text-white'
-                      : 'text-gray-800 group-hover:text-white'
+                  className={cn(
+                    'text-neutral-500 group-hover:text-neutral-200 text-xs md:text-sm',
+                    isActive && 'text-neutral-200'
                   )}
                 >
                   {branch.description}
