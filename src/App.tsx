@@ -82,6 +82,7 @@ import JoinUs from './pages/JoinUs';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/Discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -230,6 +231,9 @@ function App() {
                 <Route path=':region' element={<RegionalLGUPage />} />
               </Route>
             </Route>
+
+            {/*Not Found/404 Page */}
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
         </div>
