@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Building2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import departmentsData from '../../../../data/directory/departments.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
@@ -10,7 +10,7 @@ interface Department {
   trunkline?: string;
   website?: string;
   email?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface DepartmentsSidebarProps {
@@ -20,7 +20,7 @@ interface DepartmentsSidebarProps {
 export default function DepartmentsSidebar({
   onDepartmentSelect,
 }: DepartmentsSidebarProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm] = useState('');
   const { department: departmentParam } = useParams();
   const navigate = useNavigate();
   const departments = departmentsData as Department[];
@@ -37,11 +37,7 @@ export default function DepartmentsSidebar({
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search departments...'
-    >
+    <StandardSidebar>
       {filteredDepartments.length === 0 ? (
         <div className='p-4 text-center text-sm text-gray-800'>
           No departments found
@@ -63,7 +59,7 @@ export default function DepartmentsSidebar({
                   }`}
                 >
                   <div className='flex items-center'>
-                    <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                    <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                     <span className='truncate'>
                       {dept.office_name.replace('DEPARTMENT OF ', '')}
                     </span>

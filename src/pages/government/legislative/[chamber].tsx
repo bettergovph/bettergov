@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { ExternalLink, MapPin, Phone, Globe, Mail } from 'lucide-react';
+import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 // Recursive component to render legislative details
@@ -7,7 +7,7 @@ function LegislativeDetailSection({
   data,
   level = 0,
 }: {
-  data: any;
+  data: unknown;
   level?: number;
 }) {
   if (data === null || typeof data !== 'object') {
@@ -119,12 +119,12 @@ export default function LegislativeChamber() {
   const { chamber } = useParams<{ chamber: string }>();
 
   const chamberData = legislativeData.find(
-    (item: any) => item.slug === chamber
+    (item: { slug: string }) => item.slug === chamber
   );
 
   if (!chamberData) {
     return (
-      <div className='bg-white rounded-lg p-6 shadow-sm'>
+      <div className='bg-white rounded-lg p-6 shadow-xs'>
         <h1 className='text-2xl font-bold text-gray-900 mb-4'>
           Chamber Not Found
         </h1>
@@ -137,7 +137,7 @@ export default function LegislativeChamber() {
 
   return (
     <div className='space-y-6'>
-      <div className='bg-white rounded-lg  shadow-sm'>
+      <div className='bg-white rounded-lg  shadow-xs'>
         <div className=''>
           <h1 className='text-3xl font-bold text-gray-900 mb-2'>
             {chamberData.chamber}

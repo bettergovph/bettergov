@@ -1,13 +1,8 @@
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Globe, Building2, Landmark } from 'lucide-react';
-import { useState } from 'react';
-import diplomaticData from '../../../../data/directory/diplomatic.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function DiplomaticSidebar() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const { category: categoryParam } = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
 
   // Check if a path is active
@@ -16,11 +11,7 @@ export default function DiplomaticSidebar() {
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search diplomatic...'
-    >
+    <StandardSidebar>
       <nav className='p-2 space-y-4 pt-4'>
         <div>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
@@ -36,7 +27,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Globe className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Globe className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Diplomatic Missions</span>
               </Link>
             </li>
@@ -49,7 +40,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Consulates</span>
               </Link>
             </li>
@@ -62,7 +53,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Landmark className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Landmark className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>International Organizations</span>
               </Link>
             </li>

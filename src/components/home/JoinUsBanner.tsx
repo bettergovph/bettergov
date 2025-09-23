@@ -7,8 +7,8 @@ const JoinUsBanner: React.FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <section className='relative overflow-hidden bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white'>
-      <div className='absolute inset-0 bg-gradient-to-t from-black/30 to-transparent'></div>
+    <section className='relative overflow-hidden bg-linear-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white'>
+      <div className='absolute inset-0 bg-linear-to-t from-black/30 to-transparent'></div>
 
       {/* Decorative elements */}
       <div className='absolute top-4 left-10 opacity-20'>
@@ -21,7 +21,7 @@ const JoinUsBanner: React.FC = () => {
       <div className='container mx-auto px-4 relative z-10'>
         <div className='text-center max-w-4xl mx-auto'>
           <div className='flex justify-center mb-6'>
-            <div className='p-4 bg-yellow-300/20 rounded-full backdrop-blur-sm border border-yellow-300/40'>
+            <div className='p-4 bg-yellow-300/20 rounded-full backdrop-blur-xs border border-yellow-300/40'>
               <Users className='h-8 w-8 text-yellow-200' />
             </div>
           </div>

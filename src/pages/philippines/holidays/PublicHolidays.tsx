@@ -116,7 +116,7 @@ const PublicHolidays: React.FC = () => {
   );
 
   return (
-    <div className='max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8'>
+    <div className='max-w-6xl px-4 py-8 sm:mx-auto sm:px-6 lg:px-8'>
       <div className='text-center mb-12'>
         <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
           Philippine Public Holidays 2025
@@ -126,18 +126,9 @@ const PublicHolidays: React.FC = () => {
         </p>
       </div>
 
-      <div className='space-y-12'>
-        <HolidayTable title='A. Regular Holidays' holidays={regularHolidays} />
-
-        <HolidayTable
-          title='B. Special (Non-Working) Holidays'
-          holidays={specialHolidays}
-        />
-      </div>
-
-      <div className='mt-12 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
+      <div className='mb-6 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
         <div className='flex'>
-          <div className='flex-shrink-0'>
+          <div className='shrink-0'>
             <svg
               className='h-5 w-5 text-yellow-400'
               xmlns='http://www.w3.org/2000/svg'
@@ -159,6 +150,15 @@ const PublicHolidays: React.FC = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className='space-y-12'>
+        <HolidayTable title='A. Regular Holidays' holidays={regularHolidays} />
+
+        <HolidayTable
+          title='B. Special (Non-Working) Holidays'
+          holidays={specialHolidays}
+        />
       </div>
     </div>
   );

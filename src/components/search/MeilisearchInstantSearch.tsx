@@ -12,6 +12,21 @@ import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css'; // Or your preferred theme
 import './MeilisearchInstantSearch.css'; // For custom styles
 
+interface SearchHit {
+  objectID: string;
+  name?: string;
+  office_name?: string;
+  office?: string;
+  service?: string;
+  description?: string;
+  website?: string;
+  url?: string;
+  category?: string | { name: string };
+  subcategory?: string | { name: string };
+  address?: string;
+  slug?: string;
+}
+
 const MEILISEARCH_HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
@@ -103,12 +118,12 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 ? 'office_name'
                 : 'office'
             }
-            hit={hit as any}
+            hit={hit as SearchHit}
           /> */}
         </h2>
         {hit.description && (
           <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as any} />
+            <Snippet attribute='description' hit={hit as SearchHit} />
           </p>
         )}
         <div className='text-xs text-gray-800'>
@@ -116,7 +131,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
             <span>
               <Highlight
                 attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as any}
+                hit={hit as SearchHit}
               />
               {' > '}
             </span>
@@ -127,13 +142,13 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
                 attribute={
                   hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
                 }
-                hit={hit as any}
+                hit={hit as SearchHit}
               />{' '}
             </span>
           )}
           {hit.address && (
             <span>
-              <Highlight attribute='address' hit={hit as any} />
+              <Highlight attribute='address' hit={hit as SearchHit} />
               {' > '}
             </span>
           )}
@@ -203,7 +218,7 @@ const MeilisearchInstantSearch: React.FC = () => {
               root: 'mb-2',
               form: 'relative',
               input:
-                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-150 ease-in-out',
+                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
               submit:
                 'absolute top-0 right-0 h-full px-3 text-gray-800 hover:text-blue-600',
               reset:
@@ -212,7 +227,7 @@ const MeilisearchInstantSearch: React.FC = () => {
           />
 
           {hasInteracted && (
-            <div className='bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
+            <div className='bg-white rounded-lg shadow-sm overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-800 p-2 text-right text-xs',

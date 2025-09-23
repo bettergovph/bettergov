@@ -161,7 +161,7 @@ export async function saveJinaContent(
                 now // updated_at
               )
               .run();
-          } catch (linkError) {
+          } catch {
             // Ignore errors on queue insertion - likely duplicate URLs
             console.log(
               'Skipped adding duplicate URL to crawl queue:',
@@ -205,7 +205,13 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(url)
-      .first<any>();
+      .first<{
+        id: number;
+        url: string;
+        title: string;
+        content: string;
+        last_crawled: string;
+      }>();
 
     if (!page) return null;
 
@@ -217,7 +223,7 @@ export async function getJinaContentByUrl(
       `
     )
       .bind(page.id)
-      .all<any>();
+      .all<{ id: number; link: string; name: string }>();
 
     // Convert to JinaRecord format for compatibility
     const record: JinaRecord = {

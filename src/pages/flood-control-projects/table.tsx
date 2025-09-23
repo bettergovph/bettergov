@@ -7,14 +7,10 @@ import { exportMeilisearchData } from '../../lib/exportData';
 import {
   Filter,
   ChevronLeft,
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
   Search,
-  Users,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -313,7 +309,7 @@ const ResultsStatistics: React.FC<{
   ).size;
 
   return (
-    <div className='bg-white p-4 rounded-lg shadow mb-4'>
+    <div className='bg-white p-4 rounded-lg shadow-sm mb-4'>
       <h3 className='text-lg font-medium text-gray-900 mb-2'>
         Project Statistics
       </h3>
@@ -361,22 +357,24 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
   const { hits, results } = useHits();
 
   // Sort hits based on current sort field and direction
-  const sortedHits = [...hits].sort((a: any, b: any) => {
-    // Handle special case for ContractCost which needs numeric sorting
-    if (sortField === 'ContractCost') {
-      const costA = parseFloat(a[sortField] || '0');
-      const costB = parseFloat(b[sortField] || '0');
-      return sortDirection === 'asc' ? costA - costB : costB - costA;
+  const sortedHits = [...hits].sort(
+    (a: Record<string, unknown>, b: Record<string, unknown>) => {
+      // Handle special case for ContractCost which needs numeric sorting
+      if (sortField === 'ContractCost') {
+        const costA = parseFloat(a[sortField] || '0');
+        const costB = parseFloat(b[sortField] || '0');
+        return sortDirection === 'asc' ? costA - costB : costB - costA;
+      }
+
+      // String comparison for other fields
+      const valueA = a[sortField]?.toString().toLowerCase() || '';
+      const valueB = b[sortField]?.toString().toLowerCase() || '';
+
+      if (valueA < valueB) return sortDirection === 'asc' ? -1 : 1;
+      if (valueA > valueB) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
     }
-
-    // String comparison for other fields
-    const valueA = a[sortField]?.toString().toLowerCase() || '';
-    const valueB = b[sortField]?.toString().toLowerCase() || '';
-
-    if (valueA < valueB) return sortDirection === 'asc' ? -1 : 1;
-    if (valueA > valueB) return sortDirection === 'asc' ? 1 : -1;
-    return 0;
-  });
+  );
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -510,7 +508,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
             </div>
             <div>
               <nav
-                className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+                className='relative z-0 inline-flex rounded-md shadow-xs -space-x-px'
                 aria-label='Pagination'
               >
                 {/* Previous page button */}
@@ -754,7 +752,7 @@ const FloodControlProjectsTable: React.FC = () => {
                   </div>
                   <input
                     type='text'
-                    className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                    className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
                     placeholder='Projects, contractors, municipality, province, region...'
                     value={searchTerm}
                     onChange={e => handleSearchChange(e.target.value)}

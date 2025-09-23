@@ -11,12 +11,15 @@ export default function SenateCommitteesPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Get Senate data
-  const senateData = legislativeData.find((item: any) =>
+  const senateData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('Senate')
   );
 
   // Extract committees
-  const committees = senateData?.permanent_committees || [];
+  const committees = useMemo(
+    () => senateData?.permanent_committees || [],
+    [senateData]
+  );
 
   // Filter committees based on search term
   const filteredCommittees = useMemo(() => {
@@ -44,7 +47,7 @@ export default function SenateCommitteesPage() {
           <input
             type='search'
             placeholder='Search committees...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />

@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  Lightbulb,
-  Users,
-  Star,
-  TrendingUp,
-  ChevronUp,
-  ChevronDown,
-  Github,
-  Plus,
-} from 'lucide-react';
+import { Lightbulb, Users, Star, TrendingUp, Plus } from 'lucide-react';
+import { SiGithub } from '@icons-pack/react-simple-icons';
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -102,53 +94,7 @@ const getComplexityColor = (complexity: string) => {
 };
 
 const Ideas: React.FC = () => {
-  const [projectIdeas, setProjectIdeas] =
-    useState<ProjectIdea[]>(initialProjectIdeas);
-  const [userVotes, setUserVotes] = useState<
-    Record<string, 'up' | 'down' | null>
-  >({});
-
-  const handleVote = (ideaId: string, voteType: 'up' | 'down') => {
-    const currentVote = userVotes[ideaId];
-
-    setProjectIdeas(prev =>
-      prev.map(idea => {
-        if (idea.id === ideaId) {
-          let newUpvotes = idea.upvotes;
-          let newDownvotes = idea.downvotes;
-
-          // Remove previous vote if exists
-          if (currentVote === 'up') {
-            newUpvotes--;
-          } else if (currentVote === 'down') {
-            newDownvotes--;
-          }
-
-          // Add new vote if different from current
-          if (currentVote !== voteType) {
-            if (voteType === 'up') {
-              newUpvotes++;
-            } else {
-              newDownvotes++;
-            }
-          }
-
-          return {
-            ...idea,
-            upvotes: newUpvotes,
-            downvotes: newDownvotes,
-          };
-        }
-        return idea;
-      })
-    );
-
-    // Update user vote state
-    setUserVotes(prev => ({
-      ...prev,
-      [ideaId]: currentVote === voteType ? null : voteType,
-    }));
-  };
+  const [projectIdeas] = useState<ProjectIdea[]>(initialProjectIdeas);
 
   const handleSubmitIdea = () => {
     const githubUrl =
@@ -206,31 +152,31 @@ const Ideas: React.FC = () => {
 
         {/* Stats */}
         <div className='grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 md:mb-12'>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-primary-600'>
               {projectIdeas.length}
             </div>
             <div className='text-sm text-gray-600'>Total Ideas</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-red-600'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
             <div className='text-sm text-gray-600'>High Priority</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-blue-600'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
             <div className='text-sm text-gray-600'>Categories</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-green-600'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-sm text-gray-600'>Simple Projects</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-purple-600'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
@@ -245,7 +191,7 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <Github className='h-5 w-5 mr-2' />
+              <SiGithub className='h-5 w-5 mr-2' />
               Submit Idea
             </button>
             <button
@@ -280,40 +226,11 @@ const Ideas: React.FC = () => {
                           <h3 className='text-xl font-semibold text-gray-900 mb-1'>
                             {idea.title}
                           </h3>
-                          <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800'>
+                          <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800'>
                             {idea.category}
                           </span>
                         </div>
                       </div>
-
-                      {/* Voting Buttons */}
-                      {/* <div className="flex flex-col items-center ml-4">
-                        <button
-                          onClick={() => handleVote(idea.id, 'up')}
-                          className={`p-1 rounded transition-colors ${
-                            userVotes[idea.id] === 'up'
-                              ? 'bg-green-100 text-green-600'
-                              : 'text-gray-400 hover:text-green-600 hover:bg-green-50'
-                          }`}
-                          aria-label={`Upvote ${idea.title}`}
-                        >
-                          <ChevronUp className="h-5 w-5" />
-                        </button>
-                        <span className="text-sm font-medium text-gray-700 py-1">
-                          {idea.upvotes - idea.downvotes}
-                        </span>
-                        <button
-                          onClick={() => handleVote(idea.id, 'down')}
-                          className={`p-1 rounded transition-colors ${
-                            userVotes[idea.id] === 'down'
-                              ? 'bg-red-100 text-red-600'
-                              : 'text-gray-400 hover:text-red-600 hover:bg-red-50'
-                          }`}
-                          aria-label={`Downvote ${idea.title}`}
-                        >
-                          <ChevronDown className="h-5 w-5" />
-                        </button>
-                      </div> */}
                     </div>
 
                     <p className='text-gray-700 mb-4 leading-relaxed'>
@@ -340,22 +257,6 @@ const Ideas: React.FC = () => {
                         Complexity
                       </span>
                     </div>
-
-                    {/* <div className="flex items-center justify-between text-sm text-gray-500">
-                      <div className="flex items-center space-x-4">
-                        <span className="flex items-center">
-                          <ChevronUp className="h-4 w-4 text-green-500 mr-1" />
-                          {idea.upvotes}
-                        </span>
-                        <span className="flex items-center">
-                          <ChevronDown className="h-4 w-4 text-red-500 mr-1" />
-                          {idea.downvotes}
-                        </span>
-                      </div>
-                      <span className="font-medium">
-                        Score: {idea.upvotes - idea.downvotes}
-                      </span>
-                    </div> */}
                   </CardContent>
                 </Card>
               ))}
@@ -363,7 +264,7 @@ const Ideas: React.FC = () => {
         </main>
 
         {/* Call to Action */}
-        <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-sm'>
+        <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-xs'>
           <h2 className='text-2xl font-bold text-gray-900 mb-4'>
             Have an Idea?
           </h2>
@@ -377,7 +278,7 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <Github className='h-5 w-5 mr-2' />
+              <SiGithub className='h-5 w-5 mr-2' />
               Submit via GitHub
             </button>
             <a

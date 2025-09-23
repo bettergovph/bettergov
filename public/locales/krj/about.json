@@ -1,0 +1,92 @@
+{
+  "title": "Tungod sa BetterGov.ph",
+  "whyBuilding": {
+    "title": "Kon Nga-a Ginatukod Namon Ini nga Proyekto",
+    "intro": "Ang kahimtangan tulad kang mga Philippine government websites, ilabi na ang main nga portal nga",
+    "govPhLink": "www.gov.ph",
+    "challenges": ", nagapresentar kang duro nga mga kabudlayan para sa mga pamuluyo:",
+    "challengesList": [
+      "Makabulig ini sa regular nga content updates para masiguro nga ang mga pamuluyo may access sa pinakabag-o nga impormasyon kag serbisyo.",
+      "May oportunidad para ma-improve ang user navigation paagi sa pag-review kag pag-update kang mga links, kag mapahapus kang mga pathways para mabuligan ang mga visitors nga makita ang ila kinahanglan nga mas madali.",
+      "Ang pagpapasad kang consistent nga design standards kag formatting sa tanan nga mga pages makahimo kang mas maghinurupay kag propesyunal nga user experience.",
+      "Ang makapabaskug kang accessibility features kag overall user experience makahimo kang mga serbisyo gobyerno nga mas inclusive kag user-friendly para sa tanan nga pamuluyo.",
+      "Ini nga mga pagpauswag makaserve bilang model para sa iban nga government agency websites, makahimo kang mas magka-urugyon kag epektibo nga digital government presence."
+    ],
+    "conclusion": "Ini nga mga issues nagahimo kang mga barriers para sa mga pamuluyo nga nagatinguha nga ma-access ang mga essential nga serbisyo gobyerno kag impormasyon."
+  },
+  "mission": {
+    "title": "Amon nga Mission",
+    "intro": "Kami ay volunteer-led nga initiative nga may klaro nga mission: nga mag-provide kang 'mas mayad' nga website para sa Pilipinas.",
+    "goalsIntro": "Ang amon nga mga goals nagalakip kang:",
+    "goalsList": [
+      "Pag-tukod kang volunteer-run nga website nga nagapakita kang Filipino values kag culture",
+      "Pag-himo kang intuitive nga navigation kag search functionality",
+      "Pag-siguro kang accessibility para sa tanan nga pamuluyo, abay na ang mga may disabilities",
+      "Pag-tugro kang accurate, up-to-date nga impormasyon tungod sa mga serbisyo gobyerno",
+      "Pagpatindug kang modelo para sa kon paano ang mga digital nga serbisyo gobyerno dapat mag-andar"
+    ]
+  },
+  "features": {
+    "title": "Mga Features",
+    "list": [
+      "Moderno, responsive nga desenyo nga naga-andar sa tanan nga devices",
+      "Komprehensibo nga directory kang serbisyo gobyerno kag mga ahensya",
+      "User-friendly nga navigation kag search",
+      "Accessibility features para sa mga users nga may disabilities",
+      "Regular nga updates kag maintenance"
+    ]
+  },
+  "volunteer": {
+    "title": "Mag-join sa Amon bilang Volunteer",
+    "intro": "Pirme kami nagapangita kang mga mainit nga individuals para mabuligan kami nga ma-improve ang BetterGov.ph. Kinahanglan namon ang mga volunteers nga may lain-lain nga skills:",
+    "technical": {
+      "title": "Technical",
+      "skills": [
+        "Frontend kag backend developers",
+        "UX/UI designers",
+        "Accessibility experts",
+        "QA testers"
+      ]
+    },
+    "content": {
+      "title": "Content",
+      "skills": [
+        "Content writers kag editors",
+        "Translators (para sa Filipino kag iban nga local languages)",
+        "Project managers",
+        "Researchers"
+      ]
+    },
+    "callToAction": {
+      "title": "Ready na ba maghimo kang kaibhan?",
+      "description": "Kon interesado ka mag-contribute, palihug makipag-angot sa amon sa",
+      "email": "volunteers@bettergov.ph",
+      "alternative": "o iban nga paagi, mag-open kang issue sa amon nga repository."
+    }
+  },
+  "bugReport": {
+    "title": "Mag-report kang Bug",
+    "intro": "Nakakita ka kang problema sa website? Mabuligan mo kami nga ma-improve paagi sa pag-report sini!",
+    "steps": [
+      "Mag-bukas kang issue sa amon nga repository",
+      "Gamiton ang bug report template",
+      "Mag-tugro kang mas dako nga detalye nga posible, lakip na ang:"
+    ],
+    "bugDetails": [
+      "Ang ginahimo mo",
+      "Ang ginapaabot mo nga matabo",
+      "Ang aktwal nga natabo",
+      "Mga screenshots kon applicable"
+    ],
+    "alternative": {
+      "text": "Iban nga paagi, i-email kami sa",
+      "email": "bugs@bettergov.ph"
+    }
+  },
+  "license": {
+    "title": "License",
+    "description": "Ini nga proyekto gin-release sa ilalum kang",
+    "ccLink": "Creative Commons CC0",
+    "explanation": "dedication. Ini nagakahulugan nga ang trabaho gin-dedicate sa public domain kag pwede nga libre nga magamit kang bisan sin-o para sa bisan ano nga purpose nga wara kang restriction sa ilalum kang copyright law."
+  }
+}

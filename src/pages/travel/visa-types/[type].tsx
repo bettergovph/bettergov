@@ -5,7 +5,6 @@ import {
   ExternalLink,
   FileText,
   AlertCircle,
-  Globe,
   Search,
   Briefcase,
   Users,
@@ -15,14 +14,13 @@ import {
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '../../../types/visa';
-import Button from '../../../components/ui/Button';
 
 interface VisaCategory {
   id: string;
   name: string;
   description: string;
   icon: React.ReactNode;
-  visaTypes: VisaType[] | any[];
+  visaTypes: VisaType[] | Array<Record<string, unknown>>;
 }
 
 interface VisaTypeDetailParams {
@@ -130,7 +128,7 @@ const VisaTypeDetail: React.FC = () => {
     return (
       <div className='min-h-screen bg-gray-50'>
         {/* Hero Section */}
-        <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12'>
+        <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-12'>
           <div className='container mx-auto max-w-6xl px-4'>
             <h1 className='text-3xl md:text-4xl font-bold mb-2'>
               Philippines Visa Types
@@ -146,7 +144,7 @@ const VisaTypeDetail: React.FC = () => {
               <input
                 type='text'
                 placeholder='Search visa types...'
-                className='flex-1 p-2 outline-none text-gray-800'
+                className='flex-1 p-2 outline-hidden text-gray-800'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
               />
@@ -178,7 +176,7 @@ const VisaTypeDetail: React.FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       {/* Hero Section */}
-      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12'>
+      <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-12'>
         <div className='container mx-auto max-w-6xl px-4'>
           <h1 className='text-3xl md:text-4xl font-bold mb-2'>
             Philippines Visa Types
@@ -194,7 +192,7 @@ const VisaTypeDetail: React.FC = () => {
             <input
               type='text'
               placeholder='Search visa types...'
-              className='flex-1 p-2 outline-none text-gray-800'
+              className='flex-1 p-2 outline-hidden text-gray-800'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
@@ -210,23 +208,29 @@ const VisaTypeDetail: React.FC = () => {
               Showing results for: &ldquo;{searchTerm}&rdquo;
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {filteredVisaTypes.map((visa: any) => (
-                <Link
-                  to={`/travel/visa-types/${visa.id}`}
-                  key={visa.id}
-                  className='bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200'
-                >
-                  <div className='p-4'>
-                    <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
-                      {visa.name}
-                      <ChevronRight className='h-5 w-5 text-blue-500' />
-                    </h3>
-                    <p className='text-gray-800 text-sm mb-3'>
-                      {visa.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              {filteredVisaTypes.map(
+                (visa: {
+                  id: string;
+                  name: string;
+                  [key: string]: unknown;
+                }) => (
+                  <Link
+                    to={`/travel/visa-types/${visa.id}`}
+                    key={visa.id}
+                    className='bg-white rounded-lg shadow-xs border border-gray-200 hover:shadow-md transition-shadow duration-200'
+                  >
+                    <div className='p-4'>
+                      <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
+                        {visa.name}
+                        <ChevronRight className='h-5 w-5 text-blue-500' />
+                      </h3>
+                      <p className='text-gray-800 text-sm mb-3'>
+                        {visa.description}
+                      </p>
+                    </div>
+                  </Link>
+                )
+              )}
             </div>
           </div>
         )}
@@ -236,7 +240,7 @@ const VisaTypeDetail: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
             {/* Sidebar */}
             <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-sm border border-gray-200 sticky top-4'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200 sticky top-4'>
                 <div className='p-4 border-b border-gray-200'>
                   <h2 className='font-semibold text-lg text-gray-800'>
                     Visa Categories
@@ -274,7 +278,7 @@ const VisaTypeDetail: React.FC = () => {
                 </Link>
               </div>
 
-              <div className='bg-white rounded-lg shadow-sm border border-gray-200'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200'>
                 <div className='p-6'>
                   <h2 className='text-2xl md:text-3xl font-bold text-gray-800 mb-2'>
                     {visa.name}
@@ -387,7 +391,7 @@ const VisaTypeDetail: React.FC = () => {
 
                 <div className='bg-blue-50 border-t border-blue-200 p-4'>
                   <div className='flex items-start'>
-                    <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0' />
+                    <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 shrink-0' />
                     <div>
                       <h3 className='font-medium text-blue-800'>
                         Important Notice

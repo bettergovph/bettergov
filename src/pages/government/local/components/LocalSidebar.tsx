@@ -2,11 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Users } from 'lucide-react';
 import lguData from '../../../../data/directory/lgu.json';
 
-interface LocalSidebarProps {
-  currentRegion?: string;
-}
-
-export default function LocalSidebar({ currentRegion }: LocalSidebarProps) {
+export default function LocalSidebar() {
   const regions = lguData.map(regionData => {
     let cityCount = 0;
 
@@ -22,11 +18,17 @@ export default function LocalSidebar({ currentRegion }: LocalSidebarProps) {
 
     // Count cities and municipalities in provinces (if any)
     if (regionData.provinces) {
-      cityCount += regionData.provinces.reduce((total, province: any) => {
-        const cities = province.cities?.length || 0;
-        const municipalities = province.municipalities?.length || 0;
-        return total + cities + municipalities;
-      }, 0);
+      cityCount += regionData.provinces.reduce(
+        (
+          total,
+          province: { cities?: unknown[]; municipalities?: unknown[] }
+        ) => {
+          const cities = province.cities?.length || 0;
+          const municipalities = province.municipalities?.length || 0;
+          return total + cities + municipalities;
+        },
+        0
+      );
     }
 
     return {
@@ -37,7 +39,7 @@ export default function LocalSidebar({ currentRegion }: LocalSidebarProps) {
   });
 
   return (
-    <div className='w-full md:w-64 flex-shrink-0'>
+    <div className='w-full md:w-64 shrink-0'>
       <div className='sticky top-6 space-y-4'>
         <div className='border rounded-lg overflow-hidden bg-white'>
           <div className='max-h-[calc(100vh-200px)] overflow-y-auto'>

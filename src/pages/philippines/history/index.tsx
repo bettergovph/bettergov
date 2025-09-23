@@ -1,39 +1,38 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Clock, Flag, Crown, Scale } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
+  const { t } = useTranslation('about-philippines');
+
   const timelinePeriods = [
     {
       icon: <Flag className='h-6 w-6' />,
-      title: 'Independence and Modern Era',
-      period: '1946-Present',
-      description:
-        'Independent republic facing challenges and achievements in nation-building',
+      title: t('history.timeline.periods.independence.title'),
+      period: t('history.timeline.periods.independence.period'),
+      description: t('history.timeline.periods.independence.description'),
       image: '/assets/history/independence-modern-era.webp',
     },
     {
       icon: <Scale className='h-6 w-6' />,
-      title: 'American Period',
-      period: '1898-1946',
-      description:
-        'American administration, introducing modern education and democratic institutions',
+      title: t('history.timeline.periods.american.title'),
+      period: t('history.timeline.periods.american.period'),
+      description: t('history.timeline.periods.american.description'),
       image: '/assets/history/american-period.webp',
     },
     {
       icon: <Crown className='h-6 w-6' />,
-      title: 'Spanish Colonial Era',
-      period: '1521-1898',
-      description:
-        'Over 300 years of Spanish rule, introducing Christianity and colonial institutions',
+      title: t('history.timeline.periods.spanish.title'),
+      period: t('history.timeline.periods.spanish.period'),
+      description: t('history.timeline.periods.spanish.description'),
       image: '/assets/history/spanish-colonial-era.webp',
     },
     {
       icon: <Clock className='h-6 w-6' />,
-      title: 'Pre-Colonial Period',
-      period: 'Before 1521',
-      description:
-        'Indigenous peoples with advanced societies, trade networks, and rich cultures',
+      title: t('history.timeline.periods.preColonial.title'),
+      period: t('history.timeline.periods.preColonial.period'),
+      description: t('history.timeline.periods.preColonial.description'),
       image: '/assets/history/pre-colonial-period.webp',
     },
   ];
@@ -55,15 +54,14 @@ const PhilippinesHistory: React.FC = () => {
           <div className='container mx-auto px-4'>
             <div className='max-w-3xl'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                History of the Philippines
+                {t('history.hero.title')}
               </h1>
               <p className='text-xl text-white/90 leading-relaxed'>
-                Journey through time and discover the rich tapestry of events,
-                people, and movements that shaped the Philippine nation.
+                {t('history.hero.description')}
               </p>
               <p className='text-xs'>
                 <a href='https://www.pexels.com/photo/women-dancing-in-red-traditional-clothing-in-festival-19376770/'>
-                  Photo credit
+                  {t('history.hero.photoCredit')}
                 </a>
               </p>
             </div>
@@ -78,7 +76,7 @@ const PhilippinesHistory: React.FC = () => {
           <div className='lg:col-span-2'>
             <section className='mb-12'>
               <h2 className='text-3xl font-bold text-gray-900 mb-8'>
-                Historical Timeline
+                {t('history.timeline.title')}
               </h2>
               <div className='relative'>
                 {/* Timeline line */}
@@ -127,30 +125,18 @@ const PhilippinesHistory: React.FC = () => {
 
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                Historical Overview
+                {t('history.overview.title')}
               </h2>
               <div className='prose max-w-none'>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  The Philippines&apos; history spans thousands of years,
-                  beginning with the migration of Austronesian peoples. These
-                  early settlers developed sophisticated societies, trading with
-                  various Asian civilizations and developing unique cultural
-                  traditions.
-                </p>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  The arrival of Ferdinand Magellan in 1521 marked the beginning
-                  of Spanish colonization, which would last for over three
-                  centuries. This period saw the widespread adoption of
-                  Christianity and the establishment of colonial institutions
-                  that would significantly influence Filipino society.
-                </p>
-                <p className='text-gray-800 leading-relaxed'>
-                  Following the Spanish-American War, the Philippines came under
-                  American rule, leading to significant changes in education,
-                  governance, and society. The country achieved independence in
-                  1946 and has since worked to build a modern nation while
-                  preserving its rich cultural heritage.
-                </p>
+                {(
+                  t('history.overview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((paragraph: string, index: number) => (
+                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </section>
           </div>
@@ -160,39 +146,39 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Key Historical Figures
+                  {t('history.keyFigures.title')}
                 </h3>
                 <div className='space-y-4'>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'José Rizal'}
+                      {t('history.keyFigures.figures.rizal.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'National Hero, Writer, Reformist'}
+                      {t('history.keyFigures.figures.rizal.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Andrés Bonifacio'}
+                      {t('history.keyFigures.figures.bonifacio.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'Revolutionary Leader'}
+                      {t('history.keyFigures.figures.bonifacio.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Emilio Aguinaldo'}
+                      {t('history.keyFigures.figures.aguinaldo.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'First President'}
+                      {t('history.keyFigures.figures.aguinaldo.description')}
                     </div>
                   </div>
                   <div>
                     <div className='font-medium text-gray-900'>
-                      {'Corazon Aquino'}
+                      {t('history.keyFigures.figures.aquino.name')}
                     </div>
                     <div className='text-sm text-gray-800'>
-                      {'Democracy Icon, Former President'}
+                      {t('history.keyFigures.figures.aquino.description')}
                     </div>
                   </div>
                 </div>
@@ -202,37 +188,39 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Important Dates
+                  {t('history.importantDates.title')}
                 </h3>
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'March 16, 1521'}
-                    </div>
-                    <div className='text-gray-900'>{'Arrival of Magellan'}</div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {'June 12, 1898'}
+                      {t('history.importantDates.dates.magellan.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {'Declaration of Independence'}
+                      {t('history.importantDates.dates.magellan.event')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'July 4, 1946'}
+                      {t('history.importantDates.dates.independence.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {'Recognition of Independence'}
+                      {t('history.importantDates.dates.independence.event')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      {'February 25, 1986'}
+                      {t('history.importantDates.dates.recognition.date')}
                     </div>
                     <div className='text-gray-900'>
-                      {'EDSA People Power Revolution'}
+                      {t('history.importantDates.dates.recognition.event')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('history.importantDates.dates.edsa.date')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('history.importantDates.dates.edsa.event')}
                     </div>
                   </div>
                 </div>
@@ -242,32 +230,32 @@ const PhilippinesHistory: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Related Links
+                  {t('history.relatedLinks.title')}
                 </h3>
                 <nav className='space-y-2'>
                   <a
                     href='/philippines/about'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    About
+                    {t('history.relatedLinks.items.about')}
                   </a>
                   <a
                     href='/philippines/culture'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Culture
+                    {t('history.relatedLinks.items.culture')}
                   </a>
                   <a
                     href='/philippines/regions'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Regions
+                    {t('history.relatedLinks.items.regions')}
                   </a>
                   <a
                     href='/philippines/tourism'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Tourism
+                    {t('history.relatedLinks.items.tourism')}
                   </a>
                 </nav>
               </CardContent>

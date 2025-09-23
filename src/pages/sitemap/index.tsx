@@ -329,7 +329,7 @@ const SitemapPage: React.FC = () => {
 
       <div className='container mx-auto px-4'>
         <div className='max-w-5xl mx-auto'>
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
             <div className='p-6 md:p-8 border-b border-gray-200'>
               <h1 className='text-3xl font-bold text-gray-900'>Sitemap</h1>
               <p className='mt-2 text-gray-800'>

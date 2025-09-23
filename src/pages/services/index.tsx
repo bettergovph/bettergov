@@ -21,8 +21,12 @@ import transportDrivingServices from '../../data/services/transport-driving.json
 import uncategorizedServices from '../../data/services/uncategorized.json';
 import Button from '../../components/ui/Button';
 import { Helmet } from 'react-helmet-async';
-import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
-import { Link } from 'react-router-dom';
+import {
+  parseAsString,
+  parseAsInteger,
+  useQueryState,
+  useQueryStates,
+} from 'nuqs';
 
 // Combine all services
 const allServices = [
@@ -66,7 +70,10 @@ export default function ServicesPage() {
     defaultValue: '',
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useQueryState(
+    'page',
+    parseAsInteger.withDefault(1)
+  );
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -279,7 +286,7 @@ export default function ServicesPage() {
         <div className='md:hidden mb-6'>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-sm text-gray-900 font-medium'
+            className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-xs text-gray-900 font-medium'
             aria-expanded={sidebarOpen}
             aria-controls='categories-sidebar'
             aria-label={`${sidebarOpen ? 'Close' : 'Open'} categories menu`}
@@ -303,11 +310,11 @@ export default function ServicesPage() {
             id='categories-sidebar'
             className={`${
               sidebarOpen ? 'block' : 'hidden'
-            } md:block w-full md:w-64 md:flex-shrink-0 mb-6 md:mb-0`}
+            } md:block w-full md:w-64 md:shrink-0 mb-6 md:mb-0`}
             role='navigation'
             aria-label='Service categories'
           >
-            <div className='bg-white rounded-lg shadow-sm p-4'>
+            <div className='bg-white rounded-lg shadow-xs p-4'>
               <h2 className='font-semibold text-gray-900 mb-4 text-lg'>
                 Categories
               </h2>
@@ -433,22 +440,34 @@ export default function ServicesPage() {
                             {service.service}
                           </h3>
                           <div className='mt-2 flex flex-wrap gap-2'>
-                            <Link
-                              to={`/services?category=${service.category.slug}`}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
+                            <button
+                              onClick={() => {
+                                setQueryParams({
+                                  category: service.category.slug,
+                                  subcategory: null,
+                                });
+                                setCurrentPage(1);
+                              }}
+                              className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
                             >
                               {service.category.name}
-                            </Link>
-                            <Link
-                              to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
+                            </button>
+                            <button
+                              onClick={() => {
+                                setQueryParams({
+                                  category: service.category.slug,
+                                  subcategory: service.subcategory.slug,
+                                });
+                                setCurrentPage(1);
+                              }}
+                              className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
                             >
                               {service.subcategory.name}
-                            </Link>
+                            </button>
                           </div>
                         </div>
                         <CheckCircle2
-                          className='h-5 w-5 text-success-500 flex-shrink-0'
+                          className='h-5 w-5 text-success-500 shrink-0'
                           aria-hidden='true'
                         />
                       </div>
@@ -502,7 +521,7 @@ export default function ServicesPage() {
                       }
                     }, 100);
                   }}
-                  className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
+                  className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                   aria-label={`Load more services, showing ${Math.min(
                     filteredServices.length - currentPage * ITEMS_PER_PAGE,
                     ITEMS_PER_PAGE

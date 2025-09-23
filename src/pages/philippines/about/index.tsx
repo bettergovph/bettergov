@@ -1,37 +1,36 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Globe2, Users, Building2, Mountain, Sun } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const AboutPhilippines: React.FC = () => {
+  const { t } = useTranslation('about-philippines');
+
   const facts = [
     {
       icon: <Globe2 className='h-6 w-6' />,
-      title: 'Geography',
-      description:
-        'An archipelago of over 7,640 islands located in Southeast Asia',
+      title: t('about.facts.items.geography.title'),
+      description: t('about.facts.items.geography.description'),
     },
     {
       icon: <Users className='h-6 w-6' />,
-      title: 'Population',
-      description:
-        'Home to over 110 million people across diverse ethnic groups',
+      title: t('about.facts.items.population.title'),
+      description: t('about.facts.items.population.description'),
     },
     {
       icon: <Building2 className='h-6 w-6' />,
-      title: 'Capital',
-      description:
-        'Manila serves as the capital, with Metro Manila as the economic center',
+      title: t('about.facts.items.capital.title'),
+      description: t('about.facts.items.capital.description'),
     },
     {
       icon: <Mountain className='h-6 w-6' />,
-      title: 'Landscape',
-      description:
-        'Features mountains, volcanoes, tropical rainforests, and beautiful beaches',
+      title: t('about.facts.items.landscape.title'),
+      description: t('about.facts.items.landscape.description'),
     },
     {
       icon: <Sun className='h-6 w-6' />,
-      title: 'Climate',
-      description: 'Tropical maritime climate with three distinct seasons',
+      title: t('about.facts.items.climate.title'),
+      description: t('about.facts.items.climate.description'),
     },
   ];
 
@@ -51,12 +50,10 @@ const AboutPhilippines: React.FC = () => {
           <div className='container mx-auto px-4'>
             <div className='max-w-3xl'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                About the Philippines
+                {t('about.hero.title')}
               </h1>
               <p className='text-xl text-white/90 leading-relaxed'>
-                Discover the Pearl of the Orient Seas, a nation of vibrant
-                culture, rich history, and natural wonders spread across
-                thousands of islands.
+                {t('about.hero.description')}
               </p>
             </div>
           </div>
@@ -70,7 +67,7 @@ const AboutPhilippines: React.FC = () => {
           <div className='lg:col-span-2 space-y-8'>
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                Quick Facts
+                {t('about.facts.title')}
               </h2>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 {facts.map((fact, index) => (
@@ -95,31 +92,18 @@ const AboutPhilippines: React.FC = () => {
 
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                Overview
+                {t('about.overview.title')}
               </h2>
               <div className='prose max-w-none'>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  The Philippines is a sovereign archipelagic country located in
-                  Southeast Asia, comprising over 7,640 islands. Named after
-                  King Philip II of Spain, the country has a rich history
-                  spanning thousands of years, from ancient indigenous cultures
-                  to colonial periods under Spanish and American rule, leading
-                  to its independence in 1946.
-                </p>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  Today, the Philippines stands as one of Southeast Asia&apos;s most
-                  dynamic economies, blending traditional values with modern
-                  development. The country is known for its warm hospitality,
-                  diverse cultural heritage, stunning natural landscapes, and
-                  vibrant democracy.
-                </p>
-                <p className='text-gray-800 leading-relaxed'>
-                  Filipino culture is a unique fusion of indigenous, Asian,
-                  European, and American influences, reflected in its art,
-                  music, cuisine, and traditions. The nation&apos;s biodiversity,
-                  featuring unique species and ecosystems, makes it one of the
-                  world&apos;s most environmentally significant countries.
-                </p>
+                {(
+                  t('about.overview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((paragraph: string, index: number) => (
+                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </section>
           </div>
@@ -129,45 +113,47 @@ const AboutPhilippines: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Key Information
+                  {t('about.keyInformation.title')}
                 </h3>
                 <div className='space-y-3'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Official Languages
+                      {t('about.keyInformation.items.officialLanguages.label')}
                     </div>
                     <div className='text-gray-900'>
-                      Filipino (Tagalog), English
+                      {t('about.keyInformation.items.officialLanguages.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Government
+                      {t('about.keyInformation.items.government.label')}
                     </div>
                     <div className='text-gray-900'>
-                      Presidential Constitutional Republic
+                      {t('about.keyInformation.items.government.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Currency
-                    </div>
-                    <div className='text-gray-900'>Philippine Peso (₱)</div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      Time Zone
+                      {t('about.keyInformation.items.currency.label')}
                     </div>
                     <div className='text-gray-900'>
-                      UTC+8 (Philippine Standard Time)
+                      {t('about.keyInformation.items.currency.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Major Cities
+                      {t('about.keyInformation.items.timeZone.label')}
                     </div>
                     <div className='text-gray-900'>
-                      Manila, Quezon City, Davao, Cebu
+                      {t('about.keyInformation.items.timeZone.value')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-medium text-gray-800'>
+                      {t('about.keyInformation.items.majorCities.label')}
+                    </div>
+                    <div className='text-gray-900'>
+                      {t('about.keyInformation.items.majorCities.value')}
                     </div>
                   </div>
                 </div>
@@ -177,32 +163,32 @@ const AboutPhilippines: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Related Links
+                  {t('about.relatedLinks.title')}
                 </h3>
                 <nav className='space-y-2'>
                   <a
                     href='/philippines/history'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    History
+                    {t('about.relatedLinks.items.history')}
                   </a>
                   <a
                     href='/philippines/culture'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Culture
+                    {t('about.relatedLinks.items.culture')}
                   </a>
                   <a
                     href='/philippines/regions'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Regions
+                    {t('about.relatedLinks.items.regions')}
                   </a>
                   <a
                     href='/philippines/tourism'
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
-                    Tourism
+                    {t('about.relatedLinks.items.tourism')}
                   </a>
                 </nav>
               </CardContent>

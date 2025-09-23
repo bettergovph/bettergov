@@ -7,7 +7,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       <div className='container mx-auto px-4 py-6 md:py-8'>
-        <div className='bg-white rounded-lg border shadow-sm p-6 md:p-8 md:py-24 mt-4'>
+        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-24 mt-4'>
           <div className='max-w-3xl mx-auto'>
             <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
               {t('title')}
@@ -107,7 +107,7 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 <div className='bg-blue-100 p-6 rounded-lg flex items-start'>
-                  <Heart className='h-6 w-6 text-red-500 mr-3 flex-shrink-0 mt-1' />
+                  <Heart className='h-6 w-6 text-red-500 mr-3 shrink-0 mt-1' />
                   <div>
                     <p className='font-medium text-gray-800 mb-2'>
                       {t('volunteer.callToAction.title')}

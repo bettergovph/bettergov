@@ -83,7 +83,7 @@ const WebsitesDirectory: React.FC = () => {
         keywords="philippines government websites, philippine agencies online, government directory"
       /> */}
 
-      <div className='bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16'>
+      <div className='bg-linear-to-r from-primary-700 to-primary-900 text-white py-16'>
         <div className='container mx-auto px-4'>
           <div className='flex items-center mb-4'>
             <Globe className='h-8 w-8 mr-3' />
@@ -128,7 +128,7 @@ const WebsitesDirectory: React.FC = () => {
                 <select
                   value={selectedType}
                   onChange={e => setSelectedType(e.target.value)}
-                  className='pl-10 w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500'
+                  className='pl-10 w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-hidden focus:ring-2 focus:ring-primary-500'
                 >
                   <option value=''>All Categories</option>
                   {websiteTypes.map(type => (
@@ -238,12 +238,12 @@ const WebsitesDirectory: React.FC = () => {
                     </div>
 
                     {website.website && (
-                      <div className='flex-shrink-0'>
+                      <div className='shrink-0'>
                         <a
                           href={formatUrl(website.website) as string}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
+                          className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-xs text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                         >
                           Visit Website
                           <ExternalLink className='ml-2 h-4 w-4' />
