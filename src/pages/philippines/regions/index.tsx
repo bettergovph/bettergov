@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MapPin, Mountain, Building2, Users, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '../../../components/ui/Card';
@@ -7,6 +8,35 @@ import SEO from '../../../components/SEO';
 import { getLocalGovSEOData } from '../../../utils/seo-data';
 
 const PhilippinesRegions: React.FC = () => {
+  const { t } = useTranslation('about-philippines');
+
+  // Simple region name formatter
+  const formatRegionName = (name: string): string => {
+    return name
+      .split(/(\s|-)/g)
+      .map(part => {
+        if (!part.trim() || /^[\s-]$/.test(part)) return part;
+
+        const upper = part.toUpperCase();
+
+        // Roman numerals
+        if (/^(I{1,3}|IV|V|VI{0,3}|IX|X|XI{0,2}|XIII)$/.test(upper))
+          return upper;
+
+        // Known acronyms
+        if (
+          /^(NCR|MIMAROPA|CALABARZON|SOCCSKSARGEN|CARAGA|BANGSAMORO)$/.test(
+            upper
+          )
+        )
+          return upper;
+
+        // Default to title case
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      })
+      .join('');
+  };
+
   // Use the regions data from our JSON file
   const regions = useMemo(() => {
     // Map region data to include additional display information
@@ -25,14 +55,8 @@ const PhilippinesRegions: React.FC = () => {
         icon = <Users className='h-6 w-6' />;
       }
 
-      // Format the region name for display (title case)
-      const displayName = region.name
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(' ')
-        .replace('Ncr', 'NCR')
-        .replace('Mimaropa', 'MIMAROPA')
-        .replace('Calabarzon', 'CALABARZON');
+      // Format the region name for display using our new parser
+      const displayName = formatRegionName(region.name);
 
       return {
         ...region,
@@ -63,11 +87,10 @@ const PhilippinesRegions: React.FC = () => {
           <div className='container mx-auto px-4'>
             <div className='max-w-3xl'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                Regions of the Philippines
+                {t('regions.hero.title')}
               </h1>
               <p className='text-xl text-white/90 leading-relaxed'>
-                Explore all {regions.length} administrative regions of the
-                Philippines and their local government units.
+                {t('regions.hero.description', { count: regions.length })}
               </p>
             </div>
           </div>
@@ -81,7 +104,7 @@ const PhilippinesRegions: React.FC = () => {
           <div className='lg:col-span-2'>
             <section className='mb-12'>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                Administrative Regions
+                {t('regions.sections.administrativeRegions.title')}
               </h2>
               <div className='grid gap-6'>
                 {regions.map((region, index) => (
@@ -102,14 +125,20 @@ const PhilippinesRegions: React.FC = () => {
                           </Link>
                           <div className='flex items-center text-sm text-gray-800 mb-4'>
                             <MapPin className='h-4 w-4 mr-1' />
-                            <span>Local Government Units</span>
+                            <span>
+                              {t(
+                                'regions.sections.administrativeRegions.localGovUnits'
+                              )}
+                            </span>
                           </div>
                           <div className='flex justify-between items-center'>
                             <Link
                               to={region.lguLink}
                               className='inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700'
                             >
-                              View LGUs
+                              {t(
+                                'regions.sections.administrativeRegions.viewLGUs'
+                              )}
                               <svg
                                 className='w-4 h-4 ml-1'
                                 fill='none'
@@ -136,28 +165,18 @@ const PhilippinesRegions: React.FC = () => {
 
             <section>
               <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                Regional Overview
+                {t('regions.sections.regionalOverview.title')}
               </h2>
               <div className='prose max-w-none'>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  The Philippines is divided into three main geographical
-                  divisions: Luzon, Visayas, and Mindanao. These are further
-                  subdivided into 17 regions, each with its own administrative
-                  center, cultural identity, and economic focus.
-                </p>
-                <p className='text-gray-800 leading-relaxed mb-4'>
-                  Each region showcases unique traditions, dialects, and
-                  cuisines, contributing to the country&apos;s rich cultural
-                  tapestry. From the mountain tribes of the Cordilleras to the
-                  seafaring communities of the Visayas, the diversity of
-                  Filipino regional cultures is remarkable.
-                </p>
-                <p className='text-gray-800 leading-relaxed'>
-                  The regions also vary in their economic activities, from the
-                  industrial and service-oriented National Capital Region to the
-                  agricultural heartlands of Central Luzon and the resource-rich
-                  provinces of Mindanao.
-                </p>
+                {(
+                  t('regions.sections.regionalOverview.paragraphs', {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((paragraph: string, index: number) => (
+                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </section>
           </div>
@@ -167,34 +186,40 @@ const PhilippinesRegions: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Quick Facts
+                  {t('regions.sidebar.quickFacts.title')}
                 </h3>
                 <div className='space-y-4'>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Total Regions
+                      {t('regions.sidebar.quickFacts.totalRegions.label')}
                     </div>
                     <div className='text-gray-900'>
-                      18 Administrative Regions
+                      {t('regions.sidebar.quickFacts.totalRegions.value')}
                     </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Provinces
+                      {t('regions.sidebar.quickFacts.provinces.label')}
                     </div>
-                    <div className='text-gray-900'>82 Provinces</div>
+                    <div className='text-gray-900'>
+                      {t('regions.sidebar.quickFacts.provinces.value')}
+                    </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Cities
+                      {t('regions.sidebar.quickFacts.cities.label')}
                     </div>
-                    <div className='text-gray-900'>149 Cities</div>
+                    <div className='text-gray-900'>
+                      {t('regions.sidebar.quickFacts.cities.value')}
+                    </div>
                   </div>
                   <div>
                     <div className='text-sm font-medium text-gray-800'>
-                      Municipalities
+                      {t('regions.sidebar.quickFacts.municipalities.label')}
                     </div>
-                    <div className='text-gray-900'>1,493 Municipalities</div>
+                    <div className='text-gray-900'>
+                      {t('regions.sidebar.quickFacts.municipalities.value')}
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -203,25 +228,43 @@ const PhilippinesRegions: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Regional Languages
+                  {t('regions.sidebar.regionalLanguages.title')}
                 </h3>
                 <div className='space-y-3'>
                   <div>
-                    <div className='font-medium text-gray-900'>Luzon</div>
+                    <div className='font-medium text-gray-900'>
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.luzon.name'
+                      )}
+                    </div>
                     <div className='text-sm text-gray-800'>
-                      Tagalog, Ilocano, Bicolano
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.luzon.languages'
+                      )}
                     </div>
                   </div>
                   <div>
-                    <div className='font-medium text-gray-900'>Visayas</div>
+                    <div className='font-medium text-gray-900'>
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.visayas.name'
+                      )}
+                    </div>
                     <div className='text-sm text-gray-800'>
-                      Cebuano, Hiligaynon, Waray
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.visayas.languages'
+                      )}
                     </div>
                   </div>
                   <div>
-                    <div className='font-medium text-gray-900'>Mindanao</div>
+                    <div className='font-medium text-gray-900'>
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.mindanao.name'
+                      )}
+                    </div>
                     <div className='text-sm text-gray-800'>
-                      Cebuano, Maguindanaon, Tausug
+                      {t(
+                        'regions.sidebar.regionalLanguages.regions.mindanao.languages'
+                      )}
                     </div>
                   </div>
                 </div>
@@ -231,7 +274,7 @@ const PhilippinesRegions: React.FC = () => {
             <Card>
               <CardContent className='p-6'>
                 <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  Related Links
+                  {t('regions.sidebar.relatedLinks.title')}
                 </h3>
                 <nav className='space-y-2'>
                   <Link
@@ -240,7 +283,7 @@ const PhilippinesRegions: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <MapPin className='h-4 w-4 mr-2' />
-                      Interactive Map
+                      {t('regions.sidebar.relatedLinks.interactiveMap')}
                     </div>
                   </Link>
                   <Link
@@ -249,7 +292,7 @@ const PhilippinesRegions: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <Building2 className='h-4 w-4 mr-2' />
-                      Local Government Units
+                      {t('regions.sidebar.relatedLinks.localGovernmentUnits')}
                     </div>
                   </Link>
                   <Link
@@ -258,7 +301,7 @@ const PhilippinesRegions: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <Users className='h-4 w-4 mr-2' />
-                      Government Departments
+                      {t('regions.sidebar.relatedLinks.governmentDepartments')}
                     </div>
                   </Link>
                   <Link
@@ -267,7 +310,7 @@ const PhilippinesRegions: React.FC = () => {
                   >
                     <div className='flex items-center'>
                       <Globe className='h-4 w-4 mr-2' />
-                      About the Philippines
+                      {t('regions.sidebar.relatedLinks.aboutPhilippines')}
                     </div>
                   </Link>
                 </nav>

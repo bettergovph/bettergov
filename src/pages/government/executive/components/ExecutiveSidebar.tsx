@@ -5,7 +5,6 @@ import StandardSidebar from '../../../../components/ui/StandardSidebar';
 export default function ExecutiveSidebar() {
   const location = useLocation();
 
-
   // Check if a path is active
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -28,7 +27,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Building className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Office of the President</span>
               </Link>
             </li>
@@ -41,7 +40,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <UserCheck className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <UserCheck className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Office of the Vice President</span>
               </Link>
             </li>
@@ -56,7 +55,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <MessageSquare className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <MessageSquare className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Presidential Communications Office</span>
               </Link>
             </li>
@@ -69,7 +68,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Briefcase className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Briefcase className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Other Executive Offices</span>
               </Link>
             </li>

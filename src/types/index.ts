@@ -46,6 +46,10 @@ export interface WeatherData {
   temperature: number;
   condition: string;
   icon: string;
+  humidity: number;
+  windSpeed: number;
+  pressure: number;
+  visibility: number;
 }
 
 export interface ForexRate {

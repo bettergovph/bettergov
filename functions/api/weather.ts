@@ -35,7 +35,7 @@ interface OpenWeatherMapResponse {
   clouds?: { all: number };
   rain?: Record<string, number>;
   dt?: number;
-  sys?: Record<string, any>;
+  sys?: Record<string, unknown>;
   timezone?: number;
   id?: number;
 }
@@ -45,7 +45,12 @@ interface WeatherResponseData {
   [cityName: string]: {
     city: string;
     coordinates: { lat: number; lon: number };
-    weather: Array<any>;
+    weather: Array<{
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }>;
     main: {
       temp: number;
       feels_like: number;
@@ -57,9 +62,9 @@ interface WeatherResponseData {
     visibility: number;
     wind: { speed: number; deg: number };
     clouds: { all: number };
-    rain: Record<string, any>;
+    rain: Record<string, number>;
     dt: number;
-    sys: Record<string, any>;
+    sys: Record<string, unknown>;
     timezone: number;
     id: number;
     timestamp: string;
@@ -310,10 +315,7 @@ export async function onRequest(context: {
   }
 }
 
-export async function scheduled(
-  controller: ScheduledController,
-  env: Env
-) {
+export async function scheduled(controller: ScheduledController, env: Env) {
   try {
     // Fetch weather data for all cities
     const weatherData = await fetchWeatherData(env);

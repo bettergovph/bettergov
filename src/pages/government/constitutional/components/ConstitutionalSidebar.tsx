@@ -1,24 +1,22 @@
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Building2, Database, GraduationCap } from 'lucide-react';
 import { useState, useMemo } from 'react';
-import constitutionalData from '../../../../data/directory/constitutional.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
-
-interface ConstitutionalOffice {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  [key: string]: any;
-}
+import { type ConstitutionalOffice } from '../../schema';
+import { constitutionalData } from '../data';
 
 interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
+
+// Only include constitutional offices (exclude GOCCs and SUCs)
+const offices = constitutionalData.filter(
+  office =>
+    !office.office_type.includes('Government-Owned') &&
+    !office.office_type.includes('GOCCs') &&
+    !office.office_type.includes('State Universities') &&
+    !office.office_type.includes('SUCs')
+);
 
 export default function ConstitutionalSidebar({
   onOfficeSelect,
@@ -28,17 +26,6 @@ export default function ConstitutionalSidebar({
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Only include constitutional offices (exclude GOCCs and SUCs)
-  const offices = useMemo(() => {
-    return constitutionalData.filter(
-      (office: any) =>
-        !office.office_type.includes('Government-Owned') &&
-        !office.office_type.includes('GOCCs') &&
-        !office.office_type.includes('State Universities') &&
-        !office.office_type.includes('SUCs')
-    ) as ConstitutionalOffice[];
-  }, []);
-
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
     if (!searchTerm) return offices;
@@ -46,7 +33,7 @@ export default function ConstitutionalSidebar({
     return offices.filter(office =>
       office.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [offices, searchTerm]);
+  }, [searchTerm]);
 
   const handleOfficeSelect = (office: ConstitutionalOffice) => {
     if (onOfficeSelect) {
@@ -61,12 +48,18 @@ export default function ConstitutionalSidebar({
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search constitutional offices...'
-    >
+    <StandardSidebar>
       <nav className='p-2 space-y-4'>
+        {/* TODO: some PR breaks the search, adding a temporary one*/}
+        <div className='mb-4'>
+          <input
+            type='text'
+            placeholder='Search constitutional offices...'
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className='w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent'
+          />
+        </div>
         {/* Constitutional offices */}
         <div>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
@@ -83,13 +76,13 @@ export default function ConstitutionalSidebar({
                   <button
                     onClick={() => handleOfficeSelect(office)}
                     className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
-                      officeParam === office.name
+                      officeParam === office.slug
                         ? 'bg-primary-50 text-primary-700 font-medium'
                         : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     <div className='flex items-center'>
-                      <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                      <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                       <span className='truncate'>{office.name}</span>
                     </div>
                   </button>
@@ -114,7 +107,7 @@ export default function ConstitutionalSidebar({
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Database className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Database className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Government-Owned Corporations</span>
               </Link>
             </li>
@@ -127,7 +120,7 @@ export default function ConstitutionalSidebar({
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <GraduationCap className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <GraduationCap className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>State Universities & Colleges</span>
               </Link>
             </li>

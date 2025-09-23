@@ -14,12 +14,15 @@ export default function HouseMembersPage() {
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
 
   // Get House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('House of Representatives')
   );
 
   // Extract house members
-  const houseMembers = houseData?.house_members || [];
+  const houseMembers = useMemo(
+    () => houseData?.house_members || [],
+    [houseData]
+  );
 
   // Get unique provinces/cities for filtering
   const provinces = useMemo(() => {
@@ -83,14 +86,14 @@ export default function HouseMembersPage() {
             <input
               type='search'
               placeholder='Search representatives...'
-              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
           </div>
 
           <select
-            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={selectedProvince || ''}
             onChange={e => setSelectedProvince(e.target.value || null)}
           >

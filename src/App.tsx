@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { NuqsAdapter } from 'nuqs/adapters/react';
+import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
@@ -81,6 +81,8 @@ import Ideas from './pages/Ideas';
 import JoinUs from './pages/JoinUs';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/Discord';
+import SalaryGradePage from './pages/government/salary-grade/index';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -167,6 +169,7 @@ function App() {
               element={<GovernmentLayout title='Government' />}
             >
               <Route index element={<Navigate to='executive' replace />} />
+              <Route path='salary-grade' element={<SalaryGradePage />} />
 
               <Route path='executive' element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
@@ -228,6 +231,9 @@ function App() {
                 <Route path=':region' element={<RegionalLGUPage />} />
               </Route>
             </Route>
+
+            {/*Not Found/404 Page */}
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
         </div>

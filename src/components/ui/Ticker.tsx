@@ -178,7 +178,7 @@ const Ticker: React.FC = () => {
               weatherData.slice(0, 4).map(data => (
                 <div
                   key={data.location}
-                  className='flex items-center space-x-2 uppercase'
+                  className='flex flex-col items-center justify-center uppercase space-x-0 sm:flex-row sm:space-x-2'
                 >
                   <span className='text-xs font-medium text-accent-100'>
                     {data.location}

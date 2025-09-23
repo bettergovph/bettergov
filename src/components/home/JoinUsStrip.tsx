@@ -7,7 +7,7 @@ const JoinUsStrip: React.FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <div className='relative overflow-hidden bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3'>
+    <div className='relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3'>
       <div className='absolute inset-0 bg-black/10'></div>
 
       {/* Animated background elements */}

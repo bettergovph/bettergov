@@ -15,12 +15,15 @@ export default function PartyListMembersPage() {
   );
 
   // Get Party List House of Representatives data
-  const houseData = legislativeData.find((item: any) =>
+  const houseData = legislativeData.find((item: { chamber: string }) =>
     item.chamber.includes('House of Representatives')
   );
 
   // Extract party list members
-  const partyListMembers = houseData?.party_list_representatives || [];
+  const partyListMembers = useMemo(
+    () => houseData?.party_list_representatives || [],
+    [houseData]
+  );
 
   // Get unique partylist for filtering
   const partyList = useMemo(() => {
@@ -85,14 +88,14 @@ export default function PartyListMembersPage() {
             <input
               type='search'
               placeholder='Search representatives...'
-              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
           </div>
 
           <select
-            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={selectedPartyList || ''}
             onChange={e => setSelectedPartyList(e.target.value || null)}
           >
