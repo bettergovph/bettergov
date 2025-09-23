@@ -643,7 +643,7 @@ const ContractorDetail: React.FC = () => {
         </div>
 
         {/* View Tabs */}
-        <div className='flex border-b border-gray-200 mb-6'>
+        <div className='flex border-b border-gray-200 mb-6 overflow-x-auto'>
           <Link
             to='/flood-control-projects'
             className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
@@ -659,18 +659,18 @@ const ContractorDetail: React.FC = () => {
             Table
           </Link>
           <Link
-            to='/flood-control-projects/map'
-            className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
-          >
-            <Map className='w-4 h-4 mr-2' />
-            Map
-          </Link>
-          <Link
             to='/flood-control-projects/contractors'
             className='px-4 py-2 border-b-2 border-blue-500 text-blue-600 font-medium flex items-center'
           >
             <Users className='w-4 h-4 mr-2' />
             Contractors
+          </Link>
+          <Link
+            to='/flood-control-projects/map'
+            className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
+          >
+            <Map className='w-4 h-4 mr-2' />
+            Map
           </Link>
         </div>
 
