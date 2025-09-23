@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, ComponentType } from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
-// Keep necessary components loaded  when needed immediately
+// Keep necessary components loaded when needed immediately
 import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
@@ -20,14 +20,140 @@ const LoadingSpinner = () => (
   </div>
 );
 
-// Lazy loading utility
-const createLazyRoute = (
-  importFn: () => Promise<{ default: ComponentType<T> }>
-): React.ReactElement => (
-  <Suspense fallback={<LoadingSpinner />}>
-    {React.createElement(lazy(importFn))}
-  </Suspense>
+// Define all lazy components upfront
+const Home = lazy(() => import('./pages/Home'));
+const DesignGuide = lazy(() => import('./pages/DesignGuide'));
+const Services = lazy(() => import('./pages/services'));
+const About = lazy(() => import('./pages/about'));
+const Accessibility = lazy(() => import('./pages/accessibility'));
+const Search = lazy(() => import('./pages/Search'));
+const Ideas = lazy(() => import('./pages/Ideas'));
+const JoinUs = lazy(() => import('./pages/JoinUs'));
+const Sitemap = lazy(() => import('./pages/sitemap'));
+const Discord = lazy(() => import('./pages/Discord'));
+
+// Philippines pages
+const PhilippinesAbout = lazy(() => import('./pages/philippines/about'));
+const PhilippinesHistory = lazy(() => import('./pages/philippines/history'));
+const PhilippinesCulture = lazy(() => import('./pages/philippines/culture'));
+const PhilippinesRegions = lazy(() => import('./pages/philippines/regions'));
+const PhilippinesMap = lazy(() => import('./pages/philippines/map'));
+const PhilippinesHolidays = lazy(() => import('./pages/philippines/holidays'));
+const PhilippinesHotlines = lazy(() => import('./pages/philippines/Hotlines'));
+
+// Data pages
+const DataWeather = lazy(() => import('./pages/data/weather'));
+const DataForex = lazy(() => import('./pages/data/forex'));
+const FloodControlProjects = lazy(
+  () => import('./pages/flood-control-projects')
 );
+const FloodControlTable = lazy(
+  () => import('./pages/flood-control-projects/table')
+);
+const FloodControlMap = lazy(
+  () => import('./pages/flood-control-projects/map')
+);
+const FloodControlContractors = lazy(
+  () => import('./pages/flood-control-projects/contractors')
+);
+const FloodControlContractorDetail = lazy(
+  () => import('./pages/flood-control-projects/contractors/[contractor-name]')
+);
+
+// Services pages
+const ServicesWebsites = lazy(() => import('./pages/services/websites'));
+
+// Travel pages
+const TravelVisa = lazy(() => import('./pages/travel/visa'));
+const TravelVisaTypes = lazy(() => import('./pages/travel/visa-types'));
+const TravelVisaTypeDetail = lazy(
+  () => import('./pages/travel/visa-types/[type]')
+);
+
+// Government pages
+const GovernmentLayout = lazy(() => import('./pages/government/layout'));
+const ExecutiveLayout = lazy(
+  () => import('./pages/government/executive/layout')
+);
+const Executive = lazy(() => import('./pages/government/executive'));
+const OtherExecutiveOffices = lazy(
+  () => import('./pages/government/executive/other-executive-offices')
+);
+const OfficeOfThePresident = lazy(
+  () => import('./pages/government/executive/office-of-the-president')
+);
+const OfficeOfTheVicePresident = lazy(
+  () => import('./pages/government/executive/office-of-the-vice-president')
+);
+const PresidentialCommunicationsOffice = lazy(
+  () =>
+    import('./pages/government/executive/presidential-communications-office')
+);
+
+const DepartmentsLayout = lazy(
+  () => import('./pages/government/departments/layout')
+);
+const Departments = lazy(() => import('./pages/government/departments'));
+const DepartmentDetail = lazy(
+  () => import('./pages/government/departments/[department]')
+);
+
+const ConstitutionalLayout = lazy(
+  () => import('./pages/government/constitutional/layout')
+);
+const ConstitutionalIndex = lazy(
+  () => import('./pages/government/constitutional/index')
+);
+const ConstitutionalOffice = lazy(
+  () => import('./pages/government/constitutional/[office]')
+);
+const ConstitutionalGoccs = lazy(
+  () => import('./pages/government/constitutional/goccs')
+);
+const ConstitutionalSucs = lazy(
+  () => import('./pages/government/constitutional/sucs')
+);
+
+const LegislativeLayout = lazy(
+  () => import('./pages/government/legislative/layout')
+);
+const LegislativeIndex = lazy(
+  () => import('./pages/government/legislative/index')
+);
+const LegislativeChamber = lazy(
+  () => import('./pages/government/legislative/[chamber]')
+);
+const HouseMembers = lazy(
+  () => import('./pages/government/legislative/house-members')
+);
+const PartyListMembers = lazy(
+  () => import('./pages/government/legislative/party-list-members')
+);
+const SenateCommittees = lazy(
+  () => import('./pages/government/legislative/senate-committees')
+);
+
+const DiplomaticLayout = lazy(
+  () => import('./pages/government/diplomatic/layout')
+);
+const DiplomaticIndex = lazy(
+  () => import('./pages/government/diplomatic/index')
+);
+const DiplomaticMissions = lazy(
+  () => import('./pages/government/diplomatic/missions')
+);
+const DiplomaticConsulates = lazy(
+  () => import('./pages/government/diplomatic/consulates')
+);
+const DiplomaticOrganizations = lazy(
+  () => import('./pages/government/diplomatic/organizations')
+);
+
+const LocalLayout = lazy(
+  () => import('./pages/government/local/components/LocalLayout')
+);
+const LocalIndex = lazy(() => import('./pages/government/local/index'));
+const LocalRegion = lazy(() => import('./pages/government/local/[region]'));
 
 function App() {
   return (
@@ -37,382 +163,141 @@ function App() {
           <Navbar />
           <Ticker />
           <ScrollToTop />
-          <Routes>
-            <Route
-              path='/'
-              element={createLazyRoute(() => import('./pages/Home'))}
-            />
-            <Route
-              path='/design'
-              element={createLazyRoute(() => import('./pages/DesignGuide'))}
-            />
-            <Route
-              path='/services'
-              element={createLazyRoute(() => import('./pages/services'))}
-            />
-            <Route
-              path='/about'
-              element={createLazyRoute(() => import('./pages/about'))}
-            />
-            <Route
-              path='/accessibility'
-              element={createLazyRoute(() => import('./pages/accessibility'))}
-            />
-            <Route
-              path='/search'
-              element={createLazyRoute(() => import('./pages/Search'))}
-            />
-            <Route
-              path='/ideas'
-              element={createLazyRoute(() => import('./pages/Ideas'))}
-            />
-            <Route
-              path='/join-us'
-              element={createLazyRoute(() => import('./pages/JoinUs'))}
-            />
-            <Route
-              path='/sitemap'
-              element={createLazyRoute(() => import('./pages/sitemap'))}
-            />
-            <Route
-              path='/discord'
-              element={createLazyRoute(() => import('./pages/Discord'))}
-            />
 
-            <Route path='/philippines'>
-              <Route index element={<Navigate to='about' replace />} />
-              <Route
-                path='about'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/about')
-                )}
-              />
-              <Route
-                path='history'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/history')
-                )}
-              />
-              <Route
-                path='culture'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/culture')
-                )}
-              />
-              <Route
-                path='regions'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/regions')
-                )}
-              />
-              <Route
-                path='map'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/map')
-                )}
-              />
-              <Route
-                path='holidays'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/holidays')
-                )}
-              />
-              <Route
-                path='hotlines'
-                element={createLazyRoute(
-                  () => import('./pages/philippines/Hotlines')
-                )}
-              />
-            </Route>
+          {/* Single Suspense wrapper for all routes */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/design' element={<DesignGuide />} />
+              <Route path='/services' element={<Services />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/accessibility' element={<Accessibility />} />
+              <Route path='/search' element={<Search />} />
+              <Route path='/ideas' element={<Ideas />} />
+              <Route path='/join-us' element={<JoinUs />} />
+              <Route path='/sitemap' element={<Sitemap />} />
+              <Route path='/discord' element={<Discord />} />
 
-            {/* Data Routes */}
-            <Route
-              path='/data/weather'
-              element={createLazyRoute(() => import('./pages/data/weather'))}
-            />
-            <Route
-              path='/data/forex'
-              element={createLazyRoute(() => import('./pages/data/forex'))}
-            />
-            <Route
-              path='/flood-control-projects'
-              element={createLazyRoute(
-                () => import('./pages/flood-control-projects')
-              )}
-            />
-            <Route
-              path='/flood-control-projects/table'
-              element={createLazyRoute(
-                () => import('./pages/flood-control-projects/table')
-              )}
-            />
-            <Route
-              path='/flood-control-projects/map'
-              element={createLazyRoute(
-                () => import('./pages/flood-control-projects/map')
-              )}
-            />
-            <Route
-              path='/flood-control-projects/contractors'
-              element={createLazyRoute(
-                () => import('./pages/flood-control-projects/contractors')
-              )}
-            />
-            <Route
-              path='/flood-control-projects/contractors/:contractor-name'
-              element={createLazyRoute(
-                () =>
-                  import(
-                    './pages/flood-control-projects/contractors/[contractor-name]'
-                  )
-              )}
-            />
+              <Route path='/philippines'>
+                <Route index element={<Navigate to='about' replace />} />
+                <Route path='about' element={<PhilippinesAbout />} />
+                <Route path='history' element={<PhilippinesHistory />} />
+                <Route path='culture' element={<PhilippinesCulture />} />
+                <Route path='regions' element={<PhilippinesRegions />} />
+                <Route path='map' element={<PhilippinesMap />} />
+                <Route path='holidays' element={<PhilippinesHolidays />} />
+                <Route path='hotlines' element={<PhilippinesHotlines />} />
+              </Route>
 
-            {/* Services Routes */}
-            <Route
-              path='/services/websites'
-              element={createLazyRoute(
-                () => import('./pages/services/websites')
-              )}
-            />
-
-            {/* Travel Routes */}
-            <Route path='/travel'>
-              <Route index element={<Navigate to='visa' replace />} />
+              {/* Data Routes */}
+              <Route path='/data/weather' element={<DataWeather />} />
+              <Route path='/data/forex' element={<DataForex />} />
               <Route
-                path='visa'
-                element={createLazyRoute(() => import('./pages/travel/visa'))}
+                path='/flood-control-projects'
+                element={<FloodControlProjects />}
               />
               <Route
-                path='visa-types'
-                element={createLazyRoute(
-                  () => import('./pages/travel/visa-types')
-                )}
+                path='/flood-control-projects/table'
+                element={<FloodControlTable />}
               />
               <Route
-                path='visa-types/:type'
-                element={
-                  <React.Suspense
-                    fallback={
-                      <div className='flex items-center justify-center min-h-screen'>
-                        Loading...
-                      </div>
-                    }
-                  >
-                    {React.createElement(
-                      lazy(() => import('./pages/travel/visa-types/[type]'))
-                    )}
-                  </React.Suspense>
-                }
+                path='/flood-control-projects/map'
+                element={<FloodControlMap />}
               />
-            </Route>
-
-            {/* Government Routes */}
-            <Route
-              path='/government'
-              element={createLazyRoute(
-                () => import('./pages/government/layout')
-              )}
-            >
-              <Route index element={<Navigate to='executive' replace />} />
-
               <Route
-                path='executive'
-                element={createLazyRoute(
-                  () => import('./pages/government/executive/layout')
-                )}
-              >
+                path='/flood-control-projects/contractors'
+                element={<FloodControlContractors />}
+              />
+              <Route
+                path='/flood-control-projects/contractors/:contractor-name'
+                element={<FloodControlContractorDetail />}
+              />
+
+              {/* Services Routes */}
+              <Route path='/services/websites' element={<ServicesWebsites />} />
+
+              {/* Travel Routes */}
+              <Route path='/travel'>
+                <Route index element={<Navigate to='visa' replace />} />
+                <Route path='visa' element={<TravelVisa />} />
+                <Route path='visa-types' element={<TravelVisaTypes />} />
                 <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/executive')
-                  )}
-                />
-                <Route
-                  path='other-executive-offices'
-                  element={createLazyRoute(
-                    () =>
-                      import(
-                        './pages/government/executive/other-executive-offices'
-                      )
-                  )}
-                />
-                <Route
-                  path='office-of-the-president'
-                  element={createLazyRoute(
-                    () =>
-                      import(
-                        './pages/government/executive/office-of-the-president'
-                      )
-                  )}
-                />
-                <Route
-                  path='office-of-the-vice-president'
-                  element={createLazyRoute(
-                    () =>
-                      import(
-                        './pages/government/executive/office-of-the-vice-president'
-                      )
-                  )}
-                />
-                <Route
-                  path='presidential-communications-office'
-                  element={createLazyRoute(
-                    () =>
-                      import(
-                        './pages/government/executive/presidential-communications-office'
-                      )
-                  )}
+                  path='visa-types/:type'
+                  element={<TravelVisaTypeDetail />}
                 />
               </Route>
 
+              {/* Government Routes */}
               <Route
-                path='departments'
-                element={createLazyRoute(
-                  () => import('./pages/government/departments/layout')
-                )}
+                path='/government'
+                element={<GovernmentLayout title='Government' />}
               >
-                <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/departments')
-                  )}
-                />
-                <Route
-                  path=':department'
-                  element={createLazyRoute(
-                    () => import('./pages/government/departments/[department]')
-                  )}
-                />
-              </Route>
+                <Route index element={<Navigate to='executive' replace />} />
 
-              <Route
-                path='constitutional'
-                element={createLazyRoute(
-                  () => import('./pages/government/constitutional/layout')
-                )}
-              >
-                <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/constitutional/index')
-                  )}
-                />
-                <Route
-                  path=':office'
-                  element={createLazyRoute(
-                    () => import('./pages/government/constitutional/[office]')
-                  )}
-                />
-                <Route
-                  path='goccs'
-                  element={createLazyRoute(
-                    () => import('./pages/government/constitutional/goccs')
-                  )}
-                />
-                <Route
-                  path='sucs'
-                  element={createLazyRoute(
-                    () => import('./pages/government/constitutional/sucs')
-                  )}
-                />
-              </Route>
-              <Route
-                path='legislative'
-                element={createLazyRoute(
-                  () => import('./pages/government/legislative/layout')
-                )}
-              >
-                <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/legislative/index')
-                  )}
-                />
-                <Route
-                  path=':chamber'
-                  element={createLazyRoute(
-                    () => import('./pages/government/legislative/[chamber]')
-                  )}
-                />
-                <Route
-                  path='house-members'
-                  element={createLazyRoute(
-                    () => import('./pages/government/legislative/house-members')
-                  )}
-                />
-                <Route
-                  path='party-list-members'
-                  element={createLazyRoute(
-                    () =>
-                      import(
-                        './pages/government/legislative/party-list-members'
-                      )
-                  )}
-                />
-                <Route
-                  path='senate-committees'
-                  element={createLazyRoute(
-                    () =>
-                      import('./pages/government/legislative/senate-committees')
-                  )}
-                />
-              </Route>
-              <Route
-                path='diplomatic'
-                element={createLazyRoute(
-                  () => import('./pages/government/diplomatic/layout')
-                )}
-              >
-                <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/diplomatic/index')
-                  )}
-                />
-                <Route
-                  path='missions'
-                  element={createLazyRoute(
-                    () => import('./pages/government/diplomatic/missions')
-                  )}
-                />
-                <Route
-                  path='consulates'
-                  element={createLazyRoute(
-                    () => import('./pages/government/diplomatic/consulates')
-                  )}
-                />
-                <Route
-                  path='organizations'
-                  element={createLazyRoute(
-                    () => import('./pages/government/diplomatic/organizations')
-                  )}
-                />
-              </Route>
+                <Route path='executive' element={<ExecutiveLayout />}>
+                  <Route index element={<Executive />} />
+                  <Route
+                    path='other-executive-offices'
+                    element={<OtherExecutiveOffices />}
+                  />
+                  <Route
+                    path='office-of-the-president'
+                    element={<OfficeOfThePresident />}
+                  />
+                  <Route
+                    path='office-of-the-vice-president'
+                    element={<OfficeOfTheVicePresident />}
+                  />
+                  <Route
+                    path='presidential-communications-office'
+                    element={<PresidentialCommunicationsOffice />}
+                  />
+                </Route>
 
-              {/* Local Government Routes */}
-              <Route
-                path='local'
-                element={createLazyRoute(
-                  () =>
-                    import('./pages/government/local/components/LocalLayout')
-                )}
-              >
-                <Route
-                  index
-                  element={createLazyRoute(
-                    () => import('./pages/government/local/index')
-                  )}
-                />
-                <Route
-                  path=':region'
-                  element={createLazyRoute(
-                    () => import('./pages/government/local/[region]')
-                  )}
-                />
+                <Route path='departments' element={<DepartmentsLayout />}>
+                  <Route index element={<Departments />} />
+                  <Route path=':department' element={<DepartmentDetail />} />
+                </Route>
+
+                <Route path='constitutional' element={<ConstitutionalLayout />}>
+                  <Route index element={<ConstitutionalIndex />} />
+                  <Route path=':office' element={<ConstitutionalOffice />} />
+                  <Route path='goccs' element={<ConstitutionalGoccs />} />
+                  <Route path='sucs' element={<ConstitutionalSucs />} />
+                </Route>
+
+                <Route path='legislative' element={<LegislativeLayout />}>
+                  <Route index element={<LegislativeIndex />} />
+                  <Route path=':chamber' element={<LegislativeChamber />} />
+                  <Route path='house-members' element={<HouseMembers />} />
+                  <Route
+                    path='party-list-members'
+                    element={<PartyListMembers />}
+                  />
+                  <Route
+                    path='senate-committees'
+                    element={<SenateCommittees />}
+                  />
+                </Route>
+
+                <Route path='diplomatic' element={<DiplomaticLayout />}>
+                  <Route index element={<DiplomaticIndex />} />
+                  <Route path='missions' element={<DiplomaticMissions />} />
+                  <Route path='consulates' element={<DiplomaticConsulates />} />
+                  <Route
+                    path='organizations'
+                    element={<DiplomaticOrganizations />}
+                  />
+                </Route>
+
+                <Route path='local' element={<LocalLayout />}>
+                  <Route index element={<LocalIndex />} />
+                  <Route path=':region' element={<LocalRegion />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
+            </Routes>
+          </Suspense>
+
           <Footer />
         </div>
       </NuqsAdapter>
