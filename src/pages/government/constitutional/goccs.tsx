@@ -59,7 +59,7 @@ export default function GOCCsPage() {
           <input
             type='search'
             placeholder='Search GOCCs...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
@@ -92,7 +92,7 @@ export default function GOCCsPage() {
               <div className='p-4 space-y-3'>
                 {gocc.address && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>{gocc.address}</span>
                   </p>
                 )}
@@ -101,7 +101,7 @@ export default function GOCCsPage() {
                   gocc.trunk_line ||
                   (gocc.trunklines && gocc.trunklines[0])) && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <Phone className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <Phone className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>
                       {gocc.phone || gocc.trunk_line || gocc.trunklines?.[0]}
                     </span>
@@ -113,7 +113,7 @@ export default function GOCCsPage() {
                     href={`mailto:${gocc.email}`}
                     className='text-sm text-gray-800 flex items-start hover:text-primary-600'
                   >
-                    <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>{gocc.email}</span>
                   </a>
                 )}

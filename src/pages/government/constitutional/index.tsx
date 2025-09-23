@@ -204,7 +204,7 @@ export default function ConstitutionalIndex() {
 
             {selectedOffice.address && (
               <p className='mt-2 text-gray-800 flex items-start text-sm'>
-                <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                 <span>{selectedOffice.address}</span>
               </p>
             )}
@@ -212,7 +212,7 @@ export default function ConstitutionalIndex() {
 
           {selectedOffice.website && (
             <div className='flex space-x-2 flex-row text-sm'>
-              <ExternalLink className='h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0' />
+              <ExternalLink className='h-4 w-4 text-gray-400 mt-0.5 shrink-0' />
               <a
                 href={
                   selectedOffice.website.startsWith('http')
@@ -230,7 +230,7 @@ export default function ConstitutionalIndex() {
 
           {contactNumber && (
             <div className='flex items-center text-gray-800 text-sm'>
-              <Phone className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
+              <Phone className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{contactNumber}</span>
             </div>
           )}
@@ -240,7 +240,7 @@ export default function ConstitutionalIndex() {
               href={`mailto:${selectedOffice.email}`}
               className='flex items-center text-gray-800 hover:text-primary-600'
             >
-              <Mail className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
+              <Mail className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{selectedOffice.email}</span>
             </a>
           )}

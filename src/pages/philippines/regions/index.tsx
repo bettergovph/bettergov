@@ -10,6 +10,33 @@ import { getLocalGovSEOData } from '../../../utils/seo-data';
 const PhilippinesRegions: React.FC = () => {
   const { t } = useTranslation('about-philippines');
 
+  // Simple region name formatter
+  const formatRegionName = (name: string): string => {
+    return name
+      .split(/(\s|-)/g)
+      .map(part => {
+        if (!part.trim() || /^[\s-]$/.test(part)) return part;
+
+        const upper = part.toUpperCase();
+
+        // Roman numerals
+        if (/^(I{1,3}|IV|V|VI{0,3}|IX|X|XI{0,2}|XIII)$/.test(upper))
+          return upper;
+
+        // Known acronyms
+        if (
+          /^(NCR|MIMAROPA|CALABARZON|SOCCSKSARGEN|CARAGA|BANGSAMORO)$/.test(
+            upper
+          )
+        )
+          return upper;
+
+        // Default to title case
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      })
+      .join('');
+  };
+
   // Use the regions data from our JSON file
   const regions = useMemo(() => {
     // Map region data to include additional display information
@@ -28,14 +55,8 @@ const PhilippinesRegions: React.FC = () => {
         icon = <Users className='h-6 w-6' />;
       }
 
-      // Format the region name for display (title case)
-      const displayName = region.name
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(' ')
-        .replace('Ncr', 'NCR')
-        .replace('Mimaropa', 'MIMAROPA')
-        .replace('Calabarzon', 'CALABARZON');
+      // Format the region name for display using our new parser
+      const displayName = formatRegionName(region.name);
 
       return {
         ...region,

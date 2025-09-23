@@ -18,7 +18,7 @@ import {
 
 const JoinUs: React.FC = () => {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50'>
+    <div className='min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50'>
       <Helmet>
         <title>Join Us | BetterGov.ph</title>
         <meta
@@ -37,12 +37,12 @@ const JoinUs: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className='relative overflow-hidden bg-gradient-to-r from-primary-600 via-blue-700 to-purple-700 text-white'>
+      <section className='relative overflow-hidden bg-linear-to-r from-primary-600 via-blue-700 to-purple-700 text-white'>
         <div className='absolute inset-0 bg-black opacity-10'></div>
         <div className='relative container mx-auto px-4 py-16 md:py-24 z-10'>
           <div className='text-center max-w-4xl mx-auto'>
             <div className='flex justify-center mb-6'>
-              <div className='p-4 bg-white/20 rounded-full backdrop-blur-sm'>
+              <div className='p-4 bg-white/20 rounded-full backdrop-blur-xs'>
                 <Users className='h-12 w-12 text-white' />
               </div>
             </div>
@@ -101,7 +101,7 @@ const JoinUs: React.FC = () => {
           </div>
 
           <div className='max-w-4xl mx-auto'>
-            <div className='bg-gradient-to-r from-primary-50 to-blue-50 rounded-2xl p-8 md:p-12 mb-8'>
+            <div className='bg-linear-to-r from-primary-50 to-blue-50 rounded-2xl p-8 md:p-12 mb-8'>
               <p className='text-lg text-gray-800 leading-relaxed mb-6'>
                 BetterGov is a <strong>volunteer-led tech initiative</strong>{' '}
                 committed to creating
@@ -170,7 +170,7 @@ const JoinUs: React.FC = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className='bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1'
+                className='bg-white rounded-xl p-6 shadow-xs hover:shadow-md transition-all transform hover:-translate-y-1'
               >
                 <div className='flex items-center justify-center w-12 h-12 bg-primary-100 rounded-lg mb-4'>
                   <item.icon className='h-6 w-6 text-primary-600' />
@@ -186,19 +186,19 @@ const JoinUs: React.FC = () => {
       </section>
 
       {/* Personal Message Section */}
-      <section className='py-16 md:py-20 bg-gradient-to-r from-red-900 via-gray-900 to-purple-900 text-white relative overflow-hidden'>
+      <section className='py-16 md:py-20 bg-linear-to-r from-red-900 via-gray-900 to-purple-900 text-white relative overflow-hidden'>
         <div className='absolute inset-0 bg-black/30'></div>
         <div className='container mx-auto px-4 relative z-10'>
           <div className='max-w-5xl mx-auto text-center'>
             <div className='flex justify-center mb-8'>
-              <div className='p-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-2xl'>
+              <div className='p-6 bg-linear-to-r from-yellow-400 to-orange-400 rounded-full shadow-2xl'>
                 <Zap className='h-12 w-12 text-gray-900' />
               </div>
             </div>
-            <h2 className='text-4xl md:text-6xl font-black mb-12 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300'>
+            <h2 className='text-4xl md:text-6xl font-black mb-12 text-transparent bg-clip-text bg-linear-to-r from-yellow-300 via-orange-300 to-red-300'>
               WE&apos;RE DONE WAITING
             </h2>
-            <div className='bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-lg rounded-3xl p-10 md:p-16 border border-white/20 shadow-2xl'>
+            <div className='bg-linear-to-r from-white/20 to-white/10 backdrop-blur-lg rounded-3xl p-10 md:p-16 border border-white/20 shadow-2xl'>
               <blockquote className='text-xl md:text-3xl font-bold leading-relaxed space-y-8 text-center'>
                 <p className='text-yellow-300 text-2xl md:text-4xl font-black uppercase tracking-wider'>
                   &ldquo;WE&apos;RE ANGRY. YOU&apos;RE ANGRY.&rdquo;
@@ -211,7 +211,7 @@ const JoinUs: React.FC = () => {
                 </p>
                 <p className='text-white text-xl md:text-2xl'>
                   We can do{' '}
-                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 font-black text-2xl md:text-3xl'>
+                  <span className='text-transparent bg-clip-text bg-linear-to-r from-yellow-300 to-orange-300 font-black text-2xl md:text-3xl'>
                     AMAZING THINGS
                   </span>{' '}
                   together.
@@ -249,7 +249,7 @@ const JoinUs: React.FC = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className='py-16 md:py-20 bg-gradient-to-r from-primary-600 to-blue-600'>
+      <section className='py-16 md:py-20 bg-linear-to-r from-primary-600 to-blue-600'>
         <div className='container mx-auto px-4 text-center'>
           <div className='max-w-3xl mx-auto'>
             <h2 className='text-3xl md:text-4xl font-bold text-white mb-6'>
