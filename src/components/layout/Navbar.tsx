@@ -86,7 +86,6 @@ const Navbar: React.FC = () => {
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              {/* <CheckCircle2 className='h-12 w-12 mr-3' /> */}
               <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
                 alt='BetterGov Logo'
