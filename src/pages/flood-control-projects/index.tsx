@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
@@ -87,6 +88,7 @@ const COLORS = [
 
 // Statistics Display Component with hardcoded values for better performance
 const DashboardStatistics: React.FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
 
@@ -120,7 +122,7 @@ const DashboardStatistics: React.FC = () => {
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
         <div className='bg-white rounded-lg shadow-sm p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
-            Total Projects
+            {t('statistics.totalProjects')}
           </h3>
           <p className='text-2xl font-bold text-blue-600'>
             {stats.totalProjects.toLocaleString()}
@@ -129,7 +131,7 @@ const DashboardStatistics: React.FC = () => {
 
         <div className='bg-white rounded-lg shadow-sm p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
-            Total Contract Cost
+            {t('statistics.totalContractCost')}
           </h3>
           <p className='text-2xl font-bold text-green-600'>
             ₱{stats.totalCost.toLocaleString()}
@@ -138,7 +140,7 @@ const DashboardStatistics: React.FC = () => {
 
         <div className='bg-white rounded-lg shadow-sm p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
-            Unique Contractors
+            {t('statistics.uniqueContractors')}
           </h3>
           <p className='text-2xl font-bold text-purple-600'>
             {stats.uniqueContractors.toLocaleString()}
@@ -203,6 +205,7 @@ const YearlyChart: React.FC = () => {
 };
 
 const RegionChart: React.FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -256,7 +259,12 @@ const RegionChart: React.FC = () => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
+        <Tooltip
+          formatter={(value, name) => [
+            `${value} ${t('tooltips.projectsFormatter')}`,
+            name,
+          ]}
+        />
         <Legend wrapperStyle={{ fontSize: 10 }} />
       </PieChart>
     </ResponsiveContainer>
@@ -264,6 +272,7 @@ const RegionChart: React.FC = () => {
 };
 
 const TypeOfWorkChart: React.FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -321,7 +330,12 @@ const TypeOfWorkChart: React.FC = () => {
                 />
               ))}
             </Pie>
-            <Tooltip formatter={(value, name) => [`${value} projects`, name]} />
+            <Tooltip
+              formatter={(value, name) => [
+                `${value} ${t('tooltips.projectsFormatter')}`,
+                name,
+              ]}
+            />
           </PieChart>
         </ResponsiveContainer>
       </div>
@@ -343,6 +357,7 @@ const TypeOfWorkChart: React.FC = () => {
 };
 
 const ContractorChart: React.FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -405,7 +420,10 @@ const ContractorChart: React.FC = () => {
           width={150}
         />
         <Tooltip
-          formatter={(value, name) => [`${value} projects`, name]}
+          formatter={(value, name) => [
+            `${value} ${t('tooltips.projectsFormatter')}`,
+            name,
+          ]}
           labelFormatter={label => {
             const item = chartData.find(item => item.name === label);
             return item ? item.fullName : label;
@@ -421,6 +439,8 @@ const ContractorChart: React.FC = () => {
 // Removed SearchResultsHits component since we don't need it anymore
 
 const FloodControlProjects: React.FC = () => {
+  const { t } = useTranslation('flood-control-projects');
+
   // State for filters and sidebar visibility
   const [filters, setFilters] = useState<FilterState>({
     InfraYear: '',
@@ -540,10 +560,10 @@ const FloodControlProjects: React.FC = () => {
         filename: 'flood-control-projects-visual',
       });
       // Show success message
-      alert('Data exported successfully!');
+      alert(t('alerts.exportSuccess'));
     } catch (error) {
       console.error('Error exporting data:', error);
-      alert('Failed to export data. Please try again.');
+      alert(t('alerts.exportError'));
     } finally {
       // Reset loading state
       setIsExporting(false);
@@ -553,11 +573,8 @@ const FloodControlProjects: React.FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       <Helmet>
-        <title>Flood Control Projects | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Explore flood control projects across the Philippines'
-        />
+        <title>{t('page.title')}</title>
+        <meta name='description' content={t('page.description')} />
       </Helmet>
 
       {/* Main layout with sidebar and content */}
@@ -574,7 +591,7 @@ const FloodControlProjects: React.FC = () => {
                 <div className='flex items-center'>
                   <Filter className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
-                    Filters
+                    {t('filters.title')}
                   </h2>
                 </div>
                 <button
@@ -589,7 +606,7 @@ const FloodControlProjects: React.FC = () => {
                 {/* Search box in sidebar */}
                 <div className='pt-4'>
                   <h3 className='text-sm font-medium text-gray-700 mb-2'>
-                    Search Projects
+                    {t('filters.searchProjects')}
                   </h3>
                   <div className='relative'>
                     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -598,7 +615,7 @@ const FloodControlProjects: React.FC = () => {
                     <input
                       type='text'
                       className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-                      placeholder='Projects, contractors, municipality, province, region...'
+                      placeholder={t('filters.searchPlaceholder')}
                       value={searchTerm}
                       onChange={e => handleSearchChange(e.target.value)}
                     />
@@ -607,7 +624,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Infrastructure Year
+                    {t('filters.infrastructureYear')}
                   </label>
                   <FilterDropdown
                     name='Year'
@@ -621,7 +638,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Region
+                    {t('filters.region')}
                   </label>
                   <FilterDropdown
                     name='Region'
@@ -636,7 +653,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Province
+                    {t('filters.province')}
                   </label>
                   <FilterDropdown
                     name='Province'
@@ -651,7 +668,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Type of Work
+                    {t('filters.typeOfWork')}
                   </label>
                   <FilterDropdown
                     name='Type of Work'
@@ -666,7 +683,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    District Engineering Office
+                    {t('filters.districtEngineeringOffice')}
                   </label>
                   <FilterDropdown
                     name='DEO'
@@ -685,7 +702,7 @@ const FloodControlProjects: React.FC = () => {
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Legislative District
+                    {t('filters.legislativeDistrict')}
                   </label>
                   <FilterDropdown
                     name='Legislative District'
@@ -712,14 +729,14 @@ const FloodControlProjects: React.FC = () => {
                 onClick={() => setShowSidebar(true)}
                 leftIcon={<Filter className='w-4 h-4' />}
               >
-                Show Filters
+                {t('filters.showFilters')}
               </Button>
             </div>
 
             {/* Page header */}
             <div className='flex justify-between items-center mb-6'>
               <h1 className='text-2xl font-bold text-gray-900'>
-                Flood Control Projects
+                {t('page.heading')}
               </h1>
               <Button
                 variant='outline'
@@ -727,7 +744,7 @@ const FloodControlProjects: React.FC = () => {
                 onClick={handleExportData}
                 disabled={isExporting}
               >
-                {isExporting ? 'Exporting...' : 'Export Data'}
+                {isExporting ? t('actions.exporting') : t('actions.exportData')}
               </Button>
             </div>
 
@@ -780,14 +797,14 @@ const FloodControlProjects: React.FC = () => {
                   <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
                     <div className='bg-white rounded-lg shadow-sm p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
-                        Total Projects
+                        {t('statistics.totalProjects')}
                       </h3>
                       <p className='text-2xl font-bold text-blue-600'>9,855</p>
                     </div>
 
                     <div className='bg-white rounded-lg shadow-sm p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
-                        Total Contract Cost
+                        {t('statistics.totalContractCost')}
                       </h3>
                       <p className='text-2xl font-bold text-green-600'>
                         ₱547,603,497,105
@@ -796,7 +813,7 @@ const FloodControlProjects: React.FC = () => {
 
                     <div className='bg-white rounded-lg shadow-sm p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
-                        Unique Contractors
+                        {t('statistics.uniqueContractors')}
                       </h3>
                       <p className='text-2xl font-bold text-purple-600'>
                         2,409
@@ -814,7 +831,7 @@ const FloodControlProjects: React.FC = () => {
                 <div className='flex items-center mb-4'>
                   <BarChart3 className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
-                    Projects by Year
+                    {t('charts.projectsByYear')}
                   </h2>
                 </div>
                 <div className='h-[300px]'>
@@ -854,7 +871,7 @@ const FloodControlProjects: React.FC = () => {
                 <div className='flex items-center mb-4'>
                   <PieChartIcon className='w-5 h-5 text-purple-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
-                    Top Regions
+                    {t('charts.topRegions')}
                   </h2>
                 </div>
                 <div className='h-[300px]'>
@@ -894,7 +911,7 @@ const FloodControlProjects: React.FC = () => {
                         </Pie>
                         <Tooltip
                           formatter={(value, name) => [
-                            `${value} projects`,
+                            `${value} ${t('tooltips.projectsFormatter')}`,
                             name,
                           ]}
                         />
@@ -909,7 +926,7 @@ const FloodControlProjects: React.FC = () => {
                 <div className='flex items-center mb-4'>
                   <PieChartIcon className='w-5 h-5 text-green-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
-                    Types of Work
+                    {t('charts.typesOfWork')}
                   </h2>
                 </div>
                 <div className='h-[300px] relative'>
@@ -953,7 +970,7 @@ const FloodControlProjects: React.FC = () => {
                             </Pie>
                             <Tooltip
                               formatter={(value, name) => [
-                                `${value} projects`,
+                                `${value} ${t('tooltips.projectsFormatter')}`,
                                 name,
                               ]}
                             />
@@ -991,7 +1008,7 @@ const FloodControlProjects: React.FC = () => {
                 <div className='flex items-center mb-4'>
                   <Users className='w-5 h-5 text-orange-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
-                    Top Contractors
+                    {t('charts.topContractors')}
                   </h2>
                 </div>
                 <div className='h-[300px]'>
@@ -1026,7 +1043,7 @@ const FloodControlProjects: React.FC = () => {
                         />
                         <Tooltip
                           formatter={(value, name) => [
-                            `${value} projects`,
+                            `${value} ${t('tooltips.projectsFormatter')}`,
                             name,
                           ]}
                           labelFormatter={label => {
@@ -1049,19 +1066,18 @@ const FloodControlProjects: React.FC = () => {
             <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
               <div className='flex justify-between items-center mb-2'>
                 <h2 className='text-lg font-semibold text-gray-800'>
-                  Need Detailed Results?
+                  {t('guidance.needDetailedResults')}
                 </h2>
                 <a
                   href='/flood-control-projects/table'
                   className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 >
                   <Table className='w-4 h-4 mr-1' />
-                  View Table
+                  {t('actions.viewTable')}
                 </a>
               </div>
               <p className='text-gray-800'>
-                Visit the Table view for detailed search results, sortable
-                columns, and advanced filtering options.
+                {t('guidance.tableViewDescription')}
               </p>
             </div>
 
@@ -1070,18 +1086,22 @@ const FloodControlProjects: React.FC = () => {
               <div className='flex items-center mb-4'>
                 <Info className='w-5 h-5 text-blue-600 mr-2' />
                 <h2 className='text-lg font-semibold text-gray-800'>
-                  About This Data
+                  {t('dataSource.title')}
                 </h2>
               </div>
               <p className='text-gray-800 mb-4'>
-                This dashboard visualizes flood control infrastructure projects
-                across the Philippines. The data includes information about
-                project locations, types, implementing offices, and more. Use
-                the filters in the sidebar to explore specific aspects of the
-                data or use the search functionality to find specific projects.
+                {t('dataSource.description')}
               </p>
               <p className='text-sm text-gray-800'>
-                Source: https://sumbongsapangulo.ph/flood-control-map/
+                {t('dataSource.sourceLabel')}{' '}
+                <a
+                  href='https://sumbongsapangulo.ph/flood-control-map/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-blue-600 hover:text-blue-800 underline'
+                >
+                  https://sumbongsapangulo.ph/flood-control-map/
+                </a>
               </p>
             </div>
           </div>
