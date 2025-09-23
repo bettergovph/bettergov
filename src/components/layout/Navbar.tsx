@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className='bg-white shadow-sm sticky top-0 z-50'>
+    <nav className='bg-white shadow-xs sticky top-0 z-50'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
         <div className='container mx-auto px-4 flex justify-end items-center h-10'>
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='text-xs border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='text-xs border border-gray-300 rounded-sm px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>
@@ -122,7 +122,7 @@ const Navbar: React.FC = () => {
                   )}
                 </Link>
                 {item.children && (
-                  <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
+                  <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
                     <div
                       className='py-1'
                       role='menu'
@@ -170,7 +170,7 @@ const Navbar: React.FC = () => {
           <div className='lg:hidden flex items-center'>
             <button
               onClick={toggleMenu}
-              className='inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500'
+              className='inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-primary-500'
             >
               <span className='sr-only'>Open main menu</span>
               {isOpen ? (
@@ -251,7 +251,7 @@ const Navbar: React.FC = () => {
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='text-sm border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='text-sm border border-gray-300 rounded-sm px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>

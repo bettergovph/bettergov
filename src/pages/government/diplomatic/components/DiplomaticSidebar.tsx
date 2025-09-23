@@ -27,7 +27,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Globe className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Globe className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Diplomatic Missions</span>
               </Link>
             </li>
@@ -40,7 +40,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>Consulates</span>
               </Link>
             </li>
@@ -53,7 +53,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Landmark className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Landmark className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                 <span>International Organizations</span>
               </Link>
             </li>

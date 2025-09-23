@@ -496,7 +496,7 @@ const FloodControlProjectsMap: React.FC = () => {
 
               {/* Region Details Panel */}
               {/* {selectedRegion && (
-                <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm z-[1000]">
+                <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm z-1000">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-bold text-gray-900 text-lg">
                       {selectedRegion.name}

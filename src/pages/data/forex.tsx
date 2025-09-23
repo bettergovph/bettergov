@@ -136,7 +136,7 @@ const ForexPage: React.FC = () => {
             <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600'></div>
           </div>
         ) : error ? (
-          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-md'>
+          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-sm shadow-md'>
             <p className='font-bold'>Error</p>
             <p>{error}</p>
           </div>
@@ -291,7 +291,7 @@ const ForexPage: React.FC = () => {
                       <label className='block text-sm font-medium text-gray-700 mb-2'>
                         Philippine Peso (PHP)
                       </label>
-                      <div className='relative rounded-md shadow-sm'>
+                      <div className='relative rounded-md shadow-xs'>
                         <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                           <span className='text-gray-800 sm:text-sm'>₱</span>
                         </div>
@@ -308,7 +308,7 @@ const ForexPage: React.FC = () => {
                         {selectedCurrencyData.code} (
                         {formatCurrencyName(selectedCurrencyData.currency)})
                       </label>
-                      <div className='relative rounded-md shadow-sm'>
+                      <div className='relative rounded-md shadow-xs'>
                         <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                           <span className='text-gray-800 sm:text-sm'>
                             {selectedCurrencyData.code === 'USD'

@@ -120,7 +120,7 @@ const DashboardStatistics: React.FC = () => {
   return (
     <div className='mb-6'>
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-        <div className='bg-white rounded-lg shadow-sm p-4'>
+        <div className='bg-white rounded-lg shadow-xs p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
             {t('statistics.totalProjects')}
           </h3>
@@ -129,7 +129,7 @@ const DashboardStatistics: React.FC = () => {
           </p>
         </div>
 
-        <div className='bg-white rounded-lg shadow-sm p-4'>
+        <div className='bg-white rounded-lg shadow-xs p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
             {t('statistics.totalContractCost')}
           </h3>
@@ -138,7 +138,7 @@ const DashboardStatistics: React.FC = () => {
           </p>
         </div>
 
-        <div className='bg-white rounded-lg shadow-sm p-4'>
+        <div className='bg-white rounded-lg shadow-xs p-4'>
           <h3 className='text-sm font-medium text-gray-800 mb-1'>
             {t('statistics.uniqueContractors')}
           </h3>
@@ -344,7 +344,7 @@ const TypeOfWorkChart: React.FC = () => {
           {chartData.map((item, index) => (
             <div key={item.value} className='flex items-center text-xs'>
               <div
-                className='w-3 h-3 rounded-full mr-2 flex-shrink-0'
+                className='w-3 h-3 rounded-full mr-2 shrink-0'
                 style={{ backgroundColor: COLORS[index % COLORS.length] }}
               ></div>
               <span className='text-gray-700 leading-tight'>{item.value}</span>
@@ -582,7 +582,7 @@ const FloodControlProjects: React.FC = () => {
         <div className='flex flex-col md:flex-row gap-6'>
           {/* Sidebar for filters - collapsible on mobile */}
           <div
-            className={`md:w-64 flex-shrink-0 transition-all duration-300 ${
+            className={`md:w-64 shrink-0 transition-all duration-300 ${
               showSidebar ? 'block' : 'hidden md:block'
             }`}
           >
@@ -614,7 +614,7 @@ const FloodControlProjects: React.FC = () => {
                     </div>
                     <input
                       type='text'
-                      className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                      className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
                       placeholder={t('filters.searchPlaceholder')}
                       value={searchTerm}
                       onChange={e => handleSearchChange(e.target.value)}
@@ -795,14 +795,14 @@ const FloodControlProjects: React.FC = () => {
               ) : (
                 <div className='mb-6'>
                   <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-                    <div className='bg-white rounded-lg shadow-sm p-4'>
+                    <div className='bg-white rounded-lg shadow-xs p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
                         {t('statistics.totalProjects')}
                       </h3>
                       <p className='text-2xl font-bold text-blue-600'>9,855</p>
                     </div>
 
-                    <div className='bg-white rounded-lg shadow-sm p-4'>
+                    <div className='bg-white rounded-lg shadow-xs p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
                         {t('statistics.totalContractCost')}
                       </h3>
@@ -811,7 +811,7 @@ const FloodControlProjects: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className='bg-white rounded-lg shadow-sm p-4'>
+                    <div className='bg-white rounded-lg shadow-xs p-4'>
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
                         {t('statistics.uniqueContractors')}
                       </h3>
@@ -985,7 +985,7 @@ const FloodControlProjects: React.FC = () => {
                               className='flex items-center text-xs'
                             >
                               <div
-                                className='w-3 h-3 rounded-full mr-2 flex-shrink-0'
+                                className='w-3 h-3 rounded-full mr-2 shrink-0'
                                 style={{
                                   backgroundColor:
                                     COLORS[index % COLORS.length],
@@ -1070,7 +1070,7 @@ const FloodControlProjects: React.FC = () => {
                 </h2>
                 <a
                   href='/flood-control-projects/table'
-                  className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                  className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 >
                   <Table className='w-4 h-4 mr-1' />
                   {t('actions.viewTable')}
