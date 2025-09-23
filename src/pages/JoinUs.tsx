@@ -39,7 +39,7 @@ const JoinUs: React.FC = () => {
       {/* Hero Section */}
       <section className='relative overflow-hidden bg-gradient-to-r from-primary-600 via-blue-700 to-purple-700 text-white'>
         <div className='absolute inset-0 bg-black opacity-10'></div>
-        <div className='relative container mx-auto px-4 py-16 md:py-24'>
+        <div className='relative container mx-auto px-4 py-16 md:py-24 z-10'>
           <div className='text-center max-w-4xl mx-auto'>
             <div className='flex justify-center mb-6'>
               <div className='p-4 bg-white/20 rounded-full backdrop-blur-sm'>

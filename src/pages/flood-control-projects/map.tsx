@@ -431,7 +431,7 @@ const FloodControlProjectsMap: React.FC = () => {
                         key={project.GlobalID || project.objectID}
                         position={[lat, lng]}
                         icon={L.icon({
-                          iconUrl: '/marker-icon-2x.png',
+                          iconUrl: '/marker-icon-2x.webp',
                           iconSize: [16, 24],
                           iconAnchor: [8, 8],
                           popupAnchor: [0, -25],
