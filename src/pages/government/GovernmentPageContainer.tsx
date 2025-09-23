@@ -1,5 +1,6 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 interface GovernmentPageContainerProps {
   children: ReactNode;
@@ -13,6 +14,32 @@ export default function GovernmentPageContainer({
   className = '',
 }: GovernmentPageContainerProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes('/government/')) {
+      window.history.scrollRestoration = 'manual';
+
+      const timer = setTimeout(() => {
+        const currentScroll = window.pageYOffset;
+        const isMobile = window.innerWidth < 768;
+
+        if (currentScroll < 50) {
+          const targetScroll = isMobile ? 1000 : 500;
+
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth',
+          });
+        }
+      }, 70);
+
+      return () => {
+        clearTimeout(timer);
+        window.history.scrollRestoration = 'auto';
+      };
+    }
+  }, [location.pathname]);
 
   return (
     <div className={`min-h-screen md:bg-gray-50 ${className}`}>
@@ -49,56 +76,6 @@ export default function GovernmentPageContainer({
               {children}
             </div>
           </main>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-interface GovernmentPageHeaderProps {
-  title: string;
-  subtitle?: string;
-  actions?: ReactNode;
-  className?: string;
-}
-
-export function GovernmentPageHeader({
-  title,
-  subtitle,
-  actions,
-  className = '',
-}: GovernmentPageHeaderProps) {
-  return (
-    <div
-      className={`flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8 ${className}`}
-    >
-      <div>
-        <h1 className='text-2xl md:text-3xl font-bold text-gray-900 mb-2'>
-          {title}
-        </h1>
-        {subtitle && (
-          <p className='text-sm md:text-base text-gray-800'>{subtitle}</p>
-        )}
-      </div>
-      {actions && <div className='shrink-0'>{actions}</div>}
-    </div>
-  );
-}
-
-interface GovernmentIndexPageContainerProps {
-  children: ReactNode;
-  className?: string;
-}
-
-export function GovernmentIndexPageContainer({
-  children,
-  className = '',
-}: GovernmentIndexPageContainerProps) {
-  return (
-    <div className={`min-h-screen bg-gray-50 ${className}`}>
-      <div className='container mx-auto px-4 py-6 md:py-8'>
-        <div className='bg-white rounded-lg border shadow-xs p-4 md:p-8'>
-          {children}
         </div>
       </div>
     </div>
