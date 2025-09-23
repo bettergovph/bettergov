@@ -17,29 +17,11 @@ export default function GovernmentPageContainer({
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes('/government/')) {
-      window.history.scrollRestoration = 'manual';
-
-      const timer = setTimeout(() => {
-        const currentScroll = window.pageYOffset;
-        const isMobile = window.innerWidth < 768;
-
-        if (currentScroll < 50) {
-          const targetScroll = isMobile ? 1000 : 500;
-
-          window.scrollTo({
-            top: targetScroll,
-            behavior: 'smooth',
-          });
-        }
-      }, 70);
-
-      return () => {
-        clearTimeout(timer);
-        window.history.scrollRestoration = 'auto';
-      };
+    if (location.state?.scrollToContent) {
+      const contentElement = document.getElementById('government-content');
+      contentElement?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [location.pathname]);
+  }, [location]);
 
   return (
     <div className={`min-h-screen md:bg-gray-50 ${className}`}>
@@ -72,7 +54,10 @@ export default function GovernmentPageContainer({
             </aside>
           )}
           <main className='flex-1 min-w-0'>
-            <div className='bg-white rounded-lg border shadow-xs p-4 md:p-8'>
+            <div
+              id='government-content'
+              className='bg-white rounded-lg border shadow-xs p-4 md:p-8'
+            >
               {children}
             </div>
           </main>
