@@ -1,7 +1,7 @@
 import React from 'react';
 import { footerNavigation } from '../../data/navigation';
 import { Link } from 'react-router-dom';
-import { useTranslation } from '../../../node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   SiFacebook,
   SiInstagram,

@@ -3,7 +3,7 @@ import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react';
 import { mainNavigation } from '../../data/navigation';
 import { LanguageType } from '../../types';
 import { Link } from 'react-router-dom';
-import { useTranslation } from '../../../node_modules/react-i18next';
+import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../../i18n/languages';
 
 const Navbar: React.FC = () => {
