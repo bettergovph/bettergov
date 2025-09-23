@@ -62,18 +62,18 @@ const WeatherPage: React.FC = () => {
   const getWeatherBackground = (condition: string) => {
     const lowerCondition = condition.toLowerCase();
     if (lowerCondition.includes('clear'))
-      return 'bg-gradient-to-br from-blue-400 to-blue-600';
+      return 'bg-linear-to-br from-blue-400 to-blue-600';
     if (lowerCondition.includes('cloud'))
-      return 'bg-gradient-to-br from-gray-300 to-gray-500 text-black';
+      return 'bg-linear-to-br from-gray-300 to-gray-500 text-black';
     if (lowerCondition.includes('rain') || lowerCondition.includes('drizzle'))
-      return 'bg-gradient-to-br from-blue-600 to-blue-800';
+      return 'bg-linear-to-br from-blue-600 to-blue-800';
     if (lowerCondition.includes('thunder'))
-      return 'bg-gradient-to-br from-gray-700 to-gray-900 text-black';
+      return 'bg-linear-to-br from-gray-700 to-gray-900 text-black';
     if (lowerCondition.includes('snow'))
-      return 'bg-gradient-to-br from-blue-100 to-blue-300';
+      return 'bg-linear-to-br from-blue-100 to-blue-300';
     if (lowerCondition.includes('mist') || lowerCondition.includes('fog'))
-      return 'bg-gradient-to-br from-gray-400 to-gray-600';
-    return 'bg-gradient-to-br from-blue-500 to-blue-700';
+      return 'bg-linear-to-br from-gray-400 to-gray-600';
+    return 'bg-linear-to-br from-blue-500 to-blue-700';
   };
 
   return (
@@ -84,7 +84,7 @@ const WeatherPage: React.FC = () => {
             <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600'></div>
           </div>
         ) : error ? (
-          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-md'>
+          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-sm shadow-md'>
             <p className='font-bold'>Error</p>
             <p>{error}</p>
           </div>
@@ -146,25 +146,25 @@ const WeatherPage: React.FC = () => {
                   </div>
 
                   <div className='grid grid-cols-2 md:grid-cols-4 gap-4 text-center'>
-                    <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
+                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Humidity</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.humidity}%
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
+                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Wind</div>
                       <div className='text-xl font-semibold'>
                         {Math.round(selectedCityData.windSpeed * 3.6)} km/h
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
+                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Pressure</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.pressure} hPa
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-sm rounded-lg p-4'>
+                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
                       <div className='text-black/80 mb-1'>Visibility</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.visibility} km

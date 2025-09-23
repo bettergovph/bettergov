@@ -145,7 +145,7 @@ const AccessibilityPage: React.FC = () => {
       <div className='container mx-auto px-4'>
         <div className='max-w-4xl mx-auto'>
           {/* Header */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8 border-b border-gray-200'>
               <h1 className='text-3xl font-bold text-gray-900 mb-4'>
                 Accessibility Statement
@@ -160,7 +160,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Commitment Section */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-4'>
                 Our Commitment
@@ -183,7 +183,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Accessibility Features */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Accessibility Features
@@ -205,7 +205,7 @@ const AccessibilityPage: React.FC = () => {
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircle className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
+                          <CheckCircle className='h-4 w-4 text-green-600 mt-0.5 mr-2 shrink-0' />
                           <span className='text-sm text-gray-800'>{item}</span>
                         </li>
                       ))}
@@ -217,7 +217,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Standards Compliance */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Standards Compliance
@@ -244,7 +244,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Keyboard Shortcuts */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Keyboard Shortcuts
@@ -255,7 +255,7 @@ const AccessibilityPage: React.FC = () => {
                     <span className='font-medium text-gray-900'>
                       Skip to main content
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Tab
                     </kbd>
                   </div>
@@ -263,7 +263,7 @@ const AccessibilityPage: React.FC = () => {
                     <span className='font-medium text-gray-900'>
                       Navigate links
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Tab / Shift+Tab
                     </kbd>
                   </div>
@@ -271,7 +271,7 @@ const AccessibilityPage: React.FC = () => {
                     <span className='font-medium text-gray-900'>
                       Activate link/button
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Enter / Space
                     </kbd>
                   </div>
@@ -279,7 +279,7 @@ const AccessibilityPage: React.FC = () => {
                 <div className='space-y-3'>
                   <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
                     <span className='font-medium text-gray-900'>Search</span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Ctrl+K
                     </kbd>
                   </div>
@@ -287,7 +287,7 @@ const AccessibilityPage: React.FC = () => {
                     <span className='font-medium text-gray-900'>
                       Close modal/menu
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Escape
                     </kbd>
                   </div>
@@ -295,7 +295,7 @@ const AccessibilityPage: React.FC = () => {
                     <span className='font-medium text-gray-900'>
                       Navigate menu items
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded text-sm font-mono'>
+                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
                       Arrow Keys
                     </kbd>
                   </div>
@@ -305,7 +305,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Feedback and Support */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Feedback and Support
@@ -359,7 +359,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Alternative Formats */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden mb-8'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
             <div className='p-6 md:p-8'>
               <h2 className='text-2xl font-bold text-gray-900 mb-6'>
                 Alternative Formats
@@ -386,7 +386,7 @@ const AccessibilityPage: React.FC = () => {
           </div>
 
           {/* Last Updated */}
-          <div className='bg-white rounded-xl shadow-sm overflow-hidden'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
             <div className='p-6 md:p-8 text-center'>
               <p className='text-sm text-gray-800'>
                 This accessibility statement was last updated on{' '}

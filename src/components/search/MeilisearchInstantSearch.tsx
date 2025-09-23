@@ -218,7 +218,7 @@ const MeilisearchInstantSearch: React.FC = () => {
               root: 'mb-2',
               form: 'relative',
               input:
-                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-150 ease-in-out',
+                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
               submit:
                 'absolute top-0 right-0 h-full px-3 text-gray-800 hover:text-blue-600',
               reset:
@@ -227,7 +227,7 @@ const MeilisearchInstantSearch: React.FC = () => {
           />
 
           {hasInteracted && (
-            <div className='bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
+            <div className='bg-white rounded-lg shadow-sm overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-800 p-2 text-right text-xs',

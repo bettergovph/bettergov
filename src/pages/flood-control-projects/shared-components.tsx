@@ -219,7 +219,7 @@ export const ResultsStatistics: React.FC<{
   ).size;
 
   return (
-    <div className='bg-white p-4 rounded-lg shadow mb-4'>
+    <div className='bg-white p-4 rounded-lg shadow-sm mb-4'>
       <h3 className='text-lg font-medium text-gray-900 mb-2'>
         Project Statistics
       </h3>
