@@ -68,7 +68,7 @@ const TermsOfService: React.FC = () => {
             </div>
             <p className='text-gray-700 leading-relaxed'>
               By accessing and using this website, you accept and agree to be
-              bound by the terms and provision of this agreement.
+              bound by the terms and provisions of this agreement.
             </p>
           </section>
 
