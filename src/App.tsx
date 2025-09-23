@@ -81,6 +81,7 @@ import Ideas from './pages/Ideas';
 import JoinUs from './pages/JoinUs';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/Discord';
+import SalaryGradePage from './pages/government/salary-grade/index';
 
 function App() {
   return (
@@ -167,6 +168,7 @@ function App() {
               element={<GovernmentLayout title='Government' />}
             >
               <Route index element={<Navigate to='executive' replace />} />
+              <Route path='salary-grade' element={<SalaryGradePage />} />
 
               <Route path='executive' element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
