@@ -423,6 +423,11 @@ const TermsOfService: React.FC = () => {
                 and informational purposes only.
               </p>
             </div>
+            <div>
+              <p className='text-gray-900 font-semibold mt-4'>
+                Effective as of September 23, 2025
+              </p>
+            </div>
           </section>
         </div>
       </div>
