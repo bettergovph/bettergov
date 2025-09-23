@@ -9,7 +9,7 @@ import GovernmentSection from '../components/home/GovernmentSection';
 
 const Home: React.FC = () => {
   return (
-    <main className='flex-grow'>
+    <main className='grow'>
       <JoinUsStrip />
       <Hero />
       <ServicesSection />

@@ -86,7 +86,7 @@ export default function LocalGovernmentIndex() {
             <input
               type='search'
               placeholder='Search regions...'
-              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
@@ -120,7 +120,7 @@ export default function LocalGovernmentIndex() {
                         </CardTitle>
                         <CardDescription>{region.description}</CardDescription>
                       </div>
-                      <div className='ml-3 flex-shrink-0'>
+                      <div className='ml-3 shrink-0'>
                         <div className='bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full'>
                           Region
                         </div>

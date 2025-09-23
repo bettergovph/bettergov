@@ -431,7 +431,7 @@ const FloodControlProjectsMap: React.FC = () => {
                         key={project.GlobalID || project.objectID}
                         position={[lat, lng]}
                         icon={L.icon({
-                          iconUrl: '/marker-icon-2x.png',
+                          iconUrl: '/marker-icon-2x.webp',
                           iconSize: [16, 24],
                           iconAnchor: [8, 8],
                           popupAnchor: [0, -25],
@@ -496,7 +496,7 @@ const FloodControlProjectsMap: React.FC = () => {
 
               {/* Region Details Panel */}
               {/* {selectedRegion && (
-                <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm z-[1000]">
+                <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm z-1000">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-bold text-gray-900 text-lg">
                       {selectedRegion.name}

@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <div className='bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12 md:py-24'>
+    <div className='bg-linear-to-r from-primary-600 to-primary-700 text-white py-12 md:py-24'>
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
           {/* Left section with title and search */}
@@ -99,7 +99,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Right section with quick access services */}
-          <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-slide-in'>
+          <div className='bg-white/10 backdrop-blur-xs rounded-xl p-6 shadow-lg animate-slide-in'>
             <h2 className='text-2xl font-semibold mb-4'>
               {t('services.title')}
             </h2>

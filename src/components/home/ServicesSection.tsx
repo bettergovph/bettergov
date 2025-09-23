@@ -75,7 +75,7 @@ const ServicesSection: React.FC = () => {
                   </h3>
                 </div>
 
-                <ul className='space-y-2 mb-6 flex-grow'>
+                <ul className='space-y-2 mb-6 grow'>
                   {category.subcategories.slice(0, 3).map(subcategory => (
                     <li key={subcategory.slug}>
                       <Link
@@ -104,7 +104,7 @@ const ServicesSection: React.FC = () => {
         <div className='text-center mt-8'>
           <Link
             to='/services'
-            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
+            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-xs'
           >
             {t('services.viewAll')}
           </Link>

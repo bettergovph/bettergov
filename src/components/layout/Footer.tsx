@@ -1,14 +1,14 @@
 import React from 'react';
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  CheckCircle2,
-} from 'lucide-react';
 import { footerNavigation } from '../../data/navigation';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {
+  SiFacebook,
+  SiInstagram,
+  SiYoutube,
+  SiX,
+  SiDiscord,
+} from '@icons-pack/react-simple-icons';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
@@ -16,13 +16,15 @@ const Footer: React.FC = () => {
   const getSocialIcon = (label: string) => {
     switch (label) {
       case 'Facebook':
-        return <Facebook className='h-5 w-5' />;
+        return <SiFacebook className='h-5 w-5' />;
       case 'Twitter':
-        return <Twitter className='h-5 w-5' />;
+        return <SiX className='h-5 w-5' />;
       case 'Instagram':
-        return <Instagram className='h-5 w-5' />;
+        return <SiInstagram className='h-5 w-5' />;
       case 'YouTube':
-        return <Youtube className='h-5 w-5' />;
+        return <SiYoutube className='h-5 w-5' />;
+      case 'Discord':
+        return <SiDiscord className='h-5 w-5' />;
       default:
         return null;
     }
@@ -34,12 +36,11 @@ const Footer: React.FC = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
           <div>
             <div className='flex items-center mb-4'>
-              <CheckCircle2 className='h-12 w-12 mr-3' />
-              {/* <img
-                src="/ph-logo.webp"
-                alt="Philippines Coat of Arms"
-                className="h-12 w-12 mr-3"
-              /> */}
+              <img
+                src='/logos/svg/BetterGov_Icon-White.svg'
+                alt='BetterGov Logo'
+                className='h-12 w-12 mr-3'
+              />
 
               <div>
                 <div className='font-bold'>Better Philippines</div>
@@ -99,18 +100,6 @@ const Footer: React.FC = () => {
               {t('footer.copyright')}
             </p>
             <div className='flex space-x-6'>
-              {/* <a
-                href="/privacy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Terms of Use
-              </a> */}
               <Link
                 to='https://github.com/bettergovph/bettergov'
                 className='text-gray-400 hover:text-white text-sm transition-colors'
@@ -123,12 +112,6 @@ const Footer: React.FC = () => {
               >
                 Sitemap
               </Link>
-              <a
-                href='/accessibility'
-                className='text-gray-400 hover:text-white text-sm transition-colors'
-              >
-                Accessibility
-              </a>
             </div>
           </div>
         </div>
