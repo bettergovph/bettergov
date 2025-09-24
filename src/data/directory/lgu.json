@@ -4274,6 +4274,16 @@
             }
           },
           {
+            "municipality": "Tarlac City",
+            "zip_code": "2300",
+            "mayor": {
+              "name": "SUSAN ARENO YAP-SULIT"
+            },
+            "vice_mayor": {
+              "name": "KATHERINE THERESE C. ANGELES"
+            }
+          },
+          {
             "municipality": "Victoria",
             "zip_code": "2313",
             "mayor": {
