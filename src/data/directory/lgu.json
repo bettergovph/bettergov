@@ -4105,6 +4105,18 @@
       },
       {
         "province": "TARLAC PROVINCE",
+        "cities": [
+          {
+            "city": "Tarlac City",
+            "zip_code": "2300",
+            "mayor": {
+              "name": "SUSAN ARENO YAP-SULIT"
+            },
+            "vice_mayor": {
+              "name": "KATHERINE THERESE C. ANGELES"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Anao",
@@ -4271,16 +4283,6 @@
             },
             "vice_mayor": {
               "name": "NATHANIEL L. TAN"
-            }
-          },
-          {
-            "municipality": "Tarlac City",
-            "zip_code": "2300",
-            "mayor": {
-              "name": "SUSAN ARENO YAP-SULIT"
-            },
-            "vice_mayor": {
-              "name": "KATHERINE THERESE C. ANGELES"
             }
           },
           {
