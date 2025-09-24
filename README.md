@@ -65,14 +65,22 @@ Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
 ## Setup
 
 1. Clone the repository
-2. Install dependencies
-3. Set up environment variables
-4. Run the development server
+2. Use the correct Node.js version (recommended)
+3. Install dependencies
+4. Set up environment variables
+5. Run the development server
 
 ```bash
 # Clone the repository
 git clone https://github.com/bettergovph/bettergov.git
 cd bettergov
+
+# Use the Node.js version specified in .nvmrc (recommended)
+# If you have nvm installed:
+nvm use
+
+# Or if you have fnm installed:
+fnm use
 
 # Install dependencies
 npm install
@@ -203,6 +211,14 @@ test('user can search for services', async ({ page }) => {
   await expect(page.locator('text=/passport/i')).toBeVisible();
 });
 ```
+
+## Contributing
+
+Thanks to all the people who already contributed!
+
+<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
+</a>
 
 ## License
 

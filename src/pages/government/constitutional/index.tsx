@@ -5,6 +5,7 @@ import SEO from '../../../components/SEO';
 import { getConstitutionalSEOData } from '../../../utils/seo-data';
 import { type ConstitutionalOffice } from '../schema';
 import { constitutionalData as offices } from './data';
+import { cn } from '../../../lib/utils';
 
 // Recursive component to render office details
 function OfficeDetailSection({
@@ -25,7 +26,7 @@ function OfficeDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-gray-200 pl-3' : ''
+              level > 0 ? 'ml-4 border-l border-b border-neutral-100 pl-3' : ''
             }`}
           >
             <OfficeDetailSection data={item} level={level + 1} />
@@ -54,22 +55,21 @@ function OfficeDetailSection({
   ];
 
   if (isSimpleObject) {
-    const cols = Object.keys(data).length > 4 ? Object.keys(data).length : 4;
-
     return (
       <div
-        className={`mb-4 grid grid-cols-${cols} md:grid-cols-${cols} lg:grid-cols-${cols} gap-x-6 ${
-          level === 1 ? 'rounded-2xl font-bold text-lg' : ''
-        }`}
+        className={cn(
+          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          level === 1 && 'rounded-2xl font-bold text-lg'
+        )}
       >
         {Object.entries(data).map(([key, value]) => {
           if (skipKeys.includes(key) || value === undefined) return null;
 
           return (
             <div key={key} className='text-sm'>
-              <span className='text-gray-800 leading-relaxed'>
+              <div className='text-gray-800 leading-relaxed'>
                 {String(value)}
-              </span>
+              </div>
             </div>
           );
         })}
@@ -152,7 +152,7 @@ export default function ConstitutionalIndex() {
     return (
       <>
         <SEO {...seoData} />
-        <div className='bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
+        <div className='@container bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
             <Building2 className='h-6 w-6 text-gray-400' />
           </div>
@@ -176,7 +176,7 @@ export default function ConstitutionalIndex() {
   return (
     <>
       <SEO {...seoData} />
-      <div className='space-y-6'>
+      <div className='@container space-y-6'>
         <div className='flex flex-col space-y-2'>
           <div>
             <h1 className='text-3xl font-bold text-gray-900 mb-2'>

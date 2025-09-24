@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ExternalLink, Phone, Mail, MapPin } from 'lucide-react';
 import departmentsData from '../../../data/directory/departments.json';
+import { cn } from '../../../lib/utils';
 
 interface Department {
   office_name: string;
@@ -30,7 +31,7 @@ function DepartmentDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-gray-200 pl-3' : ''
+              level > 0 ? 'ml-4 border-l border-neutral-100  border-b pl-3' : ''
             }`}
           >
             <DepartmentDetailSection data={item} level={level + 1} />
@@ -46,13 +47,12 @@ function DepartmentDetailSection({
   );
 
   if (isSimpleObject) {
-    const cols = Object.keys(data).length > 4 ? Object.keys(data).length : 4;
-
     return (
       <div
-        className={`mb-4 grid grid-cols-${cols} md:grid-cols-${cols} lg:grid-cols-${cols} gap-x-6 ${
-          level === 1 ? 'rounded-2xl font-bold text-lg' : ''
-        }`}
+        className={cn(
+          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          level === 1 && 'rounded-2xl font-bold text-lg'
+        )}
       >
         {Object.entries(data).map(([key, value]) => {
           if (key === 'office_name' || value === undefined) return null;
@@ -71,7 +71,7 @@ function DepartmentDetailSection({
   }
 
   return (
-    <div className='space-y-4'>
+    <div className='@container space-y-4'>
       {Object.entries(data).map(([key, value]) => {
         if (key === 'office_name' || value === undefined) return null;
         if (key === 'slug' || value === undefined) return null;
@@ -132,19 +132,17 @@ export default function DepartmentDetail() {
   const displayName = office_name;
 
   return (
-    <div className='space-y-4'>
+    <div className='@container space-y-4'>
       {/* Department Header */}
       <div className='border-b pb-4'>
         <div className='space-y-2'>
           <h2 className='text-xl font-bold text-gray-900'>{displayName}</h2>
-
           {address && (
             <p className='mt-1 text-gray-800 flex items-start text-sm'>
               <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
               <span>{address}</span>
             </p>
           )}
-
           {website && (
             <a
               href={website.startsWith('http') ? website : `https://${website}`}
@@ -156,14 +154,12 @@ export default function DepartmentDetail() {
               <span>{website}</span>
             </a>
           )}
-
           {trunkline && (
             <div className='flex items-center text-gray-800 text-sm'>
               <Phone className='h-4 w-4 text-gray-800 mr-1 shrink-0' />
               <span>{trunkline}</span>
             </div>
           )}
-
           {email && (
             <a
               href={`mailto:${email}`}
@@ -175,7 +171,6 @@ export default function DepartmentDetail() {
           )}
         </div>
       </div>
-
       {/* Department Details */}
       <div>
         <DepartmentDetailSection data={details} />
