@@ -204,6 +204,14 @@ test('user can search for services', async ({ page }) => {
 });
 ```
 
+## Contributing
+
+Thanks to all the people who already contributed!
+
+<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
+</a>
+
 ## License
 
 This project is released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication. This means the work is dedicated to the public domain and can be freely used by anyone for any purpose without restriction under copyright law.
