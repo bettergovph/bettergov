@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
+import { cn } from '../../../lib/utils';
 
 // Recursive component to render legislative details
 function LegislativeDetailSection({
@@ -21,7 +22,7 @@ function LegislativeDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-gray-200 pl-3' : ''
+              level > 0 ? 'ml-4 border-l border-b border-neutral-100 pl-3' : ''
             }`}
           >
             <LegislativeDetailSection data={item} level={level + 1} />
@@ -48,13 +49,12 @@ function LegislativeDetailSection({
   ];
 
   if (isSimpleObject) {
-    const cols = Object.keys(data).length > 4 ? Object.keys(data).length : 4;
-
     return (
       <div
-        className={`mb-4 grid grid-cols-${cols} md:grid-cols-${cols} lg:grid-cols-${cols} gap-x-6 ${
-          level === 1 ? 'rounded-2xl font-bold text-lg' : ''
-        }`}
+        className={cn(
+          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          level === 1 && 'rounded-2xl font-bold text-lg'
+        )}
       >
         {Object.entries(data).map(([key, value]) => {
           if (skipKeys.includes(key) || value === undefined) return null;
@@ -78,7 +78,7 @@ function LegislativeDetailSection({
   if (entries.length === 0) return null;
 
   return (
-    <div className='space-y-4'>
+    <div className='@container space-y-4'>
       {entries.map(([key, value]) => {
         if (value === undefined || value === null) return null;
 
