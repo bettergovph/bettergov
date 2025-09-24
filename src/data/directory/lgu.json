@@ -603,6 +603,137 @@
               "contact": "(035) 415-3138"
             }
           }
+        ],
+        "municipalities": [
+          {
+            "municipality": "Amlan",
+            "zip_code": "6203",
+            "mayor": { "name": "MANUEL JOSE C. SYCIP" },
+            "vice_mayor": { "name": "ALLAN MARIE R. TAN" }
+          },
+          {
+            "municipality": "Ayungon",
+            "zip_code": "6210",
+            "mayor": { "name": "DENNIS N. AMANCIO" },
+            "vice_mayor": { "name": "NELDA A. FAVILLARAN" }
+          },
+          {
+            "municipality": "Bacong",
+            "zip_code": "6216",
+            "mayor": {
+              "name": "LENIN P. ALVIOLA",
+              "contact": "(035) 424-8101"
+            },
+            "vice_mayor": {
+              "name": "JOCELYN A. ALVIOLA",
+              "contact": "(035) 424-8075"
+            }
+          },
+          {
+            "municipality": "Basay",
+            "zip_code": "6222",
+            "mayor": { "name": "FATIMA C. CANAMAQUE" },
+            "vice_mayor": { "name": "JONNY A. WAGAS" }
+          },
+          {
+            "municipality": "Bindoy",
+            "zip_code": "6209",
+            "mayor": { "name": "ENIEGO C. JABAGAT" },
+            "vice_mayor": { "name": "LOUIE A. RASTICA" }
+          },
+          {
+            "municipality": "Dauin",
+            "zip_code": "6217",
+            "mayor": { "name": "GALICANO A. TRUITA" },
+            "vice_mayor": { "name": "RODRIGO A. ALANANO" }
+          },
+          {
+            "municipality": "Jimalalud",
+            "zip_code": "6212",
+            "mayor": { "name": "HAZEL C. TUANDA" },
+            "vice_mayor": { "name": "REYNALDO V. TUANDA" }
+          },
+          {
+            "municipality": "La Libertad",
+            "zip_code": "6213",
+            "mayor": { "name": "EMMANUEL L. IWAY" },
+            "vice_mayor": { "name": "LAWRENCE D. LIMKAICHONG" }
+          },
+          {
+            "municipality": "Mabinay",
+            "zip_code": "6207",
+            "mayor": { "name": "ERNIE T. UY" },
+            "vice_mayor": {
+              "name": "JOETERRY A. UY",
+              "contact": "(035) 531-3392"
+            }
+          },
+          {
+            "municipality": "Manjuyod",
+            "zip_code": "6208",
+            "mayor": { "name": "RAFFY ALIPIO S. ANDAYA" },
+            "vice_mayor": { "name": "JEREMIAH B. ANDAYA" }
+          },
+          {
+            "municipality": "Pamplona",
+            "zip_code": "6205",
+            "mayor": {
+              "name": "JANICE V. DEGAMO",
+              "contact": "(035) 400-6946"
+            },
+            "vice_mayor": { "name": "JOEL G. REMOLANO" }
+          },
+          {
+            "municipality": "San Jose",
+            "zip_code": "6202",
+            "mayor": { "name": "MEL NICK S. LOGRONIO" },
+            "vice_mayor": { "name": "SHEILA B. RUIZ" }
+          },
+          {
+            "municipality": "Santa Catalina",
+            "zip_code": "6220",
+            "mayor": { "name": "PEVE O. LIGAN" },
+            "vice_mayor": { "name": "KARL PATRICK S. JARDINIANO" }
+          },
+          {
+            "municipality": "Siaton",
+            "zip_code": "6219",
+            "mayor": { "name": "CEZANNE FRITZ H. DIAZ" },
+            "vice_mayor": { "name": "VINCENT EMIL T. ARBOLADO" }
+          },
+          {
+            "municipality": "Sibulan",
+            "zip_code": "6201",
+            "mayor": { "name": "JOSE A. ABIERA", "contact": "(035) 419-8581" },
+            "vice_mayor": { "name": "DIRKIE Y. FONTELO" }
+          },
+          {
+            "municipality": "Tayasan",
+            "zip_code": "6211",
+            "mayor": { "name": "SUSANO ANTONIO D. RUPERTO III" },
+            "vice_mayor": { "name": "SUSANO L. RUPERTO JR." }
+          },
+          {
+            "municipality": "Valencia",
+            "zip_code": "6215",
+            "mayor": {
+              "name": "EDGAR Z. TEVES JR.",
+              "contact": "(035) 423-8248"
+            },
+            "vice_mayor": { "name": "ROMEO T. ALVIOLA" }
+          },
+          {
+            "municipality": "Vallehermoso",
+            "zip_code": "6224",
+            "mayor": { "name": "MARIANNE S. GUSTILO" },
+            "vice_mayor": { "name": "OLIVER S. BONGOYAN" }
+          },
+          {
+            "municipality": "Zamboanguita",
+            "zip_code": "6218",
+            "mayor": { "name": "JONAH PAT L. AVILES" },
+            "vice_mayor": { "name": "FELIPE T. ELMIDO SR." }
+          }
         ]
       },
       {
@@ -9924,6 +10055,71 @@
               "name": "DINA Z. RAMA"
             }
           },
+          {
+            "municipality": "Sogod",
+            "zip_code": "5007",
+            "mayor": {
+              "name": "LISSA MARIE DURANO-STREEGAN",
+              "contact": "(032) 431-9159"
+            },
+            "vice_mayor": {
+              "name": "RICHARD B. STREEGAN"
+            }
+          },
+          {
+            "municipality": "Tabogon",
+            "zip_code": "5009",
+            "mayor": {
+              "name": "FRANCIS EDWARD T. SALIMBANGON"
+            },
+            "vice_mayor": {
+              "name": "JEROME R. ESCALONA"
+            }
+          },
+          {
+            "municipality": "Tabuelan",
+            "zip_code": "6044",
+            "mayor": {
+              "name": "REX CASIANO T. GERONA",
+              "contact": "(032) 383-7764"
+            },
+            "vice_mayor": {
+              "name": "ROSE MARIE GERONA-SUEZO"
+            }
+          },
+          {
+            "municipality": "Tuburan",
+            "zip_code": "6043",
+            "mayor": {
+              "name": "CHRISTIAN DANIEL B. DIAMANTE",
+              "contact": "(032) 463-9218"
+            },
+            "vice_mayor": {
+              "name": "DANILO M. DIAMANTE"
+            }
+          },
+          {
+            "municipality": "Tudela",
+            "zip_code": "6051",
+            "mayor": {
+              "name": "GREMAN B. SOLANTE"
+            },
+            "vice_mayor": {
+              "name": "LYMARNE O. YU"
+            }
+          },
+          {
+            "municipality": "Sibonga",
+            "zip_code": "5020",
+            "mayor": {
+              "name": "CAROLINE BACALTOS",
+              "contact": "(032) 266-8457"
+            },
+            "vice_mayor": {
+              "name": "MARIANO LAUDE"
+            }
+          },
+
           {
             "municipality": "Ronda",
             "zip_code": "6034",
