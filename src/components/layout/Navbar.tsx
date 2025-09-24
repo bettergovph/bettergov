@@ -77,8 +77,8 @@ const Navbar: React.FC = () => {
 
       {/* Main navigation */}
       <div className='container mx-auto px-4'>
-        <div className='flex justify-between items-center py-4'>
-          <div className='flex items-center'>
+        <div className='flex justify-between items-center py-4 gap-8'>
+          <div className='flex items-center gap-6'>
             <Link to='/' className='flex items-center'>
               <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
