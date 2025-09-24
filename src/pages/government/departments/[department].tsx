@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom';
 import {
   ExternalLinkIcon,
-  PhoneIcon,
   MailIcon,
   MapPinIcon,
+  PhoneIcon,
 } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 import departmentsData from '../../../data/directory/departments.json';
 
 interface Department {

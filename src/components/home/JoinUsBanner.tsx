@@ -1,14 +1,14 @@
+import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
 import React from 'react';
-import { UsersIcon, ZapIcon, ArrowRightIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const JoinUsBanner: React.FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <section className='relative overflow-hidden bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white'>
-      <div className='absolute inset-0 bg-gradient-to-t from-black/30 to-transparent'></div>
+    <section className='relative overflow-hidden bg-linear-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white'>
+      <div className='absolute inset-0 bg-linear-to-t from-black/30 to-transparent'></div>
 
       {/* Decorative elements */}
       <div className='absolute top-4 left-10 opacity-20'>

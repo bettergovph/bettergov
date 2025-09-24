@@ -1,63 +1,30 @@
-import { useState, useMemo } from 'react';
 import { SearchIcon } from 'lucide-react';
-import executiveData from '../../../data/directory/executive.json';
-import {
-  CardList,
-  Card,
-  CardContent,
-  CardTitle,
-  CardDescription,
-  CardContactInfo,
-  CardGrid,
-  CardAvatar,
-  CardDivider,
-} from '../../../components/ui/CardList';
+import { useMemo, useState } from 'react';
 import SEO from '../../../components/SEO';
+import {
+  Card,
+  CardAvatar,
+  CardContactInfo,
+  CardContent,
+  CardDescription,
+  CardDivider,
+  CardGrid,
+  CardList,
+  CardTitle,
+} from '../../../components/ui/CardList';
+import executiveData from '../../../data/directory/executive.json';
 import { getExecutiveSEOData } from '../../../utils/seo-data';
 
-interface Personnel {
-  name: string;
-  role: string;
-  contact?: string;
-  email?: string;
-  other_office?: string;
-}
-
-interface OfficeDivision {
-  office_division: string;
-  personnel: Personnel[];
-}
-
-interface Official {
-  name: string;
-  role: string;
-  email?: string;
-  contact?: string;
-}
-
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: (Official | OfficeDivision)[];
-  bureaus?: unknown[];
-  attached_agency?: unknown[];
-}
+const officeData = executiveData.find(
+  office => office.office === 'OFFICE OF THE PRESIDENT'
+);
 
 export default function OfficeOfThePresidentPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Find the Office of the President data
-  const officeData = useMemo(() => {
-    return (executiveData as Office[]).find(
-      office => office.office === 'OFFICE OF THE PRESIDENT'
-    );
-  }, []);
-
   // Filter officials based on search term
   const filteredOfficials = useMemo(() => {
-    if (!officeData) return [];
+    if (!officeData?.officials) return [];
 
     if (!searchTerm) return officeData.officials;
 
@@ -78,7 +45,7 @@ export default function OfficeOfThePresidentPage() {
       }
       return false;
     });
-  }, [officeData, searchTerm]);
+  }, [searchTerm]);
 
   const seoData = getExecutiveSEOData(officeData?.office);
 
@@ -104,9 +71,11 @@ export default function OfficeOfThePresidentPage() {
             <h1 className='text-3xl font-bold text-gray-900 mb-2'>
               {officeData.office}
             </h1>
-            <p className='text-gray-800'>
-              {officeData.officials.length} officials and divisions
-            </p>
+            {officeData.officials && (
+              <p className='text-gray-800'>
+                {officeData.officials.length} officials and divisions
+              </p>
+            )}
           </div>
 
           <div className='relative w-full md:w-64'>
@@ -114,7 +83,7 @@ export default function OfficeOfThePresidentPage() {
             <input
               type='search'
               placeholder='Search officials...'
-              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />

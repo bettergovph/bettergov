@@ -175,14 +175,14 @@ const SelectPicker = ({
         type='button'
         className={cn(
           'w-full flex items-center justify-between rounded-lg border border-gray-300 bg-white text-left',
-          'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-20 focus:border-primary-500',
+          'focus:outline-hidden focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500',
           'transition-all duration-200 ease-in-out',
           sizes[size],
           'px-3',
           disabled
             ? 'opacity-60 cursor-not-allowed bg-gray-50'
             : 'hover:border-gray-400',
-          isOpen && 'border-primary-500 ring-2 ring-primary-500 ring-opacity-20'
+          isOpen && 'border-primary-500 ring-2 ring-primary-500/20'
         )}
         onClick={handleToggle}
         disabled={disabled}
@@ -233,7 +233,7 @@ const SelectPicker = ({
                 <input
                   ref={searchInputRef}
                   type='text'
-                  className='w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-20 focus:border-primary-500'
+                  className='w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500'
                   placeholder='Search options...'
                   value={searchTerm}
                   onChange={handleSearchChange}

@@ -1,18 +1,18 @@
+import {
+  AlertTriangleIcon,
+  HeartIcon,
+  MailIcon,
+  UsersIcon,
+} from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  MailIcon,
-  AlertTriangleIcon,
-  UsersIcon,
-  HeartIcon,
-} from 'lucide-react';
 
 const AboutPage: React.FC = () => {
   const { t } = useTranslation('about');
   return (
     <div className='min-h-screen bg-gray-50'>
       <div className='container mx-auto px-4 py-6 md:py-8'>
-        <div className='bg-white rounded-lg border shadow-sm p-6 md:p-8 md:py-24 mt-4'>
+        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-24 mt-4'>
           <div className='max-w-3xl mx-auto'>
             <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
               {t('title')}

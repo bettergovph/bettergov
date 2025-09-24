@@ -1,15 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
 import {
+  ArrowRightIcon,
+  Building2Icon,
+  ExternalLinkIcon,
+  MailIcon,
   MapPinIcon,
   PhoneIcon,
-  ExternalLinkIcon,
-  Building2Icon,
-  MailIcon,
-  ArrowRightIcon,
 } from 'lucide-react';
-import departmentsData from '../../../data/directory/departments.json';
-import { Card, CardContent, CardHeader } from '../../../components/ui/CardList';
+import { Link, useParams } from 'react-router-dom';
 import SEO from '../../../components/SEO';
+import { Card, CardContent, CardHeader } from '../../../components/ui/CardList';
+import departmentsData from '../../../data/directory/departments.json';
 import { getDepartmentsSEOData } from '../../../utils/seo-data';
 
 interface Department {

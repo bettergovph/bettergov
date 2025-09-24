@@ -16,7 +16,7 @@ const Card = ({
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden',
+        'bg-white rounded-lg border border-gray-200 shadow-xs overflow-hidden',
         hoverable &&
           'transition-all duration-300 hover:shadow-md hover:-translate-y-1',
         className

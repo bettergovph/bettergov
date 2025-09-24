@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import { Building2Icon } from 'lucide-react';
 import { useState } from 'react';
-import departmentsData from '../../../../data/directory/departments.json';
+import { useNavigate, useParams } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
+import departmentsData from '../../../../data/directory/departments.json';
 
 interface Department {
   office_name: string;

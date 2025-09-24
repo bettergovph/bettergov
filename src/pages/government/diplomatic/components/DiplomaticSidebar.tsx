@@ -1,5 +1,5 @@
+import { Building2Icon, GlobeIcon, LandmarkIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { GlobeIcon, Building2Icon, LandmarkIcon } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function DiplomaticSidebar() {

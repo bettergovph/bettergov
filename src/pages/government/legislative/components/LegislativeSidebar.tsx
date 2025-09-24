@@ -1,10 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
 import {
+  BookOpenIcon,
   BuildingIcon,
   LandPlotIcon,
   UsersIcon,
-  BookOpenIcon,
 } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function LegislativeSidebar() {

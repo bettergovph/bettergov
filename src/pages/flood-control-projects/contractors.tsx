@@ -135,14 +135,14 @@ const ResultsStatistics: React.FC<{
   const estimatedTotalContractCost = avgCostPerProject * totalCount;
 
   return (
-    <div className='bg-white p-4 rounded-lg shadow mb-4'>
+    <div className='bg-white p-4 rounded-lg shadow-sm mb-4'>
       <div className='flex justify-between items-center mb-2 py-2'>
         <h2 className='text-lg font-bold text-gray-900'>
           {contractor ? `Projects by ${contractor}` : 'All Projects'}
         </h2>
         {contractor && onViewDetails && (
           <button
-            className='text-md bg-blue-600 hover:text-blue-800 text-white flex items-center gap-1 px-3 py-2 rounded hover:bg-blue-50 border border-blue-200'
+            className='text-md bg-blue-600 hover:text-blue-800 text-white flex items-center gap-1 px-3 py-2 rounded-sm hover:bg-blue-50 border border-blue-200'
             onClick={onViewDetails}
             title={`View detailed page for ${contractor}`}
           >
@@ -345,7 +345,7 @@ const TableHits: React.FC<{
             </div>
             <div>
               <nav
-                className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+                className='relative z-0 inline-flex rounded-md shadow-xs -space-x-px'
                 aria-label='Pagination'
               >
                 {/* Previous page button */}
@@ -473,13 +473,13 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
             ? `${contractor.value.substring(0, 40)}...`
             : contractor.value}
         </span>
-        <span className='text-gray-800 text-xs ml-2 flex-shrink-0'>
+        <span className='text-gray-800 text-xs ml-2 shrink-0'>
           {contractor.count}
         </span>
       </div>
     </button>
     <button
-      className='px-2 py-2 text-xs text-blue-600 hover:text-blue-800 hover:bg-blue-50 flex-shrink-0'
+      className='px-2 py-2 text-xs text-blue-600 hover:text-blue-800 hover:bg-blue-50 shrink-0'
       onClick={() => onNavigate(createSlug(contractor.value))}
       title={`View ${contractor.value} details`}
     >
@@ -585,7 +585,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                 </div>
                 <input
                   type='text'
-                  className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                  className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
                   placeholder='Search contractors...'
                   value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}

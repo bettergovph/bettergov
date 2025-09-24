@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
 import {
   ExternalLinkIcon,
+  MailIcon,
   MapPinIcon,
   PhoneIcon,
-  MailIcon,
 } from 'lucide-react';
+import { ReactNode } from 'react';
 
 interface ContactInfo {
   address?: string;
@@ -86,9 +86,9 @@ export function Card({
   const baseClasses = 'bg-white rounded-lg border overflow-hidden';
 
   const variantClasses = {
-    default: 'shadow-sm',
+    default: 'shadow-xs',
     featured: 'shadow-md',
-    compact: 'shadow-sm',
+    compact: 'shadow-xs',
   };
 
   const hoverClasses = hover

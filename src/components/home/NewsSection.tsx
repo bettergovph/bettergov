@@ -30,7 +30,7 @@ const NewsSection: React.FC = () => {
               <CardImage src={item.imageUrl} alt={item.title} />
               <CardContent className='flex-1 flex flex-col'>
                 <div className='mb-2'>
-                  <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800'>
+                  <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800'>
                     {item.category.charAt(0).toUpperCase() +
                       item.category.slice(1)}
                   </span>
