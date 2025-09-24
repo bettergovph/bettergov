@@ -606,14 +606,14 @@ const VisaPage: React.FC = () => {
                         </a>
                       </div>
 
-                      <div className='p-4 bg-yellow-50 rounded-lg'>
-                        <h3 className='text-lg font-medium mb-2 text-yellow-800'>
+                      <div className='p-3 md:p-4 bg-yellow-50 rounded-lg'>
+                        <h3 className='text-sm md:text-base font-medium mb-2 text-yellow-800'>
                           {t('additionalInfo.disclaimer.title')}
                         </h3>
-                        <p className='text-yellow-700 text-sm'>
+                        <p className='text-xs md:text-sm text-yellow-700'>
                           {visaData.sourceInfo.disclaimer}
                         </p>
-                        <p className='text-yellow-700 text-sm mt-2'>
+                        <p className='text-xs md:text-sm text-yellow-700 mt-2'>
                           Last updated: {visaData.sourceInfo.lastUpdated}
                         </p>
                       </div>
