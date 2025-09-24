@@ -56,7 +56,7 @@ export default function PresidentialCommunicationsOfficePage() {
   }, [searchTerm]);
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -159,7 +159,7 @@ export default function PresidentialCommunicationsOfficePage() {
                 )}
 
               {office.officials && (
-                <CardGrid columns={2}>
+                <CardGrid columns={1} className='@lg:grid-cols-2'>
                   {office.officials
                     .filter(item => 'office_division' in item)
                     .map((division, idx) => {

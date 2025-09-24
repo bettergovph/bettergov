@@ -30,7 +30,7 @@ export default function InternationalOrganizationsPage() {
   }, [organizations, searchTerm]);
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -65,7 +65,7 @@ export default function InternationalOrganizationsPage() {
           <p className='text-gray-800'>Try adjusting your search term.</p>
         </div>
       ) : (
-        <CardGrid columns={3} breakpoint='lg' gap='md'>
+        <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
           {filteredOrganizations.map((org, index) => (
             <Card key={index}>
               <CardContent>
