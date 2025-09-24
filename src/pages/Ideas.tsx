@@ -152,31 +152,31 @@ const Ideas: React.FC = () => {
 
         {/* Stats */}
         <div className='grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 md:mb-12'>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-primary-600'>
               {projectIdeas.length}
             </div>
             <div className='text-sm text-gray-600'>Total Ideas</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-red-600'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
             <div className='text-sm text-gray-600'>High Priority</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-blue-600'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
             <div className='text-sm text-gray-600'>Categories</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-green-600'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-sm text-gray-600'>Simple Projects</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-sm'>
+          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-purple-600'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
@@ -226,7 +226,7 @@ const Ideas: React.FC = () => {
                           <h3 className='text-xl font-semibold text-gray-900 mb-1'>
                             {idea.title}
                           </h3>
-                          <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800'>
+                          <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800'>
                             {idea.category}
                           </span>
                         </div>
@@ -264,7 +264,7 @@ const Ideas: React.FC = () => {
         </main>
 
         {/* Call to Action */}
-        <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-sm'>
+        <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-xs'>
           <h2 className='text-2xl font-bold text-gray-900 mb-4'>
             Have an Idea?
           </h2>

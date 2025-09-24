@@ -7,35 +7,17 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
+import { institutionData } from './data';
 
-interface GOCC {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  phone?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  officials?: Array<{
-    name?: string;
-    position?: string;
-    [key: string]: unknown;
-  }>;
-  [key: string]: unknown;
-}
+// Filter GOCCs from constitutional data
+const goccs = institutionData.filter(
+  office =>
+    office.office_type.includes('Government-Owned') ||
+    office.office_type.includes('GOCCs')
+);
 
 export default function GOCCsPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter GOCCs from constitutional data
-  const goccs = constitutionalData.filter(
-    (office: GOCC) =>
-      office.office_type.includes('Government-Owned') ||
-      office.office_type.includes('GOCCs')
-  ) as GOCC[];
 
   // Filter based on search term
   const filteredGOCCs = goccs.filter(gocc =>
@@ -43,7 +25,7 @@ export default function GOCCsPage() {
   );
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -59,14 +41,14 @@ export default function GOCCsPage() {
           <input
             type='search'
             placeholder='Search GOCCs...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
         {filteredGOCCs.length === 0 ? (
           <div className='col-span-full p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
@@ -92,7 +74,7 @@ export default function GOCCsPage() {
               <div className='p-4 space-y-3'>
                 {gocc.address && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>{gocc.address}</span>
                   </p>
                 )}
@@ -101,7 +83,7 @@ export default function GOCCsPage() {
                   gocc.trunk_line ||
                   (gocc.trunklines && gocc.trunklines[0])) && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <Phone className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <Phone className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>
                       {gocc.phone || gocc.trunk_line || gocc.trunklines?.[0]}
                     </span>
@@ -113,7 +95,7 @@ export default function GOCCsPage() {
                     href={`mailto:${gocc.email}`}
                     className='text-sm text-gray-800 flex items-start hover:text-primary-600'
                   >
-                    <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                     <span>{gocc.email}</span>
                   </a>
                 )}

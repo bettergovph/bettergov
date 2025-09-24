@@ -59,7 +59,7 @@ export default function DepartmentsSidebar({
                   }`}
                 >
                   <div className='flex items-center'>
-                    <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                    <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
                     <span className='truncate'>
                       {dept.office_name.replace('DEPARTMENT OF ', '')}
                     </span>

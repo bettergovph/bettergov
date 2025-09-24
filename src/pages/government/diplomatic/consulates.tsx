@@ -34,7 +34,7 @@ export default function ConsulatesPage() {
   }, [consulates, searchTerm]);
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>Consulates</h1>
@@ -48,7 +48,7 @@ export default function ConsulatesPage() {
           <input
             type='search'
             placeholder='Search consulates...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
@@ -66,7 +66,7 @@ export default function ConsulatesPage() {
           <p className='text-gray-800'>Try adjusting your search term.</p>
         </div>
       ) : (
-        <CardGrid columns={3} breakpoint='lg' gap='md'>
+        <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
           {filteredConsulates.map((consulate, index) => (
             <Card key={index}>
               <CardContent>

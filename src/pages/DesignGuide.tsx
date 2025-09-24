@@ -25,7 +25,7 @@ const ColorBlock = ({
   value: string;
 }) => (
   <div className='flex items-center space-x-2'>
-    <div className={`w-12 h-12 rounded ${color}`} />
+    <div className={`w-12 h-12 rounded-sm ${color}`} />
     <div>
       <div className='font-medium'>{name}</div>
       <div className='text-sm text-gray-800'>{value}</div>
@@ -237,7 +237,7 @@ const DesignGuide: React.FC = () => {
                           <h4 className='text-lg font-medium text-gray-900'>
                             {result.title}
                           </h4>
-                          <span className='inline-block px-2 py-1 mt-2 text-xs font-medium rounded bg-gray-100 text-gray-800'>
+                          <span className='inline-block px-2 py-1 mt-2 text-xs font-medium rounded-sm bg-gray-100 text-gray-800'>
                             {result.category}
                           </span>
                         </div>
@@ -334,7 +334,7 @@ const DesignGuide: React.FC = () => {
                       alt='Article thumbnail'
                     />
                     <CardContent>
-                      <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 mb-2'>
+                      <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800 mb-2'>
                         News
                       </span>
                       <h3 className='text-xl font-semibold mb-2'>
@@ -354,9 +354,9 @@ const DesignGuide: React.FC = () => {
                         src='https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg'
                         alt='Article with overlay'
                       />
-                      <div className='absolute inset-0 bg-gradient-to-t from-black/75 to-transparent flex items-end p-6'>
+                      <div className='absolute inset-0 bg-linear-to-t from-black/75 to-transparent flex items-end p-6'>
                         <div className='text-white'>
-                          <span className='inline-block px-2 py-1 text-xs font-medium rounded bg-white/20 mb-2'>
+                          <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-white/20 mb-2'>
                             Tourism
                           </span>
                           <h3 className='text-xl font-semibold mb-2'>
@@ -408,7 +408,7 @@ const DesignGuide: React.FC = () => {
               {/* Strip Banner */}
               <div>
                 <h3 className='font-medium mb-4'>Strip Banner</h3>
-                <div className='relative overflow-hidden bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3 rounded-lg'>
+                <div className='relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3 rounded-lg'>
                   <div className='container mx-auto px-4'>
                     <div className='flex flex-col sm:flex-row items-center justify-between gap-2'>
                       <div className='flex items-center gap-3'>
@@ -436,7 +436,7 @@ const DesignGuide: React.FC = () => {
               {/* Full Banner */}
               <div>
                 <h3 className='font-medium mb-4'>Full CivicTech Banner</h3>
-                <div className='relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 text-white py-12 rounded-lg'>
+                <div className='relative overflow-hidden bg-linear-to-br from-orange-500 via-red-500 to-pink-600 text-white py-12 rounded-lg'>
                   <div className='container mx-auto px-4 text-center'>
                     <h2 className='text-2xl md:text-3xl font-bold mb-4'>
                       Join the{' '}
@@ -476,7 +476,7 @@ const DesignGuide: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className='max-w-4xl mx-auto'>
-              <div className='bg-white rounded-xl shadow-sm overflow-hidden'>
+              <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
                 {/* Header Section */}
                 <div className='relative h-64 bg-primary-700'>
                   <div className='absolute inset-0'>
@@ -486,7 +486,7 @@ const DesignGuide: React.FC = () => {
                       className='w-full h-full object-cover opacity-20'
                     />
                   </div>
-                  <div className='absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/90' />
+                  <div className='absolute inset-0 bg-linear-to-b from-primary-900/50 to-primary-900/90' />
                   <div className='relative h-full container mx-auto px-6 flex items-center'>
                     <div className='flex items-center space-x-8'>
                       <img
@@ -610,7 +610,7 @@ const DesignGuide: React.FC = () => {
                         <div className='grid gap-4'>
                           {achievements.map((achievement, index) => (
                             <div key={index} className='flex items-start'>
-                              <Award className='h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0' />
+                              <Award className='h-5 w-5 text-primary-600 mt-1 mr-3 shrink-0' />
                               <p className='text-gray-800'>{achievement}</p>
                             </div>
                           ))}

@@ -22,7 +22,7 @@ export default function GovernmentPageContainer({
           <div className='md:hidden mb-4'>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-sm text-gray-900 font-medium border'
+              className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-xs text-gray-900 font-medium border'
             >
               <span>Menu</span>
               {sidebarOpen ? (
@@ -33,19 +33,18 @@ export default function GovernmentPageContainer({
             </button>
           </div>
         )}
-
         <div className='flex flex-col md:flex-row md:gap-8'>
           {sidebar && (
             <aside
               className={`${
                 sidebarOpen ? 'block' : 'hidden'
-              } md:block mb-6 md:mb-0 flex-shrink-0`}
+              } md:block mb-6 md:mb-0 shrink-0`}
             >
               {sidebar}
             </aside>
           )}
           <main className='flex-1 min-w-0'>
-            <div className='bg-white rounded-lg border shadow-sm p-4 md:p-8'>
+            <div className='bg-white rounded-lg border shadow-xs p-4 md:p-8'>
               {children}
             </div>
           </main>
@@ -80,7 +79,7 @@ export function GovernmentPageHeader({
           <p className='text-sm md:text-base text-gray-800'>{subtitle}</p>
         )}
       </div>
-      {actions && <div className='flex-shrink-0'>{actions}</div>}
+      {actions && <div className='shrink-0'>{actions}</div>}
     </div>
   );
 }
@@ -97,7 +96,7 @@ export function GovernmentIndexPageContainer({
   return (
     <div className={`min-h-screen bg-gray-50 ${className}`}>
       <div className='container mx-auto px-4 py-6 md:py-8'>
-        <div className='bg-white rounded-lg border shadow-sm p-4 md:p-8'>
+        <div className='bg-white rounded-lg border shadow-xs p-4 md:p-8'>
           {children}
         </div>
       </div>

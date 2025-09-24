@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import executiveData from '../../../data/directory/executive.json';
 import {
   Card,
   CardContent,
@@ -9,49 +8,17 @@ import {
   CardGrid,
   CardDivider,
 } from '../../../components/ui/CardList';
+import { executiveData } from './data';
 
-interface Personnel {
-  name: string;
-  role: string;
-  contact?: string;
-  email?: string;
-  other_office?: string;
-}
-
-interface OfficeDivision {
-  office_division: string;
-  personnel: Personnel[];
-}
-
-interface Official {
-  name: string;
-  role: string;
-  email?: string;
-  contact?: string;
-}
-
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: (Official | OfficeDivision)[];
-  bureaus?: Array<{ name?: string; [key: string]: unknown }>;
-  attached_agency?: Array<{ name?: string; [key: string]: unknown }>;
-}
+const otherOffices = executiveData.filter(
+  office =>
+    !office.office.includes('OFFICE OF THE PRESIDENT') &&
+    !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
+    !office.office.toLowerCase().includes('communication')
+);
 
 export default function OtherExecutiveOfficesPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter other executive offices
-  const otherOffices = useMemo(() => {
-    return (executiveData as Office[]).filter(
-      office =>
-        !office.office.includes('OFFICE OF THE PRESIDENT') &&
-        !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
-        !office.office.toLowerCase().includes('communication')
-    );
-  }, []);
 
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
@@ -60,7 +27,7 @@ export default function OtherExecutiveOfficesPage() {
     return otherOffices.filter(
       office =>
         office.office.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        office.officials.some(official => {
+        office.officials?.some(official => {
           if ('name' in official) {
             return (
               official.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -83,7 +50,7 @@ export default function OtherExecutiveOfficesPage() {
           return false;
         })
     );
-  }, [otherOffices, searchTerm]);
+  }, [searchTerm]);
 
   return (
     <div className='space-y-6'>
@@ -102,7 +69,7 @@ export default function OtherExecutiveOfficesPage() {
           <input
             type='search'
             placeholder='Search offices or officials...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
