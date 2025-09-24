@@ -105,7 +105,7 @@ const ServicesSection: React.FC = () => {
         <div className='text-center mt-8'>
           <Link
             to='/services'
-            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-xs'
+            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
           >
             {t('services.viewAll')}
           </Link>
