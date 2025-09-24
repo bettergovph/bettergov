@@ -375,7 +375,7 @@ export default function ServicesPage() {
                             id={`subcategory-${category.slug}`}
                             className={`ml-4 space-y-1 mt-1 ${
                               selectedCategorySlug === category.slug
-                                ? 'block'
+                                ? 'block relative pl-3 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gray-200'
                                 : 'hidden'
                             }`}
                             role='region'
