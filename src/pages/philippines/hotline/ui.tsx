@@ -35,11 +35,11 @@ import useHotlinesData, { Hotline } from './hotlines-data';
 
 const reportSchema = z
   .object({
-    organizationId: z.string().min(1, 'Choose an organization'),
+    organizationId: z.string().nonempty('Choose an organization'),
     outdated_hotline: z
       .string()
-      .min(1, 'Choose the outdated hotline you wish to report'),
-    updated_hotline: z.string().min(1, 'Ensure that this field is not empty'),
+      .nonempty('Choose the outdated hotline you wish to report'),
+    updated_hotline: z.string().nonempty('Ensure that this field is not empty'),
   })
   .refine(data => data.outdated_hotline !== data.updated_hotline, {
     path: ['updated_hotline'],
