@@ -2,11 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Compass,
-  FileCheck,
   Globe,
   Search,
-  AlertCircle,
-  ExternalLink,
   Grid3x3,
   List,
   CheckCircle,
@@ -25,8 +22,42 @@ import {
   DialogTitle,
   DialogFooter,
 } from '../../../components/ui/Dialog';
+import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
 
 type Country = string;
+
+// Example visa-required countries
+const VISA_REQUIRED_COUNTRIES: Country[] = [
+  'Afghanistan',
+  'Albania',
+  'Algeria',
+  'Armenia',
+  'Azerbaijan',
+  'Bangladesh',
+  'Belarus',
+  'Bosnia and Herzegovina',
+  'Cuba',
+  'Egypt',
+  'Georgia',
+  'Iran',
+  'Iraq',
+  'Jordan',
+  'Lebanon',
+  'Libya',
+  'Moldova',
+  'Montenegro',
+  'Nigeria',
+  'North Korea',
+  'Pakistan',
+  'Palestine',
+  'Serbia',
+  'Somalia',
+  'South Sudan',
+  'Sudan',
+  'Syria',
+  'Ukraine',
+  'Yemen',
+];
 
 // Using the imported VisaRequirement type from '../../../types/visa'
 
@@ -34,9 +65,7 @@ const VisaPage: React.FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useQueryState('country');
-  const [viewMode, setViewMode] = useQueryState('view', {
-    defaultValue: 'list',
-  });
+  const [viewMode, setViewMode] = useQueryState('view');
   const [visaRequirement, setVisaRequirement] =
     useState<VisaRequirement | null>(null);
   const [allCountries, setAllCountries] = useState<Country[]>([]);
@@ -47,6 +76,13 @@ const VisaPage: React.FC = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Set default view mode and ensure URL parameter is always present
+  useEffect(() => {
+    if (!viewMode) {
+      setViewMode('grid');
+    }
+  }, [viewMode, setViewMode]);
 
   useEffect(() => {
     // Extract all unique countries from the visa data
@@ -95,38 +131,8 @@ const VisaPage: React.FC = () => {
       additionalInfo: typedVisaData.visaFreeEntryPolicies[3].additionalInfo,
     });
 
-    // Add some example visa-required countries
-    [
-      'Afghanistan',
-      'Albania',
-      'Algeria',
-      'Armenia',
-      'Azerbaijan',
-      'Bangladesh',
-      'Belarus',
-      'Bosnia and Herzegovina',
-      'Cuba',
-      'Egypt',
-      'Georgia',
-      'Iran',
-      'Iraq',
-      'Jordan',
-      'Lebanon',
-      'Libya',
-      'Moldova',
-      'Montenegro',
-      'Nigeria',
-      'North Korea',
-      'Pakistan',
-      'Palestine',
-      'Serbia',
-      'Somalia',
-      'South Sudan',
-      'Sudan',
-      'Syria',
-      'Ukraine',
-      'Yemen',
-    ].forEach(country => {
+    // Add visa-required countries
+    VISA_REQUIRED_COUNTRIES.forEach(country => {
       if (!countries.has(country)) {
         countries.add(country);
         requirements.set(country, {
@@ -142,6 +148,22 @@ const VisaPage: React.FC = () => {
     setCountryRequirements(requirements);
   }, []);
 
+  // Restore state from URL parameters after data is loaded
+  useEffect(() => {
+    if (selectedCountry && countryRequirements.has(selectedCountry)) {
+      const requirement = countryRequirements.get(selectedCountry);
+      if (requirement) {
+        setVisaRequirement(requirement);
+
+        // Auto-open dialog in grid view
+        if (viewMode === 'grid' || !viewMode) {
+          setDialogCountry(selectedCountry);
+          setDialogOpen(true);
+        }
+      }
+    }
+  }, [selectedCountry, countryRequirements, viewMode]);
+
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setFilteredCountries(allCountries);
@@ -153,7 +175,7 @@ const VisaPage: React.FC = () => {
     }
   }, [searchTerm, allCountries]);
 
-  const checkVisaRequirement = (country: string) => {
+  const selectCountry = (country: string) => {
     setSelectedCountry(country);
     const requirement = countryRequirements.get(country);
     if (requirement) {
@@ -161,13 +183,18 @@ const VisaPage: React.FC = () => {
     }
   };
 
+  const checkVisaRequirement = (country: string) => {
+    selectCountry(country);
+  };
+
   const openDetailsDialog = (country: string) => {
+    selectCountry(country);
     setDialogCountry(country);
-    const requirement = countryRequirements.get(country);
-    if (requirement) {
-      setVisaRequirement(requirement);
-    }
     setDialogOpen(true);
+  };
+
+  const closeDetailsDialog = () => {
+    setDialogOpen(false);
   };
 
   const handleCheckVisaRequirements = () => {
@@ -278,23 +305,27 @@ const VisaPage: React.FC = () => {
             </div>
             <div className='flex items-center gap-2'>
               <button
-                onClick={() => setViewMode('list')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                  viewMode === 'list'
+                onClick={() => setViewMode('grid')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'grid' || !viewMode
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
+                aria-pressed={viewMode === 'grid' || !viewMode}
+                aria-label='Switch to grid view'
               >
                 <Grid3x3 className='h-4 w-4' />
                 Grid View
               </button>
               <button
-                onClick={() => setViewMode('detail')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                  viewMode === 'detail'
+                onClick={() => setViewMode('list')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'list'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
+                aria-pressed={viewMode === 'list'}
+                aria-label='Switch to detail view'
               >
                 <List className='h-4 w-4' />
                 Detail View
@@ -303,26 +334,30 @@ const VisaPage: React.FC = () => {
           </div>
         </div>
 
-        {/* List View */}
-        {viewMode === 'list' && (
+        {/* Grid View */}
+        {(viewMode === 'grid' || !viewMode) && (
           <div className='bg-white rounded-lg shadow-md p-6'>
             <h2 className='text-2xl font-semibold mb-6'>
               Visa Requirements by Country
             </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
               {filteredCountries.map(country => {
                 const requirement = countryRequirements.get(country);
                 return (
                   <div
                     key={country}
-                    className='border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer'
-                    onClick={() => openDetailsDialog(country)}
+                    className='border border-gray-200 rounded-lg hover:shadow-lg transition-shadow cursor-pointer'
                   >
-                    <div className='flex items-start justify-between'>
+                    <button
+                      onClick={() => openDetailsDialog(country)}
+                      className='w-full flex items-start justify-between p-4 cursor-pointer'
+                    >
                       <div className='flex-1'>
-                        <h3 className='font-medium text-lg mb-2'>{country}</h3>
+                        <h3 className='font-medium text-lg text-left mb-2'>
+                          {country}
+                        </h3>
                         {requirement && (
-                          <div className='flex items-center gap-2'>
+                          <div className='flex items-start gap-2'>
                             {getStatusIcon(requirement.type)}
                             {getStatusBadge(
                               requirement.type,
@@ -331,7 +366,7 @@ const VisaPage: React.FC = () => {
                           </div>
                         )}
                       </div>
-                    </div>
+                    </button>
                   </div>
                 );
               })}
@@ -348,7 +383,7 @@ const VisaPage: React.FC = () => {
         )}
 
         {/* Detail View */}
-        {viewMode === 'detail' && (
+        {viewMode === 'list' && (
           <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
             {/* Left Column - Country List */}
             <div className='xl:col-span-1'>
@@ -357,7 +392,7 @@ const VisaPage: React.FC = () => {
                   {t('countryList.title')}
                 </h2>
                 <div
-                  className='max-h-[200px] lg:max-h-[800px] overflow-y-auto pr-2'
+                  className='max-h-[400px] xl:max-h-[800px] overflow-y-auto pr-2'
                   role='listbox'
                   aria-label={t('countryList.ariaLabel')}
                 >
@@ -365,7 +400,7 @@ const VisaPage: React.FC = () => {
                     filteredCountries.map(country => (
                       <button
                         key={country}
-                        className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors ${
+                        className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors cursor-pointer ${
                           selectedCountry === country
                             ? 'bg-blue-100 text-blue-800 font-medium'
                             : 'hover:bg-gray-100'
@@ -396,148 +431,10 @@ const VisaPage: React.FC = () => {
                   </h2>
 
                   {visaRequirement && (
-                    <div className='mt-6'>
-                      {visaRequirement.type === 'visa-free' && (
-                        <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-                          <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-green-800'>
-                              {t('requirements.visaFree.title')}
-                            </h3>
-                            <p className='text-green-700'>
-                              {t('requirements.visaFree.description', {
-                                country: selectedCountry,
-                                duration: visaRequirement.duration,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {visaRequirement.type === 'visa-required' && (
-                        <div className='flex items-start p-4 bg-red-50 border border-red-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-red-800'>
-                              {t('requirements.visaRequired.title')}
-                            </h3>
-                            <p className='text-red-700'>
-                              {t('requirements.visaRequired.description', {
-                                country: selectedCountry,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {visaRequirement.type === 'special-condition' && (
-                        <div className='flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-yellow-800'>
-                              {t('requirements.specialCondition.title')}
-                            </h3>
-                            <p className='text-yellow-700'>
-                              {t('requirements.specialCondition.description', {
-                                country: selectedCountry,
-                                duration: visaRequirement.duration,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className='mt-6'>
-                        <h3 className='text-lg font-medium mb-2'>
-                          {t('requirements.entryRequirements')}
-                        </h3>
-                        <div className='prose prose-sm max-w-none'>
-                          <p>{visaRequirement.description}</p>
-
-                          {visaRequirement.requirements && (
-                            <div className='mt-4'>
-                              <h4 className='text-md font-medium mb-2'>
-                                {t('requirements.requiredDocuments')}
-                              </h4>
-                              <ul className='list-disc pl-5 space-y-1'>
-                                {visaRequirement.requirements.map(
-                                  (req, index) => (
-                                    <li key={index}>{req}</li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          )}
-
-                          {visaRequirement.additionalInfo && (
-                            <div className='mt-4 p-3 bg-blue-50 rounded-md text-blue-800'>
-                              <p>
-                                <strong>{t('requirements.note')}</strong>{' '}
-                                {visaRequirement.additionalInfo}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {visaRequirement.type === 'visa-required' && (
-                        <div className='mt-6'>
-                          <h3 className='text-lg font-medium mb-3'>
-                            {t('visaApplication.title')}
-                          </h3>
-                          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                            <a
-                              href='https://evisa.gov.ph/'
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                            >
-                              <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
-                              </div>
-                              <div>
-                                <h4 className='font-medium'>
-                                  {t('visaApplication.eVisa.title')}
-                                </h4>
-                                <p className='text-sm text-gray-800'>
-                                  {t('visaApplication.eVisa.description')}
-                                </p>
-                                <div className='flex items-center text-blue-600 text-sm mt-1'>
-                                  <span>
-                                    {t('visaApplication.eVisa.action')}
-                                  </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
-                                </div>
-                              </div>
-                            </a>
-                            <a
-                              href='https://dfa.gov.ph/list-of-philippine-embassies-and-consulates-general'
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                            >
-                              <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
-                              </div>
-                              <div>
-                                <h4 className='font-medium'>
-                                  {t('visaApplication.embassy.title')}
-                                </h4>
-                                <p className='text-sm text-gray-800'>
-                                  {t('visaApplication.embassy.description')}
-                                </p>
-                                <div className='flex items-center text-blue-600 text-sm mt-1'>
-                                  <span>
-                                    {t('visaApplication.embassy.action')}
-                                  </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    <VisaRequirementDetails
+                      country={selectedCountry}
+                      visaRequirement={visaRequirement}
+                    />
                   )}
                 </div>
               ) : (
@@ -555,74 +452,16 @@ const VisaPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              {selectedCountry && (
-                <div className='mt-8 bg-white rounded-lg shadow-md p-6'>
-                  <h2 className='text-xl font-semibold mb-4'>
-                    {t('additionalInfo.title')}
-                  </h2>
-
-                  <div className='space-y-6'>
-                    <div>
-                      <h3 className='text-lg font-medium mb-2'>
-                        {t('additionalInfo.temporaryVisa.title')}
-                      </h3>
-                      <p className='text-gray-700'>
-                        {t('additionalInfo.temporaryVisa.description')}
-                      </p>
-                      <a
-                        href='https://evisa.gov.ph/page/policy?l1=Non-Immigrant%20Visas&l2=9(a)%20Temporary%20Visitors%20Visa'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='inline-flex items-center text-blue-600 hover:text-blue-800 mt-2'
-                      >
-                        <span>
-                          {t('additionalInfo.temporaryVisa.learnMore')}
-                        </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
-                      </a>
-                    </div>
-
-                    <div>
-                      <h3 className='text-lg font-medium mb-2'>
-                        {t('additionalInfo.visaExtensions.title')}
-                      </h3>
-                      <p className='text-gray-700'>
-                        {t('additionalInfo.visaExtensions.description')}
-                      </p>
-                      <a
-                        href='https://immigration.gov.ph/'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='inline-flex items-center text-blue-600 hover:text-blue-800 mt-2'
-                      >
-                        <span>
-                          {t('additionalInfo.visaExtensions.visitWebsite')}
-                        </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
-                      </a>
-                    </div>
-
-                    <div className='p-3 md:p-4 bg-yellow-50 rounded-lg'>
-                      <h3 className='text-sm md:text-base font-medium mb-2 text-yellow-800'>
-                        {t('additionalInfo.disclaimer.title')}
-                      </h3>
-                      <p className='text-xs md:text-sm text-yellow-700'>
-                        {visaData.sourceInfo.disclaimer}
-                      </p>
-                      <p className='text-xs md:text-sm text-yellow-700 mt-2'>
-                        Last updated: {visaData.sourceInfo.lastUpdated}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         )}
       </div>
 
       {/* Visa Details Dialog */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog
+        open={dialogOpen}
+        onOpenChange={open => !open && closeDetailsDialog()}
+      >
         <DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto'>
           <DialogHeader>
             <DialogTitle className='text-2xl'>
@@ -631,199 +470,15 @@ const VisaPage: React.FC = () => {
             </DialogTitle>
           </DialogHeader>
           {dialogCountry && visaRequirement && (
-            <div className='mt-4'>
-              {visaRequirement.type === 'visa-free' && (
-                <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-                  <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
-                  <div>
-                    <h4 className='font-semibold text-green-800'>
-                      {t('requirements.visaFree.title')}
-                    </h4>
-                    <p className='text-green-700'>
-                      {t('requirements.visaFree.description', {
-                        country: dialogCountry,
-                        duration: visaRequirement.duration,
-                      })}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {visaRequirement.type === 'visa-required' && (
-                <div className='flex items-start p-4 bg-red-50 border border-red-200 rounded-lg'>
-                  <AlertCircle className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
-                  <div>
-                    <h4 className='font-semibold text-red-800'>
-                      {t('requirements.visaRequired.title')}
-                    </h4>
-                    <p className='text-red-700'>
-                      {t('requirements.visaRequired.description', {
-                        country: dialogCountry,
-                      })}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {visaRequirement.type === 'special-condition' && (
-                <div className='flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg'>
-                  <AlertCircle className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
-                  <div>
-                    <h4 className='font-semibold text-yellow-800'>
-                      {t('requirements.specialCondition.title')}
-                    </h4>
-                    <p className='text-yellow-700'>
-                      {t('requirements.specialCondition.description', {
-                        country: dialogCountry,
-                        duration: visaRequirement.duration,
-                      })}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              <div className='mt-6'>
-                <h4 className='text-lg font-medium mb-2'>
-                  {t('requirements.entryRequirements')}
-                </h4>
-                <div className='prose prose-sm max-w-none'>
-                  <p>{visaRequirement.description}</p>
-
-                  {visaRequirement.requirements && (
-                    <div className='mt-4'>
-                      <h5 className='text-md font-medium mb-2'>
-                        {t('requirements.requiredDocuments')}
-                      </h5>
-                      <ul className='list-disc pl-5 space-y-1'>
-                        {visaRequirement.requirements.map((req, index) => (
-                          <li key={index}>{req}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {visaRequirement.additionalInfo && (
-                    <div className='mt-4 p-3 bg-blue-50 rounded-md text-blue-800'>
-                      <p>
-                        <strong>{t('requirements.note')}</strong>{' '}
-                        {visaRequirement.additionalInfo}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {visaRequirement.type === 'visa-required' && (
-                <div className='mt-6'>
-                  <h4 className='text-lg font-medium mb-3'>
-                    {t('visaApplication.title')}
-                  </h4>
-                  <div className='grid grid-cols-1 gap-4'>
-                    <a
-                      href='https://evisa.gov.ph/'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                    >
-                      <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                        <Globe className='h-5 w-5 text-blue-600' />
-                      </div>
-                      <div className='flex-1'>
-                        <h5 className='font-medium'>
-                          {t('visaApplication.eVisa.title')}
-                        </h5>
-                        <p className='text-sm text-gray-600'>
-                          {t('visaApplication.eVisa.description')}
-                        </p>
-                      </div>
-                      <ExternalLink className='h-4 w-4 text-blue-600' />
-                    </a>
-                    <a
-                      href='https://dfa.gov.ph/list-of-philippine-embassies-and-consulates-general'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                    >
-                      <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                        <Globe className='h-5 w-5 text-blue-600' />
-                      </div>
-                      <div className='flex-1'>
-                        <h5 className='font-medium'>
-                          {t('visaApplication.embassy.title')}
-                        </h5>
-                        <p className='text-sm text-gray-600'>
-                          {t('visaApplication.embassy.description')}
-                        </p>
-                      </div>
-                      <ExternalLink className='h-4 w-4 text-blue-600' />
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {/* Important Visa Information */}
-              <div className='mt-6 border-t pt-6'>
-                <h4 className='text-lg font-medium mb-4'>
-                  {t('additionalInfo.title')}
-                </h4>
-
-                <div className='space-y-4'>
-                  <div>
-                    <h5 className='font-medium mb-2'>
-                      {t('additionalInfo.temporaryVisa.title')}
-                    </h5>
-                    <p className='text-sm text-gray-700'>
-                      {t('additionalInfo.temporaryVisa.description')}
-                    </p>
-                    <a
-                      href='https://evisa.gov.ph/page/policy?l1=Non-Immigrant%20Visas&l2=9(a)%20Temporary%20Visitors%20Visa'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2'
-                    >
-                      <span>{t('additionalInfo.temporaryVisa.learnMore')}</span>
-                      <ExternalLink className='h-3 w-3 ml-1' />
-                    </a>
-                  </div>
-
-                  <div>
-                    <h5 className='font-medium mb-2'>
-                      {t('additionalInfo.visaExtensions.title')}
-                    </h5>
-                    <p className='text-sm text-gray-700'>
-                      {t('additionalInfo.visaExtensions.description')}
-                    </p>
-                    <a
-                      href='https://immigration.gov.ph/'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2'
-                    >
-                      <span>
-                        {t('additionalInfo.visaExtensions.visitWebsite')}
-                      </span>
-                      <ExternalLink className='h-3 w-3 ml-1' />
-                    </a>
-                  </div>
-
-                  <div className='p-3 bg-yellow-50 rounded-lg'>
-                    <h5 className='font-medium mb-2 text-yellow-800'>
-                      {t('additionalInfo.disclaimer.title')}
-                    </h5>
-                    <p className='text-yellow-700 text-xs'>
-                      {visaData.sourceInfo.disclaimer}
-                    </p>
-                    <p className='text-yellow-700 text-xs mt-2'>
-                      Last updated: {visaData.sourceInfo.lastUpdated}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VisaRequirementDetails
+              country={dialogCountry}
+              visaRequirement={visaRequirement}
+              isDialog={true}
+            />
           )}
           <DialogFooter>
             <Button
-              onClick={() => setDialogOpen(false)}
+              onClick={closeDetailsDialog}
               className='bg-blue-600 hover:bg-blue-700 text-white'
             >
               Close
