@@ -205,6 +205,7 @@ test('user can search for services', async ({ page }) => {
 ```
 
 ## Contributing
+
 Thanks to all the people who already contributed!
 
 <a href="https://github.com/bettergovph/bettergov/graphs/contributors">
