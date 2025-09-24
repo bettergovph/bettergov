@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
 import {
-  DollarSign as DollarSignIcon,
-  Pen as YenIcon,
-  Euro as EuroSignIcon,
-  PoundSterling as PoundSterlingIcon,
-  Loader as LoaderIcon,
+  DollarSignIcon,
+  EuroIcon,
+  JapaneseYenIcon,
+  LoaderIcon,
+  PoundSterlingIcon,
 } from 'lucide-react';
-import { ForexRate, WeatherData } from '../../types';
+import React, { useEffect, useState } from 'react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { fetchWeatherData } from '../../lib/weather';
+import { ForexRate, WeatherData } from '../../types';
 
 const getCurrencyIcon = (code: string) => {
   const iconName = getCurrencyIconName(code);
   switch (iconName) {
     case 'DollarSign':
       return <DollarSignIcon className='h-4 w-4' />;
-    case 'Pen':
-      return <YenIcon className='h-4 w-4' />;
+    case 'JapaneseYen':
+      return <JapaneseYenIcon className='h-4 w-4' />;
     case 'Euro':
-      return <EuroSignIcon className='h-4 w-4' />;
+      return <EuroIcon className='h-4 w-4' />;
     case 'PoundSterling':
       return <PoundSterlingIcon className='h-4 w-4' />;
     default:
