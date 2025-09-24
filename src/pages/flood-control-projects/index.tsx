@@ -586,7 +586,7 @@ const FloodControlProjects: React.FC = () => {
               showSidebar ? 'block' : 'hidden md:block'
             }`}
           >
-            <div className='bg-white rounded-lg shadow-md p-4 sticky top-20'>
+            <div className='bg-white rounded-lg shadow-md p-4 sticky top-[8.25rem] z-40'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
                   <Filter className='w-5 h-5 text-blue-600 mr-2' />
@@ -721,7 +721,7 @@ const FloodControlProjects: React.FC = () => {
           </div>
 
           {/* Main content area */}
-          <div className='flex-1'>
+          <div className='flex-1 min-h-screen'>
             {/* Mobile toggle for sidebar */}
             <div className='md:hidden mb-4'>
               <Button
