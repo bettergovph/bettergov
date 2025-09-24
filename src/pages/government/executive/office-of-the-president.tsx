@@ -65,7 +65,7 @@ export default function OfficeOfThePresidentPage() {
   return (
     <>
       <SEO {...seoData} />
-      <div className='space-y-6'>
+      <div className='@container space-y-6'>
         <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
           <div>
             <h1 className='text-3xl font-bold text-gray-900 mb-2'>
@@ -160,7 +160,7 @@ export default function OfficeOfThePresidentPage() {
               </Card>
             )}
 
-            <CardGrid columns={2}>
+            <CardGrid columns={1} className='@lg:grid-cols-2 @3xl:grid-cols-3'>
               {filteredOfficials
                 .filter(official => 'office_division' in official)
                 .map((division, index) => {

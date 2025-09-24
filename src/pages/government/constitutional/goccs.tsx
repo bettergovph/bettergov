@@ -25,7 +25,7 @@ export default function GOCCsPage() {
   );
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -48,7 +48,7 @@ export default function GOCCsPage() {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
         {filteredGOCCs.length === 0 ? (
           <div className='col-span-full p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>

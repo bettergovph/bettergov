@@ -33,7 +33,6 @@ export default function GovernmentPageContainer({
             </button>
           </div>
         )}
-
         <div className='flex flex-col md:flex-row md:gap-8'>
           {sidebar && (
             <aside

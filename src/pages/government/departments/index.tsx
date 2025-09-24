@@ -226,7 +226,6 @@ export default function DepartmentsIndex() {
             delivery.
           </p>
         </div>
-
         <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
           {departments.map((dept, index) => {
             // Extract department name without "DEPARTMENT OF" prefix for cleaner display
