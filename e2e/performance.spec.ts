@@ -22,25 +22,21 @@ test.describe('Performance', () => {
 
     // Get performance metrics
     const metrics = await page.evaluate(() => {
-      const navigation = performance.getEntriesByType(
-        'navigation'
-      )[0] as PerformanceNavigationTiming;
-      const paint = performance.getEntriesByType('paint');
-
-      return {
-        domContentLoaded:
-          navigation.domContentLoadedEventEnd -
-          navigation.domContentLoadedEventStart,
-        loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
-        firstPaint: paint.find(p => p.name === 'first-paint')?.startTime,
-        firstContentfulPaint: paint.find(
-          p => p.name === 'first-contentful-paint'
-        )?.startTime,
-      };
+      return new Promise(resolve => {
+        const po = new PerformanceObserver(list => {
+          const entries = list.getEntries();
+          const fcp = entries.find(e => e.name === 'first-contentful-paint');
+          if (fcp) {
+            po.disconnect();
+            resolve(fcp.startTime);
+          }
+        });
+        po.observe({ type: 'paint', buffered: true });
+      });
     });
 
     // FCP should be under 2 seconds
-    expect(metrics.firstContentfulPaint).toBeLessThan(2000);
+    expect(metrics).toBeLessThan(2000);
   });
 
   test('images should be optimized', async ({ page }) => {
