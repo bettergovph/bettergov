@@ -5,7 +5,10 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Test Philippines dropdown menu
-    await page.getByText('The Philippines').first().hover();
+    await page
+      .getByRole('link', { name: 'Philippines', exact: true })
+      .first()
+      .hover();
     await expect(
       page.getByRole('menuitem', { name: 'About the Philippines' })
     ).toBeVisible();
@@ -35,7 +38,9 @@ test.describe('Navigation', () => {
       .first()
       .click();
     await expect(page.url()).toContain('/join-us');
-    await expect(page.getByRole('heading')).toContainText('Join');
+    await expect(page.getByRole('heading').first()).toContainText(
+      'Join the #CivicTech Revolution'
+    );
   });
 
   test('should navigate to Ideas page', async ({ page }) => {
@@ -73,16 +78,22 @@ test.describe('Navigation', () => {
     await expect(page.url()).toContain('/sitemap');
   });
 
-  test('breadcrumb navigation should work', async ({ page }) => {
+  test('branch navigation should work', async ({ page }) => {
     // Navigate to a deep page
     await page.goto('/government/departments');
 
-    // Check breadcrumb exists
-    const breadcrumb = page.locator('nav[aria-label="Breadcrumb"]');
-    await expect(breadcrumb).toBeVisible();
+    // Check if branch exists
+    let branch = page.locator('a.bg-primary-500').first(); // Selected branch
+    await expect(branch).toContainText('Executive Departments');
 
-    // Click Home breadcrumb
-    await breadcrumb.getByRole('link', { name: 'Home' }).click();
-    await expect(page.url()).toBe('http://localhost:5173/');
+    const grid = page.locator('div.inline-grid');
+    await grid
+      .getByRole('link', { name: 'Local Government Units' })
+      .first()
+      .click();
+
+    branch = page.locator('a.bg-primary-500').first();
+    await expect(branch).toContainText('Local Government Units');
+    await expect(page.url()).toContain('/government/local');
   });
 });

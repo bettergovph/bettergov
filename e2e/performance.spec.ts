@@ -113,7 +113,7 @@ test.describe('Performance', () => {
     await slowPage.goto('/');
 
     // Even on slow network, critical content should appear
-    await expect(slowPage.getByText('BetterGov.ph')).toBeVisible({
+    await expect(slowPage.getByText('BetterGov.ph').first()).toBeVisible({
       timeout: 10000,
     });
 
