@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  X,
-  Menu,
-  ChevronDown,
-  Globe,
-  Search,
-  CheckCircle2,
-} from 'lucide-react';
+import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react';
 import { mainNavigation } from '../../data/navigation';
 import { LanguageType } from '../../types';
 import { Link } from 'react-router-dom';
@@ -50,12 +43,6 @@ const Navbar: React.FC = () => {
             >
               🚀 Join Us
             </Link>
-            <Link
-              to='/ideas'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
-            >
-              Project Ideas
-            </Link>
             <a
               href='https://www.gov.ph'
               className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
@@ -93,12 +80,11 @@ const Navbar: React.FC = () => {
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              <CheckCircle2 className='h-12 w-12 mr-3' />
-              {/* <img
-                src="/ph-logo.webp"
-                alt="Philippines Coat of Arms"
-                className="h-12 w-12 mr-3"
-              /> */}
+              <img
+                src='/logos/svg/BetterGov_Icon-Primary.svg'
+                alt='BetterGov Logo'
+                className='h-12 w-12 mr-3'
+              />
               <div>
                 <div className='text-black font-bold'>BetterGov.ph</div>
                 <div className='text-xs text-gray-800'>
