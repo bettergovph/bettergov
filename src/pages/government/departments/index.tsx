@@ -72,7 +72,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
 
             {department.address && (
               <p className='mt-2 text-gray-800 flex items-start'>
-                <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                 <span>{department.address}</span>
               </p>
             )}
@@ -108,7 +108,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
         <div className='flex flex-wrap gap-4 text-sm border-b border-gray-200 pb-6'>
           {department.trunkline && (
             <div className='flex items-center text-gray-800'>
-              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
+              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{department.trunkline}</span>
             </div>
           )}
@@ -118,7 +118,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
               href={`mailto:${department.email}`}
               className='flex items-center text-gray-800 hover:text-primary-600'
             >
-              <MailIcon className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
+              <MailIcon className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{department.email}</span>
             </a>
           )}
@@ -251,7 +251,7 @@ export default function DepartmentsIndex() {
                           </p>
                         )}
                       </div>
-                      <div className='rounded-full bg-gray-100 p-2 flex-shrink-0'>
+                      <div className='rounded-full bg-gray-100 p-2 shrink-0'>
                         <Building2Icon className='h-5 w-5 text-gray-800' />
                       </div>
                     </div>
@@ -260,7 +260,7 @@ export default function DepartmentsIndex() {
                     <div className='space-y-2'>
                       {dept.address && (
                         <div className='flex items-start'>
-                          <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                          <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                           <span className='text-sm text-gray-800 line-clamp-2'>
                             {dept.address}
                           </span>
@@ -268,7 +268,7 @@ export default function DepartmentsIndex() {
                       )}
                       {dept.trunkline && (
                         <div className='flex items-center'>
-                          <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 flex-shrink-0' />
+                          <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
                           <span className='text-sm text-gray-800'>
                             {dept.trunkline}
                           </span>
@@ -276,7 +276,7 @@ export default function DepartmentsIndex() {
                       )}
                       {dept.website && (
                         <div className='flex items-center'>
-                          <ExternalLinkIcon className='h-4 w-4 text-gray-400 mr-2 flex-shrink-0' />
+                          <ExternalLinkIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
                           <span className='text-sm text-primary-600 truncate'>
                             {dept.website}
                           </span>
