@@ -43,12 +43,6 @@ const Navbar: React.FC = () => {
             >
               🚀 Join Us
             </Link>
-            <Link
-              to='/ideas'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
-            >
-              Project Ideas
-            </Link>
             <a
               href='https://www.gov.ph'
               className='text-xs text-gray-800 hover:text-primary-600 transition-colors'

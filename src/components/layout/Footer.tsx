@@ -7,6 +7,7 @@ import {
   SiInstagram,
   SiYoutube,
   SiX,
+  SiDiscord,
 } from '@icons-pack/react-simple-icons';
 
 const Footer: React.FC = () => {
@@ -22,6 +23,8 @@ const Footer: React.FC = () => {
         return <SiInstagram className='h-5 w-5' />;
       case 'YouTube':
         return <SiYoutube className='h-5 w-5' />;
+      case 'Discord':
+        return <SiDiscord className='h-5 w-5' />;
       default:
         return null;
     }
@@ -97,18 +100,6 @@ const Footer: React.FC = () => {
               {t('footer.copyright')}
             </p>
             <div className='flex space-x-6'>
-              {/* <a
-                href="/privacy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                Terms of Use
-              </a> */}
               <Link
                 to='https://github.com/bettergovph/bettergov'
                 className='text-gray-400 hover:text-white text-sm transition-colors'
@@ -121,12 +112,6 @@ const Footer: React.FC = () => {
               >
                 Sitemap
               </Link>
-              <a
-                href='/accessibility'
-                className='text-gray-400 hover:text-white text-sm transition-colors'
-              >
-                Accessibility
-              </a>
             </div>
           </div>
         </div>
