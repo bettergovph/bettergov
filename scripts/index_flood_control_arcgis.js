@@ -12,7 +12,7 @@ dotenv.config();
 const MEILISEARCH_HOST =
   process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_API_KEY = process.env.MEILISEARCH_MASTER_KEY || ''; // Use MASTER KEY for admin operations
+const MEILISEARCH_API_KEY = process.env.VITE_MEILISEARCH_SEARCH_API_KEY || ''; // Use MASTER KEY for admin operations
 const INDEX_NAME = 'bettergov_flood_control';
 
 // Get the current directory path
