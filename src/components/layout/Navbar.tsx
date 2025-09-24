@@ -1,5 +1,4 @@
 import {
-  CheckCircle2Icon,
   ChevronDownIcon,
   GlobeIcon,
   MenuIcon,
@@ -87,12 +86,11 @@ const Navbar: React.FC = () => {
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              <CheckCircle2Icon className='h-12 w-12 mr-3' />
-              {/* <img
-                src="/ph-logo.webp"
-                alt="Philippines Coat of Arms"
-                className="h-12 w-12 mr-3"
-              /> */}
+              <img
+                src='/logos/svg/BetterGov_Icon-Primary.svg'
+                alt='BetterGov Logo'
+                className='h-12 w-12 mr-3'
+              />
               <div>
                 <div className='text-black font-bold'>BetterGov.ph</div>
                 <div className='text-xs text-gray-800'>
