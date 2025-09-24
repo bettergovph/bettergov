@@ -175,6 +175,17 @@
         }
       }
     ],
+    "municipalities": [
+      {
+        "municipality": "Pateros",
+        "mayor": {
+          "name": "MIGUEL FERDINAND PONCE III"
+        },
+        "vice_mayor": {
+          "name": "CARLO UMAGAT SANTOS"
+        }
+      }
+    ],
     "slug": "national-capital-region"
   },
   {
