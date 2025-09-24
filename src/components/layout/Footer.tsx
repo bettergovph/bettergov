@@ -1,4 +1,5 @@
 import {
+  SiDiscord,
   SiFacebook,
   SiInstagram,
   SiX,
@@ -21,6 +22,8 @@ const Footer: React.FC = () => {
         return <SiInstagram className='h-5 w-5' />;
       case 'YouTube':
         return <SiYoutube className='h-5 w-5' />;
+      case 'Discord':
+        return <SiDiscord className='h-5 w-5' />;
       default:
         return null;
     }
