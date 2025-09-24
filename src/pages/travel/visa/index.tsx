@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '../../../components/ui/dialog';
+} from '../../../components/ui/Dialog';
 import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
 
 type Country = string;
