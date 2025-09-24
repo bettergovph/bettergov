@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Compass,
-  FileCheck,
-  Globe,
-  Search,
-  AlertCircle,
-  ExternalLink,
+  CompassIcon,
+  FileCheckIcon,
+  GlobeIcon,
+  SearchIcon,
+  AlertCircleIcon,
+  ExternalLinkIcon,
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
@@ -188,7 +188,7 @@ const VisaPage: React.FC = () => {
               </h1>
               <p className='text-xl opacity-90 mb-6'>{t('hero.subtitle')}</p>
               <div className='flex items-center space-x-2 text-sm'>
-                <Globe className='h-4 w-4' />
+                <GlobeIcon className='h-4 w-4' />
                 <span>{t('hero.dataSource')}</span>
               </div>
               <Link to='/travel/visa-types'>
@@ -200,14 +200,14 @@ const VisaPage: React.FC = () => {
             <div className='self-start md:w-1/3'>
               <div className='bg-white rounded-lg shadow-lg p-6 text-gray-800'>
                 <h2 className='text-xl font-semibold mb-4 flex items-center'>
-                  <Compass className='mr-2 h-5 w-5 text-blue-600' />
+                  <CompassIcon className='mr-2 h-5 w-5 text-blue-600' />
                   {t('quickCheck.title')}
                 </h2>
                 <p className='text-sm text-gray-800 mb-4'>
                   {t('quickCheck.description')}
                 </p>
                 <div className='relative hidden xl:block'>
-                  <Search className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
+                  <SearchIcon className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
                   <input
                     type='text'
                     placeholder={t('quickCheck.searchPlaceholder')}
@@ -267,7 +267,7 @@ const VisaPage: React.FC = () => {
                   ))
                 ) : (
                   <div className='text-center py-8 text-gray-800'>
-                    <Search className='mx-auto h-8 w-8 mb-2 opacity-50' />
+                    <SearchIcon className='mx-auto h-8 w-8 mb-2 opacity-50' />
                     <p>{t('countryList.noResults')}</p>
                   </div>
                 )}
@@ -288,7 +288,7 @@ const VisaPage: React.FC = () => {
                     <div className='mt-6'>
                       {visaRequirement.type === 'visa-free' && (
                         <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-                          <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
+                          <FileCheckIcon className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
                           <div>
                             <h3 className='font-semibold text-green-800'>
                               {t('requirements.visaFree.title')}
@@ -305,7 +305,7 @@ const VisaPage: React.FC = () => {
 
                       {visaRequirement.type === 'visa-required' && (
                         <div className='flex items-start p-4 bg-red-50 border border-red-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
+                          <AlertCircleIcon className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
                           <div>
                             <h3 className='font-semibold text-red-800'>
                               {t('requirements.visaRequired.title')}
@@ -321,7 +321,7 @@ const VisaPage: React.FC = () => {
 
                       {visaRequirement.type === 'special-condition' && (
                         <div className='flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
+                          <AlertCircleIcon className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
                           <div>
                             <h3 className='font-semibold text-yellow-800'>
                               {t('requirements.specialCondition.title')}
@@ -382,7 +382,7 @@ const VisaPage: React.FC = () => {
                               className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
                             >
                               <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
+                                <GlobeIcon className='h-5 w-5 text-blue-600' />
                               </div>
                               <div>
                                 <h4 className='font-medium'>
@@ -395,7 +395,7 @@ const VisaPage: React.FC = () => {
                                   <span>
                                     {t('visaApplication.eVisa.action')}
                                   </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
+                                  <ExternalLinkIcon className='h-3 w-3 ml-1' />
                                 </div>
                               </div>
                             </a>
@@ -406,7 +406,7 @@ const VisaPage: React.FC = () => {
                               className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
                             >
                               <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
+                                <GlobeIcon className='h-5 w-5 text-blue-600' />
                               </div>
                               <div>
                                 <h4 className='font-medium'>
@@ -419,7 +419,7 @@ const VisaPage: React.FC = () => {
                                   <span>
                                     {t('visaApplication.embassy.action')}
                                   </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
+                                  <ExternalLinkIcon className='h-3 w-3 ml-1' />
                                 </div>
                               </div>
                             </a>
@@ -433,7 +433,7 @@ const VisaPage: React.FC = () => {
                 <div className='bg-white rounded-lg shadow-md p-6 h-full'>
                   <div className='flex flex-col items-center justify-center h-full py-12 text-center'>
                     <div className='bg-blue-100 p-4 rounded-full mb-4'>
-                      <Globe className='h-12 w-12 text-blue-600' />
+                      <GlobeIcon className='h-12 w-12 text-blue-600' />
                     </div>
                     <h2 className='text-2xl font-semibold mb-2'>
                       {t('defaultMessage.title')}
@@ -467,7 +467,7 @@ const VisaPage: React.FC = () => {
                         <span>
                           {t('additionalInfo.temporaryVisa.learnMore')}
                         </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
+                        <ExternalLinkIcon className='h-3 w-3 ml-1' />
                       </a>
                     </div>
 
@@ -487,7 +487,7 @@ const VisaPage: React.FC = () => {
                         <span>
                           {t('additionalInfo.visaExtensions.visitWebsite')}
                         </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
+                        <ExternalLinkIcon className='h-3 w-3 ml-1' />
                       </a>
                     </div>
 

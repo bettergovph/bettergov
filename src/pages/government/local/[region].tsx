@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { Search, MapPin, User, Crown } from 'lucide-react';
+import { SearchIcon, MapPinIcon, UserIcon, CrownIcon } from 'lucide-react';
 import lguData from '../../../data/directory/lgu.json';
 import {
   CardGrid,
@@ -120,7 +120,7 @@ export default function RegionalLGUPage() {
         <SEO {...seoData} />
         <div className='p-8 text-center bg-white rounded-lg border'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <MapPin className='h-6 w-6 text-gray-400' />
+            <MapPinIcon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             Region not found
@@ -149,7 +149,7 @@ export default function RegionalLGUPage() {
           </div>
 
           <div className='relative w-full md:w-64'>
-            <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+            <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
             <input
               type='search'
               placeholder='Search cities or officials...'
@@ -163,7 +163,7 @@ export default function RegionalLGUPage() {
         {filteredCities?.length === 0 ? (
           <div className='p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-              <Search className='h-6 w-6 text-gray-400' />
+              <SearchIcon className='h-6 w-6 text-gray-400' />
             </div>
             <h3 className='text-lg font-medium text-gray-900 mb-1'>
               No cities found
@@ -204,7 +204,7 @@ export default function RegionalLGUPage() {
                   {/* Mayor Section */}
                   <div className='mb-6'>
                     <div className='flex items-center mb-3'>
-                      <Crown className='h-4 w-4 text-yellow-600 mr-2' />
+                      <CrownIcon className='h-4 w-4 text-yellow-600 mr-2' />
                       <span className='text-sm font-medium text-gray-700'>
                         Mayor
                       </span>
@@ -233,7 +233,7 @@ export default function RegionalLGUPage() {
                   {unit.vice_mayor && (
                     <div>
                       <div className='flex items-center mb-3'>
-                        <User className='h-4 w-4 text-blue-600 mr-2' />
+                        <UserIcon className='h-4 w-4 text-blue-600 mr-2' />
                         <span className='text-sm font-medium text-gray-700'>
                           Vice Mayor
                         </span>

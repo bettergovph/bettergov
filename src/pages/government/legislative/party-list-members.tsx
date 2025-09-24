@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Users, Phone } from 'lucide-react';
+import { SearchIcon, UsersIcon, PhoneIcon } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 
 interface PartyListMember {
@@ -84,7 +84,7 @@ export default function PartyListMembersPage() {
 
         <div className='flex flex-col md:flex-row gap-3'>
           <div className='relative w-full md:w-64'>
-            <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+            <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
             <input
               type='search'
               placeholder='Search representatives...'
@@ -112,7 +112,7 @@ export default function PartyListMembersPage() {
       {Object.keys(membersByPartyList).length === 0 ? (
         <div className='p-8 text-center bg-white rounded-lg border'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Users className='h-6 w-6 text-gray-400' />
+            <UsersIcon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             No representatives found
@@ -151,7 +151,7 @@ export default function PartyListMembersPage() {
                     </div>
 
                     <div className='flex items-center text-sm text-gray-800'>
-                      <Phone className='h-4 w-4 text-gray-400 mr-2' />
+                      <PhoneIcon className='h-4 w-4 text-gray-400 mr-2' />
                       <span>{member.contact}</span>
                     </div>
                   </div>

@@ -8,14 +8,14 @@ interface Hotline {
   description?: string;
 }
 import {
-  Phone,
-  Search,
-  AlertCircle,
-  Umbrella,
-  Shield,
-  Bus,
-  Droplet,
-  Heart,
+  PhoneIcon,
+  SearchIcon,
+  AlertCircleIcon,
+  UmbrellaIcon,
+  ShieldIcon,
+  BusIcon,
+  DropletIcon,
+  HeartIcon,
 } from 'lucide-react';
 
 const Hotlines: React.FC = () => {
@@ -23,25 +23,45 @@ const Hotlines: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', name: 'All Hotlines', icon: <Phone className='w-5 h-5' /> },
+    {
+      id: 'all',
+      name: 'All Hotlines',
+      icon: <PhoneIcon className='w-5 h-5' />,
+    },
     {
       id: 'emergency',
       name: 'Emergency',
-      icon: <AlertCircle className='w-5 h-5' />,
+      icon: <AlertCircleIcon className='w-5 h-5' />,
     },
     {
       id: 'disaster',
       name: 'Disaster',
-      icon: <Umbrella className='w-5 h-5' />,
+      icon: <UmbrellaIcon className='w-5 h-5' />,
     },
-    { id: 'security', name: 'Security', icon: <Shield className='w-5 h-5' /> },
-    { id: 'transport', name: 'Transport', icon: <Bus className='w-5 h-5' /> },
-    { id: 'weather', name: 'Weather', icon: <Umbrella className='w-5 h-5' /> },
-    { id: 'utility', name: 'Utilities', icon: <Droplet className='w-5 h-5' /> },
+    {
+      id: 'security',
+      name: 'Security',
+      icon: <ShieldIcon className='w-5 h-5' />,
+    },
+    {
+      id: 'transport',
+      name: 'Transport',
+      icon: <BusIcon className='w-5 h-5' />,
+    },
+    {
+      id: 'weather',
+      name: 'Weather',
+      icon: <UmbrellaIcon className='w-5 h-5' />,
+    },
+    {
+      id: 'utility',
+      name: 'Utilities',
+      icon: <DropletIcon className='w-5 h-5' />,
+    },
     {
       id: 'social',
       name: 'Social Services',
-      icon: <Heart className='w-5 h-5' />,
+      icon: <HeartIcon className='w-5 h-5' />,
     },
   ];
 
@@ -94,7 +114,7 @@ const Hotlines: React.FC = () => {
       {/* Search Bar */}
       <div className='relative max-w-md mx-auto mb-8'>
         <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-          <Search className='h-5 w-5 text-gray-400' />
+          <SearchIcon className='h-5 w-5 text-gray-400' />
         </div>
         <input
           type='text'
@@ -141,7 +161,7 @@ const Hotlines: React.FC = () => {
                 <div className='space-y-2'>
                   {hotline.numbers.map((number, idx) => (
                     <div key={idx} className='flex items-center'>
-                      <Phone className='h-4 w-4 text-blue-500 mr-2' />
+                      <PhoneIcon className='h-4 w-4 text-blue-500 mr-2' />
                       <a
                         href={`tel:${number.replace(/\D/g, '')}`}
                         className='text-blue-600 hover:underline'
@@ -156,7 +176,7 @@ const Hotlines: React.FC = () => {
           ))
         ) : (
           <div className='col-span-full text-center py-10'>
-            <AlertCircle className='h-12 w-12 text-gray-400 mx-auto mb-4' />
+            <AlertCircleIcon className='h-12 w-12 text-gray-400 mx-auto mb-4' />
             <h3 className='text-lg font-medium text-gray-900'>
               No hotlines found
             </h3>

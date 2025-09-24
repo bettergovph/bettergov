@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cloud, BarChart2, TrendingUp, Thermometer } from 'lucide-react';
+import {
+  CloudIcon,
+  BarChart2Icon,
+  TrendingUpIcon,
+  ThermometerIcon,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const DataSection: React.FC = () => {
@@ -28,12 +33,12 @@ const DataSection: React.FC = () => {
               <h3 className='text-2xl font-bold text-white'>
                 {t('data.weatherForecast')}
               </h3>
-              <Cloud className='h-10 w-10 text-white opacity-80' />
+              <CloudIcon className='h-10 w-10 text-white opacity-80' />
             </div>
             <div className='p-6'>
               <div className='flex items-center justify-between mb-4'>
                 <div className='flex items-center'>
-                  <Thermometer className='h-5 w-5 text-blue-600 mr-2' />
+                  <ThermometerIcon className='h-5 w-5 text-blue-600 mr-2' />
                   <span className='text-gray-700 font-medium'>
                     {t('data.realtimeConditions')}
                   </span>
@@ -69,12 +74,12 @@ const DataSection: React.FC = () => {
               <h3 className='text-2xl font-bold text-white'>
                 {t('data.forexRates')}
               </h3>
-              <BarChart2 className='h-10 w-10 text-white opacity-80' />
+              <BarChart2Icon className='h-10 w-10 text-white opacity-80' />
             </div>
             <div className='p-6'>
               <div className='flex items-center justify-between mb-4'>
                 <div className='flex items-center'>
-                  <TrendingUp className='h-5 w-5 text-green-600 mr-2' />
+                  <TrendingUpIcon className='h-5 w-5 text-green-600 mr-2' />
                   <span className='text-gray-700 font-medium'>
                     {t('data.liveExchange')}
                   </span>

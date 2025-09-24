@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, Building2, Landmark } from 'lucide-react';
+import { GlobeIcon, Building2Icon, LandmarkIcon } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function DiplomaticSidebar() {
@@ -27,7 +27,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Globe className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <GlobeIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Diplomatic Missions</span>
               </Link>
             </li>
@@ -40,7 +40,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building2 className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <Building2Icon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Consulates</span>
               </Link>
             </li>
@@ -53,7 +53,7 @@ export default function DiplomaticSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Landmark className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <LandmarkIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>International Organizations</span>
               </Link>
             </li>

@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { MenuIcon, XIcon } from 'lucide-react';
 
 interface GovernmentPageContainerProps {
   children: ReactNode;
@@ -26,9 +26,9 @@ export default function GovernmentPageContainer({
             >
               <span>Menu</span>
               {sidebarOpen ? (
-                <X className='h-5 w-5 text-gray-800' />
+                <XIcon className='h-5 w-5 text-gray-800' />
               ) : (
-                <Menu className='h-5 w-5 text-gray-800' />
+                <MenuIcon className='h-5 w-5 text-gray-800' />
               )}
             </button>
           </div>

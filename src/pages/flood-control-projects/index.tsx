@@ -18,15 +18,15 @@ import {
   Cell,
 } from 'recharts';
 import {
-  Filter,
-  BarChart3,
+  FilterIcon,
+  BarChart3Icon,
   PieChart as PieChartIcon,
-  Info,
-  Download,
-  X,
-  Users,
-  Table,
-  Search,
+  InfoIcon,
+  DownloadIcon,
+  XIcon,
+  UsersIcon,
+  TableIcon,
+  SearchIcon,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 
@@ -572,7 +572,7 @@ const FloodControlProjects: React.FC = () => {
             <div className='bg-white rounded-lg shadow-md p-4 sticky top-20'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
-                  <Filter className='w-5 h-5 text-blue-600 mr-2' />
+                  <FilterIcon className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     Filters
                   </h2>
@@ -581,7 +581,7 @@ const FloodControlProjects: React.FC = () => {
                   className='md:hidden text-gray-800 hover:text-gray-700'
                   onClick={() => setShowSidebar(false)}
                 >
-                  <X className='w-5 h-5' />
+                  <XIcon className='w-5 h-5' />
                 </button>
               </div>
 
@@ -593,7 +593,7 @@ const FloodControlProjects: React.FC = () => {
                   </h3>
                   <div className='relative'>
                     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                      <Search className='h-4 w-4 text-gray-400' />
+                      <SearchIcon className='h-4 w-4 text-gray-400' />
                     </div>
                     <input
                       type='text'
@@ -710,7 +710,7 @@ const FloodControlProjects: React.FC = () => {
               <Button
                 variant='outline'
                 onClick={() => setShowSidebar(true)}
-                leftIcon={<Filter className='w-4 h-4' />}
+                leftIcon={<FilterIcon className='w-4 h-4' />}
               >
                 Show Filters
               </Button>
@@ -723,7 +723,9 @@ const FloodControlProjects: React.FC = () => {
               </h1>
               <Button
                 variant='outline'
-                leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
+                leftIcon={
+                  isExporting ? null : <DownloadIcon className='w-4 h-4' />
+                }
                 onClick={handleExportData}
                 disabled={isExporting}
               >
@@ -812,7 +814,7 @@ const FloodControlProjects: React.FC = () => {
               {/* Projects by Year - Bar Chart */}
               <div className='bg-white rounded-lg shadow-md p-4'>
                 <div className='flex items-center mb-4'>
-                  <BarChart3 className='w-5 h-5 text-blue-600 mr-2' />
+                  <BarChart3Icon className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     Projects by Year
                   </h2>
@@ -989,7 +991,7 @@ const FloodControlProjects: React.FC = () => {
               {/* Top Contractors - Bar Chart */}
               <div className='bg-white rounded-lg shadow-md p-4'>
                 <div className='flex items-center mb-4'>
-                  <Users className='w-5 h-5 text-orange-600 mr-2' />
+                  <UsersIcon className='w-5 h-5 text-orange-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     Top Contractors
                   </h2>
@@ -1055,7 +1057,7 @@ const FloodControlProjects: React.FC = () => {
                   href='/flood-control-projects/table'
                   className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 >
-                  <Table className='w-4 h-4 mr-1' />
+                  <TableIcon className='w-4 h-4 mr-1' />
                   View Table
                 </a>
               </div>
@@ -1068,7 +1070,7 @@ const FloodControlProjects: React.FC = () => {
             {/* Data Source Information */}
             <div className='bg-white rounded-lg shadow-md p-4 mt-8'>
               <div className='flex items-center mb-4'>
-                <Info className='w-5 h-5 text-blue-600 mr-2' />
+                <InfoIcon className='w-5 h-5 text-blue-600 mr-2' />
                 <h2 className='text-lg font-semibold text-gray-800'>
                   About This Data
                 </h2>

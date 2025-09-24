@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
-  Search,
-  ExternalLink,
-  Building2,
-  MapPin,
-  Phone,
-  Mail,
+  SearchIcon,
+  ExternalLinkIcon,
+  Building2Icon,
+  MapPinIcon,
+  PhoneIcon,
+  MailIcon,
 } from 'lucide-react';
 import constitutionalData from '../../../data/directory/constitutional.json';
 
@@ -55,7 +55,7 @@ export default function GOCCsPage() {
         </div>
 
         <div className='relative w-full md:w-64'>
-          <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+          <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
           <input
             type='search'
             placeholder='Search GOCCs...'
@@ -70,7 +70,7 @@ export default function GOCCsPage() {
         {filteredGOCCs.length === 0 ? (
           <div className='col-span-full p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-              <Building2 className='h-6 w-6 text-gray-400' />
+              <Building2Icon className='h-6 w-6 text-gray-400' />
             </div>
             <h3 className='text-lg font-medium text-gray-900 mb-1'>
               No GOCCs found
@@ -92,7 +92,7 @@ export default function GOCCsPage() {
               <div className='p-4 space-y-3'>
                 {gocc.address && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                     <span>{gocc.address}</span>
                   </p>
                 )}
@@ -101,7 +101,7 @@ export default function GOCCsPage() {
                   gocc.trunk_line ||
                   (gocc.trunklines && gocc.trunklines[0])) && (
                   <p className='text-sm text-gray-800 flex items-start'>
-                    <Phone className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                     <span>
                       {gocc.phone || gocc.trunk_line || gocc.trunklines?.[0]}
                     </span>
@@ -113,7 +113,7 @@ export default function GOCCsPage() {
                     href={`mailto:${gocc.email}`}
                     className='text-sm text-gray-800 flex items-start hover:text-primary-600'
                   >
-                    <Mail className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                    <MailIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                     <span>{gocc.email}</span>
                   </a>
                 )}
@@ -155,7 +155,7 @@ export default function GOCCsPage() {
                     className='text-sm text-primary-600 hover:text-primary-700 flex items-center'
                   >
                     <span>Visit website</span>
-                    <ExternalLink className='ml-1.5 h-3.5 w-3.5' />
+                    <ExternalLinkIcon className='ml-1.5 h-3.5 w-3.5' />
                   </a>
                 </div>
               )}

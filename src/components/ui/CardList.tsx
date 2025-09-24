@@ -1,5 +1,10 @@
 import { ReactNode } from 'react';
-import { ExternalLink, MapPin, Phone, Mail } from 'lucide-react';
+import {
+  ExternalLinkIcon,
+  MapPinIcon,
+  PhoneIcon,
+  MailIcon,
+} from 'lucide-react';
 
 interface ContactInfo {
   address?: string;
@@ -158,7 +163,7 @@ export function CardContactInfo({
     <address className={`not-italic ${spacing}`}>
       {contact.address && (
         <div className='flex items-start'>
-          <MapPin
+          <MapPinIcon
             className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
           />
           <span className={`text-gray-800 ${textSize}`}>{contact.address}</span>
@@ -167,7 +172,7 @@ export function CardContactInfo({
 
       {contact.phone && (
         <div className='flex items-start'>
-          <Phone
+          <PhoneIcon
             className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
           />
           <a
@@ -181,7 +186,7 @@ export function CardContactInfo({
 
       {contact.email && (
         <div className='flex items-start'>
-          <Mail
+          <MailIcon
             className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
           />
           <a
@@ -195,7 +200,7 @@ export function CardContactInfo({
 
       {contact.website && (
         <div className='flex items-start'>
-          <ExternalLink
+          <ExternalLinkIcon
             className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
           />
           <a

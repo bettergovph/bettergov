@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, ArrowRight, Zap } from 'lucide-react';
+import { UsersIcon, ArrowRightIcon, ZapIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -13,11 +13,11 @@ const JoinUsStrip: React.FC = () => {
       {/* Animated background elements */}
       <div className='absolute left-0 top-0 w-full h-full opacity-20'>
         <div className='flex items-center justify-around h-full animate-pulse'>
-          <Zap className='h-4 w-4' />
-          <Users className='h-4 w-4' />
-          <Zap className='h-4 w-4' />
-          <Users className='h-4 w-4' />
-          <Zap className='h-4 w-4' />
+          <ZapIcon className='h-4 w-4' />
+          <UsersIcon className='h-4 w-4' />
+          <ZapIcon className='h-4 w-4' />
+          <UsersIcon className='h-4 w-4' />
+          <ZapIcon className='h-4 w-4' />
         </div>
       </div>
 
@@ -26,7 +26,7 @@ const JoinUsStrip: React.FC = () => {
           <div className='flex items-center gap-3'>
             <div className='flex items-center gap-2'>
               <div className='p-1.5 bg-yellow-300/30 rounded-full'>
-                <Users className='h-4 w-4 text-yellow-200' />
+                <UsersIcon className='h-4 w-4 text-yellow-200' />
               </div>
               <span className='font-bold text-sm'>
                 {t('joinUs.stripTitle')}
@@ -43,7 +43,7 @@ const JoinUsStrip: React.FC = () => {
               className='inline-flex items-center gap-2 bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-yellow-200 transition-all transform hover:scale-105'
             >
               {t('joinUs.joinNow')}
-              <ArrowRight className='h-3 w-3' />
+              <ArrowRightIcon className='h-3 w-3' />
             </Link>
             <a
               href='https://discord.gg/mHtThpN8bT'

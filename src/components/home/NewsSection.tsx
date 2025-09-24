@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
 import { Card, CardImage, CardContent } from '../ui/Card';
 import { useTranslation } from 'react-i18next';
 import { news } from '../../data/news';
@@ -20,7 +20,7 @@ const NewsSection: React.FC = () => {
             className='text-primary-600 hover:text-primary-700 flex items-center font-medium transition-colors'
           >
             View All
-            <ArrowRight className='ml-1 h-4 w-4' />
+            <ArrowRightIcon className='ml-1 h-4 w-4' />
           </a>
         </div>
 
@@ -49,7 +49,7 @@ const NewsSection: React.FC = () => {
                   className='text-primary-600 hover:text-primary-700 font-medium flex items-center mt-auto transition-colors'
                 >
                   Read More
-                  <ArrowRight className='ml-1 h-4 w-4' />
+                  <ArrowRightIcon className='ml-1 h-4 w-4' />
                 </a>
               </CardContent>
             </Card>

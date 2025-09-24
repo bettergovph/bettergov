@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Clock, Flag, Crown, Scale } from 'lucide-react';
+import { ClockIcon, FlagIcon, CrownIcon, ScaleIcon } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesHistory: React.FC = () => {
@@ -8,28 +8,28 @@ const PhilippinesHistory: React.FC = () => {
 
   const timelinePeriods = [
     {
-      icon: <Flag className='h-6 w-6' />,
+      icon: <FlagIcon className='h-6 w-6' />,
       title: t('history.timeline.periods.independence.title'),
       period: t('history.timeline.periods.independence.period'),
       description: t('history.timeline.periods.independence.description'),
       image: '/assets/history/independence-modern-era.webp',
     },
     {
-      icon: <Scale className='h-6 w-6' />,
+      icon: <ScaleIcon className='h-6 w-6' />,
       title: t('history.timeline.periods.american.title'),
       period: t('history.timeline.periods.american.period'),
       description: t('history.timeline.periods.american.description'),
       image: '/assets/history/american-period.webp',
     },
     {
-      icon: <Crown className='h-6 w-6' />,
+      icon: <CrownIcon className='h-6 w-6' />,
       title: t('history.timeline.periods.spanish.title'),
       period: t('history.timeline.periods.spanish.period'),
       description: t('history.timeline.periods.spanish.description'),
       image: '/assets/history/spanish-colonial-era.webp',
     },
     {
-      icon: <Clock className='h-6 w-6' />,
+      icon: <ClockIcon className='h-6 w-6' />,
       title: t('history.timeline.periods.preColonial.title'),
       period: t('history.timeline.periods.preColonial.period'),
       description: t('history.timeline.periods.preColonial.description'),

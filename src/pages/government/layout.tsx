@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
-  Building2,
-  Landmark,
-  GalleryVertical,
-  Globe,
-  BookOpen,
-  MapPin,
+  Building2Icon,
+  LandmarkIcon,
+  GalleryVerticalIcon,
+  GlobeIcon,
+  BookOpenIcon,
+  MapPinIcon,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -27,7 +27,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Executive Branch',
       description:
         'The President, Vice President, and the Cabinet members who implement and enforce laws.',
-      icon: <Landmark className='h-4 w-4' />,
+      icon: <LandmarkIcon className='h-4 w-4' />,
       path: '/government/executive',
       color: 'bg-blue-600',
       hoverColor: 'hover:bg-blue-700',
@@ -37,7 +37,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Executive Departments',
       description:
         'Government departments and agencies responsible for specific areas of governance.',
-      icon: <Building2 className='h-4 w-4' />,
+      icon: <Building2Icon className='h-4 w-4' />,
       path: '/government/departments',
       color: 'bg-green-600',
       hoverColor: 'hover:bg-green-700',
@@ -47,7 +47,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Constitutional Bodies',
       description:
         'Independent bodies created by the Constitution with specific mandates.',
-      icon: <BookOpen className='h-4 w-4' />,
+      icon: <BookOpenIcon className='h-4 w-4' />,
       path: '/government/constitutional',
       color: 'bg-purple-600',
       hoverColor: 'hover:bg-purple-700',
@@ -57,7 +57,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Legislative Branch',
       description:
         'The Senate and House of Representatives that make laws and policies.',
-      icon: <GalleryVertical className='h-4 w-4' />,
+      icon: <GalleryVerticalIcon className='h-4 w-4' />,
       path: '/government/legislative',
       color: 'bg-amber-600',
       hoverColor: 'hover:bg-amber-700',
@@ -66,7 +66,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     {
       title: 'Local Government Units',
       description: 'Local government units of the Philippines.',
-      icon: <MapPin className='h-4 w-4' />,
+      icon: <MapPinIcon className='h-4 w-4' />,
       path: '/government/local',
       color: 'bg-pink-600',
       hoverColor: 'hover:bg-pink-700',
@@ -76,7 +76,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Diplomatic Missions',
       description:
         'Philippine embassies, consulates, and diplomatic missions around the world.',
-      icon: <Globe className='h-4 w-4' />,
+      icon: <GlobeIcon className='h-4 w-4' />,
       path: '/government/diplomatic',
       color: 'bg-red-600',
       hoverColor: 'hover:bg-red-700',

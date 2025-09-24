@@ -1,5 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Building, UserCheck, MessageSquare, Briefcase } from 'lucide-react';
+import {
+  BuildingIcon,
+  UserCheckIcon,
+  MessageSquareIcon,
+  BriefcaseIcon,
+} from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function ExecutiveSidebar() {
@@ -27,7 +32,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <BuildingIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Office of the President</span>
               </Link>
             </li>
@@ -40,7 +45,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <UserCheck className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <UserCheckIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Office of the Vice President</span>
               </Link>
             </li>
@@ -55,7 +60,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <MessageSquare className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <MessageSquareIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Presidential Communications Office</span>
               </Link>
             </li>
@@ -68,7 +73,7 @@ export default function ExecutiveSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Briefcase className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                <BriefcaseIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Other Executive Offices</span>
               </Link>
             </li>

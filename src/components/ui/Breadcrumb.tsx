@@ -1,6 +1,6 @@
+import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
@@ -120,7 +120,7 @@ const BreadcrumbSeparator = ({
     className={cn('text-muted-foreground', className)}
     {...props}
   >
-    {children || <ChevronRight className='h-4 w-4' />}
+    {children || <ChevronRightIcon className='h-4 w-4' />}
   </li>
 );
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
@@ -136,7 +136,7 @@ const BreadcrumbHome = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       )}
       {...props}
     >
-      <Home className='h-4 w-4' />
+      <HomeIcon className='h-4 w-4' />
       {children}
     </a>
   )
@@ -145,10 +145,10 @@ BreadcrumbHome.displayName = 'BreadcrumbHome';
 
 export {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 };
