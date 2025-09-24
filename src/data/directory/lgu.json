@@ -175,6 +175,17 @@
         }
       }
     ],
+    "municipalities": [
+      {
+        "municipality": "Pateros",
+        "mayor": {
+          "name": "GERALD S. GERMAN"
+        },
+        "vice_mayor": {
+          "name": "CARLO UMAGAT SANTOS"
+        }
+      }
+    ],
     "slug": "national-capital-region"
   },
   {
@@ -3340,6 +3351,18 @@
       },
       {
         "province": "BATAAN PROVINCE",
+        "cities": [
+          {
+            "city": "Balanga",
+            "zip_code": "2100",
+            "mayor": {
+              "name": "RAQUEL FRANCIS D. GARCIA"
+            },
+            "vice_mayor": {
+              "name": "FRANCIS ANTHONY S. GARCIA"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Abucay",
