@@ -86,17 +86,17 @@ const ReportModal: React.FC = () => {
         </DialogTrigger>
       </TooltipWrapper>
 
-      <DialogContent>
+      <DialogContent className='bg-white w-full'>
         <DialogHeader>
           <DialogTitle className='text-xl font-semibold text-gray-900'>
             Send a Report
           </DialogTitle>
-          <DialogDescription className='text-gray-600 mt-1'>
+          <DialogDescription className='text-gray-800 mt-1'>
             Help us keep the hotline information accurate. Please provide the
             updated details below.
           </DialogDescription>
         </DialogHeader>
-        <div>
+        <div className='w-full truncate px-1'>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(async data => {
@@ -136,7 +136,11 @@ const ReportModal: React.FC = () => {
 
                       <SelectContent className='w-[500px]'>
                         {getHotlines().map(hotline => (
-                          <SelectItem value={hotline.id!} key={hotline.id}>
+                          <SelectItem
+                            value={hotline.id!}
+                            key={hotline.id}
+                            className='w-full truncate'
+                          >
                             {hotline.name}
                           </SelectItem>
                         ))}
@@ -156,7 +160,7 @@ const ReportModal: React.FC = () => {
                     </div>
                     <Select
                       onValueChange={field.onChange}
-                      value={field.value}
+                      value={field.value ?? undefined}
                       disabled={!hotline}
                       name='outdated_hotline'
                     >
