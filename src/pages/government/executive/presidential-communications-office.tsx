@@ -11,7 +11,7 @@ import {
   CardList,
   CardTitle,
 } from '../../../components/ui/CardList';
-import executiveData from '../../../data/directory/executive.json';
+import { executiveData } from './data';
 
 const communicationsOffices = executiveData.filter(office =>
   office.office.toLowerCase().includes('communication')

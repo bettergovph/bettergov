@@ -8,7 +8,7 @@ import {
   CardGrid,
   CardTitle,
 } from '../../../components/ui/CardList';
-import executiveData from '../../../data/directory/executive.json';
+import { executiveData } from './data';
 
 const otherOffices = executiveData.filter(
   office =>

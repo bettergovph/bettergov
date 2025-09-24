@@ -11,7 +11,7 @@ import {
   CardList,
   CardTitle,
 } from '../../../components/ui/CardList';
-import executiveData from '../../../data/directory/executive.json';
+import { executiveData } from './data';
 
 const officeData = executiveData.find(
   office => office.office === 'OFFICE OF THE VICE PRESIDENT'
