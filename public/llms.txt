@@ -17,11 +17,48 @@ BetterGov.ph is an open-source platform that centralizes Philippine government i
 ## Main Sections
 
 ### Government Structure
-- Executive Branch: Office of the President, Vice President, Cabinet departments
-- Legislative Branch: Senate, House of Representatives, committees
-- Constitutional Bodies: Supreme Court, Ombudsman, Commission on Elections, etc.
-- Local Government Units: Regions, provinces, cities, municipalities
-- Diplomatic Missions: Embassies, consulates, international organizations
+BetterGov.ph provides detailed information about all branches of the Philippine government:
+
+#### Executive Branch
+- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)
+- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)
+- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)
+- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)
+
+#### Government Departments
+- BUDGET AND MANAGEMENT (https://bettergov.ph/government/departments/department-of-budget-and-management)
+- AGRICULTURE (https://bettergov.ph/government/departments/department-of-agriculture)
+- AGRARIAN REFORM (https://bettergov.ph/government/departments/department-of-agrarian-reform)
+- EDUCATION (https://bettergov.ph/government/departments/department-of-education)
+- ENERGY (https://bettergov.ph/government/departments/department-of-energy)
+- ENVIRONMENT AND NATURAL RESOURCES (https://bettergov.ph/government/departments/department-of-environment-and-natural-resources)
+- FINANCE (https://bettergov.ph/government/departments/department-of-finance)
+- FOREIGN AFFAIRS (https://bettergov.ph/government/departments/department-of-foreign-affairs)
+- HEALTH (https://bettergov.ph/government/departments/department-of-health)
+- HUMAN SETTLEMENTS AND URBAN DEVELOPMENT (https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development)
+- ... and 13 more departments (https://bettergov.ph/government/departments)
+
+#### Constitutional Bodies
+- Civil Service Commission (CSC) (https://bettergov.ph/government/constitutional/civil-service-commission-csc)
+- Commission on Audit (COA) (https://bettergov.ph/government/constitutional/commission-on-audit-coa)
+- Commission on Elections (COMELEC) (https://bettergov.ph/government/constitutional/commission-on-elections-comelec)
+- Commission on Human Rights (CHR) (https://bettergov.ph/government/constitutional/commission-on-human-rights-chr)
+- Office of the Ombudsman (https://bettergov.ph/government/constitutional/office-of-the-ombudsman)
+- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)
+- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)
+
+#### Legislative Branch
+- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)
+- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)
+- House Members Directory (https://bettergov.ph/government/legislative/house-members)
+- Party List Members (https://bettergov.ph/government/legislative/party-list-members)
+- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)
+
+#### Diplomatic Missions
+- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)
+- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)
+- International Organizations (https://bettergov.ph/government/diplomatic/organizations)
+
 
 ### Services Directory
 Our comprehensive services are organized into the following categories:
@@ -112,10 +149,52 @@ https://bettergov.ph/flood-control-projects/map
 https://bettergov.ph/flood-control-projects/table
 https://bettergov.ph/government
 https://bettergov.ph/government/constitutional
+https://bettergov.ph/government/constitutional/civil-service-commission-csc
+https://bettergov.ph/government/constitutional/commission-on-audit-coa
+https://bettergov.ph/government/constitutional/commission-on-elections-comelec
+https://bettergov.ph/government/constitutional/commission-on-human-rights-chr
+https://bettergov.ph/government/constitutional/goccs
+https://bettergov.ph/government/constitutional/office-of-the-ombudsman
+https://bettergov.ph/government/constitutional/sucs
 https://bettergov.ph/government/departments
+https://bettergov.ph/government/departments/department-of-agrarian-reform
+https://bettergov.ph/government/departments/department-of-agriculture
+https://bettergov.ph/government/departments/department-of-budget-and-management
+https://bettergov.ph/government/departments/department-of-education
+https://bettergov.ph/government/departments/department-of-energy
+https://bettergov.ph/government/departments/department-of-environment-and-natural-resources
+https://bettergov.ph/government/departments/department-of-finance
+https://bettergov.ph/government/departments/department-of-foreign-affairs
+https://bettergov.ph/government/departments/department-of-health
+https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development
+https://bettergov.ph/government/departments/department-of-information-and-communications-technology
+https://bettergov.ph/government/departments/department-of-justice
+https://bettergov.ph/government/departments/department-of-labor-and-employment
+https://bettergov.ph/government/departments/department-of-migrant-workers
+https://bettergov.ph/government/departments/department-of-national-defense
+https://bettergov.ph/government/departments/department-of-public-works-and-highways
+https://bettergov.ph/government/departments/department-of-science-and-technology
+https://bettergov.ph/government/departments/department-of-social-welfare-and-development
+https://bettergov.ph/government/departments/department-of-the-interior-and-local-government
+https://bettergov.ph/government/departments/department-of-tourism
+https://bettergov.ph/government/departments/department-of-trade-and-industry
+https://bettergov.ph/government/departments/department-of-transportation
+https://bettergov.ph/government/departments/national-economic-and-development-authority
 https://bettergov.ph/government/diplomatic
+https://bettergov.ph/government/diplomatic/consulates
+https://bettergov.ph/government/diplomatic/missions
+https://bettergov.ph/government/diplomatic/organizations
 https://bettergov.ph/government/executive
+https://bettergov.ph/government/executive/office-of-the-president
+https://bettergov.ph/government/executive/office-of-the-vice-president
+https://bettergov.ph/government/executive/other-executive-offices
+https://bettergov.ph/government/executive/presidential-communications-office
 https://bettergov.ph/government/legislative
+https://bettergov.ph/government/legislative/house-members
+https://bettergov.ph/government/legislative/house-of-representatives-20th-congress
+https://bettergov.ph/government/legislative/party-list-members
+https://bettergov.ph/government/legislative/senate-committees
+https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress
 https://bettergov.ph/government/local
 https://bettergov.ph/government/salary-grade
 https://bettergov.ph/philippines

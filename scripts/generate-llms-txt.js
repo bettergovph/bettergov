@@ -17,6 +17,26 @@ const serviceCategoriesPath = path.join(
   __dirname,
   '../src/data/service_categories.json'
 );
+const departmentsPath = path.join(
+  __dirname,
+  '../src/data/directory/departments.json'
+);
+const constitutionalPath = path.join(
+  __dirname,
+  '../src/data/directory/constitutional.json'
+);
+const legislativePath = path.join(
+  __dirname,
+  '../src/data/directory/legislative.json'
+);
+const diplomaticPath = path.join(
+  __dirname,
+  '../src/data/directory/diplomatic.json'
+);
+const executivePath = path.join(
+  __dirname,
+  '../src/data/directory/executive.json'
+);
 
 // Static navigation data (extracted from navigation.ts to avoid import issues)
 const mainNavigation = [
@@ -78,6 +98,15 @@ function loadData() {
     const serviceCategoriesRaw = fs.readFileSync(serviceCategoriesPath, 'utf8');
     const serviceCategories = JSON.parse(serviceCategoriesRaw);
 
+    // Import government directory data
+    const departments = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
+    const constitutional = JSON.parse(
+      fs.readFileSync(constitutionalPath, 'utf8')
+    );
+    const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
+    const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
+    const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
     if (servicesNav) {
@@ -87,15 +116,130 @@ function loadData() {
       }));
     }
 
-    return { mainNavigation, serviceCategories };
+    return {
+      mainNavigation,
+      serviceCategories,
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    };
   } catch (error) {
     console.error('Error loading data:', error);
     process.exit(1);
   }
 }
 
-// Function to generate sitemap URLs
-function generateSitemap(mainNavigation) {
+// Function to generate government directory information
+function generateGovernmentDirectory(governmentData) {
+  const sections = [];
+
+  // Executive Branch
+  sections.push('#### Executive Branch');
+  sections.push(
+    '- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)'
+  );
+  sections.push(
+    '- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)'
+  );
+  sections.push(
+    '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
+  );
+  sections.push(
+    '- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)'
+  );
+  sections.push('');
+
+  // Departments
+  sections.push('#### Government Departments');
+  if (governmentData.departments && Array.isArray(governmentData.departments)) {
+    const majorDepartments = governmentData.departments.slice(0, 10); // Show first 10 departments
+    majorDepartments.forEach(dept => {
+      if (dept.slug && dept.office_name) {
+        const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
+        sections.push(
+          `- ${deptName} (https://bettergov.ph/government/departments/${encodeURIComponent(dept.slug)})`
+        );
+      }
+    });
+    if (governmentData.departments.length > 10) {
+      sections.push(
+        `- ... and ${governmentData.departments.length - 10} more departments (https://bettergov.ph/government/departments)`
+      );
+    }
+  }
+  sections.push('');
+
+  // Constitutional Bodies
+  sections.push('#### Constitutional Bodies');
+  if (
+    governmentData.constitutional &&
+    Array.isArray(governmentData.constitutional)
+  ) {
+    const constitutionalOffices = governmentData.constitutional
+      .filter(
+        office =>
+          office.slug &&
+          !office.office_type?.includes('Government-Owned') &&
+          !office.office_type?.includes('GOCCs') &&
+          !office.office_type?.includes('State Universities') &&
+          !office.office_type?.includes('SUCs')
+      )
+      .slice(0, 8); // Show first 8 constitutional offices
+
+    constitutionalOffices.forEach(office => {
+      sections.push(
+        `- ${office.name || office.office_name} (https://bettergov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
+      );
+    });
+
+    sections.push(
+      '- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)'
+    );
+    sections.push(
+      '- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)'
+    );
+  }
+  sections.push('');
+
+  // Legislative Branch
+  sections.push('#### Legislative Branch');
+  sections.push(
+    '- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)'
+  );
+  sections.push(
+    '- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)'
+  );
+  sections.push(
+    '- House Members Directory (https://bettergov.ph/government/legislative/house-members)'
+  );
+  sections.push(
+    '- Party List Members (https://bettergov.ph/government/legislative/party-list-members)'
+  );
+  sections.push(
+    '- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)'
+  );
+  sections.push('');
+
+  // Diplomatic Missions
+  sections.push('#### Diplomatic Missions');
+  sections.push(
+    '- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)'
+  );
+  sections.push(
+    '- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)'
+  );
+  sections.push(
+    '- International Organizations (https://bettergov.ph/government/diplomatic/organizations)'
+  );
+  sections.push('');
+
+  return sections;
+}
+
+// Function to generate enhanced sitemap URLs
+function generateSitemap(mainNavigation, governmentData) {
   const siteUrl = 'https://bettergov.ph';
   const pages = new Set();
 
@@ -130,6 +274,78 @@ function generateSitemap(mainNavigation) {
     }
   });
 
+  // Add detailed government pages
+  if (governmentData) {
+    // Executive branch pages
+    pages.add(`${siteUrl}/government/executive/office-of-the-president`);
+    pages.add(`${siteUrl}/government/executive/office-of-the-vice-president`);
+    pages.add(
+      `${siteUrl}/government/executive/presidential-communications-office`
+    );
+    pages.add(`${siteUrl}/government/executive/other-executive-offices`);
+
+    // Department pages
+    if (
+      governmentData.departments &&
+      Array.isArray(governmentData.departments)
+    ) {
+      governmentData.departments.forEach(dept => {
+        if (dept.slug) {
+          pages.add(
+            `${siteUrl}/government/departments/${encodeURIComponent(dept.slug)}`
+          );
+        }
+      });
+    }
+
+    // Constitutional office pages
+    if (
+      governmentData.constitutional &&
+      Array.isArray(governmentData.constitutional)
+    ) {
+      const constitutionalOffices = governmentData.constitutional.filter(
+        office =>
+          office.slug &&
+          !office.office_type?.includes('Government-Owned') &&
+          !office.office_type?.includes('GOCCs') &&
+          !office.office_type?.includes('State Universities') &&
+          !office.office_type?.includes('SUCs')
+      );
+
+      constitutionalOffices.forEach(office => {
+        pages.add(
+          `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`
+        );
+      });
+
+      pages.add(`${siteUrl}/government/constitutional/goccs`);
+      pages.add(`${siteUrl}/government/constitutional/sucs`);
+    }
+
+    // Legislative pages
+    pages.add(`${siteUrl}/government/legislative/house-members`);
+    pages.add(`${siteUrl}/government/legislative/party-list-members`);
+    pages.add(`${siteUrl}/government/legislative/senate-committees`);
+
+    if (
+      governmentData.legislative &&
+      Array.isArray(governmentData.legislative)
+    ) {
+      governmentData.legislative.forEach(chamber => {
+        if (chamber.slug) {
+          pages.add(
+            `${siteUrl}/government/legislative/${encodeURIComponent(chamber.slug)}`
+          );
+        }
+      });
+    }
+
+    // Diplomatic pages
+    pages.add(`${siteUrl}/government/diplomatic/missions`);
+    pages.add(`${siteUrl}/government/diplomatic/consulates`);
+    pages.add(`${siteUrl}/government/diplomatic/organizations`);
+  }
+
   return Array.from(pages).sort();
 }
 
@@ -152,14 +368,19 @@ function generateServicesDirectory(serviceCategories) {
 }
 
 // Main function to generate llms.txt content
-function generateLlmsContent(mainNavigation, serviceCategories) {
+function generateLlmsContent(
+  mainNavigation,
+  serviceCategories,
+  governmentData
+) {
   const siteName = 'BetterGov.ph';
   const siteUrl = 'https://bettergov.ph';
   const description =
     'A comprehensive portal for Philippine government services, information, and resources';
 
-  const sitemap = generateSitemap(mainNavigation);
+  const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);
+  const governmentDirectory = generateGovernmentDirectory(governmentData);
 
   return `# ${siteName}
 
@@ -180,11 +401,9 @@ BetterGov.ph is an open-source platform that centralizes Philippine government i
 ## Main Sections
 
 ### Government Structure
-- Executive Branch: Office of the President, Vice President, Cabinet departments
-- Legislative Branch: Senate, House of Representatives, committees
-- Constitutional Bodies: Supreme Court, Ombudsman, Commission on Elections, etc.
-- Local Government Units: Regions, provinces, cities, municipalities
-- Diplomatic Missions: Embassies, consulates, international organizations
+BetterGov.ph provides detailed information about all branches of the Philippine government:
+
+${governmentDirectory.join('\n')}
 
 ### Services Directory
 Our comprehensive services are organized into the following categories:
@@ -252,10 +471,31 @@ function main() {
 
   try {
     // Load data
-    const { mainNavigation, serviceCategories } = loadData();
+    const {
+      mainNavigation,
+      serviceCategories,
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    } = loadData();
+
+    // Prepare government data object
+    const governmentData = {
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    };
 
     // Generate content
-    const content = generateLlmsContent(mainNavigation, serviceCategories);
+    const content = generateLlmsContent(
+      mainNavigation,
+      serviceCategories,
+      governmentData
+    );
 
     // Define output path (public directory)
     const outputPath = path.join(__dirname, '../public/llms.txt');
