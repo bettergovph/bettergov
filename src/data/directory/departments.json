@@ -3613,40 +3613,40 @@
     "trunkline": "(02) 8920-0101",
     "website": "www.dict.gov.ph",
     "secretary": {
-      "name": "IVAN JOHN E. UY",
-      "contact": "loc. 1000, 1005, 1006",
-      "email": "ivan.uy@dict.gov.ph"
+      "name": "HENRY RHOEL R. AGUDA",
+      "contact": "loc. 1009/1005/1001",
+      "email": "henry.aguda@dict.gov.ph"
     },
     "undersecretaries": [
       {
-        "name": "PAUL JOSEPH V. MERCADO",
+        "name": "CHRISTINA FAYE M. CONDEZ-DE SAGON",
         "role": "Special Concerns",
         "contact": "loc. 1006",
-        "email": "paul.mercado@dict.gov.ph"
+        "email": "christina.condez@dict.gov.ph"
+      },
+      {
+        "name": "SARAH MARIA Q. SISON",
+        "role": "Policy, Legal, and Communications",
+        "contact": "loc. 1099",
+        "email": "sarah.sison@dict.gov.ph"
       },
       {
         "name": "HEHERSON M. ASIDDAO",
         "role": "Support Services",
-        "contact": "loc. 2801; 1081",
+        "contact": "loc. 2801",
         "email": "herson.asiddao@dict.gov.ph"
       },
       {
-        "name": "JEFFREY IAN C. DY",
-        "role": "Infrostructure Management, Cybersecurity and Upskilling",
-        "contact": "loc. 1804",
-        "email": "jeffrey.dy@dict.gov.ph"
-      },
-      {
-        "name": "DAVID L. ALMIROL",
+        "name": "DAVID L. ALMIROL JR.",
         "role": "e-Government",
         "contact": "loc. 1090",
         "email": "david.almirol@dict.gov.ph"
       },
       {
-        "name": "JOCELLE E. BATAPA-SIGUE",
-        "role": "ICT Industry Development",
-        "contact": "loc. 1301",
-        "email": "jocelle.sigue@dict.gov.ph"
+        "name": "GERALD JAMES B. REYES",
+        "role": "Internal and Legacy Systems",
+        "contact": "",
+        "email": "gerald.reyes@dict.gov.ph"
       }
     ],
     "assistant_secretaries": [
@@ -3657,163 +3657,339 @@
         "email": "gerald.reyes@dict.gov.ph"
       },
       {
-        "name": "MARIA TERESA M. CAMBA",
-        "role": "Regional Development",
-        "contact": "loc. 1201",
-        "email": "tess.camba@dict.gov.ph"
-      },
-      {
         "name": "PHILIP A. VARILLA",
-        "role": "Infrostructure Development",
+        "role": "Infostructure Management",
         "contact": "loc. 1309",
         "email": "philip.varilla@dict.gov.ph"
       },
       {
         "name": "WILROY V. TICZON",
-        "role": "Consumer Protection",
+        "role": "Upskilling and Consumer Protection",
         "contact": "loc. 1832",
         "email": "wilroy.ticzon@dict.gov.ph"
       },
       {
-        "name": "EDWIN S. LIGOT",
+        "name": "LUIS MIGUEL B. PLANAS",
         "role": "Management Information Systems Service",
-        "contact": "loc. 1091",
-        "email": "edwin.ligot@dict.gov.ph"
+        "contact": "loc. 1099",
+        "email": "luis.planas@dict.gov.ph"
       },
       {
-        "name": "RENATO A. PARAISO",
-        "role": "Legal Affairs",
-        "contact": "loc. 6099",
-        "email": "aboy.paraiso@dict.gov.ph"
+        "name": "CELINE A. DEE",
+        "role": "Special Concerns",
+        "contact": "loc. 1301",
+        "email": "celine.dee@dict.gov.ph"
+      }
+    ],
+    "directors": [
+      {
+        "name": "JOSHUA EMMANUEL T. RAMOS",
+        "role": "Director III - Office of the Undersecretary for Special Concerns",
+        "contact": "loc. 1006",
+        "email": "joshua.ramos@dict.gov.ph"
+      },
+      {
+        "name": "FATIMA MAY D. NICOLAS",
+        "role": "Director I - Office of the Assistant Secretary for Special Concerns",
+        "contact": "loc. 1301",
+        "email": "fatima.nicolas@dict.gov.ph"
+      },
+      {
+        "name": "BERNADINE LOUISE C. TAN",
+        "role": "Director I - Office of the Assistant Secretary for Special Concerns",
+        "contact": "loc. 1301",
+        "email": "bernadine.tan@dict.gov.ph"
       }
     ],
     "bureaus": [
       {
         "name": "CYBERSECURITY BUREAU",
-        "director": "JOSE CARLOS P. REYES",
-        "contact": "loc. 1802",
-        "email": "josecarlos.reyes@dict.gov.ph"
+        "officer_in_charge": "RODIL M. ANIBAN",
+        "contact": "loc. 9077/9078",
+        "email": "rodil.aniban@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "Critical Infostructure Evaluation and Cybersecurity Standards Division",
+            "head": "CHRISTINE APPLE B. PRE",
+            "contact": "loc. 1802",
+            "email": "christine.pre@dict.gov.ph"
+          },
+          {
+            "name": "Digital Certificate Division",
+            "head": "JERRY INFELIZ",
+            "contact": "loc. 2530",
+            "email": "jerry.infeliz@dict.gov.ph"
+          },
+          {
+            "name": "National Computer Emergency Response Team Division",
+            "head": "ZARENO RENO P. TOPACIO",
+            "contact": "loc. 1708/2379/6762/2500/2318",
+            "email": "zareno.topacio@dict.gov.ph"
+          }
+        ]
       },
       {
         "name": "GOVERNMENT DIGITAL TRANSFORMATION BUREAU",
         "officer_in_charge": "JUNE VINCENT MANUEL S. GAUDAN",
         "contact": "loc. 1024",
-        "email": "june.gaudan@dict.gov.ph"
+        "email": "june.gaudan@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "Development, Test and Project Management Teams",
+            "head": "RACHEL ANN P. GRABADOR",
+            "contact": "loc. 1502/1506",
+            "email": "rachel.grabador@dict.gov.ph"
+          },
+          {
+            "name": "eGovernment Program Management Division",
+            "head": "DELIA E. BASADA",
+            "contact": "loc. 1503/1505",
+            "email": "delia.basada@dict.gov.ph"
+          },
+          {
+            "name": "Government Systems Strategic Program Division",
+            "head": "LUDIVINA B. GENIO",
+            "contact": "loc. 6106",
+            "email": "ludivina.genio@dict.gov.ph"
+          },
+          {
+            "name": "ICT Infostructure and Connectivity Division",
+            "head": "GEORBEN A. TORRALBA",
+            "contact": "loc. 6105",
+            "email": "georben.torralba@dict.gov.ph"
+          }
+        ]
       },
       {
         "name": "ICT INDUSTRY DEVELOPMENT BUREAU",
         "director": "EMMY LOU V. DELFIN",
-        "contact": "loc. 1102; 3003",
-        "email": "emmy.delfin@dict.gov.ph"
+        "contact": "loc. 1102/3003",
+        "email": "emmy.delfin@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "ICT Industry Benchmarking and Promotions Division",
+            "head": "YVETTE M. CABRERA",
+            "contact": "loc. 1102/2003/3003",
+            "email": "yvette.cabrera@dict.gov.ph"
+          },
+          {
+            "name": "ICT Industry Ecosystem Development Division",
+            "head": "CHRISTINE MILES A. LABERINTO",
+            "contact": "loc. 1101/2003",
+            "email": "christine.laberinto@dict.gov.ph"
+          }
+        ]
       },
       {
         "name": "ICT LITERACY AND COMPETENCY DEVELOPMENT BUREAU",
-        "director": "JIMMICIO A. DAOATEN",
+        "director": "JENNALYN G. RAVIZ",
         "contact": "loc. 2651",
-        "email": "teresa.garcia@dict.gov.ph"
+        "email": "jennalyn.raviz@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "Competency, Certification and Courseware Development Division",
+            "head": "ENRICO A. TOLEDO",
+            "contact": "loc. 2651",
+            "email": "enrico.toledo@dict.gov.ph"
+          },
+          {
+            "name": "Educational Program Management Division",
+            "head": "MARY JANE V. LIMA",
+            "contact": "loc. 2651",
+            "email": "maryjane.lima@dict.gov.ph"
+          },
+          {
+            "name": "Training Management Division",
+            "head": "ANGELI B. BELEN",
+            "contact": "loc. 2651 Landline: 8-292-0703(Valenzuela Office)",
+            "email": "angeli.belen@dict.gov.ph"
+          }
+        ]
       },
       {
         "name": "INFOSTRUCTURE MANAGEMENT BUREAU",
         "director": "DENNIS E. MORALES",
         "contact": "loc. 1023",
-        "email": "frederico.trinidad@dict.gov.ph"
+        "email": "dennis.morales@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "Core ICT Infrastructure Management Division",
+            "head": "FREDERICK G. DE GUZMAN",
+            "contact": "loc. 2413/6622/6621/2410/6627/6628",
+            "email": "frederick.deguzman@dict.gov.ph"
+          },
+          {
+            "name": "Data Center Management Division",
+            "head": "MARIO ELMER G. CUNANAN",
+            "contact": "loc. 1701/1709/2422/2428/3301 (DCMD Guard)",
+            "email": "mario.cunanan@dict.gov.ph"
+          },
+          {
+            "name": "Government Online Services Division",
+            "head": "MARIO ELMER G. CUNANAN",
+            "contact": "loc. 1703/2432/2433",
+            "email": "mario.cunanan@dict.gov.ph"
+          },
+          {
+            "name": "Disaster Risk Reduction Management Division",
+            "head": "RAFAEL L. OLIVAR",
+            "contact": "loc. 2430",
+            "email": "rafael.olivar@dict.gov.ph"
+          }
+        ]
       },
       {
         "name": "NATIONAL ICT PLANNING, POLICY, AND STANDARDS BUREAU",
         "director": "MARIA VICTORIA C. CASTRO",
-        "contact": "loc. 1003; 2030",
-        "email": "mariavictoria.castro@dict.gov.ph"
+        "contact": "loc. 1003/2030",
+        "email": "mariavictoria.castro@dict.gov.ph",
+        "divisions": [
+          {
+            "name": "Plans and Policy Development Division",
+            "head": "GEORGE P. TARDIO",
+            "contact": "loc. 2010/3102",
+            "email": "george.tardio@dict.gov.ph"
+          },
+          {
+            "name": "Policy Research and Analysis Division",
+            "head": "ALBERTO B. SALVADOR JR.",
+            "contact": "loc. 2030",
+            "email": "alberto.salvador@dict.gov.ph"
+          },
+          {
+            "name": "Plans and Policy Management, Coordination and Advocacy Division",
+            "head": "MARIA ANDREA A. HERNANDEZ-LARA",
+            "contact": "loc. 1031",
+            "email": "maria.hernandez@dict.gov.ph"
+          },
+          {
+            "name": "Plans and Policy Monitoring and Evaluation Division",
+            "head": "RUTH E. MONTES",
+            "contact": "loc. 3104",
+            "email": "ruth.montes@dict.gov.ph"
+          }
+        ]
       }
     ],
     "regional_offices": [
       {
         "region": "CAR",
-        "director": "REYNALDO T. SY",
+        "director": "JIMMICIO S. DAOATEN",
         "contact": "(074) 442 4616",
-        "email": "rey.sy@dict.gov.ph"
+        "email": "jimmicio.daoaten@dict.gov.ph",
+        "address": "DICT Compound, Polo Field St Joseph Village, Baguio City"
       },
       {
-        "region": "Region 1",
+        "region": "Region I - Ilocos",
         "director": "JUNE VINCENT MANUEL S. GAUDAN",
-        "contact": "(074) 442-4616",
-        "email": "june.gaudan@dict.gov.ph"
+        "contact": "(072) 610 4880",
+        "email": "june.gaudan@dict.gov.ph",
+        "address": "DMMMSU OUS, Catbangen, San Fernando, La Union"
       },
       {
-        "region": "Region II",
+        "region": "Region II - Cagayan",
         "director": "PINKY T. JIMENEZ",
-        "contact": "(044) 792-3743",
-        "email": "pinky.jimenez@dict.gov.ph"
+        "contact": "(078) 825 1624",
+        "email": "pinky.jimenez@dict.gov.ph",
+        "address": "#2 Bagay Road, San Gabriel Village, Tuguegarao City, Cagayan 3500"
       },
       {
-        "region": "Region III",
+        "region": "Region III - Central Luzon",
         "director": "ANTONIO EDWARD E. PADRE",
-        "contact": "(044) 792-3743",
-        "email": "antonio.padre@dict.gov.ph"
+        "contact": "(044) 792 3743",
+        "email": "antonio.padre@dict.gov.ph",
+        "address": "3rd Flr. Marison Square Bldg. Cagayan Valley Road Brgy. Sta. Rita Guiguinto, Bulacan"
       },
       {
-        "region": "Region IV-A",
-        "director": "FELIX S. TABANAO JR.",
+        "region": "Region IV-A - CALABARZON",
+        "officer_in_charge": "RENIEL A. VILLAFLOR",
         "contact": "(043) 773 0275",
-        "email": "felix.tabanao@dict.gov.ph"
+        "email": "reniel.villaflor@dict.gov.ph",
+        "address": "DICT Compound Telecom Road, Capitol Site, Brgy. Kumintang Ibaba , Batangas City 4200"
       },
       {
-        "region": "MIMAROPA",
+        "region": "Region IV-B - MIMAROPA",
         "director": "EMMY LOU V. DELFIN",
-        "contact": "(043) 773 0275",
-        "email": "emmy.delfin@dict.gov.ph"
+        "contact": "(043) 723 4323",
+        "email": "emmy.delfin@dict.gov.ph",
+        "address": "DICT Compound Telecom Road, Capitol Site, Brgy. Kumintang Ibaba , Batangas City 4200"
       },
       {
-        "region": "Region V",
+        "region": "Region V - Bicol Region",
         "officer_in_charge": "RACHEL ANN P. GRABADOR",
-        "contact": "(043) 773 0275",
-        "email": "che.grabador@dict.gov.ph"
+        "contact": "091-5402-1139",
+        "email": "rachel.grabador@dict.gov.ph",
+        "address": "DICT Regional Office V,2nd Floor Post-Telecom Building Lapu-Lapu St., Brgy 25 Lapu-Lapu Legazpi City, Albay"
       },
       {
-        "region": "Region VI",
-        "director": "RALPH JOSEPH C. MONCATAR",
-        "contact": "(033) 337-7069",
-        "email": "rj.moncatar@dict.gov.ph"
+        "region": "Region VI - Western Visayas",
+        "director": "REYNALDO T. SY",
+        "contact": "(033) 337 7069/ (033) 337 0583",
+        "email": "reynaldo.sy@dict.gov.ph",
+        "address": "Zamora Street, Iloilo City"
       },
       {
-        "region": "Region VII",
+        "region": "Region VII - Central Visayas",
         "director": "FREDERICK DC. AMORES",
-        "contact": "(053) 888-0700",
-        "email": "frederick.amores@dict.gov.ph"
+        "contact": "8-920-0101 loc. 9021",
+        "email": "frederick.amores@dict.gov.ph",
+        "address": "Old TELOF Building, Pigafetta Street, Brgy. San Roque, Port Area, Cebu City"
       },
       {
-        "region": "Region VIII",
+        "region": "Region VII - Central Visayas",
+        "assistant_director": "RAMIL JEFF N. TABOSO",
+        "contact": "8-920-0101 loc. 9021",
+        "email": "ramil.taboso@dict.gov.ph",
+        "address": "Old TELOF Building, Pigafetta Street, Brgy. San Roque, Port Area, Cebu City"
+      },
+      {
+        "region": "Region VIII - Eastern Visayas",
         "officer_in_charge": "MELVYN CARLO T. BARROA",
-        "contact": "(053) 888-0700",
-        "email": "melvyn.baroa@dict.gov.ph"
+        "contact": "(053) 832 4127",
+        "email": "melvyn.barroa@dict.gov.ph",
+        "address": "DICT Regional Office 8, A. Mabini St., Port Area, Tacloban City, Leyte, 6500"
       },
       {
-        "region": "Region IX",
+        "region": "Region IX - Zamboanga Peninsula",
         "director": "CHERYL C. ORTEGA",
-        "contact": "(062) 991-2742",
-        "email": "cheryl.ortega@dict.gov.ph"
+        "contact": "(062) 991 2742/ (062) 310 0980",
+        "email": "cheryl.ortega@dict.gov.ph",
+        "address": "DICT Bldg., Corcuerra Ext., Port Area, Zamboanga City, 7000"
       },
       {
-        "region": "Region X",
+        "region": "Region X - Northern Mindanao",
         "director": "SITTIE RAHMA V. ALAWI",
-        "contact": "(088) 880-1761",
-        "email": "sittierahma.alawi@dict.gov.ph"
+        "contact": "(088) 567 2981",
+        "email": "sittierahma.alawi@dict.gov.ph",
+        "address": "DICT Villarin Street Carmen Cagayan de Oro City"
       },
       {
-        "region": "Region XI",
+        "region": "Region XI - Davao",
         "director": "EVAMAY C. DELA ROSA",
-        "contact": "(082) 305 8567",
-        "email": "evamay.delarosa@dict.gov.ph"
+        "contact": "(082) 291 2255",
+        "email": "evamay.delarosa@dict.gov.ph",
+        "address": "DICT Region XI, F. Torres St.,Davao City (Telecom Ofc Cmpd)"
       },
       {
-        "region": "Region XII",
-        "officer_in_charge": "IBRAHIM B. GUIAPAR JR.",
-        "contact": "(082) 305 8567",
-        "email": "ibrahim.guiapar@dict.gov.ph"
+        "region": "Region XII - SOCCSKSARGEN",
+        "director": "IBRAHIM B. GUIAPAR JR.",
+        "contact": "(083) 520 1698",
+        "email": "ibrahim.guiapar@dict.gov.ph",
+        "address": "DICT OFFICE XII, AZ Bldg., Amorao Subd., Brgy Sta. Cruz, Koronadal City"
       },
       {
-        "region": "CARAGA",
-        "officer_in_charge": "MARIO P. CUÑADO",
-        "email": "mario.cunado@dict.gov.ph"
+        "region": "Region XIII - CARAGA",
+        "director": "MARIO P. CUÑADO",
+        "contact": "(085) 817 2011",
+        "email": "mario.cunado@dict.gov.ph",
+        "address": "DICT Caraga Regional Office. J. Rosales Avenue, Butuan City"
+      },
+      {
+        "region": "DICT Negros Island Region",
+        "officer_in_charge": "RAMIL JEFF N. TABOSO",
+        "contact": "",
+        "email": "ramil.taboso@dict.gov.ph",
+        "address": ""
       }
     ],
     "attached_agencies": [
@@ -3835,9 +4011,9 @@
       },
       {
         "name": "CYBERCRIME INVESTIGATION AND COORDINATING CENTER",
-        "executive_director": "ALEXANDER K. RAMOS",
+        "acting_executive_director": "ATTY. RENATO A. PARAISO",
         "address": "49 Roces Ave., Barangay Paligsahan, Quezon City",
-        "email": "exedir1@cicc.gov.ph",
+        "email": "aboy.paraiso@cicc.gov.ph",
         "website": "www.cicc.gov.ph"
       }
     ]
