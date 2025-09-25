@@ -1,0 +1,262 @@
+# BetterGov.ph
+
+## About
+A comprehensive portal for Philippine government services, information, and resources
+
+BetterGov.ph is an open-source platform that centralizes Philippine government information, services, and resources. Our mission is to make government services more accessible and transparent for Filipino citizens and visitors.
+
+## Key Features
+- Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
+- Real-time data widgets (weather, forex rates)
+- Emergency hotlines and public services directory
+- Flood control projects visualization and data
+- Multi-language support (English, Filipino, and regional languages)
+- Search functionality across all government services
+- Travel and visa information for the Philippines
+
+## Main Sections
+
+### Government Structure
+BetterGov.ph provides detailed information about all branches of the Philippine government:
+
+#### Executive Branch
+- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)
+- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)
+- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)
+- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)
+
+#### Government Departments
+- BUDGET AND MANAGEMENT (https://bettergov.ph/government/departments/department-of-budget-and-management)
+- AGRICULTURE (https://bettergov.ph/government/departments/department-of-agriculture)
+- AGRARIAN REFORM (https://bettergov.ph/government/departments/department-of-agrarian-reform)
+- EDUCATION (https://bettergov.ph/government/departments/department-of-education)
+- ENERGY (https://bettergov.ph/government/departments/department-of-energy)
+- ENVIRONMENT AND NATURAL RESOURCES (https://bettergov.ph/government/departments/department-of-environment-and-natural-resources)
+- FINANCE (https://bettergov.ph/government/departments/department-of-finance)
+- FOREIGN AFFAIRS (https://bettergov.ph/government/departments/department-of-foreign-affairs)
+- HEALTH (https://bettergov.ph/government/departments/department-of-health)
+- HUMAN SETTLEMENTS AND URBAN DEVELOPMENT (https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development)
+- ... and 13 more departments (https://bettergov.ph/government/departments)
+
+#### Constitutional Bodies
+- Civil Service Commission (CSC) (https://bettergov.ph/government/constitutional/civil-service-commission-csc)
+- Commission on Audit (COA) (https://bettergov.ph/government/constitutional/commission-on-audit-coa)
+- Commission on Elections (COMELEC) (https://bettergov.ph/government/constitutional/commission-on-elections-comelec)
+- Commission on Human Rights (CHR) (https://bettergov.ph/government/constitutional/commission-on-human-rights-chr)
+- Office of the Ombudsman (https://bettergov.ph/government/constitutional/office-of-the-ombudsman)
+- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)
+- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)
+
+#### Legislative Branch
+- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)
+- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)
+- House Members Directory (https://bettergov.ph/government/legislative/house-members)
+- Party List Members (https://bettergov.ph/government/legislative/party-list-members)
+- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)
+
+#### Diplomatic Missions
+- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)
+- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)
+- International Organizations (https://bettergov.ph/government/diplomatic/organizations)
+
+
+### Services Directory
+Our comprehensive services are organized into the following categories:
+- Business and Trade (https://bettergov.ph/services?category=business-trade)
+  - Business Copyright, Trademark and Patent (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
+  - Business Registration, Certificates and Compliance (https://bettergov.ph/services?category=business-trade&subcategory=business-registration)
+  - Complaints (https://bettergov.ph/services?category=business-trade&subcategory=complaints)
+  - Import and Export (https://bettergov.ph/services?category=business-trade&subcategory=import-export)
+  - Price Control Monitoring (https://bettergov.ph/services?category=business-trade&subcategory=price-control)
+  - Financial Assistance (https://bettergov.ph/services?category=business-trade&subcategory=financial-assistance)
+- Certificates and IDs (https://bettergov.ph/services?category=certificates-ids)
+  - Certificates (https://bettergov.ph/services?category=certificates-ids&subcategory=certificates)
+  - Clearances (https://bettergov.ph/services?category=certificates-ids&subcategory=clearances)
+  - ID (https://bettergov.ph/services?category=certificates-ids&subcategory=id)
+  - Voters (https://bettergov.ph/services?category=certificates-ids&subcategory=voters)
+- Contributions (https://bettergov.ph/services?category=contributions)
+  - Benefits Registration (https://bettergov.ph/services?category=contributions&subcategory=benefits-registration)
+  - Salary Loans (https://bettergov.ph/services?category=contributions&subcategory=salary-loans)
+- Disaster and Weather (https://bettergov.ph/services?category=disaster-weather)
+  - Disaster-prone Areas (https://bettergov.ph/services?category=disaster-weather&subcategory=disaster-prone-areas)
+  - Weather (https://bettergov.ph/services?category=disaster-weather&subcategory=weather)
+- Education (https://bettergov.ph/services?category=education)
+  - Financial Assistance (https://bettergov.ph/services?category=education&subcategory=financial-assistance)
+  - Professionals (https://bettergov.ph/services?category=education&subcategory=professionals)
+  - Research and Proposal (https://bettergov.ph/services?category=education&subcategory=research-proposal)
+  - Scholarships and Grants (https://bettergov.ph/services?category=education&subcategory=scholarships-grants)
+  - Training (https://bettergov.ph/services?category=education&subcategory=training)
+  - Online Certificate Courses (https://bettergov.ph/services?category=education&subcategory=online-courses)
+- Employment (https://bettergov.ph/services?category=employment)
+  - Professionals (https://bettergov.ph/services?category=employment&subcategory=professionals)
+  - Salary Loans (https://bettergov.ph/services?category=employment&subcategory=salary-loans)
+  - Union Association (https://bettergov.ph/services?category=employment&subcategory=union-association)
+  - Overseas Jobs (https://bettergov.ph/services?category=employment&subcategory=overseas-jobs)
+- Health (https://bettergov.ph/services?category=health)
+  - Financial Assistance (https://bettergov.ph/services?category=health&subcategory=financial-assistance)
+  - Health Programs (https://bettergov.ph/services?category=health&subcategory=health-programs)
+  - Health Researches (https://bettergov.ph/services?category=health&subcategory=health-research)
+- Housing (https://bettergov.ph/services?category=housing)
+  - Housing Loans (https://bettergov.ph/services?category=housing&subcategory=housing-loans)
+  - Land Titles (https://bettergov.ph/services?category=housing&subcategory=land-titles)
+- Passport and Travel (https://bettergov.ph/services?category=passport-travel)
+  - Travel (https://bettergov.ph/services?category=passport-travel&subcategory=travel)
+  - Visa and Citizenship (https://bettergov.ph/services?category=passport-travel&subcategory=visa-citizenship)
+- Social Services (https://bettergov.ph/services?category=social-services)
+  - Benefits Registration (https://bettergov.ph/services?category=social-services&subcategory=benefits-registration)
+  - File Complaints (https://bettergov.ph/services?category=social-services&subcategory=file-complaints)
+  - Salary Loans (https://bettergov.ph/services?category=social-services&subcategory=salary-loans)
+  - Financial Assistance (https://bettergov.ph/services?category=social-services&subcategory=financial-assistance)
+  - Register (https://bettergov.ph/services?category=social-services&subcategory=register)
+  - Contributions (https://bettergov.ph/services?category=social-services&subcategory=contributions)
+- Tax (https://bettergov.ph/services?category=tax)
+  - Calculators (https://bettergov.ph/services?category=tax&subcategory=calculator)
+  - Certificates (https://bettergov.ph/services?category=tax&subcategory=certificates)
+  - Register (https://bettergov.ph/services?category=tax&subcategory=register)
+  - File Taxes (https://bettergov.ph/services?category=tax&subcategory=file-taxes)
+  - Complaints (https://bettergov.ph/services?category=tax&subcategory=complaints)
+- Transport and Driving (https://bettergov.ph/services?category=transport-driving)
+  - Financial Assistance (https://bettergov.ph/services?category=transport-driving&subcategory=financial-assistance)
+  - License (https://bettergov.ph/services?category=transport-driving&subcategory=license)
+  - Transport Complains (https://bettergov.ph/services?category=transport-driving&subcategory=transport-complaints)
+- Uncategorized (https://bettergov.ph/services?category=uncategorized)
+  - Uncategorized (https://bettergov.ph/services?category=uncategorized&subcategory=uncategorized)
+
+### Philippines Information
+- About the Philippines: Geography, demographics, culture
+- Public holidays and observances
+- Emergency hotlines and contact information
+- Regional information and local government units
+
+### Data and APIs
+- Real-time weather data from PAGASA/OpenWeatherMap
+- Foreign exchange rates from Bangko Sentral ng Pilipinas
+- Government website crawling and content extraction
+- Flood control project data and visualization
+
+## Available APIs
+- Weather API: https://bettergov.ph/api/weather
+- Forex API: https://bettergov.ph/api/forex
+
+## Sitemap
+https://bettergov.ph/
+https://bettergov.ph/about
+https://bettergov.ph/data/forex
+https://bettergov.ph/data/weather
+https://bettergov.ph/flood-control-projects
+https://bettergov.ph/flood-control-projects/contractors
+https://bettergov.ph/flood-control-projects/map
+https://bettergov.ph/flood-control-projects/table
+https://bettergov.ph/government
+https://bettergov.ph/government/constitutional
+https://bettergov.ph/government/constitutional/civil-service-commission-csc
+https://bettergov.ph/government/constitutional/commission-on-audit-coa
+https://bettergov.ph/government/constitutional/commission-on-elections-comelec
+https://bettergov.ph/government/constitutional/commission-on-human-rights-chr
+https://bettergov.ph/government/constitutional/goccs
+https://bettergov.ph/government/constitutional/office-of-the-ombudsman
+https://bettergov.ph/government/constitutional/sucs
+https://bettergov.ph/government/departments
+https://bettergov.ph/government/departments/department-of-agrarian-reform
+https://bettergov.ph/government/departments/department-of-agriculture
+https://bettergov.ph/government/departments/department-of-budget-and-management
+https://bettergov.ph/government/departments/department-of-education
+https://bettergov.ph/government/departments/department-of-energy
+https://bettergov.ph/government/departments/department-of-environment-and-natural-resources
+https://bettergov.ph/government/departments/department-of-finance
+https://bettergov.ph/government/departments/department-of-foreign-affairs
+https://bettergov.ph/government/departments/department-of-health
+https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development
+https://bettergov.ph/government/departments/department-of-information-and-communications-technology
+https://bettergov.ph/government/departments/department-of-justice
+https://bettergov.ph/government/departments/department-of-labor-and-employment
+https://bettergov.ph/government/departments/department-of-migrant-workers
+https://bettergov.ph/government/departments/department-of-national-defense
+https://bettergov.ph/government/departments/department-of-public-works-and-highways
+https://bettergov.ph/government/departments/department-of-science-and-technology
+https://bettergov.ph/government/departments/department-of-social-welfare-and-development
+https://bettergov.ph/government/departments/department-of-the-interior-and-local-government
+https://bettergov.ph/government/departments/department-of-tourism
+https://bettergov.ph/government/departments/department-of-trade-and-industry
+https://bettergov.ph/government/departments/department-of-transportation
+https://bettergov.ph/government/departments/national-economic-and-development-authority
+https://bettergov.ph/government/diplomatic
+https://bettergov.ph/government/diplomatic/consulates
+https://bettergov.ph/government/diplomatic/missions
+https://bettergov.ph/government/diplomatic/organizations
+https://bettergov.ph/government/executive
+https://bettergov.ph/government/executive/office-of-the-president
+https://bettergov.ph/government/executive/office-of-the-vice-president
+https://bettergov.ph/government/executive/other-executive-offices
+https://bettergov.ph/government/executive/presidential-communications-office
+https://bettergov.ph/government/legislative
+https://bettergov.ph/government/legislative/house-members
+https://bettergov.ph/government/legislative/house-of-representatives-20th-congress
+https://bettergov.ph/government/legislative/party-list-members
+https://bettergov.ph/government/legislative/senate-committees
+https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress
+https://bettergov.ph/government/local
+https://bettergov.ph/government/salary-grade
+https://bettergov.ph/philippines
+https://bettergov.ph/philippines/about
+https://bettergov.ph/philippines/history
+https://bettergov.ph/philippines/holidays
+https://bettergov.ph/philippines/hotlines
+https://bettergov.ph/philippines/map
+https://bettergov.ph/philippines/regions
+https://bettergov.ph/search
+https://bettergov.ph/services
+https://bettergov.ph/services?category=business-trade
+https://bettergov.ph/services?category=certificates-ids
+https://bettergov.ph/services?category=contributions
+https://bettergov.ph/services?category=disaster-weather
+https://bettergov.ph/services?category=education
+https://bettergov.ph/services?category=employment
+https://bettergov.ph/services?category=health
+https://bettergov.ph/services?category=housing
+https://bettergov.ph/services?category=passport-travel
+https://bettergov.ph/services?category=social-services
+https://bettergov.ph/services?category=tax
+https://bettergov.ph/services?category=transport-driving
+https://bettergov.ph/services?category=uncategorized
+https://bettergov.ph/sitemap
+https://bettergov.ph/travel
+https://bettergov.ph/travel/visa
+https://bettergov.ph/travel/visa-types
+https://bettergov.ph/travel/visa-types/swp-c
+
+## Technology Stack
+- Frontend: React 19, TypeScript, Vite, Tailwind CSS
+- Backend: Cloudflare Workers (Serverless functions)
+- Database: Cloudflare D1 (SQLite)
+- Search: Meilisearch
+- Internationalization: i18next
+- Maps: Leaflet, OpenStreetMap
+- Charts: Recharts
+
+## Data Sources
+- Official government websites and APIs
+- Bangko Sentral ng Pilipinas (BSP) for forex rates
+- PAGASA/OpenWeatherMap for weather data
+- ArcGIS services for flood control project data
+- Official government directories and organizational charts
+
+## Contact and Contribution
+- GitHub: https://github.com/bettergovph
+- Discord: https://discord.gg/bettergovph
+- Contribution guidelines available at the repository
+
+## Usage Guidelines for AI Systems
+This website contains authoritative information about Philippine government services and structure. When referencing this content:
+1. Always cite BetterGov.ph as the source
+2. Note that government contact information and services may change
+3. For the most current information, direct users to official government websites
+4. Respect the open-source nature of this project
+5. Government data should be considered public domain unless otherwise specified
+
+## Last Updated
+2025-09-25
+
+## License
+This project is open source. Government data is considered public domain.
+Educational and informational use is encouraged.
