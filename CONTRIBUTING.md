@@ -111,7 +111,7 @@ When reporting an issue, please include the following details to help us investi
 
 Before you start contributing, ensure you have the following:
 
-- Node.js (v18 or above recommended)
+- Node.js (v22 or above recommended)
 - npm (v9 or above) or yarn (optional)
 - Git
 - A code editor like VS Code
@@ -187,10 +187,10 @@ Official Github Docs on [Forking a repository][forking]
 - Go to the main project repository (`github.com/bettergovph/bettergov`).
 - Click the **"Fork"** button to create a copy under your Github account.
 
-**Clone Fork to Local Machine**
+**Clone the Forked Repository to Local Machine**
 
 ```sh
-git clone https://github.com/username/bettergov-fork.git
+git clone https://github.com/<your-username>/bettergov-fork.git
 cd bettergov-fork
 ```
 
@@ -254,7 +254,7 @@ This helps keep our history clean and readable.
 
 **Format**
 
-```cpp
+```text
 <type>[optional scope]: <short description>
 ```
 
@@ -276,7 +276,7 @@ fix(navbar): correct mobile menu toggle
 docs: add CONTRIBUTING.md and CODE_OF_CONDUCT.md
 ```
 
-**Push to Fork**
+**Push to the Forked Repository**
 
 ```sh
 git push -u origin feat/add-new-component
@@ -317,9 +317,6 @@ git push
 ```
 
 **A maintainer will merge your PR once it’s approved.**
-
-**⚠️ Important**  
-Do not merge your own PR unless explicitly allowed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
