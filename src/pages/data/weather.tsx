@@ -260,6 +260,17 @@ const WeatherPage: React.FC = () => {
               </p>
             </div>
           </div>
+          <p className='text-sm text-gray-700 mt-4 text-right'>
+            Weather data provided by{' '}
+            <a
+              href='https://openweathermap.org/'
+              className='text-gray-800 hover:text-gray-900 underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              OpenWeather
+            </a>
+          </p>
         </div>
       </div>
     </div>
