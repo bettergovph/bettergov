@@ -100,7 +100,6 @@ Our comprehensive services are organized into the following categories:
 ## Available APIs
 - Weather API: https://bettergov.ph/api/weather
 - Forex API: https://bettergov.ph/api/forex
-- Web Crawler API: https://bettergov.ph/api/crawl
 
 ## Sitemap
 https://bettergov.ph/
