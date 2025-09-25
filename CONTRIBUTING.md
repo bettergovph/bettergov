@@ -21,6 +21,9 @@
       <a href="#share-ideas">Share Ideas</a>
     </li>
     <li>
+      <a href="#report-issues-and-bugs">Report issues and bugs</a>
+    </li>
+    <li>
       <a href="#before-you-start">Before you start</a>
     </li>
     <li>
@@ -29,12 +32,10 @@
     <li>
       <a href="#contribution-workflow">Contribution Workflow</a>
       <ul>
-        <li><a href="#fork-and-clone-repositories">Fork and clone repositories</a></li>
-        <li><a href="#commit-messages">Commit messages</a></li>
-        <li><a href="#commit-messages">Branch creation</a></li>
-        <li><a href="#commit-messages">Pull requests</a></li>
-        <li><a href="#commit-messages">Commit messages</a></li>
-        <li><a href="#commit-messages">Commit messages</a></li>
+        <li><a href="#initial-setup">Initial Setup</a></li>
+        <li><a href="#branch-creation">Branch creation</a></li>
+        <li><a href="#development-loop">Development Loop</a></li>
+        <li><a href="#pull-requests">Pull requests</a></li>
       </ul>
     </li>
     <li><a href="#resources">Resources</a></li>
@@ -89,12 +90,29 @@ To share your new ideas for the project, perform the following actions:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Report issues and bugs
+
+If you encounter a problem with the project, please open an issue in this [repository][issues].
+
+When reporting an issue, please include the following details to help us investigate:
+
+- Description – A clear and concise explanation of the problem.
+- Steps to reproduce – How to reproduce the issue (step by step).
+- Expected behavior – What you thought should happen.
+- Actual behavior – What actually happened instead.
+- Environment details – Your operating system, browser (if applicable), Node.js version, etc.
+- Screenshots or logs – If relevant, add screenshots or error logs.
+
+> Tip: Check existing issues before creating a new one to avoid duplicates.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Before you start
 
 Before you start contributing, ensure you have the following:
 
-- Node.js (v18 or above recommended)
-- npm (v9 or above) or yarn (optional)
+- Node.js (v22 or above recommended)
+- npm (v10 or above) or yarn (optional)
 - Git
 - A code editor like VS Code
 
@@ -160,72 +178,52 @@ Read our {name and link to your style guide} to understand our guidelines for wr
 
 ## Contribution workflow
 
-### Fork and clone repositories
+Official Github Docs on [Forking a repository][forking]
 
-To contribute, first fork the repository to your own GitHub account, then clone your fork to your local machine.
+### Initial Setup
 
-Follow this guide for step-by-step instructions:
-[Fork a repository][forking]
+**Fork the Repository on GitHub**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- Go to the main project repository (`github.com/bettergovph/bettergov`).
+- Click the **"Fork"** button to create a copy under your Github account.
 
-### Report issues and bugs
-
-If you encounter a problem with the project, please open an issue in this [repository][issues].
-
-When reporting an issue, please include the following details to help us investigate:
-
-- Description – A clear and concise explanation of the problem.
-- Steps to reproduce – How to reproduce the issue (step by step).
-- Expected behavior – What you thought should happen.
-- Actual behavior – What actually happened instead.
-- Environment details – Your operating system, browser (if applicable), Node.js version, etc.
-- Screenshots or logs – If relevant, add screenshots or error logs.
-
-> Tip: Check existing issues before creating a new one to avoid duplicates.
-
-### Commit messages
-
-We follow [Conventional Commits][commits] for all commit messages.
-This helps keep our history clean and readable.
-
-#### Format
-
-```cpp
-<type>[optional scope]: <short description>
-```
-
-#### Common Types Used
-
-- feat: → A new feature
-- fix: → A bug fix
-- docs: → Documentation only changes
-- style: → Code style or formatting changes (no logic)
-- refactor: → Code refactoring (no feature or fix)
-- test: → Adding or updating tests
-- chore: → Maintenance tasks (build process, dependencies, etc.)
-
-#### Example
+**Clone the Forked Repository to Local Machine**
 
 ```sh
-feat(button): add primary button variant
-fix(navbar): correct mobile menu toggle
-docs: add CONTRIBUTING.md and CODE_OF_CONDUCT.md
+git clone https://github.com/<your-username>/bettergov.git
+cd bettergov
+```
+
+**Add the Original Repository as an Upstream**
+
+```sh
+git remote add upstream https://github.com/bettergovph/bettergov.git
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Branch creation
 
-We follow a prefix-based branch naming convention for clarity:
+**Update local main before creating a new branch**
 
-#### Format
+```sh
+git checkout main
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
+
+**Create a New Feature Branch**
+
+Create a branch using a prefix-based convention (feature/, fix/, docs/, etc.) to maintain clarity.
+
+**Format**
 
 ```text
 <prefix>/<short-description>
 ```
 
-#### Example
+**Example**
 
 ```sh
 feature/add-login-form
@@ -237,32 +235,89 @@ docs/add-contributing-and-code-of-conduct
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Development Loop
+
+**Make Changes**  
+Make sure your code passes linting and tests before committing.
+
+```sh
+git add .
+git commit -a
+```
+
+**⚠️ Important:** Commit your changes following the Conventional Commits standard.
+
+**Commit messages**
+
+We follow [Conventional Commits][commits] for all commit messages.
+This helps keep our history clean and readable.
+
+**Format**
+
+```text
+<type>[optional scope]: <short description>
+```
+
+**Common Types Used**
+
+- feat: → A new feature
+- fix: → A bug fix
+- docs: → Documentation only changes
+- style: → Code style or formatting changes (no logic)
+- refactor: → Code refactoring (no feature or fix)
+- test: → Adding or updating tests
+- chore: → Maintenance tasks (build process, dependencies, etc.)
+
+**Example**
+
+```sh
+feat(button): add primary button variant
+fix(navbar): correct mobile menu toggle
+docs: add CONTRIBUTING.md and CODE_OF_CONDUCT.md
+```
+
+**Push to the Forked Repository**
+
+```sh
+git push -u origin feat/add-new-component
+```
+
+**Sync with Upstream Again**
+
+- If the upstream `main` branch has been updated while working, integrate changes into your feature branch to avoid conflicts.
+
+```sh
+git fetch upstream
+git rebase upstream/main
+git push
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Pull requests
 
 We use Pull Requests (PRs) to review and merge changes. Follow these steps when creating a PR:
 
-1. Fork the repository and create a branch based on the type of work (feature/, fix/, docs/, etc.).
-2. Make your changes and ensure your code passes linting and tests.
-3. Commit your changes following the Conventional Commits
-   standard.
-4. Push your branch to your forked repository:
-   ```sh
-   git push origin <branch-name>
-   ```
-5. Open a Pull Request to the main repository:
+**Open a Pull Request to the main repository:**
 
 - Target the main branch (or the branch specified by maintainers).
 - Provide a clear title and detailed description of your changes.
 - Reference any related issues (e.g., Closes #12).
+- **AI-Assisted Work Disclosure:** If you used AI tools to help generate or significantly modify code in your PR, please disclose this in the PR description. This helps maintainers conduct a more thorough review.
 
-6. Wait for review:
+**Wait for review:**
 
 - Maintain open communication with reviewers.
+- Make any requested changes by committing in local feature branch
+- After making changes, commit and push to the same branch—the PR will update automatically..
 
-- Make any requested changes by committing to the same branch—the PR will update automatically.
+```sh
+git add .
+git commit -m "refactor: address review feedback"
+git push
+```
 
-7. A maintainer will merge your PR once it’s approved.
-   **Do not merge your own PR unless explicitly allowed.**
+**A maintainer will merge your PR once it’s approved.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
