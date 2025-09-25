@@ -129,13 +129,26 @@ const InfoWidgets: React.FC = () => {
                   ))}
                 </div>
               )}
-              <div className='text-right mt-4'>
-                <a
-                  href='/data/weather'
-                  className='text-primary-600 text-sm hover:underline'
-                >
-                  Detailed Forecast
-                </a>
+              <div className='flex space-between w-full items-center'>
+                <p className='text-sm text-gray-700 mt-4 text-right'>
+                  Weather data provided by{' '}
+                  <a
+                    href='https://openweathermap.org/'
+                    className='text-gray-800 hover:text-gray-900 underline'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    OpenWeather
+                  </a>
+                </p>
+                <div className='mt-4 flex-1 text-right'>
+                  <a
+                    href='/data/weather'
+                    className='text-primary-600 text-sm hover:underline'
+                  >
+                    Detailed Forecast
+                  </a>
+                </div>
               </div>
             </CardContent>
           </Card>
