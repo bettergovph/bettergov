@@ -54,7 +54,7 @@ export default function DepartmentsSidebar({
               <li key={dept.slug}>
                 <button
                   onClick={() => handleDeptSelect(dept)}
-                  className={`w-full text-left px-4 py-3 text-sm rounded-md transition-colors ${
+                  className={`w-full text-left px-4 py-3 text-sm rounded-md transition-colors cursor-pointer ${
                     departmentParam === dept.slug
                       ? 'bg-primary-50 text-primary-700 font-medium'
                       : 'text-gray-700 hover:bg-gray-50'
