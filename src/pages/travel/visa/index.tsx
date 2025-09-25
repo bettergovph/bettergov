@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Compass,
-  Globe,
-  Search,
-  Grid3x3,
-  List,
-  CheckCircle,
-  XCircle,
-  Clock,
-} from 'lucide-react';
+import { Compass, Globe, Search, Grid3x3, List } from 'lucide-react';
+// Using CDN flags instead of a flag component
 import visaData from '../../../data/visa/philippines_visa_policy.json';
+import Flag from 'react-world-flags';
+import countries from 'i18n-iso-countries';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - JSON locale typing
+import enLocale from 'i18n-iso-countries/langs/en.json';
+countries.registerLocale(enLocale);
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
 import Button from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
@@ -23,6 +21,79 @@ import {
   DialogFooter,
 } from '../../../components/ui/Dialog';
 import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
+
+// Minimal ISO 3166-1 alpha-2 mapping. Falls back to undefined when unknown.
+// This list can be expanded over time; unknown codes render a neutral placeholder.
+// Handle common-name mismatches against ISO registry
+const COUNTRY_NAME_ALIASES: Record<string, string> = {
+  'North Korea': "Korea, Democratic People's Republic of",
+  'South Korea': 'Korea, Republic of',
+  Moldova: 'Moldova, Republic of',
+  Russia: 'Russian Federation',
+  Syria: 'Syrian Arab Republic',
+  Bolivia: 'Bolivia (Plurinational State of)',
+  Venezuela: 'Venezuela (Bolivarian Republic of)',
+  Tanzania: 'Tanzania, United Republic of',
+  Laos: "Lao People's Democratic Republic",
+  Brunei: 'Brunei Darussalam',
+  Palestine: 'Palestine, State of',
+  "Côte d'Ivoire": 'Côte d’Ivoire',
+  'Ivory Coast': 'Côte d’Ivoire',
+  CapeVerde: 'Cabo Verde',
+  Vatican: 'Holy See',
+  'Vatican City': 'Holy See',
+  'Holy See (Vatican City State)': 'Holy See',
+  'Kingdom of Great Britain and Northern Ireland':
+    'United Kingdom of Great Britain and Northern Ireland',
+  'kingdom of great britain and northern ireland':
+    'United Kingdom of Great Britain and Northern Ireland',
+  'kingdom of great britain and northern ireline':
+    'United Kingdom of Great Britain and Northern Ireland',
+  'Slovak Republic': 'Slovakia',
+  'slovak republic': 'Slovakia',
+  Bolvia: 'Bolivia (Plurinational State of)',
+  'kingdom of greate britain and northern ireland':
+    'United Kingdom of Great Britain and Northern Ireland',
+  venezuela: 'Venezuela (Bolivarian Republic of)',
+  vatican: 'Holy See',
+  Micronesia: 'Micronesia (Federated States of)',
+  Eritre: 'Eritrea',
+  Swaziland: 'Eswatini',
+  eswatini: 'Eswatini',
+};
+
+const COUNTRY_NAME_ALIASES_LOWER: Record<string, string> = Object.fromEntries(
+  Object.entries(COUNTRY_NAME_ALIASES).map(([k, v]) => [k.toLowerCase(), v])
+);
+
+// Direct ISO2 overrides for stubborn names
+const COUNTRY_ISO2_OVERRIDES: Record<string, string> = {
+  Bolivia: 'BO',
+};
+const COUNTRY_ISO2_OVERRIDES_LOWER: Record<string, string> = Object.fromEntries(
+  Object.entries(COUNTRY_ISO2_OVERRIDES).map(([k, v]) => [k.toLowerCase(), v])
+);
+
+const getCountryIso2 = (countryName: string): string | undefined => {
+  const key = countryName.trim();
+  // 1) Direct ISO override (exact/lowercase)
+  const direct =
+    COUNTRY_ISO2_OVERRIDES[key] ??
+    COUNTRY_ISO2_OVERRIDES_LOWER[key.toLowerCase()];
+  if (direct) return direct.toUpperCase();
+  const normalized =
+    COUNTRY_NAME_ALIASES[key] ??
+    COUNTRY_NAME_ALIASES_LOWER[key.toLowerCase()] ??
+    key;
+  let alpha2 = countries.getAlpha2Code(normalized, 'en');
+  if (!alpha2 && normalized.includes(' and ')) {
+    alpha2 = countries.getAlpha2Code(normalized.replace(' and ', ' & '), 'en');
+  }
+  if (!alpha2 && normalized.includes('–')) {
+    alpha2 = countries.getAlpha2Code(normalized.replace('–', '-'), 'en');
+  }
+  return alpha2 ? String(alpha2).toUpperCase() : undefined;
+};
 
 type Country = string;
 
@@ -206,19 +277,6 @@ const VisaPage: React.FC = () => {
     });
   };
 
-  const getStatusIcon = (type: string) => {
-    switch (type) {
-      case 'visa-free':
-        return <CheckCircle className='h-5 w-5 text-green-600' />;
-      case 'visa-required':
-        return <XCircle className='h-5 w-5 text-red-600' />;
-      case 'special-condition':
-        return <Clock className='h-5 w-5 text-yellow-600' />;
-      default:
-        return null;
-    }
-  };
-
   const getStatusBadge = (type: string, duration?: string) => {
     switch (type) {
       case 'visa-free':
@@ -343,22 +401,37 @@ const VisaPage: React.FC = () => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
               {filteredCountries.map(country => {
                 const requirement = countryRequirements.get(country);
+                const iso2 = getCountryIso2(country);
                 return (
                   <div
                     key={country}
-                    className='border border-gray-200 rounded-lg hover:shadow-lg transition-shadow cursor-pointer'
+                    className='border border-gray-200 rounded-lg transition-shadow cursor-pointer bg-white overflow-hidden hover:shadow-lg'
                   >
                     <button
                       onClick={() => openDetailsDialog(country)}
-                      className='w-full flex items-start justify-between p-4 cursor-pointer'
+                      className='group w-full flex items-stretch cursor-pointer h-24 md:h-28'
                     >
-                      <div className='flex-1'>
-                        <h3 className='font-medium text-lg text-left mb-2'>
+                      {/* Flag */}
+                      <div className='relative w-0 group-hover:w-2/5 h-full bg-white rounded-l-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
+                        {iso2 ? (
+                          <Flag
+                            code={iso2}
+                            title={country}
+                            alt={country}
+                            className='block w-full h-full object-cover transform -translate-x-6 opacity-0 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100'
+                          />
+                        ) : (
+                          <div className='w-full h-full bg-white' />
+                        )}
+                      </div>
+
+                      {/* Right: Details */}
+                      <div className='w-full group-hover:w-3/5 px-5 md:px-6 py-3 flex flex-col justify-center text-left transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
+                        <h3 className='font-medium text-lg leading-tight mb-1 text-gray-900'>
                           {country}
                         </h3>
                         {requirement && (
-                          <div className='flex items-start gap-2'>
-                            {getStatusIcon(requirement.type)}
+                          <div className='mt-1 flex items-center gap-2'>
                             {getStatusBadge(
                               requirement.type,
                               requirement.duration
