@@ -17,6 +17,26 @@ const serviceCategoriesPath = path.join(
   __dirname,
   '../src/data/service_categories.json'
 );
+const departmentsPath = path.join(
+  __dirname,
+  '../src/data/directory/departments.json'
+);
+const constitutionalPath = path.join(
+  __dirname,
+  '../src/data/directory/constitutional.json'
+);
+const legislativePath = path.join(
+  __dirname,
+  '../src/data/directory/legislative.json'
+);
+const diplomaticPath = path.join(
+  __dirname,
+  '../src/data/directory/diplomatic.json'
+);
+const executivePath = path.join(
+  __dirname,
+  '../src/data/directory/executive.json'
+);
 
 // Static navigation data (same as in generate-llms-txt.js to maintain consistency)
 const mainNavigation = [
@@ -78,6 +98,15 @@ function loadData() {
     const serviceCategoriesRaw = fs.readFileSync(serviceCategoriesPath, 'utf8');
     const serviceCategories = JSON.parse(serviceCategoriesRaw);
 
+    // Import government directory data
+    const departments = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
+    const constitutional = JSON.parse(
+      fs.readFileSync(constitutionalPath, 'utf8')
+    );
+    const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
+    const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
+    const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
     if (servicesNav) {
@@ -87,15 +116,161 @@ function loadData() {
       }));
     }
 
-    return { mainNavigation, serviceCategories };
+    return {
+      mainNavigation,
+      serviceCategories,
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    };
   } catch (error) {
     console.error('Error loading data:', error);
     process.exit(1);
   }
 }
 
+// Function to generate government-specific URLs
+function generateGovernmentUrls(siteUrl, governmentData) {
+  const urls = new Set();
+
+  // Executive branch specific pages
+  const executivePages = [
+    {
+      url: `${siteUrl}/government/executive/office-of-the-president`,
+      priority: '0.8',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/executive/office-of-the-vice-president`,
+      priority: '0.7',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/executive/presidential-communications-office`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/executive/other-executive-offices`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+  ];
+
+  executivePages.forEach(page => urls.add(page));
+
+  // Department pages (individual departments)
+  if (governmentData.departments && Array.isArray(governmentData.departments)) {
+    governmentData.departments.forEach(dept => {
+      if (dept.slug) {
+        urls.add({
+          url: `${siteUrl}/government/departments/${encodeURIComponent(dept.slug)}`,
+          priority: '0.6',
+          changefreq: 'monthly',
+        });
+      }
+    });
+  }
+
+  // Constitutional offices (individual offices)
+  if (
+    governmentData.constitutional &&
+    Array.isArray(governmentData.constitutional)
+  ) {
+    // Filter out GOCCs and SUCs for individual office pages
+    const constitutionalOffices = governmentData.constitutional.filter(
+      office =>
+        office.slug &&
+        !office.office_type?.includes('Government-Owned') &&
+        !office.office_type?.includes('GOCCs') &&
+        !office.office_type?.includes('State Universities') &&
+        !office.office_type?.includes('SUCs')
+    );
+
+    constitutionalOffices.forEach(office => {
+      urls.add({
+        url: `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`,
+        priority: '0.6',
+        changefreq: 'monthly',
+      });
+    });
+
+    // Add GOCCs and SUCs special pages
+    urls.add({
+      url: `${siteUrl}/government/constitutional/goccs`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    });
+
+    urls.add({
+      url: `${siteUrl}/government/constitutional/sucs`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    });
+  }
+
+  // Legislative branch specific pages
+  const legislativePages = [
+    {
+      url: `${siteUrl}/government/legislative/house-members`,
+      priority: '0.7',
+      changefreq: 'weekly',
+    },
+    {
+      url: `${siteUrl}/government/legislative/party-list-members`,
+      priority: '0.7',
+      changefreq: 'weekly',
+    },
+    {
+      url: `${siteUrl}/government/legislative/senate-committees`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+  ];
+
+  legislativePages.forEach(page => urls.add(page));
+
+  // Legislative chambers (individual chambers)
+  if (governmentData.legislative && Array.isArray(governmentData.legislative)) {
+    governmentData.legislative.forEach(chamber => {
+      if (chamber.slug) {
+        urls.add({
+          url: `${siteUrl}/government/legislative/${encodeURIComponent(chamber.slug)}`,
+          priority: '0.7',
+          changefreq: 'monthly',
+        });
+      }
+    });
+  }
+
+  // Diplomatic missions specific pages
+  const diplomaticPages = [
+    {
+      url: `${siteUrl}/government/diplomatic/missions`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/diplomatic/consulates`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/diplomatic/organizations`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    },
+  ];
+
+  diplomaticPages.forEach(page => urls.add(page));
+
+  return Array.from(urls);
+}
+
 // Function to generate all site URLs
-function generateSiteUrls(mainNavigation) {
+function generateSiteUrls(mainNavigation, governmentData) {
   const siteUrl = 'https://bettergov.ph';
   const urls = new Set();
 
@@ -194,6 +369,10 @@ function generateSiteUrls(mainNavigation) {
     }
   });
 
+  // Add detailed government pages
+  const governmentUrls = generateGovernmentUrls(siteUrl, governmentData);
+  governmentUrls.forEach(urlObj => urls.add(urlObj));
+
   return Array.from(urls);
 }
 
@@ -226,10 +405,26 @@ function main() {
 
   try {
     // Load data
-    const { mainNavigation } = loadData();
+    const {
+      mainNavigation,
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    } = loadData();
+
+    // Prepare government data object
+    const governmentData = {
+      departments,
+      constitutional,
+      legislative,
+      diplomatic,
+      executive,
+    };
 
     // Generate URLs
-    const urls = generateSiteUrls(mainNavigation);
+    const urls = generateSiteUrls(mainNavigation, governmentData);
 
     // Generate XML content
     const content = generateSitemapXml(urls);
