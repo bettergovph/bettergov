@@ -49,7 +49,15 @@ export default function GovernmentIndexPageContainer({
   useEffect(() => {
     if (location.state?.scrollToContent) {
       const contentElement = document.getElementById('government-content');
-      contentElement?.scrollIntoView({ behavior: 'smooth' });
+      if (contentElement) {
+        const yScrollOffset = -150;
+        const y =
+          contentElement.getBoundingClientRect().top +
+          window.pageYOffset +
+          yScrollOffset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
     }
   }, [location]);
 
