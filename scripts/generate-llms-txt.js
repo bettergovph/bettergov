@@ -445,8 +445,8 @@ ${sitemap.join('\n')}
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- GitHub: https://github.com/govph/bettergov
-- Discord: ${siteUrl}/discord
+- GitHub: https://github.com/bettergovph
+- Discord: https://discord.gg/bettergovph
 - Contribution guidelines available at the repository
 
 ## Usage Guidelines for AI Systems
