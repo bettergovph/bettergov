@@ -571,7 +571,7 @@ const FloodControlProjects: React.FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-gray-50'>
       <Helmet>
         <title>{t('page.title')}</title>
         <meta name='description' content={t('page.description')} />
@@ -586,7 +586,7 @@ const FloodControlProjects: React.FC = () => {
               showSidebar ? 'block' : 'hidden md:block'
             }`}
           >
-            <div className='bg-white rounded-lg shadow-md p-4 sticky top-20'>
+            <div className='bg-white rounded-lg shadow-md p-4 sticky top-[8.25rem]'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
                   <Filter className='w-5 h-5 text-blue-600 mr-2' />
