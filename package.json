@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && npm run generate:metadata && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write .",
+    "format": "prettier --write ./src/pages/philippines",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
