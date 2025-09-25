@@ -112,7 +112,7 @@ When reporting an issue, please include the following details to help us investi
 Before you start contributing, ensure you have the following:
 
 - Node.js (v22 or above recommended)
-- npm (v9 or above) or yarn (optional)
+- npm (v10 or above) or yarn (optional)
 - Git
 - A code editor like VS Code
 
@@ -190,8 +190,8 @@ Official Github Docs on [Forking a repository][forking]
 **Clone the Forked Repository to Local Machine**
 
 ```sh
-git clone https://github.com/<your-username>/bettergov-fork.git
-cd bettergov-fork
+git clone https://github.com/<your-username>/bettergov.git
+cd bettergov
 ```
 
 **Add the Original Repository as an Upstream**
@@ -303,6 +303,7 @@ We use Pull Requests (PRs) to review and merge changes. Follow these steps when 
 - Target the main branch (or the branch specified by maintainers).
 - Provide a clear title and detailed description of your changes.
 - Reference any related issues (e.g., Closes #12).
+- **AI-Assisted Work Disclosure:** If you used AI tools to help generate or significantly modify code in your PR, please disclose this in the PR description. This helps maintainers conduct a more thorough review.
 
 **Wait for review:**
 
