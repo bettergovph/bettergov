@@ -571,7 +571,7 @@ const FloodControlProjects: React.FC = () => {
   };
 
   return (
-    <div className='bg-gray-50'>
+    <div className='min-h-screen bg-gray-50'>
       <Helmet>
         <title>{t('page.title')}</title>
         <meta name='description' content={t('page.description')} />
