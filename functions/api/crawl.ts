@@ -1,20 +1,16 @@
-import { Env } from '../types'
-import {
-  fetchAndSaveContent,
-  getContentByUrl,
-  setDefaultCrawler,
-} from '../lib/crawler'
+import { Env } from '../types';
+import { fetchAndSaveContent, setDefaultCrawler } from '../lib/crawler';
 
 /**
  * Handler for HTTP requests to the web crawling endpoint
  * This is a generic interface for crawling web content, currently using Jina.ai
  */
 export async function onRequest(context: {
-  request: Request
-  env: Env
-  params: {}
+  request: Request;
+  env: Env;
+  params: Record<string, string>;
 }): Promise<Response> {
-  const { request, env } = context
+  const { request, env } = context;
 
   // Handle CORS preflight requests
   if (request.method === 'OPTIONS') {
@@ -24,26 +20,26 @@ export async function onRequest(context: {
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
-    })
+    });
   }
 
   // Only allow GET requests
   if (request.method !== 'GET') {
-    return new Response('Method not allowed', { status: 405 })
+    return new Response('Method not allowed', { status: 405 });
   }
 
   try {
-    const url = new URL(request.url)
-    const targetUrl = url.searchParams.get('url')
-    const forceUpdate = url.searchParams.get('force') === 'true'
-    const crawler = url.searchParams.get('crawler') // 'jina' or 'cfbrowser'
+    const url = new URL(request.url);
+    const targetUrl = url.searchParams.get('url');
+    const forceUpdate = url.searchParams.get('force') === 'true';
+    const crawler = url.searchParams.get('crawler'); // 'jina' or 'cfbrowser'
 
     // Set default crawler if specified
     if (crawler) {
       try {
-        setDefaultCrawler(crawler)
-      } catch (error) {
-        console.warn(`Invalid crawler type: ${crawler}, using default`)
+        setDefaultCrawler(crawler);
+      } catch {
+        console.warn(`Invalid crawler type: ${crawler}, using default`);
       }
     }
 
@@ -61,46 +57,12 @@ export async function onRequest(context: {
             'Access-Control-Allow-Origin': '*',
           },
         }
-      )
+      );
     }
 
-    // Check if we already have this URL in the database and it's not a force update
-    // const content = await getContentByUrl(env, targetUrl)
-
-    // if (content) {
-    //   // Convert links_summary back to object
-    //   let linksSummary = []
-    //   try {
-    //     if (content.links_summary) {
-    //       linksSummary = JSON.parse(content.links_summary)
-    //     }
-    //   } catch (e) {
-    //     console.error('Error parsing links_summary:', e)
-    //   }
-
-    //   // Return the cached content
-    //   return new Response(
-    //     JSON.stringify({
-    //       success: true,
-    //       data: content,
-    //       message: 'Content retrieved from cache',
-    //       cached: true,
-    //       crawler: crawler || 'default',
-    //       links_summary: linksSummary,
-    //     }),
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': '*',
-    //       },
-    //     }
-    //   )
-    // }
-
-    // If we don't have content or force update is requested, fetch it
-    // if (!content || forceUpdate) {
+    // If force update is requested, fetch it
     if (forceUpdate) {
-      const result = await fetchAndSaveContent(env, targetUrl, crawler)
+      const result = await fetchAndSaveContent(env, targetUrl, crawler);
 
       if (!result.success) {
         // Return the response with CORS headers
@@ -116,7 +78,7 @@ export async function onRequest(context: {
               'Access-Control-Allow-Origin': '*',
             },
           }
-        )
+        );
       }
 
       return new Response(
@@ -131,7 +93,7 @@ export async function onRequest(context: {
             'Access-Control-Allow-Origin': '*',
           },
         }
-      )
+      );
     }
   } catch (error) {
     return new Response(
@@ -146,6 +108,6 @@ export async function onRequest(context: {
           'Access-Control-Allow-Origin': '*',
         },
       }
-    )
+    );
   }
 }

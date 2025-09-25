@@ -19,7 +19,7 @@
   },
   {
     "service": "Apply for Pag-IBIG Housing Loan",
-    "url": "https://www.pagibigfundservices.com/HousingLoan/Apply/Default.aspx",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/HL/Reminder.aspx",
     "id": "faac15a2-6153-439c-9470-7f6cd1a97701",
     "slug": "apply-for-pag-ibig-housing-loan",
     "published": true,

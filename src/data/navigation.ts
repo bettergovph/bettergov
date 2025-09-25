@@ -1,15 +1,15 @@
-import { NavigationItem } from '../types'
-import serviceCategories from './service_categories.json'
+import { NavigationItem } from '../types';
+import serviceCategories from './service_categories.json';
 
 interface Subcategory {
-  name: string
-  slug: string
+  name: string;
+  slug: string;
 }
 
 interface Category {
-  category: string
-  slug: string
-  subcategories: Subcategory[]
+  category: string;
+  slug: string;
+  subcategories: Subcategory[];
 }
 
 export const mainNavigation: NavigationItem[] = [
@@ -30,7 +30,7 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: 'Services',
     href: '/services',
-    children: (serviceCategories.categories as Category[]).map((category) => ({
+    children: (serviceCategories.categories as Category[]).map(category => ({
       label: category.category,
       href: `/services?category=${category.slug}`,
     })),
@@ -50,11 +50,12 @@ export const mainNavigation: NavigationItem[] = [
     href: '/government',
     children: [
       { label: 'Executive', href: '/government/executive' },
-      { label: 'Legislative', href: '/government/legislative' },
-      { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Departments', href: '/government/departments' },
-      { label: 'Diplomatic', href: '/government/diplomatic' },
+      { label: 'Constitutional', href: '/government/constitutional' },
+      { label: 'Legislative', href: '/government/legislative' },
       { label: 'Local Government', href: '/government/local' },
+      { label: 'Diplomatic', href: '/government/diplomatic' },
+      { label: 'Salary Grades', href: '/government/salary-grade' },
     ],
   },
   {
@@ -67,7 +68,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Contractors', href: '/flood-control-projects/contractors' },
     ],
   },
-]
+];
 
 export const footerNavigation = {
   mainSections: [
@@ -75,11 +76,10 @@ export const footerNavigation = {
       title: 'About',
       links: [
         { label: 'About the Portal', href: '/about' },
-        // { label: 'Privacy Policy', href: '/privacy' },
-        // { label: 'Terms of Use', href: '/terms' },
+        { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
+        { label: 'Terms of Use', href: '/terms-of-service' },
         { label: 'Contact Us', href: '/about' },
-        { label: "Community Discord", href: "/discord" },
       ],
     },
     {
@@ -98,6 +98,7 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
+        { label: 'Official Gov.ph', href: 'https://gov.ph' },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
         {
@@ -112,9 +113,9 @@ export const footerNavigation = {
     },
   ],
   socialLinks: [
-    { label: 'Facebook', href: 'https://facebook.com/govph' },
-    { label: 'Twitter', href: 'https://twitter.com/govph' },
-    { label: 'Instagram', href: 'https://instagram.com/govph' },
-    { label: 'YouTube', href: 'https://youtube.com/govph' },
+    { label: 'Facebook', href: 'https://facebook.com/bettergovph' },
+    { label: 'Discord', href: '/discord' },
+    // { label: 'Instagram', href: 'https://instagram.com/govph' },
+    // { label: 'YouTube', href: 'https://youtube.com/govph' },
   ],
-}
+};

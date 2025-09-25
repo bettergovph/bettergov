@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "title": "Philippines Visa Information",
+    "subtitle": "Find out if you need a visa to visit the Philippines and learn about entry requirements.",
+    "dataSource": "Official data from the Bureau of Immigration and Philippine Department of Foreign Affairs",
+    "checkVisaTypes": "Check visa types"
+  },
+  "quickCheck": {
+    "title": "Quick Visa Check",
+    "description": "Select your country of citizenship to check visa requirements for traveling to the Philippines.",
+    "searchPlaceholder": "Search your country...",
+    "searchAriaLabel": "Search for a country"
+  },
+  "countryList": {
+    "title": "Select Your Country",
+    "noResults": "No countries found matching your search.",
+    "ariaLabel": "Country list"
+  },
+  "requirements": {
+    "title": "Visa Requirements for {{country}}",
+    "visaFree": {
+      "title": "Visa-Free Entry",
+      "description": "Citizens of {{country}} can enter the Philippines without a visa for up to {{duration}}."
+    },
+    "visaRequired": {
+      "title": "Visa Required",
+      "description": "Citizens of {{country}} need to apply for a visa before traveling to the Philippines."
+    },
+    "specialCondition": {
+      "title": "Special Conditions Apply",
+      "description": "Citizens of {{country}} may enter the Philippines without a visa for up to {{duration}} under specific conditions."
+    },
+    "entryRequirements": "Entry Requirements",
+    "requiredDocuments": "Required Documents:",
+    "note": "Note:"
+  },
+  "visaApplication": {
+    "title": "How to Apply for a Visa",
+    "eVisa": {
+      "title": "eVisa Portal",
+      "description": "Apply online through the official eVisa system",
+      "action": "Visit website"
+    },
+    "embassy": {
+      "title": "Philippine Embassies",
+      "description": "Find your nearest Philippine Embassy or Consulate",
+      "action": "Find locations"
+    }
+  },
+  "defaultMessage": {
+    "title": "Check Your Visa Requirements",
+    "description": "Select your country from the list to check if you need a visa to visit the Philippines and learn about entry requirements."
+  },
+  "additionalInfo": {
+    "title": "Important Visa Information",
+    "temporaryVisa": {
+      "title": "Temporary Visitor's Visa (9a)",
+      "description": "The 9(a) Temporary Visitor's Visa is for foreign nationals visiting the Philippines for business, tourism, medical treatment, or other temporary purposes.",
+      "learnMore": "Learn more about Temporary Visitor's Visa"
+    },
+    "visaExtensions": {
+      "title": "Visa Extensions",
+      "description": "Visitors who wish to extend their stay in the Philippines beyond their authorized period can apply for an extension at the Bureau of Immigration.",
+      "visitWebsite": "Visit Bureau of Immigration website"
+    },
+    "disclaimer": {
+      "title": "Disclaimer"
+    }
+  }
+}

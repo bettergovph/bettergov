@@ -1,11 +1,115 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Figtree', ui-sans-serif, sans-serif;
+
+  /* Primary (blue) */
+  --color-primary-50: #e6f0fd;
+  --color-primary-100: #cce0fb;
+  --color-primary-200: #99c2f7;
+  --color-primary-300: #66a3f3;
+  --color-primary-400: #3385ef;
+  --color-primary-500: #0066eb;
+  --color-primary-600: #0052bc;
+  --color-primary-700: #003d8d;
+  --color-primary-800: #00295e;
+  --color-primary-900: #00142f;
+
+  /* Secondary (orange) */
+  --color-secondary-50: #ffede6;
+  --color-secondary-100: #ffdbcc;
+  --color-secondary-200: #ffb799;
+  --color-secondary-300: #ff9466;
+  --color-secondary-400: #ff7033;
+  --color-secondary-500: #ff4d00;
+  --color-secondary-600: #cc3e00;
+  --color-secondary-700: #992e00;
+  --color-secondary-800: #661f00;
+  --color-secondary-900: #330f00;
+
+  /* Accent (yellow/gold) */
+  --color-accent-50: #fef3e6;
+  --color-accent-100: #fde7cc;
+  --color-accent-200: #fbd099;
+  --color-accent-300: #f9b866;
+  --color-accent-400: #f7a133;
+  --color-accent-500: #f58900;
+  --color-accent-600: #c46e00;
+  --color-accent-700: #935200;
+  --color-accent-800: #623700;
+  --color-accent-900: #311b00;
+
+  /* Semantic */
+  --color-success-50: #e6f7ef;
+  --color-success-100: #ccefdf;
+  --color-success-200: #99dfbf;
+  --color-success-300: #66cf9f;
+  --color-success-400: #33bf7f;
+  --color-success-500: #00af5f;
+  --color-success-600: #008c4c;
+  --color-success-700: #006939;
+  --color-success-800: #004626;
+  --color-success-900: #002313;
+
+  --color-warning-50: #fff8e6;
+  --color-warning-100: #fff1cc;
+  --color-warning-200: #ffe399;
+  --color-warning-300: #ffd566;
+  --color-warning-400: #ffc733;
+  --color-warning-500: #ffb900;
+  --color-warning-600: #cc9400;
+  --color-warning-700: #996f00;
+  --color-warning-800: #664a00;
+  --color-warning-900: #332500;
+
+  --color-error-50: #fceaea;
+  --color-error-100: #f9d5d5;
+  --color-error-200: #f3abab;
+  --color-error-300: #ed8282;
+  --color-error-400: #e75858;
+  --color-error-500: #e12e2e;
+  --color-error-600: #b42525;
+  --color-error-700: #871c1c;
+  --color-error-800: #5a1212;
+  --color-error-900: #2d0909;
+
+  /* Gray */
+  --color-gray-50: #f8f9fa;
+  --color-gray-100: #f1f3f5;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #868e96;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* Leaflet popup fixes for Tailwind CSS conflicts */
 .leaflet-popup-content-wrapper {
   border-radius: 8px !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -54,4 +158,32 @@
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes to mirror v3 `animation` map */
+@utility animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@utility animate-slide-in {
+  animation: slideIn 0.5s ease-out;
 }

@@ -33,7 +33,8 @@
 /* Ensure SearchBox input has good contrast and size */
 .ais-SearchBox-input {
   font-size: 1rem;
-  padding: 0.75rem 1rem;
+  /* Ensure space for right action buttons; left aligns like normal when typing */
+  padding: 0.75rem 5rem 0.75rem 1rem;
 }
 
 /* Style for refinement list */
@@ -78,7 +79,9 @@
   border-radius: 4px;
   text-decoration: none;
   color: #374151; /* text-gray-700 */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .ais-Pagination-link:hover {
@@ -94,4 +97,27 @@
 .ais-Stats {
   font-size: 0.875rem;
   color: #4b5563; /* text-gray-800 */
+}
+
+/* Remove placeholder-specific padding; maintain consistent padding at all times */
+/* When not focused (icon visible via form::before), add left padding to clear icon */
+form.ais-SearchBox-form:not(:focus-within) .ais-SearchBox-input {
+  padding-left: 2.5rem;
+}
+
+input.ais-SearchBox-input::placeholder {
+  color: #9ca3af; /* text-gray-400 */
+  opacity: 1; /* Firefox otherwise dims it */
+}
+
+form.ais-SearchBox-form {
+  position: relative; /* so ::before can be positioned if needed */
+}
+
+form.ais-SearchBox-form::before {
+  content: ''; /* REQUIRED in Firefox */
+}
+
+form.ais-SearchBox-form:focus-within::before {
+  display: none;
 }

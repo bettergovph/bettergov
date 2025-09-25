@@ -2,10 +2,12 @@ export interface VisaSubtype {
   id: string;
   name: string;
   description: string;
-  requirements: string[] | {
-    businessOwners?: string[];
-    employees?: string[];
-  };
+  requirements:
+    | string[]
+    | {
+        businessOwners?: string[];
+        employees?: string[];
+      };
 }
 
 export interface VisaType {
@@ -14,7 +16,7 @@ export interface VisaType {
   description: string;
   url: string;
   minimumRequirements: string[];
-  subtypes: VisaSubtype[];
+  subtypes?: VisaSubtype[];
 }
 
 export interface VisaFreeEntryPolicy {

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   ChevronRight,
   Home,
@@ -9,24 +9,24 @@ import {
   Briefcase,
   FileCheck,
   Waves,
-} from 'lucide-react'
-import SEO from '../../components/SEO'
+} from 'lucide-react';
+import SEO from '../../components/SEO';
 
 interface SitemapSection {
-  title: string
-  icon: React.ReactNode
+  title: string;
+  icon: React.ReactNode;
   links: {
-    title: string
-    url: string
-    description?: string
-  }[]
+    title: string;
+    url: string;
+    description?: string;
+  }[];
 }
 
 const SitemapPage: React.FC = () => {
   const sitemapSections: SitemapSection[] = [
     {
       title: 'Main Pages',
-      icon: <Home className="h-5 w-5" />,
+      icon: <Home className='h-5 w-5' />,
       links: [
         { title: 'Home', url: '/', description: 'Main landing page' },
         { title: 'About', url: '/about', description: 'About BetterGov.ph' },
@@ -44,7 +44,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Philippines',
-      icon: <Globe className="h-5 w-5" />,
+      icon: <Globe className='h-5 w-5' />,
       links: [
         {
           title: 'About the Philippines',
@@ -85,7 +85,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Government',
-      icon: <Building2 className="h-5 w-5" />,
+      icon: <Building2 className='h-5 w-5' />,
       links: [
         {
           title: 'Executive Branch',
@@ -172,7 +172,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Services',
-      icon: <FileText className="h-5 w-5" />,
+      icon: <FileText className='h-5 w-5' />,
       links: [
         {
           title: 'All Services',
@@ -248,7 +248,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Travel',
-      icon: <Briefcase className="h-5 w-5" />,
+      icon: <Briefcase className='h-5 w-5' />,
       links: [
         {
           title: 'Visa Information',
@@ -269,7 +269,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Data Services',
-      icon: <FileCheck className="h-5 w-5" />,
+      icon: <FileCheck className='h-5 w-5' />,
       links: [
         {
           title: 'Weather',
@@ -285,7 +285,7 @@ const SitemapPage: React.FC = () => {
     },
     {
       title: 'Infrastructure',
-      icon: <Waves className="h-5 w-5" />,
+      icon: <Waves className='h-5 w-5' />,
       links: [
         {
           title: 'Flood Control Projects',
@@ -311,13 +311,13 @@ const SitemapPage: React.FC = () => {
         },
       ],
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className='min-h-screen bg-gray-50 py-12'>
       <SEO
-        title="Sitemap | BetterGov.ph"
-        description="Complete sitemap of BetterGov.ph - Find all pages and services available on the Philippine Government Portal."
+        title='Sitemap | BetterGov.ph'
+        description='Complete sitemap of BetterGov.ph - Find all pages and services available on the Philippine Government Portal.'
         keywords={[
           'sitemap',
           'navigation',
@@ -327,45 +327,45 @@ const SitemapPage: React.FC = () => {
         ]}
       />
 
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div className="p-6 md:p-8 border-b border-gray-200">
-              <h1 className="text-3xl font-bold text-gray-900">Sitemap</h1>
-              <p className="mt-2 text-gray-800">
+      <div className='container mx-auto px-4'>
+        <div className='max-w-5xl mx-auto'>
+          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
+            <div className='p-6 md:p-8 border-b border-gray-200'>
+              <h1 className='text-3xl font-bold text-gray-900'>Sitemap</h1>
+              <p className='mt-2 text-gray-800'>
                 A complete guide to all pages and services available on
                 BetterGov.ph
               </p>
             </div>
 
-            <div className="p-6 md:p-8">
-              <div className="space-y-12">
+            <div className='p-6 md:p-8'>
+              <div className='space-y-12'>
                 {sitemapSections.map((section, index) => (
                   <div key={index}>
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 rounded-md bg-primary-50 text-primary-600 mr-3">
+                    <div className='flex items-center mb-4'>
+                      <div className='p-2 rounded-md bg-primary-50 text-primary-600 mr-3'>
                         {section.icon}
                       </div>
-                      <h2 className="text-xl font-bold text-gray-900">
+                      <h2 className='text-xl font-bold text-gray-900'>
                         {section.title}
                       </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                       {section.links.map((link, linkIndex) => (
                         <Link
                           key={linkIndex}
                           to={link.url}
-                          className="group flex flex-col p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors"
+                          className='group flex flex-col p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors'
                         >
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-medium text-gray-900 group-hover:text-primary-700">
+                          <div className='flex items-center justify-between mb-2'>
+                            <h3 className='font-medium text-gray-900 group-hover:text-primary-700'>
                               {link.title}
                             </h3>
-                            <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary-500" />
+                            <ChevronRight className='h-4 w-4 text-gray-400 group-hover:text-primary-500' />
                           </div>
                           {link.description && (
-                            <p className="text-sm text-gray-800">
+                            <p className='text-sm text-gray-800'>
                               {link.description}
                             </p>
                           )}
@@ -378,10 +378,10 @@ const SitemapPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 text-center text-sm text-gray-800">
+          <div className='mt-8 text-center text-sm text-gray-800'>
             <p>
-              Can't find what you're looking for? Try using our{' '}
-              <Link to="/search" className="text-primary-600 hover:underline">
+              Can&apos;t find what you&apos;re looking for? Try using our{' '}
+              <Link to='/search' className='text-primary-600 hover:underline'>
                 search feature
               </Link>
               .
@@ -390,7 +390,7 @@ const SitemapPage: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SitemapPage
+export default SitemapPage;
