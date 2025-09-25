@@ -64,7 +64,7 @@ const ServicesSection: React.FC = () => {
               hoverable
               className='hover:border-primary-500 border-primary-200 group border-t-4 flex flex-col h-full'
             >
-              <CardHeader className='flex gap-3 items-center'>
+              <CardHeader className='flex gap-3 items-center p-4 md:p-4'>
                 <div className='bg-primary-50 text-primary-600 p-3 rounded-md self-start transition-colors group-hover:bg-primary-500 group-hover:text-white'>
                   {getIcon(category.category)}
                 </div>
@@ -73,17 +73,17 @@ const ServicesSection: React.FC = () => {
                 </h3>
               </CardHeader>
 
-              <CardContent className='h-full flex flex-col justify-between'>
+              <CardContent className='h-full flex flex-col justify-between p-0 md:p-0'>
                 <div>
-                  <ul className='space-y-2 mb-6 flex-grow'>
+                  <ul className='flex-grow divide-y border-b'>
                     {category.subcategories.slice(0, 3).map(subcategory => (
                       <li key={subcategory.slug}>
                         <Link
                           to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
-                          className='text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center'
+                          className='flex items-center justify-between gap-2 text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center px-4 py-2 hover:bg-primary-50'
                         >
-                          <span className='w-1.5 h-1.5 bg-gray-300 rounded-full mr-2'></span>
                           {subcategory.name}
+                          <LucideIcons.ChevronRightIcon className='ml-1 h-4 w-4 text-black/20' />
                         </Link>
                       </li>
                     ))}
@@ -92,10 +92,10 @@ const ServicesSection: React.FC = () => {
                 <div>
                   <Link
                     to={`/services?category=${category.slug}`}
-                    className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
+                    className='mt-auto justify-between text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center px-4 py-2 w-full hover:bg-primary-500 hover:text-white'
                   >
-                    {t('services.viewAllCategory')} {category.category}
-                    <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
+                    {t('services.viewAllCategory')}
+                    <LucideIcons.ChevronRightIcon className='ml-1 h-4 w-4' />
                   </Link>
                 </div>
               </CardContent>
