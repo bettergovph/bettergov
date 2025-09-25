@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import hotlinesData from '../../data/philippines_hotlines.json';
+
+interface Hotline {
+  name: string;
+  category: string;
+  numbers: string[];
+  description?: string;
+}
 import {
   Phone,
   Search,
@@ -9,13 +17,10 @@ import {
   Droplet,
   Heart,
 } from 'lucide-react';
-import useHotlinesData from './hotlines-data';
-import { ReportModal } from './ui';
 
 const Hotlines: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const { getCategoryHotlines } = useHotlinesData();
 
   const categories = [
     { id: 'all', name: 'All Hotlines', icon: <Phone className='w-5 h-5' /> },
@@ -40,6 +45,35 @@ const Hotlines: React.FC = () => {
     },
   ];
 
+  const getCategoryHotlines = (category: string): Hotline[] => {
+    switch (category) {
+      case 'emergency':
+        return hotlinesData.emergencyHotlines as Hotline[];
+      case 'disaster':
+        return hotlinesData.disasterHotlines as Hotline[];
+      case 'security':
+        return hotlinesData.securityHotlines as Hotline[];
+      case 'transport':
+        return hotlinesData.transportHotlines as Hotline[];
+      case 'weather':
+        return hotlinesData.weatherHotlines as Hotline[];
+      case 'utility':
+        return hotlinesData.utilityHotlines as Hotline[];
+      case 'social':
+        return hotlinesData.socialServicesHotlines as Hotline[];
+      default:
+        return [
+          ...hotlinesData.emergencyHotlines,
+          ...hotlinesData.disasterHotlines,
+          ...hotlinesData.securityHotlines,
+          ...hotlinesData.transportHotlines,
+          ...hotlinesData.weatherHotlines,
+          ...hotlinesData.utilityHotlines,
+          ...hotlinesData.socialServicesHotlines,
+        ] as Hotline[];
+    }
+  };
+
   const filteredHotlines = getCategoryHotlines(activeCategory).filter(
     hotline =>
       hotline.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -48,7 +82,6 @@ const Hotlines: React.FC = () => {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <ReportModal />
       <div className='text-center mb-8'>
         <h1 className='text-3xl font-bold mb-2'>
           Philippines Emergency Hotlines
