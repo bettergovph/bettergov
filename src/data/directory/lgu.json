@@ -175,6 +175,17 @@
         }
       }
     ],
+    "municipalities": [
+      {
+        "municipality": "Pateros",
+        "mayor": {
+          "name": "GERALD S. GERMAN"
+        },
+        "vice_mayor": {
+          "name": "CARLO UMAGAT SANTOS"
+        }
+      }
+    ],
     "slug": "national-capital-region"
   },
   {
@@ -3340,6 +3351,18 @@
       },
       {
         "province": "BATAAN PROVINCE",
+        "cities": [
+          {
+            "city": "Balanga",
+            "zip_code": "2100",
+            "mayor": {
+              "name": "RAQUEL FRANCIS D. GARCIA"
+            },
+            "vice_mayor": {
+              "name": "FRANCIS ANTHONY S. GARCIA"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Abucay",
@@ -3459,6 +3482,48 @@
       },
       {
         "province": "BULACAN PROVINCE",
+        "cities": [
+          {
+            "city": "Baliuag",
+            "zip_code": "3006",
+            "mayor": {
+              "name": "Sonia V. Estrella"
+            },
+            "vice_mayor": {
+              "name": "Ferdinand “Ferdie” V. Estrella"
+            }
+          },
+          {
+            "city": "Malolos",
+            "zip_code": "3000",
+            "mayor": {
+              "name": "Christian D. Natividad"
+            },
+            "vice_mayor": {
+              "name": "Gilbert T. Gatchalian"
+            }
+          },
+          {
+            "city": "Meycauayan",
+            "zip_code": "3020",
+            "mayor": {
+              "name": "Henry R. Villarica"
+            },
+            "vice_mayor": {
+              "name": "Josefina O. Violago"
+            }
+          },
+          {
+            "city": "San Jose Del Monte",
+            "zip_code": "3023",
+            "mayor": {
+              "name": "Florida P. Robes"
+            },
+            "vice_mayor": {
+              "name": "Arlene B. Arciaga"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Angat",
@@ -3635,10 +3700,10 @@
             "municipality": "San Ildefonso",
             "zip_code": "3010",
             "mayor": {
-              "name": "FERNANDO S. GALVEZ JR."
+              "name": "Fernando S. Galvez Jr."
             },
             "vice_mayor": {
-              "name": "ROCKY G. SARMIENTO"
+              "name": "Chariz G. Cabande"
             }
           },
           {
@@ -3678,6 +3743,58 @@
       },
       {
         "province": "NUEVA ECIJA PROVINCE",
+        "cities": [
+          {
+            "city": "Cabanatuan",
+            "zip_code": "3100",
+            "mayor": {
+              "name": "Myca Elizabeth R. Vergara"
+            },
+            "vice_mayor": {
+              "name": "Joselito “Bunso” C. Roque"
+            }
+          },
+          {
+            "city": "Gapan",
+            "zip_code": "3108",
+            "mayor": {
+              "name": "Emary Joy D. Pascual"
+            },
+            "vice_mayor": {
+              "name": "Max Pascual Howley"
+            }
+          },
+          {
+            "city": "Palayan",
+            "zip_code": "3116",
+            "mayor": {
+              "name": "Viandrei Nicole J. Cuevas"
+            },
+            "vice_mayor": {
+              "name": "Romaric S. Capinpin"
+            }
+          },
+          {
+            "city": "San Jose",
+            "zip_code": "3120",
+            "mayor": {
+              "name": "Josel “James” F. Violago"
+            },
+            "vice_mayor": {
+              "name": "Evangel Shalom S. Manugue"
+            }
+          },
+          {
+            "city": "Science City Of Muñoz",
+            "zip_code": "3119",
+            "mayor": {
+              "name": "Baby Armi L. Alvarez"
+            },
+            "vice_mayor": {
+              "name": "Nestor L. Alvarez"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Aliaga",
@@ -3887,6 +4004,38 @@
       },
       {
         "province": "PAMPANGA PROVINCE",
+        "cities": [
+          {
+            "city": "Angeles",
+            "zip_code": "2009",
+            "mayor": {
+              "name": "Carmelo Lazatin II"
+            },
+            "vice_mayor": {
+              "name": "Amos B. Rivera"
+            }
+          },
+          {
+            "city": "San Fernando",
+            "zip_code": "2000",
+            "mayor": {
+              "name": "Vilma Balle-Caluag"
+            },
+            "vice_mayor": {
+              "name": "Aurelio Brenz P. Gonzales"
+            }
+          },
+          {
+            "city": "Mabalacat",
+            "zip_code": "2010",
+            "mayor": {
+              "name": "Gerald Guttrie P. Aquino"
+            },
+            "vice_mayor": {
+              "name": "Marcos T. Castro Jr."
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Apalit",
@@ -4082,6 +4231,18 @@
       },
       {
         "province": "TARLAC PROVINCE",
+        "cities": [
+          {
+            "city": "Tarlac City",
+            "zip_code": "2300",
+            "mayor": {
+              "name": "SUSAN ARENO YAP-SULIT"
+            },
+            "vice_mayor": {
+              "name": "KATHERINE THERESE C. ANGELES"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Anao",
@@ -4264,6 +4425,18 @@
       },
       {
         "province": "ZAMBALES PROVINCE",
+        "cities": [
+          {
+            "city": "Olongapo",
+            "zip_code": "2200",
+            "mayor": {
+              "name": "Rolen C. Paulino Jr."
+            },
+            "vice_mayor": {
+              "name": "Kaye Ann S. Legaspi"
+            }
+          }
+        ],
         "municipalities": [
           {
             "municipality": "Botolan",
@@ -4364,6 +4537,36 @@
             },
             "vice_mayor": {
               "name": "CHRISTOPHER R. GONGORA"
+            }
+          },
+          {
+            "municipality": "San Narciso",
+            "zip_code": "2205",
+            "mayor": {
+              "name": "La Rainne Abad-Sarmiento"
+            },
+            "vice_mayor": {
+              "name": "Lance Ritual"
+            }
+          },
+          {
+            "municipality": "Santa Cruz",
+            "zip_code": "2209",
+            "mayor": {
+              "name": "Consolacion M. Marty"
+            },
+            "vice_mayor": {
+              "name": "Miguel M. Maniago, Jr."
+            }
+          },
+          {
+            "municipality": "Subic",
+            "zip_code": "2213",
+            "mayor": {
+              "name": "Jonathan John Khonghun"
+            },
+            "vice_mayor": {
+              "name": "Lauro B. Simbol"
             }
           }
         ]

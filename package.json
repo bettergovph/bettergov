@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && npm run generate:metadata && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
@@ -27,7 +27,10 @@
     "index:contractor-profiles": "node ./scripts/index_contractors.cjs",
     "load:flood-control:arcgis": "node ./src/data/flood_control/load_flood_control_arcgis.js",
     "process:unique-contractors": "node ./scripts/process_contractors.cjs",
-    "fetch:contractor-profiles": "node ./scripts/fetch_contractor_profiles.cjs"
+    "fetch:contractor-profiles": "node ./scripts/fetch_contractor_profiles.cjs",
+    "generate:llms-txt": "node ./scripts/generate-llms-txt.js",
+    "generate:sitemap": "node ./scripts/generate-sitemap.js",
+    "generate:metadata": "npm run generate:llms-txt && npm run generate:sitemap"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.7.0",
@@ -59,7 +62,8 @@
     "react-router-dom": "^6.22.2",
     "recharts": "^2.15.3",
     "tailwind-merge": "^2.2.1",
-    "wrangler": "^4.19.1"
+    "wrangler": "^4.19.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",

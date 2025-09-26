@@ -116,7 +116,7 @@ const PublicHolidays: React.FC = () => {
   );
 
   return (
-    <div className='max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8'>
+    <div className='max-w-6xl px-4 py-8 sm:mx-auto sm:px-6 lg:px-8'>
       <div className='text-center mb-12'>
         <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
           Philippine Public Holidays 2025

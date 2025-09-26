@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import executiveData from '../../../data/directory/executive.json';
 import {
   CardList,
   Card,
@@ -12,46 +11,14 @@ import {
   CardAvatar,
   CardDivider,
 } from '../../../components/ui/CardList';
+import { executiveData } from './data';
 
-interface Personnel {
-  name: string;
-  role: string;
-  contact?: string;
-  email?: string;
-  other_office?: string;
-}
-
-interface OfficeDivision {
-  office_division: string;
-  personnel: Personnel[];
-}
-
-interface Official {
-  name: string;
-  role: string;
-  email?: string;
-  contact?: string;
-}
-
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: (Official | OfficeDivision)[];
-  bureaus?: unknown[];
-  attached_agency?: unknown[];
-}
+const communicationsOffices = executiveData.filter(office =>
+  office.office.toLowerCase().includes('communication')
+);
 
 export default function PresidentialCommunicationsOfficePage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Find all communications-related offices
-  const communicationsOffices = useMemo(() => {
-    return (executiveData as Office[]).filter(office =>
-      office.office.toLowerCase().includes('communication')
-    );
-  }, []);
 
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
@@ -86,10 +53,10 @@ export default function PresidentialCommunicationsOfficePage() {
             return false;
           }))
     );
-  }, [communicationsOffices, searchTerm]);
+  }, [searchTerm]);
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -192,7 +159,7 @@ export default function PresidentialCommunicationsOfficePage() {
                 )}
 
               {office.officials && (
-                <CardGrid columns={2}>
+                <CardGrid columns={1} className='@lg:grid-cols-2'>
                   {office.officials
                     .filter(item => 'office_division' in item)
                     .map((division, idx) => {

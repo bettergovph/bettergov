@@ -1,24 +1,22 @@
 import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { Building2, Database, GraduationCap } from 'lucide-react';
 import { useState, useMemo } from 'react';
-import constitutionalData from '../../../../data/directory/constitutional.json';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
-
-interface ConstitutionalOffice {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  [key: string]: unknown;
-}
+import { type ConstitutionalOffice } from '../../schema';
+import { constitutionalData } from '../data';
 
 interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
+
+// Only include constitutional offices (exclude GOCCs and SUCs)
+const offices = constitutionalData.filter(
+  office =>
+    !office.office_type.includes('Government-Owned') &&
+    !office.office_type.includes('GOCCs') &&
+    !office.office_type.includes('State Universities') &&
+    !office.office_type.includes('SUCs')
+);
 
 export default function ConstitutionalSidebar({
   onOfficeSelect,
@@ -28,17 +26,6 @@ export default function ConstitutionalSidebar({
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Only include constitutional offices (exclude GOCCs and SUCs)
-  const offices = useMemo(() => {
-    return constitutionalData.filter(
-      (office: ConstitutionalOffice) =>
-        !office.office_type.includes('Government-Owned') &&
-        !office.office_type.includes('GOCCs') &&
-        !office.office_type.includes('State Universities') &&
-        !office.office_type.includes('SUCs')
-    ) as ConstitutionalOffice[];
-  }, []);
-
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
     if (!searchTerm) return offices;
@@ -46,7 +33,7 @@ export default function ConstitutionalSidebar({
     return offices.filter(office =>
       office.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [offices, searchTerm]);
+  }, [searchTerm]);
 
   const handleOfficeSelect = (office: ConstitutionalOffice) => {
     if (onOfficeSelect) {
@@ -61,12 +48,18 @@ export default function ConstitutionalSidebar({
   };
 
   return (
-    <StandardSidebar
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
-      searchPlaceholder='Search constitutional offices...'
-    >
+    <StandardSidebar>
       <nav className='p-2 space-y-4'>
+        {/* TODO: some PR breaks the search, adding a temporary one*/}
+        <div className='mb-4'>
+          <input
+            type='text'
+            placeholder='Search constitutional offices...'
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className='w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent'
+          />
+        </div>
         {/* Constitutional offices */}
         <div>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>

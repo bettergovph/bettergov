@@ -1,21 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Compass,
-  FileCheck,
   Globe,
   Search,
-  AlertCircle,
-  ExternalLink,
+  Grid3x3,
+  List,
+  CheckCircle,
+  XCircle,
+  Clock,
 } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
 import Button from '../../../components/ui/Button';
-import SelectPicker from '../../../components/ui/SelectPicker';
 import { Link } from 'react-router-dom';
 import { useQueryState } from 'nuqs';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '../../../components/ui/Dialog';
+import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
 
 type Country = string;
+
+// Example visa-required countries
+const VISA_REQUIRED_COUNTRIES: Country[] = [
+  'Afghanistan',
+  'Albania',
+  'Algeria',
+  'Armenia',
+  'Azerbaijan',
+  'Bangladesh',
+  'Belarus',
+  'Bosnia and Herzegovina',
+  'Cuba',
+  'Egypt',
+  'Georgia',
+  'Iran',
+  'Iraq',
+  'Jordan',
+  'Lebanon',
+  'Libya',
+  'Moldova',
+  'Montenegro',
+  'Nigeria',
+  'North Korea',
+  'Pakistan',
+  'Palestine',
+  'Serbia',
+  'Somalia',
+  'South Sudan',
+  'Sudan',
+  'Syria',
+  'Ukraine',
+  'Yemen',
+];
 
 // Using the imported VisaRequirement type from '../../../types/visa'
 
@@ -23,81 +65,104 @@ const VisaPage: React.FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useQueryState('country');
+  const [viewMode, setViewMode] = useQueryState('view');
   const [visaRequirement, setVisaRequirement] =
     useState<VisaRequirement | null>(null);
   const [allCountries, setAllCountries] = useState<Country[]>([]);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
-  const [selectPickerOptions, setSelectPickerOptions] = useState<
-    Array<{ label: string; value: string }>
-  >([]);
+  const [countryRequirements, setCountryRequirements] = useState<
+    Map<string, VisaRequirement>
+  >(new Map());
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogCountry, setDialogCountry] = useState<string | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Set default view mode and ensure URL parameter is always present
+  useEffect(() => {
+    if (!viewMode) {
+      setViewMode('grid');
+    }
+  }, [viewMode, setViewMode]);
 
   useEffect(() => {
     // Extract all unique countries from the visa data
     const countries = new Set<string>();
+    const requirements = new Map<string, VisaRequirement>();
 
     // Add countries with 30-day visa-free entry
     const typedVisaData = visaData as PhilippinesVisaPolicy;
 
     // Add countries with 30-day visa-free entry
-    typedVisaData.visaFreeEntryPolicies[0].countries?.forEach(country =>
-      countries.add(country)
-    );
+    typedVisaData.visaFreeEntryPolicies[0].countries?.forEach(country => {
+      countries.add(country);
+      requirements.set(country, {
+        type: 'visa-free',
+        duration: '30 days',
+        description: typedVisaData.visaFreeEntryPolicies[0].description,
+      });
+    });
 
     // Add countries with 59-day visa-free entry
-    typedVisaData.visaFreeEntryPolicies[1].countries?.forEach(country =>
-      countries.add(country)
-    );
+    typedVisaData.visaFreeEntryPolicies[1].countries?.forEach(country => {
+      countries.add(country);
+      requirements.set(country, {
+        type: 'visa-free',
+        duration: '59 days',
+        description: typedVisaData.visaFreeEntryPolicies[1].description,
+      });
+    });
 
-    // Add some example visa-required countries
-    [
-      'Afghanistan',
-      'Albania',
-      'Algeria',
-      'Armenia',
-      'Azerbaijan',
-      'Bangladesh',
-      'Belarus',
-      'Bosnia and Herzegovina',
-      'China',
-      'Cuba',
-      'Egypt',
-      'Georgia',
-      'India',
-      'Iran',
-      'Iraq',
-      'Jordan',
-      'Lebanon',
-      'Libya',
-      'Moldova',
-      'Montenegro',
-      'Nigeria',
-      'North Korea',
-      'Pakistan',
-      'Palestine',
-      'Serbia',
-      'Somalia',
-      'South Sudan',
-      'Sudan',
-      'Syria',
-      'Ukraine',
-      'Yemen',
-    ].forEach(country => {
+    // Special case for India
+    countries.add('India');
+    requirements.set('India', {
+      type: 'special-condition',
+      duration: '14 days (extendable to 21 days)',
+      description: typedVisaData.visaFreeEntryPolicies[2].description,
+      requirements: typedVisaData.visaFreeEntryPolicies[2].requirements,
+      additionalInfo: typedVisaData.visaFreeEntryPolicies[2].additionalInfo,
+    });
+
+    // Special case for China
+    countries.add('China');
+    requirements.set('China', {
+      type: 'special-condition',
+      duration: '7 days (extendable to 21 days)',
+      description: typedVisaData.visaFreeEntryPolicies[3].description,
+      additionalInfo: typedVisaData.visaFreeEntryPolicies[3].additionalInfo,
+    });
+
+    // Add visa-required countries
+    VISA_REQUIRED_COUNTRIES.forEach(country => {
       if (!countries.has(country)) {
         countries.add(country);
+        requirements.set(country, {
+          type: 'visa-required',
+          description: typedVisaData.visaRequiredNationals.description,
+        });
       }
     });
 
     const sortedCountries = Array.from(countries).sort();
     setAllCountries(sortedCountries);
     setFilteredCountries(sortedCountries);
-
-    // Convert to SelectPicker format
-    const selectOptions = sortedCountries.map(country => ({
-      label: country,
-      value: country,
-    }));
-    setSelectPickerOptions(selectOptions);
+    setCountryRequirements(requirements);
   }, []);
+
+  // Restore state from URL parameters after data is loaded
+  useEffect(() => {
+    if (selectedCountry && countryRequirements.has(selectedCountry)) {
+      const requirement = countryRequirements.get(selectedCountry);
+      if (requirement) {
+        setVisaRequirement(requirement);
+
+        // Auto-open dialog in grid view
+        if (viewMode === 'grid' || !viewMode) {
+          setDialogCountry(selectedCountry);
+          setDialogOpen(true);
+        }
+      }
+    }
+  }, [selectedCountry, countryRequirements, viewMode]);
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -110,70 +175,73 @@ const VisaPage: React.FC = () => {
     }
   }, [searchTerm, allCountries]);
 
-  const handleSelectPickerChange = (
-    option: { label: string; value: string } | null
-  ) => {
-    if (option) {
-      checkVisaRequirement(option.value);
-    } else {
-      setSelectedCountry(null);
-      setVisaRequirement(null);
+  const selectCountry = (country: string) => {
+    setSelectedCountry(country);
+    const requirement = countryRequirements.get(country);
+    if (requirement) {
+      setVisaRequirement(requirement);
     }
   };
 
   const checkVisaRequirement = (country: string) => {
-    setSelectedCountry(country);
+    selectCountry(country);
+  };
 
-    const typedVisaData = visaData as PhilippinesVisaPolicy;
+  const openDetailsDialog = (country: string) => {
+    selectCountry(country);
+    setDialogCountry(country);
+    setDialogOpen(true);
+  };
 
-    // Check if country is in 30-day visa-free list
-    if (typedVisaData.visaFreeEntryPolicies[0].countries?.includes(country)) {
-      setVisaRequirement({
-        type: 'visa-free',
-        duration: '30 days',
-        description: typedVisaData.visaFreeEntryPolicies[0].description,
-      });
-      return;
-    }
+  const closeDetailsDialog = () => {
+    setDialogOpen(false);
+  };
 
-    // Check if country is in 59-day visa-free list
-    if (typedVisaData.visaFreeEntryPolicies[1].countries?.includes(country)) {
-      setVisaRequirement({
-        type: 'visa-free',
-        duration: '59 days',
-        description: typedVisaData.visaFreeEntryPolicies[1].description,
-      });
-      return;
-    }
-
-    // Special case for India
-    if (country === 'India') {
-      setVisaRequirement({
-        type: 'special-condition',
-        duration: '14 days (extendable to 21 days)',
-        description: typedVisaData.visaFreeEntryPolicies[2].description,
-        requirements: typedVisaData.visaFreeEntryPolicies[2].requirements,
-        additionalInfo: typedVisaData.visaFreeEntryPolicies[2].additionalInfo,
-      });
-      return;
-    }
-
-    // Special case for China
-    if (country === 'China') {
-      setVisaRequirement({
-        type: 'special-condition',
-        duration: '7 days (extendable to 21 days)',
-        description: typedVisaData.visaFreeEntryPolicies[3].description,
-        additionalInfo: typedVisaData.visaFreeEntryPolicies[3].additionalInfo,
-      });
-      return;
-    }
-
-    // Default case: visa required
-    setVisaRequirement({
-      type: 'visa-required',
-      description: typedVisaData.visaRequiredNationals.description,
+  const handleCheckVisaRequirements = () => {
+    // Scroll to the search bar and focus it
+    searchInputRef.current?.focus();
+    searchInputRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
     });
+  };
+
+  const getStatusIcon = (type: string) => {
+    switch (type) {
+      case 'visa-free':
+        return <CheckCircle className='h-5 w-5 text-green-600' />;
+      case 'visa-required':
+        return <XCircle className='h-5 w-5 text-red-600' />;
+      case 'special-condition':
+        return <Clock className='h-5 w-5 text-yellow-600' />;
+      default:
+        return null;
+    }
+  };
+
+  const getStatusBadge = (type: string, duration?: string) => {
+    switch (type) {
+      case 'visa-free':
+        return (
+          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+            {duration || 'Visa Free'}
+          </span>
+        );
+      case 'visa-required':
+        return (
+          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
+            Visa Required
+          </span>
+        );
+      case 'special-condition':
+        return (
+          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800'>
+            Special Conditions
+          </span>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -206,29 +274,12 @@ const VisaPage: React.FC = () => {
                 <p className='text-sm text-gray-800 mb-4'>
                   {t('quickCheck.description')}
                 </p>
-                <div className='relative hidden xl:block'>
-                  <Search className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
-                  <input
-                    type='text'
-                    placeholder={t('quickCheck.searchPlaceholder')}
-                    className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500'
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                    aria-label={t('quickCheck.searchAriaLabel')}
-                  />
-                </div>
-                {/* Mobile & Tablet SelectPicker */}
-                <div className='block xl:hidden'>
-                  <SelectPicker
-                    options={selectPickerOptions}
-                    onSelect={handleSelectPickerChange}
-                    placeholder={t('quickCheck.searchPlaceholder')}
-                    searchable={true}
-                    clearable={true}
-                    selectedValue={selectedCountry || undefined}
-                    size='md'
-                  />
-                </div>
+                <Button
+                  onClick={handleCheckVisaRequirements}
+                  className='w-full bg-blue-600 hover:bg-blue-700 text-white'
+                >
+                  Check Visa Requirements
+                </Button>
               </div>
             </div>
           </div>
@@ -236,48 +287,143 @@ const VisaPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className='container mx-auto max-w-6xl py-0 md:py-12'>
-        <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
-          {/* Left Column - Country List (Desktop Only) */}
-          <div className='hidden xl:block xl:col-span-1'>
-            <div className='bg-white rounded-lg shadow-md p-6'>
-              <h2 className='text-xl font-semibold mb-4'>
-                {t('countryList.title')}
-              </h2>
-              <div
-                className='h-[800px] overflow-y-auto pr-2'
-                role='listbox'
-                aria-label={t('countryList.ariaLabel')}
+      <div className='container mx-auto max-w-6xl py-4 md:py-12 px-4'>
+        {/* View Toggle and Search Bar */}
+        <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
+          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+            <div className='relative w-full md:w-96'>
+              <Search className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
+              <input
+                ref={searchInputRef}
+                type='text'
+                placeholder={t('quickCheck.searchPlaceholder')}
+                className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500'
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                aria-label={t('quickCheck.searchAriaLabel')}
+              />
+            </div>
+            <div className='flex items-center gap-2'>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'grid' || !viewMode
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+                aria-pressed={viewMode === 'grid' || !viewMode}
+                aria-label='Switch to grid view'
               >
-                {filteredCountries.length > 0 ? (
-                  filteredCountries.map(country => (
-                    <button
-                      key={country}
-                      className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors ${
-                        selectedCountry === country
-                          ? 'bg-blue-100 text-blue-800 font-medium'
-                          : 'hover:bg-gray-100'
-                      }`}
-                      onClick={() => checkVisaRequirement(country)}
-                      role='option'
-                      aria-selected={selectedCountry === country}
-                    >
-                      {country}
-                    </button>
-                  ))
-                ) : (
-                  <div className='text-center py-8 text-gray-800'>
-                    <Search className='mx-auto h-8 w-8 mb-2 opacity-50' />
-                    <p>{t('countryList.noResults')}</p>
-                  </div>
-                )}
-              </div>
+                <Grid3x3 className='h-4 w-4' />
+                Grid View
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'list'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+                aria-pressed={viewMode === 'list'}
+                aria-label='Switch to detail view'
+              >
+                <List className='h-4 w-4' />
+                Detail View
+              </button>
             </div>
           </div>
+        </div>
 
-          {/* Right Column - Visa Requirements */}
-          <div className='md:col-span-2'>
-            <div className={`${!selectedCountry ? 'hidden xl:block' : ''}`}>
+        {/* Grid View */}
+        {(viewMode === 'grid' || !viewMode) && (
+          <div className='bg-white rounded-lg shadow-md p-6'>
+            <h2 className='text-2xl font-semibold mb-6'>
+              Visa Requirements by Country
+            </h2>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+              {filteredCountries.map(country => {
+                const requirement = countryRequirements.get(country);
+                return (
+                  <div
+                    key={country}
+                    className='border border-gray-200 rounded-lg hover:shadow-lg transition-shadow cursor-pointer'
+                  >
+                    <button
+                      onClick={() => openDetailsDialog(country)}
+                      className='w-full flex items-start justify-between p-4 cursor-pointer'
+                    >
+                      <div className='flex-1'>
+                        <h3 className='font-medium text-lg text-left mb-2'>
+                          {country}
+                        </h3>
+                        {requirement && (
+                          <div className='flex items-start gap-2'>
+                            {getStatusIcon(requirement.type)}
+                            {getStatusBadge(
+                              requirement.type,
+                              requirement.duration
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            {filteredCountries.length === 0 && (
+              <div className='text-center py-12 text-gray-500'>
+                <Search className='mx-auto h-12 w-12 mb-4 opacity-50' />
+                <p className='text-lg'>
+                  No countries found matching your search.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Detail View */}
+        {viewMode === 'list' && (
+          <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
+            {/* Left Column - Country List */}
+            <div className='xl:col-span-1'>
+              <div className='bg-white rounded-lg shadow-md p-6'>
+                <h2 className='text-xl font-semibold mb-4'>
+                  {t('countryList.title')}
+                </h2>
+                <div
+                  className='max-h-[400px] xl:max-h-[800px] overflow-y-auto pr-2'
+                  role='listbox'
+                  aria-label={t('countryList.ariaLabel')}
+                >
+                  {filteredCountries.length > 0 ? (
+                    filteredCountries.map(country => (
+                      <button
+                        key={country}
+                        className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors cursor-pointer ${
+                          selectedCountry === country
+                            ? 'bg-blue-100 text-blue-800 font-medium'
+                            : 'hover:bg-gray-100'
+                        }`}
+                        onClick={() => checkVisaRequirement(country)}
+                        role='option'
+                        aria-selected={selectedCountry === country}
+                      >
+                        {country}
+                      </button>
+                    ))
+                  ) : (
+                    <div className='text-center py-8 text-gray-800'>
+                      <Search className='mx-auto h-8 w-8 mb-2 opacity-50' />
+                      <p>{t('countryList.noResults')}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Visa Requirements */}
+            <div className='xl:col-span-2'>
               {selectedCountry ? (
                 <div className='bg-white rounded-lg shadow-md p-6'>
                   <h2 className='text-2xl font-semibold mb-2'>
@@ -285,148 +431,10 @@ const VisaPage: React.FC = () => {
                   </h2>
 
                   {visaRequirement && (
-                    <div className='mt-6'>
-                      {visaRequirement.type === 'visa-free' && (
-                        <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-                          <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-green-800'>
-                              {t('requirements.visaFree.title')}
-                            </h3>
-                            <p className='text-green-700'>
-                              {t('requirements.visaFree.description', {
-                                country: selectedCountry,
-                                duration: visaRequirement.duration,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {visaRequirement.type === 'visa-required' && (
-                        <div className='flex items-start p-4 bg-red-50 border border-red-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-red-800'>
-                              {t('requirements.visaRequired.title')}
-                            </h3>
-                            <p className='text-red-700'>
-                              {t('requirements.visaRequired.description', {
-                                country: selectedCountry,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {visaRequirement.type === 'special-condition' && (
-                        <div className='flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg'>
-                          <AlertCircle className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
-                          <div>
-                            <h3 className='font-semibold text-yellow-800'>
-                              {t('requirements.specialCondition.title')}
-                            </h3>
-                            <p className='text-yellow-700'>
-                              {t('requirements.specialCondition.description', {
-                                country: selectedCountry,
-                                duration: visaRequirement.duration,
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className='mt-6'>
-                        <h3 className='text-lg font-medium mb-2'>
-                          {t('requirements.entryRequirements')}
-                        </h3>
-                        <div className='prose prose-sm max-w-none'>
-                          <p>{visaRequirement.description}</p>
-
-                          {visaRequirement.requirements && (
-                            <div className='mt-4'>
-                              <h4 className='text-md font-medium mb-2'>
-                                {t('requirements.requiredDocuments')}
-                              </h4>
-                              <ul className='list-disc pl-5 space-y-1'>
-                                {visaRequirement.requirements.map(
-                                  (req, index) => (
-                                    <li key={index}>{req}</li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          )}
-
-                          {visaRequirement.additionalInfo && (
-                            <div className='mt-4 p-3 bg-blue-50 rounded-md text-blue-800'>
-                              <p>
-                                <strong>{t('requirements.note')}</strong>{' '}
-                                {visaRequirement.additionalInfo}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {visaRequirement.type === 'visa-required' && (
-                        <div className='mt-6'>
-                          <h3 className='text-lg font-medium mb-3'>
-                            {t('visaApplication.title')}
-                          </h3>
-                          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                            <a
-                              href='https://evisa.gov.ph/'
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                            >
-                              <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
-                              </div>
-                              <div>
-                                <h4 className='font-medium'>
-                                  {t('visaApplication.eVisa.title')}
-                                </h4>
-                                <p className='text-sm text-gray-800'>
-                                  {t('visaApplication.eVisa.description')}
-                                </p>
-                                <div className='flex items-center text-blue-600 text-sm mt-1'>
-                                  <span>
-                                    {t('visaApplication.eVisa.action')}
-                                  </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
-                                </div>
-                              </div>
-                            </a>
-                            <a
-                              href='https://dfa.gov.ph/list-of-philippine-embassies-and-consulates-general'
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
-                            >
-                              <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                                <Globe className='h-5 w-5 text-blue-600' />
-                              </div>
-                              <div>
-                                <h4 className='font-medium'>
-                                  {t('visaApplication.embassy.title')}
-                                </h4>
-                                <p className='text-sm text-gray-800'>
-                                  {t('visaApplication.embassy.description')}
-                                </p>
-                                <div className='flex items-center text-blue-600 text-sm mt-1'>
-                                  <span>
-                                    {t('visaApplication.embassy.action')}
-                                  </span>
-                                  <ExternalLink className='h-3 w-3 ml-1' />
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    <VisaRequirementDetails
+                      country={selectedCountry}
+                      visaRequirement={visaRequirement}
+                    />
                   )}
                 </div>
               ) : (
@@ -444,71 +452,40 @@ const VisaPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              {selectedCountry && (
-                <div className='mt-8 bg-white rounded-lg shadow-md p-6'>
-                  <h2 className='text-xl font-semibold mb-4'>
-                    {t('additionalInfo.title')}
-                  </h2>
-
-                  <div className='space-y-6'>
-                    <div>
-                      <h3 className='text-lg font-medium mb-2'>
-                        {t('additionalInfo.temporaryVisa.title')}
-                      </h3>
-                      <p className='text-gray-700'>
-                        {t('additionalInfo.temporaryVisa.description')}
-                      </p>
-                      <a
-                        href='https://evisa.gov.ph/page/policy?l1=Non-Immigrant%20Visas&l2=9(a)%20Temporary%20Visitors%20Visa'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='inline-flex items-center text-blue-600 hover:text-blue-800 mt-2'
-                      >
-                        <span>
-                          {t('additionalInfo.temporaryVisa.learnMore')}
-                        </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
-                      </a>
-                    </div>
-
-                    <div>
-                      <h3 className='text-lg font-medium mb-2'>
-                        {t('additionalInfo.visaExtensions.title')}
-                      </h3>
-                      <p className='text-gray-700'>
-                        {t('additionalInfo.visaExtensions.description')}
-                      </p>
-                      <a
-                        href='https://immigration.gov.ph/'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='inline-flex items-center text-blue-600 hover:text-blue-800 mt-2'
-                      >
-                        <span>
-                          {t('additionalInfo.visaExtensions.visitWebsite')}
-                        </span>
-                        <ExternalLink className='h-3 w-3 ml-1' />
-                      </a>
-                    </div>
-
-                    <div className='p-4 bg-yellow-50 rounded-lg'>
-                      <h3 className='text-lg font-medium mb-2 text-yellow-800'>
-                        {t('additionalInfo.disclaimer.title')}
-                      </h3>
-                      <p className='text-yellow-700 text-sm'>
-                        {visaData.sourceInfo.disclaimer}
-                      </p>
-                      <p className='text-yellow-700 text-sm mt-2'>
-                        Last updated: {visaData.sourceInfo.lastUpdated}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
-        </div>
+        )}
       </div>
+
+      {/* Visa Details Dialog */}
+      <Dialog
+        open={dialogOpen}
+        onOpenChange={open => !open && closeDetailsDialog()}
+      >
+        <DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto'>
+          <DialogHeader>
+            <DialogTitle className='text-2xl'>
+              {dialogCountry &&
+                t('requirements.title', { country: dialogCountry })}
+            </DialogTitle>
+          </DialogHeader>
+          {dialogCountry && visaRequirement && (
+            <VisaRequirementDetails
+              country={dialogCountry}
+              visaRequirement={visaRequirement}
+              isDialog={true}
+            />
+          )}
+          <DialogFooter>
+            <Button
+              onClick={closeDetailsDialog}
+              className='bg-blue-600 hover:bg-blue-700 text-white'
+            >
+              Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

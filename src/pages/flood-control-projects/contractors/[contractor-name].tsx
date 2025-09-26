@@ -7,13 +7,9 @@ import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../../lib/exportData';
 import {
   ChevronLeft,
-  BarChart3,
   Download,
-  Table,
-  Map,
   ArrowUpDown,
   Info,
-  Users,
   Building2,
   ZoomIn,
   ZoomOut,
@@ -25,6 +21,7 @@ import 'leaflet/dist/leaflet.css';
 
 // Import contractor data
 import contractorData from '../../../data/flood_control/lookups/Contractor_with_counts.json';
+import FloodControlProjectsTab from '../tab';
 
 // Define types for our data
 interface DataItem {
@@ -643,36 +640,7 @@ const ContractorDetail: React.FC = () => {
         </div>
 
         {/* View Tabs */}
-        <div className='flex border-b border-gray-200 mb-6'>
-          <Link
-            to='/flood-control-projects'
-            className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
-          >
-            <BarChart3 className='w-4 h-4 mr-2' />
-            Visual
-          </Link>
-          <Link
-            to='/flood-control-projects/table'
-            className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
-          >
-            <Table className='w-4 h-4 mr-2' />
-            Table
-          </Link>
-          <Link
-            to='/flood-control-projects/map'
-            className='px-4 py-2 text-gray-800 hover:text-blue-600 font-medium flex items-center'
-          >
-            <Map className='w-4 h-4 mr-2' />
-            Map
-          </Link>
-          <Link
-            to='/flood-control-projects/contractors'
-            className='px-4 py-2 border-b-2 border-blue-500 text-blue-600 font-medium flex items-center'
-          >
-            <Users className='w-4 h-4 mr-2' />
-            Contractors
-          </Link>
-        </div>
+        <FloodControlProjectsTab selectedTab='contractors' />
 
         {/* Contractor Profile Section */}
         {contractorProfile && (

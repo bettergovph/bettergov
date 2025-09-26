@@ -7,35 +7,17 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
+import { institutionData } from './data';
 
-interface SUC {
-  name: string;
-  office_type: string;
-  description?: string;
-  address?: string;
-  phone?: string;
-  trunklines?: string[];
-  trunk_line?: string;
-  website?: string;
-  email?: string;
-  officials?: Array<{
-    name?: string;
-    position?: string;
-    [key: string]: unknown;
-  }>;
-  [key: string]: unknown;
-}
+// Filter SUCs from constitutional data
+const sucs = institutionData.filter(
+  office =>
+    office.office_type.includes('State Universities') ||
+    office.office_type.includes('SUCs')
+);
 
 export default function SUCsPage() {
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter SUCs from constitutional data
-  const sucs = constitutionalData.filter(
-    (office: SUC) =>
-      office.office_type.includes('State Universities') ||
-      office.office_type.includes('SUCs')
-  ) as SUC[];
 
   // Filter based on search term
   const filteredSUCs = sucs.filter(suc =>
@@ -43,7 +25,7 @@ export default function SUCsPage() {
   );
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
@@ -66,7 +48,7 @@ export default function SUCsPage() {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
         {filteredSUCs.length === 0 ? (
           <div className='col-span-full p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>

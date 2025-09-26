@@ -48,67 +48,19 @@ We're always looking for passionate individuals to help improve BetterGov.ph. We
 
 If you're interested in contributing, please reach out to us at [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph) or open an issue in this repository.
 
-## Report a Bug
+## Code of Conduct
 
-Found a problem with the website? Help us improve by reporting it!
+We are committed to fostering a welcoming and respectful community.  
+Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) before participating.
 
-1. Open an issue in this repository
-2. Use the bug report template
-3. Provide as much detail as possible, including:
-   - What you were trying to do
-   - What you expected to happen
-   - What actually happened
-   - Screenshots, if applicable
+## Contributing
 
-Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
+We welcome contributions from everyone!  
+Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
 
-## Setup
-
-1. Clone the repository
-2. Install dependencies
-3. Set up environment variables
-4. Run the development server
-
-```bash
-# Clone the repository
-git clone https://github.com/bettergovph/bettergov.git
-cd bettergov
-
-# Install dependencies
-npm install
-
-# Set environment variables (example)
-# cp .env.example .env
-# then edit .env as needed
-
-# Start the development server
-npm run dev
-```
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run E2E tests
-npm run test:e2e
-
-# Run E2E tests with UI
-npm run test:e2e:ui
-
-# Run E2E tests in headed browser
-npm run test:e2e:headed
-
-# Debug E2E tests
-npm run test:e2e:debug
-```
+- Development setup
+- Reporting bugs
+- Opening issues and pull requests
 
 ## Docker
 
@@ -146,63 +98,16 @@ The Dockerfile uses a multi-stage build with Node.js for building and nginx for 
 
 ## Testing
 
-### End-to-End Testing
+This project uses Playwright for end-to-end testing.  
+For setup instructions, coverage details, and examples, see our [Testing Guide](./TESTING.md).
 
-This project uses Playwright for end-to-end testing to ensure critical user flows work correctly across different browsers and devices.
+## Contributing
 
-#### Running E2E Tests
+Thanks to all the people who already contributed!
 
-- `npm run test:e2e` - Run all E2E tests headlessly
-- `npm run test:e2e:ui` - Open Playwright UI to run and debug tests interactively
-- `npm run test:e2e:headed` - Run tests with visible browser windows
-- `npm run test:e2e:debug` - Debug tests with Playwright Inspector
-- `npm run test:e2e:codegen` - Record new tests using Playwright's code generator
-
-#### E2E Test Coverage
-
-Our E2E tests cover:
-
-1. **Critical User Flows**
-   - Homepage loading and navigation
-   - PhilSys National ID registration
-   - Government services search
-   - Language switching
-   - Emergency hotlines access
-
-2. **Navigation**
-   - Main menu navigation
-   - Dropdown menus
-   - Footer links
-   - Breadcrumb navigation
-
-3. **Accessibility**
-   - WCAG compliance checks using axe-core
-   - Keyboard navigation
-   - ARIA labels and alt text
-   - Focus indicators
-
-4. **Performance**
-   - Page load times
-   - First Contentful Paint metrics
-   - DOM size optimization
-   - Image optimization
-   - Slow network handling
-
-#### Writing E2E Tests
-
-E2E tests are located in the `e2e/` directory. Example test structure:
-
-```typescript
-import { test, expect } from '@playwright/test';
-
-test('user can search for services', async ({ page }) => {
-  await page.goto('/');
-  await page.getByPlaceholder(/Search for services/i).fill('passport');
-  await page.getByPlaceholder(/Search for services/i).press('Enter');
-  await expect(page).toHaveURL('/search');
-  await expect(page.locator('text=/passport/i')).toBeVisible();
-});
-```
+<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
+</a>
 
 ## License
 

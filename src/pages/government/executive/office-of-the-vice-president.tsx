@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import executiveData from '../../../data/directory/executive.json';
 import {
   CardList,
   Card,
@@ -12,50 +11,17 @@ import {
   CardAvatar,
   CardDivider,
 } from '../../../components/ui/CardList';
+import { executiveData } from './data';
 
-interface Personnel {
-  name: string;
-  role: string;
-  contact?: string;
-  email?: string;
-  other_office?: string;
-}
-
-interface OfficeDivision {
-  office_division: string;
-  personnel: Personnel[];
-}
-
-interface Official {
-  name: string;
-  role: string;
-  email?: string;
-  contact?: string;
-}
-
-interface Office {
-  office: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  officials: (Official | OfficeDivision)[];
-  bureaus?: unknown[];
-  attached_agency?: unknown[];
-}
+const officeData = executiveData.find(
+  office => office.office === 'OFFICE OF THE VICE PRESIDENT'
+);
 
 export default function OfficeOfTheVicePresidentPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Find the Office of the Vice President data
-  const officeData = useMemo(() => {
-    return (executiveData as Office[]).find(
-      office => office.office === 'OFFICE OF THE VICE PRESIDENT'
-    );
-  }, []);
-
-  // Filter officials based on search term
   const filteredOfficials = useMemo(() => {
-    if (!officeData) return [];
+    if (!officeData?.officials) return [];
 
     if (!searchTerm) return officeData.officials;
 
@@ -76,7 +42,7 @@ export default function OfficeOfTheVicePresidentPage() {
       }
       return false;
     });
-  }, [officeData, searchTerm]);
+  }, [searchTerm]);
 
   if (!officeData) {
     return (
@@ -89,15 +55,17 @@ export default function OfficeOfTheVicePresidentPage() {
   }
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
           <h1 className='text-2xl font-bold text-gray-900'>
             {officeData.office}
           </h1>
-          <p className='text-gray-800 mt-1'>
-            {officeData.officials.length} officials and divisions
-          </p>
+          {officeData.officials && (
+            <p className='text-gray-800'>
+              {officeData.officials.length} officials and divisions
+            </p>
+          )}
         </div>
 
         <div className='relative w-full md:w-64'>
@@ -182,7 +150,7 @@ export default function OfficeOfTheVicePresidentPage() {
             </Card>
           )}
 
-          <CardGrid columns={2}>
+          <CardGrid columns={1} className='@lg:grid-cols-2 @3xl:grid-cols-3'>
             {filteredOfficials
               .filter(official => 'office_division' in official)
               .map((division, index) => {
