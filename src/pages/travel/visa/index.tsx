@@ -287,7 +287,6 @@ const VisaPage: React.FC = () => {
   // Lazy loading flag component
   const LazyFlag = React.memo(
     ({ country, iso2 }: { country: string; iso2: string | undefined }) => {
-      const [isLoaded, setIsLoaded] = useState(false);
       const [isInView, setIsInView] = useState(false);
       const imgRef = useRef<HTMLImageElement>(null);
 
@@ -316,10 +315,8 @@ const VisaPage: React.FC = () => {
               code={iso2}
               title={country}
               alt={country}
-              className={`block w-full h-full object-cover transform -translate-x-6 opacity-0 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
-                isLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
               loading='lazy'
+              className='block w-full h-full object-cover transform -translate-x-6 opacity-100 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none'
             />
           ) : (
             <div className='w-full h-full flex items-center justify-center'>
