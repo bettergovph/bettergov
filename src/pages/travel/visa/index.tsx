@@ -283,53 +283,6 @@ const VisaPage: React.FC = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentCountries = filteredCountries.slice(startIndex, endIndex);
 
-  // Lazy loading flag component
-  const LazyFlag = React.memo(
-    ({ country, iso2 }: { country: string; iso2: string | undefined }) => {
-      const [isInView, setIsInView] = useState(false);
-      const imgRef = useRef<HTMLImageElement>(null);
-
-      useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setIsInView(true);
-              observer.disconnect();
-            }
-          },
-          { threshold: 0.1 }
-        );
-
-        if (imgRef.current) {
-          observer.observe(imgRef.current);
-        }
-
-        return () => observer.disconnect();
-      }, []);
-
-      return (
-        <div ref={imgRef} className='relative w-full h-full'>
-          {isInView && iso2 ? (
-            <Flag
-              code={iso2}
-              title={country}
-              alt={country}
-              loading='lazy'
-              className='block w-full h-full object-cover transform -translate-x-6 opacity-100 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none'
-            />
-          ) : (
-            <div className='w-full h-full flex items-center justify-center'>
-              {!isInView && (
-                <div className='w-8 h-6 bg-gray-200 rounded animate-pulse' />
-              )}
-            </div>
-          )}
-        </div>
-      );
-    }
-  );
-
-  LazyFlag.displayName = 'LazyFlag';
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
     if (!viewMode) {
@@ -591,7 +544,15 @@ const VisaPage: React.FC = () => {
                     >
                       {/* Flag */}
                       <div className='relative w-0 group-hover:w-2/5 h-full bg-white rounded-l-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
-                        <LazyFlag country={country} iso2={iso2} />
+                        {iso2 && (
+                          <Flag
+                            code={iso2}
+                            title={country}
+                            alt={country}
+                            loading='lazy'
+                            className='block w-full h-full object-cover transform -translate-x-6 opacity-100 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none'
+                          />
+                        )}
                       </div>
 
                       {/* Right: Details */}
@@ -645,15 +606,15 @@ const VisaPage: React.FC = () => {
                 </div>
 
                 {/* Pagination Navigation */}
-                <div className='flex items-center justify-center space-x-2'>
+                <div className='flex items-center justify-center space-x-3 sm:space-x-2 px-2'>
                   {/* Previous Button */}
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
-                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
+                    className='flex items-center justify-center h-10 w-10 sm:h-auto sm:w-auto px-0 sm:px-4 py-0 sm:py-2 text-xs sm:text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-full sm:rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
                   >
                     <svg
-                      className='w-4 h-4 mr-1.5'
+                      className='w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -665,37 +626,37 @@ const VisaPage: React.FC = () => {
                         d='M15 19l-7-7 7-7'
                       />
                     </svg>
-                    Previous
+                    <span className='hidden sm:inline'>Previous</span>
                   </button>
 
                   {/* Page Numbers */}
-                  <div className='flex items-center space-x-1'>
+                  <div className='hidden sm:flex items-center space-x-1'>
                     {/* First page if not in range */}
-                    {currentPage > 3 && (
+                    {currentPage > 2 && (
                       <>
                         <button
                           onClick={() => setCurrentPage(1)}
-                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
+                          className='min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md sm:rounded-lg hover:bg-gray-50 hover:border-gray-400 focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200'
                         >
                           1
                         </button>
-                        {currentPage > 4 && (
+                        {currentPage > 3 && (
                           <span className='px-2 text-gray-400'>...</span>
                         )}
                       </>
                     )}
 
                     {/* Page numbers around current page */}
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    {Array.from({ length: Math.min(3, totalPages) }, (_, i) => {
                       const pageNum =
-                        Math.max(1, Math.min(totalPages - 4, currentPage - 2)) +
+                        Math.max(1, Math.min(totalPages - 2, currentPage - 1)) +
                         i;
                       if (pageNum > totalPages) return null;
                       return (
                         <button
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
-                          className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                          className={`min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium rounded-md sm:rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200 ${
                             currentPage === pageNum
                               ? 'text-white bg-blue-600 border border-blue-600 shadow-sm'
                               : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
@@ -707,19 +668,54 @@ const VisaPage: React.FC = () => {
                     })}
 
                     {/* Last page if not in range */}
-                    {currentPage < totalPages - 2 && (
+                    {currentPage < totalPages - 1 && (
                       <>
-                        {currentPage < totalPages - 3 && (
+                        {currentPage < totalPages - 2 && (
                           <span className='px-2 text-gray-400'>...</span>
                         )}
                         <button
                           onClick={() => setCurrentPage(totalPages)}
-                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
+                          className='min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md sm:rounded-lg hover:bg-gray-50 hover:border-gray-400 focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200'
                         >
                           {totalPages}
                         </button>
                       </>
                     )}
+                  </div>
+
+                  {/* Mobile: first, current, last page quick-jump */}
+                  <div className='sm:hidden flex items-center gap-2'>
+                    <button
+                      type='button'
+                      onClick={() => setCurrentPage(1)}
+                      disabled={currentPage === 1}
+                      aria-label='Go to first page'
+                      className={`min-w-[56px] h-10 px-3 flex items-center justify-center rounded-md border text-sm font-semibold shadow-sm transition-colors ${
+                        currentPage === 1
+                          ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                          : 'bg-white text-blue-600 border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      First
+                    </button>
+
+                    <div className='min-w-[40px] h-10 px-3 flex items-center justify-center rounded-md border border-gray-300 bg-white text-blue-600 text-sm font-semibold shadow-sm'>
+                      {currentPage}
+                    </div>
+
+                    <button
+                      type='button'
+                      onClick={() => setCurrentPage(totalPages)}
+                      disabled={currentPage === totalPages}
+                      aria-label='Go to last page'
+                      className={`min-w-[56px] h-10 px-3 flex items-center justify-center rounded-md border text-sm font-semibold shadow-sm transition-colors ${
+                        currentPage === totalPages
+                          ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                          : 'bg-white text-blue-600 border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      Last
+                    </button>
                   </div>
 
                   {/* Next Button */}
@@ -728,11 +724,10 @@ const VisaPage: React.FC = () => {
                       setCurrentPage(Math.min(totalPages, currentPage + 1))
                     }
                     disabled={currentPage === totalPages}
-                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
+                    className='flex items-center justify-center h-10 w-10 sm:h-auto sm:w-auto px-0 sm:px-4 py-0 sm:py-2 text-xs sm:text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-full sm:rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
                   >
-                    Next
                     <svg
-                      className='w-4 h-4 ml-1.5'
+                      className='w-4 h-4 sm:w-4 sm:h-4 sm:ml-1.5'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -744,12 +739,13 @@ const VisaPage: React.FC = () => {
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
+                    <span className='hidden sm:inline'>Next</span>
                   </button>
                 </div>
 
                 {/* Page Info */}
-                <div className='flex items-center justify-center mt-4'>
-                  <span className='text-xs text-gray-500'>
+                <div className='flex items-center justify-center mt-3 sm:mt-4'>
+                  <span className='text-[10px] sm:text-xs text-gray-500'>
                     Page {currentPage} of {totalPages}
                   </span>
                 </div>
