@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Compass, Globe, Search, Grid3x3, List } from 'lucide-react';
-// Using CDN flags instead of a flag component
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
@@ -223,8 +222,6 @@ const getCountryIso2 = (countryName: string): string | undefined => {
   return COUNTRY_TO_ISO2[key] || COUNTRY_TO_ISO2[key.toLowerCase()];
 };
 
-// Using Flag directly for simplicity and performance
-
 type Country = string;
 
 // Example visa-required countries
@@ -285,8 +282,6 @@ const VisaPage: React.FC = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentCountries = filteredCountries.slice(startIndex, endIndex);
-
-  // Simplified LazyFlag now defined at module scope
 
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
