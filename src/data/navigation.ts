@@ -73,6 +73,39 @@ export const mainNavigation: NavigationItem[] = [
 export const footerNavigation = {
   mainSections: [
     {
+      title: 'Philippines',
+      links: [
+        { label: 'About the Philippines', href: '/philippines/about' },
+        { label: 'History', href: '/philippines/history' },
+        { label: 'Culture', href: '/philippines/culture' },
+        { label: 'Regions', href: '/philippines/regions' },
+        { label: 'Hotlines', href: '/philippines/hotlines' },
+        { label: 'Holidays', href: '/philippines/holidays' },
+      ],
+    },
+    {
+      title: 'Services & Data',
+      links: [
+        { label: 'All Services', href: '/services' },
+        { label: 'Service Websites', href: '/services/websites' },
+        { label: 'Forex Rates', href: '/data/forex' },
+        { label: 'Weather', href: '/data/weather' },
+        { label: 'Travel & Visa', href: '/travel/visa' },
+        { label: 'Flood Control Projects', href: '/flood-control-projects' },
+      ],
+    },
+    {
+      title: 'Government',
+      links: [
+        { label: 'Executive', href: '/government/executive' },
+        { label: 'Departments', href: '/government/departments' },
+        { label: 'Legislative', href: '/government/legislative' },
+        { label: 'Local Government', href: '/government/local' },
+        { label: 'Official Gov.ph', href: 'https://gov.ph' },
+        { label: 'Open Data Portal', href: 'https://data.gov.ph' },
+      ],
+    },
+    {
       title: 'About',
       links: [
         { label: 'About the Portal', href: '/about' },
@@ -80,35 +113,6 @@ export const footerNavigation = {
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
         { label: 'Contact Us', href: '/about' },
-      ],
-    },
-    {
-      title: 'Services',
-      links: [
-        { label: 'All Services', href: '/services' },
-        { label: 'Service Directory', href: '/services' },
-        { label: 'Websites', href: '/services/websites' },
-        { label: 'Forex', href: '/data/forex' },
-        { label: 'Weather', href: '/data/weather' },
-        { label: 'Hotlines', href: '/philippines/hotlines' },
-        { label: 'Holidays', href: '/philippines/holidays' },
-        { label: 'Flood Control Projects', href: '/flood-control-projects' },
-      ],
-    },
-    {
-      title: 'Government',
-      links: [
-        { label: 'Official Gov.ph', href: 'https://gov.ph' },
-        { label: 'Open Data', href: 'https://data.gov.ph' },
-        { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
-        {
-          label: 'Contact Center',
-          href: 'https://contactcenterngbayan.gov.ph',
-        },
-        {
-          label: 'Official Gazette',
-          href: 'https://www.officialgazette.gov.ph',
-        },
       ],
     },
   ],
