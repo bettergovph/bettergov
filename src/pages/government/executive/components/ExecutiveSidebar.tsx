@@ -10,7 +10,6 @@ import StandardSidebar from '../../../../components/ui/StandardSidebar';
 export default function ExecutiveSidebar() {
   const location = useLocation();
 
-  // Check if a path is active
   const isActive = (path: string) => {
     return location.pathname === path;
   };
@@ -26,6 +25,7 @@ export default function ExecutiveSidebar() {
             <li>
               <Link
                 to='/government/executive/office-of-the-president'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/executive/office-of-the-president')
                     ? 'bg-primary-50 text-primary-700 font-medium'
@@ -39,6 +39,7 @@ export default function ExecutiveSidebar() {
             <li>
               <Link
                 to='/government/executive/office-of-the-vice-president'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/executive/office-of-the-vice-president')
                     ? 'bg-primary-50 text-primary-700 font-medium'
@@ -52,6 +53,7 @@ export default function ExecutiveSidebar() {
             <li>
               <Link
                 to='/government/executive/presidential-communications-office'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive(
                     '/government/executive/presidential-communications-office'
@@ -67,6 +69,7 @@ export default function ExecutiveSidebar() {
             <li>
               <Link
                 to='/government/executive/other-executive-offices'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/executive/other-executive-offices')
                     ? 'bg-primary-50 text-primary-700 font-medium'

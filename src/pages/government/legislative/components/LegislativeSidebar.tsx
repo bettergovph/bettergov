@@ -27,6 +27,7 @@ export default function LegislativeSidebar() {
             <li>
               <Link
                 to='/government/legislative/senate-of-the-philippines-20th-congress'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive(
                     '/government/legislative/senate-of-the-philippines-20th-congress'
@@ -42,6 +43,7 @@ export default function LegislativeSidebar() {
             <li>
               <Link
                 to='/government/legislative/senate-committees'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/legislative/senate-committees')
                     ? 'bg-primary-50 text-primary-700 font-medium'
@@ -64,6 +66,7 @@ export default function LegislativeSidebar() {
             <li>
               <Link
                 to='/government/legislative/house-of-representatives-20th-congress'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive(
                     '/government/legislative/house-of-representatives-20th-congress'
@@ -79,6 +82,7 @@ export default function LegislativeSidebar() {
             <li>
               <Link
                 to='/government/legislative/house-members'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/legislative/house-members')
                     ? 'bg-primary-50 text-primary-700 font-medium'
@@ -92,6 +96,7 @@ export default function LegislativeSidebar() {
             <li>
               <Link
                 to='/government/legislative/party-list-members'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/legislative/party-list-members')
                     ? 'bg-primary-50 text-primary-700 font-medium'

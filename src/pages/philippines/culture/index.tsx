@@ -16,7 +16,7 @@ const PhilippinesCulture: React.FC = () => {
       description:
         'Traditional and modern Filipino performing arts, from Tinikling to contemporary OPM',
       image:
-        'https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg',
+        'https://images.pexels.com/photos/5299821/pexels-photo-5299821.jpeg',
     },
     {
       icon: <UtensilsIcon className='h-6 w-6' />,
@@ -31,7 +31,7 @@ const PhilippinesCulture: React.FC = () => {
       description:
         'Vibrant celebrations showcasing Filipino faith, culture, and community spirit',
       image:
-        'https://images.pexels.com/photos/1684187/pexels-photo-1684187.jpeg',
+        'https://images.pexels.com/photos/2663163/pexels-photo-2663163.jpeg',
     },
     {
       icon: <UsersIcon className='h-6 w-6' />,
@@ -39,7 +39,7 @@ const PhilippinesCulture: React.FC = () => {
       description:
         'Strong family ties, respect for elders, and the spirit of Bayanihan',
       image:
-        'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg',
+        'https://images.pexels.com/photos/32326425/pexels-photo-32326425.jpeg',
     },
     {
       icon: <PaletteIcon className='h-6 w-6' />,
@@ -47,7 +47,7 @@ const PhilippinesCulture: React.FC = () => {
       description:
         'Traditional weaving, pottery, and contemporary Filipino visual arts',
       image:
-        'https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg',
+        'https://images.pexels.com/photos/1364565/pexels-photo-1364565.jpeg',
     },
   ];
 
@@ -57,7 +57,7 @@ const PhilippinesCulture: React.FC = () => {
       <div className='relative h-[60vh] overflow-hidden'>
         <div className='absolute inset-0'>
           <img
-            src='https://images.pexels.com/photos/2166458/pexels-photo-2166458.jpeg'
+            src='https://images.pexels.com/photos/20380277/pexels-photo-20380277.jpeg'
             alt='Filipino Culture'
             className='w-full h-full object-cover'
           />
