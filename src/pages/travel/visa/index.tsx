@@ -154,12 +154,6 @@ const VisaPage: React.FC = () => {
       const requirement = countryRequirements.get(selectedCountry);
       if (requirement) {
         setVisaRequirement(requirement);
-
-        // Auto-open dialog in grid view
-        if (viewMode === 'grid' || !viewMode) {
-          setDialogCountry(selectedCountry);
-          setDialogOpen(true);
-        }
       }
     }
   }, [selectedCountry, countryRequirements, viewMode]);

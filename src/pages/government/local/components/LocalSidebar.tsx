@@ -53,6 +53,7 @@ export default function LocalSidebar() {
                     <li key={region.slug}>
                       <NavLink
                         to={`/government/local/${region.slug}`}
+                        state={{ scrollToContent: true }}
                         className={({ isActive }) =>
                           `flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                             isActive
