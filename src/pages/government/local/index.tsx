@@ -1,7 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Search, MapPin, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import lguData from '../../../data/directory/lgu.json';
+import type { RegionLGU } from '../../../lib/lgu';
+// Eagerly import all per-region LGU JSON files and flatten into an array
+const modules = import.meta.glob<{ default: RegionLGU }>(
+  '../../../data/directory/lgu/*.json',
+  { eager: true }
+);
+const lguData: RegionLGU[] = Object.values(modules).map(m => m.default);
 import {
   CardGrid,
   Card,
@@ -17,7 +23,7 @@ export default function LocalGovernmentIndex() {
 
   // Extract unique regions from LGU data
   const regions = useMemo(() => {
-    return lguData.map(regionData => {
+    return lguData.map((regionData: RegionLGU) => {
       let cityCount = 0;
 
       // Count direct cities (if any)
@@ -34,7 +40,7 @@ export default function LocalGovernmentIndex() {
       if (regionData.provinces) {
         cityCount += regionData.provinces.reduce(
           (
-            total,
+            total: number,
             province: { cities?: unknown[]; municipalities?: unknown[] }
           ) => {
             const cities = province.cities?.length || 0;
