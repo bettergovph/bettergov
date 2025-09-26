@@ -7,9 +7,10 @@ test.describe('Critical User Flows', () => {
     await page.goto('/');
 
     // Find the PhilSys registration section
-    const philSysSection = page.locator(
-      'text=PhilSys National ID Registration'
-    );
+    const philSysSection = page.getByRole('heading', {
+      name: 'PhilSys National ID Registration',
+      exact: true,
+    });
     await expect(philSysSection).toBeVisible();
 
     // Find the Register Now button (it's wrapped in an anchor tag)
@@ -39,14 +40,17 @@ test.describe('Critical User Flows', () => {
     ).toBeVisible();
 
     // Find search input
-    const searchBox = page.getByPlaceholder(/Search services/i);
+    const searchBox = page.getByPlaceholder(/Search for services/i);
 
     // Search for passport
     await searchBox.fill('passport');
     await searchBox.press('Enter');
 
     // Verify results contain passport-related services
-    await expect(page.locator('text=/passport/i').first()).toBeVisible();
+    const resultGrid = page.getByLabel('List of government services');
+    await expect(
+      resultGrid.getByRole('button', { name: 'Passport and Travel' }).first()
+    ).toBeVisible();
   });
 
   test('language switcher should work', async ({ page }) => {
