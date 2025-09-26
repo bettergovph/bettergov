@@ -1,0 +1,51 @@
+{
+  "page": {
+    "title": "Mga Paningkamot sa Pagpugong sa Baha | BetterGov.ph",
+    "description": "Susihon ug tukion ang mga paningkamot ug proyekto sa pagpugong sa baha sa tibook Pilipinas",
+    "heading": "Mga Paningkamot sa Pagpugong sa Baha"
+  },
+  "statistics": {
+    "totalProjects": "Tibuok Gidaghanon sa mga Paningkamot",
+    "totalContractCost": "Tibuok Kantidad sa Kasabutan",
+    "uniqueContractors": "Naglahi-lahi nga mga Kontratista"
+  },
+  "filters": {
+    "title": "Mga Pagsala",
+    "searchPlaceholder": "Paningkamot, kontratista, lungsod, probinsya, rehiyon...",
+    "searchProjects": "Pangitaa ang Paningkamot",
+    "infrastructureYear": "Tuig sa Inprastruktura",
+    "region": "Rehiyon",
+    "province": "Probinsya",
+    "typeOfWork": "Matang sa Pagpangabudlay",
+    "districtEngineeringOffice": "Buhatan sa Inhinyeriya sa Distrito",
+    "legislativeDistrict": "Lehislatibong Distrito",
+    "showFilters": "Ipakita ang mga Pagsala"
+  },
+  "charts": {
+    "projectsByYear": "Mga Paningkamot matag Tuig",
+    "topRegions": "Labing Panguna nga mga Rehiyon",
+    "typesOfWork": "Mga Matang sa Pagpangabudlay",
+    "topContractors": "Labing Panguna nga mga Kontratista"
+  },
+  "actions": {
+    "exportData": "Ipagula ang Datos",
+    "exporting": "Nagpagula...",
+    "viewTable": "Tan-awa ang Talaan"
+  },
+  "guidance": {
+    "needDetailedResults": "Nanginahanglan ba ka ug Lalaum nga mga Resulta?",
+    "tableViewDescription": "Adtoa ang Talaan nga Tan-aw aron makita ang mas lawom ug detalyadong resulta, masubay nga mga kolum, ug mas halapad nga kapilian sa pagsala."
+  },
+  "dataSource": {
+    "title": "Mahitungod sa Maong Datos",
+    "description": "Kini nga tablerohan naghulagway sa mga paningkamot ug proyekto sa pagpugong sa baha sa tibook kapupud-an sa Pilipinas. Ang datos naglakip sa mga kasayuran kabahin sa mga nahimutangan, matang sa proyekto, nagpatuman nga mga buhatan, ug uban pa. Gamita ang mga pagsala sa kilid aron tukion ang tinagsa ka bahin sa datos, o gamita ang pagpangita aron masapwan ang piho nga proyekto.",
+    "sourceLabel": "Tinubdan:"
+  },
+  "tooltips": {
+    "projectsFormatter": "mga paningkamot"
+  },
+  "alerts": {
+    "exportSuccess": "Malampuson nga napagula ang datos!",
+    "exportError": "Napakyas ang pagpaggawas sa datos. Palihog usba ang pagsulay."
+  }
+}

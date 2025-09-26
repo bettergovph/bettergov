@@ -1,0 +1,51 @@
+{
+  "page": {
+    "title": "Mga Panikasugon sa Pagpugong sang Baha | BetterGov.ph",
+    "description": "Usisaon kag tukibon ang mga panikasugon kag proyekto sa pagpugong sang baha sa bug-os nga Pilipinas",
+    "heading": "Mga Panikasugon sa Pagpugong sang Baha"
+  },
+  "statistics": {
+    "totalProjects": "Kabug-usan sang mga Panikasugon",
+    "totalContractCost": "Kabug-usan nga Balor sang Kasugtanan",
+    "uniqueContractors": "Mga Nagkalainlain nga Kontratista"
+  },
+  "filters": {
+    "title": "Mga Pagsala",
+    "searchPlaceholder": "Mga panikasugon, kontratista, banwa, probinsya, rehiyon...",
+    "searchProjects": "Pangitaon ang Panikasugon",
+    "infrastructureYear": "Tuig sang Inprastruktura",
+    "region": "Rehiyon",
+    "province": "Probinsya",
+    "typeOfWork": "Klase sang Pagpangabudlay",
+    "districtEngineeringOffice": "Tungdan nga Opisina sang Inhinyeriya",
+    "legislativeDistrict": "Distrito Lehislatibo",
+    "showFilters": "Ipakita ang mga Pagsala"
+  },
+  "charts": {
+    "projectsByYear": "Mga Panikasugon kada Tuig",
+    "topRegions": "Pinaka-utod nga mga Rehiyon",
+    "typesOfWork": "Mga Matag-as nga Klase sang Pagpangabudlay",
+    "topContractors": "Mga Pinaka-utod nga Kontratista"
+  },
+  "actions": {
+    "exportData": "Ipaluwas ang Datos",
+    "exporting": "Nagapaluwaas...",
+    "viewTable": "Lantawa ang Talaan"
+  },
+  "guidance": {
+    "needDetailedResults": "Naga kinahanglan bala sang Masulhay kag Madetalyado nga Bunga?",
+    "tableViewDescription": "Dul-onga ang Tan-awon nga Talaan para makita ang madetalyado nga resulta, masarangan nga paghan-ay sang kolum, kag masabtan ang mas abanse nga pagpamili kag pagsala."
+  },
+  "dataSource": {
+    "title": "Angut sa Sininga Datos",
+    "description": "Iní nga tablerohan (dashboard) nagapakita sang mga panikasugon kag proyekto sa pagpugong sang baha sa bug-os nga Pilipinas. Ang datos nagalakip sang masanag nga impormasyon parte sa ginhalinan kag lokasyon, klase sang panikasugon, nagapatuman nga mga ahensiya kag opisina, kag iban pa. Magamit sang mga pagsala sa kilid agud mapahanungod ang espesipikong bahin sang datos, ukon gamiton ang pagpangita agud masapwan ang isa ka piho nga panikasugon.",
+    "sourceLabel": "Ginhalinan:"
+  },
+  "tooltips": {
+    "projectsFormatter": "mga panikasugon"
+  },
+  "alerts": {
+    "exportSuccess": "Madalum nga malampuson ang pagpaluwas sang datos!",
+    "exportError": "Napatumbang ang pagpaluwas sang datos. Palihog balik nga sulayi."
+  }
+}
