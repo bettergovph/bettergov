@@ -48,8 +48,8 @@ const ServicesSection: React.FC = () => {
   return (
     <section className='py-12 bg-white'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-12'>
-          <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
+        <div className='flex flex-col gap-4 text-center mb-12'>
+          <h2 className='text-2xl md:text-3xl font-bold text-gray-900'>
             {t('services.governmentServices')}
           </h2>
           <p className='text-gray-800 max-w-2xl mx-auto'>
@@ -64,25 +64,26 @@ const ServicesSection: React.FC = () => {
               hoverable
               className='border-t-4 border-primary-500'
             >
-              <CardContent className='flex flex-col h-full p-6'>
-                <div className='flex gap-2'>
-                  <div className='bg-primary-100 text-primary-600 p-3 rounded-md mb-4 self-start'>
+              <CardContent className='flex flex-col h-full gap-4'>
+                <div className='flex gap-2 items-center'>
+                  <div className='bg-primary-100 text-primary-600 p-3 rounded-md'>
                     {getIcon(category.category)}
                   </div>
-
-                  <h3 className='text-lg font-semibold mb-4 text-gray-900'>
-                    {category.category}
-                  </h3>
+                  <Link to={`/services?category=${category.slug}`}>
+                    <h3 className='text-lg font-semibold text-gray-900 hover:text-primary-600'>
+                      {category.category}
+                    </h3>
+                  </Link>
                 </div>
 
-                <ul className='space-y-2 mb-6 grow'>
+                <ul className='space-y-2 flex-grow'>
                   {category.subcategories.slice(0, 3).map(subcategory => (
                     <li key={subcategory.slug}>
                       <Link
                         to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
-                        className='text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center'
+                        className='flex items-center gap-2 text-gray-800 text-md hover:text-primary-600 hover:underline transition-colors'
                       >
-                        <span className='w-1.5 h-1.5 bg-gray-300 rounded-full mr-2'></span>
+                        <span className='flex-shrink-0 w-1.5 h-1.5 bg-gray-300 rounded-full'></span>
                         {subcategory.name}
                       </Link>
                     </li>
@@ -91,10 +92,10 @@ const ServicesSection: React.FC = () => {
 
                 <Link
                   to={`/services?category=${category.slug}`}
-                  className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
+                  className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center self-end gap-1'
                 >
-                  {t('services.viewAllCategory')} {category.category}
-                  <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
+                  {t('services.viewAllCategory')}
+                  <LucideIcons.ArrowRight className='h-4 w-4' />
                 </Link>
               </CardContent>
             </Card>
@@ -104,7 +105,7 @@ const ServicesSection: React.FC = () => {
         <div className='text-center mt-8'>
           <Link
             to='/services'
-            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-xs'
+            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
           >
             {t('services.viewAll')}
           </Link>
