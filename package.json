@@ -40,6 +40,7 @@
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-tabs": "^1.0.4",
     "@types/react-leaflet": "^3.0.0",
+    "algoliasearch": "^4.25.2",
     "clsx": "^2.1.0",
     "csv-parser": "^3.2.0",
     "date-fns": "^3.3.1",
