@@ -1,7 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Search, MapPin } from 'lucide-react';
-import lguData from '../../../data/directory/lgu.json';
+import {
+  loadRegionLgu,
+  RegionLGU,
+  Province,
+  City,
+  Municipality,
+} from '../../../lib/lgu';
 import {
   CardGrid,
   Card,
@@ -17,74 +23,70 @@ export default function RegionalLGUPage() {
   const { region } = useParams<{ region: string }>();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Find the region data
-  const regionData = useMemo(() => {
-    return lguData.find(r => r.slug === region);
+  // Load region data dynamically from per-region JSON files
+  const [regionData, setRegionData] = useState<RegionLGU | null>(null);
+  useEffect(() => {
+    let isActive = true;
+    (async () => {
+      const data = await loadRegionLgu(region);
+      if (isActive) setRegionData(data);
+    })();
+    return () => {
+      isActive = false;
+    };
   }, [region]);
 
   // Flatten all cities and municipalities from all provinces
   const allLocalGovUnits = useMemo(() => {
     if (!regionData) return [];
 
-    const units: Array<{
-      name?: string;
-      type: string;
+    interface Unit {
+      city?: string;
+      mayor?: { name?: string; contact?: string };
+      vice_mayor?: { name?: string; contact?: string };
+      type: 'City' | 'Municipality';
       province: string | null;
-      [key: string]: unknown;
-    }> = [];
+    }
+    const units: Unit[] = [];
 
     // Add direct cities (if any)
     if (regionData.cities) {
-      regionData.cities.forEach((city: Record<string, unknown>) => {
-        units.push({
-          ...city,
-          type: 'City',
-          province: null, // These are regional cities, not provincial
-        });
+      regionData.cities.forEach((city: City) => {
+        units.push({ ...city, type: 'City', province: null });
       });
     }
 
     // Add direct municipalities (if any)
     if (regionData.municipalities) {
-      regionData.municipalities.forEach(
-        (municipality: Record<string, unknown>) => {
-          units.push({
-            city: municipality.municipality,
-            mayor: municipality.mayor,
-            vice_mayor: municipality.vice_mayor,
-            type: 'Municipality',
-            province: null, // These are regional municipalities, not provincial
-          });
-        }
-      );
+      regionData.municipalities.forEach((municipality: Municipality) => {
+        units.push({
+          city: municipality.municipality,
+          mayor: municipality.mayor,
+          vice_mayor: municipality.vice_mayor,
+          type: 'Municipality',
+          province: null,
+        });
+      });
     }
 
     // Add cities and municipalities from provinces (if any)
     if (regionData.provinces) {
-      regionData.provinces.forEach((province: Record<string, unknown>) => {
-        // Add cities from this province
+      regionData.provinces.forEach((province: Province) => {
         if (province.cities) {
-          province.cities.forEach((city: Record<string, unknown>) => {
+          province.cities.forEach((city: City) => {
+            units.push({ ...city, type: 'City', province: province.province });
+          });
+        }
+        if (province.municipalities) {
+          province.municipalities.forEach((municipality: Municipality) => {
             units.push({
-              ...city,
-              type: 'City',
+              city: municipality.municipality,
+              mayor: municipality.mayor,
+              vice_mayor: municipality.vice_mayor,
+              type: 'Municipality',
               province: province.province,
             });
           });
-        }
-        // Add municipalities from this province
-        if (province.municipalities) {
-          province.municipalities.forEach(
-            (municipality: Record<string, unknown>) => {
-              units.push({
-                city: municipality.municipality,
-                mayor: municipality.mayor,
-                vice_mayor: municipality.vice_mayor,
-                type: 'Municipality',
-                province: province.province,
-              });
-            }
-          );
         }
       });
     }
@@ -96,20 +98,16 @@ export default function RegionalLGUPage() {
   const filteredCities = useMemo(() => {
     if (!searchTerm) return allLocalGovUnits;
 
-    return allLocalGovUnits.filter(
-      (unit: {
-        city?: string;
-        mayor?: { name?: string };
-        vice_mayor?: { name?: string };
-        province?: string;
-      }) =>
-        unit.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        unit.mayor?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        unit.vice_mayor?.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        unit.province?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return allLocalGovUnits.filter(unit => {
+      const term = searchTerm.toLowerCase();
+      return (
+        (unit.city && unit.city.toLowerCase().includes(term)) ||
+        (unit.mayor?.name && unit.mayor.name.toLowerCase().includes(term)) ||
+        (unit.vice_mayor?.name &&
+          unit.vice_mayor.name.toLowerCase().includes(term)) ||
+        (unit.province && unit.province.toLowerCase().includes(term))
+      );
+    });
   }, [allLocalGovUnits, searchTerm]);
 
   const seoData = getLocalGovSEOData(regionData?.region);
@@ -226,7 +224,10 @@ export default function RegionalLGUPage() {
                   {unit.vice_mayor && (
                     <div>
                       <div className='flex items-start space-x-3'>
-                        <CardAvatar name={unit.vice_mayor.name} size='sm' />
+                        <CardAvatar
+                          name={unit.vice_mayor.name || ''}
+                          size='sm'
+                        />
                         <div className='flex-1 min-w-0'>
                           <p className='font-medium text-gray-900 text-sm'>
                             {unit.vice_mayor.name}

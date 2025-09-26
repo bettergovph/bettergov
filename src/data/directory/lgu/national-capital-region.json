@@ -1,0 +1,189 @@
+{
+  "region": "NATIONAL CAPITAL REGION",
+  "cities": [
+    {
+      "city": "Caloocan",
+      "mayor": {
+        "name": "DALE GONZALO R. MALAPITAN",
+        "contact": "5310-8531; 8288-8811 loc. 2223, 2224"
+      },
+      "vice_mayor": {
+        "name": "ANNA KARINA R. TEH-LIMISCO",
+        "contact": "5319-5237; 8288-8811 loc. 2290"
+      }
+    },
+    {
+      "city": "Las Piñas",
+      "mayor": {
+        "name": "IMELDA T. AGUILAR",
+        "contact": "8871-4343; 8871-4345; 8872-1788"
+      },
+      "vice_mayor": {
+        "name": "APRIL A. NERY"
+      }
+    },
+    {
+      "city": "Makati",
+      "mayor": {
+        "name": "MAR-LEN ABIGAIL S. BINAY",
+        "contact": "8898-8989; 8898-8933; 8882-5096"
+      },
+      "vice_mayor": {
+        "name": "MONIQUE YAZMIN MARIA Q. LAGDAMEO",
+        "contact": "8899-8910; 8898-8933; 8810-7039"
+      }
+    },
+    {
+      "city": "Malabon",
+      "mayor": {
+        "name": "JEANNIE N. SANDOVAL",
+        "contact": "8351-4733; 8281-4999 loc. 1715, 1717"
+      },
+      "vice_mayor": {
+        "name": "BERNARD C. DELA CRUZ"
+      }
+    },
+    {
+      "city": "Mandaluyong",
+      "mayor": {
+        "name": "BENJAMIN S. ABALOS SR.",
+        "contact": "8532-4492; 8532-5001 loc. 204"
+      },
+      "vice_mayor": {
+        "name": "CARMELITA A. ABALOS"
+      }
+    },
+    {
+      "city": "Manila",
+      "mayor": {
+        "name": "MARIA SHEILAH H. LACUNA-PANGAN",
+        "contact": "8714-9147"
+      },
+      "vice_mayor": {
+        "name": "JOHN MARVIN C. NIETO",
+        "contact": "8516-9079"
+      }
+    },
+    {
+      "city": "Marikina",
+      "mayor": {
+        "name": "MARCELINO R. TEODORO",
+        "contact": "8682-9279; 8646-1634"
+      },
+      "vice_mayor": {
+        "name": "MARION S. ANDRES",
+        "contact": "8646-1632"
+      }
+    },
+    {
+      "city": "Muntinlupa",
+      "mayor": {
+        "name": "ROZZANO RUFINO B. BIAZON",
+        "contact": "8862-2525 loc. 142, 143"
+      },
+      "vice_mayor": {
+        "name": "ARTEMIO A. SIMUNDAC",
+        "contact": "8840-6513; 8659-0172"
+      }
+    },
+    {
+      "city": "Navotas",
+      "mayor": {
+        "name": "JOHN REYNALD M. TIANGCO",
+        "contact": "8282-4174 loc. 800, 400"
+      },
+      "vice_mayor": {
+        "name": "TITO M. SANCHEZ",
+        "contact": "8283-7415 loc. 300, 801"
+      }
+    },
+    {
+      "city": "Parañaque",
+      "mayor": {
+        "name": "ERIC L. OLIVAREZ",
+        "contact": "8805-7963"
+      },
+      "vice_mayor": {
+        "name": "JOAN A. VILLAFUERTE-DENSING",
+        "contact": "8478-5477"
+      }
+    },
+    {
+      "city": "Pasay",
+      "mayor": {
+        "name": "IMELDA C. RUBIANO",
+        "contact": "8853-9338"
+      },
+      "vice_mayor": {
+        "name": "WALDETRUDES S. DEL ROSARIO",
+        "contact": "8831-0163; 8831-4266"
+      }
+    },
+    {
+      "city": "Pasig",
+      "mayor": {
+        "name": "VICTOR MA. REGIS N. SOTTO",
+        "contact": "8643-1111 loc. 1801"
+      },
+      "vice_mayor": {
+        "name": "ROBERT VINCENT JUDE B. JAWORSKI JR.",
+        "contact": "8643-1111 loc. 1741 87097622"
+      }
+    },
+    {
+      "city": "Quezon",
+      "mayor": {
+        "name": "MA. JOSEFINA G. BELMONTE",
+        "contact": "8988-4242 loc. 8300"
+      },
+      "vice_mayor": {
+        "name": "GIAN CARLO G. SOTTO",
+        "contact": "8988-4242 loc. 8205 82753071"
+      }
+    },
+    {
+      "city": "San Juan",
+      "mayor": {
+        "name": "FRANCISCO JAVIER M. ZAMORA",
+        "contact": "137-135 loc. 114"
+      },
+      "vice_mayor": {
+        "name": "JOSE ANGELO RAFAEL E. AGCAOILI",
+        "contact": "137-135 loc. 301, 302"
+      }
+    },
+    {
+      "city": "Taguig",
+      "mayor": {
+        "name": "MARIA LAARNI L. CAYETANO",
+        "contact": "8642-3588"
+      },
+      "vice_mayor": {
+        "name": "ARVIN IAN V. ALIT"
+      }
+    },
+    {
+      "city": "Valenzuela",
+      "mayor": {
+        "name": "WESLIE T. GATCHALIAN",
+        "contact": "8352-1000 loc. 1142, 1147"
+      },
+      "vice_mayor": {
+        "name": "LORENA C. NATIVIDAD-BORJA",
+        "contact": "8352-1000 loc. 1301, 1303"
+      }
+    }
+  ],
+  "municipalities": [
+    {
+      "municipality": "Pateros",
+      "mayor": {
+        "name": "GERALD S. GERMAN"
+      },
+      "vice_mayor": {
+        "name": "CARLO UMAGAT SANTOS"
+      }
+    }
+  ],
+  "slug": "national-capital-region"
+}
