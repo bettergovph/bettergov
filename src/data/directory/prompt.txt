@@ -1,19 +1,63 @@
 I'm building a directory and I need the details from the pdf in json format 
 
 
-Extracting LGU data:
+Data Source: DILG (Department of the Interior and Local Government) Website
 
-Extract the city and municipality goverment data from this PDF
-
-The data looks like table based in the format of for most except National Capital Region
-
-City Governments have this format
-Region:
-Province, City, Mayor + Contact, Vice Mayor + Contact
+Extract the city and municipality government data from this: https://docs.google.com/spreadsheets/d/1bKTeROKWYVY-h2jYtH2eDjPpCIpRVYAN/edit?usp=sharing&ouid=100189111891721407645&rtpof=true&sd=true
+The PDF contains the official list of elected officials for Philippine LGUs as published by the DILG
 
 
-Municipal Governments have this format in the table
-Province:
-Municipality, Zip Code, Mayor + Contact, Vice Mayor + Contact
+HOW TO EXTRACT AND UPDATE LGU DATA
+================================================================================
 
-We can put the municipalities under the region as well if you can match them
+Step 1: Extract Data from Source
+---------------------------------
+1. Open the Google Sheets from DILG
+2. Copy the relevant data for a specific region
+3. Create a CSV file with the following format:
+   - Column 1: locality_type (either "City" or "Municipality")
+   - Column 2: LGU name
+   - Column 3: position (either "mayor" or "vice_mayor")
+   - Column 4: official's full name
+
+Example CSV format:
+```
+City,Angeles City,mayor,CARMELO B. LAZATIN II
+City,Angeles City,vice_mayor,AMOS B. RIVERA
+Municipality,Apalit,mayor,OSCAR D. TETANGCO JR.
+Municipality,Apalit,vice_mayor,PEDRO C. NUCOM
+```
+
+Step 2: Save the CSV File
+--------------------------
+Save the CSV file with a descriptive name like:
+- region1-lgu.csv
+- region2-lgu.csv
+- region3-lgu.csv
+- ncr-lgu.csv
+
+Step 3: Run the Update Script
+------------------------------
+Use the update-lgu-from-csv.cjs script to update the main lgu.json file:
+
+```
+node scripts/update-lgu-from-csv.cjs region1-lgu.csv
+```
+
+Output Files:
+-------------
+- lgu.json: Updated main database file
+- lgu-backup-[timestamp].json: Backup of original data
+- lgu-not-found.json: List of LGUs that need to be added (Needs manual checking)
+
+Handling Not Found LGUs:
+------------------------
+If the script reports LGUs as "not found":
+1. Check lgu-not-found.json for the list
+2. These LGUs need to be manually added to the correct province
+3. Common issues:
+   - Name variations 
+      - (e.g., "Santa Maria" vs "Sta. Maria")
+      - (e.g., "Gen. Luna" vs "General Luna")
+   - Abbreviations (e.g., "CSJDM" for "City of San Jose del Monte")
+   - Missing cities or municipalities in the database
