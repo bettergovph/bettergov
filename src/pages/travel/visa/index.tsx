@@ -319,7 +319,7 @@ const VisaPage: React.FC = () => {
               className={`block w-full h-full object-cover transform -translate-x-6 opacity-0 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
                 isLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              onLoad={() => setIsLoaded(true)}
+              loading='lazy'
             />
           ) : (
             <div className='w-full h-full flex items-center justify-center'>
