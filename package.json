@@ -44,7 +44,6 @@
     "csv-parser": "^3.2.0",
     "date-fns": "^3.3.1",
     "dotenv": "^16.5.0",
-    "i18n-iso-countries": "^7.14.0",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
