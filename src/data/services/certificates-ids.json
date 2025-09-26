@@ -198,7 +198,7 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Get a UMID ID",
+    "service": "Get a UMID",
     "url": "https://www.sss.gov.ph/sss/DownloadContent?fileName=SSSForms_UMID_Application.pdf",
     "id": "4c153521-6115-41ef-ae0d-19264d004fa2",
     "slug": "get-a-umid-id",
