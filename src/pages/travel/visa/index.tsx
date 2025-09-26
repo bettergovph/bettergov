@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Compass,
-  Globe,
-  Search,
-  Grid3x3,
-  List,
-  CheckCircle,
-  XCircle,
-  Clock,
-} from 'lucide-react';
+import { Compass, Globe, Search, Grid3x3, List } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
+import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
 import Button from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
@@ -23,6 +15,212 @@ import {
   DialogFooter,
 } from '../../../components/ui/Dialog';
 import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
+
+// Direct country name to ISO2 code mapping for flags
+const COUNTRY_TO_ISO2: Record<string, string> = {
+  Afghanistan: 'AF',
+  Albania: 'AL',
+  Algeria: 'DZ',
+  Andorra: 'AD',
+  Angola: 'AO',
+  'Antigua and Barbuda': 'AG',
+  Argentina: 'AR',
+  Armenia: 'AM',
+  Australia: 'AU',
+  Austria: 'AT',
+  Azerbaijan: 'AZ',
+  Bahamas: 'BS',
+  Bahrain: 'BH',
+  Bangladesh: 'BD',
+  Barbados: 'BB',
+  Belarus: 'BY',
+  Belgium: 'BE',
+  Belize: 'BZ',
+  Benin: 'BJ',
+  Bhutan: 'BT',
+  Bolivia: 'BO',
+  'Bosnia and Herzegovina': 'BA',
+  Botswana: 'BW',
+  Brazil: 'BR',
+  Brunei: 'BN',
+  'Brunei Darussalam': 'BN',
+  Bulgaria: 'BG',
+  'Burkina Faso': 'BF',
+  Burundi: 'BI',
+  Cambodia: 'KH',
+  Cameroon: 'CM',
+  Canada: 'CA',
+  'Cape Verde': 'CV',
+  'Central African Republic': 'CF',
+  Chad: 'TD',
+  Chile: 'CL',
+  China: 'CN',
+  Colombia: 'CO',
+  Comoros: 'KM',
+  Congo: 'CG',
+  'Costa Rica': 'CR',
+  "Cote d'Ivoire": 'CI',
+  Croatia: 'HR',
+  Cuba: 'CU',
+  Cyprus: 'CY',
+  'Czech Republic': 'CZ',
+  'Democratic Republic of the Congo': 'CD',
+  Denmark: 'DK',
+  Djibouti: 'DJ',
+  Dominica: 'DM',
+  'Dominican Republic': 'DO',
+  Ecuador: 'EC',
+  Egypt: 'EG',
+  'El Salvador': 'SV',
+  'Equatorial Guinea': 'GQ',
+  Eritrea: 'ER',
+  Eritre: 'ER',
+  Estonia: 'EE',
+  Ethiopia: 'ET',
+  Fiji: 'FJ',
+  Finland: 'FI',
+  France: 'FR',
+  Gabon: 'GA',
+  Gambia: 'GM',
+  Georgia: 'GE',
+  Germany: 'DE',
+  Ghana: 'GH',
+  Greece: 'GR',
+  Grenada: 'GD',
+  Guatemala: 'GT',
+  Guinea: 'GN',
+  'Guinea Bissau': 'GW',
+  Guyana: 'GY',
+  Haiti: 'HT',
+  Honduras: 'HN',
+  'Hong Kong': 'HK',
+  Hungary: 'HU',
+  Iceland: 'IS',
+  India: 'IN',
+  Indonesia: 'ID',
+  Iran: 'IR',
+  Iraq: 'IQ',
+  Ireland: 'IE',
+  Israel: 'IL',
+  Italy: 'IT',
+  Jamaica: 'JM',
+  Japan: 'JP',
+  Jordan: 'JO',
+  Kazakhstan: 'KZ',
+  Kenya: 'KE',
+  Kiribati: 'KI',
+  Kuwait: 'KW',
+  Kyrgyzstan: 'KG',
+  "Lao People's Democratic Republic": 'LA',
+  Latvia: 'LV',
+  Lebanon: 'LB',
+  Lesotho: 'LS',
+  Liberia: 'LR',
+  Libya: 'LY',
+  Liechtenstein: 'LI',
+  Lithuania: 'LT',
+  Luxembourg: 'LU',
+  Madagascar: 'MG',
+  Malawi: 'MW',
+  Malaysia: 'MY',
+  Maldives: 'MV',
+  Mali: 'ML',
+  Malta: 'MT',
+  'Marshall Islands': 'MH',
+  Mauritania: 'MR',
+  Mauritius: 'MU',
+  Mexico: 'MX',
+  Micronesia: 'FM',
+  Moldova: 'MD',
+  Monaco: 'MC',
+  Mongolia: 'MN',
+  Montenegro: 'ME',
+  Morocco: 'MA',
+  Mozambique: 'MZ',
+  Myanmar: 'MM',
+  Namibia: 'NA',
+  Nepal: 'NP',
+  Netherlands: 'NL',
+  'New Zealand': 'NZ',
+  Nicaragua: 'NI',
+  Niger: 'NE',
+  Nigeria: 'NG',
+  'North Korea': 'KP',
+  Norway: 'NO',
+  Oman: 'OM',
+  Pakistan: 'PK',
+  Palau: 'PW',
+  Palestine: 'PS',
+  Panama: 'PA',
+  'Papua New Guinea': 'PG',
+  Paraguay: 'PY',
+  Peru: 'PE',
+  Poland: 'PL',
+  Portugal: 'PT',
+  Qatar: 'QA',
+  'Republic of Korea': 'KR',
+  Romania: 'RO',
+  Russia: 'RU',
+  Rwanda: 'RW',
+  'Saint Kitts and Nevis': 'KN',
+  'Saint Lucia': 'LC',
+  'Saint Vincent and the Grenadines': 'VC',
+  Samoa: 'WS',
+  'San Marino': 'SM',
+  'Sao Tome and Principe': 'ST',
+  'Saudi Arabia': 'SA',
+  Senegal: 'SN',
+  Serbia: 'RS',
+  Seychelles: 'SC',
+  Singapore: 'SG',
+  'Slovak Republic': 'SK',
+  Slovakia: 'SK',
+  Slovenia: 'SI',
+  'Solomon Islands': 'SB',
+  Somalia: 'SO',
+  'South Africa': 'ZA',
+  'South Korea': 'KR',
+  'South Sudan': 'SS',
+  Spain: 'ES',
+  'Sri Lanka': 'LK',
+  Sudan: 'SD',
+  Suriname: 'SR',
+  Swaziland: 'SZ',
+  Sweden: 'SE',
+  Switzerland: 'CH',
+  Syria: 'SY',
+  Tajikistan: 'TJ',
+  Thailand: 'TH',
+  Togo: 'TG',
+  'Trinidad and Tobago': 'TT',
+  Tunisia: 'TN',
+  Turkey: 'TR',
+  Turkmenistan: 'TM',
+  Tuvalu: 'TV',
+  Uganda: 'UG',
+  Ukraine: 'UA',
+  'United Arab Emirates': 'AE',
+  'United Kingdom': 'GB',
+  'United Kingdom of Great Britain and Northern Ireland': 'GB',
+  'United Republic of Tanzania': 'TZ',
+  'United States': 'US',
+  'United States of America': 'US',
+  Uruguay: 'UY',
+  Uzbekistan: 'UZ',
+  Vanuatu: 'VU',
+  Vatican: 'VA',
+  'Vatican City': 'VA',
+  Venezuela: 'VE',
+  Vietnam: 'VN',
+  Yemen: 'YE',
+  Zambia: 'ZM',
+  Zimbabwe: 'ZW',
+};
+
+const getCountryIso2 = (countryName: string): string | undefined => {
+  const key = countryName.trim();
+  return COUNTRY_TO_ISO2[key] || COUNTRY_TO_ISO2[key.toLowerCase()];
+};
 
 type Country = string;
 
@@ -75,7 +273,15 @@ const VisaPage: React.FC = () => {
   >(new Map());
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(24); // 4x6 grid
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentCountries = filteredCountries.slice(startIndex, endIndex);
 
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
@@ -167,6 +373,8 @@ const VisaPage: React.FC = () => {
       );
       setFilteredCountries(filtered);
     }
+    // Reset to first page when search changes
+    setCurrentPage(1);
   }, [searchTerm, allCountries]);
 
   const selectCountry = (country: string) => {
@@ -198,19 +406,6 @@ const VisaPage: React.FC = () => {
       behavior: 'smooth',
       block: 'center',
     });
-  };
-
-  const getStatusIcon = (type: string) => {
-    switch (type) {
-      case 'visa-free':
-        return <CheckCircle className='h-5 w-5 text-green-600' />;
-      case 'visa-required':
-        return <XCircle className='h-5 w-5 text-red-600' />;
-      case 'special-condition':
-        return <Clock className='h-5 w-5 text-yellow-600' />;
-      default:
-        return null;
-    }
   };
 
   const getStatusBadge = (type: string, duration?: string) => {
@@ -335,24 +530,38 @@ const VisaPage: React.FC = () => {
               Visa Requirements by Country
             </h2>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-              {filteredCountries.map(country => {
+              {currentCountries.map(country => {
                 const requirement = countryRequirements.get(country);
+                const iso2 = getCountryIso2(country);
                 return (
                   <div
                     key={country}
-                    className='border border-gray-200 rounded-lg hover:shadow-lg transition-shadow cursor-pointer'
+                    className='border border-gray-200 rounded-lg transition-shadow cursor-pointer bg-white overflow-hidden hover:shadow-lg'
                   >
                     <button
                       onClick={() => openDetailsDialog(country)}
-                      className='w-full flex items-start justify-between p-4 cursor-pointer'
+                      className='group w-full flex items-stretch cursor-pointer h-24 md:h-28'
                     >
-                      <div className='flex-1'>
-                        <h3 className='font-medium text-lg text-left mb-2'>
+                      {/* Flag */}
+                      <div className='relative w-0 group-hover:w-2/5 h-full bg-white rounded-l-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
+                        {iso2 && (
+                          <Flag
+                            code={iso2}
+                            title={country}
+                            alt={country}
+                            loading='lazy'
+                            className='block w-full h-full object-cover transform -translate-x-6 opacity-100 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none'
+                          />
+                        )}
+                      </div>
+
+                      {/* Right: Details */}
+                      <div className='w-full group-hover:w-3/5 px-5 md:px-6 py-3 flex flex-col justify-center text-left transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
+                        <h3 className='font-medium text-lg leading-tight mb-1 text-gray-900'>
                           {country}
                         </h3>
                         {requirement && (
-                          <div className='flex items-start gap-2'>
-                            {getStatusIcon(requirement.type)}
+                          <div className='mt-1 flex items-start gap-2'>
                             {getStatusBadge(
                               requirement.type,
                               requirement.duration
@@ -371,6 +580,140 @@ const VisaPage: React.FC = () => {
                 <p className='text-lg'>
                   No countries found matching your search.
                 </p>
+              </div>
+            )}
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className='mt-8 pt-6 border-t border-gray-200'>
+                {/* Results Summary */}
+                <div className='flex items-center justify-center mb-6'>
+                  <div className='rounded-full px-4 py-2 text-sm text-gray-600 font-medium'>
+                    Showing{' '}
+                    <span className='font-semibold text-gray-900'>
+                      {startIndex + 1}
+                    </span>{' '}
+                    to{' '}
+                    <span className='font-semibold text-gray-900'>
+                      {Math.min(endIndex, filteredCountries.length)}
+                    </span>{' '}
+                    of{' '}
+                    <span className='font-semibold text-blue-600'>
+                      {filteredCountries.length}
+                    </span>{' '}
+                    countries
+                  </div>
+                </div>
+
+                {/* Pagination Navigation */}
+                <div className='flex items-center justify-center space-x-2'>
+                  {/* Previous Button */}
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
+                  >
+                    <svg
+                      className='w-4 h-4 mr-1.5'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M15 19l-7-7 7-7'
+                      />
+                    </svg>
+                    Previous
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className='flex items-center space-x-1'>
+                    {/* First page if not in range */}
+                    {currentPage > 3 && (
+                      <>
+                        <button
+                          onClick={() => setCurrentPage(1)}
+                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
+                        >
+                          1
+                        </button>
+                        {currentPage > 4 && (
+                          <span className='px-2 text-gray-400'>...</span>
+                        )}
+                      </>
+                    )}
+
+                    {/* Page numbers around current page */}
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      const pageNum =
+                        Math.max(1, Math.min(totalPages - 4, currentPage - 2)) +
+                        i;
+                      if (pageNum > totalPages) return null;
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                            currentPage === pageNum
+                              ? 'text-white bg-blue-600 border border-blue-600 shadow-sm'
+                              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+
+                    {/* Last page if not in range */}
+                    {currentPage < totalPages - 2 && (
+                      <>
+                        {currentPage < totalPages - 3 && (
+                          <span className='px-2 text-gray-400'>...</span>
+                        )}
+                        <button
+                          onClick={() => setCurrentPage(totalPages)}
+                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
+                        >
+                          {totalPages}
+                        </button>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() =>
+                      setCurrentPage(Math.min(totalPages, currentPage + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
+                  >
+                    Next
+                    <svg
+                      className='w-4 h-4 ml-1.5'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 5l7 7-7 7'
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Page Info */}
+                <div className='flex items-center justify-center mt-4'>
+                  <span className='text-xs text-gray-500'>
+                    Page {currentPage} of {totalPages}
+                  </span>
+                </div>
               </div>
             )}
           </div>

@@ -1,0 +1,823 @@
+{
+  "region": "CORDILLERA ADMINISTRATIVE REGION",
+  "provinces": [
+    {
+      "province": "Benguet",
+      "municipalities": [
+        {
+          "municipality": "Baguio",
+          "mayor": {
+            "name": "BENJAMIN B. MAGALONG",
+            "contact": "(074) 442-7820; 442-3939"
+          },
+          "vice_mayor": {
+            "name": "FAUSTINO A. OLOWAN",
+            "contact": "(074) 442-5495; 444-7331"
+          }
+        }
+      ]
+    },
+    {
+      "province": "Kalinga",
+      "municipalities": [
+        {
+          "municipality": "Tabuk",
+          "mayor": {
+            "name": "DARWIN C. ESTRAÑERO",
+            "contact": "(074) 627-5064 loc. 800"
+          },
+          "vice_mayor": {
+            "name": "DICK G. BAL-O",
+            "contact": "(074) 627-5064 loc. 201, 202"
+          }
+        }
+      ]
+    },
+    {
+      "province": "ABRA PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Bangued",
+          "zip_code": "2800",
+          "mayor": {
+            "name": "MILA A. VALERA"
+          },
+          "vice_mayor": {
+            "name": "JOAQUIN ENRICO V. BERNOS"
+          }
+        },
+        {
+          "municipality": "Boliney",
+          "zip_code": "2815",
+          "mayor": {
+            "name": "RONALD S. BALAO-AS"
+          },
+          "vice_mayor": {
+            "name": "JULIUS S. BALAO-AS"
+          }
+        },
+        {
+          "municipality": "Bucay",
+          "zip_code": "2805",
+          "mayor": {
+            "name": "JAY DOMINADOR G. GO"
+          },
+          "vice_mayor": {
+            "name": "JUDOR P. ZALES"
+          }
+        },
+        {
+          "municipality": "Bucloc",
+          "zip_code": "2817",
+          "mayor": {
+            "name": "GODY H. CARDENAS"
+          },
+          "vice_mayor": {
+            "name": "EUGENE C. CILLO"
+          }
+        },
+        {
+          "municipality": "Daguioman",
+          "zip_code": "2816",
+          "mayor": {
+            "name": "SALMA Q. PADILLA"
+          },
+          "vice_mayor": {
+            "name": "MARCELO J. PADILLA"
+          }
+        },
+        {
+          "municipality": "Danglas",
+          "zip_code": "2825",
+          "mayor": {
+            "name": "ESTHER B. BERNOS"
+          },
+          "vice_mayor": {
+            "name": "JOANETTE B. CAY-AN"
+          }
+        },
+        {
+          "municipality": "Dolores",
+          "zip_code": "2801",
+          "mayor": {
+            "name": "CONDE T. TURQUEZA"
+          },
+          "vice_mayor": {
+            "name": "LOURDES JACQUELINE B. BAAC"
+          }
+        },
+        {
+          "municipality": "La Paz",
+          "zip_code": "2826",
+          "mayor": {
+            "name": "JOSEPH STO. NIÑO B. BERNOS"
+          },
+          "vice_mayor": {
+            "name": "BENITO E. NONO"
+          }
+        },
+        {
+          "municipality": "Lacub",
+          "zip_code": "2821",
+          "mayor": {
+            "name": "NESTOR B. BERSAMINA"
+          },
+          "vice_mayor": {
+            "name": "ESTELITA B. BERSAMINA"
+          }
+        },
+        {
+          "municipality": "Lagangilang",
+          "zip_code": "2802",
+          "mayor": {
+            "name": "ROVELYN E. VILLAMOR"
+          },
+          "vice_mayor": {
+            "name": "PAUL JOSEPH Q. ABAYA"
+          }
+        },
+        {
+          "municipality": "Lagayan",
+          "zip_code": "2824",
+          "mayor": {
+            "name": "EDMARC L. CRISOLOGO"
+          },
+          "vice_mayor": {
+            "name": "APOLINAR B. MOLINA SR."
+          }
+        },
+        {
+          "municipality": "Langiden",
+          "zip_code": "2807",
+          "mayor": {
+            "name": "SECEL B. PALECPEC"
+          },
+          "vice_mayor": {
+            "name": "MARY A. BUENO"
+          }
+        },
+        {
+          "municipality": "Licuan-Baay",
+          "zip_code": "2819",
+          "mayor": {
+            "name": "DARWIN L. DOMINGO"
+          },
+          "vice_mayor": {
+            "name": "ALEJO S. DOMINGO"
+          }
+        },
+        {
+          "municipality": "Luba",
+          "zip_code": "2813",
+          "mayor": {
+            "name": "ROSALINA C. BISCARRA"
+          },
+          "vice_mayor": {
+            "name": "CASIMIRO A. MOLINA"
+          }
+        },
+        {
+          "municipality": "Malibcong",
+          "zip_code": "2820",
+          "mayor": {
+            "name": "RHEA M. BACUYAG"
+          },
+          "vice_mayor": {
+            "name": "LEON A. TADEO JR."
+          }
+        },
+        {
+          "municipality": "Manabo",
+          "zip_code": "2810",
+          "mayor": {
+            "name": "DARREL O. DOMASING"
+          },
+          "vice_mayor": {
+            "name": "JERRY B. ANDRES"
+          }
+        },
+        {
+          "municipality": "Peñarrubia",
+          "zip_code": "2804",
+          "mayor": {
+            "name": "JANE M. CECILIA"
+          },
+          "vice_mayor": {
+            "name": "GERALDINE M. BALBUENA"
+          }
+        },
+        {
+          "municipality": "Pidigan",
+          "zip_code": "2806",
+          "mayor": {
+            "name": "JOSEPH DOMINO A. VALERA"
+          },
+          "vice_mayor": {
+            "name": "NOEL M. BISARES"
+          }
+        },
+        {
+          "municipality": "Pilar",
+          "zip_code": "2812",
+          "mayor": {
+            "name": "TYRON CHRISTOPHER R. BEROÑA"
+          },
+          "vice_mayor": {
+            "name": "SAMSON C. LAGUESMA"
+          }
+        },
+        {
+          "municipality": "Sallapadan",
+          "zip_code": "2818",
+          "mayor": {
+            "name": "FERNANDO A. SEMANERO JR."
+          },
+          "vice_mayor": {
+            "name": "NENITA M. CARDENAS"
+          }
+        },
+        {
+          "municipality": "San Isidro",
+          "zip_code": "2809",
+          "mayor": {
+            "name": "ELMERANTE M. PACSA"
+          },
+          "vice_mayor": {
+            "name": "ELIXER M. PACSA"
+          }
+        },
+        {
+          "municipality": "San Juan",
+          "zip_code": "2823",
+          "mayor": {
+            "name": "MEYNARDO M. BAUTISTA JR."
+          },
+          "vice_mayor": {
+            "name": "ARI LUCAS B. BAUTISTA"
+          }
+        },
+        {
+          "municipality": "San Quintin",
+          "zip_code": "2808",
+          "mayor": {
+            "name": "JOVELLEN D. AZNAR"
+          },
+          "vice_mayor": {
+            "name": "CRISTETO F. COTCHAY"
+          }
+        },
+        {
+          "municipality": "Tayum",
+          "zip_code": "2803",
+          "mayor": {
+            "name": "PLACIDO P. EDUARTE"
+          },
+          "vice_mayor": {
+            "name": "EMMANUEL ELEAZAR B. EDUARTE"
+          }
+        },
+        {
+          "municipality": "Tineg",
+          "zip_code": "2822",
+          "mayor": {
+            "name": "BRETHEN JIREEH G. CRISOLOGO"
+          },
+          "vice_mayor": {
+            "name": "CORINTHIA D. CRISOLOGO"
+          }
+        },
+        {
+          "municipality": "Tubo",
+          "zip_code": "2814",
+          "mayor": {
+            "name": "LIBERTY B. LA-OS"
+          },
+          "vice_mayor": {
+            "name": "GUILBERT P. BALLANGAN"
+          }
+        },
+        {
+          "municipality": "Villaviciosa",
+          "zip_code": "2811",
+          "mayor": {
+            "name": "JOSE W. LAGEN JR."
+          },
+          "vice_mayor": {
+            "name": "MARJORIE L. LAGEN"
+          }
+        }
+      ]
+    },
+    {
+      "province": "APAYAO PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Calanasan",
+          "zip_code": "3814",
+          "mayor": {
+            "name": "SHAMIR M. BULUT"
+          },
+          "vice_mayor": {
+            "name": "MARTIN LUCERO B. LAWAT"
+          }
+        },
+        {
+          "municipality": "Conner",
+          "zip_code": "3807",
+          "mayor": {
+            "name": "JORICO F. BAYAUA"
+          },
+          "vice_mayor": {
+            "name": "ALEXANDER M. ASWIGUE"
+          }
+        },
+        {
+          "municipality": "Flora",
+          "zip_code": "3810",
+          "mayor": {
+            "name": "RODOLFO B. JUAN"
+          },
+          "vice_mayor": {
+            "name": "JEOFREY T. BLAS"
+          }
+        },
+        {
+          "municipality": "Kabugao",
+          "zip_code": "3809",
+          "mayor": {
+            "name": "BENSMAR B. LIGWANG"
+          },
+          "vice_mayor": {
+            "name": "FABULOUS B. TUCJANG"
+          }
+        },
+        {
+          "municipality": "Luna",
+          "zip_code": "3813",
+          "mayor": {
+            "name": "JOSEPHINE M. BANGSIL"
+          },
+          "vice_mayor": {
+            "name": "MANOLITO M. BULLAOIT"
+          }
+        },
+        {
+          "municipality": "Pudtol",
+          "zip_code": "3812",
+          "mayor": {
+            "name": "HECTOR REUEL D. PASCUA"
+          },
+          "vice_mayor": {
+            "name": "RANDY A. LAOAT"
+          }
+        },
+        {
+          "municipality": "Santa Marcela",
+          "zip_code": "3811",
+          "mayor": {
+            "name": "EVELYN B. MARTINEZ"
+          },
+          "vice_mayor": {
+            "name": "ROLLY U. GUIANG"
+          }
+        }
+      ]
+    },
+    {
+      "province": "BENGUET PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Atok",
+          "zip_code": "2612",
+          "mayor": {
+            "name": "FRANKLIN L. SMITH"
+          },
+          "vice_mayor": {
+            "name": "ANGELITO D. GAL-O SR."
+          }
+        },
+        {
+          "municipality": "Bakun",
+          "zip_code": "2610",
+          "mayor": {
+            "name": "BILL Y. RAYMUNDO"
+          },
+          "vice_mayor": {
+            "name": "FAUSTO T. LABINIO"
+          }
+        },
+        {
+          "municipality": "Bokod",
+          "zip_code": "2605",
+          "mayor": {
+            "name": "THOMAS K. WALES JR."
+          },
+          "vice_mayor": {
+            "name": "ERIK DONN IGNACIO"
+          }
+        },
+        {
+          "municipality": "Buguias",
+          "zip_code": "2607",
+          "mayor": {
+            "name": "RUBEN L. TINDA-AN"
+          },
+          "vice_mayor": {
+            "name": "DIONE E. BAUCAS",
+            "contact": "(034) 994-4669"
+          }
+        },
+        {
+          "municipality": "Itogon",
+          "zip_code": "2604",
+          "mayor": {
+            "name": "BERNARD S. WACLIN"
+          },
+          "vice_mayor": {
+            "name": "DANTE ALAIN XAVIER D. GODIO",
+            "contact": "(074) 619-1765"
+          }
+        },
+        {
+          "municipality": "Kabayan",
+          "zip_code": "2606",
+          "mayor": {
+            "name": "FLORANTE B. BANTALES JR."
+          },
+          "vice_mayor": {
+            "name": "MIKE E. BADIVAL"
+          }
+        },
+        {
+          "municipality": "Kapangan",
+          "zip_code": "2613",
+          "mayor": {
+            "name": "MANNY E. FERMIN"
+          },
+          "vice_mayor": {
+            "name": "MAYO D. ESLAY"
+          }
+        },
+        {
+          "municipality": "Kibungan",
+          "zip_code": "2611",
+          "mayor": {
+            "name": "CESAR M. MOLITAS"
+          },
+          "vice_mayor": {
+            "name": "EDWIN G. NITRON"
+          }
+        },
+        {
+          "municipality": "La Trinidad",
+          "zip_code": "2601",
+          "mayor": {
+            "name": "ROMEO K. SALDA",
+            "contact": "(074) 422-2601"
+          },
+          "vice_mayor": {
+            "name": "RODERICK C. AWINGAN",
+            "contact": "(074) 422-2736"
+          }
+        },
+        {
+          "municipality": "Mankayan",
+          "zip_code": "2608",
+          "mayor": {
+            "name": "DARIO S. BANARIO SR."
+          },
+          "vice_mayor": {
+            "name": "JULIO JOEY C. CULLIAO"
+          }
+        },
+        {
+          "municipality": "Sablan",
+          "zip_code": "2614",
+          "mayor": {
+            "name": "ALFREDO B. DACUMOS JR."
+          },
+          "vice_mayor": {
+            "name": "ARTHUR C. BALDO"
+          }
+        },
+        {
+          "municipality": "Tuba",
+          "zip_code": "2603",
+          "mayor": {
+            "name": "CLARITA P. SAL-ONGAN",
+            "contact": "(074) 447-0064"
+          },
+          "vice_mayor": {
+            "name": "MARIA L. CARANTES"
+          }
+        },
+        {
+          "municipality": "Tublay",
+          "zip_code": "2615",
+          "mayor": {
+            "name": "ARMANDO I. LAURO"
+          },
+          "vice_mayor": {
+            "name": "JUAN L. ESNARA"
+          }
+        }
+      ]
+    },
+    {
+      "province": "IFUGAO PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Aguinaldo",
+          "zip_code": "3606",
+          "mayor": {
+            "name": "GASPAR B. CHILAGAN JR."
+          },
+          "vice_mayor": {
+            "name": "ROBERTO A. LIM-ANG"
+          }
+        },
+        {
+          "municipality": "Alfonso Lista",
+          "zip_code": "3608",
+          "mayor": {
+            "name": "EDRALIN B. ALIPIO"
+          },
+          "vice_mayor": {
+            "name": "AGAPITO B. DOMINGUEZ JR."
+          }
+        },
+        {
+          "municipality": "Asipulo",
+          "zip_code": "3610",
+          "mayor": {
+            "name": "ARCHIE LEE A. QUINDO"
+          },
+          "vice_mayor": {
+            "name": "CLARENCE P. BAHINGAWAN"
+          }
+        },
+        {
+          "municipality": "Banaue",
+          "zip_code": "3601",
+          "mayor": {
+            "name": "JOEL B. BUNGALLON"
+          },
+          "vice_mayor": {
+            "name": "DONALD L. MONGOLNON"
+          }
+        },
+        {
+          "municipality": "Hingyon",
+          "zip_code": "3607",
+          "mayor": {
+            "name": "FLORENCIO B. NALULA"
+          },
+          "vice_mayor": {
+            "name": "ALLAN K. PEGEW"
+          }
+        },
+        {
+          "municipality": "Hungduan",
+          "zip_code": "3603",
+          "mayor": {
+            "name": "CASAN P. DUMULAG"
+          },
+          "vice_mayor": {
+            "name": "ROMEO L. HAGUYAYAP"
+          }
+        },
+        {
+          "municipality": "Kiangan",
+          "zip_code": "3604",
+          "mayor": {
+            "name": "RALDIS ANDREI A. BULAYUNGAN"
+          },
+          "vice_mayor": {
+            "name": "MICHELLE ALICE B. BAGUILAT"
+          }
+        },
+        {
+          "municipality": "Lagawe",
+          "zip_code": "3600",
+          "mayor": {
+            "name": "MARTIN L. HABAWEL JR."
+          },
+          "vice_mayor": {
+            "name": "REYNOLD A. KIMAYONG"
+          }
+        },
+        {
+          "municipality": "Lamut",
+          "zip_code": "3605",
+          "mayor": {
+            "name": "VICTOMAR H. BUNNOL"
+          },
+          "vice_mayor": {
+            "name": "EVERDA DESIREE D. DULINAYAN"
+          }
+        },
+        {
+          "municipality": "Mayoyao",
+          "zip_code": "3602",
+          "mayor": {
+            "name": "JIMMY B. PADCHANAN JR."
+          },
+          "vice_mayor": {
+            "name": "RUDY N. CHILAGAN JR."
+          }
+        },
+        {
+          "municipality": "Tinoc",
+          "zip_code": "3609",
+          "mayor": {
+            "name": "SAMSON C. BENITO"
+          },
+          "vice_mayor": {
+            "name": "EFREN A. TACIO"
+          }
+        }
+      ]
+    },
+    {
+      "province": "KALINGA PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Balbalan",
+          "zip_code": "3801",
+          "mayor": {
+            "name": "ALMAR M. MALANNAG"
+          },
+          "vice_mayor": {
+            "name": "ROWINA ALISON M. DAMIAN"
+          }
+        },
+        {
+          "municipality": "Lubuagan",
+          "zip_code": "3802",
+          "mayor": {
+            "name": "JOEL B. TAGAOTAO"
+          },
+          "vice_mayor": {
+            "name": "ALONZO C. SACLAG JR."
+          }
+        },
+        {
+          "municipality": "Pasil",
+          "zip_code": "3803",
+          "mayor": {
+            "name": "ALFREDO B. MALANNAG JR."
+          },
+          "vice_mayor": {
+            "name": "VENANCIO O. MAGANGAT"
+          }
+        },
+        {
+          "municipality": "Pinukpok",
+          "zip_code": "3806",
+          "mayor": {
+            "name": "IRVING B. DASAYON"
+          },
+          "vice_mayor": {
+            "name": "JIMMY B. DASAYON"
+          }
+        },
+        {
+          "municipality": "Rizal",
+          "zip_code": "3808",
+          "mayor": {
+            "name": "KARL BUGAO P. BAAC"
+          },
+          "vice_mayor": {
+            "name": "SAMUEL C. VALDEZ"
+          }
+        },
+        {
+          "municipality": "Tanudan",
+          "zip_code": "3805",
+          "mayor": {
+            "name": "JAEDICKE RHOSS P. DAGADAG"
+          },
+          "vice_mayor": {
+            "name": "CONSTANCIO L. DALAYAP"
+          }
+        },
+        {
+          "municipality": "Tinglayan",
+          "zip_code": "3804",
+          "mayor": {
+            "name": "SACRAMENT S. GUMILAB"
+          },
+          "vice_mayor": {
+            "name": "ROGELIO M. TAMBALONG"
+          }
+        }
+      ]
+    },
+    {
+      "province": "MOUNTAIN PROVINCE",
+      "municipalities": [
+        {
+          "municipality": "Barlig",
+          "zip_code": "2623",
+          "mayor": {
+            "name": "CLARK C. NGAYA"
+          },
+          "vice_mayor": {
+            "name": "DELIO F. FOCAD"
+          }
+        },
+        {
+          "municipality": "Bauko",
+          "zip_code": "2621",
+          "mayor": {
+            "name": "RANDOLF T. AWISAN"
+          },
+          "vice_mayor": {
+            "name": "BARTOLOME B. BADECAO"
+          }
+        },
+        {
+          "municipality": "Besao",
+          "zip_code": "2618",
+          "mayor": {
+            "name": "BRYNE O. BACWADEN"
+          },
+          "vice_mayor": {
+            "name": "ELIZABETH A. BUYAGAN"
+          }
+        },
+        {
+          "municipality": "Bontoc",
+          "zip_code": "2616",
+          "mayor": {
+            "name": "JEROME B. TUDLONG JR."
+          },
+          "vice_mayor": {
+            "name": "EUSEBIO S. KABLUYEN"
+          }
+        },
+        {
+          "municipality": "Natonin",
+          "zip_code": "2624",
+          "mayor": {
+            "name": "JOSE T. AGAGON"
+          },
+          "vice_mayor": {
+            "name": "RAYMUNDO L. LAPASEN"
+          }
+        },
+        {
+          "municipality": "Paracelis",
+          "zip_code": "2625",
+          "mayor": {
+            "name": "MARCOS G. AYANGWA"
+          },
+          "vice_mayor": {
+            "name": "DJARMA B. RAFAEL"
+          }
+        },
+        {
+          "municipality": "Sabangan",
+          "zip_code": "2622",
+          "mayor": {
+            "name": "MARCIAL C. LAWILAO JR."
+          },
+          "vice_mayor": {
+            "name": "RODOLFO L. MENCION"
+          }
+        },
+        {
+          "municipality": "Sadanga",
+          "zip_code": "2617",
+          "mayor": {
+            "name": "ADOLF F. GANGGANGAN"
+          },
+          "vice_mayor": {
+            "name": "PAUL F. FARONG-EY"
+          }
+        },
+        {
+          "municipality": "Sagada",
+          "zip_code": "2619",
+          "mayor": {
+            "name": "FELICITO O. DULA"
+          },
+          "vice_mayor": {
+            "name": "DAVID TALLUSEN B. BUYAGAN"
+          }
+        },
+        {
+          "municipality": "Tadian",
+          "zip_code": "2620",
+          "mayor": {
+            "name": "CONSTITO S. MASWENG"
+          },
+          "vice_mayor": {
+            "name": "GEORGE C. BISEN JR."
+          }
+        }
+      ]
+    }
+  ],
+  "slug": "cordillera-administrative-region"
+}
