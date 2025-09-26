@@ -39,7 +39,9 @@ export default function ConstitutionalSidebar({
     if (onOfficeSelect) {
       onOfficeSelect(office);
     }
-    navigate(`/government/constitutional/${encodeURIComponent(office.slug)}`);
+    navigate(`/government/constitutional/${encodeURIComponent(office.slug)}`, {
+      state: { scrollToContent: true },
+    });
   };
 
   // Check if a path is active
@@ -101,6 +103,7 @@ export default function ConstitutionalSidebar({
             <li>
               <Link
                 to='/government/constitutional/goccs'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/constitutional/goccs')
                     ? 'bg-primary-50 text-primary-700 font-medium'
@@ -114,6 +117,7 @@ export default function ConstitutionalSidebar({
             <li>
               <Link
                 to='/government/constitutional/sucs'
+                state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/constitutional/sucs')
                     ? 'bg-primary-50 text-primary-700 font-medium'
