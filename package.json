@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run generate:metadata && vite build",
+    "build": "tsc && pnpm generate:metadata && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
@@ -30,7 +30,7 @@
     "fetch:contractor-profiles": "node ./scripts/fetch_contractor_profiles.cjs",
     "generate:llms-txt": "node ./scripts/generate-llms-txt.js",
     "generate:sitemap": "node ./scripts/generate-sitemap.js",
-    "generate:metadata": "npm run generate:llms-txt && npm run generate:sitemap"
+    "generate:metadata": "pnpm generate:llms-txt && pnpm generate:sitemap"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.7.0",
@@ -98,6 +98,7 @@
     "uuid": "^9.0.1",
     "vite": "^5.4.2"
   },
+  "packageManager": "pnpm@10.17.1",
   "overrides": {
     "react-helmet-async": {
       "react": "^19.0.0",
