@@ -292,6 +292,15 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
   const baseTitle = 'Local Government Units';
   const title = regionName ? `${regionName} - ${baseTitle}` : baseTitle;
 
+  // Normalize region names to match our data slugs (e.g., "REGION VI - WESTERN VISAYAS" -> "region-vi-western-visayas")
+  function slugify(input: string): string {
+    return input
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/-{2,}/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
   return {
     title,
     description: regionName
@@ -308,9 +317,7 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
       ...(regionName ? [regionName] : []),
     ],
     canonical: regionName
-      ? `/government/local/${encodeURIComponent(
-          regionName.toLowerCase().replace(/\s+/g, '-')
-        )}`
+      ? `/government/local/${encodeURIComponent(slugify(regionName))}`
       : '/government/local',
     breadcrumbs: [
       { name: 'Home', url: '/' },
@@ -320,9 +327,7 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
         ? [
             {
               name: regionName,
-              url: `/government/local/${encodeURIComponent(
-                regionName.toLowerCase().replace(/\s+/g, '-')
-              )}`,
+              url: `/government/local/${encodeURIComponent(slugify(regionName))}`,
             },
           ]
         : []),
@@ -331,13 +336,7 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
       '@context': 'https://schema.org',
       '@type': 'AdministrativeArea',
       name: regionName || 'Philippine Local Government Units',
-      url: `https://gov.ph/government/local${
-        regionName
-          ? `/${encodeURIComponent(
-              regionName.toLowerCase().replace(/\s+/g, '-')
-            )}`
-          : ''
-      }`,
+      url: `https://gov.ph/government/local${regionName ? `/${encodeURIComponent(slugify(regionName))}` : ''}`,
       description: regionName
         ? `Local Government Units in ${regionName}`
         : 'A directory of Philippine Local Government Units',
