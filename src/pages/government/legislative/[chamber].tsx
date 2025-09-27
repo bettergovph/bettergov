@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
+import { ExternalLink, MapPin, Phone, Globe, Mail } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
 import { cn } from '../../../lib/utils';
 
@@ -45,7 +45,6 @@ function LegislativeDetailSection({
     'address',
     'trunkline',
     'website',
-    'email',
   ];
 
   if (isSimpleObject) {
@@ -58,6 +57,28 @@ function LegislativeDetailSection({
       >
         {Object.entries(data).map(([key, value]) => {
           if (skipKeys.includes(key) || value === undefined) return null;
+
+          // Special rendering for email so it's visible and wraps cleanly
+          if (key === 'email' && value) {
+            return (
+              <div key={key} className='text-sm'>
+                <div className='flex items-start'>
+                  <Mail
+                    className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0'
+                    aria-hidden='true'
+                  />
+                  <a
+                    href={`mailto:${value}`}
+                    className='text-primary-600 hover:underline leading-relaxed break-all'
+                    style={{ wordBreak: 'break-all' }}
+                  >
+                    <span className='sr-only'>Email</span>
+                    {String(value)}
+                  </a>
+                </div>
+              </div>
+            );
+          }
 
           return (
             <div key={key} className='text-sm'>
