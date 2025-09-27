@@ -598,7 +598,7 @@
           "city": "Talisay",
           "zip_code": "6045",
           "mayor": {
-            "name": "GERALD ANTHONY \"SAM-SAM\" V. GULLAS JR.",
+            "name": "GERALD ANTHONY \"SAMSAM\" V. GULLAS JR.",
             "contact": "(032) 491-4949"
           },
           "vice_mayor": {
@@ -622,7 +622,7 @@
       "municipalities": [
         {
           "municipality": "Alcantara",
-          "zip_code": "6030",
+          "zip_code": "6033",
           "mayor": {
             "name": "FRITZ LASTIMOSO"
           },
@@ -700,7 +700,7 @@
             "name": "AMOS EDWIN CABAHUG"
           },
           "vice_mayor": {
-            "name": "ALEX FRANCIS V. BINGHAY II",
+            "name": "ALEX FRANCIS \"ALFIE\" V. BINGHAY II",
             "contact": "(032) 239-8392"
           }
         },
@@ -728,7 +728,7 @@
           "municipality": "Boljoon",
           "zip_code": "6024",
           "mayor": {
-            "name": "JOIE GENESSE N. DERAMA",
+            "name": "JOJIE GENESSE N. DERAMA",
             "contact": "(032) 494-6612"
           },
           "vice_mayor": {
@@ -782,17 +782,17 @@
           "municipality": "Consolacion",
           "zip_code": "6001",
           "mayor": {
-            "name": "NENE ALEGADO-PEPITO"
+            "name": "TERESA \"NENE\" P. ALEGADO"
           },
           "vice_mayor": {
-            "name": "JOYJOY ALEGADO"
+            "name": "JOANNES \"JOYJOY\" P. ALEGADO"
           }
         },
         {
           "municipality": "Cordova",
           "zip_code": "6017",
           "mayor": {
-            "name": "DIDOY SUAN"
+            "name": "CESAR \"DIDOY\" SUAN"
           },
           "vice_mayor": {
             "name": "VICTOR \"BOYET\" S. TAGO",
