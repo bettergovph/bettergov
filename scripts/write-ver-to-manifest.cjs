@@ -2,7 +2,7 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 
 // Get current commit hash
-const hash = execSync('git rev-parse HEAD').toString().trim();
+const hash = import.meta.env.HEAD_COMMIT_HASH;
 
 // Prepare manifest object
 const manifest = { head_commit: hash };
