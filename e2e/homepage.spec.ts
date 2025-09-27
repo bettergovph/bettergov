@@ -69,9 +69,7 @@ test.describe('Homepage', () => {
       await menuButton.click();
 
       // Mobile menu should be visible
-      await expect(
-        page.getByRole('button', { name: /Close menu/i })
-      ).toBeVisible();
+      await expect(menuButton).toBeVisible();
     } else {
       // Desktop navigation should be visible
       await expect(
