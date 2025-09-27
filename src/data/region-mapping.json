@@ -1,0 +1,43 @@
+{
+  "regionMapping": {
+    "Bicol": "Region V",
+    "Cagayan Valley": "Region II",
+    "Central Luzon": "Region III",
+    "Central Visayas": "Region VII",
+    "Cordillera Administrative Region": "Cordillera Administrative Region",
+    "Davao": "Region XI",
+    "Eastern Visayas": "Region VIII",
+    "Ilocos": "Region I",
+    "Mimaropa": "Region IV-B",
+    "National Capital Region": "National Capital Region",
+    "Northern Mindanao": "Region X",
+    "Soccsksargen": "Region XII",
+    "Western Visayas": "Region VI",
+    "Zamboanga Peninsula": "Region IX",
+    "Caraga": "Region XIII",
+    "Autonomous Region in Muslim Mindanao": "Autonomous Region in Muslim Mindanao",
+    "Calabarzon": "Region IV-A"
+  },
+  "regionTotals": {
+    "Region I": 851,
+    "Region II": 628,
+    "Region III": 1617,
+    "Region IV-A": 829,
+    "Region IV-B": 498,
+    "Region V": 866,
+    "Region VI": 505,
+    "Region VII": 614,
+    "Region VIII": 517,
+    "Region IX": 133,
+    "Region X": 428,
+    "Region XI": 356,
+    "Region XII": 301,
+    "Region XIII": 302,
+    "National Capital Region": 1058,
+    "Cordillera Administrative Region": 352,
+    "Autonomous Region in Muslim Mindanao": 0
+  },
+  "defaultRegionTotal": 100,
+  "globalTotal": 9855,
+  "globalTotalPages": 986
+}
