@@ -33,7 +33,9 @@ export default function DepartmentsSidebar({
     if (onDepartmentSelect) {
       onDepartmentSelect(dept);
     }
-    navigate(`/government/departments/${encodeURIComponent(dept.slug)}`);
+    navigate(`/government/departments/${encodeURIComponent(dept.slug)}`, {
+      state: { scrollToContent: true },
+    });
   };
 
   return (
