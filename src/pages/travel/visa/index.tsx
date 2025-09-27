@@ -507,16 +507,16 @@ const VisaPage: React.FC = () => {
       {/* Main Content */}
       <div className='container mx-auto max-w-6xl py-4 md:py-12 px-4'>
         {/* Enhanced Search and Filter Section */}
-        <div className='bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-100'>
+        <div className='bg-white rounded-lg shadow-md p-6 mb-6 sm:mb-8'>
           {/* Search Bar */}
           <div className='flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch sm:items-center mb-6'>
             <div className='relative flex-1 group'>
-              <Search className='absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors' />
+              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400' />
               <input
                 ref={searchInputRef}
                 type='text'
                 placeholder={t('quickCheck.searchPlaceholder')}
-                className='w-full pl-10 sm:pl-12 pr-12 sm:pr-16 py-2.5 sm:py-3 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white'
+                className='w-full pl-10 pr-4 py-2.5 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-200 bg-white'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 aria-label={t('quickCheck.searchAriaLabel')}
@@ -524,10 +524,10 @@ const VisaPage: React.FC = () => {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
-                  className='absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1'
+                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors'
                 >
                   <svg
-                    className='h-4 w-4 sm:h-5 sm:w-5'
+                    className='h-4 w-4'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -544,32 +544,32 @@ const VisaPage: React.FC = () => {
             </div>
 
             {/* View Mode Toggle */}
-            <div className='flex items-center bg-gray-50 rounded-xl p-1 border border-gray-200 shadow-sm'>
+            <div className='flex items-center gap-2'>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                className={`inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none text-sm px-3 sm:px-4 py-2 h-10 shadow-xs border flex-1 sm:flex-none ${
                   viewMode === 'grid' || !viewMode
-                    ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary-500 text-white hover:bg-primary-600 border-primary-500'
+                    : 'bg-transparent text-gray-700 hover:bg-gray-50 border-gray-300'
                 }`}
                 aria-pressed={viewMode === 'grid' || !viewMode}
                 aria-label='Switch to grid view'
               >
-                <Grid3x3 className='h-4 w-4' />
-                <span className='text-sm font-semibold'>Grid</span>
+                <Grid3x3 className='h-4 w-4 mr-2' />
+                Grid View
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                className={`inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none text-sm px-3 sm:px-4 py-2 h-10 shadow-xs border flex-1 sm:flex-none ${
                   viewMode === 'list'
-                    ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary-500 text-white hover:bg-primary-600 border-primary-500'
+                    : 'bg-transparent text-gray-700 hover:bg-gray-50 border-gray-300'
                 }`}
                 aria-pressed={viewMode === 'list'}
                 aria-label='Switch to detail view'
               >
-                <List className='h-4 w-4' />
-                <span className='text-sm font-semibold'>List</span>
+                <List className='h-4 w-4 mr-2' />
+                Detail View
               </button>
             </div>
           </div>
@@ -606,7 +606,7 @@ const VisaPage: React.FC = () => {
                   </button>
 
                   {/* Quick Status */}
-                  <div className='text-sm text-gray-600'>
+                  <div className='text-sm text-gray-600 min-h-[1.25rem]'>
                     {selectedLetters.length === 0 ? (
                       <span>
                         Showing all{' '}
@@ -642,29 +642,14 @@ const VisaPage: React.FC = () => {
                         <button
                           key={letter}
                           onClick={() => toggleLetter(letter)}
-                          className={`relative px-3 py-2 sm:px-4 text-sm font-medium rounded-lg border-2 transition-all duration-200 transform hover:scale-105 active:scale-95 min-w-[2.5rem] sm:min-w-0 ${
+                          className={`w-10 h-10 text-sm font-medium rounded-lg transition-colors duration-200 border ${
                             isSelected
-                              ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200'
-                              : 'bg-white text-gray-700 border-gray-300 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700'
+                              ? 'bg-blue-600 text-white shadow-sm border-blue-600'
+                              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-gray-900'
                           }`}
                           aria-pressed={isSelected}
                         >
                           {letter}
-                          {isSelected && (
-                            <div className='absolute -top-1 -right-1 w-3 h-3 bg-blue-600 rounded-full flex items-center justify-center'>
-                              <svg
-                                className='w-2 h-2 text-white'
-                                fill='currentColor'
-                                viewBox='0 0 20 20'
-                              >
-                                <path
-                                  fillRule='evenodd'
-                                  d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                                  clipRule='evenodd'
-                                />
-                              </svg>
-                            </div>
-                          )}
                         </button>
                       );
                     })}
@@ -675,7 +660,7 @@ const VisaPage: React.FC = () => {
                     <div className='flex justify-center pt-2'>
                       <button
                         onClick={clearAllLetters}
-                        className='px-6 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-all duration-200 rounded-lg border border-gray-200 hover:border-gray-300'
+                        className='text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200 underline'
                       >
                         Clear All
                       </button>
