@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Compass, Globe, Search, Grid3x3, List } from 'lucide-react';
+import {
+  Compass,
+  Globe,
+  Search,
+  Grid3x3,
+  List,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
@@ -273,15 +281,23 @@ const VisaPage: React.FC = () => {
   >(new Map());
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(24); // 4x6 grid
+  const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
+  const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentCountries = filteredCountries.slice(startIndex, endIndex);
+  // Alphabetical filter calculations
+  const currentCountries = filteredCountries.filter(country => {
+    if (selectedLetters.length === 0) return true;
+    const firstLetter = country.charAt(0).toUpperCase();
+    return selectedLetters.includes(firstLetter);
+  });
+
+  // Generate available letters from filtered countries
+  const availableLetters = Array.from(
+    new Set(
+      filteredCountries.map(country => country.charAt(0).toUpperCase()).sort()
+    )
+  );
 
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
@@ -373,8 +389,8 @@ const VisaPage: React.FC = () => {
       );
       setFilteredCountries(filtered);
     }
-    // Reset to first page when search changes
-    setCurrentPage(1);
+    // Reset alphabetical filter when search changes
+    setSelectedLetters([]);
   }, [searchTerm, allCountries]);
 
   const selectCountry = (country: string) => {
@@ -408,6 +424,19 @@ const VisaPage: React.FC = () => {
     });
   };
 
+  // Multi-letter selection helpers
+  const toggleLetter = (letter: string) => {
+    setSelectedLetters(prev =>
+      prev.includes(letter)
+        ? prev.filter(l => l !== letter)
+        : [...prev, letter].sort()
+    );
+  };
+
+  const clearAllLetters = () => {
+    setSelectedLetters([]);
+  };
+
   const getStatusBadge = (type: string, duration?: string) => {
     switch (type) {
       case 'visa-free':
@@ -436,7 +465,7 @@ const VisaPage: React.FC = () => {
   return (
     <div className='bg-gray-50'>
       {/* Hero Section */}
-      <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-16 px-4'>
+      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4'>
         <div className='container mx-auto max-w-6xl'>
           <div className='flex flex-col md:flex-row items-center justify-between'>
             <div className='md:w-1/2 mb-8 md:mb-0'>
@@ -477,50 +506,185 @@ const VisaPage: React.FC = () => {
 
       {/* Main Content */}
       <div className='container mx-auto max-w-6xl py-4 md:py-12 px-4'>
-        {/* View Toggle and Search Bar */}
-        <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
-          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-            <div className='relative w-full md:w-96'>
-              <Search className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
+        {/* Enhanced Search and Filter Section */}
+        <div className='bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-100'>
+          {/* Search Bar */}
+          <div className='flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch sm:items-center mb-6'>
+            <div className='relative flex-1 group'>
+              <Search className='absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors' />
               <input
                 ref={searchInputRef}
                 type='text'
                 placeholder={t('quickCheck.searchPlaceholder')}
-                className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500'
+                className='w-full pl-10 sm:pl-12 pr-12 sm:pr-16 py-2.5 sm:py-3 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white'
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 aria-label={t('quickCheck.searchAriaLabel')}
               />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className='absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1'
+                >
+                  <svg
+                    className='h-4 w-4 sm:h-5 sm:w-5'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M6 18L18 6M6 6l12 12'
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
-            <div className='flex items-center gap-2'>
+
+            {/* View Mode Toggle */}
+            <div className='flex items-center bg-gray-50 rounded-xl p-1 border border-gray-200 shadow-sm'>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 flex-1 justify-center ${
                   viewMode === 'grid' || !viewMode
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                 }`}
                 aria-pressed={viewMode === 'grid' || !viewMode}
                 aria-label='Switch to grid view'
               >
                 <Grid3x3 className='h-4 w-4' />
-                Grid View
+                <span className='text-sm font-semibold'>Grid</span>
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 flex-1 justify-center ${
                   viewMode === 'list'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                 }`}
                 aria-pressed={viewMode === 'list'}
                 aria-label='Switch to detail view'
               >
                 <List className='h-4 w-4' />
-                Detail View
+                <span className='text-sm font-semibold'>List</span>
               </button>
             </div>
           </div>
+
+          {/* Search Results Summary */}
+          {searchTerm && (
+            <div className='mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200'>
+              <div className='text-sm text-blue-800'>
+                Found{' '}
+                <span className='font-semibold'>
+                  {filteredCountries.length}
+                </span>{' '}
+                countries matching &quot;{searchTerm}&quot;
+              </div>
+            </div>
+          )}
+
+          {/* Alphabetical Filters */}
+          {availableLetters.length > 0 && !searchTerm && (
+            <div className='border-t border-gray-200 pt-6'>
+              {/* Filter Header - Always Visible */}
+              <div className='mb-4'>
+                <div className='flex flex-col sm:flex-row sm:items-center gap-3'>
+                  <button
+                    onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                    className='flex items-center gap-2 text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors self-start'
+                  >
+                    Filter by Letter
+                    {isFilterExpanded ? (
+                      <ChevronUp className='h-5 w-5' />
+                    ) : (
+                      <ChevronDown className='h-5 w-5' />
+                    )}
+                  </button>
+
+                  {/* Quick Status */}
+                  <div className='text-sm text-gray-600'>
+                    {selectedLetters.length === 0 ? (
+                      <span>
+                        Showing all{' '}
+                        <span className='font-semibold text-blue-600'>
+                          {currentCountries.length}
+                        </span>{' '}
+                        countries
+                      </span>
+                    ) : (
+                      <span>
+                        Showing{' '}
+                        <span className='font-semibold text-blue-600'>
+                          {currentCountries.length}
+                        </span>{' '}
+                        countries starting with{' '}
+                        <span className='font-semibold text-blue-600'>
+                          {selectedLetters.join(', ')}
+                        </span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Collapsible Content */}
+              {isFilterExpanded && (
+                <div className='space-y-4'>
+                  {/* Letter Buttons */}
+                  <div className='flex flex-wrap justify-center gap-2 sm:gap-3 px-4'>
+                    {availableLetters.map(letter => {
+                      const isSelected = selectedLetters.includes(letter);
+                      return (
+                        <button
+                          key={letter}
+                          onClick={() => toggleLetter(letter)}
+                          className={`relative px-3 py-2 sm:px-4 text-sm font-medium rounded-lg border-2 transition-all duration-200 transform hover:scale-105 active:scale-95 min-w-[2.5rem] sm:min-w-0 ${
+                            isSelected
+                              ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200'
+                              : 'bg-white text-gray-700 border-gray-300 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700'
+                          }`}
+                          aria-pressed={isSelected}
+                        >
+                          {letter}
+                          {isSelected && (
+                            <div className='absolute -top-1 -right-1 w-3 h-3 bg-blue-600 rounded-full flex items-center justify-center'>
+                              <svg
+                                className='w-2 h-2 text-white'
+                                fill='currentColor'
+                                viewBox='0 0 20 20'
+                              >
+                                <path
+                                  fillRule='evenodd'
+                                  d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                                  clipRule='evenodd'
+                                />
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Clear All Button - Bottom */}
+                  {selectedLetters.length > 0 && (
+                    <div className='flex justify-center pt-2'>
+                      <button
+                        onClick={clearAllLetters}
+                        className='px-6 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-all duration-200 rounded-lg border border-gray-200 hover:border-gray-300'
+                      >
+                        Clear All
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Grid View */}
@@ -582,175 +746,6 @@ const VisaPage: React.FC = () => {
                 </p>
               </div>
             )}
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className='mt-8 pt-6 border-t border-gray-200'>
-                {/* Results Summary */}
-                <div className='flex items-center justify-center mb-6'>
-                  <div className='rounded-full px-4 py-2 text-sm text-gray-600 font-medium'>
-                    Showing{' '}
-                    <span className='font-semibold text-gray-900'>
-                      {startIndex + 1}
-                    </span>{' '}
-                    to{' '}
-                    <span className='font-semibold text-gray-900'>
-                      {Math.min(endIndex, filteredCountries.length)}
-                    </span>{' '}
-                    of{' '}
-                    <span className='font-semibold text-blue-600'>
-                      {filteredCountries.length}
-                    </span>{' '}
-                    countries
-                  </div>
-                </div>
-
-                {/* Pagination Navigation */}
-                <div className='flex items-center justify-center space-x-3 sm:space-x-2 px-2'>
-                  {/* Previous Button */}
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className='flex items-center justify-center h-10 w-10 sm:h-auto sm:w-auto px-0 sm:px-4 py-0 sm:py-2 text-xs sm:text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-full sm:rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
-                  >
-                    <svg
-                      className='w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M15 19l-7-7 7-7'
-                      />
-                    </svg>
-                    <span className='hidden sm:inline'>Previous</span>
-                  </button>
-
-                  {/* Page Numbers */}
-                  <div className='hidden sm:flex items-center space-x-1'>
-                    {/* First page if not in range */}
-                    {currentPage > 2 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentPage(1)}
-                          className='min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md sm:rounded-lg hover:bg-gray-50 hover:border-gray-400 focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200'
-                        >
-                          1
-                        </button>
-                        {currentPage > 3 && (
-                          <span className='px-2 text-gray-400'>...</span>
-                        )}
-                      </>
-                    )}
-
-                    {/* Page numbers around current page */}
-                    {Array.from({ length: Math.min(3, totalPages) }, (_, i) => {
-                      const pageNum =
-                        Math.max(1, Math.min(totalPages - 2, currentPage - 1)) +
-                        i;
-                      if (pageNum > totalPages) return null;
-                      return (
-                        <button
-                          key={pageNum}
-                          onClick={() => setCurrentPage(pageNum)}
-                          className={`min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium rounded-md sm:rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200 ${
-                            currentPage === pageNum
-                              ? 'text-white bg-blue-600 border border-blue-600 shadow-sm'
-                              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
-                          }`}
-                        >
-                          {pageNum}
-                        </button>
-                      );
-                    })}
-
-                    {/* Last page if not in range */}
-                    {currentPage < totalPages - 1 && (
-                      <>
-                        {currentPage < totalPages - 2 && (
-                          <span className='px-2 text-gray-400'>...</span>
-                        )}
-                        <button
-                          onClick={() => setCurrentPage(totalPages)}
-                          className='min-w-[40px] h-9 sm:min-w-0 sm:h-auto px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md sm:rounded-lg hover:bg-gray-50 hover:border-gray-400 focus:outline-hidden focus:ring-2 focus:ring-blue-300 transition-all duration-200'
-                        >
-                          {totalPages}
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Mobile: first, current, last page quick-jump */}
-                  <div className='sm:hidden flex items-center gap-2'>
-                    <button
-                      type='button'
-                      onClick={() => setCurrentPage(1)}
-                      disabled={currentPage === 1}
-                      aria-label='Go to first page'
-                      className={`min-w-[56px] h-10 px-3 flex items-center justify-center rounded-md border text-sm font-semibold shadow-sm transition-colors ${
-                        currentPage === 1
-                          ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-                          : 'bg-white text-blue-600 border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      First
-                    </button>
-
-                    <div className='min-w-[40px] h-10 px-3 flex items-center justify-center rounded-md border border-gray-300 bg-white text-blue-600 text-sm font-semibold shadow-sm'>
-                      {currentPage}
-                    </div>
-
-                    <button
-                      type='button'
-                      onClick={() => setCurrentPage(totalPages)}
-                      disabled={currentPage === totalPages}
-                      aria-label='Go to last page'
-                      className={`min-w-[56px] h-10 px-3 flex items-center justify-center rounded-md border text-sm font-semibold shadow-sm transition-colors ${
-                        currentPage === totalPages
-                          ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-                          : 'bg-white text-blue-600 border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      Last
-                    </button>
-                  </div>
-
-                  {/* Next Button */}
-                  <button
-                    onClick={() =>
-                      setCurrentPage(Math.min(totalPages, currentPage + 1))
-                    }
-                    disabled={currentPage === totalPages}
-                    className='flex items-center justify-center h-10 w-10 sm:h-auto sm:w-auto px-0 sm:px-4 py-0 sm:py-2 text-xs sm:text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-full sm:rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
-                  >
-                    <svg
-                      className='w-4 h-4 sm:w-4 sm:h-4 sm:ml-1.5'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M9 5l7 7-7 7'
-                      />
-                    </svg>
-                    <span className='hidden sm:inline'>Next</span>
-                  </button>
-                </div>
-
-                {/* Page Info */}
-                <div className='flex items-center justify-center mt-3 sm:mt-4'>
-                  <span className='text-[10px] sm:text-xs text-gray-500'>
-                    Page {currentPage} of {totalPages}
-                  </span>
-                </div>
-              </div>
-            )}
           </div>
         )}
 
@@ -763,13 +758,14 @@ const VisaPage: React.FC = () => {
                 <h2 className='text-xl font-semibold mb-4'>
                   {t('countryList.title')}
                 </h2>
+
                 <div
                   className='max-h-[400px] xl:max-h-[800px] overflow-y-auto pr-2'
                   role='listbox'
                   aria-label={t('countryList.ariaLabel')}
                 >
-                  {filteredCountries.length > 0 ? (
-                    filteredCountries.map(country => (
+                  {currentCountries.length > 0 ? (
+                    currentCountries.map(country => (
                       <button
                         key={country}
                         className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors cursor-pointer ${
