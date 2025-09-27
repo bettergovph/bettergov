@@ -1,0 +1,204 @@
+{
+  "senators": [
+    {
+      "id": "sen-001",
+      "name": "Juan Miguel Zubiri",
+      "firstName": "Juan Miguel",
+      "lastName": "Zubiri",
+      "nickname": "Migz",
+      "party": "Independent",
+      "position": "Senate President",
+      "termStart": "2022-06-30",
+      "termEnd": "2028-06-30",
+      "photoUrl": "/assets/senators/zubiri.jpg",
+      "email": "migzzubiri@senate.gov.ph",
+      "committees": [
+        {
+          "id": "com-001",
+          "name": "Committee on Rules",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        }
+      ],
+      "stats": {
+        "billsAuthored": 45,
+        "billsCoAuthored": 123,
+        "billsPassed": 12,
+        "attendanceRate": 92.5,
+        "votingParticipation": 89.3,
+        "committeeMeetingsAttended": 45,
+        "totalCommitteeMeetings": 48
+      },
+      "partyHistory": [
+        {
+          "party": "PDP-Laban",
+          "startDate": "2016-06-30",
+          "endDate": "2021-12-31"
+        },
+        {
+          "party": "Independent",
+          "startDate": "2022-01-01"
+        }
+      ]
+    },
+    {
+      "id": "sen-002",
+      "name": "Loren Legarda",
+      "firstName": "Lorna Regina",
+      "lastName": "Legarda",
+      "nickname": "Loren",
+      "party": "NPC",
+      "position": "Senate President Pro Tempore",
+      "termStart": "2022-06-30",
+      "termEnd": "2028-06-30",
+      "photoUrl": "/assets/senators/legarda.jpg",
+      "email": "lorenlegarda@senate.gov.ph",
+      "committees": [
+        {
+          "id": "com-002",
+          "name": "Committee on Finance",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        },
+        {
+          "id": "com-003",
+          "name": "Committee on Climate Change",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        }
+      ],
+      "stats": {
+        "billsAuthored": 67,
+        "billsCoAuthored": 189,
+        "billsPassed": 23,
+        "attendanceRate": 95.8,
+        "votingParticipation": 94.2,
+        "committeeMeetingsAttended": 52,
+        "totalCommitteeMeetings": 55
+      },
+      "partyHistory": [
+        {
+          "party": "NPC",
+          "startDate": "2010-06-30"
+        }
+      ]
+    },
+    {
+      "id": "sen-003",
+      "name": "Joel Villanueva",
+      "firstName": "Joel",
+      "lastName": "Villanueva",
+      "party": "Independent",
+      "position": "Majority Leader",
+      "termStart": "2022-06-30",
+      "termEnd": "2028-06-30",
+      "photoUrl": "/assets/senators/villanueva.jpg",
+      "email": "joelvillanueva@senate.gov.ph",
+      "committees": [
+        {
+          "id": "com-004",
+          "name": "Committee on Labor, Employment and Human Resources Development",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        }
+      ],
+      "stats": {
+        "billsAuthored": 34,
+        "billsCoAuthored": 98,
+        "billsPassed": 8,
+        "attendanceRate": 88.3,
+        "votingParticipation": 87.1,
+        "committeeMeetingsAttended": 41,
+        "totalCommitteeMeetings": 46
+      },
+      "partyHistory": [
+        {
+          "party": "CIBAC",
+          "startDate": "2016-06-30",
+          "endDate": "2021-12-31"
+        },
+        {
+          "party": "Independent",
+          "startDate": "2022-01-01"
+        }
+      ]
+    },
+    {
+      "id": "sen-004",
+      "name": "Grace Poe",
+      "firstName": "Mary Grace",
+      "lastName": "Poe",
+      "nickname": "Grace",
+      "party": "Independent",
+      "termStart": "2019-06-30",
+      "termEnd": "2025-06-30",
+      "photoUrl": "/assets/senators/poe.jpg",
+      "email": "gracepoe@senate.gov.ph",
+      "committees": [
+        {
+          "id": "com-005",
+          "name": "Committee on Public Services",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        }
+      ],
+      "stats": {
+        "billsAuthored": 56,
+        "billsCoAuthored": 145,
+        "billsPassed": 15,
+        "attendanceRate": 91.2,
+        "votingParticipation": 90.5,
+        "committeeMeetingsAttended": 48,
+        "totalCommitteeMeetings": 52
+      },
+      "partyHistory": [
+        {
+          "party": "Independent",
+          "startDate": "2013-06-30"
+        }
+      ]
+    },
+    {
+      "id": "sen-005",
+      "name": "Risa Hontiveros",
+      "firstName": "Ana Theresia",
+      "lastName": "Hontiveros",
+      "nickname": "Risa",
+      "party": "Akbayan",
+      "position": "Minority Leader",
+      "termStart": "2022-06-30",
+      "termEnd": "2028-06-30",
+      "photoUrl": "/assets/senators/hontiveros.jpg",
+      "email": "risahontiveros@senate.gov.ph",
+      "committees": [
+        {
+          "id": "com-006",
+          "name": "Committee on Women, Children, Family Relations and Gender Equality",
+          "role": "Chairperson",
+          "startDate": "2022-07-25"
+        },
+        {
+          "id": "com-007",
+          "name": "Committee on Health and Demography",
+          "role": "Vice Chairperson",
+          "startDate": "2022-07-25"
+        }
+      ],
+      "stats": {
+        "billsAuthored": 78,
+        "billsCoAuthored": 203,
+        "billsPassed": 19,
+        "attendanceRate": 94.7,
+        "votingParticipation": 93.8,
+        "committeeMeetingsAttended": 58,
+        "totalCommitteeMeetings": 60
+      },
+      "partyHistory": [
+        {
+          "party": "Akbayan",
+          "startDate": "2016-06-30"
+        }
+      ]
+    }
+  ]
+}

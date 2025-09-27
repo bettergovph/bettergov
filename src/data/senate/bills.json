@@ -1,0 +1,164 @@
+{
+  "bills": [
+    {
+      "id": "bill-001",
+      "number": "SB 2023",
+      "title": "An Act Establishing the Philippine Digital Infrastructure Corporation",
+      "shortTitle": "Digital Infrastructure Act",
+      "description": "This bill seeks to establish a government corporation that will oversee and develop the country's digital infrastructure to support the digital economy and improve government services.",
+      "status": "Pending Second Reading",
+      "type": "Senate Bill",
+      "dateField": "2024-01-15",
+      "lastActionDate": "2024-11-20",
+      "authors": ["Juan Miguel Zubiri"],
+      "coAuthors": ["Grace Poe", "Joel Villanueva"],
+      "sponsors": ["Loren Legarda"],
+      "committee": "Committee on Science and Technology",
+      "subject": ["Technology", "Infrastructure", "Digital Economy"],
+      "urgency": "Priority",
+      "timeline": [
+        {
+          "date": "2024-01-15",
+          "action": "Filed",
+          "description": "Bill filed and referred to committee",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-02-10",
+          "action": "Committee Hearing",
+          "description": "First committee hearing conducted",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-03-15",
+          "action": "Committee Report",
+          "description": "Committee report submitted",
+          "chamber": "Senate"
+        }
+      ]
+    },
+    {
+      "id": "bill-002",
+      "number": "SB 1847",
+      "title": "An Act Increasing the Penalties for Online Sexual Abuse and Exploitation of Children",
+      "shortTitle": "OSAEC Prevention Act",
+      "description": "Strengthening the legal framework to protect children from online sexual abuse and exploitation with increased penalties and improved enforcement mechanisms.",
+      "status": "Passed on Third Reading",
+      "type": "Senate Bill",
+      "dateField": "2023-11-20",
+      "lastActionDate": "2024-11-15",
+      "authors": ["Risa Hontiveros"],
+      "coAuthors": ["Grace Poe", "Loren Legarda"],
+      "sponsors": ["Joel Villanueva"],
+      "committee": "Committee on Women, Children, Family Relations and Gender Equality",
+      "subject": ["Child Protection", "Criminal Law", "Cybercrime"],
+      "urgency": "Urgent",
+      "timeline": [
+        {
+          "date": "2023-11-20",
+          "action": "Filed",
+          "description": "Bill filed with urgency certification",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-01-10",
+          "action": "Committee Approval",
+          "description": "Approved by committee",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-09-15",
+          "action": "Second Reading",
+          "description": "Passed on second reading",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-11-15",
+          "action": "Third Reading",
+          "description": "Passed on third reading with 23-0 vote",
+          "chamber": "Senate"
+        }
+      ]
+    },
+    {
+      "id": "bill-003",
+      "number": "SB 1756",
+      "title": "An Act Institutionalizing the National Employment Recovery Strategy",
+      "shortTitle": "NERS Act",
+      "description": "Creating a comprehensive framework for employment recovery and job creation in response to economic challenges.",
+      "status": "In Committee",
+      "type": "Senate Bill",
+      "dateField": "2023-10-05",
+      "lastActionDate": "2024-10-30",
+      "authors": ["Joel Villanueva"],
+      "coAuthors": ["Juan Miguel Zubiri"],
+      "sponsors": [],
+      "committee": "Committee on Labor, Employment and Human Resources Development",
+      "subject": ["Labor", "Employment", "Economic Recovery"],
+      "urgency": "Priority",
+      "timeline": [
+        {
+          "date": "2023-10-05",
+          "action": "Filed",
+          "description": "Bill filed and referred to committee",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-02-20",
+          "action": "Public Hearing",
+          "description": "Public consultations conducted",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-10-30",
+          "action": "Technical Working Group",
+          "description": "TWG formed to refine provisions",
+          "chamber": "Senate"
+        }
+      ]
+    },
+    {
+      "id": "bill-004",
+      "number": "SB 2100",
+      "title": "An Act Mandating the Integration of Climate Change Education in the Basic Education Curriculum",
+      "shortTitle": "Climate Education Act",
+      "description": "Requiring the Department of Education to integrate comprehensive climate change education in all levels of basic education.",
+      "status": "Transmitted to House",
+      "type": "Senate Bill",
+      "dateField": "2024-02-01",
+      "lastActionDate": "2024-11-18",
+      "authors": ["Loren Legarda"],
+      "coAuthors": ["Risa Hontiveros", "Grace Poe"],
+      "sponsors": ["Juan Miguel Zubiri"],
+      "committee": "Committee on Climate Change",
+      "subject": ["Education", "Climate Change", "Environment"],
+      "urgency": "Regular",
+      "timeline": [
+        {
+          "date": "2024-02-01",
+          "action": "Filed",
+          "description": "Bill introduced",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-05-15",
+          "action": "Committee Report",
+          "description": "Favorable committee report",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-10-10",
+          "action": "Third Reading",
+          "description": "Passed unanimously",
+          "chamber": "Senate"
+        },
+        {
+          "date": "2024-11-18",
+          "action": "Transmitted",
+          "description": "Transmitted to House of Representatives",
+          "chamber": "Senate"
+        }
+      ]
+    }
+  ]
+}

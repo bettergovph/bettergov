@@ -43,6 +43,7 @@ import LegislativeChamber from './pages/government/legislative/[chamber]';
 import HouseMembersPage from './pages/government/legislative/house-members';
 import PartyListMembersPage from './pages/government/legislative/party-list-members';
 import SenateCommitteesPage from './pages/government/legislative/senate-committees';
+import SenateDashboard from './pages/government/senate/dashboard';
 
 // Diplomatic Section
 import DiplomaticLayout from './pages/government/diplomatic/layout';
@@ -216,6 +217,9 @@ function App() {
                   path='senate-committees'
                   element={<SenateCommitteesPage />}
                 />
+              </Route>
+              <Route path='senate'>
+                <Route path='dashboard' element={<SenateDashboard />} />
               </Route>
               <Route path='diplomatic' element={<DiplomaticLayout />}>
                 <Route index element={<DiplomaticIndex />} />
