@@ -14,7 +14,7 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:codegen": "playwright codegen",
     "test:e2e:report": "playwright show-report",
-    "postbuild": "node ./scripts/write-ver-to-manifest.cjs",
+    "postbuild": "tsx ./scripts/write-ver-to-manifest.ts",
     "wrangler": "wrangler",
     "preview": "vite preview",
     "prepare": "husky",
