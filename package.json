@@ -13,6 +13,7 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:codegen": "playwright codegen",
+    "test:e2e:report": "playwright show-report",
     "postbuild": "node ./scripts/write-ver-to-manifest.cjs",
     "wrangler": "wrangler",
     "preview": "vite preview",
