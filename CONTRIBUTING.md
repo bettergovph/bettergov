@@ -86,7 +86,8 @@ Refer to the following channels to connect with fellow contributors or to stay u
 To share your new ideas for the project, perform the following actions:
 
 1. Reach out via email [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph)
-2. Open an issue in this [repository][issues]
+2. Discord Ideas Forum: ⁠[ideas](https://discord.com/channels/1415670958710325270/1418544879717318826)
+3. Submit ideas in [Github Discussions][discussions]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -333,3 +334,4 @@ git push
 [issues]: https://github.com/bettergovph/bettergov/issues/new
 [forking]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
 [discord]: https://discord.gg/mHtThpN8bT
+[discussions]: https://github.com/orgs/bettergovph/discussions

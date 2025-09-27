@@ -1,5 +1,10 @@
+import {
+  BookOpenIcon,
+  BuildingIcon,
+  LandPlotIcon,
+  UsersIcon,
+} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { Building, LandPlot, Users, BookOpen } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function LegislativeSidebar() {
@@ -31,7 +36,7 @@ export default function LegislativeSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Building className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <BuildingIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Senate of the Philippines (20th Congress)</span>
               </Link>
             </li>
@@ -45,7 +50,7 @@ export default function LegislativeSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <BookOpen className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <BookOpenIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Committees</span>
               </Link>
             </li>
@@ -70,7 +75,7 @@ export default function LegislativeSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <LandPlot className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <LandPlotIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>House of Representatives (20th Congress)</span>
               </Link>
             </li>
@@ -84,7 +89,7 @@ export default function LegislativeSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Users className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <UsersIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Members by City/Province</span>
               </Link>
             </li>
@@ -98,7 +103,7 @@ export default function LegislativeSidebar() {
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Users className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <UsersIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Members by Party List</span>
               </Link>
             </li>

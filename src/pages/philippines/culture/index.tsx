@@ -1,11 +1,17 @@
 import React from 'react';
-import { Music2, Utensils, Heart, Users, Palette } from 'lucide-react';
+import {
+  Music2Icon,
+  UtensilsIcon,
+  HeartIcon,
+  UsersIcon,
+  PaletteIcon,
+} from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const PhilippinesCulture: React.FC = () => {
   const culturalAspects = [
     {
-      icon: <Music2 className='h-6 w-6' />,
+      icon: <Music2Icon className='h-6 w-6' />,
       title: 'Music and Dance',
       description:
         'Traditional and modern Filipino performing arts, from Tinikling to contemporary OPM',
@@ -13,14 +19,14 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/5299821/pexels-photo-5299821.jpeg',
     },
     {
-      icon: <Utensils className='h-6 w-6' />,
+      icon: <UtensilsIcon className='h-6 w-6' />,
       title: 'Cuisine',
       description:
         'Rich culinary traditions blending native, Chinese, Spanish, and American influences',
       image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg',
     },
     {
-      icon: <Heart className='h-6 w-6' />,
+      icon: <HeartIcon className='h-6 w-6' />,
       title: 'Festivals',
       description:
         'Vibrant celebrations showcasing Filipino faith, culture, and community spirit',
@@ -28,7 +34,7 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/2663163/pexels-photo-2663163.jpeg',
     },
     {
-      icon: <Users className='h-6 w-6' />,
+      icon: <UsersIcon className='h-6 w-6' />,
       title: 'Social Values',
       description:
         'Strong family ties, respect for elders, and the spirit of Bayanihan',
@@ -36,7 +42,7 @@ const PhilippinesCulture: React.FC = () => {
         'https://images.pexels.com/photos/32326425/pexels-photo-32326425.jpeg',
     },
     {
-      icon: <Palette className='h-6 w-6' />,
+      icon: <PaletteIcon className='h-6 w-6' />,
       title: 'Arts and Crafts',
       description:
         'Traditional weaving, pottery, and contemporary Filipino visual arts',

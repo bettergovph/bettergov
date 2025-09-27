@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Globe } from 'lucide-react';
+import { SearchIcon, GlobeIcon } from 'lucide-react';
 import diplomaticData from '../../../data/directory/diplomatic.json';
 import {
   CardGrid,
@@ -42,7 +42,7 @@ export default function DiplomaticMissionsPage() {
         </div>
 
         <div className='relative w-full md:w-64'>
-          <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+          <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
           <input
             type='search'
             placeholder='Search missions...'
@@ -56,7 +56,7 @@ export default function DiplomaticMissionsPage() {
       {filteredMissions.length === 0 ? (
         <div className='p-8 text-center bg-white rounded-lg border'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Globe className='h-6 w-6 text-gray-400' />
+            <GlobeIcon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             No diplomatic missions found

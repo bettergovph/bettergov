@@ -1,6 +1,6 @@
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
-import { Building2, Database, GraduationCap } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { Building2Icon, DatabaseIcon, GraduationCapIcon } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 import { type ConstitutionalOffice } from '../../schema';
 import { constitutionalData } from '../data';
@@ -77,14 +77,14 @@ export default function ConstitutionalSidebar({
                 <li key={office.name}>
                   <button
                     onClick={() => handleOfficeSelect(office)}
-                    className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                    className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors cursor-pointer ${
                       officeParam === office.slug
                         ? 'bg-primary-50 text-primary-700 font-medium'
                         : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     <div className='flex items-center'>
-                      <Building2 className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                      <Building2Icon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                       <span className='truncate'>{office.name}</span>
                     </div>
                   </button>
@@ -110,7 +110,7 @@ export default function ConstitutionalSidebar({
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <Database className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <DatabaseIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>Government-Owned Corporations</span>
               </Link>
             </li>
@@ -124,7 +124,7 @@ export default function ConstitutionalSidebar({
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <GraduationCap className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <GraduationCapIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                 <span>State Universities & Colleges</span>
               </Link>
             </li>
