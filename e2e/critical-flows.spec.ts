@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { mobileCheck } from './utils/device';
 
 test.describe('Critical User Flows', () => {
   test('PhilSys National ID registration button should work', async ({
@@ -45,7 +46,12 @@ test.describe('Critical User Flows', () => {
   });
 
   test('language switcher should work', async ({ page }) => {
+    const isMobile = await mobileCheck();
     await page.goto('/');
+
+    if (isMobile) {
+      await page.getByRole('button', { name: 'Open main menu' }).click();
+    }
 
     // Find language switcher
     const languageSwitcher = page.getByRole('combobox').first();
