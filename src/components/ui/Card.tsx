@@ -16,9 +16,9 @@ const Card = ({
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border border-gray-200 shadow-xs overflow-hidden',
+        'bg-white rounded-lg border border-gray-200 overflow-hidden',
         hoverable &&
-          'transition-all duration-300 hover:shadow-md hover:-translate-y-1',
+          'transition-all duration-200 hover:border-primary-300 hover:shadow-sm',
         className
       )}
       role='article'
@@ -75,7 +75,7 @@ const CardFooter = ({ children, className, ...props }: CardFooterProps) => {
   return (
     <div
       className={cn(
-        'p-4 md:p-6 border-t border-gray-200 bg-gray-50',
+        'p-4 md:p-6 border-t border-gray-100 bg-gray-50/30',
         className
       )}
       {...props}
