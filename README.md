@@ -62,6 +62,18 @@ Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
 - Reporting bugs
 - Opening issues and pull requests
 
+## How to Run
+
+```bash
+# Install packages
+npm install
+
+# Start the server
+npm run dev
+```
+
+**Access the application at:** `http://localhost:5173`
+
 ## Docker
 
 This project includes Docker support for easy deployment and consistent environments.
