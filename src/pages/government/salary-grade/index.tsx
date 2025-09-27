@@ -1,4 +1,13 @@
+import React, { useState } from 'react';
 import { TrendingDown, Info, Hash } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '../../../components/ui/Dialog';
+import Button from '../../../components/ui/Button';
 import salaryScheduleData from './salary-schedule.json';
 import plantillaPositionsData from './plantilla-positions.json';
 
@@ -23,6 +32,8 @@ const plantillaPositionsByGrade: Record<number, string> =
 // All plantilla positions styled uniformly in gray
 
 export default function SalaryGradePage() {
+  const [isStepsDialogOpen, setIsStepsDialogOpen] = useState(false);
+
   const allSteps = salarySchedule.flatMap(
     s => s.steps.filter(v => v != null) as number[]
   );
@@ -82,17 +93,20 @@ export default function SalaryGradePage() {
                 <p className='text-sm font-medium text-gray-600'>
                   Salary Grades
                 </p>
-                <p className='text-2xl font-bold text-gray-900'>1-33</p>
+                <p className='text-2xl font-bold text-gray-900'>1 - 33</p>
               </div>
             </div>
           </div>
 
-          <div className='bg-white p-6 rounded-lg shadow-md border'>
+          <div
+            className='bg-white p-6 rounded-lg shadow-md border cursor-pointer hover:shadow-lg transition-shadow'
+            onClick={() => setIsStepsDialogOpen(true)}
+          >
             <div className='flex items-center'>
               <Info className='h-8 w-8 text-orange-600 mr-3' />
               <div>
                 <p className='text-sm font-medium text-gray-600'>Steps</p>
-                <p className='text-2xl font-bold text-gray-900'>1-8</p>
+                <p className='text-2xl font-bold text-gray-900'>1 - 8</p>
               </div>
             </div>
           </div>
@@ -231,6 +245,33 @@ export default function SalaryGradePage() {
             </li>
           </ul>
         </div>
+
+        {/* Salary Steps Explanation Dialog */}
+        <Dialog open={isStepsDialogOpen} onOpenChange={setIsStepsDialogOpen}>
+          <DialogContent className='max-w-md'>
+            <DialogHeader>
+              <DialogTitle className='text-xl font-semibold text-gray-900'>
+                About Salary Steps
+              </DialogTitle>
+            </DialogHeader>
+            <div className='py-4'>
+              <p className='text-gray-700 leading-relaxed'>
+                Each salary grade has 8 steps. Step 1 is the starting pay, and
+                Step 8 is the highest pay for that grade. Employees move up a
+                step over time or through performance, which increases their
+                salary without changing their salary grade.
+              </p>
+            </div>
+            <DialogFooter>
+              <Button
+                onClick={() => setIsStepsDialogOpen(false)}
+                className='w-full'
+              >
+                Got it
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

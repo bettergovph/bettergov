@@ -151,7 +151,7 @@ const VisaTypesPage: React.FC = () => {
                     <button
                       key={category.id}
                       onClick={() => handleCategoryClick(category.id)}
-                      className={`w-full text-left flex items-center p-3 rounded-md transition-colors ${
+                      className={`w-full text-left flex items-center p-3 rounded-md transition-colors cursor-pointer ${
                         selectedCategory === category.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-700 hover:bg-gray-50'
