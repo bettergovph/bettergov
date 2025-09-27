@@ -314,11 +314,11 @@ export default function ServicesPage() {
             role='navigation'
             aria-label='Service categories'
           >
-            <div className='bg-white rounded-lg shadow-xs p-4'>
+            <div className='bg-white rounded-lg shadow-xs p-4 sticky top-[8.25rem]'>
               <h2 className='font-semibold text-gray-900 mb-4 text-lg'>
                 Categories
               </h2>
-              <ScrollArea.Root className='h-[calc(60vh)] md:h-[calc(100vh-400px)]'>
+              <ScrollArea.Root className='h-[calc(60vh)] md:max-h-[calc(100vh-200px)]'>
                 <ScrollArea.Viewport className='h-full w-full'>
                   <div className='space-y-1 pr-4' role='list'>
                     <div role='listitem'>
