@@ -181,10 +181,9 @@ const SearchPage: React.FC = () => {
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -198,10 +197,9 @@ const SearchPage: React.FC = () => {
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -215,10 +213,9 @@ const SearchPage: React.FC = () => {
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
