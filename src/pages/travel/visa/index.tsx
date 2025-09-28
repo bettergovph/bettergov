@@ -646,46 +646,44 @@ const VisaPage: React.FC = () => {
               </div>
 
               {/* Collapsible Content */}
-              {isFilterExpanded && (
-                <div
-                  id={filterPanelId}
-                  className='space-y-4'
-                  aria-hidden={!isFilterExpanded}
-                >
-                  {/* Letter Buttons */}
-                  <div className='flex flex-wrap justify-center gap-2 sm:gap-3 px-4'>
-                    {availableLetters.map(letter => {
-                      const isSelected = selectedLetters.includes(letter);
-                      return (
-                        <button
-                          key={letter}
-                          onClick={() => toggleLetter(letter)}
-                          className={`w-10 h-10 text-sm font-medium rounded-lg transition-colors duration-200 border ${
-                            isSelected
-                              ? 'bg-blue-600 text-white shadow-sm border-blue-600'
-                              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-gray-900'
-                          }`}
-                          aria-pressed={isSelected}
-                        >
-                          {letter}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Clear All Button - Bottom */}
-                  {selectedLetters.length > 0 && (
-                    <div className='flex justify-center pt-2'>
+              <div
+                id={filterPanelId}
+                className={`space-y-4 ${!isFilterExpanded ? 'hidden' : ''}`}
+                aria-hidden={!isFilterExpanded}
+              >
+                {/* Letter Buttons */}
+                <div className='flex flex-wrap justify-center gap-2 sm:gap-3 px-4'>
+                  {availableLetters.map(letter => {
+                    const isSelected = selectedLetters.includes(letter);
+                    return (
                       <button
-                        onClick={clearAllLetters}
-                        className='text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200 underline'
+                        key={letter}
+                        onClick={() => toggleLetter(letter)}
+                        className={`w-10 h-10 text-sm font-medium rounded-lg transition-colors duration-200 border ${
+                          isSelected
+                            ? 'bg-blue-600 text-white shadow-sm border-blue-600'
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:text-gray-900'
+                        }`}
+                        aria-pressed={isSelected}
                       >
-                        Clear All
+                        {letter}
                       </button>
-                    </div>
-                  )}
+                    );
+                  })}
                 </div>
-              )}
+
+                {/* Clear All Button - Bottom */}
+                {selectedLetters.length > 0 && (
+                  <div className='flex justify-center pt-2'>
+                    <button
+                      onClick={clearAllLetters}
+                      className='text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200 underline'
+                    >
+                      Clear All
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
