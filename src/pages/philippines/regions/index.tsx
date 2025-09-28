@@ -1,6 +1,12 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Mountain, Building2, Users, Globe } from 'lucide-react';
+import {
+  MapPinIcon,
+  MountainIcon,
+  Building2Icon,
+  UsersIcon,
+  GlobeIcon,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '../../../components/ui/Card';
 import regionsData from '../../../data/regions.json';
@@ -42,17 +48,17 @@ const PhilippinesRegions: React.FC = () => {
     // Map region data to include additional display information
     return regionsData.map(region => {
       // Get icon based on region name pattern
-      let icon = <Building2 className='h-6 w-6' />;
+      let icon = <Building2Icon className='h-6 w-6' />;
 
       if (region.name.includes('CORDILLERA')) {
-        icon = <Mountain className='h-6 w-6' />;
+        icon = <MountainIcon className='h-6 w-6' />;
       } else if (
         region.name.includes('VISAYAS') ||
         region.name.includes('MIMAROPA')
       ) {
-        icon = <Globe className='h-6 w-6' />;
+        icon = <GlobeIcon className='h-6 w-6' />;
       } else if (region.name.includes('MINDANAO')) {
-        icon = <Users className='h-6 w-6' />;
+        icon = <UsersIcon className='h-6 w-6' />;
       }
 
       // Format the region name for display using our new parser
@@ -124,7 +130,7 @@ const PhilippinesRegions: React.FC = () => {
                             </h3>
                           </Link>
                           <div className='flex items-center text-sm text-gray-800 mb-4'>
-                            <MapPin className='h-4 w-4 mr-1' />
+                            <MapPinIcon className='h-4 w-4 mr-1' />
                             <span>
                               {t(
                                 'regions.sections.administrativeRegions.localGovUnits'
@@ -282,7 +288,7 @@ const PhilippinesRegions: React.FC = () => {
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     <div className='flex items-center'>
-                      <MapPin className='h-4 w-4 mr-2' />
+                      <MapPinIcon className='h-4 w-4 mr-2' />
                       {t('regions.sidebar.relatedLinks.interactiveMap')}
                     </div>
                   </Link>
@@ -291,7 +297,7 @@ const PhilippinesRegions: React.FC = () => {
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     <div className='flex items-center'>
-                      <Building2 className='h-4 w-4 mr-2' />
+                      <Building2Icon className='h-4 w-4 mr-2' />
                       {t('regions.sidebar.relatedLinks.localGovernmentUnits')}
                     </div>
                   </Link>
@@ -300,7 +306,7 @@ const PhilippinesRegions: React.FC = () => {
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     <div className='flex items-center'>
-                      <Users className='h-4 w-4 mr-2' />
+                      <UsersIcon className='h-4 w-4 mr-2' />
                       {t('regions.sidebar.relatedLinks.governmentDepartments')}
                     </div>
                   </Link>
@@ -309,7 +315,7 @@ const PhilippinesRegions: React.FC = () => {
                     className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
                   >
                     <div className='flex items-center'>
-                      <Globe className='h-4 w-4 mr-2' />
+                      <GlobeIcon className='h-4 w-4 mr-2' />
                       {t('regions.sidebar.relatedLinks.aboutPhilippines')}
                     </div>
                   </Link>

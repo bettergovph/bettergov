@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Users } from 'lucide-react';
+import { UsersIcon } from 'lucide-react';
 import type { RegionLGU } from '../../../../lib/lgu';
 
 // Eagerly import all per-region LGU JSON files and flatten into an array
@@ -74,7 +74,7 @@ export default function LocalSidebar() {
                             {region.name}
                           </span>
                           <div className='flex items-center ml-2'>
-                            <Users className='h-3 w-3 text-gray-400 mr-1' />
+                            <UsersIcon className='h-3 w-3 text-gray-400 mr-1' />
                             <span className='text-xs text-gray-800'>
                               {region.cityCount}
                             </span>

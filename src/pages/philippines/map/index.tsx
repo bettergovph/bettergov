@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
-import L, { LatLngExpression, GeoJSON as LeafletGeoJSON, Layer } from 'leaflet';
+import L, { LatLngExpression, Layer, GeoJSON as LeafletGeoJSON } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
-  Search,
-  MapPin,
-  Loader2,
-  Users,
-  Building2,
-  FileText,
-  ZoomIn,
-  ZoomOut,
+  Building2Icon,
+  FileTextIcon,
+  Loader2Icon,
+  MapPinIcon,
+  SearchIcon,
+  UsersIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
 } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
 import Button from '../../../components/ui/Button';
 import { ScrollArea } from '../../../components/ui/ScrollArea';
 import philippinesRegionsData from '../../../data/philippines-regions.json'; // Renamed for clarity
@@ -191,7 +191,7 @@ const PhilippinesMap: React.FC = () => {
         {/* Search Bar */}
         <div className='absolute top-4 left-4 right-4 z-1000 max-w-md'>
           <div className='relative'>
-            <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
+            <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
             <input
               type='text'
               placeholder='Search regions...'
@@ -210,7 +210,7 @@ const PhilippinesMap: React.FC = () => {
             onClick={handleZoomIn}
             aria-label='Zoom in'
           >
-            <ZoomIn className='h-4 w-4' />
+            <ZoomInIcon className='h-4 w-4' />
           </Button>
           <Button
             variant='primary'
@@ -218,7 +218,7 @@ const PhilippinesMap: React.FC = () => {
             onClick={handleZoomOut}
             aria-label='Zoom out'
           >
-            <ZoomOut className='h-4 w-4' />
+            <ZoomOutIcon className='h-4 w-4' />
           </Button>
         </div>
 
@@ -308,7 +308,7 @@ const PhilippinesMap: React.FC = () => {
               <div className='p-6 space-y-6'>
                 {selectedRegion.loading || isLoadingDetails ? (
                   <div className='flex items-center justify-center py-12'>
-                    <Loader2 className='h-8 w-8 animate-spin text-purple-600' />
+                    <Loader2Icon className='h-8 w-8 animate-spin text-purple-600' />
                   </div>
                 ) : (
                   <>
@@ -326,17 +326,17 @@ const PhilippinesMap: React.FC = () => {
                       </h3>
                       <div className='grid grid-cols-1 gap-4'>
                         <InfoItem
-                          icon={<Building2 />}
+                          icon={<Building2Icon />}
                           label='Capital'
                           value={selectedRegion.capital}
                         />
                         <InfoItem
-                          icon={<Users />}
+                          icon={<UsersIcon />}
                           label='Population'
                           value={selectedRegion.population}
                         />
                         <InfoItem
-                          icon={<MapPin />}
+                          icon={<MapPinIcon />}
                           label='Area'
                           value={selectedRegion.area}
                         />
@@ -371,7 +371,7 @@ const PhilippinesMap: React.FC = () => {
                           rel='noopener noreferrer'
                           className='flex items-center gap-2 text-purple-600 hover:text-purple-700'
                         >
-                          <FileText className='h-4 w-4' />
+                          <FileTextIcon className='h-4 w-4' />
                           <span className='text-sm'>Wikipedia Article</span>
                         </a>
                       </div>
