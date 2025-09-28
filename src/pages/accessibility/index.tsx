@@ -1,23 +1,23 @@
-import React from 'react';
 import {
-  Eye,
-  Keyboard,
-  Volume2,
-  MousePointer,
-  Smartphone,
-  Globe,
-  Mail,
-  Phone,
-  CheckCircle,
-  AlertCircle,
-  Info,
+  AlertCircleIcon,
+  CheckCircleIcon,
+  EyeIcon,
+  GlobeIcon,
+  InfoIcon,
+  KeyboardIcon,
+  MailIcon,
+  MousePointerIcon,
+  PhoneIcon,
+  SmartphoneIcon,
+  Volume2Icon,
 } from 'lucide-react';
+import React from 'react';
 import SEO from '../../components/SEO';
 
 const AccessibilityPage: React.FC = () => {
   const accessibilityFeatures = [
     {
-      icon: <Eye className='h-6 w-6' />,
+      icon: <EyeIcon className='h-6 w-6' />,
       title: 'Visual Accessibility',
       features: [
         'High contrast color schemes',
@@ -28,7 +28,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Keyboard className='h-6 w-6' />,
+      icon: <KeyboardIcon className='h-6 w-6' />,
       title: 'Keyboard Navigation',
       features: [
         'Full keyboard navigation support',
@@ -39,7 +39,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Volume2 className='h-6 w-6' />,
+      icon: <Volume2Icon className='h-6 w-6' />,
       title: 'Audio & Screen Reader Support',
       features: [
         'Compatible with NVDA, JAWS, and VoiceOver',
@@ -50,7 +50,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <MousePointer className='h-6 w-6' />,
+      icon: <MousePointerIcon className='h-6 w-6' />,
       title: 'Motor Accessibility',
       features: [
         'Large click targets (minimum 44px)',
@@ -61,7 +61,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Smartphone className='h-6 w-6' />,
+      icon: <SmartphoneIcon className='h-6 w-6' />,
       title: 'Mobile Accessibility',
       features: [
         'Responsive design for all devices',
@@ -72,7 +72,7 @@ const AccessibilityPage: React.FC = () => {
       ],
     },
     {
-      icon: <Globe className='h-6 w-6' />,
+      icon: <GlobeIcon className='h-6 w-6' />,
       title: 'Language & Cognitive Support',
       features: [
         'Clear and simple language',
@@ -108,11 +108,11 @@ const AccessibilityPage: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'compliant':
-        return <CheckCircle className='h-5 w-5 text-green-600' />;
+        return <CheckCircleIcon className='h-5 w-5 text-green-600' />;
       case 'partial':
-        return <AlertCircle className='h-5 w-5 text-yellow-600' />;
+        return <AlertCircleIcon className='h-5 w-5 text-yellow-600' />;
       default:
-        return <Info className='h-5 w-5 text-blue-600' />;
+        return <InfoIcon className='h-5 w-5 text-blue-600' />;
     }
   };
 
@@ -205,7 +205,7 @@ const AccessibilityPage: React.FC = () => {
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircle className='h-4 w-4 text-green-600 mt-0.5 mr-2 shrink-0' />
+                          <CheckCircleIcon className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
                           <span className='text-sm text-gray-800'>{item}</span>
                         </li>
                       ))}
@@ -321,7 +321,7 @@ const AccessibilityPage: React.FC = () => {
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 <div className='border border-gray-200 rounded-lg p-6'>
                   <div className='flex items-center mb-4'>
-                    <Mail className='h-6 w-6 text-primary-600 mr-3' />
+                    <MailIcon className='h-6 w-6 text-primary-600 mr-3' />
                     <h3 className='text-lg font-semibold text-gray-900'>
                       Email Support
                     </h3>
@@ -339,7 +339,7 @@ const AccessibilityPage: React.FC = () => {
 
                 <div className='border border-gray-200 rounded-lg p-6'>
                   <div className='flex items-center mb-4'>
-                    <Phone className='h-6 w-6 text-primary-600 mr-3' />
+                    <PhoneIcon className='h-6 w-6 text-primary-600 mr-3' />
                     <h3 className='text-lg font-semibold text-gray-900'>
                       Phone Support
                     </h3>

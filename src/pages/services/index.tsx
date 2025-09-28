@@ -1,11 +1,19 @@
-import { useState, useMemo } from 'react';
-import { Search, CheckCircle2, Menu, X } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
 
 // Import all service files
+import {
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+  useQueryStates,
+} from 'nuqs';
+import { Helmet } from 'react-helmet-async';
+import Button from '../../components/ui/Button';
 import businessTradeServices from '../../data/services/business-trade.json';
 import certificatesIdsServices from '../../data/services/certificates-ids.json';
 import contributionsServices from '../../data/services/contributions.json';
@@ -19,14 +27,6 @@ import socialServices from '../../data/services/social-services.json';
 import taxServices from '../../data/services/tax.json';
 import transportDrivingServices from '../../data/services/transport-driving.json';
 import uncategorizedServices from '../../data/services/uncategorized.json';
-import Button from '../../components/ui/Button';
-import { Helmet } from 'react-helmet-async';
-import {
-  parseAsString,
-  parseAsInteger,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs';
 
 // Combine all services
 const allServices = [
@@ -240,7 +240,7 @@ export default function ServicesPage() {
           <SearchInput
             placeholder='Search for services...'
             onSearch={handleSearch}
-            icon={<Search className='h-5 w-5 text-gray-400' />}
+            icon={<SearchIcon className='h-5 w-5 text-gray-400' />}
             size='lg'
             aria-label='Search government services'
             role='searchbox'
@@ -297,9 +297,9 @@ export default function ServicesPage() {
                 `(${selectedCategory?.category})`}
             </span>
             {sidebarOpen ? (
-              <X className='h-5 w-5 text-gray-800' aria-hidden='true' />
+              <XIcon className='h-5 w-5 text-gray-800' aria-hidden='true' />
             ) : (
-              <Menu className='h-5 w-5 text-gray-800' aria-hidden='true' />
+              <MenuIcon className='h-5 w-5 text-gray-800' aria-hidden='true' />
             )}
           </button>
         </div>
@@ -466,8 +466,8 @@ export default function ServicesPage() {
                             </button>
                           </div>
                         </div>
-                        <CheckCircle2
-                          className='h-5 w-5 text-success-500 shrink-0'
+                        <CheckCircle2Icon
+                          className='h-5 w-5 text-success-500 flex-shrink-0'
                           aria-hidden='true'
                         />
                       </div>

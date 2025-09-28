@@ -1,6 +1,11 @@
+import {
+  AlertTriangleIcon,
+  HeartIcon,
+  MailIcon,
+  UsersIcon,
+} from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, AlertTriangle, Users, Heart } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
   const { t } = useTranslation('about');
@@ -72,7 +77,7 @@ const AboutPage: React.FC = () => {
 
               <section className='mb-10'>
                 <h2 className='flex items-center text-2xl font-bold text-gray-800 mb-4'>
-                  <Users className='mr-2 h-6 w-6 text-blue-600' />
+                  <UsersIcon className='mr-2 h-6 w-6 text-blue-600' />
                   {t('volunteer.title')}
                 </h2>
                 <p className='mb-4 text-gray-700'>{t('volunteer.intro')}</p>
@@ -107,7 +112,7 @@ const AboutPage: React.FC = () => {
                   </div>
                 </div>
                 <div className='bg-blue-100 p-6 rounded-lg flex items-start'>
-                  <Heart className='h-6 w-6 text-red-500 mr-3 shrink-0 mt-1' />
+                  <HeartIcon className='h-6 w-6 text-red-500 mr-3 flex-shrink-0 mt-1' />
                   <div>
                     <p className='font-medium text-gray-800 mb-2'>
                       {t('volunteer.callToAction.title')}
@@ -128,7 +133,7 @@ const AboutPage: React.FC = () => {
 
               <section className='mb-10'>
                 <h2 className='flex items-center text-2xl font-bold text-gray-800 mb-4'>
-                  <AlertTriangle className='mr-2 h-6 w-6 text-amber-500' />
+                  <AlertTriangleIcon className='mr-2 h-6 w-6 text-amber-500' />
                   {t('bugReport.title')}
                 </h2>
                 <p className='mb-4 text-gray-700'>{t('bugReport.intro')}</p>
@@ -153,7 +158,7 @@ const AboutPage: React.FC = () => {
                   ))}
                 </ol>
                 <div className='bg-amber-50 p-4 rounded-lg flex items-center'>
-                  <Mail className='h-5 w-5 text-amber-600 mr-2' />
+                  <MailIcon className='h-5 w-5 text-amber-600 mr-2' />
                   <p className='text-gray-700'>
                     {t('bugReport.alternative.text')}
                     <a

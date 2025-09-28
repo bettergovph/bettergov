@@ -1,4 +1,4 @@
-import { BarChart3, Table, Map, Users } from 'lucide-react';
+import { BarChart3Icon, TableIcon, MapIcon, UsersIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 
@@ -19,7 +19,7 @@ export default function FloodControlProjectsTab({
               : 'text-gray-800 hover:text-blue-600'
           )}
         >
-          <BarChart3 className='w-4 h-4 mr-1.5 sm:mr-2' />
+          <BarChart3Icon className='w-4 h-4 mr-1.5 sm:mr-2' />
           Visual
         </Link>
         <Link
@@ -31,7 +31,7 @@ export default function FloodControlProjectsTab({
               : 'text-gray-800 hover:text-blue-600'
           )}
         >
-          <Table className='w-4 h-4 mr-1.5 sm:mr-2' />
+          <TableIcon className='w-4 h-4 mr-1.5 sm:mr-2' />
           Table
         </Link>
         <Link
@@ -43,7 +43,7 @@ export default function FloodControlProjectsTab({
               : 'text-gray-800 hover:text-blue-600'
           )}
         >
-          <Users className='w-4 h-4 mr-1.5 sm:mr-2' />
+          <UsersIcon className='w-4 h-4 mr-1.5 sm:mr-2' />
           Contractors
         </Link>
         <Link
@@ -55,7 +55,7 @@ export default function FloodControlProjectsTab({
               : 'text-gray-800 hover:text-blue-600'
           )}
         >
-          <Map className='w-4 h-4 mr-1.5 sm:mr-2' />
+          <MapIcon className='w-4 h-4 mr-1.5 sm:mr-2' />
           Map
         </Link>
       </div>
