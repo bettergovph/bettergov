@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, Search, X } from 'lucide-react';
+import { ChevronDownIcon, SearchIcon, XIcon } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '../../lib/utils';
 
 interface SelectPickerOption {
@@ -205,10 +205,10 @@ const SelectPicker = ({
               onClick={handleClear}
               aria-label='Clear selection'
             >
-              <X className='h-4 w-4 text-gray-500' />
+              <XIcon className='h-4 w-4 text-gray-500' />
             </button>
           )}
-          <ChevronDown
+          <ChevronDownIcon
             className={cn(
               'h-4 w-4 text-gray-500 transition-transform duration-200',
               isOpen && 'rotate-180'
@@ -229,7 +229,7 @@ const SelectPicker = ({
           {searchable && (
             <div className='p-2 border-b border-gray-200'>
               <div className='relative'>
-                <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500' />
+                <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500' />
                 <input
                   ref={searchInputRef}
                   type='text'

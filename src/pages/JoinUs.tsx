@@ -1,20 +1,20 @@
+import {
+  ArrowRightIcon,
+  BuildingIcon,
+  CodeIcon,
+  GlobeIcon,
+  HeartIcon,
+  LightbulbIcon,
+  MessageCircleIcon,
+  RocketIcon,
+  ServerIcon,
+  StarIcon,
+  TargetIcon,
+  UsersIcon,
+  ZapIcon,
+} from 'lucide-react';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import {
-  Users,
-  Zap,
-  Heart,
-  Code,
-  Rocket,
-  Globe,
-  MessageCircle,
-  ArrowRight,
-  Star,
-  Server,
-  Lightbulb,
-  Target,
-  Building,
-} from 'lucide-react';
 
 const JoinUs: React.FC = () => {
   return (
@@ -42,8 +42,8 @@ const JoinUs: React.FC = () => {
         <div className='relative container mx-auto px-4 py-16 md:py-24 z-10'>
           <div className='text-center max-w-4xl mx-auto'>
             <div className='flex justify-center mb-6'>
-              <div className='p-4 bg-white/20 rounded-full backdrop-blur-xs'>
-                <Users className='h-12 w-12 text-white' />
+              <div className='p-4 bg-white/20 rounded-full backdrop-blur-sm'>
+                <UsersIcon className='h-12 w-12 text-white' />
               </div>
             </div>
             <h1 className='text-4xl md:text-6xl font-bold mb-6 leading-tight'>
@@ -62,7 +62,7 @@ const JoinUs: React.FC = () => {
                 rel='noreferrer'
                 className='inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg'
               >
-                <MessageCircle className='h-5 w-5 mr-2' />
+                <MessageCircleIcon className='h-5 w-5 mr-2' />
                 Join Our Discord
               </a>
               <a
@@ -70,17 +70,17 @@ const JoinUs: React.FC = () => {
                 className='inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all'
               >
                 Learn More
-                <ArrowRight className='h-5 w-5 ml-2' />
+                <ArrowRightIcon className='h-5 w-5 ml-2' />
               </a>
             </div>
           </div>
         </div>
         {/* Decorative elements */}
         <div className='absolute top-20 left-10 opacity-20'>
-          <Code className='h-24 w-24 text-white' />
+          <CodeIcon className='h-24 w-24 text-white' />
         </div>
         <div className='absolute bottom-20 right-10 opacity-20'>
-          <Rocket className='h-32 w-32 text-white' />
+          <RocketIcon className='h-32 w-32 text-white' />
         </div>
       </section>
 
@@ -89,7 +89,7 @@ const JoinUs: React.FC = () => {
         <div className='container mx-auto px-4'>
           <div className='text-center mb-12'>
             <div className='inline-flex items-center justify-center p-3 bg-primary-100 rounded-full mb-4'>
-              <Target className='h-8 w-8 text-primary-600' />
+              <TargetIcon className='h-8 w-8 text-primary-600' />
             </div>
             <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
               Our Mission
@@ -106,7 +106,7 @@ const JoinUs: React.FC = () => {
                 BetterGov is a <strong>volunteer-led tech initiative</strong>{' '}
                 committed to creating
                 <span className='inline-flex items-center mx-2 px-3 py-1 bg-primary-600 text-white rounded-full text-sm font-semibold'>
-                  <Zap className='h-4 w-4 mr-1' />
+                  <ZapIcon className='h-4 w-4 mr-1' />
                   #civictech
                 </span>
                 projects aimed at making government more transparent, efficient,
@@ -138,32 +138,32 @@ const JoinUs: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'>
             {[
               {
-                icon: Server,
+                icon: ServerIcon,
                 title: 'Infrastructure & Tools',
                 desc: 'Servers, AI credits, development tools, and more!',
               },
               {
-                icon: Users,
+                icon: UsersIcon,
                 title: 'Tech Hackathons',
                 desc: 'Regular events to collaborate and build together',
               },
               {
-                icon: Globe,
+                icon: GlobeIcon,
                 title: 'Data & APIs',
                 desc: 'Access to government data and API endpoints',
               },
               {
-                icon: Heart,
+                icon: HeartIcon,
                 title: 'Find Your Team',
                 desc: 'Connect with the right people and resource persons',
               },
               {
-                icon: Star,
+                icon: StarIcon,
                 title: 'Industry Mentorship',
                 desc: 'Guidance from seasoned tech and startup veterans',
               },
               {
-                icon: Building,
+                icon: BuildingIcon,
                 title: 'Office Space',
                 desc: 'Physical workspace for collaboration and meetings',
               },
@@ -191,8 +191,8 @@ const JoinUs: React.FC = () => {
         <div className='container mx-auto px-4 relative z-10'>
           <div className='max-w-5xl mx-auto text-center'>
             <div className='flex justify-center mb-8'>
-              <div className='p-6 bg-linear-to-r from-yellow-400 to-orange-400 rounded-full shadow-2xl'>
-                <Zap className='h-12 w-12 text-gray-900' />
+              <div className='p-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full shadow-2xl'>
+                <ZapIcon className='h-12 w-12 text-gray-900' />
               </div>
             </div>
             <h2 className='text-4xl md:text-6xl font-black mb-12 text-transparent bg-clip-text bg-linear-to-r from-yellow-300 via-orange-300 to-red-300'>
@@ -241,10 +241,10 @@ const JoinUs: React.FC = () => {
         </div>
         {/* Decorative elements */}
         <div className='absolute top-10 left-10 opacity-10'>
-          <Rocket className='h-32 w-32 text-yellow-400 transform rotate-45' />
+          <RocketIcon className='h-32 w-32 text-yellow-400 transform rotate-45' />
         </div>
         <div className='absolute bottom-10 right-10 opacity-10'>
-          <Code className='h-40 w-40 text-orange-400 transform -rotate-12' />
+          <CodeIcon className='h-40 w-40 text-orange-400 transform -rotate-12' />
         </div>
       </section>
 
@@ -268,7 +268,7 @@ const JoinUs: React.FC = () => {
                 rel='noreferrer'
                 className='inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg text-lg'
               >
-                <MessageCircle className='h-6 w-6 mr-3' />
+                <MessageCircleIcon className='h-6 w-6 mr-3' />
                 Join Our Discord Community
               </a>
 
@@ -280,7 +280,7 @@ const JoinUs: React.FC = () => {
                 rel='noreferrer'
                 className='inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all'
               >
-                <Lightbulb className='h-5 w-5 mr-2' />
+                <LightbulbIcon className='h-5 w-5 mr-2' />
                 Explore Project Ideas
               </a>
             </div>
