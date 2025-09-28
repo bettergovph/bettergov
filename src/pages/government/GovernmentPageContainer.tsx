@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { MenuIcon, XIcon } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 interface GovernmentPageHeaderProps {
@@ -73,9 +73,9 @@ export default function GovernmentIndexPageContainer({
             >
               <span>Menu</span>
               {sidebarOpen ? (
-                <X className='h-5 w-5 text-gray-800' />
+                <XIcon className='h-5 w-5 text-gray-800' />
               ) : (
-                <Menu className='h-5 w-5 text-gray-800' />
+                <MenuIcon className='h-5 w-5 text-gray-800' />
               )}
             </button>
           </div>

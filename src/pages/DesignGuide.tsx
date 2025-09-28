@@ -1,19 +1,19 @@
-import React from 'react';
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardImage,
-} from '../components/ui/Card';
+  AwardIcon,
+  BuildingIcon,
+  ExternalLinkIcon,
+  GlobeIcon,
+  MailIcon,
+  PhoneIcon,
+} from 'lucide-react';
+import React from 'react';
 import Button from '../components/ui/Button';
 import {
-  Phone,
-  Mail,
-  ExternalLink,
-  Award,
-  Building,
-  Globe,
-} from 'lucide-react';
+  Card,
+  CardContent,
+  CardHeader,
+  CardImage,
+} from '../components/ui/Card';
 
 const ColorBlock = ({
   color,
@@ -243,7 +243,7 @@ const DesignGuide: React.FC = () => {
                         </div>
                         <Button variant='ghost' size='sm'>
                           View
-                          <ExternalLink className='ml-2 h-4 w-4' />
+                          <ExternalLinkIcon className='ml-2 h-4 w-4' />
                         </Button>
                       </div>
                     </div>
@@ -520,7 +520,7 @@ const DesignGuide: React.FC = () => {
                         </h3>
                         <div className='space-y-4'>
                           <div className='flex items-center text-gray-800'>
-                            <Building className='h-5 w-5 mr-3 text-primary-600' />
+                            <BuildingIcon className='h-5 w-5 mr-3 text-primary-600' />
                             <div>
                               <div className='font-medium'>Office</div>
                               <div className='text-sm'>
@@ -529,21 +529,21 @@ const DesignGuide: React.FC = () => {
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <Phone className='h-5 w-5 mr-3 text-primary-600' />
+                            <PhoneIcon className='h-5 w-5 mr-3 text-primary-600' />
                             <div>
                               <div className='font-medium'>Phone</div>
                               <div className='text-sm'>+63 (2) 8736 8645</div>
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <Mail className='h-5 w-5 mr-3 text-primary-600' />
+                            <MailIcon className='h-5 w-5 mr-3 text-primary-600' />
                             <div>
                               <div className='font-medium'>Email</div>
                               <div className='text-sm'>op@president.gov.ph</div>
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <Globe className='h-5 w-5 mr-3 text-primary-600' />
+                            <GlobeIcon className='h-5 w-5 mr-3 text-primary-600' />
                             <div>
                               <div className='font-medium'>Website</div>
                               <div className='text-sm'>
@@ -610,7 +610,7 @@ const DesignGuide: React.FC = () => {
                         <div className='grid gap-4'>
                           {achievements.map((achievement, index) => (
                             <div key={index} className='flex items-start'>
-                              <Award className='h-5 w-5 text-primary-600 mt-1 mr-3 shrink-0' />
+                              <AwardIcon className='h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0' />
                               <p className='text-gray-800'>{achievement}</p>
                             </div>
                           ))}
@@ -619,14 +619,14 @@ const DesignGuide: React.FC = () => {
 
                       <div className='flex space-x-4 mt-8'>
                         <Button className='bg-primary-600 hover:bg-primary-700 text-white'>
-                          <Mail className='h-4 w-4 mr-2' />
+                          <MailIcon className='h-4 w-4 mr-2' />
                           Contact Office
                         </Button>
                         <Button
                           variant='outline'
                           className='border-gray-300 text-gray-700 hover:bg-gray-50'
                         >
-                          <Globe className='h-4 w-4 mr-2' />
+                          <GlobeIcon className='h-4 w-4 mr-2' />
                           Visit Website
                         </Button>
                       </div>

@@ -1,6 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FileCheck, AlertCircle, ExternalLink, Globe } from 'lucide-react';
+import {
+  FileCheckIcon,
+  AlertCircleIcon,
+  ExternalLinkIcon,
+  GlobeIcon,
+} from 'lucide-react';
 import { VisaRequirement } from '../../types/visa';
 import visaData from '../../data/visa/philippines_visa_policy.json';
 
@@ -22,7 +27,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
       {/* Visa Status Section */}
       {visaRequirement.type === 'visa-free' && (
         <div className='flex items-start p-4 bg-green-50 border border-green-200 rounded-lg'>
-          <FileCheck className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
+          <FileCheckIcon className='h-6 w-6 text-green-600 mr-3 mt-0.5' />
           <div>
             <h3
               className={`font-semibold text-green-800 ${isDialog ? 'text-base' : 'text-lg'}`}
@@ -41,7 +46,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
 
       {visaRequirement.type === 'visa-required' && (
         <div className='flex items-start p-4 bg-red-50 border border-red-200 rounded-lg'>
-          <AlertCircle className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
+          <AlertCircleIcon className='h-6 w-6 text-red-600 mr-3 mt-0.5' />
           <div>
             <h3
               className={`font-semibold text-red-800 ${isDialog ? 'text-base' : 'text-lg'}`}
@@ -59,7 +64,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
 
       {visaRequirement.type === 'special-condition' && (
         <div className='flex items-start p-4 bg-yellow-50 border border-yellow-200 rounded-lg'>
-          <AlertCircle className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
+          <AlertCircleIcon className='h-6 w-6 text-yellow-600 mr-3 mt-0.5' />
           <div>
             <h3
               className={`font-semibold text-yellow-800 ${isDialog ? 'text-base' : 'text-lg'}`}
@@ -128,7 +133,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
               className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
             >
               <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                <Globe className='h-5 w-5 text-blue-600' />
+                <GlobeIcon className='h-5 w-5 text-blue-600' />
               </div>
               <div className='flex-1'>
                 <h4 className='font-medium'>
@@ -142,11 +147,13 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
                 {!isDialog && (
                   <div className='flex items-center text-blue-600 text-sm mt-1'>
                     <span>{t('visaApplication.eVisa.action')}</span>
-                    <ExternalLink className='h-3 w-3 ml-1' />
+                    <ExternalLinkIcon className='h-3 w-3 ml-1' />
                   </div>
                 )}
               </div>
-              {isDialog && <ExternalLink className='h-4 w-4 text-blue-600' />}
+              {isDialog && (
+                <ExternalLinkIcon className='h-4 w-4 text-blue-600' />
+              )}
             </a>
             <a
               href='https://dfa.gov.ph/list-of-philippine-embassies-and-consulates-general'
@@ -155,7 +162,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
               className='flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors'
             >
               <div className='rounded-full bg-blue-100 p-2 mr-3'>
-                <Globe className='h-5 w-5 text-blue-600' />
+                <GlobeIcon className='h-5 w-5 text-blue-600' />
               </div>
               <div className='flex-1'>
                 <h4 className='font-medium'>
@@ -169,11 +176,13 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
                 {!isDialog && (
                   <div className='flex items-center text-blue-600 text-sm mt-1'>
                     <span>{t('visaApplication.embassy.action')}</span>
-                    <ExternalLink className='h-3 w-3 ml-1' />
+                    <ExternalLinkIcon className='h-3 w-3 ml-1' />
                   </div>
                 )}
               </div>
-              {isDialog && <ExternalLink className='h-4 w-4 text-blue-600' />}
+              {isDialog && (
+                <ExternalLinkIcon className='h-4 w-4 text-blue-600' />
+              )}
             </a>
           </div>
         </div>
@@ -200,7 +209,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
               className='inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2'
             >
               <span>{t('additionalInfo.temporaryVisa.learnMore')}</span>
-              <ExternalLink className='h-3 w-3 ml-1' />
+              <ExternalLinkIcon className='h-3 w-3 ml-1' />
             </a>
           </div>
 
@@ -218,7 +227,7 @@ const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
               className='inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2'
             >
               <span>{t('additionalInfo.visaExtensions.visitWebsite')}</span>
-              <ExternalLink className='h-3 w-3 ml-1' />
+              <ExternalLinkIcon className='h-3 w-3 ml-1' />
             </a>
           </div>
 

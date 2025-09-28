@@ -1,15 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
 import {
-  MapPin,
-  Phone,
-  ExternalLink,
-  Building2,
-  Mail,
-  ArrowRight,
+  ArrowRightIcon,
+  Building2Icon,
+  ExternalLinkIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
 } from 'lucide-react';
-import departmentsData from '../../../data/directory/departments.json';
-import { Card, CardContent, CardHeader } from '../../../components/ui/CardList';
+import { Link, useParams } from 'react-router-dom';
 import SEO from '../../../components/SEO';
+import { Card, CardContent, CardHeader } from '../../../components/ui/CardList';
+import departmentsData from '../../../data/directory/departments.json';
 import { getDepartmentsSEOData } from '../../../utils/seo-data';
 
 interface Department {
@@ -39,7 +39,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
         <SEO {...seoData} />
         <div className='bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Building2 className='h-6 w-6 text-gray-400' />
+            <Building2Icon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             Department not found
@@ -52,7 +52,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
             to='/government/departments'
             className='mt-4 text-primary-600 hover:underline flex items-center'
           >
-            <ArrowRight className='h-4 w-4 mr-1 rotate-180' />
+            <ArrowRightIcon className='h-4 w-4 mr-1 rotate-180' />
             Back to all departments
           </Link>
         </div>
@@ -72,7 +72,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
 
             {department.address && (
               <p className='mt-2 text-gray-800 flex items-start'>
-                <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
+                <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                 <span>{department.address}</span>
               </p>
             )}
@@ -83,7 +83,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
               to='/government/departments'
               className='inline-flex items-center px-3 py-1.5 border border-gray-200 rounded-md text-sm font-medium hover:bg-gray-50'
             >
-              <ArrowRight className='mr-1.5 h-3.5 w-3.5 rotate-180' />
+              <ArrowRightIcon className='mr-1.5 h-3.5 w-3.5 rotate-180' />
               <span>All Departments</span>
             </Link>
 
@@ -99,7 +99,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
                 className='inline-flex items-center px-3 py-1.5 border border-gray-200 rounded-md text-sm font-medium hover:bg-gray-50'
               >
                 <span>Website</span>
-                <ExternalLink className='ml-1.5 h-3.5 w-3.5' />
+                <ExternalLinkIcon className='ml-1.5 h-3.5 w-3.5' />
               </a>
             )}
           </div>
@@ -108,7 +108,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
         <div className='flex flex-wrap gap-4 text-sm border-b border-gray-200 pb-6'>
           {department.trunkline && (
             <div className='flex items-center text-gray-800'>
-              <Phone className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
+              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{department.trunkline}</span>
             </div>
           )}
@@ -118,7 +118,7 @@ function DepartmentDetail({ departmentName }: { departmentName: string }) {
               href={`mailto:${department.email}`}
               className='flex items-center text-gray-800 hover:text-primary-600'
             >
-              <Mail className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
+              <MailIcon className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
               <span>{department.email}</span>
             </a>
           )}
@@ -251,7 +251,7 @@ export default function DepartmentsIndex() {
                         )}
                       </div>
                       <div className='rounded-full bg-gray-100 p-2 shrink-0'>
-                        <Building2 className='h-5 w-5 text-gray-800' />
+                        <Building2Icon className='h-5 w-5 text-gray-800' />
                       </div>
                     </div>
                   </CardHeader>
@@ -259,7 +259,7 @@ export default function DepartmentsIndex() {
                     <div className='space-y-2'>
                       {dept.address && (
                         <div className='flex items-start'>
-                          <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
+                          <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
                           <span className='text-sm text-gray-800 line-clamp-2'>
                             {dept.address}
                           </span>
@@ -267,7 +267,7 @@ export default function DepartmentsIndex() {
                       )}
                       {dept.trunkline && (
                         <div className='flex items-center'>
-                          <Phone className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
+                          <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
                           <span className='text-sm text-gray-800'>
                             {dept.trunkline}
                           </span>
@@ -275,7 +275,7 @@ export default function DepartmentsIndex() {
                       )}
                       {dept.website && (
                         <div className='flex items-center'>
-                          <ExternalLink className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
+                          <ExternalLinkIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
                           <span className='text-sm text-primary-600 truncate'>
                             {dept.website}
                           </span>
@@ -285,7 +285,8 @@ export default function DepartmentsIndex() {
 
                     <div className='mt-4 pt-4 border-t border-gray-100 flex justify-end'>
                       <span className='text-sm font-medium text-primary-600 flex items-center'>
-                        View details <ArrowRight className='ml-1 h-3.5 w-3.5' />
+                        View details{' '}
+                        <ArrowRightIcon className='ml-1 h-3.5 w-3.5' />
                       </span>
                     </div>
                   </CardContent>

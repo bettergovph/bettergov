@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, MapPin, Users } from 'lucide-react';
+import { SearchIcon, MapPinIcon, UsersIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { RegionLGU } from '../../../lib/lgu';
 // Eagerly import all per-region LGU JSON files and flatten into an array
@@ -88,7 +88,7 @@ export default function LocalGovernmentIndex() {
           </div>
 
           <div className='relative w-full lg:w-64'>
-            <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+            <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
             <input
               type='search'
               placeholder='Search regions...'
@@ -102,7 +102,7 @@ export default function LocalGovernmentIndex() {
         {filteredRegions.length === 0 ? (
           <div className='p-8 text-center bg-white rounded-lg border'>
             <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-              <MapPin className='h-6 w-6 text-gray-400' />
+              <MapPinIcon className='h-6 w-6 text-gray-400' />
             </div>
             <h3 className='text-lg font-medium text-gray-900 mb-1'>
               No regions found
@@ -135,12 +135,12 @@ export default function LocalGovernmentIndex() {
 
                     <div className='flex items-center justify-between mt-4 pt-4 border-t border-gray-100'>
                       <div className='flex items-center text-sm text-gray-800'>
-                        <Users className='h-4 w-4 mr-1' />
+                        <UsersIcon className='h-4 w-4 mr-1' />
                         <span>{region.cityCount} cities</span>
                       </div>
                       <div className='flex items-center text-sm text-primary-600'>
                         <span>View Details</span>
-                        <MapPin className='h-4 w-4 ml-1' />
+                        <MapPinIcon className='h-4 w-4 ml-1' />
                       </div>
                     </div>
                   </CardContent>
