@@ -4,7 +4,7 @@ import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
-import { Download, Info, ZoomIn, ZoomOut } from 'lucide-react';
+import { DownloadIcon, InfoIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
 import L, { LatLngExpression, GeoJSON as LeafletGeoJSON, Layer } from 'leaflet';
@@ -339,7 +339,9 @@ const FloodControlProjectsMap: React.FC = () => {
             </h1>
             <Button
               variant='outline'
-              leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
+              leftIcon={
+                isExporting ? null : <DownloadIcon className='w-4 h-4' />
+              }
               onClick={handleExportData}
               disabled={isExporting}
             >
@@ -482,7 +484,7 @@ const FloodControlProjectsMap: React.FC = () => {
                   onClick={handleZoomIn}
                   aria-label='Zoom in'
                 >
-                  <ZoomIn className='h-4 w-4' />
+                  <ZoomInIcon className='h-4 w-4' />
                 </Button>
                 <Button
                   variant='primary'
@@ -490,7 +492,7 @@ const FloodControlProjectsMap: React.FC = () => {
                   onClick={handleZoomOut}
                   aria-label='Zoom out'
                 >
-                  <ZoomOut className='h-4 w-4' />
+                  <ZoomOutIcon className='h-4 w-4' />
                 </Button>
               </div>
 
@@ -570,7 +572,7 @@ const FloodControlProjectsMap: React.FC = () => {
           {/* Data Source Information */}
           <div className='bg-white rounded-lg shadow-md p-4'>
             <div className='flex items-center mb-4'>
-              <Info className='w-5 h-5 text-blue-600 mr-2' />
+              <InfoIcon className='w-5 h-5 text-blue-600 mr-2' />
               <h2 className='text-lg font-semibold text-gray-800'>
                 About This Data
               </h2>

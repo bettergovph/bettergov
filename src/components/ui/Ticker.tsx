@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
 import {
-  DollarSign,
-  Pen as Yen,
-  Euro as EuroSign,
-  PoundSterling,
-  Loader,
+  DollarSignIcon,
+  EuroIcon,
+  JapaneseYenIcon,
+  LoaderIcon,
+  PoundSterlingIcon,
 } from 'lucide-react';
-import { ForexRate, WeatherData } from '../../types';
+import React, { useEffect, useState } from 'react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { fetchWeatherData } from '../../lib/weather';
+import { ForexRate, WeatherData } from '../../types';
 
 const getCurrencyIcon = (code: string) => {
   const iconName = getCurrencyIconName(code);
   switch (iconName) {
     case 'DollarSign':
-      return <DollarSign className='h-4 w-4' />;
-    case 'Pen':
-      return <Yen className='h-4 w-4' />;
+      return <DollarSignIcon className='h-4 w-4' />;
+    case 'JapaneseYen':
+      return <JapaneseYenIcon className='h-4 w-4' />;
     case 'Euro':
-      return <EuroSign className='h-4 w-4' />;
+      return <EuroIcon className='h-4 w-4' />;
     case 'PoundSterling':
-      return <PoundSterling className='h-4 w-4' />;
+      return <PoundSterlingIcon className='h-4 w-4' />;
     default:
       return null;
   }
@@ -111,7 +111,7 @@ const Ticker: React.FC = () => {
     return (
       <div className='bg-primary-600 text-white py-1 px-4'>
         <div className='container mx-auto flex items-center justify-center'>
-          <Loader className='h-4 w-4 animate-spin mr-2' />
+          <LoaderIcon className='h-4 w-4 animate-spin mr-2' />
           <span className='text-xs'>Loading data...</span>
         </div>
       </div>
@@ -163,7 +163,7 @@ const Ticker: React.FC = () => {
           <div className='flex items-center space-x-6 pl-4 border-l border-accent-500'>
             {weatherLoading ? (
               <div className='flex items-center space-x-2'>
-                <Loader className='h-3 w-3 animate-spin text-accent-100' />
+                <LoaderIcon className='h-3 w-3 animate-spin text-accent-100' />
                 <span className='text-xs text-accent-100'>
                   Loading weather...
                 </span>

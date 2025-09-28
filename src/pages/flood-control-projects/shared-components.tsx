@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeftIcon } from 'lucide-react';
 import { ScrollArea } from '../../components/ui/ScrollArea';
 import type { FilterState } from './utils';
 
@@ -81,7 +81,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         onClick={onToggle}
       >
         <span className='truncate'>{value ? value : `Select ${name}`}</span>
-        <ChevronLeft
+        <ChevronLeftIcon
           className={`w-4 h-4 ml-2 transform ${
             isOpen ? 'rotate-90' : '-rotate-90'
           }`}

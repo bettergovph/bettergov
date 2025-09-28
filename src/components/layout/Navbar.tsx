@@ -1,10 +1,16 @@
+import {
+  ChevronDownIcon,
+  GlobeIcon,
+  MenuIcon,
+  SearchIcon,
+  XIcon,
+} from 'lucide-react';
 import React, { useState } from 'react';
-import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react';
-import { mainNavigation } from '../../data/navigation';
-import { LanguageType } from '../../types';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
+import { LanguageType } from '../../types';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,7 +110,7 @@ const Navbar: React.FC = () => {
                 >
                   {t(`navbar.${item.label.toLowerCase()}`)}
                   {item.children && (
-                    <ChevronDown className='ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors' />
+                    <ChevronDownIcon className='ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors' />
                   )}
                 </Link>
                 {item.children && (
@@ -141,7 +147,7 @@ const Navbar: React.FC = () => {
               to='/search'
               className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
             >
-              <Search className='h-4 w-4 mr-1' />
+              <SearchIcon className='h-4 w-4 mr-1' />
               Search
             </Link>
             {/* <Link
@@ -160,9 +166,9 @@ const Navbar: React.FC = () => {
             >
               <span className='sr-only'>Open main menu</span>
               {isOpen ? (
-                <X className='block h-6 w-6' aria-hidden='true' />
+                <XIcon className='block h-6 w-6' aria-hidden='true' />
               ) : (
-                <Menu className='block h-6 w-6' aria-hidden='true' />
+                <MenuIcon className='block h-6 w-6' aria-hidden='true' />
               )}
             </button>
           </div>
@@ -180,7 +186,7 @@ const Navbar: React.FC = () => {
               >
                 {t(`navbar.${item.label.toLowerCase()}`)}
                 {item.children && (
-                  <ChevronDown
+                  <ChevronDownIcon
                     className={`h-5 w-5 transition-transform ${
                       activeMenu === item.label ? 'transform rotate-180' : ''
                     }`}
@@ -233,7 +239,7 @@ const Navbar: React.FC = () => {
           </Link>
           <div className='px-4 py-3 border-t border-gray-200'>
             <div className='flex items-center'>
-              <Globe className='h-5 w-5 text-gray-800 mr-2' />
+              <GlobeIcon className='h-5 w-5 text-gray-800 mr-2' />
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
