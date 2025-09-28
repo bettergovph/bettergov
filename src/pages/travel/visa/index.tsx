@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Compass,
@@ -269,6 +269,7 @@ const VISA_REQUIRED_COUNTRIES: Country[] = [
 
 const VisaPage: React.FC = () => {
   const { t } = useTranslation('visa');
+  const filterPanelId = useId();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useQueryState('country');
   const [viewMode, setViewMode] = useQueryState('view');
@@ -285,19 +286,23 @@ const VisaPage: React.FC = () => {
   const [isFilterExpanded, setIsFilterExpanded] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Alphabetical filter calculations
-  const currentCountries = filteredCountries.filter(country => {
-    if (selectedLetters.length === 0) return true;
-    const firstLetter = country.charAt(0).toUpperCase();
-    return selectedLetters.includes(firstLetter);
-  });
+  // Alphabetical filter calculations - memoized for performance
+  const currentCountries = useMemo(() => {
+    return filteredCountries.filter(country => {
+      if (selectedLetters.length === 0) return true;
+      const firstLetter = country.charAt(0).toUpperCase();
+      return selectedLetters.includes(firstLetter);
+    });
+  }, [filteredCountries, selectedLetters]);
 
-  // Generate available letters from filtered countries
-  const availableLetters = Array.from(
-    new Set(
-      filteredCountries.map(country => country.charAt(0).toUpperCase()).sort()
-    )
-  );
+  // Generate available letters from filtered countries - memoized for performance
+  const availableLetters = useMemo(() => {
+    return Array.from(
+      new Set(
+        filteredCountries.map(country => country.charAt(0).toUpperCase()).sort()
+      )
+    );
+  }, [filteredCountries]);
 
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
@@ -524,7 +529,8 @@ const VisaPage: React.FC = () => {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
-                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors'
+                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded'
+                  aria-label={t('quickCheck.clearSearchAriaLabel')}
                 >
                   <svg
                     className='h-4 w-4'
@@ -575,17 +581,23 @@ const VisaPage: React.FC = () => {
           </div>
 
           {/* Search Results Summary */}
-          {searchTerm && (
-            <div className='mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200'>
-              <div className='text-sm text-blue-800'>
-                Found{' '}
-                <span className='font-semibold'>
-                  {filteredCountries.length}
-                </span>{' '}
-                countries matching &quot;{searchTerm}&quot;
-              </div>
-            </div>
-          )}
+          {(() => {
+            const trimmed = searchTerm?.trim();
+            return (
+              trimmed &&
+              trimmed.length > 0 && (
+                <div className='mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200'>
+                  <div className='text-sm text-blue-800'>
+                    Found{' '}
+                    <span className='font-semibold'>
+                      {filteredCountries.length}
+                    </span>{' '}
+                    countries matching &quot;{trimmed}&quot;
+                  </div>
+                </div>
+              )
+            );
+          })()}
 
           {/* Alphabetical Filters */}
           {availableLetters.length > 0 && !searchTerm && (
@@ -596,6 +608,8 @@ const VisaPage: React.FC = () => {
                   <button
                     onClick={() => setIsFilterExpanded(!isFilterExpanded)}
                     className='flex items-center gap-2 text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors self-start'
+                    aria-expanded={isFilterExpanded}
+                    aria-controls={filterPanelId}
                   >
                     Filter by Letter
                     {isFilterExpanded ? (
@@ -633,7 +647,11 @@ const VisaPage: React.FC = () => {
 
               {/* Collapsible Content */}
               {isFilterExpanded && (
-                <div className='space-y-4'>
+                <div
+                  id={filterPanelId}
+                  className='space-y-4'
+                  aria-hidden={!isFilterExpanded}
+                >
                   {/* Letter Buttons */}
                   <div className='flex flex-wrap justify-center gap-2 sm:gap-3 px-4'>
                     {availableLetters.map(letter => {
@@ -723,7 +741,7 @@ const VisaPage: React.FC = () => {
                 );
               })}
             </div>
-            {filteredCountries.length === 0 && (
+            {currentCountries.length === 0 && (
               <div className='text-center py-12 text-gray-500'>
                 <Search className='mx-auto h-12 w-12 mb-4 opacity-50' />
                 <p className='text-lg'>

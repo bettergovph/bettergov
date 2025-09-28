@@ -9,7 +9,8 @@
     "title": "Quick Visa Check",
     "description": "Select your country of citizenship to check visa requirements for traveling to the Philippines.",
     "searchPlaceholder": "Search your country...",
-    "searchAriaLabel": "Search for a country"
+    "searchAriaLabel": "Search for a country",
+    "clearSearchAriaLabel": "Clear search"
   },
   "countryList": {
     "title": "Select Your Country",
