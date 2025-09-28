@@ -1,15 +1,15 @@
-import { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
+import { SearchIcon } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import {
-  CardList,
   Card,
-  CardContent,
-  CardTitle,
-  CardDescription,
-  CardContactInfo,
-  CardGrid,
   CardAvatar,
+  CardContactInfo,
+  CardContent,
+  CardDescription,
   CardDivider,
+  CardGrid,
+  CardList,
+  CardTitle,
 } from '../../../components/ui/CardList';
 import { executiveData } from './data';
 
@@ -69,7 +69,7 @@ export default function OfficeOfTheVicePresidentPage() {
         </div>
 
         <div className='relative w-full md:w-64'>
-          <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+          <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
           <input
             type='search'
             placeholder='Search officials...'
@@ -95,7 +95,7 @@ export default function OfficeOfTheVicePresidentPage() {
       {filteredOfficials.length === 0 ? (
         <div className='p-8 text-center bg-white rounded-lg border'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Search className='h-6 w-6 text-gray-400' />
+            <SearchIcon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             No officials found
