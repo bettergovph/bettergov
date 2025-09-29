@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
 import { mobileCheck } from './device';
+import { hover } from './common';
 
 /**
  * @param page Playwright page instance/object
@@ -42,10 +43,11 @@ export async function navigate(
 
   // For desktop
   if (option) {
-    await page
+    const elementToHover = page
       .getByRole('link', { name: option, exact: true })
-      .first()
-      .hover({ force: true });
+      .first();
+
+    await hover(page, elementToHover);
   }
 
   if (subOption) {
