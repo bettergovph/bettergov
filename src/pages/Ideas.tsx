@@ -1,7 +1,13 @@
+import {
+  GithubIcon,
+  LightbulbIcon,
+  PlusIcon,
+  StarIcon,
+  TrendingUpIcon,
+  UsersIcon,
+} from 'lucide-react';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Lightbulb, Users, Star, TrendingUp, Plus } from 'lucide-react';
-import { SiGithub } from '@icons-pack/react-simple-icons';
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -23,7 +29,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'A transparent, immutable platform where citizens can report and track government projects in their communities. Uses blockchain technology to ensure data integrity and prevent tampering with project reports and progress updates.',
     category: 'Transparency & Accountability',
-    icon: <TrendingUp className='h-6 w-6' />,
+    icon: <TrendingUpIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'complex',
     upvotes: 42,
@@ -35,7 +41,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'An anonymous review platform where government employees and citizens can rate and review government agencies, departments, and services. Provides insights into workplace culture, service quality, and areas for improvement.',
     category: 'Public Feedback',
-    icon: <Star className='h-6 w-6' />,
+    icon: <StarIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'moderate',
     upvotes: 38,
@@ -47,7 +53,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'Comprehensive design system and guidelines for the BetterGov.ph platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.',
     category: 'Platform Development',
-    icon: <Lightbulb className='h-6 w-6' />,
+    icon: <LightbulbIcon className='h-6 w-6' />,
     priority: 'medium',
     complexity: 'simple',
     upvotes: 25,
@@ -59,7 +65,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'A citizen-driven platform to rate and review elected officials based on their performance, campaign promises, voting records, and public service delivery. Includes fact-checking and transparency features.',
     category: 'Political Accountability',
-    icon: <Users className='h-6 w-6' />,
+    icon: <UsersIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'moderate',
     upvotes: 56,
@@ -136,7 +142,7 @@ const Ideas: React.FC = () => {
         <header className='text-center mb-8 md:mb-12'>
           <div className='flex items-center justify-center mb-4'>
             <div className='p-3 rounded-full bg-primary-50 text-primary-600 mr-4'>
-              <Lightbulb className='h-8 w-8' />
+              <LightbulbIcon className='h-8 w-8' />
             </div>
             <h1 className='text-3xl md:text-4xl font-bold text-gray-900'>
               Project Ideas
@@ -191,14 +197,14 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <SiGithub className='h-5 w-5 mr-2' />
+              <GithubIcon className='h-5 w-5 mr-2' />
               Submit Idea
             </button>
             <button
               onClick={handleSubmitPR}
               className='inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors'
             >
-              <Plus className='h-5 w-5 mr-2' />
+              <PlusIcon className='h-5 w-5 mr-2' />
               Contribute a Pull Request
             </button>
           </div>
@@ -278,7 +284,7 @@ const Ideas: React.FC = () => {
               onClick={handleSubmitIdea}
               className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
             >
-              <SiGithub className='h-5 w-5 mr-2' />
+              <GithubIcon className='h-5 w-5 mr-2' />
               Submit via GitHub
             </button>
             <a

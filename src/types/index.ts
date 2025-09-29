@@ -151,3 +151,9 @@ export interface ContactInfo {
   office?: string;
   address?: string;
 }
+
+export interface ForexRate {
+  currency: string;
+  code: string;
+  rate: number;
+}

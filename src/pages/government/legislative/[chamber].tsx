@@ -1,5 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { ExternalLink, MapPin, Phone, Globe } from 'lucide-react';
+import {
+  ExternalLinkIcon,
+  MapPinIcon,
+  PhoneIcon,
+  GlobeIcon,
+  Mail,
+} from 'lucide-react';
+
 import legislativeData from '../../../data/directory/legislative.json';
 import { cn } from '../../../lib/utils';
 
@@ -45,7 +52,6 @@ function LegislativeDetailSection({
     'address',
     'trunkline',
     'website',
-    'email',
   ];
 
   if (isSimpleObject) {
@@ -58,6 +64,27 @@ function LegislativeDetailSection({
       >
         {Object.entries(data).map(([key, value]) => {
           if (skipKeys.includes(key) || value === undefined) return null;
+
+          // Special rendering for email so it's visible and wraps cleanly
+          if (key === 'email' && value) {
+            return (
+              <div key={key} className='text-sm'>
+                <div className='flex items-start'>
+                  <Mail
+                    className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0'
+                    aria-hidden='true'
+                  />
+                  <a
+                    href={`mailto:${value}`}
+                    className='text-primary-600 hover:underline leading-relaxed break-all'
+                  >
+                    <span className='sr-only'>Email</span>
+                    {String(value)}
+                  </a>
+                </div>
+              </div>
+            );
+          }
 
           return (
             <div key={key} className='text-sm'>
@@ -146,21 +173,21 @@ export default function LegislativeChamber() {
           <div className='flex flex-col space-y-2 text-sm pb-4'>
             {chamberData.address && (
               <div className='flex items-start'>
-                <MapPin className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+                <MapPinIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
                 <span className='text-gray-800'>{chamberData.address}</span>
               </div>
             )}
 
             {chamberData.trunkline && (
               <div className='flex items-start'>
-                <Phone className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+                <PhoneIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
                 <span className='text-gray-800'>{chamberData.trunkline}</span>
               </div>
             )}
 
             {chamberData.website && (
               <div className='flex items-start'>
-                <Globe className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+                <GlobeIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
                 <a
                   href={
                     chamberData.website.startsWith('http')
@@ -172,7 +199,7 @@ export default function LegislativeChamber() {
                   className='text-primary-600 hover:underline flex items-center'
                 >
                   <span>{chamberData.website}</span>
-                  <ExternalLink className='ml-1 h-3.5 w-3.5' />
+                  <ExternalLinkIcon className='ml-1 h-3.5 w-3.5' />
                 </a>
               </div>
             )}

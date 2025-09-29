@@ -867,6 +867,7 @@ const FloodControlProjectsTable: React.FC = () => {
                 leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
                 onClick={handleExportData}
                 disabled={isExporting}
+                className='cursor-pointer'
               >
                 {isExporting ? 'Exporting...' : 'Export Data'}
               </Button>

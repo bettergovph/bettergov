@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Compass, Globe, Search, Grid3x3, List } from 'lucide-react';
+import {
+  CompassIcon,
+  GlobeIcon,
+  SearchIcon,
+  Grid3x3Icon,
+  ListIcon,
+} from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
@@ -445,7 +451,7 @@ const VisaPage: React.FC = () => {
               </h1>
               <p className='text-xl opacity-90 mb-6'>{t('hero.subtitle')}</p>
               <div className='flex items-center space-x-2 text-sm'>
-                <Globe className='h-4 w-4' />
+                <GlobeIcon className='h-4 w-4' />
                 <span>{t('hero.dataSource')}</span>
               </div>
               <Link to='/travel/visa-types'>
@@ -457,7 +463,7 @@ const VisaPage: React.FC = () => {
             <div className='self-start md:w-1/3'>
               <div className='bg-white rounded-lg shadow-lg p-6 text-gray-800'>
                 <h2 className='text-xl font-semibold mb-4 flex items-center'>
-                  <Compass className='mr-2 h-5 w-5 text-blue-600' />
+                  <CompassIcon className='mr-2 h-5 w-5 text-blue-600' />
                   {t('quickCheck.title')}
                 </h2>
                 <p className='text-sm text-gray-800 mb-4'>
@@ -481,7 +487,7 @@ const VisaPage: React.FC = () => {
         <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <div className='relative w-full md:w-96'>
-              <Search className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
+              <SearchIcon className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
               <input
                 ref={searchInputRef}
                 type='text'
@@ -503,7 +509,7 @@ const VisaPage: React.FC = () => {
                 aria-pressed={viewMode === 'grid' || !viewMode}
                 aria-label='Switch to grid view'
               >
-                <Grid3x3 className='h-4 w-4' />
+                <Grid3x3Icon className='h-4 w-4' />
                 Grid View
               </button>
               <button
@@ -516,7 +522,7 @@ const VisaPage: React.FC = () => {
                 aria-pressed={viewMode === 'list'}
                 aria-label='Switch to detail view'
               >
-                <List className='h-4 w-4' />
+                <ListIcon className='h-4 w-4' />
                 Detail View
               </button>
             </div>
@@ -576,7 +582,7 @@ const VisaPage: React.FC = () => {
             </div>
             {filteredCountries.length === 0 && (
               <div className='text-center py-12 text-gray-500'>
-                <Search className='mx-auto h-12 w-12 mb-4 opacity-50' />
+                <SearchIcon className='mx-auto h-12 w-12 mb-4 opacity-50' />
                 <p className='text-lg'>
                   No countries found matching your search.
                 </p>
@@ -751,7 +757,7 @@ const VisaPage: React.FC = () => {
                     ))
                   ) : (
                     <div className='text-center py-8 text-gray-800'>
-                      <Search className='mx-auto h-8 w-8 mb-2 opacity-50' />
+                      <SearchIcon className='mx-auto h-8 w-8 mb-2 opacity-50' />
                       <p>{t('countryList.noResults')}</p>
                     </div>
                   )}
@@ -778,7 +784,7 @@ const VisaPage: React.FC = () => {
                 <div className='bg-white rounded-lg shadow-md p-6 h-full'>
                   <div className='flex flex-col items-center justify-center h-full py-12 text-center'>
                     <div className='bg-blue-100 p-4 rounded-full mb-4'>
-                      <Globe className='h-12 w-12 text-blue-600' />
+                      <GlobeIcon className='h-12 w-12 text-blue-600' />
                     </div>
                     <h2 className='text-2xl font-semibold mb-2'>
                       {t('defaultMessage.title')}
