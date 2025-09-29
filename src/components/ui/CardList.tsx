@@ -211,7 +211,8 @@ export function CardContactInfo({
             }
             target='_blank'
             rel='noopener noreferrer'
-            className={`text-primary-600 hover:underline ${textSize}`}
+            className={`text-primary-600 hover:underline ${textSize} truncate`}
+            title={contact.website.split(' ')[0]}
           >
             {contact.website.split(' ')[0]}
           </a>
