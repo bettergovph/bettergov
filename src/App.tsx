@@ -29,6 +29,8 @@ import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
 import DepartmentDetail from './pages/government/departments/[department]';
 import DepartmentsLayout from './pages/government/departments/layout';
+import JudiciaryLayout from './pages/government/judiciary/layout';
+import JudiciaryIndex from './pages/government/judiciary';
 import GovernmentLayout from './pages/government/layout';
 import ConstitutionalLayout from './pages/government/constitutional/layout';
 import ConstitutionalIndex from './pages/government/constitutional/index';
@@ -196,6 +198,10 @@ function App() {
               <Route path='departments' element={<DepartmentsLayout />}>
                 <Route index element={<DepartmentsIndex />} />
                 <Route path=':department' element={<DepartmentDetail />} />
+              </Route>
+
+              <Route path='judiciary' element={<JudiciaryLayout />}>
+                <Route index element={<JudiciaryIndex />} />
               </Route>
 
               <Route path='constitutional' element={<ConstitutionalLayout />}>

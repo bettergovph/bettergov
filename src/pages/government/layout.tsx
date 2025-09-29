@@ -38,6 +38,13 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       path: '/government/departments',
     },
     {
+      title: 'Judiciary',
+      description:
+        'The Supreme Court and three levels of lower courts, responsible for interpreting laws and administering justice.',
+      icon: <Building2 className='h-4 w-4' />,
+      path: '/government/judiciary',
+    },
+    {
       title: 'Constitutional Bodies',
       description:
         'Independent bodies created by the Constitution with specific mandates.',
