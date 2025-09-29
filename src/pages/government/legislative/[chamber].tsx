@@ -77,7 +77,6 @@ function LegislativeDetailSection({
                   <a
                     href={`mailto:${value}`}
                     className='text-primary-600 hover:underline leading-relaxed break-all'
-                   
                   >
                     <span className='sr-only'>Email</span>
                     {String(value)}
