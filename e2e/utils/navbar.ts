@@ -42,7 +42,10 @@ export async function navigate(
 
   // For desktop
   if (option) {
-    await page.getByRole('link', { name: option, exact: true }).first().hover();
+    await page
+      .getByRole('link', { name: option, exact: true })
+      .first()
+      .hover({ force: true });
   }
 
   if (subOption) {
