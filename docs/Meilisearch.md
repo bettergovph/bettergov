@@ -104,14 +104,23 @@ Now, let's tell the app how to connect to Meilisearch. Create a `.env` file in t
 VITE_MEILISEARCH_HOST=http://localhost
 VITE_MEILISEARCH_PORT=7700
 
-# Your master key (keep this secret!)
-MEILISEARCH_MASTER_KEY=your_master_key_here
+# Your master key (keep this secret! Can be any value you choose)
+# Example: aSampleMasterKey
+MEILISEARCH_MASTER_KEY=aSampleMasterKey
 
 # Search key for the frontend (we'll generate this in Step 4)
 VITE_MEILISEARCH_SEARCH_API_KEY=your_search_api_key_here
+
+# Perplexity API key (required for contractor data processing)
+# Get your key at: https://www.perplexity.ai/settings/api
+PERPLEXITY_API_KEY=your_perplexity_api_key_here
 ```
 
-**Quick tip:** The master key is like your admin password - it can do everything. The search key is read-only, perfect for the frontend where users will be searching
+**Important notes:**
+
+- The master key can be any value you choose (e.g., "aSampleMasterKey", "mySecretKey123", etc.) - it's like your admin password that can do everything
+- The search key is read-only, perfect for the frontend where users will be searching
+- As noted in the [Meilisearch docs](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch#running-meilisearch), the master key is required for production but can be any value for local development
 
 #### Step 3: Fire Up Meilisearch
 
@@ -150,9 +159,24 @@ You'll know it's working when you see messages like:
 
 Keep this terminal window open while you're developing!
 
-#### Step 4: Generate Your Search Key
+#### Step 4: Populate Initial Data
 
-Almost there! Now we need to create a special key that the website will use for searching. In a new terminal window, run:
+Before generating keys, you need to populate Meilisearch with data:
+
+```bash
+# First, add the main government data
+npm run index:meilisearch
+
+# Then add flood control data
+npm run index:flood-control:arcgis
+
+# Finally, add contractor profiles (requires PERPLEXITY_API_KEY)
+npm run index:contractor-profiles
+```
+
+#### Step 5: Generate Your Search Key
+
+Now we need to create a special key that the website will use for searching. In a new terminal window, run:
 
 ```bash
 npm run index:create-key
@@ -166,9 +190,34 @@ VITE_MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
 
 This key can only search - it can't modify data, making it safe to use in the browser
 
+#### Step 6: Verify Everything Works
+
+Start your development server and test the search functionality:
+
+```bash
+npm run dev
+```
+
+Visit http://localhost:3333 and try searching for government services to ensure everything is working correctly
+
 ### Loading Your Data
 
 Now for the fun part - let's populate Meilisearch with all the government data!
+
+#### Quick Setup (All Indexes)
+
+For convenience, you can load all indexes at once:
+
+```bash
+# Load all indexes in one command
+npm run index:all
+```
+
+This runs the following commands in sequence:
+
+1. `npm run index:meilisearch` - Main government data
+2. `npm run index:flood-control:arcgis` - Flood control projects
+3. `npm run index:contractor-profiles` - Contractor profiles
 
 #### The Main Index
 
@@ -208,9 +257,12 @@ Make contractor profiles searchable (run these in order):
 
 ```bash
 # Step 1: Download the latest contractor data
+# Note: Requires PERPLEXITY_API_KEY in your .env file
+# Get your API key at: https://www.perplexity.ai/settings/api
 npm run fetch:contractor-profiles
 
 # Step 2: Clean up and remove duplicates
+# Note: Also requires PERPLEXITY_API_KEY
 npm run process:unique-contractors
 
 # Step 3: Add to the search index
@@ -267,8 +319,8 @@ This is automatically run during the build process.
 
 These scripts work together to keep contractor information up-to-date:
 
-1. **`fetch_contractor_profiles.cjs`** - Downloads the latest contractor data
-2. **`process_contractors.cjs`** - Cleans up the data and removes duplicates
+1. **`fetch_contractor_profiles.cjs`** - Downloads the latest contractor data (requires `PERPLEXITY_API_KEY` - get it at [Perplexity AI Settings](https://www.perplexity.ai/settings/api))
+2. **`process_contractors.cjs`** - Cleans up the data and removes duplicates (also requires `PERPLEXITY_API_KEY`)
 3. **`index_contractors.cjs`** - Makes the data searchable
 
 Run them in that order when updating contractor information.
