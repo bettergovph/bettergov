@@ -344,6 +344,7 @@ const FloodControlProjectsMap: React.FC = () => {
               }
               onClick={handleExportData}
               disabled={isExporting}
+              className='cursor-pointer'
             >
               {isExporting ? 'Exporting...' : 'Export Data'}
             </Button>

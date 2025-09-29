@@ -745,6 +745,7 @@ const FloodControlProjects: React.FC = () => {
                 }
                 onClick={handleExportData}
                 disabled={isExporting}
+                className='cursor-pointer'
               >
                 {isExporting ? t('actions.exporting') : t('actions.exportData')}
               </Button>

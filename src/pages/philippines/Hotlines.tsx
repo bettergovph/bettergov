@@ -131,7 +131,7 @@ const Hotlines: React.FC = () => {
           <button
             key={category.id}
             onClick={() => setActiveCategory(category.id)}
-            className={`flex items-center px-4 py-2 rounded-full ${
+            className={`flex items-center px-4 py-2 rounded-full cursor-pointer ${
               activeCategory === category.id
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
