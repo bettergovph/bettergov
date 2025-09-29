@@ -281,8 +281,6 @@ const VisaPage: React.FC = () => {
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Pagination removed for grid view
-
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
     if (!viewMode) {
@@ -580,8 +578,6 @@ const VisaPage: React.FC = () => {
                 </p>
               </div>
             )}
-
-            {/* Pagination Controls removed for grid view */}
           </div>
         )}
 
