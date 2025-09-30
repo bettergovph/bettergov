@@ -137,8 +137,8 @@
   display: flex !important;
   align-items: center !important;
   position: relative !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0 0 0.5rem 0 !important;
+  padding: 0 0 0 1rem !important;
 }
 
 .ais-RefinementList-label {
@@ -147,7 +147,7 @@
   cursor: pointer !important;
   width: 100% !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 0.25rem 0 !important;
   position: relative !important;
 }
 

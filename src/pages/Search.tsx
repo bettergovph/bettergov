@@ -174,8 +174,8 @@ const SearchPage: React.FC = () => {
             <div className='bg-white rounded-lg shadow-sm p-4 mb-6'>
               <h3 className='text-lg font-semibold mb-4'>Filter By</h3>
 
-              <div className='mb-4'>
-                <h4 className='font-medium mb-2'>Type</h4>
+              <div className='mb-6'>
+                <h4 className='font-medium mb-3'>Type</h4>
                 <RefinementList
                   attribute='type'
                   classNames={{
@@ -190,8 +190,8 @@ const SearchPage: React.FC = () => {
                 />
               </div>
 
-              <div className='mb-4'>
-                <h4 className='font-medium mb-2'>Category</h4>
+              <div className='mb-6'>
+                <h4 className='font-medium mb-3'>Category</h4>
                 <RefinementList
                   attribute='category'
                   classNames={{
@@ -207,7 +207,7 @@ const SearchPage: React.FC = () => {
               </div>
 
               <div>
-                <h4 className='font-medium mb-2'>Subcategory</h4>
+                <h4 className='font-medium mb-3'>Subcategory</h4>
                 <RefinementList
                   attribute='subcategory'
                   classNames={{
