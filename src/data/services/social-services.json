@@ -178,23 +178,5 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Apply for Small Business Wage Subsidy (SBWS) Online",
-    "url": "https://www.sss.gov.ph/",
-    "id": "c9d5d924-121d-484c-844e-d83b792744f0",
-    "slug": "apply-for-small-business-wage-subsidy-sbws-online",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Social Services",
-      "slug": "social-services"
-    },
-    "subcategory": {
-      "name": "Financial Assistance",
-      "slug": "financial-assistance"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
   }
 ]
