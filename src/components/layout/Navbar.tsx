@@ -15,6 +15,7 @@ import { LanguageType } from '../../types';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const location = useLocation();
 
@@ -52,6 +53,14 @@ const Navbar: React.FC = () => {
       (normalizedHref !== '/' &&
         normalizedPath.startsWith(normalizedHref + '/'))
     );
+  };
+
+  const handleDropdownMouseEnter = (label: string) => {
+    setHoveredDropdown(label);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    setHoveredDropdown(null);
   };
 
   return (
@@ -122,7 +131,12 @@ const Navbar: React.FC = () => {
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
-                <div key={item.label} className='relative group'>
+                <div
+                  key={item.label}
+                  className='relative group'
+                  onMouseEnter={() => handleDropdownMouseEnter(item.label)}
+                  onMouseLeave={handleDropdownMouseLeave}
+                >
                   <Link
                     to={item.href}
                     className={`flex items-center font-medium transition-colors ${
@@ -143,7 +157,13 @@ const Navbar: React.FC = () => {
                     )}
                   </Link>
                   {item.children && (
-                    <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
+                    <div
+                      className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                        hoveredDropdown === item.label
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }`}
+                    >
                       <div
                         className='py-1'
                         role='menu'
