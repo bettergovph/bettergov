@@ -153,11 +153,6 @@ const Hotlines: React.FC = () => {
             >
               <div className='p-5'>
                 <h3 className='font-bold text-lg mb-2'>{hotline.name}</h3>
-                {hotline.description && (
-                  <p className='text-gray-800 text-sm mb-3'>
-                    {hotline.description}
-                  </p>
-                )}
                 <div className='space-y-2'>
                   {hotline.numbers.map((number, idx) => (
                     <div key={idx} className='flex items-center'>
