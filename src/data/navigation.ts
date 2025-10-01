@@ -114,7 +114,7 @@ export const footerNavigation = {
   ],
   socialLinks: [
     { label: 'Facebook', href: 'https://facebook.com/bettergovph' },
-    { label: 'Discord', href: 'https://discord.gg/bettergovph' },
+    { label: 'Discord', href: '/discord' },
     // { label: 'Instagram', href: 'https://instagram.com/govph' },
     // { label: 'YouTube', href: 'https://youtube.com/govph' },
   ],
