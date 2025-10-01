@@ -3,8 +3,7 @@
     {
       "name": "National Emergency Hotline",
       "category": "Emergency",
-      "numbers": ["911"],
-      "description": "National emergency response hotline"
+      "numbers": ["911"]
     }
   ],
   "disasterHotlines": [
@@ -140,8 +139,7 @@
         "0917-899-8727 (USAP)",
         "989-8727 (USAP)",
         "(02) 8531-9001 to 10 local 201"
-      ],
-      "description": "Mental health crisis hotline"
+      ]
     }
   ],
   "criticalHotlines": [
