@@ -432,18 +432,6 @@ const VisaPage: React.FC = () => {
     }
   };
 
-  // Auto-open dialog when country parameter is present in URL
-  useEffect(() => {
-    if (
-      selectedCountry &&
-      selectedCountry.trim() !== '' &&
-      countryRequirements.has(selectedCountry)
-    ) {
-      setDialogCountry(selectedCountry);
-      setDialogOpen(true);
-    }
-  }, [selectedCountry, countryRequirements]);
-
   return (
     <div className='bg-gray-50'>
       {/* Hero Section */}
