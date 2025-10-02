@@ -22,6 +22,7 @@ const ForexPage: React.FC = () => {
   const [timeframe, setTimeframe] = useState<'1W' | '1M' | '3M' | '6M' | '1Y'>(
     '1M'
   );
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Function to get currency icon
   const getCurrencyIcon = (code: string, size = 'h-6 w-6') => {
@@ -144,33 +145,62 @@ const ForexPage: React.FC = () => {
           <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
             {/* Currency Selection Panel */}
             <div className='bg-white rounded-lg shadow-md p-6'>
-              <h2 className='text-xl font-bold mb-4 text-gray-800'>
-                Currencies
-              </h2>
-              <div className='space-y-2'>
-                {forexRates.map(rate => (
-                  <button
-                    key={rate.code}
-                    onClick={() => setSelectedCurrency(rate.code)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
-                      selectedCurrency === rate.code
-                        ? 'bg-primary-100 text-primary-800'
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    <div className='flex items-center'>
-                      <div>
-                        <div className='font-medium'>{rate.code}</div>
-                        <div className='text-xs text-gray-800'>
-                          {formatCurrencyName(rate.currency)}
+              <div className='sticky top-0 bg-white pb-4'>
+                <h2 className='text-xl font-bold mb-3 text-gray-800'>
+                  Currencies
+                </h2>
+                <div className='relative mb-4'>
+                  <input
+                    type='text'
+                    placeholder='Search currencies...'
+                    className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm'
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600'
+                    >
+                      <LucideIcons.X className='h-4 w-4' />
+                    </button>
+                  )}
+                </div>
+              </div>
+              <div className='space-y-2 max-h-[500px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400'>
+                {forexRates
+                  .filter(
+                    rate =>
+                      rate.code
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase()) ||
+                      rate.currency
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
+                  )
+                  .map(rate => (
+                    <button
+                      key={rate.code}
+                      onClick={() => setSelectedCurrency(rate.code)}
+                      className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
+                        selectedCurrency === rate.code
+                          ? 'bg-primary-100 text-primary-800'
+                          : 'hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className='flex items-center'>
+                        <div>
+                          <div className='font-medium'>{rate.code}</div>
+                          <div className='text-xs text-gray-800'>
+                            {formatCurrencyName(rate.currency)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <span className='font-semibold'>
-                      {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
-                    </span>
-                  </button>
-                ))}
+                      <span className='font-semibold'>
+                        {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
+                      </span>
+                    </button>
+                  ))}
               </div>
             </div>
 
