@@ -8,21 +8,19 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Test Philippines dropdown menu
-    await navigate(page, 'Philippines');
     if (isMobile) {
+      await navigate(page, 'Philippines');
       await expect(
         page.getByRole('link', { name: 'About the Philippines' })
       ).toBeVisible();
+      // Navigate to About Philippines
+      await navigate(page, null, 'About the Philippines', false);
     } else {
-      await expect(
-        page.getByRole('menuitem', { name: 'About the Philippines' })
-      ).toBeVisible();
+      // For desktop, navigate directly to the submenu item
+      await navigate(page, 'Philippines', 'About the Philippines');
     }
 
-    // Navigate to About Philippines
-    await navigate(page, null, 'About the Philippines', false);
-
-    await expect(page.url()).toContain('/philippines/about');
+    expect(page.url()).toContain('/philippines/about');
     await expect(page.getByRole('heading', { level: 1 })).toContainText(
       'About the Philippines'
     );
@@ -52,7 +50,7 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: /Join Us/i })
       .first()
       .click();
-    await expect(page.url()).toContain('/join-us');
+    expect(page.url()).toContain('/join-us');
     await expect(page.getByRole('heading').first()).toContainText(
       'Join the #CivicTech Revolution'
     );
@@ -63,7 +61,7 @@ test.describe('Navigation', () => {
 
     // Click Project Ideas link
     await page.getByRole('link', { name: 'Project Ideas' }).first().click();
-    await expect(page.url()).toContain('/ideas');
+    expect(page.url()).toContain('/ideas');
   });
 
   test('should have working footer links', async ({ page }) => {
@@ -78,7 +76,7 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: 'About' });
     await expect(aboutLink).toBeVisible();
     await aboutLink.click();
-    await expect(page.url()).toContain('/about');
+    expect(page.url()).toContain('/about');
 
     // Go back to homepage
     await page.goto('/');
@@ -90,7 +88,7 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: 'Sitemap' });
     await expect(sitemapLink).toBeVisible();
     await sitemapLink.click();
-    await expect(page.url()).toContain('/sitemap');
+    expect(page.url()).toContain('/sitemap');
   });
 
   test('branch navigation should work', async ({ page }) => {
@@ -109,6 +107,6 @@ test.describe('Navigation', () => {
 
     branch = page.locator('a.bg-primary-500').first();
     await expect(branch).toContainText('Local Government Units');
-    await expect(page.url()).toContain('/government/local');
+    expect(page.url()).toContain('/government/local');
   });
 });

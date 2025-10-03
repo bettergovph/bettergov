@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
@@ -15,7 +15,9 @@ import { LanguageType } from '../../types';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -35,6 +37,30 @@ const Navbar: React.FC = () => {
 
   const changeLanguage = (newLanguage: LanguageType) => {
     i18n.changeLanguage(newLanguage);
+  };
+
+  const isActiveRoute = (href: string) => {
+    // Handle edge cases: null, undefined, or empty href
+    if (!href) return false;
+
+    // Normalize paths by removing trailing slashes
+    const normalizedPath = location.pathname.replace(/\/$/, '');
+    const normalizedHref = href.replace(/\/$/, '');
+
+    // Check exact match or if current path starts with href
+    return (
+      normalizedPath === normalizedHref ||
+      (normalizedHref !== '/' &&
+        normalizedPath.startsWith(normalizedHref + '/'))
+    );
+  };
+
+  const handleDropdownMouseEnter = (label: string) => {
+    setHoveredDropdown(label);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    setHoveredDropdown(null);
   };
 
   return (
@@ -102,39 +128,63 @@ const Navbar: React.FC = () => {
 
           {/* Desktop navigation */}
           <div className='hidden lg:flex items-center space-x-8 pr-24'>
-            {mainNavigation.map(item => (
-              <div key={item.label} className='relative group'>
-                <Link
-                  to={item.href}
-                  className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+            {mainNavigation.map(item => {
+              const isActive = isActiveRoute(item.href);
+              return (
+                <div
+                  key={item.label}
+                  className='relative group'
+                  onMouseEnter={() => handleDropdownMouseEnter(item.label)}
+                  onMouseLeave={handleDropdownMouseLeave}
                 >
-                  {t(`navbar.${item.label.toLowerCase()}`)}
+                  <Link
+                    to={item.href}
+                    className={`flex items-center font-medium transition-colors ${
+                      isActive
+                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
+                        : 'text-gray-700 hover:text-primary-600'
+                    }`}
+                  >
+                    {t(`navbar.${item.label.toLowerCase()}`)}
+                    {item.children && (
+                      <ChevronDownIcon
+                        className={`ml-1 h-4 w-4 transition-colors ${
+                          isActive
+                            ? 'text-primary-600'
+                            : 'text-gray-800 group-hover:text-primary-600'
+                        }`}
+                      />
+                    )}
+                  </Link>
                   {item.children && (
-                    <ChevronDownIcon className='ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors' />
-                  )}
-                </Link>
-                {item.children && (
-                  <div className='absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50'>
                     <div
-                      className='py-1'
-                      role='menu'
-                      aria-orientation='vertical'
+                      className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                        hoveredDropdown === item.label
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }`}
                     >
-                      {item.children.map(child => (
-                        <Link
-                          key={child.label}
-                          to={child.href}
-                          className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
-                          role='menuitem'
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                      <div
+                        className='py-1'
+                        role='menu'
+                        aria-orientation='vertical'
+                      >
+                        {item.children.map(child => (
+                          <Link
+                            key={child.label}
+                            to={child.href}
+                            className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            role='menuitem'
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </div>
           <div className='hidden lg:flex items-center space-x-6'>
             <Link
@@ -178,37 +228,44 @@ const Navbar: React.FC = () => {
       {/* Mobile menu */}
       <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
         <div className='container mx-auto px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white'>
-          {mainNavigation.map(item => (
-            <div key={item.label}>
-              <button
-                onClick={() => toggleSubmenu(item.label)}
-                className='w-full flex justify-between items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
-              >
-                {t(`navbar.${item.label.toLowerCase()}`)}
-                {item.children && (
-                  <ChevronDownIcon
-                    className={`h-5 w-5 transition-transform ${
-                      activeMenu === item.label ? 'transform rotate-180' : ''
-                    }`}
-                  />
+          {mainNavigation.map(item => {
+            const isActive = isActiveRoute(item.href);
+            return (
+              <div key={item.label}>
+                <button
+                  onClick={() => toggleSubmenu(item.label)}
+                  className={`w-full flex justify-between items-center px-4 py-2 text-base font-medium transition-colors ${
+                    isActive
+                      ? 'text-primary-600 bg-primary-50'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+                  }`}
+                >
+                  {t(`navbar.${item.label.toLowerCase()}`)}
+                  {item.children && (
+                    <ChevronDownIcon
+                      className={`h-5 w-5 transition-transform ${
+                        activeMenu === item.label ? 'transform rotate-180' : ''
+                      } ${isActive ? 'text-primary-600' : ''}`}
+                    />
+                  )}
+                </button>
+                {item.children && activeMenu === item.label && (
+                  <div className='pl-6 py-2 space-y-1 bg-gray-50'>
+                    {item.children.map(child => (
+                      <Link
+                        key={child.label}
+                        to={child.href}
+                        onClick={closeMenu}
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-500'
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              </button>
-              {item.children && activeMenu === item.label && (
-                <div className='pl-6 py-2 space-y-1 bg-gray-50'>
-                  {item.children.map(child => (
-                    <Link
-                      key={child.label}
-                      to={child.href}
-                      onClick={closeMenu}
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-500'
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
           <Link
             to='/join-us'
             onClick={closeMenu}
