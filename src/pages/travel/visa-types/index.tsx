@@ -1,17 +1,9 @@
-import {
-  AlertCircleIcon,
-  BriefcaseIcon,
-  ChevronRightIcon,
-  CompassIcon,
-  FileTextIcon,
-  PlaneIcon,
-  SearchIcon,
-  UsersIcon,
-} from 'lucide-react';
+import { AlertCircleIcon, ChevronRightIcon, SearchIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
-import { VisaType } from '../../../types/visa';
+import { VisaType } from '@/types/visa.ts';
+import { getCategoryIcon } from './visa.util';
 
 interface VisaCategory {
   id: string;
@@ -34,22 +26,6 @@ const VisaTypesPage: React.FC = () => {
     icon: getCategoryIcon(category.id),
     visaTypes: category.visaTypes,
   }));
-
-  // Helper function to get the appropriate icon for each category
-  function getCategoryIcon(categoryId: string) {
-    switch (categoryId) {
-      case 'immigrant':
-        return <UsersIcon size={24} />;
-      case 'non-immigrant':
-        return <PlaneIcon size={24} />;
-      case 'special':
-        return <BriefcaseIcon size={24} />;
-      case 'permits':
-        return <FileTextIcon size={24} />;
-      default:
-        return <CompassIcon size={24} />;
-    }
-  }
 
   // Handle category selection
   const handleCategoryClick = (categoryId: string) => {
