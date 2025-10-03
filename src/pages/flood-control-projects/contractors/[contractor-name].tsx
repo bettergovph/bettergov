@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -172,7 +172,7 @@ const ResultsStatistics: React.FC<{
     <div className='bg-white p-6 rounded-t-lg shadow-sm mb-6'>
       <div className='flex items-center mb-4'>
         <Building2 className='w-6 h-6 text-blue-600 mr-3' />
-        <h3 className='text-xl font-semibold text-gray-900'>{contractor}</h3>
+        <h3 className='text-3xl font-semibold text-gray-900'>{contractor}</h3>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
         <div className='bg-blue-50 p-4 rounded-md'>
@@ -183,7 +183,7 @@ const ResultsStatistics: React.FC<{
         </div>
         <div className='bg-green-50 p-4 rounded-md'>
           <p className='text-sm text-gray-800'>Total Contract Cost</p>
-          <p className='text-3xl font-bold text-green-700'>
+          <p className='text-3xl md:text-sm lg:text-xl xl:text-3xl font-bold text-green-700'>
             ₱
             {estimatedTotalContractCost.toLocaleString(undefined, {
               maximumFractionDigits: 0,
@@ -192,7 +192,7 @@ const ResultsStatistics: React.FC<{
         </div>
         <div className='bg-purple-50 p-4 rounded-md'>
           <p className='text-sm text-gray-800'>Average Project Cost</p>
-          <p className='text-3xl font-bold text-purple-700'>
+          <p className='text-3xl md:text-sm lg:text-xl xl:text-3xl font-bold text-purple-700'>
             ₱
             {avgCostPerProject.toLocaleString(undefined, {
               maximumFractionDigits: 0,
@@ -511,6 +511,8 @@ const findContractorBySlug = (slug: string): DataItem | null => {
   );
 };
 
+const initialCenter: LatLngExpression = [12.8797, 121.774];
+
 // Main Contractor Detail component
 const ContractorDetail: React.FC = () => {
   const { 'contractor-name': contractorSlug } = useParams<{
@@ -525,9 +527,6 @@ const ContractorDetail: React.FC = () => {
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const mapRef = useRef<L.Map>(null);
 
-  const initialCenter: LatLngExpression = useMemo(() => {
-    return [12.8797, 121.774];
-  }, []);
   const initialZoom = 6;
 
   // function to calculate bounds from projects with coordinates
@@ -570,7 +569,7 @@ const ContractorDetail: React.FC = () => {
         mapRef.current.setView(initialCenter, initialZoom);
       }
     }
-  }, [mapProjects, initialCenter, initialZoom]);
+  }, [mapProjects, initialZoom]);
 
   useEffect(() => {
     if (contractorSlug) {
