@@ -42,13 +42,24 @@ export async function navigate(
 
   // For desktop
   if (option) {
-    await page.getByRole('link', { name: option, exact: true }).first().hover();
-  }
+    const linkElement = page
+      .getByRole('link', { name: option, exact: true })
+      .first();
 
-  if (subOption) {
-    await page
-      .getByRole('menuitem', { name: subOption, exact: true })
-      .first()
-      .click();
+    // If we have a subOption, use a more direct approach
+    if (subOption) {
+      // Hover over the main link
+      await linkElement.hover();
+
+      // Wait for the menu item to be visible
+      const menuItem = page.getByRole('menuitem', { name: subOption }).first();
+      await menuItem.waitFor({ state: 'visible', timeout: 5000 });
+
+      // Click the menu item
+      await menuItem.click({ timeout: 10000 });
+    } else {
+      // Just hover if no subOption
+      await linkElement.hover();
+    }
   }
 }

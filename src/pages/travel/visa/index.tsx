@@ -279,15 +279,7 @@ const VisaPage: React.FC = () => {
   >(new Map());
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(24); // 4x6 grid
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentCountries = filteredCountries.slice(startIndex, endIndex);
 
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
@@ -379,8 +371,6 @@ const VisaPage: React.FC = () => {
       );
       setFilteredCountries(filtered);
     }
-    // Reset to first page when search changes
-    setCurrentPage(1);
   }, [searchTerm, allCountries]);
 
   const selectCountry = (country: string) => {
@@ -536,7 +526,7 @@ const VisaPage: React.FC = () => {
               Visa Requirements by Country
             </h2>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-              {currentCountries.map(country => {
+              {filteredCountries.map(country => {
                 const requirement = countryRequirements.get(country);
                 const iso2 = getCountryIso2(country);
                 return (
@@ -587,140 +577,6 @@ const VisaPage: React.FC = () => {
                 <p className='text-lg'>
                   No countries found matching your search.
                 </p>
-              </div>
-            )}
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className='mt-8 pt-6 border-t border-gray-200'>
-                {/* Results Summary */}
-                <div className='flex items-center justify-center mb-6'>
-                  <div className='rounded-full px-4 py-2 text-sm text-gray-600 font-medium'>
-                    Showing{' '}
-                    <span className='font-semibold text-gray-900'>
-                      {startIndex + 1}
-                    </span>{' '}
-                    to{' '}
-                    <span className='font-semibold text-gray-900'>
-                      {Math.min(endIndex, filteredCountries.length)}
-                    </span>{' '}
-                    of{' '}
-                    <span className='font-semibold text-blue-600'>
-                      {filteredCountries.length}
-                    </span>{' '}
-                    countries
-                  </div>
-                </div>
-
-                {/* Pagination Navigation */}
-                <div className='flex items-center justify-center space-x-2'>
-                  {/* Previous Button */}
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
-                  >
-                    <svg
-                      className='w-4 h-4 mr-1.5'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M15 19l-7-7 7-7'
-                      />
-                    </svg>
-                    Previous
-                  </button>
-
-                  {/* Page Numbers */}
-                  <div className='flex items-center space-x-1'>
-                    {/* First page if not in range */}
-                    {currentPage > 3 && (
-                      <>
-                        <button
-                          onClick={() => setCurrentPage(1)}
-                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
-                        >
-                          1
-                        </button>
-                        {currentPage > 4 && (
-                          <span className='px-2 text-gray-400'>...</span>
-                        )}
-                      </>
-                    )}
-
-                    {/* Page numbers around current page */}
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      const pageNum =
-                        Math.max(1, Math.min(totalPages - 4, currentPage - 2)) +
-                        i;
-                      if (pageNum > totalPages) return null;
-                      return (
-                        <button
-                          key={pageNum}
-                          onClick={() => setCurrentPage(pageNum)}
-                          className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                            currentPage === pageNum
-                              ? 'text-white bg-blue-600 border border-blue-600 shadow-sm'
-                              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400'
-                          }`}
-                        >
-                          {pageNum}
-                        </button>
-                      );
-                    })}
-
-                    {/* Last page if not in range */}
-                    {currentPage < totalPages - 2 && (
-                      <>
-                        {currentPage < totalPages - 3 && (
-                          <span className='px-2 text-gray-400'>...</span>
-                        )}
-                        <button
-                          onClick={() => setCurrentPage(totalPages)}
-                          className='px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200'
-                        >
-                          {totalPages}
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Next Button */}
-                  <button
-                    onClick={() =>
-                      setCurrentPage(Math.min(totalPages, currentPage + 1))
-                    }
-                    disabled={currentPage === totalPages}
-                    className='flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 disabled:hover:border-blue-600 transition-all duration-200'
-                  >
-                    Next
-                    <svg
-                      className='w-4 h-4 ml-1.5'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M9 5l7 7-7 7'
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Page Info */}
-                <div className='flex items-center justify-center mt-4'>
-                  <span className='text-xs text-gray-500'>
-                    Page {currentPage} of {totalPages}
-                  </span>
-                </div>
               </div>
             )}
           </div>
