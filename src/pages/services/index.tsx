@@ -1,6 +1,6 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
@@ -74,6 +74,8 @@ export default function ServicesPage() {
     'page',
     parseAsInteger.withDefault(1)
   );
+
+  const contentLayoutRef = useRef<HTMLDivElement>(null);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -218,7 +220,10 @@ export default function ServicesPage() {
         <meta property='og:url' content={canonicalUrl} />
         <meta property='og:image' content='https://gov.ph/ph-logo.webp' />
       </Helmet>
-      <div className='container mx-auto px-4 py-6 md:py-12'>
+      <div
+        className='container mx-auto px-4 py-6 md:py-12'
+        ref={contentLayoutRef}
+      >
         {/* Header */}
         <header className='text-center mb-8 md:mb-12'>
           <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
@@ -511,15 +516,13 @@ export default function ServicesPage() {
                 <button
                   onClick={() => {
                     setCurrentPage(prev => prev + 1);
-                    // Focus management for better keyboard navigation
-                    setTimeout(() => {
-                      const nextPageFirstItem = document.querySelector(
-                        '[role="listitem"]:last-child'
-                      );
-                      if (nextPageFirstItem instanceof HTMLElement) {
-                        nextPageFirstItem.focus();
+
+                    contentLayoutRef.current?.firstElementChild?.scrollIntoView(
+                      {
+                        behavior: 'smooth',
+                        block: 'start',
                       }
-                    }, 100);
+                    );
                   }}
                   className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
                   aria-label={`Load more services, showing ${Math.min(
