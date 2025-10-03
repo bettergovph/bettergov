@@ -34,6 +34,10 @@ Our goals include:
 - Accessibility features for users with disabilities
 - Regular updates and maintenance
 
+## Documentation
+
+For an easy-to-read overview of the project, visit the [BetterGov Docs](https://better-gov-docs.vercel.app/docs/about).
+
 ## Join Us as a Volunteer
 
 We're always looking for passionate individuals to help improve BetterGov.ph. We need volunteers with various skills:
