@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { SearchIcon, BookOpenIcon } from 'lucide-react';
+import { SearchIcon, BookOpenIcon, UsersIcon } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
+import { Card, CardHeader, CardContent } from '../../../components/ui/CardList';
 
 interface Committee {
   committee: string;
@@ -31,22 +32,22 @@ export default function SenateCommitteesPage() {
   }, [committees, searchTerm]);
 
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
-          <h1 className='text-2xl font-bold text-gray-900'>
+          <h1 className='text-3xl font-bold text-gray-900'>
             Senate Committees
           </h1>
-          <p className='text-gray-800 mt-1'>
-            {committees.length} permanent committees
+          <p className='text-gray-800 mt-2'>
+            {committees.length} permanent committees in the Senate
           </p>
         </div>
 
-        <div className='relative w-full md:w-64'>
+        <div className='relative w-full md:w-72'>
           <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
           <input
             type='search'
-            placeholder='Search committees...'
+            placeholder='Search committees or chairpersons...'
             className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
@@ -65,26 +66,28 @@ export default function SenateCommitteesPage() {
           <p className='text-gray-800'>Try adjusting your search term.</p>
         </div>
       ) : (
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <div className='grid grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 gap-6'>
           {filteredCommittees.map((committee: Committee, index) => (
-            <div
-              key={index}
-              className='bg-white rounded-lg border overflow-hidden'
-            >
-              <div className='p-4'>
-                <h3 className='font-medium text-gray-900 mb-2'>
+            <Card key={index} hover={true} className='h-full flex flex-col'>
+              <CardHeader className='flex-none'>
+                <h3 className='font-semibold text-base text-gray-900 leading-snug line-clamp-2 min-h-[2.5rem]'>
                   {committee.committee}
                 </h3>
-                <div className='flex items-start'>
-                  <div className='bg-primary-50 text-primary-700 text-xs font-medium px-2 py-1 rounded-md'>
-                    Chairperson
+              </CardHeader>
+              <CardContent className='flex-1 flex flex-col justify-between'>
+                <div className='flex items-center gap-2 text-sm'>
+                  <UsersIcon className='h-4 w-4 text-gray-400 flex-shrink-0' />
+                  <div className='flex flex-col'>
+                    <span className='text-xs font-medium text-gray-500 uppercase tracking-wide'>
+                      Chairperson
+                    </span>
+                    <span className='font-medium text-gray-900 mt-0.5'>
+                      {committee.chairperson}
+                    </span>
                   </div>
-                  <p className='ml-2 text-sm text-gray-700'>
-                    {committee.chairperson}
-                  </p>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}
