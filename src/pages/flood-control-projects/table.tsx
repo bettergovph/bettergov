@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -623,10 +623,17 @@ const FloodControlProjectsTable: React.FC = () => {
 
   // Handle filter change
   const handleFilterChange = (filterName: string, value: string) => {
-    setFilters(prev => ({
-      ...prev,
+    const newFilters = {
+      ...filters,
       [filterName]: value,
-    }));
+    };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
+    setFilters(newFilters);
   };
 
   // Build filter string for Meilisearch
@@ -675,6 +682,25 @@ const FloodControlProjectsTable: React.FC = () => {
 
     return filterStrings.length > 0 ? filterStrings.join(' AND ') : '';
   };
+
+  const provinceOptions = useMemo(() => {
+    if (filters.Region === 'National Capital Region') {
+      const nationalCapitalRegion = provinceData.Province.filter(
+        item => item.regCode === '13'
+      );
+      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      return [...nationalCapitalRegion, ...otherRegions];
+    }
+
+    if (filters.Region) {
+      const regionId = regionData.Region.find(
+        item => item.value === filters.Region
+      )?.regCode;
+      return provinceData.Province.filter(item => item.regCode === regionId);
+    }
+
+    return provinceData.Province;
+  }, [filters.Region]);
 
   // Export data function
   const handleExportData = async () => {
@@ -790,7 +816,7 @@ const FloodControlProjectsTable: React.FC = () => {
                 </label>
                 <FilterDropdown
                   name='Province'
-                  options={provinceData.Province}
+                  options={provinceOptions}
                   value={filters.Province}
                   onChange={value => handleFilterChange('Province', value)}
                   searchable
