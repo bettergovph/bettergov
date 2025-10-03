@@ -29,7 +29,9 @@ function LegislativeDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-b border-neutral-100 pl-3' : ''
+              level > 0
+                ? 'ml-4 border-l border-b border-neutral-100 pl-3 py-2'
+                : ''
             }`}
           >
             <LegislativeDetailSection data={item} level={level + 1} />
@@ -58,7 +60,7 @@ function LegislativeDetailSection({
     return (
       <div
         className={cn(
-          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
           level === 1 && 'rounded-2xl font-bold text-lg'
         )}
       >
