@@ -42,6 +42,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Visa Information', href: '/travel/visa' },
       { label: 'Visa Types', href: '/travel/visa-types' },
       { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
+      { label: 'Communicating', href: '/travel/communicating' },
       // { label: 'Tourist Destinations', href: '/travel/destinations' },
     ],
   },
