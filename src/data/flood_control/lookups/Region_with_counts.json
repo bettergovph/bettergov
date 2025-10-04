@@ -2,66 +2,82 @@
   "Region": [
     {
       "value": "Cordillera Administrative Region",
+      "regCode": "14",
       "count": 352
     },
     {
       "value": "National Capital Region",
+      "regCode": "13",
       "count": 1058
     },
     {
       "value": "Region I",
+      "regCode": "01",
       "count": 851
     },
     {
       "value": "Region II",
+      "regCode": "02",
       "count": 628
     },
     {
       "value": "Region III",
+      "regCode": "03",
       "count": 1617
     },
     {
       "value": "Region IV-A",
+      "regCode": "04",
       "count": 829
     },
     {
       "value": "Region IV-B",
+      "regCode": "17",
       "count": 498
     },
     {
       "value": "Region IX",
+      "regCode": "09",
       "count": 133
     },
     {
       "value": "Region V",
+      "regCode": "05",
       "count": 866
     },
     {
       "value": "Region VI",
+      "regCode": "06",
       "count": 505
     },
     {
       "value": "Region VII",
+      "regCode": "07",
       "count": 614
     },
     {
       "value": "Region VIII",
+      "regCode": "08",
       "count": 517
     },
     {
       "value": "Region X",
+      "regCode": "10",
       "count": 428
     },
     {
       "value": "Region XI",
+      "regCode": "11",
       "count": 356
     },
     {
       "value": "Region XII",
+      "regCode": "12",
       "count": 301
     },
     {
       "value": "Region XIII",
+      "regCode": "16",
       "count": 302
     }
   ]

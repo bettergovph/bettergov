@@ -98,7 +98,7 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
-        { label: 'Official Gov.ph', href: 'https://gov.ph' },
+        { label: 'Official Gov.ph', href: 'https://www.gov.ph' },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
         {

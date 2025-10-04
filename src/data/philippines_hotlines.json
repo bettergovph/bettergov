@@ -4,7 +4,7 @@
       "name": "National Emergency Hotline",
       "category": "Emergency",
       "numbers": ["911"],
-      "description": "National emergency response hotline"
+      "description": "Nationwide emergency hotline for police, fire, and medical assistance."
     }
   ],
   "disasterHotlines": [
@@ -17,7 +17,8 @@
         "(02) 8912-2665",
         "(02) 8912-5668",
         "(02) 8911-1873"
-      ]
+      ],
+      "description": "Central government agency coordinating disaster preparedness, response, and recovery efforts."
     },
     {
       "name": "Department of Social Welfare and Development",
@@ -27,7 +28,8 @@
         "(02) 8931-8101 to 07",
         "(02) 8856-3665 (Disaster Response Unit)",
         "(02) 8852-8081 (Disaster Response Unit)"
-      ]
+      ],
+      "description": "Provides social services, disaster relief, and assistance to affected families and communities."
     },
     {
       "name": "Red Cross",
@@ -37,7 +39,8 @@
         "(02) 8527-8385 to 95 (National Blood Center)",
         "(02) 8527-0000",
         "(02) 8790-2300"
-      ]
+      ],
+      "description": "Humanitarian organization offering emergency response, disaster relief, and blood donation services."
     }
   ],
   "securityHotlines": [
@@ -48,12 +51,14 @@
         "117 (Emergency Hotline)",
         "(02) 8722-0650",
         "0917-847-5757 (Text Hotline)"
-      ]
+      ],
+      "description": "Law enforcement hotline for crimes, threats, and public safety concerns."
     },
     {
       "name": "Bureau of Fire Protection (BFP)",
       "category": "Security",
-      "numbers": ["(02) 8426-0219", "(02) 8426-0246"]
+      "numbers": ["(02) 8426-0219", "(02) 8426-0246"],
+      "description": "Fire emergency hotline for fire prevention, rescue, and related emergencies."
     },
     {
       "name": "Philippine Coast Guard",
@@ -64,14 +69,16 @@
         "(02) 8527-3880 to 85",
         "0917-724-3682 (Text Hotline)",
         "0918-967-4697 (Text Hotline)"
-      ]
+      ],
+      "description": "Provides maritime safety, rescue, and law enforcement services in Philippine waters."
     }
   ],
   "transportHotlines": [
     {
       "name": "Metro Manila Development Authority (MMDA)",
       "category": "Transport",
-      "numbers": ["136 (Hotline)", "(02) 8882-4151 to 77"]
+      "numbers": ["136 (Hotline)", "(02) 8882-4151 to 77"],
+      "description": "Handles traffic management, road safety, and emergency response within Metro Manila."
     },
     {
       "name": "Department of Transportation (DOTr)",
@@ -80,12 +87,17 @@
         "7890 (Action Center Hotline)",
         "(02) 8790-8300",
         "(02) 8726-4925"
-      ]
+      ],
+      "description": "National transport authority managing public transportation services and passenger complaints."
     },
     {
       "name": "Land Transportation Office (LTO)",
       "category": "Transport",
-      "numbers": ["Text LTOHELP to 2600 (All networks)", "(02) 8922-9061 to 63"]
+      "numbers": [
+        "Text LTOHELP to 2600 (All networks)",
+        "(02) 8922-9061 to 63"
+      ],
+      "description": "Government office responsible for vehicle registration, licensing, and road safety enforcement."
     },
     {
       "name": "Land Transportation Franchising and Regulatory Board (LTFRB)",
@@ -95,31 +107,36 @@
         "(02) 8426-2515",
         "(02) 8426-2534",
         "0921-448-7777 (Text Hotline)"
-      ]
+      ],
+      "description": "Regulates and monitors public utility vehicles and addresses transport-related complaints."
     }
   ],
   "weatherHotlines": [
     {
       "name": "Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA)",
       "category": "Weather",
-      "numbers": ["(02) 8284-0800"]
+      "numbers": ["(02) 8284-0800"],
+      "description": "Provides weather forecasts, flood warnings, and typhoon advisories."
     },
     {
       "name": "Philippine Institute of Volcanology and Seismology (PHIVOLCS)",
       "category": "Weather",
-      "numbers": ["(02) 8426-1468 to 79"]
+      "numbers": ["(02) 8426-1468 to 79"],
+      "description": "Monitors and issues warnings for earthquakes, tsunamis, and volcanic eruptions."
     }
   ],
   "utilityHotlines": [
     {
       "name": "Manila Water",
       "category": "Utility",
-      "numbers": ["1627"]
+      "numbers": ["1627"],
+      "description": "Customer service hotline for water supply concerns in the East Zone of Metro Manila."
     },
     {
       "name": "Maynilad",
       "category": "Utility",
-      "numbers": ["1626", "0998-864-1446 (Text Hotline)"]
+      "numbers": ["1626", "0998-864-1446 (Text Hotline)"],
+      "description": "Customer service hotline for water supply concerns in the West Zone of Metro Manila."
     }
   ],
   "socialServicesHotlines": [
@@ -131,7 +148,8 @@
         "(02) 8734-8639 (DSWD-NCR)",
         "(02) 8723-0401 to 20 (PNP)",
         "(02) 3410-3213 (PNP-WCPC)"
-      ]
+      ],
+      "description": "Hotline for reporting and seeking help in cases of abuse or violence against women and children."
     },
     {
       "name": "National Center for Mental Health (NCMH)",
@@ -141,7 +159,7 @@
         "989-8727 (USAP)",
         "(02) 8531-9001 to 10 local 201"
       ],
-      "description": "Mental health crisis hotline"
+      "description": "Provides 24/7 crisis hotline and mental health support services."
     }
   ],
   "criticalHotlines": [

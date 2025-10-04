@@ -11,7 +11,8 @@ import {
   PhoneIcon,
   SearchIcon,
   AlertCircleIcon,
-  UmbrellaIcon,
+  AlertTriangleIcon,
+  CloudLightningIcon,
   ShieldIcon,
   BusIcon,
   DropletIcon,
@@ -36,7 +37,7 @@ const Hotlines: React.FC = () => {
     {
       id: 'disaster',
       name: 'Disaster',
-      icon: <UmbrellaIcon className='w-5 h-5' />,
+      icon: <AlertTriangleIcon className='w-5 h-5' />,
     },
     {
       id: 'security',
@@ -51,7 +52,7 @@ const Hotlines: React.FC = () => {
     {
       id: 'weather',
       name: 'Weather',
-      icon: <UmbrellaIcon className='w-5 h-5' />,
+      icon: <CloudLightningIcon className='w-5 h-5' />,
     },
     {
       id: 'utility',

@@ -198,25 +198,30 @@ export function CardContactInfo({
         </div>
       )}
 
-      {contact.website && (
-        <div className='flex items-start'>
-          <ExternalLinkIcon
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
-          />
-          <a
-            href={
-              contact.website.startsWith('http')
-                ? contact.website
-                : `https://${contact.website.split(' ')[0]}`
-            }
-            target='_blank'
-            rel='noopener noreferrer'
-            className={`text-primary-600 hover:underline ${textSize}`}
-          >
-            {contact.website.split(' ')[0]}
-          </a>
-        </div>
-      )}
+      {contact.website &&
+        (() => {
+          const cleanUrl = contact.website.split(' ')[0];
+          const href = contact.website.startsWith('http')
+            ? contact.website
+            : `https://${cleanUrl}`;
+
+          return (
+            <div className='flex items-start'>
+              <ExternalLinkIcon
+                className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+              />
+              <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={`text-primary-600 hover:underline ${textSize} truncate`}
+                title={cleanUrl}
+              >
+                {cleanUrl}
+              </a>
+            </div>
+          );
+        })()}
     </address>
   );
 }

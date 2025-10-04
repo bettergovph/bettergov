@@ -99,6 +99,64 @@
   color: #4b5563; /* text-gray-800 */
 }
 
+/* Fix checkbox positioning to prevent movement on click */
+.ais-RefinementList-checkbox {
+  position: relative !important;
+  transform: none !important;
+  transition: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.125rem !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+}
+
+.ais-RefinementList-checkbox:hover {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+.ais-RefinementList-checkbox:focus {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+.ais-RefinementList-checkbox:checked {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e") !important;
+  background-size: 12px 12px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.ais-RefinementList-item {
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  margin: 0 0 0.5rem 0 !important;
+  padding: 0 0 0 1rem !important;
+}
+
+.ais-RefinementList-label {
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.25rem 0 !important;
+  position: relative !important;
+}
+
+.ais-RefinementList-labelText {
+  margin-left: 0.5rem !important;
+  flex-grow: 1 !important;
+  line-height: 1.25rem !important;
+}
+
 /* Remove placeholder-specific padding; maintain consistent padding at all times */
 /* When not focused (icon visible via form::before), add left padding to clear icon */
 form.ais-SearchBox-form:not(:focus-within) .ais-SearchBox-input {

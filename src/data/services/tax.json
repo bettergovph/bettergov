@@ -19,7 +19,7 @@
   },
   {
     "service": "Apply for BIR Tax Clearance Certificate",
-    "url": "https://www.bir.gov.ph/index.php/tax-clearance/tax-clearance-application-form.html",
+    "url": "https://tcsfo.bir.gov.ph/",
     "id": "cd1fc9bf-8428-43e4-b1be-6775627ab8cc",
     "slug": "apply-for-bir-tax-clearance-certificate",
     "published": true,
@@ -55,7 +55,7 @@
   },
   {
     "service": "Register for a Taxpayer Identification Number (TIN)",
-    "url": "https://www.bir.gov.ph/index.php/registration-requirements/primary-registration/application-for-tin.html",
+    "url": "https://orus.bir.gov.ph/",
     "id": "387e8805-4277-4a21-bf1b-116bea0586cb",
     "slug": "register-for-a-taxpayer-identification-number-tin",
     "published": true,
@@ -126,10 +126,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "File Tax Complaints",
-    "url": "https://www.bir.gov.ph/index.php/eservices/ecomplaint-home.html",
-    "id": "5dd583b8-f78a-405e-8322-05cf6e0bc80a",
-    "slug": "file-tax-complaints",
+    "service": "File Complaint Against BIR Staff",
+    "url": "https://revie.bir.gov.ph/ecomplaint-disiplina",
+    "id": "6ee694c9-8b9b-4f6f-9433-16d7f1c8d9e1",
+    "slug": "file-complaint-against-bir-staff",
     "published": true,
     "featured": false,
     "category": {
@@ -140,7 +140,61 @@
       "name": "Complaints",
       "slug": "complaints"
     },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "createdAt": "2025-09-29T14:40:55.544Z",
+    "updatedAt": "2025-09-29T14:40:55.544Z"
+  },
+  {
+    "service": "File Complaint for Non-Issuance of Official Receipt",
+    "url": "https://revie.bir.gov.ph/ecomplaint-no-or",
+    "id": "7ff7a5da-9c9c-4g7g-0544-27e8g2d9e0f2",
+    "slug": "file-complaint-non-issuance-official-receipt",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Complaints",
+      "slug": "complaints"
+    },
+    "createdAt": "2025-09-29T14:40:55.544Z",
+    "updatedAt": "2025-09-29T14:40:55.544Z"
+  },
+  {
+    "service": "File Complaint for Tax Evasion/Avoidance",
+    "url": "https://revie.bir.gov.ph/ecomplaint-rate",
+    "id": "8gg8b6eb-adad-5h8h-1655-38f9h3e0f1g3",
+    "slug": "file-complaint-tax-evasion-avoidance",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Complaints",
+      "slug": "complaints"
+    },
+    "createdAt": "2025-09-29T14:40:55.544Z",
+    "updatedAt": "2025-09-29T14:40:55.544Z"
+  },
+  {
+    "service": "File Other Tax Related Complaints",
+    "url": "https://revie.bir.gov.ph/ecomplaint-others",
+    "id": "9hh9c7fc-bebe-6i9i-2766-49g0i4f1g2h4",
+    "slug": "file-other-tax-related-complaints",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Complaints",
+      "slug": "complaints"
+    },
+    "createdAt": "2025-09-29T14:40:55.544Z",
+    "updatedAt": "2025-09-29T14:40:55.544Z"
   }
 ]
