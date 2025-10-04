@@ -71,13 +71,13 @@ const Navbar: React.FC = () => {
           <div className='flex items-center space-x-4'>
             <Link
               to='/join-us'
-              className='text-xs text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
             >
               🚀 Join Us
             </Link>
             <a
               href='https://www.gov.ph'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
               target='_blank'
               rel='noreferrer'
             >
@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to='/philippines/hotlines'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
             >
               Hotlines
             </Link>
@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center space-x-8 pr-24'>
+          <div className='hidden lg:flex items-center space-x-8 pr-24 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -158,7 +158,7 @@ const Navbar: React.FC = () => {
                   </Link>
                   {item.children && (
                     <div
-                      className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                      className={`absolute left-0 mt-2 lg:mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
                         hoveredDropdown === item.label
                           ? 'opacity-100 visible'
                           : 'opacity-0 invisible'
