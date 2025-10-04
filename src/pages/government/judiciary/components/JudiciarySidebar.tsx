@@ -22,7 +22,7 @@ export default function JudiciarySidebar() {
           <ul className='space-y-1'>
             <li>
               <Link
-                to='/government/executive/supreme-court-of-the-philippines'
+                to='/government/judiciary/supreme-court-of-the-philippines'
                 state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive('/government/executive/office-of-the-president')
