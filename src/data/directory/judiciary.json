@@ -8,7 +8,7 @@
     "members": [
       {
         "position": "Chief Justice",
-        "name": "Alexander Gesmundoborn",
+        "name": "Alexander Gesmundo",
         "birthdate": "1956-11-06",
         "age": 68,
         "placeOfBirth": "San Pablo City",
@@ -21,7 +21,7 @@
       },
       {
         "position": "Senior Associate Justice",
-        "name": "Marvic Mario Victor Leonenborn",
+        "name": "Marvic Mario Victor Leonen",
         "birthdate": "1962-12-29",
         "age": 62,
         "placeOfBirth": "Baguio",
@@ -34,7 +34,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Alfredo Benjamin Caguioaborn",
+        "name": "Alfredo Benjamin Caguioa",
         "birthdate": "1959-09-26",
         "age": 66,
         "placeOfBirth": "Quezon City",
@@ -47,7 +47,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Ramon Paul Hernandoborn",
+        "name": "Ramon Paul Hernando",
         "birthdate": "1966-08-27",
         "age": 59,
         "placeOfBirth": "Tuguegarao, Cagayan",
@@ -60,7 +60,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Amy Lazaro-Javierborn",
+        "name": "Amy Lazaro-Javier",
         "birthdate": "1956-11-16",
         "age": 68,
         "placeOfBirth": "Manila",
@@ -73,7 +73,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Henri Jean Paul Intingborn",
+        "name": "Henri Jean Paul Inting",
         "birthdate": "1957-09-04",
         "age": 68,
         "placeOfBirth": "Bansalan, Davao del Sur",
@@ -86,7 +86,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Rodil Zalamedaborn",
+        "name": "Rodil Zalameda",
         "birthdate": "1963-08-02",
         "age": 62,
         "placeOfBirth": "Caloocan",
@@ -99,7 +99,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Samuel Gaerlanborn",
+        "name": "Samuel Gaerlan",
         "birthdate": "1958-12-19",
         "age": 66,
         "placeOfBirth": "San Juan, La Union",
@@ -112,7 +112,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Ricardo Rosarioborn",
+        "name": "Ricardo Rosario",
         "birthdate": "1958-10-15",
         "age": 66,
         "placeOfBirth": "Quezon City",
@@ -125,7 +125,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Jhosep Lopezborn",
+        "name": "Jhosep Lopez",
         "birthdate": "1963-02-08",
         "age": 62,
         "placeOfBirth": "Manila",
@@ -138,7 +138,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Japar Dimaampaoborn",
+        "name": "Japar Dimaampao",
         "birthdate": "1963-12-27",
         "age": 61,
         "placeOfBirth": "Marawi, Lanao del Sur",
@@ -151,7 +151,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Jose Midas Marquezborn",
+        "name": "Jose Midas Marquez",
         "birthdate": "1966-02-16",
         "age": 59,
         "placeOfBirth": "Quezon City",
@@ -164,7 +164,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Antonio Kho Jr.born",
+        "name": "Antonio Kho Jr.",
         "birthdate": "1966-06-29",
         "age": 59,
         "placeOfBirth": "Jolo, Sulu",
@@ -177,7 +177,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Maria Filomena Singhborn",
+        "name": "Maria Filomena Singh",
         "birthdate": "1966-06-25",
         "age": 59,
         "placeOfBirth": "Quezon City",
@@ -190,7 +190,7 @@
       },
       {
         "position": "Associate Justice",
-        "name": "Raul Villanuevaborn",
+        "name": "Raul Villanueva",
         "birthdate": "1963-04-15",
         "age": 62,
         "placeOfBirth": "Narvacan, Ilocos Sur",
@@ -201,6 +201,553 @@
         "previousPosition": "Court Administrator of the Supreme Court of the Philippines(2022-2025)",
         "replacing": "Lopez, M."
       }
+    ]
+  },
+  {
+    "slug": "court-of-appeals-of-the-philippines",
+    "office": "Court of Appeals of the Philippines",
+    "address": "Ma. Orosa Street, Ermita 1000 Manila",
+    "trunkline": "(632) 8524-1241 to 52",
+    "website": "https://ca.judiciary.gov.ph/",
+    "members": [
+      [
+        {
+          "name": "Fernanda Lampas Peralta",
+          "position": "Presiding Justice",
+          "role": "Chairperson",
+          "division": "First Division",
+          "appointment_date": "February 09, 2004",
+          "retirement_date": "June 16, 2030"
+        },
+        {
+          "name": "Ramon M. Bato, Jr.",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Second Division",
+          "appointment_date": "March 15, 2004",
+          "retirement_date": "August 27, 2028"
+        },
+        {
+          "name": "Apolinario D. Bruselas, Jr.",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Third Division",
+          "appointment_date": "August 01, 2005",
+          "retirement_date": "May 06, 2026"
+        },
+        {
+          "name": "Marlene Gonzales-Sison",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Fourth Division",
+          "appointment_date": "May 08, 2006",
+          "retirement_date": "February 28, 2026"
+        },
+        {
+          "name": "Ramon A. Cruz",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Fifth Division",
+          "appointment_date": "November 05, 2009",
+          "retirement_date": "August 25, 2027"
+        },
+        {
+          "name": "Myra V. Garcia-Fernandez",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Sixth Division",
+          "appointment_date": "March 11, 2010",
+          "retirement_date": "June 24, 2033"
+        },
+        {
+          "name": "Eduardo B. Peralta, Jr.",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Seventh Division",
+          "appointment_date": "March 11, 2010",
+          "retirement_date": "September 29, 2032"
+        },
+        {
+          "name": "Nina G. Antonio-Valenzuela",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Eighth Division",
+          "appointment_date": "March 11, 2010",
+          "retirement_date": "December 13, 2033"
+        },
+        {
+          "name": "Pamela Ann Abella Maxino",
+          "position": "Executive Justice",
+          "role": "Chairperson",
+          "division": "Eighteenth Division",
+          "appointment_date": "March 10, 2011",
+          "retirement_date": "October 31, 2026"
+        },
+        {
+          "name": "Zenaida T. Galapate-Laguilles",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Ninth Division",
+          "appointment_date": "March 21, 2011",
+          "retirement_date": "December 16, 2032"
+        },
+        {
+          "name": "Pedro B. Corales",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Tenth Division",
+          "appointment_date": "December 22, 2011",
+          "retirement_date": "April 29, 2029"
+        },
+        {
+          "name": "Marilyn B. Lagura-Yap",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Nineteenth Division",
+          "appointment_date": "February 24, 2012",
+          "retirement_date": "May 29, 2027"
+        },
+        {
+          "name": "Maria Elisa Sempio Diy",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Eleventh Division",
+          "appointment_date": "February 22, 2012",
+          "retirement_date": "April 25, 2036"
+        },
+        {
+          "name": "Marie Christine Azcarraga Jacob",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Twelfth Division",
+          "appointment_date": "September 20, 2012",
+          "retirement_date": "January 15, 2026"
+        },
+        {
+          "name": "Pablito A. Perez",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Thirteenth Division",
+          "appointment_date": "March 19, 2014",
+          "retirement_date": "January 15, 2027"
+        },
+        {
+          "name": "Rafael Antonio M. Santos",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Fourteenth Division",
+          "appointment_date": "March 18, 2014",
+          "retirement_date": "February 16, 2030"
+        },
+        {
+          "name": "Germano Francisco D. Legaspi",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Fifteenth Division",
+          "appointment_date": "January 20, 2015",
+          "retirement_date": "January 29, 2039"
+        },
+        {
+          "name": "Ronaldo Roberto B. Martin",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Sixteenth Division",
+          "appointment_date": "May 13, 2015",
+          "retirement_date": "October 08, 2034"
+        },
+        {
+          "name": "Geraldine C. Fiel-Macaraig",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Seventeenth Division",
+          "appointment_date": "November 13, 2015",
+          "retirement_date": "March 25, 2033"
+        },
+        {
+          "name": "Gabriel T. Robeniol",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "First Division",
+          "appointment_date": "November 16, 2015",
+          "retirement_date": "June 07, 2031"
+        },
+        {
+          "name": "Perpetua Susana T. Atal-Paño",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Second Division",
+          "appointment_date": "November 23, 2015",
+          "retirement_date": "September 30, 2026"
+        },
+        {
+          "name": "Ruben Reynaldo G. Roxas",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Third Division",
+          "appointment_date": "November 23, 2015",
+          "retirement_date": "March 30, 2032"
+        },
+        {
+          "name": "Louis P. Acosta",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Fourth Division",
+          "appointment_date": "March 10, 2017",
+          "retirement_date": "June 21, 2031"
+        },
+        {
+          "name": "Tita Marilyn B. Payoyo-Villordon",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Fifth Division",
+          "appointment_date": "October 06, 2017",
+          "retirement_date": "September 16, 2029"
+        },
+        {
+          "name": "Walter S. Ong",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Sixth Division",
+          "appointment_date": "December 12, 2017",
+          "retirement_date": "October 13, 2038"
+        },
+        {
+          "name": "Emily R. Aliño-Geluz",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Seventh Division",
+          "appointment_date": "June 21, 2018",
+          "retirement_date": "October 05, 2041"
+        },
+        {
+          "name": "Evalyn M. Arellano-Morales",
+          "position": "Executive Justice",
+          "role": "Chairperson",
+          "division": "Twenty-First Division",
+          "appointment_date": "October 16, 2018",
+          "retirement_date": "February 02, 2026"
+        },
+        {
+          "name": "Florencio M. Mamauag, Jr.",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Eighth Division",
+          "appointment_date": "December 07, 2018",
+          "retirement_date": "February 14, 2030"
+        },
+        {
+          "name": "Lily V. Biton",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Twenty-Second Division",
+          "appointment_date": "July 10, 2019",
+          "retirement_date": "October 29, 2031"
+        },
+        {
+          "name": "Carlito B. Calpatura",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Ninth Division",
+          "appointment_date": "July 10, 2019",
+          "retirement_date": "January 02, 2033"
+        },
+        {
+          "name": "Angelene Mary W. Quimpo-Sale",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Tenth Division",
+          "appointment_date": "July 10, 2019",
+          "retirement_date": "January 26, 2033"
+        },
+        {
+          "name": "Bonifacio S. Pascua",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Eleventh Division",
+          "appointment_date": "March 05, 2020",
+          "retirement_date": "November 30, 2040"
+        },
+        {
+          "name": "Richard D. Mordeno",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Twenty-Third Division",
+          "appointment_date": "March 06, 2020",
+          "retirement_date": "November 14, 2036"
+        },
+        {
+          "name": "Raymond Reynold R. Lauigan",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Twelfth Division",
+          "appointment_date": "March 11, 2020",
+          "retirement_date": "September 07, 2038"
+        },
+        {
+          "name": "Lorenza R. Bordios",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Thirteenth Division",
+          "appointment_date": "March 06, 2020",
+          "retirement_date": "August 10, 2039"
+        },
+        {
+          "name": "Roberto P. Quiroz",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Fourteenth Division",
+          "appointment_date": "December 22, 2020",
+          "retirement_date": "August 13, 2034"
+        },
+        {
+          "name": "Bautista G. Corpin, Jr.",
+          "position": "Associate Justice",
+          "role": "Chairperson",
+          "division": "Twentieth Division",
+          "appointment_date": "December 22, 2020",
+          "retirement_date": "September 21, 2035"
+        },
+        {
+          "name": "Anisah B. Amanodin-Umpa",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Twenty-First Division",
+          "appointment_date": "December 22, 2020",
+          "retirement_date": "July 05, 2031"
+        },
+        {
+          "name": "Nancy R. Palmones",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Eighteenth Division",
+          "appointment_date": "April 07, 2021",
+          "retirement_date": "November 14, 2036"
+        },
+        {
+          "name": "Alfonso C. Ruiz II",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Fifteenth Division",
+          "appointment_date": "August 31, 2021",
+          "retirement_date": "March 30, 2041"
+        },
+        {
+          "name": "Jennifer Joy C. Ong",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Sixteenth Division",
+          "appointment_date": "January 21, 2022",
+          "retirement_date": "October 23, 2048"
+        },
+        {
+          "name": "Michael P. Ong",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Seventeenth Division",
+          "appointment_date": "January 27, 2022",
+          "retirement_date": "December 30, 2045"
+        },
+        {
+          "name": "Maximo M. De Leon",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "First Division",
+          "appointment_date": "January 28, 2022",
+          "retirement_date": "November 18, 2035"
+        },
+        {
+          "name": "Ana Marie T. Mas",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Twenty-Second Division",
+          "appointment_date": "January 31, 2022",
+          "retirement_date": "January 17, 2040"
+        },
+        {
+          "name": "Eduardo S. Ramos, Jr.",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Second Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "October 16, 2049"
+        },
+        {
+          "name": "Jaime Fortunato A. Caringal",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Third Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "October 08, 2047"
+        },
+        {
+          "name": "Mercedita G. Dadole-Ygnacio",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Nineteenth Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "August 26, 2040"
+        },
+        {
+          "name": "Rex Bernardo L. Pascual",
+          "position": "Associate Justice",
+          "role": "Junior Member ",
+          "division": "Fourth Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "October 30, 2036"
+        },
+        {
+          "name": "Emily L. San Gaspar-Gito",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Fifth Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "January 31, 2043"
+        },
+        {
+          "name": "Jose Lorenzo R. Dela Rosa",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Sixth Division",
+          "appointment_date": "March 08, 2022",
+          "retirement_date": "January 05, 2043"
+        },
+        {
+          "name": "Jill Rose S. Jaugan-Lo",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Twenty-Third Division",
+          "appointment_date": "March 09, 2022",
+          "retirement_date": "March 05, 2042"
+        },
+        {
+          "name": "Ronald S. Tolentino",
+          "position": "Associate Justice",
+          "role": "Senior Member",
+          "division": "Twentieth Division",
+          "appointment_date": "March 09, 2022",
+          "retirement_date": "July 28, 2036"
+        },
+        {
+          "name": "Rogelio G. Largo",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Eighteenth Division",
+          "appointment_date": "March 09, 2022",
+          "retirement_date": "May 16, 2043"
+        },
+        {
+          "name": "Mary Charlene V. Hernandez-Azura",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Seventh Division",
+          "appointment_date": "March 09, 2022",
+          "retirement_date": "February 02, 2036"
+        },
+        {
+          "name": "Eleuterio L. Bathan",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Eighth Division",
+          "appointment_date": "May 19, 2022",
+          "retirement_date": "July 27, 2040"
+        },
+        {
+          "name": "John Z. Lee",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Twenty-First Division",
+          "appointment_date": "May 19, 2022",
+          "retirement_date": "February 18, 2049"
+        },
+        {
+          "name": "Selma P. Alaras",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Ninth Division",
+          "appointment_date": "October 19, 2022",
+          "retirement_date": "February 15, 2033"
+        },
+        {
+          "name": "Wilhelmina B. Jorge-Wagan",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Tenth Division",
+          "appointment_date": "October 19, 2022",
+          "retirement_date": "May 24, 2038"
+        },
+        {
+          "name": "Raymond Joseph G. Javier",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Eleventh Division",
+          "appointment_date": "September 27, 2023",
+          "retirement_date": "June 24, 2044"
+        },
+        {
+          "name": "Ma. Consejo Mapa Gengos-Ignalaga",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Twelfth Division",
+          "appointment_date": "September 27, 2023",
+          "retirement_date": "March 02, 2036"
+        },
+        {
+          "name": "Lorna Francisca Catris Chua Cheng",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Thirteenth Division",
+          "appointment_date": "September 27, 2023",
+          "retirement_date": "October 16, 2032"
+        },
+        {
+          "name": "Emilio Rodolfo Y. Legaspi III",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Fourteenth Division",
+          "appointment_date": "August 30, 2024",
+          "retirement_date": "April 10, 2038"
+        },
+        {
+          "name": "Mary Josephine D.P. Lazaro",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Fifteenth Division",
+          "appointment_date": "August 30, 2024",
+          "retirement_date": "April 24, 2038"
+        },
+        {
+          "name": "Ferdinand C. Baylon",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Sixteenth Division",
+          "appointment_date": "August 30, 2024",
+          "retirement_date": "September 11, 2040"
+        },
+        {
+          "name": "Marietta S. Brawner-Cualing",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Seventeenth Division",
+          "appointment_date": "August 30, 2024",
+          "retirement_date": "May 28, 2043"
+        },
+        {
+          "name": "Edilwasif Tapsiril Baddiri",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Nineteenth Division",
+          "appointment_date": "April 11, 2025",
+          "retirement_date": "December 13, 2045"
+        },
+        {
+          "name": "Jeoffre Willkom Acebido",
+          "position": "Associate Justice",
+          "role": "Junior Member",
+          "division": "Twenty-Second Division",
+          "appointment_date": "April 14, 2025",
+          "retirement_date": "July 23, 2031"
+        }
+      ]
     ]
   }
 ]
