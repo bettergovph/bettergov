@@ -31,6 +31,7 @@ import DepartmentDetail from './pages/government/departments/[department]';
 import DepartmentsLayout from './pages/government/departments/layout';
 import JudiciaryLayout from './pages/government/judiciary/layout';
 import JudiciaryIndex from './pages/government/judiciary';
+import JudiciaryDetail from './pages/government/judiciary/[court]';
 import GovernmentLayout from './pages/government/layout';
 import ConstitutionalLayout from './pages/government/constitutional/layout';
 import ConstitutionalIndex from './pages/government/constitutional/index';
@@ -202,6 +203,7 @@ function App() {
 
               <Route path='judiciary' element={<JudiciaryLayout />}>
                 <Route index element={<JudiciaryIndex />} />
+                <Route path=':court' element={<JudiciaryDetail />} />
               </Route>
 
               <Route path='constitutional' element={<ConstitutionalLayout />}>
