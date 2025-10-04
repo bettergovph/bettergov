@@ -53,6 +53,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judiciary', href: '/government/judiciary' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },

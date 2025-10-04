@@ -7,6 +7,7 @@ import {
   GlobeIcon,
   BookOpenIcon,
   MapPinIcon,
+  ScaleIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -41,7 +42,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Judiciary',
       description:
         'The Supreme Court and three levels of lower courts, responsible for interpreting laws and administering justice.',
-      icon: <Building2 className='h-4 w-4' />,
+      icon: <ScaleIcon className='h-4 w-4' />,
       path: '/government/judiciary',
     },
     {
