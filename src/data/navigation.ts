@@ -42,6 +42,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Visa Information', href: '/travel/visa' },
       { label: 'Visa Types', href: '/travel/visa-types' },
       { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
+      { label: 'Communicating', href: '/travel/communicating' },
       // { label: 'Tourist Destinations', href: '/travel/destinations' },
     ],
   },
@@ -98,7 +99,7 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
-        { label: 'Official Gov.ph', href: 'https://gov.ph' },
+        { label: 'Official Gov.ph', href: 'https://www.gov.ph' },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
         {

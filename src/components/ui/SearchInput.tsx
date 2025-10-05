@@ -1,5 +1,5 @@
+import { SearchIcon, XIcon } from 'lucide-react';
 import React, { useState } from 'react';
-import { Search, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface SearchInputProps
@@ -19,7 +19,7 @@ const SearchInput = ({
   onSearch,
   className,
   placeholder = 'Search...',
-  icon = <Search className='h-5 w-5 text-gray-800' />,
+  icon = <SearchIcon className='h-5 w-5 text-gray-800' />,
   size = 'md',
   clearable = true,
   ...props
@@ -77,7 +77,7 @@ const SearchInput = ({
             className='absolute inset-y-0 right-0 flex items-center pr-3 text-gray-800 hover:text-gray-700'
             onClick={handleClear}
           >
-            <X className='h-5 w-5' />
+            <XIcon className='h-5 w-5' />
           </button>
         )}
       </div>

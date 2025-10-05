@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
-  Building2,
-  Landmark,
-  GalleryVertical,
-  Globe,
-  BookOpen,
-  MapPin,
+  Building2Icon,
+  LandmarkIcon,
+  GalleryVerticalIcon,
+  GlobeIcon,
+  BookOpenIcon,
+  MapPinIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -27,41 +27,41 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       title: 'Executive Branch',
       description:
         'The President, Vice President, and the Cabinet members who implement and enforce laws.',
-      icon: <Landmark className='h-4 w-4' />,
+      icon: <LandmarkIcon className='h-4 w-4' />,
       path: '/government/executive',
     },
     {
       title: 'Executive Departments',
       description:
         'Government departments and agencies responsible for specific areas of governance.',
-      icon: <Building2 className='h-4 w-4' />,
+      icon: <Building2Icon className='h-4 w-4' />,
       path: '/government/departments',
     },
     {
       title: 'Constitutional Bodies',
       description:
         'Independent bodies created by the Constitution with specific mandates.',
-      icon: <BookOpen className='h-4 w-4' />,
+      icon: <BookOpenIcon className='h-4 w-4' />,
       path: '/government/constitutional',
     },
     {
       title: 'Legislative Branch',
       description:
         'The Senate and House of Representatives that make laws and policies.',
-      icon: <GalleryVertical className='h-4 w-4' />,
+      icon: <GalleryVerticalIcon className='h-4 w-4' />,
       path: '/government/legislative',
     },
     {
       title: 'Local Government Units',
       description: 'Local government units of the Philippines.',
-      icon: <MapPin className='h-4 w-4' />,
+      icon: <MapPinIcon className='h-4 w-4' />,
       path: '/government/local',
     },
     {
       title: 'Diplomatic Missions',
       description:
         'Philippine embassies, consulates, and diplomatic missions around the world.',
-      icon: <Globe className='h-4 w-4' />,
+      icon: <GlobeIcon className='h-4 w-4' />,
       path: '/government/diplomatic',
     },
   ];

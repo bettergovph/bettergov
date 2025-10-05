@@ -1,5 +1,10 @@
+import {
+  ExternalLinkIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from 'lucide-react';
 import { useParams } from 'react-router-dom';
-import { ExternalLink, Phone, Mail, MapPin } from 'lucide-react';
 import departmentsData from '../../../data/directory/departments.json';
 import { cn } from '../../../lib/utils';
 
@@ -31,7 +36,9 @@ function DepartmentDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-neutral-100  border-b pl-3' : ''
+              level > 0
+                ? 'ml-4 border-l border-neutral-100  border-b pl-3 p-2'
+                : ''
             }`}
           >
             <DepartmentDetailSection data={item} level={level + 1} />
@@ -50,7 +57,7 @@ function DepartmentDetailSection({
     return (
       <div
         className={cn(
-          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
           level === 1 && 'rounded-2xl font-bold text-lg'
         )}
       >
@@ -139,7 +146,7 @@ export default function DepartmentDetail() {
           <h2 className='text-xl font-bold text-gray-900'>{displayName}</h2>
           {address && (
             <p className='mt-1 text-gray-800 flex items-start text-sm'>
-              <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
+              <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
               <span>{address}</span>
             </p>
           )}
@@ -150,13 +157,13 @@ export default function DepartmentDetail() {
               rel='noopener noreferrer'
               className='inline-flex items-center text-primary-600 hover:text-primary-800 text-sm'
             >
-              <ExternalLink className='h-4 w-4 mr-1' />
+              <ExternalLinkIcon className='h-4 w-4 mr-1' />
               <span>{website}</span>
             </a>
           )}
           {trunkline && (
             <div className='flex items-center text-gray-800 text-sm'>
-              <Phone className='h-4 w-4 text-gray-800 mr-1 shrink-0' />
+              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
               <span>{trunkline}</span>
             </div>
           )}
@@ -165,7 +172,7 @@ export default function DepartmentDetail() {
               href={`mailto:${email}`}
               className='flex items-center text-gray-800 hover:text-primary-600 text-sm'
             >
-              <Mail className='h-4 w-4 text-gray-800 mr-1 shrink-0' />
+              <MailIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
               <span>{email}</span>
             </a>
           )}

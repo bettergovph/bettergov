@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
-import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
-import { exportMeilisearchData } from '../../lib/exportData';
 import {
-  BarChart,
+  BarChart3Icon,
+  DownloadIcon,
+  FilterIcon,
+  InfoIcon,
+  PieChart as PieChartIcon,
+  SearchIcon,
+  TableIcon,
+  UsersIcon,
+  XIcon,
+} from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { Configure, InstantSearch, useHits } from 'react-instantsearch';
+import {
   Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
 } from 'recharts';
-import {
-  Filter,
-  BarChart3,
-  PieChart as PieChartIcon,
-  Info,
-  Download,
-  X,
-  Users,
-  Table,
-  Search,
-} from 'lucide-react';
 import Button from '../../components/ui/Button';
+import { exportMeilisearchData } from '../../lib/exportData';
 
 // Import shared components
 import {
@@ -38,17 +38,17 @@ import {
   // FloodControlProject,
   FloodControlHit,
 } from './shared-components';
-import { buildFilterString, FilterState } from './utils';
 import FloodControlProjectsTab from './tab';
+import { buildFilterString, FilterState } from './utils';
 
 // Import lookup data
-import infraYearData from '../../data/flood_control/lookups/InfraYear_with_counts.json';
-import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
-import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
-import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_with_counts.json';
-import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
-import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
 import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json';
+import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_with_counts.json';
+import infraYearData from '../../data/flood_control/lookups/InfraYear_with_counts.json';
+import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
+import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
+import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
+import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
 
 // Meilisearch configuration
 const MEILISEARCH_HOST =
@@ -463,7 +463,6 @@ const FloodControlProjects: React.FC = () => {
   const handleDropdownToggle = (dropdownName: string) => {
     setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
   };
-
   // Precalculated chart data for initial load without Meilisearch
   const yearlyChartData = infraYearData.InfraYear.sort((a, b) =>
     a.value.localeCompare(b.value)
@@ -478,6 +477,25 @@ const FloodControlProjects: React.FC = () => {
       name: item.value,
       Projects: item.count,
     }));
+
+  const provinceOptions = useMemo(() => {
+    if (filters.Region === 'National Capital Region') {
+      const nationalCapitalRegion = provinceData.Province.filter(
+        item => item.regCode === '13'
+      );
+      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      return [...nationalCapitalRegion, ...otherRegions];
+    }
+
+    if (filters.Region) {
+      const regionId = regionData.Region.find(
+        item => item.value === filters.Region
+      )?.regCode;
+      return provinceData.Province.filter(item => item.regCode === regionId);
+    }
+
+    return provinceData.Province;
+  }, [filters.Region]);
 
   const typeWorkPieData = typeOfWorkData.TypeofWork.sort(
     (a, b) => b.count - a.count
@@ -519,6 +537,12 @@ const FloodControlProjects: React.FC = () => {
       ...filters,
       [filterName]: value,
     };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
     setFilters(newFilters);
 
     // Check if any filters are now applied
@@ -589,7 +613,7 @@ const FloodControlProjects: React.FC = () => {
             <div className='bg-white rounded-lg shadow-md p-4 sticky top-[8.25rem]'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
-                  <Filter className='w-5 h-5 text-blue-600 mr-2' />
+                  <FilterIcon className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     {t('filters.title')}
                   </h2>
@@ -598,7 +622,7 @@ const FloodControlProjects: React.FC = () => {
                   className='md:hidden text-gray-800 hover:text-gray-700'
                   onClick={() => setShowSidebar(false)}
                 >
-                  <X className='w-5 h-5' />
+                  <XIcon className='w-5 h-5' />
                 </button>
               </div>
 
@@ -610,7 +634,7 @@ const FloodControlProjects: React.FC = () => {
                   </h3>
                   <div className='relative'>
                     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                      <Search className='h-4 w-4 text-gray-400' />
+                      <SearchIcon className='h-4 w-4 text-gray-400' />
                     </div>
                     <input
                       type='text'
@@ -657,7 +681,7 @@ const FloodControlProjects: React.FC = () => {
                   </label>
                   <FilterDropdown
                     name='Province'
-                    options={provinceData.Province}
+                    options={provinceOptions}
                     value={filters.Province}
                     onChange={value => handleFilterChange('Province', value)}
                     searchable
@@ -727,7 +751,7 @@ const FloodControlProjects: React.FC = () => {
               <Button
                 variant='outline'
                 onClick={() => setShowSidebar(true)}
-                leftIcon={<Filter className='w-4 h-4' />}
+                leftIcon={<FilterIcon className='w-4 h-4' />}
               >
                 {t('filters.showFilters')}
               </Button>
@@ -740,9 +764,12 @@ const FloodControlProjects: React.FC = () => {
               </h1>
               <Button
                 variant='outline'
-                leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
+                leftIcon={
+                  isExporting ? null : <DownloadIcon className='w-4 h-4' />
+                }
                 onClick={handleExportData}
                 disabled={isExporting}
+                className='cursor-pointer'
               >
                 {isExporting ? t('actions.exporting') : t('actions.exportData')}
               </Button>
@@ -829,7 +856,7 @@ const FloodControlProjects: React.FC = () => {
               {/* Projects by Year - Bar Chart */}
               <div className='bg-white rounded-lg shadow-md p-4'>
                 <div className='flex items-center mb-4'>
-                  <BarChart3 className='w-5 h-5 text-blue-600 mr-2' />
+                  <BarChart3Icon className='w-5 h-5 text-blue-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     {t('charts.projectsByYear')}
                   </h2>
@@ -1006,7 +1033,7 @@ const FloodControlProjects: React.FC = () => {
               {/* Top Contractors - Bar Chart */}
               <div className='bg-white rounded-lg shadow-md p-4'>
                 <div className='flex items-center mb-4'>
-                  <Users className='w-5 h-5 text-orange-600 mr-2' />
+                  <UsersIcon className='w-5 h-5 text-orange-600 mr-2' />
                   <h2 className='text-lg font-semibold text-gray-800'>
                     {t('charts.topContractors')}
                   </h2>
@@ -1072,7 +1099,7 @@ const FloodControlProjects: React.FC = () => {
                   href='/flood-control-projects/table'
                   className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 >
-                  <Table className='w-4 h-4 mr-1' />
+                  <TableIcon className='w-4 h-4 mr-1' />
                   {t('actions.viewTable')}
                 </a>
               </div>
@@ -1084,7 +1111,7 @@ const FloodControlProjects: React.FC = () => {
             {/* Data Source Information */}
             <div className='bg-white rounded-lg shadow-md p-4 mt-8'>
               <div className='flex items-center mb-4'>
-                <Info className='w-5 h-5 text-blue-600 mr-2' />
+                <InfoIcon className='w-5 h-5 text-blue-600 mr-2' />
                 <h2 className='text-lg font-semibold text-gray-800'>
                   {t('dataSource.title')}
                 </h2>

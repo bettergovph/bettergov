@@ -1,6 +1,12 @@
+import {
+  Building2Icon,
+  ExternalLinkIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MapPin, Phone, ExternalLink, Building2, Mail } from 'lucide-react';
-import { useState, useEffect } from 'react';
 import SEO from '../../../components/SEO';
 import { getConstitutionalSEOData } from '../../../utils/seo-data';
 import { type ConstitutionalOffice } from '../schema';
@@ -26,7 +32,9 @@ function OfficeDetailSection({
           <div
             key={index}
             className={`${
-              level > 0 ? 'ml-4 border-l border-b border-neutral-100 pl-3' : ''
+              level > 0
+                ? 'ml-4 border-l border-b border-neutral-100 pl-3 py-2'
+                : ''
             }`}
           >
             <OfficeDetailSection data={item} level={level + 1} />
@@ -58,7 +66,7 @@ function OfficeDetailSection({
     return (
       <div
         className={cn(
-          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
           level === 1 && 'rounded-2xl font-bold text-lg'
         )}
       >
@@ -154,7 +162,7 @@ export default function ConstitutionalIndex() {
         <SEO {...seoData} />
         <div className='@container bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Building2 className='h-6 w-6 text-gray-400' />
+            <Building2Icon className='h-6 w-6 text-gray-400' />
           </div>
           <h3 className='text-lg font-medium text-gray-900 mb-1'>
             No constitutional office selected
@@ -191,7 +199,7 @@ export default function ConstitutionalIndex() {
 
             {selectedOffice.address && (
               <p className='mt-2 text-gray-800 flex items-start text-sm'>
-                <MapPin className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
+                <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
                 <span>{selectedOffice.address}</span>
               </p>
             )}
@@ -199,7 +207,7 @@ export default function ConstitutionalIndex() {
 
           {selectedOffice.website && (
             <div className='flex space-x-2 flex-row text-sm'>
-              <ExternalLink className='h-4 w-4 text-gray-400 mt-0.5 shrink-0' />
+              <ExternalLinkIcon className='h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0' />
               <a
                 href={
                   selectedOffice.website.startsWith('http')
@@ -217,7 +225,7 @@ export default function ConstitutionalIndex() {
 
           {contactNumber && (
             <div className='flex items-center text-gray-800 text-sm'>
-              <Phone className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
+              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
               <span>{contactNumber}</span>
             </div>
           )}
@@ -227,7 +235,7 @@ export default function ConstitutionalIndex() {
               href={`mailto:${selectedOffice.email}`}
               className='flex items-center text-gray-800 hover:text-primary-600'
             >
-              <Mail className='h-4 w-4 text-gray-800 mr-1.5 shrink-0' />
+              <MailIcon className='h-4 w-4 text-gray-800 mr-1.5 flex-shrink-0' />
               <span>{selectedOffice.email}</span>
             </a>
           )}

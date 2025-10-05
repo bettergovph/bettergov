@@ -6,12 +6,13 @@ import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
 import {
-  Download,
-  ArrowUpDown,
-  Info,
-  Search,
-  Users,
-  ExternalLink,
+  DownloadIcon,
+  ArrowUpDownIcon,
+  InfoIcon,
+  SearchIcon,
+  UsersIcon,
+  ExternalLinkIcon,
+  ChevronRightIcon,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -147,7 +148,7 @@ const ResultsStatistics: React.FC<{
             title={`View detailed page for ${contractor}`}
           >
             <span>View More Details</span>
-            <ExternalLink className='w-4 h-4' />
+            <ExternalLinkIcon className='w-4 h-4' />
           </button>
         )}
       </div>
@@ -235,13 +236,15 @@ const TableHits: React.FC<{
         onClick={() => handleSort(field)}
       >
         <div className='flex items-center'>
-          <span className={`${isActive ? 'text-blue-600' : 'text-gray-800'}`}>
+          <span
+            className={`${isActive ? 'text-primary-600' : 'text-gray-800'}`}
+          >
             {label}
           </span>
           {isActive ? (
             sortDirection === 'asc' ? (
               <svg
-                className='w-3 h-3 ml-1 text-blue-600'
+                className='w-3 h-3 ml-1 text-primary-600'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -256,7 +259,7 @@ const TableHits: React.FC<{
               </svg>
             ) : (
               <svg
-                className='w-3 h-3 ml-1 text-blue-600'
+                className='w-3 h-3 ml-1 text-primary-600'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -271,7 +274,7 @@ const TableHits: React.FC<{
               </svg>
             )
           ) : (
-            <ArrowUpDown className='w-3 h-3 ml-1 text-gray-400' />
+            <ArrowUpDownIcon className='w-3 h-3 ml-1 text-gray-400' />
           )}
         </div>
       </th>
@@ -400,7 +403,7 @@ const TableHits: React.FC<{
                       onClick={() => handlePageChange(pageToShow)}
                       className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${
                         currentPage === pageToShow
-                          ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                          ? 'z-10 bg-primary-50 border-primary-500 text-primary-600'
                           : 'bg-white text-gray-800 hover:bg-gray-50'
                       }`}
                     >
@@ -462,7 +465,7 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
   <div className='flex'>
     <button
       className={`flex-1 text-left px-3 py-2 text-sm hover:bg-gray-100 ${
-        isSelected ? 'bg-blue-50 text-blue-600 font-medium' : ''
+        isSelected ? 'bg-primary-50 text-primary-600 font-medium' : ''
       }`}
       onClick={onClick}
       title={contractor.value} // Show full name on hover
@@ -479,11 +482,11 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
       </div>
     </button>
     <button
-      className='px-2 py-2 text-xs text-blue-600 hover:text-blue-800 hover:bg-blue-50 shrink-0'
+      className='px-2 py-2 text-xs text-primary-600 hover:text-primary-800 hover:bg-primary-50 shrink-0'
       onClick={() => onNavigate(createSlug(contractor.value))}
       title={`View ${contractor.value} details`}
     >
-      →
+      <ChevronRightIcon className='h-4 w-4' />
     </button>
   </div>
 );
@@ -570,7 +573,7 @@ const FloodControlProjectsContractors: React.FC = () => {
           <div className='w-full md:w-72 bg-white p-4 rounded-lg shadow-md'>
             <div className='flex items-center justify-between mb-2'>
               <div className='flex items-center'>
-                <Users className='w-5 h-5 text-blue-600 mr-2' />
+                <UsersIcon className='w-5 h-5 text-primary-600 mr-2' />
                 <h2 className='text-lg font-semibold text-gray-800'>
                   Contractors
                 </h2>
@@ -581,7 +584,7 @@ const FloodControlProjectsContractors: React.FC = () => {
             <div className='pt-4'>
               <div className='relative'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                  <Search className='h-4 w-4 text-gray-400' />
+                  <SearchIcon className='h-4 w-4 text-gray-400' />
                 </div>
                 <input
                   type='text'
@@ -599,7 +602,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                   <button
                     className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
                       !selectedContractor
-                        ? 'bg-blue-50 text-blue-600 font-medium'
+                        ? 'bg-primary-50 text-primary-600 font-medium'
                         : ''
                     }`}
                     onClick={() => setSelectedContractor('')}
@@ -630,7 +633,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                 onClick={() => {
                   /* Mobile sidebar functionality */
                 }}
-                leftIcon={<Users className='w-4 h-4' />}
+                leftIcon={<UsersIcon className='w-4 h-4' />}
               >
                 Show Contractors
               </Button>
@@ -643,9 +646,12 @@ const FloodControlProjectsContractors: React.FC = () => {
               </h1>
               <Button
                 variant='outline'
-                leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
+                leftIcon={
+                  isExporting ? null : <DownloadIcon className='w-4 h-4' />
+                }
                 onClick={handleExportData}
                 disabled={isExporting}
+                className='cursor-pointer'
               >
                 {isExporting ? 'Exporting...' : 'Export Data'}
               </Button>
@@ -687,7 +693,7 @@ const FloodControlProjectsContractors: React.FC = () => {
             {/* Data Source Information */}
             <div className='bg-white rounded-lg shadow-md p-4 mt-8'>
               <div className='flex items-start space-x-2'>
-                <Info className='w-5 h-5 text-blue-500 mt-0.5' />
+                <InfoIcon className='w-5 h-5 text-blue-500 mt-0.5' />
                 <div>
                   <h4 className='text-sm font-medium text-gray-900'>
                     Data Source

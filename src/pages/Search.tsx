@@ -174,34 +174,32 @@ const SearchPage: React.FC = () => {
             <div className='bg-white rounded-lg shadow-sm p-4 mb-6'>
               <h3 className='text-lg font-semibold mb-4'>Filter By</h3>
 
-              <div className='mb-4'>
-                <h4 className='font-medium mb-2'>Type</h4>
+              <div className='mb-6'>
+                <h4 className='font-medium mb-3'>Type</h4>
                 <RefinementList
                   attribute='type'
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
                 />
               </div>
 
-              <div className='mb-4'>
-                <h4 className='font-medium mb-2'>Category</h4>
+              <div className='mb-6'>
+                <h4 className='font-medium mb-3'>Category</h4>
                 <RefinementList
                   attribute='category'
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}
@@ -209,16 +207,15 @@ const SearchPage: React.FC = () => {
               </div>
 
               <div>
-                <h4 className='font-medium mb-2'>Subcategory</h4>
+                <h4 className='font-medium mb-3'>Subcategory</h4>
                 <RefinementList
                   attribute='subcategory'
                   classNames={{
                     root: '',
                     list: 'space-y-2',
-                    item: 'flex items-center',
-                    label: 'ml-2 grow',
-                    checkbox:
-                      'form-checkbox h-4 w-4 text-blue-600 rounded-sm border-gray-300 focus:ring-blue-500',
+                    item: '',
+                    label: '',
+                    checkbox: '',
                     count:
                       'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
                   }}

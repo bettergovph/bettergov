@@ -1,29 +1,45 @@
 import { test, expect } from '@playwright/test';
+import { mobileCheck } from './utils/device';
+import { navigate } from './utils/navbar';
 
 test.describe('Navigation', () => {
   test('should navigate through main sections', async ({ page }) => {
+    const isMobile = await mobileCheck();
     await page.goto('/');
 
     // Test Philippines dropdown menu
-    await page.getByText('The Philippines').first().hover();
-    await expect(
-      page.getByRole('menuitem', { name: 'About the Philippines' })
-    ).toBeVisible();
+    if (isMobile) {
+      await navigate(page, 'Philippines');
+      await expect(
+        page.getByRole('link', { name: 'About the Philippines' })
+      ).toBeVisible();
+      // Navigate to About Philippines
+      await navigate(page, null, 'About the Philippines', false);
+    } else {
+      // For desktop, navigate directly to the submenu item
+      await navigate(page, 'Philippines', 'About the Philippines');
+    }
 
-    // Navigate to About Philippines
-    await page.getByRole('menuitem', { name: 'About the Philippines' }).click();
-    await expect(page.url()).toContain('/philippines/about');
+    expect(page.url()).toContain('/philippines/about');
     await expect(page.getByRole('heading', { level: 1 })).toContainText(
       'About the Philippines'
     );
 
-    // Navigate to Government section
-    await page.getByRole('link', { name: 'Government' }).first().click();
-    await expect(page.url()).toContain('/government');
+    // Navigate to Government and then Travel section
+    if (isMobile) {
+      await navigate(page, 'Government', 'Executive');
+      expect(page.url()).toContain(
+        '/government/executive/office-of-the-president'
+      );
+      await navigate(page, 'Travel', 'Visa Information');
+      expect(page.url()).toContain('/travel/visa');
+    } else {
+      await page.getByRole('link', { name: 'Government' }).first().click();
+      expect(page.url()).toContain('/government');
 
-    // Navigate to Travel section
-    await page.getByRole('link', { name: 'Travel' }).first().click();
-    await expect(page.url()).toContain('/travel');
+      await page.getByRole('link', { name: 'Travel' }).first().click();
+      expect(page.url()).toContain('/travel');
+    }
   });
 
   test('should navigate to Join Us page', async ({ page }) => {
@@ -34,8 +50,10 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: /Join Us/i })
       .first()
       .click();
-    await expect(page.url()).toContain('/join-us');
-    await expect(page.getByRole('heading')).toContainText('Join');
+    expect(page.url()).toContain('/join-us');
+    await expect(page.getByRole('heading').first()).toContainText(
+      'Join the #CivicTech Revolution'
+    );
   });
 
   test('should navigate to Ideas page', async ({ page }) => {
@@ -43,7 +61,7 @@ test.describe('Navigation', () => {
 
     // Click Project Ideas link
     await page.getByRole('link', { name: 'Project Ideas' }).first().click();
-    await expect(page.url()).toContain('/ideas');
+    expect(page.url()).toContain('/ideas');
   });
 
   test('should have working footer links', async ({ page }) => {
@@ -58,7 +76,7 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: 'About' });
     await expect(aboutLink).toBeVisible();
     await aboutLink.click();
-    await expect(page.url()).toContain('/about');
+    expect(page.url()).toContain('/about');
 
     // Go back to homepage
     await page.goto('/');
@@ -70,19 +88,25 @@ test.describe('Navigation', () => {
       .getByRole('link', { name: 'Sitemap' });
     await expect(sitemapLink).toBeVisible();
     await sitemapLink.click();
-    await expect(page.url()).toContain('/sitemap');
+    expect(page.url()).toContain('/sitemap');
   });
 
-  test('breadcrumb navigation should work', async ({ page }) => {
+  test('branch navigation should work', async ({ page }) => {
     // Navigate to a deep page
     await page.goto('/government/departments');
 
-    // Check breadcrumb exists
-    const breadcrumb = page.locator('nav[aria-label="Breadcrumb"]');
-    await expect(breadcrumb).toBeVisible();
+    // Check if branch exists
+    let branch = page.locator('a.bg-primary-500').first(); // Selected branch
+    await expect(branch).toContainText('Executive Departments');
 
-    // Click Home breadcrumb
-    await breadcrumb.getByRole('link', { name: 'Home' }).click();
-    await expect(page.url()).toBe('http://localhost:5173/');
+    const grid = page.locator('div.inline-grid');
+    await grid
+      .getByRole('link', { name: 'Local Government Units' })
+      .first()
+      .click();
+
+    branch = page.locator('a.bg-primary-500').first();
+    await expect(branch).toContainText('Local Government Units');
+    expect(page.url()).toContain('/government/local');
   });
 });

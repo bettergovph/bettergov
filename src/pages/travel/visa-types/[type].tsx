@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
 import {
-  ArrowLeft,
-  ExternalLink,
-  FileText,
-  AlertCircle,
-  Search,
-  Briefcase,
-  Users,
-  Plane,
-  Compass,
-  ChevronRight,
+  AlertCircleIcon,
+  ArrowLeftIcon,
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  SearchIcon,
 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
-import { VisaType } from '../../../types/visa';
+import { VisaType } from '@/types/visa.ts';
+import { getCategoryIcon } from './visa.util';
 
 interface VisaCategory {
   id: string;
@@ -43,22 +39,6 @@ const VisaTypeDetail: React.FC = () => {
     icon: getCategoryIcon(category.id),
     visaTypes: category.visaTypes,
   }));
-
-  // Helper function to get the appropriate icon for each category
-  function getCategoryIcon(categoryId: string) {
-    switch (categoryId) {
-      case 'immigrant':
-        return <Users size={24} />;
-      case 'non-immigrant':
-        return <Plane size={24} />;
-      case 'special':
-        return <Briefcase size={24} />;
-      case 'permits':
-        return <FileText size={24} />;
-      default:
-        return <Compass size={24} />;
-    }
-  }
 
   // Handle category selection
   const handleCategoryClick = (categoryId: string) => {
@@ -140,7 +120,7 @@ const VisaTypeDetail: React.FC = () => {
 
             {/* Search Box */}
             <div className='max-w-lg bg-white rounded-lg shadow-md flex items-center p-2'>
-              <Search className='h-5 w-5 text-gray-400 ml-2' />
+              <SearchIcon className='h-5 w-5 text-gray-400 ml-2' />
               <input
                 type='text'
                 placeholder='Search visa types...'
@@ -154,7 +134,7 @@ const VisaTypeDetail: React.FC = () => {
 
         <div className='container mx-auto max-w-6xl px-4 py-8'>
           <div className='flex items-center text-red-600 mb-4'>
-            <AlertCircle className='h-6 w-6 mr-2' />
+            <AlertCircleIcon className='h-6 w-6 mr-2' />
             <h2 className='text-xl font-semibold'>Error</h2>
           </div>
           <p className='text-gray-700'>{error}</p>
@@ -188,7 +168,7 @@ const VisaTypeDetail: React.FC = () => {
 
           {/* Search Box */}
           <div className='max-w-lg bg-white rounded-lg shadow-md flex items-center p-2'>
-            <Search className='h-5 w-5 text-gray-400 ml-2' />
+            <SearchIcon className='h-5 w-5 text-gray-400 ml-2' />
             <input
               type='text'
               placeholder='Search visa types...'
@@ -222,7 +202,7 @@ const VisaTypeDetail: React.FC = () => {
                     <div className='p-4'>
                       <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
                         {visa.name}
-                        <ChevronRight className='h-5 w-5 text-blue-500' />
+                        <ChevronRightIcon className='h-5 w-5 text-blue-500' />
                       </h3>
                       <p className='text-gray-800 text-sm mb-3'>
                         {visa.description}
@@ -240,7 +220,7 @@ const VisaTypeDetail: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
             {/* Sidebar */}
             <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-xs border border-gray-200 sticky top-4'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200 md:sticky top-32 mb-8'>
                 <div className='p-4 border-b border-gray-200'>
                   <h2 className='font-semibold text-lg text-gray-800'>
                     Visa Categories
@@ -273,7 +253,7 @@ const VisaTypeDetail: React.FC = () => {
                   to='/travel/visa-types'
                   className='inline-flex items-center text-blue-600 hover:text-blue-800'
                 >
-                  <ArrowLeft className='h-4 w-4 mr-1' />
+                  <ArrowLeftIcon className='h-4 w-4 mr-1' />
                   Back to Visa Types
                 </Link>
               </div>
@@ -297,7 +277,7 @@ const VisaTypeDetail: React.FC = () => {
                         className='inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors'
                       >
                         Official Information
-                        <ExternalLink className='h-4 w-4 ml-1' />
+                        <ExternalLinkIcon className='h-4 w-4 ml-1' />
                       </Link>
                     </div>
                   )}
@@ -391,7 +371,7 @@ const VisaTypeDetail: React.FC = () => {
 
                 <div className='bg-blue-50 border-t border-blue-200 p-4'>
                   <div className='flex items-start'>
-                    <AlertCircle className='h-5 w-5 text-blue-500 mt-0.5 mr-2 shrink-0' />
+                    <AlertCircleIcon className='h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0' />
                     <div>
                       <h3 className='font-medium text-blue-800'>
                         Important Notice

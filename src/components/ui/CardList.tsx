@@ -1,5 +1,10 @@
+import {
+  ExternalLinkIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from 'lucide-react';
 import { ReactNode } from 'react';
-import { ExternalLink, MapPin, Phone, Mail } from 'lucide-react';
 
 interface ContactInfo {
   address?: string;
@@ -158,8 +163,8 @@ export function CardContactInfo({
     <address className={`not-italic ${spacing}`}>
       {contact.address && (
         <div className='flex items-start'>
-          <MapPin
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`}
+          <MapPinIcon
+            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
           />
           <span className={`text-gray-800 ${textSize}`}>{contact.address}</span>
         </div>
@@ -167,7 +172,9 @@ export function CardContactInfo({
 
       {contact.phone && (
         <div className='flex items-start'>
-          <Phone className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`} />
+          <PhoneIcon
+            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+          />
           <a
             href={`tel:${contact.phone}`}
             className={`text-gray-800 ${textSize} hover:text-primary-600 transition-colors`}
@@ -179,7 +186,9 @@ export function CardContactInfo({
 
       {contact.email && (
         <div className='flex items-start'>
-          <Mail className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`} />
+          <MailIcon
+            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+          />
           <a
             href={`mailto:${contact.email}`}
             className={`text-primary-600 hover:underline ${textSize}`}
@@ -189,25 +198,30 @@ export function CardContactInfo({
         </div>
       )}
 
-      {contact.website && (
-        <div className='flex items-start'>
-          <ExternalLink
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 shrink-0`}
-          />
-          <a
-            href={
-              contact.website.startsWith('http')
-                ? contact.website
-                : `https://${contact.website.split(' ')[0]}`
-            }
-            target='_blank'
-            rel='noopener noreferrer'
-            className={`text-primary-600 hover:underline ${textSize}`}
-          >
-            {contact.website.split(' ')[0]}
-          </a>
-        </div>
-      )}
+      {contact.website &&
+        (() => {
+          const cleanUrl = contact.website.split(' ')[0];
+          const href = contact.website.startsWith('http')
+            ? contact.website
+            : `https://${cleanUrl}`;
+
+          return (
+            <div className='flex items-start'>
+              <ExternalLinkIcon
+                className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+              />
+              <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={`text-primary-600 hover:underline ${textSize} truncate`}
+                title={cleanUrl}
+              >
+                {cleanUrl}
+              </a>
+            </div>
+          );
+        })()}
     </address>
   );
 }

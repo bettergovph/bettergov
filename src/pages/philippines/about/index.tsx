@@ -1,6 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe2, Users, Building2, Mountain, Sun } from 'lucide-react';
+import {
+  Globe2Icon,
+  UsersIcon,
+  Building2Icon,
+  MountainIcon,
+  SunIcon,
+} from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
 const AboutPhilippines: React.FC = () => {
@@ -8,27 +14,27 @@ const AboutPhilippines: React.FC = () => {
 
   const facts = [
     {
-      icon: <Globe2 className='h-6 w-6' />,
+      icon: <Globe2Icon className='h-6 w-6' />,
       title: t('about.facts.items.geography.title'),
       description: t('about.facts.items.geography.description'),
     },
     {
-      icon: <Users className='h-6 w-6' />,
+      icon: <UsersIcon className='h-6 w-6' />,
       title: t('about.facts.items.population.title'),
       description: t('about.facts.items.population.description'),
     },
     {
-      icon: <Building2 className='h-6 w-6' />,
+      icon: <Building2Icon className='h-6 w-6' />,
       title: t('about.facts.items.capital.title'),
       description: t('about.facts.items.capital.description'),
     },
     {
-      icon: <Mountain className='h-6 w-6' />,
+      icon: <MountainIcon className='h-6 w-6' />,
       title: t('about.facts.items.landscape.title'),
       description: t('about.facts.items.landscape.description'),
     },
     {
-      icon: <Sun className='h-6 w-6' />,
+      icon: <SunIcon className='h-6 w-6' />,
       title: t('about.facts.items.climate.title'),
       description: t('about.facts.items.climate.description'),
     },

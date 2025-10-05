@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { MenuIcon, XIcon } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 interface GovernmentPageHeaderProps {
@@ -49,15 +49,13 @@ export default function GovernmentIndexPageContainer({
   useEffect(() => {
     if (location.state?.scrollToContent) {
       const contentElement = document.getElementById('government-content');
-      if (contentElement) {
-        const yScrollOffset = -150;
-        const y =
-          contentElement.getBoundingClientRect().top +
-          window.pageYOffset +
-          yScrollOffset;
-
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
+      setTimeout(() => {
+        if (contentElement) {
+          const yScrollOffset = -140;
+          const y = contentElement.offsetTop + yScrollOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
     }
   }, [location]);
 
@@ -73,9 +71,9 @@ export default function GovernmentIndexPageContainer({
             >
               <span>Menu</span>
               {sidebarOpen ? (
-                <X className='h-5 w-5 text-gray-800' />
+                <XIcon className='h-5 w-5 text-gray-800' />
               ) : (
-                <Menu className='h-5 w-5 text-gray-800' />
+                <MenuIcon className='h-5 w-5 text-gray-800' />
               )}
             </button>
           </div>
@@ -85,7 +83,7 @@ export default function GovernmentIndexPageContainer({
             <aside
               className={`${
                 sidebarOpen ? 'block' : 'hidden'
-              } md:block mb-6 md:mb-0 shrink-0`}
+              } md:block mb-6 md:mb-0 shrink-0 md:sticky md:top-[8.25rem] md:self-start`}
             >
               {sidebar}
             </aside>

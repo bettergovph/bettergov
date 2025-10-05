@@ -40,7 +40,7 @@ export const getCurrencyIconName = (code: string): string => {
     case 'USD':
       return 'DollarSign';
     case 'JPY':
-      return 'Pen'; // Using Pen as Yen
+      return 'JapaneseYen';
     case 'EUR':
       return 'Euro';
     case 'GBP':
