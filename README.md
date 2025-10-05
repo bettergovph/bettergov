@@ -36,7 +36,7 @@ Our goals include:
 
 ## Documentation
 
-For an easy-to-read overview of the project, visit the [BetterGov Docs](https://better-gov-docs.vercel.app/docs/about).
+For an easy-to-read overview of the project, visit the [BetterGov Docs](https://docs.bettergov.ph/).
 
 ## Join Us as a Volunteer
 

@@ -42,6 +42,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Visa Information', href: '/travel/visa' },
       { label: 'Visa Types', href: '/travel/visa-types' },
       { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
+      { label: 'Communicating', href: '/travel/communicating' },
       // { label: 'Tourist Destinations', href: '/travel/destinations' },
     ],
   },
@@ -77,6 +78,7 @@ export const footerNavigation = {
       title: 'About',
       links: [
         { label: 'About the Portal', href: '/about' },
+        { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
         { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
