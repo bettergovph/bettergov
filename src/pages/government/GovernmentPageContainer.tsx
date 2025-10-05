@@ -48,14 +48,25 @@ export default function GovernmentIndexPageContainer({
 
   useEffect(() => {
     if (location.state?.scrollToContent) {
-      const contentElement = document.getElementById('government-content');
+      //contents different loading times
+      const getTimeoutByRoute = (pathname: string) => {
+        if (pathname.includes('/legislative')) return 190;
+        if (pathname.includes('/executive')) return 150;
+        if (pathname.includes('/constitutional')) return 120;
+        if (pathname.includes('/diplomatic')) return 190;
+        return 100;
+      };
+
+      const timeout = getTimeoutByRoute(location.pathname);
+
       setTimeout(() => {
+        const contentElement = document.getElementById('government-content');
         if (contentElement) {
           const yScrollOffset = -140;
           const y = contentElement.offsetTop + yScrollOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
-      }, 100);
+      }, timeout);
     }
   }, [location]);
 
