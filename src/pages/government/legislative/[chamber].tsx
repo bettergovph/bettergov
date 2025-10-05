@@ -7,11 +7,18 @@ import {
   Mail,
   UserIcon,
   UsersIcon,
+  CrownIcon,
+  ShieldIcon,
 } from 'lucide-react';
 
 import legislativeData from '../../../data/directory/legislative.json';
 import { cn } from '../../../lib/utils';
-import { Card, CardHeader, CardContent } from '../../../components/ui/CardList';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDivider,
+} from '../../../components/ui/CardList';
 
 // Component to render officials in a card grid
 function OfficialsGrid({
@@ -28,8 +35,8 @@ function OfficialsGrid({
     <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
       {officials.map((official, index) => (
         <Card key={index} hover={false} className='h-full flex flex-col'>
-          <CardHeader className='flex-none'>
-            <div className='flex items-start justify-between gap-3'>
+          <CardHeader className='flex-none min-h-[100px]'>
+            <div className='flex items-start justify-between gap-3 h-full'>
               <div className='flex-1'>
                 <h3 className='font-semibold text-base text-gray-900 leading-tight'>
                   {official.name}
@@ -48,14 +55,19 @@ function OfficialsGrid({
               </div>
             </div>
           </CardHeader>
-          {official.contact && official.contact !== '__' && (
-            <CardContent className='flex-1'>
-              <div className='flex items-start gap-2 text-sm'>
+          <CardDivider />
+          <CardContent className='flex-1 flex items-start'>
+            {official.contact && official.contact !== '__' ? (
+              <div className='flex items-start gap-2 text-sm w-full'>
                 <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
                 <span className='text-gray-700'>{official.contact}</span>
               </div>
-            </CardContent>
-          )}
+            ) : (
+              <span className='text-sm text-gray-400 italic'>
+                No contact available
+              </span>
+            )}
+          </CardContent>
         </Card>
       ))}
     </div>
@@ -66,7 +78,7 @@ function OfficialsGrid({
 function CommitteesGrid({
   committees,
 }: {
-  committees: Array<{ committee: string; chairperson: string }>;
+  committees: Array<{ committee: string; chairperson?: string; name?: string }>;
 }) {
   return (
     <div className='grid grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 gap-6'>
@@ -77,6 +89,7 @@ function CommitteesGrid({
               {committee.committee}
             </h3>
           </CardHeader>
+          <CardDivider />
           <CardContent className='flex-1 flex flex-col justify-between'>
             <div className='flex items-center gap-2 text-sm'>
               <UsersIcon className='h-4 w-4 text-gray-400 flex-shrink-0' />
@@ -85,13 +98,160 @@ function CommitteesGrid({
                   Chairperson
                 </span>
                 <span className='font-medium text-gray-900 mt-0.5'>
-                  {committee.chairperson}
+                  {committee.chairperson || committee.name || 'N/A'}
                 </span>
               </div>
             </div>
           </CardContent>
         </Card>
       ))}
+    </div>
+  );
+}
+
+// Component to render house leaders
+interface HouseLeader {
+  name: string;
+  contact?: { contact?: string };
+}
+
+interface HouseLeadersData {
+  speaker?: HouseLeader;
+  deputy_speakers?: HouseLeader[];
+  majority_floor_leader?: HouseLeader;
+  senior_deputy_majority_floor_leader?: HouseLeader;
+  minority_floor_leader?: HouseLeader;
+  senior_deputy_minority_floor_leader?: HouseLeader;
+}
+
+interface LeaderCard {
+  name: string;
+  role: string;
+  contact?: string;
+  icon: typeof CrownIcon | typeof ShieldIcon | typeof UserIcon;
+  isPrimary: boolean;
+}
+
+function HouseLeadersGrid({ leaders }: { leaders: HouseLeadersData }) {
+  const leaderCards: LeaderCard[] = [];
+
+  // Speaker
+  if (leaders.speaker) {
+    leaderCards.push({
+      name: leaders.speaker.name,
+      role: 'Speaker of the House',
+      contact: leaders.speaker.contact?.contact,
+      icon: CrownIcon,
+      isPrimary: true,
+    });
+  }
+
+  // Deputy Speakers
+  if (leaders.deputy_speakers && Array.isArray(leaders.deputy_speakers)) {
+    leaders.deputy_speakers.forEach((deputy: HouseLeader) => {
+      leaderCards.push({
+        name: deputy.name,
+        role: 'Deputy Speaker',
+        contact: deputy.contact?.contact,
+        icon: ShieldIcon,
+        isPrimary: false,
+      });
+    });
+  }
+
+  // Majority Floor Leader
+  if (leaders.majority_floor_leader) {
+    leaderCards.push({
+      name: leaders.majority_floor_leader.name,
+      role: 'Majority Floor Leader',
+      contact: leaders.majority_floor_leader.contact?.contact,
+      icon: UserIcon,
+      isPrimary: false,
+    });
+  }
+
+  // Senior Deputy Majority Floor Leader
+  if (leaders.senior_deputy_majority_floor_leader) {
+    leaderCards.push({
+      name: leaders.senior_deputy_majority_floor_leader.name,
+      role: 'Senior Deputy Majority Floor Leader',
+      contact: leaders.senior_deputy_majority_floor_leader.contact?.contact,
+      icon: UserIcon,
+      isPrimary: false,
+    });
+  }
+
+  // Minority Floor Leader
+  if (leaders.minority_floor_leader) {
+    leaderCards.push({
+      name: leaders.minority_floor_leader.name,
+      role: 'Minority Floor Leader',
+      contact: leaders.minority_floor_leader.contact?.contact,
+      icon: UserIcon,
+      isPrimary: false,
+    });
+  }
+
+  // Senior Deputy Minority Floor Leader
+  if (leaders.senior_deputy_minority_floor_leader) {
+    leaderCards.push({
+      name: leaders.senior_deputy_minority_floor_leader.name,
+      role: 'Senior Deputy Minority Floor Leader',
+      contact: leaders.senior_deputy_minority_floor_leader.contact?.contact,
+      icon: UserIcon,
+      isPrimary: false,
+    });
+  }
+
+  return (
+    <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
+      {leaderCards.map((leader, index) => {
+        const IconComponent = leader.icon;
+        return (
+          <Card key={index} hover={false} className='h-full flex flex-col'>
+            <CardHeader className='flex-none min-h-[90px]'>
+              <div className='flex items-start justify-between gap-3 h-full'>
+                <div className='flex-1'>
+                  <h3 className='font-semibold text-base text-gray-900 leading-tight'>
+                    {leader.name}
+                  </h3>
+                  <p
+                    className={`text-sm font-medium mt-1 ${
+                      leader.isPrimary ? 'text-primary-600' : 'text-gray-600'
+                    }`}
+                  >
+                    {leader.role}
+                  </p>
+                </div>
+                <div
+                  className={`rounded-full p-2 shrink-0 ${
+                    leader.isPrimary ? 'bg-primary-100' : 'bg-gray-100'
+                  }`}
+                >
+                  <IconComponent
+                    className={`h-5 w-5 ${
+                      leader.isPrimary ? 'text-primary-600' : 'text-gray-600'
+                    }`}
+                  />
+                </div>
+              </div>
+            </CardHeader>
+            <CardDivider />
+            <CardContent className='flex-1 flex items-start'>
+              {leader.contact ? (
+                <div className='flex items-start gap-2 text-sm w-full'>
+                  <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
+                  <span className='text-gray-700'>{leader.contact}</span>
+                </div>
+              ) : (
+                <span className='text-sm text-gray-400 italic'>
+                  No contact available
+                </span>
+              )}
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }
@@ -151,6 +311,41 @@ function LegislativeDetailSection({
     );
   }
 
+  // Special handling for special committees
+  if (Array.isArray(data) && sectionKey === 'special_committees') {
+    return (
+      <CommitteesGrid
+        committees={data as Array<{ committee: string; chairperson: string }>}
+      />
+    );
+  }
+
+  // Special handling for house committees (with nested chairpersons)
+  if (
+    typeof data === 'object' &&
+    data !== null &&
+    sectionKey === 'house_committees'
+  ) {
+    const houseCommittees = data as {
+      chairpersons?: Array<{ committee: string; name: string }>;
+    };
+    if (
+      houseCommittees.chairpersons &&
+      Array.isArray(houseCommittees.chairpersons)
+    ) {
+      return <CommitteesGrid committees={houseCommittees.chairpersons} />;
+    }
+  }
+
+  // Special handling for house leaders
+  if (
+    typeof data === 'object' &&
+    data !== null &&
+    sectionKey === 'house_leaders'
+  ) {
+    return <HouseLeadersGrid leaders={data} />;
+  }
+
   if (Array.isArray(data)) {
     return (
       <div className='space-y-2'>
@@ -179,7 +374,7 @@ function LegislativeDetailSection({
     value => value === null || typeof value !== 'object'
   );
 
-  // Skip these keys as they're displayed in the header
+  // Skip these keys as they're displayed in the header or have dedicated pages
   const skipKeys = [
     'slug',
     'branch',
@@ -187,13 +382,15 @@ function LegislativeDetailSection({
     'address',
     'trunkline',
     'website',
+    'house_members',
+    'party_list_representatives',
   ];
 
   if (isSimpleObject) {
     return (
       <div
         className={cn(
-          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
+          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 gap-y-3 max-w-3xl',
           level === 1 && 'rounded-2xl font-bold text-lg'
         )}
       >
@@ -297,46 +494,44 @@ export default function LegislativeChamber() {
 
   return (
     <div className='space-y-6'>
-      <div className='bg-white rounded-lg  shadow-xs'>
-        <div className=''>
-          <h1 className='text-3xl font-bold text-gray-900 mb-2'>
-            {chamberData.chamber}
-          </h1>
+      <div>
+        <h1 className='text-3xl font-bold text-gray-900 mb-3'>
+          {chamberData.chamber}
+        </h1>
 
-          <div className='flex flex-col space-y-2 text-sm pb-4'>
-            {chamberData.address && (
-              <div className='flex items-start'>
-                <MapPinIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-                <span className='text-gray-800'>{chamberData.address}</span>
-              </div>
-            )}
+        <div className='flex flex-col space-y-2 text-sm'>
+          {chamberData.address && (
+            <div className='flex items-start'>
+              <MapPinIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+              <span className='text-gray-800'>{chamberData.address}</span>
+            </div>
+          )}
 
-            {chamberData.trunkline && (
-              <div className='flex items-start'>
-                <PhoneIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-                <span className='text-gray-800'>{chamberData.trunkline}</span>
-              </div>
-            )}
+          {chamberData.trunkline && (
+            <div className='flex items-start'>
+              <PhoneIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+              <span className='text-gray-800'>{chamberData.trunkline}</span>
+            </div>
+          )}
 
-            {chamberData.website && (
-              <div className='flex items-start'>
-                <GlobeIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-                <a
-                  href={
-                    chamberData.website.startsWith('http')
-                      ? chamberData.website
-                      : `https://${chamberData.website}`
-                  }
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-primary-600 hover:underline flex items-center'
-                >
-                  <span>{chamberData.website}</span>
-                  <ExternalLinkIcon className='ml-1 h-3.5 w-3.5' />
-                </a>
-              </div>
-            )}
-          </div>
+          {chamberData.website && (
+            <div className='flex items-start'>
+              <GlobeIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
+              <a
+                href={
+                  chamberData.website.startsWith('http')
+                    ? chamberData.website
+                    : `https://${chamberData.website}`
+                }
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-primary-600 hover:underline flex items-center'
+              >
+                <span>{chamberData.website}</span>
+                <ExternalLinkIcon className='ml-1 h-3.5 w-3.5' />
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
