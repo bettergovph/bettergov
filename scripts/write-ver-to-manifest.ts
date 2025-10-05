@@ -1,17 +1,25 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
-import viteConfig from '../vite.config';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config();
 
-const { build } = viteConfig;
+// Get the directory name in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-if (!build || !build.outDir) {
-  throw new Error('Build output directory is not defined in vite.config.ts');
-}
-const manifestPath = `./${build?.outDir}/.vite/manifest.json`;
+// Define the build output directory directly
+const buildOutDir = 'dist';
+const manifestPath = path.join(
+  __dirname,
+  '..',
+  buildOutDir,
+  '.vite',
+  'manifest.json'
+);
 
 const manifest = fs.readFileSync(manifestPath, 'utf-8');
 
