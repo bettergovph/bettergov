@@ -234,6 +234,7 @@ export default function DepartmentsIndex() {
             return (
               <Link
                 to={`/government/departments/${encodeURIComponent(dept.slug)}`}
+                state={{ scrollToContent: true }}
                 key={index}
                 className='block'
               >
