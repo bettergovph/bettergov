@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run generate:metadata && vite build",
+    "build": "tsc && npm run generate:metadata && tsx ./scripts/write-ver-to-manifest.ts && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
@@ -14,7 +14,6 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:codegen": "playwright codegen",
     "test:e2e:report": "playwright show-report",
-    "postbuild": "tsx ./scripts/write-ver-to-manifest.ts",
     "wrangler": "wrangler",
     "preview": "vite preview",
     "prepare": "husky",

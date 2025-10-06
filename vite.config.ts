@@ -7,7 +7,6 @@ import path from 'path';
 export default defineConfig({
   build: {
     outDir: 'dist',
-    manifest: true,
   },
   plugins: [react(), tailwindcss()],
   resolve: {

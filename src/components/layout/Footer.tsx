@@ -16,13 +16,13 @@ const Footer: React.FC = () => {
   useEffect(() => {
     const fetchVersion = async () => {
       try {
-        const res = await fetch('/manifest.json');
+        const res = await fetch('/version.json');
         const data = await res.json();
         if (data?.head_commit) {
           setVersion(data.head_commit.substring(0, 6)); // only first 6 chars
         }
       } catch (err) {
-        console.error('Error loading manifest.json:', err);
+        console.error('Error loading version.json:', err);
       }
     };
 
