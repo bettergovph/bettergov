@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -11,6 +11,7 @@ import {
   ArrowUpDown,
   Info,
   Search,
+  XIcon,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -93,6 +94,48 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent | PointerEvent) => {
+      const target = event.target as Node | null;
+      if (
+        dropdownRef.current &&
+        target &&
+        !dropdownRef.current.contains(target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    // Use pointerdown when available for better device coverage, fall back to mousedown
+    document.addEventListener(
+      'pointerdown',
+      handlePointerDown as EventListener
+    );
+    document.addEventListener('mousedown', handlePointerDown as EventListener);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener(
+        'pointerdown',
+        handlePointerDown as EventListener
+      );
+      document.removeEventListener(
+        'mousedown',
+        handlePointerDown as EventListener
+      );
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   const filteredOptions =
     searchable && searchTerm
@@ -102,7 +145,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       : options;
 
   return (
-    <div className='relative'>
+    <div className='relative' ref={dropdownRef}>
       <button
         type='button'
         className='w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded-md bg-white text-sm'
@@ -361,8 +404,8 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
     (a: Record<string, unknown>, b: Record<string, unknown>) => {
       // Handle special case for ContractCost which needs numeric sorting
       if (sortField === 'ContractCost') {
-        const costA = parseFloat(a[sortField] || '0');
-        const costB = parseFloat(b[sortField] || '0');
+        const costA = parseFloat(String(a[sortField] || '0'));
+        const costB = parseFloat(String(b[sortField] || '0'));
         return sortDirection === 'asc' ? costA - costB : costB - costA;
       }
 
@@ -620,6 +663,7 @@ const FloodControlProjectsTable: React.FC = () => {
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [isExporting, setIsExporting] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   // Handle filter change
   const handleFilterChange = (filterName: string, value: string) => {
@@ -745,7 +789,7 @@ const FloodControlProjectsTable: React.FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-gray-50'>
       <Helmet>
         <title>Flood Control Projects Table | BetterGov.ph</title>
         <meta
@@ -757,113 +801,127 @@ const FloodControlProjectsTable: React.FC = () => {
       {/* Main layout with sidebar and content */}
       <div className='container mx-auto px-4 py-8'>
         <div className='flex flex-col md:flex-row gap-6'>
-          {/* Sidebar with filters */}
-          <div className='w-full md:w-72 bg-white p-4 rounded-lg shadow-md'>
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
-                <Filter className='w-5 h-5 text-blue-600 mr-2' />
-                <h2 className='text-lg font-semibold text-gray-800'>Filters</h2>
+          {/* Sidebar for filters - collapsible on mobile */}
+          <div
+            className={`md:w-64 shrink-0 transition-all duration-300 ${
+              showSidebar ? 'block' : 'hidden md:block'
+            }`}
+          >
+            <div className='bg-white rounded-lg shadow-md p-4 sticky top-[8.25rem]'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center'>
+                  <Filter className='w-5 h-5 text-blue-600 mr-2' />
+                  <h2 className='text-lg font-semibold text-gray-800'>
+                    Filters
+                  </h2>
+                </div>
+                <button
+                  className='md:hidden text-gray-800 hover:text-gray-700'
+                  onClick={() => setShowSidebar(false)}
+                >
+                  <XIcon className='w-5 h-5' />
+                </button>
               </div>
-            </div>
 
-            <div className='space-y-4'>
-              {/* Search box in sidebar */}
-              <div className='pt-4'>
-                <h3 className='text-sm font-medium text-gray-700 mb-2'>
-                  Search Projects
-                </h3>
-                <div className='relative'>
-                  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                    <Search className='h-4 w-4 text-gray-400' />
+              <div className='space-y-4'>
+                {/* Search box in sidebar */}
+                <div className='pt-4'>
+                  <h3 className='text-sm font-medium text-gray-700 mb-2'>
+                    Search Projects
+                  </h3>
+                  <div className='relative'>
+                    <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                      <Search className='h-4 w-4 text-gray-400' />
+                    </div>
+                    <input
+                      type='text'
+                      className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                      placeholder='Projects, contractors, municipality, province, region...'
+                      value={searchTerm}
+                      onChange={e => handleSearchChange(e.target.value)}
+                    />
                   </div>
-                  <input
-                    type='text'
-                    className='block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-                    placeholder='Projects, contractors, municipality, province, region...'
-                    value={searchTerm}
-                    onChange={e => handleSearchChange(e.target.value)}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Year
+                  </label>
+                  <FilterDropdown
+                    name='Year'
+                    options={infraYearData.InfraYear}
+                    value={filters.InfraYear}
+                    onChange={value => handleFilterChange('InfraYear', value)}
                   />
                 </div>
-              </div>
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  Year
-                </label>
-                <FilterDropdown
-                  name='Year'
-                  options={infraYearData.InfraYear}
-                  value={filters.InfraYear}
-                  onChange={value => handleFilterChange('InfraYear', value)}
-                />
-              </div>
 
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  Region
-                </label>
-                <FilterDropdown
-                  name='Region'
-                  options={regionData.Region}
-                  value={filters.Region}
-                  onChange={value => handleFilterChange('Region', value)}
-                  searchable
-                />
-              </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Region
+                  </label>
+                  <FilterDropdown
+                    name='Region'
+                    options={regionData.Region}
+                    value={filters.Region}
+                    onChange={value => handleFilterChange('Region', value)}
+                    searchable
+                  />
+                </div>
 
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  Province
-                </label>
-                <FilterDropdown
-                  name='Province'
-                  options={provinceOptions}
-                  value={filters.Province}
-                  onChange={value => handleFilterChange('Province', value)}
-                  searchable
-                />
-              </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Province
+                  </label>
+                  <FilterDropdown
+                    name='Province'
+                    options={provinceOptions}
+                    value={filters.Province}
+                    onChange={value => handleFilterChange('Province', value)}
+                    searchable
+                  />
+                </div>
 
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  Type of Work
-                </label>
-                <FilterDropdown
-                  name='Type of Work'
-                  options={typeOfWorkData.TypeofWork}
-                  value={filters.TypeofWork}
-                  onChange={value => handleFilterChange('TypeofWork', value)}
-                  searchable
-                />
-              </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Type of Work
+                  </label>
+                  <FilterDropdown
+                    name='Type of Work'
+                    options={typeOfWorkData.TypeofWork}
+                    value={filters.TypeofWork}
+                    onChange={value => handleFilterChange('TypeofWork', value)}
+                    searchable
+                  />
+                </div>
 
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  District Engineering Office
-                </label>
-                <FilterDropdown
-                  name='DEO'
-                  options={deoData.DistrictEngineeringOffice}
-                  value={filters.DistrictEngineeringOffice}
-                  onChange={value =>
-                    handleFilterChange('DistrictEngineeringOffice', value)
-                  }
-                  searchable
-                />
-              </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    District Engineering Office
+                  </label>
+                  <FilterDropdown
+                    name='DEO'
+                    options={deoData.DistrictEngineeringOffice}
+                    value={filters.DistrictEngineeringOffice}
+                    onChange={value =>
+                      handleFilterChange('DistrictEngineeringOffice', value)
+                    }
+                    searchable
+                  />
+                </div>
 
-              <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
-                  Legislative District
-                </label>
-                <FilterDropdown
-                  name='Legislative District'
-                  options={legislativeDistrictData.LegislativeDistrict}
-                  value={filters.LegislativeDistrict}
-                  onChange={value =>
-                    handleFilterChange('LegislativeDistrict', value)
-                  }
-                  searchable
-                />
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Legislative District
+                  </label>
+                  <FilterDropdown
+                    name='Legislative District'
+                    options={legislativeDistrictData.LegislativeDistrict}
+                    value={filters.LegislativeDistrict}
+                    onChange={value =>
+                      handleFilterChange('LegislativeDistrict', value)
+                    }
+                    searchable
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -874,9 +932,7 @@ const FloodControlProjectsTable: React.FC = () => {
             <div className='md:hidden mb-4'>
               <Button
                 variant='outline'
-                onClick={() => {
-                  /* Mobile sidebar functionality */
-                }}
+                onClick={() => setShowSidebar(true)}
                 leftIcon={<Filter className='w-4 h-4' />}
               >
                 Show Filters

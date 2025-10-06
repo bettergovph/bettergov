@@ -13,6 +13,7 @@ import {
   UsersIcon,
   ExternalLinkIcon,
   ChevronRightIcon,
+  XIcon,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -200,8 +201,8 @@ const TableHits: React.FC<{
     (a: Record<string, unknown>, b: Record<string, unknown>) => {
       // Handle special case for ContractCost which needs numeric sorting
       if (sortField === 'ContractCost') {
-        const costA = parseFloat(a[sortField] || '0');
-        const costB = parseFloat(b[sortField] || '0');
+        const costA = parseFloat(String(a[sortField] || '0'));
+        const costB = parseFloat(String(b[sortField] || '0'));
         return sortDirection === 'asc' ? costA - costB : costB - costA;
       }
 
@@ -464,19 +465,19 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
 }) => (
   <div className='flex'>
     <button
-      className={`flex-1 text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+      className={`flex-1 overflow-hidden text-left px-3 py-2 text-sm hover:bg-gray-100 ${
         isSelected ? 'bg-primary-50 text-primary-600 font-medium' : ''
       }`}
       onClick={onClick}
       title={contractor.value} // Show full name on hover
     >
-      <div className='flex justify-between items-center'>
-        <span className='truncate max-w-[180px]'>
-          {contractor.value.length > 40
-            ? `${contractor.value.substring(0, 40)}...`
+      <div className='flex items-center gap-2 min-w-0'>
+        <span className='flex-1 truncate whitespace-nowrap'>
+          {contractor.value.length > 28
+            ? `${contractor.value.substring(0, 28)}…`
             : contractor.value}
         </span>
-        <span className='text-gray-800 text-xs ml-2 shrink-0'>
+        <span className='text-gray-800 text-xs shrink-0'>
           {contractor.count}
         </span>
       </div>
@@ -497,6 +498,7 @@ const FloodControlProjectsContractors: React.FC = () => {
   const [selectedContractor, setSelectedContractor] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [isExporting, setIsExporting] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   // Navigation handler for contractor details
   const handleContractorNavigation = (contractorSlug: string) => {
@@ -557,7 +559,7 @@ const FloodControlProjectsContractors: React.FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-gray-50'>
       <Helmet>
         <title>Flood Control Projects Contractors | BetterGov.ph</title>
         <meta
@@ -570,57 +572,72 @@ const FloodControlProjectsContractors: React.FC = () => {
       <div className='container mx-auto px-4 py-8'>
         <div className='flex flex-col md:flex-row gap-6'>
           {/* Sidebar with contractors list */}
-          <div className='w-full md:w-72 bg-white p-4 rounded-lg shadow-md'>
-            <div className='flex items-center justify-between mb-2'>
-              <div className='flex items-center'>
-                <UsersIcon className='w-5 h-5 text-primary-600 mr-2' />
-                <h2 className='text-lg font-semibold text-gray-800'>
-                  Contractors
-                </h2>
-              </div>
-            </div>
-
-            {/* Search box in sidebar */}
-            <div className='pt-4'>
-              <div className='relative'>
-                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                  <SearchIcon className='h-4 w-4 text-gray-400' />
+          <div
+            className={`md:w-64 shrink-0 ${
+              showSidebar ? 'block' : 'hidden md:block'
+            }`}
+          >
+            <div className='bg-white rounded-lg shadow-md p-4 sticky top-[8.25rem]'>
+              <div className='flex items-center justify-between mb-2'>
+                <div className='flex items-center'>
+                  <UsersIcon className='w-5 h-5 text-primary-600 mr-2' />
+                  <h2 className='text-lg font-semibold text-gray-800'>
+                    Contractors
+                  </h2>
                 </div>
-                <input
-                  type='text'
-                  className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-                  placeholder='Search contractors...'
-                  value={searchTerm}
-                  onChange={e => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className='mt-4'>
-              <ScrollArea className='h-[60vh]'>
-                <div className='space-y-1'>
+                <div>
                   <button
-                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
-                      !selectedContractor
-                        ? 'bg-primary-50 text-primary-600 font-medium'
-                        : ''
-                    }`}
-                    onClick={() => setSelectedContractor('')}
+                    className='md:hidden text-gray-800 hover:text-gray-700'
+                    onClick={() => setShowSidebar(false)}
+                    aria-label='Close sidebar'
                   >
-                    All Contractors
+                    <XIcon className='w-5 h-5' />
                   </button>
-
-                  {filteredContractors.map(contractor => (
-                    <ContractorItem
-                      key={contractor.value}
-                      contractor={contractor}
-                      isSelected={selectedContractor === contractor.value}
-                      onClick={() => setSelectedContractor(contractor.value)}
-                      onNavigate={handleContractorNavigation}
-                    />
-                  ))}
                 </div>
-              </ScrollArea>
+              </div>
+
+              {/* Search box in sidebar */}
+              <div className='pt-4'>
+                <div className='relative'>
+                  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                    <SearchIcon className='h-4 w-4 text-gray-400' />
+                  </div>
+                  <input
+                    type='text'
+                    className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-hidden focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
+                    placeholder='Search contractors...'
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className='mt-4'>
+                <ScrollArea className='h-[60vh] overflow-x-hidden'>
+                  <div className='space-y-1'>
+                    <button
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+                        !selectedContractor
+                          ? 'bg-primary-50 text-primary-600 font-medium'
+                          : ''
+                      }`}
+                      onClick={() => setSelectedContractor('')}
+                    >
+                      All Contractors
+                    </button>
+
+                    {filteredContractors.map(contractor => (
+                      <ContractorItem
+                        key={contractor.value}
+                        contractor={contractor}
+                        isSelected={selectedContractor === contractor.value}
+                        onClick={() => setSelectedContractor(contractor.value)}
+                        onNavigate={handleContractorNavigation}
+                      />
+                    ))}
+                  </div>
+                </ScrollArea>
+              </div>
             </div>
           </div>
 
@@ -630,9 +647,7 @@ const FloodControlProjectsContractors: React.FC = () => {
             <div className='md:hidden mb-4'>
               <Button
                 variant='outline'
-                onClick={() => {
-                  /* Mobile sidebar functionality */
-                }}
+                onClick={() => setShowSidebar(true)}
                 leftIcon={<UsersIcon className='w-4 h-4' />}
               >
                 Show Contractors
