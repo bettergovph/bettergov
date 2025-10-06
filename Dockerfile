@@ -13,7 +13,7 @@ FROM builder AS dev
 
 FROM nginx:alpine AS production
 
-LABEL org.opencontainers.image.authors="volunteers@bettergov.ph,root@guerzon.net"
+LABEL org.opencontainers.image.authors="volunteers@bettergov.ph"
 LABEL org.opencontainers.image.url="https://bettergov.ph"
 LABEL org.opencontainers.image.source="https://github.com/bettergovph/bettergov"
 
