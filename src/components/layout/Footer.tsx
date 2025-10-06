@@ -9,24 +9,20 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
+import versionData from '../../version.json';
+
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
   const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchVersion = async () => {
-      try {
-        const res = await fetch('/version.json');
-        const data = await res.json();
-        if (data?.head_commit) {
-          setVersion(data.head_commit.substring(0, 6)); // only first 6 chars
-        }
-      } catch (err) {
-        console.error('Error loading version.json:', err);
+    try {
+      if (versionData?.head_commit) {
+        setVersion(versionData.head_commit.substring(0, 6)); // only first 6 chars
       }
-    };
-
-    fetchVersion();
+    } catch (err) {
+      console.error('Error loading version.json:', err);
+    }
   }, []);
 
   const getSocialIcon = (label: string) => {

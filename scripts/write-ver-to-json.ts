@@ -11,8 +11,8 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Define the public directory for version file
-const versionPath = path.join(__dirname, '..', 'public', 'version.json');
+// Define the src directory for version file
+const versionPath = path.join(__dirname, '..', 'src', 'version.json');
 
 // Get current commit hash
 const hash =
