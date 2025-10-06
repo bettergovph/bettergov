@@ -13,6 +13,7 @@ services:
       - ./index.html:/app/index.html
       - ./vite.config.ts:/app/vite.config.ts
       - ./tsconfig.json:/app/tsconfig.json
+    command: npm run dev
     container_name: bettergov-dev
     restart: unless-stopped
 
