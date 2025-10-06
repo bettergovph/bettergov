@@ -261,7 +261,18 @@ export default function RegionalLGUPage() {
                             {unit.vice_mayor.name}
                           </p>
                           <p className='text-xs text-gray-800'>Vice Mayor</p>
-                          {unit.vice_mayor.contact ||
+                          {unit.vice_mayor.contact && (
+                            <div className='mt-1'>
+                              <CardContactInfo
+                                contact={{
+                                  phone: unit.vice_mayor.contact,
+                                  email: unit.vice_mayor.email,
+                                }}
+                                compact
+                              />
+                            </div>
+                          )
+                          }
                             (unit.vice_mayor.email && (
                               <div className='mt-1'>
                                 <CardContactInfo
