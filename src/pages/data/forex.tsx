@@ -143,34 +143,36 @@ const ForexPage: React.FC = () => {
         ) : (
           <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
             {/* Currency Selection Panel */}
-            <div className='bg-white rounded-lg shadow-md p-6'>
-              <h2 className='text-xl font-bold mb-4 text-gray-800'>
-                Currencies
-              </h2>
-              <div className='space-y-2'>
-                {forexRates.map(rate => (
-                  <button
-                    key={rate.code}
-                    onClick={() => setSelectedCurrency(rate.code)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
-                      selectedCurrency === rate.code
-                        ? 'bg-primary-100 text-primary-800'
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    <div className='flex items-center'>
-                      <div>
-                        <div className='font-medium'>{rate.code}</div>
-                        <div className='text-xs text-gray-800'>
-                          {formatCurrencyName(rate.currency)}
+            <div className='bg-white rounded-lg shadow-md overflow-hidden'>
+              <div className='sticky top-0 bg-white p-6 pb-4 border-b border-gray-100 z-10'>
+                <h2 className='text-xl font-bold text-gray-800'>Currencies</h2>
+              </div>
+              <div className='h-[520px] overflow-y-auto scrollbar-thin px-6 pb-6'>
+                <div className='space-y-2 pt-2'>
+                  {forexRates.map(rate => (
+                    <button
+                      key={rate.code}
+                      onClick={() => setSelectedCurrency(rate.code)}
+                      className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
+                        selectedCurrency === rate.code
+                          ? 'bg-primary-100 text-primary-800'
+                          : 'hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className='flex items-center'>
+                        <div>
+                          <div className='font-medium'>{rate.code}</div>
+                          <div className='text-xs text-gray-800'>
+                            {formatCurrencyName(rate.currency)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <span className='font-semibold'>
-                      {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
-                    </span>
-                  </button>
-                ))}
+                      <span className='font-semibold'>
+                        {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
