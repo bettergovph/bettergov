@@ -10,7 +10,6 @@ RUN npm run build
 
 # Development stage
 FROM builder AS dev
-EXPOSE 5173
 
 FROM nginx:alpine AS production
 
