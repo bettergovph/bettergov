@@ -114,6 +114,7 @@ export default function LocalGovernmentIndex() {
             {filteredRegions.map(region => (
               <Link
                 key={region.slug}
+                state={{ scrollToContent: true }}
                 to={`/government/local/${region.slug}`}
                 className='block'
               >
