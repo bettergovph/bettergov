@@ -22,6 +22,8 @@ const ForexPage: React.FC = () => {
   const [timeframe, setTimeframe] = useState<'1W' | '1M' | '3M' | '6M' | '1Y'>(
     '1M'
   );
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
   // Function to get currency icon
   const getCurrencyIcon = (code: string, size = 'h-6 w-6') => {
@@ -167,6 +169,13 @@ const ForexPage: React.FC = () => {
       .join(' ');
   };
 
+  // Filter currencies based on search term
+  const filteredForexRates = forexRates.filter(
+    rate =>
+      rate.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      rate.currency.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Generate historical data for the selected currency
   const historicalData = selectedCurrencyData
     ? generateHistoricalData(selectedCurrencyData.rate, timeframe)
@@ -189,37 +198,101 @@ const ForexPage: React.FC = () => {
             {/* Currency Selection Panel */}
             <div className='bg-white rounded-lg shadow-md overflow-hidden'>
               <div className='sticky top-0 bg-white p-6 pb-4 border-b border-gray-100 z-10'>
-                <h2 className='text-xl font-bold text-gray-800'>Currencies</h2>
+                {!isSearchOpen ? (
+                  <div className='flex items-center justify-between'>
+                    <h2 className='text-xl font-bold text-gray-800'>
+                      Currencies
+                    </h2>
+                    <button
+                      onClick={() => setIsSearchOpen(true)}
+                      className='p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors'
+                    >
+                      <LucideIcons.Search className='h-5 w-5' />
+                    </button>
+                  </div>
+                ) : (
+                  <div className='relative'>
+                    <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                      <LucideIcons.Search className='h-5 w-5 text-gray-400' />
+                    </div>
+                    <input
+                      type='text'
+                      placeholder='Search currencies...'
+                      value={searchTerm}
+                      onChange={e => setSearchTerm(e.target.value)}
+                      onBlur={() => {
+                        if (!searchTerm) {
+                          setIsSearchOpen(false);
+                        }
+                      }}
+                      autoFocus
+                      className='block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm'
+                    />
+                    <div className='absolute inset-y-0 right-0 pr-3 flex items-center'>
+                      <button
+                        onClick={() => {
+                          setSearchTerm('');
+                          setIsSearchOpen(false);
+                        }}
+                        className='text-gray-400 hover:text-gray-600'
+                      >
+                        <LucideIcons.X className='h-4 w-4' />
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className='h-[520px] overflow-y-auto scrollbar-thin px-6 pb-6'>
-                <div className='space-y-2 pt-2'>
-                  {forexRates.map(rate => (
-                    <button
-                      key={rate.code}
-                      onClick={() => setSelectedCurrency(rate.code)}
-                      className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between cursor-pointer ${
-                        selectedCurrency === rate.code
-                          ? 'bg-primary-100 text-primary-800'
-                          : 'hover:bg-gray-100'
-                      }`}
-                    >
-                      <div className='flex items-center gap-3'>
-                        <span className='text-2xl'>
-                          {getCurrencyFlag(rate.code)}
-                        </span>
-                        <div>
-                          <div className='font-medium'>{rate.code}</div>
-                          <div className='text-xs text-gray-800'>
-                            {formatCurrencyName(rate.currency)}
+                {filteredForexRates.length > 0 ? (
+                  <div className='space-y-2 pt-2'>
+                    {filteredForexRates.map(rate => (
+                      <button
+                        key={rate.code}
+                        onClick={() => setSelectedCurrency(rate.code)}
+                        className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between cursor-pointer ${
+                          selectedCurrency === rate.code
+                            ? 'bg-primary-100 text-primary-800'
+                            : 'hover:bg-gray-100'
+                        }`}
+                      >
+                        <div className='flex items-center gap-3'>
+                          <span className='text-2xl'>
+                            {getCurrencyFlag(rate.code)}
+                          </span>
+                          <div>
+                            <div className='font-medium'>{rate.code}</div>
+                            <div className='text-xs text-gray-800'>
+                              {formatCurrencyName(rate.currency)}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <span className='font-semibold'>
-                        {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
-                      </span>
-                    </button>
-                  ))}
-                </div>
+                        <span className='font-semibold'>
+                          {rate.rate ? `₱${rate.rate.toFixed(2)}` : 'No Data'}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className='flex flex-col items-center justify-center h-full text-center pt-8'>
+                    <LucideIcons.SearchX className='h-12 w-12 text-gray-400 mb-4' />
+                    <h3 className='text-lg font-medium text-gray-600 mb-2'>
+                      No currencies found
+                    </h3>
+                    <p className='text-sm text-gray-500 mb-4'>
+                      {searchTerm
+                        ? `No currencies match "${searchTerm}"`
+                        : 'No currencies available'}
+                    </p>
+                    {searchTerm && (
+                      <button
+                        onClick={() => setSearchTerm('')}
+                        className='text-primary-600 hover:text-primary-700 text-sm font-medium'
+                      >
+                        Clear search
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
