@@ -65,7 +65,11 @@
     "recharts": "^2.15.3",
     "tailwind-merge": "^2.2.1",
     "wrangler": "^4.19.1",
-    "zod": "^4.1.11"
+    "zod": "^4.1.11",
+    "@algolia/client-search": "^4.0.0",
+    "@algolia/client-common": "^4.0.0",
+    "@algolia/requester-browser-xhr": "^4.0.0",
+    "@algolia/requester-fetch": "^4.0.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
