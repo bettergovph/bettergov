@@ -79,6 +79,7 @@ const ForexPage: React.FC = () => {
       KWD: '🇰🇼', // Kuwaiti Dinar
       SAR: '🇸🇦', // Saudi Riyal
       AED: '🇦🇪', // UAE Dirham
+      BND: '🇧🇳', // Brunei Dollar
     };
     return flagMap[code] || '🏴';
   };
