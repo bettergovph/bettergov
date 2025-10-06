@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+    container_name: bettergov-dev
+    restart: unless-stopped
+
   bettergov:
     build: .
     ports:

@@ -8,6 +8,11 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+# Development stage
+FROM builder AS dev
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
+
 FROM nginx:alpine AS production
 
 LABEL org.opencontainers.image.authors="volunteers@bettergov.ph,root@guerzon.net"

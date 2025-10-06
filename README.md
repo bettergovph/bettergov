@@ -99,18 +99,39 @@ docker run -d -p 8080:80 --name bettergov bettergov
 
 ### Docker Compose
 
+Docker Compose is configured for two primary use cases: local development with hot-reloading and running a production-like build.
+
+#### Local Development (with Hot-Reloading)
+
+For active development, a `dev` service is configured with hot-reloading. Changes to your source code will be reflected instantly without needing to rebuild the image.
+
 ```bash
-# Start the service
-docker-compose up
+# Start the development server
+docker-compose up dev
 
 # Start in detached mode
-docker-compose up -d
+docker-compose up -d dev
+```
+**Access the application at:** `http://localhost:5173`
 
-# Stop the service
+#### Production Build
+
+To build and run the production-like container, which serves static files via Nginx:
+
+```bash
+# Build and start the service
+docker-compose up bettergov --build
+
+# Start in detached mode
+docker-compose up -d bettergov
+```
+**Access the application at:** `http://localhost:8080`
+
+To stop any of the services:
+```bash
+# Stop the services
 docker-compose down
 ```
-
-The Dockerfile uses a multi-stage build with Node.js for building and nginx for serving the static files.
 
 ## Testing
 
