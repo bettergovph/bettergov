@@ -1,6 +1,12 @@
 import { useState, useMemo } from 'react';
-import { SearchIcon, UsersIcon, PhoneIcon } from 'lucide-react';
+import { SearchIcon, UsersIcon, PhoneIcon, MapPinIcon } from 'lucide-react';
 import legislativeData from '../../../data/directory/legislative.json';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDivider,
+} from '../../../components/ui/CardList';
 
 interface HouseMember {
   province_city: string;
@@ -47,41 +53,21 @@ export default function HouseMembersPage() {
     });
   }, [houseMembers, searchTerm, selectedProvince]);
 
-  // Group members by province/city
-  const membersByProvince = useMemo(() => {
-    const grouped: Record<string, HouseMember[]> = {};
-
-    filteredMembers.forEach((member: HouseMember) => {
-      if (!grouped[member.province_city]) {
-        grouped[member.province_city] = [];
-      }
-      grouped[member.province_city].push(member);
-    });
-
-    // Sort provinces alphabetically
-    return Object.keys(grouped)
-      .sort()
-      .reduce((acc: Record<string, HouseMember[]>, province) => {
-        acc[province] = grouped[province];
-        return acc;
-      }, {});
-  }, [filteredMembers]);
-
   return (
-    <div className='space-y-6'>
+    <div className='@container space-y-6'>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
         <div>
-          <h1 className='text-2xl font-bold text-gray-900'>
+          <h1 className='text-3xl font-bold text-gray-900'>
             House Members by Cities/Provinces
           </h1>
-          <p className='text-gray-800 mt-1'>
+          <p className='text-gray-800 mt-2'>
             {houseMembers.length} Representatives from {provinces.length}{' '}
             cities/provinces
           </p>
         </div>
 
         <div className='flex flex-col md:flex-row gap-3'>
-          <div className='relative w-full md:w-64'>
+          <div className='relative w-full md:w-72'>
             <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
             <input
               type='search'
@@ -93,7 +79,7 @@ export default function HouseMembersPage() {
           </div>
 
           <select
-            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+            className='rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-w-[200px]'
             value={selectedProvince || ''}
             onChange={e => setSelectedProvince(e.target.value || null)}
           >
@@ -107,7 +93,7 @@ export default function HouseMembersPage() {
         </div>
       </div>
 
-      {Object.keys(membersByProvince).length === 0 ? (
+      {filteredMembers.length === 0 ? (
         <div className='p-8 text-center bg-white rounded-lg border'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
             <UsersIcon className='h-6 w-6 text-gray-400' />
@@ -120,45 +106,38 @@ export default function HouseMembersPage() {
           </p>
         </div>
       ) : (
-        <div className='space-y-6'>
-          {Object.entries(membersByProvince).map(([province, members]) => (
-            <div
-              key={province}
-              className='bg-white rounded-lg border overflow-hidden'
-            >
-              <div className='bg-gray-50 px-4 py-3 border-b'>
-                <h2 className='text-lg font-medium text-gray-900'>
-                  {province}
-                </h2>
-                <p className='text-sm text-gray-800'>
-                  {members.length}{' '}
-                  {members.length === 1 ? 'representative' : 'representatives'}
-                </p>
-              </div>
-
-              <div className='divide-y'>
-                {members.map((member, index) => (
-                  <div
-                    key={index}
-                    className='p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2'
-                  >
-                    <div>
-                      <h3 className='font-medium text-gray-900'>
-                        {member.name}
-                      </h3>
-                      <p className='text-sm text-gray-800'>
-                        {member.district} District
+        <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
+          {filteredMembers.map((member, index) => (
+            <Card key={index} hover={false} className='h-full flex flex-col'>
+              <CardHeader className='flex-none'>
+                <div className='flex items-start justify-between gap-3'>
+                  <div className='flex-1'>
+                    <h3 className='font-semibold text-base text-gray-900 leading-tight'>
+                      {member.name}
+                    </h3>
+                    <div className='flex items-center gap-1.5 mt-2'>
+                      <MapPinIcon className='h-3.5 w-3.5 text-gray-400 flex-shrink-0' />
+                      <p className='text-sm text-gray-600'>
+                        {member.province_city}
                       </p>
                     </div>
-
-                    <div className='flex items-center text-sm text-gray-800'>
-                      <PhoneIcon className='h-4 w-4 text-gray-400 mr-2' />
-                      <span>{member.contact}</span>
-                    </div>
+                    <p className='text-xs text-primary-600 font-medium mt-1'>
+                      {member.district} District
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div className='rounded-full bg-primary-50 p-2 shrink-0'>
+                    <UsersIcon className='h-5 w-5 text-primary-600' />
+                  </div>
+                </div>
+              </CardHeader>
+              <CardDivider />
+              <CardContent className='flex-1'>
+                <div className='flex items-start gap-2 text-sm'>
+                  <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
+                  <span className='text-gray-700'>{member.contact}</span>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}
