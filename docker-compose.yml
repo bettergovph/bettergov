@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  dev:
+  app:
     build:
       context: .
       target: dev
@@ -16,14 +16,3 @@ services:
     command: npm run dev
     container_name: bettergov-dev
     restart: unless-stopped
-
-  bettergov:
-    build: .
-    ports:
-      - '8080:80'
-    container_name: bettergov
-    restart: unless-stopped
-    labels:
-      - 'org.opencontainers.image.authors=guerzon@proton.me'
-      - 'org.opencontainers.image.url=https://bettergov.ph'
-      - 'org.opencontainers.image.source=https://github.com/bettergovph/bettergov'
