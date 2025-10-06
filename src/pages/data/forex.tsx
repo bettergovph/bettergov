@@ -197,7 +197,7 @@ const ForexPage: React.FC = () => {
                     <button
                       key={rate.code}
                       onClick={() => setSelectedCurrency(rate.code)}
-                      className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
+                      className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between cursor-pointer ${
                         selectedCurrency === rate.code
                           ? 'bg-primary-100 text-primary-800'
                           : 'hover:bg-gray-100'
