@@ -1,16 +1,19 @@
 import { SearchIcon, XIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  InputHTMLAttributes,
+  ReactNode,
+  useState,
+} from 'react';
 import { cn } from '../../lib/utils';
 
 interface SearchInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'onChange' | 'size'
-  > {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
   onSearch?: (value: string) => void;
   className?: string;
   placeholder?: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   size?: 'sm' | 'md' | 'lg';
   clearable?: boolean;
 }
@@ -26,11 +29,11 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const [value, setValue] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (onSearch) {
       onSearch(value);

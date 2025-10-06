@@ -1,9 +1,9 @@
 import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-const JoinUsBanner: React.FC = () => {
+const JoinUsBanner: FC = () => {
   const { t } = useTranslation('common');
 
   return (

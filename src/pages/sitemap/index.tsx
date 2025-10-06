@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ChevronRight,
@@ -14,7 +14,7 @@ import SEO from '../../components/SEO';
 
 interface SitemapSection {
   title: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   links: {
     title: string;
     url: string;
@@ -22,7 +22,7 @@ interface SitemapSection {
   }[];
 }
 
-const SitemapPage: React.FC = () => {
+const SitemapPage: FC = () => {
   const sitemapSections: SitemapSection[] = [
     {
       title: 'Main Pages',

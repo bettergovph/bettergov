@@ -5,11 +5,11 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
-const Footer: React.FC = () => {
+const Footer: FC = () => {
   const { t } = useTranslation('common');
 
   const getSocialIcon = (label: string) => {
