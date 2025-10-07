@@ -139,10 +139,10 @@ const Navbar: FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors ${
+                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 ${
                       isActive
-                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
-                        : 'text-gray-700 hover:text-primary-600'
+                        ? 'text-primary-600 border-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
