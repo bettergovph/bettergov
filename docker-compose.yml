@@ -1,13 +1,16 @@
-version: '3.8'
-
 services:
-  bettergov:
-    build: .
+  app:
+    build:
+      context: .
+      target: dev
     ports:
-      - '8080:80'
-    container_name: bettergov
+      - '5173:5173'
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+    command: npm run dev
+    container_name: bettergov-dev
     restart: unless-stopped
-    labels:
-      - 'org.opencontainers.image.authors=guerzon@proton.me'
-      - 'org.opencontainers.image.url=https://bettergov.ph'
-      - 'org.opencontainers.image.source=https://github.com/bettergovph/bettergov'

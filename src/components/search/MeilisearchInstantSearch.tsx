@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
 import {
   InstantSearch,
   SearchBox,
@@ -94,7 +94,7 @@ interface HitProps {
   };
 }
 
-const Hit: React.FC<HitProps> = ({ hit }) => {
+const Hit: FC<HitProps> = ({ hit }) => {
   const title = hit.service || hit.name || hit.office_name || hit.office;
   const link = hit.url || `/directory/${hit.slug}`;
 
@@ -163,7 +163,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
   );
 };
 
-const MeilisearchInstantSearch: React.FC = () => {
+const MeilisearchInstantSearch: FC = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 

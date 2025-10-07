@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Scale,
@@ -9,7 +9,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 
-const TermsOfService: React.FC = () => {
+const TermsOfService: FC = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',

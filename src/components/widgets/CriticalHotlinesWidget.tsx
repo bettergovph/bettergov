@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneIcon, ChevronRightIcon, AlertCircleIcon } from 'lucide-react';
 import hotlinesData from '../../data/philippines_hotlines.json';
@@ -14,7 +14,7 @@ interface CriticalHotlinesWidgetProps {
   maxItems?: number;
 }
 
-const CriticalHotlinesWidget: React.FC<CriticalHotlinesWidgetProps> = ({
+const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
   maxItems = 4,
 }) => {
   const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(

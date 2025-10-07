@@ -5,7 +5,7 @@ import {
   GlobeIcon,
   SearchIcon,
 } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState } from 'react';
 import Button from '../../../components/ui/Button';
 import websitesData from '../../../data/websites.json';
 
@@ -19,7 +19,7 @@ interface Website {
   type: string;
 }
 
-const WebsitesDirectory: React.FC = () => {
+const WebsitesDirectory: FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<string>('');
   const [sortBy, setSortBy] = useState<'name' | 'type'>('name');
@@ -118,7 +118,7 @@ const WebsitesDirectory: React.FC = () => {
                   type='text'
                   placeholder='Search by name or website...'
                   value={searchQuery}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setSearchQuery(e.target.value)
                   }
                   className='pl-10 w-full'

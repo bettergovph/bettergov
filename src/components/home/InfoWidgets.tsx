@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { Card, CardHeader, CardContent } from '../ui/Card';
 import { WeatherData, ForexRate } from '../../types';
@@ -7,7 +7,7 @@ import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
 import { fetchWeatherData } from '../../lib/weather';
 import { fetchForexData } from '../../lib/forex';
 
-const InfoWidgets: React.FC = () => {
+const InfoWidgets: FC = () => {
   const { t } = useTranslation('common');
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
