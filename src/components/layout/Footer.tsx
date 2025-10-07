@@ -5,20 +5,25 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
 import versionData from '../../version.json';
 
-const Footer: React.FC = () => {
+type Version = {
+  head_commit: string;
+};
+
+const Footer: FC = () => {
   const { t } = useTranslation('common');
   const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
     try {
-      if (versionData?.head_commit) {
-        setVersion(versionData.head_commit.substring(0, 6)); // only first 6 chars
+      const version = versionData as Version;
+      if (version?.head_commit) {
+        setVersion(version.head_commit.substring(0, 6)); // only first 6 chars
       }
     } catch (err) {
       console.error('Error loading version.json:', err);

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Globe2Icon,
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
-const AboutPhilippines: React.FC = () => {
+const AboutPhilippines: FC = () => {
   const { t } = useTranslation('about-philippines');
 
   const facts = [
