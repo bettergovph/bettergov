@@ -1,5 +1,12 @@
 import { ChevronDownIcon, SearchIcon, XIcon } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  MouseEvent as ReactMouseEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { cn } from '../../lib/utils';
 
 interface SelectPickerOption {
@@ -64,7 +71,7 @@ const SelectPicker = ({
   };
 
   // Handle clear selection
-  const handleClear = (e: React.MouseEvent) => {
+  const handleClear = (e: ReactMouseEvent) => {
     e.stopPropagation();
     setSelectedOption(null);
     onSelect(null);
@@ -108,12 +115,12 @@ const SelectPicker = ({
   };
 
   // Handle search input change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   // Handle search input key down
-  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+  const handleSearchKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm('');

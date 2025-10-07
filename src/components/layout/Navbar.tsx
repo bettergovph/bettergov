@@ -5,14 +5,14 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);

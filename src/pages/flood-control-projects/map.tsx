@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -91,7 +91,7 @@ const meiliSearchInstance = instantMeiliSearch(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const searchClient = meiliSearchInstance.searchClient as any;
 
-const FloodControlProjectsMap: React.FC = () => {
+const FloodControlProjectsMap: FC = () => {
   // Loading state for export
   const [isExporting, setIsExporting] = useState<boolean>(false);
 

@@ -1,40 +1,39 @@
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
-import React from 'react';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
-interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
-  children: React.ReactNode;
+interface BreadcrumbProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
   className?: string;
 }
 
-interface BreadcrumbListProps extends React.HTMLAttributes<HTMLOListElement> {
-  children: React.ReactNode;
+interface BreadcrumbListProps extends HTMLAttributes<HTMLOListElement> {
+  children: ReactNode;
   className?: string;
 }
 
-interface BreadcrumbItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
-  children: React.ReactNode;
+interface BreadcrumbItemProps extends LiHTMLAttributes<HTMLLIElement> {
+  children: ReactNode;
   className?: string;
 }
 
-interface BreadcrumbLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface BreadcrumbLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-interface BreadcrumbPageProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactNode;
+interface BreadcrumbPageProps extends HTMLAttributes<HTMLSpanElement> {
+  children: ReactNode;
   className?: string;
 }
 
-interface BreadcrumbSeparatorProps extends React.HTMLAttributes<HTMLLIElement> {
-  children?: React.ReactNode;
+interface BreadcrumbSeparatorProps extends HTMLAttributes<HTMLLIElement> {
+  children?: ReactNode;
   className?: string;
 }
 
-const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
+const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, children, ...props }, ref) => {
     return (
       <nav ref={ref} aria-label='breadcrumb' className={className} {...props}>
@@ -47,7 +46,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 );
 Breadcrumb.displayName = 'Breadcrumb';
 
-const BreadcrumbList = React.forwardRef<HTMLOListElement, BreadcrumbListProps>(
+const BreadcrumbList = forwardRef<HTMLOListElement, BreadcrumbListProps>(
   ({ className, children, ...props }, ref) => (
     <ol
       ref={ref}
@@ -63,7 +62,7 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, BreadcrumbListProps>(
 );
 BreadcrumbList.displayName = 'BreadcrumbList';
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
+const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
   ({ className, children, ...props }, ref) => (
     <li
       ref={ref}
@@ -76,7 +75,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
 );
 BreadcrumbItem.displayName = 'BreadcrumbItem';
 
-const BreadcrumbLink = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
+const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
   ({ className, href, children, ...props }, ref) => (
     <a
       ref={ref}
@@ -93,7 +92,7 @@ const BreadcrumbLink = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
 );
 BreadcrumbLink.displayName = 'BreadcrumbLink';
 
-const BreadcrumbPage = React.forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
+const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
   ({ className, children, ...props }, ref) => (
     <span
       ref={ref}
@@ -125,7 +124,7 @@ const BreadcrumbSeparator = ({
 );
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 
-const BreadcrumbHome = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
+const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
   ({ className, href, children, ...props }, ref) => (
     <a
       ref={ref}
