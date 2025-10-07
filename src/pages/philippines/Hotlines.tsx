@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import hotlinesData from '../../data/philippines_hotlines.json';
 
 interface Hotline {
@@ -19,7 +19,7 @@ import {
   HeartIcon,
 } from 'lucide-react';
 
-const Hotlines: React.FC = () => {
+const Hotlines: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 

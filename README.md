@@ -36,7 +36,7 @@ Our goals include:
 
 ## Documentation
 
-For an easy-to-read overview of the project, visit the [BetterGov Docs](https://better-gov-docs.vercel.app/docs/about).
+For an easy-to-read overview of the project, visit the [BetterGov Docs](https://docs.bettergov.ph/).
 
 ## Join Us as a Volunteer
 
@@ -99,8 +99,10 @@ docker run -d -p 8080:80 --name bettergov bettergov
 
 ### Docker Compose
 
+For the easiest and most consistent development experience, we recommend using Docker Compose. This method uses Docker to run the application in a controlled environment with hot-reloading enabled.
+
 ```bash
-# Start the service
+# Start the development server
 docker-compose up
 
 # Start in detached mode
@@ -109,8 +111,7 @@ docker-compose up -d
 # Stop the service
 docker-compose down
 ```
-
-The Dockerfile uses a multi-stage build with Node.js for building and nginx for serving the static files.
+**Access the application at:** `http://localhost:5173`
 
 ## Testing
 

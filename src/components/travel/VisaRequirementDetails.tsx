@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FileCheckIcon,
@@ -15,7 +15,7 @@ interface VisaRequirementDetailsProps {
   isDialog?: boolean;
 }
 
-const VisaRequirementDetails: React.FC<VisaRequirementDetailsProps> = ({
+const VisaRequirementDetails: FC<VisaRequirementDetailsProps> = ({
   country,
   visaRequirement,
   isDialog = false,

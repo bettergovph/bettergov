@@ -11,7 +11,7 @@ import {
   UsersIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';
@@ -87,7 +87,7 @@ const COLORS = [
 ];
 
 // Statistics Display Component with hardcoded values for better performance
-const DashboardStatistics: React.FC = () => {
+const DashboardStatistics: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -152,7 +152,7 @@ const DashboardStatistics: React.FC = () => {
 };
 
 // Chart components that use live filtered data from Meilisearch
-const YearlyChart: React.FC = () => {
+const YearlyChart: FC = () => {
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -204,7 +204,7 @@ const YearlyChart: React.FC = () => {
   );
 };
 
-const RegionChart: React.FC = () => {
+const RegionChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -271,7 +271,7 @@ const RegionChart: React.FC = () => {
   );
 };
 
-const TypeOfWorkChart: React.FC = () => {
+const TypeOfWorkChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -356,7 +356,7 @@ const TypeOfWorkChart: React.FC = () => {
   );
 };
 
-const ContractorChart: React.FC = () => {
+const ContractorChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -438,7 +438,7 @@ const ContractorChart: React.FC = () => {
 
 // Removed SearchResultsHits component since we don't need it anymore
 
-const FloodControlProjects: React.FC = () => {
+const FloodControlProjects: FC = () => {
   const { t } = useTranslation('flood-control-projects');
 
   // State for filters and sidebar visibility

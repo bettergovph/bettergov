@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -84,7 +84,7 @@ interface HitProps {
 }
 
 // Filter dropdown component with search capability
-const FilterDropdown: React.FC<FilterDropdownProps> = ({
+const FilterDropdown: FC<FilterDropdownProps> = ({
   name,
   options,
   value,
@@ -174,7 +174,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 };
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -219,7 +219,7 @@ type FilterState = {
 };
 
 // Dynamic filter title component
-const FilterTitle: React.FC<{ filters: FilterState; searchTerm: string }> = ({
+const FilterTitle: FC<{ filters: FilterState; searchTerm: string }> = ({
   filters,
   searchTerm,
 }) => {
@@ -283,7 +283,7 @@ const FilterTitle: React.FC<{ filters: FilterState; searchTerm: string }> = ({
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
 }> = ({ hits, totalHits }) => {
@@ -344,7 +344,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
+const TableHits: FC<{ filters: FilterState; searchTerm: string }> = ({
   filters,
   searchTerm,
 }) => {
@@ -385,7 +385,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -608,7 +608,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
   );
 };
 
-const FloodControlProjectsTable: React.FC = () => {
+const FloodControlProjectsTable: FC = () => {
   // State for filters and search
   const [filters, setFilters] = useState<FilterState>({
     InfraYear: '',

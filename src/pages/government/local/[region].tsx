@@ -42,8 +42,8 @@ export default function RegionalLGUPage() {
 
     interface Unit {
       city?: string;
-      mayor?: { name?: string; contact?: string };
-      vice_mayor?: { name?: string; contact?: string };
+      mayor?: { name?: string; contact?: string; email?: string };
+      vice_mayor?: { name?: string; contact?: string; email?: string };
       type: 'City' | 'Municipality';
       province: string | null;
     }
@@ -218,11 +218,25 @@ export default function RegionalLGUPage() {
                         {unit.mayor?.contact && (
                           <div className='mt-1'>
                             <CardContactInfo
-                              contact={{ phone: unit.mayor.contact }}
+                              contact={{
+                                phone: unit.mayor?.contact,
+                                email: unit.mayor?.email,
+                              }}
                               compact
                             />
                           </div>
                         )}
+                        (unit.mayor?.email && (
+                        <div className='mt-1'>
+                          <CardContactInfo
+                            contact={{
+                              phone: unit.mayor?.contact,
+                              email: unit.mayor?.email,
+                            }}
+                            compact
+                          />
+                        </div>
+                        ))
                       </div>
                     </div>
                   </div>
@@ -250,11 +264,25 @@ export default function RegionalLGUPage() {
                           {unit.vice_mayor.contact && (
                             <div className='mt-1'>
                               <CardContactInfo
-                                contact={{ phone: unit.vice_mayor.contact }}
+                                contact={{
+                                  phone: unit.vice_mayor.contact,
+                                  email: unit.vice_mayor.email,
+                                }}
                                 compact
                               />
                             </div>
                           )}
+                          (unit.vice_mayor.email && (
+                          <div className='mt-1'>
+                            <CardContactInfo
+                              contact={{
+                                phone: unit.vice_mayor.contact,
+                                email: unit.vice_mayor.email,
+                              }}
+                              compact
+                            />
+                          </div>
+                          ))
                         </div>
                       </div>
                     </div>
