@@ -5,7 +5,7 @@ import {
   ExternalLinkIcon,
   SearchIcon,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '@/types/visa.ts';
@@ -15,7 +15,7 @@ interface VisaCategory {
   id: string;
   name: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   visaTypes: VisaType[] | Array<Record<string, unknown>>;
 }
 
@@ -23,7 +23,7 @@ interface VisaTypeDetailParams {
   type: string;
 }
 
-const VisaTypeDetail: React.FC = () => {
+const VisaTypeDetail: FC = () => {
   const { type } = useParams<VisaTypeDetailParams>();
   const [visa, setVisa] = useState<VisaType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

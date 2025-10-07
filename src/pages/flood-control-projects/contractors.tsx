@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -82,7 +82,7 @@ interface HitProps {
 }
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -116,7 +116,7 @@ type FloodControlHit = {
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
   contractor: string;
@@ -184,7 +184,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{
+const TableHits: FC<{
   selectedContractor: string;
   onViewDetails?: () => void;
 }> = ({ selectedContractor, onViewDetails }) => {
@@ -225,7 +225,7 @@ const TableHits: React.FC<{
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -457,7 +457,7 @@ interface ContractorItemProps {
   onNavigate: (contractorSlug: string) => void;
 }
 
-const ContractorItem: React.FC<ContractorItemProps> = ({
+const ContractorItem: FC<ContractorItemProps> = ({
   contractor,
   isSelected,
   onClick,
@@ -493,7 +493,7 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
 );
 
 // Main Contractors component
-const FloodControlProjectsContractors: React.FC = () => {
+const FloodControlProjectsContractors: FC = () => {
   const navigate = useNavigate();
   const [selectedContractor, setSelectedContractor] = useState('');
   const [searchTerm, setSearchTerm] = useState('');

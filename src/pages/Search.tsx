@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import {
   InstantSearch,
   SearchBox,
@@ -93,7 +93,7 @@ interface HitProps {
   };
 }
 
-const Hit: React.FC<HitProps> = ({ hit }) => {
+const Hit: FC<HitProps> = ({ hit }) => {
   const title = hit.service || hit.name || hit.office_name || hit.office;
   const link = hit.url || `/directory/${hit.slug}`;
 
@@ -155,7 +155,7 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
   );
 };
 
-const SearchPage: React.FC = () => {
+const SearchPage: FC = () => {
   return (
     <div className='container mx-auto px-4 py-8'>
       <Helmet>

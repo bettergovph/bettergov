@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -113,7 +113,7 @@ interface HitProps {
 }
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -149,7 +149,7 @@ type FloodControlHit = {
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
   contractor: string;
@@ -205,7 +205,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom component to access Meilisearch hits for map
-const MapHits: React.FC<{
+const MapHits: FC<{
   onHitsUpdate: (hits: FloodControlProject[]) => void;
 }> = ({ onHitsUpdate }) => {
   const { hits } = useHits<FloodControlProject>();
@@ -218,7 +218,7 @@ const MapHits: React.FC<{
 };
 
 // Custom component to fetch contractor profile
-const ContractorProfileFetcher: React.FC<{
+const ContractorProfileFetcher: FC<{
   onProfileUpdate: (profile: ContractorProfile | null) => void;
 }> = ({ onProfileUpdate }) => {
   const { hits } = useHits<ContractorProfile>();
@@ -232,7 +232,7 @@ const ContractorProfileFetcher: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{ selectedContractor: string }> = ({
+const TableHits: FC<{ selectedContractor: string }> = ({
   selectedContractor,
 }) => {
   const [sortField, setSortField] = useState<string>('ProjectDescription');
@@ -272,7 +272,7 @@ const TableHits: React.FC<{ selectedContractor: string }> = ({
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -512,7 +512,7 @@ const findContractorBySlug = (slug: string): DataItem | null => {
 };
 
 // Main Contractor Detail component
-const ContractorDetail: React.FC = () => {
+const ContractorDetail: FC = () => {
   const { 'contractor-name': contractorSlug } = useParams<{
     'contractor-name': string;
   }>();

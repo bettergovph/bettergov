@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Card, CardContent, CardHeader } from '../../../components/ui/Card';
 import { CalendarIcon } from 'lucide-react';
 
@@ -135,7 +135,7 @@ const HolidayTable = ({
   </div>
 );
 
-const PublicHolidays: React.FC = () => {
+const PublicHolidays: FC = () => {
   const currentYear = new Date().getFullYear();
 
   const regularHolidays = REGULAR_HOLIDAYS.map(holiday =>

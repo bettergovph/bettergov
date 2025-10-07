@@ -13,10 +13,10 @@ import {
   UsersIcon,
   ZapIcon,
 } from 'lucide-react';
-import React from 'react';
+import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const JoinUs: React.FC = () => {
+const JoinUs: FC = () => {
   return (
     <div className='min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50'>
       <Helmet>

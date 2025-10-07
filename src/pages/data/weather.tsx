@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { fetchWeatherData } from '../../lib/weather';
 import { WeatherData } from '../../types';
 
-const WeatherPage: React.FC = () => {
+const WeatherPage: FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

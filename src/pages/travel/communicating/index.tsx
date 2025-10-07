@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import {
   MessageCircle,
   BookOpen,
@@ -15,14 +15,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { phrasesData } from './phrasesData';
 
-const CommunicatingPage: React.FC = () => {
+const CommunicatingPage: FC = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedLanguage, setSelectedLanguage] = useState<
     'english' | 'chinese' | 'korean' | 'japanese'
   >('english');
 
-  const categoryIcons: Record<string, React.ReactNode> = {
+  const categoryIcons: Record<string, ReactNode> = {
     Greetings: <MessageCircle className='h-5 w-5' />,
     'Basic Phrases': <BookOpen className='h-5 w-5' />,
     'At the Restaurant': <Utensils className='h-5 w-5' />,
