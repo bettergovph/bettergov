@@ -1,6 +1,7 @@
 export interface Official {
   name?: string;
   contact?: string;
+  email?: string;
 }
 
 export interface City {

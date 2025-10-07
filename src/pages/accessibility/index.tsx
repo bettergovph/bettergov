@@ -11,10 +11,10 @@ import {
   SmartphoneIcon,
   Volume2Icon,
 } from 'lucide-react';
-import React from 'react';
+import { FC } from 'react';
 import SEO from '../../components/SEO';
 
-const AccessibilityPage: React.FC = () => {
+const AccessibilityPage: FC = () => {
   const accessibilityFeatures = [
     {
       icon: <EyeIcon className='h-6 w-6' />,

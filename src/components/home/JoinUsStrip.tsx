@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { UsersIcon, ArrowRightIcon, ZapIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const JoinUsStrip: React.FC = () => {
+const JoinUsStrip: FC = () => {
   const { t } = useTranslation('common');
 
   return (

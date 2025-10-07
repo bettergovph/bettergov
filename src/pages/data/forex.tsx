@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, ComponentType, FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { ForexRate } from '../../types';
@@ -14,7 +14,7 @@ import {
   Legend,
 } from 'recharts';
 
-const ForexPage: React.FC = () => {
+const ForexPage: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +31,7 @@ const ForexPage: React.FC = () => {
     const Icon = (
       LucideIcons as unknown as Record<
         string,
-        React.ComponentType<{ className?: string }>
+        ComponentType<{ className?: string }>
       >
     )[iconName];
     return Icon ? <Icon className={size} /> : null;

@@ -1,11 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 import { ArrowRightIcon } from 'lucide-react';
 import { Card, CardImage, CardContent } from '../ui/Card';
 import { useTranslation } from 'react-i18next';
 import { news } from '../../data/news';
 import { formatDate, truncateText } from '../../lib/utils';
 
-const NewsSection: React.FC = () => {
+const NewsSection: FC = () => {
   const { t } = useTranslation('common');
 
   return (
