@@ -6,12 +6,7 @@ import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
 
 // Import all service files
-import {
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs';
+import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
 import Button from '../../components/ui/Button';
 import businessTradeServices from '../../data/services/business-trade.json';
@@ -70,10 +65,7 @@ export default function ServicesPage() {
     defaultValue: '',
   });
 
-  const [currentPage, setCurrentPage] = useQueryState(
-    'page',
-    parseAsInteger.withDefault(1)
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
