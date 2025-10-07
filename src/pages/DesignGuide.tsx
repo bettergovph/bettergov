@@ -6,7 +6,7 @@ import {
   MailIcon,
   PhoneIcon,
 } from 'lucide-react';
-import React from 'react';
+import { FC } from 'react';
 import Button from '../components/ui/Button';
 import {
   Card,
@@ -46,7 +46,7 @@ const TypographyExample = ({
   </div>
 );
 
-const DesignGuide: React.FC = () => {
+const DesignGuide: FC = () => {
   const searchResults = [
     { id: 1, title: 'National ID Registration', category: 'Citizenship' },
     { id: 2, title: 'Business Permit Application', category: 'Business' },
