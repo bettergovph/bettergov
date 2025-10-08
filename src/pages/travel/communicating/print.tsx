@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { phrasesData } from './phrasesData';
 
-const CommunicatingPrintPage: React.FC = () => {
+const CommunicatingPrintPage: FC = () => {
   const [searchParams] = useSearchParams();
   const [selectedLanguage, setSelectedLanguage] = useState<
     'english' | 'chinese' | 'korean' | 'japanese'

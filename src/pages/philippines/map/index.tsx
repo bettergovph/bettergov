@@ -10,7 +10,16 @@ import {
   ZoomInIcon,
   ZoomOutIcon,
 } from 'lucide-react';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  cloneElement,
+  FC,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
 import Button from '../../../components/ui/Button';
 import { ScrollArea } from '../../../components/ui/ScrollArea';
@@ -43,7 +52,7 @@ const wikipediaCache = new Map<
   { content?: string; summary?: string; [key: string]: unknown }
 >();
 
-const PhilippinesMap: React.FC = () => {
+const PhilippinesMap: FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegionName, setHoveredRegionName] = useState<string | null>(
     null
@@ -389,13 +398,13 @@ const PhilippinesMap: React.FC = () => {
 
 // Helper component for info items in details panel
 interface InfoItemProps {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value?: string;
 }
-const InfoItem: React.FC<InfoItemProps> = ({ icon, label, value }) => (
+const InfoItem: FC<InfoItemProps> = ({ icon, label, value }) => (
   <div className='flex items-start gap-3'>
-    {React.cloneElement(icon as React.ReactElement, {
+    {cloneElement(icon as ReactElement, {
       className: 'h-5 w-5 text-purple-600 mt-0.5',
     })}
     <div>

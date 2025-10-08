@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ClockIcon, FlagIcon, CrownIcon, ScaleIcon } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
-const PhilippinesHistory: React.FC = () => {
+const PhilippinesHistory: FC = () => {
   const { t } = useTranslation('about-philippines');
 
   const timelinePeriods = [

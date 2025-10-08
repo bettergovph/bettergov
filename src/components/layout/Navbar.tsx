@@ -5,14 +5,14 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
@@ -139,10 +139,10 @@ const Navbar: React.FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors ${
+                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 ${
                       isActive
-                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
-                        : 'text-gray-700 hover:text-primary-600'
+                        ? 'text-primary-600 border-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}

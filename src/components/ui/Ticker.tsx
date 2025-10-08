@@ -5,7 +5,7 @@ import {
   LoaderIcon,
   PoundSterlingIcon,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { fetchWeatherData } from '../../lib/weather';
 import { ForexRate, WeatherData } from '../../types';
@@ -26,7 +26,7 @@ const getCurrencyIcon = (code: string) => {
   }
 };
 
-const Ticker: React.FC = () => {
+const Ticker: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const [currentRateIndex, setCurrentRateIndex] = useState(0);
