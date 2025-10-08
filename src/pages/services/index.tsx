@@ -6,6 +6,7 @@ import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
 
 // Import all service files
+import { scrollToTop } from '@/lib/scrollUtils';
 import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
 import Button from '../../components/ui/Button';
@@ -356,6 +357,7 @@ export default function ServicesPage() {
                     <div role='listitem'>
                       <button
                         onClick={() => {
+                          scrollToTop();
                           handleCategoryChange('all');
                           setSidebarOpen(false);
                         }}
@@ -379,6 +381,7 @@ export default function ServicesPage() {
                         <div key={category.slug} role='listitem'>
                           <button
                             onClick={() => {
+                              scrollToTop();
                               handleCategoryChange(category.slug);
                               setSidebarOpen(false);
                             }}
@@ -417,6 +420,7 @@ export default function ServicesPage() {
                               <button
                                 key={subcategory.slug}
                                 onClick={() => {
+                                  scrollToTop();
                                   handleSubcategoryChange(subcategory.slug);
                                   setSidebarOpen(false);
                                 }}
@@ -474,6 +478,7 @@ export default function ServicesPage() {
                           <div className='mt-2 flex flex-wrap gap-2'>
                             <button
                               onClick={() => {
+                                scrollToTop();
                                 setQueryParams({
                                   category: service.category.slug,
                                   subcategory: null,
@@ -486,6 +491,7 @@ export default function ServicesPage() {
                             </button>
                             <button
                               onClick={() => {
+                                scrollToTop();
                                 setQueryParams({
                                   category: service.category.slug,
                                   subcategory: service.subcategory.slug,
