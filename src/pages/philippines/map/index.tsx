@@ -24,6 +24,8 @@ import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
 import Button from '../../../components/ui/Button';
 import { ScrollArea } from '../../../components/ui/ScrollArea';
 import philippinesRegionsData from '../../../data/philippines-regions.json'; // Renamed for clarity
+import pop2020Raw from '../../../data/population-2020.json';
+import { resolveRegionPopulationKey } from '../../../lib/regionMapping';
 
 // Define types for region data and GeoJSON properties
 interface RegionData {
@@ -45,6 +47,18 @@ interface RegionProperties {
   provinces?: string[];
   // Add other properties from your GeoJSON if needed
 }
+
+// Minimal type for population JSON
+interface PopulationEntry {
+  totalPopulation: number;
+  householdPopulation: number;
+  households: number;
+}
+interface Population2020Data {
+  regions: Record<string, PopulationEntry>;
+  provincesOrHUCS: Record<string, PopulationEntry>;
+}
+const pop2020 = pop2020Raw as unknown as Population2020Data;
 
 // Wikipedia data cache
 const wikipediaCache = new Map<
@@ -81,15 +95,28 @@ const PhilippinesMap: FC = () => {
     }
     setIsLoadingDetails(true);
     try {
-      const response = await fetch(
-        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-          regionName + ', Philippines'
-        )}`
-      );
-      if (!response.ok) throw new Error('Wikipedia data not found');
-      const data = await response.json();
-      wikipediaCache.set(regionName, data);
-      return data;
+      const formattedName = regionName.split(' ').join('_');
+      const searchUrls = [
+        `${formattedName}_region`,
+        formattedName,
+        `${formattedName},_Philippines`,
+      ];
+
+      for (const url of searchUrls) {
+        try {
+          const response = await fetch(
+            `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(url)}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            wikipediaCache.set(regionName, data);
+            return data;
+          }
+        } catch {
+          console.warn(`Wikipedia fetch failed for: ${url}`);
+        }
+      }
+      return null;
     } catch (err) {
       console.error('Error fetching Wikipedia data:', err);
       return null;
@@ -105,11 +132,20 @@ const PhilippinesMap: FC = () => {
       const props = feature.properties;
       const regionName = props.name;
 
+      const popKey = resolveRegionPopulationKey(regionName.toUpperCase());
+
+      const populationNumber = pop2020?.regions?.[popKey]?.totalPopulation;
+
+      const populationFormatted =
+        typeof populationNumber === 'number'
+          ? populationNumber.toLocaleString('en-PH')
+          : undefined;
+
       const regionDetails: RegionData = {
         id: regionName,
         name: regionName,
-        // capital: props.capital,
-        // population: props.population,
+        capital: props.capital,
+        population: populationFormatted,
         // provinces: props.provinces,
         loading: true,
       };
