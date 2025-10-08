@@ -1,5 +1,8 @@
 FROM node:22-alpine AS builder
 
+ARG HEAD_COMMIT_HASH
+ENV HEAD_COMMIT_HASH=${HEAD_COMMIT_HASH}
+
 WORKDIR /app
 
 COPY package.json package-lock.json ./

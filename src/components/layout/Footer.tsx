@@ -5,12 +5,30 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
+import versionData from '../../version.json';
+
+type Version = {
+  head_commit: string;
+};
+
 const Footer: FC = () => {
   const { t } = useTranslation('common');
+  const [version, setVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const version = versionData as Version;
+      if (version?.head_commit) {
+        setVersion(version.head_commit.substring(0, 6)); // only first 6 chars
+      }
+    } catch (err) {
+      console.error('Error loading version.json:', err);
+    }
+  }, []);
 
   const getSocialIcon = (label: string) => {
     switch (label) {
@@ -96,6 +114,9 @@ const Footer: FC = () => {
         <div className='border-t border-gray-800 mt-8 pt-8'>
           <div className='flex flex-col md:flex-row justify-between items-center'>
             <p className='text-gray-400 text-sm mb-4 md:mb-0'>
+              {version && (
+                <span className='mr-4 text-gray-400'>Ver. {version}</span>
+              )}
               {t('footer.copyright')}
             </p>
             <div className='flex space-x-6'>
