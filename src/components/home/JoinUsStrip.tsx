@@ -40,7 +40,7 @@ const JoinUsStrip: FC = () => {
           <div className='flex items-center gap-3'>
             <Link
               to='/join-us'
-              className='inline-flex items-center gap-2 bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-yellow-200 transition-all transform hover:scale-105'
+              className='inline-flex items-center gap-2 bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-yellow-200 transition-all transform hover:scale-105 whitespace-nowrap'
             >
               {t('joinUs.joinNow')}
               <ArrowRightIcon className='h-3 w-3' />

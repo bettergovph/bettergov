@@ -54,6 +54,7 @@ export interface GovernmentBranch {
 export interface NavigationItem {
   label: string;
   href: string;
+  target?: string;
   children?: NavigationItem[];
 }
 
