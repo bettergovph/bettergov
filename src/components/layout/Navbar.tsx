@@ -75,6 +75,12 @@ const Navbar: FC = () => {
             >
               🚀 Join Us
             </Link>
+            <Link
+              to='/about'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+            >
+              About <span className='hidden md:inline'>BetterGov.ph</span>
+            </Link>
             <a
               href='https://www.gov.ph'
               className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
@@ -139,10 +145,10 @@ const Navbar: FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors ${
+                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
                       isActive
-                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
-                        : 'text-gray-700 hover:text-primary-600'
+                        ? 'text-primary-600 border-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
@@ -175,6 +181,7 @@ const Navbar: FC = () => {
                             to={child.href}
                             className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
                             role='menuitem'
+                            target={child.target}
                           >
                             {child.label}
                           </Link>
@@ -187,12 +194,6 @@ const Navbar: FC = () => {
             })}
           </div>
           <div className='hidden lg:flex items-center space-x-6'>
-            <Link
-              to='/about'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
-            >
-              About
-            </Link>
             <Link
               to='/search'
               className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
