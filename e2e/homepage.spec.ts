@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Homepage', () => {
   test('should load and display main elements', async ({ page }) => {
@@ -11,7 +11,9 @@ test.describe('Homepage', () => {
     await expect(page.locator('nav')).toBeVisible();
 
     // Check logo and site name
-    await expect(page.getByText('BetterGov.ph').first()).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: /BetterGov Logo BetterGov.ph/i })
+    ).toBeVisible();
 
     // Check hero section
     await expect(

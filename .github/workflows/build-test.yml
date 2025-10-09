@@ -26,6 +26,8 @@ jobs:
           context: .
           platforms: linux/amd64
           push: false
+          build-args: |
+            HEAD_COMMIT_HASH=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/bettergov:${{github.sha}}
             ghcr.io/${{ github.repository_owner }}/bettergov:latest

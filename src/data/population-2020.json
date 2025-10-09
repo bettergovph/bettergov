@@ -1,0 +1,678 @@
+{
+  "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__1A__PO/?tablelist=true&rxid=6443e200-c165-4481-b3cb-0614855dc455",
+  "generatedAt": "2025-10-07T14:36:46.882Z",
+  "regions": {
+    "NCR": {
+      "totalPopulation": 13484462,
+      "householdPopulation": 13403551,
+      "households": 3499652
+    },
+    "CAR": {
+      "totalPopulation": 1797660,
+      "householdPopulation": 1791121,
+      "households": 439166
+    },
+    "REGION I": {
+      "totalPopulation": 5301139,
+      "householdPopulation": 5292297,
+      "households": 1306256
+    },
+    "REGION II": {
+      "totalPopulation": 3685744,
+      "householdPopulation": 3679748,
+      "households": 907472
+    },
+    "REGION III": {
+      "totalPopulation": 12422172,
+      "householdPopulation": 12387811,
+      "households": 3040488
+    },
+    "REGION IV-A": {
+      "totalPopulation": 16195042,
+      "householdPopulation": 16139770,
+      "households": 4062720
+    },
+    "MIMAROPA": {
+      "totalPopulation": 3228558,
+      "householdPopulation": 3212287,
+      "households": 792875
+    },
+    "REGION V": {
+      "totalPopulation": 6082165,
+      "householdPopulation": 6067290,
+      "households": 1365044
+    },
+    "REGION VI": {
+      "totalPopulation": 7954723,
+      "householdPopulation": 7935531,
+      "households": 1939989
+    },
+    "REGION VII": {
+      "totalPopulation": 8081988,
+      "householdPopulation": 8046285,
+      "households": 1966588
+    },
+    "REGION VIII": {
+      "totalPopulation": 4547150,
+      "householdPopulation": 4531512,
+      "households": 1082106
+    },
+    "REGION IX": {
+      "totalPopulation": 3875576,
+      "householdPopulation": 3862588,
+      "households": 895899
+    },
+    "REGION X": {
+      "totalPopulation": 5022768,
+      "householdPopulation": 5007798,
+      "households": 1197736
+    },
+    "REGION XI": {
+      "totalPopulation": 5243536,
+      "householdPopulation": 5223802,
+      "households": 1337781
+    },
+    "REGION XII": {
+      "totalPopulation": 4360974,
+      "householdPopulation": 4351773,
+      "households": 1065453
+    },
+    "CARAGA": {
+      "totalPopulation": 2804788,
+      "householdPopulation": 2795340,
+      "households": 661773
+    },
+    "BARMM": {
+      "totalPopulation": 4944800,
+      "householdPopulation": 4938539,
+      "households": 832908
+    }
+  },
+  "provincesOrHUCS": {
+    "City of Manila": {
+      "totalPopulation": 1846513,
+      "householdPopulation": 1837785,
+      "households": 486293
+    },
+    "City of Mandaluyong": {
+      "totalPopulation": 425758,
+      "householdPopulation": 419333,
+      "households": 116954
+    },
+    "City of Marikina": {
+      "totalPopulation": 456059,
+      "householdPopulation": 452961,
+      "households": 104415
+    },
+    "City of Pasig": {
+      "totalPopulation": 803159,
+      "householdPopulation": 801439,
+      "households": 212895
+    },
+    "Quezon City": {
+      "totalPopulation": 2960048,
+      "householdPopulation": 2950493,
+      "households": 738724
+    },
+    "City of San Juan": {
+      "totalPopulation": 126347,
+      "householdPopulation": 124699,
+      "households": 31519
+    },
+    "City of Caloocan": {
+      "totalPopulation": 1661584,
+      "householdPopulation": 1659025,
+      "households": 404252
+    },
+    "City of Malabon": {
+      "totalPopulation": 380522,
+      "householdPopulation": 379463,
+      "households": 94241
+    },
+    "City of Navotas": {
+      "totalPopulation": 247543,
+      "householdPopulation": 246743,
+      "households": 63167
+    },
+    "City of Valenzuela": {
+      "totalPopulation": 714978,
+      "householdPopulation": 713181,
+      "households": 193025
+    },
+    "City of Las Piñas": {
+      "totalPopulation": 606293,
+      "householdPopulation": 604283,
+      "households": 156899
+    },
+    "City of Makati": {
+      "totalPopulation": 629616,
+      "householdPopulation": 624032,
+      "households": 186381
+    },
+    "City of Muntinlupa": {
+      "totalPopulation": 543445,
+      "householdPopulation": 519112,
+      "households": 138331
+    },
+    "City of Parañaque": {
+      "totalPopulation": 689992,
+      "householdPopulation": 686313,
+      "households": 182216
+    },
+    "Pasay City": {
+      "totalPopulation": 440656,
+      "householdPopulation": 437003,
+      "households": 127629
+    },
+    "City of Taguig": {
+      "totalPopulation": 886722,
+      "householdPopulation": 882622,
+      "households": 246873
+    },
+    "Pateros": {
+      "totalPopulation": 65227,
+      "householdPopulation": 65064,
+      "households": 15838
+    },
+    "Abra": {
+      "totalPopulation": 250985,
+      "householdPopulation": 250309,
+      "households": 58956
+    },
+    "Apayao": {
+      "totalPopulation": 124366,
+      "householdPopulation": 123937,
+      "households": 28862
+    },
+    "Benguet": {
+      "totalPopulation": 460683,
+      "householdPopulation": 459468,
+      "households": 116692
+    },
+    "Ifugao": {
+      "totalPopulation": 207498,
+      "householdPopulation": 207130,
+      "households": 48756
+    },
+    "Kalinga": {
+      "totalPopulation": 229570,
+      "householdPopulation": 229328,
+      "households": 48079
+    },
+    "Mountain Province": {
+      "totalPopulation": 158200,
+      "householdPopulation": 157798,
+      "households": 37601
+    },
+    "City of Baguio": {
+      "totalPopulation": 366358,
+      "householdPopulation": 363151,
+      "households": 100220
+    },
+    "Ilocos Norte": {
+      "totalPopulation": 609588,
+      "householdPopulation": 608508,
+      "households": 152972
+    },
+    "Ilocos Sur": {
+      "totalPopulation": 706009,
+      "householdPopulation": 704218,
+      "households": 172048
+    },
+    "La Union": {
+      "totalPopulation": 822352,
+      "householdPopulation": 820343,
+      "households": 205034
+    },
+    "Pangasinan": {
+      "totalPopulation": 3163190,
+      "householdPopulation": 3159228,
+      "households": 776202
+    },
+    "Batanes": {
+      "totalPopulation": 18831,
+      "householdPopulation": 18593,
+      "households": 5547
+    },
+    "Cagayan": {
+      "totalPopulation": 1268603,
+      "householdPopulation": 1265540,
+      "households": 301528
+    },
+    "Isabela": {
+      "totalPopulation": 1697050,
+      "householdPopulation": 1695539,
+      "households": 422670
+    },
+    "Nueva Vizcaya": {
+      "totalPopulation": 497432,
+      "householdPopulation": 496546,
+      "households": 128181
+    },
+    "Quirino": {
+      "totalPopulation": 203828,
+      "householdPopulation": 203530,
+      "households": 49546
+    },
+    "Aurora": {
+      "totalPopulation": 235750,
+      "householdPopulation": 234991,
+      "households": 57037
+    },
+    "Bataan": {
+      "totalPopulation": 853373,
+      "householdPopulation": 849575,
+      "households": 208941
+    },
+    "Bulacan": {
+      "totalPopulation": 3708890,
+      "householdPopulation": 3696937,
+      "households": 920608
+    },
+    "Nueva Ecija": {
+      "totalPopulation": 2310134,
+      "householdPopulation": 2306751,
+      "households": 572583
+    },
+    "Pampanga": {
+      "totalPopulation": 2437709,
+      "householdPopulation": 2433144,
+      "households": 573920
+    },
+    "Tarlac": {
+      "totalPopulation": 1503456,
+      "householdPopulation": 1499064,
+      "households": 359561
+    },
+    "Zambales": {
+      "totalPopulation": 649615,
+      "householdPopulation": 647545,
+      "households": 165045
+    },
+    "City of Angeles": {
+      "totalPopulation": 462928,
+      "householdPopulation": 461165,
+      "households": 116343
+    },
+    "City of Olongapo": {
+      "totalPopulation": 260317,
+      "householdPopulation": 258639,
+      "households": 66450
+    },
+    "Batangas": {
+      "totalPopulation": 2908494,
+      "householdPopulation": 2902855,
+      "households": 716192
+    },
+    "Cavite": {
+      "totalPopulation": 4344829,
+      "householdPopulation": 4318663,
+      "households": 1096120
+    },
+    "Laguna": {
+      "totalPopulation": 3382193,
+      "householdPopulation": 3373136,
+      "households": 915398
+    },
+    "Quezon": {
+      "totalPopulation": 1950459,
+      "householdPopulation": 1945444,
+      "households": 483703
+    },
+    "Rizal": {
+      "totalPopulation": 3330143,
+      "householdPopulation": 3321325,
+      "households": 784402
+    },
+    "City of Lucena": {
+      "totalPopulation": 278924,
+      "householdPopulation": 278347,
+      "households": 66905
+    },
+    "Marinduque": {
+      "totalPopulation": 239207,
+      "householdPopulation": 238830,
+      "households": 60557
+    },
+    "Occidental Mindoro": {
+      "totalPopulation": 525354,
+      "householdPopulation": 521444,
+      "households": 126633
+    },
+    "Oriental Mindoro": {
+      "totalPopulation": 908339,
+      "householdPopulation": 906661,
+      "households": 215076
+    },
+    "Palawan": {
+      "totalPopulation": 939594,
+      "householdPopulation": 934669,
+      "households": 230836
+    },
+    "Romblon": {
+      "totalPopulation": 308985,
+      "householdPopulation": 308072,
+      "households": 77639
+    },
+    "City of Puerto Princesa": {
+      "totalPopulation": 307079,
+      "householdPopulation": 302611,
+      "households": 82134
+    },
+    "Albay": {
+      "totalPopulation": 1374768,
+      "householdPopulation": 1372550,
+      "households": 311448
+    },
+    "Camarines Norte": {
+      "totalPopulation": 629699,
+      "householdPopulation": 628807,
+      "households": 144155
+    },
+    "Camarines Sur": {
+      "totalPopulation": 2068244,
+      "householdPopulation": 2062277,
+      "households": 455276
+    },
+    "Catanduanes": {
+      "totalPopulation": 271879,
+      "householdPopulation": 270775,
+      "households": 60352
+    },
+    "Masbate": {
+      "totalPopulation": 908920,
+      "householdPopulation": 906731,
+      "households": 206351
+    },
+    "Sorsogon": {
+      "totalPopulation": 828655,
+      "householdPopulation": 826150,
+      "households": 187462
+    },
+    "Aklan": {
+      "totalPopulation": 615475,
+      "householdPopulation": 612985,
+      "households": 151381
+    },
+    "Antique": {
+      "totalPopulation": 612974,
+      "householdPopulation": 611478,
+      "households": 147696
+    },
+    "Capiz": {
+      "totalPopulation": 804952,
+      "householdPopulation": 803879,
+      "households": 202033
+    },
+    "Guimaras": {
+      "totalPopulation": 187842,
+      "householdPopulation": 187576,
+      "households": 47476
+    },
+    "Iloilo": {
+      "totalPopulation": 2051899,
+      "householdPopulation": 2048039,
+      "households": 506187
+    },
+    "Negros Occidental": {
+      "totalPopulation": 2623172,
+      "householdPopulation": 2618672,
+      "households": 637967
+    },
+    "City of Bacolod": {
+      "totalPopulation": 600783,
+      "householdPopulation": 597615,
+      "households": 142936
+    },
+    "City of Iloilo": {
+      "totalPopulation": 457626,
+      "householdPopulation": 455287,
+      "households": 104313
+    },
+    "Bohol": {
+      "totalPopulation": 1394329,
+      "householdPopulation": 1390524,
+      "households": 322022
+    },
+    "Cebu": {
+      "totalPopulation": 3325385,
+      "householdPopulation": 3309850,
+      "households": 799486
+    },
+    "Negros Oriental": {
+      "totalPopulation": 1432990,
+      "householdPopulation": 1428548,
+      "households": 347961
+    },
+    "Siquijor": {
+      "totalPopulation": 103395,
+      "householdPopulation": 103014,
+      "households": 25805
+    },
+    "City of Cebu": {
+      "totalPopulation": 964169,
+      "householdPopulation": 958626,
+      "households": 238317
+    },
+    "City of Lapu-Lapu": {
+      "totalPopulation": 497604,
+      "householdPopulation": 494672,
+      "households": 129652
+    },
+    "City of Mandaue": {
+      "totalPopulation": 364116,
+      "householdPopulation": 361051,
+      "households": 103345
+    },
+    "Biliran": {
+      "totalPopulation": 179312,
+      "householdPopulation": 178715,
+      "households": 43053
+    },
+    "Eastern Samar": {
+      "totalPopulation": 477168,
+      "householdPopulation": 475847,
+      "households": 115777
+    },
+    "Leyte": {
+      "totalPopulation": 1776847,
+      "householdPopulation": 1771011,
+      "households": 443470
+    },
+    "Northern Samar": {
+      "totalPopulation": 639186,
+      "householdPopulation": 636995,
+      "households": 139885
+    },
+    "Samar": {
+      "totalPopulation": 793183,
+      "householdPopulation": 791045,
+      "households": 181794
+    },
+    "Southern Leyte": {
+      "totalPopulation": 429573,
+      "householdPopulation": 428484,
+      "households": 100876
+    },
+    "City of Tacloban": {
+      "totalPopulation": 251881,
+      "householdPopulation": 249415,
+      "households": 57251
+    },
+    "Zamboanga del Norte": {
+      "totalPopulation": 1047455,
+      "householdPopulation": 1046017,
+      "households": 247971
+    },
+    "Zamboanga del Sur": {
+      "totalPopulation": 1050668,
+      "householdPopulation": 1048402,
+      "households": 239258
+    },
+    "Zamboanga Sibugay": {
+      "totalPopulation": 669840,
+      "householdPopulation": 668648,
+      "households": 154669
+    },
+    "City of Isabela": {
+      "totalPopulation": 130379,
+      "householdPopulation": 130130,
+      "households": 26649
+    },
+    "City of Zamboanga": {
+      "totalPopulation": 977234,
+      "householdPopulation": 969391,
+      "households": 227352
+    },
+    "Bukidnon": {
+      "totalPopulation": 1541308,
+      "householdPopulation": 1537629,
+      "households": 357112
+    },
+    "Camiguin": {
+      "totalPopulation": 92808,
+      "householdPopulation": 92696,
+      "households": 22281
+    },
+    "Lanao del Norte": {
+      "totalPopulation": 722902,
+      "householdPopulation": 721716,
+      "households": 161458
+    },
+    "Misamis Occidental": {
+      "totalPopulation": 617333,
+      "householdPopulation": 614951,
+      "households": 149188
+    },
+    "Misamis Oriental": {
+      "totalPopulation": 956900,
+      "householdPopulation": 954953,
+      "households": 230233
+    },
+    "City of Cagayan de Oro": {
+      "totalPopulation": 728402,
+      "householdPopulation": 723671,
+      "households": 190225
+    },
+    "City of Iligan": {
+      "totalPopulation": 363115,
+      "householdPopulation": 362182,
+      "households": 87239
+    },
+    "Davao de Oro": {
+      "totalPopulation": 767547,
+      "householdPopulation": 766299,
+      "households": 188918
+    },
+    "Davao del Norte": {
+      "totalPopulation": 1125057,
+      "householdPopulation": 1115167,
+      "households": 271655
+    },
+    "Davao del Sur": {
+      "totalPopulation": 680481,
+      "householdPopulation": 679457,
+      "households": 182681
+    },
+    "Davao Occidental": {
+      "totalPopulation": 317159,
+      "householdPopulation": 316907,
+      "households": 78185
+    },
+    "Davao Oriental": {
+      "totalPopulation": 576343,
+      "householdPopulation": 574984,
+      "households": 140064
+    },
+    "City of Davao": {
+      "totalPopulation": 1776949,
+      "householdPopulation": 1770988,
+      "households": 476278
+    },
+    "Cotabato": {
+      "totalPopulation": 1275185,
+      "householdPopulation": 1273594,
+      "households": 308443
+    },
+    "Sarangani": {
+      "totalPopulation": 558946,
+      "householdPopulation": 558069,
+      "households": 133865
+    },
+    "South Cotabato": {
+      "totalPopulation": 975476,
+      "householdPopulation": 973146,
+      "households": 244987
+    },
+    "Sultan Kudarat": {
+      "totalPopulation": 854052,
+      "householdPopulation": 851554,
+      "households": 202813
+    },
+    "City of General Santos": {
+      "totalPopulation": 697315,
+      "householdPopulation": 695410,
+      "households": 175345
+    },
+    "Agusan del Norte": {
+      "totalPopulation": 387503,
+      "householdPopulation": 386211,
+      "households": 91016
+    },
+    "Agusan del Sur": {
+      "totalPopulation": 739367,
+      "householdPopulation": 737991,
+      "households": 173962
+    },
+    "Dinagat Islands": {
+      "totalPopulation": 128117,
+      "householdPopulation": 127963,
+      "households": 29391
+    },
+    "Surigao del Norte": {
+      "totalPopulation": 534636,
+      "householdPopulation": 531753,
+      "households": 127445
+    },
+    "Surigao del Sur": {
+      "totalPopulation": 642255,
+      "householdPopulation": 640512,
+      "households": 150551
+    },
+    "City of Butuan": {
+      "totalPopulation": 372910,
+      "householdPopulation": 370910,
+      "households": 89408
+    },
+    "Basilan": {
+      "totalPopulation": 426207,
+      "householdPopulation": 425111,
+      "households": 73419
+    },
+    "Lanao del Sur": {
+      "totalPopulation": 1195518,
+      "householdPopulation": 1194507,
+      "households": 183629
+    },
+    "Maguindanao": {
+      "totalPopulation": 1667258,
+      "householdPopulation": 1666353,
+      "households": 287284
+    },
+    "Sulu": {
+      "totalPopulation": 1000108,
+      "householdPopulation": 998675,
+      "households": 166140
+    },
+    "Tawi-Tawi": {
+      "totalPopulation": 440276,
+      "householdPopulation": 438545,
+      "households": 74768
+    },
+    "Eight (8) Area Clusters": {
+      "totalPopulation": 215433,
+      "householdPopulation": 215348,
+      "households": 47668
+    }
+  }
+}

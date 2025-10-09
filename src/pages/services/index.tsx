@@ -1,17 +1,13 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
 
 // Import all service files
-import {
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs';
+import { scrollToTop } from '@/lib/scrollUtils';
+import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
 import Button from '../../components/ui/Button';
 import businessTradeServices from '../../data/services/business-trade.json';
@@ -70,10 +66,9 @@ export default function ServicesPage() {
     defaultValue: '',
   });
 
-  const [currentPage, setCurrentPage] = useQueryState(
-    'page',
-    parseAsInteger.withDefault(1)
-  );
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -119,8 +114,9 @@ export default function ServicesPage() {
     return filtered;
   }, [searchQuery, selectedCategory, selectedSubcategory]);
 
+  // Show all items from start to current page
   const paginatedServices = filteredServices.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
+    0,
     currentPage * ITEMS_PER_PAGE
   );
 
@@ -144,6 +140,43 @@ export default function ServicesPage() {
       subcategory: subcategorySlug,
     });
   };
+
+  const handleLoadMore = useCallback(() => {
+    // Prevent loading beyond available items
+    if (filteredServices.length <= currentPage * ITEMS_PER_PAGE) {
+      return;
+    }
+
+    setCurrentPage(prev => prev + 1);
+  }, [filteredServices.length, currentPage, setCurrentPage]);
+
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        const target = entries[0];
+        if (target.isIntersecting) {
+          handleLoadMore();
+        }
+      },
+      {
+        root: null,
+        rootMargin: '100px', // Trigger 100px before the trigger comes into view
+        threshold: 0.1,
+      }
+    );
+
+    const currentRef = loadMoreRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [handleLoadMore]);
 
   // const currentCategoryData = selectedCategory
 
@@ -324,6 +357,7 @@ export default function ServicesPage() {
                     <div role='listitem'>
                       <button
                         onClick={() => {
+                          scrollToTop();
                           handleCategoryChange('all');
                           setSidebarOpen(false);
                         }}
@@ -347,6 +381,7 @@ export default function ServicesPage() {
                         <div key={category.slug} role='listitem'>
                           <button
                             onClick={() => {
+                              scrollToTop();
                               handleCategoryChange(category.slug);
                               setSidebarOpen(false);
                             }}
@@ -385,6 +420,7 @@ export default function ServicesPage() {
                               <button
                                 key={subcategory.slug}
                                 onClick={() => {
+                                  scrollToTop();
                                   handleSubcategoryChange(subcategory.slug);
                                   setSidebarOpen(false);
                                 }}
@@ -442,6 +478,7 @@ export default function ServicesPage() {
                           <div className='mt-2 flex flex-wrap gap-2'>
                             <button
                               onClick={() => {
+                                scrollToTop();
                                 setQueryParams({
                                   category: service.category.slug,
                                   subcategory: null,
@@ -454,6 +491,7 @@ export default function ServicesPage() {
                             </button>
                             <button
                               onClick={() => {
+                                scrollToTop();
                                 setQueryParams({
                                   category: service.category.slug,
                                   subcategory: service.subcategory.slug,
@@ -505,40 +543,19 @@ export default function ServicesPage() {
               ))}
             </div>
 
-            {/* Load More Button */}
+            {/* Infinite Scroll Trigger */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
-              <div className='mt-6 md:mt-8 text-center'>
-                <button
-                  onClick={() => {
-                    setCurrentPage(prev => prev + 1);
-                    // Focus management for better keyboard navigation
-                    setTimeout(() => {
-                      const nextPageFirstItem = document.querySelector(
-                        '[role="listitem"]:last-child'
-                      );
-                      if (nextPageFirstItem instanceof HTMLElement) {
-                        nextPageFirstItem.focus();
-                      }
-                    }, 100);
-                  }}
-                  className='inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
-                  aria-label={`Load more services, showing ${Math.min(
-                    filteredServices.length - currentPage * ITEMS_PER_PAGE,
-                    ITEMS_PER_PAGE
-                  )} of ${
-                    filteredServices.length - currentPage * ITEMS_PER_PAGE
-                  } remaining`}
-                >
-                  Load More Services
-                </button>
-              </div>
+              <div
+                ref={loadMoreRef}
+                className='mt-6 md:mt-8 py-8'
+                aria-hidden='true'
+              />
             )}
 
             {/* Status message for screen readers */}
             <div className='sr-only' aria-live='polite' aria-atomic='true'>
-              Showing{' '}
-              {Math.min(paginatedServices.length, ITEMS_PER_PAGE * currentPage)}{' '}
-              of {filteredServices.length} services
+              Showing {paginatedServices.length} of {filteredServices.length}{' '}
+              services
             </div>
           </main>
         </div>
