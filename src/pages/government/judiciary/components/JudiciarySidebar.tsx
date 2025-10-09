@@ -1,8 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Building,
-  // UserCheck, MessageSquare, Briefcase
-} from 'lucide-react';
+import { Building } from 'lucide-react';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 
 export default function JudiciarySidebar() {
@@ -25,7 +22,9 @@ export default function JudiciarySidebar() {
                 to='/government/judiciary/supreme-court-of-the-philippines'
                 state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/executive/office-of-the-president')
+                  isActive(
+                    '/government/judiciary/supreme-court-of-the-philippines'
+                  )
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
@@ -34,50 +33,22 @@ export default function JudiciarySidebar() {
                 <span>Supreme Court of the Philippines</span>
               </Link>
             </li>
-            {/* <li>
-              <Link
-                to='/government/executive/office-of-the-vice-president'
-                state={{ scrollToContent: true }}
-                className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/executive/office-of-the-vice-president')
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <UserCheck className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
-                <span>Office of the Vice President</span>
-              </Link>
-            </li>
             <li>
               <Link
-                to='/government/executive/presidential-communications-office'
+                to='/government/judiciary/court-of-appeals-of-the-philippines'
                 state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
                   isActive(
-                    '/government/executive/presidential-communications-office'
+                    '/government/judiciary/court-of-appeals-of-the-philippines'
                   )
                     ? 'bg-primary-50 text-primary-700 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                <MessageSquare className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
-                <span>Presidential Communications Office</span>
+                <Building className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
+                <span>Court of Appeals of the Philippines</span>
               </Link>
             </li>
-            <li>
-              <Link
-                to='/government/executive/other-executive-offices'
-                state={{ scrollToContent: true }}
-                className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
-                  isActive('/government/executive/other-executive-offices')
-                    ? 'bg-primary-50 text-primary-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Briefcase className='h-4 w-4 mr-2 text-gray-400 shrink-0' />
-                <span>Other Executive Offices</span>
-              </Link>
-            </li> */}
           </ul>
         </div>
       </nav>
