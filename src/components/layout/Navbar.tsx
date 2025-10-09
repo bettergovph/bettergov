@@ -145,7 +145,7 @@ const Navbar: FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 ${
+                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
                       isActive
                         ? 'text-primary-600 border-primary-600'
                         : 'text-gray-700 hover:text-primary-600 border-transparent'
