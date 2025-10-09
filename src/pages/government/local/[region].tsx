@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { SearchIcon, MapPinIcon, UserIcon, CrownIcon } from 'lucide-react';
+import { SearchIcon, MapPinIcon } from 'lucide-react';
 import {
   loadRegionLgu,
   RegionLGU,
@@ -201,13 +201,6 @@ export default function RegionalLGUPage() {
 
                   {/* Mayor Section */}
                   <div className='mb-6'>
-                    <div className='flex items-center mb-3'>
-                      <CrownIcon className='h-4 w-4 text-yellow-600 mr-2' />
-                      <span className='text-sm font-medium text-gray-700'>
-                        Mayor
-                      </span>
-                    </div>
-
                     <div className='flex items-start space-x-3'>
                       <CardAvatar name={unit.mayor?.name || ''} size='sm' />
                       <div className='flex-1 min-w-0'>
@@ -233,13 +226,6 @@ export default function RegionalLGUPage() {
                   {/* Vice Mayor Section */}
                   {unit.vice_mayor && (
                     <div>
-                      <div className='flex items-center mb-3'>
-                        <UserIcon className='h-4 w-4 text-blue-600 mr-2' />
-                        <span className='text-sm font-medium text-gray-700'>
-                          Vice Mayor
-                        </span>
-                      </div>
-
                       <div className='flex items-start space-x-3'>
                         <CardAvatar
                           name={unit.vice_mayor.name || ''}
