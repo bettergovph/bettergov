@@ -3,6 +3,9 @@ import {
   ExternalLinkIcon,
   PhoneIcon,
   UserIcon,
+  MailIcon,
+  CalendarPlusIcon,
+  CalendarMinusIcon,
 } from 'lucide-react';
 
 import { useParams } from 'react-router-dom';
@@ -62,9 +65,19 @@ function JusticesGrid({
               </div>
             </CardHeader>
             <CardContent className='flex-1'>
-              <div className='flex items-start gap-2 text-sm'>
-                <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
-                <span className='text-gray-700'>{justice.lawSchool}</span>
+              <div className='flex items-center gap-2 text-sm'>
+                {/* <span className='text-gray-500 w-20'>Appointed:</span> */}
+                <CalendarPlusIcon className='h-4 w-4 text-gray-400 mr-1 flex-shrink-0' />
+                <span className='text-gray-700'>
+                  {justice.dateOfAppointment}
+                </span>
+              </div>
+              <div className='flex items-center gap-2 text-sm'>
+                {/* <span className='text-gray-500 w-20'>Retiring:</span> */}
+                <CalendarMinusIcon className='h-4 w-4 text-gray-400 mr-1 flex-shrink-0' />
+                <span className='text-gray-700'>
+                  {justice.dateOfRetirement}
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -112,13 +125,7 @@ export default function JudiciaryDetail() {
     );
   }
 
-  const {
-    office,
-    address,
-    trunkline,
-    website,
-    // members
-  } = court;
+  const { office, address, trunkline, website, email, members } = court;
   const displayName = office;
 
   return (
@@ -150,7 +157,7 @@ export default function JudiciaryDetail() {
               <span>{trunkline}</span>
             </div>
           )}
-          {/* {email && (
+          {email && (
             <a
               href={`mailto:${email}`}
               className='flex items-center text-gray-800 hover:text-primary-600 text-sm'
@@ -158,14 +165,14 @@ export default function JudiciaryDetail() {
               <MailIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
               <span>{email}</span>
             </a>
-          )} */}
+          )}
         </div>
       </div>
       {/* Department Details */}
       {/* <div>
         <DepartmentDetailSection data={details} />
       </div> */}
-      <JudiciaryDetailSection courtMembers={court.members} />
+      <JudiciaryDetailSection courtMembers={members} />
     </div>
   );
 }
