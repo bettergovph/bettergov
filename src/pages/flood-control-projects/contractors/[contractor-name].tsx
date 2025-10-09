@@ -818,6 +818,16 @@ const ContractorDetail: FC = () => {
                 total projects
               </p>
             </div>
+
+            <Button
+              variant='outline'
+              leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
+              onClick={handleExportData}
+              disabled={isExporting}
+              className='cursor-pointer'
+            >
+              {isExporting ? 'Exporting...' : 'Export Data'}
+            </Button>
           </div>
         )}
 
@@ -868,17 +878,6 @@ const ContractorDetail: FC = () => {
               />
               <TableHits selectedContractor={contractor.value} />
             </InstantSearch>
-            <div className='p-4'>
-              <Button
-                variant='outline'
-                leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
-                onClick={handleExportData}
-                disabled={isExporting}
-                className='cursor-pointer'
-              >
-                {isExporting ? 'Exporting...' : 'Export Data'}
-              </Button>
-            </div>
           </div>
 
           {/* Map View */}
