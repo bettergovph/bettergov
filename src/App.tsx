@@ -9,6 +9,7 @@ import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
+import SEO from './components/SEO';
 import Home from './pages/Home';
 import DesignGuide from './pages/DesignGuide';
 import Services from './pages/services';
@@ -92,6 +93,7 @@ function App() {
     <Router>
       <NuqsAdapter>
         <div className='min-h-screen flex flex-col'>
+          <SEO />
           <Navbar />
           <Ticker />
           <ScrollToTop />
