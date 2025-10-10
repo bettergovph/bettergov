@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { ChevronLeftIcon } from 'lucide-react';
 import { ScrollArea } from '../../components/ui/ScrollArea';
 import type { FilterState } from './utils';
@@ -55,7 +55,7 @@ export interface FilterDropdownProps {
   onToggle: () => void;
 }
 
-export const FilterDropdown: React.FC<FilterDropdownProps> = ({
+export const FilterDropdown: FC<FilterDropdownProps> = ({
   name,
   options,
   value,
@@ -146,7 +146,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
 };
 
 // Dynamic filter title component
-export const FilterTitle: React.FC<{
+export const FilterTitle: FC<{
   filters: FilterState;
   searchTerm: string;
 }> = ({ filters, searchTerm }) => {
@@ -193,7 +193,7 @@ export const FilterTitle: React.FC<{
 };
 
 // Statistics component for displaying summary data
-export const ResultsStatistics: React.FC<{
+export const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
 }> = ({ hits, totalHits }) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CompassIcon,
@@ -265,7 +265,7 @@ const VISA_REQUIRED_COUNTRIES: Country[] = [
 
 // Using the imported VisaRequirement type from '../../../types/visa'
 
-const VisaPage: React.FC = () => {
+const VisaPage: FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useQueryState('country');

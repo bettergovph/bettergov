@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -84,7 +84,7 @@ interface HitProps {
 }
 
 // Filter dropdown component with search capability
-const FilterDropdown: React.FC<FilterDropdownProps> = ({
+const FilterDropdown: FC<FilterDropdownProps> = ({
   name,
   options,
   value,
@@ -174,7 +174,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 };
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -219,7 +219,7 @@ type FilterState = {
 };
 
 // Dynamic filter title component
-const FilterTitle: React.FC<{ filters: FilterState; searchTerm: string }> = ({
+const FilterTitle: FC<{ filters: FilterState; searchTerm: string }> = ({
   filters,
   searchTerm,
 }) => {
@@ -283,7 +283,7 @@ const FilterTitle: React.FC<{ filters: FilterState; searchTerm: string }> = ({
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
 }> = ({ hits, totalHits }) => {
@@ -344,7 +344,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
+const TableHits: FC<{ filters: FilterState; searchTerm: string }> = ({
   filters,
   searchTerm,
 }) => {
@@ -385,7 +385,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -608,7 +608,7 @@ const TableHits: React.FC<{ filters: FilterState; searchTerm: string }> = ({
   );
 };
 
-const FloodControlProjectsTable: React.FC = () => {
+const FloodControlProjectsTable: FC = () => {
   // State for filters and search
   const [filters, setFilters] = useState<FilterState>({
     InfraYear: '',
@@ -623,10 +623,17 @@ const FloodControlProjectsTable: React.FC = () => {
 
   // Handle filter change
   const handleFilterChange = (filterName: string, value: string) => {
-    setFilters(prev => ({
-      ...prev,
+    const newFilters = {
+      ...filters,
       [filterName]: value,
-    }));
+    };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
+    setFilters(newFilters);
   };
 
   // Build filter string for Meilisearch
@@ -675,6 +682,25 @@ const FloodControlProjectsTable: React.FC = () => {
 
     return filterStrings.length > 0 ? filterStrings.join(' AND ') : '';
   };
+
+  const provinceOptions = useMemo(() => {
+    if (filters.Region === 'National Capital Region') {
+      const nationalCapitalRegion = provinceData.Province.filter(
+        item => item.regCode === '13'
+      );
+      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      return [...nationalCapitalRegion, ...otherRegions];
+    }
+
+    if (filters.Region) {
+      const regionId = regionData.Region.find(
+        item => item.value === filters.Region
+      )?.regCode;
+      return provinceData.Province.filter(item => item.regCode === regionId);
+    }
+
+    return provinceData.Province;
+  }, [filters.Region]);
 
   // Export data function
   const handleExportData = async () => {
@@ -790,7 +816,7 @@ const FloodControlProjectsTable: React.FC = () => {
                 </label>
                 <FilterDropdown
                   name='Province'
-                  options={provinceData.Province}
+                  options={provinceOptions}
                   value={filters.Province}
                   onChange={value => handleFilterChange('Province', value)}
                   searchable

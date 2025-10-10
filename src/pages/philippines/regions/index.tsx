@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   MapPinIcon,
@@ -13,7 +13,7 @@ import regionsData from '../../../data/regions.json';
 import SEO from '../../../components/SEO';
 import { getLocalGovSEOData } from '../../../utils/seo-data';
 
-const PhilippinesRegions: React.FC = () => {
+const PhilippinesRegions: FC = () => {
   const { t } = useTranslation('about-philippines');
 
   // Simple region name formatter

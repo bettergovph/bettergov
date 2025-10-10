@@ -11,7 +11,7 @@ import {
   UsersIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';
@@ -87,7 +87,7 @@ const COLORS = [
 ];
 
 // Statistics Display Component with hardcoded values for better performance
-const DashboardStatistics: React.FC = () => {
+const DashboardStatistics: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -152,7 +152,7 @@ const DashboardStatistics: React.FC = () => {
 };
 
 // Chart components that use live filtered data from Meilisearch
-const YearlyChart: React.FC = () => {
+const YearlyChart: FC = () => {
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -204,7 +204,7 @@ const YearlyChart: React.FC = () => {
   );
 };
 
-const RegionChart: React.FC = () => {
+const RegionChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -271,7 +271,7 @@ const RegionChart: React.FC = () => {
   );
 };
 
-const TypeOfWorkChart: React.FC = () => {
+const TypeOfWorkChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -356,7 +356,7 @@ const TypeOfWorkChart: React.FC = () => {
   );
 };
 
-const ContractorChart: React.FC = () => {
+const ContractorChart: FC = () => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -438,7 +438,7 @@ const ContractorChart: React.FC = () => {
 
 // Removed SearchResultsHits component since we don't need it anymore
 
-const FloodControlProjects: React.FC = () => {
+const FloodControlProjects: FC = () => {
   const { t } = useTranslation('flood-control-projects');
 
   // State for filters and sidebar visibility
@@ -463,7 +463,6 @@ const FloodControlProjects: React.FC = () => {
   const handleDropdownToggle = (dropdownName: string) => {
     setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
   };
-
   // Precalculated chart data for initial load without Meilisearch
   const yearlyChartData = infraYearData.InfraYear.sort((a, b) =>
     a.value.localeCompare(b.value)
@@ -478,6 +477,25 @@ const FloodControlProjects: React.FC = () => {
       name: item.value,
       Projects: item.count,
     }));
+
+  const provinceOptions = useMemo(() => {
+    if (filters.Region === 'National Capital Region') {
+      const nationalCapitalRegion = provinceData.Province.filter(
+        item => item.regCode === '13'
+      );
+      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      return [...nationalCapitalRegion, ...otherRegions];
+    }
+
+    if (filters.Region) {
+      const regionId = regionData.Region.find(
+        item => item.value === filters.Region
+      )?.regCode;
+      return provinceData.Province.filter(item => item.regCode === regionId);
+    }
+
+    return provinceData.Province;
+  }, [filters.Region]);
 
   const typeWorkPieData = typeOfWorkData.TypeofWork.sort(
     (a, b) => b.count - a.count
@@ -519,6 +537,12 @@ const FloodControlProjects: React.FC = () => {
       ...filters,
       [filterName]: value,
     };
+
+    //reset province when region is changed
+    if (filterName === 'Region') {
+      newFilters.Province = '';
+    }
+
     setFilters(newFilters);
 
     // Check if any filters are now applied
@@ -657,7 +681,7 @@ const FloodControlProjects: React.FC = () => {
                   </label>
                   <FilterDropdown
                     name='Province'
-                    options={provinceData.Province}
+                    options={provinceOptions}
                     value={filters.Province}
                     onChange={value => handleFilterChange('Province', value)}
                     searchable

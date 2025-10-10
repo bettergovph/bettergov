@@ -5,14 +5,14 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
@@ -71,13 +71,19 @@ const Navbar: React.FC = () => {
           <div className='flex items-center space-x-4'>
             <Link
               to='/join-us'
-              className='text-xs text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
             >
               🚀 Join Us
             </Link>
+            <Link
+              to='/about'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+            >
+              About <span className='hidden md:inline'>BetterGov.ph</span>
+            </Link>
             <a
               href='https://www.gov.ph'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
               target='_blank'
               rel='noreferrer'
             >
@@ -86,7 +92,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to='/philippines/hotlines'
-              className='text-xs text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
             >
               Hotlines
             </Link>
@@ -127,7 +133,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center space-x-8 pr-24'>
+          <div className='hidden lg:flex items-center space-x-8 pr-24 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -139,10 +145,10 @@ const Navbar: React.FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors ${
+                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
                       isActive
-                        ? 'text-primary-600 border-b-2 border-primary-600 pb-1'
-                        : 'text-gray-700 hover:text-primary-600'
+                        ? 'text-primary-600 border-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
@@ -158,7 +164,7 @@ const Navbar: React.FC = () => {
                   </Link>
                   {item.children && (
                     <div
-                      className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                      className={`absolute left-0 mt-2 lg:mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
                         hoveredDropdown === item.label
                           ? 'opacity-100 visible'
                           : 'opacity-0 invisible'
@@ -175,6 +181,7 @@ const Navbar: React.FC = () => {
                             to={child.href}
                             className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
                             role='menuitem'
+                            target={child.target}
                           >
                             {child.label}
                           </Link>
@@ -187,12 +194,6 @@ const Navbar: React.FC = () => {
             })}
           </div>
           <div className='hidden lg:flex items-center space-x-6'>
-            <Link
-              to='/about'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
-            >
-              About
-            </Link>
             <Link
               to='/search'
               className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'

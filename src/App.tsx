@@ -1,4 +1,4 @@
-import React from 'react';
+import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,6 +24,8 @@ import Hotlines from './pages/philippines/Hotlines';
 import VisaPage from './pages/travel/visa';
 import VisaTypesPage from './pages/travel/visa-types';
 import VisaTypeDetail from './pages/travel/visa-types/[type]';
+import CommunicatingPage from './pages/travel/communicating';
+import CommunicatingPrintPage from './pages/travel/communicating/print';
 import ExecutiveDirectory from './pages/government/executive';
 import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
@@ -152,7 +154,7 @@ function App() {
               <Route
                 path='visa-types/:type'
                 element={
-                  <React.Suspense
+                  <Suspense
                     fallback={
                       <div className='flex items-center justify-center min-h-screen'>
                         Loading...
@@ -160,8 +162,13 @@ function App() {
                     }
                   >
                     <VisaTypeDetail />
-                  </React.Suspense>
+                  </Suspense>
                 }
+              />
+              <Route path='communicating' element={<CommunicatingPage />} />
+              <Route
+                path='communicating/print'
+                element={<CommunicatingPrintPage />}
               />
             </Route>
 

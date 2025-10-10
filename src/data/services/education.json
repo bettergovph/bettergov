@@ -108,8 +108,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Register Online for 2019 PSRTI Regular Training Courses",
-    "url": "https://docs.google.com/forms/d/e/1FAIpQLSd8CDP2gbHIDFyD4Jxp79PL7EaTdwILuReytxiR-s7SCa1Byg/viewform",
+    "service": "Register Online for PSRTI Regular Training Courses",
+    "url": "https://psrti.gov.ph/training/enrollment/",
     "id": "f127deec-ea3e-4a3a-b9bc-8c202f379bb2",
     "slug": "register-online-for-2019-psrti-regular-training-courses",
     "published": true,
@@ -162,7 +162,7 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Apply Online for SHS Voucher Program for School Year 2019-2020",
+    "service": "Apply Online for SHS Voucher Program",
     "url": "https://ovap.peac.org.ph/",
     "id": "ce5e2d38-33d4-419b-9f8b-c16f714332d3",
     "slug": "apply-online-for-shs-voucher-program-for-school-year-2019-2020",

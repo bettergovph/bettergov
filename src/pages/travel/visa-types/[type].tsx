@@ -5,7 +5,7 @@ import {
   ExternalLinkIcon,
   SearchIcon,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '@/types/visa.ts';
@@ -15,7 +15,7 @@ interface VisaCategory {
   id: string;
   name: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   visaTypes: VisaType[] | Array<Record<string, unknown>>;
 }
 
@@ -23,7 +23,7 @@ interface VisaTypeDetailParams {
   type: string;
 }
 
-const VisaTypeDetail: React.FC = () => {
+const VisaTypeDetail: FC = () => {
   const { type } = useParams<VisaTypeDetailParams>();
   const [visa, setVisa] = useState<VisaType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -220,7 +220,7 @@ const VisaTypeDetail: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
             {/* Sidebar */}
             <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-xs border border-gray-200 sticky top-4'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200 md:sticky top-32 mb-8'>
                 <div className='p-4 border-b border-gray-200'>
                   <h2 className='font-semibold text-lg text-gray-800'>
                     Visa Categories
