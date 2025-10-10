@@ -133,7 +133,7 @@ const Navbar: FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center space-x-8 pr-24 lg:leading-10'>
+          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
