@@ -299,6 +299,71 @@ const VisaTypeDetail: FC = () => {
                       </div>
                     )}
 
+                  {Array.isArray(visa.steps) && visa.steps.length > 0 && (
+                    <div className='mb-8'>
+                      <h3 className='text-xl font-semibold text-gray-800 mb-4'>
+                        Steps
+                      </h3>
+                      <div className='space-y-4'>
+                        {visa.steps.map((step, index) => {
+                          const hasStructuredFields =
+                            step &&
+                            typeof step === 'object' &&
+                            'title' in step &&
+                            'items' in step;
+
+                          if (!hasStructuredFields) {
+                            return (
+                              <div
+                                key={index}
+                                className='bg-gray-50 rounded-lg p-4 border border-gray-200'
+                              >
+                                <p className='text-gray-700'>{String(step)}</p>
+                              </div>
+                            );
+                          }
+
+                          const structuredStep = step as {
+                            title: string;
+                            estimated_days?: number;
+                            items?: string[];
+                          };
+
+                          return (
+                            <div
+                              key={structuredStep.title ?? index}
+                              className='bg-gray-50 rounded-lg p-4 border border-gray-200'
+                            >
+                              <h4 className='text-lg font-semibold text-gray-800 mb-1'>
+                                {index + 1}. {structuredStep.title}
+                              </h4>
+                              {typeof structuredStep.estimated_days ===
+                                'number' && (
+                                <p className='text-sm font-medium text-blue-600 bg-blue-50 inline-flex px-3 py-1 rounded-full mb-3'>
+                                  Estimated {structuredStep.estimated_days} day
+                                  {structuredStep.estimated_days === 1
+                                    ? ''
+                                    : 's'}
+                                </p>
+                              )}
+
+                              {Array.isArray(structuredStep.items) &&
+                                structuredStep.items.length > 0 && (
+                                  <ul className='list-disc pl-5 text-sm text-gray-700 space-y-1'>
+                                    {structuredStep.items.map(
+                                      (item, itemIndex) => (
+                                        <li key={itemIndex}>{item}</li>
+                                      )
+                                    )}
+                                  </ul>
+                                )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Visa Subtypes */}
                   {visa.subtypes && visa.subtypes.length > 0 && (
                     <div className='mb-8'>

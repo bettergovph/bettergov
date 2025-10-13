@@ -20,6 +20,86 @@
             "Birth certificate of Filipino spouse",
             "Police clearance from country of origin",
             "Medical examination results"
+          ],
+          "steps": [
+            {
+              "title": "Check Eligibility",
+              "estimated_days": 1,
+              "items": [
+                "Foreign spouse is legally married to a Filipino.",
+                "Entered the Philippines legally (e.g., tourist visa).",
+                "Filipino spouse is a resident.",
+                "No criminal record.",
+                "Applicant’s country must have reciprocity for Filipino immigrants."
+              ]
+            },
+            {
+              "title": "Gather Documents",
+              "estimated_days": 7,
+              "items": [
+                "Consolidated General Application Form (CGAF)",
+                "Passport bio-page and last entry stamp",
+                "NBI Clearance (if in PH >6 months, typically takes 7 days)",
+                "BI Clearance Certificate",
+                "PSA-issued birth certificate of Filipino spouse",
+                "Original marriage certificate (PSA or apostilled if abroad)",
+                "Joint letter request signed by both spouses"
+              ]
+            },
+            {
+              "title": "Submit Application at BI",
+              "estimated_days": 1,
+              "items": [
+                "File the application and required documents at Bureau of Immigration (BI) Main Office or a field office."
+              ]
+            },
+            {
+              "title": "Pre-Screening and Payment of Fees",
+              "estimated_days": 1,
+              "items": [
+                "Documents are reviewed by receiving officer.",
+                "Pay the visa application and processing fees (PHP 8,620 + ACR I-Card fee USD 50)."
+              ]
+            },
+            {
+              "title": "Attend Interview and Biometrics",
+              "estimated_days": 7,
+              "items": [
+                "Scheduled interview with both spouses at BI.",
+                "Biometric data capture (fingerprints, photo)."
+              ]
+            },
+            {
+              "title": "Wait for Visa Approval",
+              "estimated_days": 10,
+              "items": [
+                "Application review and final approval (processing time is typically 5-15 working days, may be longer in practice depending on BI workload; many report 2-6 weeks)."
+              ]
+            },
+            {
+              "title": "Visa Issuance and Probationary Residency",
+              "estimated_days": 1,
+              "items": [
+                "Passport is stamped with 13A Probationary Visa.",
+                "Receive Alien Certificate of Registration Identity Card (ACR I-Card).",
+                "Probationary status granted for one year."
+              ]
+            },
+            {
+              "title": "Apply for Permanent Residency (after 1 year)",
+              "estimated_days": 30,
+              "items": [
+                "Apply for conversion to permanent 13A status three months before probationary visa expires.",
+                "Submit updated documents and attend interview if required.",
+                "Processing for permanent visa may take 30 days or more."
+              ]
+            }
+          ],
+          "total_estimated_days_initial_application": 28,
+          "notes": [
+            "Actual processing times may vary depending on BI workload and document completeness.",
+            "Some applicants report longer wait times for approval (up to 2-6 months).",
+            "Probationary status lasts one year; apply for permanent status before expiration."
           ]
         },
         {
