@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
 import versionData from '../../version.json';
+import Modal from '../ui/Modal';
 
 type Version = {
   head_commit: string;
@@ -18,6 +19,7 @@ type Version = {
 const Footer: FC = () => {
   const { t } = useTranslation('common');
   const [version, setVersion] = useState<string | null>(null);
+  const [isDonateOpen, setIsDonateOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -102,13 +104,20 @@ const Footer: FC = () => {
           ))}
         </div>
 
-        <div className='flex justify-center my-24'>
-          <p className='text-white text-sm md:text-lg bg-gray-800 p-4 px-12 md:px-8 rounded-full border border-gray-700'>
+        <div className='flex flex-col items-center justify-center gap-6 my-24 md:flex-row'>
+          <p className='text-white text-sm md:text-lg bg-gray-800 p-4 px-12 md:px-8 rounded-full border border-gray-700 text-center'>
             Cost to build this site to date:{' '}
             <span className='animate-pulse text-red-500'>₱3,000</span>. Cost to
             the People of the Philippines:{' '}
             <span className='text-green-500'>₱0</span>.
           </p>
+          <button
+            type='button'
+            onClick={() => setIsDonateOpen(true)}
+            className='inline-flex cursor-pointer items-center justify-center rounded-full border border-primary-500 bg-primary-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-500/30 transition hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-primary-500/30'
+          >
+            Donate via BetterGov Merch
+          </button>
         </div>
 
         <div className='border-t border-gray-800 mt-8 pt-8'>
@@ -136,6 +145,49 @@ const Footer: FC = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        open={isDonateOpen}
+        onClose={() => setIsDonateOpen(false)}
+        title='Support Our Monthly Server Costs'
+        description='Grab limited BetterGov merchandise and every purchase keeps our infrastructure running for Filipinos.'
+        size='lg'
+        footer={
+          <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+            <span className='text-sm text-gray-500'>
+              Limited drops every month. Reserve yours now.
+            </span>
+            <a
+              href='#'
+              rel='noopener noreferrer'
+              className='inline-flex items-center justify-center rounded-full bg-primary-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-primary-500/30'
+            >
+              Fill out the order form
+            </a>
+          </div>
+        }
+      >
+        <div className='space-y-6'>
+          <img
+            src='https://placeimg.dev/960x540/4F46E5?text=placeholder'
+            alt='BetterGov merch preview'
+            className='w-full rounded-xl object-cover'
+          />
+          <div className='space-y-3 text-sm text-gray-600'>
+            <p>
+              Every peso goes straight to covering our monthly hosting,
+              security, and uptime monitoring. In return, you get exclusive
+              BetterGov gear made for civic hackers and public service
+              advocates.
+            </p>
+            <p>
+              Choose from tees, stickers, and desk gear bundles—each designed
+              with the Better Philippines spirit. Once you submit the form,
+              we&rsquo;ll reach out with payment and delivery details.
+            </p>
+          </div>
+        </div>
+      </Modal>
     </footer>
   );
 };
