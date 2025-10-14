@@ -268,7 +268,9 @@ const VISA_REQUIRED_COUNTRIES: Country[] = [
 const VisaPage: FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedCountry, setSelectedCountry] = useQueryState('country');
+  const [selectedCountry, setSelectedCountry] = useQueryState('country', {
+    clearOnDefault: true,
+  });
   const [viewMode, setViewMode] = useQueryState('view');
   const [visaRequirement, setVisaRequirement] =
     useState<VisaRequirement | null>(null);
@@ -396,6 +398,7 @@ const VisaPage: FC = () => {
 
   const closeDetailsDialog = () => {
     setDialogOpen(false);
+    setSelectedCountry(null);
   };
 
   const handleCheckVisaRequirements = () => {
