@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import hotlinesData from '../../data/philippines_hotlines.json';
+import ReportHotlineModal from '../../components/ReportHotlineModal';
 
 interface Hotline {
   name: string;
@@ -22,6 +23,7 @@ import {
 const Hotlines: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   const categories = [
     {
@@ -189,11 +191,23 @@ const Hotlines: FC = () => {
       </div>
 
       <div className='mt-12 text-center'>
-        <p className='text-sm text-gray-800'>
+        <p className='text-sm text-gray-800 mb-4'>
           These hotlines are collected from official government sources. If you
           notice any outdated information, please report it.
         </p>
+        <button
+          onClick={() => setIsReportModalOpen(true)}
+          className='inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md'
+        >
+          <AlertCircleIcon className='h-5 w-5 mr-2' />
+          Report Outdated Information
+        </button>
       </div>
+
+      <ReportHotlineModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+      />
     </div>
   );
 };
