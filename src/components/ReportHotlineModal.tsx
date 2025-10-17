@@ -29,6 +29,15 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
 
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+  const isMountedRef = useRef(true);
+
+  // Track mounted state
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   // Escape key handler
   useEffect(() => {
@@ -141,10 +150,13 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
         signal: controller.signal,
       });
 
-      // Clear timeout on successful fetch
+      const data = await response.json();
+
+      // Clear timeout after both fetch and JSON parse complete
       clearTimeout(timeoutId);
 
-      const data = await response.json();
+      // Only update state if component is still mounted
+      if (!isMountedRef.current) return;
 
       if (response.ok) {
         setSubmitStatus({
@@ -171,6 +183,9 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
       // Clear timeout in case of error
       clearTimeout(timeoutId);
 
+      // Only update state if component is still mounted
+      if (!isMountedRef.current) return;
+
       // Check if the error was due to abort (timeout)
       if (error instanceof Error && error.name === 'AbortError') {
         setSubmitStatus({
@@ -186,7 +201,10 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
         });
       }
     } finally {
-      setIsSubmitting(false);
+      // Only update state if component is still mounted
+      if (isMountedRef.current) {
+        setIsSubmitting(false);
+      }
     }
   };
 

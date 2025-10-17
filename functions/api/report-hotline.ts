@@ -90,12 +90,10 @@ export async function onRequest(context: {
       );
     }
 
-    // Log reporter email server-side only (not in public issue)
-    if (data.reporterEmail) {
-      console.log(
-        `[Report Contact Info] Issue for hotline "${data.hotlineName}" - Contact: ${data.reporterEmail}`
-      );
-    }
+    // Log report submission (no PII)
+    console.log(
+      `[Report Submission] Creating issue for hotline: "${data.hotlineName}"`
+    );
 
     // Construct issue body (NO PII included)
     const issueBody = `## Hotline Information Issue
@@ -112,24 +110,64 @@ ${data.source ? `### Source\n${data.source}\n\n` : ''}
 Reported via API from: /philippines/hotlines
 Timestamp: ${new Date().toISOString()}`;
 
-    // Create GitHub issue
-    const githubResponse = await fetch(
-      'https://api.github.com/repos/bettergovph/bettergov/issues',
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${githubToken}`,
-          'Content-Type': 'application/json',
-          'User-Agent': 'BetterGov-Hotline-Reporter',
-          Accept: 'application/vnd.github.v3+json',
-        },
-        body: JSON.stringify({
-          title: `Outdated Hotline: ${data.hotlineName}`,
-          body: issueBody,
-          labels: ['hotline', 'data-update', 'user-report'],
-        }),
+    // Create GitHub issue with timeout handling
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+    let githubResponse: Response;
+    try {
+      githubResponse = await fetch(
+        'https://api.github.com/repos/bettergovph/bettergov/issues',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            'Content-Type': 'application/json',
+            'User-Agent': 'BetterGov-Hotline-Reporter',
+            Accept: 'application/vnd.github.v3+json',
+          },
+          body: JSON.stringify({
+            title: `Outdated Hotline: ${data.hotlineName}`,
+            body: issueBody,
+            labels: ['hotline', 'data-update', 'user-report'],
+          }),
+          signal: controller.signal,
+        }
+      );
+    } catch (fetchError) {
+      clearTimeout(timeoutId);
+
+      // Handle abort/timeout error
+      if (fetchError instanceof Error && fetchError.name === 'AbortError') {
+        console.error('GitHub API request timed out');
+        return new Response(
+          JSON.stringify({
+            error: 'Request timed out',
+            message: 'GitHub API did not respond in time',
+          }),
+          {
+            status: 504,
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
       }
-    );
+
+      // Handle other fetch errors (network issues, etc.)
+      console.error('GitHub API fetch error:', fetchError);
+      return new Response(
+        JSON.stringify({
+          error: 'Failed to connect to GitHub',
+          message:
+            fetchError instanceof Error ? fetchError.message : 'Network error',
+        }),
+        {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!githubResponse.ok) {
       const errorText = await githubResponse.text();
@@ -182,13 +220,10 @@ Timestamp: ${new Date().toISOString()}`;
       number: githubData.number,
     };
 
-    // If email provided, store it as server-side metadata (accessible via logs)
-    // This keeps PII out of the public GitHub issue
-    if (data.reporterEmail) {
-      console.log(
-        `[Contact Metadata] GitHub Issue #${issue.number} - Reporter: ${data.reporterEmail}`
-      );
-    }
+    // Log successful issue creation (no PII)
+    console.log(
+      `[Report Success] GitHub Issue #${issue.number} created for hotline: "${data.hotlineName}"`
+    );
 
     return new Response(
       JSON.stringify({
