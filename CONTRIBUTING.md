@@ -147,6 +147,23 @@ To set up your environment, perform the following actions:
   npm run dev
   ```
 
+### Setting up Search (Meilisearch)
+
+BetterGov uses Meilisearch to power its search functionality. To set up search for local development:
+
+1. **Install and configure Meilisearch** - Follow the detailed setup guide in [docs/Meilisearch.md](./docs/Meilisearch.md#getting-started-with-meilisearch)
+2. **Index your data** - Load government services and directory data into the search engine
+3. **Test search functionality** - Verify everything works by searching on your local site
+
+The scripts documentation includes:
+
+- Platform-specific installation instructions (Windows, macOS, Linux)
+- Step-by-step configuration guide
+- Troubleshooting common issues
+- Documentation for all data processing scripts
+
+For the complete guide, see [docs/Meilisearch.md](./docs/Meilisearch.md).
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- This can be added later -->

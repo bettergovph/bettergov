@@ -1,8 +1,8 @@
 declare module 'react-world-flags' {
-  import * as React from 'react';
-  export interface FlagProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  import { ImgHTMLAttributes, FC } from 'react';
+  export interface FlagProps extends ImgHTMLAttributes<HTMLImageElement> {
     code: string;
   }
-  const Flag: React.FC<FlagProps>;
+  const Flag: FC<FlagProps>;
   export default Flag;
 }

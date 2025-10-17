@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -12,6 +12,7 @@ import {
   SearchIcon,
   UsersIcon,
   ExternalLinkIcon,
+  ChevronRightIcon,
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
@@ -80,7 +81,7 @@ interface HitProps {
 }
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -114,7 +115,7 @@ type FloodControlHit = {
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
   contractor: string;
@@ -182,7 +183,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{
+const TableHits: FC<{
   selectedContractor: string;
   onViewDetails?: () => void;
 }> = ({ selectedContractor, onViewDetails }) => {
@@ -223,7 +224,7 @@ const TableHits: React.FC<{
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -235,13 +236,15 @@ const TableHits: React.FC<{
         onClick={() => handleSort(field)}
       >
         <div className='flex items-center'>
-          <span className={`${isActive ? 'text-blue-600' : 'text-gray-800'}`}>
+          <span
+            className={`${isActive ? 'text-primary-600' : 'text-gray-800'}`}
+          >
             {label}
           </span>
           {isActive ? (
             sortDirection === 'asc' ? (
               <svg
-                className='w-3 h-3 ml-1 text-blue-600'
+                className='w-3 h-3 ml-1 text-primary-600'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -256,7 +259,7 @@ const TableHits: React.FC<{
               </svg>
             ) : (
               <svg
-                className='w-3 h-3 ml-1 text-blue-600'
+                className='w-3 h-3 ml-1 text-primary-600'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -400,7 +403,7 @@ const TableHits: React.FC<{
                       onClick={() => handlePageChange(pageToShow)}
                       className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${
                         currentPage === pageToShow
-                          ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                          ? 'z-10 bg-primary-50 border-primary-500 text-primary-600'
                           : 'bg-white text-gray-800 hover:bg-gray-50'
                       }`}
                     >
@@ -453,7 +456,7 @@ interface ContractorItemProps {
   onNavigate: (contractorSlug: string) => void;
 }
 
-const ContractorItem: React.FC<ContractorItemProps> = ({
+const ContractorItem: FC<ContractorItemProps> = ({
   contractor,
   isSelected,
   onClick,
@@ -462,7 +465,7 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
   <div className='flex'>
     <button
       className={`flex-1 text-left px-3 py-2 text-sm hover:bg-gray-100 ${
-        isSelected ? 'bg-blue-50 text-blue-600 font-medium' : ''
+        isSelected ? 'bg-primary-50 text-primary-600 font-medium' : ''
       }`}
       onClick={onClick}
       title={contractor.value} // Show full name on hover
@@ -479,17 +482,17 @@ const ContractorItem: React.FC<ContractorItemProps> = ({
       </div>
     </button>
     <button
-      className='px-2 py-2 text-xs text-blue-600 hover:text-blue-800 hover:bg-blue-50 shrink-0'
+      className='px-2 py-2 text-xs text-primary-600 hover:text-primary-800 hover:bg-primary-50 shrink-0'
       onClick={() => onNavigate(createSlug(contractor.value))}
       title={`View ${contractor.value} details`}
     >
-      →
+      <ChevronRightIcon className='h-4 w-4' />
     </button>
   </div>
 );
 
 // Main Contractors component
-const FloodControlProjectsContractors: React.FC = () => {
+const FloodControlProjectsContractors: FC = () => {
   const navigate = useNavigate();
   const [selectedContractor, setSelectedContractor] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -570,7 +573,7 @@ const FloodControlProjectsContractors: React.FC = () => {
           <div className='w-full md:w-72 bg-white p-4 rounded-lg shadow-md'>
             <div className='flex items-center justify-between mb-2'>
               <div className='flex items-center'>
-                <UsersIcon className='w-5 h-5 text-blue-600 mr-2' />
+                <UsersIcon className='w-5 h-5 text-primary-600 mr-2' />
                 <h2 className='text-lg font-semibold text-gray-800'>
                   Contractors
                 </h2>
@@ -599,7 +602,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                   <button
                     className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
                       !selectedContractor
-                        ? 'bg-blue-50 text-blue-600 font-medium'
+                        ? 'bg-primary-50 text-primary-600 font-medium'
                         : ''
                     }`}
                     onClick={() => setSelectedContractor('')}
@@ -648,6 +651,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                 }
                 onClick={handleExportData}
                 disabled={isExporting}
+                className='cursor-pointer'
               >
                 {isExporting ? 'Exporting...' : 'Export Data'}
               </Button>

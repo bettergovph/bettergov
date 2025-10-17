@@ -1,27 +1,19 @@
-import {
-  AlertCircleIcon,
-  BriefcaseIcon,
-  ChevronRightIcon,
-  CompassIcon,
-  FileTextIcon,
-  PlaneIcon,
-  SearchIcon,
-  UsersIcon,
-} from 'lucide-react';
-import React, { useState } from 'react';
+import { AlertCircleIcon, ChevronRightIcon, SearchIcon } from 'lucide-react';
+import { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
-import { VisaType } from '../../../types/visa';
+import { VisaType } from '@/types/visa.ts';
+import { getCategoryIcon } from './visa.util';
 
 interface VisaCategory {
   id: string;
   name: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   visaTypes: VisaType[];
 }
 
-const VisaTypesPage: React.FC = () => {
+const VisaTypesPage: FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] =
     useState<string>('non-immigrant');
@@ -34,22 +26,6 @@ const VisaTypesPage: React.FC = () => {
     icon: getCategoryIcon(category.id),
     visaTypes: category.visaTypes,
   }));
-
-  // Helper function to get the appropriate icon for each category
-  function getCategoryIcon(categoryId: string) {
-    switch (categoryId) {
-      case 'immigrant':
-        return <UsersIcon size={24} />;
-      case 'non-immigrant':
-        return <PlaneIcon size={24} />;
-      case 'special':
-        return <BriefcaseIcon size={24} />;
-      case 'permits':
-        return <FileTextIcon size={24} />;
-      default:
-        return <CompassIcon size={24} />;
-    }
-  }
 
   // Handle category selection
   const handleCategoryClick = (categoryId: string) => {
@@ -140,7 +116,7 @@ const VisaTypesPage: React.FC = () => {
           <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
             {/* Sidebar */}
             <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-xs border border-gray-200 sticky top-4'>
+              <div className='bg-white rounded-lg shadow-xs border border-gray-200 md:sticky top-32 mb-8'>
                 <div className='p-4 border-b border-gray-200'>
                   <h2 className='font-semibold text-lg text-gray-800'>
                     Visa Categories
@@ -151,7 +127,7 @@ const VisaTypesPage: React.FC = () => {
                     <button
                       key={category.id}
                       onClick={() => handleCategoryClick(category.id)}
-                      className={`w-full text-left flex items-center p-3 rounded-md transition-colors ${
+                      className={`w-full text-left flex items-center p-3 rounded-md transition-colors cursor-pointer ${
                         selectedCategory === category.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-700 hover:bg-gray-50'

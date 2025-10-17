@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { UsersIcon, ArrowRightIcon, ZapIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const JoinUsStrip: React.FC = () => {
+const JoinUsStrip: FC = () => {
   const { t } = useTranslation('common');
 
   return (
@@ -40,7 +40,7 @@ const JoinUsStrip: React.FC = () => {
           <div className='flex items-center gap-3'>
             <Link
               to='/join-us'
-              className='inline-flex items-center gap-2 bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-yellow-200 transition-all transform hover:scale-105'
+              className='inline-flex items-center gap-2 bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-yellow-200 transition-all transform hover:scale-105 whitespace-nowrap'
             >
               {t('joinUs.joinNow')}
               <ArrowRightIcon className='h-3 w-3' />

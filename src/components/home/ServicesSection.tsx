@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { FC } from 'react';
+import * as LucideIcons from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 import serviceCategories from '../../data/service_categories.json';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ interface Category {
   subcategories: Subcategory[];
 }
 
-const ServicesSection: React.FC = () => {
+const ServicesSection: FC = () => {
   const { t } = useTranslation('common');
 
   // Show only first 12 categories

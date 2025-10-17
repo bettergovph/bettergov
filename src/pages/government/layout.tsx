@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
   Building2Icon,
@@ -13,7 +13,7 @@ import { cn } from '../../lib/utils';
 interface GovernmentLayoutProps {
   title: string;
   description?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
@@ -96,6 +96,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
                   'hover:bg-primary-500/95',
                   isActive && 'text-neutral-50  bg-primary-500'
                 )}
+                state={{ scrollToContent: true }}
               >
                 <div className='flex items-center gap-1 mb-1 group-hover:text-neutral-200'>
                   <div className='mr-2 text-xs md:text-sm'>{branch.icon}</div>

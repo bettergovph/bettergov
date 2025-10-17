@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ interface Category {
   subcategories: Subcategory[];
 }
 
-const Hero: React.FC = () => {
+const Hero: FC = () => {
   const { t } = useTranslation('common');
 
   // Find categories and subcategories by their names to get slugs

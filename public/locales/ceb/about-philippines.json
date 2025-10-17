@@ -1,0 +1,232 @@
+{
+  "about": {
+    "hero": {
+      "title": "Mahitungod sa Pilipinas",
+      "description": "Ilailahaa ang Perlas sa Sidlakang Kadagatan, usa ka nasud nga buhi ang kultura, bahandianon ang kasaysayan, ug talagsaon ang kinaiyahan nga nabuklad sa liboan ka mga isla."
+    },
+    "facts": {
+      "title": "Mubo'ng mga Kamatuoran",
+      "items": {
+        "geography": {
+          "title": "Heograpiya",
+          "description": "Usa ka kapupud-an nga may kapin sa 7,641 ka isla nga nahimutang sa Habagatang Sidlakang Asya"
+        },
+        "population": {
+          "title": "Populasyon",
+          "description": "Pinuy-anan sa kapin 110 milyon ka tawo gikan sa lain-laing etnikong grupo"
+        },
+        "capital": {
+          "title": "Kaulohan",
+          "description": "Ang Manila mao ang kaulohan, ug ang Metro Manila mao ang sentrong pang-ekonomiya"
+        },
+        "landscape": {
+          "title": "Tanawong Kinaiyahan",
+          "description": "May kabukiran, mga bulkan, tropikal nga kalasangan, ug matahum nga mga baybayon"
+        },
+        "climate": {
+          "title": "Klima",
+          "description": "Tropikal nga dagatnong klima nga adunay tulo ka klarong kapanahonan"
+        }
+      }
+    },
+    "overview": {
+      "title": "Kinatibuk-ang Tan-aw",
+      "paragraphs": [
+        "Ang Pilipinas usa ka soberanong kapupud-an nga nasud sa Habagatang Sidlakang Asya, nga gilangkuban sa kapin sa 7,641 ka mga isla. Gingalan kini gikan kang Haring Philip II sa Espanya, ug adunay bahandianong kasaysayan sa liboan ka mga katuigan—gikan sa karaang lumadnong mga kultura ngadto sa mga panahon sa kolonyal nga paghari sa Kastila ug Amerikano—nga mitungas sa kagawasan niadtong 1946.",
+        "Karon, ang Pilipinas milingi isip usa sa labing dinamiko nga ekonomiya sa Habagatang Sidlakang Asya, nga naghiusa sa tradisyonal nga mga bili ug modernong kalamboan. Ilado ang nasud sa maabiabihong pagdawat, lain-laing kabilin sa kultura, makapahingangha nga talan-aw sa kinaiyahan, ug buhi nga demokrasya.",
+        "Ang kulturang Pilipino usa ka talagsaong panaghiusa sa lumad, Asyano, Europeo, ug Amerikanong mga impluwensya, nga makita sa arte, musika, pagkaon, ug mga tradisyon. Ang biodiversidad sa nasud—nga adunay talagsaong mga espesye ug ekosistema—nagpahimo niini nga usa sa labing hinungdanong lugar sa kalibotan sa kinaiyahan."
+      ]
+    },
+    "keyInformation": {
+      "title": "Hinungdanong Impormasyon",
+      "items": {
+        "officialLanguages": {
+          "label": "Opisyal nga mga Pinulongan",
+          "value": "Filipino, English"
+        },
+        "government": {
+          "label": "Matang sa Gobyerno",
+          "value": "Republikang Presidensyal ug Konstitusyonal"
+        },
+        "currency": {
+          "label": "Salapi",
+          "value": "Philippine Peso (₱)"
+        },
+        "timeZone": {
+          "label": "Sona sa Oras",
+          "value": "UTC+8 (Philippine Standard Time)"
+        },
+        "majorCities": {
+          "label": "Dagkong Siyudad",
+          "value": "Manila, Quezon City, Davao, Cebu"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "May Kalabutan nga mga Link",
+      "items": {
+        "history": "Kasaysayan",
+        "culture": "Kultura",
+        "regions": "Mga Rehiyon",
+        "tourism": "Turismo"
+      }
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "Kasaysayan sa Pilipinas",
+      "description": "Lakta ang panahon ug diskubrihi ang bahad sa mga panghitabo, mga tawo, ug kalihokan nga mihulma sa nasudnong identidad sa Pilipinas.",
+      "photoCredit": "Kredito sa hulagway"
+    },
+    "timeline": {
+      "title": "Kronolohiya sa Kasaysayan",
+      "periods": {
+        "independence": {
+          "title": "Kagawasan ug Modernong Panahon",
+          "period": "1946-Karon",
+          "description": "Independyenteng republika nga nag-atubang sa mga hagit ug kadaugan sa pagtukod sa nasud"
+        },
+        "american": {
+          "title": "Panahong Amerikano",
+          "period": "1898-1946",
+          "description": "Administrasyong Amerikano, nagpasulod sa modernong edukasyon ug demokratikong mga institusyon"
+        },
+        "spanish": {
+          "title": "Panahong Kolonyal sa Kastila",
+          "period": "1521-1898",
+          "description": "Kapin 300 ka tuig nga paghari sa Kastila, pagpasulod sa Kristiyanismo ug mga institusyon sa kolonyalismo"
+        },
+        "preColonial": {
+          "title": "Pre-Kolonyal nga Panahon",
+          "period": "Sa wala pa ang 1521",
+          "description": "Lumad nga mga katawhan nga adunay abanteng katilingban, mga ruta sa pagpamaligya, ug bahandianong kultura"
+        }
+      }
+    },
+    "overview": {
+      "title": "Kinatibuk-ang Tan-aw sa Kasaysayan",
+      "paragraphs": [
+        "Ang kasaysayan sa Pilipinas naglangkob sa liboan ka katuigan, nagsugod sa migrasyon sa mga Austronesyano. Kining mga unang mga lumulupyo mihimo ug abanteng katilingban, nakig-negosyo sa lain-laing Asyano nga sibilisasyon, ug nagpalambo sa lahi nga mga tradisyon sa kultura.",
+        "Ang pag-abot ni Ferdinand Magellan niadtong 1521 nagtimaan sa pagsugod sa kolonisasyon sa Kastila sulod kapin sa tulo ka siglo. Niining panahona misanong ang Kristiyanismo ug natukod ang mga institusyong kolonyal nga dako'g impluwensya sa katilingbang Pilipino.",
+        "Human sa Gubat sa Espanya ug Amerika, miabot ang pamuno sa Amerika sa Pilipinas, nga nagdala sa dagkong kausaban sa edukasyon, pang-gobyerno, ug katilingban. Nakaangkon sa kagawasan niadtong 1946 ug sukad niadto nagpaningkamot sa pagtukod sa modernong nasud samtang nagpanalipod sa bahandianong kabilin sa kultura."
+      ]
+    },
+    "keyFigures": {
+      "title": "Hinungdanong mga Personahe sa Kasaysayan",
+      "figures": {
+        "rizal": {
+          "name": "José Rizal",
+          "description": "Nasudnong Baganihan, Manunulat, Repormista"
+        },
+        "bonifacio": {
+          "name": "Andrés Bonifacio",
+          "description": "Pinuno sa Rebolusyon"
+        },
+        "aguinaldo": {
+          "name": "Emilio Aguinaldo",
+          "description": "Unang Presidente"
+        },
+        "aquino": {
+          "name": "Corazon Aquino",
+          "description": "Ikona sa Demokrasya, Kanhing Presidente"
+        }
+      }
+    },
+    "importantDates": {
+      "title": "Hinungdanong mga Petsa",
+      "dates": {
+        "magellan": {
+          "date": "March 16, 1521",
+          "event": "Pag-abot ni Magellan"
+        },
+        "independence": {
+          "date": "June 12, 1898",
+          "event": "Proklamasyon sa Kagawasan"
+        },
+        "recognition": {
+          "date": "July 4, 1946",
+          "event": "Pag-ila sa Kagawasan"
+        },
+        "edsa": {
+          "date": "February 25, 1986",
+          "event": "Rebolusyong People Power sa EDSA"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "May Kalabutan nga mga Link",
+      "items": {
+        "about": "Mahitungod",
+        "culture": "Kultura",
+        "regions": "Mga Rehiyon",
+        "tourism": "Turismo"
+      }
+    }
+  },
+  "regions": {
+    "hero": {
+      "title": "Mga Rehiyon sa Pilipinas",
+      "description": "Susihi ang tanang {{count}} ka administratibong rehiyon sa Pilipinas ug ang ilang lokal nga mga yunit sa gobyerno."
+    },
+    "sections": {
+      "administrativeRegions": {
+        "title": "Administratibong mga Rehiyon",
+        "localGovUnits": "Lokal nga mga Yunit sa Gobyerno",
+        "viewLGUs": "Tan-awa ang mga LGU"
+      },
+      "regionalOverview": {
+        "title": "Kinatibuk-ang Tan-aw sa mga Rehiyon",
+        "paragraphs": [
+          "Ang Pilipinas nabahin sa tulo ka dagkong heyograpikong dibisyon: Luzon, Visayas, ug Mindanao. Kini gibahin pa ngadto sa 18 ka rehiyon, matag-usa adunay kaugalingong sentrong administratibo, identidad sa kultura, ug pang-ekonomiyang pokus.",
+          "Ang matag rehiyon nagpakita sa talagsaong mga tradisyon, diyalekto, ug mga putahe, nga naghatag ug kolor sa hablon sa kultura sa nasud. Gikan sa mga tribo sa kabukiran sa Cordilleras hangtod sa mga komunidad sa kadagatan sa Visayas, talagsaon ang kalain-lain sa rehiyonal nga kultura sa Pilipino.",
+          "Nagkalain-lain usab ang mga kalihokan sa ekonomiya sa mga rehiyon—gikan sa industriyal ug serbisyo-oriented nga National Capital Region ngadto sa agrikultural nga kasingkasing sa Central Luzon ug sa bahandianong mga probinsya sa Mindanao."
+        ]
+      }
+    },
+    "sidebar": {
+      "quickFacts": {
+        "title": "Mubo'ng mga Kamatuoran",
+        "totalRegions": {
+          "label": "Kinatibuk-ang mga Rehiyon",
+          "value": "18 ka Administratibong Rehiyon"
+        },
+        "provinces": {
+          "label": "Mga Probinsya",
+          "value": "82 ka Probinsya"
+        },
+        "cities": {
+          "label": "Mga Siyudad",
+          "value": "149 ka Siyudad"
+        },
+        "municipalities": {
+          "label": "Mga Munisipalidad",
+          "value": "1,493 ka Munisipalidad"
+        }
+      },
+      "regionalLanguages": {
+        "title": "Mga Pinulongan sa Rehiyon",
+        "regions": {
+          "luzon": {
+            "name": "Luzon",
+            "languages": "Tagalog, Ilocano, Bicolano"
+          },
+          "visayas": {
+            "name": "Visayas",
+            "languages": "Cebuano, Hiligaynon, Waray"
+          },
+          "mindanao": {
+            "name": "Mindanao",
+            "languages": "Cebuano, Maguindanaon, Tausug"
+          }
+        }
+      },
+      "relatedLinks": {
+        "title": "May Kalabutan nga mga Link",
+        "interactiveMap": "Interaktibong Mapa",
+        "localGovernmentUnits": "Lokal nga mga Yunit sa Gobyerno",
+        "governmentDepartments": "Mga Departamento sa Gobyerno",
+        "aboutPhilippines": "Mahitungod sa Pilipinas"
+      }
+    }
+  }
+}

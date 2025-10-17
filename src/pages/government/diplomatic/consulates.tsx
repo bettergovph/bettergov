@@ -68,8 +68,8 @@ export default function ConsulatesPage() {
       ) : (
         <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
           {filteredConsulates.map((consulate, index) => (
-            <Card key={index}>
-              <CardContent>
+            <Card key={index} className='h-full'>
+              <CardContent className='h-full flex flex-col'>
                 <div className='flex items-center justify-between mb-2'>
                   <CardTitle className='text-lg'>
                     {consulate.country || 'N/A'}
@@ -80,18 +80,20 @@ export default function ConsulatesPage() {
                 </div>
 
                 <CardDivider className='my-4' />
-                <CardDescription className='mb-4'>
-                  {consulate.office_name}
-                </CardDescription>
+                <div className='flex-1'>
+                  <CardDescription className='mb-4'>
+                    {consulate.office_name}
+                  </CardDescription>
 
-                <CardContactInfo
-                  contact={{
-                    address: consulate.address,
-                    phone: consulate.contact,
-                    email: consulate.email,
-                    website: consulate.website,
-                  }}
-                />
+                  <CardContactInfo
+                    contact={{
+                      address: consulate.address,
+                      phone: consulate.contact,
+                      email: consulate.email,
+                      website: consulate.website,
+                    }}
+                  />
+                </div>
 
                 <CardDivider className='mt-4 mb-4' />
                 <div>

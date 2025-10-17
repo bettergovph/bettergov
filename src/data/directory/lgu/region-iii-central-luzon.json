@@ -95,10 +95,13 @@
           "city": "Balanga",
           "zip_code": "2100",
           "mayor": {
-            "name": "RAQUEL FRANCIS D. GARCIA"
+            "name": "RAQUEL FRANCIS D. GARCIA",
+            "contact": "(047) 237-2256",
+            "email": "raquelgarcia@cityofbalanga.gov.ph"
           },
           "vice_mayor": {
-            "name": "FRANCIS ANTHONY S. GARCIA"
+            "name": "FRANCIS ANTHONY S. GARCIA",
+            "email": "francis.garcia@cityofbalanga.gov.ph"
           }
         }
       ],
@@ -107,7 +110,7 @@
           "municipality": "Abucay",
           "zip_code": "2114",
           "mayor": {
-            "name": "RUBEN C. TAGLE"
+            "name": "ERIK MARTEL"
           },
           "vice_mayor": {
             "name": "ROBERTO T. PABUSTAN JR."
@@ -117,7 +120,8 @@
           "municipality": "Bagac",
           "zip_code": "2107",
           "mayor": {
-            "name": "ROMMEL V. DEL ROSARIO"
+            "name": "ROMMEL V. DEL ROSARIO",
+            "contact": "(047) 612-0424"
           },
           "vice_mayor": {
             "name": "RON MICHAEL ALEXIS R. DEL ROSARIO"
@@ -127,7 +131,8 @@
           "municipality": "Dinalupihan",
           "zip_code": "2110",
           "mayor": {
-            "name": "GERMAN M. SANTOS JR."
+            "name": "GERMAN M. SANTOS JR.",
+            "contact": "(047) 636-1202; 612-2099"
           },
           "vice_mayor": {
             "name": "FERNANDO P. MANALILI",
@@ -138,7 +143,8 @@
           "municipality": "Hermosa",
           "zip_code": "2111",
           "mayor": {
-            "name": "ANTONIO JOSEPH R. INTON"
+            "name": "ANTONIO JOSEPH R. INTON",
+            "contact": "(047) 633-1531"
           },
           "vice_mayor": {
             "name": "PATRICK S. RELLOSA"
@@ -173,14 +179,16 @@
             "name": "CYNTHIA G. LINAO-ESTANISLAO"
           },
           "vice_mayor": {
-            "name": "LEILA G. LINAO-MUÑOZ"
+            "name": "LEILA G. LINAO-MUÑOZ",
+            "contact": "8477-6691"
           }
         },
         {
           "municipality": "Orani",
           "zip_code": "2112",
           "mayor": {
-            "name": "EFREN DOMINIC E. PASCUAL JR."
+            "name": "EFREN DOMINIC E. PASCUAL JR.",
+            "contact": "(047) 431-7950; 638-1330"
           },
           "vice_mayor": {
             "name": "EMMANUEL R. ROMAN",
@@ -191,7 +199,8 @@
           "municipality": "Orion",
           "zip_code": "2102",
           "mayor": {
-            "name": "ANTONIO L. RAYMUNDO JR."
+            "name": "ANTONIO L. RAYMUNDO JR.",
+            "contact": "(047) 244-8141; 244-9814"
           },
           "vice_mayor": {
             "name": "REX JOSEPH R. FUSTER"
@@ -201,7 +210,8 @@
           "municipality": "Pilar",
           "zip_code": "2101",
           "mayor": {
-            "name": "CARLOS F. PIZARRO JR."
+            "name": "CARLOS F. PIZARRO JR.",
+            "contact": "(047) 237-4564; 237-2768"
           },
           "vice_mayor": {
             "name": "CECILIA R. CARCIA"
@@ -211,10 +221,12 @@
           "municipality": "Samal",
           "zip_code": "2113",
           "mayor": {
-            "name": "ALEXANDER C. ACUZAR"
+            "name": "ALEXANDER C. ACUZAR",
+            "contact": "(047) 451-1348"
           },
           "vice_mayor": {
-            "name": "RONALD M. ORTIGUERRA"
+            "name": "RONALD M. ORTIGUERRA",
+            "contact": "(047) 300-8176"
           }
         }
       ]

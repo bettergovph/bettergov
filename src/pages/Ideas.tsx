@@ -6,7 +6,7 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '../components/ui/Card';
 
@@ -15,7 +15,7 @@ interface ProjectIdea {
   title: string;
   description: string;
   category: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   priority: 'high' | 'medium' | 'low';
   complexity: 'simple' | 'moderate' | 'complex';
   upvotes: number;
@@ -99,7 +99,7 @@ const getComplexityColor = (complexity: string) => {
   }
 };
 
-const Ideas: React.FC = () => {
+const Ideas: FC = () => {
   const [projectIdeas] = useState<ProjectIdea[]>(initialProjectIdeas);
 
   const handleSubmitIdea = () => {

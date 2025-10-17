@@ -114,12 +114,13 @@ export default function LocalGovernmentIndex() {
             {filteredRegions.map(region => (
               <Link
                 key={region.slug}
+                state={{ scrollToContent: true }}
                 to={`/government/local/${region.slug}`}
                 className='block'
               >
-                <Card hover>
-                  <CardContent>
-                    <div className='flex items-start justify-between mb-3'>
+                <Card hover className='h-full'>
+                  <CardContent className='h-full flex flex-col'>
+                    <div className='flex items-start justify-between flex-1'>
                       <div className='flex-1'>
                         <CardTitle className='text-lg mb-2 line-clamp-2'>
                           {region.name}

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import {
   Music2Icon,
   UtensilsIcon,
@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '../../../components/ui/Card';
 
-const PhilippinesCulture: React.FC = () => {
+const PhilippinesCulture: FC = () => {
   const culturalAspects = [
     {
       icon: <Music2Icon className='h-6 w-6' />,

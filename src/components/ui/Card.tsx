@@ -1,8 +1,8 @@
-import React from 'react';
+import { HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
   hoverable?: boolean;
 }
@@ -30,8 +30,8 @@ const Card = ({
   );
 };
 
-interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
 }
 
@@ -48,8 +48,8 @@ const CardHeader = ({ children, className, ...props }: CardHeaderProps) => {
   );
 };
 
-interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
 }
 
@@ -66,8 +66,8 @@ const CardContent = ({ children, className, ...props }: CardContentProps) => {
   );
 };
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   className?: string;
 }
 
@@ -85,7 +85,7 @@ const CardFooter = ({ children, className, ...props }: CardFooterProps) => {
   );
 };
 
-interface CardImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface CardImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
 }
 

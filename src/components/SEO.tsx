@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonical?: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
@@ -25,9 +27,27 @@ export default function SEO({
   keywords = [],
   jsonLd,
   breadcrumbs,
-}: SEOProps) {
-  const siteTitle = 'Philippine Government Portal';
-  const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+}: SEOProps = {}) {
+  const location = useLocation();
+  const [, forceUpdate] = useState({});
+
+  // Default values
+  const defaultTitle =
+    'BetterGov.ph | Republic of the Philippines | Community Powered Government Portal';
+  const defaultDescription =
+    'Community-powered portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+
+  useEffect(() => {
+    // Force a re-render of this component on route changes
+    // This ensures the Helmet instance is refreshed
+    forceUpdate({});
+  }, [location.pathname]);
+  // Use provided values or defaults
+  const finalTitle = title || defaultTitle;
+  const finalDescription = description || defaultDescription;
+
+  const siteTitle = 'BetterGov.ph';
+  const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
   const baseUrl = 'https://gov.ph'; // Replace with actual domain
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined;
   const fullOgImage = ogImage.startsWith('http')
@@ -49,10 +69,10 @@ export default function SEO({
     : null;
 
   return (
-    <Helmet>
+    <Helmet key={location.pathname}>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
-      <meta name='description' content={description} />
+      <meta name='description' content={finalDescription} />
       {keywords.length > 0 && (
         <meta name='keywords' content={keywords.join(', ')} />
       )}
@@ -65,7 +85,7 @@ export default function SEO({
 
       {/* Open Graph */}
       <meta property='og:title' content={fullTitle} />
-      <meta property='og:description' content={description} />
+      <meta property='og:description' content={finalDescription} />
       <meta property='og:type' content={ogType} />
       <meta property='og:image' content={fullOgImage} />
       <meta property='og:site_name' content={siteTitle} />
@@ -74,7 +94,7 @@ export default function SEO({
       {/* Twitter Card */}
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:title' content={fullTitle} />
-      <meta name='twitter:description' content={description} />
+      <meta name='twitter:description' content={finalDescription} />
       <meta name='twitter:image' content={fullOgImage} />
 
       {/* Government Specific Meta Tags */}
