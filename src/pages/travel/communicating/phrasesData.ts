@@ -115,7 +115,7 @@ export const phrasesData: PhraseCategory[] = [
         korean: '영어 하실 수 있나요? (Yeongeo hasil su innayo?)',
         japanese: '英語を話せますか？ (Eigo o hanasemasu ka?)',
         tagalog: 'Nagsasalita ka ba ng Ingles?',
-        visaya: 'Makasulti ka ba ug Ingles?',
+        visaya: 'Kabalo ka mag ininglis?',
       },
       {
         english: "I don't understand",
@@ -185,7 +185,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese:
           '辛くないものでお願いします (Karakunai mono de onegaishimasu)',
         tagalog: 'Hindi maanghang',
-        visaya: 'Dili hait',
+        visaya: 'Dili halang',
       },
       {
         english: 'Breakfast',
@@ -246,7 +246,7 @@ export const phrasesData: PhraseCategory[] = [
         korean: '이거 살게요 (Igeo salgeyo)',
         japanese: 'これを買います (Kore o kaimasu)',
         tagalog: 'Kukunin ko',
-        visaya: 'Kuhaan nako',
+        visaya: 'Kuhaon nako',
       },
       {
         english: 'Do you accept credit cards?',
@@ -263,7 +263,7 @@ export const phrasesData: PhraseCategory[] = [
         korean: '그냥 구경하는 거예요 (Geunyang gugyeonghaneun geoyeyo)',
         japanese: '見ているだけです (Mite iru dake desu)',
         tagalog: 'Tingnan lang',
-        visaya: 'Tan-aw lang',
+        visaya: 'Tan-aw ra',
       },
     ],
   },
@@ -329,7 +329,7 @@ export const phrasesData: PhraseCategory[] = [
         korean: '예약했어요 (Yeyakaesseoyo)',
         japanese: '予約しています (Yoyaku shite imasu)',
         tagalog: 'May reservation ako',
-        visaya: 'May reservation ko',
+        visaya: 'Naa koy reservation',
       },
       {
         english: 'Can I see the room?',
@@ -338,7 +338,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese:
           '部屋を見せていただけますか？ (Heya o misete itadakemasu ka?)',
         tagalog: 'Pwede ko bang makita ang kwarto?',
-        visaya: 'Pwede ba nakong makita ang kwarto?',
+        visaya: 'Pwede ko motan-aw sa kwarto?',
       },
       {
         english: 'What time is check-out?',
@@ -354,7 +354,7 @@ export const phrasesData: PhraseCategory[] = [
         korean: '에어컨이 안 돼요 (Eeokeon-i an dwaeyo)',
         japanese: 'エアコンが動きません (Eakon ga ugokimasen)',
         tagalog: 'Hindi gumagana ang aircon',
-        visaya: 'Dili molihok ang aircon',
+        visaya: 'Dili moandar ang aircon',
       },
       {
         english: 'Can I have extra towels?',

@@ -66,8 +66,8 @@ export default function DiplomaticMissionsPage() {
       ) : (
         <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
           {filteredMissions.map((mission, index) => (
-            <Card key={index}>
-              <CardContent>
+            <Card key={index} className='h-full'>
+              <CardContent className='h-full flex flex-col'>
                 <div className='flex items-center justify-between mb-2'>
                   <CardTitle className='text-lg'>{mission.country}</CardTitle>
                   <div className='bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full'>
@@ -75,18 +75,20 @@ export default function DiplomaticMissionsPage() {
                   </div>
                 </div>
                 <CardDivider className='mb-4' />
-                <CardDescription className='mb-4'>
-                  {mission.office_name}
-                </CardDescription>
+                <div className='flex-1'>
+                  <CardDescription className='mb-4 flex-1'>
+                    {mission.office_name}
+                  </CardDescription>
 
-                <CardContactInfo
-                  contact={{
-                    address: mission.address,
-                    phone: mission.contact,
-                    email: mission.email,
-                    website: mission.website,
-                  }}
-                />
+                  <CardContactInfo
+                    contact={{
+                      address: mission.address,
+                      phone: mission.contact,
+                      email: mission.email,
+                      website: mission.website,
+                    }}
+                  />
+                </div>
 
                 <CardDivider className='mt-4 mb-4' />
                 <div>

@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 import { Card, CardContent } from '../ui/Card';
 import { useTranslation } from 'react-i18next';
 
-const GovernmentSection: React.FC = () => {
+const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
 
   const branches = [

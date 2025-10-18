@@ -67,8 +67,8 @@ export default function InternationalOrganizationsPage() {
       ) : (
         <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
           {filteredOrganizations.map((org, index) => (
-            <Card key={index}>
-              <CardContent>
+            <Card key={index} className='h-full'>
+              <CardContent className='h-full flex flex-col'>
                 <div className='flex items-center justify-between mb-2'>
                   <CardTitle className='text-lg'>
                     {org.organization_name}
@@ -78,9 +78,9 @@ export default function InternationalOrganizationsPage() {
                   </div>
                 </div>
 
-                <CardDivider className='my-4' />
+                <CardDivider className='my-1' />
 
-                <div className='mt-4'>
+                <div className='mt-4 flex-1'>
                   <CardContactInfo
                     contact={{
                       address: org.address,

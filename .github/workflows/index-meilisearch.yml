@@ -1,0 +1,26 @@
+name: Index Meilisearch Data
+
+on:
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  index-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Meilisearch indexing script
+        run: node scripts/index_meilisearch.cjs
+        env:
+          MEILISEARCH_HOST: 'https://search.bettergov.ph' # Or your Meilisearch host
+          MEILISEARCH_MASTER_KEY: ${{ secrets.MEILISEARCH_MASTER_KEY }}

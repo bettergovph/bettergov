@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
@@ -113,7 +113,7 @@ interface HitProps {
 }
 
 // Table Row component
-const TableRow: React.FC<HitProps> = ({ hit }) => {
+const TableRow: FC<HitProps> = ({ hit }) => {
   return (
     <tr className='border-b border-gray-200 hover:bg-gray-50'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
@@ -149,7 +149,7 @@ type FloodControlHit = {
 };
 
 // Statistics component for displaying summary data
-const ResultsStatistics: React.FC<{
+const ResultsStatistics: FC<{
   hits: FloodControlHit[];
   totalHits: number;
   contractor: string;
@@ -172,7 +172,7 @@ const ResultsStatistics: React.FC<{
     <div className='bg-white p-6 rounded-t-lg shadow-sm mb-6'>
       <div className='flex items-center mb-4'>
         <Building2 className='w-6 h-6 text-blue-600 mr-3' />
-        <h3 className='text-xl font-semibold text-gray-900'>{contractor}</h3>
+        <h3 className='text-3xl font-semibold text-gray-900'>{contractor}</h3>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
         <div className='bg-blue-50 p-4 rounded-md'>
@@ -183,7 +183,7 @@ const ResultsStatistics: React.FC<{
         </div>
         <div className='bg-green-50 p-4 rounded-md'>
           <p className='text-sm text-gray-800'>Total Contract Cost</p>
-          <p className='text-3xl font-bold text-green-700'>
+          <p className='text-3xl md:text-sm lg:text-xl xl:text-3xl font-bold text-green-700'>
             ₱
             {estimatedTotalContractCost.toLocaleString(undefined, {
               maximumFractionDigits: 0,
@@ -192,7 +192,7 @@ const ResultsStatistics: React.FC<{
         </div>
         <div className='bg-purple-50 p-4 rounded-md'>
           <p className='text-sm text-gray-800'>Average Project Cost</p>
-          <p className='text-3xl font-bold text-purple-700'>
+          <p className='text-3xl md:text-sm lg:text-xl xl:text-3xl font-bold text-purple-700'>
             ₱
             {avgCostPerProject.toLocaleString(undefined, {
               maximumFractionDigits: 0,
@@ -205,7 +205,7 @@ const ResultsStatistics: React.FC<{
 };
 
 // Custom component to access Meilisearch hits for map
-const MapHits: React.FC<{
+const MapHits: FC<{
   onHitsUpdate: (hits: FloodControlProject[]) => void;
 }> = ({ onHitsUpdate }) => {
   const { hits } = useHits<FloodControlProject>();
@@ -218,7 +218,7 @@ const MapHits: React.FC<{
 };
 
 // Custom component to fetch contractor profile
-const ContractorProfileFetcher: React.FC<{
+const ContractorProfileFetcher: FC<{
   onProfileUpdate: (profile: ContractorProfile | null) => void;
 }> = ({ onProfileUpdate }) => {
   const { hits } = useHits<ContractorProfile>();
@@ -232,7 +232,7 @@ const ContractorProfileFetcher: React.FC<{
 };
 
 // Custom Hits component for table view
-const TableHits: React.FC<{ selectedContractor: string }> = ({
+const TableHits: FC<{ selectedContractor: string }> = ({
   selectedContractor,
 }) => {
   const [sortField, setSortField] = useState<string>('ProjectDescription');
@@ -272,7 +272,7 @@ const TableHits: React.FC<{ selectedContractor: string }> = ({
     }
   };
 
-  const SortHeader: React.FC<{ field: string; label: string }> = ({
+  const SortHeader: FC<{ field: string; label: string }> = ({
     field,
     label,
   }) => {
@@ -511,8 +511,10 @@ const findContractorBySlug = (slug: string): DataItem | null => {
   );
 };
 
+const initialCenter: LatLngExpression = [12.8797, 121.774];
+
 // Main Contractor Detail component
-const ContractorDetail: React.FC = () => {
+const ContractorDetail: FC = () => {
   const { 'contractor-name': contractorSlug } = useParams<{
     'contractor-name': string;
   }>();
@@ -525,8 +527,49 @@ const ContractorDetail: React.FC = () => {
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const mapRef = useRef<L.Map>(null);
 
-  const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
+
+  // function to calculate bounds from projects with coordinates
+  const calculateBounds = (
+    projects: FloodControlProject[]
+  ): L.LatLngBounds | null => {
+    const validProjects = projects.filter(project => {
+      if (!project.Latitude || !project.Longitude) return false;
+      const lat = parseFloat(project.Latitude);
+      const lng = parseFloat(project.Longitude);
+      return !isNaN(lat) && !isNaN(lng);
+    });
+
+    if (validProjects.length === 0) return null;
+
+    const lats = validProjects.map(p => parseFloat(p.Latitude!));
+    const lngs = validProjects.map(p => parseFloat(p.Longitude!));
+
+    const bounds = L.latLngBounds([
+      [Math.min(...lats), Math.min(...lngs)],
+      [Math.max(...lats), Math.max(...lngs)],
+    ]);
+
+    return bounds;
+  };
+
+  // adjust map view based on project coordinates
+  useEffect(() => {
+    if (mapRef.current && mapProjects.length > 0) {
+      const bounds = calculateBounds(mapProjects);
+
+      if (bounds) {
+        // it fit bounds to show all project locations with some padding
+        mapRef.current.fitBounds(bounds, {
+          padding: [20, 20],
+          maxZoom: 10,
+        });
+      } else {
+        //lets show the whole Philippines if there are no project coordinates
+        mapRef.current.setView(initialCenter, initialZoom);
+      }
+    }
+  }, [mapProjects, initialZoom]);
 
   useEffect(() => {
     if (contractorSlug) {
@@ -775,11 +818,13 @@ const ContractorDetail: React.FC = () => {
                 total projects
               </p>
             </div>
+
             <Button
               variant='outline'
               leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
               onClick={handleExportData}
               disabled={isExporting}
+              className='cursor-pointer'
             >
               {isExporting ? 'Exporting...' : 'Export Data'}
             </Button>
@@ -803,9 +848,9 @@ const ContractorDetail: React.FC = () => {
         )}
 
         {/* Side by Side Content View */}
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+        <div className='flex flex-wrap gap-6'>
           {/* Table View */}
-          <div className='bg-white rounded-lg shadow-md overflow-hidden mb-4'>
+          <div className='bg-white flex-[0.7] rounded-lg shadow-md overflow-hidden mb-4'>
             <InstantSearch
               indexName='bettergov_flood_control'
               searchClient={searchClient}
@@ -833,23 +878,12 @@ const ContractorDetail: React.FC = () => {
               />
               <TableHits selectedContractor={contractor.value} />
             </InstantSearch>
-            <div className='p-4'>
-              <Button
-                variant='outline'
-                leftIcon={isExporting ? null : <Download className='w-4 h-4' />}
-                onClick={handleExportData}
-                disabled={isExporting}
-                className='cursor-pointer'
-              >
-                {isExporting ? 'Exporting...' : 'Export Data'}
-              </Button>
-            </div>
           </div>
 
           {/* Map View */}
-          <div className='bg-white rounded-lg shadow-md overflow-hidden'>
+          <div className='bg-white rounded-lg shadow-md overflow-hidden z-0 flex-[0.3]'>
             <div className='p-4'>
-              <div className='h-[800px] relative'>
+              <div className='h-[800px] relative w-full'>
                 <MapContainer
                   center={initialCenter}
                   zoom={initialZoom}
@@ -941,7 +975,7 @@ const ContractorDetail: React.FC = () => {
                 </div>
 
                 {/* Map Info Panel */}
-                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-xs z-1000'>
+                <div className='absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-3xs z-1000'>
                   <h4 className='font-bold text-gray-900 text-sm mb-1'>
                     {contractorProfile?.company_name ||
                       contractor?.value ||

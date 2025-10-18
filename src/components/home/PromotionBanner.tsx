@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import Button from '../ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-const PromotionBanner: React.FC = () => {
+const PromotionBanner: FC = () => {
   const { t } = useTranslation('common');
 
   return (

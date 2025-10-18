@@ -1,5 +1,5 @@
 import { AlertCircleIcon, ChevronRightIcon, SearchIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '@/types/visa.ts';
@@ -9,11 +9,11 @@ interface VisaCategory {
   id: string;
   name: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   visaTypes: VisaType[];
 }
 
-const VisaTypesPage: React.FC = () => {
+const VisaTypesPage: FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] =
     useState<string>('non-immigrant');

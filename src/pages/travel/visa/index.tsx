@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CompassIcon,
@@ -265,10 +265,12 @@ const VISA_REQUIRED_COUNTRIES: Country[] = [
 
 // Using the imported VisaRequirement type from '../../../types/visa'
 
-const VisaPage: React.FC = () => {
+const VisaPage: FC = () => {
   const { t } = useTranslation('visa');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedCountry, setSelectedCountry] = useQueryState('country');
+  const [selectedCountry, setSelectedCountry] = useQueryState('country', {
+    clearOnDefault: true,
+  });
   const [viewMode, setViewMode] = useQueryState('view');
   const [visaRequirement, setVisaRequirement] =
     useState<VisaRequirement | null>(null);
@@ -358,6 +360,9 @@ const VisaPage: React.FC = () => {
       const requirement = countryRequirements.get(selectedCountry);
       if (requirement) {
         setVisaRequirement(requirement);
+        // Auto-open dialog when country parameter is present in URL
+        setDialogCountry(selectedCountry);
+        setDialogOpen(true);
       }
     }
   }, [selectedCountry, countryRequirements, viewMode]);
@@ -393,6 +398,7 @@ const VisaPage: React.FC = () => {
 
   const closeDetailsDialog = () => {
     setDialogOpen(false);
+    setSelectedCountry(null);
   };
 
   const handleCheckVisaRequirements = () => {

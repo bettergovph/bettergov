@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 import serviceCategories from '../../data/service_categories.json';
@@ -16,7 +16,7 @@ interface Category {
   subcategories: Subcategory[];
 }
 
-const ServicesSection: React.FC = () => {
+const ServicesSection: FC = () => {
   const { t } = useTranslation('common');
 
   const getIcon = (category: string) => {
