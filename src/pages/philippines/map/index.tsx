@@ -251,7 +251,7 @@ const PhilippinesMap: FC = () => {
       {/* Map Section */}
       <div className='flex-1 relative'>
         {/* Search Bar */}
-        <div className='absolute top-4 left-4 right-4 z-1000 max-w-md'>
+        <div className='absolute top-4 left-4 right-4 z-[5] max-w-md'>
           <div className='relative'>
             <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
             <input

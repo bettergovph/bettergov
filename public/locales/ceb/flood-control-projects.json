@@ -1,0 +1,51 @@
+{
+  "page": {
+    "title": "Mga Proyekto sa Flood Control | BetterGov.ph",
+    "description": "Susihi ang mga proyekto sa flood control sa tibuok Pilipinas",
+    "heading": "Mga Proyekto sa Flood Control"
+  },
+  "statistics": {
+    "totalProjects": "Kinatibuk-ang mga Proyekto",
+    "totalContractCost": "Kinabuok-ang Kantidad sa Kontrata",
+    "uniqueContractors": "Lahing mga Kontratista"
+  },
+  "filters": {
+    "title": "Mga Pilter",
+    "searchPlaceholder": "Proyekto, kontratista, munisipyo, probinsya, rehiyon...",
+    "searchProjects": "Pangita Proyekto",
+    "infrastructureYear": "Tuig sa Inprastruktura",
+    "region": "Rehiyon",
+    "province": "Probinsya",
+    "typeOfWork": "Matang sa Buhaton",
+    "districtEngineeringOffice": "Distrito nga Engineering Office",
+    "legislativeDistrict": "Distrito nga Lehislatura",
+    "showFilters": "Ipakita ang mga Pilter"
+  },
+  "charts": {
+    "projectsByYear": "Mga Proyekto matag Tuig",
+    "topRegions": "Pinakataas nga mga Rehiyon",
+    "typesOfWork": "Matang sa Buhaton",
+    "topContractors": "Pinakataas nga mga Kontratista"
+  },
+  "actions": {
+    "exportData": "I-export ang Data",
+    "exporting": "Nag-export...",
+    "viewTable": "Tan-awa ang Table"
+  },
+  "guidance": {
+    "needDetailedResults": "Nanginahanglan ba ka'g mas detalyadong resulta?",
+    "tableViewDescription": "Duaw sa Table view para sa detalyadong resulta sa pagpangita, masort nga mga kolum, ug abante nga kapilian sa pagpilter."
+  },
+  "dataSource": {
+    "title": "Mahitungod Ani nga Data",
+    "description": "Kini nga dashboard nagpakita sa mga proyekto sa inprastruktura sa flood control sa tibuok Pilipinas. Ang datos naglakip sa lokasyon sa proyekto, mga matang, mga buhatan nga nagpatuman, ug uban pa. Gamita ang mga pilter sa sidebar aron tusukon ang piho nga bahin sa datos o gamita ang search aron pangitaon ang piho nga mga proyekto.",
+    "sourceLabel": "Tinubdan:"
+  },
+  "tooltips": {
+    "projectsFormatter": "mga proyekto"
+  },
+  "alerts": {
+    "exportSuccess": "Malampuson nga na-export ang data!",
+    "exportError": "Napakyas sa pag-export sa data. Palihog sulayi pag-usab."
+  }
+}

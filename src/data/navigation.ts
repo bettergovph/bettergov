@@ -57,6 +57,11 @@ export const ourProjects = [
         href: 'https://govchain.bettergov.ph',
         target: '_blank',
       },
+      {
+        label: 'Visualizations',
+        href: 'https://visualizations.bettergov.ph/',
+        target: '_blank',
+      },
     ],
   },
 ];
