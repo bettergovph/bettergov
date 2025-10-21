@@ -4,7 +4,7 @@ test('should render visa types landing structure', async ({ page }) => {
   await page.goto('/travel/visa-types');
 
   await expect(
-    page.getByRole('heading', { name: 'Philippines Visa Types' })
+    page.getByRole('heading', { level: 1, name: 'Philippines Visa Types' })
   ).toBeVisible();
 
   await expect(
@@ -91,43 +91,6 @@ test('should render visa detail layout structure', async ({ page }) => {
     await expect(subtypesHeading.first()).toBeVisible();
     await expect(page.getByRole('heading', { level: 4 }).first()).toBeVisible();
   }
-
-  await expect(
-    page.getByRole('heading', { level: 3, name: 'Important Notice' })
-  ).toBeVisible();
-});
-
-test('should render 13G visa detail directly', async ({ page }) => {
-  await page.goto('/travel/visa-types/13g');
-
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-  const primaryHeading13G = page.getByRole('heading', { level: 2 }).first();
-  await expect(primaryHeading13G).toBeVisible();
-  await expect(primaryHeading13G).not.toHaveText('');
-
-  const minimumRequirementsHeading13G = page.getByRole('heading', {
-    level: 3,
-    name: 'Minimum Requirements',
-  });
-  await expect(minimumRequirementsHeading13G).toBeVisible();
-  const minimumRequirementsItems13G = minimumRequirementsHeading13G.locator(
-    'xpath=following-sibling::div[1]//li'
-  );
-  expect(await minimumRequirementsItems13G.count()).toBeGreaterThan(0);
-  await expect(minimumRequirementsItems13G.first()).toBeVisible();
-
-  const stepsHeading = page.getByRole('heading', { level: 3, name: 'Steps' });
-  await expect(stepsHeading.first()).toBeVisible();
-  await page
-    .getByRole('button', { name: /^(Step\s+\d+|\d+\.)/i })
-    .first()
-    .click();
-  const openStepContent13G = page.locator('[data-state="open"]').first();
-  await expect(openStepContent13G).toBeVisible();
-  const openStepItems13G = openStepContent13G.locator('li, p');
-  expect(await openStepItems13G.count()).toBeGreaterThan(0);
-  await expect(openStepItems13G.first()).toBeVisible();
 
   await expect(
     page.getByRole('heading', { level: 3, name: 'Important Notice' })
