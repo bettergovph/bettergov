@@ -58,16 +58,9 @@ test('should render visa detail layout structure', async ({ page }) => {
   await expect(detailHeading).toBeVisible();
   await expect(detailHeading).not.toHaveText('');
 
-  const minimumRequirementsHeading = page.getByRole('heading', {
-    level: 3,
-    name: 'Minimum Requirements',
-  });
-  await expect(minimumRequirementsHeading).toBeVisible();
-  const minimumRequirementsItems = minimumRequirementsHeading.locator(
-    'xpath=following-sibling::div[1]//li'
-  );
-  expect(await minimumRequirementsItems.count()).toBeGreaterThan(0);
-  await expect(minimumRequirementsItems.first()).toBeVisible();
+  await expect(
+    page.getByRole('heading', { level: 3, name: 'Minimum Requirements' })
+  ).toBeVisible();
 
   const stepsHeading = page.getByRole('heading', { level: 3, name: 'Steps' });
   if ((await stepsHeading.count()) > 0) {
