@@ -19,7 +19,7 @@
   },
   {
     "service": "Check Earthquake Information",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/earthquake/earthquake-information3",
+    "url": "https://earthquake.phivolcs.dost.gov.ph/",
     "id": "eccdcee8-4553-4d9e-94f1-e279c580f01a",
     "slug": "check-earthquake-information",
     "published": true,
@@ -37,7 +37,7 @@
   },
   {
     "service": "Check Tsunami Advisory and Warning",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/tsunami/tsunami-advisory-and-warning3",
+    "url": "https://tsunami.phivolcs.dost.gov.ph/",
     "id": "a6f16b68-c51c-4813-b15a-882b267a0c8a",
     "slug": "check-tsunami-advisory-and-warning",
     "published": true,
@@ -55,7 +55,7 @@
   },
   {
     "service": "Check Volcano Bulletins",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/volcano-hazard/volcano-bulletin2",
+    "url": "https://wovodat.phivolcs.dost.gov.ph/bulletin/list-of-bulletin",
     "id": "5c7577f1-4759-4633-b379-f791defac724",
     "slug": "check-volcano-bulletins",
     "published": true,
