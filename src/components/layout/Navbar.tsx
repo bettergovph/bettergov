@@ -39,13 +39,34 @@ const Navbar: FC = () => {
     i18n.changeLanguage(newLanguage);
   };
 
+  /**
+   * Removes a single trailing slash from a path string.
+   *
+   * This function returns a new string with one trailing '/' removed if present.
+   * It does not alter other slashes inside the path. For the root path "/" the
+   * returned value will be an empty string.
+   *
+   * @param path - The path to normalize.
+   * @returns The normalized path without a trailing slash.
+   *
+   * @example
+   * normalizePath("/about/"); // "/about"
+   *
+   * @example
+   * normalizePath("/about"); // "/about"
+   *
+   * @example
+   * normalizePath("/"); // ""
+   */
+  const normalizePath = (path: string): string => path.replace(/\/$/, '');
+
   const isActiveRoute = (href: string) => {
     // Handle edge cases: null, undefined, or empty href
     if (!href) return false;
 
     // Normalize paths by removing trailing slashes
-    const normalizedPath = location.pathname.replace(/\/$/, '');
-    const normalizedHref = href.replace(/\/$/, '');
+    const normalizedPath = normalizePath(location.pathname);
+    const normalizedHref = normalizePath(href);
 
     // Check exact match or if current path starts with href
     return (
@@ -67,9 +88,8 @@ const Navbar: FC = () => {
     }
 
     // Normalize paths by removing trailing slashes
-    const normalize = (path: string): string => path.replace(/\/$/, '');
-    const normalizedPath = normalize(fullPath);
-    const normalizedHref = normalize(href);
+    const normalizedPath = normalizePath(fullPath);
+    const normalizedHref = normalizePath(href);
 
     // Check exact match or if current path equals href
     return (
