@@ -55,6 +55,29 @@ const Navbar: FC = () => {
     );
   };
 
+  const isActiveChildRoute = (href: string): boolean => {
+    // Handle edge cases: null, undefined, or empty href
+    if (!href) return false;
+
+    let fullPath = location.pathname;
+
+    // Edge case: for /services, which uses query, instead of slugs
+    if (href.startsWith('/services')) {
+      fullPath += location.search;
+    }
+
+    // Normalize paths by removing trailing slashes
+    const normalize = (path: string): string => path.replace(/\/$/, '');
+    const normalizedPath = normalize(fullPath);
+    const normalizedHref = normalize(href);
+
+    // Check exact match or if current path equals href
+    return (
+      normalizedPath === normalizedHref ||
+      (normalizedHref !== '/' && normalizedPath === normalizedHref + '/')
+    );
+  };
+
   const handleDropdownMouseEnter = (label: string) => {
     setHoveredDropdown(label);
   };
@@ -179,7 +202,11 @@ const Navbar: FC = () => {
                           <Link
                             key={child.label}
                             to={child.href}
-                            className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            className={`text-left block px-4 py-2 text-sm ${
+                              isActiveChildRoute(child.href)
+                                ? 'text-primary-600'
+                                : 'text-gray-700'
+                            } hover:bg-primary-50 hover:text-primary-600`}
                             role='menuitem'
                             target={child.target}
                           >
