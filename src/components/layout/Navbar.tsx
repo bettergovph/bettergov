@@ -110,10 +110,7 @@ const Navbar: FC = () => {
     const normalizedHref = normalizePath(href);
 
     // Check exact match or if current path equals href
-    return (
-      normalizedPath === normalizedHref ||
-      (normalizedHref !== '/' && normalizedPath === normalizedHref)
-    );
+    return normalizedHref !== '/' && normalizedPath === normalizedHref;
   };
 
   const handleDropdownMouseEnter = (label: string) => {
