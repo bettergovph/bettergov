@@ -60,6 +60,29 @@ const Navbar: FC = () => {
    */
   const normalizePath = (path: string): string => path.replace(/\/$/, '');
 
+  // This function builds the full path
+  // Edge cases for certain links are handled here
+  const buildFullPath = (href: string): string => {
+    let fullPath = location.pathname;
+
+    // Edge case: for /government/*
+    // Example:
+    //    nav href: /government/legislative
+    //    actual address: /government/legislative/senate-of-the-philippines-20th-congress
+    if (href.startsWith('/government')) {
+      const parts = fullPath.split('/');
+      // ["", "government", "legislative", "senate-of-the-philippines-20th-congress"]
+      if (parts.length > 3) {
+        // Remove the last segment
+        parts.pop();
+        fullPath = parts.join('/');
+      }
+    }
+
+    // We include the search queries because of /services
+    return fullPath + location.search;
+  };
+
   const isActiveRoute = (href: string) => {
     // Handle edge cases: null, undefined, or empty href
     if (!href) return false;
@@ -80,12 +103,7 @@ const Navbar: FC = () => {
     // Handle edge cases: null, undefined, or empty href
     if (!href) return false;
 
-    let fullPath = location.pathname;
-
-    // Edge case: for /services, which uses query, instead of slugs
-    if (href.startsWith('/services')) {
-      fullPath += location.search;
-    }
+    const fullPath = buildFullPath(href);
 
     // Normalize paths by removing trailing slashes
     const normalizedPath = normalizePath(fullPath);
@@ -94,7 +112,7 @@ const Navbar: FC = () => {
     // Check exact match or if current path equals href
     return (
       normalizedPath === normalizedHref ||
-      (normalizedHref !== '/' && normalizedPath === normalizedHref + '/')
+      (normalizedHref !== '/' && normalizedPath === normalizedHref)
     );
   };
 
