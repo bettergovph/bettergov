@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import routeMeta from '../data/seo-metadata.json';
 
 interface SEOProps {
   title?: string;
@@ -31,6 +32,72 @@ export default function SEO({
   const location = useLocation();
   const [, forceUpdate] = useState({});
 
+  const routeMetaMap = routeMeta as Record<string, unknown>;
+
+  // Support query-string specific metadata by normalising the search params
+  const normalizeQuery = (search: string): string | null => {
+    if (!search || search === '?') return null;
+
+    const params = Array.from(new URLSearchParams(search).entries())
+      .map(([key, value]) => `${key}=${value}`)
+      .sort();
+
+    return params.length > 0 ? params.join('&') : null;
+  };
+
+  const readMeta = (
+    source: unknown
+  ): { title?: string; description?: string } => {
+    if (!source || typeof source !== 'object' || Array.isArray(source)) {
+      return {};
+    }
+
+    const data = source as Record<string, unknown>;
+
+    return {
+      title: typeof data.title === 'string' ? data.title : undefined,
+      description:
+        typeof data.description === 'string' ? data.description : undefined,
+    };
+  };
+
+  const normalizedQuery = normalizeQuery(location.search);
+  // Pull static metadata for the current pathname, then layer query overrides or defaults
+  const routeEntry = routeMetaMap[location.pathname] ?? null;
+
+  const baseMeta = readMeta(routeEntry);
+  let routeTitle = baseMeta.title;
+  let routeDescription = baseMeta.description;
+
+  if (
+    routeEntry &&
+    typeof routeEntry === 'object' &&
+    !Array.isArray(routeEntry)
+  ) {
+    const entryObj = routeEntry as Record<string, unknown>;
+
+    const queryMeta =
+      normalizedQuery && entryObj[normalizedQuery]
+        ? readMeta(entryObj[normalizedQuery])
+        : {};
+    const defaultMeta = readMeta(entryObj['_default']);
+
+    if (queryMeta.title !== undefined) {
+      routeTitle = queryMeta.title;
+    } else if (routeTitle === undefined && defaultMeta.title !== undefined) {
+      routeTitle = defaultMeta.title;
+    }
+
+    if (queryMeta.description !== undefined) {
+      routeDescription = queryMeta.description;
+    } else if (
+      routeDescription === undefined &&
+      defaultMeta.description !== undefined
+    ) {
+      routeDescription = defaultMeta.description;
+    }
+  }
+
   // Default values
   const defaultTitle =
     'BetterGov.ph | Republic of the Philippines | Community Powered Government Portal';
@@ -38,13 +105,14 @@ export default function SEO({
     'Community-powered portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
 
   useEffect(() => {
-    // Force a re-render of this component on route changes
+    // Force a re-render of this component on route or query-string changes
     // This ensures the Helmet instance is refreshed
     forceUpdate({});
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
   // Use provided values or defaults
-  const finalTitle = title || defaultTitle;
-  const finalDescription = description || defaultDescription;
+  const finalTitle = title || routeTitle || defaultTitle;
+  const finalDescription =
+    description || routeDescription || defaultDescription;
 
   const siteTitle = 'BetterGov.ph';
   const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
@@ -69,7 +137,7 @@ export default function SEO({
     : null;
 
   return (
-    <Helmet key={location.pathname}>
+    <Helmet key={`${location.pathname}${location.search}`}>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name='description' content={finalDescription} />
