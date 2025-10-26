@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import routeMeta from '../data/seo-metadata.json';
+import {
+  formatStandardDescription,
+  formatStandardTitle,
+} from '@/lib/seoTemplates';
 
 interface SEOProps {
   title?: string;
@@ -47,7 +51,7 @@ export default function SEO({
 
   const readMeta = (
     source: unknown
-  ): { title?: string; description?: string } => {
+  ): { title?: string; description?: string; subject?: string } => {
     if (!source || typeof source !== 'object' || Array.isArray(source)) {
       return {};
     }
@@ -58,6 +62,7 @@ export default function SEO({
       title: typeof data.title === 'string' ? data.title : undefined,
       description:
         typeof data.description === 'string' ? data.description : undefined,
+      subject: typeof data.subject === 'string' ? data.subject : undefined,
     };
   };
 
@@ -68,6 +73,7 @@ export default function SEO({
   const baseMeta = readMeta(routeEntry);
   let routeTitle = baseMeta.title;
   let routeDescription = baseMeta.description;
+  let routeSubject = baseMeta.subject;
 
   if (
     routeEntry &&
@@ -87,6 +93,9 @@ export default function SEO({
     } else if (routeTitle === undefined && defaultMeta.title !== undefined) {
       routeTitle = defaultMeta.title;
     }
+    if (queryMeta.subject !== undefined) {
+      routeSubject = queryMeta.subject;
+    }
 
     if (queryMeta.description !== undefined) {
       routeDescription = queryMeta.description;
@@ -96,6 +105,16 @@ export default function SEO({
     ) {
       routeDescription = defaultMeta.description;
     }
+    if (routeSubject === undefined && defaultMeta.subject !== undefined) {
+      routeSubject = defaultMeta.subject;
+    }
+  }
+
+  if (routeTitle === undefined && routeSubject) {
+    routeTitle = formatStandardTitle(routeSubject);
+  }
+  if (routeDescription === undefined && routeSubject) {
+    routeDescription = formatStandardDescription(routeSubject);
   }
 
   // Default values

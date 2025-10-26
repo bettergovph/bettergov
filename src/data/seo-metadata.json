@@ -56,100 +56,77 @@
     "description": "Learn about the different State Universities and Colleges in the Philippines.  Contact information and more on BetterGov.ph."
   },
   "/government/departments": {
-    "title": "Government Departments in Philippines | BetterGov.ph",
-    "description": "Find important information about Government Departments in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Government Departments in Philippines"
   },
   "/government/departments/department-of-agrarian-reform": {
-    "title": "Department of Agrarian Reform in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Agrarian Reform in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Agrarian Reform in Philippines"
   },
   "/government/departments/department-of-agriculture": {
-    "title": "Department of Agriculture in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Agriculture in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Agriculture in Philippines"
   },
   "/government/departments/department-of-budget-and-management": {
-    "title": "Department of Budget and Management in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Budget and Management in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Budget and Management in Philippines"
   },
   "/government/departments/department-of-education": {
-    "title": "Department of Education in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Education in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Education in Philippines"
   },
   "/government/departments/department-of-energy": {
-    "title": "Department of Energy in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Energy in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Energy in Philippines"
   },
   "/government/departments/department-of-environment-and-natural-resources": {
-    "title": "Department of Environment and Natural Resources in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Environment and Natural Resources in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Environment and Natural Resources in Philippines"
   },
   "/government/departments/department-of-finance": {
-    "title": "Department of Finance in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Finance in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Finance in Philippines"
   },
   "/government/departments/department-of-foreign-affairs": {
-    "title": "Department of Foreign Affairs in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Foreign Affairs in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Foreign Affairs in Philippines"
   },
   "/government/departments/department-of-health": {
-    "title": "Department of Health in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Health in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Health in Philippines"
   },
   "/government/departments/department-of-human-settlements-and-urban-development": {
-    "title": "Department of Human Settlements and Urban Development in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Human Settlements and Urban Development in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Human Settlements and Urban Development in Philippines"
   },
   "/government/departments/department-of-information-and-communications-technology": {
-    "title": "Department of Information and Communications Technology in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Information and Communications Technology in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Information and Communications Technology in Philippines"
   },
   "/government/departments/department-of-justice": {
-    "title": "Department of Justice in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Justice in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Justice in Philippines"
   },
   "/government/departments/department-of-labor-and-employment": {
-    "title": "Department of Labor and Employment in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Labor and Employment in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Labor and Employment in Philippines"
   },
   "/government/departments/department-of-migrant-workers": {
-    "title": "Department of Migrant Workers in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Migrant Workers in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Migrant Workers in Philippines"
   },
   "/government/departments/department-of-national-defense": {
-    "title": "Department of National Defense in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of National Defense in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of National Defense in Philippines"
   },
   "/government/departments/department-of-public-works-and-highways": {
-    "title": "Department of Public Works and Highways in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Public Works and Highways in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Public Works and Highways in Philippines"
   },
   "/government/departments/department-of-science-and-technology": {
-    "title": "Department of Science and Technology in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Science and Technology in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Science and Technology in Philippines"
   },
   "/government/departments/department-of-social-welfare-and-development": {
-    "title": "Department of Social Welfare and Development in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Social Welfare and Development in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Social Welfare and Development in Philippines"
   },
   "/government/departments/department-of-the-interior-and-local-government": {
     "title": "Department of the Interior and Local Government in Philippines - BetterGov.ph",
     "description": "Find resources on local government units, responsibilities, and programs that connect communities across the Philippines on BetterGov.ph."
   },
   "/government/departments/department-of-tourism": {
-    "title": "Department of Tourism in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Tourism in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Tourism in Philippines"
   },
   "/government/departments/department-of-trade-and-industry": {
-    "title": "Department of Trade and Industry in Philippines - BetterGov.ph",
-    "description": "Find important information about Department of Trade and Industry in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Trade and Industry in Philippines"
   },
   "/government/departments/department-of-transportation": {
-    "title": "Department of Transportation in Philippines - BetterGov.ph",
-    "description": "Find important information about the Department of Transportation in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "Department of Transportation in Philippines"
   },
   "/government/departments/national-economic-and-development-authority": {
-    "title": "National Economic and Development Authority in Philippines - BetterGov.ph",
-    "description": "Find important information about National Economic and Development Authority in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "subject": "National Economic and Development Authority in Philippines"
   },
   "/government/diplomatic": {
     "title": "Diplomatic Missions in the Philippines - BetterGov.ph",
@@ -333,144 +310,111 @@
   },
   "/services": {
     "_default": {
-      "title": "Government Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Services in Philippines"
     },
     "category=business-trade": {
-      "title": "Business and Trade Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Business and Trade Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Business and Trade Services in Philippines"
     },
     "category=business-trade&subcategory=business-copyright-trademark-patent": {
-      "title": "Business and Trade \u2013 Business Copyright, Trademark and Patent | BetterGov.ph",
-      "description": "Find important information about Business and Trade \u2013 Business Copyright, Trademark and Patent through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Business and Trade – Business Copyright, Trademark and Patent"
     },
     "category=business-trade&subcategory=business-registration": {
-      "title": "Business and Trade Services in Philippines \u2013 Business Registration, Certificates and Compliance | BetterGov.ph",
-      "description": "Find important information about Business and Trade Services in Philippines \u2013 Business Registration, Certificates and Compliance through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Business and Trade Services in Philippines – Business Registration, Certificates and Compliance"
     },
     "category=business-trade&subcategory=complaints": {
-      "title": "Business and Trade Government Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Business and Trade Government Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Business and Trade Government Services in Philippines"
     },
     "category=certificates-ids": {
-      "title": "Certificates and ID Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Certificates and ID Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Certificates and ID Services in Philippines"
     },
     "category=certificates-ids&subcategory=certificates": {
-      "title": "Certificate Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Certificate Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Certificate Services in Philippines"
     },
     "category=certificates-ids&subcategory=clearances": {
-      "title": "Government Certificates and ID Clearances in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Certificates and ID Clearances in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Certificates and ID Clearances in Philippines"
     },
     "category=certificates-ids&subcategory=id": {
-      "title": "ID Services in Philippines | BetterGov.ph",
-      "description": "Find important information about ID Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "ID Services in Philippines"
     },
     "category=contributions": {
-      "title": "Contribution Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Contribution Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Contribution Services in Philippines"
     },
     "category=contributions&subcategory=benefits-registration": {
-      "title": "Contributions and Benefits Registration Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Contributions and Benefits Registration Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Contributions and Benefits Registration Services in Philippines"
     },
     "category=contributions&subcategory=salary-loans": {
-      "title": "Government Contribution Salary Loans in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Contribution Salary Loans in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Contribution Salary Loans in Philippines"
     },
     "category=disaster-weather": {
-      "title": "Disaster and Weather Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Disaster and Weather Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Disaster and Weather Services in Philippines"
     },
     "category=disaster-weather&subcategory=disaster-prone-areas": {
-      "title": "Government Disaster and Weather Services | BetterGov.ph",
-      "description": "Find important information about Government Disaster and Weather Services through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Disaster and Weather Services"
     },
     "category=disaster-weather&subcategory=weather": {
-      "title": "Disaster and Weather Services in Philippines\u2013 Weather | BetterGov.ph",
-      "description": "Find important information about Disaster and Weather Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Disaster and Weather Services in Philippines – Weather"
     },
     "category=education": {
-      "title": "Education Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Education Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Education Services in Philippines"
     },
     "category=education&subcategory=financial-assistance": {
-      "title": "Education Financial Assistance Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Education Financial Assistance Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Education Financial Assistance Services in Philippines"
     },
     "category=education&subcategory=professionals": {
-      "title": "Government Education Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Education Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Education Services in Philippines"
     },
     "category=education&subcategory=research-proposal": {
-      "title": "Education, Research and Proposal Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Education, Research and Proposal Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Education, Research and Proposal Services in Philippines"
     },
     "category=employment": {
-      "title": "Employment Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Employment Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Employment Services in Philippines"
     },
     "category=employment&subcategory=professionals": {
-      "title": "Government Employment Services | BetterGov.ph",
-      "description": "Find important information about Government Employment Services through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Employment Services"
     },
     "category=employment&subcategory=salary-loans": {
-      "title": "Government Employment Salary Loans in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Employment Salary Loans in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Employment Salary Loans in Philippines"
     },
     "category=employment&subcategory=union-association": {
-      "title": "Employment Union Association Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Employment Union Association Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Employment Union Association Services in Philippines"
     },
     "category=health": {
-      "title": "Government Health Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Health Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Health Services in Philippines"
     },
     "category=health&subcategory=financial-assistance": {
-      "title": "Government Financial Assistance Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Financial Assistance Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Financial Assistance Services in Philippines"
     },
     "category=health&subcategory=health-programs": {
       "title": "Government Health Programs in Philippines | BetterGov.ph",
       "description": "Explore government programs, public initiatives, and opportunities designed to support citizens and communities nationwide."
     },
     "category=health&subcategory=health-research": {
-      "title": "Government Health Research Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Health Research Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Health Research Services in Philippines"
     },
     "category=housing": {
-      "title": "Government Housing Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Housing Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Housing Services in Philippines"
     },
     "category=housing&subcategory=housing-loans": {
-      "title": "Housing Loan Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Housing Loan Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Housing Loan Services in Philippines"
     },
     "category=housing&subcategory=land-titles": {
-      "title": "Housing and Land Title Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Housing and Land Title Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Housing and Land Title Services in Philippines"
     },
     "category=passport-travel": {
-      "title": "Passport and Travel Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Passport and Travel Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Passport and Travel Services in Philippines"
     },
     "category=passport-travel&subcategory=travel": {
-      "title": "Government Passport and Travel Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Passport and Travel Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Government Passport and Travel Services in Philippines"
     },
     "category=passport-travel&subcategory=visa-citizenship": {
       "title": "Passport and Travel: Visa and Citizenship Services in Philippines | BetterGov.ph",
       "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services at BetterGov.ph."
     },
     "category=social-services": {
-      "title": "Social Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Social Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Social Services in Philippines"
     },
     "category=social-services&subcategory=benefits-registration": {
-      "title": "Social Services: Benefits Registration in Philippines | BetterGov.ph",
-      "description": "Find important information about Social Services: Benefits Registration in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "subject": "Social Services: Benefits Registration in Philippines"
     },
     "category=social-services&subcategory=file-complaints": {
       "title": "Social Services: File Complaints in Philippines | BetterGov.ph",
