@@ -239,9 +239,9 @@ const Navbar: FC = () => {
                             to={child.href}
                             className={`text-left block px-4 py-2 text-sm ${
                               isActiveChildRoute(child.href)
-                                ? 'text-primary-600'
-                                : 'text-gray-700'
-                            } hover:bg-primary-50 hover:text-primary-600`}
+                                ? 'bg-primary-500 text-primary-50 hover:bg-primary-500 hover:text-primary-50'
+                                : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            }`}
                             role='menuitem'
                             target={child.target}
                           >
