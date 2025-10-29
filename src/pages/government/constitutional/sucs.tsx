@@ -144,7 +144,26 @@ export default function SUCsPage() {
                   </div>
                 )}
               </div>
-            ))
+
+              {suc.website && (
+                <div className='px-4 py-3 bg-gray-50 border-t mt-auto'>
+                  <a
+                    href={
+                      suc.website.startsWith('http')
+                        ? suc.website
+                        : `https://${suc.website}`
+                    }
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-sm text-primary-600 hover:text-primary-700 flex items-center'
+                  >
+                    <span>Visit website</span>
+                    <ExternalLinkIcon className='ml-1.5 h-3.5 w-3.5' />
+                  </a>
+                </div>
+              )}
+            </div>
+          ))
         )}
       </div>
     </div>
