@@ -100,6 +100,7 @@ export default function OtherExecutiveOfficesPage() {
                   contact={{
                     address: office.address,
                     phone: office.trunkline,
+                    email: office.email,
                     website: office.website,
                   }}
                 />

@@ -18,6 +18,7 @@ export const ExecutiveOfficeSchema = z.object({
   address: z.string().optional(),
   trunkline: z.string().optional(),
   website: z.string().optional(),
+  email: z.string().optional(),
   officials: z
     .array(z.union([PersonnelSchema, OfficeDivisionSchema]))
     .optional(),
