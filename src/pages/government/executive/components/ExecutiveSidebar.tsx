@@ -14,7 +14,6 @@ export default function ExecutiveSidebar() {
     return location.pathname === path;
   };
 
-  // 🧩 Centralized data for all links
   const offices = [
     {
       label: 'Office of the President',
