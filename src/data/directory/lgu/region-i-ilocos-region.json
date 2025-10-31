@@ -646,14 +646,14 @@
           "municipality": "Balaoan",
           "zip_code": "2517",
           "mayor": {
-            "name": "ALELI U. CONCEPCION",
-            "contact": "(072) 607-0069",
-            "email": "omm@balaoanlaunion.gov.ph"
-          },
-          "vice_mayor": {
             "name": "CARLO CASTOR U. CONCEPCION",
             "contact": "(072) 607-0070",
             "email": "sb@balaoanlaunion.gov.ph"
+          },
+          "vice_mayor": {
+            "name": "ALELI U. CONCEPCION",
+            "contact": "(072) 607-0069",
+            "email": "omm@balaoanlaunion.gov.ph"
           }
         },
         {
