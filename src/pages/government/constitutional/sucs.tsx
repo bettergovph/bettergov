@@ -127,7 +127,7 @@ export default function SUCsPage() {
                 </div>
 
                 {suc.website && (
-                  <div className='px-4 py-3 bg-gray-50 border-t mt-auto'>
+                  <div className='px-4 py-3 bg-gray-50 border-t'>
                     <a
                       href={
                         suc.website.startsWith('http')
