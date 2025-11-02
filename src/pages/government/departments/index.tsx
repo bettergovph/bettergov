@@ -238,7 +238,7 @@ export default function DepartmentsIndex() {
                 key={index}
                 className='block'
               >
-                <Card hover={true} className='h-full'>
+                <Card hover={true} className='h-full flex flex-col'>
                   <CardHeader>
                     <div className='flex items-start justify-between'>
                       <div>
@@ -256,8 +256,8 @@ export default function DepartmentsIndex() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <div className='space-y-2'>
+                  <CardContent className='flex flex-col h-full grow'>
+                    <div className='space-y-2 flex-1'>
                       {dept.address && (
                         <div className='flex items-start'>
                           <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
