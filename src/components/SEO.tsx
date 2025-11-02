@@ -119,9 +119,9 @@ export default function SEO({
 
   // Default values
   const defaultTitle =
-    'BetterGov.ph | Republic of the Philippines | Community Powered Government Portal';
+    'BetterGov.ph Philippines | Community Powered Government Portal';
   const defaultDescription =
-    'Community-powered portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+    'Community-powered portal of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
 
   useEffect(() => {
     // Force a re-render of this component on route or query-string changes
@@ -188,9 +188,8 @@ export default function SEO({
       <meta name='geo.country' content='PH' />
       <meta name='geo.region' content='PH' />
       <meta name='DC.language' content='en' />
-      <meta name='DC.creator' content='Republic of the Philippines' />
-      <meta name='DC.publisher' content='Philippine Government' />
-      <meta name='DC.rights' content='© Republic of the Philippines' />
+      <meta name='DC.creator' content='BetterGov.ph' />
+      <meta name='DC.publisher' content='BetterGov.ph' />
 
       {/* Structured Data */}
       {jsonLd && (
