@@ -227,11 +227,9 @@ export default function DepartmentsIndex() {
           </p>
         </div>
         <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
-          {departments
-            .sort((a, b) => a.office_name.localeCompare(b.office_name))
-            .map((dept, index) => {
-              // Extract department name without "DEPARTMENT OF" prefix for cleaner display
-              const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
+          {departments.map((dept, index) => {
+            // Extract department name without "DEPARTMENT OF" prefix for cleaner display
+            const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
 
             return (
               <Link
@@ -275,50 +273,28 @@ export default function DepartmentsIndex() {
                             {dept.trunkline}
                           </span>
                         </div>
-                        <div className='rounded-full bg-gray-100 p-2 shrink-0'>
-                          <Building2Icon className='h-5 w-5 text-gray-800' />
+                      )}
+                      {dept.website && (
+                        <div className='flex items-center'>
+                          <ExternalLinkIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
+                          <span className='text-sm text-primary-600 truncate'>
+                            {dept.website}
+                          </span>
                         </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className='space-y-2'>
-                        {dept.address && (
-                          <div className='flex items-start'>
-                            <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
-                            <span className='text-sm text-gray-800 line-clamp-2'>
-                              {dept.address}
-                            </span>
-                          </div>
-                        )}
-                        {dept.trunkline && (
-                          <div className='flex items-center'>
-                            <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
-                            <span className='text-sm text-gray-800'>
-                              {dept.trunkline}
-                            </span>
-                          </div>
-                        )}
-                        {dept.website && (
-                          <div className='flex items-center'>
-                            <ExternalLinkIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
-                            <span className='text-sm text-primary-600 truncate'>
-                              {dept.website}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                      )}
+                    </div>
 
-                      <div className='mt-4 pt-4 border-t border-gray-100 flex justify-end'>
-                        <span className='text-sm font-medium text-primary-600 flex items-center'>
-                          View details{' '}
-                          <ArrowRightIcon className='ml-1 h-3.5 w-3.5' />
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+                    <div className='mt-4 pt-4 border-t border-gray-100 flex justify-end'>
+                      <span className='text-sm font-medium text-primary-600 flex items-center'>
+                        View details{' '}
+                        <ArrowRightIcon className='ml-1 h-3.5 w-3.5' />
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>
