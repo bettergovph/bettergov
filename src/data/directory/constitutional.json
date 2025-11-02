@@ -2497,7 +2497,7 @@
     "name": "EULOGIO \"AMANG\" RODRIGUEZ INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "address": "Nagtahan St., Sta. Mesa, Manila",
     "phone": "8230-2334 loc 101",
-    "website": "www.earist.edu.ph",
+    "website": "earist.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -2513,6 +2513,7 @@
     "name": "MARIKINA POLYTECHNIC COLLEGE",
     "address": "Mayor Juan Chanyungco St., Sta Elena, Marikina City",
     "phone": "8682-0672 loc. 101, 102",
+    "website": "mpc.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -2605,10 +2606,10 @@
     "slug": "university-of-the-philippines-system",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
-    "name": "UNIVERSITY OF THE PHILIPPINES SYSTEM",
+    "name": "UNIVERSITY OF THE PHILIPPINES",
     "address": "Diliman, Quezon City",
     "phone": "8928-0110; 8928-2866",
-    "website": "www.up.edu.ph",
+    "website": "up.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -2712,7 +2713,7 @@
     "name": "MOUNTAIN PROVINCE STATE POLYTECHNIC COLLEGE",
     "address": "Bontoc, Mountain Province",
     "phone": "(074) 601-1134",
-    "website": "www.mpspc.edu.ph",
+    "website": "mpsu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -4086,6 +4087,7 @@
     "name": "SOUTH COTABATO STATE COLLEGE",
     "address": "Surallah, South Cotabato",
     "phone": "(083) 238-5143",
+    "website": "scsc.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -4209,6 +4211,7 @@
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "ADIONG MEMORIAL STATE COLLEGE",
     "address": "Ditsaan-Ramain, Lanao del Sur",
+    "website": "amsc-edu.net",
     "officials": [
       {
         "role": "President",
@@ -4252,6 +4255,7 @@
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "TAWI-TAWI REGIONAL AGRICULTURAL COLLEGE",
     "address": "Bongao, Tawi-Tawi",
+    "website": "www.trac.edu.ph",
     "officials": [
       {
         "role": "President",

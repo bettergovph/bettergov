@@ -178,5 +178,23 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-06-06T11:30:06.320Z"
+  },
+  {
+    "service": "Apply for OWWA Scholarship",
+    "url": "https://scholarship.owwa.gov.ph/",
+    "id": "865db603-282d-4769-a5d5-b24cdca90d30",
+    "slug": "apply-for-owwa-scholarship",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Education",
+      "slug": "education"
+    },
+    "subcategory": {
+      "name": "Scholarships and Grants",
+      "slug": "scholarships-grants"
+    },
+    "createdAt": "2025-10-16T00:00:00.000Z",
+    "updatedAt": "2025-10-16T00:00:00.000Z"
   }
 ]

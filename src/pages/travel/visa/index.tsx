@@ -451,7 +451,7 @@ const VisaPage: FC = () => {
                 <span>{t('hero.dataSource')}</span>
               </div>
               <Link to='/travel/visa-types'>
-                <Button className='text-xl bg-blue-800 py-8 px-8 mt-6'>
+                <Button className='cursor-default text-xl bg-blue-800 py-8 px-8 mt-6 hover:cursor-pointer'>
                   {t('hero.checkVisaTypes')}
                 </Button>
               </Link>
@@ -467,7 +467,7 @@ const VisaPage: FC = () => {
                 </p>
                 <Button
                   onClick={handleCheckVisaRequirements}
-                  className='w-full bg-blue-600 hover:bg-blue-700 text-white'
+                  className='cursor-default w-full bg-blue-600 hover:bg-blue-700 text-white hover:cursor-pointer'
                 >
                   Check Visa Requirements
                 </Button>
@@ -685,7 +685,7 @@ const VisaPage: FC = () => {
           <DialogFooter>
             <Button
               onClick={closeDetailsDialog}
-              className='bg-blue-600 hover:bg-blue-700 text-white'
+              className='cursor-default bg-blue-600 hover:bg-blue-700 text-white hover:cursor-pointer'
             >
               Close
             </Button>

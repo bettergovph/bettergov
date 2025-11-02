@@ -15,11 +15,34 @@ import {
 } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 const AboutPage: FC = () => {
   const { t } = useTranslation('about');
   return (
     <div className='min-h-screen bg-gray-50'>
+      <Helmet>
+        <title>About | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='BetterGov is a volunteer-led tech initiative committed to creating #civictech projects aimed at making government more transparent, efficient, and accessible to citizens.'
+        />
+        <meta
+          name='keywords'
+          content='government projects, civic tech, transparency, accountability, Philippines, innovation'
+        />
+        <link rel='canonical' href='https://bettergov.ph/about' />
+
+        {/* Open Graph / Social */}
+        <meta property='og:title' content='About | BetterGov.ph' />
+        <meta
+          property='og:description'
+          content='BetterGov is a volunteer-led tech initiative committed to creating #civictech projects aimed at making government more transparent, efficient, and accessible to citizens.'
+        />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://bettergov.ph/about' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
+      </Helmet>
       <div className='container mx-auto px-4 py-6 md:py-8'>
         <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-24 mt-4'>
           <div className='max-w-3xl mx-auto'>
