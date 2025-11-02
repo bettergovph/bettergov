@@ -63,7 +63,7 @@ export default function GOCCsPage() {
           filteredGOCCs.map(gocc => (
             <div
               key={gocc.name}
-              className='bg-white rounded-lg border overflow-hidden'
+              className='bg-white rounded-lg border overflow-hidden flex flex-col h-full'
             >
               <div className='p-4 border-b'>
                 <h3 className='font-semibold text-lg text-gray-900 line-clamp-2'>
@@ -71,7 +71,7 @@ export default function GOCCsPage() {
                 </h3>
               </div>
 
-              <div className='p-4 space-y-3'>
+              <div className='p-4 space-y-3 flex-1'>
                 {gocc.address && (
                   <p className='text-sm text-gray-800 flex items-start'>
                     <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
@@ -125,7 +125,7 @@ export default function GOCCsPage() {
               </div>
 
               {gocc.website && (
-                <div className='px-4 py-3 bg-gray-50 border-t'>
+                <div className='px-4 py-3 bg-gray-50 border-t mt-auto'>
                   <a
                     href={
                       gocc.website.startsWith('http')
