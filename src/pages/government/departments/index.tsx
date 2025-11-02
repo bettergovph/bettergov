@@ -233,25 +233,47 @@ export default function DepartmentsIndex() {
               // Extract department name without "DEPARTMENT OF" prefix for cleaner display
               const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
 
-              return (
-                <Link
-                  to={`/government/departments/${encodeURIComponent(dept.slug)}`}
-                  state={{ scrollToContent: true }}
-                  key={index}
-                  className='block'
-                >
-                  <Card hover={true} className='h-full'>
-                    <CardHeader>
-                      <div className='flex items-start justify-between'>
-                        <div>
-                          <h3 className='font-bold text-lg text-gray-900'>
-                            {deptName}
-                          </h3>
-                          {dept.secretary && (
-                            <p className='text-sm text-gray-800 mt-1'>
-                              Secretary: {dept.secretary.name}
-                            </p>
-                          )}
+            return (
+              <Link
+                to={`/government/departments/${encodeURIComponent(dept.slug)}`}
+                state={{ scrollToContent: true }}
+                key={index}
+                className='block'
+              >
+                <Card hover={true} className='h-full flex flex-col'>
+                  <CardHeader>
+                    <div className='flex items-start justify-between'>
+                      <div>
+                        <h3 className='font-bold text-lg text-gray-900'>
+                          {deptName}
+                        </h3>
+                        {dept.secretary && (
+                          <p className='text-sm text-gray-800 mt-1'>
+                            Secretary: {dept.secretary.name}
+                          </p>
+                        )}
+                      </div>
+                      <div className='rounded-full bg-gray-100 p-2 shrink-0'>
+                        <Building2Icon className='h-5 w-5 text-gray-800' />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className='flex flex-col h-full grow'>
+                    <div className='space-y-2 flex-1'>
+                      {dept.address && (
+                        <div className='flex items-start'>
+                          <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 shrink-0' />
+                          <span className='text-sm text-gray-800 line-clamp-2'>
+                            {dept.address}
+                          </span>
+                        </div>
+                      )}
+                      {dept.trunkline && (
+                        <div className='flex items-center'>
+                          <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
+                          <span className='text-sm text-gray-800'>
+                            {dept.trunkline}
+                          </span>
                         </div>
                         <div className='rounded-full bg-gray-100 p-2 shrink-0'>
                           <Building2Icon className='h-5 w-5 text-gray-800' />
