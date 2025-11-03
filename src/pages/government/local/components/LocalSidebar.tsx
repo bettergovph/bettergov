@@ -59,6 +59,7 @@ export default function LocalSidebar() {
                   {regions.map(region => (
                     <li key={region.slug}>
                       <NavLink
+                        title={region.name}
                         to={`/government/local/${region.slug}`}
                         state={{ scrollToContent: true }}
                         className={({ isActive }) =>

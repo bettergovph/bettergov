@@ -76,6 +76,7 @@ export default function ConstitutionalSidebar({
               {filteredOffices.map(office => (
                 <li key={office.name}>
                   <button
+                    title={office.name}
                     onClick={() => handleOfficeSelect(office)}
                     className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors cursor-pointer ${
                       officeParam === office.slug
@@ -102,6 +103,7 @@ export default function ConstitutionalSidebar({
           <ul className='space-y-1'>
             <li>
               <Link
+                title='Govenment-Owned Corporations'
                 to='/government/constitutional/goccs'
                 state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
@@ -116,6 +118,7 @@ export default function ConstitutionalSidebar({
             </li>
             <li>
               <Link
+                title='State Universities & Colleges'
                 to='/government/constitutional/sucs'
                 state={{ scrollToContent: true }}
                 className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
@@ -125,7 +128,7 @@ export default function ConstitutionalSidebar({
                 }`}
               >
                 <GraduationCapIcon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
-                <span>State Universities & Colleges</span>
+                <span>State Universities &amp; Colleges</span>
               </Link>
             </li>
           </ul>

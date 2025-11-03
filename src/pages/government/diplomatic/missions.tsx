@@ -65,41 +65,43 @@ export default function DiplomaticMissionsPage() {
         </div>
       ) : (
         <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
-          {filteredMissions.map((mission, index) => (
-            <Card key={index} className='h-full'>
-              <CardContent className='h-full flex flex-col'>
-                <div className='flex items-center justify-between mb-2'>
-                  <CardTitle className='text-lg'>{mission.country}</CardTitle>
-                  <div className='bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full'>
-                    Mission
+          {filteredMissions
+            .sort((a, b) => a.country.localeCompare(b.country))
+            .map((mission, index) => (
+              <Card key={index} className='h-full'>
+                <CardContent className='h-full flex flex-col'>
+                  <div className='flex items-center justify-between mb-2'>
+                    <CardTitle className='text-lg'>{mission.country}</CardTitle>
+                    <div className='bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full'>
+                      Mission
+                    </div>
                   </div>
-                </div>
-                <CardDivider className='mb-4' />
-                <div className='flex-1'>
-                  <CardDescription className='mb-4 flex-1'>
-                    {mission.office_name}
-                  </CardDescription>
+                  <CardDivider className='mb-4' />
+                  <div className='flex-1'>
+                    <CardDescription className='mb-4 flex-1'>
+                      {mission.office_name}
+                    </CardDescription>
 
-                  <CardContactInfo
-                    contact={{
-                      address: mission.address,
-                      phone: mission.contact,
-                      email: mission.email,
-                      website: mission.website,
-                    }}
-                  />
-                </div>
+                    <CardContactInfo
+                      contact={{
+                        address: mission.address,
+                        phone: mission.contact,
+                        email: mission.email,
+                        website: mission.website,
+                      }}
+                    />
+                  </div>
 
-                <CardDivider className='mt-4 mb-4' />
-                <div>
-                  <p className='font-medium text-gray-900'>
-                    {mission.representative}
-                  </p>
-                  <p className='text-sm text-gray-800'>{mission.title}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <CardDivider className='mt-4 mb-4' />
+                  <div>
+                    <p className='font-medium text-gray-900'>
+                      {mission.representative}
+                    </p>
+                    <p className='text-sm text-gray-800'>{mission.title}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
         </CardGrid>
       )}
     </div>
