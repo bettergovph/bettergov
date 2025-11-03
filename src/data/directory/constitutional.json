@@ -2960,10 +2960,10 @@
     "email": "op@clsu.edu.ph"
   },
   {
-    "slug": "don-honorio-ventura-state-university",
+    "slug": "pampanga-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
-    "name": "DON HONORIO VENTURA STATE UNIVERSITY",
+    "name": "PAMPANGA STATE UNIVERSITY",
     "address": "Cabambangan, Bacolor, Pampanga",
     "phone": "(045) 649-8050",
     "website": "www.dhvsu.edu.ph",
@@ -2972,7 +2972,8 @@
         "role": "President",
         "name": "ENRIQUE G. BAKING"
       }
-    ]
+    ],
+    "email": "info@pampangastateu.edu.ph"
   },
   {
     "slug": "nueva-ecija-university-of-science-and-technology",

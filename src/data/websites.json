@@ -2960,12 +2960,12 @@
     "parent_department": "DEPARTMENT OF HEALTH"
   },
   {
-    "name": "DON HONORIO VENTURA STATE UNIVERSITY",
-    "slug": "don-honorio-ventura-state-university",
-    "email": null,
+    "name": "PAMPANGA STATE UNIVERSITY",
+    "slug": "pampanga-state-university",
+    "email": "info@pampangastateu.edu.ph",
     "website": "www.dhvsu.edu.ph",
     "address": "Cabambangan, Bacolor, Pampanga",
-    "contact": null,
+    "contact": "(045) 649 8050",
     "type": "constitutional",
     "parent_department": null
   },
