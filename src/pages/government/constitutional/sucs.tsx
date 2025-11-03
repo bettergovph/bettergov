@@ -60,89 +60,91 @@ export default function SUCsPage() {
             <p className='text-gray-800'>Try adjusting your search term.</p>
           </div>
         ) : (
-          filteredSUCs.map(suc => (
-            <div
-              key={suc.name}
-              className='bg-white rounded-lg border overflow-hidden flex flex-col h-full'
-            >
-              <div className='p-4 border-b'>
-                <h3 className='font-semibold text-lg text-gray-900 line-clamp-2'>
-                  {suc.name}
-                </h3>
-              </div>
+          filteredSUCs
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(suc => (
+              <div
+                key={suc.name}
+                className='bg-white rounded-lg border overflow-hidden flex flex-col h-full'
+              >
+                <div className='p-4 border-b'>
+                  <h3 className='font-semibold text-lg text-gray-900 line-clamp-2'>
+                    {suc.name}
+                  </h3>
+                </div>
 
-              <div className='p-4 space-y-3 flex-1'>
-                {suc.address && (
-                  <p className='text-sm text-gray-800 flex items-start'>
-                    <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
-                    <span>{suc.address}</span>
-                  </p>
-                )}
+                <div className='p-4 space-y-3 flex-1'>
+                  {suc.address && (
+                    <p className='text-sm text-gray-800 flex items-start'>
+                      <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                      <span>{suc.address}</span>
+                    </p>
+                  )}
 
-                {(suc.phone ||
-                  suc.trunk_line ||
-                  (suc.trunklines && suc.trunklines[0])) && (
-                  <p className='text-sm text-gray-800 flex items-start'>
-                    <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
-                    <span>
-                      {suc.phone || suc.trunk_line || suc.trunklines?.[0]}
-                    </span>
-                  </p>
-                )}
+                  {(suc.phone ||
+                    suc.trunk_line ||
+                    (suc.trunklines && suc.trunklines[0])) && (
+                    <p className='text-sm text-gray-800 flex items-start'>
+                      <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                      <span>
+                        {suc.phone || suc.trunk_line || suc.trunklines?.[0]}
+                      </span>
+                    </p>
+                  )}
 
-                {suc.email && (
-                  <a
-                    href={`mailto:${suc.email}`}
-                    className='text-sm text-gray-800 flex items-start hover:text-primary-600'
-                  >
-                    <MailIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
-                    <span>{suc.email}</span>
-                  </a>
-                )}
+                  {suc.email && (
+                    <a
+                      href={`mailto:${suc.email}`}
+                      className='text-sm text-gray-800 flex items-start hover:text-primary-600'
+                    >
+                      <MailIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
+                      <span>{suc.email}</span>
+                    </a>
+                  )}
 
-                {suc.officials && suc.officials.length > 0 && (
-                  <div className='pt-2 border-t border-gray-100'>
-                    <h4 className='text-sm font-medium text-gray-700 mb-2'>
-                      Key Officials
-                    </h4>
-                    <ul className='space-y-1'>
-                      {suc.officials.slice(0, 2).map((official, index) => (
-                        <li key={index} className='text-sm'>
-                          <span className='text-gray-800'>
-                            {official.role}:{' '}
-                          </span>
-                          <span className='font-medium'>{official.name}</span>
-                        </li>
-                      ))}
-                      {suc.officials.length > 2 && (
-                        <li className='text-xs text-gray-800'>
-                          +{suc.officials.length - 2} more officials
-                        </li>
-                      )}
-                    </ul>
+                  {suc.officials && suc.officials.length > 0 && (
+                    <div className='pt-2 border-t border-gray-100'>
+                      <h4 className='text-sm font-medium text-gray-700 mb-2'>
+                        Key Officials
+                      </h4>
+                      <ul className='space-y-1'>
+                        {suc.officials.slice(0, 2).map((official, index) => (
+                          <li key={index} className='text-sm'>
+                            <span className='text-gray-800'>
+                              {official.role}:{' '}
+                            </span>
+                            <span className='font-medium'>{official.name}</span>
+                          </li>
+                        ))}
+                        {suc.officials.length > 2 && (
+                          <li className='text-xs text-gray-800'>
+                            +{suc.officials.length - 2} more officials
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {suc.website && (
+                  <div className='px-4 py-3 bg-gray-50 border-t mt-auto'>
+                    <a
+                      href={
+                        suc.website.startsWith('http')
+                          ? suc.website
+                          : `https://${suc.website}`
+                      }
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-sm text-primary-600 hover:text-primary-700 flex items-center'
+                    >
+                      <span>Visit website</span>
+                      <ExternalLinkIcon className='ml-1.5 h-3.5 w-3.5' />
+                    </a>
                   </div>
                 )}
               </div>
-
-              {suc.website && (
-                <div className='px-4 py-3 bg-gray-50 border-t mt-auto'>
-                  <a
-                    href={
-                      suc.website.startsWith('http')
-                        ? suc.website
-                        : `https://${suc.website}`
-                    }
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-sm text-primary-600 hover:text-primary-700 flex items-center'
-                  >
-                    <span>Visit website</span>
-                    <ExternalLinkIcon className='ml-1.5 h-3.5 w-3.5' />
-                  </a>
-                </div>
-              )}
-            </div>
-          ))
+            ))
         )}
       </div>
     </div>

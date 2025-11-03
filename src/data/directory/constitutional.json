@@ -2507,6 +2507,22 @@
     "email": "rmamaradlo@earist.edu.ph"
   },
   {
+    "slug": "mindanao-state-university-iligan-institute-of-technology",
+    "office_type": "State Universities and Colleges (SUCs)",
+    "region": "REGION X - NORTHERN MINDANAO",
+    "name": "MINDANAO STATE UNIVERSITY - ILIGAN INSTITUTE OF TECHNOLOGY",
+    "address": "Andres Bonifacio Avenue, Tibanga, 9200 Iligan City",
+    "phone": "221-4056",
+    "website": "www.msuiit.edu.ph",
+    "officials": [
+      {
+        "role": "Chancellor",
+        "name": "PROF. ALIZEDNEY M. DITUCALAN, JD, LLM"
+      }
+    ],
+    "email": "chancellor@g.msuiit.edu.ph"
+  },
+  {
     "slug": "marikina-polytechnic-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
@@ -2617,19 +2633,6 @@
       }
     ],
     "email": "op@up.edu.ph"
-  },
-  {
-    "slug": "philippines-energy-research-and-policy-institute",
-    "office_type": "State Universities and Colleges (SUCs)",
-    "region": "NATIONAL CAPITAL REGION",
-    "name": "PHILIPPINES ENERGY RESEARCH AND POLICY INSTITUTE",
-    "address": "L/G University of the Philippines BGC, 14th Drive University Parkway, Fort Bonifacio Global City, Taguig",
-    "officials": [
-      {
-        "role": "Executive Director",
-        "name": "MIA CAMILA URBANO-AFRICA"
-      }
-    ]
   },
   {
     "slug": "abra-state-institute-of-science-and-technology",
@@ -3554,7 +3557,8 @@
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "BOHOL ISLAND STATE UNIVERSITY",
     "address": "Tagbilaran City, Bohol",
-    "website": "www.bisu2.bisubilar.org",
+    "website": "bisu.edu.ph",
+    "email": "op@bisu.edu.ph",
     "officials": [
       {
         "role": "President",

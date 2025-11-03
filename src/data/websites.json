@@ -352,8 +352,8 @@
   {
     "name": "BOHOL ISLAND STATE UNIVERSITY",
     "slug": "bohol-island-state-university",
-    "email": null,
-    "website": "www.bisu2.bisubilar.org",
+    "email": "op@bisu.edu.ph",
+    "website": "bisu.edu.ph",
     "address": "Tagbilaran City, Bohol",
     "contact": null,
     "type": "constitutional",
@@ -6138,16 +6138,6 @@
     "contact": "8912-4526; 8986-1906",
     "type": "under-supervision_and_control",
     "parent_department": "DEPARTMENT OF NATIONAL DEFENSE"
-  },
-  {
-    "name": "PHILIPPINES ENERGY RESEARCH AND POLICY INSTITUTE",
-    "slug": "philippines-energy-research-and-policy-institute",
-    "email": null,
-    "website": null,
-    "address": "L/G University of the Philippines BGC, 14th Drive University Parkway, Fort Bonifacio Global City, Taguig",
-    "contact": null,
-    "type": "constitutional",
-    "parent_department": null
   },
   {
     "name": "PHIVIDEC INDUSTRIAL AUTHORITY",
