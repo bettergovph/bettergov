@@ -880,6 +880,7 @@
     "name": "AL-AMANAH ISLAMIC INVESTMENT BANK OF THE PHILIPPINES",
     "address": "Greenhills McKinley Arcade MA-104B, Ortigas Avenue corner Club Filipino St., San Juan City",
     "phone": "8818-5249",
+    "email": "zambobr@amanahbank.gov.ph",
     "website": "www.amanahbank.gov.ph",
     "officials": [
       {
@@ -894,6 +895,7 @@
     "name": "APO PRODUCTION UNIT, INC.",
     "address": "2/F PIA Building, Visayas Ave. VASRA, Quezon City",
     "phone": "8282-5309 loc. 201",
+    "email": "sales@apo.gov.ph",
     "website": "www.apo.gov.ph",
     "officials": [
       {
@@ -907,6 +909,8 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "AURORA PACIFIC ECONOMIC ZONE AND FREEPORT AUTHORITY",
     "address": "1 Corporate Campus. Sitio Motyong, Brgy. Esteves, Casiguran, Aurora",
+    "phone": "(02) 7002 0905",
+    "email": "busdevmarketing@apecozonefreeport.com",
     "website": "www.apeco.gov.ph",
     "satellite_office": "Unit 702-3 Philflex Bay Center Coral Way Drive, Mall of Asia Complex, Pasay City",
     "officials": [
@@ -914,8 +918,7 @@
         "role": "President and CEO",
         "name": "GIL G. TAWAY IV"
       }
-    ],
-    "email": "busdevmarketing@apecozonefreeport.com"
+    ]
   },
   {
     "slug": "authority-of-the-freeport-area-of-bataan",
@@ -979,7 +982,8 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BOY SCOUTS OF THE PHILIPPINES",
     "address": "181 Natividad Almeda-Lopez St., Ermita, Manila",
-    "phone": "8527-8317 to 20",
+    "phone": "(063) 852 7831",
+    "website": "scouts.gov.ph",
     "officials": [
       {
         "role": "National President",
@@ -1092,30 +1096,15 @@
     "email": "arreyperez@ciac.gov.ph; OP.Office@ciac.gov.ph"
   },
   {
-    "slug": "coconut-industry-investment-fund-group-a",
+    "slug": "coconut-industry-investment-fund-group",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
-    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP A",
+    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP",
     "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
     "phone": "8892-7961",
     "website": "www.ciif.ph",
     "officials": [
       {
         "role": "President and CEO",
-        "name": "CARLO LUIS P. RABAT"
-      }
-    ],
-    "email": "trade-info@ciif.ph"
-  },
-  {
-    "slug": "coconut-industry-investment-fund-group-b",
-    "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
-    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP B",
-    "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
-    "phone": "8892-7961",
-    "website": "www.ciif.ph",
-    "officials": [
-      {
-        "role": "OIC-President and CEO",
         "name": "CARLO LUIS P. RABAT"
       }
     ],
@@ -1214,6 +1203,7 @@
     "name": "DEVELOPMENT BANK OF THE PHILIPPINES",
     "address": "Sen. Gil J. Puyat Avenue, Makati City",
     "phone": "8818-9511 LOC. 4100, 4101; 8864-3242; 8893-4302",
+    "email": "customerservice@dbp.ph",
     "website": "www.dbp.ph",
     "officials": [
       {
@@ -1313,6 +1303,9 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "INTERCONTINENTAL BROADCASTING CORPORATION (IBC-13)",
     "address": "Broadcast City, Capitol Hills, Diliman, Quezon City",
+    "phone": "(+632) 3433 7031",
+    "email": "info@ibctv13.com",
+    "website": "ibctv13.com",
     "officials": [
       {
         "role": "Acting President and CEO",
@@ -1340,6 +1333,7 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "KAMAYAN REALTY CORPORATION",
     "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
+    "phone": "(02) 8840 4838",
     "officials": [
       {
         "role": "President and CEO",
@@ -1353,7 +1347,7 @@
     "name": "LAGUNA LAKE DEVELOPMENT AUTHORITY",
     "address": "LLADA Bldg., National Ecology Center, East Avenue Diliman, Quezon City",
     "phone": "8376-4061; 8332-2346; 8376-4076",
-    "website": "www.llda.gov.ph",
+    "website": "llda.gov.ph",
     "officials": [
       {
         "role": "Acting General Manager",
@@ -1368,6 +1362,7 @@
     "name": "LAND BANK OF THE PHILIPPINES",
     "address": "32/F Landbank Plaza, 1598 M. H. del Pilar cor. Dr. J. Quintos Sts., Malate, Manila",
     "phone": "8405-7365",
+    "email": "customercare@landbank.com",
     "website": "www.landbank.com",
     "officials": [
       {
@@ -1545,6 +1540,7 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "MARAWI RESORT HOTEL, INC.",
     "address": "Mindanao State University- Main Campus, Marawi City, Lanao del Sur",
+    "phone": "0985 834 0045",
     "officials": [
       {
         "role": "President",
@@ -1602,7 +1598,8 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL ELECTRIFICATION ADMINISTRATION",
     "address": "57 NEA Bldg., NIA Road, Government Center, Diliman, Quezon City",
-    "phone": "8929-1909",
+    "phone": "(+632) 8929-1909",
+    "email": "nea@nea.gov.ph",
     "website": "www.nea.gov.ph",
     "officials": [
       {
@@ -1616,6 +1613,8 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL FOOD AUTHORITY",
     "address": "Visayas Avenue, Brgy. Vasra, Quezon City",
+    "phone": "0917-113-9347",
+    "email": "helpdesk@nfa.gov.ph",
     "website": "www.nfa.gov.ph",
     "officials": [
       {
@@ -2119,6 +2118,7 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE PHARMA PROCUREMENT INC.",
     "address": "Penthouse, NDC Building, 116 Tordesillas St., Salcedo Village, Makati City",
+    "phone": "0919-337-8201",
     "website": "pppi.gov.ph",
     "officials": [
       {
@@ -2193,6 +2193,8 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE RICE RESEARCH INSTITUTE",
     "address": "Maligaya, Science City of Muñoz, Nueva Ecija",
+    "phone": "0917-111-7423",
+    "email": "philrice@philrice.gov.ph",
     "website": "www.philrice.gov.ph",
     "officials": [
       {
@@ -2262,6 +2264,7 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PNOC RENEWABLES CORPORATION",
     "address": "Ground Floor, PNOC Building 5, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
+    "phone": "(+632) 8840-3079",
     "website": "www.pnoc-rc.com.ph",
     "officials": [
       {
@@ -2277,6 +2280,7 @@
     "name": "PORO POINT MANAGEMENT CORPORATION",
     "address": "Gov. Joaquin L. Ortega Avenue San Fernando City, La Union",
     "phone": "(072) 242-4016",
+    "email": "poropointfreeportzone@gmail.com",
     "website": "www.poropointfreeport.gov.ph",
     "officials": [
       {
@@ -2466,14 +2470,15 @@
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "UCPB LEASING AND FINANCE CORPORATION",
     "address": "14/F Sycip Law Center, 105 Paseo de Roxas St. Brgy. San Lorenzo, Makati City",
-    "phone": "8815-9842",
+    "phone": "8818-2200",
+    "website": "https://www.lbpleasing.com/",
     "officials": [
       {
         "role": "OIC-President and CEO",
         "name": "KRISTINE MARIE G. CUEVAS"
       }
     ],
-    "email": "kgcuevas@ucpb.com; lsgopico@ucpb.com"
+    "email": "customercare@lbpleasing.com"
   },
   {
     "slug": "ucpb-savings-bank-inc",
