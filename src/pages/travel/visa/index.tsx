@@ -361,8 +361,11 @@ const VisaPage: FC = () => {
       if (requirement) {
         setVisaRequirement(requirement);
         // Auto-open dialog when country parameter is present in URL
-        setDialogCountry(selectedCountry);
-        setDialogOpen(true);
+        // Only open dialog in Grid View, not in Detail View (list mode)
+        if (viewMode !== 'list') {
+          setDialogCountry(selectedCountry);
+          setDialogOpen(true);
+        }
       }
     }
   }, [selectedCountry, countryRequirements, viewMode]);
