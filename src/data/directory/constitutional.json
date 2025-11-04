@@ -2661,7 +2661,8 @@
         "role": "President",
         "name": "JOHN N. CABANSAG"
       }
-    ]
+    ],
+    "email": "op_asc@yahoo.com"
   },
   {
     "slug": "benguet-state-university",
@@ -2795,7 +2796,7 @@
     "name": "UNIVERSITY OF NORTHERN PHILIPPINES",
     "address": "Tamag, Vigan City, Ilocos Sur",
     "phone": "(077) 644-2261",
-    "website": "www.unp.edu.ph",
+    "website": "unp.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -2810,13 +2811,15 @@
     "region": "REGION II CAGAYAN VALLEY",
     "name": "BATANES STATE COLLEGE",
     "address": "Washington Ave., San Antonio, Basco, Batanes",
+    "phone": "+63 943 555 4578; +63 995 607 5114",
     "website": "www.bscbatanes.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "DJOVI R. DURANTE"
       }
-    ]
+    ],
+    "email": "infounit@bscbatanes.edu.ph"
   },
   {
     "slug": "cagayan-state-university",
@@ -2857,7 +2860,7 @@
     "name": "NUEVA VIZCAYA STATE UNIVERSITY",
     "address": "Quezon St., Bayombong, Nueva Vizcaya",
     "phone": "(078) 392-1111 loc. 100",
-    "website": "my.nvsu.edu.ph",
+    "website": "www.nvsu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -2910,7 +2913,8 @@
         "role": "President",
         "name": "RUBY S. MATIBAG"
       }
-    ]
+    ],
+    "email": "mc_admission@bpsu.edu.ph"
   },
   {
     "slug": "bulacan-agricultural-state-college",
@@ -2918,14 +2922,15 @@
     "region": "REGION III - CENTRAL LUZON",
     "name": "BULACAN AGRICULTURAL STATE COLLEGE",
     "address": "San Ildefonso, Bulacan",
-    "phone": "(044) 901-1427",
+    "phone": "(044) 792 4409; (044) 816 7121",
     "website": "www.basc.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "JAMESON H. TAN"
       }
-    ]
+    ],
+    "email": "info@basc.edu.ph"
   },
   {
     "slug": "bulacan-state-university",
@@ -2987,7 +2992,8 @@
         "role": "President",
         "name": "RHODORA R. JUGO"
       }
-    ]
+    ],
+    "email": "neustmain@neust.edu.ph"
   },
   {
     "slug": "pampanga-state-agricultural-university",
@@ -3017,7 +3023,8 @@
         "role": "Superintendent",
         "name": "COMM. JOEL Y. ABUTAL"
       }
-    ]
+    ],
+    "email": "information@pmma.edu.ph"
   },
   {
     "slug": "president-ramon-magsaysay-state-university",
@@ -3079,7 +3086,8 @@
         "role": "President",
         "name": "TIRSO A. RONQUILLO"
       }
-    ]
+    ],
+    "email": "publicrelations@g.batstate-u.edu.ph"
   },
   {
     "slug": "cavite-state-university",
@@ -3088,7 +3096,7 @@
     "name": "CAVITE STATE UNIVERSITY",
     "address": "Indang, Cavite",
     "phone": "(046) 840-6937",
-    "website": "www.cvsu.edu.ph",
+    "website": "cvsu.edu.ph",
     "officials": [
       {
         "role": "Officer-in-Charge",
@@ -3104,13 +3112,14 @@
     "name": "LAGUNA STATE POLYTECHNIC UNIVERSITY",
     "address": "Los Baños, Laguna",
     "phone": "(049) 501-6675; 813-0273",
-    "website": "www.lspu.edu.ph",
+    "website": "lspu.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "MARIO R. BRIONES"
       }
-    ]
+    ],
+    "email": "info@lspu.edu.ph"
   },
   {
     "slug": "southern-luzon-state-university",
@@ -3151,13 +3160,14 @@
     "name": "MARINDUQUE STATE UNIVERSITY",
     "address": "Boac, Marinduque",
     "phone": "(042) 332-2028 332-2728",
-    "website": "www.marinduquestatecollege.edu.ph",
+    "website": "www.mscmarinduque.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "DIOSDADO P. ZULUETA"
       }
-    ]
+    ],
+    "email": "info.office@marsu.edu.ph"
   },
   {
     "slug": "mindoro-state-university",
@@ -3187,7 +3197,8 @@
         "role": "President",
         "name": "ELBERT C. EDANIOL"
       }
-    ]
+    ],
+    "email": "president@omsc.edu.ph"
   },
   {
     "slug": "palawan-state-university",
@@ -3218,7 +3229,8 @@
         "role": "President",
         "name": "MERIAN C. MANI"
       }
-    ]
+    ],
+    "email": "romblonstateu@gmail.com"
   },
   {
     "slug": "western-philippines-university",
@@ -3227,7 +3239,7 @@
     "name": "WESTERN PHILIPPINES UNIVERSITY",
     "address": "Aborlan, Palawan",
     "phone": "(048) 433-4367",
-    "website": "www.wpu.edu.ph",
+    "website": "wpu.edu.ph",
     "officials": [
       {
         "role": "Officer-In-Charge",
@@ -3305,14 +3317,15 @@
     "region": "REGION V - BICOL REGION",
     "name": "CATANDUANES STATE UNIVERSITY",
     "address": "Virac, Catanduanes",
-    "website": "www.catanduanesstateu.edu.ph",
+    "phone": "+63 969 025 9166",
+    "website": "catsu.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "PATRICK ALAIN T. AZANZA"
       }
     ],
-    "email": "csu2012@catanduanesstateu.edu.ph"
+    "email": "catsu1961@catsu.edu.ph"
   },
   {
     "slug": "central-bicol-state-university-of-agriculture",
@@ -3374,7 +3387,8 @@
         "role": "President",
         "name": "GERALDINE F. DE JESUS"
       }
-    ]
+    ],
+    "email": "ssc@sorsu.edu.ph"
   },
   {
     "slug": "aklan-state-university",
@@ -3415,7 +3429,7 @@
     "name": "CARLOS HILADO MEMORIAL STATE COLLEGE",
     "address": "Talisay City, Negros Occidental",
     "phone": "(034) 712-0003; 495-4064; 495-5389",
-    "website": "www.chmsc.edu.ph",
+    "website": "chmsu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -3447,7 +3461,7 @@
     "name": "GUIMARAS STATE UNIVERSITY",
     "address": "Buenavista, Guimaras",
     "phone": "(033) 580-8244",
-    "website": "www.gsc.edu.ph",
+    "website": "www.gsu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -3495,14 +3509,14 @@
     "name": "NORTHERN ILOILO STATE UNIVERSITY",
     "address": "Estancia, Iloilo",
     "phone": "(033) 397-0314; 397-0315",
-    "website": "www.nipsc.edu.ph",
+    "website": "www.nisu.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "BOBBY D. GERARDO"
       }
     ],
-    "email": "president@nipsc.edu.ph"
+    "email": "nisuadmin@nisu.edu.ph"
   },
   {
     "slug": "state-university-of-northern-negros",
@@ -3770,7 +3784,8 @@
         "role": "President",
         "name": "JUDE A. DUARTE"
       }
-    ]
+    ],
+    "email": "uepnsofficial@gmail.com"
   },
   {
     "slug": "visayas-state-university",
@@ -3794,13 +3809,15 @@
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "BASILAN STATE COLLEGE",
     "address": "Isabela City, Basilan",
+    "phone": "+63 915 778 4922",
     "website": "www.bassc.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "NASSER A. SALAIN"
       }
-    ]
+    ],
+    "email": "college_registrar@bassc.edu.ph"
   },
   {
     "slug": "j-h-cerilles-state-college",
@@ -3831,7 +3848,8 @@
         "role": "President",
         "name": "MA. RIO ABDON-NAGUIT"
       }
-    ]
+    ],
+    "email": "university.president@jrmsu.edu.ph"
   },
   {
     "slug": "western-mindanao-state-university",
@@ -3856,7 +3874,7 @@
     "name": "ZAMBOANGA PENINSULA POLYTECHNIC STATE UNIVERSITY",
     "address": "R.T. Lim Boulevard, Baliwasan, Zamboanga City",
     "phone": "(062) 991-3815",
-    "website": "www.zppsu.edu.ph",
+    "website": "zppsu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -3888,7 +3906,7 @@
     "name": "BUKIDNON STATE UNIVERSITY",
     "address": "Malaybalay City, Bukidnon",
     "phone": "(088) 221-2237; 813-2717",
-    "website": "www.buksu.edu.ph",
+    "website": "buksu.edu.ph",
     "officials": [
       {
         "role": "President",
@@ -3910,7 +3928,8 @@
         "role": "President",
         "name": "MACARIO B. OCLARIT"
       }
-    ]
+    ],
+    "email": "cpscregistrar@gmail.com"
   },
   {
     "slug": "central-mindanao-university",
@@ -3981,6 +4000,7 @@
     "region": "REGION XI - DAVAO REGION",
     "name": "DAVAO DE ORO STATE COLLEGE",
     "address": "Poblacion, Compostela, Davao de Oro",
+    "phone": "+63 929 169 5328",
     "website": "www.ddosc.edu.ph",
     "officials": [
       {
@@ -4076,14 +4096,15 @@
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "COTABATO FOUNDATION COLLEGE OF SCIENCE AND TECHNOLOGY",
     "address": "Doroluman, Arakan, Cotabato",
-    "phone": "(064) 288-1343",
+    "phone": "(064) 577-1531",
     "website": "www.cfcst.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "ALI K. DILANGALEN"
       }
-    ]
+    ],
+    "email": "admin@cfcst.edu.ph"
   },
   {
     "slug": "south-cotabato-state-college",
@@ -4098,7 +4119,8 @@
         "role": "President",
         "name": "EDWARD LOVELL B. BRILLANTES"
       }
-    ]
+    ],
+    "email": "southcotabatostatecollege@scsc.edu.ph"
   },
   {
     "slug": "sultan-kudarat-state-university",
@@ -4106,14 +4128,15 @@
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "SULTAN KUDARAT STATE UNIVERSITY",
     "address": "Tacurong, Sultan Kudarat",
-    "phone": "(064) 200-5148; 200-4287",
+    "phone": "(064) 200 7336",
     "website": "www.sksu.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "SAMSON L. MOLAO"
       }
-    ]
+    ],
+    "email": "info@sksu.edu.ph"
   },
   {
     "slug": "university-of-southern-mindanao",
@@ -4164,20 +4187,20 @@
     "email": "op@carsu.edu.ph"
   },
   {
-    "slug": "northeastern-mindanao-state-university",
+    "slug": "north-eastern-mindanao-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XIII - CARAGA REGION",
-    "name": "NORTHEASTERN MINDANAO STATE UNIVERSITY",
+    "name": "NORTH EASTERN MINDANAO STATE UNIVERSITY",
     "address": "Tandag, Surigao del Sur",
     "phone": "(086) 211-4221",
-    "website": "www.sdssu.edu.ph",
+    "website": "nemsu.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "NEMESIO G. LOAYON"
       }
     ],
-    "email": "nemsuop@sdssu.edu.ph"
+    "email": "information@nemsu.edu.ph"
   },
   {
     "slug": "surigao-del-norte-state-university",
@@ -4185,14 +4208,15 @@
     "region": "REGION XIII - CARAGA REGION",
     "name": "SURIGAO DEL NORTE STATE UNIVERSITY",
     "address": "Surigao City",
-    "phone": "(086) 826-6346",
+    "phone": "(086) 827-3741",
     "website": "www.ssct.edu.ph",
     "officials": [
       {
         "role": "Officer-in-Charge",
         "name": "ALMA SY-PATRON"
       }
-    ]
+    ],
+    "email": "info@snsu.edu.ph"
   },
   {
     "slug": "cotabato-state-university",
@@ -4216,13 +4240,15 @@
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "ADIONG MEMORIAL STATE COLLEGE",
     "address": "Ditsaan-Ramain, Lanao del Sur",
+    "phone": "+63 920 975 2206; +63 905 841 1981",
     "website": "amsc-edu.net",
     "officials": [
       {
         "role": "President",
         "name": "SHERIFA ROHANNIE K. ADIONG"
       }
-    ]
+    ],
+    "email": "adiongmemorialstatecollege@gmail.com"
   },
   {
     "slug": "mindanao-state-university",
@@ -4246,13 +4272,15 @@
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "SULU STATE COLLEGE",
     "address": "Jolo, Sulu",
+    "phone": "+63 917 133 9112",
     "website": "www.sulustatecollege.edu.ph",
     "officials": [
       {
         "role": "President",
         "name": "CHARISMA S. UTUTALUM"
       }
-    ]
+    ],
+    "email": "sulustatecollege2018@gmail.com"
   },
   {
     "slug": "tawi-tawi-regional-agricultural-college",
