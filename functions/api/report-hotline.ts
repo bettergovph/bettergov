@@ -74,105 +74,116 @@ export async function onRequest(context: {
       );
     }
 
+    // Check for GitHub token
+    const githubToken = env.GITHUB_TOKEN;
+    if (!githubToken) {
+      return new Response(
+        JSON.stringify({
+          error: 'GitHub integration not configured',
+          message: 'Please contact the maintainers to report this issue',
+        }),
+        {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
     // Log report submission (no PII in logs)
     console.log(
-      `[Report Submission] Received report for hotline: "${data.hotlineName}"`
+      `[Report Submission] Creating GitHub issue for hotline: "${data.hotlineName}"`
     );
 
-    // Construct email body
-    const emailBody = `
-New Hotline Report Submission
-=============================
+    // Construct GitHub issue body (no PII in public issue)
+    const issueBody = `## Hotline Information Issue
 
-Hotline Name: ${data.hotlineName}
+### Which hotline has outdated information?
+${data.hotlineName}
 
-What is incorrect:
+### What is incorrect?
 ${data.issue}
 
-${data.correctInfo ? `What should it be:\n${data.correctInfo}\n\n` : ''}
-${data.source ? `Source:\n${data.source}\n\n` : ''}
-${data.reporterEmail ? `Reporter Email: ${data.reporterEmail}\n\n` : ''}
+${data.correctInfo ? `### What should it be?\n${data.correctInfo}\n\n` : ''}
+${data.source ? `### Source\n${data.source}\n\n` : ''}
 ---
-Reported from: /philippines/hotlines
+Reported via community form from: /philippines/hotlines
 Timestamp: ${new Date().toISOString()}
-    `.trim();
 
-    // Send email using Cloudflare Email Workers (MailChannels)
-    // This is a free service available on Cloudflare Workers
-    const emailPayload = {
-      personalizations: [
-        {
-          to: [{ email: 'bugs@bettergov.ph', name: 'BetterGov Team' }],
-        },
-      ],
-      from: {
-        email: 'noreply@bettergov.ph',
-        name: 'BetterGov Hotline Reporter',
-      },
-      subject: `Hotline Report: ${data.hotlineName}`,
-      content: [
-        {
-          type: 'text/plain',
-          value: emailBody,
-        },
-      ],
-    };
+${data.reporterEmail ? `\n<!-- Reporter contact (private): ${data.reporterEmail} -->` : ''}`;
 
-    // Try to send email via MailChannels (free on Cloudflare Workers)
+    // Create GitHub issue
     try {
-      const emailResponse = await fetch(
-        'https://api.mailchannels.net/tx/v1/send',
+      const githubResponse = await fetch(
+        'https://api.github.com/repos/bettergovph/bettergov/issues',
         {
           method: 'POST',
           headers: {
+            Authorization: `Bearer ${githubToken}`,
             'Content-Type': 'application/json',
+            'User-Agent': 'BetterGov-Hotline-Reporter',
+            Accept: 'application/vnd.github.v3+json',
           },
-          body: JSON.stringify(emailPayload),
+          body: JSON.stringify({
+            title: `Outdated Hotline: ${data.hotlineName}`,
+            body: issueBody,
+            labels: ['hotline', 'data-update', 'community-report'],
+          }),
         }
       );
 
-      if (!emailResponse.ok) {
-        const errorText = await emailResponse.text();
+      if (!githubResponse.ok) {
+        const errorText = await githubResponse.text();
         console.error(
-          `Email sending failed (status ${emailResponse.status}):`,
+          `GitHub API error (status ${githubResponse.status}):`,
           errorText
         );
-        // Don't fail the request - just log it
-        console.log(
-          '[Fallback] Report logged to console for manual processing'
+        return new Response(
+          JSON.stringify({
+            error: 'Failed to create GitHub issue',
+            message: 'Please try again or contact the maintainers',
+          }),
+          {
+            status: githubResponse.status,
+            headers: { 'Content-Type': 'application/json' },
+          }
         );
-      } else {
-        console.log('[Report Success] Email sent successfully');
       }
-    } catch (emailError) {
-      console.error('Email sending error:', emailError);
-      console.log('[Fallback] Report logged to console for manual processing');
+
+      const githubData: { html_url: string; number: number } =
+        await githubResponse.json();
+
+      console.log(
+        `[Report Success] GitHub Issue #${githubData.number} created for hotline: "${data.hotlineName}"`
+      );
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Report submitted successfully',
+          issueUrl: githubData.html_url,
+          issueNumber: githubData.number,
+        }),
+        {
+          status: 201,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    } catch (githubError) {
+      console.error('GitHub API error:', githubError);
+      return new Response(
+        JSON.stringify({
+          error: 'Failed to create GitHub issue',
+          message:
+            githubError instanceof Error
+              ? githubError.message
+              : 'Unknown error',
+        }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     }
-
-    // Always log the full report to console for backup
-    console.log(
-      '[Report Details]',
-      JSON.stringify({
-        hotlineName: data.hotlineName,
-        issue: data.issue,
-        correctInfo: data.correctInfo,
-        source: data.source,
-        hasEmail: !!data.reporterEmail,
-        timestamp: new Date().toISOString(),
-      })
-    );
-
-    // Return success to user regardless of email status
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: 'Report submitted successfully',
-      }),
-      {
-        status: 201,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
   } catch (error) {
     // Log full error with stack trace to server console
     console.error('Error processing report:', error);

@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useRef } from 'react';
-import { AlertCircleIcon, XIcon } from 'lucide-react';
+import { AlertCircleIcon, XIcon, ExternalLinkIcon } from 'lucide-react';
 
 interface ReportHotlineModalProps {
   isOpen: boolean;
@@ -161,7 +161,8 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Report submitted successfully! We will review it soon.',
+          message: 'Report submitted successfully!',
+          issueUrl: data.issueUrl,
         });
         // Reset form
         setFormData({
@@ -253,6 +254,17 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
               </div>
               <h3 className='text-xl font-semibold mb-2'>Thank you!</h3>
               <p className='text-gray-600 mb-4'>{submitStatus.message}</p>
+              {submitStatus.issueUrl && (
+                <a
+                  href={submitStatus.issueUrl}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center text-blue-600 hover:underline mb-4'
+                >
+                  View your report on GitHub
+                  <ExternalLinkIcon className='h-4 w-4 ml-1' />
+                </a>
+              )}
               <div className='mt-6'>
                 <button
                   onClick={onClose}
@@ -266,7 +278,8 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
             <>
               <p className='text-gray-600 mb-6'>
                 Help us keep hotline information accurate and up-to-date. Your
-                report will be reviewed by our team.
+                report will be submitted as a public GitHub issue so volunteers
+                can help fix it.
               </p>
 
               {submitStatus.type === 'error' && (
@@ -370,9 +383,9 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                         className='mt-1 mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
                       />
                       <span className='text-xs text-gray-600'>
-                        I consent to sharing my email address. It will be stored
-                        securely in server logs (not in the public GitHub issue)
-                        so maintainers can contact me for clarification if
+                        I consent to sharing my email address. It will be
+                        visible only to maintainers (not in the public GitHub
+                        issue) so they can contact me for clarification if
                         needed.
                       </span>
                     </label>
@@ -391,8 +404,9 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
               </form>
 
               <p className='text-xs text-gray-500 mt-4 text-center'>
-                Your report will be sent to our team for review. If you provided
-                an email, we may contact you for clarification.
+                Your report will be publicly visible on GitHub. Your email (if
+                provided) will only be visible to maintainers in a private
+                comment.
               </p>
             </>
           )}
