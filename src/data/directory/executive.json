@@ -614,7 +614,7 @@
     "address": "20/F and 21/F, The Upper Class Tower, Quezon Ave. cor. Scout Reyes St., Brgy. Paligsahan, Diliman, Quezon City",
     "phone": "8552-4707",
     "email": "info@cfo.gov.ph",
-    "website": "www.cfo.gov.ph"
+    "website": "cfo.gov.ph"
   },
   {
     "slug": "commission-on-higher-education",
@@ -677,7 +677,7 @@
     "office": "GOVERNANCE COMMISSION FOR GOCCS",
     "address": "3/F BDO Paseo Towers, Paseo de Roxas Avenue, Makati City",
     "phone": "5328-2030",
-    "website": "www.gcg.gov.ph"
+    "website": "gcg.gov.ph"
   },
   {
     "slug": "metropolitan-manila-development-authority",
@@ -701,7 +701,7 @@
     "phone": "8376-7380",
     "phone_fax": "8376-7379",
     "email": "otc@mtrcb.gov.ph",
-    "website": "www.midas.mtrcb.gov.ph"
+    "website": "midas.mtrcb.gov.ph"
   },
   {
     "slug": "national-archives-of-the-philippines",
@@ -788,7 +788,7 @@
     "trunkline": "8927-9702; 8928-5292",
     "phone": "8928-6358 loc. 163, 144",
     "email": "odg@pdea.gov.ph",
-    "website": "www.pdea.gov.ph"
+    "website": "pdea.gov.ph"
   },
   {
     "slug": "philippine-information-agency",

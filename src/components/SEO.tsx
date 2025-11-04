@@ -25,8 +25,7 @@ interface SEOProps {
 export default function SEO({
   title,
   description,
-  canonical,
-  ogImage = '/ph-logo.webp',
+  ogImage = '/logos/jpg/BetterGov_Vertical-White.jpg',
   ogType = 'website',
   noIndex = false,
   keywords = [],
@@ -122,6 +121,7 @@ export default function SEO({
     'BetterGov.ph Philippines | Community Powered Government Portal';
   const defaultDescription =
     'Community-powered portal of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+  const defaultCanonical = location.pathname + location.search;
 
   useEffect(() => {
     // Force a re-render of this component on route or query-string changes
@@ -135,8 +135,10 @@ export default function SEO({
 
   const siteTitle = 'BetterGov.ph';
   const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
-  const baseUrl = 'https://gov.ph'; // Replace with actual domain
-  const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined;
+  const baseUrl = 'https://bettergov.ph';
+  const fullCanonical = defaultCanonical
+    ? `${baseUrl}${defaultCanonical}`
+    : undefined;
   const fullOgImage = ogImage.startsWith('http')
     ? ogImage
     : `${baseUrl}${ogImage}`;
