@@ -43,7 +43,8 @@
           "municipality": "Dumalag",
           "zip_code": "5813",
           "mayor": {
-            "name": "MARIA CONCEPCION T. CASTRO"
+            "name": "MARIA CONCEPCION T. CASTRO",
+            "contact": "(036) 536-2064"
           },
           "vice_mayor": {
             "name": "AMADO ERIBERTO V. CASTRO JR."
@@ -87,7 +88,8 @@
           "municipality": "Ma-ayon",
           "zip_code": "5809",
           "mayor": {
-            "name": "RAYMOND D. MALAPAJO"
+            "name": "RAYMOND D. MALAPAJO",
+            "contact": "(036) 651-1092"
           },
           "vice_mayor": {
             "name": "JOSE C. DAPULAZA"
@@ -97,10 +99,11 @@
           "municipality": "Mambusao",
           "zip_code": "5807",
           "mayor": {
-            "name": "LUZVIMINDA A. LABAO"
+            "name": "LEODEGARIO A. LABAO, JR.",
+            "contact": "(036) 647-0413"
           },
           "vice_mayor": {
-            "name": "WILFREDO E. LEAL"
+            "name": "RICHARD L. BUENAVISTA"
           }
         },
         {
@@ -131,7 +134,8 @@
           "municipality": "Pilar",
           "zip_code": "5804",
           "mayor": {
-            "name": "ARNOLD A. PEREZ"
+            "name": "ARNOLD A. PEREZ",
+            "contact": "(036) 621-2043"
           },
           "vice_mayor": {
             "name": "ANTONIO L. BARGO JR."
@@ -174,7 +178,8 @@
           "municipality": "Sigma",
           "zip_code": "5816",
           "mayor": {
-            "name": "DANTE RIZAL A. ESLABON"
+            "name": "DANTE RIZAL A. ESLABON",
+            "contact": "(036) 647-0231"
           },
           "vice_mayor": {
             "name": "CHRISTOPHER VINCENT T. ANDAYA"
@@ -184,10 +189,11 @@
           "municipality": "Tapaz",
           "zip_code": "5814",
           "mayor": {
-            "name": "ROBERTO O. PALOMAR"
+            "name": "REX DANTE L. PALOMAR",
+            "contact": "(036) 538-2011"
           },
           "vice_mayor": {
-            "name": "ROMEL G. SOMO"
+            "name": "ROBERTO O. PALOMAR"
           }
         }
       ]
