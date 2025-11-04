@@ -74,163 +74,99 @@ export async function onRequest(context: {
       );
     }
 
-    // Create GitHub issue via API
-    const githubToken = env.GITHUB_TOKEN;
-    if (!githubToken) {
-      return new Response(
-        JSON.stringify({
-          error: 'GitHub integration not configured',
-          fallback:
-            'Please report directly at https://github.com/bettergovph/bettergov/issues/new',
-        }),
-        {
-          status: 503,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-
-    // Log report submission (no PII)
+    // Log report submission (no PII in logs)
     console.log(
-      `[Report Submission] Creating issue for hotline: "${data.hotlineName}"`
+      `[Report Submission] Received report for hotline: "${data.hotlineName}"`
     );
 
-    // Construct issue body (NO PII included)
-    const issueBody = `## Hotline Information Issue
+    // Construct email body
+    const emailBody = `
+New Hotline Report Submission
+=============================
 
-### Which hotline has outdated information?
-${data.hotlineName}
+Hotline Name: ${data.hotlineName}
 
-### What is incorrect?
+What is incorrect:
 ${data.issue}
 
-${data.correctInfo ? `### What should it be?\n${data.correctInfo}\n\n` : ''}
-${data.source ? `### Source\n${data.source}\n\n` : ''}
+${data.correctInfo ? `What should it be:\n${data.correctInfo}\n\n` : ''}
+${data.source ? `Source:\n${data.source}\n\n` : ''}
+${data.reporterEmail ? `Reporter Email: ${data.reporterEmail}\n\n` : ''}
 ---
-Reported via API from: /philippines/hotlines
-Timestamp: ${new Date().toISOString()}`;
+Reported from: /philippines/hotlines
+Timestamp: ${new Date().toISOString()}
+    `.trim();
 
-    // Create GitHub issue with timeout handling
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    // Send email using Cloudflare Email Workers (MailChannels)
+    // This is a free service available on Cloudflare Workers
+    const emailPayload = {
+      personalizations: [
+        {
+          to: [{ email: 'bugs@bettergov.ph', name: 'BetterGov Team' }],
+        },
+      ],
+      from: {
+        email: 'noreply@bettergov.ph',
+        name: 'BetterGov Hotline Reporter',
+      },
+      subject: `Hotline Report: ${data.hotlineName}`,
+      content: [
+        {
+          type: 'text/plain',
+          value: emailBody,
+        },
+      ],
+    };
 
-    let githubResponse: Response;
+    // Try to send email via MailChannels (free on Cloudflare Workers)
     try {
-      githubResponse = await fetch(
-        'https://api.github.com/repos/bettergovph/bettergov/issues',
+      const emailResponse = await fetch(
+        'https://api.mailchannels.net/tx/v1/send',
         {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${githubToken}`,
             'Content-Type': 'application/json',
-            'User-Agent': 'BetterGov-Hotline-Reporter',
-            Accept: 'application/vnd.github.v3+json',
           },
-          body: JSON.stringify({
-            title: `Outdated Hotline: ${data.hotlineName}`,
-            body: issueBody,
-            labels: ['hotline', 'data-update', 'user-report'],
-          }),
-          signal: controller.signal,
+          body: JSON.stringify(emailPayload),
         }
       );
-    } catch (fetchError) {
-      clearTimeout(timeoutId);
 
-      // Handle abort/timeout error
-      if (fetchError instanceof Error && fetchError.name === 'AbortError') {
-        console.error('GitHub API request timed out');
-        return new Response(
-          JSON.stringify({
-            error: 'Request timed out',
-            message: 'GitHub API did not respond in time',
-          }),
-          {
-            status: 504,
-            headers: { 'Content-Type': 'application/json' },
-          }
+      if (!emailResponse.ok) {
+        const errorText = await emailResponse.text();
+        console.error(
+          `Email sending failed (status ${emailResponse.status}):`,
+          errorText
         );
+        // Don't fail the request - just log it
+        console.log(
+          '[Fallback] Report logged to console for manual processing'
+        );
+      } else {
+        console.log('[Report Success] Email sent successfully');
       }
-
-      // Handle other fetch errors (network issues, etc.)
-      console.error('GitHub API fetch error:', fetchError);
-      return new Response(
-        JSON.stringify({
-          error: 'Failed to connect to GitHub',
-          message:
-            fetchError instanceof Error ? fetchError.message : 'Network error',
-        }),
-        {
-          status: 503,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    } finally {
-      clearTimeout(timeoutId);
+    } catch (emailError) {
+      console.error('Email sending error:', emailError);
+      console.log('[Fallback] Report logged to console for manual processing');
     }
 
-    if (!githubResponse.ok) {
-      const errorText = await githubResponse.text();
-      // Log detailed error server-side for debugging
-      console.error(
-        `GitHub API error (status ${githubResponse.status}):`,
-        errorText
-      );
-      // Return generic error to client without exposing sensitive details
-      return new Response(
-        JSON.stringify({
-          error: 'Failed to create GitHub issue',
-        }),
-        {
-          status: githubResponse.status,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-
-    const githubData: unknown = await githubResponse.json();
-
-    // Runtime validation of GitHub response
-    if (
-      !githubData ||
-      typeof githubData !== 'object' ||
-      !('html_url' in githubData) ||
-      !('number' in githubData) ||
-      typeof githubData.html_url !== 'string' ||
-      typeof githubData.number !== 'number'
-    ) {
-      console.error(
-        'Invalid GitHub API response structure:',
-        JSON.stringify(githubData)
-      );
-      return new Response(
-        JSON.stringify({
-          error: 'Failed to create GitHub issue',
-          message: 'Invalid response from GitHub API',
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-
-    const issue = {
-      html_url: githubData.html_url,
-      number: githubData.number,
-    };
-
-    // Log successful issue creation (no PII)
+    // Always log the full report to console for backup
     console.log(
-      `[Report Success] GitHub Issue #${issue.number} created for hotline: "${data.hotlineName}"`
+      '[Report Details]',
+      JSON.stringify({
+        hotlineName: data.hotlineName,
+        issue: data.issue,
+        correctInfo: data.correctInfo,
+        source: data.source,
+        hasEmail: !!data.reporterEmail,
+        timestamp: new Date().toISOString(),
+      })
     );
 
+    // Return success to user regardless of email status
     return new Response(
       JSON.stringify({
         success: true,
         message: 'Report submitted successfully',
-        issueUrl: issue.html_url,
-        issueNumber: issue.number,
       }),
       {
         status: 201,

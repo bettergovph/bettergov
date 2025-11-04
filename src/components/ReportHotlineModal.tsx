@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useRef } from 'react';
-import { AlertCircleIcon, XIcon, ExternalLinkIcon } from 'lucide-react';
+import { AlertCircleIcon, XIcon } from 'lucide-react';
 
 interface ReportHotlineModalProps {
   isOpen: boolean;
@@ -161,8 +161,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Report submitted successfully!',
-          issueUrl: data.issueUrl,
+          message: 'Report submitted successfully! We will review it soon.',
         });
         // Reset form
         setFormData({
@@ -191,13 +190,13 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
         setSubmitStatus({
           type: 'error',
           message:
-            'Request timed out. Please check your connection and try again, or report directly on GitHub.',
+            'Request timed out. Please check your connection and try again.',
         });
       } else {
         setSubmitStatus({
           type: 'error',
           message:
-            'Network error. Please try again or report directly on GitHub.',
+            'Network error. Please try again or contact us at bugs@bettergov.ph',
         });
       }
     } finally {
@@ -206,27 +205,6 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
         setIsSubmitting(false);
       }
     }
-  };
-
-  const openGitHubIssue = () => {
-    const issueTitle = encodeURIComponent('Outdated Hotline Information');
-    const issueBody = encodeURIComponent(
-      `## Hotline Information Issue\n\n` +
-        `### Which hotline has outdated information?\n` +
-        `${formData.hotlineName || '<!-- Please specify the hotline name -->'}\n\n` +
-        `### What is incorrect?\n` +
-        `${formData.issue || '<!-- Describe what information is outdated or incorrect -->'}\n\n` +
-        `### What should it be?\n` +
-        `${formData.correctInfo || '<!-- Provide the correct information if you know it -->'}\n\n` +
-        `### Source (optional)\n` +
-        `${formData.source || '<!-- Link to official source confirming the correct information -->'}\n\n` +
-        `---\n` +
-        `Reported from: /philippines/hotlines`
-    );
-    window.open(
-      `https://github.com/bettergovph/bettergov/issues/new?title=${issueTitle}&body=${issueBody}&labels=hotline,data-update`,
-      '_blank'
-    );
   };
 
   return (
@@ -275,17 +253,6 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
               </div>
               <h3 className='text-xl font-semibold mb-2'>Thank you!</h3>
               <p className='text-gray-600 mb-4'>{submitStatus.message}</p>
-              {submitStatus.issueUrl && (
-                <a
-                  href={submitStatus.issueUrl}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center text-blue-600 hover:underline'
-                >
-                  View your report on GitHub
-                  <ExternalLinkIcon className='h-4 w-4 ml-1' />
-                </a>
-              )}
               <div className='mt-6'>
                 <button
                   onClick={onClose}
@@ -299,7 +266,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
             <>
               <p className='text-gray-600 mb-6'>
                 Help us keep hotline information accurate and up-to-date. Your
-                report will be submitted as a GitHub issue.
+                report will be reviewed by our team.
               </p>
 
               {submitStatus.type === 'error' && (
@@ -416,24 +383,16 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                   <button
                     type='submit'
                     disabled={isSubmitting}
-                    className='flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed'
+                    className='w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed'
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Report'}
-                  </button>
-                  <button
-                    type='button'
-                    onClick={openGitHubIssue}
-                    className='flex-1 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center'
-                  >
-                    <ExternalLinkIcon className='h-4 w-4 mr-2' />
-                    Open in GitHub
                   </button>
                 </div>
               </form>
 
               <p className='text-xs text-gray-500 mt-4 text-center'>
-                Don&apos;t have a GitHub account? No problem! Use the form above
-                to submit your report.
+                Your report will be sent to our team for review. If you provided
+                an email, we may contact you for clarification.
               </p>
             </>
           )}
