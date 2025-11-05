@@ -1,7 +1,7 @@
 [
   {
-    "name": "ABRA STATE INSTITUTE OF SCIENCE AND TECHNOLOGY",
-    "slug": "abra-state-institute-of-science-and-technology",
+    "name": "UNIVERSITY OF ABRA",
+    "slug": "university-of-abra",
     "email": "president@asist.edu.ph",
     "website": "www.asist.edu.ph",
     "address": "Lagangilang, Abra",
@@ -12,7 +12,7 @@
   {
     "name": "ADIONG MEMORIAL STATE COLLEGE",
     "slug": "adiong-memorial-state-college",
-    "email": null,
+    "email": "adiongmemorialstatecollege@gmail.com",
     "website": null,
     "address": "Ditsaan-Ramain, Lanao del Sur",
     "contact": null,
@@ -102,7 +102,7 @@
   {
     "name": "AL-AMANAH ISLAMIC INVESTMENT BANK OF THE PHILIPPINES",
     "slug": "al-amanah-islamic-investment-bank-of-the-philippines",
-    "email": null,
+    "email": "zambobr@amanahbank.gov.ph",
     "website": "www.amanahbank.gov.ph",
     "address": "Greenhills McKinley Arcade MA-104B, Ortigas Avenue corner Club Filipino St., San Juan City",
     "contact": null,
@@ -132,7 +132,7 @@
   {
     "name": "APAYAO STATE COLLEGE",
     "slug": "apayao-state-college",
-    "email": null,
+    "email": "op_asc@yahoo.com",
     "website": "www.asc.edu.ph",
     "address": "Conner, Apayao",
     "contact": null,
@@ -142,7 +142,7 @@
   {
     "name": "APO PRODUCTION UNIT, INC.",
     "slug": "apo-production-unit-inc",
-    "email": null,
+    "email": "sales@apo.gov.ph",
     "website": "www.apo.gov.ph",
     "address": "2/F PIA Building, Visayas Ave. VASRA, Quezon City",
     "contact": null,
@@ -185,7 +185,7 @@
     "email": "busdevmarketing@apecozonefreeport.com",
     "website": "www.apeco.gov.ph",
     "address": "1 Corporate Campus. Sitio Motyong, Brgy. Esteves, Casiguran, Aurora",
-    "contact": null,
+    "contact": "(02) 7002 0905",
     "type": "constitutional",
     "parent_department": null
   },
@@ -242,17 +242,17 @@
   {
     "name": "BASILAN STATE COLLEGE",
     "slug": "basilan-state-college",
-    "email": null,
+    "email": "college_registrar@bassc.edu.ph",
     "website": "www.bassc.edu.ph",
     "address": "Isabela City, Basilan",
-    "contact": null,
+    "contact": "+63 915 778 4922",
     "type": "constitutional",
     "parent_department": null
   },
   {
     "name": "BATAAN PENINSULA STATE UNIVERSITY",
     "slug": "bataan-peninsula-state-university",
-    "email": null,
+    "email": "mc_admission@bpsu.edu.ph",
     "website": "www.bpsu.edu.ph",
     "address": "Balanga City, Bataan",
     "contact": null,
@@ -262,10 +262,10 @@
   {
     "name": "BATANES STATE COLLEGE",
     "slug": "batanes-state-college",
-    "email": null,
+    "email": "infounit@bscbatanes.edu.ph",
     "website": "www.bscbatanes.edu.ph",
     "address": "Washington Ave., San Antonio, Basco, Batanes",
-    "contact": null,
+    "contact": "+63 943 555 4578; +63 995 607 5114",
     "type": "constitutional",
     "parent_department": null
   },
@@ -282,7 +282,7 @@
   {
     "name": "BATANGAS STATE UNIVERSITY",
     "slug": "batangas-state-university",
-    "email": null,
+    "email": "publicrelations@g.batstate-u.edu.ph",
     "website": "www.batstate-u.edu.ph",
     "address": "Rizal Avenue Extension, Batangas",
     "contact": null,
@@ -363,9 +363,9 @@
     "name": "BOY SCOUTS OF THE PHILIPPINES",
     "slug": "boy-scouts-of-the-philippines",
     "email": "bsp@scouts.org.ph",
-    "website": null,
+    "website": "scouts.gov.ph",
     "address": "181 Natividad Almeda-Lopez St., Ermita, Manila",
-    "contact": null,
+    "contact": "(063) 852 7831",
     "type": "constitutional",
     "parent_department": null
   },
@@ -463,7 +463,7 @@
     "name": "BUKIDNON STATE UNIVERSITY",
     "slug": "bukidnon-state-university",
     "email": "buksupresoffice@buksu.edu.ph",
-    "website": "www.buksu.edu.ph",
+    "website": "buksu.edu.ph",
     "address": "Malaybalay City, Bukidnon",
     "contact": null,
     "type": "constitutional",
@@ -472,10 +472,10 @@
   {
     "name": "BULACAN AGRICULTURAL STATE COLLEGE",
     "slug": "bulacan-agricultural-state-college",
-    "email": null,
+    "email": "info@basc.edu.ph",
     "website": "www.basc.edu.ph",
     "address": "San Ildefonso, Bulacan",
-    "contact": null,
+    "contact": "(044) 792 4409; (044) 816 7121",
     "type": "constitutional",
     "parent_department": null
   },
@@ -1012,7 +1012,7 @@
   {
     "name": "CAMIGUIN POLYTECHNIC STATE COLLEGE",
     "slug": "camiguin-polytechnic-state-college",
-    "email": null,
+    "email": "cpscregistrar@gmail.com",
     "website": "www.cpsc.ph",
     "address": "Balbagon, Mambajao, Camiguin",
     "contact": null,
@@ -1053,7 +1053,7 @@
     "name": "CARLOS HILADO MEMORIAL STATE COLLEGE",
     "slug": "carlos-hilado-memorial-state-college",
     "email": "president.office@chmsc.edu.ph",
-    "website": "www.chmsc.edu.ph",
+    "website": "chmsu.edu.ph",
     "address": "Talisay City, Negros Occidental",
     "contact": null,
     "type": "constitutional",
@@ -1062,10 +1062,10 @@
   {
     "name": "CATANDUANES STATE UNIVERSITY",
     "slug": "catanduanes-state-university",
-    "email": "csu2012@catanduanesstateu.edu.ph",
-    "website": "www.catanduanesstateu.edu.ph",
+    "email": "catsu1961@catsu.edu.ph",
+    "website": "catsu.edu.ph",
     "address": "Virac, Catanduanes",
-    "contact": null,
+    "contact": "+63 969 025 9166",
     "type": "constitutional",
     "parent_department": null
   },
@@ -1073,7 +1073,7 @@
     "name": "CAVITE STATE UNIVERSITY",
     "slug": "cavite-state-university",
     "email": "office.president@cvsu.edu.ph",
-    "website": "www.cvsu.edu.ph",
+    "website": "cvsu.edu.ph",
     "address": "Indang, Cavite",
     "contact": null,
     "type": "constitutional",
@@ -1230,18 +1230,8 @@
     "parent_department": null
   },
   {
-    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP A",
-    "slug": "coconut-industry-investment-fund-group-a",
-    "email": "trade-info@ciif.ph",
-    "website": "www.ciif.ph",
-    "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
-    "contact": null,
-    "type": "constitutional",
-    "parent_department": null
-  },
-  {
-    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP B",
-    "slug": "coconut-industry-investment-fund-group-b",
+    "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP",
+    "slug": "coconut-industry-investment-fund-group",
     "email": "trade-info@ciif.ph",
     "website": "www.ciif.ph",
     "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
@@ -2542,10 +2532,10 @@
   {
     "name": "COTABATO FOUNDATION COLLEGE OF SCIENCE AND TECHNOLOGY",
     "slug": "cotabato-foundation-college-of-science-and-technology",
-    "email": null,
+    "email": "admin@cfcst.edu.ph",
     "website": "www.cfcst.edu.ph",
     "address": "Doroluman, Arakan, Cotabato",
-    "contact": null,
+    "contact": "(064) 577-1531",
     "type": "constitutional",
     "parent_department": null
   },
@@ -2625,7 +2615,7 @@
     "email": "president@ddosc.edu.ph",
     "website": "www.ddosc.edu.ph",
     "address": "Poblacion, Compostela, Davao de Oro",
-    "contact": null,
+    "contact": "+63 929 169 5328",
     "type": "constitutional",
     "parent_department": null
   },
@@ -2932,7 +2922,7 @@
   {
     "name": "DEVELOPMENT BANK OF THE PHILIPPINES",
     "slug": "development-bank-of-the-philippines",
-    "email": null,
+    "email": "customerservice@dbp.ph",
     "website": "www.dbp.ph",
     "address": "Sen. Gil J. Puyat Avenue, Makati City",
     "contact": null,
@@ -2960,12 +2950,12 @@
     "parent_department": "DEPARTMENT OF HEALTH"
   },
   {
-    "name": "DON HONORIO VENTURA STATE UNIVERSITY",
-    "slug": "don-honorio-ventura-state-university",
-    "email": null,
+    "name": "PAMPANGA STATE UNIVERSITY",
+    "slug": "pampanga-state-university",
+    "email": "info@pampangastateu.edu.ph",
     "website": "www.dhvsu.edu.ph",
     "address": "Cabambangan, Bacolor, Pampanga",
-    "contact": null,
+    "contact": "(045) 649 8050",
     "type": "constitutional",
     "parent_department": null
   },
@@ -3923,7 +3913,7 @@
     "name": "GUIMARAS STATE UNIVERSITY",
     "slug": "guimaras-state-university",
     "email": "university.president@gsu.edu.ph",
-    "website": "www.gsc.edu.ph",
+    "website": "www.gsu.edu.ph",
     "address": "Buenavista, Guimaras",
     "contact": null,
     "type": "constitutional",
@@ -4152,10 +4142,10 @@
   {
     "name": "INTERCONTINENTAL BROADCASTING CORPORATION (IBC-13)",
     "slug": "intercontinental-broadcasting-corporation-ibc-13",
-    "email": null,
-    "website": null,
+    "email": "info@ibctv13.com",
+    "website": "ibctv13.com",
     "address": "Broadcast City, Capitol Hills, Diliman, Quezon City",
-    "contact": null,
+    "contact": "(+632) 3433 7031",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4292,10 +4282,10 @@
   {
     "name": "JOSE RIZAL MEMORIAL STATE UNIVERSITY",
     "slug": "jose-rizal-memorial-state-university",
-    "email": null,
+    "email": "university.president@jrmsu.edu.ph",
     "website": "www.jrmsu.edu.ph",
     "address": "Gov. Guading Adaza St., Sta. Cruz, Dapitan City, Zamboanga del Norte",
-    "contact": null,
+    "contact": "(065) 908 8294",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4325,7 +4315,7 @@
     "email": null,
     "website": null,
     "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
-    "contact": null,
+    "contact": "(02) 8840 4838",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4353,7 +4343,7 @@
     "name": "LAGUNA LAKE DEVELOPMENT AUTHORITY",
     "slug": "laguna-lake-development-authority",
     "email": "info@llda.gov.ph",
-    "website": "www.llda.gov.ph",
+    "website": "llda.gov.ph",
     "address": "LLADA Bldg., National Ecology Center, East Avenue Diliman, Quezon City",
     "contact": null,
     "type": "constitutional",
@@ -4362,8 +4352,8 @@
   {
     "name": "LAGUNA STATE POLYTECHNIC UNIVERSITY",
     "slug": "laguna-state-polytechnic-university",
-    "email": null,
-    "website": "www.lspu.edu.ph",
+    "email": "info@lspu.edu.ph",
+    "website": "lspu.edu.ph",
     "address": "Los Baños, Laguna",
     "contact": null,
     "type": "constitutional",
@@ -4372,10 +4362,10 @@
   {
     "name": "LAND BANK OF THE PHILIPPINES",
     "slug": "land-bank-of-the-philippines",
-    "email": null,
+    "email": "customercare@landbank.com",
     "website": "www.landbank.com",
     "address": "32/F Landbank Plaza, 1598 M. H. del Pilar cor. Dr. J. Quintos Sts., Malate, Manila",
-    "contact": null,
+    "contact": "8405-7365",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4585,7 +4575,7 @@
     "email": null,
     "website": null,
     "address": "Mindanao State University- Main Campus, Marawi City, Lanao del Sur",
-    "contact": null,
+    "contact": "0985 834 0045",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4612,8 +4602,8 @@
   {
     "name": "MARINDUQUE STATE UNIVERSITY",
     "slug": "marinduque-state-university",
-    "email": null,
-    "website": "www.marinduquestatecollege.edu.ph",
+    "email": "info.office@marsu.edu.ph",
+    "website": "www.mscmarinduque.edu.ph",
     "address": "Boac, Marinduque",
     "contact": null,
     "type": "constitutional",
@@ -4912,10 +4902,10 @@
   {
     "name": "NATIONAL ELECTRIFICATION ADMINISTRATION",
     "slug": "national-electrification-administration",
-    "email": null,
+    "email": "nea@nea.gov.ph",
     "website": "www.nea.gov.ph",
     "address": "57 NEA Bldg., NIA Road, Government Center, Diliman, Quezon City",
-    "contact": null,
+    "contact": "(+632) 8929-1909",
     "type": "constitutional",
     "parent_department": null
   },
@@ -4932,10 +4922,10 @@
   {
     "name": "NATIONAL FOOD AUTHORITY",
     "slug": "national-food-authority",
-    "email": null,
+    "email": "helpdesk@nfa.gov.ph",
     "website": "www.nfa.gov.ph",
     "address": "Visayas Avenue, Brgy. Vasra, Quezon City",
-    "contact": null,
+    "contact": "0917-113-9347",
     "type": "constitutional",
     "parent_department": null
   },
@@ -5230,10 +5220,10 @@
     "parent_department": null
   },
   {
-    "name": "NORTHEASTERN MINDANAO STATE UNIVERSITY",
-    "slug": "northeastern-mindanao-state-university",
-    "email": "nemsuop@sdssu.edu.ph",
-    "website": "www.sdssu.edu.ph",
+    "name": "NORTH EASTERN MINDANAO STATE UNIVERSITY",
+    "slug": "north-eastern-mindanao-state-university",
+    "email": "information@nemsu.edu.ph",
+    "website": "nemsu.edu.ph",
     "address": "Tandag, Surigao del Sur",
     "contact": null,
     "type": "constitutional",
@@ -5252,8 +5242,8 @@
   {
     "name": "NORTHERN ILOILO STATE UNIVERSITY",
     "slug": "northern-iloilo-state-university",
-    "email": "president@nipsc.edu.ph",
-    "website": "www.nipsc.edu.ph",
+    "email": "nisuadmin@nisu.edu.ph",
+    "website": "www.nisu.edu.ph",
     "address": "Estancia, Iloilo",
     "contact": null,
     "type": "constitutional",
@@ -5282,7 +5272,7 @@
   {
     "name": "NUEVA ECIJA UNIVERSITY OF SCIENCE AND TECHNOLOGY",
     "slug": "nueva-ecija-university-of-science-and-technology",
-    "email": null,
+    "email": "neustmain@neust.edu.ph",
     "website": "www.neust.edu.ph",
     "address": "Gen. Tinio Street, Brgy. Quezon District, Cabanatuan City, Nueva Ecija",
     "contact": null,
@@ -5293,7 +5283,7 @@
     "name": "NUEVA VIZCAYA STATE UNIVERSITY",
     "slug": "nueva-vizcaya-state-university",
     "email": "info@nvsu.edu.ph",
-    "website": "my.nvsu.edu.ph",
+    "website": "www.nvsu.edu.ph",
     "address": "Quezon St., Bayombong, Nueva Vizcaya",
     "contact": null,
     "type": "constitutional",
@@ -5302,10 +5292,10 @@
   {
     "name": "OCCIDENTAL MINDORO STATE COLLEGE",
     "slug": "occidental-mindoro-state-college",
-    "email": null,
+    "email": "president@omsc.edu.ph",
     "website": "www.omsc.edu.ph",
     "address": "San Jose, Occidental Mindoro",
-    "contact": null,
+    "contact": "(043) 457 0231",
     "type": "constitutional",
     "parent_department": null
   },
@@ -5882,10 +5872,10 @@
   {
     "name": "PHILIPPINE MERCHANT MARINE ACADEMY",
     "slug": "philippine-merchant-marine-academy",
-    "email": null,
+    "email": "information@pmma.edu.ph",
     "website": "www.pmma.edu.ph",
     "address": "New PMMA-Complex Site, San Narciso, Zambales",
-    "contact": null,
+    "contact": "(047) 913-4395; 9134396 loc.161; 913-4398 TF",
     "type": "constitutional",
     "parent_department": null
   },
@@ -5985,7 +5975,7 @@
     "email": "info@pppi.gov.ph",
     "website": "pppi.gov.ph",
     "address": "Penthouse, NDC Building, 116 Tordesillas St., Salcedo Village, Makati City",
-    "contact": null,
+    "contact": "0919-337-8201",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6052,10 +6042,10 @@
   {
     "name": "PHILIPPINE RICE RESEARCH INSTITUTE",
     "slug": "philippine-rice-research-institute",
-    "email": null,
+    "email": "philrice@philrice.gov.ph",
     "website": "www.philrice.gov.ph",
     "address": "Maligaya, Science City of Muñoz, Nueva Ecija",
-    "contact": null,
+    "contact": "0917-111-7423",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6185,7 +6175,7 @@
     "email": "inquiry@pnoc-rc.com.ph",
     "website": "www.pnoc-rc.com.ph",
     "address": "Ground Floor, PNOC Building 5, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
-    "contact": null,
+    "contact": "(+632) 8840-3079",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6212,7 +6202,7 @@
   {
     "name": "PORO POINT MANAGEMENT CORPORATION",
     "slug": "poro-point-management-corporation",
-    "email": null,
+    "email": "poropointfreeportzone@gmail.com",
     "website": "www.poropointfreeport.gov.ph",
     "address": "Gov. Joaquin L. Ortega Avenue San Fernando City, La Union",
     "contact": null,
@@ -6412,10 +6402,10 @@
   {
     "name": "ROMBLON STATE UNIVERSITY",
     "slug": "romblon-state-university",
-    "email": null,
+    "email": "romblonstateu@gmail.com",
     "website": "www.rsu.edu.ph",
     "address": "Liwanag, Odiongan, Romblon",
-    "contact": null,
+    "contact": "(042) 567-5273",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6632,7 +6622,7 @@
   {
     "name": "SORSOGON STATE UNIVERSITY",
     "slug": "sorsogon-state-university",
-    "email": null,
+    "email": "ssc@sorsu.edu.ph",
     "website": "www.sorsu.edu.ph",
     "address": "Sorsogon City",
     "contact": null,
@@ -6642,7 +6632,7 @@
   {
     "name": "SOUTH COTABATO STATE COLLEGE",
     "slug": "south-cotabato-state-college",
-    "email": null,
+    "email": "southcotabatostatecollege@scsc.edu.ph",
     "website": null,
     "address": "Surallah, South Cotabato",
     "contact": null,
@@ -6742,30 +6732,30 @@
   {
     "name": "SULTAN KUDARAT STATE UNIVERSITY",
     "slug": "sultan-kudarat-state-university",
-    "email": null,
+    "email": "info@sksu.edu.ph",
     "website": "www.sksu.edu.ph",
     "address": "Tacurong, Sultan Kudarat",
-    "contact": null,
+    "contact": "(064) 200 7336",
     "type": "constitutional",
     "parent_department": null
   },
   {
     "name": "SULU STATE COLLEGE",
     "slug": "sulu-state-college",
-    "email": null,
+    "email": "sulustatecollege2018@gmail.com",
     "website": "www.sulustatecollege.edu.ph",
     "address": "Jolo, Sulu",
-    "contact": null,
+    "contact": "+63 917 133 9112",
     "type": "constitutional",
     "parent_department": null
   },
   {
     "name": "SURIGAO DEL NORTE STATE UNIVERSITY",
     "slug": "surigao-del-norte-state-university",
-    "email": null,
+    "email": "info@snsu.edu.ph",
     "website": "www.ssct.edu.ph",
     "address": "Surigao City",
-    "contact": null,
+    "contact": "(086) 827-3741",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6902,10 +6892,10 @@
   {
     "name": "UCPB LEASING AND FINANCE CORPORATION",
     "slug": "ucpb-leasing-and-finance-corporation",
-    "email": "kgcuevas@ucpb.com; lsgopico@ucpb.com",
-    "website": null,
+    "email": "customercare@lbpleasing.com",
+    "website": "https://www.lbpleasing.com/",
     "address": "14/F Sycip Law Center, 105 Paseo de Roxas St. Brgy. San Lorenzo, Makati City",
-    "contact": null,
+    "contact": "8818-2200",
     "type": "constitutional",
     "parent_department": null
   },
@@ -6992,7 +6982,7 @@
   {
     "name": "UNIVERSITY OF EASTERN PHILIPPINES",
     "slug": "university-of-eastern-philippines",
-    "email": null,
+    "email": "uepnsofficial@gmail.com",
     "website": "www.uep.edu.ph",
     "address": "Catarman, Northern Samar",
     "contact": null,
@@ -7003,7 +6993,7 @@
     "name": "UNIVERSITY OF NORTHERN PHILIPPINES",
     "slug": "university-of-northern-philippines",
     "email": "op@unp.edu.ph",
-    "website": "www.unp.edu.ph",
+    "website": "unp.edu.ph",
     "address": "Tamag, Vigan City, Ilocos Sur",
     "contact": null,
     "type": "constitutional",
@@ -7183,7 +7173,7 @@
     "name": "WESTERN PHILIPPINES UNIVERSITY",
     "slug": "western-philippines-university",
     "email": "pres.office@wpu.edu.ph",
-    "website": "www.wpu.edu.ph",
+    "website": "wpu.edu.ph",
     "address": "Aborlan, Palawan",
     "contact": null,
     "type": "constitutional",
@@ -7223,7 +7213,7 @@
     "name": "ZAMBOANGA PENINSULA POLYTECHNIC STATE UNIVERSITY",
     "slug": "zamboanga-peninsula-polytechnic-state-university",
     "email": "zppsu@zppsu.edu.ph",
-    "website": "www.zppsu.edu.ph",
+    "website": "zppsu.edu.ph",
     "address": "R.T. Lim Boulevard, Baliwasan, Zamboanga City",
     "contact": null,
     "type": "constitutional",
