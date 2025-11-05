@@ -1,0 +1,31 @@
+name: GitHub Actions Security Analysis with zizmor 🌈
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize]
+
+permissions: {}
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor 🌈
+        uses: zizmorcore/zizmor-action@e673c3917a1aef3c65c972347ed84ccd013ecda4 # v0.2.0
+        with:
+          # toggles use of GitHub's Advanced Security functionality which sets up code scanning for the repo
+          # one important thing to note is that this will consume GitHub Actions minutes
+          # see https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning
+          advanced-security: false
+          inputs: |
+            .github/workflows/
