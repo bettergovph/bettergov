@@ -96,8 +96,10 @@ test.describe('Navigation', () => {
     await page.goto('/government/departments');
 
     // Check if branch exists
-    let branch = page.locator('a.bg-primary-500').first(); // Selected branch
-    await expect(branch).toContainText('Executive Departments');
+    let branch = page
+      .getByRole('link', { name: 'Executive Departments' })
+      .first(); // Selected branch
+    await expect(branch).toContainClass('bg-primary-500');
 
     const grid = page.locator('div.inline-grid');
     await grid
@@ -105,8 +107,8 @@ test.describe('Navigation', () => {
       .first()
       .click();
 
-    branch = page.locator('a.bg-primary-500').first();
-    await expect(branch).toContainText('Local Government Units');
+    branch = page.getByRole('link', { name: 'Local Government Units' }).first();
+    await expect(branch).toContainClass('bg-primary-500');
     expect(page.url()).toContain('/government/local');
   });
 });

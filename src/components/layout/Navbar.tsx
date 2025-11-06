@@ -39,13 +39,57 @@ const Navbar: FC = () => {
     i18n.changeLanguage(newLanguage);
   };
 
+  /**
+   * Removes a single trailing slash from a path string.
+   *
+   * This function returns a new string with one trailing '/' removed if present.
+   * It does not alter other slashes inside the path. For the root path "/" the
+   * returned value will be an empty string.
+   *
+   * @param path - The path to normalize.
+   * @returns The normalized path without a trailing slash.
+   *
+   * @example
+   * normalizePath("/about/"); // "/about"
+   *
+   * @example
+   * normalizePath("/about"); // "/about"
+   *
+   * @example
+   * normalizePath("/"); // ""
+   */
+  const normalizePath = (path: string): string => path.replace(/\/$/, '');
+
+  // This function builds the full path
+  // Edge cases for certain links are handled here
+  const buildFullPath = (href: string): string => {
+    let fullPath = location.pathname;
+
+    // Edge case: for /government/*
+    // Example:
+    //    nav href: /government/legislative
+    //    actual address: /government/legislative/senate-of-the-philippines-20th-congress
+    if (href.startsWith('/government')) {
+      const parts = fullPath.split('/');
+      // ["", "government", "legislative", "senate-of-the-philippines-20th-congress"]
+      if (parts.length > 3) {
+        // Remove the last segment
+        parts.pop();
+        fullPath = parts.join('/');
+      }
+    }
+
+    // We include the search queries because of /services
+    return fullPath + location.search;
+  };
+
   const isActiveRoute = (href: string) => {
     // Handle edge cases: null, undefined, or empty href
     if (!href) return false;
 
     // Normalize paths by removing trailing slashes
-    const normalizedPath = location.pathname.replace(/\/$/, '');
-    const normalizedHref = href.replace(/\/$/, '');
+    const normalizedPath = normalizePath(location.pathname);
+    const normalizedHref = normalizePath(href);
 
     // Check exact match or if current path starts with href
     return (
@@ -53,6 +97,20 @@ const Navbar: FC = () => {
       (normalizedHref !== '/' &&
         normalizedPath.startsWith(normalizedHref + '/'))
     );
+  };
+
+  const isActiveChildRoute = (href: string): boolean => {
+    // Handle edge cases: null, undefined, or empty href
+    if (!href) return false;
+
+    const fullPath = buildFullPath(href);
+
+    // Normalize paths by removing trailing slashes
+    const normalizedPath = normalizePath(fullPath);
+    const normalizedHref = normalizePath(href);
+
+    // Check exact match or if current path equals href
+    return normalizedHref !== '/' && normalizedPath === normalizedHref;
   };
 
   const handleDropdownMouseEnter = (label: string) => {
@@ -179,7 +237,11 @@ const Navbar: FC = () => {
                           <Link
                             key={child.label}
                             to={child.href}
-                            className='text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            className={`text-left block px-4 py-2 text-sm ${
+                              isActiveChildRoute(child.href)
+                                ? 'bg-primary-500 text-primary-50 hover:bg-primary-500 hover:text-primary-50'
+                                : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
+                            }`}
                             role='menuitem'
                             target={child.target}
                           >

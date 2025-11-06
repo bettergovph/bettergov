@@ -50,25 +50,28 @@ export default function DepartmentsSidebar({
             Department of
           </h3>
           <ul className='space-y-1'>
-            {filteredDepartments.map(dept => (
-              <li key={dept.slug}>
-                <button
-                  onClick={() => handleDeptSelect(dept)}
-                  className={`w-full text-left px-4 py-3 text-sm rounded-md transition-colors cursor-pointer ${
-                    departmentParam === dept.slug
-                      ? 'bg-primary-50 text-primary-700 font-medium'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  <div className='flex items-center'>
-                    <Building2Icon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
-                    <span className='truncate'>
-                      {dept.office_name.replace('DEPARTMENT OF ', '')}
-                    </span>
-                  </div>
-                </button>
-              </li>
-            ))}
+            {filteredDepartments
+              .sort((a, b) => a.office_name.localeCompare(b.office_name))
+              .map(dept => (
+                <li key={dept.slug}>
+                  <button
+                    title={dept.office_name.replace('DEPARTMENT OF ', '')}
+                    onClick={() => handleDeptSelect(dept)}
+                    className={`w-full text-left px-4 py-3 text-sm rounded-md transition-colors cursor-pointer ${
+                      departmentParam === dept.slug
+                        ? 'bg-primary-50 text-primary-700 font-medium'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className='flex items-center'>
+                      <Building2Icon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
+                      <span className='truncate'>
+                        {dept.office_name.replace('DEPARTMENT OF ', '')}
+                      </span>
+                    </div>
+                  </button>
+                </li>
+              ))}
           </ul>
         </nav>
       )}

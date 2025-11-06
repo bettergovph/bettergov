@@ -54,12 +54,12 @@ If you're interested in contributing, please reach out to us at [volunteers@bett
 
 ## Code of Conduct
 
-We are committed to fostering a welcoming and respectful community.  
+We are committed to fostering a welcoming and respectful community.
 Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) before participating.
 
 ## Contributing
 
-We welcome contributions from everyone!  
+We welcome contributions from everyone!
 Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
 
 - Development setup
@@ -77,6 +77,12 @@ npm run dev
 ```
 
 **Access the application at:** `http://localhost:5173`
+
+## GitHub Codespaces
+
+You may use GitHub Codespaces for an instant development environment with dependencies automatically installed for you.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/bettergovph/bettergov?quickstart=1)
 
 ## Docker
 
@@ -115,7 +121,7 @@ docker-compose down
 
 ## Testing
 
-This project uses Playwright for end-to-end testing.  
+This project uses Playwright for end-to-end testing.
 For setup instructions, coverage details, and examples, see our [Testing Guide](./TESTING.md).
 
 ## Contributing

@@ -364,7 +364,7 @@ export default function ServicesPage() {
                         className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                           selectedCategorySlug === 'all'
                             ? 'bg-primary-50 text-primary-600 font-medium'
-                            : 'text-gray-800 hover:bg-gray-50'
+                            : 'cursor-default text-gray-800 hover:bg-gray-50 hover:cursor-pointer'
                         }`}
                         aria-current={
                           selectedCategorySlug === 'all' ? 'true' : undefined
@@ -388,7 +388,7 @@ export default function ServicesPage() {
                             className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                               selectedCategorySlug === category.slug
                                 ? 'bg-primary-50 text-primary-600 font-medium'
-                                : 'text-gray-800 hover:bg-gray-50'
+                                : 'cursor-default text-gray-800 hover:bg-gray-50 hover:cursor-pointer'
                             }`}
                             aria-expanded={
                               selectedCategorySlug === category.slug
@@ -427,7 +427,7 @@ export default function ServicesPage() {
                                 className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
                                   selectedSubcategorySlug === subcategory.slug
                                     ? 'bg-primary-50 text-primary-600 font-medium'
-                                    : 'text-gray-800 hover:bg-gray-50'
+                                    : 'cursor-default text-gray-800 hover:bg-gray-50 hover:cursor-pointer'
                                 }`}
                                 aria-current={
                                   selectedSubcategorySlug === subcategory.slug
@@ -485,7 +485,7 @@ export default function ServicesPage() {
                                 });
                                 setCurrentPage(1);
                               }}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors'
+                              className='cursor-default inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors hover:cursor-pointer'
                             >
                               {service.category.name}
                             </button>
@@ -498,7 +498,7 @@ export default function ServicesPage() {
                                 });
                                 setCurrentPage(1);
                               }}
-                              className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors'
+                              className='cursor-default inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors hover:cursor-pointer'
                             >
                               {service.subcategory.name}
                             </button>
@@ -523,7 +523,7 @@ export default function ServicesPage() {
                           target='_blank'
                           rel='noopener noreferrer'
                         >
-                          <Button className='bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4'>
+                          <Button className='cursor-default bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4 hover:cursor-pointer'>
                             View Service
                           </Button>
                         </a>
