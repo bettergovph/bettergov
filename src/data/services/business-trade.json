@@ -595,7 +595,7 @@
   },
   {
     "service": "Check Status of CNC Application Online",
-    "url": "https://cnconline.emb.gov.ph/projectchecker/ApplicationTracking.aspx?View=0",
+    "url": "https://eiais.emb.gov.ph/internal/public/searchprojects.aspx",
     "id": "be8adae2-65d9-4ffc-8998-41e1d7823750",
     "slug": "check-status-of-cnc-application-online",
     "published": true,
