@@ -1,7 +1,7 @@
 [
   {
     "service": "Apply for DBP CRUISE Loan",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/connecting-rural-urban-intermodal-systems-efficiently-cruise/",
+    "url": "https://www.dbp.ph/developmental-banking/how-to-apply-for-a-loan/",
     "id": "76f903f1-459a-472e-ad6b-d4a474aaff7e",
     "slug": "apply-for-dbp-cruise-loan",
     "published": true,
@@ -37,7 +37,7 @@
   },
   {
     "service": "Renew your Driver's License",
-    "url": "https://lto.gov.ph/license-and-permit.html",
+    "url": "https://ltoexam.com/drivers-license-renewal/",
     "id": "608751b3-2353-4485-978f-027a6c7c5f64",
     "slug": "renew-your-drivers-license",
     "published": true,
@@ -49,24 +49,6 @@
     "subcategory": {
       "name": "License",
       "slug": "license"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "File Reports on Motorists and Road Concerns",
-    "url": "http://www.mmda.gov.ph/i-will-act",
-    "id": "2adc9acb-96b2-4627-8f13-10d008da1c52",
-    "slug": "file-reports-on-motorists-and-road-concerns",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Transport and Driving",
-      "slug": "transport-driving"
-    },
-    "subcategory": {
-      "name": "Transport Complains",
-      "slug": "transport-complaints"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
     "updatedAt": "2025-06-06T11:30:06.319Z"
@@ -91,7 +73,7 @@
   },
   {
     "service": "Foreign Driver's License Conversion",
-    "url": "https://www.lto.gov.ph/wp-content/uploads/2023/09/9-CC2024-DL-CONVERSION.pdf",
+    "url": "https://ltoportal.ph/convert-foreign-drivers-license-philippines/",
     "id": "82d3c19f-5862-4ffd-8bd2-f72ef1c1e47b",
     "slug": "foreign-license-conversion-philippines",
     "published": true,
