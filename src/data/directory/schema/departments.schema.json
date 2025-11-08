@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Government Departments",
+  "description": "Schema for government department directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["slug", "office_name"],
+    "properties": {
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier for the department"
+      },
+      "office_name": {
+        "type": "string",
+        "description": "Official name of the department"
+      },
+      "address": {
+        "type": "string",
+        "description": "Physical address of the department"
+      },
+      "trunkline": {
+        "type": "string",
+        "description": "Main contact phone number"
+      },
+      "website": {
+        "type": "string",
+        "description": "Official website URL"
+      },
+      "secretary": {
+        "type": "object",
+        "description": "Department secretary information",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the secretary"
+          },
+          "contact": {
+            "type": "string",
+            "description": "Contact information"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address (can contain multiple addresses separated by semicolons)",
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+          }
+        }
+      },
+      "undersecretaries": {
+        "type": "array",
+        "description": "List of undersecretaries",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the undersecretary"
+            },
+            "role": {
+              "type": "string",
+              "description": "Role or group responsibility"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            }
+          }
+        }
+      },
+      "attached_agencies": {
+        "type": "array",
+        "description": "List of agencies attached to the department",
+        "items": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Official name of the attached agency"
+            },
+            "executive_director": {
+              "type": "string",
+              "description": "Name of the executive director"
+            },
+            "director": {
+              "type": "string",
+              "description": "Name of the director"
+            },
+            "officer_in_charge": {
+              "type": "string",
+              "description": "Name of the officer in charge"
+            },
+            "officer_in_charge_executive_director": {
+              "type": "string",
+              "description": "Name of the officer in charge/executive director"
+            },
+            "acting_executive_director": {
+              "type": "string",
+              "description": "Name of the acting executive director"
+            },
+            "administrator": {
+              "type": "string",
+              "description": "Name of the administrator"
+            },
+            "chairperson": {
+              "type": "string",
+              "description": "Name of the chairperson"
+            },
+            "chairperson_presiding_commissioner": {
+              "type": "string",
+              "description": "Name of the chairperson/presiding commissioner"
+            },
+            "commissioner": {
+              "type": "string",
+              "description": "Name of the commissioner"
+            },
+            "insurance_commissioner": {
+              "type": "string",
+              "description": "Name of the insurance commissioner"
+            },
+            "privacy_commissioner_and_chairman": {
+              "type": "string",
+              "description": "Name of the privacy commissioner and chairman"
+            },
+            "national_statistician_and_civil_registrar_general": {
+              "type": "string",
+              "description": "Name of the national statistician and civil registrar general"
+            },
+            "solicitor_general": {
+              "type": "string",
+              "description": "Name of the solicitor general"
+            },
+            "chief": {
+              "type": "string",
+              "description": "Name of the chief"
+            },
+            "president": {
+              "type": "string",
+              "description": "Name of the president"
+            },
+            "vice_chairman_and_executive_officer": {
+              "type": "string",
+              "description": "Name of the vice chairman and executive officer"
+            },
+            "address": {
+              "type": "string",
+              "description": "Physical address of the agency"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact phone number"
+            },
+            "trunkline": {
+              "type": "string",
+              "description": "Main contact phone number"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            },
+            "website": {
+              "type": "string",
+              "description": "Official website URL"
+            }
+          }
+        }
+      }
+    }
+  }
+}
