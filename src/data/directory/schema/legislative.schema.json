@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Legislative Branch",
+  "description": "Schema for legislative branch directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["slug", "branch", "chamber"],
+    "properties": {
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier for the chamber"
+      },
+      "branch": {
+        "type": "string",
+        "description": "Branch of government (e.g., 'Legislative Branch')"
+      },
+      "chamber": {
+        "type": "string",
+        "description": "Name of the legislative chamber"
+      },
+      "address": {
+        "type": "string",
+        "description": "Physical address of the chamber"
+      },
+      "trunkline": {
+        "type": "string",
+        "description": "Main contact phone number"
+      },
+      "website": {
+        "type": "string",
+        "description": "Official website URL"
+      },
+      "officials": {
+        "type": "array",
+        "description": "List of legislative officials",
+        "items": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Role or position title (e.g., 'Senate President', 'Senator')"
+            },
+            "name": {
+              "type": "string",
+              "description": "Full name of the official"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information including local extensions"
+            }
+          }
+        }
+      },
+      "permanent_committees": {
+        "type": "array",
+        "description": "List of permanent committees (Senate)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "committee": {
+              "type": "string",
+              "description": "Name of the committee"
+            },
+            "chairperson": {
+              "type": "string",
+              "description": "Name of the committee chairperson"
+            }
+          }
+        }
+      },
+      "secretariat_officials": {
+        "type": "array",
+        "description": "List of secretariat officials (Senate)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Role or position title"
+            },
+            "name": {
+              "type": "string",
+              "description": "Full name of the official"
+            },
+            "office": {
+              "type": "string",
+              "description": "Office or department name"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information including local extensions"
+            }
+          }
+        }
+      },
+      "house_leaders": {
+        "type": "object",
+        "description": "House of Representatives leadership structure",
+        "properties": {
+          "speaker": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Speaker"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
+          "deputy_speakers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the Deputy Speaker"
+                },
+                "contact": {
+                  "type": "object",
+                  "properties": {
+                    "contact": {
+                      "type": "string",
+                      "description": "Contact information"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "majority_floor_leader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Majority Floor Leader"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
+          "senior_deputy_majority_floor_leader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Senior Deputy Majority Floor Leader"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
+          "minority_floor_leader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Minority Floor Leader"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
+          "senior_deputy_minority_floor_leader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Senior Deputy Minority Floor Leader"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "house_members": {
+        "type": "array",
+        "description": "List of House of Representatives members",
+        "items": {
+          "type": "object",
+          "properties": {
+            "province_city": {
+              "type": "string",
+              "description": "Province or city represented"
+            },
+            "name": {
+              "type": "string",
+              "description": "Full name of the representative"
+            },
+            "district": {
+              "type": "string",
+              "description": "District represented"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information"
+            }
+          }
+        }
+      },
+      "party_list_representatives": {
+        "type": "array",
+        "description": "List of party-list representatives",
+        "items": {
+          "type": "object",
+          "properties": {
+            "party_list": {
+              "type": "string",
+              "description": "Name of the party-list organization"
+            },
+            "name": {
+              "type": "string",
+              "description": "Full name of the representative"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information"
+            }
+          }
+        }
+      }
+    }
+  }
+}
