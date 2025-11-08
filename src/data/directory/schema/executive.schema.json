@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Executive Branch Offices",
+  "description": "Schema for executive branch office directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["slug", "office"],
+    "properties": {
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier for the office"
+      },
+      "office": {
+        "type": "string",
+        "description": "Official name of the office"
+      },
+      "address": {
+        "type": "string",
+        "description": "Physical address of the office"
+      },
+      "trunkline": {
+        "type": "string",
+        "description": "Main contact phone number"
+      },
+      "email": {
+        "type": "string",
+        "description": "Email address (can contain multiple addresses separated by semicolons)",
+        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+      },
+      "phone": {
+        "type": "string",
+        "description": "Alternative contact phone number"
+      },
+      "website": {
+        "type": "string",
+        "description": "Official website URL"
+      },
+      "officials": {
+        "type": "array",
+        "description": "List of officials and office divisions",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the official"
+            },
+            "role": {
+              "type": "string",
+              "description": "Role or position title"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            },
+            "office_division": {
+              "type": "string",
+              "description": "Name of the office division"
+            },
+            "personnel": {
+              "type": "array",
+              "description": "List of personnel in the division",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the personnel"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "Role or position title"
+                  },
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email address (can contain multiple addresses separated by semicolons)",
+                    "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+                  },
+                  "other_office": {
+                    "type": "string",
+                    "description": "Alternative office or department designation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "bureaus": {
+        "type": "array",
+        "description": "List of bureaus under the office",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the bureau"
+            },
+            "address": {
+              "type": "string",
+              "description": "Physical address of the bureau"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Contact phone number"
+            },
+            "website": {
+              "type": "string",
+              "description": "Official website URL"
+            }
+          }
+        }
+      },
+      "attached_agency": {
+        "type": "array",
+        "description": "List of attached agencies",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the attached agency"
+            },
+            "address": {
+              "type": "string",
+              "description": "Physical address of the agency"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Contact phone number"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            },
+            "website": {
+              "type": "string",
+              "description": "Official website URL"
+            }
+          }
+        }
+      }
+    }
+  }
+}
