@@ -24,6 +24,7 @@ const ForexPage: FC = () => {
   );
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [phpAmount, setPhpAmount] = useState<string>('1000');
 
   // Function to get currency icon
   const getCurrencyIcon = (code: string, size = 'h-6 w-6') => {
@@ -422,7 +423,8 @@ const ForexPage: FC = () => {
                           type='number'
                           className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3'
                           placeholder='0.00'
-                          defaultValue='1000'
+                          value={phpAmount}
+                          onChange={e => setPhpAmount(e.target.value)}
                         />
                       </div>
                     </div>
@@ -450,8 +452,11 @@ const ForexPage: FC = () => {
                           className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3 bg-gray-50'
                           readOnly
                           value={
-                            selectedCurrencyData.rate
-                              ? (1000 / selectedCurrencyData.rate).toFixed(2)
+                            selectedCurrencyData.rate && phpAmount
+                              ? (
+                                  parseFloat(phpAmount) /
+                                  selectedCurrencyData.rate
+                                ).toFixed(2)
                               : 'Data Unavailable'
                           }
                         />
