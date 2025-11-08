@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Constitutional Offices",
+  "description": "Schema for constitutional office directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["slug", "office_type", "name"],
+    "properties": {
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier for the office"
+      },
+      "office_type": {
+        "type": "string",
+        "description": "Type of constitutional office"
+      },
+      "name": {
+        "type": "string",
+        "description": "Official name of the office"
+      },
+      "description": {
+        "type": "string",
+        "description": "Brief description of the office's function"
+      },
+      "address": {
+        "type": "string",
+        "description": "Physical address of the office"
+      },
+      "trunklines": {
+        "type": "array",
+        "description": "List of main contact phone numbers",
+        "items": {
+          "type": "string"
+        }
+      },
+      "website": {
+        "type": "string",
+        "description": "Official website URL"
+      },
+      "officials": {
+        "type": "array",
+        "description": "List of officials",
+        "items": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Role or position title"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the official"
+            },
+            "office": {
+              "type": "string",
+              "description": "Office or department name"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact information"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            }
+          }
+        }
+      },
+      "regional_offices": {
+        "type": "array",
+        "description": "List of regional offices",
+        "items": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string",
+              "description": "Region name or code"
+            },
+            "director": {
+              "type": "string",
+              "description": "Name of the regional director"
+            },
+            "title": {
+              "type": "string",
+              "description": "Title or designation (e.g., Acting Director, Officer-in-Charge)"
+            },
+            "contact": {
+              "type": "string",
+              "description": "Contact phone numbers"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email address (can contain multiple addresses separated by semicolons)",
+              "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+            }
+          }
+        }
+      },
+      "public_assistance": {
+        "type": "object",
+        "description": "Public assistance or information office details",
+        "properties": {
+          "office": {
+            "type": "string",
+            "description": "Name of the public assistance office"
+          },
+          "director": {
+            "type": "string",
+            "description": "Name of the director"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title or designation (e.g., OIC-Director, Officer-in-Charge)"
+          },
+          "contact": {
+            "type": "string",
+            "description": "Contact phone numbers"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address (can contain multiple addresses separated by semicolons)",
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+          }
+        }
+      }
+    }
+  }
+}
