@@ -164,6 +164,66 @@ The scripts documentation includes:
 
 For the complete guide, see [docs/Meilisearch.md](./docs/Meilisearch.md).
 
+### JSON Schema Validation
+
+JSON schemas are used throughout the project to validate data files and ensure data integrity. Schemas are located in their respective data directories (e.g., `src/data/directory/lgu/schema/`).
+
+#### IDE Integration
+
+Schemas provide autocomplete, validation, and inline error detection when editing JSON files.
+
+**VS Code Setup**
+
+Add schema mappings to `.vscode/settings.json`:
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["src/data/directory/lgu/*.json"],
+      "url": "./src/data/directory/lgu/schema/lgu-region.schema.json"
+    }
+  ]
+}
+```
+
+**JetBrains IDEs Setup (WebStorm, IntelliJ IDEA)**
+
+1. Open **Preferences/Settings** → **Languages & Frameworks** → **Schemas and DTDs** → **JSON Schema Mappings**
+2. Click the **+** button to add a new mapping
+3. Configure each schema:
+   - **Name:** Descriptive name (e.g., "LGU Region Schema")
+   - **Schema file or URL:** Browse to schema file (e.g., `src/data/directory/lgu/schema/lgu-region.schema.json`)
+   - **Schema version:** JSON Schema version 7
+   - **File path pattern:** Add pattern (e.g., `src/data/directory/lgu/*.json`)
+
+#### Running Validation Locally
+
+To validate JSON files against a schema:
+
+```sh
+node scripts/validate-json-schema.js <schema-path> <files-pattern>
+```
+
+**Examples:**
+
+```sh
+# Validate all LGU region files
+node scripts/validate-json-schema.js \
+  src/data/directory/lgu/schema/lgu-region.schema.json \
+  "src/data/directory/lgu/*.json"
+
+# Validate specific files
+node scripts/validate-json-schema.js \
+  src/data/directory/lgu/schema/lgu-region.schema.json \
+  "src/data/directory/lgu/region-vi-western-visayas.json"
+```
+
+Schema validation runs automatically in CI/CD when changes are made to:
+- JSON data files (`src/data/**/*.json`)
+- Schema files (`src/data/**/schema/*.json`)
+- The validation script (`scripts/validate-json-schema.js`)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- This can be added later -->
@@ -255,7 +315,7 @@ docs/add-contributing-and-code-of-conduct
 
 ### Development Loop
 
-**Make Changes**  
+**Make Changes**
 Make sure your code passes linting and tests before committing.
 
 ```sh
