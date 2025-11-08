@@ -47,3 +47,45 @@ jobs:
           node scripts/validate-json-schema.js \
             src/data/directory/lgu/schema/lgu-region.schema.json \
             "src/data/directory/lgu/*.json"
+
+      - name: Validate constitutional JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/constitutional.schema.json \
+            src/data/directory/constitutional.json
+
+      - name: Validate departments JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/departments.schema.json \
+            src/data/directory/departments.json
+
+      - name: Validate diplomatic JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/diplomatic.schema.json \
+            src/data/directory/diplomatic.json
+
+      - name: Validate executive JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/executive.schema.json \
+            src/data/directory/executive.json
+
+      - name: Validate house members JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/house_members.schema.json \
+            src/data/directory/house_members.json
+
+      - name: Validate legislative JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/legislative.schema.json \
+            src/data/directory/legislative.json
+
+      - name: Validate party-list representatives JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/party_list_representatives.schema.json \
+            src/data/directory/party_list_representatives.json
