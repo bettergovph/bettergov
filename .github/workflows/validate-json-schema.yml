@@ -89,3 +89,9 @@ jobs:
           node scripts/validate-json-schema.js \
             src/data/directory/schema/party_list_representatives.schema.json \
             src/data/directory/party_list_representatives.json
+
+      - name: Validate services JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/services/schema/services.schema.json \
+            "src/data/services/*.json"
