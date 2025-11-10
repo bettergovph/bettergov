@@ -22,6 +22,7 @@ import philippinesRegionsData from '../../data/philippines-regions.json';
 import { HAZARD_LEVEL, MAPBOX_TILESET } from './constants';
 import { FloodYearEnum } from '@/enum/map.enum';
 import { IMapStyle } from '@/types/map.type';
+import SelectPicker from '@/components/ui/SelectPicker';
 
 // Define types for our data
 
@@ -114,6 +115,9 @@ const FloodControlProjectsMap: FC = () => {
   } | null>(null);
 
   // Map states
+  const [selectedFloodYear, setSelectedFloodYear] = useState<FloodYearEnum>(
+    FloodYearEnum.FIVE_YEAR
+  );
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegionName, setHoveredRegionName] = useState<string | null>(
     null
@@ -204,15 +208,21 @@ const FloodControlProjectsMap: FC = () => {
   const addFloodYearTileSet = useCallback(
     (floodYear: FloodYearEnum) => {
       if (!map.current || !isMapLoaded) return;
-
-      const generateMap;
+      const generateFloodYearSourceId = (
+        year: FloodYearEnum,
+        sourceLayer: string
+      ) => `flood-${year}-source-${sourceLayer}`;
+      const generateFloodYearLayerId = (
+        year: FloodYearEnum,
+        sourceLayer: string
+      ) => `flood-${year}-layer-${sourceLayer}`;
 
       Object.values(FloodYearEnum).forEach(year => {
         const tilesets = MAPBOX_TILESET[year];
 
-        tilesets.forEach((_, idx) => {
-          const sourceId = `flood-${year}-source-${idx}`;
-          const layerId = `flood-${year}-layer-${idx}`;
+        tilesets.forEach(({ sourceLayer }, idx) => {
+          const sourceId = generateFloodYearSourceId(year, sourceLayer);
+          const layerId = generateFloodYearLayerId(year, sourceLayer);
 
           if (map.current?.getLayer(layerId)) {
             map.current.removeLayer(layerId);
@@ -224,8 +234,14 @@ const FloodControlProjectsMap: FC = () => {
       });
 
       MAPBOX_TILESET[floodYear]?.forEach((element, idx) => {
-        const sourceId = `flood-${floodYear}-source-${idx}`;
-        const layerId = `flood-${floodYear}-layer-${idx}`;
+        const sourceId = generateFloodYearSourceId(
+          floodYear,
+          element.sourceLayer
+        );
+        const layerId = generateFloodYearLayerId(
+          floodYear,
+          element.sourceLayer
+        );
 
         if (!map.current?.getSource(sourceId)) {
           // uploaded flood areas tileset
@@ -583,6 +599,10 @@ const FloodControlProjectsMap: FC = () => {
     }
   }, [zoomLevel]);
 
+  useEffect(() => {
+    addFloodYearTileSet(selectedFloodYear);
+  }, [selectedFloodYear, addFloodYearTileSet]);
+
   return (
     <div className='min-h-screen bg-gray-50'>
       <Helmet>
@@ -696,7 +716,31 @@ const FloodControlProjectsMap: FC = () => {
                   )}
                 </Button>
               </div>
-
+              <div className='absolute top-4 left-4 z-10 flex flex-col gap-2 rounded bg-white p-4 min-w-3xs'>
+                <SelectPicker
+                  selectedValue={selectedFloodYear}
+                  options={Object.values(FloodYearEnum).map(val => ({
+                    label: val,
+                    value: val,
+                  }))}
+                  onSelect={data =>
+                    setSelectedFloodYear(data?.value as FloodYearEnum)
+                  }
+                  clearable={false}
+                  searchable={false}
+                />
+                <div className='flex flex-col gap-2'>
+                  {Object.values(HAZARD_LEVEL).map(({ color, label }, idx) => (
+                    <div className='flex flex-row gap-2 items-center' key={idx}>
+                      <div
+                        className='h-4 w-4'
+                        style={{ backgroundColor: color }}
+                      />
+                      <p>{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
               {/* Region Details Panel */}
               {/* {selectedRegion && (
                 <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm z-1000">
