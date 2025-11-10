@@ -36,10 +36,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Certify Employee Salary Loan",
-    "url": "https://www.sss.gov.ph/sss/appmanager/pages.jsp?page=salaryapplication",
+    "service": "Apply for SSS Salary Loan",
+    "url": "https://www.sss.gov.ph/salary-loan/",
     "id": "12544f9a-bad4-47d9-b12b-1d4377b1859c",
-    "slug": "certify-employee-salary-loan",
+    "slug": "apply-for-sss-salary-loan",
     "published": true,
     "featured": false,
     "category": {
