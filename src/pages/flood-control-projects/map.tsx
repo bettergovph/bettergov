@@ -1,6 +1,13 @@
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
-import { DownloadIcon, InfoIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react';
+import {
+  DownloadIcon,
+  InfoIcon,
+  MapIcon,
+  SatelliteIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from 'lucide-react';
 import mapboxgl, { LngLatBounds } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
@@ -14,6 +21,7 @@ import FloodControlProjectsTab from './tab';
 import philippinesRegionsData from '../../data/philippines-regions.json';
 import { HAZARD_LEVEL, MAPBOX_TILESET } from './constants';
 import { FloodYearEnum } from '@/enum/map.enum';
+import { IMapStyle } from '@/types/map.type';
 
 // Define types for our data
 
@@ -118,6 +126,10 @@ const FloodControlProjectsMap: FC = () => {
       RegionProperties
     >
   );
+  const [mapStyle, setMapStyle] = useState<IMapStyle>({
+    style: 'standard',
+    showRain: false,
+  });
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
   const [zoomLevel, setZoomLevel] = useState<number>(6);
@@ -657,6 +669,31 @@ const FloodControlProjectsMap: FC = () => {
                   aria-label='Zoom out'
                 >
                   <ZoomOutIcon className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='primary'
+                  size='sm'
+                  aria-label={
+                    mapStyle.style === 'satellite'
+                      ? 'Standard View'
+                      : 'Satellite View'
+                  }
+                >
+                  {mapStyle.style === 'satellite' ? (
+                    <MapIcon
+                      className='h-4 w-4'
+                      onClick={() =>
+                        setMapStyle(curr => ({ ...curr, style: 'standard' }))
+                      }
+                    />
+                  ) : (
+                    <SatelliteIcon
+                      className='h-4 w-4'
+                      onClick={() =>
+                        setMapStyle(curr => ({ ...curr, style: 'satellite' }))
+                      }
+                    />
+                  )}
                 </Button>
               </div>
 
