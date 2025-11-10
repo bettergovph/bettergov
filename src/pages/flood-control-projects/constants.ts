@@ -7,9 +7,9 @@ export const HAZARD_LEVEL: Record<
   HazardLevelEnum,
   { color: string; label: string }
 > = {
-  1: { label: 'Low', color: 'rgba(255, 250, 180, 0.6 )' },
-  2: { label: 'Medium', color: 'rgba(255, 200, 140,0.6 )' },
-  3: { label: 'High', color: 'rgba(255, 150, 150,0.6 )' },
+  1: { label: 'Low', color: 'rgba(255, 235, 100, 0.6)' },
+  2: { label: 'Medium', color: 'rgba(255, 165, 0, 0.6)' },
+  3: { label: 'High', color: 'rgba(220, 50, 50, 0.6)' },
 };
 
 export const HAZARD_BASE: Record<number, number> = {

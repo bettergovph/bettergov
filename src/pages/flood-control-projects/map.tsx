@@ -428,7 +428,7 @@ const FloodControlProjectsMap: FC = () => {
         id: 'region-fill',
         type: 'fill',
         source: 'regions',
-
+        maxzoom: 15,
         paint: {
           'fill-color': '#EDE9FE',
           'fill-opacity': 0.5,
@@ -483,7 +483,7 @@ const FloodControlProjectsMap: FC = () => {
         type: 'circle',
         source: 'projects',
         paint: {
-          'circle-radius': 6,
+          'circle-radius': 5,
           'circle-color': '#B91C1C',
           'circle-stroke-width': 1,
           'circle-stroke-color': '#FFFFFF',
@@ -502,15 +502,15 @@ const FloodControlProjectsMap: FC = () => {
           const props = feature.properties;
           const regionName = props.name;
 
-          const coordinates = (feature.geometry as GeoJSON.Polygon)
-            .coordinates[0];
-          const bounds = coordinates.reduce(
-            (bounds, coord) => bounds.extend(coord as [number, number]),
-            new mapboxgl.LngLatBounds(
-              coordinates[0] as [number, number],
-              coordinates[0] as [number, number]
-            )
-          );
+          let coords: number[][] = [];
+          if (feature.geometry.type === 'Polygon') {
+            coords = feature.geometry.coordinates[0];
+          } else if (feature.geometry.type === 'MultiPolygon') {
+            coords = feature.geometry.coordinates.flat(2);
+          }
+
+          const bounds = new mapboxgl.LngLatBounds();
+          coords.forEach(coord => bounds.extend(coord as [number, number]));
 
           const geoParams = calculateGeoSearchParams(bounds);
           setGeoSearch(geoParams);
@@ -520,10 +520,11 @@ const FloodControlProjectsMap: FC = () => {
             name: regionName,
             loading: true,
           };
+
           setSelectedRegion(regionDetails);
 
           if (map.current && map.current.getZoom() <= 8) {
-            map.current.fitBounds(bounds, { padding: 20 });
+            map.current.fitBounds(bounds, { padding: 50, duration: 2000 });
           }
         }
       });
@@ -565,39 +566,37 @@ const FloodControlProjectsMap: FC = () => {
           const project = feature.properties as FloodControlProject;
           const coordinates = (feature.geometry as GeoJSON.Point).coordinates;
 
-          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<div class='min-w-[200px]'>
-              <h3 class='font-bold text-gray-900'>
-                ${project.ProjectDescription || 'Unnamed Project'}
+          new mapboxgl.Popup({ offset: 25 })
+            .setLngLat(coordinates as [number, number])
+            .setHTML(
+              `<div className='min-w-[200px]'>
+              <h3 className='font-bold text-gray-900'>
+                <strong>${project.ProjectDescription || 'Unnamed Project'}</strong>
               </h3>
-              <p class='text-sm text-gray-800 mt-1'>
+              <p className='text-sm text-gray-800 mt-1'>
                 <strong>Region:</strong> ${project.Region || 'N/A'}
               </p>
-              <p class='text-sm text-gray-800'>
+              <p className='text-sm text-gray-800'>
                 <strong>Province:</strong> ${project.Province || 'N/A'}
               </p>
-              <p class='text-sm text-gray-800'>
+              <p className='text-sm text-gray-800'>
                 <strong>Municipality:</strong> ${project.Municipality || 'N/A'}
               </p>
-              <p class='text-sm text-gray-800'>
+              <p className='text-sm text-gray-800'>
                 <strong>Contractor:</strong> ${project.Contractor || 'N/A'}
               </p>
-              <p class='text-sm text-gray-800'>
+              <p className='text-sm text-gray-800'>
                 <strong>Cost:</strong> ₱${
                   project.ContractCost
                     ? Number(project.ContractCost).toLocaleString()
                     : 'N/A'
                 }
               </p>
-              <p class='text-sm text-gray-800'>
+              <p className='text-sm text-gray-800'>
                 <strong>Year:</strong> ${project.InfraYear || 'N/A'}
               </p>
             </div>`
-          );
-
-          new mapboxgl.Popup()
-            .setLngLat(coordinates as [number, number])
-            .setHTML(popup.getHTML())
+            )
             .addTo(map.current!);
         }
       });
