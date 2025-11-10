@@ -18,11 +18,17 @@ import { exportMeilisearchData } from '../../lib/exportData';
 import FloodControlProjectsTab from './tab';
 
 // Import region data
-import philippinesRegionsData from '../../data/philippines-regions.json';
-import { HAZARD_LEVEL, MAPBOX_TILESET } from './constants';
+import SelectPicker from '@/components/ui/SelectPicker';
 import { FloodYearEnum } from '@/enum/map.enum';
 import { IMapStyle } from '@/types/map.type';
-import SelectPicker from '@/components/ui/SelectPicker';
+import philippinesRegionsData from '../../data/philippines-regions.json';
+import {
+  HAZARD_BASE,
+  HAZARD_LEVEL,
+  MAPBOX_TILESET,
+  MAX_SIMULATION_FLOOD_DEPTH,
+} from './constants';
+import { getExtrusionHeight, mapIdGenerator } from './utils';
 
 // Define types for our data
 
@@ -64,6 +70,11 @@ interface FloodControlProject {
   Longitude?: string;
 }
 
+interface IMapFloodSimulationState {
+  simulating: boolean;
+  floodDepth: number;
+}
+
 // Custom component to access Meilisearch hits for map
 const MapHitsComponent = ({
   onHitsUpdate,
@@ -103,6 +114,14 @@ const meiliSearchInstance = instantMeiliSearch(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const searchClient = meiliSearchInstance.searchClient as any;
 
+// Centralized ID generator to be used in mapbox source layer
+const {
+  generateFloodYearLayerId,
+  generateFloodYearSourceId,
+  generateFloodSimulationLayerId,
+  generateFloodSimulationSourceId,
+} = mapIdGenerator();
+
 const FloodControlProjectsMap: FC = () => {
   // Loading state for export
   const [isExporting, setIsExporting] = useState<boolean>(false);
@@ -130,6 +149,10 @@ const FloodControlProjectsMap: FC = () => {
       RegionProperties
     >
   );
+  const [simulation, setSimulation] = useState<IMapFloodSimulationState>({
+    floodDepth: 0,
+    simulating: false,
+  });
   const [mapStyle, setMapStyle] = useState<IMapStyle>({
     style: 'standard',
     showRain: false,
@@ -168,9 +191,9 @@ const FloodControlProjectsMap: FC = () => {
   }, []);
 
   // Build filter string for Meilisearch
-  const buildFilterString = useCallback((): string => {
+  const buildFilterString = (): string => {
     return 'type = "flood_control"';
-  }, []);
+  };
 
   // Build geo search parameters for Meilisearch aroundLatLng
   const buildGeoSearchParams = useCallback(() => {
@@ -205,35 +228,33 @@ const FloodControlProjectsMap: FC = () => {
     };
   }, []);
 
+  const removeFloodYearTileSet = useCallback(() => {
+    if (!map.current || !isMapLoaded) return;
+
+    Object.values(FloodYearEnum).forEach(year => {
+      const tilesets = MAPBOX_TILESET[year];
+
+      tilesets.forEach(({ sourceLayer }) => {
+        const sourceId = generateFloodYearSourceId(year, sourceLayer);
+        const layerId = generateFloodYearLayerId(year, sourceLayer);
+
+        if (map.current?.getLayer(layerId)) {
+          map.current.removeLayer(layerId);
+        }
+        if (map.current?.getSource(sourceId)) {
+          map.current.removeSource(sourceId);
+        }
+      });
+    });
+  }, [isMapLoaded]);
+
   const addFloodYearTileSet = useCallback(
     (floodYear: FloodYearEnum) => {
       if (!map.current || !isMapLoaded) return;
-      const generateFloodYearSourceId = (
-        year: FloodYearEnum,
-        sourceLayer: string
-      ) => `flood-${year}-source-${sourceLayer}`;
-      const generateFloodYearLayerId = (
-        year: FloodYearEnum,
-        sourceLayer: string
-      ) => `flood-${year}-layer-${sourceLayer}`;
 
-      Object.values(FloodYearEnum).forEach(year => {
-        const tilesets = MAPBOX_TILESET[year];
+      removeFloodYearTileSet();
 
-        tilesets.forEach(({ sourceLayer }, idx) => {
-          const sourceId = generateFloodYearSourceId(year, sourceLayer);
-          const layerId = generateFloodYearLayerId(year, sourceLayer);
-
-          if (map.current?.getLayer(layerId)) {
-            map.current.removeLayer(layerId);
-          }
-          if (map.current?.getSource(sourceId)) {
-            map.current.removeSource(sourceId);
-          }
-        });
-      });
-
-      MAPBOX_TILESET[floodYear]?.forEach((element, idx) => {
+      MAPBOX_TILESET[floodYear]?.forEach(element => {
         const sourceId = generateFloodYearSourceId(
           floodYear,
           element.sourceLayer
@@ -259,7 +280,6 @@ const FloodControlProjectsMap: FC = () => {
             source: sourceId,
             'source-layer': element.sourceLayer,
             minzoom: 10,
-            maxzoom: 18,
             paint: {
               'fill-opacity': 0.8,
               'fill-color': [
@@ -278,7 +298,31 @@ const FloodControlProjectsMap: FC = () => {
         }
       });
     },
-    [isMapLoaded]
+    [isMapLoaded, removeFloodYearTileSet]
+  );
+
+  const toggleFloodSimulation = useCallback(
+    (simulate: boolean, reset?: boolean) => {
+      if (!simulation.floodDepth) {
+        map.current?.easeTo({
+          pitch: 75,
+          duration: 3000,
+          zoom: 17.5,
+        });
+
+        removeFloodYearTileSet();
+      }
+      setSimulation(curr => ({
+        ...curr,
+        simulating: simulate,
+        floodDepth: reset ? 0.1 : curr.floodDepth,
+      }));
+      setMapStyle(curr => ({
+        ...curr,
+        showRain: simulate,
+      }));
+    },
+    [simulation.floodDepth, removeFloodYearTileSet]
   );
 
   // Note: Client-side filtering is no longer needed since we use Meilisearch's aroundLatLng
@@ -288,6 +332,45 @@ const FloodControlProjectsMap: FC = () => {
 
   const handleZoomIn = () => map.current?.zoomIn();
   const handleZoomOut = () => map.current?.zoomOut();
+  const handleSwitchMapStyle = () =>
+    setMapStyle(curr => ({
+      ...curr,
+      style: curr.style === 'satellite' ? 'standard' : 'satellite',
+    }));
+
+  const handleStopSimulation = useCallback(() => {
+    MAPBOX_TILESET[selectedFloodYear].forEach(data => {
+      const layerId = generateFloodSimulationLayerId(
+        selectedFloodYear,
+        data.sourceLayer
+      );
+
+      const sourceId = generateFloodSimulationSourceId(
+        selectedFloodYear,
+        data.sourceLayer
+      );
+
+      if (map.current?.getLayer(layerId)) {
+        map.current?.removeLayer(layerId);
+      }
+      if (map.current?.getSource(sourceId)) {
+        map.current?.removeSource(sourceId);
+      }
+    });
+
+    // Add again the flood year tileset
+    addFloodYearTileSet(selectedFloodYear);
+
+    setSimulation(curr => ({
+      ...curr,
+      simulating: false,
+      floodDepth: 0,
+    }));
+    setMapStyle(curr => ({
+      ...curr,
+      showRain: false,
+    }));
+  }, [selectedFloodYear, addFloodYearTileSet]);
 
   // Update region statistics when filtered projects change
   useEffect(() => {
@@ -562,6 +645,33 @@ const FloodControlProjectsMap: FC = () => {
   useEffect(() => {
     if (!map.current || !isMapLoaded) return;
 
+    map.current.setLayoutProperty(
+      'satellite-layer',
+      'visibility',
+      mapStyle.style === 'satellite' ? 'visible' : 'none'
+    );
+
+    if (mapStyle.showRain) {
+      map.current?.setRain({
+        density: ['interpolate', ['linear'], ['zoom'], 11, 0.0, 13, 0.5],
+        intensity: 0.5,
+        color: '#a8adbc',
+        opacity: 0.5,
+        vignette: ['interpolate', ['linear'], ['zoom'], 11, 0.0, 13, 1.0],
+        'vignette-color': '#464646',
+        direction: [0, 80],
+        'droplet-size': [1.2, 10.2],
+        'distortion-strength': 0.2,
+        'center-thinning': 0, // Rain to be displayed on the whole screen area
+      });
+    } else {
+      map.current?.setRain(null);
+    }
+  }, [mapStyle, isMapLoaded]);
+
+  useEffect(() => {
+    if (!map.current || !isMapLoaded) return;
+
     map.current.setPaintProperty('region-fill', 'fill-color', [
       'case',
       ['==', ['get', 'name'], selectedRegion?.id || ''],
@@ -591,6 +701,104 @@ const FloodControlProjectsMap: FC = () => {
       1,
     ]);
   }, [selectedRegion, hoveredRegionName, isMapLoaded]);
+
+  useEffect(() => {
+    if (!map.current || !isMapLoaded || !simulation.floodDepth) return;
+    let timeout: NodeJS.Timeout;
+    if (simulation.simulating) {
+      if (simulation.floodDepth == MAX_SIMULATION_FLOOD_DEPTH) {
+        setMapStyle(curr => ({ ...curr, showRain: false }));
+        return;
+      }
+
+      MAPBOX_TILESET[selectedFloodYear].forEach(element => {
+        const simulationLayerId = generateFloodSimulationLayerId(
+          selectedFloodYear,
+          element.sourceLayer
+        );
+
+        const simulationSourceId = generateFloodSimulationSourceId(
+          selectedFloodYear,
+          element.sourceLayer
+        );
+
+        if (!map.current?.getSource(simulationSourceId)) {
+          map.current?.addSource(simulationSourceId, {
+            type: 'vector',
+            url: `mapbox://${element.tileSetId}`,
+          });
+        }
+
+        if (!map.current?.getLayer(simulationLayerId)) {
+          map.current?.addLayer({
+            id: simulationLayerId,
+            type: 'fill-extrusion',
+            source: simulationSourceId,
+            'source-layer': element.sourceLayer,
+            paint: {
+              'fill-extrusion-color':
+                mapStyle.style === 'satellite'
+                  ? 'rgba(30, 144, 255, 0.35)'
+                  : 'rgb(194, 226, 253)',
+
+              'fill-extrusion-opacity': 0.8,
+              'fill-extrusion-base': [
+                'match',
+                ['get', 'Var'],
+                1,
+                HAZARD_BASE[1],
+                2,
+                HAZARD_BASE[2],
+                3,
+                HAZARD_BASE[3],
+                0,
+              ],
+              'fill-extrusion-height': 0,
+            },
+          });
+        }
+        if (map.current?.getLayer(simulationLayerId)) {
+          map.current?.setPaintProperty(
+            simulationLayerId,
+            'fill-extrusion-height',
+            [
+              'match',
+              ['get', 'Var'],
+              1,
+              getExtrusionHeight({
+                hazardLevel: 1,
+                floodYear: selectedFloodYear,
+                floodDepth: simulation.floodDepth,
+              }),
+
+              2,
+              getExtrusionHeight({
+                hazardLevel: 2,
+                floodYear: selectedFloodYear,
+                floodDepth: simulation.floodDepth,
+              }),
+              3,
+              getExtrusionHeight({
+                hazardLevel: 3,
+                floodYear: selectedFloodYear,
+                floodDepth: simulation.floodDepth,
+              }),
+              0,
+            ]
+          );
+        }
+      });
+
+      timeout = setTimeout(() => {
+        setSimulation(curr => ({
+          ...curr,
+          floodDepth: curr.floodDepth + 0.1,
+        }));
+      }, 1250);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [simulation, isMapLoaded, mapStyle.style, selectedFloodYear]);
 
   useEffect(() => {
     if (zoomLevel <= 8) {
@@ -698,48 +906,101 @@ const FloodControlProjectsMap: FC = () => {
                       ? 'Standard View'
                       : 'Satellite View'
                   }
+                  onClick={handleSwitchMapStyle}
                 >
                   {mapStyle.style === 'satellite' ? (
-                    <MapIcon
-                      className='h-4 w-4'
-                      onClick={() =>
-                        setMapStyle(curr => ({ ...curr, style: 'standard' }))
-                      }
-                    />
+                    <MapIcon className='h-4 w-4' />
                   ) : (
-                    <SatelliteIcon
-                      className='h-4 w-4'
-                      onClick={() =>
-                        setMapStyle(curr => ({ ...curr, style: 'satellite' }))
-                      }
-                    />
+                    <SatelliteIcon className='h-4 w-4' />
                   )}
                 </Button>
               </div>
               <div className='absolute top-4 left-4 z-10 flex flex-col gap-2 rounded bg-white p-4 min-w-3xs'>
-                <SelectPicker
-                  selectedValue={selectedFloodYear}
-                  options={Object.values(FloodYearEnum).map(val => ({
-                    label: val,
-                    value: val,
-                  }))}
-                  onSelect={data =>
-                    setSelectedFloodYear(data?.value as FloodYearEnum)
-                  }
-                  clearable={false}
-                  searchable={false}
-                />
-                <div className='flex flex-col gap-2'>
-                  {Object.values(HAZARD_LEVEL).map(({ color, label }, idx) => (
-                    <div className='flex flex-row gap-2 items-center' key={idx}>
-                      <div
-                        className='h-4 w-4'
-                        style={{ backgroundColor: color }}
-                      />
-                      <p>{label}</p>
+                {simulation.simulating || simulation.floodDepth ? (
+                  <>
+                    <div>
+                      <p>{selectedFloodYear}</p>
+                      <p className='text-gray-600'>
+                        Flood depth: ≈ {simulation.floodDepth.toFixed(1)} m
+                      </p>
                     </div>
-                  ))}
-                </div>
+                    {simulation.simulating ? (
+                      simulation.floodDepth == MAX_SIMULATION_FLOOD_DEPTH ? (
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() => toggleFloodSimulation(true, true)}
+                        >
+                          Repeat
+                        </Button>
+                      ) : (
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() => toggleFloodSimulation(false)}
+                        >
+                          Pause
+                        </Button>
+                      )
+                    ) : (
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        onClick={() => toggleFloodSimulation(true)}
+                      >
+                        Resume
+                      </Button>
+                    )}
+                    <Button
+                      variant='primary'
+                      size='sm'
+                      onClick={handleStopSimulation}
+                    >
+                      Stop
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {/* <p>Hazard Level</p> */}
+                    <SelectPicker
+                      selectedValue={selectedFloodYear}
+                      options={Object.values(FloodYearEnum).map(val => ({
+                        label: val,
+                        value: val,
+                      }))}
+                      onSelect={data =>
+                        setSelectedFloodYear(data?.value as FloodYearEnum)
+                      }
+                      clearable={false}
+                      searchable={false}
+                    />
+                    <div className='flex flex-col gap-2'>
+                      {Object.values(HAZARD_LEVEL).map(
+                        ({ color, label }, idx) => (
+                          <div
+                            className='flex flex-row gap-2 items-center'
+                            key={idx}
+                          >
+                            <div
+                              className={`h-4 w-4`}
+                              style={{ backgroundColor: color }}
+                            />
+                            <p>{label}</p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                    <Button
+                      className='mt-2'
+                      variant='primary'
+                      aria-label='Simulate flood'
+                      size='sm'
+                      onClick={() => toggleFloodSimulation(true, true)}
+                    >
+                      Run flood simulation
+                    </Button>
+                  </>
+                )}
               </div>
               {/* Region Details Panel */}
               {/* {selectedRegion && (
@@ -816,22 +1077,51 @@ const FloodControlProjectsMap: FC = () => {
 
           {/* Data Source Information */}
           <div className='bg-white rounded-lg shadow-md p-4'>
-            <div className='flex items-center mb-4'>
-              <InfoIcon className='w-5 h-5 text-blue-600 mr-2' />
-              <h2 className='text-lg font-semibold text-gray-800'>
-                About This Data
-              </h2>
+            <div>
+              <div className='flex items-center mb-4'>
+                <InfoIcon className='w-5 h-5 text-blue-600 mr-2' />
+                <h2 className='text-lg font-semibold text-gray-800'>
+                  About This Data
+                </h2>
+              </div>
+              <p className='text-gray-800 mb-4'>
+                This map displays flood control infrastructure projects across
+                the Philippines. Click on a region to filter projects by that
+                area. Zoom in to see individual project locations. You can also
+                use the filters to narrow down projects by year, type of work,
+                and search terms.
+              </p>
+              <p className='text-gray-800 mb-2'>
+                Additionally, the map incorporates Project NOAH flood hazard
+                data:
+              </p>
+              <ul className='list-disc list-inside text-gray-800 mb-4'>
+                <li>
+                  <span className='font-medium'>5-Year Flood</span>
+                </li>
+                <li>
+                  <span className='font-medium'>25-Year Flood</span>
+                </li>
+                <li>
+                  <span className='font-medium'>100-Year Flood</span>
+                </li>
+              </ul>
+              <p className='text-gray-800'>
+                These layers visualize flood-prone areas based on historical and
+                modeled data, helping to understand potential flood risks in
+                different regions.
+              </p>
             </div>
-            <p className='text-gray-800 mb-4'>
-              This map displays flood control infrastructure projects across the
-              Philippines. Click on a region to filter projects by that area.
-              Zoom in to see individual project locations. You can also use the
-              filters to narrow down projects by year, type of work, and search
-              terms.
-            </p>
-            <p className='text-sm text-gray-800'>
+            <p className='text-sm text-gray- mt-4'>
               Source: Department of Public Works and Highways (DPWH) Flood
-              Control Information System
+              Control Information System,{' '}
+              <a
+                href='https://noah.up.edu.ph/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Project NOAH
+              </a>
             </p>
           </div>
         </div>

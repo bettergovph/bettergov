@@ -12,6 +12,31 @@ export const HAZARD_LEVEL: Record<
   3: { label: 'High', color: 'rgba(255, 150, 150,0.6 )' },
 };
 
+export const HAZARD_BASE: Record<number, number> = {
+  1: 0, // low hazard – higher ground
+  2: 0.5, // medium hazard – mid ground
+  3: 1, // high hazard – lowest ground, floods first
+};
+
+export const FLOOD_YEAR_CONFIG: Record<
+  FloodYearEnum,
+  { minDepth: number; maxDepth: number }
+> = {
+  '5-Year Flood': {
+    minDepth: 0.3, // minimum depth to appear in high hazard
+    maxDepth: 1.5,
+  },
+  '25-Year Flood': {
+    minDepth: 0.5,
+    maxDepth: 3,
+  },
+  '100-Year Flood': {
+    minDepth: 1,
+    maxDepth: 6,
+  },
+};
+
+// NOTE: can also be moved to data folder as json but I've temporarily placed it here for type safety
 export const MAPBOX_TILESET: Record<FloodYearEnum, IMapboxTileSet[]> = {
   '5-Year Flood': [
     { tileSetId: 'upri-noah.ph_fh_5yr_tls', sourceLayer: 'PH010000000_FH_5yr' },
