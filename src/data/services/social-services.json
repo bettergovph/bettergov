@@ -1,9 +1,9 @@
 [
   {
-    "service": "Submit Maternity Notification via Text-SSS",
-    "url": "https://www.sss.gov.ph/sss/appmanager/viewArticle.jsp?page=NR2018_023",
+    "service": "Apply for SSS Maternity Benefit",
+    "url": "https://www.sss.gov.ph/maternity-benefit/",
     "id": "84898679-8bfe-40f6-b620-7056e0290f8a",
-    "slug": "submit-maternity-notification-via-text-sss",
+    "slug": "apply-for-sss-maternity-benefit",
     "published": true,
     "featured": false,
     "category": {
