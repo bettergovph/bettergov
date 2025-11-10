@@ -12,6 +12,8 @@ import FloodControlProjectsTab from './tab';
 
 // Import region data
 import philippinesRegionsData from '../../data/philippines-regions.json';
+import { HAZARD_LEVEL, MAPBOX_TILESET } from './constants';
+import { FloodYearEnum } from '@/enum/map.enum';
 
 // Define types for our data
 
@@ -187,6 +189,70 @@ const FloodControlProjectsMap: FC = () => {
     };
   }, []);
 
+  const addFloodYearTileSet = useCallback(
+    (floodYear: FloodYearEnum) => {
+      if (!map.current || !isMapLoaded) return;
+
+      const generateMap;
+
+      Object.values(FloodYearEnum).forEach(year => {
+        const tilesets = MAPBOX_TILESET[year];
+
+        tilesets.forEach((_, idx) => {
+          const sourceId = `flood-${year}-source-${idx}`;
+          const layerId = `flood-${year}-layer-${idx}`;
+
+          if (map.current?.getLayer(layerId)) {
+            map.current.removeLayer(layerId);
+          }
+          if (map.current?.getSource(sourceId)) {
+            map.current.removeSource(sourceId);
+          }
+        });
+      });
+
+      MAPBOX_TILESET[floodYear]?.forEach((element, idx) => {
+        const sourceId = `flood-${floodYear}-source-${idx}`;
+        const layerId = `flood-${floodYear}-layer-${idx}`;
+
+        if (!map.current?.getSource(sourceId)) {
+          // uploaded flood areas tileset
+          map.current?.addSource(sourceId, {
+            type: 'vector',
+            url: `mapbox://${element.tileSetId}`,
+          });
+        }
+
+        if (!map.current?.getLayer(layerId)) {
+          // layer to visualize flooded areas
+          map.current?.addLayer({
+            id: layerId,
+            type: 'fill',
+            source: sourceId,
+            'source-layer': element.sourceLayer,
+            minzoom: 10,
+            maxzoom: 18,
+            paint: {
+              'fill-opacity': 0.8,
+              'fill-color': [
+                'match',
+                ['get', 'Var'],
+                1,
+                HAZARD_LEVEL[1].color,
+                2,
+                HAZARD_LEVEL[2].color,
+                3,
+                HAZARD_LEVEL[3].color,
+                'rgba(255,255,255,0)',
+              ],
+            },
+          });
+        }
+      });
+    },
+    [isMapLoaded]
+  );
+
   // Note: Client-side filtering is no longer needed since we use Meilisearch's aroundLatLng
   // Since we're now using Meilisearch's native geo search,
   // filteredProjects is just the mapProjects returned from the search
@@ -288,6 +354,9 @@ const FloodControlProjectsMap: FC = () => {
         maxzoom: 15,
       });
       map.current.setTerrain({ source: 'terrain', exaggeration: 1 });
+
+      // Load tilesets from noah
+      addFloodYearTileSet(FloodYearEnum.FIVE_YEAR);
 
       // Add a source and layer for the projects
       map.current.addSource('projects', {
@@ -422,7 +491,7 @@ const FloodControlProjectsMap: FC = () => {
         }
       });
     });
-  }, [mapData, calculateGeoSearchParams]);
+  }, [mapData, calculateGeoSearchParams, addFloodYearTileSet]);
 
   useEffect(() => {
     if (!map.current || !isMapLoaded) return;
