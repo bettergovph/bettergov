@@ -1,3 +1,6 @@
+import { FloodYearEnum } from '@/enum/map.enum';
+import { FLOOD_YEAR_CONFIG, HAZARD_BASE } from './constants';
+
 // Define types (copied from shared-components.tsx)
 export type FilterState = {
   InfraYear: string;
@@ -48,4 +51,52 @@ export const buildFilterString = (filters: FilterState): string => {
   }
 
   return filterStrings.join(' AND ');
+};
+
+export const mapIdGenerator = () => {
+  const generateFloodYearSourceId = (
+    year: FloodYearEnum,
+    sourceLayer: string
+  ) => `flood-${year}-source-${sourceLayer}`;
+  const generateFloodYearLayerId = (year: FloodYearEnum, sourceLayer: string) =>
+    `flood-${year}-layer-${sourceLayer}`;
+
+  const generateFloodSimulationSourceId = (
+    year: FloodYearEnum,
+    sourceLayer: string
+  ) => `flood-simulation-${year}-source-${sourceLayer}`;
+  const generateFloodSimulationLayerId = (
+    year: FloodYearEnum,
+    sourceLayer: string
+  ) => `flood-simulation-${year}-layer-${sourceLayer}`;
+
+  return {
+    generateFloodYearSourceId,
+    generateFloodYearLayerId,
+    generateFloodSimulationSourceId,
+    generateFloodSimulationLayerId,
+  };
+};
+
+export const getExtrusionHeight = ({
+  floodDepth,
+  floodYear,
+  hazardLevel,
+}: {
+  hazardLevel: number;
+  floodDepth: number;
+  floodYear: FloodYearEnum;
+}) => {
+  const base = HAZARD_BASE[hazardLevel]; // relative ground
+  const { minDepth, maxDepth } = FLOOD_YEAR_CONFIG[floodYear];
+
+  // Map the current floodDepth into the realistic range for this layer
+  // The layer starts appearing when floodDepth >= minDepth
+  if (floodDepth < minDepth) return 0;
+
+  // Cap at maxDepth
+  const effectiveDepth = Math.min(floodDepth, maxDepth);
+
+  // Relative extrusion height for this hazard layer
+  return Math.max(effectiveDepth - base, 0);
 };
