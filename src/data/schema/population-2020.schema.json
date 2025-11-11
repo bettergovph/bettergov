@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/population-2020.schema.json",
+  "title": "Philippines Population 2020",
+  "description": "Schema for 2020 Philippine census population data by region and province/HUC",
+  "type": "object",
+  "required": ["source", "generatedAt", "regions", "provincesOrHUCS"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Source URL of the population data",
+      "format": "uri"
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "Timestamp when this data was generated",
+      "format": "date-time"
+    },
+    "regions": {
+      "type": "object",
+      "description": "Population data grouped by region",
+      "patternProperties": {
+        "^[A-Z0-9 -]+$": {
+          "$ref": "#/definitions/populationData"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provincesOrHUCS": {
+      "type": "object",
+      "description": "Population data grouped by province or Highly Urbanized City (HUC)",
+      "patternProperties": {
+        "^.+$": {
+          "$ref": "#/definitions/populationData"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "populationData": {
+      "type": "object",
+      "required": ["totalPopulation", "householdPopulation", "households"],
+      "properties": {
+        "totalPopulation": {
+          "type": "integer",
+          "description": "Total population count",
+          "minimum": 0
+        },
+        "householdPopulation": {
+          "type": "integer",
+          "description": "Household population count",
+          "minimum": 0
+        },
+        "households": {
+          "type": "integer",
+          "description": "Number of households",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

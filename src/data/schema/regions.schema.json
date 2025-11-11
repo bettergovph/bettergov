@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/regions.schema.json",
+  "title": "Philippine Regions",
+  "description": "Schema for Philippine regions with names and slugs",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["name", "slug"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Full name of the region",
+        "minLength": 1
+      },
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier for the region",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    },
+    "additionalProperties": false
+  },
+  "minItems": 1
+}

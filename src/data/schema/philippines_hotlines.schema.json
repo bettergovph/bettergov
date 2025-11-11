@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/philippines_hotlines.schema.json",
+  "title": "Philippines Hotlines",
+  "description": "Schema for Philippine government and emergency hotlines organized by category",
+  "type": "object",
+  "properties": {
+    "emergencyHotlines": {
+      "type": "array",
+      "description": "Emergency hotlines for immediate assistance",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "disasterHotlines": {
+      "type": "array",
+      "description": "Disaster management and response hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "securityHotlines": {
+      "type": "array",
+      "description": "Security and law enforcement hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "transportHotlines": {
+      "type": "array",
+      "description": "Transportation and traffic management hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "weatherHotlines": {
+      "type": "array",
+      "description": "Weather and natural disaster monitoring hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "utilityHotlines": {
+      "type": "array",
+      "description": "Utility service provider hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "socialServicesHotlines": {
+      "type": "array",
+      "description": "Social services and mental health hotlines",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    },
+    "criticalHotlines": {
+      "type": "array",
+      "description": "Critical hotlines for most urgent situations",
+      "items": {
+        "$ref": "#/definitions/hotline"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "hotline": {
+      "type": "object",
+      "required": ["name", "category", "numbers", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the organization or service",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the hotline service",
+          "enum": [
+            "Emergency",
+            "Disaster",
+            "Security",
+            "Transport",
+            "Weather",
+            "Utility",
+            "Social Services"
+          ]
+        },
+        "numbers": {
+          "type": "array",
+          "description": "List of contact numbers for this hotline",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the hotline service",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

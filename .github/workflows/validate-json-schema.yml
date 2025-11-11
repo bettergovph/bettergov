@@ -96,6 +96,47 @@ jobs:
             src/data/services/schema/services.schema.json \
             "src/data/services/*.json"
 
+      - name: Validate Philippines regions GeoJSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/GeoJSON.json \
+            src/data/philippines-regions.json
+
+      - name: Validate Philippines hotlines JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/philippines_hotlines.schema.json \
+            src/data/philippines_hotlines.json
+
+      - name: Validate population 2020 JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/population-2020.schema.json \
+            src/data/population-2020.json
+
+      - name: Validate regions JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/regions.schema.json \
+            src/data/regions.json
+
+      - name: Validate SEO metadata JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/seo-metadata.schema.json \
+            src/data/seo-metadata.json
+
+      - name: Validate service categories JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/service_categories.schema.json \
+            src/data/service_categories.json
+
+      - name: Validate websites JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/websites.schema.json \
+            src/data/websites.json
       - name: Validate flood control JSON file
         run: |
           node scripts/validate-json-schema.js \
