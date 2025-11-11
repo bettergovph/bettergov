@@ -1,9 +1,9 @@
 [
   {
-    "service": "Submit Maternity Notification via Text-SSS",
-    "url": "https://www.sss.gov.ph/sss/appmanager/viewArticle.jsp?page=NR2018_023",
+    "service": "Apply for SSS Maternity Benefit",
+    "url": "https://www.sss.gov.ph/maternity-benefit/",
     "id": "84898679-8bfe-40f6-b620-7056e0290f8a",
-    "slug": "submit-maternity-notification-via-text-sss",
+    "slug": "apply-for-sss-maternity-benefit",
     "published": true,
     "featured": false,
     "category": {
@@ -36,10 +36,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Certify Employee Salary Loan",
-    "url": "https://www.sss.gov.ph/sss/appmanager/pages.jsp?page=salaryapplication",
+    "service": "Apply for SSS Salary Loan",
+    "url": "https://www.sss.gov.ph/salary-loan/",
     "id": "12544f9a-bad4-47d9-b12b-1d4377b1859c",
-    "slug": "certify-employee-salary-loan",
+    "slug": "apply-for-sss-salary-loan",
     "published": true,
     "featured": false,
     "category": {
@@ -55,7 +55,7 @@
   },
   {
     "service": "Apply for DBP Water for Every Resident (WATER) Program",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/water-for-every-resident-water-program/",
+    "url": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
     "id": "9d0d0565-4ac0-4385-9dcf-3ec927accc33",
     "slug": "apply-for-dbp-water-for-every-resident-water-program",
     "published": true,
@@ -73,7 +73,7 @@
   },
   {
     "service": "Apply for Technical Retirement",
-    "url": "https://www.sss.gov.ph/sss/appmanager/pages.jsp?page=retirementapplication",
+    "url": "https://www.sss.gov.ph/retirement-benefit/",
     "id": "75c532cb-2d5a-4d3d-b444-edffade5c524",
     "slug": "apply-for-technical-retirement",
     "published": true,
@@ -144,8 +144,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Locate Philhealth-accredited Health Care Institutions",
-    "url": "https://www.philhealth.gov.ph/partners/providers/institutional/map/",
+    "service": "Locate Philhealth Accredited Health Care Institutions",
+    "url": "https://www.philhealth.gov.ph/partners/providers/facilities/accredited/",
     "id": "5bb9df48-ed1b-4809-9f8b-4e9b0cff2456",
     "slug": "locate-philhealth-accredited-health-care-institutions",
     "published": true,
