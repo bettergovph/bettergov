@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/websites.schema.json",
+  "title": "Government Websites",
+  "description": "Schema for Philippine government websites directory",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["name", "slug"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the government office or organization",
+        "minLength": 1
+      },
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "email": {
+        "type": ["string", "null"],
+        "description": "Contact email address"
+      },
+      "website": {
+        "type": ["string", "null"],
+        "description": "Official website URL (without protocol)"
+      },
+      "address": {
+        "type": ["string", "null"],
+        "description": "Physical address"
+      },
+      "contact": {
+        "type": ["string", "null"],
+        "description": "Contact phone numbers"
+      },
+      "type": {
+        "type": "string",
+        "description": "Type of government entity",
+        "enum": [
+          "constitutional",
+          "bureau",
+          "office",
+          "agency",
+          "department",
+          "commission",
+          "authority",
+          "corporation",
+          "council",
+          "attached_agency",
+          "attached_corporation",
+          "attached-agencies",
+          "departments",
+          "diplomatic",
+          "executive",
+          "foreign-service",
+          "legislative",
+          "regional-office",
+          "under-administrative_supervision",
+          "under-supervision_and_control"
+        ]
+      },
+      "parent_department": {
+        "type": ["string", "null"],
+        "description": "Parent department if applicable"
+      }
+    },
+    "additionalProperties": false
+  },
+  "minItems": 1
+}
