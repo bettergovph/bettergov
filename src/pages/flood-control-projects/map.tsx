@@ -162,6 +162,7 @@ const FloodControlProjectsMap: FC = () => {
       aroundRadius: Math.round(geoSearch.radius), // Convert to meters (integer)
     };
   }, [geoSearch]);
+
   useEffect(() => {
     if (selectedRegion && !selectedRegion.loading) {
       const projects = mapProjects;
