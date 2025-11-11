@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/philippines_visa_types.schema.json",
+  "title": "Philippines Visa Types",
+  "description": "Schema for categorized Philippine visa types including immigrant, non-immigrant, special visas, and permits",
+  "type": "object",
+  "required": ["sourceInfo", "categories"],
+  "properties": {
+    "sourceInfo": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "required": ["lastUpdated", "source"],
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "description": "Date when the information was last updated (YYYY-MM-DD)",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "source": {
+          "type": "string",
+          "description": "Official source of the visa information",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories of visa types",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "visaTypes"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the category",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the visa category",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the visa category purpose",
+            "minLength": 1
+          },
+          "visaTypes": {
+            "type": "array",
+            "description": "Visa types within this category",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "description",
+                "url",
+                "minimumRequirements"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the visa type",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the visa type",
+                  "minLength": 1
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the visa purpose and eligibility",
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "description": "URL to official visa information",
+                  "format": "uri"
+                },
+                "minimumRequirements": {
+                  "type": "array",
+                  "description": "List of minimum requirements for the visa",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                },
+                "subtypes": {
+                  "type": "array",
+                  "description": "Subtypes or variations of the visa",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "name", "description"],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the subtype",
+                        "minLength": 1
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the subtype",
+                        "minLength": 1
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of the subtype",
+                        "minLength": 1
+                      },
+                      "requirements": {
+                        "oneOf": [
+                          {
+                            "type": "array",
+                            "description": "List of requirements for the subtype",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          {
+                            "type": "object",
+                            "description": "Requirements grouped by applicant type (e.g., businessOwners, employees)",
+                            "additionalProperties": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

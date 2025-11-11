@@ -95,3 +95,15 @@ jobs:
           node scripts/validate-json-schema.js \
             src/data/services/schema/services.schema.json \
             "src/data/services/*.json"
+
+      - name: Validate visa policy JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/visa/schema/philippines_visa_policy.schema.json \
+            src/data/visa/philippines_visa_policy.json
+
+      - name: Validate visa types JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/visa/schema/philippines_visa_types.schema.json \
+            src/data/visa/philippines_visa_types.json
