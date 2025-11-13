@@ -360,42 +360,6 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Extend Pre-arranged Employee Visa (Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/extension-of-pre-arranged-employee-commercial",
-    "id": "7c6e68fd-74be-47a8-ab28-7e57e9cb6d74",
-    "slug": "extend-pre-arranged-employee-visa-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Pre-arranged Employee Visa (Non-Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/extension-of-pre-arranged-employee-non-commercial",
-    "id": "9459dcbe-970b-4c4b-ba62-b0e89f7a8577",
-    "slug": "extend-pre-arranged-employee-visa-non-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
     "service": "Extend Student Visa",
     "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/student-visa/extension-of-student-visa",
     "id": "dadb6902-4816-4839-91b4-fd1a8d1f3728",
