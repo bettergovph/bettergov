@@ -466,59 +466,5 @@
     },
     "createdAt": "2025-06-06T12:42:33.000Z",
     "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Student Visa (9F)",
-    "url": "https://immigration.gov.ph/student-visa-9f-2/",
-    "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
-    "slug": "apply-for-student-visa-9f",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Pre-arranged Employment Visa (9G)",
-    "url": "https://immigration.gov.ph/pre-arranged-employment-visa-9g-2/",
-    "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
-    "slug": "apply-for-pre-arranged-employment-visa-9g",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Temporary Visitor Visa (9A)",
-    "url": "https://immigration.gov.ph/temporary-visitor-visa-9a-2/",
-    "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e",
-    "slug": "apply-for-temporary-visitor-visa-9a",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
   }
 ]
