@@ -342,28 +342,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Extend Authorized Stay Beyond 59 Days",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-visitor-visa/extension-of-authorized-stay-beyond-59-days",
+    "service": "Apply for Temporary Visitor Visa (9A)",
+    "url": "https://immigration.gov.ph/visas/visa-waiver/",
     "id": "289ea40a-0936-45ef-9968-b6212844e0f4",
-    "slug": "extend-authorized-stay-beyond-59-days",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Long-Stay Visitor Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-visitor-visa/long-stay-visitor-visa-extension-lsvve",
-    "id": "97863442-9d6b-4d9f-b0e2-e33102a529aa",
-    "slug": "extend-long-stay-visitor-visa",
+    "slug": "apply-for-temporary-visitor-visa",
     "published": true,
     "featured": false,
     "category": {
