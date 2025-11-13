@@ -360,60 +360,6 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Include Dependent in the Pre-arranged Employee Visa of the Principal Holder",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/inclusion-of-dependent-in-the-pre-arranged-employee-visa-of-the-principal-holder",
-    "id": "e52b2ef7-5e38-4d8b-8318-d1fcbf8ada85",
-    "slug": "include-dependent-in-the-pre-arranged-employee-visa-of-the-principal-holder",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Include Dependent in the Treaty Trader's or Treaty Investor's Visa of the Principal Holder",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/treaty-trader-or-treaty-investor/inclusion-of-dependent-in-the-treaty-trader-s-or-treaty-investor-s-visa-of-the-principal-holder",
-    "id": "07192aee-4b86-42e2-bbd8-49a7ea54617e",
-    "slug": "include-dependent-in-the-treaty-traders-or-treaty-investors-visa-of-the-principal-holder",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Include Dependent Spouse and/or Unmarried Child/ren below 21 Years of Age for Immigrant Visa or Temporary Resident Visa (TRV) Holders",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/non-quota-visa/inclusion-of-dependent",
-    "id": "9c33104b-c3f7-4589-93a6-d308a37c0495",
-    "slug": "include-dependent-spouse-andor-unmarried-children-below-21-years-of-age-for-immigrant-visa-or-temporary-resident-visa-trv-holders",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
     "service": "View List of Accredited Official of Foreign Government Visa",
     "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/accredited-official-of-foreign-government",
     "id": "6a5e93b0-9f5d-4993-a113-d080e9f33229",
