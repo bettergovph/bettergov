@@ -252,28 +252,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Convert to Pre-arranged Employee Visa (Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/conversion-to-pre-arranged-employee-commercial",
+    "service": "Convert to Pre-arranged Employee Visa",
+    "url": "https://immigration.gov.ph/pre-4-arranged-employment-visa-9g/",
     "id": "9aa52a53-1e89-4b32-b84f-423509f0f84d",
     "slug": "convert-to-pre-arranged-employee-visa-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Convert to Pre-arranged Employee Visa (Non-Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/conversion-to-pre-arranged-employee-non-commercial",
-    "id": "e00c597a-1511-4966-88b3-de5806d961b3",
-    "slug": "convert-to-pre-arranged-employee-visa-non-commercial",
     "published": true,
     "featured": false,
     "category": {
