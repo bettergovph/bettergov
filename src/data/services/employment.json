@@ -54,28 +54,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Verify PRC Exam Rating",
-    "url": "http://online.prc.gov.ph/Verification",
+    "service": "PRC Online License Verification",
+    "url": "https://verification.prc.gov.ph/",
     "id": "aead3145-c9ca-4afa-bf36-d0d3b5c11da0",
     "slug": "verify-prc-exam-rating",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Verify PRC License",
-    "url": "http://online.prc.gov.ph/Verification",
-    "id": "2d3d00fa-4459-4183-8be5-de48f8ec69ca",
-    "slug": "verify-prc-license",
     "published": true,
     "featured": false,
     "category": {
@@ -106,24 +88,6 @@
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "View PRC Exam Results",
-    "url": "https://www.prc.gov.ph/examination-result",
-    "id": "b55d2fc5-04a0-462e-84a6-61879cdf867f",
-    "slug": "view-prc-exam-results",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
     "service": "Register Enterprised-based Union",
