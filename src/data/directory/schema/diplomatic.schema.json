@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Diplomatic Missions",
+  "description": "Schema for diplomatic mission directory data",
+  "type": "object",
+  "properties": {
+    "Diplomatic Mission": {
+      "type": "array",
+      "description": "List of diplomatic missions in the Philippines",
+      "items": {
+        "type": "object",
+        "required": ["slug", "country", "office_name"],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly identifier for the mission"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country name in uppercase"
+          },
+          "office_name": {
+            "type": "string",
+            "description": "Official name of the diplomatic mission"
+          },
+          "address": {
+            "type": "string",
+            "description": "Physical address of the mission"
+          },
+          "contact": {
+            "type": "string",
+            "description": "Contact phone numbers"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address (can contain multiple addresses separated by semicolons)",
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+          },
+          "website": {
+            "type": "string",
+            "description": "Official website URL"
+          },
+          "representative": {
+            "type": "string",
+            "description": "Name of the diplomatic representative"
+          },
+          "title": {
+            "type": ["string", "null"],
+            "description": "Title of the diplomatic representative (e.g., Ambassador, Nuncio)"
+          }
+        }
+      }
+    }
+  }
+}

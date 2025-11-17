@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/service_categories.schema.json",
+  "title": "Service Categories",
+  "description": "Schema for Philippine government service categories and subcategories",
+  "type": "object",
+  "required": ["categories"],
+  "properties": {
+    "categories": {
+      "type": "array",
+      "description": "List of service categories",
+      "items": {
+        "type": "object",
+        "required": ["category", "slug", "subcategories"],
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Name of the service category",
+            "minLength": 1
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly identifier for the category",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "subcategories": {
+            "type": "array",
+            "description": "List of subcategories within this category",
+            "items": {
+              "type": "object",
+              "required": ["name", "slug"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the subcategory",
+                  "minLength": 1
+                },
+                "slug": {
+                  "type": "string",
+                  "description": "URL-friendly identifier for the subcategory",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

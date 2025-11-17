@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "House of Representatives Members",
+  "description": "Schema for House of Representatives member directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["province_city", "name", "district", "contact"],
+    "properties": {
+      "province_city": {
+        "type": "string",
+        "description": "Province or city represented"
+      },
+      "name": {
+        "type": "string",
+        "description": "Full name of the representative"
+      },
+      "district": {
+        "type": "string",
+        "description": "District number (e.g., '6th District')"
+      },
+      "contact": {
+        "type": "string",
+        "description": "Contact phone number with local extension"
+      }
+    }
+  }
+}

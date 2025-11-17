@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/lgu-region.schema.json",
+  "title": "LGU Region Directory",
+  "description": "Schema for Local Government Unit (LGU) directory data organized by region",
+  "type": "object",
+  "required": ["region", "slug"],
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "description": "Province-based regions (most regions)",
+      "required": ["provinces"]
+    },
+    {
+      "description": "NCR structure with cities and municipalities at root level",
+      "anyOf": [
+        {
+          "required": ["cities"]
+        },
+        {
+          "required": ["municipalities"]
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "region": {
+      "type": "string",
+      "description": "Official name of the region in uppercase",
+      "examples": [
+        "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
+        "NATIONAL CAPITAL REGION",
+        "REGION IV-A CALABARZON"
+      ]
+    },
+    "provinces": {
+      "type": "array",
+      "description": "Array of provinces within the region (not present in NCR)",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/province"
+      }
+    },
+    "cities": {
+      "type": "array",
+      "description": "Array of cities at the region level (NCR only)",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/city"
+      }
+    },
+    "municipalities": {
+      "type": "array",
+      "description": "Array of municipalities at the region level (NCR only)",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/municipality"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the region (kebab-case)",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "examples": [
+        "bangsamoro-autonomous-region-in-muslim-mindanao",
+        "national-capital-region",
+        "region-iva-calabarzon"
+      ]
+    }
+  },
+  "$defs": {
+    "province": {
+      "type": "object",
+      "required": ["province"],
+      "additionalProperties": false,
+      "properties": {
+        "province": {
+          "type": "string",
+          "description": "Name of the province",
+          "examples": [
+            "Basilan",
+            "Lanao del Sur",
+            "Maguindanao del Norte",
+            "QUEZON"
+          ]
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the province (optional, kebab-case)",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "examples": ["guimaras-province", "iloilo-province"]
+        },
+        "cities": {
+          "type": "array",
+          "description": "Array of cities within the province",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/city"
+          }
+        },
+        "municipalities": {
+          "type": "array",
+          "description": "Array of municipalities within the province",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/municipality"
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["municipalities"]
+        },
+        {
+          "required": ["cities"]
+        }
+      ]
+    },
+    "city": {
+      "type": "object",
+      "required": ["city", "mayor", "vice_mayor"],
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "Name of the city",
+          "examples": ["Caloocan", "Makati", "Lucena", "Tayabas"]
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "Postal/ZIP code for the city (optional)",
+          "pattern": "^[0-9]{4}$",
+          "examples": ["1000", "1200", "4000"]
+        },
+        "mayor": {
+          "$ref": "#/$defs/official",
+          "description": "Current mayor of the city"
+        },
+        "vice_mayor": {
+          "$ref": "#/$defs/official",
+          "description": "Current vice mayor of the city"
+        }
+      }
+    },
+    "municipality": {
+      "type": "object",
+      "required": ["municipality", "mayor", "vice_mayor"],
+      "additionalProperties": false,
+      "properties": {
+        "municipality": {
+          "type": "string",
+          "description": "Name of the municipality",
+          "examples": ["Akbar", "Pateros", "Alfonso"]
+        },
+        "zip_code": {
+          "type": "string",
+          "description": "Postal/ZIP code for the municipality (optional)",
+          "pattern": "^[0-9]{4}$",
+          "examples": ["9700", "1000", "2000"]
+        },
+        "mayor": {
+          "$ref": "#/$defs/official",
+          "description": "Current mayor of the municipality"
+        },
+        "vice_mayor": {
+          "$ref": "#/$defs/official",
+          "description": "Current vice mayor of the municipality"
+        }
+      }
+    },
+    "official": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name of the official in uppercase",
+          "minLength": 1,
+          "examples": ["JUAN A. DELA CRUZ"]
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact information (phone number, optional)",
+          "examples": ["8288-8811 loc. 2223, 2224", "(046) 481-4100 loc. 401"]
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address (optional)",
+          "format": "email",
+          "examples": ["mayorsoffice@sanjosebatangas.gov.ph"]
+        }
+      }
+    }
+  }
+}

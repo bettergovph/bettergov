@@ -433,7 +433,7 @@
   },
   {
     "service": "Apply for ERC Certificate of Compliance",
-    "url": "http://www.erc.gov.ph/ContentPage/203",
+    "url": "https://evoss.ph/Home/Download/302963",
     "id": "0653afb9-dc97-4cbf-b992-0f80ac3ba778",
     "slug": "apply-for-erc-certificate-of-compliance",
     "published": true,
@@ -486,46 +486,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Apply for Non-CITES Wildlife Products - Export (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/56-biodiversity-management/wildlife-resources/transport/351-non-cites-wildlife-products-export?highlight=WyJhcHBsaWNhdGlvbiIsImZvciIsIidmb3IiLCJub24tY2l0ZXMiLCJ3aWxkbGlmZSIsIid3aWxkbGlmZSIsIndpbGRsaWZlJyIsInByb2R1Y3RzIiwiZXhwb3J0IiwiYXBwbGljYXRpb24gZm9yIiwiYXBwbGljYXRpb24gZm9yIG5vbi1jaXRlcyIsImZvciBub24tY2l0ZXMiLCJmb3Igbm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIHByb2R1Y3RzIiwid2lsZGxpZmUgcHJvZHVjdHMiLCJ3aWxkbGlmZSBwcm9kdWN0cyBleHBvcnQiLCJwcm9kdWN0cyBleHBvcnQiXQ==",
+    "service": "Apply for CITES Wildlife Products (Import, Export, and Re-export)",
+    "url": "https://bmb.gov.ph/services",
     "id": "4232285a-d2de-40d3-ba75-5c1043aa98fe",
-    "slug": "apply-for-non-cites-wildlife-products-export-biodiversity-management",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Apply for Non-CITES Wildlife Products - Re-export (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/56-biodiversity-management/wildlife-resources/transport/353-non-cites-wildlife-products-re-export?highlight=WyJhcHBsaWNhdGlvbiIsImZvciIsIidmb3IiLCJub24tY2l0ZXMiLCJ3aWxkbGlmZSIsIid3aWxkbGlmZSIsIndpbGRsaWZlJyIsInByb2R1Y3RzIiwiZXhwb3J0IiwiYXBwbGljYXRpb24gZm9yIiwiYXBwbGljYXRpb24gZm9yIG5vbi1jaXRlcyIsImZvciBub24tY2l0ZXMiLCJmb3Igbm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIHByb2R1Y3RzIiwid2lsZGxpZmUgcHJvZHVjdHMiLCJ3aWxkbGlmZSBwcm9kdWN0cyBleHBvcnQiLCJwcm9kdWN0cyBleHBvcnQiXQ==",
-    "id": "cdbcc847-0dad-4ce6-a363-330f48d2c84d",
-    "slug": "apply-for-non-cites-wildlife-products-re-export-biodiversity-management",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Apply for Non-CITES Wildlife Products - Import (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php?id=352&page=2&sort=avl&filter=creator&filterID=43&searchword=&fromyear=&frommonth=&fromdate=&toyear=&tomonth=&todate=&dateval=",
-    "id": "6372d430-1fcd-485f-868b-388bcc388d21",
-    "slug": "apply-for-non-cites-wildlife-products-import-biodiversity-management",
+    "slug": "apply-for-cites-wildlife-products-import-export-reexport",
     "published": true,
     "featured": false,
     "category": {
@@ -631,7 +595,7 @@
   },
   {
     "service": "Check Status of CNC Application Online",
-    "url": "https://cnconline.emb.gov.ph/projectchecker/ApplicationTracking.aspx?View=0",
+    "url": "https://eiais.emb.gov.ph/internal/public/searchprojects.aspx",
     "id": "be8adae2-65d9-4ffc-8998-41e1d7823750",
     "slug": "check-status-of-cnc-application-online",
     "published": true,

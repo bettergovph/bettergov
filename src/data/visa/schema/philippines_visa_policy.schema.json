@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/philippines_visa_policy.schema.json",
+  "title": "Philippines Visa Policy",
+  "description": "Schema for Philippines visa policy data including visa types, visa-free entry policies, and visa-required nationals",
+  "type": "object",
+  "required": [
+    "sourceInfo",
+    "visaTypes",
+    "visaFreeEntryPolicies",
+    "visaRequiredNationals"
+  ],
+  "properties": {
+    "sourceInfo": {
+      "type": "object",
+      "description": "Metadata about the data source",
+      "required": ["officialSource", "lastUpdated", "disclaimer"],
+      "properties": {
+        "officialSource": {
+          "type": "string",
+          "description": "Official source of the visa policy information",
+          "minLength": 1
+        },
+        "lastUpdated": {
+          "type": "string",
+          "description": "Year or date when the information was last updated",
+          "minLength": 1
+        },
+        "disclaimer": {
+          "type": "string",
+          "description": "Legal disclaimer about the information accuracy",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "visaTypes": {
+      "type": "array",
+      "description": "Available visa types and their requirements",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "url", "minimumRequirements"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the visa type",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the visa type",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the visa purpose and eligibility",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to official visa information",
+            "format": "uri"
+          },
+          "minimumRequirements": {
+            "type": "array",
+            "description": "List of minimum requirements for the visa",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "subtypes": {
+            "type": "array",
+            "description": "Subtypes or variations of the visa",
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "description"],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the subtype",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the subtype",
+                  "minLength": 1
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the subtype",
+                  "minLength": 1
+                },
+                "requirements": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "description": "List of requirements for the subtype",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "description": "Requirements grouped by applicant type",
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "visaFreeEntryPolicies": {
+      "type": "array",
+      "description": "Visa-free entry policies for different countries",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the policy",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the visa-free policy",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the policy terms and conditions",
+            "minLength": 1
+          },
+          "countries": {
+            "type": "array",
+            "description": "List of countries eligible for this policy",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "eligibleGroups": {
+            "type": "array",
+            "description": "List of eligible groups for this policy",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "policies": {
+            "type": "array",
+            "description": "List of specific policies under this entry policy",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "requirements": {
+            "type": "array",
+            "description": "List of requirements for this policy",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalInfo": {
+            "type": "string",
+            "description": "Additional information about the policy"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "visaRequiredNationals": {
+      "type": "object",
+      "description": "Information about nationals who require visas",
+      "required": ["description", "url"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of visa requirements for non-exempt nationals",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to official visa requirement information",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

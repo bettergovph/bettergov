@@ -198,10 +198,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Get a UMID",
-    "url": "https://www.sss.gov.ph/sss/DownloadContent?fileName=SSSForms_UMID_Application.pdf",
+    "service": "Get a MySSS Card",
+    "url": "https://www.sss.gov.ph/mysss-card/",
     "id": "4c153521-6115-41ef-ae0d-19264d004fa2",
-    "slug": "get-a-umid-id",
+    "slug": "get-a-mysss-card",
     "published": true,
     "featured": false,
     "category": {
@@ -289,7 +289,7 @@
   },
   {
     "service": "Get a Solo Parent ID",
-    "url": "https://psa.gov.ph/sites/default/files/attachments/aodao/article/Q%20%26%20A_Solo%20Parent%27s%20Welfare%20Act%20and%20Parental%20Leave.pdf",
+    "url": "https://psahelpline.ph/blogs/a-simple-guide-to-obtaining-a-solo-parent-id-from-the-dswd",
     "id": "942f1e2e-64c7-48da-b961-3a16494a020c",
     "slug": "get-a-solo-parent-id",
     "published": true,

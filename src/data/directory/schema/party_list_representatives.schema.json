@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Party-List Representatives",
+  "description": "Schema for party-list representative directory data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["party_list", "name", "contact"],
+    "properties": {
+      "party_list": {
+        "type": "string",
+        "description": "Name of the party-list organization"
+      },
+      "name": {
+        "type": "string",
+        "description": "Full name of the representative"
+      },
+      "contact": {
+        "type": "string",
+        "description": "Contact phone number with local extension"
+      }
+    }
+  }
+}

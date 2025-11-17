@@ -1,0 +1,305 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/flood_control.schema.json",
+  "title": "Flood Control Projects",
+  "description": "Schema for DPWH flood control infrastructure projects data from ArcGIS",
+  "type": "object",
+  "required": [
+    "objectIdFieldName",
+    "uniqueIdField",
+    "globalIdFieldName",
+    "geometryType",
+    "spatialReference",
+    "fields",
+    "features"
+  ],
+  "properties": {
+    "objectIdFieldName": {
+      "type": "string",
+      "description": "Name of the object ID field"
+    },
+    "uniqueIdField": {
+      "type": "object",
+      "required": ["name", "isSystemMaintained"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the unique ID field"
+        },
+        "isSystemMaintained": {
+          "type": "boolean",
+          "description": "Whether the unique ID is system-maintained"
+        }
+      }
+    },
+    "globalIdFieldName": {
+      "type": "string",
+      "description": "Name of the global ID field"
+    },
+    "geometryType": {
+      "type": "string",
+      "description": "Type of geometry used for spatial data",
+      "enum": [
+        "esriGeometryPoint",
+        "esriGeometryPolyline",
+        "esriGeometryPolygon"
+      ]
+    },
+    "spatialReference": {
+      "type": "object",
+      "required": ["wkid", "latestWkid"],
+      "properties": {
+        "wkid": {
+          "type": "integer",
+          "description": "Well-known ID for the spatial reference system"
+        },
+        "latestWkid": {
+          "type": "integer",
+          "description": "Latest well-known ID for the spatial reference system"
+        }
+      }
+    },
+    "transform": {
+      "type": "object",
+      "properties": {
+        "originPosition": {
+          "type": "string",
+          "enum": ["upperLeft", "lowerLeft", "upperRight", "lowerRight"]
+        },
+        "scale": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "translate": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "description": "Field definitions for the dataset",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "alias", "sqlType"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Field name"
+          },
+          "type": {
+            "type": "string",
+            "description": "ESRI field type",
+            "enum": [
+              "esriFieldTypeInteger",
+              "esriFieldTypeString",
+              "esriFieldTypeDouble",
+              "esriFieldTypeDate",
+              "esriFieldTypeOID",
+              "esriFieldTypeGlobalID"
+            ]
+          },
+          "alias": {
+            "type": "string",
+            "description": "Human-readable field alias"
+          },
+          "sqlType": {
+            "type": "string",
+            "description": "SQL type for the field"
+          },
+          "length": {
+            "type": "integer",
+            "description": "Maximum length for string/date fields"
+          },
+          "domain": {
+            "type": ["object", "null"],
+            "description": "Domain constraints for the field"
+          },
+          "defaultValue": {
+            "type": ["string", "number", "boolean", "null"],
+            "description": "Default value for the field"
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "array",
+      "description": "Array of flood control project features",
+      "items": {
+        "type": "object",
+        "required": ["attributes", "geometry"],
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "required": ["InfraYear", "Region", "Province", "ObjectId"],
+            "properties": {
+              "InfraYear": {
+                "type": "integer",
+                "description": "Infrastructure year",
+                "minimum": 2000,
+                "maximum": 2100
+              },
+              "Region": {
+                "type": "string",
+                "description": "Philippine region name"
+              },
+              "Province": {
+                "type": "string",
+                "description": "Province name"
+              },
+              "Municipality": {
+                "type": ["string", "null"],
+                "description": "Municipality or city name"
+              },
+              "ImplementingOffice": {
+                "type": ["string", "null"],
+                "description": "Engineering office implementing the project"
+              },
+              "ProjectID": {
+                "type": ["string", "null"],
+                "description": "Unique project identifier"
+              },
+              "ProjectDescription": {
+                "type": ["string", "null"],
+                "description": "Description of the overall project"
+              },
+              "ProjectComponentID": {
+                "type": ["string", "null"],
+                "description": "Unique project component identifier"
+              },
+              "ProjectComponentDescription": {
+                "type": ["string", "null"],
+                "description": "Description of the specific project component"
+              },
+              "Program": {
+                "type": ["string", "null"],
+                "description": "Government program funding the project"
+              },
+              "TypeofWork": {
+                "type": ["string", "null"],
+                "description": "Type of construction work"
+              },
+              "infra_type": {
+                "type": ["string", "null"],
+                "description": "Infrastructure type classification"
+              },
+              "Longitude": {
+                "type": ["number", "null"],
+                "description": "Longitude coordinate",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "Latitude": {
+                "type": ["number", "null"],
+                "description": "Latitude coordinate",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "ContractID": {
+                "type": ["string", "null"],
+                "description": "Contract identifier"
+              },
+              "ABC": {
+                "type": ["number", "null"],
+                "description": "Approved Budget for the Contract (numeric)",
+                "minimum": 0
+              },
+              "ContractCost": {
+                "type": ["number", "null"],
+                "description": "Actual contract cost (numeric)",
+                "minimum": 0
+              },
+              "CompletionDateOriginal": {
+                "type": ["integer", "null"],
+                "description": "Original completion date (Unix timestamp in milliseconds)"
+              },
+              "CompletionYear": {
+                "type": ["integer", "null"],
+                "description": "Year of completion"
+              },
+              "Contractor": {
+                "type": ["string", "null"],
+                "description": "Contractor company name"
+              },
+              "ObjectId": {
+                "type": "integer",
+                "description": "Unique object identifier"
+              },
+              "CreationDate": {
+                "type": ["integer", "null"],
+                "description": "Record creation date (Unix timestamp in milliseconds)"
+              },
+              "Creator": {
+                "type": ["string", "null"],
+                "description": "User who created the record"
+              },
+              "EditDate": {
+                "type": ["integer", "null"],
+                "description": "Last edit date (Unix timestamp in milliseconds)"
+              },
+              "Editor": {
+                "type": ["string", "null"],
+                "description": "User who last edited the record"
+              },
+              "FundingYear": {
+                "type": ["string", "null"],
+                "description": "Year of funding"
+              },
+              "LegislativeDistrict": {
+                "type": ["string", "null"],
+                "description": "Legislative district"
+              },
+              "DistrictEngineeringOffice": {
+                "type": ["string", "null"],
+                "description": "District engineering office"
+              },
+              "GlobalID": {
+                "type": ["string", "null"],
+                "description": "Global unique identifier (GUID)",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "ABC_String": {
+                "type": ["string", "null"],
+                "description": "Approved Budget for the Contract (string representation)"
+              },
+              "ContractCost_String": {
+                "type": ["string", "null"],
+                "description": "Contract cost (string representation)"
+              },
+              "CompletionDateActual": {
+                "type": ["string", "null"],
+                "description": "Actual completion date (ISO 8601 format: YYYY-MM-DD)"
+              },
+              "StartDate": {
+                "type": ["string", "null"],
+                "description": "Project start date (MM/DD/YYYY format)"
+              }
+            }
+          },
+          "geometry": {
+            "type": "object",
+            "required": ["x", "y"],
+            "properties": {
+              "x": {
+                "type": "number",
+                "description": "X coordinate (transformed)"
+              },
+              "y": {
+                "type": "number",
+                "description": "Y coordinate (transformed)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

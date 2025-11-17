@@ -10,7 +10,7 @@ const config = {
   '*.{js,jsx,ts,tsx,cjs,mjs}': [buildEslintCommand],
 
   // Prettier for various file types
-  '*.{js,jsx,ts,tsx,cjs,mjs,json,md,yml,yaml,css,scss,html}': [
+  '*.{js,jsx,ts,tsx,cjs,mjs,json,jsonc,md,yml,yaml,css,scss,html}': [
     'prettier --write',
   ],
 };
