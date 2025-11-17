@@ -54,28 +54,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Verify PRC Exam Rating",
-    "url": "http://online.prc.gov.ph/Verification",
+    "service": "PRC Online License Verification",
+    "url": "https://verification.prc.gov.ph/",
     "id": "aead3145-c9ca-4afa-bf36-d0d3b5c11da0",
     "slug": "verify-prc-exam-rating",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Verify PRC License",
-    "url": "http://online.prc.gov.ph/Verification",
-    "id": "2d3d00fa-4459-4183-8be5-de48f8ec69ca",
-    "slug": "verify-prc-license",
     "published": true,
     "featured": false,
     "category": {
@@ -108,26 +90,8 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "View PRC Exam Results",
-    "url": "https://www.prc.gov.ph/examination-result",
-    "id": "b55d2fc5-04a0-462e-84a6-61879cdf867f",
-    "slug": "view-prc-exam-results",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
     "service": "Register Enterprised-based Union",
-    "url": "https://blr-ours.dole.gov.ph/",
+    "url": "https://ours.dole.gov.ph/",
     "id": "884081d9-f4f4-4abf-b871-479e407ceafc",
     "slug": "register-enterprised-based-union",
     "published": true,
@@ -216,26 +180,8 @@
     "updatedAt": "2025-06-06T11:30:06.320Z"
   },
   {
-    "service": "Apply for CSC Authentication of Certificate of Eligibility",
-    "url": "http://csc.gov.ph/2014-02-27-07-38-08/2014-02-27-07-39-33.html",
-    "id": "e152ec2d-39cf-4548-80fe-fcf3e2ce9819",
-    "slug": "apply-for-csc-authentication-of-certificate-of-eligibility",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Apply for CSC Examination (Paper and Pencil Test)",
-    "url": "http://csc.gov.ph/2014-02-27-07-36-50/2014-02-27-07-37-12.html",
+    "service": "Apply for CSC Examination",
+    "url": "https://csc.gov.ph/downloads/category/459-cse-application-form",
     "id": "c5165964-9e1e-45fc-87a9-7a29cec59734",
     "slug": "apply-for-csc-examination-paper-and-pencil-test",
     "published": true,
@@ -253,27 +199,9 @@
   },
   {
     "service": "Apply for CSC Grant of Eligibility under Special Laws and CSC Issuances",
-    "url": "http://csc.gov.ph/2014-02-27-07-38-08/2014-02-27-07-40-14.html",
+    "url": "https://csc.gov.ph/special-eligibilities",
     "id": "6c5a586d-c139-4e52-bdd4-e7d33b7bf4f7",
     "slug": "apply-for-csc-grant-of-eligibility-under-special-laws-and-csc-issuances",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Employment",
-      "slug": "employment"
-    },
-    "subcategory": {
-      "name": "Professionals",
-      "slug": "professionals"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Claim CSC Certificate of Eligibility",
-    "url": "http://csc.gov.ph/2014-02-27-07-38-08/2014-02-27-07-39-33.html",
-    "id": "f8fa9688-6364-4ac2-98c8-5dec115265bf",
-    "slug": "claim-csc-certificate-of-eligibility",
     "published": true,
     "featured": false,
     "category": {
