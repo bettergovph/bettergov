@@ -390,7 +390,7 @@ const AccessibilityPage: FC = () => {
             <div className='p-6 md:p-8 text-center'>
               <p className='text-sm text-gray-800'>
                 This accessibility statement was last updated on{' '}
-                <time dateTime='2024-01-15'>January 15, 2024</time>.
+                <time dateTime='2025-09-08'>September 8, 2025</time>.
               </p>
               <p className='text-sm text-gray-800 mt-2'>
                 We review and update this statement regularly to ensure it
