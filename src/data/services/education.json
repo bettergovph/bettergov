@@ -55,7 +55,7 @@
   },
   {
     "service": "Apply for CHED Foreign Scholarship and Training Programs",
-    "url": "https://ched.gov.ph/stufaps/",
+    "url": "https://ched.e.gov.ph/foreign-scholarship-training-program",
     "id": "fbba6f06-25e8-49c9-9e83-9de02c7e31b9",
     "slug": "apply-for-ched-foreign-scholarship-and-training-programs",
     "published": true,
@@ -73,7 +73,7 @@
   },
   {
     "service": "Register for a COA Training",
-    "url": "https://www.coa.gov.ph/nom/",
+    "url": "https://www.coa.gov.ph/trainings/",
     "id": "b917ad09-3c29-43c2-9648-da1b645d6b2d",
     "slug": "register-for-a-coa-training",
     "published": true,
@@ -91,7 +91,7 @@
   },
   {
     "service": "Apply for TESDA Online Program",
-    "url": "https://www.e-tesda.gov.ph/login/signup.php",
+    "url": "https://e-tesda.gov.ph/",
     "id": "4d14d5da-ac0b-4833-a4f3-2defaa63bc2d",
     "slug": "apply-for-tesda-online-program",
     "published": true,
@@ -127,7 +127,7 @@
   },
   {
     "service": "Apply for DA eLearning Certification",
-    "url": "http://e-extension.gov.ph/elearning/",
+    "url": "https://elearn.e-extension.gov.ph/login/signup.php",
     "id": "885b16fb-47f6-419b-8798-633d7808d1be",
     "slug": "apply-for-da-elearning-certification",
     "published": true,
@@ -145,7 +145,7 @@
   },
   {
     "service": "Apply for TESDA Scholarship",
-    "url": "https://www.tesda.gov.ph/Barangay/",
+    "url": "https://tesdaonlineprogram.com/how-to-apply-for-a-scholarship-in-tesda/",
     "id": "d0a43a7d-7d29-40f6-b5dc-633c97b9947d",
     "slug": "apply-for-tesda-scholarship",
     "published": true,

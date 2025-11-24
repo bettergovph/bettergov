@@ -160,5 +160,23 @@
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
     "updatedAt": "2025-06-06T11:30:06.319Z"
+  },
+  {
+    "service": "Access Weather and Hazard Information via PAGASA",
+    "url": "https://www.pagasa.dost.gov.ph/",
+    "id": "c3a9a2e5-8b91-4b29-9e7a-4f2d7c5e3a22",
+    "slug": "access-weather-and-hazard-information-via-pagasa",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Disaster and Weather",
+      "slug": "disaster-weather"
+    },
+    "subcategory": {
+      "name": "Weather",
+      "slug": "weather"
+    },
+    "createdAt": "2025-11-24T00:00:00.000Z",
+    "updatedAt": "2025-11-24T00:00:00.000Z"
   }
 ]

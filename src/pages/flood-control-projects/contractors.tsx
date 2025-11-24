@@ -464,25 +464,21 @@ const ContractorItem: FC<ContractorItemProps> = ({
 }) => (
   <div className='flex'>
     <button
-      className={`flex-1 text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+      className={`flex-1 truncate text-left px-3 py-2 text-sm hover:bg-gray-100 hover:cursor-pointer ${
         isSelected ? 'bg-primary-50 text-primary-600 font-medium' : ''
       }`}
       onClick={onClick}
       title={contractor.value} // Show full name on hover
     >
-      <div className='flex justify-between items-center'>
-        <span className='truncate max-w-[180px]'>
-          {contractor.value.length > 40
-            ? `${contractor.value.substring(0, 40)}...`
-            : contractor.value}
-        </span>
-        <span className='text-gray-800 text-xs ml-2 shrink-0'>
+      <div className='flex justify-between items-center gap-2'>
+        <span className='truncate'>{contractor.value}</span>
+        <span className='text-gray-800 text-xs shrink-0'>
           {contractor.count}
         </span>
       </div>
     </button>
     <button
-      className='px-2 py-2 text-xs text-primary-600 hover:text-primary-800 hover:bg-primary-50 shrink-0'
+      className='px-2 py-2 text-xs text-primary-600 hover:text-primary-800 hover:bg-primary-50 hover:cursor-pointer shrink-0'
       onClick={() => onNavigate(createSlug(contractor.value))}
       title={`View ${contractor.value} details`}
     >
@@ -600,7 +596,7 @@ const FloodControlProjectsContractors: FC = () => {
               <ScrollArea className='h-[60vh]'>
                 <div className='space-y-1'>
                   <button
-                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 hover:cursor-pointer ${
                       !selectedContractor
                         ? 'bg-primary-50 text-primary-600 font-medium'
                         : ''
