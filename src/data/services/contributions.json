@@ -37,7 +37,7 @@
   },
   {
     "service": "Register your Pag-IBIG Member's Information",
-    "url": "https://www.pagibigfundservices.com/PubReg/Starter_Page.aspx",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/Membership.aspx",
     "id": "fb5e4c0d-d70e-4e4c-a166-4a687c0bed46",
     "slug": "register-your-pag-ibig-members-information",
     "published": true,
@@ -51,7 +51,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:57:00.000Z"
   },
   {
     "service": "Submit your Pag-IBIG Monthly Remittance (eSRS) Online",
