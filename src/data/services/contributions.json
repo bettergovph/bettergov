@@ -91,7 +91,7 @@
   },
   {
     "service": "View your GSIS Membership Record",
-    "url": "https://egsismo.gsis.gov.ph/eGSISMO/",
+    "url": "https://gsismo.e.gov.ph/login",
     "id": "956f8318-5ef8-4f37-bba0-a8f50b3b7080",
     "slug": "view-your-gsis-membership-record",
     "published": true,
@@ -105,7 +105,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T11:01:00.000Z"
   },
   {
     "service": "Submit Loan Collection List for Employers",
