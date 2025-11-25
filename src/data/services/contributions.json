@@ -73,7 +73,7 @@
   },
   {
     "service": "Update SSS Information",
-    "url": "https://www.sss.gov.ph/",
+    "url": "https://www.sss.gov.ph/register-to-mysss/",
     "id": "53a49dd6-f25d-439a-9531-11c300800757",
     "slug": "update-sss-information",
     "published": true,
@@ -87,7 +87,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:59:00.000Z"
   },
   {
     "service": "View your GSIS Membership Record",
