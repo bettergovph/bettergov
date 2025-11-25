@@ -18,10 +18,10 @@
     "updatedAt": "2025-11-25T10:51:00.000Z"
   },
   {
-    "service": "Register your Kasambahay (SSS Form)",
-    "url": "https://www.sss.gov.ph/sss/DownloadContent?fileName=SSSForm_Unified_Registration_Form_Kasambahay.pdf",
+    "service": "Register your Kasambahay with SSS",
+    "url": "https://www.sss.gov.ph/household-employer/",
     "id": "e8a72d98-49a5-4d76-94a7-67f223e5a92a",
-    "slug": "register-your-kasambahay-sss-form",
+    "slug": "register-your-kasambahay-with-sss",
     "published": true,
     "featured": false,
     "category": {
@@ -33,7 +33,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:53:00.000Z"
   },
   {
     "service": "Register your Pag-IBIG Member's Information",
