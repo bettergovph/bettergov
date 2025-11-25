@@ -109,7 +109,7 @@
   },
   {
     "service": "Submit Loan Collection List for Employers",
-    "url": "https://www.sss.gov.ph/",
+    "url": "https://sssguides.com/employers-guide-creating-electronic-contribution-collection-list-e-ccl-sss//",
     "id": "b135f92d-b632-458a-a232-0f07172da657",
     "slug": "submit-loan-collection-list-for-employers",
     "published": true,
@@ -123,7 +123,7 @@
       "slug": "salary-loans"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T11:03:00.000Z"
   },
   {
     "service": "Report PhilHealth Premium Contributions of your Employees",
