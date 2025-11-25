@@ -1,7 +1,7 @@
 [
   {
     "service": "Calculate Possible Retirement Benefit with SSS",
-    "url": "https://www.sss.gov.ph/sss/portlets/retirementestimator/retirementEstimator1.jsp",
+    "url": "https://www.sss.gov.ph/pension-calculator/",
     "id": "9c1a3f20-0729-409a-adc5-7fffb0379cfa",
     "slug": "calculate-possible-retirement-benefit-with-sss",
     "published": true,
@@ -15,7 +15,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:51:00.000Z"
   },
   {
     "service": "Register your Kasambahay (SSS Form)",
