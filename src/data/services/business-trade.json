@@ -631,7 +631,7 @@
   },
   {
     "service": "Apply for Pre-Manufacture and Pre-Importation Notification Certificate",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://opms.emb.gov.ph/manual/PMPIN_APPLICATION",
     "id": "22049d1c-84d3-406b-a2ad-8f1e02ed13ac",
     "slug": "apply-for-pre-manufacture-and-pre-importation-notification-certificate",
     "published": true,
@@ -645,7 +645,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:51:00.000Z"
   },
   {
     "service": "Apply for Priority Chemical List Compliance Certificate",
