@@ -595,7 +595,7 @@
   },
   {
     "service": "Apply for Environmental Laboratory Recognition",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://erlsd.emb.gov.ph/laboratory-services/",
     "id": "6e7605a8-805f-4ea2-8adb-59a639027432",
     "slug": "apply-for-environmental-laboratory-recognition",
     "published": true,
@@ -609,7 +609,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:48:00.000Z"
   },
   {
     "service": "Apply for Importer and Importation Clearance for Recyclable Materials Containing Hazardous Substances",
