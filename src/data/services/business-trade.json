@@ -450,10 +450,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "File for IPOPHL Industiral Design",
-    "url": "https://onlineservices.ipophil.gov.ph/eIDFile/",
+    "service": "File for IPOPHL Industrial Design",
+    "url": "https://www.ipophil.gov.ph/industrial-design-filing/",
     "id": "32dddf38-23aa-4a36-85c4-27dbe974a3e4",
-    "slug": "file-for-ipophl-industiral-design",
+    "slug": "file-for-ipophl-industrial-design",
     "published": true,
     "featured": false,
     "category": {
@@ -465,7 +465,7 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-26T21:42:00.000Z"
   },
   {
     "service": "Apply for CITES Wildlife Products (Import, Export, and Re-export)",
