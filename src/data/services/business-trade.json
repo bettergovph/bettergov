@@ -649,7 +649,7 @@
   },
   {
     "service": "Apply for Priority Chemical List Compliance Certificate",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://chemical.emb.gov.ph/wp-content/uploads/2017/03/CHECKLIST-FOR-PRIORITY-CHEMICAL-LIST.pdf",
     "id": "a136711d-7655-46a5-a42b-1b44a7379533",
     "slug": "apply-for-priority-chemical-list-compliance-certificate",
     "published": true,
@@ -663,7 +663,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:52:00.000Z"
   },
   {
     "service": "Apply for Waste Water Discharge Permit",
