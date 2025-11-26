@@ -127,7 +127,7 @@
   },
   {
     "service": "Register a Sole Proprietorship Business",
-    "url": "https://bnrs.dti.gov.ph/pdf/download/application_form.pdf",
+    "url": "https://philippinesbusinessregistration.com/company-registration/sole-proprietorship/",
     "id": "94c1e669-d8a2-4895-a6fe-da89960fcc08",
     "slug": "register-a-sole-proprietorship-business",
     "published": true,
@@ -141,7 +141,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:26:00.000Z"
   },
   {
     "service": "Request for Renewal of Business Name",
