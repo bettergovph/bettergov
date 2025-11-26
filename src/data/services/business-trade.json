@@ -235,7 +235,7 @@
   },
   {
     "service": "File Complaints on Consumer Affair Service",
-    "url": "https://www.dti.gov.ph/consumers/complaints",
+    "url": "https://consumercare.dti.gov.ph/#/home",
     "id": "f94add98-a78c-435f-9552-a181cfaeb43d",
     "slug": "file-complaints-on-consumer-affair-service",
     "published": true,
@@ -249,7 +249,7 @@
       "slug": "complaints"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:28:00.000Z"
   },
   {
     "service": "Know more About Business or Investment-related Assistance",
