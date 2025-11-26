@@ -288,24 +288,6 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Check the Prevailing Prices of Basic Necessities and Prime Commodities (ePresyo)",
-    "url": "https://www.dti.gov.ph/konsyumer/e-presyo/",
-    "id": "2f799612-d354-4606-a239-999dbf1e9530",
-    "slug": "check-the-prevailing-prices-of-basic-necessities-and-prime-commodities-epresyo",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Price Control Monitoring",
-      "slug": "price-control"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
     "service": "Know the Buying and Selling Prices of Rice and Corn",
     "url": "https://nfa.gov.ph/buying-selling-price",
     "id": "6b235845-b5a0-4fb0-b4aa-602f5983e6cc",
