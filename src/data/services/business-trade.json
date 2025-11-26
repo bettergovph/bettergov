@@ -289,7 +289,7 @@
   },
   {
     "service": "Know the Buying and Selling Prices of Rice and Corn",
-    "url": "https://nfa.gov.ph/buying-selling-price",
+    "url": "https://www.da.gov.ph/price-monitoring/",
     "id": "6b235845-b5a0-4fb0-b4aa-602f5983e6cc",
     "slug": "know-the-buying-and-selling-prices-of-rice-and-corn",
     "published": true,
@@ -303,7 +303,7 @@
       "slug": "price-control"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:39:00.000Z"
   },
   {
     "service": "Apply for Certificate of Conformity",
