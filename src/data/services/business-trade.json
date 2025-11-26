@@ -55,7 +55,7 @@
   },
   {
     "service": "Request for a Grant of a Philippine Patent",
-    "url": "https://onlineservices.ipophil.gov.ph/eInventionFile/",
+    "url": "https://www.ipophil.gov.ph/how-to-file-for-patent-grant/",
     "id": "bc3024a5-e15d-4680-94b8-e0dc0e02a952",
     "slug": "request-for-a-grant-of-a-philippine-patent",
     "published": true,
@@ -69,7 +69,7 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:23:00.000Z"
   },
   {
     "service": "Search Trademark Information",
