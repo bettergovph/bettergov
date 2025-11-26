@@ -253,7 +253,7 @@
   },
   {
     "service": "Register as an Overseas Voter",
-    "url": "https://irehistro.comelec.gov.ph/irehistro/ovf1",
+    "url": "https://dfa.gov.ph/ovs",
     "id": "f7653aa4-fb47-4608-b07c-4e4468329269",
     "slug": "register-as-an-overseas-voter",
     "published": true,
@@ -267,7 +267,7 @@
       "slug": "voters"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-26T18:16:00.000Z"
   },
   {
     "service": "Know How to Correct Errors in your Civil Registry Documents",
