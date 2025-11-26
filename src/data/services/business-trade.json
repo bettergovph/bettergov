@@ -19,7 +19,7 @@
   },
   {
     "service": "Apply for a Utility Model",
-    "url": "https://onlineservices.ipophil.gov.ph/eUMFile/",
+    "url": "https://www.ipophil.gov.ph/utility-model-filing/",
     "id": "58ee4717-63c3-4874-940e-67e89f2f20a4",
     "slug": "apply-for-a-utility-model",
     "published": true,
@@ -33,7 +33,7 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:20:00.000Z"
   },
   {
     "service": "Apply for DDB Certification (non-controlled) and Exemption (with controlled chemicals)",
