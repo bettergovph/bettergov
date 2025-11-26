@@ -37,7 +37,7 @@
   },
   {
     "service": "Apply for DDB Certification (non-controlled) and Exemption (with controlled chemicals)",
-    "url": "https://oaceis.ddb.gov.ph/account/Welcome.aspx",
+    "url": "https://ddb.gov.ph/regulatory-control/",
     "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
     "slug": "apply-for-ddb-certification-non-controlled-and-exemption-with-controlled-chemicals",
     "published": true,
@@ -51,7 +51,7 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:21:00.000Z"
   },
   {
     "service": "Request for a Grant of a Philippine Patent",
