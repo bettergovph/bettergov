@@ -667,7 +667,7 @@
   },
   {
     "service": "Apply for Waste Water Discharge Permit",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://r8.emb.gov.ph/wp-content/uploads/2019/02/WWDP-Requirements.pdf",
     "id": "a4cb5081-3943-40db-b7aa-b04f7d981e19",
     "slug": "apply-for-waste-water-discharge-permit",
     "published": true,
@@ -681,6 +681,6 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:54:00.000Z"
   }
 ]
