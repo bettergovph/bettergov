@@ -613,7 +613,7 @@
   },
   {
     "service": "Apply for Importer and Importation Clearance for Recyclable Materials Containing Hazardous Substances",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://emb.gov.ph/wp-content/uploads/2025/04/Importation-Clearance-Checklist-of-Requirements-4.11.25.pdf",
     "id": "8c385bb2-9ef6-44a1-be1f-539105f31153",
     "slug": "apply-for-importer-and-importation-clearance-for-recyclable-materials-containing-hazardous-substances",
     "published": true,
@@ -627,7 +627,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:50:00.000Z"
   },
   {
     "service": "Apply for Pre-Manufacture and Pre-Importation Notification Certificate",
