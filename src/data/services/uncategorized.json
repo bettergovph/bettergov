@@ -55,7 +55,7 @@
   },
   {
     "service": "Request and Access Government Records",
-    "url": "https://www.foi.gov.ph/requests",
+    "url": "https://www.foi.gov.ph/requests/",
     "id": "4a5ab5a1-d638-4ed4-bb3d-71b217609b2a",
     "slug": "request-and-access-government-records",
     "published": true,
@@ -69,7 +69,7 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-27T20:49:00.000Z"
   },
   {
     "service": "View Postal ID Privileges",
