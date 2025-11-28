@@ -49,3 +49,27 @@ export const buildFilterString = (filters: FilterState): string => {
 
   return filterStrings.join(' AND ');
 };
+
+export const generateUrlParams = (newFilters: FilterState): URLSearchParams => {
+  const keyMap: Record<keyof FilterState, string> = {
+    InfraYear: 'year',
+    Region: 'region',
+    Province: 'province',
+    TypeofWork: 'typeOfWork',
+    DistrictEngineeringOffice: 'deo',
+    LegislativeDistrict: 'district',
+  };
+
+  const newParams = new URLSearchParams();
+  (Object.keys(newFilters) as Array<keyof FilterState>).forEach(key => {
+    const urlKey = keyMap[key];
+    const filterValue = newFilters[key];
+
+    // Only set the parameter if the value is not an empty string
+    if (filterValue) {
+      newParams.set(urlKey, filterValue);
+    }
+  });
+
+  return newParams;
+};

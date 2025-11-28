@@ -23,6 +23,8 @@ import provinceData from '../../data/flood_control/lookups/Province_with_counts.
 import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_with_counts.json';
 import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
 import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
+import { useSearchParams } from 'react-router-dom';
+import { generateUrlParams } from './utils';
 
 // Define types for our data
 interface DataItem {
@@ -609,14 +611,25 @@ const TableHits: FC<{ filters: FilterState; searchTerm: string }> = ({
 };
 
 const FloodControlProjectsTable: FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // State for filters and search
-  const [filters, setFilters] = useState<FilterState>({
-    InfraYear: '',
-    Region: '',
-    Province: '',
-    TypeofWork: '',
-    DistrictEngineeringOffice: '',
-    LegislativeDistrict: '',
+  const [filters, setFilters] = useState<FilterState>(() => {
+    const initialFilters: FilterState = {
+      InfraYear: searchParams.get('year') || '',
+      Region: searchParams.get('region') || '',
+      Province: searchParams.get('province') || '',
+      TypeofWork: searchParams.get('typeOfWork') || '',
+      DistrictEngineeringOffice: searchParams.get('deo') || '',
+      LegislativeDistrict: searchParams.get('district') || '',
+    };
+
+    // If region is defined do not set province
+    if (initialFilters.Region.length) {
+      initialFilters.Province = '';
+    }
+
+    return initialFilters;
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [isExporting, setIsExporting] = useState(false);
@@ -634,6 +647,7 @@ const FloodControlProjectsTable: FC = () => {
     }
 
     setFilters(newFilters);
+    setSearchParams(generateUrlParams(newFilters));
   };
 
   // Build filter string for Meilisearch

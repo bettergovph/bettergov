@@ -39,7 +39,7 @@ import {
   FloodControlHit,
 } from './shared-components';
 import FloodControlProjectsTab from './tab';
-import { buildFilterString, FilterState } from './utils';
+import { buildFilterString, FilterState, generateUrlParams } from './utils';
 
 // Import lookup data
 import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json';
@@ -49,6 +49,7 @@ import legislativeDistrictData from '../../data/flood_control/lookups/Legislativ
 import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
 import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
 import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
+import { useSearchParams } from 'react-router-dom';
 
 // Meilisearch configuration
 const MEILISEARCH_HOST =
@@ -439,22 +440,46 @@ const ContractorChart: FC = () => {
 // Removed SearchResultsHits component since we don't need it anymore
 
 const FloodControlProjects: FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation('flood-control-projects');
 
   // State for filters and sidebar visibility
-  const [filters, setFilters] = useState<FilterState>({
-    InfraYear: '',
-    Region: '',
-    Province: '',
-    TypeofWork: '',
-    DistrictEngineeringOffice: '',
-    LegislativeDistrict: '',
+  const [filters, setFilters] = useState<FilterState>(() => {
+    const initialFilters: FilterState = {
+      InfraYear: searchParams.get('year') || '',
+      Region: searchParams.get('region') || '',
+      Province: searchParams.get('province') || '',
+      TypeofWork: searchParams.get('typeOfWork') || '',
+      DistrictEngineeringOffice: searchParams.get('deo') || '',
+      LegislativeDistrict: searchParams.get('district') || '',
+    };
+
+    // If region is defined do not set province
+    if (initialFilters.Region.length) {
+      initialFilters.Province = '';
+    }
+
+    return initialFilters;
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [showSidebar, setShowSidebar] = useState(false);
 
+  // Check if filters or search are applied
+  const checkIfFiltersApplied = (
+    filters: FilterState,
+    searchTerm: string
+  ): boolean => {
+    // Check if search term is not empty
+    if (searchTerm && searchTerm.trim() !== '') return true;
+
+    // Check if any filter has a value
+    return Object.values(filters).some(value => value && value.trim() !== '');
+  };
+
   // Track whether filters or search are applied to conditionally render InstantSearch
-  const [filtersApplied, setFiltersApplied] = useState(false);
+  const [filtersApplied, setFiltersApplied] = useState(
+    checkIfFiltersApplied(filters, searchTerm)
+  );
 
   // State to manage which dropdown is open
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -519,18 +544,6 @@ const FloodControlProjects: FC = () => {
       fullName: item.value,
     }));
 
-  // Check if filters or search are applied
-  const checkIfFiltersApplied = (
-    filters: FilterState,
-    searchTerm: string
-  ): boolean => {
-    // Check if search term is not empty
-    if (searchTerm && searchTerm.trim() !== '') return true;
-
-    // Check if any filter has a value
-    return Object.values(filters).some(value => value && value.trim() !== '');
-  };
-
   // Handle filter change
   const handleFilterChange = (filterName: keyof FilterState, value: string) => {
     const newFilters = {
@@ -544,6 +557,7 @@ const FloodControlProjects: FC = () => {
     }
 
     setFilters(newFilters);
+    setSearchParams(generateUrlParams(newFilters));
 
     // Check if any filters are now applied
     setFiltersApplied(checkIfFiltersApplied(newFilters, searchTerm));
