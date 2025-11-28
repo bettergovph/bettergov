@@ -55,7 +55,7 @@
   },
   {
     "service": "Request and Access Government Records",
-    "url": "https://www.foi.gov.ph/requests",
+    "url": "https://www.foi.gov.ph/requests/",
     "id": "4a5ab5a1-d638-4ed4-bb3d-71b217609b2a",
     "slug": "request-and-access-government-records",
     "published": true,
@@ -69,7 +69,7 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-27T20:49:00.000Z"
   },
   {
     "service": "View Postal ID Privileges",
@@ -145,7 +145,7 @@
   },
   {
     "service": "Connecting Rural Urban Intermodal Systems Efficiently (CRUISE)",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/connecting-rural-urban-intermodal-systems-efficiently-cruise/",
+    "url": "https://tieza.gov.ph/wp-content/uploads/2020/08/5.-Role-of-DBP-in-Philippine-Tourism-Development-DBP.pdf",
     "id": "0b4ec793-8035-4110-89ac-e26cfa6c5c6c",
     "slug": "connecting-rural-urban-intermodal-systems-efficiently-cruise",
     "published": true,
@@ -159,11 +159,11 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-27T20:51:00.000Z"
   },
   {
     "service": "DBP-Mindanao Development Assistance Financing Program (DBP-MinDA)",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/dbp-mindanao-development-assistance-financing-program-dbp-minda/",
+    "url": "https://www.dbp.ph/wp-content/uploads/2022/09/DBP-MindDA.pdf",
     "id": "227e1e8a-b406-474e-8ecd-a72ac3eb79b9",
     "slug": "dbp-mindanao-development-assistance-financing-program-dbp-minda",
     "published": true,
@@ -177,7 +177,7 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-27T20:53:00.000Z"
   },
   {
     "service": "DBP’s Electric Cooperative Loan Take-Out Assistance from PSALM (DELTA-P)",
@@ -217,7 +217,7 @@
   },
   {
     "service": "Infrastructure Contractors Support (ICONS) Program",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/infrastructure-contractors-support-icons-program/",
+    "url": "https://www.dbp.ph/wp-content/uploads/2018/10/Banker-3rd-2018.pdf",
     "id": "073c569e-870b-4dcf-b47c-b5972aac02c2",
     "slug": "infrastructure-contractors-support-icons-program",
     "published": true,
@@ -231,7 +231,7 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-27T20:54:00.000Z"
   },
   {
     "service": "Solar Merchant Power Plant (SMPP) Financing Program",
@@ -253,7 +253,7 @@
   },
   {
     "service": "Water for Every Resident (WATER) Program",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/water-for-every-resident-water-program/",
+    "url": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
     "id": "e246d8f7-e16a-4c30-89c2-4fcfd618b9bf",
     "slug": "water-for-every-resident-water-program",
     "published": true,
@@ -267,7 +267,7 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-27T20:55:00.000Z"
   },
   {
     "service": "Apply as DPWH Accredited Civil Society Organizations (CSO)",
@@ -307,7 +307,7 @@
   },
   {
     "service": "Verify the Status of the Contractor's Profile",
-    "url": "https://apps.dpwh.gov.ph/contractor_info_viewer?AspxAutoDetectCookieSupport=1",
+    "url": "https://apps.dpwh.gov.ph/contractor_profile_application/signin.aspx",
     "id": "1ad8e130-17f5-4edc-864d-d44fbb66e49c",
     "slug": "verify-the-status-of-the-contractors-profile",
     "published": true,
@@ -321,6 +321,6 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-27T20:56:00.000Z"
   }
 ]
