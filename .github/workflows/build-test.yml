@@ -13,32 +13,32 @@ permissions:
   contents: read
 
 jobs:
-  build_image:
-    name: Build image
-    runs-on: ubuntu-latest
+  # build_image:
+  #   name: Build image
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
+  #   steps:
+  #     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+  #       with:
+  #         persist-credentials: false
 
-      # The image is not pushed anywhere at the moment but serves the following purposes:
-      # (a) performs the npm run build when building the image, and
-      # (b) acts as a placeholder if we want to deploy as a container in the future.
-      - name: Build the image
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
-        with:
-          context: .
-          platforms: linux/amd64
-          push: false
-          build-args: |
-            HEAD_COMMIT_HASH=${{ github.sha }}
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/bettergov:${{github.sha}}
-            ghcr.io/${{ github.repository_owner }}/bettergov:latest
+  #     # The image is not pushed anywhere at the moment but serves the following purposes:
+  #     # (a) performs the npm run build when building the image, and
+  #     # (b) acts as a placeholder if we want to deploy as a container in the future.
+  #     - name: Build the image
+  #       uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+  #       with:
+  #         context: .
+  #         platforms: linux/amd64
+  #         push: false
+  #         build-args: |
+  #           HEAD_COMMIT_HASH=${{ github.sha }}
+  #         tags: |
+  #           ghcr.io/${{ github.repository_owner }}/bettergov:${{github.sha}}
+  #           ghcr.io/${{ github.repository_owner }}/bettergov:latest
 
   lint_checks:
-    name: Lint
+    name: Lint and Build
     runs-on: ubuntu-latest
 
     steps:
@@ -59,9 +59,14 @@ jobs:
       - name: Check Prettier formatting
         run: npx prettier --check .
 
+      - name: Build the project
+        run: npm run build
+
   e2e_tests:
     name: Playwright Tests (Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
     runs-on: ubuntu-latest
+    needs: [lint_checks]
+    if: ${{ needs.lint_checks.result == 'success' }}
     container:
       image: mcr.microsoft.com/playwright:v1.55.0-noble
       options: --user 1001
