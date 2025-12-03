@@ -1,5 +1,5 @@
-import { WeatherData } from '../types'
-import { fetchWithCache } from './api'
+import { WeatherData } from '../types';
+import { fetchWithCache } from './api';
 
 /**
  * Map OpenWeatherMap icon codes to Lucide icon names
@@ -26,17 +26,17 @@ export const mapWeatherIconToLucide = (iconCode: string): string => {
     '13n': 'CloudSnow',
     '50d': 'Cloud', // mist
     '50n': 'Cloud',
-  }
+  };
 
-  return iconMap[iconCode] || 'Cloud' // Default to Cloud if icon code not found
-}
+  return iconMap[iconCode] || 'Cloud'; // Default to Cloud if icon code not found
+};
 
 /**
  * Fetch weather data from the API
  * @returns Transformed weather data
  */
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
-  const data = await fetchWithCache('https://api.bettergov.ph/weather')
+  const data = await fetchWithCache('https://api.bettergov.ph/weather');
 
   // Transform API data to match our WeatherData type
   const transformedData: WeatherData[] = Object.keys(data).map(
@@ -45,8 +45,12 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
       temperature: Math.round(data[key].main.temp), // Round temperature to nearest integer
       condition: data[key].weather[0].description,
       icon: mapWeatherIconToLucide(data[key].weather[0].icon),
+      humidity: data[key].main.humidity,
+      windSpeed: data[key].wind.speed,
+      pressure: data[key].main.pressure,
+      visibility: Math.round(data[key].visibility / 1000), // Convert meters to kilometers
     })
-  )
+  );
 
-  return transformedData
-}
+  return transformedData;
+};

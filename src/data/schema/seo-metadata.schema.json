@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bettergov.ph/schemas/seo-metadata.schema.json",
+  "title": "SEO Metadata",
+  "description": "Schema for SEO metadata including page titles and descriptions",
+  "type": "object",
+  "patternProperties": {
+    "^/.*$": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/simpleMetadata"
+        },
+        {
+          "$ref": "#/definitions/conditionalMetadata"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "simpleMetadata": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Page title for SEO",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Page description for SEO",
+          "minLength": 1
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the page",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    },
+    "conditionalMetadata": {
+      "type": "object",
+      "properties": {
+        "_default": {
+          "$ref": "#/definitions/metadataFields"
+        }
+      },
+      "patternProperties": {
+        "^(?!_default$).*$": {
+          "$ref": "#/definitions/metadataFields"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    },
+    "metadataFields": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Page title for SEO",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Page description for SEO",
+          "minLength": 1
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the page",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    }
+  }
+}

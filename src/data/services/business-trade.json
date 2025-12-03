@@ -19,7 +19,7 @@
   },
   {
     "service": "Apply for a Utility Model",
-    "url": "https://onlineservices.ipophil.gov.ph/eUMFile/",
+    "url": "https://www.ipophil.gov.ph/utility-model-filing/",
     "id": "58ee4717-63c3-4874-940e-67e89f2f20a4",
     "slug": "apply-for-a-utility-model",
     "published": true,
@@ -33,11 +33,11 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:20:00.000Z"
   },
   {
     "service": "Apply for DDB Certification (non-controlled) and Exemption (with controlled chemicals)",
-    "url": "https://oaceis.ddb.gov.ph/account/Welcome.aspx",
+    "url": "https://ddb.gov.ph/regulatory-control/",
     "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
     "slug": "apply-for-ddb-certification-non-controlled-and-exemption-with-controlled-chemicals",
     "published": true,
@@ -51,11 +51,11 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:21:00.000Z"
   },
   {
     "service": "Request for a Grant of a Philippine Patent",
-    "url": "https://onlineservices.ipophil.gov.ph/eInventionFile/",
+    "url": "https://www.ipophil.gov.ph/how-to-file-for-patent-grant/",
     "id": "bc3024a5-e15d-4680-94b8-e0dc0e02a952",
     "slug": "request-for-a-grant-of-a-philippine-patent",
     "published": true,
@@ -69,7 +69,7 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:23:00.000Z"
   },
   {
     "service": "Search Trademark Information",
@@ -127,7 +127,7 @@
   },
   {
     "service": "Register a Sole Proprietorship Business",
-    "url": "https://bnrs.dti.gov.ph/pdf/download/application_form.pdf",
+    "url": "https://web-services.bir.gov.ph/newbizreg/",
     "id": "94c1e669-d8a2-4895-a6fe-da89960fcc08",
     "slug": "register-a-sole-proprietorship-business",
     "published": true,
@@ -141,7 +141,7 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:26:00.000Z"
   },
   {
     "service": "Request for Renewal of Business Name",
@@ -235,7 +235,7 @@
   },
   {
     "service": "File Complaints on Consumer Affair Service",
-    "url": "https://www.dti.gov.ph/consumers/complaints",
+    "url": "https://fairtrade.dti.gov.ph/faq/how-to-file-a-consumer-complaint/",
     "id": "f94add98-a78c-435f-9552-a181cfaeb43d",
     "slug": "file-complaints-on-consumer-affair-service",
     "published": true,
@@ -249,7 +249,7 @@
       "slug": "complaints"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:28:00.000Z"
   },
   {
     "service": "Know more About Business or Investment-related Assistance",
@@ -288,26 +288,8 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Check the Prevailing Prices of Basic Necessities and Prime Commodities (ePresyo)",
-    "url": "https://www.dti.gov.ph/konsyumer/e-presyo/",
-    "id": "2f799612-d354-4606-a239-999dbf1e9530",
-    "slug": "check-the-prevailing-prices-of-basic-necessities-and-prime-commodities-epresyo",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Price Control Monitoring",
-      "slug": "price-control"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
     "service": "Know the Buying and Selling Prices of Rice and Corn",
-    "url": "https://nfa.gov.ph/buying-selling-price",
+    "url": "https://www.da.gov.ph/price-monitoring/",
     "id": "6b235845-b5a0-4fb0-b4aa-602f5983e6cc",
     "slug": "know-the-buying-and-selling-prices-of-rice-and-corn",
     "published": true,
@@ -321,7 +303,7 @@
       "slug": "price-control"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-26T21:39:00.000Z"
   },
   {
     "service": "Apply for Certificate of Conformity",
@@ -433,7 +415,7 @@
   },
   {
     "service": "Apply for ERC Certificate of Compliance",
-    "url": "http://www.erc.gov.ph/ContentPage/203",
+    "url": "https://evoss.ph/Home/Download/302963",
     "id": "0653afb9-dc97-4cbf-b992-0f80ac3ba778",
     "slug": "apply-for-erc-certificate-of-compliance",
     "published": true,
@@ -468,10 +450,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "File for IPOPHL Industiral Design",
-    "url": "https://onlineservices.ipophil.gov.ph/eIDFile/",
+    "service": "File for IPOPHL Industrial Design",
+    "url": "https://www.ipophil.gov.ph/industrial-design-filing/",
     "id": "32dddf38-23aa-4a36-85c4-27dbe974a3e4",
-    "slug": "file-for-ipophl-industiral-design",
+    "slug": "file-for-ipophl-industrial-design",
     "published": true,
     "featured": false,
     "category": {
@@ -483,49 +465,13 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-26T21:42:00.000Z"
   },
   {
-    "service": "Apply for Non-CITES Wildlife Products - Export (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/56-biodiversity-management/wildlife-resources/transport/351-non-cites-wildlife-products-export?highlight=WyJhcHBsaWNhdGlvbiIsImZvciIsIidmb3IiLCJub24tY2l0ZXMiLCJ3aWxkbGlmZSIsIid3aWxkbGlmZSIsIndpbGRsaWZlJyIsInByb2R1Y3RzIiwiZXhwb3J0IiwiYXBwbGljYXRpb24gZm9yIiwiYXBwbGljYXRpb24gZm9yIG5vbi1jaXRlcyIsImZvciBub24tY2l0ZXMiLCJmb3Igbm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIHByb2R1Y3RzIiwid2lsZGxpZmUgcHJvZHVjdHMiLCJ3aWxkbGlmZSBwcm9kdWN0cyBleHBvcnQiLCJwcm9kdWN0cyBleHBvcnQiXQ==",
+    "service": "Apply for CITES Wildlife Products (Import, Export, and Re-export)",
+    "url": "https://bmb.gov.ph/services",
     "id": "4232285a-d2de-40d3-ba75-5c1043aa98fe",
-    "slug": "apply-for-non-cites-wildlife-products-export-biodiversity-management",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Apply for Non-CITES Wildlife Products - Re-export (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/56-biodiversity-management/wildlife-resources/transport/353-non-cites-wildlife-products-re-export?highlight=WyJhcHBsaWNhdGlvbiIsImZvciIsIidmb3IiLCJub24tY2l0ZXMiLCJ3aWxkbGlmZSIsIid3aWxkbGlmZSIsIndpbGRsaWZlJyIsInByb2R1Y3RzIiwiZXhwb3J0IiwiYXBwbGljYXRpb24gZm9yIiwiYXBwbGljYXRpb24gZm9yIG5vbi1jaXRlcyIsImZvciBub24tY2l0ZXMiLCJmb3Igbm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIiwibm9uLWNpdGVzIHdpbGRsaWZlIHByb2R1Y3RzIiwid2lsZGxpZmUgcHJvZHVjdHMiLCJ3aWxkbGlmZSBwcm9kdWN0cyBleHBvcnQiLCJwcm9kdWN0cyBleHBvcnQiXQ==",
-    "id": "cdbcc847-0dad-4ce6-a363-330f48d2c84d",
-    "slug": "apply-for-non-cites-wildlife-products-re-export-biodiversity-management",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Business and Trade",
-      "slug": "business-trade"
-    },
-    "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Apply for Non-CITES Wildlife Products - Import (Biodiversity Management)",
-    "url": "https://www.denr.gov.ph/index.php?id=352&page=2&sort=avl&filter=creator&filterID=43&searchword=&fromyear=&frommonth=&fromdate=&toyear=&tomonth=&todate=&dateval=",
-    "id": "6372d430-1fcd-485f-868b-388bcc388d21",
-    "slug": "apply-for-non-cites-wildlife-products-import-biodiversity-management",
+    "slug": "apply-for-cites-wildlife-products-import-export-reexport",
     "published": true,
     "featured": false,
     "category": {
@@ -631,7 +577,7 @@
   },
   {
     "service": "Check Status of CNC Application Online",
-    "url": "https://cnconline.emb.gov.ph/projectchecker/ApplicationTracking.aspx?View=0",
+    "url": "https://eiais.emb.gov.ph/internal/public/searchprojects.aspx",
     "id": "be8adae2-65d9-4ffc-8998-41e1d7823750",
     "slug": "check-status-of-cnc-application-online",
     "published": true,
@@ -649,7 +595,7 @@
   },
   {
     "service": "Apply for Environmental Laboratory Recognition",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://erlsd.emb.gov.ph/laboratory-services/",
     "id": "6e7605a8-805f-4ea2-8adb-59a639027432",
     "slug": "apply-for-environmental-laboratory-recognition",
     "published": true,
@@ -663,11 +609,11 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:48:00.000Z"
   },
   {
     "service": "Apply for Importer and Importation Clearance for Recyclable Materials Containing Hazardous Substances",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://emb.gov.ph/wp-content/uploads/2025/04/Importation-Clearance-Checklist-of-Requirements-4.11.25.pdf",
     "id": "8c385bb2-9ef6-44a1-be1f-539105f31153",
     "slug": "apply-for-importer-and-importation-clearance-for-recyclable-materials-containing-hazardous-substances",
     "published": true,
@@ -681,11 +627,11 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:50:00.000Z"
   },
   {
     "service": "Apply for Pre-Manufacture and Pre-Importation Notification Certificate",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://opms.emb.gov.ph/manual/PMPIN_APPLICATION",
     "id": "22049d1c-84d3-406b-a2ad-8f1e02ed13ac",
     "slug": "apply-for-pre-manufacture-and-pre-importation-notification-certificate",
     "published": true,
@@ -699,11 +645,11 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:51:00.000Z"
   },
   {
     "service": "Apply for Priority Chemical List Compliance Certificate",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://chemical.emb.gov.ph/wp-content/uploads/2017/03/CHECKLIST-FOR-PRIORITY-CHEMICAL-LIST.pdf",
     "id": "a136711d-7655-46a5-a42b-1b44a7379533",
     "slug": "apply-for-priority-chemical-list-compliance-certificate",
     "published": true,
@@ -717,11 +663,11 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:52:00.000Z"
   },
   {
     "service": "Apply for Waste Water Discharge Permit",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://r8.emb.gov.ph/wp-content/uploads/2019/02/WWDP-Requirements.pdf",
     "id": "a4cb5081-3943-40db-b7aa-b04f7d981e19",
     "slug": "apply-for-waste-water-discharge-permit",
     "published": true,
@@ -735,6 +681,6 @@
       "slug": "business-registration"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-11-26T21:54:00.000Z"
   }
 ]

@@ -310,10 +310,7 @@
       "id": "fifty-nine-days",
       "title": "Visa-Free Entry for 59 Days",
       "description": "Countries that are allowed to enter the Philippines visa-free for a stay of fifty-nine (59) days based on existing agreements.",
-      "countries": [
-        "Brazil",
-        "Israel"
-      ]
+      "countries": ["Brazil", "Israel"]
     },
     {
       "id": "indian-nationals",

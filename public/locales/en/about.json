@@ -17,9 +17,10 @@
   "mission": {
     "title": "Our Mission",
     "intro": "We are a volunteer-led initiative with a clear mission: to provide a 'better' website for the Philippines.",
-    "goalsIntro": "Our goals include:",
+    "goalsIntro": "Our goals include",
     "goalsList": [
       "Building a volunteer-run website that reflects Filipino values and culture",
+      "Open Source and Open Data projects for better collaboration",
       "Creating intuitive navigation and search functionality",
       "Ensuring accessibility for all citizens, including those with disabilities",
       "Providing accurate, up-to-date information about government services",

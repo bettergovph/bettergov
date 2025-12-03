@@ -1,0 +1,78 @@
+{
+  "region": "Special Geographic Area",
+  "municipalities": [
+    {
+      "municipality": "Kadayangan",
+      "mayor": {
+        "name": "DUMA M. MASCUD"
+      },
+      "vice_mayor": {
+        "name": "KAHARUDIN D. DUBPALEG"
+      }
+    },
+    {
+      "municipality": "Kapalawan",
+      "mayor": {
+        "name": "NORMAN C. INALANG"
+      },
+      "vice_mayor": {
+        "name": "TOTO D. LAGUIALAOT"
+      }
+    },
+    {
+      "municipality": "Ligawasan",
+      "mayor": {
+        "name": "ISMAEL S. MAMA"
+      },
+      "vice_mayor": {
+        "name": "RIDUAN P. MAKATIDTANG"
+      }
+    },
+    {
+      "municipality": "Malidegao",
+      "mayor": {
+        "name": "ARNAL M. TIMAN"
+      },
+      "vice_mayor": {
+        "name": "MUJAHIDEEN B. ALBA"
+      }
+    },
+    {
+      "municipality": "Nabalawag",
+      "mayor": {
+        "name": "ANWAR Z. SALUWANG"
+      },
+      "vice_mayor": {
+        "name": "ZAID U. PAKILADATU"
+      }
+    },
+    {
+      "municipality": "Old Kaabakan",
+      "mayor": {
+        "name": "DEMAT K. PEDTEMANAN"
+      },
+      "vice_mayor": {
+        "name": "MENTATO A. LUMAMBAS"
+      }
+    },
+    {
+      "municipality": "Pahamuddin",
+      "mayor": {
+        "name": "BADRUDIN A. EBRAHIM"
+      },
+      "vice_mayor": {
+        "name": "DATU IBRAHIM L. RAHMAN"
+      }
+    },
+    {
+      "municipality": "Tugunan",
+      "mayor": {
+        "name": "ABDULLAH P. ABAS"
+      },
+      "vice_mayor": {
+        "name": "SUHARTO S. HASHIM"
+      }
+    }
+  ],
+  "slug": "special-geographic-area"
+}

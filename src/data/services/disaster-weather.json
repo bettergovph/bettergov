@@ -19,7 +19,7 @@
   },
   {
     "service": "Check Earthquake Information",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/earthquake/earthquake-information3",
+    "url": "https://earthquake.phivolcs.dost.gov.ph/",
     "id": "eccdcee8-4553-4d9e-94f1-e279c580f01a",
     "slug": "check-earthquake-information",
     "published": true,
@@ -37,7 +37,7 @@
   },
   {
     "service": "Check Tsunami Advisory and Warning",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/tsunami/tsunami-advisory-and-warning3",
+    "url": "https://tsunami.phivolcs.dost.gov.ph/",
     "id": "a6f16b68-c51c-4813-b15a-882b267a0c8a",
     "slug": "check-tsunami-advisory-and-warning",
     "published": true,
@@ -55,7 +55,7 @@
   },
   {
     "service": "Check Volcano Bulletins",
-    "url": "https://www.phivolcs.dost.gov.ph/index.php/volcano-hazard/volcano-bulletin2",
+    "url": "https://wovodat.phivolcs.dost.gov.ph/bulletin/list-of-bulletin",
     "id": "5c7577f1-4759-4633-b379-f791defac724",
     "slug": "check-volcano-bulletins",
     "published": true,
@@ -108,7 +108,7 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Access Weather Data via PHILSENSORS",
+    "service": "Access Hydrometeorological Monitoring (e.g., rain, rivers, flood levels) via PHILSENSORS",
     "url": "https://philsensors.asti.dost.gov.ph/",
     "id": "48424831-e361-4ac1-9a14-929e873fcba1",
     "slug": "access-weather-data-via-philsensors",
@@ -126,8 +126,8 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "View Real-time Information on Hazards via Project NOAH",
-    "url": "http://noah.up.edu.ph/#/",
+    "service": "View High-Resolution Hazard Maps on Flooding, Storm Surge, and Landslides via Project NOAH",
+    "url": "https://noah.up.edu.ph/",
     "id": "1efccadd-8e74-4085-9cbc-7064665994ba",
     "slug": "view-real-time-information-on-hazards-via-project-noah",
     "published": true,
@@ -160,5 +160,23 @@
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
     "updatedAt": "2025-06-06T11:30:06.319Z"
+  },
+  {
+    "service": "Access Weather and Hazard Information via PAGASA",
+    "url": "https://www.pagasa.dost.gov.ph/",
+    "id": "c3a9a2e5-8b91-4b29-9e7a-4f2d7c5e3a22",
+    "slug": "access-weather-and-hazard-information-via-pagasa",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Disaster and Weather",
+      "slug": "disaster-weather"
+    },
+    "subcategory": {
+      "name": "Weather",
+      "slug": "weather"
+    },
+    "createdAt": "2025-11-24T00:00:00.000Z",
+    "updatedAt": "2025-11-24T00:00:00.000Z"
   }
 ]

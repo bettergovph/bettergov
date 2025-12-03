@@ -1,7 +1,7 @@
 [
   {
     "service": "Apply Travel Clearance for Minors",
-    "url": "https://www.dswd.gov.ph/eservices-3/",
+    "url": "https://ncr.dswd.gov.ph/faqs/travel-clearance-for-minors/",
     "id": "167d391d-4185-4fcc-8aec-045df84f4f40",
     "slug": "apply-travel-clearance-for-minors",
     "published": true,
@@ -37,7 +37,7 @@
   },
   {
     "service": "Secure an Appointment for Guidance and Counselling Program (GCP) by the Commission on Filipinos Overseas (CFO)",
-    "url": "https://cfo.gov.ph/cfo-hybrid-frontline-services-for-guidance-and-counseling-program/",
+    "url": "https://cfo.gov.ph/cfo-frontline-services-for-guidance-and-counseling-program-gcp",
     "id": "51371af7-2e8c-47b6-a61b-f8edb3a367ce",
     "slug": "secure-an-appointment-for-guidance-and-counselling-program-gcp-by-the-commission-on-filipinos-overseas-cfo",
     "published": true,
@@ -54,8 +54,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Reserve and Register for the Country Familiarization Seminar (CFS) to Particpate in the Au Pair Program",
-    "url": "https://cfo.gov.ph/overseas-filipinos-cfo-online-registration-system-of-cors/",
+    "service": "Reserve and Register for the Country Familiarization Seminar (CFS) to Participate in the Au Pair Program",
+    "url": "https://cfo.gov.ph/COUNTRY-FAMILIARIZATION-SEMINAR-CFS-FOR-AU-PAIR-PROGRAM-PARTICIPANTS-BOUND-FOR-EUROPE",
     "id": "1db2bfd5-dad7-4a85-a92b-13ccfdab4719",
     "slug": "reserve-and-register-for-the-country-familiarization-seminar-cfs-to-particpate-in-the-au-pair-program",
     "published": true,
@@ -90,26 +90,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Amend Permanent Resident Visa (Probationary) of a Chinese National Married to a Filipino",
-    "url": "https://immigration.gov.ph/immigrant-visa-by-marriage-13a/",
-    "id": "5f6f08fd-7c47-463e-9ef3-a0f26d081b62",
-    "slug": "amend-permanent-resident-visa-probationary-of-a-chinese-national-married-to-a-filipino",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
     "service": "Apply for Recognition as Filipino Citizen",
-    "url": "https://immigration.gov.ph/returning-former-natural-born-filipino-citizen-13g/",
+    "url": "https://immigration.gov.ph/services/recognition-as-filipino-citizen/",
     "id": "1cb2c35e-78e1-4b01-ac84-414421f58048",
     "slug": "apply-for-recognition-as-filipino-citizen",
     "published": true,
@@ -126,8 +108,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Apply for Retention/ Re-acquisition of Philippine Citizenship",
-    "url": "https://immigration.gov.ph/returning-former-natural-born-filipino-citizen-13g/",
+    "service": "Apply for Retention/Re-Acquisition of Philippine Citizenship",
+    "url": "https://immigration.gov.ph/services/application-for-retention-re-acquisition-of-phil-citizenship/",
     "id": "0f59c61d-0f79-4f90-af1b-56226884e415",
     "slug": "apply-for-retention-re-acquisition-of-philippine-citizenship",
     "published": true,
@@ -217,7 +199,7 @@
   },
   {
     "service": "Convert to Non-Quota Immigrant Visa of Child Born Abroad of an Immigrant Mother",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/child-born-abroad-of-immigrant-mother",
+    "url": "https://immigration.gov.ph/visas/child-born-abroad-of-immigrant-mother/",
     "id": "c1efea9b-be7b-40a2-8131-c4c1f8d89a4b",
     "slug": "convert-to-non-quota-immigrant-visa-of-child-born-abroad-of-an-immigrant-mother",
     "published": true,
@@ -234,10 +216,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Convert to Permanent Resident Visa (Probationary) of a Chinese National Married to a Filipino Citizen",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/amendment-to-prv/prv-for-proc",
+    "service": "Apply for Permanent Resident Visa (PRV)",
+    "url": "https://immigration.gov.ph/visas/permanent-resident-visa-prv/",
     "id": "38bd4d1f-85bc-413f-a79b-258e83edca1b",
-    "slug": "convert-to-permanent-resident-visa-probationary-of-a-chinese-national-married-to-a-filipino-citizen",
+    "slug": "apply-for-permanent-resident-visa",
     "published": true,
     "featured": false,
     "category": {
@@ -252,8 +234,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Convert to Pre-arranged Employee Visa (Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/conversion-to-pre-arranged-employee-commercial",
+    "service": "Convert to Pre-arranged Employee Visa",
+    "url": "https://immigration.gov.ph/pre-4-arranged-employment-visa-9g/",
     "id": "9aa52a53-1e89-4b32-b84f-423509f0f84d",
     "slug": "convert-to-pre-arranged-employee-visa-commercial",
     "published": true,
@@ -270,26 +252,8 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Convert to Pre-arranged Employee Visa (Non-Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/conversion-to-pre-arranged-employee-non-commercial",
-    "id": "e00c597a-1511-4966-88b3-de5806d961b3",
-    "slug": "convert-to-pre-arranged-employee-visa-non-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
     "service": "Convert to Quota Immigrant Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/quota-visa",
+    "url": "https://immigration.gov.ph/visas/quota-visa-13/",
     "id": "a3cd8d6b-a86e-4181-b265-d521c5b719cb",
     "slug": "convert-to-quota-immigrant-visa",
     "published": true,
@@ -307,7 +271,7 @@
   },
   {
     "service": "Convert to Student Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/student-visa/conversion-to-student-visa#",
+    "url": "https://immigration.gov.ph/student-visa-9f/",
     "id": "26e73770-2c20-4562-b575-1f13bf92456a",
     "slug": "convert-to-student-visa",
     "published": true,
@@ -325,7 +289,7 @@
   },
   {
     "service": "Convert to Treaty Trader's Visa or Treaty Investor's Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/treaty-trader-or-treaty-investor/conversion-to-treaty-trader-or-treaty-investor",
+    "url": "https://immigration.gov.ph/treaty-trader-or-treaty-investor-9d/",
     "id": "039609e6-98e4-43b2-8405-9fadb9775dc9",
     "slug": "convert-to-treaty-traders-visa-or-treaty-investors-visa",
     "published": true,
@@ -343,7 +307,7 @@
   },
   {
     "service": "Convert to Temporary Resident Visa (TRV) by Marriage",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-resident-visa/conversion-to-trv-by-marriage",
+    "url": "https://immigration.gov.ph/conversion-to-trv-by-marriage/",
     "id": "47259424-f33d-460b-a435-fdc29644ed49",
     "slug": "convert-to-temporary-resident-visa-trv-by-marriage",
     "published": true,
@@ -361,7 +325,7 @@
   },
   {
     "service": "Convert to Temporary Resident Visa (TRV) of an Indian National Married to a Filipino",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-resident-visa/conversion-to-trv-indian-married-to-filipino",
+    "url": "https://immigration.gov.ph/conversion-to-trv-indian-married-to-filipino/",
     "id": "781d61c4-31b4-45f8-8b77-6911a54b8c2b",
     "slug": "convert-to-temporary-resident-visa-trv-of-an-indian-national-married-to-a-filipino",
     "published": true,
@@ -378,10 +342,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Extend Authorized Stay Beyond 59 Days",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-visitor-visa/extension-of-authorized-stay-beyond-59-days",
+    "service": "Apply for Temporary Visitor Visa (9A)",
+    "url": "https://immigration.gov.ph/visas/visa-waiver/",
     "id": "289ea40a-0936-45ef-9968-b6212844e0f4",
-    "slug": "extend-authorized-stay-beyond-59-days",
+    "slug": "apply-for-temporary-visitor-visa",
     "published": true,
     "featured": false,
     "category": {
@@ -394,228 +358,12 @@
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
     "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Long-Stay Visitor Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-visitor-visa/long-stay-visitor-visa-extension-lsvve",
-    "id": "97863442-9d6b-4d9f-b0e2-e33102a529aa",
-    "slug": "extend-long-stay-visitor-visa",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Pre-arranged Employee Visa (Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/extension-of-pre-arranged-employee-commercial",
-    "id": "7c6e68fd-74be-47a8-ab28-7e57e9cb6d74",
-    "slug": "extend-pre-arranged-employee-visa-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Pre-arranged Employee Visa (Non-Commercial)",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/extension-of-pre-arranged-employee-non-commercial",
-    "id": "9459dcbe-970b-4c4b-ba62-b0e89f7a8577",
-    "slug": "extend-pre-arranged-employee-visa-non-commercial",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Student Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/student-visa/extension-of-student-visa",
-    "id": "dadb6902-4816-4839-91b4-fd1a8d1f3728",
-    "slug": "extend-student-visa",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Treaty Trader's Visa / Treaty Investor's Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/treaty-trader-or-treaty-investor/extension-of-treaty-trader-s-visa-treaty-investor-s-visa",
-    "id": "78358f7d-b144-4783-9a95-206f8827ec21",
-    "slug": "extend-treaty-traders-visa-treaty-investors-visa",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Temporary Resident Visa (TRV) by Marriage",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-resident-visa/extension-of-trv-by-marriage",
-    "id": "018ab180-43db-44a1-ac12-38678f28c06e",
-    "slug": "extend-temporary-resident-visa-trv-by-marriage",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Extend Temporary Resident Visa (TRV) of an Indian National Married to a Filipino",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-resident-visa/extension-of-trv-indian-married-to-filipino",
-    "id": "4c252812-918b-4f2d-b3f5-9fe64ab62a49",
-    "slug": "extend-temporary-resident-visa-trv-of-an-indian-national-married-to-a-filipino",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
-    "service": "Get Permanent Resident Visa (PRV) Grant for Filipino Veterans of World War II",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/amendment-to-prv/prv-for-filipino-veterans",
-    "id": "2c71b82e-97f3-4935-9b9e-cea51d3010e9",
-    "slug": "get-permanent-resident-visa-prv-grant-for-filipino-veterans-of-world-war-ii",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Include Dependent in the Pre-arranged Employee Visa of the Principal Holder",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/pre-arranged-employment-visa/inclusion-of-dependent-in-the-pre-arranged-employee-visa-of-the-principal-holder",
-    "id": "e52b2ef7-5e38-4d8b-8318-d1fcbf8ada85",
-    "slug": "include-dependent-in-the-pre-arranged-employee-visa-of-the-principal-holder",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Include Dependent in the Treaty Trader's or Treaty Investor's Visa of the Principal Holder",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/treaty-trader-or-treaty-investor/inclusion-of-dependent-in-the-treaty-trader-s-or-treaty-investor-s-visa-of-the-principal-holder",
-    "id": "07192aee-4b86-42e2-bbd8-49a7ea54617e",
-    "slug": "include-dependent-in-the-treaty-traders-or-treaty-investors-visa-of-the-principal-holder",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Include Dependent Spouse and/or Unmarried Child/ren below 21 Years of Age for Immigrant Visa or Temporary Resident Visa (TRV) Holders",
-    "url": "http://immigration.gov.ph/visa-requirements/immigrant-visa/non-quota-visa/inclusion-of-dependent",
-    "id": "9c33104b-c3f7-4589-93a6-d308a37c0495",
-    "slug": "include-dependent-spouse-andor-unmarried-children-below-21-years-of-age-for-immigrant-visa-or-temporary-resident-visa-trv-holders",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
   },
   {
     "service": "View List of Accredited Official of Foreign Government Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/accredited-official-of-foreign-government",
+    "url": "https://immigration.gov.ph/accredited-official-of-foreign-government-9e/",
     "id": "6a5e93b0-9f5d-4993-a113-d080e9f33229",
     "slug": "view-list-of-accredited-official-of-foreign-government-visa",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
-  },
-  {
-    "service": "Waive Visa",
-    "url": "http://immigration.gov.ph/visa-requirements/non-immigrant-visa/temporary-visitor-visa/visa-waiver",
-    "id": "b456c715-609e-4594-ac07-983106d050a2",
-    "slug": "waive-visa",
     "published": true,
     "featured": false,
     "category": {
@@ -706,60 +454,6 @@
     "url": "https://immigration.gov.ph/accredited-official-of-foreign-government-9e/",
     "id": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
     "slug": "apply-for-accredited-official-of-foreign-government-visa-9e",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Student Visa (9F)",
-    "url": "https://immigration.gov.ph/student-visa-9f-2/",
-    "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
-    "slug": "apply-for-student-visa-9f",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Pre-arranged Employment Visa (9G)",
-    "url": "https://immigration.gov.ph/pre-arranged-employment-visa-9g-2/",
-    "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
-    "slug": "apply-for-pre-arranged-employment-visa-9g",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Passport and Travel",
-      "slug": "passport-travel"
-    },
-    "subcategory": {
-      "name": "Visa and Citizenship",
-      "slug": "visa-citizenship"
-    },
-    "createdAt": "2025-06-06T12:42:33.000Z",
-    "updatedAt": "2025-06-06T12:42:33.000Z"
-  },
-  {
-    "service": "Apply for Temporary Visitor Visa (9A)",
-    "url": "https://immigration.gov.ph/temporary-visitor-visa-9a-2/",
-    "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e",
-    "slug": "apply-for-temporary-visitor-visa-9a",
     "published": true,
     "featured": false,
     "category": {

@@ -23,14 +23,15 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2025 BetterGov. All content is public domain unless otherwise specified."
+    "copyright": "2025 BetterGov.ph - All content is public domain unless otherwise specified."
   },
   "navbar": {
     "philippines": "Philippines",
     "services": "Services",
     "travel": "Travel",
     "government": "Government",
-    "flood control projects": "Flood Control Projects"
+    "flood control projects": "Flood Control Projects",
+    "our projects": "Our Projects"
   },
   "joinUs": {
     "stripTitle": "🚀 Join the #CivicTech Revolution",

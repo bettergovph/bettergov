@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "title": "Mga Impormasyon tungod sa Philippines Visa",
+    "subtitle": "Pangita-a kon kinahanglan mo bala ang visa para mag-biyahe sa Pilipinas kag magtu-on tungod sa entry requirements.",
+    "dataSource": "Opisyal nga data gikan sa Bureau of Immigration kag Philippine Department of Foreign Affairs",
+    "checkVisaTypes": "I-check ang mga visa types"
+  },
+  "quickCheck": {
+    "title": "Quick Visa Check",
+    "description": "Pili-a ang imo nga country of citizenship para i-check ang visa requirements para mag-travel sa Pilipinas.",
+    "searchPlaceholder": "Mag-search kang imo nga country...",
+    "searchAriaLabel": "Mag-search para sa isa ka country"
+  },
+  "countryList": {
+    "title": "Pili-a ang Imo nga Country",
+    "noResults": "Wara kang mga countries nga nakita nga nagamatch sa imo nga search.",
+    "ariaLabel": "Country list"
+  },
+  "requirements": {
+    "title": "Mga Visa Requirements para sa {{country}}",
+    "visaFree": {
+      "title": "Visa-Free Entry",
+      "description": "Ang mga pamuluyo sang {{country}} makasulod sa Pilipinas nga wara kang visa para sa sobra sa {{duration}}."
+    },
+    "visaRequired": {
+      "title": "Visa Required",
+      "description": "Ang mga pamuluyo sang {{country}} kinahanglan mag-apply kang visa antes mag-travel sa Pilipinas."
+    },
+    "specialCondition": {
+      "title": "Mga Special Conditions Apply",
+      "description": "Ang mga pamuluyo sang {{country}} makasulod sa Pilipinas nga wara kang visa para sa sobra sa {{duration}} sa ilalum kang specific nga conditions."
+    },
+    "entryRequirements": "Mga Entry Requirements",
+    "requiredDocuments": "Mga Required nga Documents:",
+    "note": "Note:"
+  },
+  "visaApplication": {
+    "title": "Kon Paano Mag-apply kang Visa",
+    "eVisa": {
+      "title": "eVisa Portal",
+      "description": "Mag-apply online paagi sa opisyal nga eVisa system",
+      "action": "Bisitaha ang website"
+    },
+    "embassy": {
+      "title": "Mga Philippine Embassies",
+      "description": "Pangita-a ang imo nga pinakamalapit nga Philippine Embassy o Consulate",
+      "action": "Pangita-a ang mga locations"
+    }
+  },
+  "defaultMessage": {
+    "title": "I-check ang Imo nga Visa Requirements",
+    "description": "Pili-a ang imo nga country sa listahan para i-check kon kinahanglan mo ba ang visa para mag-visit sa Pilipinas kag magkat-on bahin sa entry requirements."
+  },
+  "additionalInfo": {
+    "title": "Mga Important nga Visa Information",
+    "temporaryVisa": {
+      "title": "Temporary Visitor's Visa (9a)",
+      "description": "Ang 9(a) Temporary Visitor's Visa ay para sa mga foreign nationals nga nagavisit sa Pilipinas para sa business, tourism, medical treatment, o iban nga temporary nga mga purposes.",
+      "learnMore": "Magkat-on pa bahin sa Temporary Visitor's Visa"
+    },
+    "visaExtensions": {
+      "title": "Mga Visa Extensions",
+      "description": "Ang mga visitors nga gusto mag-extend kang ila nga stay sa Pilipinas sobra sa ila nga authorized period makapag-apply kang extension sa Bureau of Immigration.",
+      "visitWebsite": "Bisitaha ang Bureau of Immigration website"
+    },
+    "disclaimer": {
+      "title": "Disclaimer"
+    }
+  }
+}

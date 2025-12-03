@@ -1,0 +1,295 @@
+{
+  "region": "REGION XII - SOCCSKSARGEN",
+  "provinces": [
+    {
+      "province": "Cotabato",
+      "cities": [
+        {
+          "city": "Kidapawan",
+          "mayor": {
+            "name": "JOSE PAOLO M. EVANGELISTA",
+            "contact": "(064) 577-4829"
+          },
+          "vice_mayor": {
+            "name": "MELVIN E. LAMATA JR.",
+            "contact": "(064) 573-5851; 572-1607"
+          }
+        },
+        {
+          "city": "Koronadal",
+          "mayor": {
+            "name": "ELIORDO U. OGENA",
+            "contact": "(083) 228-5110"
+          },
+          "vice_mayor": {
+            "name": "ERLINDA P. ARAQUIL",
+            "contact": "(083) 228-4613"
+          }
+        }
+      ]
+    },
+    {
+      "province": "South Cotabato",
+      "cities": [
+        {
+          "city": "General Santos",
+          "mayor": {
+            "name": "LORELIE G. PACQUIAO",
+            "contact": "(083) 552-2580; 552-6791"
+          },
+          "vice_mayor": {
+            "name": "ROSALITA T. NUÑEZ",
+            "contact": "(083) 552-9692"
+          }
+        }
+      ],
+      "municipalities": [
+        {
+          "municipality": "Banga",
+          "zip_code": "9511",
+          "mayor": {
+            "name": "EVANGELINE L. PALENCIA",
+            "contact": "(083) 239-1652"
+          },
+          "vice_mayor": {
+            "name": "GEMMA I. LLOREN"
+          }
+        },
+        {
+          "municipality": "Lake Sebu",
+          "zip_code": "9518",
+          "mayor": {
+            "name": "REMIE M. UNGGOL"
+          },
+          "vice_mayor": {
+            "name": "LIEZEL T. ISUGA"
+          }
+        },
+        {
+          "municipality": "Norala",
+          "zip_code": "9508",
+          "mayor": {
+            "name": "CLEMENTE B. FEDOC",
+            "contact": "(083) 234-1024"
+          },
+          "vice_mayor": {
+            "name": "JONEL T. DANIEL",
+            "contact": "(083) 234-1154"
+          }
+        },
+        {
+          "municipality": "Polomolok",
+          "zip_code": "9504",
+          "mayor": {
+            "name": "BERNIE D. PALENCIA",
+            "contact": "(083) 225-2022"
+          },
+          "vice_mayor": {
+            "name": "MELCHOR J. JUTAR"
+          }
+        },
+        {
+          "municipality": "Santo Niño",
+          "zip_code": "9509",
+          "mayor": {
+            "name": "SULPICIO F. VILLALOBOS",
+            "contact": "(083) 235-1024"
+          },
+          "vice_mayor": {
+            "name": "WILFREDO B. DIMZON"
+          }
+        },
+        {
+          "municipality": "Surallah",
+          "zip_code": "9512",
+          "mayor": {
+            "name": "PEDRO M. MATINONG JR.",
+            "contact": "(083) 238-3578"
+          },
+          "vice_mayor": {
+            "name": "ANTONIO O. BENDITA",
+            "contact": "(083) 238-3148"
+          }
+        },
+        {
+          "municipality": "T'boli",
+          "zip_code": "9513",
+          "mayor": {
+            "name": "KEO DAYLE T. TUAN",
+            "contact": "(083) 277-1002"
+          },
+          "vice_mayor": {
+            "name": "RONIE L. DELA PEÑA",
+            "contact": "(083) 237-1039 F"
+          }
+        },
+        {
+          "municipality": "Tampakan",
+          "zip_code": "9507",
+          "mayor": {
+            "name": "LEONARDO T. ESCOBILLO",
+            "contact": "(083) 227-1001"
+          },
+          "vice_mayor": {
+            "name": "ANADEL T. MAGBANUA"
+          }
+        },
+        {
+          "municipality": "Tantangan",
+          "zip_code": "9510",
+          "mayor": {
+            "name": "TIMEE JOY T. GONZALES",
+            "contact": "(083) 822-0991"
+          },
+          "vice_mayor": {
+            "name": "CESAR L. DASILAO"
+          }
+        },
+        {
+          "municipality": "Tupi",
+          "zip_code": "9505",
+          "mayor": {
+            "name": "ROMEO S. TAMAYO",
+            "contact": "(083) 226-2800"
+          },
+          "vice_mayor": {
+            "name": "GLENN C. HATULAN"
+          }
+        }
+      ]
+    },
+    {
+      "province": "Sultan Kudarat",
+      "cities": [
+        {
+          "city": "Tacurong",
+          "mayor": {
+            "name": "JOSEPH GEORGE L. LECHONSITO",
+            "contact": "(064) 200-6615"
+          },
+          "vice_mayor": {
+            "name": "LINA O. MONTILLA"
+          }
+        }
+      ],
+      "municipalities": [
+        {
+          "municipality": "Bagumbayan",
+          "zip_code": "9810",
+          "mayor": {
+            "name": "JONALETTE E. DE PEDRO",
+            "contact": "(064) 471-7082"
+          },
+          "vice_mayor": {
+            "name": "ERNESTO M. SEGURA SR."
+          }
+        },
+        {
+          "municipality": "Columbio",
+          "zip_code": "9801",
+          "mayor": {
+            "name": "TONDATU M. MANGUDADATU"
+          },
+          "vice_mayor": {
+            "name": "NAILA M. MAMALINTA"
+          }
+        },
+        {
+          "municipality": "Esperanza",
+          "zip_code": "9806",
+          "mayor": {
+            "name": "CHARLES FEDERIC R. PLOTEÑA"
+          },
+          "vice_mayor": {
+            "name": "LALAINE V. SUHANDA"
+          }
+        },
+        {
+          "municipality": "Isulan",
+          "zip_code": "9805",
+          "mayor": {
+            "name": "ARNOLD H. ARMADA"
+          },
+          "vice_mayor": {
+            "name": "CARLO F. APIADO"
+          }
+        },
+        {
+          "municipality": "Kalamansig",
+          "zip_code": "9808",
+          "mayor": {
+            "name": "JOAQUIN T. CONCHA",
+            "contact": "(064) 204-6239"
+          },
+          "vice_mayor": {
+            "name": "ROLANDO P. GARCIA"
+          }
+        },
+        {
+          "municipality": "Lambayong",
+          "zip_code": "9802",
+          "mayor": {
+            "name": "FERDINAND G. AGDUMA"
+          },
+          "vice_mayor": {
+            "name": "FRANCIS ERIC E. RECINTO"
+          }
+        },
+        {
+          "municipality": "Lebak",
+          "zip_code": "9807",
+          "mayor": {
+            "name": "FREDERICK F. CELESTIAL",
+            "contact": "(064) 205-3132"
+          },
+          "vice_mayor": {
+            "name": "MELCHOR B. ALARCON"
+          }
+        },
+        {
+          "municipality": "Lutayan",
+          "zip_code": "9803",
+          "mayor": {
+            "name": "DATU PAX S. MANGUDADATU",
+            "contact": "(064) 228-1521"
+          },
+          "vice_mayor": {
+            "name": "PRINCE RADEN M. SAKALURAN",
+            "contact": "(064) 228-1521"
+          }
+        },
+        {
+          "municipality": "Palimbang",
+          "zip_code": "9809",
+          "mayor": {
+            "name": "JOENIME B. KAPINA"
+          },
+          "vice_mayor": {
+            "name": "MOSABAN P. ALIDING"
+          }
+        },
+        {
+          "municipality": "President Quirino",
+          "zip_code": "9804",
+          "mayor": {
+            "name": "MA. KATRINA BUENA F. SANDIGAN"
+          },
+          "vice_mayor": {
+            "name": "MERIS D. ARADANAS"
+          }
+        },
+        {
+          "municipality": "Senator Ninoy Aquino",
+          "zip_code": "9811",
+          "mayor": {
+            "name": "RANDY L. ECIJA"
+          },
+          "vice_mayor": {
+            "name": "RAFAEL GEORGE L. FLAUTA III"
+          }
+        }
+      ]
+    }
+  ],
+  "slug": "region-xii-soccsksargen"
+}

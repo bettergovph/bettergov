@@ -1,7 +1,7 @@
 [
   {
     "service": "Calculate Possible Retirement Benefit with SSS",
-    "url": "https://www.sss.gov.ph/sss/portlets/retirementestimator/retirementEstimator1.jsp",
+    "url": "https://www.sss.gov.ph/pension-calculator/",
     "id": "9c1a3f20-0729-409a-adc5-7fffb0379cfa",
     "slug": "calculate-possible-retirement-benefit-with-sss",
     "published": true,
@@ -15,13 +15,13 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:51:00.000Z"
   },
   {
-    "service": "Register your Kasambahay (SSS Form)",
-    "url": "https://www.sss.gov.ph/sss/DownloadContent?fileName=SSSForm_Unified_Registration_Form_Kasambahay.pdf",
+    "service": "Register your Kasambahay with SSS",
+    "url": "https://www.sss.gov.ph/household-employer/",
     "id": "e8a72d98-49a5-4d76-94a7-67f223e5a92a",
-    "slug": "register-your-kasambahay-sss-form",
+    "slug": "register-your-kasambahay-with-sss",
     "published": true,
     "featured": false,
     "category": {
@@ -33,11 +33,11 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:53:00.000Z"
   },
   {
     "service": "Register your Pag-IBIG Member's Information",
-    "url": "https://www.pagibigfundservices.com/PubReg/Starter_Page.aspx",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/Membership.aspx",
     "id": "fb5e4c0d-d70e-4e4c-a166-4a687c0bed46",
     "slug": "register-your-pag-ibig-members-information",
     "published": true,
@@ -51,7 +51,7 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:57:00.000Z"
   },
   {
     "service": "Submit your Pag-IBIG Monthly Remittance (eSRS) Online",
@@ -73,7 +73,7 @@
   },
   {
     "service": "Update SSS Information",
-    "url": "https://www.sss.gov.ph/",
+    "url": "https://www.sss.gov.ph/register-to-mysss/",
     "id": "53a49dd6-f25d-439a-9531-11c300800757",
     "slug": "update-sss-information",
     "published": true,
@@ -87,11 +87,11 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T10:59:00.000Z"
   },
   {
     "service": "View your GSIS Membership Record",
-    "url": "https://egsismo.gsis.gov.ph/eGSISMO/",
+    "url": "https://gsismo.e.gov.ph/login",
     "id": "956f8318-5ef8-4f37-bba0-a8f50b3b7080",
     "slug": "view-your-gsis-membership-record",
     "published": true,
@@ -105,11 +105,11 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T11:01:00.000Z"
   },
   {
     "service": "Submit Loan Collection List for Employers",
-    "url": "https://www.sss.gov.ph/",
+    "url": "https://sssguides.com/employers-guide-creating-electronic-contribution-collection-list-e-ccl-sss//",
     "id": "b135f92d-b632-458a-a232-0f07172da657",
     "slug": "submit-loan-collection-list-for-employers",
     "published": true,
@@ -123,11 +123,11 @@
       "slug": "salary-loans"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-11-25T11:03:00.000Z"
   },
   {
     "service": "Report PhilHealth Premium Contributions of your Employees",
-    "url": "https://eprs01.philhealth.gov.ph/",
+    "url": "https://www.philhealth.gov.ph/partners/employers/pay_procedures.php",
     "id": "b74a0ddb-d36c-4691-bd55-c120da866638",
     "slug": "report-philhealth-premium-contributions-of-your-employees",
     "published": true,
@@ -141,6 +141,6 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-11-25T11:04:00.000Z"
   }
 ]

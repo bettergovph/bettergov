@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "title": "Impormasyon sa Visa sa Pilipinas",
+    "subtitle": "Susiha kung kinahanglan ba nimo ug visa para mobisita sa Pilipinas ug pagkat-on sa mga kinahanglanon sa pag-sulod.",
+    "dataSource": "Opisyal nga datos gikan sa Bureau of Immigration ug Philippine Department of Foreign Affairs",
+    "checkVisaTypes": "Tan-awa ang mga klase sa visa"
+  },
+  "quickCheck": {
+    "title": "Paspas nga Pagsusi sa Visa",
+    "description": "Pilia ang nasud sa imong pagkamamumuo aron masusi ang mga kinahanglanon sa visa sa pag-biyahe sa Pilipinas.",
+    "searchPlaceholder": "Pangitaa ang imong nasud...",
+    "searchAriaLabel": "Pangitaa ang usa ka nasud"
+  },
+  "countryList": {
+    "title": "Pilia ang Imong Nasud",
+    "noResults": "Walay nasud nga nagtupong sa imong gipangita.",
+    "ariaLabel": "Listahan sa mga nasud"
+  },
+  "requirements": {
+    "title": "Mga Kinahanglanon sa Visa para sa {{country}}",
+    "visaFree": {
+      "title": "Libre sa Visa",
+      "description": "Ang mga lungsoranon sa {{country}} makasulod sa Pilipinas nga walay visa sulod sa {{duration}}."
+    },
+    "visaRequired": {
+      "title": "Kinahanglan ug Visa",
+      "description": "Ang mga lungsoranon sa {{country}} kinahanglan mag-apply ug visa sa dili pa mo-biyahe sa Pilipinas."
+    },
+    "specialCondition": {
+      "title": "Adunay Espesyal nga Kondisyon",
+      "description": "Ang mga lungsoranon sa {{country}} mahimong makasulod sa Pilipinas nga walay visa sulod sa {{duration}} ubos sa piho nga mga kondisyon."
+    },
+    "entryRequirements": "Mga Kinahanglanon sa Pag-sulod",
+    "requiredDocuments": "Gikinahanglan nga mga Dokumento:",
+    "note": "Pahimangno:"
+  },
+  "visaApplication": {
+    "title": "Paagi sa Pag-apply ug Visa",
+    "eVisa": {
+      "title": "eVisa Portal",
+      "description": "Mag-apply online pinaagi sa opisyal nga eVisa system",
+      "action": "Bisita sa website"
+    },
+    "embassy": {
+      "title": "Mga Embahada sa Pilipinas",
+      "description": "Pangitaa ang labing duol nga Embahada o Konsulado sa Pilipinas",
+      "action": "Tan-awa ang mga lokasyon"
+    }
+  },
+  "defaultMessage": {
+    "title": "Susiha ang Imong Kinahanglan sa Visa",
+    "description": "Pilia ang imong nasud gikan sa listahan aron masayran kung kinahanglan ba nimo ug visa sa pagbisita sa Pilipinas ug mahibalo sa mga kinahanglanon sa pag-sulod."
+  },
+  "additionalInfo": {
+    "title": "Importante nga Impormasyon sa Visa",
+    "temporaryVisa": {
+      "title": "Temporary Visitor's Visa (9a)",
+      "description": "Ang 9(a) Temporary Visitor's Visa para sa mga langyaw nga mobisita sa Pilipinas alang sa negosyo, turismo, pagpatambal, o ubang temporaryo nga katuyoan.",
+      "learnMore": "Pagkat-on pa mahitungod sa Temporary Visitor's Visa"
+    },
+    "visaExtensions": {
+      "title": "Extension sa Visa",
+      "description": "Ang mga bisita nga gusto mopadayon sa ilang pagpuyo sa Pilipinas labaw sa gitugot nga panahon mahimong mag-apply og extension sa Bureau of Immigration.",
+      "visitWebsite": "Bisita sa website sa Bureau of Immigration"
+    },
+    "disclaimer": {
+      "title": "Pahimangno"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+name: Validate JSON Schema
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/data/**/*.json'
+      - 'src/data/**/schema/*.json'
+      - 'scripts/validate-json-schema.js'
+      - '.github/workflows/validate-json-schema.yml'
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize]
+    paths:
+      - 'src/data/**/*.json'
+      - 'src/data/**/schema/*.json'
+      - 'scripts/validate-json-schema.js'
+      - '.github/workflows/validate-json-schema.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-json-schema:
+    name: Validate JSON files against schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate LGU region JSON files
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/lgu/schema/lgu-region.schema.json \
+            "src/data/directory/lgu/*.json"
+
+      - name: Validate constitutional JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/constitutional.schema.json \
+            src/data/directory/constitutional.json
+
+      - name: Validate departments JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/departments.schema.json \
+            src/data/directory/departments.json
+
+      - name: Validate diplomatic JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/diplomatic.schema.json \
+            src/data/directory/diplomatic.json
+
+      - name: Validate executive JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/executive.schema.json \
+            src/data/directory/executive.json
+
+      - name: Validate house members JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/house_members.schema.json \
+            src/data/directory/house_members.json
+
+      - name: Validate legislative JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/legislative.schema.json \
+            src/data/directory/legislative.json
+
+      - name: Validate party-list representatives JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/directory/schema/party_list_representatives.schema.json \
+            src/data/directory/party_list_representatives.json
+
+      - name: Validate services JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/services/schema/services.schema.json \
+            "src/data/services/*.json"
+
+      - name: Validate Philippines regions GeoJSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/GeoJSON.json \
+            src/data/philippines-regions.json
+
+      - name: Validate Philippines hotlines JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/philippines_hotlines.schema.json \
+            src/data/philippines_hotlines.json
+
+      - name: Validate population 2020 JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/population-2020.schema.json \
+            src/data/population-2020.json
+
+      - name: Validate regions JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/regions.schema.json \
+            src/data/regions.json
+
+      - name: Validate SEO metadata JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/seo-metadata.schema.json \
+            src/data/seo-metadata.json
+
+      - name: Validate service categories JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/service_categories.schema.json \
+            src/data/service_categories.json
+
+      - name: Validate websites JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/websites.schema.json \
+            src/data/websites.json
+      - name: Validate flood control JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/flood_control/schema/flood_control.schema.json \
+            src/data/flood_control/flood_control.json
+      - name: Validate visa policy JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/visa/schema/philippines_visa_policy.schema.json \
+            src/data/visa/philippines_visa_policy.json
+
+      - name: Validate visa types JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/visa/schema/philippines_visa_types.schema.json \
+            src/data/visa/philippines_visa_types.json

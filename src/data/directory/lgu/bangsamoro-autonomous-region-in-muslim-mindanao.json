@@ -1,0 +1,886 @@
+{
+  "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
+  "provinces": [
+    {
+      "province": "Basilan",
+      "municipalities": [
+        {
+          "municipality": "Akbar",
+          "zip_code": "7307",
+          "mayor": {
+            "name": "ALIH A. SALI"
+          },
+          "vice_mayor": {
+            "name": "RAIZA A. SALI-SAKKALAHUL"
+          }
+        },
+        {
+          "municipality": "Al-barka",
+          "zip_code": "7308",
+          "mayor": {
+            "name": "JAYDEEFAR J. LAJID"
+          },
+          "vice_mayor": {
+            "name": "MIDZFAR J. LAJID"
+          }
+        },
+        {
+          "municipality": "Hadji Mohammad Ajul",
+          "zip_code": "7309",
+          "mayor": {
+            "name": "TALIB G. PAWAKI"
+          },
+          "vice_mayor": {
+            "name": "JAIMAR S. TOTOH"
+          }
+        },
+        {
+          "municipality": "Hadji Muhtamad",
+          "zip_code": "7310",
+          "mayor": {
+            "name": "ARSINA K. NANOH"
+          },
+          "vice_mayor": {
+            "name": "NADZRA S. HASIM"
+          }
+        },
+        {
+          "municipality": "Lantawan",
+          "zip_code": "7301",
+          "mayor": {
+            "name": "NURSIYA I. ISMAEL"
+          },
+          "vice_mayor": {
+            "name": "RUSTAM M. ISMAEL"
+          }
+        },
+        {
+          "municipality": "Maluso",
+          "zip_code": "7303",
+          "mayor": {
+            "name": "HANIE A. BUD"
+          },
+          "vice_mayor": {
+            "name": "AL-MASHOR A. YASIN"
+          }
+        },
+        {
+          "municipality": "Sumisip",
+          "zip_code": "7305",
+          "mayor": {
+            "name": "JUL-ADNAN P. HATAMAN"
+          },
+          "vice_mayor": {
+            "name": "GULAM S. SALLIMAN-HATAMAN"
+          }
+        },
+        {
+          "municipality": "Tabuan-Lasa",
+          "zip_code": "7312",
+          "mayor": {
+            "name": "MONER S. MANISAN"
+          },
+          "vice_mayor": {
+            "name": "ISNIRUL S. AHALUL"
+          }
+        },
+        {
+          "municipality": "Tipo-Tipo",
+          "zip_code": "7304",
+          "mayor": {
+            "name": "ARCAM P. ISTARUL"
+          },
+          "vice_mayor": {
+            "name": "INGATUN G. ISTARUL"
+          }
+        },
+        {
+          "municipality": "Tuburan",
+          "zip_code": "7306",
+          "mayor": {
+            "name": "JHABER S. KALLAHAL"
+          },
+          "vice_mayor": {
+            "name": "ROGER C. LATIP"
+          }
+        },
+        {
+          "municipality": "Ungkaya Pukan",
+          "zip_code": "7311",
+          "mayor": {
+            "name": "JOMAR M. MATURAN"
+          },
+          "vice_mayor": {
+            "name": "AHMADIN T. BARAHIM"
+          }
+        }
+      ]
+    },
+    {
+      "province": "Lanao del Sur",
+      "municipalities": [
+        {
+          "municipality": "Amai Manabilang",
+          "zip_code": "9320",
+          "mayor": {
+            "name": "SAIDAMEN LEO E. MANABILANG"
+          },
+          "vice_mayor": {
+            "name": "JAMAL E. MANABILANG"
+          }
+        },
+        {
+          "municipality": "Bacolod-Kalawi",
+          "zip_code": "9316",
+          "mayor": {
+            "name": "ABDULMOHAIMEN L. DIPATUAN"
+          },
+          "vice_mayor": {
+            "name": "NORA L. DIPATUAN"
+          }
+        },
+        {
+          "municipality": "Balabagan",
+          "zip_code": "9302",
+          "mayor": {
+            "name": "JOVER O. BENITO"
+          },
+          "vice_mayor": {
+            "name": "EDNA O. BENITO"
+          }
+        },
+        {
+          "municipality": "Balindong",
+          "zip_code": "9318",
+          "mayor": {
+            "name": "AMER-REGGIE L. BAGUL"
+          },
+          "vice_mayor": {
+            "name": "BENJAMIN M. BAGUL"
+          }
+        },
+        {
+          "municipality": "Bayang",
+          "zip_code": "9309",
+          "mayor": {
+            "name": "ASLANIE P. BALT"
+          },
+          "vice_mayor": {
+            "name": "JOHANISAH B. RADIAMODA"
+          }
+        },
+        {
+          "municipality": "Binidayan",
+          "zip_code": "9310",
+          "mayor": {
+            "name": "SODAIS D. DIMAPORO"
+          },
+          "vice_mayor": {
+            "name": "PUNUDARANAO B. DATUMULOK"
+          }
+        },
+        {
+          "municipality": "Buadiposo-Buntong",
+          "zip_code": "9714",
+          "mayor": {
+            "name": "NORON G. DADAYAN"
+          },
+          "vice_mayor": {
+            "name": "NORHOSNYA M. LANDUA"
+          }
+        },
+        {
+          "municipality": "Bubong",
+          "zip_code": "9708",
+          "mayor": {
+            "name": "ALFAIS T. MUNDER"
+          },
+          "vice_mayor": {
+            "name": "NASMERAH M. NASSER"
+          }
+        },
+        {
+          "municipality": "Butig",
+          "zip_code": "9305",
+          "mayor": {
+            "name": "DIMNATANG BL. PANSAR"
+          },
+          "vice_mayor": {
+            "name": "BIN KHALIFA L. PANSAR"
+          }
+        },
+        {
+          "municipality": "Calanogas",
+          "zip_code": "9319",
+          "mayor": {
+            "name": "ABDUL HAKIM A. BENITO"
+          },
+          "vice_mayor": {
+            "name": "MACAPADO A. BENITO JR."
+          }
+        },
+        {
+          "municipality": "Ditsaan-Ramain",
+          "zip_code": "9713",
+          "mayor": {
+            "name": "SAIDAMEN HADJI A. ADIONG"
+          },
+          "vice_mayor": {
+            "name": "ABDUL JABBAR G. DIDA-AGUN"
+          }
+        },
+        {
+          "municipality": "Ganassi",
+          "zip_code": "9311",
+          "mayor": {
+            "name": "HOSNI B. MACAPODI"
+          },
+          "vice_mayor": {
+            "name": "ANIDA MACAPODI-LUCMAN"
+          }
+        },
+        {
+          "municipality": "Kapai",
+          "zip_code": "9709",
+          "mayor": {
+            "name": "AIDAH C. GAURAKI"
+          },
+          "vice_mayor": {
+            "name": "HAMZA E. GAURAKI"
+          }
+        },
+        {
+          "municipality": "Kapatagan",
+          "zip_code": "9322",
+          "mayor": {
+            "name": "RAIDA B. MAGLANGIT"
+          },
+          "vice_mayor": {
+            "name": "NHAZRUDDIN B. MAGLANGIT"
+          }
+        },
+        {
+          "municipality": "Lumba-Bayabao",
+          "zip_code": "9703",
+          "mayor": {
+            "name": "MAHAR P. DAGALANGIT"
+          },
+          "vice_mayor": {
+            "name": "LALAWEIN B. MACUD"
+          }
+        },
+        {
+          "municipality": "Lumbaca-Unayan",
+          "zip_code": "9323",
+          "mayor": {
+            "name": "JAMALIA D. ALOYODAN"
+          },
+          "vice_mayor": {
+            "name": "AMER M. ALOYODAN"
+          }
+        },
+        {
+          "municipality": "Lumbatan",
+          "zip_code": "9307",
+          "mayor": {
+            "name": "ALLAN I. LAO"
+          },
+          "vice_mayor": {
+            "name": "ALJAYEED M. LAO"
+          }
+        },
+        {
+          "municipality": "Lumbayanague",
+          "zip_code": "9306",
+          "mayor": {
+            "name": "JAMAL L. ASUM"
+          },
+          "vice_mayor": {
+            "name": "ARIMAO S. ASUM"
+          }
+        },
+        {
+          "municipality": "Madalum",
+          "zip_code": "9315",
+          "mayor": {
+            "name": "USMAN M. SARANGANI JR."
+          },
+          "vice_mayor": {
+            "name": "USMAN T. SARANGANI SR."
+          }
+        },
+        {
+          "municipality": "Madamba",
+          "zip_code": "9314",
+          "mayor": {
+            "name": "AMER HUSSIEN M. MINDALANO"
+          },
+          "vice_mayor": {
+            "name": "JALANIE M. MINDALANO"
+          }
+        },
+        {
+          "municipality": "Maguing",
+          "zip_code": "9715",
+          "mayor": {
+            "name": "FAHAD D. MOLOK"
+          },
+          "vice_mayor": {
+            "name": "MOHAMMAD FAHAD M. HADJI MALIC"
+          }
+        },
+        {
+          "municipality": "Malabang",
+          "zip_code": "9300",
+          "mayor": {
+            "name": "ALINADER M. BALINDONG"
+          },
+          "vice_mayor": {
+            "name": "RAIZOLI S. BALINDONG"
+          }
+        },
+        {
+          "municipality": "Marantao",
+          "zip_code": "9711",
+          "mayor": {
+            "name": "AKIRA I. ALONTO"
+          },
+          "vice_mayor": {
+            "name": "NASHRIPH B. CORNELL"
+          }
+        },
+        {
+          "municipality": "Marogong",
+          "zip_code": "9303",
+          "mayor": {
+            "name": "NASSIF B. MARUHOM"
+          },
+          "vice_mayor": {
+            "name": "HAROUN T. MARUHOM"
+          }
+        },
+        {
+          "municipality": "Masiu",
+          "zip_code": "9706",
+          "mayor": {
+            "name": "NASSER P. PANGANDAMAN JR."
+          },
+          "vice_mayor": {
+            "name": "JAMIMAH CASAD-SOLAIMAN"
+          }
+        },
+        {
+          "municipality": "Mulondo",
+          "zip_code": "9702",
+          "mayor": {
+            "name": "NIHARA M. PANANDIGAN"
+          },
+          "vice_mayor": {
+            "name": "SALIC M. DIDATO"
+          }
+        },
+        {
+          "municipality": "Pagayawan",
+          "zip_code": "9312",
+          "mayor": {
+            "name": "KHALIDA P. SANGUILA"
+          },
+          "vice_mayor": {
+            "name": "KHALID P. DIAMAEL"
+          }
+        },
+        {
+          "municipality": "Piagapo",
+          "zip_code": "9710",
+          "mayor": {
+            "name": "ALI L. SUMANDAR"
+          },
+          "vice_mayor": {
+            "name": "NOROMBAE M. MANALOCON"
+          }
+        },
+        {
+          "municipality": "Picong",
+          "zip_code": "9301",
+          "mayor": {
+            "name": "MESRON D. BALINDONG"
+          },
+          "vice_mayor": {
+            "name": "YACOB D. BALINDONG"
+          }
+        },
+        {
+          "municipality": "Poona Bayabao",
+          "zip_code": "9705",
+          "mayor": {
+            "name": "JANIMAH L. DEROGONGAN-PANDI"
+          },
+          "vice_mayor": {
+            "name": "NADJA PANOROGANAN B. PACALA"
+          }
+        },
+        {
+          "municipality": "Pualas",
+          "zip_code": "9313",
+          "mayor": {
+            "name": "AMANODEN T. DUCOL"
+          },
+          "vice_mayor": {
+            "name": "DIALALODIN L. MARUHOM"
+          }
+        },
+        {
+          "municipality": "Saguiaran",
+          "zip_code": "9701",
+          "mayor": {
+            "name": "JALALODIN M. L. ANGIN"
+          },
+          "vice_mayor": {
+            "name": "HAFIZ A. MUTI"
+          }
+        },
+        {
+          "municipality": "Sultan Dumalondong",
+          "zip_code": "9324",
+          "mayor": {
+            "name": "JAMEL B. KURANGKING"
+          },
+          "vice_mayor": {
+            "name": "ALIBASA C. KURANGKING"
+          }
+        },
+        {
+          "municipality": "Tagoloan-II",
+          "zip_code": "9321",
+          "mayor": {
+            "name": "MISANGCAD M. CAPAL"
+          },
+          "vice_mayor": {
+            "name": "MANGONDAYA L. CAPAL"
+          }
+        },
+        {
+          "municipality": "Tamparan",
+          "zip_code": "9704",
+          "mayor": {
+            "name": "MOHAMMAD JUHAR D. DISOMIMBA"
+          },
+          "vice_mayor": {
+            "name": "HAROUN AL-RASHID D. LUCMAN"
+          }
+        },
+        {
+          "municipality": "Taraka",
+          "zip_code": "9712",
+          "mayor": {
+            "name": "AMENODIN U. SUMAGAYAN"
+          },
+          "vice_mayor": {
+            "name": "NASHIBA U. GANDAMRA-SUMAGAYAN"
+          }
+        },
+        {
+          "municipality": "Tubaran",
+          "zip_code": "9304",
+          "mayor": {
+            "name": "KHALEDYASSIN D. PAPANDAYAN"
+          },
+          "vice_mayor": {
+            "name": "TONGCO A. ACSARA"
+          }
+        },
+        {
+          "municipality": "Tugaya",
+          "zip_code": "9317",
+          "mayor": {
+            "name": "ALFATTAH N. PACALNA"
+          },
+          "vice_mayor": {
+            "name": "ALBER N. BALINDONG"
+          }
+        },
+        {
+          "municipality": "Wao",
+          "zip_code": "9716",
+          "mayor": {
+            "name": "ELVINO B. BALICAO JR."
+          },
+          "vice_mayor": {
+            "name": "ELMER A. MENDOZA"
+          }
+        }
+      ]
+    },
+    {
+      "province": "Maguindanao del Norte",
+      "municipalities": [
+        {
+          "municipality": "Barira",
+          "zip_code": "9614",
+          "mayor": {
+            "name": "ABDUL RAUF D. TOMAWIS"
+          },
+          "vice_mayor": {
+            "name": "BAHRAIN M. DAGALANGIT"
+          }
+        },
+        {
+          "municipality": "Buldon",
+          "zip_code": "9615",
+          "mayor": {
+            "name": "PAHMIA A. MANALAO"
+          },
+          "vice_mayor": {
+            "name": "ABOLAIS A. MANALAO"
+          }
+        },
+        {
+          "municipality": "Datu Blah T. Sinsuat",
+          "zip_code": "9623",
+          "mayor": {
+            "name": "DATU MARSHALL I. SINSUAT"
+          },
+          "vice_mayor": {
+            "name": "RAIDA T. SINSUAT"
+          }
+        },
+        {
+          "municipality": "Datu Odin Sinsuat",
+          "zip_code": "9601",
+          "mayor": {
+            "name": "LESTER S. SINSUAT"
+          },
+          "vice_mayor": {
+            "name": "DATU SAJID S. SINSUAT"
+          }
+        },
+        {
+          "municipality": "Kabuntalan",
+          "zip_code": "9606",
+          "mayor": {
+            "name": "SALABAN G. DIOCOLANO"
+          },
+          "vice_mayor": {
+            "name": "DATU RAHAF D. DIOCOLANO"
+          }
+        },
+        {
+          "municipality": "Matanog",
+          "zip_code": "9613",
+          "mayor": {
+            "name": "ZOHRIA S. BANSIL-GURO"
+          },
+          "vice_mayor": {
+            "name": "SANAIRA I. ALI-IMAM"
+          }
+        },
+        {
+          "municipality": "Northern Kabuntalan",
+          "zip_code": "9630",
+          "mayor": {
+            "name": "DATU UMBRA B. DILANGALEN"
+          },
+          "vice_mayor": {
+            "name": "DATU MOHAMMAD SHAFFIE C. BAYAM"
+          }
+        },
+        {
+          "municipality": "Parang",
+          "zip_code": "9604",
+          "mayor": {
+            "name": "CAHAR P. IBAY"
+          },
+          "vice_mayor": {
+            "name": "ADNAN C. BIRUAR"
+          }
+        },
+        {
+          "municipality": "Sultan Kudarat",
+          "zip_code": "9605",
+          "mayor": {
+            "name": "DATU TUCAO O. MASTURA"
+          },
+          "vice_mayor": {
+            "name": "DATU SHAMEEM B. MASTURA"
+          }
+        },
+        {
+          "municipality": "Sultan Mastura",
+          "zip_code": "9636",
+          "mayor": {
+            "name": "ZULFICAR H. PANDA"
+          },
+          "vice_mayor": {
+            "name": "ANDY Z. AMIR"
+          }
+        },
+        {
+          "municipality": "Talitay",
+          "zip_code": "9637",
+          "mayor": {
+            "name": "SIDIK S. AMIRIL"
+          },
+          "vice_mayor": {
+            "name": "FAHAD J. MIDTIMBANG"
+          }
+        },
+        {
+          "municipality": "Upi",
+          "zip_code": "9602",
+          "mayor": {
+            "name": "MA. RONA CRISTINA P. FLORES"
+          },
+          "vice_mayor": {
+            "name": "WILFREDO T. IBAÑEZ"
+          }
+        }
+      ]
+    },
+    {
+      "province": "Maguindanao del Sur",
+      "municipalities": [
+        {
+          "municipality": "Ampatuan",
+          "zip_code": "9609",
+          "mayor": {
+            "name": "BAILEAH G. SANGKI"
+          },
+          "vice_mayor": {
+            "name": "BAI YASMIN S. SANGKI"
+          }
+        },
+        {
+          "municipality": "Buluan",
+          "zip_code": "9616",
+          "mayor": {
+            "name": "BABYDATS D. MANGUDADATU"
+          },
+          "vice_mayor": {
+            "name": "RHAMLA M. KADALIM"
+          }
+        },
+        {
+          "municipality": "Datu Abdullah Sangki",
+          "zip_code": "9621",
+          "mayor": {
+            "name": "SUHARTO AL WALI S. MANGUDADATU"
+          },
+          "vice_mayor": {
+            "name": "SAMSODHEN A. SANGKI"
+          }
+        },
+        {
+          "municipality": "Datu Anggal Midtimbang",
+          "zip_code": "9622",
+          "mayor": {
+            "name": "MARYJOY ESTEPHANIE U. MIDTIMBANG"
+          },
+          "vice_mayor": {
+            "name": "DATU JOMAR U. MIDTIMBANG"
+          }
+        },
+        {
+          "municipality": "Datu Hoffer Ampatuan",
+          "zip_code": "9624",
+          "mayor": {
+            "name": "BONGBONG M. AMPATUAN"
+          },
+          "vice_mayor": {
+            "name": "PRINCE SUFFRI NORABBIE M. AMPATUAN"
+          }
+        },
+        {
+          "municipality": "Datu Paglas",
+          "zip_code": "9617",
+          "mayor": {
+            "name": "ABUBAKAR P. PAGLAS"
+          },
+          "vice_mayor": {
+            "name": "IBRAHIM P. PAGLAS IV"
+          }
+        },
+        {
+          "municipality": "Datu Piang",
+          "zip_code": "9607",
+          "mayor": {
+            "name": "VICTOR T. SAMAMA"
+          },
+          "vice_mayor": {
+            "name": "MOHAMMAD OMAR A. SAMAMA"
+          }
+        },
+        {
+          "municipality": "Datu Salibo",
+          "zip_code": "9625",
+          "mayor": {
+            "name": "SOLAIMAN M. SANDIGAN"
+          },
+          "vice_mayor": {
+            "name": "KHOMINIE B. SANDIGAN"
+          }
+        },
+        {
+          "municipality": "Datu Saudi Ampatuan",
+          "zip_code": "9626",
+          "mayor": {
+            "name": "EDRIS A. SINDATOK"
+          },
+          "vice_mayor": {
+            "name": "BASSIR B. UTTO"
+          }
+        },
+        {
+          "municipality": "Datu Unsay",
+          "zip_code": "9627",
+          "mayor": {
+            "name": "DATU ANDAL S. AMPATUAN V"
+          },
+          "vice_mayor": {
+            "name": "BAI ALICIA NICOLE S. AMPATUAN"
+          }
+        },
+        {
+          "municipality": "Gen. S. K. Pendatun",
+          "zip_code": "9618",
+          "mayor": {
+            "name": "RAFSANJANI P. ALI"
+          },
+          "vice_mayor": {
+            "name": "NORODIN P. MASUKAT"
+          }
+        },
+        {
+          "municipality": "Guindulungan",
+          "zip_code": "9628",
+          "mayor": {
+            "name": "MIDPANTAO M. MIDTIMBANG JR."
+          },
+          "vice_mayor": {
+            "name": "DATU GUIADZALI M. MIDTIMBANG"
+          }
+        },
+        {
+          "municipality": "Mamasapano",
+          "zip_code": "9629",
+          "mayor": {
+            "name": "AKMAD A. AMPATUAN JR."
+          },
+          "vice_mayor": {
+            "name": "TAHIRODIN BENZAR A. AMPATUAN"
+          }
+        },
+        {
+          "municipality": "Mangudadatu",
+          "zip_code": "9620",
+          "mayor": {
+            "name": "FREDDIE G. MANGUDADATU"
+          },
+          "vice_mayor": {
+            "name": "ELIZABETH M. TAYUAN"
+          }
+        },
+        {
+          "municipality": "Pagagawan",
+          "zip_code": "9631",
+          "mayor": {
+            "name": "OHTO C. MONTAWAL"
+          },
+          "vice_mayor": {
+            "name": "VICMAN K. MONTAWAL"
+          }
+        },
+        {
+          "municipality": "Pagalungan",
+          "zip_code": "9610",
+          "mayor": {
+            "name": "SALIK P. MAMASABULOD"
+          },
+          "vice_mayor": {
+            "name": "ABDILAH G. MAMASABULOD"
+          }
+        },
+        {
+          "municipality": "Paglat",
+          "zip_code": "9632",
+          "mayor": {
+            "name": "RAISA P. LANGKUNO"
+          },
+          "vice_mayor": {
+            "name": "SAGANDINGAN M. GUMONSANG"
+          }
+        },
+        {
+          "municipality": "Pandag",
+          "zip_code": "9633",
+          "mayor": {
+            "name": "KHADAFEH G. MANGUDADATU"
+          },
+          "vice_mayor": {
+            "name": "ZIHAN M. MANGUDADATU"
+          }
+        },
+        {
+          "municipality": "Rajah Buayan",
+          "zip_code": "9634",
+          "mayor": {
+            "name": "BAI MARUJA A. MASTURA"
+          },
+          "vice_mayor": {
+            "name": "JERRY P. MAKALAY"
+          }
+        },
+        {
+          "municipality": "Shariff Aguak",
+          "zip_code": "9608",
+          "mayor": {
+            "name": "AKMAD B. AMPATUAN"
+          },
+          "vice_mayor": {
+            "name": "MAROP B. AMPATUAN"
+          }
+        },
+        {
+          "municipality": "Shariff S. Mustapha",
+          "zip_code": "9635",
+          "mayor": {
+            "name": "SAJID ANDRE S. AMPATUAN"
+          },
+          "vice_mayor": {
+            "name": "DATU SAJID ISLAM U. AMPATUAN"
+          }
+        },
+        {
+          "municipality": "South Upi",
+          "zip_code": "9603",
+          "mayor": {
+            "name": "REYNALBERT O. INSULAR"
+          },
+          "vice_mayor": {
+            "name": "ALBERTO B. ESTORNINOS"
+          }
+        },
+        {
+          "municipality": "Sultan sa Barongis",
+          "zip_code": "9611",
+          "mayor": {
+            "name": "ALLANDATU M. ANGAS SR."
+          },
+          "vice_mayor": {
+            "name": "AL-FIZZAR ALLANDATU M. ANGAS"
+          }
+        },
+        {
+          "municipality": "Talayan",
+          "zip_code": "9612",
+          "mayor": {
+            "name": "TUNGKANG A. MIDTIMBANG"
+          },
+          "vice_mayor": {
+            "name": "DATU ALI S. MIDTIMBANG JR."
+          }
+        }
+      ]
+    }
+  ],
+  "slug": "bangsamoro-autonomous-region-in-muslim-mindanao"
+}

@@ -34,6 +34,10 @@ Our goals include:
 - Accessibility features for users with disabilities
 - Regular updates and maintenance
 
+## Documentation
+
+For an easy-to-read overview of the project, visit the [BetterGov Docs](https://docs.bettergov.ph/).
+
 ## Join Us as a Volunteer
 
 We're always looking for passionate individuals to help improve BetterGov.ph. We need volunteers with various skills:
@@ -48,127 +52,85 @@ We're always looking for passionate individuals to help improve BetterGov.ph. We
 
 If you're interested in contributing, please reach out to us at [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph) or open an issue in this repository.
 
-## Report a Bug
+## Code of Conduct
 
-Found a problem with the website? Help us improve by reporting it!
+We are committed to fostering a welcoming and respectful community.
+Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) before participating.
 
-1. Open an issue in this repository
-2. Use the bug report template
-3. Provide as much detail as possible, including:
-   - What you were trying to do
-   - What you expected to happen
-   - What actually happened
-   - Screenshots, if applicable
+## Contributing
 
-Alternatively, email us at [bugs@bettergov.ph](mailto:bugs@bettergov.ph)
+We welcome contributions from everyone!
+Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
 
-## Setup
+- Development setup
+- Reporting bugs
+- Opening issues and pull requests
 
-1. Clone the repository
-2. Install dependencies
-3. Set up environment variables
-4. Run the development server
+## How to Run
 
 ```bash
-# Clone the repository
-git clone https://github.com/bettergovph/bettergov.git
-cd bettergov
-
-# Install dependencies
+# Install packages
 npm install
 
-# Set environment variables (example)
-# cp .env.example .env
-# then edit .env as needed
+# Start the server
+npm run dev
+```
 
+**Access the application at:** `http://localhost:5173`
+
+## GitHub Codespaces
+
+You may use GitHub Codespaces for an instant development environment with dependencies automatically installed for you.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/bettergovph/bettergov?quickstart=1)
+
+## Docker
+
+This project includes Docker support for easy deployment and consistent environments.
+
+### Building and Running
+
+```bash
+# Build the Docker image
+docker build -t bettergov .
+
+# Run the container
+docker run -p 8080:80 bettergov
+
+# Run in detached mode
+docker run -d -p 8080:80 --name bettergov bettergov
+```
+
+**Access the application at:** `http://localhost:8080`
+
+### Docker Compose
+
+For the easiest and most consistent development experience, we recommend using Docker Compose. This method uses Docker to run the application in a controlled environment with hot-reloading enabled.
+
+```bash
 # Start the development server
-npm run dev
+docker-compose up
+
+# Start in detached mode
+docker-compose up -d
+
+# Stop the service
+docker-compose down
 ```
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run E2E tests
-npm run test:e2e
-
-# Run E2E tests with UI
-npm run test:e2e:ui
-
-# Run E2E tests in headed browser
-npm run test:e2e:headed
-
-# Debug E2E tests
-npm run test:e2e:debug
-```
+**Access the application at:** `http://localhost:5173`
 
 ## Testing
 
-### End-to-End Testing
+This project uses Playwright for end-to-end testing.
+For setup instructions, coverage details, and examples, see our [Testing Guide](./TESTING.md).
 
-This project uses Playwright for end-to-end testing to ensure critical user flows work correctly across different browsers and devices.
+## Contributing
 
-#### Running E2E Tests
+Thanks to all the people who already contributed!
 
-- `npm run test:e2e` - Run all E2E tests headlessly
-- `npm run test:e2e:ui` - Open Playwright UI to run and debug tests interactively
-- `npm run test:e2e:headed` - Run tests with visible browser windows
-- `npm run test:e2e:debug` - Debug tests with Playwright Inspector
-- `npm run test:e2e:codegen` - Record new tests using Playwright's code generator
-
-#### E2E Test Coverage
-
-Our E2E tests cover:
-
-1. **Critical User Flows**
-   - Homepage loading and navigation
-   - PhilSys National ID registration
-   - Government services search
-   - Language switching
-   - Emergency hotlines access
-
-2. **Navigation**
-   - Main menu navigation
-   - Dropdown menus
-   - Footer links
-   - Breadcrumb navigation
-
-3. **Accessibility**
-   - WCAG compliance checks using axe-core
-   - Keyboard navigation
-   - ARIA labels and alt text
-   - Focus indicators
-
-4. **Performance**
-   - Page load times
-   - First Contentful Paint metrics
-   - DOM size optimization
-   - Image optimization
-   - Slow network handling
-
-#### Writing E2E Tests
-
-E2E tests are located in the `e2e/` directory. Example test structure:
-
-```typescript
-import { test, expect } from '@playwright/test';
-
-test('user can search for services', async ({ page }) => {
-  await page.goto('/');
-  await page.getByPlaceholder(/Search for services/i).fill('passport');
-  await page.getByPlaceholder(/Search for services/i).press('Enter');
-  await expect(page).toHaveURL('/search');
-  await expect(page.locator('text=/passport/i')).toBeVisible();
-});
-```
+<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
+</a>
 
 ## License
 

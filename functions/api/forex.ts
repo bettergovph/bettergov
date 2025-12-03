@@ -1,50 +1,50 @@
-import { Env } from '../types'
+import { Env } from '../types';
 
 // BSP API endpoint for exchange rates
 const BSP_URL =
-  "https://www.bsp.gov.ph/_api/web/lists/getByTitle('Exchange%20Rate')/items?$select=*&$filter=Group%20eq%20%271%27&$orderby=Ordering%20asc"
+  "https://www.bsp.gov.ph/_api/web/lists/getByTitle('Exchange%20Rate')/items?$select=*&$filter=Group%20eq%20%271%27&$orderby=Ordering%20asc";
 
 // Interface for BSP API response item
 interface BSPRateItem {
-  Title: string
-  Unit: string
-  Symbol: string
-  EURequivalent: string
-  USDequivalent: string
-  PHPequivalent: string
-  CountryCode: string
-  PublishedDate: string
+  Title: string;
+  Unit: string;
+  Symbol: string;
+  EURequivalent: string;
+  USDequivalent: string;
+  PHPequivalent: string;
+  CountryCode: string;
+  PublishedDate: string;
 }
 
 // Interface for processed rate item
 interface ProcessedRateItem {
-  country: string
-  currency: string
-  symbol: string
-  euroEquivalent: number
-  usdEquivalent: number
-  phpEquivalent: number
-  countryCode: string
-  publishedDate: string
+  country: string;
+  currency: string;
+  symbol: string;
+  euroEquivalent: number;
+  usdEquivalent: number;
+  phpEquivalent: number;
+  countryCode: string;
+  publishedDate: string;
 }
 
 // Interface for processed forex data
 interface ProcessedForexData {
   metadata: {
-    source: string
-    fetchedAt: string
-    url: string
-  }
-  rates: ProcessedRateItem[]
+    source: string;
+    fetchedAt: string;
+    url: string;
+  };
+  rates: ProcessedRateItem[];
 }
 
 // Interface for BSP API response
 interface BSPApiResponse {
-  value: BSPRateItem[]
+  value: BSPRateItem[];
 }
 
 // Core function to fetch currency exchange rates
-async function fetchForexData(env: Env): Promise<ProcessedForexData> {
+async function fetchForexData(): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
@@ -52,15 +52,15 @@ async function fetchForexData(env: Env): Promise<ProcessedForexData> {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    })
+    });
 
     if (!response.ok) {
       throw new Error(
         `Failed to fetch BSP data: ${response.status} ${response.statusText}`
-      )
+      );
     }
 
-    const data = (await response.json()) as BSPApiResponse
+    const data = (await response.json()) as BSPApiResponse;
 
     // Process the data to make it more usable
     const processedData: ProcessedForexData = {
@@ -79,43 +79,43 @@ async function fetchForexData(env: Env): Promise<ProcessedForexData> {
         countryCode: item.CountryCode,
         publishedDate: item.PublishedDate,
       })),
-    }
+    };
 
-    return processedData
+    return processedData;
   } catch (error) {
-    console.error('Error fetching forex data:', error)
-    throw error
+    console.error('Error fetching forex data:', error);
+    throw error;
   }
 }
 
 // Function for direct API access
 export async function onRequest(context: {
-  request: Request
-  env: Env
-  ctx: ExecutionContext
+  request: Request;
+  env: Env;
+  ctx: ExecutionContext;
 }): Promise<Response> {
-  const { request, env } = context
-  const url = new URL(request.url)
-  const symbol = url.searchParams.get('symbol')
-  const forceUpdate = url.searchParams.get('update') === 'true'
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const symbol = url.searchParams.get('symbol');
+  const forceUpdate = url.searchParams.get('update') === 'true';
 
   try {
     // Always fetch fresh data if update=true is specified
     if (forceUpdate) {
       // Fetch fresh forex data
-      const forexData = await fetchForexData(env)
+      const forexData = await fetchForexData();
 
       // Store the data in KV
       await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
         expirationTtl: 3600, // Expire after 1 hour
-      })
+      });
 
       // Filter by symbol if specified
       if (symbol) {
-        const upperSymbol = symbol.toUpperCase()
+        const upperSymbol = symbol.toUpperCase();
         const filteredRates = forexData.rates.filter(
-          (rate) => rate.symbol.toUpperCase() === upperSymbol
-        )
+          rate => rate.symbol.toUpperCase() === upperSymbol
+        );
 
         if (filteredRates.length > 0) {
           return new Response(
@@ -130,7 +130,7 @@ export async function onRequest(context: {
                 'Cache-Control': 'max-age=3600',
               },
             }
-          )
+          );
         }
       }
 
@@ -141,21 +141,21 @@ export async function onRequest(context: {
           'Access-Control-Allow-Origin': '*',
           'Cache-Control': 'max-age=3600',
         },
-      })
+      });
     }
 
     // Try to get cached data first
-    const cachedData = await env.FOREX_KV.get('bsp_exchange_rates')
+    const cachedData = await env.FOREX_KV.get('bsp_exchange_rates');
 
     if (cachedData) {
-      const parsedData = JSON.parse(cachedData) as ProcessedForexData
+      const parsedData = JSON.parse(cachedData) as ProcessedForexData;
 
       // If a specific currency symbol is requested, filter the data
       if (symbol) {
-        const upperSymbol = symbol.toUpperCase()
+        const upperSymbol = symbol.toUpperCase();
         const filteredRates = parsedData.rates.filter(
-          (rate) => rate.symbol.toUpperCase() === upperSymbol
-        )
+          rate => rate.symbol.toUpperCase() === upperSymbol
+        );
 
         if (filteredRates.length > 0) {
           return new Response(
@@ -170,7 +170,7 @@ export async function onRequest(context: {
                 'Cache-Control': 'max-age=3600',
               },
             }
-          )
+          );
         }
       }
 
@@ -181,23 +181,23 @@ export async function onRequest(context: {
           'Access-Control-Allow-Origin': '*',
           'Cache-Control': 'max-age=3600',
         },
-      })
+      });
     }
 
     // If no cached data, fetch fresh data
-    const forexData = await fetchForexData(env)
+    const forexData = await fetchForexData();
 
     // Store the data in KV
     await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
       expirationTtl: 3600, // Expire after 1 hour
-    })
+    });
 
     // Filter by symbol if specified
     if (symbol) {
-      const upperSymbol = symbol.toUpperCase()
+      const upperSymbol = symbol.toUpperCase();
       const filteredRates = forexData.rates.filter(
-        (rate) => rate.symbol.toUpperCase() === upperSymbol
-      )
+        rate => rate.symbol.toUpperCase() === upperSymbol
+      );
 
       if (filteredRates.length > 0) {
         return new Response(
@@ -212,7 +212,7 @@ export async function onRequest(context: {
               'Cache-Control': 'max-age=3600',
             },
           }
-        )
+        );
       }
     }
 
@@ -222,7 +222,7 @@ export async function onRequest(context: {
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'max-age=3600',
       },
-    })
+    });
   } catch (error) {
     return new Response(
       JSON.stringify({
@@ -236,34 +236,30 @@ export async function onRequest(context: {
           'Access-Control-Allow-Origin': '*',
         },
       }
-    )
+    );
   }
 }
 
-export async function scheduled(
-  controller: ScheduledController,
-  env: Env,
-  ctx: ExecutionContext
-) {
+export async function scheduled(controller: ScheduledController, env: Env) {
   try {
     // Fetch forex data
-    const forexData = await fetchForexData(env)
+    const forexData = await fetchForexData();
 
     // Store the data in Cloudflare KV
     await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
       expirationTtl: 3600 * 6, // Expire after 6 hours
-    })
+    });
 
     return {
       success: true,
       message: `Exchange rate data updated for ${forexData.rates.length} currencies`,
       timestamp: new Date().toISOString(),
-    }
+    };
   } catch (error) {
-    console.error('Error in forex scheduled function:', error)
+    console.error('Error in forex scheduled function:', error);
     return {
       success: false,
       error: (error as Error).message,
-    }
+    };
   }
 }

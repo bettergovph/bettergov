@@ -1,0 +1,51 @@
+{
+  "page": {
+    "title": "Flood Control Projects | BetterGov.ph",
+    "description": "Explore flood control projects across the Philippines",
+    "heading": "Flood Control Projects"
+  },
+  "statistics": {
+    "totalProjects": "Total Projects",
+    "totalContractCost": "Total Contract Cost",
+    "uniqueContractors": "Unique Contractors"
+  },
+  "filters": {
+    "title": "Filters",
+    "searchPlaceholder": "Projects, contractors, municipality, province, region...",
+    "searchProjects": "Search Projects",
+    "infrastructureYear": "Infrastructure Year",
+    "region": "Region",
+    "province": "Province",
+    "typeOfWork": "Type of Work",
+    "districtEngineeringOffice": "District Engineering Office",
+    "legislativeDistrict": "Legislative District",
+    "showFilters": "Show Filters"
+  },
+  "charts": {
+    "projectsByYear": "Projects by Year",
+    "topRegions": "Top Regions",
+    "typesOfWork": "Types of Work",
+    "topContractors": "Top Contractors"
+  },
+  "actions": {
+    "exportData": "Export Data",
+    "exporting": "Exporting...",
+    "viewTable": "View Table"
+  },
+  "guidance": {
+    "needDetailedResults": "Need Detailed Results?",
+    "tableViewDescription": "Visit the Table view for detailed search results, sortable columns, and advanced filtering options."
+  },
+  "dataSource": {
+    "title": "About This Data",
+    "description": "This dashboard visualizes flood control infrastructure projects across the Philippines. The data includes information about project locations, types, implementing offices, and more. Use the filters in the sidebar to explore specific aspects of the data or use the search functionality to find specific projects.",
+    "sourceLabel": "Source:"
+  },
+  "tooltips": {
+    "projectsFormatter": "projects"
+  },
+  "alerts": {
+    "exportSuccess": "Data exported successfully!",
+    "exportError": "Failed to export data. Please try again."
+  }
+}

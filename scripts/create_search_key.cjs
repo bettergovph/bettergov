@@ -2,7 +2,8 @@
 require('dotenv').config();
 const { MeiliSearch } = require('meilisearch');
 
-const MEILISEARCH_HOST = process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
+const MEILISEARCH_HOST =
+  process.env.VITE_MEILISEARCH_HOST || 'http://localhost';
 const MEILISEARCH_PORT = process.env.VITE_MEILISEARCH_PORT || '7700';
 // IMPORTANT: This script MUST use the Meilisearch Master Key for authentication
 const MEILISEARCH_MASTER_KEY = process.env.MEILISEARCH_MASTER_KEY;
@@ -41,12 +42,15 @@ async function createSearchKey() {
     console.log('Expires At:', newKey.expiresAt);
     console.log('Created At:', newKey.createdAt);
     console.log('Updated At:', newKey.updatedAt);
-    console.log('\nIMPORTANT: API Key Value (use this in your .env for VITE_MEILISEARCH_SEARCH_API_KEY):');
+    console.log(
+      '\nIMPORTANT: API Key Value (use this in your .env for VITE_MEILISEARCH_SEARCH_API_KEY):'
+    );
     console.log('******************************************');
     console.log(newKey.key);
     console.log('******************************************');
-    console.log('\nRemember to store this key securely if needed elsewhere, but primarily update your .env file.');
-
+    console.log(
+      '\nRemember to store this key securely if needed elsewhere, but primarily update your .env file.'
+    );
   } catch (error) {
     console.error('\nError creating search API key:');
     if (error.response && error.response.data) {

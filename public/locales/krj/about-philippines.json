@@ -1,0 +1,232 @@
+{
+  "about": {
+    "hero": {
+      "title": "Tungod sa Pilipinas",
+      "description": "Mag-discover kang Pearl of the Orient Seas, isa ka nasyon kang vibrant nga culture, mayaman nga history, kag natural wonders nga naka-spread sa libo-libo nga mga islands."
+    },
+    "facts": {
+      "title": "Mga Quick Facts",
+      "items": {
+        "geography": {
+          "title": "Geography",
+          "description": "Isa ka archipelago kang sobra sa 7,641 nga mga islands nga naka-locate sa Southeast Asia"
+        },
+        "population": {
+          "title": "Population",
+          "description": "Home sa sobra sa 110 million nga mga tawo sa bug-os nga diverse nga ethnic groups"
+        },
+        "capital": {
+          "title": "Capital",
+          "description": "Ang Manila naga-serve bilang capital, nga ang Metro Manila ang economic center"
+        },
+        "landscape": {
+          "title": "Landscape",
+          "description": "Mga features nga mountains, volcanoes, tropical rainforests, kag mga beautiful nga beaches"
+        },
+        "climate": {
+          "title": "Climate",
+          "description": "Tropical maritime climate nga may tatlo ka distinct nga seasons"
+        }
+      }
+    },
+    "overview": {
+      "title": "Overview",
+      "paragraphs": [
+        "Ang Pilipinas ay isa ka sovereign archipelagic nga nasyon nga naka-locate sa Southeast Asia, nga nagacomprise sang sobra sa 7,641 nga mga islands. Gin-ngalanan pagkatapos sang King Philip II sang Spain, ang nasyon may mayaman nga history nga nagaspan sa libo-libo nga mga tuig, gikan sa ancient nga indigenous cultures hasta sa colonial periods sa ilalum sang Spanish kag American rule, nga nagdala sa independence sini sa 1946.",
+        "Subong, ang Pilipinas nagatindog bilang isa sa mga pinaka-dynamic nga economies sang Southeast Asia, nga nagablend sang traditional values nga may modern development. Ang nasyon kilala sa warm hospitality sini, diverse nga cultural heritage, stunning nga natural landscapes, kag vibrant democracy.",
+        "Ang Filipino culture ay isa ka unique nga fusion sang indigenous, Asian, European, kag American influences, nga nagareflect sa art, music, cuisine, kag traditions sini. Ang biodiversity sang nasyon, nga nagafeature sang unique nga species kag ecosystems, nagahimo sini nga isa sa mga pinaka-environmentally significant nga mga nasyon sa kalibutan."
+      ]
+    },
+    "keyInformation": {
+      "title": "Mga Key Information",
+      "items": {
+        "officialLanguages": {
+          "label": "Mga Opisyal nga Languages",
+          "value": "Filipino, English"
+        },
+        "government": {
+          "label": "Government",
+          "value": "Presidential Constitutional Republic"
+        },
+        "currency": {
+          "label": "Currency",
+          "value": "Philippine Peso (₱)"
+        },
+        "timeZone": {
+          "label": "Time Zone",
+          "value": "UTC+8 (Philippine Standard Time)"
+        },
+        "majorCities": {
+          "label": "Mga Major Cities",
+          "value": "Manila, Quezon City, Davao, Cebu"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Mga Related Links",
+      "items": {
+        "history": "History",
+        "culture": "Culture",
+        "regions": "Mga Regions",
+        "tourism": "Tourism"
+      }
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "History sang Pilipinas",
+      "description": "Mag-journey sa time kag mag-discovers sang mayaman nga tapestry sang mga events, tawo, kag movements nga nagahimo sang Philippine nation.",
+      "photoCredit": "Photo credit"
+    },
+    "timeline": {
+      "title": "Historical Timeline",
+      "periods": {
+        "independence": {
+          "title": "Independence kag Modern Era",
+          "period": "1946-Present",
+          "description": "Independent nga republic nga nagaharagway sang mga challenges kag achievements sa nation-building"
+        },
+        "american": {
+          "title": "American Period",
+          "period": "1898-1946",
+          "description": "American administration, nga nagaintroduce sang modern education kag democratic institutions"
+        },
+        "spanish": {
+          "title": "Spanish Colonial Era",
+          "period": "1521-1898",
+          "description": "Sobra sa 300 ka tuig sang Spanish rule, nga nagaintroduce sang Christianity kag colonial institutions"
+        },
+        "preColonial": {
+          "title": "Pre-Colonial Period",
+          "period": "Before 1521",
+          "description": "Mga Indigenous peoples nga may advanced nga societies, trade networks, kag mayaman nga cultures"
+        }
+      }
+    },
+    "overview": {
+      "title": "Historical Overview",
+      "paragraphs": [
+        "Ang history sang Pilipinas nagsaspan sa libo-libo nga mga tuig, nga nagasugod sa migration sang mga Austronesian peoples. Ini nga mga early settlers nagdevelop sang sophisticated nga societies, nga nagatrade sa various nga Asian civilizations kag nagdevelop sang unique nga cultural traditions.",
+        "Ang pag-abot ni Ferdinand Magellan sa 1521 nagmarka sang pagsugod sang Spanish colonization, nga maga-last sa sobra sa tatlo ka siglo. Ini nga period nakakita sang widespread adoption sang Christianity kag pag-establish sang colonial institutions nga makaimpluwensya gid sa Filipino society.",
+        "Pagkatapos sang Spanish-American War, ang Pilipinas nag-abot sa ilalum sang American rule, nga nagdala sang significant nga mga changes sa education, governance, kag society. Ang nasyon nag-achieve sang independence sa 1946 kag gikan sadto nagtrabaho para magtukod sang modern nga nasyon samtang nagapreserve sang mayaman nga cultural heritage sini."
+      ]
+    },
+    "keyFigures": {
+      "title": "Mga Key Historical Figures",
+      "figures": {
+        "rizal": {
+          "name": "José Rizal",
+          "description": "National Hero, Writer, Reformist"
+        },
+        "bonifacio": {
+          "name": "Andrés Bonifacio",
+          "description": "Revolutionary Leader"
+        },
+        "aguinaldo": {
+          "name": "Emilio Aguinaldo",
+          "description": "First President"
+        },
+        "aquino": {
+          "name": "Corazon Aquino",
+          "description": "Democracy Icon, Former President"
+        }
+      }
+    },
+    "importantDates": {
+      "title": "Mga Important nga Dates",
+      "dates": {
+        "magellan": {
+          "date": "March 16, 1521",
+          "event": "Pag-abot ni Magellan"
+        },
+        "independence": {
+          "date": "June 12, 1898",
+          "event": "Declaration sang Independence"
+        },
+        "recognition": {
+          "date": "July 4, 1946",
+          "event": "Recognition sang Independence"
+        },
+        "edsa": {
+          "date": "February 25, 1986",
+          "event": "EDSA People Power Revolution"
+        }
+      }
+    },
+    "relatedLinks": {
+      "title": "Mga Related Links",
+      "items": {
+        "about": "About",
+        "culture": "Culture",
+        "regions": "Mga Regions",
+        "tourism": "Tourism"
+      }
+    }
+  },
+  "regions": {
+    "hero": {
+      "title": "Mga Regions sang Pilipinas",
+      "description": "Mag-explore sa tanan nga {{count}} nga administrative regions sang Pilipinas kag ang ila nga mga local government units."
+    },
+    "sections": {
+      "administrativeRegions": {
+        "title": "Mga Administrative Regions",
+        "localGovUnits": "Mga Local Government Units",
+        "viewLGUs": "Tan-awa ang mga LGUs"
+      },
+      "regionalOverview": {
+        "title": "Regional Overview",
+        "paragraphs": [
+          "Ang Pilipinas gin-divide sa tatlo ka main nga geographical divisions: Luzon, Visayas, kag Mindanao. Ini gin-subdivide pa sa 18 ka regions, ang kada isa may iya kaugalingon nga administrative center, cultural identity, kag economic focus.",
+          "Ang kada region nagapakita sang unique nga traditions, dialects, kag cuisines, nga nagacontribute sa mayaman nga cultural tapestry sang nasyon. Gikan sa mountain tribes sang Cordilleras hasta sa seafaring communities sang Visayas, ang diversity sang Filipino regional cultures makabulong.",
+          "Ang mga regions nagavary man sa ila nga economic activities, gikan sa industrial kag service-oriented nga National Capital Region hasta sa agricultural heartlands sang Central Luzon kag ang resource-rich nga provinces sang Mindanao."
+        ]
+      }
+    },
+    "sidebar": {
+      "quickFacts": {
+        "title": "Mga Quick Facts",
+        "totalRegions": {
+          "label": "Total nga Regions",
+          "value": "18 nga Administrative Regions"
+        },
+        "provinces": {
+          "label": "Mga Provinces",
+          "value": "82 ka Provinces"
+        },
+        "cities": {
+          "label": "Mga Cities",
+          "value": "149 ka Cities"
+        },
+        "municipalities": {
+          "label": "Mga Municipalities",
+          "value": "1,493 ka Municipalities"
+        }
+      },
+      "regionalLanguages": {
+        "title": "Mga Regional Languages",
+        "regions": {
+          "luzon": {
+            "name": "Luzon",
+            "languages": "Tagalog, Ilocano, Bicolano"
+          },
+          "visayas": {
+            "name": "Visayas",
+            "languages": "Cebuano, Hiligaynon, Waray"
+          },
+          "mindanao": {
+            "name": "Mindanao",
+            "languages": "Cebuano, Maguindanaon, Tausug"
+          }
+        }
+      },
+      "relatedLinks": {
+        "title": "Mga Related Links",
+        "interactiveMap": "Interactive Map",
+        "localGovernmentUnits": "Mga Local Government Units",
+        "governmentDepartments": "Mga Government Departments",
+        "aboutPhilippines": "Tungod sa Pilipinas"
+      }
+    }
+  }
+}
