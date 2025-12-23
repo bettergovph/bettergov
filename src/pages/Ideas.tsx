@@ -211,7 +211,7 @@ const Ideas: FC = () => {
         </div>
 
         {/* Project Ideas List */}
-        <main>
+        <div>
           <h2 className='text-2xl font-bold text-gray-900 mb-6'>
             All Project Ideas
           </h2>
@@ -267,7 +267,7 @@ const Ideas: FC = () => {
                 </Card>
               ))}
           </div>
-        </main>
+        </div>
 
         {/* Call to Action */}
         <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-xs'>

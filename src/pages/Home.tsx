@@ -9,7 +9,7 @@ import GovernmentSection from '../components/home/GovernmentSection';
 
 const Home: FC = () => {
   return (
-    <main className='grow'>
+    <div className='grow'>
       <JoinUsStrip />
       <Hero />
       <ServicesSection />
@@ -18,7 +18,7 @@ const Home: FC = () => {
       <JoinUsBanner />
       <PromotionBanner />
       <GovernmentSection />
-    </main>
+    </div>
   );
 };
 

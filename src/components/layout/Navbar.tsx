@@ -5,12 +5,13 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
+import { useResizeObserver } from '@/hooks/use-resize-observer';
 
 const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,7 @@ const Navbar: FC = () => {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const location = useLocation();
+  const { ref, height } = useResizeObserver();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -121,8 +123,13 @@ const Navbar: FC = () => {
     setHoveredDropdown(null);
   };
 
+  useEffect(() => {
+    // Add scroll padding to prevent the sticky header from obscuring the content
+    document.documentElement.style.scrollPaddingTop = `${height}px`;
+  }, [height]);
+
   return (
-    <nav className='bg-white shadow-xs sticky top-0 z-50'>
+    <nav ref={ref} className='bg-white shadow-xs sticky top-0 z-50'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
         <div className='container mx-auto px-4 flex justify-end items-center h-10'>
