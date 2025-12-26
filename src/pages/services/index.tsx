@@ -272,6 +272,8 @@ export default function ServicesPage() {
         >
           <SearchInput
             placeholder='Search for services...'
+            value={searchQuery ?? ''}
+            onChange={e => handleSearch(e.target.value)}
             onSearch={handleSearch}
             icon={<SearchIcon className='h-5 w-5 text-gray-400' />}
             size='lg'
@@ -542,6 +544,24 @@ export default function ServicesPage() {
                 </article>
               ))}
             </div>
+
+            {/* No services fallback */}
+            {paginatedServices.length === 0 && (
+              <div className='text-center py-12'>
+                <p className='text-gray-500'>
+                  No services found matching your criteria.
+                </p>
+                <Button
+                  onClick={() => {
+                    handleCategoryChange('all');
+                    setSearchQuery(null);
+                  }}
+                  variant='ghost'
+                >
+                  Clear all filters
+                </Button>
+              </div>
+            )}
 
             {/* Infinite Scroll Trigger */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
