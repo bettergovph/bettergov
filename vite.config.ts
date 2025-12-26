@@ -18,6 +18,7 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 10485760,
         cleanupOutdatedCaches: true,
         navigateFallback: '/index.html',
         navigateFallbackAllowlist: [/^\/$/],
