@@ -121,6 +121,8 @@ const Navbar: FC = () => {
     setHoveredDropdown(null);
   };
 
+  if (location.pathname === '/philippines/map') return null;
+
   return (
     <nav className='bg-white shadow-xs sticky top-0 z-50'>
       {/* Top bar with language switcher and additional links */}
