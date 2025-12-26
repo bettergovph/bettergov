@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, FC } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo, FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
@@ -6,10 +6,14 @@ import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
 import { DownloadIcon, InfoIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import L, { LatLngExpression, GeoJSON as LeafletGeoJSON, Layer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 import FloodControlProjectsTab from './tab';
+import ProjectMarker from '../../components/map/ProjectMarker';
 
 // Import region data
 import philippinesRegionsData from '../../data/philippines-regions.json';
@@ -218,6 +222,29 @@ const FloodControlProjectsMap: FC = () => {
   // filteredProjects is just the mapProjects returned from the search
   const filteredProjects = mapProjects;
 
+  // Memoize valid projects and marker rendering
+  const { validProjects, shouldCluster, markerIcon } = useMemo(() => {
+    const valid = filteredProjects.filter((project: FloodControlProject) => {
+      if (!project.Latitude || !project.Longitude) return false;
+      const lat = parseFloat(project.Latitude);
+      const lng = parseFloat(project.Longitude);
+      return !isNaN(lat) && !isNaN(lng);
+    });
+
+    const icon = L.icon({
+      iconUrl: '/marker-icon-2x.webp',
+      iconSize: [16, 24],
+      iconAnchor: [8, 8],
+      popupAnchor: [0, -25],
+    });
+
+    return {
+      validProjects: valid,
+      shouldCluster: valid.length > 10,
+      markerIcon: icon,
+    };
+  }, [filteredProjects]);
+
   // Update region statistics when filtered projects change
   useEffect(() => {
     if (selectedRegion && !selectedRegion.loading) {
@@ -419,62 +446,31 @@ const FloodControlProjectsMap: FC = () => {
 
                 {/* Show project markers when zoomed in or region is selected */}
                 {(zoomLevel > 8 || selectedRegion) &&
-                  filteredProjects.map((project: FloodControlProject) => {
-                    // Check if we have valid coordinates
-                    if (!project.Latitude || !project.Longitude) return null;
-
-                    const lat = parseFloat(project.Latitude);
-                    const lng = parseFloat(project.Longitude);
-
-                    // Validate coordinates
-                    if (isNaN(lat) || isNaN(lng)) return null;
-
-                    return (
-                      <Marker
+                  validProjects.length > 0 &&
+                  (shouldCluster ? (
+                    <MarkerClusterGroup
+                      chunkedLoading
+                      spiderfyOnMaxZoom={true}
+                      showCoverageOnHover={false}
+                      zoomToBoundsOnClick={true}
+                    >
+                      {validProjects.map((project: FloodControlProject) => (
+                        <ProjectMarker
+                          key={project.GlobalID || project.objectID}
+                          project={project}
+                          icon={markerIcon}
+                        />
+                      ))}
+                    </MarkerClusterGroup>
+                  ) : (
+                    validProjects.map((project: FloodControlProject) => (
+                      <ProjectMarker
                         key={project.GlobalID || project.objectID}
-                        position={[lat, lng]}
-                        icon={L.icon({
-                          iconUrl: '/marker-icon-2x.webp',
-                          iconSize: [16, 24],
-                          iconAnchor: [8, 8],
-                          popupAnchor: [0, -25],
-                        })}
-                      >
-                        <Popup>
-                          <div className='min-w-[200px]'>
-                            <h3 className='font-bold text-gray-900'>
-                              {project.ProjectDescription || 'Unnamed Project'}
-                            </h3>
-                            <p className='text-sm text-gray-800 mt-1'>
-                              <strong>Region:</strong> {project.Region || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Province:</strong>{' '}
-                              {project.Province || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Municipality:</strong>{' '}
-                              {project.Municipality || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Contractor:</strong>{' '}
-                              {project.Contractor || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Cost:</strong> ₱
-                              {project.ContractCost
-                                ? Number(project.ContractCost).toLocaleString()
-                                : 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Year:</strong>{' '}
-                              {project.InfraYear || 'N/A'}
-                            </p>
-                          </div>
-                        </Popup>
-                      </Marker>
-                    );
-                  })}
+                        project={project}
+                        icon={markerIcon}
+                      />
+                    ))
+                  ))}
               </MapContainer>
 
               {/* Zoom Controls */}
