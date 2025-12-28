@@ -147,7 +147,12 @@ const Navbar: FC = () => {
             >
               Official Gov.ph
             </a>
-
+            <Link
+              to='/contact'
+              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+            >
+              Contact Us
+            </Link>
             <Link
               to='/philippines/hotlines'
               className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
@@ -255,12 +260,12 @@ const Navbar: FC = () => {
               );
             })}
           </div>
-          <div className='hidden lg:flex items-center space-x-6'>
+          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+              className='flex items-center text-gray-700 hover:text-primary-600 font-semibold text-lg transition-colors px-3 py-2 rounded-lg hover:bg-gray-50'
             >
-              <SearchIcon className='h-4 w-4 mr-1' />
+              <SearchIcon className='h-5 w-5 mr-2' />
               Search
             </Link>
             {/* <Link
@@ -339,23 +344,24 @@ const Navbar: FC = () => {
           <Link
             to='/about'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
             About
           </Link>
           <Link
-            to='/search'
+            to='/contact'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
-            Search
+            Contact Us
           </Link>
           <Link
-            to='/sitemap'
+            to='/search'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600'
           >
-            Sitemap
+            <SearchIcon className='h-5 w-5 mr-2' />
+            Search
           </Link>
           <div className='px-4 py-3 border-t border-gray-200'>
             <div className='flex items-center'>
