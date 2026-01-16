@@ -9,6 +9,7 @@ import { FC, useEffect, useState } from 'react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { fetchWeatherData } from '../../lib/weather';
 import { ForexRate, WeatherData } from '../../types';
+import { useLocation } from 'react-router-dom';
 
 const getCurrencyIcon = (code: string) => {
   const iconName = getCurrencyIconName(code);
@@ -35,6 +36,7 @@ const Ticker: FC = () => {
   const [weatherLoading, setWeatherLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [weatherError, setWeatherError] = useState<string | null>(null);
+  const { pathname } = useLocation();
 
   // Fetch forex data
   useEffect(() => {
@@ -128,7 +130,7 @@ const Ticker: FC = () => {
 
   const currentRate = forexRates[currentRateIndex];
 
-  if (!currentRate) return null;
+  if (!currentRate || pathname === '/philippines/map') return null;
 
   return (
     <div className='bg-blue-950 text-white py-1.5'>
