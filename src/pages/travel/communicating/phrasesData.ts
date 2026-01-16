@@ -5,6 +5,7 @@ export interface Phrase {
   japanese: string;
   tagalog: string;
   visaya: string;
+  arabic: string;
 }
 
 export interface PhraseCategory {
@@ -23,6 +24,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'こんにちは (Konnichiwa)',
         tagalog: 'Kamusta',
         visaya: 'Kumusta',
+        arabic: 'مرحبا (Marhaba)',
       },
       {
         english: 'Good morning',
@@ -31,6 +33,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'おはようございます (Ohayō gozaimasu)',
         tagalog: 'Magandang umaga',
         visaya: 'Maayong buntag',
+        arabic: 'صباح الخير (Sabah al-khayr)',
       },
       {
         english: 'Good evening',
@@ -39,6 +42,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'こんばんは (Konbanwa)',
         tagalog: 'Magandang gabi',
         visaya: 'Maayong gabii',
+        arabic: "مساء الخير (Masa' al-khayr)",
       },
       {
         english: 'Goodbye',
@@ -47,6 +51,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'さようなら (Sayōnara)',
         tagalog: 'Paalam',
         visaya: 'Babay',
+        arabic: "مع السلامة (Ma'a as-salama)",
       },
       {
         english: 'Thank you',
@@ -55,6 +60,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'ありがとうございます (Arigatō gozaimasu)',
         tagalog: 'Salamat',
         visaya: 'Salamat',
+        arabic: 'شكراً (Shukran)',
       },
       {
         english: "You're welcome",
@@ -63,6 +69,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'どういたしまして (Dōitashimashite)',
         tagalog: 'Walang anuman',
         visaya: "Wala'y sapayan",
+        arabic: 'عفواً (Afwan)',
       },
     ],
   },
@@ -76,6 +83,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'はい (Hai)',
         tagalog: 'Oo',
         visaya: 'Oo',
+        arabic: "نعم (Na'am)",
       },
       {
         english: 'No',
@@ -84,6 +92,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'いいえ (Iie)',
         tagalog: 'Hindi',
         visaya: 'Dili',
+        arabic: 'لا (La)',
       },
       {
         english: 'Please',
@@ -92,6 +101,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'お願いします (Onegaishimasu)',
         tagalog: 'Pakiusap',
         visaya: 'Palihug',
+        arabic: 'من فضلك (Min fadlak)',
       },
       {
         english: 'Excuse me',
@@ -100,6 +110,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'すみません (Sumimasen)',
         tagalog: 'Excuse me po',
         visaya: 'Pasensya',
+        arabic: 'عفواً (Afwan)',
       },
       {
         english: "I'm sorry",
@@ -108,6 +119,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'ごめんなさい (Gomennasai)',
         tagalog: 'Pasensya na',
         visaya: 'Pasayloa ko',
+        arabic: 'آسف (Aasif)',
       },
       {
         english: 'Do you speak English?',
@@ -116,6 +128,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '英語を話せますか？ (Eigo o hanasemasu ka?)',
         tagalog: 'Nagsasalita ka ba ng Ingles?',
         visaya: 'Kabalo ka mag ininglis?',
+        arabic: 'هل تتكلم الإنجليزية؟ (Hal tatakallam al-ingliziyya?)',
       },
       {
         english: "I don't understand",
@@ -124,6 +137,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '分かりません (Wakarimasen)',
         tagalog: 'Hindi ko maintindihan',
         visaya: 'Wala ko kasabot',
+        arabic: 'لا أفهم (La afham)',
       },
       {
         english: 'Help!',
@@ -132,6 +146,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '助けて！ (Tasukete!)',
         tagalog: 'Tulong!',
         visaya: 'Tabang!',
+        arabic: "مساعدة! (Musa'ada!)",
       },
     ],
   },
@@ -145,6 +160,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'メニューをお願いします (Menyū o onegaishimasu)',
         tagalog: 'Menu po',
         visaya: 'Menu palihug',
+        arabic: "القائمة من فضلك (Al-qa'ima min fadlak)",
       },
       {
         english: 'Water please',
@@ -153,6 +169,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'お水をください (Omizu o kudasai)',
         tagalog: 'Tubig po',
         visaya: 'Tubig palihug',
+        arabic: "ماء من فضلك (Ma' min fadlak)",
       },
       {
         english: 'The bill please',
@@ -161,6 +178,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'お会計をお願いします (Okaikei o onegaishimasu)',
         tagalog: 'Bayad na po',
         visaya: 'Bayad na palihug',
+        arabic: 'الفاتورة من فضلك (Al-fatura min fadlak)',
       },
       {
         english: 'This is delicious',
@@ -169,6 +187,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'これは美味しいです (Kore wa oishii desu)',
         tagalog: 'Masarap ito',
         visaya: 'Lami ni',
+        arabic: 'هذا لذيذ (Hatha ladhidh)',
       },
       {
         english: "I'm vegetarian",
@@ -177,6 +196,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '私はベジタリアンです (Watashi wa bejitarian desu)',
         tagalog: 'Vegetarian ako',
         visaya: 'Vegetarian ko',
+        arabic: 'أنا نباتي (Ana nabati)',
       },
       {
         english: 'No spicy please',
@@ -186,6 +206,7 @@ export const phrasesData: PhraseCategory[] = [
           '辛くないものでお願いします (Karakunai mono de onegaishimasu)',
         tagalog: 'Hindi maanghang',
         visaya: 'Dili halang',
+        arabic: 'بدون حار من فضلك (Bidun har min fadlak)',
       },
       {
         english: 'Breakfast',
@@ -194,6 +215,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '朝食 (Chōshoku)',
         tagalog: 'Almusal',
         visaya: 'Pamahaw',
+        arabic: 'فطور (Futur)',
       },
       {
         english: 'Lunch',
@@ -202,6 +224,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '昼食 (Chūshoku)',
         tagalog: 'Tanghalian',
         visaya: 'Paniudto',
+        arabic: "غداء (Ghada')",
       },
       {
         english: 'Dinner',
@@ -210,6 +233,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '夕食 (Yūshoku)',
         tagalog: 'Hapunan',
         visaya: 'Panihapon',
+        arabic: "عشاء (Asha')",
       },
     ],
   },
@@ -223,6 +247,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'これはいくらですか？ (Kore wa ikura desu ka?)',
         tagalog: 'Magkano ito?',
         visaya: 'Pila ni?',
+        arabic: 'بكم هذا؟ (Bikam hatha?)',
       },
       {
         english: 'Too expensive',
@@ -231,6 +256,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '高すぎます (Takasugimasu)',
         tagalog: 'Mahal masyado',
         visaya: 'Mahal kaayo',
+        arabic: 'غالي جداً (Ghali jiddan)',
       },
       {
         english: 'Can I get a discount?',
@@ -239,6 +265,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '割引できますか？ (Waribiki dekimasu ka?)',
         tagalog: 'May discount ba?',
         visaya: 'May discount ba?',
+        arabic: 'هل يمكنني الحصول على خصم؟ (Hal yumkinuni al-husul ala khasm?)',
       },
       {
         english: "I'll take it",
@@ -247,6 +274,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'これを買います (Kore o kaimasu)',
         tagalog: 'Kukunin ko',
         visaya: 'Kuhaon nako',
+        arabic: "سآخذه (Sa'akhudhuh)",
       },
       {
         english: 'Do you accept credit cards?',
@@ -256,6 +284,7 @@ export const phrasesData: PhraseCategory[] = [
           'クレジットカードは使えますか？ (Kurejittokādo wa tsukaemasu ka?)',
         tagalog: 'Tumatanggap ba kayo ng credit card?',
         visaya: 'Modawat ba mo ug credit card?',
+        arabic: "هل تقبلون بطاقات الائتمان؟ (Hal taqbalun bitaqat al-i'timan?)",
       },
       {
         english: 'Just looking',
@@ -264,6 +293,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '見ているだけです (Mite iru dake desu)',
         tagalog: 'Tingnan lang',
         visaya: 'Tan-aw ra',
+        arabic: 'أتفرج فقط (Atafarraj faqat)',
       },
     ],
   },
@@ -277,6 +307,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'バス停はどこですか？ (Basutei wa doko desu ka?)',
         tagalog: 'Nasaan ang bus stop?',
         visaya: 'Asa ang bus stop?',
+        arabic: 'أين موقف الحافلة؟ (Ayna mawqif al-hafila?)',
       },
       {
         english: 'Take me to the airport',
@@ -285,6 +316,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '空港まで行ってください (Kūkō made itte kudasai)',
         tagalog: 'Dalhin mo ako sa airport',
         visaya: 'Dad-a ko sa airport',
+        arabic: 'خذني إلى المطار (Khudhni ila al-matar)',
       },
       {
         english: 'How much is the fare?',
@@ -293,6 +325,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '運賃はいくらですか？ (Unchin wa ikura desu ka?)',
         tagalog: 'Magkano ang pamasahe?',
         visaya: 'Pila ang plite?',
+        arabic: 'كم الأجرة؟ (Kam al-ujra?)',
       },
       {
         english: 'Stop here please',
@@ -301,6 +334,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'ここで止めてください (Koko de tomete kudasai)',
         tagalog: 'Para dito',
         visaya: 'Para diri',
+        arabic: 'توقف هنا من فضلك (Tawaqqaf huna min fadlak)',
       },
       {
         english: 'I need a taxi',
@@ -309,6 +343,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'タクシーが必要です (Takushī ga hitsuyō desu)',
         tagalog: 'Kailangan ko ng taxi',
         visaya: 'Kinahanglan kog taxi',
+        arabic: 'أحتاج تاكسي (Ahtaj taxi)',
       },
       {
         english: 'Train station',
@@ -317,6 +352,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '駅 (Eki)',
         tagalog: 'Istasyon ng tren',
         visaya: 'Estasyon sa tren',
+        arabic: 'محطة القطار (Mahattat al-qitar)',
       },
     ],
   },
@@ -330,6 +366,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '予約しています (Yoyaku shite imasu)',
         tagalog: 'May reservation ako',
         visaya: 'Naa koy reservation',
+        arabic: 'لدي حجز (Ladayya hajz)',
       },
       {
         english: 'Can I see the room?',
@@ -339,6 +376,7 @@ export const phrasesData: PhraseCategory[] = [
           '部屋を見せていただけますか？ (Heya o misete itadakemasu ka?)',
         tagalog: 'Pwede ko bang makita ang kwarto?',
         visaya: 'Pwede ko motan-aw sa kwarto?',
+        arabic: "هل يمكنني رؤية الغرفة؟ (Hal yumkinuni ru'yat al-ghurfa?)",
       },
       {
         english: 'What time is check-out?',
@@ -347,6 +385,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'チェックアウトは何時ですか？ (Chekkuauto wa nanji desu ka?)',
         tagalog: 'Anong oras ang check-out?',
         visaya: 'Unsang orasa ang check-out?',
+        arabic: "متى موعد المغادرة؟ (Mata maw'id al-mughadara?)",
       },
       {
         english: "The air conditioning doesn't work",
@@ -355,6 +394,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'エアコンが動きません (Eakon ga ugokimasen)',
         tagalog: 'Hindi gumagana ang aircon',
         visaya: 'Dili moandar ang aircon',
+        arabic: "المكيف لا يعمل (Al-mukayyif la ya'mal)",
       },
       {
         english: 'Can I have extra towels?',
@@ -364,6 +404,8 @@ export const phrasesData: PhraseCategory[] = [
           'タオルを追加でいただけますか？ (Taoru o tsuika de itadakemasu ka?)',
         tagalog: 'Pwede pa ba ng tuwalya?',
         visaya: 'Pwede pa ba ug tuwalya?',
+        arabic:
+          'هل يمكنني الحصول على مناشف إضافية؟ (Hal yumkinuni al-husul ala manashif idafiyya?)',
       },
       {
         english: 'Wi-Fi password?',
@@ -373,6 +415,7 @@ export const phrasesData: PhraseCategory[] = [
           'Wi-Fiのパスワードは何ですか？ (Wi-Fi no pasuwādo wa nan desu ka?)',
         tagalog: 'Password ng Wi-Fi?',
         visaya: 'Password sa Wi-Fi?',
+        arabic: 'ما كلمة مرور الواي فاي؟ (Ma kalimat murur al-wifi?)',
       },
     ],
   },
@@ -386,6 +429,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '...はどこですか？ (...wa doko desu ka?)',
         tagalog: 'Nasaan ang...?',
         visaya: 'Asa ang...?',
+        arabic: 'أين...؟ (Ayna...?)',
       },
       {
         english: 'Turn left',
@@ -394,6 +438,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '左に曲がってください (Hidari ni magatte kudasai)',
         tagalog: 'Kumaliwa',
         visaya: 'Liko sa wala',
+        arabic: "انعطف يساراً (In'atif yasaran)",
       },
       {
         english: 'Turn right',
@@ -402,6 +447,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '右に曲がってください (Migi ni magatte kudasai)',
         tagalog: 'Kumanan',
         visaya: 'Liko sa tuo',
+        arabic: "انعطف يميناً (In'atif yaminan)",
       },
       {
         english: 'Go straight',
@@ -410,6 +456,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'まっすぐ行ってください (Massugu itte kudasai)',
         tagalog: 'Diretso lang',
         visaya: 'Diretso lang',
+        arabic: 'سر مباشرة (Sir mubashara)',
       },
       {
         english: 'How far is it?',
@@ -418,6 +465,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'どのくらい遠いですか？ (Donokurai tōi desu ka?)',
         tagalog: 'Gaano kalayo?',
         visaya: 'Unsa kalayo?',
+        arabic: 'كم المسافة؟ (Kam al-masafa?)',
       },
       {
         english: 'Near',
@@ -426,6 +474,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '近い (Chikai)',
         tagalog: 'Malapit',
         visaya: 'Duol',
+        arabic: 'قريب (Qarib)',
       },
       {
         english: 'Far',
@@ -434,6 +483,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '遠い (Tōi)',
         tagalog: 'Malayo',
         visaya: 'Layo',
+        arabic: "بعيد (Ba'id)",
       },
     ],
   },
@@ -447,6 +497,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '警察を呼んでください！ (Keisatsu o yonde kudasai!)',
         tagalog: 'Tawagan ang pulis!',
         visaya: 'Tawagi ang pulis!',
+        arabic: 'اتصل بالشرطة! (Ittasil bish-shurta!)',
       },
       {
         english: 'I need a doctor',
@@ -455,6 +506,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '医者が必要です (Isha ga hitsuyō desu)',
         tagalog: 'Kailangan ko ng doktor',
         visaya: 'Kinahanglan kog doktor',
+        arabic: 'أحتاج طبيب (Ahtaj tabib)',
       },
       {
         english: 'Where is the hospital?',
@@ -463,6 +515,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '病院はどこですか？ (Byōin wa doko desu ka?)',
         tagalog: 'Nasaan ang ospital?',
         visaya: 'Asa ang hospital?',
+        arabic: 'أين المستشفى؟ (Ayna al-mustashfa?)',
       },
       {
         english: 'I lost my passport',
@@ -471,6 +524,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: 'パスポートを失くしました (Pasupōto o nakushimashita)',
         tagalog: 'Nawala ang passport ko',
         visaya: 'Nawala ang akong passport',
+        arabic: 'فقدت جواز سفري (Faqadtu jawaz safari)',
       },
       {
         english: 'Fire!',
@@ -479,6 +533,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '火事です！ (Kaji desu!)',
         tagalog: 'Sunog!',
         visaya: 'Sunog!',
+        arabic: 'حريق! (Hariq!)',
       },
       {
         english: 'Ambulance',
@@ -487,6 +542,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '救急車 (Kyūkyūsha)',
         tagalog: 'Ambulansya',
         visaya: 'Ambulansya',
+        arabic: "إسعاف (Is'af)",
       },
     ],
   },
@@ -500,6 +556,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '一 (Ichi)',
         tagalog: 'Isa',
         visaya: 'Usa',
+        arabic: 'واحد (Wahid)',
       },
       {
         english: 'Two',
@@ -508,6 +565,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '二 (Ni)',
         tagalog: 'Dalawa',
         visaya: 'Duha',
+        arabic: 'اثنان (Ithnan)',
       },
       {
         english: 'Three',
@@ -516,6 +574,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '三 (San)',
         tagalog: 'Tatlo',
         visaya: 'Tulo',
+        arabic: 'ثلاثة (Thalatha)',
       },
       {
         english: 'Four',
@@ -524,6 +583,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '四 (Shi/Yon)',
         tagalog: 'Apat',
         visaya: 'Upat',
+        arabic: "أربعة (Arba'a)",
       },
       {
         english: 'Five',
@@ -532,6 +592,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '五 (Go)',
         tagalog: 'Lima',
         visaya: 'Lima',
+        arabic: 'خمسة (Khamsa)',
       },
       {
         english: 'Ten',
@@ -540,6 +601,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '十 (Jū)',
         tagalog: 'Sampu',
         visaya: 'Napulo',
+        arabic: 'عشرة (Ashara)',
       },
       {
         english: 'One hundred',
@@ -548,6 +610,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '百 (Hyaku)',
         tagalog: 'Isang daan',
         visaya: 'Usa ka gatos',
+        arabic: "مائة (Mi'a)",
       },
       {
         english: 'One thousand',
@@ -556,6 +619,7 @@ export const phrasesData: PhraseCategory[] = [
         japanese: '千 (Sen)',
         tagalog: 'Isang libo',
         visaya: 'Usa ka libo',
+        arabic: 'ألف (Alf)',
       },
     ],
   },
