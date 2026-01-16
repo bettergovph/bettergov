@@ -2,6 +2,7 @@ import L, { LatLngExpression, Layer, GeoJSON as LeafletGeoJSON } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
   Building2Icon,
+  House,
   Loader2Icon,
   MapPinIcon,
   RefreshCcwIcon,
@@ -261,14 +262,13 @@ const PhilippinesMap: FC = () => {
           <div>
             <Link
               to='/'
-              className='flex justify-center items-center'
+              className='group flex items-center justify-center bg-blue-500 rounded-lg p-2 border-2 border-white text-white font-bold transition-all duration-300 ease-in-out hover:pr-4 shadow-md active:scale-95'
               title='Back to Home'
             >
-              <img
-                src='/logos/svg/BetterGov_Icon-Primary.svg'
-                alt='BetterGov Logo'
-                className='h-12 w-12 bg-white rounded-full border-2 border-blue-500'
-              />
+              <House className='h-6 w-6' />
+              <span className='max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out group-hover:max-w-xs group-hover:ml-2'>
+                Go back home
+              </span>
             </Link>
           </div>
           <div className='relative flex-1'>
