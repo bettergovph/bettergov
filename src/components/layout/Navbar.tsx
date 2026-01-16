@@ -121,12 +121,14 @@ const Navbar: FC = () => {
     setHoveredDropdown(null);
   };
 
+  if (location.pathname === '/philippines/map') return null;
+
   return (
     <nav className='bg-white shadow-xs sticky top-0 z-50'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
-        <div className='container mx-auto px-4 flex justify-end items-center h-10'>
-          <div className='flex items-center space-x-4'>
+        <div className='container mx-auto px-4 flex justify-center items-center h-10 md:justify-end'>
+          <div className='flex items-center space-x-3 md:space-x-4'>
             <Link
               to='/join-us'
               className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
