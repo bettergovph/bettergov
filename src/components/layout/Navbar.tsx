@@ -127,37 +127,38 @@ const Navbar: FC = () => {
     <nav className='bg-white shadow-xs sticky top-0 z-50'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
-        <div className='container mx-auto px-4 flex justify-center items-center h-10 md:justify-end'>
-          <div className='flex items-center space-x-3 md:space-x-4'>
+        <div className='container mx-auto px-4 flex justify-center md:justify-end'>
+          <div className='flex flex-wrap items-center justify-center gap-x-4 gap-y-1 py-2 text-xs md:justify-end'>
             <Link
               to='/join-us'
-              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-1'
             >
               🚀 Join Us
             </Link>
             <Link
               to='/about'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-2'
             >
               About <span className='hidden md:inline'>BetterGov.ph</span>
             </Link>
             <a
               href='https://www.gov.ph'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-3'
               target='_blank'
               rel='noreferrer'
             >
               Official Gov.ph
             </a>
+            <span className='hidden min-[340px]:max-[374px]:block min-[340px]:max-[374px]:basis-full min-[340px]:max-[374px]:order-4' />
             <Link
               to='/contact'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-5'
             >
               Contact Us
             </Link>
             <Link
               to='/philippines/hotlines'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-6'
             >
               Hotlines
             </Link>
