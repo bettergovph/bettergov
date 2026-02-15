@@ -124,7 +124,7 @@ const Navbar: FC = () => {
   if (location.pathname === '/philippines/map') return null;
 
   return (
-    <nav className='bg-white shadow-xs sticky top-0 z-50 overflow-x-hidden'>
+    <nav className='bg-white shadow-xs sticky top-0 z-50 overflow-x-clip'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
         <div className='container mx-auto px-4 flex justify-center md:justify-end'>
