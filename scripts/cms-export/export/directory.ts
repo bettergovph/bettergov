@@ -2,9 +2,23 @@
  * Directory exporter
  * Exports government directory entities (departments, executive offices, etc.) to JSON format
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { PayloadClient } from '../payload-client.js';
+import type {
+  Department,
+  ExecutiveOffice,
+  ConstitutionalBody,
+  Legislative,
+  DiplomaticMission,
+  Bureau,
+  BureauDivision,
+  RegionalOffice,
+  AttachedAgency,
+  DepartmentEntity,
+  Committee,
+  OfficialAssignment,
+  Official,
+} from '../types/cms-documents.js';
 import {
   unwrapArrayField,
   type OfficialInline,
@@ -18,14 +32,14 @@ import { ENTITY_TYPE_TO_EXPORT_KEY } from '../utils/migrate-department-entities.
  * then provides O(1) lookup by parent entity ID.
  */
 class BulkAssignmentCache {
-  private cache = new Map<string, Map<number, any[]>>();
+  private cache = new Map<string, Map<number, OfficialAssignment[]>>();
 
   async getAssignments(
     payload: PayloadClient,
     parentType: string,
     parentId: number | string,
     context?: string
-  ): Promise<any[]> {
+  ): Promise<OfficialAssignment[]> {
     if (!this.cache.has(parentType)) {
       await this.prefetch(payload, parentType);
     }
@@ -52,13 +66,14 @@ class BulkAssignmentCache {
       limit: 10000,
     });
 
-    const grouped = new Map<number, any[]>();
-    for (const doc of result.docs) {
-      const docAny = doc as any;
+    const grouped = new Map<number, OfficialAssignment[]>();
+    for (const doc of result.docs as unknown as OfficialAssignment[]) {
+      const docTyped = doc as Record<string, unknown>;
       const pid =
-        docAny[parentField] !== null && typeof docAny[parentField] === 'object'
-          ? docAny[parentField].id
-          : docAny[parentField];
+        docTyped[parentField] !== null &&
+        typeof docTyped[parentField] === 'object'
+          ? (docTyped[parentField] as { id: number }).id
+          : docTyped[parentField];
       if (pid == null) continue;
       const numericPid = Number(pid);
       if (!grouped.has(numericPid)) {
@@ -76,7 +91,7 @@ class BulkAssignmentCache {
  * Format: "LASTNAME, FIRSTNAME M., SUFFIX" or "LASTNAME, FIRSTNAME"
  * Handles single-word names like "VACANT" where first_name === last_name
  */
-function reconstructCommaSeparatedName(official: any): string {
+function reconstructCommaSeparatedName(official: Official): string {
   if (!official) return '';
 
   const { first_name, last_name, suffix } = official;
@@ -121,7 +136,7 @@ function positionNameToFieldName(positionName: string): string {
  * @returns Array of inline officials
  */
 function getAssignmentsByContext(
-  assignments: any[],
+  assignments: OfficialAssignment[],
   context: string,
   includePositionRole = false
 ): OfficialInline[] {
@@ -155,9 +170,9 @@ interface BureauExport {
     head?: string;
     contact?: string;
     email?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   }>;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**
@@ -212,10 +227,10 @@ export interface DepartmentExport {
     office: string;
     contact?: string;
     email?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   // Dynamic entity arrays (indexed by export key)
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**
@@ -285,13 +300,13 @@ export interface ConstitutionalBodyExport {
     contact?: string;
     email?: string;
     title?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   }>;
   public_assistance?: {
     office: string;
     contact?: string;
     email?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -431,7 +446,7 @@ export interface DiplomaticMissionExport {
  * Convert official assignment to inline object
  */
 function assignmentToInline(
-  assignment: any,
+  assignment: OfficialAssignment,
   includePositionRole: boolean = false
 ): OfficialInline {
   const official =
@@ -461,7 +476,11 @@ function assignmentToInline(
   // Add role from custom_role field on assignment, or from position type if requested
   if (assignment.custom_role) {
     inline.role = assignment.custom_role;
-  } else if (includePositionRole && assignment.position?.name) {
+  } else if (
+    includePositionRole &&
+    assignment.position &&
+    typeof assignment.position === 'object'
+  ) {
     inline.role = assignment.position.name;
   }
 
@@ -493,7 +512,7 @@ async function queryBureaus(
 
   const bureaus: BureauExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as Bureau[]) {
     // Query officials for this bureau
     const assignments = await cache.getAssignments(payload, 'bureaus', doc.id);
 
@@ -503,7 +522,10 @@ async function queryBureaus(
 
     // Dynamically add all officials based on their position names
     for (const assignment of assignments) {
-      const positionName = assignment.position?.name;
+      const positionName =
+        assignment.position && typeof assignment.position === 'object'
+          ? assignment.position.name
+          : undefined;
       if (positionName) {
         const fieldName = positionNameToFieldName(positionName);
         bureau[fieldName] = assignmentToInline(assignment).name;
@@ -524,9 +546,21 @@ async function queryBureaus(
     });
 
     if (divisionsResult.docs.length > 0) {
-      const divisions: any[] = [];
-      for (const divDoc of divisionsResult.docs) {
-        const division: any = { name: divDoc.name };
+      const divisions: Array<{
+        name: string;
+        head?: string;
+        contact?: string;
+        email?: string;
+        [key: string]: unknown;
+      }> = [];
+      for (const divDoc of divisionsResult.docs as unknown as BureauDivision[]) {
+        const division: {
+          name: string;
+          head?: string;
+          contact?: string;
+          email?: string;
+          [key: string]: unknown;
+        } = { name: divDoc.name };
 
         // Query officials for this division
         const divAssignments = await cache.getAssignments(
@@ -535,7 +569,10 @@ async function queryBureaus(
           divDoc.id
         );
         for (const assignment of divAssignments) {
-          const positionName = assignment.position?.name;
+          const positionName =
+            assignment.position && typeof assignment.position === 'object'
+              ? assignment.position.name
+              : undefined;
           if (positionName) {
             // Use "head" for division heads (not "division_head")
             const fieldName = positionName.toLowerCase().includes('head')
@@ -578,7 +615,7 @@ async function queryRegionalOffices(
 
   const offices: RegionalOfficeExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as RegionalOffice[]) {
     // Query officials for this regional office
     const assignments = await cache.getAssignments(
       payload,
@@ -590,7 +627,8 @@ async function queryRegionalOffices(
     const regionName =
       typeof doc.region === 'string'
         ? doc.region
-        : (doc.region as any)?.region_name || 'Unknown Region';
+        : (doc.region as { region_name: string })?.region_name ||
+          'Unknown Region';
 
     const office: RegionalOfficeExport = {
       region: regionName,
@@ -638,7 +676,7 @@ async function queryAttachedAgencies(
 
   const agencies: AttachedAgencyExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as AttachedAgency[]) {
     // Query officials for this agency
     const assignments = await cache.getAssignments(
       payload,
@@ -690,9 +728,9 @@ async function exportDepartmentEntities(
   });
 
   // Group entities by entity_type
-  const entitiesByType = new Map<string, any[]>();
+  const entitiesByType = new Map<string, Array<Record<string, unknown>>>();
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as DepartmentEntity[]) {
     const entityType = doc.entity_type;
     if (!entityType) continue;
 
@@ -707,7 +745,7 @@ async function exportDepartmentEntities(
       doc.id
     );
 
-    const entity: any = {
+    const entity: Record<string, unknown> = {
       name: doc.name,
     };
 
@@ -739,7 +777,10 @@ async function exportDepartmentEntities(
     for (const assignment of assignments) {
       // Get the position name and convert to field name
       // e.g., "Executive Director" -> "executive_director"
-      const positionName = assignment.position?.name;
+      const positionName =
+        assignment.position && typeof assignment.position === 'object'
+          ? assignment.position.name
+          : undefined;
       if (positionName) {
         const inline = assignmentToInline(assignment);
         const fieldName = positionNameToFieldName(positionName);
@@ -783,7 +824,7 @@ export async function exportDepartments(
   const cache = new BulkAssignmentCache();
   const departments: DepartmentExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as Department[]) {
     const dept: DepartmentExport = {
       slug: doc.slug,
       office_name: doc.office_name,
@@ -894,7 +935,7 @@ export async function exportDepartments(
       const padPerson = assignments.find(
         a => a.context === 'public_assistance_desk'
       );
-      const padExport: any = {
+      const padExport: Record<string, unknown> = {
         office: doc.public_assistance_desk.office,
       };
       if (doc.public_assistance_desk.contact) {
@@ -947,7 +988,7 @@ export async function exportExecutiveOffices(
   const cache = new BulkAssignmentCache();
   const offices: ExecutiveOfficeExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as ExecutiveOffice[]) {
     const office: ExecutiveOfficeExport = {
       slug: doc.slug,
       office: doc.office,
@@ -969,8 +1010,8 @@ export async function exportExecutiveOffices(
 
     if (assignments.length > 0) {
       // Group assignments by office_division (context)
-      const divisionMap: Record<string, any[]> = {};
-      const topLevelOfficials: any[] = [];
+      const divisionMap: Record<string, OfficialAssignment[]> = {};
+      const topLevelOfficials: OfficialAssignment[] = [];
 
       for (const assignment of assignments) {
         if (assignment.office_division) {
@@ -1016,9 +1057,19 @@ export async function exportExecutiveOffices(
     });
 
     if (bureausResult.docs.length > 0) {
-      const bureaus: any[] = [];
-      for (const bureau of bureausResult.docs) {
-        const bureauData: any = { name: bureau.name };
+      const bureaus: Array<{
+        name: string;
+        address?: string;
+        phone?: string;
+        website?: string;
+      }> = [];
+      for (const bureau of bureausResult.docs as unknown as Bureau[]) {
+        const bureauData: {
+          name: string;
+          address?: string;
+          phone?: string;
+          website?: string;
+        } = { name: bureau.name };
         if (bureau.address) bureauData.address = bureau.address;
         if (bureau.phone) bureauData.phone = bureau.phone;
         if (bureau.website) bureauData.website = bureau.website;
@@ -1038,9 +1089,21 @@ export async function exportExecutiveOffices(
     });
 
     if (attachedResult.docs.length > 0) {
-      const agencies: any[] = [];
-      for (const agency of attachedResult.docs) {
-        const agencyData: any = { name: agency.name };
+      const agencies: Array<{
+        name: string;
+        address?: string;
+        phone?: string;
+        email?: string;
+        website?: string;
+      }> = [];
+      for (const agency of attachedResult.docs as unknown as AttachedAgency[]) {
+        const agencyData: {
+          name: string;
+          address?: string;
+          phone?: string;
+          email?: string;
+          website?: string;
+        } = { name: agency.name };
         if (agency.address) agencyData.address = agency.address;
         if (agency.phone) agencyData.phone = agency.phone;
         if (agency.email) agencyData.email = agency.email;
@@ -1076,7 +1139,7 @@ export async function exportConstitutionalBodies(
   const cache = new BulkAssignmentCache();
   const bodies: ConstitutionalBodyExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as ConstitutionalBody[]) {
     const body: ConstitutionalBodyExport = {
       slug: doc.slug,
       office_type: doc.office_type || '',
@@ -1137,20 +1200,27 @@ export async function exportConstitutionalBodies(
       const officials = assignments
         .filter(a => a.context === 'officials')
         .map(assignment => {
-          const official: any = {
+          const official: Record<string, unknown> = {
             // Prefer original source role text, fall back to normalized position name
-            role: assignment.position?.name || 'Official',
+            role:
+              (assignment.position && typeof assignment.position === 'object'
+                ? assignment.position.name
+                : undefined) || 'Official',
             name: assignmentToInline(assignment).name,
           };
 
           // Add contact: prefer assignment-specific contact, fall back to official record
-          const contact = assignment.contact || assignment.official?.contact;
+          const assignmentOfficial =
+            typeof assignment.official === 'object'
+              ? assignment.official
+              : null;
+          const contact = assignment.contact || assignmentOfficial?.contact;
           if (contact) {
             official.contact = contact;
           }
 
           // Add email: prefer assignment-specific email, fall back to official record
-          const email = assignment.email || assignment.official?.email;
+          const email = assignment.email || assignmentOfficial?.email;
           if (email) {
             official.email = email;
           }
@@ -1177,14 +1247,15 @@ export async function exportConstitutionalBodies(
     });
 
     if (regionalResult.docs.length > 0) {
-      const regionalOffices: any[] = [];
-      for (const office of regionalResult.docs) {
+      const regionalOffices: Array<Record<string, unknown>> = [];
+      for (const office of regionalResult.docs as unknown as RegionalOffice[]) {
         const regionName =
           typeof office.region === 'string'
             ? office.region
-            : (office.region as any)?.region_name || 'Unknown Region';
+            : (office.region as { region_name: string })?.region_name ||
+              'Unknown Region';
 
-        const officeData: any = { region: regionName };
+        const officeData: Record<string, unknown> = { region: regionName };
 
         // Query officials for this regional office
         const officeAssignments = await cache.getAssignments(
@@ -1220,7 +1291,7 @@ export async function exportConstitutionalBodies(
       const padAssignment = assignments.find(
         a => a.context === 'public_assistance_desk'
       );
-      const padExport: any = {
+      const padExport: Record<string, unknown> = {
         office: doc.public_assistance_desk.office,
       };
       if (doc.public_assistance_desk.contact) {
@@ -1271,7 +1342,7 @@ export async function exportLegislative(
   const cache = new BulkAssignmentCache();
   const chambers: LegislativeExport[] = [];
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as Legislative[]) {
     const chamber: LegislativeExport = {
       slug: doc.slug,
       branch: doc.branch,
@@ -1312,13 +1383,20 @@ export async function exportLegislative(
       const officials = assignments
         .filter(a => a.context === 'officials')
         .map(assignment => {
-          const official: any = {
-            role: assignment.position?.name || 'Official',
+          const official: Record<string, unknown> = {
+            role:
+              (assignment.position && typeof assignment.position === 'object'
+                ? assignment.position.name
+                : undefined) || 'Official',
             name: assignmentToInline(assignment).name,
           };
 
           // Add contact from assignment or official record
-          const contact = assignment.contact || assignment.official?.contact;
+          const assignmentOfficial =
+            typeof assignment.official === 'object'
+              ? assignment.official
+              : null;
+          const contact = assignment.contact || assignmentOfficial?.contact;
           if (contact) {
             official.contact = contact;
           }
@@ -1334,19 +1412,26 @@ export async function exportLegislative(
       const secretariatOfficials = assignments
         .filter(a => a.context === 'secretariat')
         .map(assignment => {
-          const official: any = {
-            role: assignment.position?.name || 'Official',
+          const official: Record<string, unknown> = {
+            role:
+              (assignment.position && typeof assignment.position === 'object'
+                ? assignment.position.name
+                : undefined) || 'Official',
             name: assignmentToInline(assignment).name,
           };
 
           // Add contact from assignment or official record
-          const contact = assignment.contact || assignment.official?.contact;
+          const assignmentOfficial =
+            typeof assignment.official === 'object'
+              ? assignment.official
+              : null;
+          const contact = assignment.contact || assignmentOfficial?.contact;
           if (contact) {
             official.contact = contact;
           }
 
           // Add email from assignment or official record
-          const email = assignment.email || assignment.official?.email;
+          const email = assignment.email || assignmentOfficial?.email;
           if (email) {
             official.email = email;
           }
@@ -1390,7 +1475,7 @@ export async function exportLegislative(
             'chairperson'
           );
 
-          const committeeData: any = {
+          const committeeData: Record<string, unknown> = {
             committee: committee.name,
             chairperson:
               chairAssignments.length > 0
@@ -1424,7 +1509,7 @@ export async function exportLegislative(
       );
 
       if (hasHouseLeaders) {
-        const houseLeaders: any = {};
+        const houseLeaders: Record<string, unknown> = {};
 
         // Speaker
         const speakerAssignment = assignments.find(
@@ -1573,7 +1658,7 @@ export async function exportLegislative(
       if (houseCommitteesResult.docs.length > 0) {
         const chairpersons = [];
 
-        for (const committee of houseCommitteesResult.docs) {
+        for (const committee of houseCommitteesResult.docs as unknown as Committee[]) {
           // Query chairperson assignment
           const chairAssignments = await cache.getAssignments(
             payload,
@@ -1610,7 +1695,7 @@ export async function exportLegislative(
       if (specialCommitteesResult.docs.length > 0) {
         const specialCommittees = [];
 
-        for (const committee of specialCommitteesResult.docs) {
+        for (const committee of specialCommitteesResult.docs as unknown as Committee[]) {
           // Query chairperson assignment
           const chairAssignments = await cache.getAssignments(
             payload,
@@ -1759,7 +1844,7 @@ export async function exportDiplomaticMissions(
     'International Organization': [],
   };
 
-  for (const doc of result.docs) {
+  for (const doc of result.docs as unknown as DiplomaticMission[]) {
     const mission: DiplomaticMissionExport = {
       country: doc.country,
       slug: doc.slug,

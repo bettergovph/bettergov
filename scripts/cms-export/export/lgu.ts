@@ -2,9 +2,14 @@
  * LGU (Local Government Units) exporter
  * Exports regions, provinces, and localities (cities and municipalities) to JSON format
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { PayloadClient } from '../payload-client.js';
+import type {
+  Region,
+  Province,
+  Locality,
+  OfficialAssignment,
+} from '../types/cms-documents.js';
 import type { OfficialInline } from '../utils/reverse-transformers.js';
 
 /**
@@ -53,7 +58,7 @@ interface RegionWithCitiesExport {
  * Build locality officials from pre-fetched assignments
  * Synchronous version that doesn't query the database
  */
-function buildLocalityOfficials(assignments: any[]): {
+function buildLocalityOfficials(assignments: OfficialAssignment[]): {
   mayor?: OfficialInline;
   vice_mayor?: OfficialInline;
 } {
@@ -90,9 +95,9 @@ function buildLocalityOfficials(assignments: any[]): {
  * Convert locality document to export format
  */
 function localityToExport(
-  doc: any,
+  doc: Locality,
   localityType: 'city' | 'municipality',
-  assignmentsByLocality: Map<number, any[]>
+  assignmentsByLocality: Map<number, OfficialAssignment[]>
 ): LocalityExport {
   const locality: LocalityExport = {};
 
@@ -122,8 +127,8 @@ function localityToExport(
  */
 async function exportRegion(
   payload: PayloadClient,
-  regionDoc: any,
-  assignmentsByLocality: Map<number, any[]>
+  regionDoc: Region,
+  assignmentsByLocality: Map<number, OfficialAssignment[]>
 ): Promise<RegionWithProvincesExport | RegionWithCitiesExport> {
   console.log(`  Processing region: ${regionDoc.region_name}`);
 
@@ -155,9 +160,11 @@ async function exportRegion(
 
     // Fetch localities from the placeholder province
     const placeholderProvince =
-      provincesResult.docs.length > 0 ? provincesResult.docs[0] : null;
+      provincesResult.docs.length > 0
+        ? (provincesResult.docs[0] as Province)
+        : null;
 
-    let regionLocalities: any[] = [];
+    let regionLocalities: Locality[] = [];
 
     if (placeholderProvince) {
       // Fetch localities from the placeholder province
@@ -169,7 +176,7 @@ async function exportRegion(
         limit: 1000,
         sort: 'locality_name',
       });
-      regionLocalities = localitiesResult.docs;
+      regionLocalities = localitiesResult.docs as unknown as Locality[];
     } else {
       // Fallback: fetch all and filter
       const localitiesResult = await payload.find({
@@ -180,7 +187,9 @@ async function exportRegion(
         sort: 'locality_name',
       });
 
-      regionLocalities = localitiesResult.docs.filter(loc => {
+      regionLocalities = (
+        localitiesResult.docs as unknown as Locality[]
+      ).filter(loc => {
         const province = typeof loc.province === 'object' ? loc.province : null;
         return province && province.region === regionDoc.id;
       });
@@ -222,7 +231,7 @@ async function exportRegion(
   // Regular region with provinces
   const provinces: ProvinceExport[] = [];
 
-  for (const provinceDoc of provincesResult.docs) {
+  for (const provinceDoc of provincesResult.docs as unknown as Province[]) {
     console.log(`      Processing province: ${provinceDoc.province_name}`);
 
     // Fetch all localities for this province
@@ -243,7 +252,7 @@ async function exportRegion(
     const cities: LocalityExport[] = [];
     const municipalities: LocalityExport[] = [];
 
-    for (const localityDoc of localitiesResult.docs) {
+    for (const localityDoc of localitiesResult.docs as unknown as Locality[]) {
       const locality = localityToExport(
         localityDoc,
         localityDoc.locality_type,
@@ -306,8 +315,8 @@ export async function exportLGU(
   });
 
   // Group assignments by locality ID
-  const assignmentsByLocality = new Map<number, any[]>();
-  for (const assignment of assignmentsResult.docs) {
+  const assignmentsByLocality = new Map<number, OfficialAssignment[]>();
+  for (const assignment of assignmentsResult.docs as unknown as OfficialAssignment[]) {
     if (!assignment.locality) continue;
     const localityId =
       typeof assignment.locality === 'object'
@@ -326,7 +335,7 @@ export async function exportLGU(
     RegionWithProvincesExport | RegionWithCitiesExport
   > = {};
 
-  for (const regionDoc of regionsResult.docs) {
+  for (const regionDoc of regionsResult.docs as unknown as Region[]) {
     const regionExport = await exportRegion(
       payload,
       regionDoc,

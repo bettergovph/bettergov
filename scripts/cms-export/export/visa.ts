@@ -2,9 +2,13 @@
  * Visa exporter
  * Exports visa categories, types, and policies to JSON format
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { PayloadClient } from '../payload-client.js';
+import type {
+  VisaCategory,
+  VisaType,
+  VisaPolicy,
+} from '../types/cms-documents.js';
 import { unwrapArrayField } from '../utils/reverse-transformers.js';
 
 /**
@@ -91,7 +95,7 @@ export interface VisaPolicyDocumentExport {
  * Transform a visa type document to export format
  * Handles unwrapping of requirements arrays and subtype processing
  */
-function transformVisaType(visaTypeDoc: any): VisaTypeExport {
+function transformVisaType(visaTypeDoc: VisaType): VisaTypeExport {
   // Unwrap minimumRequirements
   const minimumRequirements = unwrapArrayField<string>(
     visaTypeDoc.minimumRequirements as Array<Record<string, string>>,
@@ -190,9 +194,9 @@ export async function exportVisaTypes(
   console.log(`   Found ${visaTypesResult.docs.length} visa types`);
 
   // Group visa types by category
-  const visaTypesByCategory: Record<string, any[]> = {};
+  const visaTypesByCategory: Record<string, VisaType[]> = {};
 
-  for (const visaType of visaTypesResult.docs) {
+  for (const visaType of visaTypesResult.docs as unknown as VisaType[]) {
     const category =
       typeof visaType.category === 'object' ? visaType.category : null;
     if (!category) continue;
@@ -209,7 +213,7 @@ export async function exportVisaTypes(
   // Build categories with nested visa types
   const categories: VisaCategoryExport[] = [];
 
-  for (const categoryDoc of categoriesResult.docs) {
+  for (const categoryDoc of categoriesResult.docs as unknown as VisaCategory[]) {
     const categoryId = categoryDoc.id_code || String(categoryDoc.id);
     const visaTypes = visaTypesByCategory[categoryId] || [];
 
@@ -260,7 +264,7 @@ export async function exportVisaPolicies(
   // Transform visa policies
   const visaFreeEntryPolicies: VisaPolicyExport[] = [];
 
-  for (const policyDoc of policiesResult.docs) {
+  for (const policyDoc of policiesResult.docs as unknown as VisaPolicy[]) {
     const policy: VisaPolicyExport = {
       id: policyDoc.policy_id,
       title: policyDoc.title,
@@ -307,7 +311,7 @@ export async function exportVisaPolicies(
 
     // Handle policy groups (for HK/Macau style policies)
     if (policyDoc.policyGroups && Array.isArray(policyDoc.policyGroups)) {
-      const policyGroups = policyDoc.policyGroups.map((pg: any) => ({
+      const policyGroups = policyDoc.policyGroups.map(pg => ({
         group: pg.group,
         policy: pg.policy,
       }));
@@ -329,7 +333,7 @@ export async function exportVisaPolicies(
 
   const visaTypes: VisaPolicyDocumentExport['visaTypes'] = [];
 
-  for (const visaTypeDoc of visaTypesResult.docs) {
+  for (const visaTypeDoc of visaTypesResult.docs as unknown as VisaType[]) {
     const visaType = transformVisaType(visaTypeDoc);
     visaTypes.push(visaType);
   }
