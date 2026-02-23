@@ -5,7 +5,7 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
@@ -113,12 +113,31 @@ const Navbar: FC = () => {
     return normalizedHref !== '/' && normalizedPath === normalizedHref;
   };
 
+  const closeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
+
+  React.useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleDropdownMouseEnter = (label: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
     setHoveredDropdown(label);
   };
 
   const handleDropdownMouseLeave = () => {
-    setHoveredDropdown(null);
+    closeTimeoutRef.current = setTimeout(() => {
+      setHoveredDropdown(null);
+      closeTimeoutRef.current = null;
+    }, 80);
   };
 
   return (
@@ -222,10 +241,10 @@ const Navbar: FC = () => {
                   </Link>
                   {item.children && (
                     <div
-                      className={`absolute left-0 mt-2 lg:mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                      className={`absolute left-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-[opacity] duration-200 z-50 pt-2 ${
                         hoveredDropdown === item.label
-                          ? 'opacity-100 visible'
-                          : 'opacity-0 invisible'
+                          ? 'opacity-100 visible pointer-events-auto'
+                          : 'opacity-0 invisible pointer-events-none'
                       }`}
                     >
                       <div
