@@ -39,5 +39,8 @@ src/data/flood_control/lookups/contractors
 contractor_fetch_log.csv
 wrangler.toml
 
+# CMS build-time data backup
+src/data/.backup/
+
 # Dev
 .cursor/*

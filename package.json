@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run generate:metadata && tsx ./scripts/write-ver-to-json.ts && vite build",
+    "build": "tsx ./scripts/fetch-cms-data.ts && tsc && npm run generate:metadata && tsx ./scripts/write-ver-to-json.ts && vite build",
+    "export:cms": "tsx ./scripts/fetch-cms-data.ts",
+    "export:cms:domain": "tsx ./scripts/fetch-cms-data.ts --domain=",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
