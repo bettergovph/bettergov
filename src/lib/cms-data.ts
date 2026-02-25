@@ -81,3 +81,30 @@ export async function fetchVisaTypes() {
 export async function fetchVisaPolicies() {
   return fetchJSON('/visa/philippines_visa_policy.json');
 }
+
+// Geographic Data
+export async function fetchPhilippinesRegions() {
+  return fetchJSON('/philippines-regions.json');
+}
+
+export async function fetchPopulation2020() {
+  return fetchJSON('/population-2020.json');
+}
+
+export async function fetchRegions() {
+  return fetchJSON('/regions.json');
+}
+
+// SEO Metadata
+export async function fetchSEOMetadata() {
+  return fetchJSON('/seo-metadata.json');
+}
+
+// Flood Control
+export async function fetchFloodControlData() {
+  return fetchJSON('/flood_control/flood_control.json');
+}
+
+export async function fetchFloodControlLookup(lookupName: string) {
+  return fetchJSON(`/flood_control/lookups/${lookupName}.json`);
+}
