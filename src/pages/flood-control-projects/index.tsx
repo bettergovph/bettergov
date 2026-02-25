@@ -497,20 +497,26 @@ const FloodControlProjects: FC = () => {
     setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
   };
   // Precalculated chart data for initial load without Meilisearch
-  const yearlyChartData = lookups.infraYear
-    .sort((a, b) => a.value.localeCompare(b.value))
-    .map(item => ({
-      name: item.value,
-      Projects: item.count,
-    }));
+  const yearlyChartData = useMemo(() => {
+    if (!lookups) return [];
+    return lookups.infraYear
+      .sort((a, b) => a.value.localeCompare(b.value))
+      .map(item => ({
+        name: item.value,
+        Projects: item.count,
+      }));
+  }, [lookups]);
 
-  const regionChartData = lookups.region
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10)
-    .map(item => ({
-      name: item.value,
-      Projects: item.count,
-    }));
+  const regionChartData = useMemo(() => {
+    if (!lookups) return [];
+    return lookups.region
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10)
+      .map(item => ({
+        name: item.value,
+        Projects: item.count,
+      }));
+  }, [lookups]);
 
   const provinceOptions = useMemo(() => {
     if (!lookups) return [];
@@ -537,25 +543,31 @@ const FloodControlProjects: FC = () => {
     return lookups.province;
   }, [filters.Region, lookups]);
 
-  const typeWorkPieData = lookups.typeOfWork
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10)
-    .map(item => ({
-      value: item.value,
-      count: item.count,
-    }));
+  const typeWorkPieData = useMemo(() => {
+    if (!lookups) return [];
+    return lookups.typeOfWork
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10)
+      .map(item => ({
+        value: item.value,
+        count: item.count,
+      }));
+  }, [lookups]);
 
-  const contractorChartData = lookups.contractor
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10)
-    .map(item => ({
-      name:
-        item.value.length > 30
-          ? item.value.substring(0, 30) + '...'
-          : item.value,
-      Projects: item.count,
-      fullName: item.value,
-    }));
+  const contractorChartData = useMemo(() => {
+    if (!lookups) return [];
+    return lookups.contractor
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10)
+      .map(item => ({
+        name:
+          item.value.length > 30
+            ? item.value.substring(0, 30) + '...'
+            : item.value,
+        Projects: item.count,
+        fullName: item.value,
+      }));
+  }, [lookups]);
 
   // Handle filter change
   const handleFilterChange = (filterName: keyof FilterState, value: string) => {
