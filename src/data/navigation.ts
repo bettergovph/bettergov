@@ -1,5 +1,4 @@
 import { NavigationItem } from '../types';
-import serviceCategories from './service_categories.json';
 
 interface Subcategory {
   name: string;
@@ -10,6 +9,10 @@ interface Category {
   category: string;
   slug: string;
   subcategories: Subcategory[];
+}
+
+interface ServiceCategoriesData {
+  categories: Category[];
 }
 
 export const ourProjects = [
@@ -86,67 +89,79 @@ export const ourProjects = [
   },
 ];
 
-export const mainNavigation: NavigationItem[] = [
-  {
-    label: 'Philippines',
-    href: '/philippines',
-    children: [
-      { label: 'About the Philippines', href: '/philippines/about' },
-      { label: 'History', href: '/philippines/history' },
-      { label: 'Culture', href: '/philippines/culture' },
-      { label: 'Regions', href: '/philippines/regions' },
-      { label: 'Map', href: '/philippines/map' },
-      // { label: 'Tourism', href: '/philippines/tourism' },
-      { label: 'Hotlines', href: '/philippines/hotlines' },
-      { label: 'Holidays', href: '/philippines/holidays' },
-      { label: 'Forex', href: '/data/forex' },
-      { label: 'Weather', href: '/data/weather' },
-    ],
-  },
-  {
-    label: 'Services',
-    href: '/services',
-    children: (serviceCategories.categories as Category[]).map(category => ({
-      label: category.category,
-      href: `/services?category=${category.slug}`,
-    })),
-  },
-  {
-    label: 'Travel',
-    href: '/travel',
-    children: [
-      { label: 'Visa Information', href: '/travel/visa' },
-      { label: 'Visa Types', href: '/travel/visa-types' },
-      { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
-      { label: 'Communicating', href: '/travel/communicating' },
-      // { label: 'Tourist Destinations', href: '/travel/destinations' },
-    ],
-  },
-  {
-    label: 'Government',
-    href: '/government',
-    children: [
-      { label: 'Executive', href: '/government/executive' },
-      { label: 'Departments', href: '/government/departments' },
-      { label: 'Constitutional', href: '/government/constitutional' },
-      { label: 'Legislative', href: '/government/legislative' },
-      { label: 'Local Government', href: '/government/local' },
-      { label: 'Diplomatic', href: '/government/diplomatic' },
-      { label: 'Salary Grades', href: '/government/salary-grade' },
-    ],
-  },
-  {
-    label: 'Flood Control Projects',
-    href: '/flood-control-projects',
-    children: [
-      { label: 'Charts', href: '/flood-control-projects' },
-      { label: 'Table', href: '/flood-control-projects/table' },
-      { label: 'Map', href: '/flood-control-projects/map' },
-      { label: 'Contractors', href: '/flood-control-projects/contractors' },
-    ],
-  },
-  ...ourProjects,
-];
+export function buildMainNavigation(
+  serviceCategories?: ServiceCategoriesData
+): NavigationItem[] {
+  return [
+    {
+      label: 'Philippines',
+      href: '/philippines',
+      children: [
+        { label: 'About the Philippines', href: '/philippines/about' },
+        { label: 'History', href: '/philippines/history' },
+        { label: 'Culture', href: '/philippines/culture' },
+        { label: 'Regions', href: '/philippines/regions' },
+        { label: 'Map', href: '/philippines/map' },
+        // { label: 'Tourism', href: '/philippines/tourism' },
+        { label: 'Hotlines', href: '/philippines/hotlines' },
+        { label: 'Holidays', href: '/philippines/holidays' },
+        { label: 'Forex', href: '/data/forex' },
+        { label: 'Weather', href: '/data/weather' },
+      ],
+    },
+    {
+      label: 'Services',
+      href: '/services',
+      children: serviceCategories
+        ? serviceCategories.categories.map(category => ({
+            label: category.category,
+            href: `/services?category=${category.slug}`,
+          }))
+        : [],
+    },
+    {
+      label: 'Travel',
+      href: '/travel',
+      children: [
+        { label: 'Visa Information', href: '/travel/visa' },
+        { label: 'Visa Types', href: '/travel/visa-types' },
+        {
+          label: 'Working in the Philippines',
+          href: '/travel/visa-types/swp-c',
+        },
+        { label: 'Communicating', href: '/travel/communicating' },
+        // { label: 'Tourist Destinations', href: '/travel/destinations' },
+      ],
+    },
+    {
+      label: 'Government',
+      href: '/government',
+      children: [
+        { label: 'Executive', href: '/government/executive' },
+        { label: 'Departments', href: '/government/departments' },
+        { label: 'Constitutional', href: '/government/constitutional' },
+        { label: 'Legislative', href: '/government/legislative' },
+        { label: 'Local Government', href: '/government/local' },
+        { label: 'Diplomatic', href: '/government/diplomatic' },
+        { label: 'Salary Grades', href: '/government/salary-grade' },
+      ],
+    },
+    {
+      label: 'Flood Control Projects',
+      href: '/flood-control-projects',
+      children: [
+        { label: 'Charts', href: '/flood-control-projects' },
+        { label: 'Table', href: '/flood-control-projects/table' },
+        { label: 'Map', href: '/flood-control-projects/map' },
+        { label: 'Contractors', href: '/flood-control-projects/contractors' },
+      ],
+    },
+    ...ourProjects,
+  ];
+}
+
+// Default navigation with empty services (for backwards compatibility)
+export const mainNavigation = buildMainNavigation();
 
 export const footerNavigation = {
   mainSections: [

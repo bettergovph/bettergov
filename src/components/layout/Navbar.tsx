@@ -8,7 +8,7 @@ import {
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { mainNavigation } from '../../data/navigation';
+import { useNavigation } from '../../hooks/useNavigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
 
@@ -18,6 +18,7 @@ const Navbar: FC = () => {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const location = useLocation();
+  const { navigation: mainNavigation } = useNavigation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
