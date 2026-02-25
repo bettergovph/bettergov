@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SearchIcon, Building2Icon } from 'lucide-react';
-import diplomaticData from '../../../data/directory/diplomatic.json';
+import { fetchDiplomatic } from '../../../lib/cms-data';
 import {
   CardGrid,
   Card,
@@ -12,12 +12,30 @@ import {
 } from '../../../components/ui/CardList';
 
 export default function ConsulatesPage() {
+  const [diplomaticData, setDiplomaticData] = useState<Record<
+    string,
+    unknown[]
+  > | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    fetchDiplomatic()
+      .then(data => {
+        setDiplomaticData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   // Get consulates data
   const consulates = useMemo(() => {
-    return diplomaticData['Consulate'] || [];
-  }, []);
+    return diplomaticData?.['Consulate'] || [];
+  }, [diplomaticData]);
 
   // Filter consulates based on search term
   const filteredConsulates = useMemo(() => {
@@ -32,6 +50,28 @@ export default function ConsulatesPage() {
           .includes(searchTerm.toLowerCase())
     );
   }, [consulates, searchTerm]);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading consulates...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='p-8 text-center bg-white rounded-lg border border-red-200'>
+        <h3 className='text-lg font-medium text-red-900 mb-1'>
+          Error loading data
+        </h3>
+        <p className='text-red-700'>{error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <div className='@container space-y-6'>
