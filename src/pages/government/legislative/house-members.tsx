@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SearchIcon, UsersIcon, PhoneIcon, MapPinIcon } from 'lucide-react';
-import legislativeData from '../../../data/directory/legislative.json';
+import { fetchLegislative } from '../../../lib/cms-data';
 import {
   Card,
   CardHeader,
@@ -16,8 +16,24 @@ interface HouseMember {
 }
 
 export default function HouseMembersPage() {
+  const [legislativeData, setLegislativeData] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchLegislative()
+      .then(data => {
+        setLegislativeData(data as Array<Record<string, unknown>>);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load legislative data:', err);
+        setLoading(false);
+      });
+  }, []);
 
   // Get House of Representatives data
   const houseData = legislativeData.find((item: { chamber: string }) =>
@@ -52,6 +68,17 @@ export default function HouseMembersPage() {
       return matchesSearch && matchesProvince;
     });
   }, [houseMembers, searchTerm, selectedProvince]);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading house members...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='@container space-y-6'>

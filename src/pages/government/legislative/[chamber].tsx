@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   ExternalLinkIcon,
   MapPinIcon,
@@ -10,8 +11,7 @@ import {
   CrownIcon,
   ShieldIcon,
 } from 'lucide-react';
-
-import legislativeData from '../../../data/directory/legislative.json';
+import { fetchLegislative } from '../../../lib/cms-data';
 import { cn } from '../../../lib/utils';
 import {
   Card,
@@ -474,10 +474,49 @@ function LegislativeDetailSection({
 
 export default function LegislativeChamber() {
   const { chamber } = useParams<{ chamber: string }>();
+  const [legislativeData, setLegislativeData] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    fetchLegislative()
+      .then(data => {
+        setLegislativeData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   const chamberData = legislativeData.find(
     (item: { slug: string }) => item.slug === chamber
   );
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading chamber data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='p-8 text-center bg-white rounded-lg border border-red-200'>
+        <h3 className='text-lg font-medium text-red-900 mb-1'>
+          Error loading data
+        </h3>
+        <p className='text-red-700'>{error.message}</p>
+      </div>
+    );
+  }
 
   if (!chamberData) {
     return (

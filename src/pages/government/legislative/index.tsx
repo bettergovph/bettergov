@@ -1,16 +1,24 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import legislativeData from '../../../data/directory/legislative.json';
+import { fetchLegislative } from '../../../lib/cms-data';
 
 export default function LegislativeIndex() {
   const navigate = useNavigate();
 
   // Redirect to the first chamber on load
   useEffect(() => {
-    if (legislativeData.length > 0) {
-      const firstChamber = legislativeData[0].slug;
-      navigate(`/government/legislative/${encodeURIComponent(firstChamber)}`);
-    }
+    fetchLegislative()
+      .then((data: Array<Record<string, unknown>>) => {
+        if (data.length > 0) {
+          const firstChamber = data[0].slug;
+          navigate(
+            `/government/legislative/${encodeURIComponent(firstChamber)}`
+          );
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load legislative data:', err);
+      });
   }, [navigate]);
 
   return (

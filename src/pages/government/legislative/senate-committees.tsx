@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { SearchIcon, BookOpenIcon, UsersIcon } from 'lucide-react';
-import legislativeData from '../../../data/directory/legislative.json';
+import { fetchLegislative } from '../../../lib/cms-data';
 import { Card, CardHeader, CardContent } from '../../../components/ui/CardList';
 
 interface Committee {
@@ -9,7 +9,24 @@ interface Committee {
 }
 
 export default function SenateCommitteesPage() {
+  const [legislativeData, setLegislativeData] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    fetchLegislative()
+      .then(data => {
+        setLegislativeData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   // Get Senate data
   const senateData = legislativeData.find((item: { chamber: string }) =>
@@ -30,6 +47,28 @@ export default function SenateCommitteesPage() {
         committee.chairperson.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [committees, searchTerm]);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading senate committees...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='p-8 text-center bg-white rounded-lg border border-red-200'>
+        <h3 className='text-lg font-medium text-red-900 mb-1'>
+          Error loading data
+        </h3>
+        <p className='text-red-700'>{error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <div className='@container space-y-6'>
