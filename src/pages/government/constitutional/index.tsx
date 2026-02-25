@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SEO from '../../../components/SEO';
 import { getConstitutionalSEOData } from '../../../utils/seo-data';
 import { type ConstitutionalOffice } from '../schema';
-import { constitutionalData as offices } from './data';
+import { getConstitutionalData } from './data';
 import { cn } from '../../../lib/utils';
 
 // Recursive component to render office details
@@ -133,10 +133,24 @@ export default function ConstitutionalIndex() {
   const { office: officeParam } = useParams();
   const [selectedOffice, setSelectedOffice] =
     useState<ConstitutionalOffice | null>(null);
+  const [offices, setOffices] = useState<ConstitutionalOffice[]>([]);
   const navigate = useNavigate();
+
+  // Fetch constitutional data
+  useEffect(() => {
+    getConstitutionalData()
+      .then(data => {
+        setOffices(data);
+      })
+      .catch(err => {
+        console.error('Failed to load constitutional data:', err);
+      });
+  }, []);
 
   // Set selected office based on URL param or first office
   useEffect(() => {
+    if (!offices.length) return;
+
     if (officeParam) {
       const office = offices.find(
         o => o.slug === decodeURIComponent(officeParam)
@@ -152,7 +166,7 @@ export default function ConstitutionalIndex() {
     } else {
       setSelectedOffice(null);
     }
-  }, [officeParam, navigate]);
+  }, [officeParam, navigate, offices]);
 
   const seoData = getConstitutionalSEOData(selectedOffice?.name);
 

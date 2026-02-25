@@ -6,23 +6,50 @@ import {
   PhoneIcon,
   SearchIcon,
 } from 'lucide-react';
-import { useState } from 'react';
-import { institutionData } from './data';
-
-// Filter GOCCs from constitutional data
-const goccs = institutionData.filter(
-  office =>
-    office.office_type.includes('Government-Owned') ||
-    office.office_type.includes('GOCCs')
-);
+import { useState, useEffect } from 'react';
+import { getInstitutionData } from './data';
 
 export default function GOCCsPage() {
+  const [institutionData, setInstitutionData] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    getInstitutionData()
+      .then(data => {
+        setInstitutionData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load institution data:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  // Filter GOCCs from constitutional data
+  const goccs = institutionData.filter(
+    office =>
+      office.office_type?.includes('Government-Owned') ||
+      office.office_type?.includes('GOCCs')
+  );
 
   // Filter based on search term
   const filteredGOCCs = goccs.filter(gocc =>
-    gocc.name.toLowerCase().includes(searchTerm.toLowerCase())
+    gocc.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading GOCCs...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='@container space-y-6'>

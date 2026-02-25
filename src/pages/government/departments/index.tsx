@@ -7,9 +7,10 @@ import {
   PhoneIcon,
 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import SEO from '../../../components/SEO';
 import { Card, CardContent, CardHeader } from '../../../components/ui/CardList';
-import departmentsData from '../../../data/directory/departments.json';
+import { fetchDepartments } from '../../../lib/cms-data';
 import { getDepartmentsSEOData } from '../../../utils/seo-data';
 
 interface Department {
@@ -28,8 +29,13 @@ interface Department {
 }
 
 // Component to display department details
-function DepartmentDetail({ departmentName }: { departmentName: string }) {
-  const departments = departmentsData as Department[];
+function DepartmentDetail({
+  departmentName,
+  departments,
+}: {
+  departmentName: string;
+  departments: Department[];
+}) {
   const department = departments.find(d => d.slug === departmentName);
   const seoData = getDepartmentsSEOData(departmentName);
 
@@ -201,13 +207,52 @@ function DepartmentDetailSection({
 
 export default function DepartmentsIndex() {
   const { department: departmentParam } = useParams();
-  const departments = departmentsData as Department[];
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const seoData = getDepartmentsSEOData();
+
+  useEffect(() => {
+    fetchDepartments()
+      .then(data => {
+        setDepartments(data as Department[]);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading departments...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load departments</p>
+          <p className='text-gray-600 mt-2'>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   // If we have a specific department parameter, show the department detail view
   if (departmentParam) {
     return (
-      <DepartmentDetail departmentName={decodeURIComponent(departmentParam)} />
+      <DepartmentDetail
+        departmentName={decodeURIComponent(departmentParam)}
+        departments={departments}
+      />
     );
   }
 

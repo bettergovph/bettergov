@@ -1,30 +1,45 @@
 import { Building2Icon, DatabaseIcon, GraduationCapIcon } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
 import { type ConstitutionalOffice } from '../../schema';
-import { constitutionalData } from '../data';
+import { getConstitutionalData } from '../data';
 
 interface ConstitutionalSidebarProps {
   onOfficeSelect?: (office: ConstitutionalOffice) => void;
 }
 
-// Only include constitutional offices (exclude GOCCs and SUCs)
-const offices = constitutionalData.filter(
-  office =>
-    !office.office_type.includes('Government-Owned') &&
-    !office.office_type.includes('GOCCs') &&
-    !office.office_type.includes('State Universities') &&
-    !office.office_type.includes('SUCs')
-);
-
 export default function ConstitutionalSidebar({
   onOfficeSelect,
 }: ConstitutionalSidebarProps) {
+  const [constitutionalData, setConstitutionalData] = useState<
+    ConstitutionalOffice[]
+  >([]);
   const [searchTerm, setSearchTerm] = useState('');
   const { office: officeParam } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    getConstitutionalData()
+      .then(data => {
+        setConstitutionalData(data);
+      })
+      .catch(err => {
+        console.error('Failed to load constitutional data:', err);
+      });
+  }, []);
+
+  // Only include constitutional offices (exclude GOCCs and SUCs)
+  const offices = useMemo(() => {
+    return constitutionalData.filter(
+      office =>
+        !office.office_type.includes('Government-Owned') &&
+        !office.office_type.includes('GOCCs') &&
+        !office.office_type.includes('State Universities') &&
+        !office.office_type.includes('SUCs')
+    );
+  }, [constitutionalData]);
 
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
@@ -33,7 +48,7 @@ export default function ConstitutionalSidebar({
     return offices.filter(office =>
       office.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [searchTerm, offices]);
 
   const handleOfficeSelect = (office: ConstitutionalOffice) => {
     if (onOfficeSelect) {

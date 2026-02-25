@@ -1,8 +1,8 @@
 import { Building2Icon } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
-import departmentsData from '../../../../data/directory/departments.json';
+import { fetchDepartments } from '../../../../lib/cms-data';
 
 interface Department {
   office_name: string;
@@ -20,10 +20,25 @@ interface DepartmentsSidebarProps {
 export default function DepartmentsSidebar({
   onDepartmentSelect,
 }: DepartmentsSidebarProps) {
+  const [departmentsData, setDepartmentsData] = useState<Department[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm] = useState('');
   const { department: departmentParam } = useParams();
   const navigate = useNavigate();
-  const departments = departmentsData as Department[];
+
+  useEffect(() => {
+    fetchDepartments()
+      .then(data => {
+        setDepartmentsData(data as Department[]);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load departments:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  const departments = departmentsData;
 
   const filteredDepartments = departments.filter(dept =>
     dept.office_name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -37,6 +52,16 @@ export default function DepartmentsSidebar({
       state: { scrollToContent: true },
     });
   };
+
+  if (loading) {
+    return (
+      <StandardSidebar>
+        <div className='p-4 text-center text-sm text-gray-800'>
+          Loading departments...
+        </div>
+      </StandardSidebar>
+    );
+  }
 
   return (
     <StandardSidebar>
