@@ -180,7 +180,7 @@ const PhilippinesMap: FC = () => {
         loading: false,
       }));
     },
-    [fetchWikipediaData, isMobile]
+    [fetchWikipediaData, isMobile, pop2020]
   );
 
   const getRegionName = (
