@@ -1,7 +1,7 @@
 import { AlertCircleIcon, ChevronRightIcon, SearchIcon } from 'lucide-react';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import visaData from '../../../data/visa/philippines_visa_types.json';
+import { fetchVisaTypes } from '../../../lib/cms-data';
 import { VisaType } from '@/types/visa.ts';
 import { getCategoryIcon } from './visa.util';
 
@@ -14,18 +14,34 @@ interface VisaCategory {
 }
 
 const VisaTypesPage: FC = () => {
+  const [visaData, setVisaData] =
+    useState<Array<Record<string, unknown>>>(null);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] =
     useState<string>('non-immigrant');
 
+  useEffect(() => {
+    fetchVisaTypes()
+      .then(data => {
+        setVisaData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load visa types:', err);
+        setLoading(false);
+      });
+  }, []);
+
   // Use the categories from the consolidated JSON file
-  const visaCategories: VisaCategory[] = visaData.categories.map(category => ({
-    id: category.id,
-    name: category.name,
-    description: category.description,
-    icon: getCategoryIcon(category.id),
-    visaTypes: category.visaTypes,
-  }));
+  const visaCategories: VisaCategory[] =
+    visaData?.categories?.map((category: Record<string, unknown>) => ({
+      id: category.id,
+      name: category.name,
+      description: category.description,
+      icon: getCategoryIcon(category.id),
+      visaTypes: category.visaTypes,
+    })) || [];
 
   // Handle category selection
   const handleCategoryClick = (categoryId: string) => {
@@ -54,6 +70,17 @@ const VisaTypesPage: FC = () => {
     searchTerm.trim() !== ''
       ? filteredCategories.flatMap(category => category.visaTypes)
       : [];
+
+  if (loading) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading visa types...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>

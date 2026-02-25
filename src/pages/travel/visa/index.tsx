@@ -7,7 +7,7 @@ import {
   Grid3x3Icon,
   ListIcon,
 } from 'lucide-react';
-import visaData from '../../../data/visa/philippines_visa_policy.json';
+import { fetchVisaPolicies } from '../../../lib/cms-data';
 import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
 import Button from '../../../components/ui/Button';
@@ -267,6 +267,9 @@ const VISA_REQUIRED_COUNTRIES: Country[] = [
 
 const VisaPage: FC = () => {
   const { t } = useTranslation('visa');
+  const [visaData, setVisaData] = useState<PhilippinesVisaPolicy | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useQueryState('country', {
     clearOnDefault: true,
@@ -283,6 +286,19 @@ const VisaPage: FC = () => {
   const [dialogCountry, setDialogCountry] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Fetch visa policy data
+  useEffect(() => {
+    fetchVisaPolicies()
+      .then(data => {
+        setVisaData(data as PhilippinesVisaPolicy);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
   // Set default view mode and ensure URL parameter is always present
   useEffect(() => {
     if (!viewMode) {
@@ -291,6 +307,8 @@ const VisaPage: FC = () => {
   }, [viewMode, setViewMode]);
 
   useEffect(() => {
+    if (!visaData) return;
+
     // Extract all unique countries from the visa data
     const countries = new Set<string>();
     const requirements = new Map<string, VisaRequirement>();
@@ -352,7 +370,7 @@ const VisaPage: FC = () => {
     setAllCountries(sortedCountries);
     setFilteredCountries(sortedCountries);
     setCountryRequirements(requirements);
-  }, []);
+  }, [visaData]);
 
   // Restore state from URL parameters after data is loaded
   useEffect(() => {
@@ -437,6 +455,30 @@ const VisaPage: FC = () => {
         return null;
     }
   };
+
+  if (loading) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading visa information...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>
+            Failed to load visa information
+          </p>
+          <p className='text-gray-600 mt-2'>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='bg-gray-50'>

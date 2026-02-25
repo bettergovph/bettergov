@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FileCheckIcon,
@@ -7,7 +7,7 @@ import {
   GlobeIcon,
 } from 'lucide-react';
 import { VisaRequirement } from '../../types/visa';
-import visaData from '../../data/visa/philippines_visa_policy.json';
+import { fetchVisaPolicies } from '../../lib/cms-data';
 
 interface VisaRequirementDetailsProps {
   country: string;
@@ -21,6 +21,19 @@ const VisaRequirementDetails: FC<VisaRequirementDetailsProps> = ({
   isDialog = false,
 }) => {
   const { t } = useTranslation('visa');
+  const [visaData, setVisaData] = useState<{
+    sourceInfo: { disclaimer: string; lastUpdated: string };
+  } | null>(null);
+
+  useEffect(() => {
+    fetchVisaPolicies()
+      .then(data => {
+        setVisaData(data);
+      })
+      .catch(err => {
+        console.error('Failed to load visa policies:', err);
+      });
+  }, []);
 
   return (
     <div className='mt-6'>
@@ -231,17 +244,19 @@ const VisaRequirementDetails: FC<VisaRequirementDetailsProps> = ({
             </a>
           </div>
 
-          <div className='p-3 bg-yellow-50 rounded-lg'>
-            <h5 className='font-medium mb-2 text-yellow-800'>
-              {t('additionalInfo.disclaimer.title')}
-            </h5>
-            <p className='text-yellow-700 text-xs'>
-              {visaData.sourceInfo.disclaimer}
-            </p>
-            <p className='text-yellow-700 text-xs mt-2'>
-              Last updated: {visaData.sourceInfo.lastUpdated}
-            </p>
-          </div>
+          {visaData?.sourceInfo && (
+            <div className='p-3 bg-yellow-50 rounded-lg'>
+              <h5 className='font-medium mb-2 text-yellow-800'>
+                {t('additionalInfo.disclaimer.title')}
+              </h5>
+              <p className='text-yellow-700 text-xs'>
+                {visaData.sourceInfo.disclaimer}
+              </p>
+              <p className='text-yellow-700 text-xs mt-2'>
+                Last updated: {visaData.sourceInfo.lastUpdated}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

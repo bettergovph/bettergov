@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import visaData from '../../../data/visa/philippines_visa_types.json';
+import { fetchVisaTypes } from '../../../lib/cms-data';
 import { VisaType } from '@/types/visa.ts';
 import { getCategoryIcon } from './visa.util';
 
@@ -25,20 +25,36 @@ interface VisaTypeDetailParams {
 
 const VisaTypeDetail: FC = () => {
   const { type } = useParams<VisaTypeDetailParams>();
+  const [visaData, setVisaData] = useState<{
+    categories: Array<Record<string, unknown>>;
+    sourceInfo?: { lastUpdated?: string };
+  } | null>(null);
   const [visa, setVisa] = useState<VisaType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
 
+  useEffect(() => {
+    fetchVisaTypes()
+      .then(data => {
+        setVisaData(data);
+      })
+      .catch(err => {
+        console.error('Failed to load visa types:', err);
+        setError('Failed to load visa types');
+      });
+  }, []);
+
   // Use the categories from the consolidated JSON file
-  const visaCategories: VisaCategory[] = visaData.categories.map(category => ({
-    id: category.id,
-    name: category.name,
-    description: category.description,
-    icon: getCategoryIcon(category.id),
-    visaTypes: category.visaTypes,
-  }));
+  const visaCategories: VisaCategory[] =
+    visaData?.categories?.map((category: Record<string, unknown>) => ({
+      id: category.id as string,
+      name: category.name as string,
+      description: category.description as string,
+      icon: getCategoryIcon(category.id as string),
+      visaTypes: category.visaTypes as VisaType[],
+    })) || [];
 
   // Handle category selection
   const handleCategoryClick = (categoryId: string) => {
@@ -58,6 +74,8 @@ const VisaTypeDetail: FC = () => {
         );
 
   useEffect(() => {
+    if (!visaData) return;
+
     setLoading(true);
 
     try {
@@ -91,7 +109,7 @@ const VisaTypeDetail: FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [type]);
+  }, [type, visaData]);
 
   if (loading) {
     return (
@@ -400,7 +418,7 @@ const VisaTypeDetail: FC = () => {
                         website.
                       </p>
                       <p className='text-sm text-blue-700 mt-2'>
-                        Last updated: {visaData.sourceInfo.lastUpdated}
+                        Last updated: {visaData?.sourceInfo?.lastUpdated}
                       </p>
                     </div>
                   </div>
