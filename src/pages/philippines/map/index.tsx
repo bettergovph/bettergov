@@ -15,8 +15,10 @@ import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
 import Button from '../../../components/ui/Button';
 import { ScrollArea } from '../../../components/ui/ScrollArea';
-import philippinesRegionsData from '../../../data/philippines-regions.json'; // Renamed for clarity
-import pop2020Raw from '../../../data/population-2020.json';
+import {
+  fetchPhilippinesRegions,
+  fetchPopulation2020,
+} from '../../../lib/cms-data';
 import { resolveRegionPopulationKey } from '../../../lib/regionMapping';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -52,7 +54,6 @@ interface Population2020Data {
   regions: Record<string, PopulationEntry>;
   provincesOrHUCS: Record<string, PopulationEntry>;
 }
-const pop2020 = pop2020Raw as unknown as Population2020Data;
 
 // Wikipedia data cache
 const wikipediaCache = new Map<
@@ -70,19 +71,37 @@ const PhilippinesMap: FC = () => {
   );
   const [searchQuery, setSearchQuery] = useState('');
   // GeoJSON data expects FeatureCollection structure
-  const [mapData] = useState<
-    GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
-  >(
-    philippinesRegionsData as GeoJSON.FeatureCollection<
-      GeoJSON.Geometry,
-      RegionProperties
-    >
-  );
+  const [mapData, setMapData] = useState<GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    RegionProperties
+  > | null>(null);
+  const [pop2020, setPop2020] = useState<Population2020Data | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const mapRef = useRef<L.Map>(null);
   const geoJsonLayerRef = useRef<LeafletGeoJSON | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const initialZoom = 6;
+
+  // Load map and population data
+  useEffect(() => {
+    Promise.all([fetchPhilippinesRegions(), fetchPopulation2020()])
+      .then(([regionsData, populationData]) => {
+        setMapData(
+          regionsData as GeoJSON.FeatureCollection<
+            GeoJSON.Geometry,
+            RegionProperties
+          >
+        );
+        setPop2020(populationData as Population2020Data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   // Fetch Wikipedia data
   const fetchWikipediaData = useCallback(async (regionName: string) => {
@@ -252,6 +271,28 @@ const PhilippinesMap: FC = () => {
       }
     }
   }, [selectedRegion, isMobile]);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading map data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !mapData) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load map data</p>
+          <p className='text-gray-600 mt-2'>{error?.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='flex h-screen bg-gray-50'>
