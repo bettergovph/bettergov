@@ -1,11 +1,21 @@
-import { FC, useState } from 'react';
-import hotlinesData from '../../data/philippines_hotlines.json';
+import { FC, useState, useEffect } from 'react';
+import { fetchHotlines } from '../../lib/cms-data';
 
 interface Hotline {
   name: string;
   category: string;
   numbers: string[];
   description?: string;
+}
+
+interface HotlinesData {
+  emergencyHotlines: Hotline[];
+  disasterHotlines: Hotline[];
+  securityHotlines: Hotline[];
+  transportHotlines: Hotline[];
+  weatherHotlines: Hotline[];
+  utilityHotlines: Hotline[];
+  socialServicesHotlines: Hotline[];
 }
 import {
   PhoneIcon,
@@ -20,8 +30,23 @@ import {
 } from 'lucide-react';
 
 const Hotlines: FC = () => {
+  const [hotlinesData, setHotlinesData] = useState<HotlinesData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  useEffect(() => {
+    fetchHotlines()
+      .then(data => {
+        setHotlinesData(data as HotlinesData);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   const categories = [
     {
@@ -67,6 +92,8 @@ const Hotlines: FC = () => {
   ];
 
   const getCategoryHotlines = (category: string): Hotline[] => {
+    if (!hotlinesData) return [];
+
     switch (category) {
       case 'emergency':
         return hotlinesData.emergencyHotlines as Hotline[];
@@ -100,6 +127,28 @@ const Hotlines: FC = () => {
       hotline.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       hotline.numbers.some(number => number.includes(searchTerm))
   );
+
+  if (loading) {
+    return (
+      <div className='container mx-auto px-4 py-8 min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading hotlines...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='container mx-auto px-4 py-8 min-h-screen flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load hotlines</p>
+          <p className='text-gray-600 mt-2'>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='container mx-auto px-4 py-8'>

@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneIcon, ChevronRightIcon, AlertCircleIcon } from 'lucide-react';
-import hotlinesData from '../../data/philippines_hotlines.json';
+import { fetchHotlines } from '../../lib/cms-data';
 
 interface Hotline {
   name: string;
@@ -17,6 +17,41 @@ interface CriticalHotlinesWidgetProps {
 const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
   maxItems = 4,
 }) => {
+  const [hotlinesData, setHotlinesData] = useState<{
+    criticalHotlines: Hotline[];
+  } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchHotlines()
+      .then(data => {
+        setHotlinesData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load hotlines:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || !hotlinesData?.criticalHotlines) {
+    return (
+      <div className='bg-white rounded-lg shadow-md overflow-hidden border border-gray-200'>
+        <div className='bg-red-600 px-4 py-3 flex items-center justify-between'>
+          <div className='flex items-center'>
+            <AlertCircleIcon className='h-5 w-5 text-white mr-2' />
+            <h3 className='font-bold text-white'>
+              Critical Emergency Hotlines
+            </h3>
+          </div>
+        </div>
+        <div className='p-4'>
+          <p className='text-gray-600'>Loading hotlines...</p>
+        </div>
+      </div>
+    );
+  }
+
   const displayedHotlines = (hotlinesData.criticalHotlines as Hotline[]).slice(
     0,
     maxItems

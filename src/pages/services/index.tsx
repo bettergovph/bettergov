@@ -3,43 +3,16 @@ import { CheckCircle2Icon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
-import serviceCategories from '../../data/service_categories.json';
+import {
+  fetchServiceCategories,
+  fetchServicesByCategory,
+} from '../../lib/cms-data';
 
 // Import all service files
 import { scrollToTop } from '@/lib/scrollUtils';
 import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
 import Button from '../../components/ui/Button';
-import businessTradeServices from '../../data/services/business-trade.json';
-import certificatesIdsServices from '../../data/services/certificates-ids.json';
-import contributionsServices from '../../data/services/contributions.json';
-import disasterWeatherServices from '../../data/services/disaster-weather.json';
-import educationServices from '../../data/services/education.json';
-import employmentServices from '../../data/services/employment.json';
-import healthServices from '../../data/services/health.json';
-import housingServices from '../../data/services/housing.json';
-import passportTravelServices from '../../data/services/passport-travel.json';
-import socialServices from '../../data/services/social-services.json';
-import taxServices from '../../data/services/tax.json';
-import transportDrivingServices from '../../data/services/transport-driving.json';
-import uncategorizedServices from '../../data/services/uncategorized.json';
-
-// Combine all services
-const allServices = [
-  ...businessTradeServices,
-  ...certificatesIdsServices,
-  ...contributionsServices,
-  ...disasterWeatherServices,
-  ...educationServices,
-  ...employmentServices,
-  ...healthServices,
-  ...housingServices,
-  ...passportTravelServices,
-  ...socialServices,
-  ...taxServices,
-  ...transportDrivingServices,
-  ...uncategorizedServices,
-];
 
 interface Subcategory {
   name: string;
@@ -55,6 +28,15 @@ interface Category {
 const ITEMS_PER_PAGE = 16;
 
 export default function ServicesPage() {
+  const [serviceCategories, setServiceCategories] = useState<{
+    categories: Category[];
+  } | null>(null);
+  const [allServices, setAllServices] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
   const [
     { category: selectedCategorySlug, subcategory: selectedSubcategorySlug },
     setQueryParams,
@@ -68,15 +50,52 @@ export default function ServicesPage() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        // Fetch service categories
+        const categories = await fetchServiceCategories();
+        setServiceCategories(categories as { categories: Category[] });
+
+        // Fetch all service files in parallel
+        const servicePromises = [
+          fetchServicesByCategory('business-trade'),
+          fetchServicesByCategory('certificates-ids'),
+          fetchServicesByCategory('contributions'),
+          fetchServicesByCategory('disaster-weather'),
+          fetchServicesByCategory('education'),
+          fetchServicesByCategory('employment'),
+          fetchServicesByCategory('health'),
+          fetchServicesByCategory('housing'),
+          fetchServicesByCategory('passport-travel'),
+          fetchServicesByCategory('social-services'),
+          fetchServicesByCategory('tax'),
+          fetchServicesByCategory('transport-driving'),
+          fetchServicesByCategory('uncategorized'),
+        ];
+
+        const servicesResults = await Promise.all(servicePromises);
+        const combinedServices = servicesResults.flat();
+        setAllServices(combinedServices);
+        setLoading(false);
+      } catch (err) {
+        setError(err as Error);
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
-    if (selectedCategorySlug === 'all') return null;
+    if (selectedCategorySlug === 'all' || !serviceCategories) return null;
     return (serviceCategories.categories as Category[]).find(
       cat => cat.slug === selectedCategorySlug
     );
-  }, [selectedCategorySlug]);
+  }, [selectedCategorySlug, serviceCategories]);
 
   // Find selected subcategory object
   const selectedSubcategory = useMemo(() => {
@@ -112,7 +131,7 @@ export default function ServicesPage() {
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory, selectedSubcategory]);
+  }, [searchQuery, selectedCategory, selectedSubcategory, allServices]);
 
   // Show all items from start to current page
   const paginatedServices = filteredServices.slice(
@@ -235,6 +254,28 @@ export default function ServicesPage() {
       selectedCategorySlug,
       selectedSubcategorySlug,
     ]);
+
+  if (loading) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading services...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load services</p>
+          <p className='text-gray-600 mt-2'>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>

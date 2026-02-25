@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
-import serviceCategories from '../../data/service_categories.json';
+import { fetchServiceCategories } from '../../lib/cms-data';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -18,6 +18,22 @@ interface Category {
 
 const ServicesSection: FC = () => {
   const { t } = useTranslation('common');
+  const [serviceCategories, setServiceCategories] = useState<{
+    categories: Category[];
+  } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServiceCategories()
+      .then(data => {
+        setServiceCategories(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load service categories:', err);
+        setLoading(false);
+      });
+  }, []);
 
   const getIcon = (category: string) => {
     const iconMap: { [key: string]: keyof typeof LucideIcons } = {
@@ -38,6 +54,23 @@ const ServicesSection: FC = () => {
     const Icon = LucideIcons[iconMap[category] || 'FileText'];
     return Icon ? <Icon className='h-6 w-6' /> : null;
   };
+
+  if (loading || !serviceCategories?.categories) {
+    return (
+      <section className='py-12 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
+              {t('services.governmentServices')}
+            </h2>
+            <p className='text-gray-800 max-w-2xl mx-auto'>
+              Loading services...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   // Show only first 12 categories
   const displayedCategories = serviceCategories.categories.slice(

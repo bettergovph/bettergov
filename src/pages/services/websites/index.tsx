@@ -5,9 +5,9 @@ import {
   GlobeIcon,
   SearchIcon,
 } from 'lucide-react';
-import { ChangeEvent, FC, useMemo, useState } from 'react';
+import { ChangeEvent, FC, useMemo, useState, useEffect } from 'react';
 import Button from '../../../components/ui/Button';
-import websitesData from '../../../data/websites.json';
+import { fetchWebsites } from '../../../lib/cms-data';
 
 interface Website {
   name: string;
@@ -20,10 +20,25 @@ interface Website {
 }
 
 const WebsitesDirectory: FC = () => {
+  const [websitesData, setWebsitesData] = useState<Website[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<string>('');
   const [sortBy, setSortBy] = useState<'name' | 'type'>('name');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  useEffect(() => {
+    fetchWebsites()
+      .then(data => {
+        setWebsitesData(data as Website[]);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   // Extract unique types for filtering
   const websiteTypes = useMemo(() => {
@@ -32,7 +47,7 @@ const WebsitesDirectory: FC = () => {
       if (website.type) types.add(website.type);
     });
     return Array.from(types).sort();
-  }, []);
+  }, [websitesData]);
 
   // Filter and sort websites
   const filteredWebsites = useMemo(() => {
@@ -63,7 +78,7 @@ const WebsitesDirectory: FC = () => {
             : a.name.localeCompare(b.name);
         }
       });
-  }, [searchQuery, selectedType, sortBy, sortDirection]);
+  }, [searchQuery, selectedType, sortBy, sortDirection, websitesData]);
 
   // Format website URL
   const formatUrl = (url: string | null) => {
@@ -80,6 +95,28 @@ const WebsitesDirectory: FC = () => {
       setSortDirection('asc');
     }
   };
+
+  if (loading) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading websites...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load websites</p>
+          <p className='text-gray-600 mt-2'>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>

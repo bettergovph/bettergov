@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch';
 import { Link } from 'react-router-dom';
-import serviceCategories from '../../data/service_categories.json';
+import { fetchServiceCategories } from '../../lib/cms-data';
 
 interface Subcategory {
   name: string;
@@ -17,9 +17,23 @@ interface Category {
 
 const Hero: FC = () => {
   const { t } = useTranslation('common');
+  const [serviceCategories, setServiceCategories] = useState<{
+    categories: Category[];
+  } | null>(null);
+
+  useEffect(() => {
+    fetchServiceCategories()
+      .then(data => {
+        setServiceCategories(data);
+      })
+      .catch(err => {
+        console.error('Failed to load service categories:', err);
+      });
+  }, []);
 
   // Find categories and subcategories by their names to get slugs
   const findCategorySlug = (categoryName: string) => {
+    if (!serviceCategories?.categories) return '';
     return (
       (serviceCategories.categories as Category[]).find(
         cat => cat.category === categoryName
@@ -31,6 +45,7 @@ const Hero: FC = () => {
     categoryName: string,
     subcategoryName: string
   ) => {
+    if (!serviceCategories?.categories) return '';
     const category = (serviceCategories.categories as Category[]).find(
       cat => cat.category === categoryName
     );
