@@ -40,15 +40,7 @@ import {
 } from './shared-components';
 import FloodControlProjectsTab from './tab';
 import { buildFilterString, FilterState, generateUrlParams } from './utils';
-
-// Import lookup data
-import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json';
-import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_with_counts.json';
-import infraYearData from '../../data/flood_control/lookups/InfraYear_with_counts.json';
-import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
-import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
-import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
-import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
+import { useFloodControlLookups } from '../../hooks/useFloodControlLookups';
 import { useSearchParams } from 'react-router-dom';
 
 // Meilisearch configuration
@@ -153,7 +145,16 @@ const DashboardStatistics: FC = () => {
 };
 
 // Chart components that use live filtered data from Meilisearch
-const YearlyChart: FC = () => {
+interface ChartProps {
+  lookups: {
+    infraYear: { value: string; count: number }[];
+    region: { value: string; count: number }[];
+    typeOfWork: { value: string; count: number }[];
+    contractor: { value: string; count: number }[];
+  };
+}
+
+const YearlyChart: FC<ChartProps> = ({ lookups }) => {
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
   const typedHits = hits as FloodControlHit[];
@@ -180,12 +181,12 @@ const YearlyChart: FC = () => {
       .sort((a, b) => a.name.localeCompare(b.name));
   } else {
     // Use pre-loaded data for better initial performance
-    chartData = infraYearData.InfraYear.sort((a, b) =>
-      a.value.localeCompare(b.value)
-    ).map(item => ({
-      name: item.value,
-      Projects: item.count,
-    }));
+    chartData = lookups.infraYear
+      .sort((a, b) => a.value.localeCompare(b.value))
+      .map(item => ({
+        name: item.value,
+        Projects: item.count,
+      }));
   }
 
   return (
@@ -205,7 +206,7 @@ const YearlyChart: FC = () => {
   );
 };
 
-const RegionChart: FC = () => {
+const RegionChart: FC<ChartProps> = ({ lookups }) => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -234,7 +235,8 @@ const RegionChart: FC = () => {
       .slice(0, 10);
   } else {
     // Use pre-loaded data for better initial performance
-    chartData = regionData.Region.sort((a, b) => b.count - a.count)
+    chartData = lookups.region
+      .sort((a, b) => b.count - a.count)
       .slice(0, 10)
       .map(item => ({
         name: item.value,
@@ -272,7 +274,7 @@ const RegionChart: FC = () => {
   );
 };
 
-const TypeOfWorkChart: FC = () => {
+const TypeOfWorkChart: FC<ChartProps> = ({ lookups }) => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -301,9 +303,9 @@ const TypeOfWorkChart: FC = () => {
       .slice(0, 10);
   } else {
     // Use pre-loaded data for better initial performance
-    chartData = typeOfWorkData.TypeofWork.sort(
-      (a, b) => b.count - a.count
-    ).slice(0, 10);
+    chartData = lookups.typeOfWork
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
   }
 
   return (
@@ -357,7 +359,7 @@ const TypeOfWorkChart: FC = () => {
   );
 };
 
-const ContractorChart: FC = () => {
+const ContractorChart: FC<ChartProps> = ({ lookups }) => {
   const { t } = useTranslation('flood-control-projects');
   const { hits, results } = useHits();
   const totalHits = results?.nbHits || 0;
@@ -392,7 +394,8 @@ const ContractorChart: FC = () => {
       .slice(0, 10);
   } else {
     // Use pre-loaded data for better initial performance
-    chartData = contractorData.Contractor.sort((a, b) => b.count - a.count)
+    chartData = lookups.contractor
+      .sort((a, b) => b.count - a.count)
       .slice(0, 10)
       .map(item => ({
         name:
@@ -442,6 +445,11 @@ const ContractorChart: FC = () => {
 const FloodControlProjects: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation('flood-control-projects');
+  const {
+    lookups,
+    loading: lookupsLoading,
+    error: lookupsError,
+  } = useFloodControlLookups();
 
   // State for filters and sidebar visibility
   const [filters, setFilters] = useState<FilterState>(() => {
@@ -489,14 +497,15 @@ const FloodControlProjects: FC = () => {
     setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
   };
   // Precalculated chart data for initial load without Meilisearch
-  const yearlyChartData = infraYearData.InfraYear.sort((a, b) =>
-    a.value.localeCompare(b.value)
-  ).map(item => ({
-    name: item.value,
-    Projects: item.count,
-  }));
+  const yearlyChartData = lookups.infraYear
+    .sort((a, b) => a.value.localeCompare(b.value))
+    .map(item => ({
+      name: item.value,
+      Projects: item.count,
+    }));
 
-  const regionChartData = regionData.Region.sort((a, b) => b.count - a.count)
+  const regionChartData = lookups.region
+    .sort((a, b) => b.count - a.count)
     .slice(0, 10)
     .map(item => ({
       name: item.value,
@@ -504,36 +513,40 @@ const FloodControlProjects: FC = () => {
     }));
 
   const provinceOptions = useMemo(() => {
+    if (!lookups) return [];
+
     if (filters.Region === 'National Capital Region') {
-      const nationalCapitalRegion = provinceData.Province.filter(
-        item => item.regCode === '13'
+      const nationalCapitalRegion = lookups.province.filter(
+        item => (item as { regCode?: string }).regCode === '13'
       );
-      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      const otherRegions = lookups.province.filter(
+        item => !(item as { regCode?: string }).regCode
+      );
       return [...nationalCapitalRegion, ...otherRegions];
     }
 
     if (filters.Region) {
-      const regionId = regionData.Region.find(
+      const regionId = lookups.region.find(
         item => item.value === filters.Region
       )?.regCode;
-      return provinceData.Province.filter(item => item.regCode === regionId);
+      return lookups.province.filter(
+        item => (item as { regCode?: string }).regCode === regionId
+      );
     }
 
-    return provinceData.Province;
-  }, [filters.Region]);
+    return lookups.province;
+  }, [filters.Region, lookups]);
 
-  const typeWorkPieData = typeOfWorkData.TypeofWork.sort(
-    (a, b) => b.count - a.count
-  )
+  const typeWorkPieData = lookups.typeOfWork
+    .sort((a, b) => b.count - a.count)
     .slice(0, 10)
     .map(item => ({
       value: item.value,
       count: item.count,
     }));
 
-  const contractorChartData = contractorData.Contractor.sort(
-    (a, b) => b.count - a.count
-  )
+  const contractorChartData = lookups.contractor
+    .sort((a, b) => b.count - a.count)
     .slice(0, 10)
     .map(item => ({
       name:
@@ -608,6 +621,28 @@ const FloodControlProjects: FC = () => {
     }
   };
 
+  if (lookupsLoading) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading dashboard data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (lookupsError || !lookups) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load dashboard data</p>
+          <p className='text-gray-600 mt-2'>{lookupsError?.message}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='bg-gray-50'>
       <Helmet>
@@ -666,7 +701,7 @@ const FloodControlProjects: FC = () => {
                   </label>
                   <FilterDropdown
                     name='Year'
-                    options={infraYearData.InfraYear}
+                    options={lookups.infraYear}
                     value={filters.InfraYear}
                     onChange={value => handleFilterChange('InfraYear', value)}
                     isOpen={openDropdown === 'InfraYear'}
@@ -680,7 +715,7 @@ const FloodControlProjects: FC = () => {
                   </label>
                   <FilterDropdown
                     name='Region'
-                    options={regionData.Region}
+                    options={lookups.region}
                     value={filters.Region}
                     onChange={value => handleFilterChange('Region', value)}
                     searchable
@@ -710,7 +745,7 @@ const FloodControlProjects: FC = () => {
                   </label>
                   <FilterDropdown
                     name='Type of Work'
-                    options={typeOfWorkData.TypeofWork}
+                    options={lookups.typeOfWork}
                     value={filters.TypeofWork}
                     onChange={value => handleFilterChange('TypeofWork', value)}
                     searchable
@@ -725,7 +760,7 @@ const FloodControlProjects: FC = () => {
                   </label>
                   <FilterDropdown
                     name='DEO'
-                    options={deoData.DistrictEngineeringOffice}
+                    options={lookups.deo}
                     value={filters.DistrictEngineeringOffice}
                     onChange={value =>
                       handleFilterChange('DistrictEngineeringOffice', value)
@@ -744,7 +779,7 @@ const FloodControlProjects: FC = () => {
                   </label>
                   <FilterDropdown
                     name='Legislative District'
-                    options={legislativeDistrictData.LegislativeDistrict}
+                    options={lookups.legislativeDistrict}
                     value={filters.LegislativeDistrict}
                     onChange={value =>
                       handleFilterChange('LegislativeDistrict', value)
@@ -887,7 +922,7 @@ const FloodControlProjects: FC = () => {
                         query={getEffectiveSearchTerm()}
                         hitsPerPage={1000}
                       />
-                      <YearlyChart />
+                      <YearlyChart lookups={lookups} />
                     </InstantSearch>
                   ) : (
                     <ResponsiveContainer width='100%' height='100%'>
@@ -927,7 +962,7 @@ const FloodControlProjects: FC = () => {
                         query={getEffectiveSearchTerm()}
                         hitsPerPage={1000}
                       />
-                      <RegionChart />
+                      <RegionChart lookups={lookups} />
                     </InstantSearch>
                   ) : (
                     <ResponsiveContainer width='100%' height='100%'>
@@ -982,7 +1017,7 @@ const FloodControlProjects: FC = () => {
                         query={getEffectiveSearchTerm()}
                         hitsPerPage={1000}
                       />
-                      <TypeOfWorkChart />
+                      <TypeOfWorkChart lookups={lookups} />
                     </InstantSearch>
                   ) : (
                     <div className='flex items-center justify-center h-full'>
@@ -1064,7 +1099,7 @@ const FloodControlProjects: FC = () => {
                         query={getEffectiveSearchTerm()}
                         hitsPerPage={1000}
                       />
-                      <ContractorChart />
+                      <ContractorChart lookups={lookups} />
                     </InstantSearch>
                   ) : (
                     <ResponsiveContainer width='100%' height='100%'>

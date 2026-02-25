@@ -14,9 +14,7 @@ import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
 import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 import FloodControlProjectsTab from './tab';
 import ProjectMarker from '../../components/map/ProjectMarker';
-
-// Import region data
-import philippinesRegionsData from '../../data/philippines-regions.json';
+import { fetchPhilippinesRegions } from '../../lib/cms-data';
 
 // Define types for our data
 
@@ -111,14 +109,12 @@ const FloodControlProjectsMap: FC = () => {
   const [hoveredRegionName, setHoveredRegionName] = useState<string | null>(
     null
   );
-  const [mapData] = useState<
-    GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
-  >(
-    philippinesRegionsData as GeoJSON.FeatureCollection<
-      GeoJSON.Geometry,
-      RegionProperties
-    >
-  );
+  const [mapData, setMapData] = useState<GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    RegionProperties
+  > | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const [zoomLevel, setZoomLevel] = useState<number>(6);
   const mapRef = useRef<L.Map>(null);
@@ -126,6 +122,21 @@ const FloodControlProjectsMap: FC = () => {
 
   const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
+
+  // Load regions data
+  useEffect(() => {
+    fetchPhilippinesRegions()
+      .then(data => {
+        setMapData(
+          data as GeoJSON.FeatureCollection<GeoJSON.Geometry, RegionProperties>
+        );
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   // Export data function
   const handleExportData = async () => {
@@ -345,6 +356,28 @@ const FloodControlProjectsMap: FC = () => {
 
   const handleZoomIn = () => mapRef.current?.zoomIn();
   const handleZoomOut = () => mapRef.current?.zoomOut();
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading map data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !mapData) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load map data</p>
+          <p className='text-gray-600 mt-2'>{error?.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>

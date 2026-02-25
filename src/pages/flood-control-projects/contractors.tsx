@@ -16,16 +16,11 @@ import {
 } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
-
-// Import contractor data
-import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json';
 import FloodControlProjectsTab from './tab';
-
-// Define types for our data
-interface DataItem {
-  value: string;
-  count: number;
-}
+import {
+  useFloodControlLookups,
+  DataItem,
+} from '../../hooks/useFloodControlLookups';
 
 // Utility function to create slug from contractor name
 const createSlug = (name: string): string => {
@@ -490,6 +485,11 @@ const ContractorItem: FC<ContractorItemProps> = ({
 // Main Contractors component
 const FloodControlProjectsContractors: FC = () => {
   const navigate = useNavigate();
+  const {
+    lookups,
+    loading: lookupsLoading,
+    error: lookupsError,
+  } = useFloodControlLookups();
   const [selectedContractor, setSelectedContractor] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [isExporting, setIsExporting] = useState(false);
@@ -500,11 +500,12 @@ const FloodControlProjectsContractors: FC = () => {
   };
 
   // Filter contractors based on search term
-  const filteredContractors = searchTerm
-    ? contractorData.Contractor.filter(contractor =>
-        contractor.value.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : contractorData.Contractor;
+  const filteredContractors =
+    lookups && searchTerm
+      ? lookups.contractor.filter(contractor =>
+          contractor.value.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : lookups?.contractor || [];
 
   // Build filter string for Meilisearch
   const buildFilterString = (): string => {
@@ -551,6 +552,28 @@ const FloodControlProjectsContractors: FC = () => {
       setIsExporting(false);
     }
   };
+
+  if (lookupsLoading) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading contractor data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (lookupsError || !lookups) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load contractor data</p>
+          <p className='text-gray-600 mt-2'>{lookupsError?.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>

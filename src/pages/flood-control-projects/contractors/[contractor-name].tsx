@@ -18,16 +18,11 @@ import Button from '../../../components/ui/Button';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L, { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
-// Import contractor data
-import contractorData from '../../../data/flood_control/lookups/Contractor_with_counts.json';
 import FloodControlProjectsTab from '../tab';
-
-// Define types for our data
-interface DataItem {
-  value: string;
-  count: number;
-}
+import {
+  useFloodControlLookups,
+  DataItem,
+} from '../../../hooks/useFloodControlLookups';
 
 // Define contractor profile interface
 interface ContractorProfile {
@@ -503,11 +498,13 @@ const createSlug = (name: string): string => {
 };
 
 // Utility function to find contractor by slug
-const findContractorBySlug = (slug: string): DataItem | null => {
+const findContractorBySlug = (
+  slug: string,
+  contractors: DataItem[]
+): DataItem | null => {
   return (
-    contractorData.Contractor.find(
-      contractor => createSlug(contractor.value) === slug
-    ) || null
+    contractors.find(contractor => createSlug(contractor.value) === slug) ||
+    null
   );
 };
 
@@ -519,6 +516,11 @@ const ContractorDetail: FC = () => {
     'contractor-name': string;
   }>();
   const navigate = useNavigate();
+  const {
+    lookups,
+    loading: lookupsLoading,
+    error: lookupsError,
+  } = useFloodControlLookups();
   const [isExporting, setIsExporting] = useState(false);
   const [contractor, setContractor] = useState<DataItem | null>(null);
   const [contractorProfile, setContractorProfile] =
@@ -572,8 +574,11 @@ const ContractorDetail: FC = () => {
   }, [mapProjects, initialZoom]);
 
   useEffect(() => {
-    if (contractorSlug) {
-      const foundContractor = findContractorBySlug(contractorSlug);
+    if (contractorSlug && lookups) {
+      const foundContractor = findContractorBySlug(
+        contractorSlug,
+        lookups.contractor
+      );
       if (foundContractor) {
         setContractor(foundContractor);
       } else {
@@ -581,7 +586,7 @@ const ContractorDetail: FC = () => {
         navigate('/flood-control-projects/contractors');
       }
     }
-  }, [contractorSlug, navigate]);
+  }, [contractorSlug, navigate, lookups]);
 
   // Build filter string for Meilisearch
   const buildFilterString = (): string => {
@@ -626,6 +631,28 @@ const ContractorDetail: FC = () => {
       setIsExporting(false);
     }
   };
+
+  if (lookupsLoading) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto'></div>
+          <p className='mt-4 text-gray-800'>Loading contractor data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (lookupsError || !lookups) {
+    return (
+      <div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load contractor data</p>
+          <p className='text-gray-600 mt-2'>{lookupsError?.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!contractor) {
     return (

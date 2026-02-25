@@ -15,22 +15,12 @@ import {
 import Button from '../../components/ui/Button';
 import { ScrollArea } from '../../components/ui/ScrollArea';
 import FloodControlProjectsTab from './tab';
-
-// Import lookup data
-import infraYearData from '../../data/flood_control/lookups/InfraYear_with_counts.json';
-import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
-import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
-import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_with_counts.json';
-import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
-import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
 import { useSearchParams } from 'react-router-dom';
 import { generateUrlParams } from './utils';
-
-// Define types for our data
-interface DataItem {
-  value: string;
-  count: number;
-}
+import {
+  useFloodControlLookups,
+  DataItem,
+} from '../../hooks/useFloodControlLookups';
 
 // Meilisearch configuration
 const MEILISEARCH_HOST =
@@ -612,6 +602,11 @@ const TableHits: FC<{ filters: FilterState; searchTerm: string }> = ({
 
 const FloodControlProjectsTable: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    lookups,
+    loading: lookupsLoading,
+    error: lookupsError,
+  } = useFloodControlLookups();
 
   // State for filters and search
   const [filters, setFilters] = useState<FilterState>(() => {
@@ -698,23 +693,29 @@ const FloodControlProjectsTable: FC = () => {
   };
 
   const provinceOptions = useMemo(() => {
+    if (!lookups) return [];
+
     if (filters.Region === 'National Capital Region') {
-      const nationalCapitalRegion = provinceData.Province.filter(
-        item => item.regCode === '13'
+      const nationalCapitalRegion = lookups.province.filter(
+        item => (item as { regCode?: string }).regCode === '13'
       );
-      const otherRegions = provinceData.Province.filter(item => !item.regCode);
+      const otherRegions = lookups.province.filter(
+        item => !(item as { regCode?: string }).regCode
+      );
       return [...nationalCapitalRegion, ...otherRegions];
     }
 
     if (filters.Region) {
-      const regionId = regionData.Region.find(
+      const regionId = lookups.region.find(
         item => item.value === filters.Region
       )?.regCode;
-      return provinceData.Province.filter(item => item.regCode === regionId);
+      return lookups.province.filter(
+        item => (item as { regCode?: string }).regCode === regionId
+      );
     }
 
-    return provinceData.Province;
-  }, [filters.Region]);
+    return lookups.province;
+  }, [filters.Region, lookups]);
 
   // Export data function
   const handleExportData = async () => {
@@ -757,6 +758,28 @@ const FloodControlProjectsTable: FC = () => {
     // Simply return the searchTerm since we're handling InfraYear via FundingYear filter now
     return searchTerm;
   };
+
+  if (lookupsLoading) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading filter options...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (lookupsError || !lookups) {
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+        <div className='text-center'>
+          <p className='text-red-600 text-lg'>Failed to load filter options</p>
+          <p className='text-gray-600 mt-2'>{lookupsError?.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -805,7 +828,7 @@ const FloodControlProjectsTable: FC = () => {
                 </label>
                 <FilterDropdown
                   name='Year'
-                  options={infraYearData.InfraYear}
+                  options={lookups.infraYear}
                   value={filters.InfraYear}
                   onChange={value => handleFilterChange('InfraYear', value)}
                 />
@@ -817,7 +840,7 @@ const FloodControlProjectsTable: FC = () => {
                 </label>
                 <FilterDropdown
                   name='Region'
-                  options={regionData.Region}
+                  options={lookups.region}
                   value={filters.Region}
                   onChange={value => handleFilterChange('Region', value)}
                   searchable
@@ -843,7 +866,7 @@ const FloodControlProjectsTable: FC = () => {
                 </label>
                 <FilterDropdown
                   name='Type of Work'
-                  options={typeOfWorkData.TypeofWork}
+                  options={lookups.typeOfWork}
                   value={filters.TypeofWork}
                   onChange={value => handleFilterChange('TypeofWork', value)}
                   searchable
@@ -856,7 +879,7 @@ const FloodControlProjectsTable: FC = () => {
                 </label>
                 <FilterDropdown
                   name='DEO'
-                  options={deoData.DistrictEngineeringOffice}
+                  options={lookups.deo}
                   value={filters.DistrictEngineeringOffice}
                   onChange={value =>
                     handleFilterChange('DistrictEngineeringOffice', value)
@@ -871,7 +894,7 @@ const FloodControlProjectsTable: FC = () => {
                 </label>
                 <FilterDropdown
                   name='Legislative District'
-                  options={legislativeDistrictData.LegislativeDistrict}
+                  options={lookups.legislativeDistrict}
                   value={filters.LegislativeDistrict}
                   onChange={value =>
                     handleFilterChange('LegislativeDistrict', value)
