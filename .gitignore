@@ -41,6 +41,7 @@ wrangler.toml
 
 # CMS build-time data backup
 src/data/.backup/
+public/data/.backup/
 
 # Dev
 .cursor/*

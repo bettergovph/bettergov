@@ -15,27 +15,27 @@ const __dirname = path.dirname(__filename);
 // Import data from the project
 const serviceCategoriesPath = path.join(
   __dirname,
-  '../src/data/service_categories.json'
+  '../public/data/service_categories.json'
 );
 const departmentsPath = path.join(
   __dirname,
-  '../src/data/directory/departments.json'
+  '../public/data/directory/departments.json'
 );
 const constitutionalPath = path.join(
   __dirname,
-  '../src/data/directory/constitutional.json'
+  '../public/data/directory/constitutional.json'
 );
 const legislativePath = path.join(
   __dirname,
-  '../src/data/directory/legislative.json'
+  '../public/data/directory/legislative.json'
 );
 const diplomaticPath = path.join(
   __dirname,
-  '../src/data/directory/diplomatic.json'
+  '../public/data/directory/diplomatic.json'
 );
 const executivePath = path.join(
   __dirname,
-  '../src/data/directory/executive.json'
+  '../public/data/directory/executive.json'
 );
 
 // Static navigation data (same as in generate-llms-txt.js to maintain consistency)

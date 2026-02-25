@@ -3,7 +3,7 @@
  * Build-time CMS data fetch script.
  *
  * Fetches all CMS-managed JSON data from the Payload CMS REST API and writes
- * it atomically to src/data/. If CMS_URL is unset or the fetch fails, the
+ * it atomically to public/data/. If CMS_URL is unset or the fetch fails, the
  * script exits 0 so the build continues with existing committed JSON files.
  *
  * Usage:
@@ -38,7 +38,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const DATA_DIR = path.join(PROJECT_ROOT, 'src', 'data');
+const DATA_DIR = path.join(PROJECT_ROOT, 'public', 'data');
 const BACKUP_DIR = path.join(DATA_DIR, '.backup');
 
 // ---------------------------------------------------------------------------
@@ -82,7 +82,7 @@ function cleanupTemp(tmpDir: string): void {
 
 // ---------------------------------------------------------------------------
 // Backup / apply helpers
-// CMS-managed paths relative to src/data/ that are replaced on each export.
+// CMS-managed paths relative to public/data/ that are replaced on each export.
 // ---------------------------------------------------------------------------
 
 const CMS_MANAGED_PATHS = [
@@ -116,7 +116,7 @@ function backupCurrentData(): void {
       fs.copyFileSync(src, dst);
     }
   }
-  console.log(`   backup saved to: src/data/.backup/`);
+  console.log(`   backup saved to: public/data/.backup/`);
 }
 
 function applyNewData(tmpDir: string): void {
@@ -269,8 +269,8 @@ async function main(): Promise<void> {
       );
     }
 
-    // All exports succeeded — apply atomically to src/data/
-    console.log('\n📋 All exports succeeded. Applying to src/data/...');
+    // All exports succeeded — apply atomically to public/data/
+    console.log('\n📋 All exports succeeded. Applying to public/data/...');
     backupCurrentData();
     applyNewData(tmpDir);
     console.log('✅ CMS data updated successfully.');
