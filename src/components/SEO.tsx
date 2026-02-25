@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import routeMeta from '../data/seo-metadata.json';
+import { fetchSEOMetadata } from '@/lib/cms-data';
 import {
   formatStandardDescription,
   formatStandardTitle,
@@ -34,8 +34,23 @@ export default function SEO({
 }: SEOProps = {}) {
   const location = useLocation();
   const [, forceUpdate] = useState({});
+  const [routeMeta, setRouteMeta] = useState<Record<string, unknown> | null>(
+    null
+  );
 
-  const routeMetaMap = routeMeta as Record<string, unknown>;
+  // Load SEO metadata
+  useEffect(() => {
+    fetchSEOMetadata()
+      .then(data => {
+        setRouteMeta(data as Record<string, unknown>);
+      })
+      .catch(err => {
+        console.error('Failed to load SEO metadata:', err);
+        setRouteMeta({});
+      });
+  }, []);
+
+  const routeMetaMap = routeMeta || {};
 
   // Support query-string specific metadata by normalising the search params
   const normalizeQuery = (search: string): string | null => {
