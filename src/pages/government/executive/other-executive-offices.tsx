@@ -1,5 +1,5 @@
 import { SearchIcon } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
   Card,
   CardContactInfo,
@@ -8,17 +8,34 @@ import {
   CardGrid,
   CardTitle,
 } from '../../../components/ui/CardList';
-import { executiveData } from './data';
-
-const otherOffices = executiveData.filter(
-  office =>
-    !office.office.includes('OFFICE OF THE PRESIDENT') &&
-    !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
-    !office.office.toLowerCase().includes('communication')
-);
+import { getExecutiveData } from './data';
 
 export default function OtherExecutiveOfficesPage() {
+  const [executiveData, setExecutiveData] = useState<
+    Array<Record<string, unknown>>
+  >([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    getExecutiveData()
+      .then(data => {
+        setExecutiveData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load executive data:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  const otherOffices = executiveData.filter(
+    office =>
+      office.office &&
+      !office.office.includes('OFFICE OF THE PRESIDENT') &&
+      !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
+      !office.office.toLowerCase().includes('communication')
+  );
 
   // Filter offices based on search term
   const filteredOffices = useMemo(() => {
@@ -50,7 +67,18 @@ export default function OtherExecutiveOfficesPage() {
           return false;
         })
     );
-  }, [searchTerm]);
+  }, [searchTerm, otherOffices]);
+
+  if (loading) {
+    return (
+      <div className='flex items-center justify-center min-h-[400px]'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto'></div>
+          <p className='mt-4 text-gray-600'>Loading executive offices...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='space-y-6'>
