@@ -140,36 +140,44 @@ const Navbar: FC = () => {
     }, 80);
   };
 
+  if (location.pathname === '/philippines/map') return null;
+
   return (
-    <nav className='bg-white shadow-xs sticky top-0 z-50'>
+    <nav className='bg-white shadow-xs sticky top-0 z-50 overflow-x-clip'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
-        <div className='container mx-auto px-4 flex justify-end items-center h-10'>
-          <div className='flex items-center space-x-4'>
+        <div className='container mx-auto px-4 flex justify-center md:justify-end'>
+          <div className='flex flex-wrap items-center justify-center gap-x-4 gap-y-1 py-2 text-xs md:justify-end'>
             <Link
               to='/join-us'
-              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-1'
             >
               🚀 Join Us
             </Link>
             <Link
               to='/about'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-2'
             >
               About <span className='hidden md:inline'>BetterGov.ph</span>
             </Link>
             <a
               href='https://www.gov.ph'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-3'
               target='_blank'
               rel='noreferrer'
             >
               Official Gov.ph
             </a>
-
+            <span className='hidden min-[340px]:max-[374px]:block min-[340px]:max-[374px]:basis-full min-[340px]:max-[374px]:order-4' />
+            <Link
+              to='/contact'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-5'
+            >
+              Contact Us
+            </Link>
             <Link
               to='/philippines/hotlines'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-6'
             >
               Hotlines
             </Link>
@@ -193,7 +201,7 @@ const Navbar: FC = () => {
       {/* Main navigation */}
       <div className='container mx-auto px-4'>
         <div className='flex justify-between items-center py-4'>
-          <div className='flex items-center'>
+          <div className='flex items-center shrink-0'>
             <Link to='/' className='flex items-center'>
               <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
@@ -210,7 +218,7 @@ const Navbar: FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden lg:flex items-center min-w-0 lg:space-x-1 xl:space-x-3 2xl:space-x-6 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -228,10 +236,12 @@ const Navbar: FC = () => {
                         : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
-                    {t(`navbar.${item.label.toLowerCase()}`)}
+                    <span className='lg:text-sm xl:text-base'>
+                      {t(`navbar.${item.label.toLowerCase()}`)}
+                    </span>
                     {item.children && (
                       <ChevronDownIcon
-                        className={`ml-1 h-4 w-4 transition-colors ${
+                        className={`ml-1 h-4 w-4 shrink-0 transition-colors ${
                           isActive
                             ? 'text-primary-600'
                             : 'text-gray-800 group-hover:text-primary-600'
@@ -274,12 +284,12 @@ const Navbar: FC = () => {
               );
             })}
           </div>
-          <div className='hidden lg:flex items-center space-x-6'>
+          <div className='hidden lg:flex items-center shrink-0 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+              className='flex items-center text-gray-700 hover:text-primary-600 font-semibold lg:text-base xl:text-lg transition-colors px-3 py-2 rounded-lg hover:bg-gray-50 whitespace-nowrap'
             >
-              <SearchIcon className='h-4 w-4 mr-1' />
+              <SearchIcon className='h-5 w-5 mr-2 shrink-0' />
               Search
             </Link>
             {/* <Link
@@ -358,23 +368,24 @@ const Navbar: FC = () => {
           <Link
             to='/about'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
             About
           </Link>
           <Link
-            to='/search'
+            to='/contact'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
-            Search
+            Contact Us
           </Link>
           <Link
-            to='/sitemap'
+            to='/search'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600'
           >
-            Sitemap
+            <SearchIcon className='h-5 w-5 mr-2' />
+            Search
           </Link>
           <div className='px-4 py-3 border-t border-gray-200'>
             <div className='flex items-center'>

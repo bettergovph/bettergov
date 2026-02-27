@@ -7,7 +7,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
 import versionData from '../../version.json';
 
@@ -18,6 +18,7 @@ type Version = {
 const Footer: FC = () => {
   const { t } = useTranslation('common');
   const [version, setVersion] = useState<string | null>(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     try {
@@ -46,6 +47,8 @@ const Footer: FC = () => {
         return null;
     }
   };
+
+  if (pathname === '/philippines/map') return null;
 
   return (
     <footer className='bg-gray-900 text-white'>

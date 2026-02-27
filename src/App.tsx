@@ -21,6 +21,7 @@ import PhilippinesCulture from './pages/philippines/culture';
 import PhilippinesRegions from './pages/philippines/regions';
 import PhilippinesMap from './pages/philippines/map';
 import PublicHolidays from './pages/philippines/holidays';
+import ContactUs from './pages/ContactUs';
 import Hotlines from './pages/philippines/Hotlines';
 import VisaPage from './pages/travel/visa';
 import VisaTypesPage from './pages/travel/visa-types';
@@ -102,6 +103,7 @@ function App() {
             <Route path='/design' element={<DesignGuide />} />
             <Route path='/services' element={<Services />} />
             <Route path='/about' element={<AboutPage />} />
+            <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/ideas' element={<Ideas />} />

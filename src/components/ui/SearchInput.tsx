@@ -1,15 +1,9 @@
 import { SearchIcon, XIcon } from 'lucide-react';
-import {
-  ChangeEvent,
-  FormEvent,
-  InputHTMLAttributes,
-  ReactNode,
-  useState,
-} from 'react';
+import { ChangeEvent, FormEvent, InputHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
 interface SearchInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   onSearch?: (value: string) => void;
   className?: string;
   placeholder?: string;
@@ -25,25 +19,25 @@ const SearchInput = ({
   icon = <SearchIcon className='h-5 w-5 text-gray-800' />,
   size = 'md',
   clearable = true,
+  value,
+  onChange,
   ...props
 }: SearchInputProps) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (onSearch) {
-      onSearch(value);
+      onSearch(String(value || ''));
     }
   };
 
   const handleClear = () => {
-    setValue('');
     if (onSearch) {
       onSearch('');
+    }
+
+    if (onChange) {
+      const event = { target: { value: '' } } as ChangeEvent<HTMLInputElement>;
+      onChange(event);
     }
   };
 
@@ -71,7 +65,7 @@ const SearchInput = ({
           )}
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           {...props}
         />
         {clearable && value && (
