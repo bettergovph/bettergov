@@ -1,7 +1,12 @@
 import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-import { InstantSearch, Configure, useHits } from 'react-instantsearch';
+import {
+  InstantSearch,
+  Configure,
+  useHits,
+  useInstantSearch,
+} from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
@@ -83,7 +88,7 @@ interface HitProps {
 // Table Row component
 const TableRow: FC<HitProps> = ({ hit }) => {
   return (
-    <tr className='border-b border-gray-200 hover:bg-gray-50'>
+    <tr className='border-b border-gray-200 hover:bg-gray-50 h-10'>
       <td className='px-4 py-3 text-sm'>{hit.ProjectDescription || 'N/A'}</td>
       <td className='px-4 py-3 text-sm'>{hit.InfraYear || 'N/A'}</td>
       <td className='px-4 py-3 text-sm'>{hit.Region || 'N/A'}</td>
@@ -97,6 +102,29 @@ const TableRow: FC<HitProps> = ({ hit }) => {
           : 'N/A'}
       </td>
     </tr>
+  );
+};
+
+const TableRowFallback: FC = () => {
+  return (
+    <>
+      {Array.from({ length: 5 }).map((_, kindex) => {
+        return (
+          <tr
+            key={kindex}
+            className='border-b border-gray-200 hover:bg-gray-50'
+          >
+            {Array.from({ length: 8 }).map((_, index) => {
+              return (
+                <td key={index} className='px-4 py-3 text-sm'>
+                  <div className='bg-gray-600 rounded-full h-2 w-24 animate-pulse'></div>
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
+    </>
   );
 };
 
@@ -123,7 +151,7 @@ const ResultsStatistics: FC<{
 }> = ({ hits, totalHits, contractor, onViewDetails }) => {
   // Use total hits from Meilisearch for accurate count
   const totalCount = totalHits;
-
+  const { status } = useInstantSearch();
   // Calculate average cost based on visible hits sample
   const visibleHitsContractCost = hits.reduce((sum, hit) => {
     const cost = parseFloat(hit.ContractCost || '0');
@@ -155,27 +183,39 @@ const ResultsStatistics: FC<{
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
         <div className='bg-blue-50 p-3 rounded-md'>
           <p className='text-sm text-gray-800'>Total Projects</p>
-          <p className='text-2xl font-bold text-blue-700'>
-            {totalCount.toLocaleString()}
-          </p>
+          {status == 'idle' ? (
+            <p className='text-2xl font-bold text-blue-700'>
+              {totalCount.toLocaleString()}
+            </p>
+          ) : (
+            <div className='h-3 w-40 font-bold bg-blue-500 animate-pulse mt-3 rounded-full'></div>
+          )}
         </div>
         <div className='bg-green-50 p-3 rounded-md'>
           <p className='text-sm text-gray-800'>Total Contract Cost</p>
-          <p className='text-2xl font-bold text-green-700'>
-            ₱
-            {estimatedTotalContractCost.toLocaleString(undefined, {
-              maximumFractionDigits: 0,
-            })}
-          </p>
+          {status == 'idle' ? (
+            <p className='text-2xl font-bold text-green-700'>
+              ₱
+              {estimatedTotalContractCost.toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              })}
+            </p>
+          ) : (
+            <div className='h-3 w-40 font-bold bg-green-500 animate-pulse mt-3 rounded-full'></div>
+          )}
         </div>
         <div className='bg-purple-50 p-3 rounded-md'>
           <p className='text-sm text-gray-800'>Average Project Cost</p>
-          <p className='text-2xl font-bold text-purple-700'>
-            ₱
-            {avgCostPerProject.toLocaleString(undefined, {
-              maximumFractionDigits: 0,
-            })}
-          </p>
+          {status == 'idle' ? (
+            <p className='text-2xl font-bold text-purple-700'>
+              ₱
+              {avgCostPerProject.toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              })}
+            </p>
+          ) : (
+            <div className='h-3 w-40 font-bold bg-purple-500 animate-pulse mt-3 rounded-full'></div>
+          )}
         </div>
       </div>
     </div>
@@ -200,8 +240,8 @@ const TableHits: FC<{
     (a: Record<string, unknown>, b: Record<string, unknown>) => {
       // Handle special case for ContractCost which needs numeric sorting
       if (sortField === 'ContractCost') {
-        const costA = parseFloat(a[sortField] || '0');
-        const costB = parseFloat(b[sortField] || '0');
+        const costA = parseFloat((a[sortField] as string | undefined) || '0');
+        const costB = parseFloat((b[sortField] as string | undefined) || '0');
         return sortDirection === 'asc' ? costA - costB : costB - costA;
       }
 
@@ -285,6 +325,8 @@ const TableHits: FC<{
   const handlePageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);
   };
+  // page fetch status
+  const { status } = useInstantSearch();
 
   // Calculate page range for display
   const startIndex = currentPage * hitsPerPage;
@@ -321,16 +363,23 @@ const TableHits: FC<{
               <SortHeader field='ContractCost' label='Contract Cost' />
             </tr>
           </thead>
-          <tbody className='bg-white divide-y divide-gray-200'>
+
+          <tbody className='bg-white divide-y  divide-gray-200'>
             {/* Render paginated hits as table rows */}
-            {paginatedHits.map(hit => (
-              <TableRow
-                key={
-                  typeof hit.GlobalID === 'string' ? hit.GlobalID : hit.objectID
-                }
-                hit={hit as unknown as FloodControlProject}
-              />
-            ))}
+            {status == 'idle' ? (
+              paginatedHits.map(hit => (
+                <TableRow
+                  key={
+                    typeof hit.GlobalID === 'string'
+                      ? hit.GlobalID
+                      : hit.objectID
+                  }
+                  hit={hit as unknown as FloodControlProject}
+                />
+              ))
+            ) : (
+              <TableRowFallback />
+            )}
           </tbody>
         </table>
       </div>
@@ -490,6 +539,7 @@ const ContractorItem: FC<ContractorItemProps> = ({
 // Main Contractors component
 const FloodControlProjectsContractors: FC = () => {
   const navigate = useNavigate();
+
   const [selectedContractor, setSelectedContractor] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [isExporting, setIsExporting] = useState(false);
@@ -526,7 +576,6 @@ const FloodControlProjectsContractors: FC = () => {
     // Use filter for type and contractor
     const filterString = buildFilterString();
     const searchTerm = selectedContractor || '';
-
     try {
       await exportMeilisearchData({
         host: MEILISEARCH_HOST,
