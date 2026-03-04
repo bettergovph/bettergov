@@ -25,7 +25,7 @@ const SINGLE_INDEX_NAME = 'bettergov';
 // dataBasePath will always be relative to the 'scripts' directory
 // __dirname (in CommonJS) is the directory of the current module.
 // So, path.join(__dirname, '..', 'src', 'data') correctly points from 'scripts' to 'src/data'.
-const dataBasePath = path.join(__dirname, '..', 'src', 'data');
+const dataBasePath = path.join(__dirname, '..', 'public', 'data');
 
 const DATA_SOURCES = [
   {
