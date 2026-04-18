@@ -66,8 +66,9 @@ import RegionalLGUPage from './pages/government/local/[region]';
 // Search Page
 import SearchPage from './pages/Search';
 
-// Government directory (new /government index)
+// Government directory (new /government index) + tabs layout
 import GovernmentDirectory from './pages/government';
+import GovernmentLayout from './pages/government/layout';
 
 // Guides
 import GuidesIndex from './pages/guides';
@@ -185,7 +186,7 @@ function App() {
             </Route>
 
             {/* Government Routes */}
-            <Route path='/government'>
+            <Route path='/government' element={<GovernmentLayout />}>
               <Route index element={<GovernmentDirectory />} />
               <Route path='salary-grade' element={<SalaryGradePage />} />
 
