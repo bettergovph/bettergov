@@ -117,9 +117,21 @@
   },
   "history": {
     "hero": {
-      "title": "Kasaysayan ng Pilipinas",
-      "description": "Maglakbay sa panahon at tuklasin ang mga nakakamanghang pangyayari, tao, at kilusang bumuo sa bansang Pilipinas.",
+      "eyebrow": "§ Pilipinas · Timeline",
+      "title": "Kasaysayan",
+      "titleEmphasis": "ng",
+      "titleSuffix": "mga isla",
+      "description": "Mahigit 700,000 taon ng kuwentong-tao — mula sa mga unang naninirahan, sa mga polityang Austronesyano, 333 taon ng pananakop ng Espanya, kalahating siglo sa ilalim ng Estados Unidos, pananakop ng Hapon, hanggang sa Ikalimang Republika.",
       "photoCredit": "Photo credit"
+    },
+    "entriesSectionLabel": "Mga piniling pangyayari",
+    "entriesSectionMeta": "17 sandali · prehistoriko hanggang makabago",
+    "scholarNote": {
+      "title": "Talang pang-akademiko",
+      "body": "Karamihan ng ating nalalaman tungkol sa pre-kolonyal na mga polity ay galing sa mga rekord ng Tsina, seramika, at panitikan; bihira ang nakasulat na katutubong arkibo at karamihan ay nawasak sa panahon ng Espanyol."
+    },
+    "byTheNumbers": {
+      "eyebrow": "§ 02 · Sa mga numero"
     },
     "timeline": {
       "title": "Timeline ng Kasaysayan",

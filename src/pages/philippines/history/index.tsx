@@ -1,270 +1,179 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ClockIcon, FlagIcon, CrownIcon, ScaleIcon } from 'lucide-react';
-import { Card, CardContent } from '../../../components/ui/Card';
+import { Link } from 'react-router-dom';
+import { ArrowRightIcon } from 'lucide-react';
+import Container from '../../../components/v2/ui/Container';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+
+type Era = { yr: string; title: string; blurb: string };
+type Entry = { yr: string; era: string; title: string; body: string };
+type Number = { num: string; body: string; label: string };
+
+/** Index where the sidebar "scholarly note" appears in the timeline column. */
+const SCHOLAR_NOTE_AT = 3;
 
 const PhilippinesHistory: FC = () => {
   const { t } = useTranslation('about-philippines');
 
-  const timelinePeriods = [
-    {
-      icon: <FlagIcon className='h-6 w-6' />,
-      title: t('history.timeline.periods.independence.title'),
-      period: t('history.timeline.periods.independence.period'),
-      description: t('history.timeline.periods.independence.description'),
-      image: '/assets/history/independence-modern-era.webp',
-    },
-    {
-      icon: <ScaleIcon className='h-6 w-6' />,
-      title: t('history.timeline.periods.american.title'),
-      period: t('history.timeline.periods.american.period'),
-      description: t('history.timeline.periods.american.description'),
-      image: '/assets/history/american-period.webp',
-    },
-    {
-      icon: <CrownIcon className='h-6 w-6' />,
-      title: t('history.timeline.periods.spanish.title'),
-      period: t('history.timeline.periods.spanish.period'),
-      description: t('history.timeline.periods.spanish.description'),
-      image: '/assets/history/spanish-colonial-era.webp',
-    },
-    {
-      icon: <ClockIcon className='h-6 w-6' />,
-      title: t('history.timeline.periods.preColonial.title'),
-      period: t('history.timeline.periods.preColonial.period'),
-      description: t('history.timeline.periods.preColonial.description'),
-      image: '/assets/history/pre-colonial-period.webp',
-    },
-  ];
+  const eras = t('history.eras', { returnObjects: true }) as Era[];
+  const entries = t('history.entries', { returnObjects: true }) as Entry[];
+  const numbers = t('history.byTheNumbers.items', {
+    returnObjects: true,
+  }) as Number[];
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      {/* Hero Section */}
-      <div className='relative h-[60vh] overflow-hidden'>
-        <div className='absolute inset-0'>
-          <img
-            src='https://images.pexels.com/photos/19376770/pexels-photo-19376770/free-photo-of-women-dancing-in-red-traditional-clothing-in-festival.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-            alt='Historical Philippines'
-            loading='lazy'
-            className='w-full h-full object-cover'
-          />
-          <div className='absolute inset-0 bg-black/50' />
-        </div>
-        <div className='relative h-full flex items-center'>
-          <div className='container mx-auto px-4'>
-            <div className='max-w-3xl'>
-              <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                {t('history.hero.title')}
-              </h1>
-              <p className='text-xl text-white/90 leading-relaxed'>
-                {t('history.hero.description')}
-              </p>
-              <p className='text-xs'>
-                <a href='https://www.pexels.com/photo/women-dancing-in-red-traditional-clothing-in-festival-19376770/'>
-                  {t('history.hero.photoCredit')}
-                </a>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <PageMasthead
+        variant='hero'
+        eyebrow={t('history.hero.eyebrow')}
+        title={
+          <>
+            {t('history.hero.title')}{' '}
+            <em className='italic font-normal'>
+              {t('history.hero.titleEmphasis')}
+            </em>{' '}
+            {t('history.hero.titleSuffix')}
+          </>
+        }
+        lede={t('history.hero.description')}
+      >
+        {/* Era strip */}
+        <div className='mt-10 grid grid-cols-6 divide-x divide-white/20 max-lg:grid-cols-3 max-lg:divide-y max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0 max-sm:divide-y'>
+          {eras.map(e => (
+            <div key={e.title} className='px-4 py-5 text-white/85'>
+              <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/60'>
+                {e.yr}
+              </div>
+              <h4 className='mt-1.5 font-serif-ed text-lg font-medium text-white'>
+                {e.title}
+              </h4>
+              <p className='mt-1.5 text-xs leading-normal text-white/75'>
+                {e.blurb}
               </p>
             </div>
-          </div>
+          ))}
         </div>
-      </div>
+      </PageMasthead>
 
-      {/* Main Content */}
-      <div className='container mx-auto px-4 py-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          {/* Timeline */}
-          <div className='lg:col-span-2'>
-            <section className='mb-12'>
-              <h2 className='text-3xl font-bold text-gray-900 mb-8'>
-                {t('history.timeline.title')}
-              </h2>
-              <div className='relative'>
-                {/* Timeline line */}
-                <div className='absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300'></div>
+      {/* Timeline */}
+      <section className='mt-16'>
+        <Container>
+          <SectionHeader
+            num='§ 01'
+            label={t('history.entriesSectionLabel')}
+            meta={t('history.entriesSectionMeta')}
+          />
 
-                <div className='space-y-12'>
-                  {timelinePeriods.map((period, index) => (
-                    <div key={index} className='relative flex items-start'>
-                      {/* Timeline node */}
-                      <div className='absolute left-0 w-16 h-16 bg-white rounded-full border-4 border-primary-500 shadow-lg flex items-center justify-center z-10'>
-                        <div className='text-primary-600'>{period.icon}</div>
-                      </div>
+          <div className='relative ml-10 border-l-2 border-ed-navy pl-8 max-sm:ml-5 max-sm:pl-6'>
+            {entries.map((e, i) => (
+              <article key={e.title} className='relative pb-12 last:pb-0'>
+                <span
+                  aria-hidden
+                  className='absolute -left-[41px] top-2.5 h-4 w-4 border-4 border-white bg-ed-navy max-sm:-left-[25px] max-sm:h-3 max-sm:w-3'
+                />
+                <div className='font-mono-ed text-[11px] uppercase tracking-[0.18em] text-ed-ink-3'>
+                  {e.yr}
+                </div>
+                <h3 className='mt-2 font-serif-ed text-[32px] font-medium leading-tight text-ed-navy-ink max-md:text-[26px]'>
+                  {e.title}
+                </h3>
+                <span className='mt-3 inline-block bg-ed-navy-tint px-2 py-[3px] font-mono-ed text-[9px] uppercase tracking-[0.16em] text-ed-navy-ink'>
+                  {e.era}
+                </span>
+                {i === SCHOLAR_NOTE_AT && (
+                  <aside className='float-right mb-5 ml-9 w-[280px] border border-ed-rule border-l-[3px] border-l-ed-navy bg-white px-5 py-4 max-lg:float-none max-lg:mx-0 max-lg:my-4 max-lg:w-auto'>
+                    <h5 className='mb-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-navy'>
+                      {t('history.scholarNote.title')}
+                    </h5>
+                    <p className='m-0 font-serif-ed text-sm leading-normal text-ed-ink-2'>
+                      {t('history.scholarNote.body')}
+                    </p>
+                  </aside>
+                )}
+                <p className='mt-3 max-w-[680px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                  {e.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-                      {/* Content */}
-                      <div className='ml-24 flex-1'>
-                        <div className='bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow'>
-                          {/* Period header */}
-                          <div className='bg-primary-50 px-6 py-3 border-b border-primary-100'>
-                            <span className='text-lg font-bold text-primary-700'>
-                              {period.period}
-                            </span>
-                          </div>
-
-                          {/* Main content */}
-                          <div className='p-6'>
-                            <h3 className='text-2xl font-bold text-gray-900 mb-3'>
-                              {period.title}
-                            </h3>
-                            <p className='text-gray-700 mb-4 leading-relaxed'>
-                              {period.description}
-                            </p>
-                            <img
-                              src={period.image}
-                              alt={period.title}
-                              loading='lazy'
-                              className='w-full h-48 object-cover rounded-lg'
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+      {/* By the numbers */}
+      <section className='my-14 border-y border-ed-rule bg-ed-navy-tint py-10'>
+        <Container>
+          <div className='mb-3'>
+            <Eyebrow className='text-ed-navy-ink'>
+              {t('history.byTheNumbers.eyebrow')}
+            </Eyebrow>
+          </div>
+          <div className='grid grid-cols-3 gap-8 max-lg:grid-cols-1 max-lg:gap-6'>
+            {numbers.map(n => (
+              <div key={n.label}>
+                <h3 className='m-0 font-serif-ed text-[40px] font-medium leading-none text-ed-navy-ink'>
+                  {n.num}
+                </h3>
+                <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
+                  {n.body}
+                </p>
+                <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                  {n.label}
                 </div>
               </div>
-            </section>
-
-            <section>
-              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('history.overview.title')}
-              </h2>
-              <div className='prose max-w-none'>
-                {(
-                  t('history.overview.paragraphs', {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((paragraph: string, index: number) => (
-                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </section>
+            ))}
           </div>
+        </Container>
+      </section>
 
-          {/* Sidebar */}
-          <div className='space-y-6'>
-            <Card>
-              <CardContent className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('history.keyFigures.title')}
-                </h3>
-                <div className='space-y-4'>
-                  <div>
-                    <div className='font-medium text-gray-900'>
-                      {t('history.keyFigures.figures.rizal.name')}
-                    </div>
-                    <div className='text-sm text-gray-800'>
-                      {t('history.keyFigures.figures.rizal.description')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-medium text-gray-900'>
-                      {t('history.keyFigures.figures.bonifacio.name')}
-                    </div>
-                    <div className='text-sm text-gray-800'>
-                      {t('history.keyFigures.figures.bonifacio.description')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-medium text-gray-900'>
-                      {t('history.keyFigures.figures.aguinaldo.name')}
-                    </div>
-                    <div className='text-sm text-gray-800'>
-                      {t('history.keyFigures.figures.aguinaldo.description')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-medium text-gray-900'>
-                      {t('history.keyFigures.figures.aquino.name')}
-                    </div>
-                    <div className='text-sm text-gray-800'>
-                      {t('history.keyFigures.figures.aquino.description')}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('history.importantDates.title')}
-                </h3>
-                <div className='space-y-3'>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('history.importantDates.dates.magellan.date')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('history.importantDates.dates.magellan.event')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('history.importantDates.dates.independence.date')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('history.importantDates.dates.independence.event')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('history.importantDates.dates.recognition.date')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('history.importantDates.dates.recognition.event')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('history.importantDates.dates.edsa.date')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('history.importantDates.dates.edsa.event')}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('history.relatedLinks.title')}
-                </h3>
-                <nav className='space-y-2'>
-                  <a
-                    href='/philippines/about'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('history.relatedLinks.items.about')}
-                  </a>
-                  <a
-                    href='/philippines/culture'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('history.relatedLinks.items.culture')}
-                  </a>
-                  <a
-                    href='/philippines/regions'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('history.relatedLinks.items.regions')}
-                  </a>
-                  <a
-                    href='/philippines/tourism'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('history.relatedLinks.items.tourism')}
-                  </a>
-                </nav>
-              </CardContent>
-            </Card>
+      {/* Next cards */}
+      <section className='mb-20 mt-16'>
+        <Container>
+          <div className='grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-6'>
+            <NextCard
+              to='/philippines/culture'
+              eyebrow={t('history.nextCards.culture.eyebrow')}
+              title={t('history.nextCards.culture.title')}
+              desc={t('history.nextCards.culture.desc')}
+              cta={t('history.nextCards.culture.cta')}
+            />
+            <NextCard
+              to='/philippines/regions'
+              eyebrow={t('history.nextCards.regions.eyebrow')}
+              title={t('history.nextCards.regions.title')}
+              desc={t('history.nextCards.regions.desc')}
+              cta={t('history.nextCards.regions.cta')}
+            />
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </section>
+    </main>
   );
 };
+
+const NextCard: FC<{
+  to: string;
+  eyebrow: string;
+  title: string;
+  desc: string;
+  cta: string;
+}> = ({ to, eyebrow, title, desc, cta }) => (
+  <Link
+    to={to}
+    className='block border border-ed-rule bg-white p-8 text-ed-ink no-underline transition-colors hover:border-ed-ink'
+  >
+    <div className='mb-3'>
+      <Eyebrow>{eyebrow}</Eyebrow>
+    </div>
+    <h3 className='m-0 font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+      {title}
+    </h3>
+    <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>
+    <div className='mt-4 flex items-center gap-1.5 text-[13px] font-medium text-ed-navy'>
+      {cta} <ArrowRightIcon size={14} />
+    </div>
+  </Link>
+);
 
 export default PhilippinesHistory;
