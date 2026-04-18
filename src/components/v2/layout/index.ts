@@ -1,6 +1,7 @@
 export { default as Masthead } from './Masthead';
 export { default as Footer } from './Footer';
 export { default as FooterColumn } from './FooterColumn';
+export { default as PageMasthead } from './PageMasthead';
 export { default as AlertBanner } from './AlertBanner';
 export { default as MastheadTop } from './MastheadTop';
 export { default as LogoRow } from './LogoRow';
