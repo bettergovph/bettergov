@@ -10,6 +10,17 @@ export type DirectoryBranch =
   | 'Legislative'
   | 'Diplomatic';
 
+/**
+ * Finer-grained discriminator for pages that filter to a single source file
+ * (e.g. /government/departments vs /government/executive).
+ */
+export type DirectoryKind =
+  | 'department'
+  | 'executive'
+  | 'constitutional'
+  | 'legislative'
+  | 'diplomatic';
+
 export type DirectoryEntry = {
   slug: string;
   /** Display name, title-cased. */
@@ -17,6 +28,7 @@ export type DirectoryEntry = {
   /** Short acronym derived from parenthetical or ALL-CAPS initials. */
   abbr?: string;
   branch: DirectoryBranch;
+  kind: DirectoryKind;
   /** Heading role of the first official (e.g. "Chairperson", "Secretary"). */
   headRole?: string;
   head?: string;
@@ -221,6 +233,7 @@ function flattenConstitutional(): DirectoryEntry[] {
       name: titleCase(c.name),
       abbr: deriveAbbr(c.name),
       branch: 'Constitutional',
+      kind: 'constitutional',
       headRole: head.role,
       head: head.name,
       address: c.address,
@@ -238,6 +251,7 @@ function flattenDepartments(): DirectoryEntry[] {
     name: titleCase(d.office_name),
     abbr: deriveAbbr(d.office_name),
     branch: 'Executive',
+    kind: 'department',
     headRole: 'Secretary',
     head: d.secretary?.name,
     address: d.address,
@@ -266,6 +280,7 @@ function flattenExecutive(): DirectoryEntry[] {
       name: titleCase(e.office),
       abbr: deriveAbbr(e.office),
       branch: 'Executive',
+      kind: 'executive',
       headRole: head.role,
       head: head.name,
       address: e.address,
@@ -285,6 +300,7 @@ function flattenLegislative(): DirectoryEntry[] {
       name: titleCase(l.chamber),
       abbr: deriveAbbr(l.chamber),
       branch: 'Legislative',
+      kind: 'legislative',
       headRole: head.role,
       head: head.name,
       address: l.address,
@@ -305,6 +321,7 @@ function flattenDiplomatic(): DirectoryEntry[] {
     name: m.office_name,
     abbr: undefined,
     branch: 'Diplomatic',
+    kind: 'diplomatic',
     headRole: m.title,
     head: m.representative,
     address: m.address,
@@ -339,3 +356,13 @@ export const DIRECTORY_BRANCHES: readonly DirectoryBranch[] = [
   'Legislative',
   'Diplomatic',
 ];
+
+/** Subset of entries by DirectoryKind. */
+export function entriesByKind(kind: DirectoryKind): DirectoryEntry[] {
+  return loadDirectoryEntries().filter(e => e.kind === kind);
+}
+
+/** Subset of entries by DirectoryBranch. */
+export function entriesByBranch(branch: DirectoryBranch): DirectoryEntry[] {
+  return loadDirectoryEntries().filter(e => e.branch === branch);
+}

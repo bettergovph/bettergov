@@ -1,20 +1,38 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { entriesByKind } from '../../../lib/directory';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import DirectoryResults from '../../../components/v2/directory/DirectoryResults';
 
-export default function ExecutiveIndex() {
-  const navigate = useNavigate();
-
-  // Redirect to the Office of the President page on load
-  useEffect(() => {
-    navigate('/government/executive/office-of-the-president');
-  }, [navigate]);
+const ExecutiveIndex: FC = () => {
+  const entries = useMemo(() => entriesByKind('executive'), []);
 
   return (
-    <div className='flex items-center justify-center h-64'>
-      <div className='text-center'>
-        <div className='animate-spin h-8 w-8 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-4'></div>
-        <p className='text-gray-800'>Loading executive branch data...</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Executive Offices | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='Offices, bureaus, and councils under the Executive branch of the Philippine government — from the Office of the President to independent boards and commissions.'
+        />
+      </Helmet>
+      <PageMasthead
+        eyebrow={`Executive · ${entries.length} offices`}
+        title={
+          <>
+            Executive offices,{' '}
+            <em className='italic font-normal'>under the President.</em>
+          </>
+        }
+        lede='The Office of the President, the Office of the Vice President, the Presidential Communications Office, and the constellation of boards, councils, authorities, and commissions under the Executive branch.'
+      />
+      <DirectoryResults
+        entries={entries}
+        searchPlaceholder='Search executive offices by name or head'
+        countNoun='offices'
+      />
+    </>
   );
-}
+};
+
+export default ExecutiveIndex;

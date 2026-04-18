@@ -190,58 +190,75 @@ function App() {
               <Route index element={<GovernmentDirectory />} />
               <Route path='salary-grade' element={<SalaryGradePage />} />
 
-              <Route path='executive' element={<ExecutiveLayout />}>
+              {/* Executive */}
+              <Route path='executive'>
                 <Route index element={<ExecutiveDirectory />} />
-                <Route
-                  path='other-executive-offices'
-                  element={<OtherExecutiveOffices />}
-                />
-                <Route
-                  path='office-of-the-president'
-                  element={<OfficeOfThePresident />}
-                />
-                <Route
-                  path='office-of-the-vice-president'
-                  element={<OfficeOfTheVicePresident />}
-                />
-                <Route
-                  path='presidential-communications-office'
-                  element={<PresidentialCommunicationsOffice />}
-                />
+                <Route element={<ExecutiveLayout />}>
+                  <Route
+                    path='other-executive-offices'
+                    element={<OtherExecutiveOffices />}
+                  />
+                  <Route
+                    path='office-of-the-president'
+                    element={<OfficeOfThePresident />}
+                  />
+                  <Route
+                    path='office-of-the-vice-president'
+                    element={<OfficeOfTheVicePresident />}
+                  />
+                  <Route
+                    path='presidential-communications-office'
+                    element={<PresidentialCommunicationsOffice />}
+                  />
+                </Route>
               </Route>
 
-              <Route path='departments' element={<DepartmentsLayout />}>
+              {/* Departments */}
+              <Route path='departments'>
                 <Route index element={<DepartmentsIndex />} />
-                <Route path=':department' element={<DepartmentDetail />} />
+                <Route element={<DepartmentsLayout />}>
+                  <Route path=':department' element={<DepartmentDetail />} />
+                </Route>
               </Route>
 
-              <Route path='constitutional' element={<ConstitutionalLayout />}>
+              {/* Constitutional */}
+              <Route path='constitutional'>
                 <Route index element={<ConstitutionalIndex />} />
-                <Route path=':office' element={<ConstitutionalOffice />} />
-                <Route path='goccs' element={<GOCCsPage />} />
-                <Route path='sucs' element={<SUCsPage />} />
+                <Route element={<ConstitutionalLayout />}>
+                  <Route path=':office' element={<ConstitutionalOffice />} />
+                  <Route path='goccs' element={<GOCCsPage />} />
+                  <Route path='sucs' element={<SUCsPage />} />
+                </Route>
               </Route>
-              <Route path='legislative' element={<LegislativeLayout />}>
+
+              {/* Legislative */}
+              <Route path='legislative'>
                 <Route index element={<LegislativeIndex />} />
-                <Route path=':chamber' element={<LegislativeChamber />} />
-                <Route path='house-members' element={<HouseMembersPage />} />
-                <Route
-                  path='party-list-members'
-                  element={<PartyListMembersPage />}
-                />
-                <Route
-                  path='senate-committees'
-                  element={<SenateCommitteesPage />}
-                />
+                <Route element={<LegislativeLayout />}>
+                  <Route path=':chamber' element={<LegislativeChamber />} />
+                  <Route path='house-members' element={<HouseMembersPage />} />
+                  <Route
+                    path='party-list-members'
+                    element={<PartyListMembersPage />}
+                  />
+                  <Route
+                    path='senate-committees'
+                    element={<SenateCommitteesPage />}
+                  />
+                </Route>
               </Route>
-              <Route path='diplomatic' element={<DiplomaticLayout />}>
+
+              {/* Diplomatic */}
+              <Route path='diplomatic'>
                 <Route index element={<DiplomaticIndex />} />
-                <Route path='missions' element={<DiplomaticMissionsPage />} />
-                <Route path='consulates' element={<ConsulatesPage />} />
-                <Route
-                  path='organizations'
-                  element={<InternationalOrganizationsPage />}
-                />
+                <Route element={<DiplomaticLayout />}>
+                  <Route path='missions' element={<DiplomaticMissionsPage />} />
+                  <Route path='consulates' element={<ConsulatesPage />} />
+                  <Route
+                    path='organizations'
+                    element={<InternationalOrganizationsPage />}
+                  />
+                </Route>
               </Route>
 
               {/* Local Government Routes */}

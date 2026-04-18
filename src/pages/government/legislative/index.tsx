@@ -1,24 +1,37 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import legislativeData from '../../../data/directory/legislative.json';
+import { FC, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { entriesByKind } from '../../../lib/directory';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import DirectoryResults from '../../../components/v2/directory/DirectoryResults';
 
-export default function LegislativeIndex() {
-  const navigate = useNavigate();
-
-  // Redirect to the first chamber on load
-  useEffect(() => {
-    if (legislativeData.length > 0) {
-      const firstChamber = legislativeData[0].slug;
-      navigate(`/government/legislative/${encodeURIComponent(firstChamber)}`);
-    }
-  }, [navigate]);
+const LegislativeIndex: FC = () => {
+  const entries = useMemo(() => entriesByKind('legislative'), []);
 
   return (
-    <div className='flex items-center justify-center h-64'>
-      <div className='text-center'>
-        <div className='animate-spin h-8 w-8 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-4'></div>
-        <p className='text-gray-800'>Loading legislative branch data...</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Legislative Branch | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='The Senate of the Philippines and the House of Representatives — the two chambers of the Philippine Congress.'
+        />
+      </Helmet>
+      <PageMasthead
+        eyebrow={`Legislative · ${entries.length} chambers`}
+        title={
+          <>
+            Congress, <em className='italic font-normal'>two chambers.</em>
+          </>
+        }
+        lede='The bicameral Philippine Congress — a Senate of 24 members elected at-large, and a House of Representatives with roughly 316 district and party-list members.'
+      />
+      <DirectoryResults
+        entries={entries}
+        searchPlaceholder='Search chambers by name or leader'
+        countNoun='chambers'
+      />
+    </>
   );
-}
+};
+
+export default LegislativeIndex;
