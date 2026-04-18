@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "eyebrow": "Malayang serbisyong sibiko",
+    "eyebrowEst": "Itinatag noong 2024",
+    "titleLineOne": "Pamahalaang Pilipino,",
+    "titleLineTwo": "walang paikot-ikot.",
+    "lede": "Hanapin ang mga serbisyo, ahensya, porma, pista opisyal at batas — maayos na isinulat, patuloy na nirerepaso, at libreng magagamit ng lahat.",
+    "startHere": "Simula",
+    "prompt": "Ano ang kailangan mo sa pamahalaan?",
+    "placeholder": "hal. mag-renew ng pasaporte",
+    "searchCta": "Hanapin",
+    "popular": "Sikat",
+    "statsServices": "serbisyo",
+    "statsAgencies": "ahensya",
+    "statsUpdates": "update",
+    "statsUpdatesLabel": "Araw-araw"
+  },
+  "categories": {
+    "label": "Mga serbisyo sa kategorya",
+    "meta": "{{count}} serbisyo · sa {{domains}} kategorya",
+    "explore": "Tuklasin",
+    "items": [
+      { "id": "travel", "label": "Biyahe at Pagkakakilanlan", "count": 14, "desc": "Pasaporte, visa, NBI clearance, lisensya sa pagmamaneho." },
+      { "id": "tax", "label": "Buwis at Kita", "count": 22, "desc": "BIR, TIN, permit sa negosyo, customs." },
+      { "id": "health", "label": "Kalusugan at Kapakanan", "count": 18, "desc": "PhilHealth, DOH, bakuna, ospital." },
+      { "id": "social", "label": "Social Security", "count": 11, "desc": "SSS, GSIS, Pag-IBIG, pensiyon at benepisyo." },
+      { "id": "education", "label": "Edukasyon", "count": 16, "desc": "DepEd, CHED, TESDA, iskolarship, porma sa eskwela." },
+      { "id": "business", "label": "Negosyo at Kalakalan", "count": 19, "desc": "DTI, SEC, rehistro, lisensya, export." },
+      { "id": "justice", "label": "Hustisya at Legal", "count": 9, "desc": "Korte, notaryo, sertipiko ng barangay." },
+      { "id": "labor", "label": "Paggawa at Empleyo", "count": 12, "desc": "DOLE, OWWA, POEA, work permit, OFW." }
+    ]
+  },
+  "mostRequested": {
+    "label": "Pinakahinihiling ngayong linggo",
+    "updatedLabel": "Na-update",
+    "mostSearched": "Pinakahahanap",
+    "featureAgency": "Department of Foreign Affairs",
+    "featureMeta": "14-hakbang na gabay",
+    "featureTitle": "Mag-renew o mag-apply ng Philippine passport.",
+    "featureLede": "Ang malinaw na gabay sa bawat sitwasyon ng pasaporte — unang beses, renewal, nawala, menor de edad, senior, at OFW.",
+    "featureTime": "10–15 araw",
+    "featureFee": "₱950 base fee",
+    "featureAppointment": "Kinakailangan ng appointment",
+    "alsoTrending": "Iba pang sikat",
+    "browseAll": "Silipin ang lahat ng 486 na serbisyo"
+  },
+  "newsAndHolidays": {
+    "label": "Balita, abiso at kalendaryo",
+    "newsroom": "Buong newsroom →",
+    "holidaysEyebrow": "Ang Kalendaryo",
+    "holidaysTitle": "Mga darating na pista opisyal",
+    "seeAllHolidays": "Tingnan ang lahat ng 18 holidays",
+    "hotlinesEyebrow": "Hotline",
+    "hotlinesTitle": "Kapag kailangan mo ng tulong ngayon",
+    "hotlinesAll": "Lahat ng hotline"
+  },
+  "transparency": {
+    "label": "Saan napupunta ang pera ng bayan",
+    "portal": "Bukas na datos →",
+    "eyebrow": "FY 2026 · General Appropriations Act",
+    "totalSuffix": "bilyon",
+    "description": "Ang pambansang badyet, nilinaw ayon sa departamento. Bawat piso may pinagmulan, galing sa opisyal na dokumento ng DBM.",
+    "explore": "Silipin ang badyet",
+    "download": "CSV"
+  },
+  "editorial": {
+    "label": "Paano ito gumagana",
+    "items": [
+      {
+        "n": "01",
+        "heading": "Nakasulat nang malinaw",
+        "body": "Bawat pahina ay isinulat sa simpleng Ingles at Filipino, walang halong legal jargon."
+      },
+      {
+        "n": "02",
+        "heading": "Patuloy na nirerepaso",
+        "body": "Sina-check ng mga boluntaryo ang bawat pahina buwan-buwan at ikinukumpara sa opisyal na pinagmulan."
+      },
+      {
+        "n": "03",
+        "heading": "Malaya at open-source",
+        "body": "Hindi kami konektado sa anumang ahensya. Bukas sa publiko ang bawat pagbabago sa GitHub."
+      }
+    ]
+  }
+}

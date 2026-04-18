@@ -4,6 +4,31 @@
   /* Fonts */
   --font-sans: 'Figtree', ui-sans-serif, sans-serif;
 
+  /* Editorial fonts — suffix avoids clashing with Tailwind defaults */
+  --font-serif-ed: 'EB Garamond', 'Garamond', 'Times New Roman', Georgia, serif;
+  --font-sans-ed:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono-ed: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Editorial color tokens — bg-ed-paper, text-ed-ink, border-ed-rule, ... */
+  --color-ed-ink: #0c1b33;
+  --color-ed-ink-2: #2b3a55;
+  --color-ed-ink-3: #5c6a82;
+  --color-ed-ink-4: #8a95aa;
+  --color-ed-rule: #dbe3ef;
+  --color-ed-rule-strong: #9fb2cc;
+  --color-ed-paper: #ffffff;
+  --color-ed-paper-2: #f4f7fc;
+  --color-ed-paper-3: #e6ecf5;
+  --color-ed-navy: #0b4fd9;
+  --color-ed-navy-2: #0a44bd;
+  --color-ed-navy-ink: #08286e;
+  --color-ed-navy-tint: #e8efff;
+  --color-ed-red: #c8102e;
+  --color-ed-red-ink: #8c0a20;
+  --color-ed-sage: #4a6b5a;
+  --color-ed-gold: #b8893a;
+
   /* Primary (blue) */
   --color-primary-50: #e6f0fd;
   --color-primary-100: #cce0fb;

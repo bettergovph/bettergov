@@ -55,6 +55,7 @@ export interface NavigationItem {
   label: string;
   href: string;
   target?: string;
+  blurb?: string;
   children?: NavigationItem[];
 }
 

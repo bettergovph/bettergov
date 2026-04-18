@@ -19,10 +19,66 @@
     "copyright": "2025 BetterGov.ph - Lahat ng nilalaman ay public domain maliban kung iba ang nakasaad."
   },
   "navbar": {
+    "home": "Tahanan",
     "philippines": "Pilipinas",
     "services": "Mga Serbisyo",
     "travel": "Paglalakbay",
     "government": "Pamahalaan",
-    "flood control projects": "Mga Proyekto sa Pagkontrol ng Baha"
+    "flood control projects": "Mga Proyekto sa Pagkontrol ng Baha",
+    "our projects": "Mga Proyekto Namin"
+  },
+  "masthead": {
+    "advisory": "Abiso",
+    "advisoryText": "Mga suspensyon ng klase at update sa bagyo galing sa PAGASA at NDRRMC",
+    "viewAdvisories": "Tingnan lahat ng abiso →",
+    "volume": "Vol. IV · No. 112",
+    "manila": "Maynila",
+    "contact": "Makipag-ugnayan",
+    "accessibility": "Accessibility",
+    "about": "Tungkol sa Amin",
+    "joinUs": "Sumali",
+    "tagline": "Malayang serbisyong sibiko · open source",
+    "search": "Hanapin",
+    "signIn": "Mag-sign in",
+    "menu": "Menu",
+    "close": "Isara"
+  },
+  "footerNav": {
+    "servicesHeading": "Mga Serbisyo",
+    "governmentHeading": "Pamahalaan",
+    "resourcesHeading": "Mga Yaman",
+    "aboutHeading": "Tungkol",
+    "passportTravel": "Pasaporte at Paglalakbay",
+    "taxesBir": "Buwis at BIR",
+    "healthPhilhealth": "Kalusugan at PhilHealth",
+    "socialSecurity": "Social Security",
+    "education": "Edukasyon",
+    "business": "Negosyo",
+    "allAgencies": "Lahat ng Ahensya",
+    "executive": "Ehekutibo",
+    "legislative": "Lehislatibo",
+    "judicial": "Hudisyal",
+    "constitutional": "Konstitusyonal",
+    "lguDirectory": "LGU Directory",
+    "floodControl": "Pagkontrol ng Baha",
+    "dataTransparency": "Datos at Transparency",
+    "holidays": "Pista Opisyal",
+    "hotlines": "Hotline",
+    "forex": "Forex",
+    "weather": "Panahon",
+    "mission": "Misyon",
+    "contributors": "Mga Kontribyutor",
+    "github": "GitHub",
+    "terms": "Mga Tuntunin",
+    "contact": "Makipag-ugnayan",
+    "reportBug": "Mag-report ng bug"
+  },
+  "footerAbout": {
+    "description": "Isang malaya at open-source na proyekto na naglalayong gawing mas madali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaang Pilipino. Hindi konektado sa Republika ng Pilipinas.",
+    "openSource": "Open Source"
+  },
+  "footerBottom": {
+    "copyright": "Bettergov.ph Civic Initiative · Makati City",
+    "license": "Ginawa ng mga boluntaryo · CC BY 4.0 · MIT"
   }
 }
