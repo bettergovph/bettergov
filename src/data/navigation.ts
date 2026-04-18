@@ -182,43 +182,23 @@ export const mainNavigation: NavigationItem[] = [
     ],
   },
   {
-    label: 'Government',
+    label: 'Directory',
     href: '/government',
     children: [
-      {
-        label: 'Executive',
-        href: '/government/executive',
-        blurb: 'Office of the President and the Cabinet.',
-      },
       {
         label: 'Departments',
         href: '/government/departments',
         blurb: 'All national executive departments.',
       },
       {
-        label: 'Constitutional',
-        href: '/government/constitutional',
-        blurb: 'Independent constitutional commissions.',
+        label: 'Senate of the Philippines',
+        href: '/government/legislative/senate-of-the-philippines-20th-congress',
+        blurb: '24 senators elected at-large.',
       },
       {
-        label: 'Legislative',
-        href: '/government/legislative',
-        blurb: 'Senate and House of Representatives.',
-      },
-      {
-        label: 'Local Government',
-        href: '/government/local',
-        blurb: 'Regions, provinces, cities, and LGUs.',
-      },
-      {
-        label: 'Diplomatic',
-        href: '/government/diplomatic',
-        blurb: 'Embassies, consulates, and international orgs.',
-      },
-      {
-        label: 'Salary Grades',
-        href: '/government/salary-grade',
-        blurb: 'Public sector compensation schedule.',
+        label: 'House of Representatives',
+        href: '/government/legislative/house-of-representatives-20th-congress',
+        blurb: 'District and party-list members of the lower house.',
       },
     ],
   },
