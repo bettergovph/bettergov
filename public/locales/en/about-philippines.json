@@ -1,41 +1,142 @@
 {
   "about": {
     "hero": {
-      "title": "About the Philippines",
-      "description": "Discover the Pearl of the Orient Seas, a nation of vibrant culture, rich history, and natural wonders spread across thousands of islands."
+      "eyebrow": "§ Philippines · An introduction",
+      "title": "The Republic",
+      "titleEmphasis": "of the",
+      "titleSuffix": "Philippines",
+      "description": "An archipelago of 7,641 islands in Southeast Asia. Home to 117 million Filipinos across 18 regions, 82 provinces, and more than 180 spoken languages. A sovereign democratic republic since 1946."
     },
-    "facts": {
-      "title": "Quick Facts",
+    "factbox": {
       "items": {
-        "geography": {
-          "title": "Geography",
-          "description": "An archipelago of over 7,641 islands located in Southeast Asia"
+        "islands": {
+          "num": "7,641",
+          "sub": "Islands",
+          "desc": "Across Luzon, Visayas, and Mindanao — only about 2,000 inhabited."
         },
         "population": {
-          "title": "Population",
-          "description": "Home to over 110 million people across diverse ethnic groups"
+          "num": "117M",
+          "sub": "Population (2026)",
+          "desc": "12th most populous country in the world; median age 25."
         },
-        "capital": {
-          "title": "Capital",
-          "description": "Manila serves as the capital, with Metro Manila as the economic center"
+        "area": {
+          "num": "300,000",
+          "sub": "km² total area",
+          "desc": "Roughly the size of Italy, scattered across 1.5M km² of ocean."
         },
-        "landscape": {
-          "title": "Landscape",
-          "description": "Features mountains, volcanoes, tropical rainforests, and beautiful beaches"
-        },
-        "climate": {
-          "title": "Climate",
-          "description": "Tropical maritime climate with three distinct seasons"
+        "languages": {
+          "num": "180+",
+          "sub": "Languages spoken",
+          "desc": "Filipino and English are official; Cebuano, Ilocano, Hiligaynon widely used."
         }
       }
     },
     "overview": {
-      "title": "Overview",
+      "title": "What is the Philippines",
+      "meta": "Geography · Government · People",
       "paragraphs": [
-        "The Philippines is a sovereign archipelagic country located in Southeast Asia, comprising over 7,641 islands. Named after King Philip II of Spain, the country has a rich history spanning thousands of years, from ancient indigenous cultures to colonial periods under Spanish and American rule, leading to its independence in 1946.",
-        "Today, the Philippines stands as one of Southeast Asia's most dynamic economies, blending traditional values with modern development. The country is known for its warm hospitality, diverse cultural heritage, stunning natural landscapes, and vibrant democracy.",
-        "Filipino culture is a unique fusion of indigenous, Asian, European, and American influences, reflected in its art, music, cuisine, and traditions. The nation's biodiversity, featuring unique species and ecosystems, makes it one of the world's most environmentally significant countries."
-      ]
+        "The Philippines is a sovereign island country in Southeast Asia, situated in the western Pacific Ocean. Its 7,641 islands are broadly categorized under three main geographical divisions from north to south: Luzon, Visayas, and Mindanao. The capital is Manila, and the most populous city is nearby Quezon City, both within the National Capital Region on Luzon.",
+        "Archaeological evidence suggests that hominins reached the archipelago more than 700,000 years ago. Modern humans arrived at least 47,000 years ago, and by the first millennium CE, the islands hosted sophisticated maritime polities trading across Asia. Spanish colonization began in 1565 and lasted more than three centuries, followed by American rule from 1898 and Japanese occupation during World War II.",
+        "Independence was declared on June 12, 1898, and recognized by the United States on July 4, 1946. Today, the Republic of the Philippines is a constitutional democracy with a presidential form of government. Its 1987 Constitution, ratified after the People Power Revolution, enshrines a system of checks and balances among three co-equal branches: the Executive, the Legislature, and the Judiciary.",
+        "Filipinos are among the most outwardly mobile people in the world. An estimated 10 million live and work overseas as Overseas Filipino Workers (OFWs), whose remittances form a cornerstone of the economy. At home, the country is known for its strong Catholic traditions, vibrant fiestas, hospitality, and a pop culture that fuses Malay, Spanish, American, and Asian influences."
+      ],
+      "pullquote": {
+        "body": "The Philippines is not one nation on one island — it is a conversation across three thousand of them, conducted in eighty-something languages, and punctuated by monsoons.",
+        "source": "— Essay, Commission on the Filipino Language · 2023"
+      }
+    },
+    "symbols": {
+      "title": "National symbols",
+      "meta": "Established by Republic Act 8491 & Presidential Proclamations",
+      "items": {
+        "flag": {
+          "swatch": "Flag",
+          "label": "Flag",
+          "title": "Pambansang Watawat",
+          "desc": "Blue for peace, red for courage, white for equality. Sun with eight rays for the first provinces that rose in revolt; three stars for Luzon, Visayas, Mindanao."
+        },
+        "anthem": {
+          "swatch": "♪ · ♪ · ♪",
+          "label": "National anthem",
+          "title": "Lupang Hinirang",
+          "desc": "\"Chosen Land.\" Music composed by Julián Felipe (1898); Tagalog lyrics by José Palma, adapted from his Spanish poem \"Filipinas.\""
+        },
+        "seal": {
+          "swatch": "Seal",
+          "label": "Seal",
+          "title": "Dakilang Sagisag",
+          "desc": "The great seal of the Republic bears the sun and three stars of the flag, the official name in Filipino, and is used to authenticate state documents."
+        },
+        "bird": {
+          "swatch": "Philippine Eagle",
+          "label": "National bird",
+          "title": "Pithecophaga jefferyi",
+          "desc": "One of the world's largest and rarest raptors. Endemic to Mindanao, Luzon, Samar, Leyte. Fewer than 400 breeding pairs remain."
+        },
+        "tree": {
+          "swatch": "Narra",
+          "label": "National tree",
+          "title": "Pterocarpus indicus",
+          "desc": "A tropical hardwood whose reddish timber is prized for furniture. Yellow flowers bloom in cascades across the country every April."
+        },
+        "flower": {
+          "swatch": "Sampaguita",
+          "label": "National flower",
+          "title": "Jasminum sambac",
+          "desc": "A small, fragrant white jasmine. Strung into garlands sold at churches and intersections, used to welcome guests and honor icons."
+        }
+      }
+    },
+    "government": {
+      "title": "Government at a glance",
+      "items": {
+        "executive": {
+          "label": "Exec",
+          "body": "**President** — head of state & government, elected for a single 6-year term. Cabinet of ~24 executive departments."
+        },
+        "legislative": {
+          "label": "Leg",
+          "body": "**Congress** — bicameral. Senate of 24 elected at-large; House of Representatives with ~316 district & party-list members."
+        },
+        "judicial": {
+          "label": "Jud",
+          "body": "**Supreme Court** — 15 Justices (1 Chief, 14 Associate). Appointed by the President from the JBC's shortlist."
+        },
+        "constitutional": {
+          "label": "Const",
+          "body": "**Constitutional commissions** — Elections (COMELEC), Audit (COA), Civil Service (CSC) — independent bodies."
+        },
+        "local": {
+          "label": "LGU",
+          "body": "**Local units** — 18 regions, 82 provinces, 146 cities, 1,488 municipalities, 42,046 barangays."
+        }
+      },
+      "directoryCta": "Browse the Agency Directory →"
+    },
+    "explore": {
+      "title": "Explore the Philippines",
+      "items": {
+        "history": {
+          "title": "History",
+          "desc": "From Tabon Man to the Third Republic — a 700,000-year timeline.",
+          "href": "/philippines/history"
+        },
+        "culture": {
+          "title": "Culture",
+          "desc": "Languages, fiestas, food, faith, and craft across the islands.",
+          "href": "/philippines/culture"
+        },
+        "regions": {
+          "title": "Regions",
+          "desc": "18 administrative regions: from Ilocos to BARMM.",
+          "href": "/philippines/regions"
+        },
+        "map": {
+          "title": "Map",
+          "desc": "The archipelago at a glance — major islands, seas, and cities.",
+          "href": "/philippines/map"
+        }
+      }
     },
     "keyInformation": {
       "title": "Key Information",

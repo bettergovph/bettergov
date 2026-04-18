@@ -1,8 +1,35 @@
 {
   "about": {
     "hero": {
-      "title": "Tungkol sa Pilipinas",
-      "description": "Tuklasin ang Perlas ng Silanganan, isang bansang mayaman sa kultura, kasaysayan, at likas na yaman na kumalat sa libu-libong isla."
+      "eyebrow": "§ Pilipinas · Panimula",
+      "title": "Ang Republika",
+      "titleEmphasis": "ng",
+      "titleSuffix": "Pilipinas",
+      "description": "Isang kapuluan ng 7,641 na isla sa Timog-Silangang Asya. Tahanan ng 117 milyong Pilipino sa 18 rehiyon, 82 probinsya, at higit sa 180 wikang sinasalita. Isang malayang demokratikong republika mula noong 1946."
+    },
+    "factbox": {
+      "items": {
+        "islands": {
+          "num": "7,641",
+          "sub": "Isla",
+          "desc": "Mula Luzon, Visayas, hanggang Mindanao — humigit-kumulang 2,000 lamang ang may tao."
+        },
+        "population": {
+          "num": "117M",
+          "sub": "Populasyon (2026)",
+          "desc": "Ika-12 pinakamaraming tao sa mundo; median na edad 25."
+        },
+        "area": {
+          "num": "300,000",
+          "sub": "km² na sukat",
+          "desc": "Kasing-laki ng Italya, kalat sa 1.5M km² ng karagatan."
+        },
+        "languages": {
+          "num": "180+",
+          "sub": "Mga wikang sinasalita",
+          "desc": "Opisyal ang Filipino at Ingles; malawak ang Cebuano, Ilokano, Hiligaynon."
+        }
+      }
     },
     "facts": {
       "title": "Nakakamanghang Katotohanan",
@@ -30,7 +57,12 @@
       }
     },
     "overview": {
-      "title": "Buod",
+      "title": "Ano ang Pilipinas",
+      "meta": "Heograpiya · Pamahalaan · Tao",
+      "pullquote": {
+        "body": "Ang Pilipinas ay hindi iisang bansa sa iisang isla — ito ay isang usapang kalat sa tatlong libong isla, sa walumpu't higit pang wika, at tinuldikan ng mga habagat.",
+        "source": "— Sanaysay, Komisyon sa Wikang Filipino · 2023"
+      },
       "paragraphs": [
         "Ang Pilipinas ay isang soberanong kapuluang bansa na matatagpuan sa Timog-Silangang Asya, na binubuo ng mahigit 7,641 isla. Pinangalanan ayon kay Haring Felipe II ng Espanya, ang bansa ay may mayamang kasaysayan na umabot sa libu-libong taon, mula sa sinaunang katutubo kultura hanggang sa panahon ng pananakop ng mga Espanyol at Amerikano, na humantong sa kalayaan nito noong 1946.",
         "Sa kasalukuyan, ang Pilipinas ay isa sa mga pinaka-dynamic na ekonomiya sa Timog-Silangang Asya, na pinagsasama ang tradisyonal na pagpapahalaga sa modernong pag-unlad. Kilala ang bansa sa malugod na pagtanggap sa kapwa, magkakaibang pamana sa kultura, kahanga-hangang likas na tanawin, at masigla na demokrasya.",
@@ -70,6 +102,17 @@
         "regions": "Mga Rehiyon",
         "tourism": "Turismo"
       }
+    },
+    "symbols": {
+      "title": "Mga pambansang simbolo",
+      "meta": "Itinatag ng Batas Republika 8491 at Mga Proklamasyon"
+    },
+    "government": {
+      "title": "Pamahalaan sa isang sulyap",
+      "directoryCta": "Silipin ang Direktoryo ng Ahensya →"
+    },
+    "explore": {
+      "title": "Tuklasin ang Pilipinas"
     }
   },
   "history": {

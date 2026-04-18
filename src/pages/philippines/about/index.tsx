@@ -1,208 +1,243 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Globe2Icon,
-  UsersIcon,
-  Building2Icon,
-  MountainIcon,
-  SunIcon,
-} from 'lucide-react';
-import { Card, CardContent } from '../../../components/ui/Card';
+import { Link } from 'react-router-dom';
+import { ArrowRightIcon } from 'lucide-react';
+import Container from '../../../components/v2/ui/Container';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import ArrowLink from '../../../components/v2/ui/ArrowLink';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import { cn } from '../../../lib/utils';
+
+type FactItem = { num: string; sub: string; desc: string };
+type SymbolItem = {
+  swatch: string;
+  label: string;
+  title: string;
+  desc: string;
+};
+type GovItem = { label: string; body: string };
+type ExploreItem = { title: string; desc: string; href: string };
+
+const factIds = ['islands', 'population', 'area', 'languages'] as const;
+const symbolIds = ['flag', 'anthem', 'seal', 'bird', 'tree', 'flower'] as const;
+const govIds = [
+  'executive',
+  'legislative',
+  'judicial',
+  'constitutional',
+  'local',
+] as const;
+const exploreIds = ['history', 'culture', 'regions', 'map'] as const;
+
+const swatchTone: Record<(typeof symbolIds)[number], string> = {
+  flag: 'bg-gradient-to-b from-[#0038A8] from-50% to-[#CE1126] to-50% text-white/0',
+  anthem:
+    'bg-[repeating-linear-gradient(0deg,transparent_0_14px,rgba(11,79,217,0.12)_14px_15px)] text-ed-navy-ink',
+  seal: 'bg-[radial-gradient(circle,#FCD116_0%_40%,#0038A8_42%_55%,#CE1126_57%_100%)] text-transparent',
+  bird: 'bg-ed-paper-2 text-ed-navy-ink',
+  tree: 'bg-ed-paper-3 text-ed-navy-ink',
+  flower: 'bg-[#fff5e6] text-[#b4750a]',
+};
+
+/** Render a translated string that may contain **bold** markdown. */
+const renderBold = (text: string): ReactNode => {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((p, i) =>
+    i % 2 === 1 ? <strong key={i}>{p}</strong> : <span key={i}>{p}</span>
+  );
+};
 
 const AboutPhilippines: FC = () => {
   const { t } = useTranslation('about-philippines');
 
-  const facts = [
-    {
-      icon: <Globe2Icon className='h-6 w-6' />,
-      title: t('about.facts.items.geography.title'),
-      description: t('about.facts.items.geography.description'),
-    },
-    {
-      icon: <UsersIcon className='h-6 w-6' />,
-      title: t('about.facts.items.population.title'),
-      description: t('about.facts.items.population.description'),
-    },
-    {
-      icon: <Building2Icon className='h-6 w-6' />,
-      title: t('about.facts.items.capital.title'),
-      description: t('about.facts.items.capital.description'),
-    },
-    {
-      icon: <MountainIcon className='h-6 w-6' />,
-      title: t('about.facts.items.landscape.title'),
-      description: t('about.facts.items.landscape.description'),
-    },
-    {
-      icon: <SunIcon className='h-6 w-6' />,
-      title: t('about.facts.items.climate.title'),
-      description: t('about.facts.items.climate.description'),
-    },
-  ];
+  const factItems = factIds.map(id => ({
+    id,
+    ...(t(`about.factbox.items.${id}`, { returnObjects: true }) as FactItem),
+  }));
+  const overviewParagraphs = t('about.overview.paragraphs', {
+    returnObjects: true,
+  }) as string[];
+  const symbolItems = symbolIds.map(id => ({
+    id,
+    ...(t(`about.symbols.items.${id}`, { returnObjects: true }) as SymbolItem),
+  }));
+  const govItems = govIds.map(id => ({
+    id,
+    ...(t(`about.government.items.${id}`, { returnObjects: true }) as GovItem),
+  }));
+  const exploreItems = exploreIds.map(id => ({
+    id,
+    ...(t(`about.explore.items.${id}`, { returnObjects: true }) as ExploreItem),
+  }));
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      {/* Hero Section */}
-      <div className='relative h-[60vh] overflow-hidden'>
-        <div className='absolute inset-0'>
-          <img
-            src='https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg'
-            alt='Philippine landscape'
-            className='w-full h-full object-cover'
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <PageMasthead
+        variant='hero'
+        eyebrow={t('about.hero.eyebrow')}
+        title={
+          <>
+            {t('about.hero.title')}{' '}
+            <em className='italic font-normal'>
+              {t('about.hero.titleEmphasis')}
+            </em>{' '}
+            {t('about.hero.titleSuffix')}
+          </>
+        }
+        lede={t('about.hero.description')}
+      />
+
+      {/* Factbox */}
+      <section className='py-10'>
+        <Container>
+          <div className='grid grid-cols-4 border-y border-ed-rule divide-x divide-y divide-ed-rule max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0'>
+            {factItems.map(f => (
+              <div key={f.id} className='px-6 py-7'>
+                <div className='font-serif-ed text-[42px] font-medium leading-none text-ed-navy-ink'>
+                  {f.num}
+                </div>
+                <div className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                  {f.sub}
+                </div>
+                <div className='mt-1.5 text-[13px] leading-snug text-ed-ink-2'>
+                  {f.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* §01 What is the Philippines */}
+      <section className='mt-16'>
+        <Container>
+          <SectionHeader
+            num='§ 01'
+            label={t('about.overview.title')}
+            meta={t('about.overview.meta')}
           />
-          <div className='absolute inset-0 bg-black/50' />
-        </div>
-        <div className='relative h-full flex items-center'>
-          <div className='container mx-auto px-4'>
-            <div className='max-w-3xl'>
-              <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                {t('about.hero.title')}
-              </h1>
-              <p className='text-xl text-white/90 leading-relaxed'>
-                {t('about.hero.description')}
-              </p>
+          <div className='grid grid-cols-2 gap-x-12 max-lg:grid-cols-1 max-lg:gap-y-4'>
+            <div>
+              {overviewParagraphs.slice(0, 2).map((p, i) => (
+                <p
+                  key={i}
+                  className={cn(
+                    'mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2',
+                    i === 0 &&
+                      'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-medium first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
+                  )}
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+            <div>
+              {overviewParagraphs.slice(2).map((p, i) => (
+                <p
+                  key={i}
+                  className='mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2'
+                >
+                  {p}
+                </p>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Main Content */}
-      <div className='container mx-auto px-4 py-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          {/* Quick Facts */}
-          <div className='lg:col-span-2 space-y-8'>
-            <section>
-              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('about.facts.title')}
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                {facts.map((fact, index) => (
-                  <Card key={index}>
-                    <CardContent className='p-6'>
-                      <div className='flex items-start space-x-4'>
-                        <div className='p-3 bg-primary-100 rounded-lg text-primary-600'>
-                          {fact.icon}
-                        </div>
-                        <div>
-                          <h3 className='text-lg font-semibold text-gray-900 mb-2'>
-                            {fact.title}
-                          </h3>
-                          <p className='text-gray-800'>{fact.description}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
+          <blockquote className='my-9 border-l-[3px] border-ed-navy py-2 pl-6 font-serif-ed text-[26px] italic leading-snug text-ed-navy-ink'>
+            &ldquo;{t('about.overview.pullquote.body')}&rdquo;
+            <footer className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] not-italic text-ed-ink-3'>
+              {t('about.overview.pullquote.source')}
+            </footer>
+          </blockquote>
+        </Container>
+      </section>
 
-            <section>
-              <h2 className='text-3xl font-bold text-gray-900 mb-6'>
-                {t('about.overview.title')}
-              </h2>
-              <div className='prose max-w-none'>
-                {(
-                  t('about.overview.paragraphs', {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((paragraph: string, index: number) => (
-                  <p key={index} className='text-gray-800 leading-relaxed mb-4'>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </section>
-          </div>
-
-          {/* Sidebar */}
-          <div className='space-y-6'>
-            <Card>
-              <CardContent className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('about.keyInformation.title')}
-                </h3>
-                <div className='space-y-3'>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('about.keyInformation.items.officialLanguages.label')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('about.keyInformation.items.officialLanguages.value')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('about.keyInformation.items.government.label')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('about.keyInformation.items.government.value')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('about.keyInformation.items.currency.label')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('about.keyInformation.items.currency.value')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('about.keyInformation.items.timeZone.label')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('about.keyInformation.items.timeZone.value')}
-                    </div>
-                  </div>
-                  <div>
-                    <div className='text-sm font-medium text-gray-800'>
-                      {t('about.keyInformation.items.majorCities.label')}
-                    </div>
-                    <div className='text-gray-900'>
-                      {t('about.keyInformation.items.majorCities.value')}
-                    </div>
-                  </div>
+      {/* §02 National symbols */}
+      <section className='mt-16'>
+        <Container>
+          <SectionHeader
+            num='§ 02'
+            label={t('about.symbols.title')}
+            meta={t('about.symbols.meta')}
+          />
+          <div className='grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
+            {symbolItems.map(s => (
+              <div key={s.id} className='border border-ed-rule bg-white p-7'>
+                <div
+                  className={cn(
+                    'mb-5 flex h-[100px] items-center justify-center border border-ed-rule font-mono-ed text-[11px] uppercase tracking-[0.1em]',
+                    swatchTone[s.id]
+                  )}
+                >
+                  {s.swatch}
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-900 mb-4'>
-                  {t('about.relatedLinks.title')}
+                <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                  {s.label}
+                </div>
+                <h3 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+                  {s.title}
                 </h3>
-                <nav className='space-y-2'>
-                  <a
-                    href='/philippines/history'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('about.relatedLinks.items.history')}
-                  </a>
-                  <a
-                    href='/philippines/culture'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('about.relatedLinks.items.culture')}
-                  </a>
-                  <a
-                    href='/philippines/regions'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('about.relatedLinks.items.regions')}
-                  </a>
-                  <a
-                    href='/philippines/tourism'
-                    className='block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors'
-                  >
-                    {t('about.relatedLinks.items.tourism')}
-                  </a>
-                </nav>
-              </CardContent>
-            </Card>
+                <p className='mt-2 text-sm leading-normal text-ed-ink-2'>
+                  {s.desc}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </section>
+
+      {/* §03 + §04 split */}
+      <section className='mt-20 mb-20'>
+        <Container>
+          <div className='grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-12'>
+            <div>
+              <SectionHeader num='§ 03' label={t('about.government.title')} />
+              <div className='border-t-2 border-ed-navy'>
+                {govItems.map(g => (
+                  <div
+                    key={g.id}
+                    className='grid grid-cols-[120px_1fr] gap-8 border-b border-ed-rule py-5 max-sm:grid-cols-[80px_1fr] max-sm:gap-4'
+                  >
+                    <div className='font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+                      {g.label}
+                    </div>
+                    <div className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                      {renderBold(g.body)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className='mt-6'>
+                <ArrowLink to='/government/departments'>
+                  {t('about.government.directoryCta')}
+                </ArrowLink>
+              </div>
+            </div>
+
+            <div>
+              <SectionHeader num='§ 04' label={t('about.explore.title')} />
+              <div className='border-t-2 border-ed-navy'>
+                {exploreItems.map(e => (
+                  <Link
+                    key={e.id}
+                    to={e.href}
+                    className='grid grid-cols-[1fr_auto] items-center border-b border-ed-rule py-5 text-ed-ink no-underline'
+                  >
+                    <div>
+                      <div className='font-serif-ed text-2xl font-medium text-ed-navy-ink'>
+                        {e.title}
+                      </div>
+                      <div className='mt-1 text-sm text-ed-ink-2'>{e.desc}</div>
+                    </div>
+                    <ArrowRightIcon size={14} className='text-ed-navy' />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </main>
   );
 };
 
