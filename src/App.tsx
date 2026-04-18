@@ -70,6 +70,10 @@ import SearchPage from './pages/Search';
 // Directory Page
 import DirectoryPage from './pages/directory';
 
+// Guides
+import GuidesIndex from './pages/guides';
+import PassportGuide from './pages/guides/passport';
+
 // Data Pages
 import WeatherPage from './pages/data/weather';
 import ForexPage from './pages/data/forex';
@@ -110,6 +114,8 @@ function App() {
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/directory' element={<DirectoryPage />} />
+            <Route path='/guides' element={<GuidesIndex />} />
+            <Route path='/guides/passport' element={<PassportGuide />} />
             <Route path='/ideas' element={<Ideas />} />
             <Route path='/join-us' element={<JoinUs />} />
             <Route path='/terms-of-service' element={<TermsOfService />} />
