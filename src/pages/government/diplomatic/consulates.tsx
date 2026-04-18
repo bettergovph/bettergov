@@ -1,112 +1,149 @@
-import { useState, useMemo } from 'react';
-import { SearchIcon, Building2Icon } from 'lucide-react';
+import { FC, useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { MailIcon, PhoneIcon, SearchIcon } from 'lucide-react';
 import diplomaticData from '../../../data/directory/diplomatic.json';
-import {
-  CardGrid,
-  Card,
-  CardContent,
-  CardTitle,
-  CardDescription,
-  CardContactInfo,
-  CardDivider,
-} from '../../../components/ui/CardList';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import { titleCase } from '../../../lib/directory';
 
-export default function ConsulatesPage() {
-  const [searchTerm, setSearchTerm] = useState('');
+type Consulate = {
+  country: string;
+  office_name: string;
+  address?: string;
+  contact?: string;
+  email?: string;
+  representative?: string;
+  title?: string;
+};
 
-  // Get consulates data
-  const consulates = useMemo(() => {
-    return diplomaticData['Consulate'] || [];
-  }, []);
+const ConsulatesPage: FC = () => {
+  const all = useMemo<Consulate[]>(
+    () =>
+      (diplomaticData as unknown as { Consulate?: Consulate[] }).Consulate ??
+      [],
+    []
+  );
+  const [q, setQ] = useState('');
 
-  // Filter consulates based on search term
-  const filteredConsulates = useMemo(() => {
-    return consulates.filter(
-      consulate =>
-        consulate.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        consulate.office_name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        consulate.representative
-          ?.toLowerCase()
-          .includes(searchTerm.toLowerCase())
+  const results = useMemo(() => {
+    const sorted = [...all].sort((a, b) => a.country.localeCompare(b.country));
+    if (!q.trim()) return sorted;
+    const n = q.toLowerCase();
+    return sorted.filter(c =>
+      `${c.country} ${c.office_name} ${c.representative ?? ''}`
+        .toLowerCase()
+        .includes(n)
     );
-  }, [consulates, searchTerm]);
+  }, [all, q]);
 
   return (
-    <div className='@container space-y-6'>
-      <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
-        <div>
-          <h1 className='text-2xl font-bold text-gray-900'>Consulates</h1>
-          <p className='text-gray-800 mt-1'>
-            {consulates.length} consulates in the Philippines
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>Consulates | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='Consulates and honorary consulates in the Philippines — representation of foreign states outside the main embassy, often ad honorem.'
+        />
+      </Helmet>
+      <PageMasthead
+        eyebrow={`Diplomatic · ${all.length} consulates`}
+        title={
+          <>
+            Consulates, <em className='italic font-normal'>ad honorem.</em>
+          </>
+        }
+        lede='Consulates and honorary consulates representing foreign states in the Philippines — typically for citizen services, notarial acts, and trade promotion.'
+      />
 
-        <div className='relative w-full md:w-64'>
-          <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
-          <input
-            type='search'
-            placeholder='Search consulates...'
-            className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-          />
-        </div>
-      </div>
-
-      {filteredConsulates.length === 0 ? (
-        <div className='p-8 text-center bg-white rounded-lg border'>
-          <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <Building2Icon className='h-6 w-6 text-gray-400' />
+      <section className='py-10 max-md:py-6'>
+        <Container>
+          <div className='mb-6 flex items-center justify-between gap-4 max-md:flex-col max-md:items-stretch'>
+            <Eyebrow>
+              {results.length} of {all.length} consulates
+            </Eyebrow>
+            <div className='relative w-full max-w-md'>
+              <SearchIcon
+                size={16}
+                className='pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ed-ink-4'
+              />
+              <input
+                type='search'
+                aria-label='Search consulates'
+                placeholder='Search by country, office, or consul'
+                value={q}
+                onChange={e => setQ(e.target.value)}
+                className='block w-full border border-ed-ink bg-white py-2.5 pl-10 pr-4 font-sans-ed text-[14px] text-ed-ink outline-none placeholder:text-ed-ink-4'
+              />
+            </div>
           </div>
-          <h3 className='text-lg font-medium text-gray-900 mb-1'>
-            No consulates found
-          </h3>
-          <p className='text-gray-800'>Try adjusting your search term.</p>
-        </div>
-      ) : (
-        <CardGrid columns={1} className='@xl:grid-cols-2 @2xl:grid-cols-3'>
-          {filteredConsulates.map((consulate, index) => (
-            <Card key={index} className='h-full'>
-              <CardContent className='h-full flex flex-col'>
-                <div className='flex items-center justify-between mb-2'>
-                  <CardTitle className='text-lg'>
-                    {consulate.country || 'N/A'}
-                  </CardTitle>
-                  <div className='bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full'>
-                    Consulate
+
+          {results.length === 0 ? (
+            <div className='border border-dashed border-ed-rule py-16 text-center font-serif-ed text-lg text-ed-ink-3'>
+              No consulates match.
+            </div>
+          ) : (
+            <ul className='divide-y divide-ed-rule border-y border-ed-rule'>
+              {results.map((c, i) => (
+                <li
+                  key={`${c.country}-${i}`}
+                  className='grid grid-cols-[200px_1fr_minmax(260px,320px)] gap-6 py-6 max-md:grid-cols-1 max-md:gap-2'
+                >
+                  <div>
+                    <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                      {titleCase(c.country)}
+                    </div>
+                    {c.representative && (
+                      <div className='mt-1 font-serif-ed text-[15px] text-ed-ink'>
+                        {c.representative}
+                      </div>
+                    )}
+                    {c.title && (
+                      <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-4'>
+                        {c.title}
+                      </div>
+                    )}
                   </div>
-                </div>
-
-                <CardDivider className='my-4' />
-                <div className='flex-1'>
-                  <CardDescription className='mb-4'>
-                    {consulate.office_name}
-                  </CardDescription>
-
-                  <CardContactInfo
-                    contact={{
-                      address: consulate.address,
-                      phone: consulate.contact,
-                      email: consulate.email,
-                      website: consulate.website,
-                    }}
-                  />
-                </div>
-
-                <CardDivider className='mt-4 mb-4' />
-                <div>
-                  <p className='font-medium text-gray-900'>
-                    {consulate.representative}
-                  </p>
-                  <p className='text-sm text-gray-800'>{consulate.title}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </CardGrid>
-      )}
-    </div>
+                  <div>
+                    <div className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+                      {c.office_name}
+                    </div>
+                    {c.address && (
+                      <p className='mt-1.5 text-[13px] leading-normal text-ed-ink-2'>
+                        {c.address}
+                      </p>
+                    )}
+                  </div>
+                  <div className='flex flex-col gap-2 border-l border-ed-rule pl-5 text-[13px] max-md:border-l-0 max-md:pl-0'>
+                    {c.contact && (
+                      <span className='inline-flex items-center gap-2'>
+                        <PhoneIcon
+                          size={14}
+                          className='shrink-0 text-ed-ink-3'
+                        />
+                        <span className='font-mono-ed text-ed-ink'>
+                          {c.contact}
+                        </span>
+                      </span>
+                    )}
+                    {c.email && (
+                      <a
+                        href={`mailto:${c.email.split(/[;,]/)[0].trim()}`}
+                        className='inline-flex items-center gap-2 break-all text-ed-navy no-underline hover:text-ed-red'
+                      >
+                        <MailIcon size={14} className='shrink-0' />
+                        <span>{c.email}</span>
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Container>
+      </section>
+    </>
   );
-}
+};
+
+export default ConsulatesPage;

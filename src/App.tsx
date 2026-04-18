@@ -29,18 +29,14 @@ import VisaTypeDetail from './pages/travel/visa-types/[type]';
 import CommunicatingPage from './pages/travel/communicating';
 import CommunicatingPrintPage from './pages/travel/communicating/print';
 import ExecutiveDirectory from './pages/government/executive';
-import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
 import DepartmentDetail from './pages/government/departments/[department]';
-import DepartmentsLayout from './pages/government/departments/layout';
-import ConstitutionalLayout from './pages/government/constitutional/layout';
 import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
 import GOCCsPage from './pages/government/constitutional/goccs';
 import SUCsPage from './pages/government/constitutional/sucs';
 
 // Legislative Branch
-import LegislativeLayout from './pages/government/legislative/layout';
 import LegislativeIndex from './pages/government/legislative/index';
 import LegislativeChamber from './pages/government/legislative/[chamber]';
 import HouseMembersPage from './pages/government/legislative/house-members';
@@ -48,7 +44,6 @@ import PartyListMembersPage from './pages/government/legislative/party-list-memb
 import SenateCommitteesPage from './pages/government/legislative/senate-committees';
 
 // Diplomatic Section
-import DiplomaticLayout from './pages/government/diplomatic/layout';
 import DiplomaticIndex from './pages/government/diplomatic/index';
 import DiplomaticMissionsPage from './pages/government/diplomatic/missions';
 import ConsulatesPage from './pages/government/diplomatic/consulates';
@@ -59,7 +54,6 @@ import OfficeOfTheVicePresident from './pages/government/executive/office-of-the
 import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
 
 // Local Government Units
-import LocalLayout from './pages/government/local/components/LocalLayout';
 import LocalGovernmentIndex from './pages/government/local/index';
 import RegionalLGUPage from './pages/government/local/[region]';
 
@@ -193,76 +187,66 @@ function App() {
               {/* Executive */}
               <Route path='executive'>
                 <Route index element={<ExecutiveDirectory />} />
-                <Route element={<ExecutiveLayout />}>
-                  <Route
-                    path='other-executive-offices'
-                    element={<OtherExecutiveOffices />}
-                  />
-                  <Route
-                    path='office-of-the-president'
-                    element={<OfficeOfThePresident />}
-                  />
-                  <Route
-                    path='office-of-the-vice-president'
-                    element={<OfficeOfTheVicePresident />}
-                  />
-                  <Route
-                    path='presidential-communications-office'
-                    element={<PresidentialCommunicationsOffice />}
-                  />
-                </Route>
+                <Route
+                  path='other-executive-offices'
+                  element={<OtherExecutiveOffices />}
+                />
+                <Route
+                  path='office-of-the-president'
+                  element={<OfficeOfThePresident />}
+                />
+                <Route
+                  path='office-of-the-vice-president'
+                  element={<OfficeOfTheVicePresident />}
+                />
+                <Route
+                  path='presidential-communications-office'
+                  element={<PresidentialCommunicationsOffice />}
+                />
               </Route>
 
               {/* Departments */}
               <Route path='departments'>
                 <Route index element={<DepartmentsIndex />} />
-                <Route element={<DepartmentsLayout />}>
-                  <Route path=':department' element={<DepartmentDetail />} />
-                </Route>
+                <Route path=':department' element={<DepartmentDetail />} />
               </Route>
 
               {/* Constitutional */}
               <Route path='constitutional'>
                 <Route index element={<ConstitutionalIndex />} />
-                <Route element={<ConstitutionalLayout />}>
-                  <Route path=':office' element={<ConstitutionalOffice />} />
-                  <Route path='goccs' element={<GOCCsPage />} />
-                  <Route path='sucs' element={<SUCsPage />} />
-                </Route>
+                <Route path=':office' element={<ConstitutionalOffice />} />
+                <Route path='goccs' element={<GOCCsPage />} />
+                <Route path='sucs' element={<SUCsPage />} />
               </Route>
 
               {/* Legislative */}
               <Route path='legislative'>
                 <Route index element={<LegislativeIndex />} />
-                <Route element={<LegislativeLayout />}>
-                  <Route path=':chamber' element={<LegislativeChamber />} />
-                  <Route path='house-members' element={<HouseMembersPage />} />
-                  <Route
-                    path='party-list-members'
-                    element={<PartyListMembersPage />}
-                  />
-                  <Route
-                    path='senate-committees'
-                    element={<SenateCommitteesPage />}
-                  />
-                </Route>
+                <Route path=':chamber' element={<LegislativeChamber />} />
+                <Route path='house-members' element={<HouseMembersPage />} />
+                <Route
+                  path='party-list-members'
+                  element={<PartyListMembersPage />}
+                />
+                <Route
+                  path='senate-committees'
+                  element={<SenateCommitteesPage />}
+                />
               </Route>
 
               {/* Diplomatic */}
               <Route path='diplomatic'>
                 <Route index element={<DiplomaticIndex />} />
-                <Route element={<DiplomaticLayout />}>
-                  <Route path='missions' element={<DiplomaticMissionsPage />} />
-                  <Route path='consulates' element={<ConsulatesPage />} />
-                  <Route
-                    path='organizations'
-                    element={<InternationalOrganizationsPage />}
-                  />
-                </Route>
+                <Route path='missions' element={<DiplomaticMissionsPage />} />
+                <Route path='consulates' element={<ConsulatesPage />} />
+                <Route
+                  path='organizations'
+                  element={<InternationalOrganizationsPage />}
+                />
               </Route>
 
               {/* Local Government Routes */}
-              <Route path='local' element={<LocalLayout />}>
+              <Route path='local'>
                 <Route index element={<LocalGovernmentIndex />} />
                 <Route path=':region' element={<RegionalLGUPage />} />
               </Route>

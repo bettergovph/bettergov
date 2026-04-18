@@ -1,262 +1,241 @@
-import { useState, useMemo, useEffect } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SearchIcon, MapPinIcon } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { MailIcon, PhoneIcon, SearchIcon } from 'lucide-react';
 import {
-  loadRegionLgu,
-  RegionLGU,
-  Province,
   City,
   Municipality,
+  Province,
+  RegionLGU,
+  loadRegionLgu,
 } from '../../../lib/lgu';
-import {
-  CardGrid,
-  Card,
-  CardContent,
-  CardTitle,
-  CardContactInfo,
-  CardAvatar,
-} from '../../../components/ui/CardList';
-import SEO from '../../../components/SEO';
-import { getLocalGovSEOData } from '../../../utils/seo-data';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import Flag from '../../../components/v2/ui/Flag';
+import DetailHeader from '../../../components/v2/directory/DetailHeader';
+import { titleCase } from '../../../lib/directory';
 
-export default function RegionalLGUPage() {
+type Unit = {
+  name: string;
+  type: 'City' | 'Municipality';
+  province: string | null;
+  mayor?: { name?: string; contact?: string; email?: string };
+  viceMayor?: { name?: string; contact?: string; email?: string };
+};
+
+const flattenUnits = (region: RegionLGU): Unit[] => {
+  const units: Unit[] = [];
+
+  region.cities?.forEach((c: City) =>
+    units.push({
+      name: c.city,
+      type: 'City',
+      province: null,
+      mayor: c.mayor,
+      viceMayor: c.vice_mayor,
+    })
+  );
+  region.municipalities?.forEach((m: Municipality) =>
+    units.push({
+      name: m.municipality,
+      type: 'Municipality',
+      province: null,
+      mayor: m.mayor,
+      viceMayor: m.vice_mayor,
+    })
+  );
+  region.provinces?.forEach((p: Province) => {
+    p.cities?.forEach(c =>
+      units.push({
+        name: c.city,
+        type: 'City',
+        province: p.province,
+        mayor: c.mayor,
+        viceMayor: c.vice_mayor,
+      })
+    );
+    p.municipalities?.forEach(m =>
+      units.push({
+        name: m.municipality,
+        type: 'Municipality',
+        province: p.province,
+        mayor: m.mayor,
+        viceMayor: m.vice_mayor,
+      })
+    );
+  });
+  return units;
+};
+
+const RegionalLGUPage: FC = () => {
   const { region } = useParams<{ region: string }>();
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // Load region data dynamically from per-region JSON files
   const [regionData, setRegionData] = useState<RegionLGU | null>(null);
+
   useEffect(() => {
-    let isActive = true;
-    (async () => {
-      const data = await loadRegionLgu(region);
-      if (isActive) setRegionData(data);
-    })();
+    let active = true;
+    loadRegionLgu(region).then(data => {
+      if (active) setRegionData(data);
+    });
     return () => {
-      isActive = false;
+      active = false;
     };
   }, [region]);
 
-  // Flatten all cities and municipalities from all provinces
-  const allLocalGovUnits = useMemo(() => {
-    if (!regionData) return [];
+  const units = useMemo(
+    () => (regionData ? flattenUnits(regionData) : []),
+    [regionData]
+  );
 
-    interface Unit {
-      city?: string;
-      mayor?: { name?: string; contact?: string; email?: string };
-      vice_mayor?: { name?: string; contact?: string; email?: string };
-      type: 'City' | 'Municipality';
-      province: string | null;
-    }
-    const units: Unit[] = [];
-
-    // Add direct cities (if any)
-    if (regionData.cities) {
-      regionData.cities.forEach((city: City) => {
-        units.push({ ...city, type: 'City', province: null });
-      });
-    }
-
-    // Add direct municipalities (if any)
-    if (regionData.municipalities) {
-      regionData.municipalities.forEach((municipality: Municipality) => {
-        units.push({
-          city: municipality.municipality,
-          mayor: municipality.mayor,
-          vice_mayor: municipality.vice_mayor,
-          type: 'Municipality',
-          province: null,
-        });
-      });
-    }
-
-    // Add cities and municipalities from provinces (if any)
-    if (regionData.provinces) {
-      regionData.provinces.forEach((province: Province) => {
-        if (province.cities) {
-          province.cities.forEach((city: City) => {
-            units.push({ ...city, type: 'City', province: province.province });
-          });
-        }
-        if (province.municipalities) {
-          province.municipalities.forEach((municipality: Municipality) => {
-            units.push({
-              city: municipality.municipality,
-              mayor: municipality.mayor,
-              vice_mayor: municipality.vice_mayor,
-              type: 'Municipality',
-              province: province.province,
-            });
-          });
-        }
-      });
-    }
-
-    return units;
-  }, [regionData]);
-
-  // Filter cities based on search term
-  const filteredCities = useMemo(() => {
-    if (!searchTerm) return allLocalGovUnits;
-
-    return allLocalGovUnits.filter(unit => {
-      const term = searchTerm.toLowerCase();
-      return (
-        (unit.city && unit.city.toLowerCase().includes(term)) ||
-        (unit.mayor?.name && unit.mayor.name.toLowerCase().includes(term)) ||
-        (unit.vice_mayor?.name &&
-          unit.vice_mayor.name.toLowerCase().includes(term)) ||
-        (unit.province && unit.province.toLowerCase().includes(term))
-      );
-    });
-  }, [allLocalGovUnits, searchTerm]);
-
-  const seoData = getLocalGovSEOData(regionData?.region);
+  const [q, setQ] = useState('');
+  const results = useMemo(() => {
+    const sorted = [...units].sort((a, b) => a.name.localeCompare(b.name));
+    if (!q.trim()) return sorted;
+    const n = q.toLowerCase();
+    return sorted.filter(u =>
+      `${u.name} ${u.province ?? ''} ${u.mayor?.name ?? ''} ${u.viceMayor?.name ?? ''}`
+        .toLowerCase()
+        .includes(n)
+    );
+  }, [units, q]);
 
   if (!regionData) {
     return (
-      <>
-        <SEO {...seoData} />
-        <div className='p-8 text-center bg-white rounded-lg border'>
-          <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-            <MapPinIcon className='h-6 w-6 text-gray-400' />
-          </div>
-          <h3 className='text-lg font-medium text-gray-900 mb-1'>
-            Region not found
-          </h3>
-          <p className='text-gray-800'>
-            The region you&apos;re looking for doesn&apos;t exist or may have
-            been moved.
-          </p>
-        </div>
-      </>
+      <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+        <DetailHeader
+          breadcrumbs={[
+            { label: 'Directory', to: '/government' },
+            { label: 'Local Government', to: '/government/local' },
+            { label: region ?? 'Region' },
+          ]}
+          title='Region not found.'
+          lede='The region you are looking for may have been moved or no longer exists.'
+        />
+      </main>
     );
   }
 
   return (
-    <>
-      <SEO {...seoData} />
-      <div className='space-y-6'>
-        <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
-          <div>
-            <h1 className='text-3xl font-bold text-gray-900 mb-2'>
-              {regionData.region}
-            </h1>
-            <p className='text-gray-800'>
-              {allLocalGovUnits.length} cities and municipalities
-            </p>
-          </div>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <Helmet>
+        <title>{titleCase(regionData.region)} · LGUs | BetterGov.ph</title>
+      </Helmet>
 
-          <div className='relative w-full md:w-64'>
-            <SearchIcon className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
-            <input
-              type='search'
-              placeholder='Search cities or officials...'
-              className='pl-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
+      <DetailHeader
+        breadcrumbs={[
+          { label: 'Directory', to: '/government' },
+          { label: 'Local Government', to: '/government/local' },
+          { label: titleCase(regionData.region) },
+        ]}
+        eyebrow={`Region · ${units.length} cities and municipalities`}
+        title={titleCase(regionData.region)}
+      />
 
-        {filteredCities?.length === 0 ? (
-          <div className='p-8 text-center bg-white rounded-lg border'>
-            <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
-              <SearchIcon className='h-6 w-6 text-gray-400' />
+      <section className='py-10 max-md:py-6'>
+        <Container>
+          <div className='mb-6 flex items-center justify-between gap-4 max-md:flex-col max-md:items-stretch'>
+            <Eyebrow>
+              {results.length} of {units.length} LGUs
+            </Eyebrow>
+            <div className='relative w-full max-w-md'>
+              <SearchIcon
+                size={16}
+                className='pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ed-ink-4'
+              />
+              <input
+                type='search'
+                aria-label='Search LGUs'
+                placeholder='Search cities, municipalities, or officials'
+                value={q}
+                onChange={e => setQ(e.target.value)}
+                className='block w-full border border-ed-ink bg-white py-2.5 pl-10 pr-4 font-sans-ed text-[14px] text-ed-ink outline-none placeholder:text-ed-ink-4'
+              />
             </div>
-            <h3 className='text-lg font-medium text-gray-900 mb-1'>
-              No cities found
-            </h3>
-            <p className='text-gray-800'>Try adjusting your search term.</p>
           </div>
-        ) : (
-          <CardGrid columns={2} breakpoint='lg' gap='md'>
-            {filteredCities?.map((unit, index) => (
-              <Card key={index}>
-                <CardContent>
-                  <div className='flex items-center justify-between mb-4'>
-                    <div className='flex-1'>
-                      <CardTitle className='text-xl'>{unit.city}</CardTitle>
-                      {unit.province ? (
-                        <p className='text-sm text-gray-800 mt-1'>
-                          {unit.province}
-                        </p>
-                      ) : (
-                        <p className='text-sm text-gray-800 mt-1'>
-                          Regional {unit.type}
-                        </p>
-                      )}
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                      <div
-                        className={`text-xs font-medium px-2 py-1 rounded-full ${
-                          unit.type === 'City'
-                            ? 'bg-green-50 text-green-700'
-                            : 'bg-blue-50 text-blue-700'
-                        }`}
-                      >
-                        {unit.type}
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Mayor Section */}
-                  <div className='mb-6'>
-                    <div className='flex items-start space-x-3'>
-                      <CardAvatar name={unit.mayor?.name || ''} size='sm' />
-                      <div className='flex-1 min-w-0'>
-                        <p className='font-medium text-gray-900 text-sm'>
-                          {unit.mayor?.name || 'No Mayor Listed'}
-                        </p>
-                        <p className='text-xs text-gray-800'>Mayor</p>
-                        {unit.mayor?.contact && (
-                          <div className='mt-1'>
-                            <CardContactInfo
-                              contact={{
-                                phone: unit.mayor?.contact,
-                                email: unit.mayor?.email,
-                              }}
-                              compact
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Vice Mayor Section */}
-                  {unit.vice_mayor && (
+          {results.length === 0 ? (
+            <div className='border border-dashed border-ed-rule py-16 text-center font-serif-ed text-lg text-ed-ink-3'>
+              No LGUs match.
+            </div>
+          ) : (
+            <div className='grid grid-cols-2 gap-6 max-md:grid-cols-1'>
+              {results.map((u, i) => (
+                <div
+                  key={`${u.name}-${i}`}
+                  className='border border-ed-rule bg-white p-6 transition-colors hover:border-ed-ink'
+                >
+                  <div className='flex items-start justify-between gap-4'>
                     <div>
-                      <div className='flex items-start space-x-3'>
-                        <CardAvatar
-                          name={unit.vice_mayor.name || ''}
-                          size='sm'
-                        />
-                        <div className='flex-1 min-w-0'>
-                          <p className='font-medium text-gray-900 text-sm'>
-                            {unit.vice_mayor.name}
-                          </p>
-                          <p className='text-xs text-gray-800'>Vice Mayor</p>
-                          {unit.vice_mayor.contact && (
-                            <div className='mt-1'>
-                              <CardContactInfo
-                                contact={{
-                                  phone: unit.vice_mayor.contact,
-                                  email: unit.vice_mayor.email,
-                                }}
-                                compact
-                              />
-                            </div>
-                          )}
-                        </div>
+                      <h3 className='font-serif-ed text-[22px] font-medium leading-tight text-ed-navy-ink'>
+                        {titleCase(u.name)}
+                      </h3>
+                      <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                        {u.province
+                          ? titleCase(u.province)
+                          : `Regional ${u.type.toLowerCase()}`}
                       </div>
                     </div>
+                    <Flag variant={u.type === 'City' ? 'navy' : 'outline'}>
+                      {u.type}
+                    </Flag>
+                  </div>
+
+                  {u.mayor?.name && (
+                    <Official
+                      role='Mayor'
+                      name={u.mayor.name}
+                      contact={u.mayor.contact}
+                      email={u.mayor.email}
+                    />
                   )}
-                </CardContent>
-              </Card>
-            ))}
-          </CardGrid>
+                  {u.viceMayor?.name && (
+                    <Official
+                      role='Vice mayor'
+                      name={u.viceMayor.name}
+                      contact={u.viceMayor.contact}
+                      email={u.viceMayor.email}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </Container>
+      </section>
+    </main>
+  );
+};
+
+const Official: FC<{
+  role: string;
+  name: string;
+  contact?: string;
+  email?: string;
+}> = ({ role, name, contact, email }) => (
+  <div className='mt-4 border-t border-ed-rule pt-3'>
+    <div className='font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+      {role}
+    </div>
+    <div className='mt-0.5 font-serif-ed text-[15px] text-ed-ink'>{name}</div>
+    {(contact || email) && (
+      <div className='mt-1 flex flex-wrap gap-4 text-[12px] text-ed-ink-2'>
+        {contact && (
+          <span className='inline-flex items-center gap-1.5'>
+            <PhoneIcon size={12} className='text-ed-ink-3' aria-hidden />
+            <span className='font-mono-ed'>{contact}</span>
+          </span>
+        )}
+        {email && (
+          <a
+            href={`mailto:${email}`}
+            className='inline-flex items-center gap-1.5 text-ed-navy no-underline hover:text-ed-red'
+          >
+            <MailIcon size={12} aria-hidden />
+            <span>{email}</span>
+          </a>
         )}
       </div>
-    </>
-  );
-}
+    )}
+  </div>
+);
+
+export default RegionalLGUPage;

@@ -1,205 +1,146 @@
-import React, { useState } from 'react';
-import { TrendingDown, Info, Hash } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from '../../../components/ui/Dialog';
-import Button from '../../../components/ui/Button';
+import { FC, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import salaryScheduleData from './salary-schedule.json';
 import plantillaPositionsData from './plantilla-positions.json';
 
-type SalarySchedule = {
+type SalaryRow = {
   grade: number;
   steps: Array<number | null>;
   average: number;
 };
 
-// Second Tranche Monthly Salary Schedule for Civilian Personnel (effective Jan 1, 2025)
-// Source: DBM National Budget Circular No. 597 (Annex A) - Data from salary_grades_2025_source_DBM.csv
-// Sorted from highest to lowest salary grade
-const salarySchedule: SalarySchedule[] = salaryScheduleData;
+const plantilla: Record<number, string> = plantillaPositionsData;
 
 const formatPeso = (amount: number | null) =>
-  amount == null ? '-' : `₱${amount.toLocaleString('en-PH')}`;
+  amount == null ? '—' : `₱${amount.toLocaleString('en-PH')}`;
 
-// Plantilla position references per SG (non-exhaustive)
-const plantillaPositionsByGrade: Record<number, string> =
-  plantillaPositionsData;
-
-// All plantilla positions styled uniformly in gray
-
-export default function SalaryGradePage() {
-  const [isStepsDialogOpen, setIsStepsDialogOpen] = useState(false);
-
-  const allSteps = salarySchedule.flatMap(
-    s => s.steps.filter(v => v != null) as number[]
-  );
-  const highestSalary = Math.max(...allSteps);
-  const lowestSalary = Math.min(...allSteps);
+const SalaryGradePage: FC = () => {
+  const schedule = salaryScheduleData as SalaryRow[];
+  const { highest, lowest } = useMemo(() => {
+    const all = schedule.flatMap(s =>
+      s.steps.filter((v): v is number => v != null)
+    );
+    return { highest: Math.max(...all), lowest: Math.min(...all) };
+  }, [schedule]);
 
   return (
-    <div className='container mx-auto px-4 py-8'>
-      <div className='max-w-6xl mx-auto'>
-        {/* Header */}
-        <div className='text-center mb-8'>
-          <h1 className='text-4xl font-bold text-gray-900 mb-4'>
-            Government Salary Grades
-          </h1>
-          <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
-            Comprehensive salary information for Philippine government officials
-            and employees based on the standardized salary grade system.
-          </p>
-        </div>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <Helmet>
+        <title>Government Salary Grades | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='The Philippine government salary grade schedule (SG 1–33, 8 steps) — based on DBM National Budget Circular 597, effective January 2025.'
+        />
+      </Helmet>
 
-        {/* Statistics Cards */}
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-6 mb-8'>
-          <div className='bg-white p-6 rounded-lg shadow-md border'>
-            <div className='flex items-center'>
-              <div className='h-8 w-8 text-green-600 mr-3 flex items-center justify-center text-2xl font-bold'>
-                ₱
-              </div>
-              <div>
-                <p className='text-sm font-medium text-gray-600'>
-                  Highest Salary
-                </p>
-                <p className='text-2xl font-bold text-gray-900'>
-                  {formatPeso(highestSalary)}
-                </p>
-              </div>
-            </div>
+      <PageMasthead
+        eyebrow='Government · Compensation'
+        title={
+          <>
+            Salary grades{' '}
+            <em className='italic font-normal'>one through thirty-three.</em>
+          </>
+        }
+        lede='The standardized compensation schedule for civilian personnel of the Philippine government — 33 salary grades, each with 8 steps, as published by the Department of Budget and Management.'
+      />
+
+      {/* Stat strip */}
+      <section className='border-b border-ed-rule bg-white py-10 max-md:py-8'>
+        <Container>
+          <div className='grid grid-cols-4 divide-x divide-ed-rule max-md:grid-cols-2 max-md:divide-x-0 max-md:divide-y'>
+            <Stat label='Highest salary' value={formatPeso(highest)} />
+            <Stat label='Lowest salary' value={formatPeso(lowest)} />
+            <Stat label='Salary grades' value='1 – 33' />
+            <Stat label='Steps per grade' value='1 – 8' />
           </div>
+        </Container>
+      </section>
 
-          <div className='bg-white p-6 rounded-lg shadow-md border'>
-            <div className='flex items-center'>
-              <TrendingDown className='h-8 w-8 text-blue-600 mr-3' />
-              <div>
-                <p className='text-sm font-medium text-gray-600'>
-                  Lowest Salary
-                </p>
-                <p className='text-2xl font-bold text-gray-900'>
-                  {formatPeso(lowestSalary)}
-                </p>
-              </div>
-            </div>
+      {/* Intro */}
+      <section className='py-10'>
+        <Container>
+          <div className='max-w-3xl border-l-[3px] border-ed-navy pl-6'>
+            <Eyebrow>About the system</Eyebrow>
+            <p className='mt-3 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+              The Philippine government uses a standardized salary grade system
+              (SG 1–33) to determine compensation for civilian employees. Each
+              grade has eight steps — step 1 is entry, step 8 is the ceiling
+              within that grade. Figures below are gross monthly pay, before tax
+              and before location, hazard, or representation allowances.
+            </p>
+            <p className='mt-3 text-sm text-ed-ink-3'>
+              Source: Department of Budget and Management, National Budget
+              Circular No. 597, Annex A — Second Tranche Monthly Salary Schedule
+              for Civilian Personnel (effective January 1, 2025).{' '}
+              <a
+                href='https://www.dbm.gov.ph/wp-content/uploads/Issuances/2025/National-Budget-Circular/NBC-No.-597.pdf'
+                target='_blank'
+                rel='noreferrer'
+                className='border-b border-ed-navy pb-0.5 text-ed-navy no-underline hover:border-ed-red hover:text-ed-red'
+              >
+                dbm.gov.ph — NBC No. 597 (2025)
+              </a>
+            </p>
           </div>
+        </Container>
+      </section>
 
-          <div className='bg-white p-6 rounded-lg shadow-md border'>
-            <div className='flex items-center'>
-              <Hash className='h-8 w-8 text-purple-600 mr-3' />
-              <div>
-                <p className='text-sm font-medium text-gray-600'>
-                  Salary Grades
-                </p>
-                <p className='text-2xl font-bold text-gray-900'>1 - 33</p>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className='bg-white p-6 rounded-lg shadow-md border cursor-pointer hover:shadow-lg transition-shadow'
-            onClick={() => setIsStepsDialogOpen(true)}
-          >
-            <div className='flex items-center'>
-              <Info className='h-8 w-8 text-orange-600 mr-3' />
-              <div>
-                <p className='text-sm font-medium text-gray-600'>Steps</p>
-                <p className='text-2xl font-bold text-gray-900'>1 - 8</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Introduction */}
-        <div className='bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8'>
-          <h2 className='text-xl font-semibold text-blue-900 mb-3'>
-            About the Salary Grade System
-          </h2>
-          <p className='text-blue-800 mb-4'>
-            The Philippine government uses a standardized salary grade system
-            (SG 1-33) to determine compensation for all government employees.
-            This system ensures fair and consistent pay across different
-            agencies and positions.
-          </p>
-          <p className='text-blue-800'>
-            <strong>Note:</strong> These figures represent gross monthly
-            salaries without tax applied and may vary based on location
-            allowances, hazard pay, and other benefits. Actual take-home pay may
-            be lower or higher due to various allowances and benefits.
-          </p>
-          <p className='text-blue-800 mt-3 text-sm'>
-            Source: Department of Budget and Management, National Budget
-            Circular No. 597, Annex A — Second Tranche Monthly Salary Schedule
-            for Civilian Personnel (effective January 1, 2025). See:{' '}
-            <a
-              className='underline'
-              href='https://www.dbm.gov.ph/wp-content/uploads/Issuances/2025/National-Budget-Circular/NBC-No.-597.pdf'
-              target='_blank'
-              rel='noreferrer'
-            >
-              dbm.gov.ph — NBC No. 597 (2025)
-            </a>
-          </p>
-        </div>
-
-        {/* Salary Grade Table */}
-        <div className='bg-white shadow-lg rounded-lg overflow-hidden'>
+      {/* Table */}
+      <section className='pb-14 max-md:pb-8'>
+        <Container>
+          <SectionHeader
+            num='§ 01'
+            label='Monthly salary schedule'
+            meta={`SG 1–33 · 8 steps`}
+          />
           <div className='overflow-x-auto'>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
+            <table className='w-full border-collapse font-sans-ed text-sm'>
+              <thead>
                 <tr>
-                  <th
-                    scope='col'
-                    className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'
-                  >
-                    Salary Grade
+                  <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
+                    SG
                   </th>
-                  <th
-                    scope='col'
-                    className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-                  >
-                    Position Name (examples)
+                  <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
+                    Position (examples)
                   </th>
-                  <th
-                    scope='col'
-                    className='px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'
-                  >
-                    Steps Average
+                  <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-right font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
+                    Average
                   </th>
-                  {Array.from({ length: 8 }).map((_, idx) => (
+                  {Array.from({ length: 8 }).map((_, i) => (
                     <th
-                      key={idx}
-                      scope='col'
-                      className='px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'
+                      key={i}
+                      className='border-y border-ed-ink bg-ed-paper-2 px-3 py-3 text-right font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'
                     >
-                      Step {idx + 1}
+                      Step {i + 1}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className='bg-white divide-y divide-gray-200'>
-                {salarySchedule.map((row, index) => (
+              <tbody>
+                {schedule.map(row => (
                   <tr
-                    key={index}
-                    className='hover:bg-gray-50 transition-colors'
+                    key={row.grade}
+                    className='border-b border-ed-rule transition-colors hover:bg-ed-paper-2/60'
                   >
-                    <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
+                    <td className='px-4 py-3 font-mono-ed text-[13px] font-medium text-ed-ink'>
                       SG {row.grade}
                     </td>
-                    <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-700'>
-                      {plantillaPositionsByGrade[row.grade] || '—'}
+                    <td className='px-4 py-3 text-[13px] text-ed-ink-2'>
+                      {plantilla[row.grade] ?? '—'}
                     </td>
-                    <td className='px-4 py-4 whitespace-nowrap text-sm font-bold text-blue-900 text-right'>
+                    <td className='px-4 py-3 text-right font-mono-ed text-[13px] font-medium text-ed-navy-ink'>
                       {formatPeso(row.average)}
                     </td>
-                    {row.steps.map((value, i) => (
+                    {row.steps.map((v, i) => (
                       <td
                         key={i}
-                        className='px-4 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 text-right'
+                        className='px-3 py-3 text-right font-mono-ed text-[13px] text-ed-ink'
                       >
-                        {formatPeso(value)}
+                        {formatPeso(v)}
                       </td>
                     ))}
                   </tr>
@@ -207,72 +148,21 @@ export default function SalaryGradePage() {
               </tbody>
             </table>
           </div>
-        </div>
-
-        {/* Additional Information */}
-        <div className='mt-8 bg-gray-50 border border-gray-200 rounded-lg p-6'>
-          <h3 className='text-lg font-semibold text-gray-900 mb-4'>
-            Important Notes
-          </h3>
-          <ul className='space-y-2 text-gray-700'>
-            <li className='flex items-start'>
-              <span className='text-blue-600 mr-2'>•</span>
-              <span>
-                Salaries are subject to annual adjustments based on government
-                policies and economic conditions.
-              </span>
-            </li>
-            <li className='flex items-start'>
-              <span className='text-blue-600 mr-2'>•</span>
-              <span>
-                Additional allowances may apply based on location, hazard, and
-                other factors.
-              </span>
-            </li>
-            <li className='flex items-start'>
-              <span className='text-blue-600 mr-2'>•</span>
-              <span>
-                This information is for reference purposes and may not reflect
-                the most current salary adjustments.
-              </span>
-            </li>
-            <li className='flex items-start'>
-              <span className='text-blue-600 mr-2'>•</span>
-              <span>
-                For official salary information, please refer to the Civil
-                Service Commission or respective government agencies.
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Salary Steps Explanation Dialog */}
-        <Dialog open={isStepsDialogOpen} onOpenChange={setIsStepsDialogOpen}>
-          <DialogContent className='max-w-md'>
-            <DialogHeader>
-              <DialogTitle className='text-xl font-semibold text-gray-900'>
-                About Salary Steps
-              </DialogTitle>
-            </DialogHeader>
-            <div className='py-4'>
-              <p className='text-gray-700 leading-relaxed'>
-                Each salary grade has 8 steps. Step 1 is the starting pay, and
-                Step 8 is the highest pay for that grade. Employees move up a
-                step over time or through performance, which increases their
-                salary without changing their salary grade.
-              </p>
-            </div>
-            <DialogFooter>
-              <Button
-                onClick={() => setIsStepsDialogOpen(false)}
-                className='w-full'
-              >
-                Got it
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </div>
+        </Container>
+      </section>
+    </main>
   );
-}
+};
+
+const Stat: FC<{ label: string; value: string }> = ({ label, value }) => (
+  <div className='px-6 py-2 text-ed-ink-2'>
+    <div className='font-serif-ed text-[28px] font-medium leading-none text-ed-navy-ink'>
+      {value}
+    </div>
+    <div className='mt-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+      {label}
+    </div>
+  </div>
+);
+
+export default SalaryGradePage;
