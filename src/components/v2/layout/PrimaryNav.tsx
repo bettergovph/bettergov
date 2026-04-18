@@ -80,7 +80,7 @@ const PrimaryNav: FC = () => {
       className='border-t border-ed-rule border-b border-b-ed-navy bg-white max-[960px]:hidden'
       aria-label='Primary'
     >
-      <Container className='flex items-stretch justify-start overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+      <Container className='flex items-stretch justify-start flex-wrap'>
         <Link
           to='/'
           className={cn(
