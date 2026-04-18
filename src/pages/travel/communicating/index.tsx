@@ -1,287 +1,279 @@
-import { FC, ReactNode, useState } from 'react';
-import {
-  MessageCircle,
-  BookOpen,
-  Globe,
-  Utensils,
-  ShoppingBag,
-  Bus,
-  BedDouble,
-  Navigation,
-  AlertCircle,
-  Hash,
-  Printer,
-} from 'lucide-react';
+import { FC, ReactNode, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import {
+  AlertCircle,
+  BedDouble,
+  BookOpen,
+  Bus,
+  Globe,
+  Hash,
+  MessageCircle,
+  Navigation,
+  Printer,
+  ShoppingBag,
+  Utensils,
+} from 'lucide-react';
 import { phrasesData } from './phrasesData';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import Button from '../../../components/v2/ui/Button';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import { cn } from '../../../lib/utils';
+
+type Language = 'english' | 'chinese' | 'korean' | 'japanese' | 'arabic';
+
+const languageLabel: Record<Language, string> = {
+  english: 'English',
+  chinese: '中文 Chinese',
+  korean: '한국어 Korean',
+  japanese: '日本語 Japanese',
+  arabic: 'العربية Arabic',
+};
+
+const categoryIcons: Record<string, ReactNode> = {
+  Greetings: <MessageCircle size={14} />,
+  'Basic Phrases': <BookOpen size={14} />,
+  'At the Restaurant': <Utensils size={14} />,
+  Shopping: <ShoppingBag size={14} />,
+  Transportation: <Bus size={14} />,
+  'Hotel/Accommodation': <BedDouble size={14} />,
+  Directions: <Navigation size={14} />,
+  Emergency: <AlertCircle size={14} />,
+  'Numbers & Money': <Hash size={14} />,
+};
 
 const CommunicatingPage: FC = () => {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [selectedLanguage, setSelectedLanguage] = useState<
-    'english' | 'chinese' | 'korean' | 'japanese' | 'arabic'
-  >('english');
+  const [active, setActive] = useState<string>('all');
+  const [lang, setLang] = useState<Language>('english');
 
-  const categoryIcons: Record<string, ReactNode> = {
-    Greetings: <MessageCircle className='h-5 w-5' />,
-    'Basic Phrases': <BookOpen className='h-5 w-5' />,
-    'At the Restaurant': <Utensils className='h-5 w-5' />,
-    Shopping: <ShoppingBag className='h-5 w-5' />,
-    Transportation: <Bus className='h-5 w-5' />,
-    'Hotel/Accommodation': <BedDouble className='h-5 w-5' />,
-    Directions: <Navigation className='h-5 w-5' />,
-    Emergency: <AlertCircle className='h-5 w-5' />,
-    'Numbers & Money': <Hash className='h-5 w-5' />,
-  };
-
-  // Filter by active category
-  const filteredCategories = phrasesData.filter(
-    (category: (typeof phrasesData)[0]) =>
-      activeCategory === 'all' || category.category === activeCategory
+  const filtered = useMemo(
+    () =>
+      active === 'all'
+        ? phrasesData
+        : phrasesData.filter(c => c.category === active),
+    [active]
   );
 
-  // Create category tabs
-  const categoryTabs = [
-    { id: 'all', name: 'All Phrases', icon: <Globe className='h-5 w-5' /> },
-    ...phrasesData.map((cat: (typeof phrasesData)[0]) => ({
-      id: cat.category,
-      name: cat.category,
-      icon: categoryIcons[cat.category] || <Globe className='h-5 w-5' />,
-    })),
-  ];
-
   return (
-    <div className='bg-gray-50 min-h-screen print:bg-white'>
-      {/* Hero Section */}
-      <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 print:bg-white print:text-gray-900 print:py-4'>
-        <div className='container mx-auto max-w-7xl'>
-          {/* Print/Save Button - Top Right */}
-          <div className='flex justify-end mb-4 print:hidden'>
-            <button
-              onClick={() =>
-                navigate(`/travel/communicating/print?lang=${selectedLanguage}`)
-              }
-              className='flex items-center gap-2 px-4 py-2 bg-white text-blue-700 rounded-lg font-medium hover:bg-blue-50 transition-colors shadow-md text-sm'
-            >
-              <Printer className='h-4 w-4' />
-              Print Version
-            </button>
-          </div>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased print:bg-white'>
+      <Helmet>
+        <title>Travel Phrasebook | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='Essential phrases for travellers to the Philippines — translated between English, Chinese, Korean, Japanese, Arabic, Tagalog, and Bisaya.'
+        />
+      </Helmet>
 
-          <div className='text-center'>
-            <div className='flex justify-center mb-4'>
-              <div className='bg-white/20 backdrop-blur-sm p-4 rounded-full'>
-                <MessageCircle className='h-12 w-12' />
+      <div className='print:hidden'>
+        <PageMasthead
+          variant='hero'
+          eyebrow='§ Travel · Phrasebook'
+          title={
+            <>
+              Essential phrases,{' '}
+              <em className='italic font-normal'>across the archipelago.</em>
+            </>
+          }
+          lede='Greetings, directions, food, emergencies — written in Tagalog and Bisaya alongside your language of choice. Print a copy to carry, or browse by topic.'
+        >
+          <div className='mt-6 flex flex-wrap items-center gap-3'>
+            <label
+              htmlFor='language-select'
+              className='inline-flex items-center gap-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-white/80'
+            >
+              Foreign language
+            </label>
+            <select
+              id='language-select'
+              value={lang}
+              onChange={e => setLang(e.target.value as Language)}
+              className='cursor-pointer border border-white/40 bg-transparent px-4 py-2.5 font-serif-ed text-[15px] text-white outline-none [&>option]:text-ed-ink'
+            >
+              {(Object.entries(languageLabel) as [Language, string][]).map(
+                ([id, name]) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                )
+              )}
+            </select>
+            <Button
+              as='button'
+              variant='ghost'
+              onClick={() =>
+                navigate(`/travel/communicating/print?lang=${lang}`)
+              }
+              className='!border-white !text-white hover:!bg-white hover:!text-ed-navy-ink'
+            >
+              <Printer size={14} />
+              <span>Print version</span>
+            </Button>
+          </div>
+        </PageMasthead>
+      </div>
+
+      {/* Print-only header */}
+      <header className='hidden print:block px-6 pb-4 pt-8'>
+        <h1 className='font-serif-ed text-[36px] font-medium text-ed-ink'>
+          Travel Phrasebook
+        </h1>
+        <p className='mt-1 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
+          {languageLabel[lang]} · Tagalog · Bisaya
+        </p>
+      </header>
+
+      {/* Category tabs */}
+      <section className='border-b border-ed-rule bg-white print:hidden'>
+        <Container className='flex flex-wrap py-3'>
+          <CategoryPill
+            active={active === 'all'}
+            onClick={() => setActive('all')}
+            icon={<Globe size={14} />}
+            label='All phrases'
+          />
+          {phrasesData.map(c => (
+            <CategoryPill
+              key={c.category}
+              active={active === c.category}
+              onClick={() => setActive(c.category)}
+              icon={categoryIcons[c.category] ?? <Globe size={14} />}
+              label={c.category}
+            />
+          ))}
+        </Container>
+      </section>
+
+      <section className='py-10 print:py-4 max-md:py-6'>
+        <Container>
+          {filtered.length === 0 ? (
+            <div className='border border-dashed border-ed-rule py-16 text-center text-ed-ink-3'>
+              <Globe
+                size={32}
+                className='mx-auto mb-3 opacity-60'
+                aria-hidden
+              />
+              <div className='font-serif-ed text-[22px] text-ed-ink-2'>
+                No phrases in this category.
               </div>
             </div>
-            <h1 className='text-4xl md:text-6xl font-bold mb-4'>
-              Travel Phrasebook
-            </h1>
-            <p className='text-xl md:text-2xl opacity-90 mb-6 max-w-3xl mx-auto'>
-              Essential phrases for communicating with locals across Asia
-            </p>
-
-            {/* Language Selector in Hero */}
-            <div className='flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto print:hidden'>
-              <label
-                htmlFor='language-select-hero'
-                className='text-lg font-medium whitespace-nowrap'
-              >
-                Select Foreign Language:
-              </label>
-              <select
-                id='language-select-hero'
-                value={selectedLanguage}
-                onChange={e =>
-                  setSelectedLanguage(
-                    e.target.value as
-                      | 'english'
-                      | 'chinese'
-                      | 'korean'
-                      | 'japanese'
-                      | 'arabic'
-                  )
-                }
-                className='px-6 py-3 border-2 border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-lg bg-blue-700 text-white cursor-pointer font-medium hover:bg-blue-800 transition-colors'
-              >
-                <option value='english'>English</option>
-                <option value='chinese'>中文 Chinese</option>
-                <option value='korean'>한국어 Korean</option>
-                <option value='japanese'>日本語 Japanese</option>
-                <option value='arabic'>العربية Arabic</option>
-              </select>
-            </div>
-
-            {/* Print-only language indicator */}
-            <div className='hidden print:block text-center mt-4'>
-              <p className='text-lg font-semibold'>
-                Language: {selectedLanguage === 'english' && 'English'}
-                {selectedLanguage === 'chinese' && '中文 Chinese'}
-                {selectedLanguage === 'korean' && '한국어 Korean'}
-                {selectedLanguage === 'japanese' && '日本語 Japanese'}
-                {selectedLanguage === 'arabic' && 'العربية Arabic'} • Tagalog •
-                Visaya
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Category Tabs */}
-      <div className='container mx-auto max-w-7xl px-4 py-8 print:hidden'>
-        <div className='flex flex-wrap justify-center gap-2'>
-          {categoryTabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveCategory(tab.id)}
-              className={`flex items-center px-4 py-2 rounded-full cursor-pointer transition-colors ${
-                activeCategory === tab.id
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-white hover:bg-gray-100 text-gray-800 shadow-sm'
-              }`}
-            >
-              <span className='mr-2'>{tab.icon}</span>
-              {tab.name}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className='container mx-auto max-w-7xl px-4 pb-8 print:pt-4'>
-        {filteredCategories.length > 0 ? (
-          <div className='space-y-8'>
-            {filteredCategories.map(
-              (category: (typeof filteredCategories)[0], idx: number) => (
+          ) : (
+            <div className='space-y-10 print:space-y-4'>
+              {filtered.map((cat, i) => (
                 <div
-                  key={idx}
-                  className='bg-white rounded-lg shadow-md overflow-hidden print:shadow-none print:border print:border-gray-300 print:break-inside-avoid print:mb-8'
+                  key={cat.category}
+                  className='break-inside-avoid print:break-inside-avoid'
                 >
-                  {/* Category Header */}
-                  <div className='bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 print:bg-gray-100 print:text-gray-900 print:border-b print:border-gray-300'>
-                    <div className='flex items-center gap-3'>
-                      {categoryIcons[category.category] || (
-                        <Globe className='h-5 w-5' />
-                      )}
-                      <h2 className='text-2xl font-bold'>
-                        {category.category}
-                      </h2>
-                    </div>
-                  </div>
+                  <SectionHeader
+                    num={`§ ${String(i + 1).padStart(2, '0')}`}
+                    label={cat.category}
+                    meta={`${cat.phrases.length} phrases`}
+                  />
                   <div className='overflow-x-auto'>
-                    <table className='w-full'>
+                    <table className='w-full border-collapse font-sans-ed text-sm'>
                       <thead>
-                        <tr className='bg-gray-100 border-b-2 border-gray-200'>
-                          <th
-                            className={`px-4 py-3 text-left font-semibold text-gray-700 text-sm md:text-base ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                          >
-                            {selectedLanguage === 'english' && 'English'}
-                            {selectedLanguage === 'chinese' && '中文 Chinese'}
-                            {selectedLanguage === 'korean' && '한국어 Korean'}
-                            {selectedLanguage === 'japanese' &&
-                              '日本語 Japanese'}
-                            {selectedLanguage === 'arabic' && 'العربية Arabic'}
+                        <tr>
+                          <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
+                            {languageLabel[lang]}
                           </th>
-                          {selectedLanguage !== 'english' && (
-                            <th className='px-4 py-3 text-left font-semibold text-blue-900 bg-blue-50 text-sm md:text-base w-1/4'>
-                              Ingles
+                          {lang !== 'english' && (
+                            <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
+                              English
                             </th>
                           )}
-                          <th
-                            className={`px-4 py-3 text-left font-semibold text-blue-900 bg-blue-50 text-sm md:text-base ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                          >
+                          <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
                             Tagalog
                           </th>
-                          <th
-                            className={`px-4 py-3 text-left font-semibold text-blue-900 bg-blue-50 text-sm md:text-base ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                          >
+                          <th className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'>
                             Bisaya
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {category.phrases.map(
-                          (
-                            phrase: (typeof category.phrases)[0],
-                            phraseIdx: number
-                          ) => (
-                            <tr
-                              key={phraseIdx}
-                              className='border-b border-gray-200 hover:bg-blue-50 transition-colors print:break-inside-avoid'
-                            >
-                              <td className='px-4 py-4 text-gray-800 text-sm md:text-base'>
-                                {selectedLanguage === 'english' &&
-                                  phrase.english}
-                                {selectedLanguage === 'chinese' &&
-                                  phrase.chinese}
-                                {selectedLanguage === 'korean' && phrase.korean}
-                                {selectedLanguage === 'japanese' &&
-                                  phrase.japanese}
-                                {selectedLanguage === 'arabic' && phrase.arabic}
+                        {cat.phrases.map((p, j) => (
+                          <tr
+                            key={j}
+                            className='border-b border-ed-rule transition-colors hover:bg-ed-paper-2/60 print:break-inside-avoid'
+                          >
+                            <td className='px-4 py-3 font-serif-ed text-[15px] text-ed-ink'>
+                              {p[lang]}
+                            </td>
+                            {lang !== 'english' && (
+                              <td className='px-4 py-3 text-[14px] text-ed-ink-2'>
+                                {p.english}
                               </td>
-                              {selectedLanguage !== 'english' && (
-                                <td className='px-4 py-4 text-gray-900 font-medium text-sm md:text-base bg-blue-50/30'>
-                                  {phrase.english}
-                                </td>
-                              )}
-                              <td className='px-4 py-4 text-gray-800 text-sm md:text-base bg-blue-50/30'>
-                                {phrase.tagalog}
-                              </td>
-                              <td className='px-4 py-4 text-gray-800 text-sm md:text-base bg-blue-50/30'>
-                                {phrase.visaya}
-                              </td>
-                            </tr>
-                          )
-                        )}
+                            )}
+                            <td className='px-4 py-3 font-serif-ed text-[15px] text-ed-ink'>
+                              {p.tagalog}
+                            </td>
+                            <td className='px-4 py-3 font-serif-ed text-[15px] text-ed-ink'>
+                              {p.visaya}
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
-              )
-            )}
-          </div>
-        ) : (
-          <div className='bg-white rounded-lg shadow-md p-12 text-center'>
-            <Globe className='h-16 w-16 text-gray-400 mx-auto mb-4' />
-            <h3 className='text-2xl font-semibold text-gray-700 mb-2'>
-              No phrases found
-            </h3>
-            <p className='text-gray-500'>
-              Try adjusting your search terms or browse all categories above
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Footer Info */}
-      <div className='container mx-auto max-w-7xl px-4 pb-8 print:hidden'>
-        <div className='bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg'>
-          <div className='flex items-start'>
-            <Globe className='h-6 w-6 text-blue-600 mt-1 mr-3 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold text-blue-900 text-lg mb-2'>
-                Travel Tips
-              </h3>
-              <ul className='text-blue-800 space-y-1 text-sm md:text-base'>
-                <li>
-                  • Always learn basic greetings in the local language - it
-                  shows respect and opens doors
-                </li>
-                <li>
-                  • Keep a physical or digital copy of emergency phrases handy
-                </li>
-                <li>• Use hand gestures and be patient when communicating</li>
-                <li>
-                  • Download offline translation apps before traveling to areas
-                  with limited internet
-                </li>
-              </ul>
+              ))}
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          )}
+
+          {/* Tips card */}
+          <aside className='mt-12 border border-ed-rule-strong bg-ed-paper-2 p-7 print:hidden'>
+            <div className='flex items-start gap-3'>
+              <Globe
+                size={18}
+                className='mt-0.5 shrink-0 text-ed-navy'
+                aria-hidden
+              />
+              <div>
+                <Eyebrow tone='navy'>Travel tips</Eyebrow>
+                <ul className='mt-3 space-y-1.5 text-sm leading-relaxed text-ed-ink-2'>
+                  <li>
+                    Always learn basic greetings in the local language — it
+                    shows respect and opens doors.
+                  </li>
+                  <li>
+                    Keep a physical or digital copy of emergency phrases handy.
+                  </li>
+                  <li>Use hand gestures and be patient when communicating.</li>
+                  <li>
+                    Download an offline translation app before travelling to
+                    areas with limited internet.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </Container>
+      </section>
+    </main>
   );
 };
+
+const CategoryPill: FC<{
+  active: boolean;
+  onClick: () => void;
+  icon: ReactNode;
+  label: string;
+}> = ({ active, onClick, icon, label }) => (
+  <button
+    type='button'
+    onClick={onClick}
+    className={cn(
+      'inline-flex items-center gap-2 border border-ed-rule-strong px-3 py-2 font-mono-ed text-[11px] uppercase tracking-[0.12em] transition-colors mr-2 mb-2',
+      active
+        ? 'bg-ed-navy text-white border-ed-navy'
+        : 'bg-white text-ed-ink-2 hover:border-ed-navy hover:text-ed-navy'
+    )}
+    aria-pressed={active}
+  >
+    <span aria-hidden>{icon}</span>
+    <span>{label}</span>
+  </button>
+);
 
 export default CommunicatingPage;

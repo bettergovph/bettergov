@@ -1,231 +1,180 @@
 import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { PrinterIcon } from 'lucide-react';
 import { phrasesData } from './phrasesData';
+import Button from '../../../components/v2/ui/Button';
+
+type Language = 'english' | 'chinese' | 'korean' | 'japanese' | 'arabic';
+
+const languageLabel: Record<Language, string> = {
+  english: 'English',
+  chinese: '中文 Chinese',
+  korean: '한국어 Korean',
+  japanese: '日本語 Japanese',
+  arabic: 'العربية Arabic',
+};
 
 const CommunicatingPrintPage: FC = () => {
   const [searchParams] = useSearchParams();
-  const [selectedLanguage, setSelectedLanguage] = useState<
-    'english' | 'chinese' | 'korean' | 'japanese' | 'arabic'
-  >('english');
+  const [lang, setLang] = useState<Language>('english');
 
   useEffect(() => {
-    const lang = searchParams.get('lang') as
-      | 'chinese'
-      | 'korean'
-      | 'japanese'
-      | 'arabic';
-    if (lang && ['chinese', 'korean', 'japanese', 'arabic'].includes(lang)) {
-      setSelectedLanguage(lang);
-    }
+    const q = searchParams.get('lang') as Language | null;
+    if (q && q in languageLabel) setLang(q);
   }, [searchParams]);
-
-  const getLanguageLabel = () => {
-    switch (selectedLanguage) {
-      case 'english':
-        return 'English';
-      case 'chinese':
-        return '中文 Chinese';
-      case 'korean':
-        return '한국어 Korean';
-      case 'japanese':
-        return '日本語 Japanese';
-      case 'arabic':
-        return 'العربية Arabic';
-      default:
-        return '';
-    }
-  };
 
   return (
     <>
-      {/* Hide navbar and footer when printing */}
+      <Helmet>
+        <title>Travel Phrasebook · Print | BetterGov.ph</title>
+      </Helmet>
+
+      {/* Hide site chrome when printing */}
       <style>{`
         @media print {
-          nav, footer, header {
+          nav, footer, header.masthead, .masthead, [data-v2-mast], body > div > nav, body > div > footer {
             display: none !important;
           }
-          body {
-            margin: 0;
-            padding: 0;
-          }
+          body { margin: 0; padding: 0; }
+          a { color: inherit !important; text-decoration: none !important; }
         }
       `}</style>
 
-      <div className='min-h-screen bg-white p-4 print:p-2'>
-        {/* Simple Logo Header - Print Only */}
-        <div className='hidden print:block mb-3 pb-2 border-b border-gray-300'>
-          <div className='flex items-center gap-2'>
-            <svg
-              className='h-5 w-5 text-blue-600'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-            >
-              <path d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z' />
-            </svg>
+      <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+        {/* Screen header */}
+        <header className='border-b border-ed-ink bg-ed-paper-2 py-8 print:hidden'>
+          <div className='mx-auto flex max-w-[1360px] flex-wrap items-center justify-between gap-4 px-[18px] md:px-6 xl:px-8'>
             <div>
-              <h1 className='text-base font-bold text-gray-900'>
+              <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                § Travel · Printable phrasebook
+              </div>
+              <h1 className='mt-1 font-serif-ed text-[36px] font-medium leading-tight text-ed-ink'>
                 Travel Phrasebook
               </h1>
-              <p className='text-xs text-gray-600'>BetterGov.ph</p>
+              <p className='mt-1 text-sm text-ed-ink-2'>
+                BetterGov.ph · {languageLabel[lang]} · Tagalog · Bisaya
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* Header with Logo and Language Selector - Screen Only */}
-        <div className='max-w-7xl mx-auto mb-6 print:hidden'>
-          <div className='flex items-center justify-between mb-4 border-b-2 border-blue-600 pb-4'>
             <div className='flex items-center gap-3'>
-              <img
-                src='/logo.svg'
-                alt='BetterGov Logo'
-                className='h-8 w-8'
-                onError={e => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div>
-                <h1 className='text-2xl font-bold text-gray-900'>
-                  Travel Phrasebook
-                </h1>
-                <p className='text-sm text-gray-600'>BetterGov.ph</p>
-              </div>
-            </div>
-
-            {/* Language Selector - Print Hidden */}
-            <div className='flex items-center gap-3 print:hidden'>
               <label
-                htmlFor='language-select'
-                className='text-sm font-medium text-gray-700'
+                htmlFor='print-lang'
+                className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'
               >
-                Language:
+                Language
               </label>
               <select
-                id='language-select'
-                value={selectedLanguage}
-                onChange={e =>
-                  setSelectedLanguage(
-                    e.target.value as
-                      | 'english'
-                      | 'chinese'
-                      | 'korean'
-                      | 'japanese'
-                      | 'arabic'
+                id='print-lang'
+                value={lang}
+                onChange={e => setLang(e.target.value as Language)}
+                className='cursor-pointer border border-ed-ink bg-white px-3 py-2 font-sans-ed text-[14px] text-ed-ink outline-none'
+              >
+                {(Object.entries(languageLabel) as [Language, string][]).map(
+                  ([id, name]) => (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
                   )
-                }
-                className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white cursor-pointer'
-              >
-                <option value='english'>English</option>
-                <option value='chinese'>中文 Chinese</option>
-                <option value='korean'>한국어 Korean</option>
-                <option value='japanese'>日本語 Japanese</option>
-                <option value='arabic'>العربية Arabic</option>
+                )}
               </select>
-              <button
-                onClick={() => window.print()}
-                className='px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors'
-              >
-                Print / Save PDF
-              </button>
+              <Button as='button' onClick={() => window.print()}>
+                <PrinterIcon size={14} />
+                <span>Print / Save PDF</span>
+              </Button>
             </div>
+          </div>
+        </header>
 
-            {/* Print-only language display */}
-            <div className='hidden print:block text-sm font-semibold text-gray-700'>
-              {getLanguageLabel()} • English • Tagalog • Visaya
+        {/* Print-only banner */}
+        <div className='hidden print:block border-b-2 border-ed-navy px-6 pb-3 pt-4'>
+          <div className='flex items-baseline justify-between gap-4'>
+            <h1 className='font-serif-ed text-[26px] font-medium text-ed-ink'>
+              Travel Phrasebook
+            </h1>
+            <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+              BetterGov.ph · {languageLabel[lang]} · Tagalog · Bisaya
             </div>
           </div>
         </div>
 
-        {/* Compact Phrases Grid */}
-        <div className='max-w-7xl mx-auto space-y-6 print:space-y-3'>
-          {phrasesData.map((category, idx) => (
-            <div
-              key={idx}
-              className='break-inside-avoid border border-gray-300 rounded-lg overflow-hidden'
+        <div className='mx-auto max-w-[1360px] space-y-8 px-[18px] py-8 md:px-6 xl:px-8 print:space-y-3 print:px-4 print:py-3'>
+          {phrasesData.map(cat => (
+            <section
+              key={cat.category}
+              className='break-inside-avoid border border-ed-rule print:break-inside-avoid'
             >
-              {/* Category Header - Compact */}
-              <div className='bg-blue-600 text-white px-3 py-2 print:px-2 print:py-1'>
-                <h2 className='text-lg print:text-base font-bold'>
-                  {category.category}
+              <header className='border-b-2 border-ed-navy bg-ed-paper-2 px-4 py-2.5 print:py-1.5'>
+                <h2 className='m-0 font-serif-ed text-[18px] font-medium text-ed-navy-ink print:text-[15px]'>
+                  {cat.category}
                 </h2>
-              </div>
-
-              {/* Compact Table */}
-              <table className='w-full text-sm print:text-xs'>
+              </header>
+              <table className='w-full border-collapse font-sans-ed text-[13px] print:text-[11px]'>
                 <thead>
-                  <tr className='bg-gray-100 border-b border-gray-300'>
-                    <th
-                      className={`px-2 py-1.5 print:py-1 text-left font-semibold text-gray-700 ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                    >
-                      {getLanguageLabel()}
+                  <tr>
+                    <th className='border-b border-ed-rule bg-ed-paper-2 px-3 py-2 text-left font-mono-ed text-[10px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 print:py-1'>
+                      {languageLabel[lang]}
                     </th>
-                    {selectedLanguage !== 'english' && (
-                      <th className='px-2 py-1.5 print:py-1 text-left font-semibold text-gray-700 w-1/4'>
-                        Ingles
+                    {lang !== 'english' && (
+                      <th className='border-b border-ed-rule bg-ed-paper-2 px-3 py-2 text-left font-mono-ed text-[10px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 print:py-1'>
+                        English
                       </th>
                     )}
-                    <th
-                      className={`px-2 py-1.5 print:py-1 text-left font-semibold text-gray-700 ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                    >
+                    <th className='border-b border-ed-rule bg-ed-paper-2 px-3 py-2 text-left font-mono-ed text-[10px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 print:py-1'>
                       Tagalog
                     </th>
-                    <th
-                      className={`px-2 py-1.5 print:py-1 text-left font-semibold text-gray-700 ${selectedLanguage === 'english' ? 'w-1/3' : 'w-1/4'}`}
-                    >
+                    <th className='border-b border-ed-rule bg-ed-paper-2 px-3 py-2 text-left font-mono-ed text-[10px] font-medium uppercase tracking-[0.12em] text-ed-ink-2 print:py-1'>
                       Bisaya
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {category.phrases.map((phrase, phraseIdx) => (
+                  {cat.phrases.map((p, i) => (
                     <tr
-                      key={phraseIdx}
-                      className='border-b border-gray-200 last:border-b-0'
+                      key={i}
+                      className='border-b border-ed-rule last:border-b-0'
                     >
-                      <td className='px-2 py-1.5 print:py-1 text-gray-800'>
-                        {selectedLanguage === 'english' && phrase.english}
-                        {selectedLanguage === 'chinese' && phrase.chinese}
-                        {selectedLanguage === 'korean' && phrase.korean}
-                        {selectedLanguage === 'japanese' && phrase.japanese}
-                        {selectedLanguage === 'arabic' && phrase.arabic}
+                      <td className='px-3 py-2 font-serif-ed text-ed-ink print:py-1'>
+                        {p[lang]}
                       </td>
-                      {selectedLanguage !== 'english' && (
-                        <td className='px-2 py-1.5 print:py-1 text-gray-900 font-medium'>
-                          {phrase.english}
+                      {lang !== 'english' && (
+                        <td className='px-3 py-2 text-ed-ink-2 print:py-1'>
+                          {p.english}
                         </td>
                       )}
-                      <td className='px-2 py-1.5 print:py-1 text-gray-800'>
-                        {phrase.tagalog}
+                      <td className='px-3 py-2 font-serif-ed text-ed-ink print:py-1'>
+                        {p.tagalog}
                       </td>
-                      <td className='px-2 py-1.5 print:py-1 text-gray-800'>
-                        {phrase.visaya}
+                      <td className='px-3 py-2 font-serif-ed text-ed-ink print:py-1'>
+                        {p.visaya}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
+            </section>
           ))}
         </div>
 
-        {/* Footer - Print Hidden */}
-        <div className='max-w-7xl mx-auto mt-8 print:hidden'>
-          <div className='bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg'>
-            <p className='text-sm text-blue-900'>
-              <strong>Tip:</strong> Use your browser&apos;s print function
-              (Ctrl/Cmd + P) to save this as a PDF to your phone or print it out
-              for offline use while traveling.
+        {/* Screen tip */}
+        <div className='mx-auto max-w-[1360px] px-[18px] pb-10 md:px-6 xl:px-8 print:hidden'>
+          <div className='border border-ed-rule-strong bg-ed-paper-2 p-5'>
+            <p className='text-sm text-ed-ink-2'>
+              <strong className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy'>
+                Tip ·
+              </strong>{' '}
+              Use your browser&rsquo;s print function (Ctrl/Cmd + P) to save
+              this as a PDF to your phone or print it out for offline use while
+              travelling.
             </p>
           </div>
         </div>
 
-        {/* Print-only footer */}
-        <div className='hidden print:block max-w-7xl mx-auto mt-4 pt-2 border-t border-gray-300'>
-          <p className='text-xs text-gray-600 text-center'>
-            Generated from BetterGov.ph • Travel Phrasebook • For personal use
-            only
+        <div className='hidden print:block mx-auto max-w-[1360px] border-t border-ed-rule px-6 pt-2'>
+          <p className='text-center font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+            Generated from BetterGov.ph · Travel Phrasebook · Personal use only
           </p>
         </div>
-      </div>
+      </main>
     </>
   );
 };
