@@ -67,6 +67,9 @@ import RegionalLGUPage from './pages/government/local/[region]';
 // Search Page
 import SearchPage from './pages/Search';
 
+// Directory Page
+import DirectoryPage from './pages/directory';
+
 // Data Pages
 import WeatherPage from './pages/data/weather';
 import ForexPage from './pages/data/forex';
@@ -106,6 +109,7 @@ function App() {
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
+            <Route path='/directory' element={<DirectoryPage />} />
             <Route path='/ideas' element={<Ideas />} />
             <Route path='/join-us' element={<JoinUs />} />
             <Route path='/terms-of-service' element={<TermsOfService />} />

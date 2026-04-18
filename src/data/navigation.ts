@@ -152,6 +152,10 @@ export const mainNavigation: NavigationItem[] = [
     })),
   },
   {
+    label: 'Directory',
+    href: '/directory',
+  },
+  {
     label: 'Travel',
     href: '/travel',
     children: [
