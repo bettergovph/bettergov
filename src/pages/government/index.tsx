@@ -1,67 +1,72 @@
 import { FC, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
-  DownloadIcon,
   ExternalLinkIcon,
   MapPinIcon,
   PhoneIcon,
   SearchIcon,
   UserIcon,
 } from 'lucide-react';
-import agencies from '../../data/agencies.json';
+import {
+  DIRECTORY_BRANCHES,
+  DirectoryBranch,
+  DirectoryEntry,
+  loadDirectoryEntries,
+} from '../../lib/directory';
 import Container from '../../components/v2/ui/Container';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
 import Flag from '../../components/v2/ui/Flag';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
 
-type Agency = (typeof agencies)[number];
 type View = 'list' | 'grid';
+type BranchFilter = 'All' | DirectoryBranch;
+
+const BRANCH_FILTERS: readonly BranchFilter[] = ['All', ...DIRECTORY_BRANCHES];
 
 const visitUrl = (web: string) => `https://${web.replace(/^https?:\/\//, '')}`;
 
-const DirectoryPage: FC = () => {
+const GovernmentDirectory: FC = () => {
+  const allEntries = useMemo(() => loadDirectoryEntries(), []);
+
   const [q, setQ] = useState('');
-  const [branch, setBranch] = useState<string>('All');
+  const [branch, setBranch] = useState<BranchFilter>('All');
   const [view, setView] = useState<View>('list');
 
-  const branches = useMemo(
-    () => ['All', ...Array.from(new Set(agencies.map(a => a.branch)))],
-    []
-  );
-
   const results = useMemo(() => {
-    let r = agencies.slice();
+    let r = allEntries;
     if (branch !== 'All') r = r.filter(a => a.branch === branch);
     if (q) {
       const n = q.toLowerCase();
       r = r.filter(a =>
-        (a.name + ' ' + a.abbr + ' ' + a.head).toLowerCase().includes(n)
+        `${a.name} ${a.abbr ?? ''} ${a.head ?? ''} ${a.branch}`
+          .toLowerCase()
+          .includes(n)
       );
     }
-    return r.sort((a, b) => a.name.localeCompare(b.name));
-  }, [q, branch]);
+    return r.slice().sort((a, b) => a.name.localeCompare(b.name));
+  }, [allEntries, q, branch]);
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Agency Directory | BetterGov.ph</title>
+        <title>Government Directory | BetterGov.ph</title>
         <meta
           name='description'
-          content='Every national Philippine government agency, GOCC, and constitutional body — with verified hotlines, heads of office, and official domains.'
+          content='Every branch of the Philippine government in one directory — executive departments, constitutional bodies, the legislature, and diplomatic missions, with verified hotlines, heads of office, and official domains.'
         />
       </Helmet>
 
       <PageMasthead
-        eyebrow={`The Directory · ${agencies.length} agencies tracked`}
+        eyebrow={`The Directory · ${allEntries.length} entries tracked`}
         title={
           <>
             Every agency, <em className='italic font-normal'>one directory.</em>
           </>
         }
-        lede='Every national government agency, GOCC, constitutional body, and major LGU — with verified hotlines, heads of office, and official domains. Updated weekly.'
+        lede='The executive branch and its departments, the constitutional commissions, the legislature, and diplomatic missions accredited to the Philippines — each with a verified head of office, trunkline, and official website.'
       >
-        {/* Search + branch filter + view toggle */}
         <div className='mt-6 grid grid-cols-[1fr_auto_auto] items-center gap-4 max-lg:grid-cols-1 max-lg:gap-3'>
           <div className='relative'>
             <SearchIcon
@@ -77,8 +82,8 @@ const DirectoryPage: FC = () => {
               className='block w-full border border-ed-ink bg-white py-3 pl-10 pr-4 font-sans-ed text-[15px] text-ed-ink outline-none placeholder:text-ed-ink-4'
             />
           </div>
-          <div className='inline-flex'>
-            {branches.map((b, i) => (
+          <div className='inline-flex flex-wrap'>
+            {BRANCH_FILTERS.map((b, i) => (
               <button
                 key={b}
                 type='button'
@@ -128,22 +133,36 @@ const DirectoryPage: FC = () => {
 
       <section className='py-10 max-md:py-6'>
         <Container>
-          <div className='mb-6 flex items-center justify-between'>
+          <div className='mb-6 flex flex-wrap items-center justify-between gap-3'>
             <div className='font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink-2'>
               Showing{' '}
               <strong className='text-sm text-ed-ink'>{results.length}</strong>
               {' of '}
-              {agencies.length} agencies
+              {allEntries.length} entries
+              {branch !== 'All' && (
+                <>
+                  {' · '}
+                  <strong className='text-ed-ink'>{branch}</strong>
+                </>
+              )}
+              {q && (
+                <>
+                  {' for '}
+                  <em className='not-italic text-ed-ink'>&ldquo;{q}&rdquo;</em>
+                </>
+              )}
             </div>
-            <a
-              href='/agencies.csv'
-              className='inline-flex items-center gap-2 border-b border-ed-navy pb-0.5 font-sans-ed text-sm font-medium text-ed-navy no-underline transition-colors hover:border-ed-red hover:text-ed-red'
-              onClick={e => e.preventDefault()}
-              aria-disabled
-              title='CSV export coming soon'
-            >
-              Download CSV <DownloadIcon size={14} />
-            </a>
+            {(q || branch !== 'All') && (
+              <button
+                onClick={() => {
+                  setQ('');
+                  setBranch('All');
+                }}
+                className='font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy no-underline hover:text-ed-red'
+              >
+                Clear filters
+              </button>
+            )}
           </div>
 
           {results.length === 0 ? (
@@ -168,7 +187,7 @@ const EmptyState: FC = () => (
   </div>
 );
 
-const ListView: FC<{ rows: Agency[] }> = ({ rows }) => (
+const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
   <div className='overflow-x-auto'>
     <table className='w-full border-collapse font-sans-ed text-sm'>
       <thead>
@@ -194,36 +213,54 @@ const ListView: FC<{ rows: Agency[] }> = ({ rows }) => (
       <tbody>
         {rows.map(a => (
           <tr
-            key={a.abbr}
+            key={`${a.branch}-${a.slug}`}
             className='border-b border-ed-rule transition-colors hover:bg-ed-paper-2/60'
           >
             <td className='px-4 py-3.5 align-top'>
-              <Flag variant='navy'>{a.abbr}</Flag>
+              {a.abbr ? <Flag variant='navy'>{a.abbr}</Flag> : null}
             </td>
             <td className='px-4 py-3.5 align-top font-serif-ed text-base text-ed-ink'>
-              {a.name}
+              <Link
+                to={a.detailHref}
+                className='text-ed-ink no-underline hover:text-ed-navy'
+              >
+                {a.name}
+              </Link>
             </td>
             <td className='px-4 py-3.5 align-top font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3'>
               {a.branch}
             </td>
             <td className='px-4 py-3.5 align-top text-[13px] text-ed-ink-2'>
-              {a.head}
+              {a.head ? (
+                <>
+                  {a.headRole ? (
+                    <span className='block font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                      {a.headRole}
+                    </span>
+                  ) : null}
+                  {a.head}
+                </>
+              ) : (
+                <span className='text-ed-ink-4'>—</span>
+              )}
             </td>
             <td className='px-4 py-3.5 align-top text-[13px] text-ed-ink-2'>
-              {a.loc}
+              {a.loc ?? <span className='text-ed-ink-4'>—</span>}
             </td>
             <td className='px-4 py-3.5 align-top font-mono-ed text-[13px] text-ed-ink'>
-              {a.hotline}
+              {a.hotline ?? <span className='text-ed-ink-4'>—</span>}
             </td>
             <td className='px-4 py-3.5 align-top'>
-              <a
-                href={visitUrl(a.web)}
-                target='_blank'
-                rel='noreferrer'
-                className='inline-flex items-center gap-1 text-xs font-medium text-ed-navy no-underline hover:text-ed-red'
-              >
-                Visit <ExternalLinkIcon size={12} />
-              </a>
+              {a.web ? (
+                <a
+                  href={visitUrl(a.web)}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='inline-flex items-center gap-1 text-xs font-medium text-ed-navy no-underline hover:text-ed-red'
+                >
+                  Visit <ExternalLinkIcon size={12} />
+                </a>
+              ) : null}
             </td>
           </tr>
         ))}
@@ -232,45 +269,74 @@ const ListView: FC<{ rows: Agency[] }> = ({ rows }) => (
   </div>
 );
 
-const GridView: FC<{ rows: Agency[] }> = ({ rows }) => (
+const GridView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
   <div className='grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
     {rows.map(a => (
-      <div
-        key={a.abbr}
-        className='border border-ed-rule bg-white p-7 transition-colors hover:border-ed-ink'
+      <Link
+        key={`${a.branch}-${a.slug}`}
+        to={a.detailHref}
+        className='group block border border-ed-rule bg-white p-7 text-ed-ink no-underline transition-colors hover:border-ed-ink'
       >
         <div className='flex items-center justify-between'>
-          <Flag variant='navy'>{a.abbr}</Flag>
-          <Eyebrow>{a.branch}</Eyebrow>
+          {a.abbr ? (
+            <Flag variant='navy'>{a.abbr}</Flag>
+          ) : (
+            <span className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+              {a.branch}
+            </span>
+          )}
+          {a.abbr && <Eyebrow>{a.branch}</Eyebrow>}
         </div>
         <h3 className='mt-4 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-navy-ink'>
           {a.name}
         </h3>
         <dl className='mt-4 grid gap-1.5 border-t border-ed-rule pt-3.5 text-[13px] text-ed-ink-2'>
-          <div className='flex items-center gap-2'>
-            <UserIcon size={14} className='shrink-0 text-ed-ink-3' />
-            <span>{a.head}</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <MapPinIcon size={14} className='shrink-0 text-ed-ink-3' />
-            <span>{a.loc}</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <PhoneIcon size={14} className='shrink-0 text-ed-ink-3' />
-            <span className='font-mono-ed'>{a.hotline}</span>
-          </div>
+          {a.head && (
+            <div className='flex items-start gap-2'>
+              <UserIcon
+                size={14}
+                className='mt-0.5 shrink-0 text-ed-ink-3'
+                aria-hidden
+              />
+              <span>
+                {a.headRole && (
+                  <span className='mr-1.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                    {a.headRole}
+                  </span>
+                )}
+                {a.head}
+              </span>
+            </div>
+          )}
+          {a.loc && (
+            <div className='flex items-center gap-2'>
+              <MapPinIcon
+                size={14}
+                className='shrink-0 text-ed-ink-3'
+                aria-hidden
+              />
+              <span>{a.loc}</span>
+            </div>
+          )}
+          {a.hotline && (
+            <div className='flex items-center gap-2'>
+              <PhoneIcon
+                size={14}
+                className='shrink-0 text-ed-ink-3'
+                aria-hidden
+              />
+              <span className='font-mono-ed'>{a.hotline}</span>
+            </div>
+          )}
         </dl>
-        <a
-          href={visitUrl(a.web)}
-          target='_blank'
-          rel='noreferrer'
-          className='mt-5 inline-flex items-center gap-2 border-b border-ed-navy pb-0.5 font-sans-ed text-sm font-medium text-ed-navy no-underline hover:border-ed-red hover:text-ed-red'
-        >
-          {a.web} <ExternalLinkIcon size={12} />
-        </a>
-      </div>
+        {a.web && (
+          <span className='mt-5 inline-flex items-center gap-2 border-b border-ed-navy pb-0.5 font-sans-ed text-sm font-medium text-ed-navy'>
+            {a.web}
+          </span>
+        )}
+      </Link>
     ))}
   </div>
 );
 
-export default DirectoryPage;
+export default GovernmentDirectory;

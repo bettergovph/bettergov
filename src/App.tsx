@@ -33,7 +33,6 @@ import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
 import DepartmentDetail from './pages/government/departments/[department]';
 import DepartmentsLayout from './pages/government/departments/layout';
-import GovernmentLayout from './pages/government/layout';
 import ConstitutionalLayout from './pages/government/constitutional/layout';
 import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
@@ -67,8 +66,8 @@ import RegionalLGUPage from './pages/government/local/[region]';
 // Search Page
 import SearchPage from './pages/Search';
 
-// Directory Page
-import DirectoryPage from './pages/directory';
+// Government directory (new /government index)
+import GovernmentDirectory from './pages/government';
 
 // Guides
 import GuidesIndex from './pages/guides';
@@ -113,7 +112,6 @@ function App() {
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
-            <Route path='/directory' element={<DirectoryPage />} />
             <Route path='/guides' element={<GuidesIndex />} />
             <Route path='/guides/passport' element={<PassportGuide />} />
             <Route path='/ideas' element={<Ideas />} />
@@ -187,11 +185,8 @@ function App() {
             </Route>
 
             {/* Government Routes */}
-            <Route
-              path='/government'
-              element={<GovernmentLayout title='Government' />}
-            >
-              <Route index element={<Navigate to='executive' replace />} />
+            <Route path='/government'>
+              <Route index element={<GovernmentDirectory />} />
               <Route path='salary-grade' element={<SalaryGradePage />} />
 
               <Route path='executive' element={<ExecutiveLayout />}>
