@@ -36,7 +36,8 @@ const GovernmentDirectory: FC = () => {
       </Helmet>
 
       <PageMasthead
-        eyebrow={`The Directory · ${allEntries.length} entries tracked`}
+        variant='hero'
+        eyebrow={`§ Directory · ${allEntries.length} entries tracked`}
         title={
           <>
             Every agency, <em className='italic font-normal'>one directory.</em>
