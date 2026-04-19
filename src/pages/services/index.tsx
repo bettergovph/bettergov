@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ChevronDownIcon, MenuIcon, XIcon } from 'lucide-react';
 import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
 
 import Container from '../../components/v2/ui/Container';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
-import Flag from '../../components/v2/ui/Flag';
 import BigSearch from '../../components/v2/ui/BigSearch';
+import Flag from '../../components/v2/ui/Flag';
+import FilterSection from '../../components/v2/ui/FilterSection';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
-import { scrollToTop } from '@/lib/scrollUtils';
+import { smoothScrollToElement } from '@/lib/scrollUtils';
 
 import serviceCategories from '../../data/service_categories.json';
 import businessTradeServices from '../../data/services/business-trade.json';
@@ -54,6 +56,9 @@ interface Category {
 
 const ITEMS_PER_PAGE = 16;
 
+/** DOM id used for the results section; category changes scroll here. */
+const RESULTS_ANCHOR = 'services-results';
+
 export default function ServicesPage() {
   const [
     { category: selectedCategorySlug, subcategory: selectedSubcategorySlug },
@@ -67,6 +72,7 @@ export default function ServicesPage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const selectedCategory = useMemo(() => {
@@ -82,16 +88,6 @@ export default function ServicesPage() {
       subcat => subcat.slug === selectedSubcategorySlug
     );
   }, [selectedCategory, selectedSubcategorySlug]);
-
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: allServices.length };
-    (serviceCategories.categories as Category[]).forEach(c => {
-      counts[c.slug] = allServices.filter(
-        s => s.category.slug === c.slug
-      ).length;
-    });
-    return counts;
-  }, []);
 
   const filteredServices = useMemo(() => {
     let filtered = allServices;
@@ -125,6 +121,11 @@ export default function ServicesPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
+  /** Scroll to just below the hero so the user keeps context on filter changes. */
+  const scrollToResults = () => {
+    smoothScrollToElement(RESULTS_ANCHOR, 24);
+  };
+
   const handleSearch = (query: string) => {
     setSearchQuery(query || null);
     setCurrentPage(1);
@@ -132,20 +133,20 @@ export default function ServicesPage() {
 
   const handleCategoryChange = (categorySlug: string) => {
     setCurrentPage(1);
-    scrollToTop();
     setQueryParams({
       category: categorySlug === 'all' ? null : categorySlug,
       subcategory: null,
     });
+    scrollToResults();
   };
 
   const handleSubcategoryChange = (subcategorySlug: string) => {
     setCurrentPage(1);
-    scrollToTop();
     setQueryParams({
       category: selectedCategorySlug,
       subcategory: subcategorySlug === 'all' ? null : subcategorySlug,
     });
+    scrollToResults();
   };
 
   const handleLoadMore = useCallback(() => {
@@ -249,138 +250,210 @@ export default function ServicesPage() {
         </div>
       </PageMasthead>
 
-      {/* Category sub-nav (same pattern as /guides) */}
-      <nav
-        aria-label='Service categories'
-        className='border-b border-ed-rule bg-white'
-      >
-        <Container className='flex flex-wrap'>
-          <CategoryPill
-            label='All'
-            count={categoryCounts.all}
-            active={selectedCategorySlug === 'all'}
-            onClick={() => handleCategoryChange('all')}
-          />
-          {(serviceCategories.categories as Category[]).map(c => (
-            <CategoryPill
-              key={c.slug}
-              label={c.category}
-              count={categoryCounts[c.slug] ?? 0}
-              active={selectedCategorySlug === c.slug}
-              onClick={() => handleCategoryChange(c.slug)}
-            />
-          ))}
-        </Container>
-      </nav>
-
-      {/* Subcategory pill row (when a category is selected) */}
-      {selectedCategory && selectedCategory.subcategories.length > 0 && (
-        <div className='border-b border-ed-rule bg-ed-paper-2'>
-          <Container className='flex flex-wrap items-center gap-2 py-3'>
-            <Eyebrow className='mr-2'>Refine</Eyebrow>
-            <SubcategoryPill
-              label={`All ${selectedCategory.category.toLowerCase()}`}
-              active={selectedSubcategorySlug === 'all'}
-              onClick={() => handleSubcategoryChange('all')}
-            />
-            {selectedCategory.subcategories.map(s => (
-              <SubcategoryPill
-                key={s.slug}
-                label={s.name}
-                active={selectedSubcategorySlug === s.slug}
-                onClick={() => handleSubcategoryChange(s.slug)}
-              />
-            ))}
-          </Container>
-        </div>
-      )}
-
-      <section className='py-10 max-md:py-6'>
+      <section id={RESULTS_ANCHOR} className='scroll-mt-24 py-10 max-md:py-6'>
         <Container>
-          <div className='mb-6 flex items-center justify-between border-b border-ed-ink pb-3.5'>
-            <div className='font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink-2'>
-              <strong className='text-sm text-ed-ink'>
-                {filteredServices.length}
-              </strong>{' '}
-              result{filteredServices.length === 1 ? '' : 's'}
-              {searchQuery ? (
-                <>
-                  {' for '}
-                  <em className='not-italic text-ed-ink'>
-                    &ldquo;{searchQuery}&rdquo;
-                  </em>
-                </>
-              ) : null}
-            </div>
-            {(searchQuery || selectedCategorySlug !== 'all') && (
-              <button
-                onClick={() => {
-                  handleCategoryChange('all');
-                  setSearchQuery(null);
-                  setCurrentPage(1);
-                }}
-                className='font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy no-underline hover:text-ed-red'
-              >
-                Clear filters
-              </button>
-            )}
+          {/* Mobile filter toggle */}
+          <div className='mb-6 md:hidden'>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-expanded={sidebarOpen}
+              aria-controls='services-sidebar'
+              className='inline-flex w-full items-center justify-between border border-ed-rule bg-white px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink'
+            >
+              <span>
+                Refine
+                {selectedCategorySlug !== 'all' &&
+                  ` · ${selectedCategory?.category ?? ''}`}
+              </span>
+              {sidebarOpen ? <XIcon size={16} /> : <MenuIcon size={16} />}
+            </button>
           </div>
 
-          {paginatedServices.length === 0 ? (
-            <div className='py-20 text-center text-ed-ink-3'>
-              <div className='font-serif-ed text-[28px] text-ed-ink-2'>
-                No results.
+          <div className='grid grid-cols-[260px_1fr] gap-12 max-lg:gap-8 max-md:grid-cols-1 max-md:gap-6'>
+            {/* Sidebar */}
+            <aside
+              id='services-sidebar'
+              className={cn(
+                'border-t border-ed-ink pt-5 md:sticky md:top-6 md:self-start max-md:pt-4',
+                sidebarOpen ? 'block' : 'hidden md:block'
+              )}
+              aria-label='Service filters'
+            >
+              <div className='mb-4'>
+                <Eyebrow>Refine</Eyebrow>
               </div>
-              <p className='mt-2 text-sm'>
-                Try a different term, or browse categories.
-              </p>
-            </div>
-          ) : (
-            <ul className='divide-y divide-ed-rule' role='list'>
-              {paginatedServices.map((service, i) => (
-                <li key={service.id} role='listitem'>
-                  <a
-                    href={service.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='grid grid-cols-[60px_1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-[40px_1fr] max-lg:gap-4 max-md:py-5'
+
+              <FilterSection label='Category'>
+                <div className='flex flex-col'>
+                  <CategoryRow
+                    label='All categories'
+                    count={allServices.length}
+                    active={selectedCategorySlug === 'all'}
+                    onClick={() => {
+                      handleCategoryChange('all');
+                      setSidebarOpen(false);
+                    }}
+                  />
+                  {(serviceCategories.categories as Category[]).map(c => {
+                    const count = allServices.filter(
+                      s => s.category.slug === c.slug
+                    ).length;
+                    const isOpen = selectedCategorySlug === c.slug;
+                    return (
+                      <div key={c.slug}>
+                        <CategoryRow
+                          label={c.category}
+                          count={count}
+                          active={isOpen}
+                          onClick={() => {
+                            handleCategoryChange(c.slug);
+                            setSidebarOpen(false);
+                          }}
+                          showChevron
+                          chevronOpen={isOpen}
+                        />
+                        {isOpen && c.subcategories.length > 0 && (
+                          <div className='ml-3 mt-1 flex flex-col border-l border-ed-rule pl-3'>
+                            <button
+                              onClick={() => {
+                                handleSubcategoryChange('all');
+                                setSidebarOpen(false);
+                              }}
+                              className={cn(
+                                'py-1.5 text-left text-[13px] transition-colors hover:text-ed-navy',
+                                selectedSubcategorySlug === 'all'
+                                  ? 'font-semibold text-ed-ink'
+                                  : 'text-ed-ink-2'
+                              )}
+                            >
+                              All {c.category.toLowerCase()}
+                            </button>
+                            {c.subcategories.map(sub => {
+                              const subCount = allServices.filter(
+                                s =>
+                                  s.category.slug === c.slug &&
+                                  s.subcategory.slug === sub.slug
+                              ).length;
+                              const subActive =
+                                selectedSubcategorySlug === sub.slug;
+                              return (
+                                <button
+                                  key={sub.slug}
+                                  onClick={() => {
+                                    handleSubcategoryChange(sub.slug);
+                                    setSidebarOpen(false);
+                                  }}
+                                  className={cn(
+                                    'flex items-center justify-between gap-2 py-1.5 text-left text-[13px] transition-colors hover:text-ed-navy',
+                                    subActive
+                                      ? 'font-semibold text-ed-ink'
+                                      : 'text-ed-ink-2'
+                                  )}
+                                >
+                                  <span>{sub.name}</span>
+                                  <span className='font-mono-ed text-[11px] text-ed-ink-4'>
+                                    {subCount}
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </FilterSection>
+            </aside>
+
+            {/* Results */}
+            <div>
+              <div className='flex items-center justify-between border-b border-ed-ink pb-3.5'>
+                <div className='font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink-2'>
+                  <strong className='text-sm text-ed-ink'>
+                    {filteredServices.length}
+                  </strong>{' '}
+                  result{filteredServices.length === 1 ? '' : 's'}
+                  {searchQuery ? (
+                    <>
+                      {' for '}
+                      <em className='not-italic text-ed-ink'>
+                        &ldquo;{searchQuery}&rdquo;
+                      </em>
+                    </>
+                  ) : null}
+                </div>
+                {(searchQuery || selectedCategorySlug !== 'all') && (
+                  <button
+                    onClick={() => {
+                      handleCategoryChange('all');
+                      setSearchQuery(null);
+                      setCurrentPage(1);
+                    }}
+                    className='font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy no-underline hover:text-ed-red'
                   >
-                    <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
-                    <div>
-                      <div className='flex flex-wrap items-baseline gap-3'>
-                        <Flag variant='navy'>{service.category.name}</Flag>
-                        <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
-                          {service.subcategory.name}
-                        </span>
-                      </div>
-                      <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
-                        {service.service}
-                      </h3>
-                      <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3'>
-                        {service.url}
-                      </p>
-                    </div>
-                    <div className='border-l border-ed-rule pl-5 font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3 max-lg:hidden'>
-                      <div>Visit</div>
-                      <div className='mt-1 font-sans-ed text-[13px] normal-case tracking-normal text-ed-navy'>
-                        Open official site →
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+                    Clear filters
+                  </button>
+                )}
+              </div>
 
-          {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
-            <div ref={loadMoreRef} className='py-8' aria-hidden='true' />
-          )}
+              {paginatedServices.length === 0 ? (
+                <div className='py-20 text-center text-ed-ink-3'>
+                  <div className='font-serif-ed text-[28px] text-ed-ink-2'>
+                    No results.
+                  </div>
+                  <p className='mt-2 text-sm'>
+                    Try a different term, or browse categories.
+                  </p>
+                </div>
+              ) : (
+                <ul className='divide-y divide-ed-rule' role='list'>
+                  {paginatedServices.map((service, i) => (
+                    <li key={service.id} role='listitem'>
+                      <a
+                        href={service.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='grid grid-cols-[60px_1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-[40px_1fr] max-lg:gap-4 max-md:py-5'
+                      >
+                        <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
+                          {String(i + 1).padStart(2, '0')}
+                        </div>
+                        <div>
+                          <div className='flex flex-wrap items-baseline gap-3'>
+                            <Flag variant='navy'>{service.category.name}</Flag>
+                            <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                              {service.subcategory.name}
+                            </span>
+                          </div>
+                          <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                            {service.service}
+                          </h3>
+                          <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3'>
+                            {service.url}
+                          </p>
+                        </div>
+                        <div className='border-l border-ed-rule pl-5 font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3 max-lg:hidden'>
+                          <div>Visit</div>
+                          <div className='mt-1 font-sans-ed text-[13px] normal-case tracking-normal text-ed-navy'>
+                            Open official site →
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-          <div className='sr-only' aria-live='polite' aria-atomic='true'>
-            Showing {paginatedServices.length} of {filteredServices.length}{' '}
-            services
+              {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
+                <div ref={loadMoreRef} className='py-8' aria-hidden='true' />
+              )}
+
+              <div className='sr-only' aria-live='polite' aria-atomic='true'>
+                Showing {paginatedServices.length} of {filteredServices.length}{' '}
+                services
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -388,46 +461,43 @@ export default function ServicesPage() {
   );
 }
 
-const CategoryPill: React.FC<{
+type CategoryRowProps = {
   label: string;
   count: number;
   active: boolean;
   onClick: () => void;
-}> = ({ label, count, active, onClick }) => (
-  <button
-    type='button'
-    onClick={onClick}
-    className={cn(
-      'border-r border-ed-rule px-[18px] py-3.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] transition-colors',
-      active
-        ? 'bg-ed-navy text-white'
-        : 'bg-transparent text-ed-ink-2 hover:bg-ed-navy-tint hover:text-ed-navy-ink'
-    )}
-    aria-pressed={active}
-  >
-    {label}
-    <span className={cn('ml-2', active ? 'opacity-75' : 'opacity-65')}>
-      {count}
-    </span>
-  </button>
-);
+  showChevron?: boolean;
+  chevronOpen?: boolean;
+};
 
-const SubcategoryPill: React.FC<{
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}> = ({ label, active, onClick }) => (
+const CategoryRow: React.FC<CategoryRowProps> = ({
+  label,
+  count,
+  active,
+  onClick,
+  showChevron,
+  chevronOpen,
+}) => (
   <button
-    type='button'
     onClick={onClick}
+    aria-current={active ? 'true' : undefined}
     className={cn(
-      'inline-flex items-center gap-2 border px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] transition-colors',
-      active
-        ? 'border-ed-navy bg-ed-navy text-white'
-        : 'border-ed-rule-strong bg-white text-ed-ink-2 hover:border-ed-navy hover:text-ed-navy'
+      'flex items-center justify-between gap-2 border-b border-ed-rule py-2 text-left text-sm transition-colors hover:text-ed-navy',
+      active ? 'font-semibold text-ed-ink' : 'text-ed-ink-2'
     )}
-    aria-pressed={active}
   >
-    {label}
+    <span className='inline-flex items-center gap-1.5'>
+      {label}
+      {showChevron && (
+        <ChevronDownIcon
+          size={12}
+          className={cn(
+            'opacity-70 transition-transform',
+            chevronOpen && 'rotate-180'
+          )}
+        />
+      )}
+    </span>
+    <span className='font-mono-ed text-[11px] text-ed-ink-4'>{count}</span>
   </button>
 );
