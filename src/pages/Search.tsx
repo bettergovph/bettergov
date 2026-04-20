@@ -1,34 +1,29 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   InstantSearch,
-  SearchBox,
-  Hits,
   Highlight,
   Snippet,
-  Stats,
-  RefinementList,
-  Pagination,
+  useSearchBox,
+  useRefinementList,
+  usePagination,
+  useHits,
+  useStats,
+  useClearRefinements,
 } from 'react-instantsearch';
+import type { Hit } from 'instantsearch.js';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
-import 'instantsearch.css/themes/satellite.css';
-import '../components/search/MeilisearchInstantSearch.css';
 import { Helmet } from 'react-helmet-async';
+import { MenuIcon, XIcon } from 'lucide-react';
 
-interface SearchHit {
-  objectID: string;
-  name?: string;
-  office_name?: string;
-  office?: string;
-  service?: string;
-  description?: string;
-  website?: string;
-  url?: string;
-  category?: string | { name: string };
-  subcategory?: string | { name: string };
-  address?: string;
-  slug?: string;
-  type?: string;
-}
+import Container from '../components/v2/ui/Container';
+import Eyebrow from '../components/v2/ui/Eyebrow';
+import BigSearch from '../components/v2/ui/BigSearch';
+import Flag from '../components/v2/ui/Flag';
+import FilterSection from '../components/v2/ui/FilterSection';
+import PageMasthead from '../components/v2/layout/PageMasthead';
+import { cn } from '../lib/utils';
+
+// ─── Meilisearch client ───────────────────────────────────────────────────────
 
 const MEILISEARCH_HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
@@ -66,219 +61,398 @@ const { searchClient } = instantMeiliSearch(
   }
 );
 
-interface HitProps {
-  hit: {
-    name?: string;
-    office_name?: string;
-    office?: string;
-    service?: string;
-    website?: string;
-    category?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    address?: string;
-    subcategory?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    description?: string;
-    slug?: string;
-    url?: string;
-    type?: string;
-  };
-}
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-const Hit: FC<HitProps> = ({ hit }) => {
-  const title = hit.service || hit.name || hit.office_name || hit.office;
-  const link = hit.url || `/directory/${hit.slug}`;
+type SearchHit = {
+  objectID: string;
+  name?: string;
+  office_name?: string;
+  office?: string;
+  service?: string;
+  description?: string;
+  website?: string;
+  url?: string;
+  category?: string | { name: string };
+  subcategory?: string | { name: string };
+  address?: string;
+  slug?: string;
+  type?: string;
+  [key: string]: unknown;
+};
+
+// ─── BigSearch wired to InstantSearch's search box ───────────────────────────
+
+const SearchBoxBridge: FC = () => {
+  const { query, refine } = useSearchBox();
+  const [localQuery, setLocalQuery] = useState(query);
+
+  const handleChange = (v: string) => {
+    setLocalQuery(v);
+    refine(v);
+  };
 
   return (
-    <article className='hit-item p-4 border-b border-gray-200 hover:bg-gray-50'>
-      <a
-        href={link}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='block'
-      >
-        <h2 className='text-lg font-semibold text-blue-600 hover:underline'>
-          {title}
-        </h2>
-        {hit.description && (
-          <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as SearchHit} />
-          </p>
-        )}
-        <div className='text-xs text-gray-800'>
-          {hit.category && (
-            <span>
-              <Highlight
-                attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as SearchHit}
-              />
-              {' > '}
-            </span>
-          )}
-          {hit.subcategory && (
-            <span>
-              <Highlight
-                attribute={
-                  hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
-                }
-                hit={hit as SearchHit}
-              />{' '}
-            </span>
-          )}
-          {hit.address && (
-            <span>
-              <Highlight attribute='address' hit={hit as SearchHit} />
-              {' > '}
-            </span>
-          )}
-          {hit.type && (
-            <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-sm ml-2'>
-              {hit.type}
-            </span>
-          )}
-        </div>
-        {(hit.url || hit.website) && (
-          <p className='text-xs text-blue-500 mt-1 truncate'>
-            {hit.url || hit.website}
-          </p>
-        )}
-      </a>
-    </article>
+    <BigSearch
+      value={localQuery}
+      onChange={handleChange}
+      onSubmit={() => refine(localQuery)}
+      placeholder='What do you need? — e.g. passport, SSS, NBI clearance'
+      ariaLabel='Search BetterGov'
+      ctaLabel='Search'
+      onDark
+    />
   );
 };
 
-const SearchPage: FC = () => {
+// ─── Left-rail refinement list ────────────────────────────────────────────────
+
+const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
+  attribute,
+  label,
+}) => {
+  const { items, refine } = useRefinementList({
+    attribute,
+    limit: 20,
+    sortBy: ['count:desc'],
+  });
+
+  if (items.length === 0) return null;
+
   return (
-    <div className='container mx-auto px-4 py-8'>
+    <FilterSection label={label}>
+      <div className='flex flex-col'>
+        {items.map(item => (
+          <button
+            key={item.value}
+            type='button'
+            onClick={() => refine(item.value)}
+            className={cn(
+              'flex items-center justify-between gap-2 border-b border-ed-rule py-2 text-left text-sm transition-colors hover:text-ed-navy',
+              item.isRefined ? 'font-semibold text-ed-ink' : 'text-ed-ink-2'
+            )}
+          >
+            <span>{item.label}</span>
+            <span className='font-mono-ed text-[11px] text-ed-ink-4'>
+              {item.count}
+            </span>
+          </button>
+        ))}
+      </div>
+    </FilterSection>
+  );
+};
+
+// ─── "Clear all" button (search + refinements) ────────────────────────────────
+
+const ClearAllButton: FC<{ className?: string }> = ({ className }) => {
+  const { refine: clearSearch, query } = useSearchBox();
+  const { canRefine, refine: clearRefinements } = useClearRefinements();
+
+  if (!query && !canRefine) return null;
+
+  return (
+    <button
+      type='button'
+      onClick={() => {
+        clearSearch('');
+        clearRefinements();
+      }}
+      className={cn(
+        'font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy hover:text-ed-red',
+        className
+      )}
+    >
+      Clear filters
+    </button>
+  );
+};
+
+// ─── Results count + active query label ──────────────────────────────────────
+
+const EditorialResultsHeader: FC = () => {
+  const { nbHits, query } = useStats();
+
+  return (
+    <div className='flex items-center justify-between border-b border-ed-ink pb-3.5'>
+      <div className='font-mono-ed text-xs uppercase tracking-[0.1em] text-ed-ink-2'>
+        <strong className='text-sm text-ed-ink'>
+          {nbHits.toLocaleString()}
+        </strong>{' '}
+        result{nbHits === 1 ? '' : 's'}
+        {query ? (
+          <>
+            {' '}
+            for{' '}
+            <em className='not-italic text-ed-ink'>&ldquo;{query}&rdquo;</em>
+          </>
+        ) : null}
+      </div>
+      <ClearAllButton />
+    </div>
+  );
+};
+
+// ─── Editorial hit rows ───────────────────────────────────────────────────────
+
+const EditorialHits: FC = () => {
+  const { hits } = useHits<SearchHit>();
+  const { query } = useSearchBox();
+
+  if (hits.length === 0) {
+    return (
+      <div className='py-20 text-center'>
+        {query ? (
+          <>
+            <div className='font-serif-ed text-[28px] text-ed-ink-2'>
+              No results found.
+            </div>
+            <p className='mt-2 text-sm text-ed-ink-3'>
+              Try a different term or clear the filters.
+            </p>
+          </>
+        ) : (
+          <div className='font-serif-ed text-[28px] text-ed-ink-2'>
+            Start typing to search.
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <ul className='divide-y divide-ed-rule' role='list'>
+      {hits.map((hit, i) => {
+        const titleAttr = hit.service
+          ? 'service'
+          : hit.name
+            ? 'name'
+            : hit.office_name
+              ? 'office_name'
+              : 'office';
+
+        const link =
+          (hit.url as string | undefined) ||
+          (hit.slug ? `/directory/${hit.slug}` : '#');
+
+        const categoryName =
+          hit.category != null && typeof hit.category === 'object'
+            ? (hit.category as { name: string }).name
+            : (hit.category as string | undefined);
+
+        const typeName = hit.type as string | undefined;
+        const sourceUrl =
+          (hit.website as string | undefined) ||
+          (hit.url as string | undefined);
+
+        return (
+          <li key={hit.objectID} role='listitem'>
+            <a
+              href={link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5'
+            >
+              <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div>
+                <div className='flex flex-wrap items-baseline gap-3'>
+                  {typeName && <Flag variant='navy'>{typeName}</Flag>}
+                  {categoryName && (
+                    <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                      {categoryName}
+                    </span>
+                  )}
+                </div>
+                <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                  <Highlight
+                    attribute={titleAttr}
+                    hit={hit as unknown as Hit<Record<string, string>>}
+                    classNames={{
+                      highlighted:
+                        'bg-ed-navy-tint text-ed-navy-ink not-italic',
+                      nonHighlighted: '',
+                    }}
+                  />
+                </h3>
+                {hit.description && (
+                  <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 [&_mark]:bg-ed-navy-tint [&_mark]:text-ed-navy-ink'>
+                    <Snippet
+                      attribute='description'
+                      hit={hit as unknown as Hit<Record<string, string>>}
+                      classNames={{
+                        highlighted:
+                          'bg-ed-navy-tint text-ed-navy-ink not-italic',
+                        nonHighlighted: '',
+                      }}
+                    />
+                  </p>
+                )}
+                {sourceUrl && (
+                  <p className='mt-2 break-all font-mono-ed text-[11px] tracking-[0.04em] text-ed-ink-4'>
+                    {sourceUrl}
+                  </p>
+                )}
+              </div>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+// ─── Editorial pagination ─────────────────────────────────────────────────────
+
+type PaginationBtnProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  active?: boolean;
+};
+
+const PaginationBtn: FC<PaginationBtnProps> = ({
+  active,
+  className,
+  ...rest
+}) => (
+  <button
+    type='button'
+    className={cn(
+      'inline-flex h-9 w-9 items-center justify-center border font-mono-ed text-[11px] transition-colors',
+      active
+        ? 'border-ed-navy bg-ed-navy text-white'
+        : rest.disabled
+          ? 'cursor-not-allowed border-ed-rule text-ed-ink-4'
+          : 'border-ed-rule-strong text-ed-ink-2 hover:border-ed-navy hover:text-ed-navy',
+      className
+    )}
+    {...rest}
+  />
+);
+
+const EditorialPagination: FC = () => {
+  const { currentRefinement, nbPages, pages, refine, isFirstPage, isLastPage } =
+    usePagination({ padding: 2 });
+
+  if (nbPages <= 1) return null;
+
+  return (
+    <div className='mt-8 border-t border-ed-rule pt-6'>
+      <div className='mb-3'>
+        <Eyebrow>
+          § page {currentRefinement + 1} of {nbPages}
+        </Eyebrow>
+      </div>
+      <div className='flex flex-wrap items-center gap-1'>
+        <PaginationBtn
+          onClick={() => refine(currentRefinement - 1)}
+          disabled={isFirstPage}
+          aria-label='Previous page'
+        >
+          ‹
+        </PaginationBtn>
+        {pages.map(page => (
+          <PaginationBtn
+            key={page}
+            onClick={() => refine(page)}
+            active={page === currentRefinement}
+            aria-current={page === currentRefinement ? 'page' : undefined}
+          >
+            {page + 1}
+          </PaginationBtn>
+        ))}
+        <PaginationBtn
+          onClick={() => refine(currentRefinement + 1)}
+          disabled={isLastPage}
+          aria-label='Next page'
+        >
+          ›
+        </PaginationBtn>
+      </div>
+    </div>
+  );
+};
+
+// ─── Page component ───────────────────────────────────────────────────────────
+
+const SearchPage: FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Search - Better Government Portal</title>
+        <title>Search — BetterGov.ph</title>
         <meta
           name='description'
-          content='Search for government services and resources'
+          content='Search Philippine government services, offices, and resources in one place.'
         />
       </Helmet>
 
-      <h1 className='text-3xl font-bold mb-6'>Search</h1>
-
       <InstantSearch searchClient={searchClient} indexName='bettergov'>
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
-          <div className='lg:col-span-1'>
-            <div className='bg-white rounded-lg shadow-sm p-4 mb-6'>
-              <h3 className='text-lg font-semibold mb-4'>Filter By</h3>
+        {/* Navy-gradient masthead with BigSearch */}
+        <PageMasthead
+          eyebrow='§ Search'
+          title='Search the BetterGov index'
+          lede='Official Philippine government services, offices, and resources — across every agency, searchable in one place.'
+          variant='hero'
+        >
+          <div className='max-w-2xl'>
+            <SearchBoxBridge />
+          </div>
+        </PageMasthead>
 
-              <div className='mb-6'>
-                <h4 className='font-medium mb-3'>Type</h4>
-                <RefinementList
-                  attribute='type'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
-                />
-              </div>
+        {/* Filters + Results */}
+        <section className='py-10 max-md:py-6'>
+          <Container>
+            {/* Mobile filter toggle */}
+            <div className='mb-6 md:hidden'>
+              <button
+                type='button'
+                onClick={() => setSidebarOpen(o => !o)}
+                aria-expanded={sidebarOpen}
+                aria-controls='search-sidebar'
+                className='inline-flex w-full items-center justify-between border border-ed-rule bg-white px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink'
+              >
+                <span>Refine results</span>
+                {sidebarOpen ? <XIcon size={16} /> : <MenuIcon size={16} />}
+              </button>
+            </div>
 
-              <div className='mb-6'>
-                <h4 className='font-medium mb-3'>Category</h4>
-                <RefinementList
+            <div className='grid grid-cols-[260px_1fr] gap-12 max-lg:gap-8 max-md:grid-cols-1 max-md:gap-6'>
+              {/* Left-rail filters */}
+              <aside
+                id='search-sidebar'
+                className={cn(
+                  'border-t border-ed-ink pt-5 max-md:pt-4',
+                  sidebarOpen ? 'block' : 'hidden md:block'
+                )}
+                aria-label='Search filters'
+              >
+                <div className='mb-4 flex items-center justify-between'>
+                  <Eyebrow>Refine</Eyebrow>
+                  <ClearAllButton className='text-[10px]' />
+                </div>
+
+                <EditorialRefinementList attribute='type' label='Type' />
+                <EditorialRefinementList
                   attribute='category'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
+                  label='Category'
                 />
-              </div>
-
-              <div>
-                <h4 className='font-medium mb-3'>Subcategory</h4>
-                <RefinementList
+                <EditorialRefinementList
                   attribute='subcategory'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
+                  label='Subcategory'
                 />
-              </div>
-            </div>
-          </div>
+              </aside>
 
-          <div className='lg:col-span-3'>
-            <div className='mb-6'>
-              <SearchBox
-                placeholder='Search for government services, offices, and resources...'
-                classNames={{
-                  root: 'w-full',
-                  form: 'relative',
-                  input:
-                    'text-lg w-full p-4 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
-                  submit:
-                    'absolute top-0 right-0 h-full px-4 text-gray-800 hover:text-blue-600',
-                  reset:
-                    'absolute top-0 right-10 h-full px-3 text-gray-400 hover:text-gray-800',
-                }}
-              />
-            </div>
-
-            <div className='bg-white rounded-lg shadow-sm overflow-hidden'>
-              <div className='p-4 border-b border-gray-200 flex justify-between items-center'>
-                <h2 className='text-xl font-semibold'>Results</h2>
-                <Stats
-                  classNames={{
-                    root: 'text-sm text-gray-800',
-                  }}
-                />
-              </div>
-
+              {/* Results column */}
               <div>
-                <Hits
-                  hitComponent={Hit}
-                  classNames={{
-                    list: 'divide-y divide-gray-200',
-                    item: 'w-full',
-                  }}
-                />
-              </div>
-
-              <div className='p-4 border-t border-gray-200'>
-                <Pagination
-                  className='text-black'
-                  classNames={{
-                    root: 'flex justify-center',
-                    list: 'flex items-center space-x-1',
-                    item: 'px-1',
-                    link: 'px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors',
-                    disabledItem: 'opacity-50 cursor-not-allowed',
-                    selectedItem: 'text-black',
-                  }}
-                />
+                <EditorialResultsHeader />
+                <EditorialHits />
+                <EditorialPagination />
               </div>
             </div>
-          </div>
-        </div>
+          </Container>
+        </section>
       </InstantSearch>
-    </div>
+    </main>
   );
 };
 
