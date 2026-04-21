@@ -6,7 +6,7 @@ import Container from '../ui/Container';
 const AlertBanner: FC = () => {
   const { t } = useTranslation('common');
   return (
-    <div className='bg-ed-red py-2 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white'>
+    <div className='bg-red-600 py-2 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white'>
       <Container className='flex items-center justify-between gap-4 max-md:flex-col max-md:items-start max-md:gap-1 max-md:text-[10px]'>
         <span>
           <strong>{t('masthead.advisory', 'Advisory')}</strong>

@@ -7,7 +7,7 @@ import Container from '../ui/Container';
 import { cn } from '../../../lib/utils';
 
 const navItemBase =
-  'inline-flex items-center gap-1.5 whitespace-nowrap px-[18px] py-3 font-serif-ed text-base font-medium text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
+  'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-medium text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
 
 const activeClasses = 'bg-ed-navy text-white hover:bg-ed-navy hover:text-white';
 
@@ -77,7 +77,7 @@ const PrimaryNav: FC = () => {
   return (
     <nav
       ref={rootRef}
-      className='border-t border-ed-rule border-b border-b-ed-navy bg-white max-[960px]:hidden'
+      className='border-ed-rule bg-white max-[960px]:hidden'
       aria-label='Primary'
     >
       <Container className='flex items-stretch justify-start flex-wrap'>
@@ -146,7 +146,7 @@ const PrimaryNav: FC = () => {
                     to={item.href}
                     role='menuitem'
                     onClick={() => setOpenItem(null)}
-                    className='block border-b border-ed-rule bg-ed-navy-tint px-5 py-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
+                    className='block bg-ed-navy-tint px-6 py-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
                   >
                     {label} overview →
                   </Link>
@@ -157,7 +157,7 @@ const PrimaryNav: FC = () => {
                       target={child.target}
                       role='menuitem'
                       onClick={() => setOpenItem(null)}
-                      className='block border-b border-ed-rule px-5 py-3.5 font-serif-ed text-base leading-snug text-ed-ink no-underline transition-colors last:border-b-0 hover:bg-ed-navy-tint'
+                      className='block px-6 py-3.5 font-serif-ed text-base leading-snug text-ed-ink no-underline transition-colors last:border-b-0 hover:bg-ed-navy-tint'
                     >
                       {child.blurb ? (
                         <>

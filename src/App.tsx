@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
-import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
 import Home from './pages/Home';
@@ -97,7 +96,7 @@ function App() {
         <div className='min-h-screen flex flex-col'>
           <SEO />
           <Navbar />
-          <Ticker />
+          {/* <Ticker /> */}
           <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />} />

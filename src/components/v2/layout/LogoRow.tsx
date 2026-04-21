@@ -14,16 +14,16 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
   const { t } = useTranslation('common');
 
   return (
-    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-6 py-3 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
+    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-3 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
       <Link
         to='/'
         aria-label='BetterGov.ph home'
         className='inline-flex items-center no-underline'
       >
         <img
-          src='https://assets.bettergov.ph/logos/svg/horizontal-primary.svg'
+          src='https://assets.bettergov.ph/logos/png/horizontal-primary.png'
           alt='BetterGov.ph'
-          className='block h-9 w-auto'
+          className='block h-16 w-auto'
         />
       </Link>
 
