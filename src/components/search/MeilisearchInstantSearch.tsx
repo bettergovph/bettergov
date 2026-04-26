@@ -8,12 +8,12 @@ import {
   Configure,
   Stats,
 } from 'react-instantsearch';
+import type { Hit, SearchClient } from 'instantsearch.js';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css'; // Or your preferred theme
 import './MeilisearchInstantSearch.css'; // For custom styles
 
-interface SearchHit {
-  objectID: string;
+interface SearchHit extends Hit {
   name?: string;
   office_name?: string;
   office?: string;
@@ -66,32 +66,7 @@ const { searchClient } = instantMeiliSearch(
 );
 
 interface HitProps {
-  hit: {
-    // [key: string]: any // Allow any string keys for hit attributes
-    // objectID: string
-    name?: string;
-    office_name?: string;
-    office?: string;
-    service?: string;
-    website?: string;
-    category?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    address?: string;
-    subcategory?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    description?: string;
-    slug?: string;
-    url?: string;
-    // Add other fields you expect in your search results
-  };
+  hit: SearchHit;
 }
 
 const Hit: FC<HitProps> = ({ hit }) => {
@@ -118,20 +93,24 @@ const Hit: FC<HitProps> = ({ hit }) => {
                 ? 'office_name'
                 : 'office'
             }
-            hit={hit as SearchHit}
+            hit={hit}
           /> */}
         </h2>
         {hit.description && (
           <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as SearchHit} />
+            <Snippet attribute='description' hit={hit} />
           </p>
         )}
         <div className='text-xs text-gray-800'>
           {hit.category && (
             <span>
               <Highlight
-                attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as SearchHit}
+                attribute={
+                  typeof hit.category === 'object'
+                    ? 'category.name'
+                    : 'category'
+                }
+                hit={hit}
               />
               {' > '}
             </span>
@@ -140,15 +119,17 @@ const Hit: FC<HitProps> = ({ hit }) => {
             <span>
               <Highlight
                 attribute={
-                  hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
+                  typeof hit.subcategory === 'object'
+                    ? 'subcategory.name'
+                    : 'subcategory'
                 }
-                hit={hit as SearchHit}
+                hit={hit}
               />{' '}
             </span>
           )}
           {hit.address && (
             <span>
-              <Highlight attribute='address' hit={hit as SearchHit} />
+              <Highlight attribute='address' hit={hit} />
               {' > '}
             </span>
           )}
@@ -198,7 +179,7 @@ const MeilisearchInstantSearch: FC = () => {
 
   return (
     <InstantSearch
-      searchClient={searchClient}
+      searchClient={searchClient as unknown as SearchClient}
       indexName='bettergov'
       initialUiState={{
         bettergov: {
@@ -209,7 +190,7 @@ const MeilisearchInstantSearch: FC = () => {
     >
       <Configure hitsPerPage={10} />
       <div className='ais-InstantSearch rounded-lg'>
-        <div className='mb-2 w-full' ref={searchContainerRef}>
+        <div className='relative mb-2 w-full' ref={searchContainerRef}>
           <SearchBox
             placeholder='Search for services, directory items...'
             className='w-full'
@@ -227,7 +208,7 @@ const MeilisearchInstantSearch: FC = () => {
           />
 
           {hasInteracted && (
-            <div className='bg-white rounded-lg shadow-sm overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
+            <div className='bg-white rounded-lg shadow-xl overflow-y-auto max-h-96 absolute z-30 w-full top-full left-0 mt-1 border border-gray-100'>
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-800 p-2 text-right text-xs',
