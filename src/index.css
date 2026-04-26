@@ -178,6 +178,24 @@
     opacity: 1;
   }
 }
+@keyframes slowZoom {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 /* Utility classes to mirror v3 `animation` map */
 @utility animate-fade-in {
@@ -186,6 +204,14 @@
 
 @utility animate-slide-in {
   animation: slideIn 0.5s ease-out;
+}
+
+@utility animate-slow-zoom {
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+@utility animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
 }
 
 /* Custom scrollbar styles */
