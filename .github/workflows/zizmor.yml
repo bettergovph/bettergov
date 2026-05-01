@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor 🌈
-        uses: zizmorcore/zizmor-action@e639db99335bc9038abc0e066dfcd72e23d26fb4 # v0.3.0
+        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
         with:
           # toggles use of GitHub's Advanced Security functionality which sets up code scanning for the repo
           # one important thing to note is that this will consume GitHub Actions minutes
