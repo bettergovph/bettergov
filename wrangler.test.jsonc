@@ -1,0 +1,5 @@
+{
+  // Minimal wrangler config for local test runs — no assets directory required.
+  "name": "bettergovph-test",
+  "compatibility_date": "2025-11-17",
+}
