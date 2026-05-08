@@ -20,7 +20,7 @@
     "test:functions": "vitest run --config functions/vitest.config.ts",
     "test:functions:watch": "vitest --config functions/vitest.config.ts",
     "test:functions:live": "vitest run --config functions/vitest.live.config.ts",
-    "functions:dev": "wrangler dev ./functions/index.ts",
+    "functions:dev": "wrangler dev ./functions/index.ts --config wrangler.test.jsonc",
     "functions:build": "tsc -p ./functions/tsconfig.json",
     "functions:deploy": "wrangler deploy ./functions/index.ts",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",

@@ -1,5 +1,20 @@
 {
-  // Minimal wrangler config for local test runs — no assets directory required.
+  // Wrangler config for local function development and testing.
+  // Does not require a built ./dist directory — functions only, no static assets.
   "name": "bettergovph-test",
   "compatibility_date": "2025-11-17",
+  "kv_namespaces": [
+    {
+      "id": "124001eaebfb4815b32db5344fc59251",
+      "binding": "BROWSER_KV",
+    },
+    {
+      "id": "a1151781bef24f3092aa3ddefe86aac5",
+      "binding": "FOREX_KV",
+    },
+    {
+      "id": "7e1c950bb42d4282b13e3e9524ce5335",
+      "binding": "WEATHER_KV",
+    },
+  ],
 }
