@@ -15,7 +15,7 @@ const config = {
   ],
 
   // JSON schema validation for the project registry
-  'src/data/projects.json': [
+  'public/api/projects.json': [
     'node scripts/validate-json-schema.js src/data/schema/projects.schema.json',
   ],
 };

@@ -1,12 +1,3 @@
-export interface Project {
-  slug: string;
-  title: string;
-  description: string;
-  repositoryUrls: string[];
-  projectUrl: string;
-  status: 'active' | 'development' | 'archived';
-}
-
 export interface Env {
   // KV Namespaces
   WEATHER_KV: KVNamespace;

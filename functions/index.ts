@@ -8,7 +8,6 @@ import {
   onRequest as forexRequest,
 } from './api/forex';
 import { onRequest as crawlRequest } from './api/crawl';
-import { onRequest as projectsRequest } from './api/projects';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
 import { Env } from './types';
@@ -109,19 +108,6 @@ export default {
       });
     }
 
-    if (path === '/api/projects') {
-      const response = await projectsRequest({ request, env, ctx });
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
-    }
-
     if (path === '/api/crawl') {
       const response = await crawlRequest({ request, env, ctx });
       // Add CORS headers to the response
@@ -141,7 +127,7 @@ export default {
       return new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex', 'crawl', 'projects'],
+          functions: ['weather', 'forex', 'crawl'],
           endpoints: [
             {
               path: '/api/weather',
@@ -218,35 +204,6 @@ export default {
                 },
               ],
             },
-            {
-              path: '/api/projects',
-              description:
-                'Get officially recognized BetterGov.ph projects with optional filtering, search, and pagination',
-              parameters: [
-                {
-                  name: 'search',
-                  required: false,
-                  description:
-                    'Case-insensitive substring search across title and description',
-                },
-                {
-                  name: 'status',
-                  required: false,
-                  description:
-                    'Filter by project status: active, development, or archived',
-                },
-                {
-                  name: 'page',
-                  required: false,
-                  description: 'Page number (1-based, default: 1)',
-                },
-                {
-                  name: 'limit',
-                  required: false,
-                  description: 'Items per page (default: 20, max: 100)',
-                },
-              ],
-            },
           ],
           timestamp: new Date().toISOString(),
         }),
@@ -268,7 +225,6 @@ export default {
           '/api/weather',
           '/api/forex',
           '/api/crawl',
-          '/api/projects',
           '/weather',
           '/forex',
         ],
