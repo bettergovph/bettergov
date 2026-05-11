@@ -163,6 +163,7 @@ export const footerNavigation = {
     {
       title: 'About',
       links: [
+        { label: 'About the Portal', href: '/about' },
         { label: 'About BetterGov.ph', href: 'https://about.bettergov.ph' },
         { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
         { label: 'Project Ideas', href: '/ideas' },
