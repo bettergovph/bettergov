@@ -3,16 +3,14 @@
     "eyebrow": "§ BetterGov.ph",
     "eyebrowEst": "Itinatag noong 2024",
     "title": "Maligayang pagdating sa BetterGov.ph",
-    "lede": "Ang volunteer-run na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
+    "lede": "Ang volunteer-run na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, ma-access ang mga serbisyo ng pamahalaan, at manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
     "startHere": "Simula",
     "prompt": "Ano ang kailangan mo sa pamahalaan?",
     "placeholder": "hal. mag-renew ng pasaporte",
     "searchCta": "Hanapin",
     "popular": "Sikat",
     "statsServices": "serbisyo",
-    "statsAgencies": "ahensya",
-    "statsUpdates": "update",
-    "statsUpdatesLabel": "Araw-araw"
+    "statsAgencies": "ahensya"
   },
   "categories": {
     "label": "Mga serbisyo sa kategorya",

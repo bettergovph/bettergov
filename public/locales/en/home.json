@@ -10,9 +10,7 @@
     "searchCta": "Search",
     "popular": "Popular",
     "statsServices": "services indexed",
-    "statsAgencies": "agencies tracked",
-    "statsUpdates": "updates",
-    "statsUpdatesLabel": "Daily"
+    "statsAgencies": "agencies tracked"
   },
   "categories": {
     "label": "Services by category",

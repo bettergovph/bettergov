@@ -96,7 +96,6 @@ function App() {
         <div className='min-h-screen flex flex-col'>
           <SEO />
           <Navbar />
-          {/* <Ticker /> */}
           <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />} />

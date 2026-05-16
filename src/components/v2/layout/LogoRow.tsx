@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MenuIcon, SearchIcon, UserIcon, XIcon } from 'lucide-react';
-import LangToggle from './LangToggle';
 import Button from '../ui/Button';
 
 type Props = {
@@ -32,9 +31,6 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
       </div>
 
       <div className='flex items-center gap-3.5 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3'>
-        <div className='max-md:hidden'>
-          <LangToggle />
-        </div>
         <Button
           as={Link}
           to='/search'

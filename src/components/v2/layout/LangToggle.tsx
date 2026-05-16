@@ -7,12 +7,12 @@ const LangToggle: FC = () => {
   const { i18n } = useTranslation();
 
   return (
-    <div className='inline-flex border border-ed-ink bg-white font-mono-ed text-[10px] tracking-[0.12em]'>
+    <div className='inline-flex'>
       <select
         aria-label='Language'
         value={i18n.language}
         onChange={e => i18n.changeLanguage(e.target.value as LanguageType)}
-        className='appearance-none border-0 bg-transparent px-2.5 py-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink cursor-pointer focus:outline-none'
+        className='appearance-none border-0 bg-transparent p-0 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3 cursor-pointer hover:text-ed-navy focus:outline-none'
       >
         {Object.entries(LANGUAGES).map(([code, lang]) => (
           <option key={code} value={code}>
