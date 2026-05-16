@@ -46,6 +46,7 @@ const SenateCommitteesPage: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Senate · ${committees.length} committees`}
         title={
           <>

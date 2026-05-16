@@ -55,6 +55,7 @@ const OrganizationsPage: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Diplomatic · ${all.length} organizations`}
         title={
           <>

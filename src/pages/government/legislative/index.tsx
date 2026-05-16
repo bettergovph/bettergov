@@ -17,6 +17,7 @@ const LegislativeIndex: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Legislative · ${entries.length} chambers`}
         title={
           <>

@@ -48,6 +48,7 @@ const GOCCsPage: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Constitutional · ${all.length} GOCCs`}
         title={
           <>

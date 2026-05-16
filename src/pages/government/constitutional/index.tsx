@@ -17,6 +17,7 @@ const ConstitutionalIndex: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Constitutional · ${entries.length} offices`}
         title={
           <>

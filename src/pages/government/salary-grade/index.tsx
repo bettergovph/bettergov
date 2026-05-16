@@ -38,6 +38,7 @@ const SalaryGradePage: FC = () => {
       </Helmet>
 
       <PageMasthead
+        variant='hero'
         eyebrow='Government · Compensation'
         title={
           <>

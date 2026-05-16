@@ -69,6 +69,7 @@ const LocalGovernmentIndex: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Local Government · ${regions.length} regions · ${totalCities} cities and municipalities`}
         title={
           <>

@@ -57,6 +57,7 @@ const HouseMembersPage: FC = () => {
         />
       </Helmet>
       <PageMasthead
+        variant='hero'
         eyebrow={`Legislative · ${members.length} district members`}
         title={
           <>
