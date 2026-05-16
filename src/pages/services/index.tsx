@@ -10,7 +10,7 @@ import Flag from '../../components/v2/ui/Flag';
 import FilterSection from '../../components/v2/ui/FilterSection';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
-import { scrollToTop } from '@/lib/scrollUtils';
+import { smoothScrollToElement } from '@/lib/scrollUtils';
 
 import serviceCategories from '../../data/service_categories.json';
 import businessTradeServices from '../../data/services/business-trade.json';
@@ -55,6 +55,9 @@ interface Category {
 }
 
 const ITEMS_PER_PAGE = 16;
+
+/** DOM id used for the results section; category changes scroll here. */
+const RESULTS_ANCHOR = 'services-results';
 
 export default function ServicesPage() {
   const [
@@ -118,6 +121,11 @@ export default function ServicesPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
+  /** Scroll to just below the hero so the user keeps context on filter changes. */
+  const scrollToResults = () => {
+    smoothScrollToElement(RESULTS_ANCHOR, 24);
+  };
+
   const handleSearch = (query: string) => {
     setSearchQuery(query || null);
     setCurrentPage(1);
@@ -129,6 +137,7 @@ export default function ServicesPage() {
       category: categorySlug === 'all' ? null : categorySlug,
       subcategory: null,
     });
+    scrollToResults();
   };
 
   const handleSubcategoryChange = (subcategorySlug: string) => {
@@ -137,6 +146,7 @@ export default function ServicesPage() {
       category: selectedCategorySlug,
       subcategory: subcategorySlug === 'all' ? null : subcategorySlug,
     });
+    scrollToResults();
   };
 
   const handleLoadMore = useCallback(() => {
@@ -199,10 +209,6 @@ export default function ServicesPage() {
       selectedSubcategorySlug,
     ]);
 
-  const title = selectedCategory
-    ? `${selectedCategory.category}`
-    : 'Search the services index';
-
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet key={canonicalUrl}>
@@ -218,15 +224,18 @@ export default function ServicesPage() {
       </Helmet>
 
       <PageMasthead
-        eyebrow='Section · Services Index'
-        title={title}
+        variant='hero'
+        eyebrow='§ Services · Index'
+        title={
+          selectedCategory ? selectedCategory.category : 'Government services'
+        }
         lede={
           selectedCategory
             ? `Browse services under ${selectedCategory.category}. Every entry links to the official source and is reviewed by our volunteer editors.`
             : 'Find official Philippine government services — written plainly, updated continuously, sourced from the original issuing agency.'
         }
       >
-        <div className='max-w-2xl'>
+        <div className='mt-2 max-w-2xl'>
           <BigSearch
             value={searchQuery ?? ''}
             onChange={handleSearch}
@@ -236,11 +245,12 @@ export default function ServicesPage() {
             placeholder='What do you need? e.g. passport, NBI clearance'
             ariaLabel='Search government services'
             ctaLabel='Search'
+            onDark
           />
         </div>
       </PageMasthead>
 
-      <section className='py-10 max-md:py-6'>
+      <section id={RESULTS_ANCHOR} className='scroll-mt-24 py-10 max-md:py-6'>
         <Container>
           {/* Mobile filter toggle */}
           <div className='mb-6 md:hidden'>
@@ -264,7 +274,7 @@ export default function ServicesPage() {
             <aside
               id='services-sidebar'
               className={cn(
-                'border-t border-ed-ink pt-5 max-md:pt-4',
+                'border-t border-ed-ink pt-5 md:sticky md:top-6 md:self-start max-md:pt-4',
                 sidebarOpen ? 'block' : 'hidden md:block'
               )}
               aria-label='Service filters'
@@ -280,7 +290,6 @@ export default function ServicesPage() {
                     count={allServices.length}
                     active={selectedCategorySlug === 'all'}
                     onClick={() => {
-                      scrollToTop();
                       handleCategoryChange('all');
                       setSidebarOpen(false);
                     }}
@@ -297,7 +306,6 @@ export default function ServicesPage() {
                           count={count}
                           active={isOpen}
                           onClick={() => {
-                            scrollToTop();
                             handleCategoryChange(c.slug);
                             setSidebarOpen(false);
                           }}
@@ -308,7 +316,6 @@ export default function ServicesPage() {
                           <div className='ml-3 mt-1 flex flex-col border-l border-ed-rule pl-3'>
                             <button
                               onClick={() => {
-                                scrollToTop();
                                 handleSubcategoryChange('all');
                                 setSidebarOpen(false);
                               }}
@@ -333,7 +340,6 @@ export default function ServicesPage() {
                                 <button
                                   key={sub.slug}
                                   onClick={() => {
-                                    scrollToTop();
                                     handleSubcategoryChange(sub.slug);
                                     setSidebarOpen(false);
                                   }}
@@ -370,8 +376,7 @@ export default function ServicesPage() {
                   result{filteredServices.length === 1 ? '' : 's'}
                   {searchQuery ? (
                     <>
-                      {' '}
-                      for{' '}
+                      {' for '}
                       <em className='not-italic text-ed-ink'>
                         &ldquo;{searchQuery}&rdquo;
                       </em>
@@ -440,12 +445,10 @@ export default function ServicesPage() {
                 </ul>
               )}
 
-              {/* Infinite scroll trigger */}
               {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
                 <div ref={loadMoreRef} className='py-8' aria-hidden='true' />
               )}
 
-              {/* SR status */}
               <div className='sr-only' aria-live='polite' aria-atomic='true'>
                 Showing {paginatedServices.length} of {filteredServices.length}{' '}
                 services

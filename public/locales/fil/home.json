@@ -1,10 +1,9 @@
 {
   "hero": {
-    "eyebrow": "Malayang serbisyong sibiko",
+    "eyebrow": "§ BetterGov.ph",
     "eyebrowEst": "Itinatag noong 2024",
-    "titleLineOne": "Pamahalaang Pilipino,",
-    "titleLineTwo": "walang paikot-ikot.",
-    "lede": "Hanapin ang mga serbisyo, ahensya, porma, pista opisyal at batas — maayos na isinulat, patuloy na nirerepaso, at libreng magagamit ng lahat.",
+    "title": "Maligayang pagdating sa BetterGov.ph",
+    "lede": "Ang volunteer-run na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
     "startHere": "Simula",
     "prompt": "Ano ang kailangan mo sa pamahalaan?",
     "placeholder": "hal. mag-renew ng pasaporte",
