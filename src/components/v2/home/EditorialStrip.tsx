@@ -12,7 +12,7 @@ const EditorialStrip: FC = () => {
   return (
     <section className='my-20'>
       <Container>
-        <SectionHeader num='§ 05' label={t('editorial.label')} />
+        <SectionHeader label={t('editorial.label')} />
         <div className='grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))]'>
           {items.map(x => (
             <div key={x.n} className='border-l border-ed-ink pl-6 pr-4'>

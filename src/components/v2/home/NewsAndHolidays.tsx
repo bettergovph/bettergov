@@ -17,7 +17,6 @@ const NewsAndHolidays: FC = () => {
     <section className='mt-20'>
       <Container>
         <SectionHeader
-          num='§ 03'
           label={t('newsAndHolidays.label')}
           meta={
             <Link

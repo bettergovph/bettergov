@@ -111,7 +111,6 @@ const GuidesIndex: FC = () => {
       <section className='mt-10'>
         <Container>
           <SimpleSectionHead
-            num='§ 01'
             label='Most requested this week'
             meta={`Updated ${new Date().toLocaleDateString()}`}
           />
@@ -205,7 +204,6 @@ const GuidesIndex: FC = () => {
       <section className='mt-16 mb-20'>
         <Container>
           <SimpleSectionHead
-            num='§ 02'
             label={
               <>
                 {cat === 'All' ? 'All guides' : cat}

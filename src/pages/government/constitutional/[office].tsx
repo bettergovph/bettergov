@@ -67,7 +67,6 @@ const ConstitutionalOfficePage: FC = () => {
           {office.officials && office.officials.length > 0 && (
             <>
               <SectionHeader
-                num='§ 01'
                 label='Officials'
                 meta={`${office.officials.length} people`}
               />

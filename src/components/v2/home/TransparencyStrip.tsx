@@ -17,7 +17,6 @@ const TransparencyStrip: FC = () => {
       <Container>
         <div className='mb-8'>
           <SectionHeader
-            num='§ 04'
             label={t('transparency.label')}
             meta={
               <Link

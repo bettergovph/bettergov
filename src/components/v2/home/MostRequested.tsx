@@ -18,7 +18,6 @@ const MostRequested: FC = () => {
     <section className='mt-20'>
       <Container>
         <SectionHeader
-          num='§ 02'
           label={t('mostRequested.label')}
           meta={`${t('mostRequested.updatedLabel')} ${updated}`}
         />
@@ -61,9 +60,7 @@ const MostRequested: FC = () => {
                   i === 0 ? 'border-b border-ed-rule' : ''
                 }`}
               >
-                <Eyebrow>
-                  № 0{i + 2} · {s.agency}
-                </Eyebrow>
+                <Eyebrow>{s.agency}</Eyebrow>
                 <h3 className='mt-3 font-serif-ed text-[28px] font-normal leading-[1.1] tracking-[-0.01em] text-ed-ink'>
                   {s.title}
                 </h3>
@@ -95,18 +92,11 @@ const MostRequested: FC = () => {
                       : ''
                   }`}
                 >
-                  <div className='flex items-baseline gap-3'>
-                    <span className='w-[18px] shrink-0 font-mono-ed text-[10px] tracking-[0.14em] text-ed-ink-4'>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div className='flex-1'>
-                      <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-                        {s.agency}
-                      </div>
-                      <div className='mt-0.5 font-serif-ed text-base leading-tight'>
-                        {s.title}
-                      </div>
-                    </div>
+                  <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                    {s.agency}
+                  </div>
+                  <div className='mt-0.5 font-serif-ed text-base leading-tight'>
+                    {s.title}
                   </div>
                 </Link>
               ))}

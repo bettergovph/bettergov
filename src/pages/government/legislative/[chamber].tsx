@@ -63,7 +63,6 @@ const LegislativeChamber: FC = () => {
           {chamber.officials && chamber.officials.length > 0 && (
             <>
               <SectionHeader
-                num='§ 01'
                 label='Officers'
                 meta={`${chamber.officials.length} officials`}
               />

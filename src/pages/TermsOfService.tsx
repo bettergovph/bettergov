@@ -32,7 +32,7 @@ const TermsOfService: FC = () => (
 
     <section className='py-12 max-md:py-8'>
       <Container narrow>
-        <SectionHeader num='§ 01' label='Acceptance of Terms' />
+        <SectionHeader label='Acceptance of Terms' />
         <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
           <Dropcap>
             By accessing and using this website, you accept and agree to be
@@ -42,10 +42,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader
-            num='§ 02'
-            label='Public Domain Content & Volunteer Operation'
-          />
+          <SectionHeader label='Public Domain Content & Volunteer Operation' />
           <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               This website and all its content are in the public domain and
@@ -64,7 +61,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 03' label='&ldquo;As Is&rdquo; Disclaimer' />
+          <SectionHeader label='&ldquo;As Is&rdquo; Disclaimer' />
           <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               All information on this website is provided &ldquo;as is&rdquo;
@@ -93,7 +90,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 04' label='Limitation of Liability' />
+          <SectionHeader label='Limitation of Liability' />
           <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Under no circumstances shall the website operators, contributors,
@@ -112,7 +109,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 05' label='User Responsibilities' />
+          <SectionHeader label='User Responsibilities' />
           <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Users are solely responsible for conducting their own independent
@@ -129,7 +126,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 06' label='No Professional Advice' />
+          <SectionHeader label='No Professional Advice' />
           <div className='max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Information on this website is not intended as professional advice
@@ -141,7 +138,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 07' label='Governing Law' />
+          <SectionHeader label='Governing Law' />
           <div className='max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               These terms are governed by the laws of the Republic of the
@@ -153,10 +150,7 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader
-            num='§ 08'
-            label='Content Concerns & Takedown Requests'
-          />
+          <SectionHeader label='Content Concerns & Takedown Requests' />
           <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               While we strive to provide accurate public domain information, we

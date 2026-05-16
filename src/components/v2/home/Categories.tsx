@@ -23,21 +23,17 @@ const Categories: FC = () => {
     <section className='mt-16'>
       <Container>
         <SectionHeader
-          num='§ 01'
           label={t('categories.label')}
           meta={t('categories.meta', { count: total, domains: items.length })}
         />
         <div className='grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]'>
-          {items.map((c, i) => (
+          {items.map(c => (
             <Link
               key={c.id}
               to={`/services?category=${c.id}`}
               className='relative block min-h-[180px] border border-ed-rule bg-white p-6 text-ed-ink no-underline transition-colors hover:border-ed-ink'
             >
-              <div className='flex items-baseline justify-between'>
-                <span className='font-mono-ed text-[10px] tracking-[0.14em] text-ed-ink-4'>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+              <div className='flex items-baseline justify-end'>
                 <span className='font-mono-ed text-[10px] tracking-[0.14em] text-ed-ink-3'>
                   {c.count} services
                 </span>

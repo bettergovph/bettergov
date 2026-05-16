@@ -136,7 +136,7 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug, eyebrow }) => {
 
           {flat.length > 0 && (
             <>
-              <SectionHeader num='§ 01' label='Leadership' />
+              <SectionHeader label='Leadership' />
               <OfficialsTable officials={flat} />
             </>
           )}

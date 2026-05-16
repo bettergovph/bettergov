@@ -93,7 +93,6 @@ const SalaryGradePage: FC = () => {
       <section className='pb-14 max-md:pb-8'>
         <Container>
           <SectionHeader
-            num='§ 01'
             label='Monthly salary schedule'
             meta={`SG 1–33 · 8 steps`}
           />

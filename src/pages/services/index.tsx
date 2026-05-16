@@ -408,17 +408,14 @@ export default function ServicesPage() {
                 </div>
               ) : (
                 <ul className='divide-y divide-ed-rule' role='list'>
-                  {paginatedServices.map((service, i) => (
+                  {paginatedServices.map(service => (
                     <li key={service.id} role='listitem'>
                       <a
                         href={service.url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='grid grid-cols-[60px_1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-[40px_1fr] max-lg:gap-4 max-md:py-5'
+                        className='grid grid-cols-[1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-1 max-lg:gap-4 max-md:py-5'
                       >
-                        <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
-                          {String(i + 1).padStart(2, '0')}
-                        </div>
                         <div>
                           <div className='flex flex-wrap items-baseline gap-3'>
                             <Flag variant='navy'>{service.category.name}</Flag>

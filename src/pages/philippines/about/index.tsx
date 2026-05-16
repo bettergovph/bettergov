@@ -112,7 +112,6 @@ const AboutPhilippines: FC = () => {
       <section className='mt-16'>
         <Container>
           <SectionHeader
-            num='§ 01'
             label={t('about.overview.title')}
             meta={t('about.overview.meta')}
           />
@@ -156,7 +155,6 @@ const AboutPhilippines: FC = () => {
       <section className='mt-16'>
         <Container>
           <SectionHeader
-            num='§ 02'
             label={t('about.symbols.title')}
             meta={t('about.symbols.meta')}
           />
@@ -191,7 +189,7 @@ const AboutPhilippines: FC = () => {
         <Container>
           <div className='grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-12'>
             <div>
-              <SectionHeader num='§ 03' label={t('about.government.title')} />
+              <SectionHeader label={t('about.government.title')} />
               <div className='border-t-2 border-ed-navy'>
                 {govItems.map(g => (
                   <div
@@ -215,7 +213,7 @@ const AboutPhilippines: FC = () => {
             </div>
 
             <div>
-              <SectionHeader num='§ 04' label={t('about.explore.title')} />
+              <SectionHeader label={t('about.explore.title')} />
               <div className='border-t-2 border-ed-navy'>
                 {exploreItems.map(e => (
                   <Link

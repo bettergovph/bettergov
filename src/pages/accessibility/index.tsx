@@ -25,7 +25,7 @@ const AccessibilityPage: FC = () => (
 
     <section className='py-12 max-md:py-8'>
       <Container narrow>
-        <SectionHeader num='§ 01' label='Our Commitment' />
+        <SectionHeader label='Our Commitment' />
         <div className='space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-2xl'>
           <Dropcap>
             BetterGov.ph is committed to ensuring digital accessibility for
@@ -43,7 +43,7 @@ const AccessibilityPage: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 02' label='Standards & Compliance' />
+          <SectionHeader label='Standards & Compliance' />
           <div className='space-y-0 divide-y divide-ed-rule max-w-2xl'>
             {[
               {
@@ -73,7 +73,7 @@ const AccessibilityPage: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 03' label='Accessibility Features' />
+          <SectionHeader label='Accessibility Features' />
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 max-w-2xl'>
             {[
               {
@@ -134,7 +134,7 @@ const AccessibilityPage: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 04' label='Keyboard Shortcuts' />
+          <SectionHeader label='Keyboard Shortcuts' />
           <div className='max-w-xl divide-y divide-ed-rule'>
             {[
               { action: 'Skip to main content', key: 'Tab' },
@@ -158,7 +158,7 @@ const AccessibilityPage: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader num='§ 05' label='Feedback & Contact' />
+          <SectionHeader label='Feedback & Contact' />
           <div className='max-w-2xl space-y-4 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               We welcome feedback on the accessibility of BetterGov.ph. If you

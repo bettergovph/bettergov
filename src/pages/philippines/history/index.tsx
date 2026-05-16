@@ -61,7 +61,6 @@ const PhilippinesHistory: FC = () => {
       <section className='mt-16'>
         <Container>
           <SectionHeader
-            num='§ 01'
             label={t('history.entriesSectionLabel')}
             meta={t('history.entriesSectionMeta')}
           />

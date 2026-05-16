@@ -274,7 +274,6 @@ const PassportGuide: FC = () => {
         <section className='pt-12 max-md:pt-8'>
           <Container>
             <SectionHeader
-              num='§ 01'
               label='Pick your situation'
               meta='Rules change depending on your case.'
             />
@@ -319,7 +318,7 @@ const PassportGuide: FC = () => {
             <div className='grid grid-cols-[1.6fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
               <div>
                 <div id='what-happens' className='scroll-mt-24'>
-                  <SectionHeader num='§ 02' label='What happens' />
+                  <SectionHeader label='What happens' />
                 </div>
                 <Dropcap className='font-serif-ed text-lg leading-[1.65] text-ed-ink-2'>
                   The Philippine passport is issued by the Department of Foreign

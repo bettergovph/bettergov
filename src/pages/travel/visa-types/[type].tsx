@@ -72,7 +72,6 @@ const VisaTypeDetail: FC = () => {
           {v.minimumRequirements && v.minimumRequirements.length > 0 && (
             <>
               <SectionHeader
-                num='§ 01'
                 label='Minimum requirements'
                 meta={`${v.minimumRequirements.length} items`}
               />
@@ -97,7 +96,6 @@ const VisaTypeDetail: FC = () => {
           {v.subtypes && v.subtypes.length > 0 && (
             <>
               <SectionHeader
-                num='§ 02'
                 label='Subtypes'
                 meta={`${v.subtypes.length} variants`}
               />

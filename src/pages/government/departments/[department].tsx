@@ -168,7 +168,7 @@ const DepartmentDetail: FC = () => {
         <Container>
           {secretaryRow.length > 0 && (
             <>
-              <SectionHeader num='§ 01' label='Head of department' />
+              <SectionHeader label='Head of department' />
               <OfficialsTable officials={secretaryRow} />
             </>
           )}
@@ -176,7 +176,6 @@ const DepartmentDetail: FC = () => {
           {undersecretaries && undersecretaries.length > 0 && (
             <>
               <SectionHeader
-                num='§ 02'
                 label='Undersecretaries'
                 meta={`${undersecretaries.length} officials`}
               />
