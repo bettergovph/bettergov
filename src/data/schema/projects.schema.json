@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BetterGov.ph Project Registry",
+  "description": "Registry of officially recognized BetterGov.ph projects",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "slug",
+      "title",
+      "description",
+      "repositoryUrls",
+      "projectUrl",
+      "status"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "slug": {
+        "type": "string",
+        "description": "Unique URL-friendly identifier for the project",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "title": {
+        "type": "string",
+        "description": "Display name of the project",
+        "minLength": 1
+      },
+      "description": {
+        "type": "string",
+        "description": "Short description of what the project does",
+        "minLength": 1
+      },
+      "repositoryUrls": {
+        "type": "array",
+        "description": "GitHub or other VCS repository URLs (supports multi-repo projects; can be empty if repo is private)",
+        "items": {
+          "type": "string",
+          "pattern": "^https://"
+        }
+      },
+      "projectUrl": {
+        "type": "string",
+        "description": "Live URL where the project is accessible",
+        "pattern": "^https://"
+      },
+      "status": {
+        "type": "string",
+        "description": "Current development/deployment status of the project",
+        "enum": ["active", "development", "archived"]
+      }
+    }
+  }
+}
