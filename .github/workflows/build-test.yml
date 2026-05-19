@@ -63,7 +63,7 @@ jobs:
     name: Playwright Tests (Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      image: mcr.microsoft.com/playwright:v1.60.0-noble
       options: --user 1001
     strategy:
       fail-fast: false
