@@ -13,6 +13,11 @@ const config = {
   '*.{js,jsx,ts,tsx,cjs,mjs,json,jsonc,md,yml,yaml,css,scss,html}': [
     'prettier --write',
   ],
+
+  // JSON schema validation for the project registry
+  'public/api/projects.json': [
+    'node scripts/validate-json-schema.js src/data/schema/projects.schema.json',
+  ],
 };
 
 export default config;

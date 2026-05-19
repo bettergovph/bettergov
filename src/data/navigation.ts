@@ -23,6 +23,11 @@ export const ourProjects = [
         target: '_blank',
       },
       {
+        label: 'Better LGU',
+        href: 'https://lgu.bettergov.ph/',
+        target: '_blank',
+      },
+      {
         label: 'Budget Tracker',
         href: 'https://budget.bettergov.ph',
         target: '_blank',
