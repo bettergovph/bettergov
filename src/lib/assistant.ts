@@ -1,4 +1,3 @@
-
 // Types for our service data
 export interface ServiceItem {
   service: string;
@@ -26,7 +25,7 @@ export class CivicEngine {
 
   async initialize() {
     try {
-      // In a real app, we'd fetch these or import them. 
+      // In a real app, we'd fetch these or import them.
       // For this prototype, we'll focus on the core categories.
       const categories = [
         'passport-travel',
@@ -37,7 +36,7 @@ export class CivicEngine {
       ];
 
       const datasets = await Promise.all(
-        categories.map(async (cat) => {
+        categories.map(async cat => {
           try {
             const module = await import(`../data/services/${cat}.json`);
             return module.default as ServiceItem[];
@@ -58,12 +57,13 @@ export class CivicEngine {
     if (!input || input.length < 2) return [];
 
     const searchTerms = input.toLowerCase().split(' ');
-    
+
     return this.data
       .map(item => {
         let score = 0;
-        const target = `${item.service} ${item.category.name} ${item.subcategory.name}`.toLowerCase();
-        
+        const target =
+          `${item.service} ${item.category.name} ${item.subcategory.name}`.toLowerCase();
+
         searchTerms.forEach(term => {
           if (target.includes(term)) {
             score += 1;
