@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { lazy } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,94 +10,158 @@ import Navbar from './components/layout/Navbar';
 import Ticker from './components/ui/Ticker';
 import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
-import Home from './pages/Home';
-import DesignGuide from './pages/DesignGuide';
-import Services from './pages/services';
-import AboutPage from './pages/about';
-import AccessibilityPage from './pages/accessibility';
-import AboutPhilippines from './pages/philippines/about';
-import PhilippinesHistory from './pages/philippines/history';
-import PhilippinesCulture from './pages/philippines/culture';
-import PhilippinesRegions from './pages/philippines/regions';
-import PhilippinesMap from './pages/philippines/map';
-import PublicHolidays from './pages/philippines/holidays';
-import ContactUs from './pages/ContactUs';
-import Hotlines from './pages/philippines/Hotlines';
-import VisaPage from './pages/travel/visa';
-import VisaTypesPage from './pages/travel/visa-types';
-import VisaTypeDetail from './pages/travel/visa-types/[type]';
-import CommunicatingPage from './pages/travel/communicating';
-import CommunicatingPrintPage from './pages/travel/communicating/print';
-import ExecutiveDirectory from './pages/government/executive';
-import ExecutiveLayout from './pages/government/executive/layout';
-import DepartmentsIndex from './pages/government/departments';
-import DepartmentDetail from './pages/government/departments/[department]';
-import DepartmentsLayout from './pages/government/departments/layout';
-import GovernmentLayout from './pages/government/layout';
-import ConstitutionalLayout from './pages/government/constitutional/layout';
-import ConstitutionalIndex from './pages/government/constitutional/index';
-import ConstitutionalOffice from './pages/government/constitutional/[office]';
-import GOCCsPage from './pages/government/constitutional/goccs';
-import SUCsPage from './pages/government/constitutional/sucs';
+import ScrollToTop from './components/ui/ScrollToTop';
+
+// lazy load imports for better chunking
+const Home = lazy(() => import('./pages/Home'));
+const DesignGuide = lazy(() => import('./pages/DesignGuide'));
+const Services = lazy(() => import('./pages/services'));
+const AboutPage = lazy(() => import('./pages/about'));
+const AccessibilityPage = lazy(() => import('./pages/accessibility'));
+const AboutPhilippines = lazy(() => import('./pages/philippines/about'));
+const PhilippinesHistory = lazy(() => import('./pages/philippines/history'));
+const PhilippinesCulture = lazy(() => import('./pages/philippines/culture'));
+const PhilippinesRegions = lazy(() => import('./pages/philippines/regions'));
+const PhilippinesMap = lazy(() => import('./pages/philippines/map'));
+const PublicHolidays = lazy(() => import('./pages/philippines/holidays'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const Hotlines = lazy(() => import('./pages/philippines/Hotlines'));
+const VisaPage = lazy(() => import('./pages/travel/visa'));
+const VisaTypesPage = lazy(() => import('./pages/travel/visa-types'));
+const VisaTypeDetail = lazy(() => import('./pages/travel/visa-types/[type]'));
+const CommunicatingPage = lazy(() => import('./pages/travel/communicating'));
+const CommunicatingPrintPage = lazy(
+  () => import('./pages/travel/communicating/print')
+);
+const ExecutiveDirectory = lazy(() => import('./pages/government/executive'));
+const ExecutiveLayout = lazy(
+  () => import('./pages/government/executive/layout')
+);
+const DepartmentsIndex = lazy(() => import('./pages/government/departments'));
+const DepartmentDetail = lazy(
+  () => import('./pages/government/departments/[department]')
+);
+const DepartmentsLayout = lazy(
+  () => import('./pages/government/departments/layout')
+);
+const GovernmentLayout = lazy(() => import('./pages/government/layout'));
+const ConstitutionalLayout = lazy(
+  () => import('./pages/government/constitutional/layout')
+);
+const ConstitutionalIndex = lazy(
+  () => import('./pages/government/constitutional/index')
+);
+const ConstitutionalOffice = lazy(
+  () => import('./pages/government/constitutional/[office]')
+);
+const GOCCsPage = lazy(() => import('./pages/government/constitutional/goccs'));
+const SUCsPage = lazy(() => import('./pages/government/constitutional/sucs'));
 
 // Legislative Branch
-import LegislativeLayout from './pages/government/legislative/layout';
-import LegislativeIndex from './pages/government/legislative/index';
-import LegislativeChamber from './pages/government/legislative/[chamber]';
-import HouseMembersPage from './pages/government/legislative/house-members';
-import PartyListMembersPage from './pages/government/legislative/party-list-members';
-import SenateCommitteesPage from './pages/government/legislative/senate-committees';
+const LegislativeLayout = lazy(
+  () => import('./pages/government/legislative/layout')
+);
+const LegislativeIndex = lazy(
+  () => import('./pages/government/legislative/index')
+);
+const LegislativeChamber = lazy(
+  () => import('./pages/government/legislative/[chamber]')
+);
+const HouseMembersPage = lazy(
+  () => import('./pages/government/legislative/house-members')
+);
+const PartyListMembersPage = lazy(
+  () => import('./pages/government/legislative/party-list-members')
+);
+const SenateCommitteesPage = lazy(
+  () => import('./pages/government/legislative/senate-committees')
+);
 
 // Diplomatic Section
-import DiplomaticLayout from './pages/government/diplomatic/layout';
-import DiplomaticIndex from './pages/government/diplomatic/index';
-import DiplomaticMissionsPage from './pages/government/diplomatic/missions';
-import ConsulatesPage from './pages/government/diplomatic/consulates';
-import InternationalOrganizationsPage from './pages/government/diplomatic/organizations';
-import OfficeOfThePresident from './pages/government/executive/office-of-the-president';
-import OtherExecutiveOffices from './pages/government/executive/other-executive-offices';
-import OfficeOfTheVicePresident from './pages/government/executive/office-of-the-vice-president';
-import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
+const DiplomaticLayout = lazy(
+  () => import('./pages/government/diplomatic/layout')
+);
+const DiplomaticIndex = lazy(
+  () => import('./pages/government/diplomatic/index')
+);
+const DiplomaticMissionsPage = lazy(
+  () => import('./pages/government/diplomatic/missions')
+);
+const ConsulatesPage = lazy(
+  () => import('./pages/government/diplomatic/consulates')
+);
+const InternationalOrganizationsPage = lazy(
+  () => import('./pages/government/diplomatic/organizations')
+);
+const OfficeOfThePresident = lazy(
+  () => import('./pages/government/executive/office-of-the-president')
+);
+const OtherExecutiveOffices = lazy(
+  () => import('./pages/government/executive/other-executive-offices')
+);
+const OfficeOfTheVicePresident = lazy(
+  () => import('./pages/government/executive/office-of-the-vice-president')
+);
+const PresidentialCommunicationsOffice = lazy(
+  () =>
+    import('./pages/government/executive/presidential-communications-office')
+);
 
 // Local Government Units
-import LocalLayout from './pages/government/local/components/LocalLayout';
-import LocalGovernmentIndex from './pages/government/local/index';
-import RegionalLGUPage from './pages/government/local/[region]';
+const LocalLayout = lazy(
+  () => import('./pages/government/local/components/LocalLayout')
+);
+const LocalGovernmentIndex = lazy(
+  () => import('./pages/government/local/index')
+);
+const RegionalLGUPage = lazy(() => import('./pages/government/local/[region]'));
 
 // Search Page
-import SearchPage from './pages/Search';
+const SearchPage = lazy(() => import('./pages/Search'));
 
 // Data Pages
-import WeatherPage from './pages/data/weather';
-import ForexPage from './pages/data/forex';
-import FloodControlProjects from './pages/flood-control-projects';
-import FloodControlProjectsTable from './pages/flood-control-projects/table';
-import FloodControlProjectsMap from './pages/flood-control-projects/map';
-import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
-import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
+const WeatherPage = lazy(() => import('./pages/data/weather'));
+const ForexPage = lazy(() => import('./pages/data/forex'));
+const FloodControlProjects = lazy(
+  () => import('./pages/flood-control-projects')
+);
+const FloodControlProjectsTable = lazy(
+  () => import('./pages/flood-control-projects/table')
+);
+const FloodControlProjectsMap = lazy(
+  () => import('./pages/flood-control-projects/map')
+);
+const FloodControlProjectsContractors = lazy(
+  () => import('./pages/flood-control-projects/contractors')
+);
+const ContractorDetail = lazy(
+  () => import('./pages/flood-control-projects/contractors/[contractor-name]')
+);
 
 // Services Pages
-import WebsitesDirectory from './pages/services/websites';
+const WebsitesDirectory = lazy(() => import('./pages/services/websites'));
 
 // Sitemap Page
-import SitemapPage from './pages/sitemap';
-import Ideas from './pages/Ideas';
-import JoinUs from './pages/JoinUs';
-import TermsOfService from './pages/TermsOfService';
-import ScrollToTop from './components/ui/ScrollToTop';
-import Discord from './pages/Discord';
-import SalaryGradePage from './pages/government/salary-grade/index';
-import NotFound from './pages/NotFound';
+const SitemapPage = lazy(() => import('./pages/sitemap'));
+const Ideas = lazy(() => import('./pages/Ideas'));
+const JoinUs = lazy(() => import('./pages/JoinUs'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const Discord = lazy(() => import('./pages/Discord'));
+const SalaryGradePage = lazy(
+  () => import('./pages/government/salary-grade/index')
+);
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <NuqsAdapter>
         <div className='min-h-screen flex flex-col'>
           <SEO />
           <Navbar />
           <Ticker />
           <ScrollToTop />
+          {/* todo: add a loader in suspense*/}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/design' element={<DesignGuide />} />
@@ -155,20 +219,7 @@ function App() {
               <Route index element={<Navigate to='visa' replace />} />
               <Route path='visa' element={<VisaPage />} />
               <Route path='visa-types' element={<VisaTypesPage />} />
-              <Route
-                path='visa-types/:type'
-                element={
-                  <Suspense
-                    fallback={
-                      <div className='flex items-center justify-center min-h-screen'>
-                        Loading...
-                      </div>
-                    }
-                  >
-                    <VisaTypeDetail />
-                  </Suspense>
-                }
-              />
+              <Route path='visa-types/:type' element={<VisaTypeDetail />} />
               <Route path='communicating' element={<CommunicatingPage />} />
               <Route
                 path='communicating/print'

@@ -7,6 +7,33 @@ import path from 'path';
 export default defineConfig({
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        // custom chunking
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+
+          if (id.includes('leaflet')) return 'leaflet';
+          if (id.includes('recharts') || id.includes('d3-')) return 'charts';
+          if (
+            id.includes('meilisearch') ||
+            id.includes('instantsearch') ||
+            id.includes('algoliasearch')
+          ) {
+            return 'search';
+          }
+          if (id.includes('i18next')) return 'i18n';
+          if (
+            id.includes('/react/') ||
+            id.includes('/react-dom/') ||
+            id.includes('/react-router') ||
+            id.includes('/scheduler/')
+          ) {
+            return 'react-vendor';
+          }
+        },
+      },
+    },
   },
   plugins: [react(), tailwindcss()],
   resolve: {

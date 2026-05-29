@@ -1,7 +1,31 @@
 import { useState, useEffect, FC } from 'react';
-import * as LucideIcons from 'lucide-react';
+import {
+  Sun,
+  Moon,
+  CloudSun,
+  CloudMoon,
+  Cloud,
+  CloudDrizzle,
+  CloudRain,
+  CloudLightning,
+  CloudSnow,
+  type LucideIcon,
+} from 'lucide-react';
 import { fetchWeatherData } from '../../lib/weather';
 import { WeatherData } from '../../types';
+
+// lucide icons mapping for weather conditions
+const weatherIcons: Record<string, LucideIcon> = {
+  Sun,
+  Moon,
+  CloudSun,
+  CloudMoon,
+  Cloud,
+  CloudDrizzle,
+  CloudRain,
+  CloudLightning,
+  CloudSnow,
+};
 
 const WeatherPage: FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
@@ -11,7 +35,7 @@ const WeatherPage: FC = () => {
 
   // Function to get weather icon component
   const getWeatherIcon = (iconName: string, size = 'h-8 w-8') => {
-    const Icon = LucideIcons[iconName as keyof typeof LucideIcons];
+    const Icon = weatherIcons[iconName];
     return Icon ? <Icon className={size} /> : null;
   };
 

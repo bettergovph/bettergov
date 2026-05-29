@@ -90,6 +90,9 @@ export interface WeatherData {
   humidity: number;
   windSpeed: number;
   description: string;
+  icon: string;
+  pressure: number;
+  visibility: number;
 }
 
 export interface ForexData {

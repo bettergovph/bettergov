@@ -1,5 +1,21 @@
 import { FC } from 'react';
-import * as LucideIcons from 'lucide-react';
+import {
+  Building2,
+  FileCheck,
+  Wallet,
+  Cloud,
+  GraduationCap,
+  Briefcase,
+  Heart,
+  Home,
+  Plane,
+  Users,
+  Receipt,
+  Car,
+  FileText,
+  ArrowRight,
+  type LucideIcon,
+} from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 import serviceCategories from '../../data/service_categories.json';
 import { Link } from 'react-router-dom';
@@ -20,22 +36,22 @@ const ServicesSection: FC = () => {
   const { t } = useTranslation('common');
 
   const getIcon = (category: string) => {
-    const iconMap: { [key: string]: keyof typeof LucideIcons } = {
-      'Business and Trade': 'Building2',
-      'Certificates and IDs': 'FileCheck',
-      Contributions: 'Wallet',
-      'Disaster and Weather': 'Cloud',
-      Education: 'GraduationCap',
-      Employment: 'Briefcase',
-      Health: 'Heart',
-      Housing: 'Home',
-      'Passport and Travel': 'Plane',
-      'Social Services': 'Users',
-      Tax: 'Receipt',
-      'Transport and Driving': 'Car',
+    const iconMap: { [key: string]: LucideIcon } = {
+      'Business and Trade': Building2,
+      'Certificates and IDs': FileCheck,
+      Contributions: Wallet,
+      'Disaster and Weather': Cloud,
+      Education: GraduationCap,
+      Employment: Briefcase,
+      Health: Heart,
+      Housing: Home,
+      'Passport and Travel': Plane,
+      'Social Services': Users,
+      Tax: Receipt,
+      'Transport and Driving': Car,
     };
 
-    const Icon = LucideIcons[iconMap[category] || 'FileText'];
+    const Icon = iconMap[category] || FileText;
     return Icon ? <Icon className='h-6 w-6' /> : null;
   };
 
@@ -94,7 +110,7 @@ const ServicesSection: FC = () => {
                   className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
                 >
                   {t('services.viewAllCategory')} {category.category}
-                  <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
+                  <ArrowRight className='ml-1 h-4 w-4' />
                 </Link>
               </CardContent>
             </Card>

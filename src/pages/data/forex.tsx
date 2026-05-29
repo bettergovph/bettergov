@@ -1,5 +1,14 @@
-import { useState, useEffect, ComponentType, FC } from 'react';
-import * as LucideIcons from 'lucide-react';
+import { useState, useEffect, FC } from 'react';
+import {
+  Search,
+  SearchX,
+  X,
+  DollarSign,
+  JapaneseYen,
+  Euro,
+  PoundSterling,
+  type LucideIcon,
+} from 'lucide-react';
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { ForexRate } from '../../types';
 
@@ -13,6 +22,14 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+
+// lucide icons for currencies
+const currencyIcons: Record<string, LucideIcon> = {
+  DollarSign,
+  JapaneseYen,
+  Euro,
+  PoundSterling,
+};
 
 const ForexPage: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
@@ -31,12 +48,7 @@ const ForexPage: FC = () => {
     const iconName = getCurrencyIconName(code);
     if (!iconName) return null;
 
-    const Icon = (
-      LucideIcons as unknown as Record<
-        string,
-        ComponentType<{ className?: string }>
-      >
-    )[iconName];
+    const Icon = currencyIcons[iconName];
     return Icon ? <Icon className={size} /> : null;
   };
 
@@ -209,13 +221,13 @@ const ForexPage: FC = () => {
                       onClick={() => setIsSearchOpen(true)}
                       className='p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors'
                     >
-                      <LucideIcons.Search className='h-5 w-5' />
+                      <Search className='h-5 w-5' />
                     </button>
                   </div>
                 ) : (
                   <div className='relative'>
                     <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                      <LucideIcons.Search className='h-5 w-5 text-gray-400' />
+                      <Search className='h-5 w-5 text-gray-400' />
                     </div>
                     <input
                       type='text'
@@ -238,7 +250,7 @@ const ForexPage: FC = () => {
                         }}
                         className='text-gray-400 hover:text-gray-600'
                       >
-                        <LucideIcons.X className='h-4 w-4' />
+                        <X className='h-4 w-4' />
                       </button>
                     </div>
                   </div>
@@ -276,7 +288,7 @@ const ForexPage: FC = () => {
                   </div>
                 ) : (
                   <div className='flex flex-col items-center justify-center h-full text-center pt-8'>
-                    <LucideIcons.SearchX className='h-12 w-12 text-gray-400 mb-4' />
+                    <SearchX className='h-12 w-12 text-gray-400 mb-4' />
                     <h3 className='text-lg font-medium text-gray-600 mb-2'>
                       No currencies found
                     </h3>

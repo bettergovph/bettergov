@@ -1,11 +1,39 @@
 import { useState, useEffect, FC } from 'react';
-import * as LucideIcons from 'lucide-react';
+import {
+  Cloud,
+  Loader,
+  AlertCircle,
+  BarChart3,
+  Sun,
+  Moon,
+  CloudSun,
+  CloudMoon,
+  CloudDrizzle,
+  CloudRain,
+  CloudLightning,
+  CloudSnow,
+  type LucideIcon,
+} from 'lucide-react';
 import { Card, CardHeader, CardContent } from '../ui/Card';
 import { WeatherData, ForexRate } from '../../types';
 import { useTranslation } from 'react-i18next';
 import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
 import { fetchWeatherData } from '../../lib/weather';
 import { fetchForexData } from '../../lib/forex';
+
+// Only the icons that mapWeatherIconToLucide can return, so the rest of the
+// lucide-react library is tree-shaken out of the bundle.
+const weatherIcons: Record<string, LucideIcon> = {
+  Sun,
+  Moon,
+  CloudSun,
+  CloudMoon,
+  Cloud,
+  CloudDrizzle,
+  CloudRain,
+  CloudLightning,
+  CloudSnow,
+};
 
 const InfoWidgets: FC = () => {
   const { t } = useTranslation('common');
@@ -18,7 +46,7 @@ const InfoWidgets: FC = () => {
 
   // Function to get weather icon component
   const getWeatherIcon = (iconName: string) => {
-    const Icon = LucideIcons[iconName as keyof typeof LucideIcons];
+    const Icon = weatherIcons[iconName];
     return Icon ? <Icon className='h-8 w-8' /> : null;
   };
 
@@ -92,18 +120,18 @@ const InfoWidgets: FC = () => {
           <Card>
             <CardHeader className='bg-primary-50'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
-                <LucideIcons.Cloud className='h-5 w-5 mr-2 text-primary-600' />
+                <Cloud className='h-5 w-5 mr-2 text-primary-600' />
                 {t('weather.title')}
               </h3>
             </CardHeader>
             <CardContent className='@container'>
               {isLoadingWeather ? (
                 <div className='flex justify-center items-center h-40'>
-                  <LucideIcons.Loader className='h-8 w-8 animate-spin text-primary-600' />
+                  <Loader className='h-8 w-8 animate-spin text-primary-600' />
                 </div>
               ) : weatherError ? (
                 <div className='text-center p-4 text-red-500'>
-                  <LucideIcons.AlertCircle className='h-8 w-8 mx-auto mb-2' />
+                  <AlertCircle className='h-8 w-8 mx-auto mb-2' />
                   <p>{weatherError}</p>
                 </div>
               ) : (
@@ -114,6 +142,7 @@ const InfoWidgets: FC = () => {
                       className='flex flex-col items-center p-3 rounded-lg border border-gray-100 bg-white uppercase'
                     >
                       <div className='text-accent-500 mb-1'>
+                        {/* assume location has an icon property here */}
                         {getWeatherIcon(location.icon)}
                       </div>
                       <div className='font-semibold text-lg'>
@@ -157,7 +186,7 @@ const InfoWidgets: FC = () => {
           <Card>
             <CardHeader className='bg-primary-50'>
               <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
-                <LucideIcons.BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
+                <BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
                 {t('forex.title')}
               </h3>
             </CardHeader>
@@ -178,7 +207,7 @@ const InfoWidgets: FC = () => {
                     {isLoadingForex ? (
                       <tr>
                         <td colSpan={3} className='px-3 py-8 text-center'>
-                          <LucideIcons.Loader className='h-6 w-6 animate-spin mx-auto text-primary-600' />
+                          <Loader className='h-6 w-6 animate-spin mx-auto text-primary-600' />
                         </td>
                       </tr>
                     ) : forexError ? (
@@ -187,7 +216,7 @@ const InfoWidgets: FC = () => {
                           colSpan={3}
                           className='px-3 py-4 text-center text-red-500'
                         >
-                          <LucideIcons.AlertCircle className='h-6 w-6 mx-auto mb-2' />
+                          <AlertCircle className='h-6 w-6 mx-auto mb-2' />
                           <p>{forexError}</p>
                         </td>
                       </tr>
