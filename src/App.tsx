@@ -142,15 +142,15 @@ const ContractorDetail = lazy(
 const WebsitesDirectory = lazy(() => import('./pages/services/websites'));
 
 // Sitemap Page
-const SitemapPage = lazy(() => import('./pages/sitemap'));
-const Ideas = lazy(() => import('./pages/Ideas'));
-const JoinUs = lazy(() => import('./pages/JoinUs'));
-const TermsOfService = lazy(() => import('./pages/TermsOfService'));
-const Discord = lazy(() => import('./pages/Discord'));
-const SalaryGradePage = lazy(
-  () => import('./pages/government/salary-grade/index')
-);
-const NotFound = lazy(() => import('./pages/NotFound'));
+import SitemapPage from './pages/sitemap';
+import Ideas from './pages/Ideas';
+import JoinUs from './pages/JoinUs';
+import TermsOfService from './pages/TermsOfService';
+import ScrollToTop from './components/ui/ScrollToTop';
+import Discord from './pages/Discord';
+import SalaryGradePage from './pages/government/salary-grade/index';
+import CivicAssistant from './components/ui/CivicAssistant';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -162,6 +162,7 @@ function App() {
           <Ticker />
           <ScrollToTop />
           {/* todo: add a loader in suspense*/}
+          <CivicAssistant />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/design' element={<DesignGuide />} />
