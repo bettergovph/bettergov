@@ -87,6 +87,7 @@ import TermsOfService from './pages/TermsOfService';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/Discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
+import CivicAssistant from './components/ui/CivicAssistant';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -98,6 +99,7 @@ function App() {
           <Navbar />
           <Ticker />
           <ScrollToTop />
+          <CivicAssistant />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/design' element={<DesignGuide />} />
