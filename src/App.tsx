@@ -39,7 +39,7 @@ import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
 import GOCCsPage from './pages/government/constitutional/goccs';
 import SUCsPage from './pages/government/constitutional/sucs';
-import ProjectRegistry from './pages/ProjectRegistry';
+import ProjectRegistry from './pages/Projects';
 
 // Legislative Branch
 import LegislativeLayout from './pages/government/legislative/layout';
