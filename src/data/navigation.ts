@@ -15,7 +15,7 @@ interface Category {
 export const ourProjects = [
   {
     label: 'Our Projects',
-    href: '#',
+    href: '/projects',
     children: [
       {
         label: '2026 Budget Tracker',
