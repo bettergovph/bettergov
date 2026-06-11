@@ -1,5 +1,5 @@
 import { Env } from '../types';
-import { fetchAndSaveContent, setDefaultCrawler } from '../lib/crawler';
+import { fetchAndSaveContent, getContentByUrl, setDefaultCrawler } from '../lib/crawler';
 
 /**
  * Validate URL to prevent SSRF and other attacks
