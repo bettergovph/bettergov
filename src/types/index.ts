@@ -163,6 +163,7 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  contributors?: string[];
   repositoryUrls: string[];
   projectUrl: string;
   status: 'active' | 'development' | 'archived';

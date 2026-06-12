@@ -34,7 +34,6 @@ function ProjectModal({
   const org = orgFromUrl(primaryRepo);
   const repo = repoFromUrl(primaryRepo);
 
-  // Close on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -43,7 +42,6 @@ function ProjectModal({
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
-  // Lock body scroll while open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -52,12 +50,10 @@ function ProjectModal({
   }, []);
 
   return (
-    // Backdrop
     <div
       className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200'
       onClick={onClose}
     >
-      {/* Modal panel — stop propagation so clicks inside don't close */}
       <div
         className='relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden'
         style={{
@@ -79,7 +75,6 @@ function ProjectModal({
             </div>
           )}
 
-          {/* Close button */}
           <button
             onClick={onClose}
             className='absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center transition-colors backdrop-blur-sm'
@@ -124,6 +119,35 @@ function ProjectModal({
             </p>
           </div>
 
+          {/* Contributors */}
+          {project.contributors && project.contributors.length > 0 && (
+            <div>
+              <h4 className='text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2'>
+                Contributors
+              </h4>
+              <div className='flex flex-wrap gap-2'>
+                {project.contributors.map(username => (
+                  <a
+                    key={username}
+                    href={`https://github.com/${username}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-colors group'
+                  >
+                    <img
+                      src={`https://github.com/${username}.png?size=32`}
+                      alt={username}
+                      className='w-5 h-5 rounded-full object-cover'
+                    />
+                    <span className='text-[12px] text-gray-600 group-hover:text-blue-600 font-medium'>
+                      {username}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Repositories */}
           {project.repositoryUrls.length > 0 && (
             <div>
@@ -141,7 +165,6 @@ function ProjectModal({
                     rel='noopener noreferrer'
                     className='flex items-center gap-2.5 px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-colors group'
                   >
-                    {/* GitHub icon */}
                     <svg
                       className='w-4 h-4 text-gray-400 group-hover:text-blue-500 shrink-0'
                       fill='currentColor'
@@ -195,7 +218,6 @@ function ProjectModal({
         </div>
       </div>
 
-      {/* Keyframe for modal pop-in */}
       <style>{`
         @keyframes modalIn {
           from { opacity: 0; transform: scale(0.92) translateY(12px); }
@@ -266,9 +288,37 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* ── Footer ───────────────────────────────────────────────────────── */}
         <div className='flex items-center justify-between gap-2 px-4 py-2.5 border-t border-gray-100'>
-          <span className='text-[11.5px] text-gray-400 truncate max-w-[55%]'>
-            {project.projectUrl.replace('https://', '')}
-          </span>
+          {project.contributors && project.contributors.length > 0 ? (
+            <div className='flex items-center gap-1.5'>
+              <div className='flex -space-x-2'>
+                {project.contributors.slice(0, 5).map(username => (
+                  <a
+                    key={username}
+                    href={`https://github.com/${username}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    title={username}
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <img
+                      src={`https://github.com/${username}.png?size=32`}
+                      alt={username}
+                      className='w-6 h-6 rounded-full border-2 border-white object-cover hover:scale-110 transition-transform'
+                    />
+                  </a>
+                ))}
+              </div>
+              {project.contributors.length > 5 && (
+                <span className='text-xs text-gray-400'>
+                  +{project.contributors.length - 5}
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className='text-[11.5px] text-gray-400 truncate max-w-[55%]'>
+              {project.projectUrl.replace('https://', '')}
+            </span>
+          )}
           <span className='text-[12px] font-semibold text-blue-600 whitespace-nowrap'>
             View Details →
           </span>
