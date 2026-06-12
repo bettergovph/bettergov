@@ -39,7 +39,7 @@ import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
 import GOCCsPage from './pages/government/constitutional/goccs';
 import SUCsPage from './pages/government/constitutional/sucs';
-import ProjectRegistry from './pages/Projects';
+import Projects from './pages/Projects';
 
 // Legislative Branch
 import LegislativeLayout from './pages/government/legislative/layout';
@@ -114,7 +114,7 @@ function App() {
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
-            <Route path='/projects' Component={ProjectRegistry} />
+            <Route path='/projects' element={<Projects />} />
 
             <Route path='/philippines'>
               <Route index element={<Navigate to='about' replace />} />

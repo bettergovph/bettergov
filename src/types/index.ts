@@ -158,3 +158,15 @@ export interface ForexRate {
   code: string;
   rate: number;
 }
+
+export interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  repositoryUrls: string[];
+  projectUrl: string;
+  status: 'active' | 'development' | 'archived';
+  imageUrl?: string;
+}
+
+export type Tab = 'active' | 'development' | 'archived';
