@@ -176,7 +176,6 @@ export interface Project {
     | 'infrastructure'
     | 'other';
   imageUrl?: string;
-  contributors?: string[];
 }
 
 export type Tab = 'active' | 'development' | 'archived';

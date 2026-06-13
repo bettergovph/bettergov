@@ -19,8 +19,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "money",
-    "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=840&q=80",
-    "contributors": ["jasontorres"]
+    "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=840&q=80"
   },
   {
     "slug": "better-lgu",
@@ -53,8 +52,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=840&q=80",
-    "contributors": ["jasontorres"]
+    "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=840&q=80"
   },
   {
     "slug": "open-data-portal",
@@ -65,8 +63,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=840&q=80",
-    "contributors": ["j4ckofalltrades", "melio0504"]
+    "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=840&q=80"
   },
   {
     "slug": "bantay-ph",
@@ -88,8 +85,7 @@
     "status": "active",
     "repoType": "community",
     "category": "law",
-    "imageUrl": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=840&q=80",
-    "contributors": ["jasontorres", "boringdeveloper", "Justin322322", "niculistana", "michael-dollosa", "MrSluffy", "aaronaco"]
+    "imageUrl": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=840&q=80"
   },
   {
     "slug": "tax-directory",
@@ -100,8 +96,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "money",
-    "imageUrl": "https://images.unsplash.com/photo-1586282391129-76a6df230234?w=840&q=80",
-    "contributors": ["EstopaceMA", "joyceeeen", "nyel-gh"]
+    "imageUrl": "https://images.unsplash.com/photo-1586282391129-76a6df230234?w=840&q=80"
   },
   {
     "slug": "philgeps",
@@ -123,8 +118,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=840&q=80",
-    "contributors": ["JHNLWHD", "lexradotdev", "mhel14", "ztest95", "aeron-cap"]
+    "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=840&q=80"
   },
   {
     "slug": "hotlines",
@@ -135,8 +129,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "health",
-    "imageUrl": "https://images.unsplash.com/photo-1612532275214-e4ca76d0e4d1?w=840&q=80",
-    "contributors": ["jaimehing", "j4ckofalltrades", "mmfallacy", "MarkJoshua23", "padi", "darwintantuco", "KishonShrill", "Marveeeen", "zxiDD"]
+    "imageUrl": "https://images.unsplash.com/photo-1612532275214-e4ca76d0e4d1?w=840&q=80"
   },
   {
     "slug": "open-bayan",
@@ -147,8 +140,7 @@
     "status": "active",
     "repoType": "community",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1545579133-99bb5ad189be?w=840&q=80",
-    "contributors": ["schmayterling", "j4ckofalltrades", "niculistana", "bendlikeabamboo", "Sheape", "Marveeeen"]
+    "imageUrl": "https://images.unsplash.com/photo-1545579133-99bb5ad189be?w=840&q=80"
   },
   {
     "slug": "open-congress-api",
@@ -159,8 +151,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "law",
-    "imageUrl": "https://images.unsplash.com/photo-1569025591289-a2d1f86faa53?w=840&q=80",
-    "contributors": ["njncalub"]
+    "imageUrl": "https://images.unsplash.com/photo-1569025591289-a2d1f86faa53?w=840&q=80"
   },
   {
     "slug": "opengov-blockchain",
@@ -175,8 +166,7 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=840&q=80",
-    "contributors": ["jasontorres", "PaulSong213", "KishonShrill", "alvinveroy", "fr4nc1stein", "greenarmor", "Sheape"]
+    "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=840&q=80"
   },
   {
     "slug": "research-and-visualizations",
@@ -189,7 +179,6 @@
     "status": "active",
     "repoType": "orgprojects",
     "category": "data",
-    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=840&q=80",
-    "contributors": ["joebertj"]
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=840&q=80"
   }
 ]

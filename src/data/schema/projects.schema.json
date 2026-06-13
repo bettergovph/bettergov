@@ -73,14 +73,6 @@
         "type": "string",
         "description": "URL of the banner image displayed on the project card (must start with https://)",
         "pattern": "^https://"
-      },
-      "contributors": {
-        "type": "array",
-        "description": "GitHub usernames of contributors to this project",
-        "items": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$"
-        }
       }
     }
   }

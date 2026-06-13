@@ -3,6 +3,8 @@ import type { Project } from '../../types/index';
 import { Banner } from '../ui/Banner';
 import { StatusBadge, RepoTypeBadge, CategoryBadge } from '../ui/StatusBadge';
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 function orgFromUrl(url: string): string {
   try {
     const parts = new URL(url).pathname.split('/').filter(Boolean);
@@ -21,6 +23,116 @@ function repoFromUrl(url: string): string {
   }
 }
 
+// ── GitHub contributor fetcher ────────────────────────────────────────────────
+
+interface GitHubContributor {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  contributions: number;
+}
+
+// Fetches contributors for all repos in a project and merges them,
+// deduplicating by login and summing contributions across repos.
+async function fetchContributors(
+  repositoryUrls: string[]
+): Promise<GitHubContributor[]> {
+  const githubUrls = repositoryUrls.filter(url => url.includes('github.com'));
+  if (githubUrls.length === 0) return [];
+
+  const results = await Promise.allSettled(
+    githubUrls.map(url => {
+      const org = orgFromUrl(url);
+      const repo = repoFromUrl(url);
+      if (!org || !repo) return Promise.resolve([]);
+      return fetch(
+        `https://api.github.com/repos/${org}/${repo}/contributors?per_page=100`,
+        {
+          headers: { Accept: 'application/vnd.github+json' },
+        }
+      ).then(res =>
+        res.ok ? (res.json() as Promise<GitHubContributor[]>) : []
+      );
+    })
+  );
+
+  // Merge + deduplicate across multiple repos
+  const map = new Map<string, GitHubContributor>();
+  for (const result of results) {
+    if (result.status !== 'fulfilled') continue;
+    for (const c of result.value) {
+      if (c.login.endsWith('[bot]')) continue; // skip bots
+      const existing = map.get(c.login);
+      if (existing) {
+        existing.contributions += c.contributions;
+      } else {
+        map.set(c.login, { ...c });
+      }
+    }
+  }
+
+  return Array.from(map.values()).sort(
+    (a, b) => b.contributions - a.contributions
+  );
+}
+
+// ── useContributors hook ──────────────────────────────────────────────────────
+
+type ContributorState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'done'; data: GitHubContributor[] }
+  | { status: 'error' };
+
+function useContributors(project: Project, enabled: boolean) {
+  const [state, setState] = useState<ContributorState>({ status: 'idle' });
+
+  useEffect(() => {
+    if (!enabled) return;
+
+    if (project.repositoryUrls.length === 0) {
+      setState({ status: 'done', data: [] });
+      return;
+    }
+
+    setState({ status: 'loading' });
+    fetchContributors(project.repositoryUrls)
+      .then(data => setState({ status: 'done', data }))
+      .catch(() => setState({ status: 'error' }));
+  }, [enabled, project]);
+
+  return state;
+}
+
+// ── Contributor pill ──────────────────────────────────────────────────────────
+
+function ContributorPill({ contributor }: { contributor: GitHubContributor }) {
+  return (
+    <a
+      href={contributor.html_url}
+      target='_blank'
+      rel='noopener noreferrer'
+      className='flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-colors group'
+    >
+      <img
+        src={contributor.avatar_url}
+        alt={contributor.login}
+        loading='lazy'
+        decoding='async'
+        className='w-5 h-5 rounded-full object-cover'
+      />
+      <span className='text-[12px] text-gray-600 group-hover:text-blue-600 font-medium'>
+        {contributor.login}
+      </span>
+      {contributor.contributions > 0 && (
+        <span className='text-[10px] text-gray-400 ml-auto'>
+          {contributor.contributions}
+        </span>
+      )}
+    </a>
+  );
+}
+
 // ── Modal ─────────────────────────────────────────────────────────────────────
 
 function ProjectModal({
@@ -33,6 +145,7 @@ function ProjectModal({
   const primaryRepo = project.repositoryUrls[0] ?? project.projectUrl;
   const org = orgFromUrl(primaryRepo);
   const repo = repoFromUrl(primaryRepo);
+  const contributors = useContributors(project, true);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -66,7 +179,6 @@ function ProjectModal({
         <div className='relative h-56 shrink-0'>
           <Banner project={project} />
 
-          {/* Badges top-left */}
           <div className='absolute top-3 left-4 z-10 flex flex-wrap gap-1.5'>
             <StatusBadge status={project.status} />
             <RepoTypeBadge repoType={project.repoType} />
@@ -124,33 +236,44 @@ function ProjectModal({
           </div>
 
           {/* Contributors */}
-          {project.contributors && project.contributors.length > 0 && (
+          {project.repositoryUrls.length > 0 && (
             <div>
               <h4 className='text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2'>
                 Contributors
               </h4>
-              <div className='flex flex-wrap gap-2'>
-                {project.contributors.map(username => (
-                  <a
-                    key={username}
-                    href={`https://github.com/${username}`}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-colors group'
-                  >
-                    <img
-                      src={`https://github.com/${username}.png?size=32`}
-                      alt={username}
-                      loading='lazy'
-                      decoding='async'
-                      className='w-5 h-5 rounded-full object-cover'
+
+              {contributors.status === 'loading' && (
+                <div className='flex flex-wrap gap-2'>
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className='h-8 w-28 rounded-lg bg-gray-100 animate-pulse'
                     />
-                    <span className='text-[12px] text-gray-600 group-hover:text-blue-600 font-medium'>
-                      {username}
-                    </span>
-                  </a>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
+
+              {contributors.status === 'error' && (
+                <p className='text-[13px] text-gray-400'>
+                  Could not load contributors.
+                </p>
+              )}
+
+              {contributors.status === 'done' &&
+                contributors.data.length === 0 && (
+                  <p className='text-[13px] text-gray-400'>
+                    No contributors found.
+                  </p>
+                )}
+
+              {contributors.status === 'done' &&
+                contributors.data.length > 0 && (
+                  <div className='flex flex-wrap gap-2'>
+                    {contributors.data.map(c => (
+                      <ContributorPill key={c.login} contributor={c} />
+                    ))}
+                  </div>
+                )}
             </div>
           )}
 
@@ -200,9 +323,11 @@ function ProjectModal({
         {/* ── Footer CTA ──────────────────────────────────────────────────── */}
         <div className='px-6 py-4 border-t border-gray-100 flex items-center justify-between gap-3 bg-gray-50/80'>
           <span className='text-xs text-gray-400'>
-            {project.repositoryUrls.length > 0
-              ? `${project.repositoryUrls.length} ${project.repositoryUrls.length === 1 ? 'repository' : 'repositories'}`
-              : 'No public repositories'}
+            {contributors.status === 'done' && contributors.data.length > 0
+              ? `${contributors.data.length} contributor${contributors.data.length === 1 ? '' : 's'}`
+              : project.repositoryUrls.length > 0
+                ? `${project.repositoryUrls.length} ${project.repositoryUrls.length === 1 ? 'repository' : 'repositories'}`
+                : 'No public repositories'}
           </span>
           <a
             href={project.projectUrl}
@@ -247,6 +372,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const org = orgFromUrl(primaryRepo);
   const repo = repoFromUrl(primaryRepo);
 
+  // Only fetch contributors for the card preview when the modal is NOT open
+  // to avoid double-fetching — modal fetches its own copy
+  const cardContributors = useContributors(project, !open);
+
   return (
     <>
       <div
@@ -262,13 +391,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className='relative h-36 shrink-0'>
           <Banner project={project} />
 
-          {/* Status + RepoType badges top-left */}
           <div className='absolute top-2.5 left-3 z-10 flex flex-wrap gap-1'>
             <StatusBadge status={project.status} />
             <RepoTypeBadge repoType={project.repoType} />
           </div>
 
-          {/* Category badge top-right */}
           <div className='absolute top-2.5 right-3 z-10'>
             <CategoryBadge category={project.category} />
           </div>
@@ -304,39 +431,57 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* ── Footer ───────────────────────────────────────────────────────── */}
         <div className='flex items-center justify-between gap-2 px-4 py-2.5 border-t border-gray-100'>
-          {project.contributors && project.contributors.length > 0 ? (
-            <div className='flex items-center gap-1.5'>
-              <div className='flex -space-x-2'>
-                {project.contributors.slice(0, 5).map(username => (
-                  <a
-                    key={username}
-                    href={`https://github.com/${username}`}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    title={username}
-                    onClick={e => e.stopPropagation()}
-                  >
-                    <img
-                      src={`https://github.com/${username}.png?size=32`}
-                      alt={username}
-                      loading='lazy'
-                      decoding='async'
-                      className='w-6 h-6 rounded-full border-2 border-white object-cover hover:scale-110 transition-transform'
-                    />
-                  </a>
-                ))}
-              </div>
-              {project.contributors.length > 5 && (
-                <span className='text-xs text-gray-400'>
-                  +{project.contributors.length - 5}
-                </span>
-              )}
+          {/* Contributor avatars */}
+          {cardContributors.status === 'loading' && (
+            <div className='flex -space-x-1.5'>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div
+                  key={i}
+                  className='w-6 h-6 rounded-full bg-gray-100 animate-pulse border-2 border-white'
+                />
+              ))}
             </div>
-          ) : (
+          )}
+
+          {cardContributors.status === 'done' &&
+            cardContributors.data.length > 0 && (
+              <div className='flex items-center gap-1.5'>
+                <div className='flex -space-x-2'>
+                  {cardContributors.data.slice(0, 5).map(c => (
+                    <a
+                      key={c.login}
+                      href={c.html_url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      title={c.login}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      <img
+                        src={c.avatar_url}
+                        alt={c.login}
+                        loading='lazy'
+                        decoding='async'
+                        className='w-6 h-6 rounded-full border-2 border-white object-cover hover:scale-110 transition-transform'
+                      />
+                    </a>
+                  ))}
+                </div>
+                {cardContributors.data.length > 5 && (
+                  <span className='text-xs text-gray-400'>
+                    +{cardContributors.data.length - 5}
+                  </span>
+                )}
+              </div>
+            )}
+
+          {(cardContributors.status === 'done' &&
+            cardContributors.data.length === 0) ||
+          cardContributors.status === 'error' ? (
             <span className='text-[11.5px] text-gray-400 truncate max-w-[55%]'>
               {project.projectUrl.replace('https://', '')}
             </span>
-          )}
+          ) : null}
+
           <span className='text-[12px] font-semibold text-blue-600 whitespace-nowrap'>
             View Details →
           </span>
