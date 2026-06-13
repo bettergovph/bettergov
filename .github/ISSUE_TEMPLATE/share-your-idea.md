@@ -2,7 +2,7 @@
 name: Share your Idea
 about: Share your ideas for BetterGov
 title: "[IDEA]: "
-labels: enhancement
+labels: idea
 assignees: ''
 type: Feature
 
