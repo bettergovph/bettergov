@@ -1,21 +1,24 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[FEATURE]:"
+title: "[FEATURE]: "
 labels: enhancement
 assignees: ''
 type: Feature
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Description**:
+Provide a clear and concise description of what feature you want to add or implemented.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Motivation**:
+Explain why you want this added. A clear and concise description of why you want this implemented.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Proposed Implementation** (optional):
+How will this be built/implemented?
 
-**Additional context**
+**Benefits**:
+Who will benefit with this feature?
+
+**Additional context / References / Examples**:
 Add any other context or screenshots about the feature request here.
