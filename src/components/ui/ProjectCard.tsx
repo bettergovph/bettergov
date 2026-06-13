@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import type { Project } from '../../types/index';
 import { Banner } from '../ui/Banner';
-import { StatusBadge } from '../ui/StatusBadge';
-import { useState, useEffect } from 'react';
+import { StatusBadge, RepoTypeBadge, CategoryBadge } from '../ui/StatusBadge';
 
 function orgFromUrl(url: string): string {
   try {
@@ -51,7 +51,8 @@ function ProjectModal({
 
   return (
     <div
-      className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200'
+      className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm'
+      style={{ animation: 'fadeIn 0.15s ease both' }}
       onClick={onClose}
     >
       <div
@@ -61,12 +62,15 @@ function ProjectModal({
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* ── Banner ───────────────────────────────────────────────────────── */}
+        {/* ── Banner ─────────────────────────────────────────────────────── */}
         <div className='relative h-56 shrink-0'>
           <Banner project={project} />
 
-          <div className='absolute top-3 left-4 z-10'>
+          {/* Badges top-left */}
+          <div className='absolute top-3 left-4 z-10 flex flex-wrap gap-1.5'>
             <StatusBadge status={project.status} />
+            <RepoTypeBadge repoType={project.repoType} />
+            <CategoryBadge category={project.category} />
           </div>
 
           {org && repo && (
@@ -92,7 +96,7 @@ function ProjectModal({
           </button>
         </div>
 
-        {/* ── Scrollable body ───────────────────────────────────────────────── */}
+        {/* ── Scrollable body ─────────────────────────────────────────────── */}
         <div className='overflow-y-auto flex-1 px-6 py-5 flex flex-col gap-5'>
           {/* Title + URL */}
           <div className='flex flex-col gap-1'>
@@ -137,6 +141,8 @@ function ProjectModal({
                     <img
                       src={`https://github.com/${username}.png?size=32`}
                       alt={username}
+                      loading='lazy'
+                      decoding='async'
                       className='w-5 h-5 rounded-full object-cover'
                     />
                     <span className='text-[12px] text-gray-600 group-hover:text-blue-600 font-medium'>
@@ -191,7 +197,7 @@ function ProjectModal({
           )}
         </div>
 
-        {/* ── Footer CTA ────────────────────────────────────────────────────── */}
+        {/* ── Footer CTA ──────────────────────────────────────────────────── */}
         <div className='px-6 py-4 border-t border-gray-100 flex items-center justify-between gap-3 bg-gray-50/80'>
           <span className='text-xs text-gray-400'>
             {project.repositoryUrls.length > 0
@@ -219,9 +225,10 @@ function ProjectModal({
       </div>
 
       <style>{`
+        @keyframes fadeIn  { from { opacity: 0 } to { opacity: 1 } }
         @keyframes modalIn {
           from { opacity: 0; transform: scale(0.92) translateY(12px); }
-          to   { opacity: 1; transform: scale(1) translateY(0); }
+          to   { opacity: 1; transform: scale(1)    translateY(0); }
         }
       `}</style>
     </div>
@@ -254,9 +261,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {/* ── Banner ───────────────────────────────────────────────────────── */}
         <div className='relative h-36 shrink-0'>
           <Banner project={project} />
-          <div className='absolute top-2.5 left-3 z-10'>
+
+          {/* Status + RepoType badges top-left */}
+          <div className='absolute top-2.5 left-3 z-10 flex flex-wrap gap-1'>
             <StatusBadge status={project.status} />
+            <RepoTypeBadge repoType={project.repoType} />
           </div>
+
+          {/* Category badge top-right */}
+          <div className='absolute top-2.5 right-3 z-10'>
+            <CategoryBadge category={project.category} />
+          </div>
+
           {org && repo && (
             <div className='absolute bottom-2.5 left-3.5 z-10 text-[11px] text-white/70 font-mono drop-shadow'>
               {org} / {repo}
@@ -303,6 +319,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     <img
                       src={`https://github.com/${username}.png?size=32`}
                       alt={username}
+                      loading='lazy'
+                      decoding='async'
                       className='w-6 h-6 rounded-full border-2 border-white object-cover hover:scale-110 transition-transform'
                     />
                   </a>

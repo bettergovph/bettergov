@@ -163,11 +163,20 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  contributors?: string[];
   repositoryUrls: string[];
   projectUrl: string;
   status: 'active' | 'development' | 'archived';
+  repoType: 'orgprojects' | 'community';
+  category:
+    | 'law'
+    | 'money'
+    | 'data'
+    | 'election'
+    | 'health'
+    | 'infrastructure'
+    | 'other';
   imageUrl?: string;
+  contributors?: string[];
 }
 
 export type Tab = 'active' | 'development' | 'archived';

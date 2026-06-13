@@ -4,7 +4,6 @@ function bannerBg(slug: string): string {
   let hash = 0;
   for (const c of slug) hash = (hash * 31 + c.charCodeAt(0)) & 0xffff;
   const hue = hash % 360;
-  // Lighter, more saturated tones for the white theme
   return `hsl(${hue} 45% 88%)`;
 }
 
@@ -16,7 +15,6 @@ function patternVariant(slug: string): number {
 
 function SvgPattern({ slug }: { slug: string }) {
   const bg = bannerBg(slug);
-  // Derive a darker accent from the same hue
   let hash = 0;
   for (const c of slug) hash = (hash * 31 + c.charCodeAt(0)) & 0xffff;
   const hue = hash % 360;
@@ -32,7 +30,6 @@ function SvgPattern({ slug }: { slug: string }) {
       preserveAspectRatio='xMidYMid slice'
     >
       <rect width='420' height='148' fill={bg} />
-
       {variant === 0 && (
         <>
           {Array.from({ length: 8 }, (_, i) =>
@@ -79,7 +76,6 @@ function SvgPattern({ slug }: { slug: string }) {
           />
         </>
       )}
-
       {variant === 1 && (
         <>
           {Array.from({ length: 14 }, (_, i) =>
@@ -105,7 +101,6 @@ function SvgPattern({ slug }: { slug: string }) {
           <circle cx='300' cy='50' r='26' fill={accent} opacity='0.15' />
         </>
       )}
-
       {variant === 2 && (
         <>
           {[42, 78, 52, 105, 68, 90, 44, 76].map((h, i) => (
@@ -130,7 +125,6 @@ function SvgPattern({ slug }: { slug: string }) {
           />
         </>
       )}
-
       {variant === 3 && (
         <>
           <circle
@@ -185,13 +179,14 @@ export function Banner({ project }: BannerProps) {
           src={project.imageUrl}
           alt=''
           aria-hidden='true'
+          loading='lazy'
+          decoding='async'
           className='absolute inset-0 w-full h-full object-cover'
           onError={e => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
           }}
         />
-        {/* Lighter scrim for white theme — still ensures text legibility */}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/50' />
+        <div className='absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/50' />
       </>
     );
   }
@@ -199,8 +194,7 @@ export function Banner({ project }: BannerProps) {
   return (
     <>
       <SvgPattern slug={project.slug} />
-      {/* Subtle bottom fade into the white card body */}
-      <div className='absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20' />
+      <div className='absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/20' />
     </>
   );
 }

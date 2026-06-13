@@ -9,12 +9,31 @@ const TABS: { key: Tab; label: string }[] = [
   { key: 'archived', label: 'Archived' },
 ];
 
+const REPO_TYPE_OPTIONS = [
+  { value: '', label: 'All Repos' },
+  { value: 'orgprojects', label: 'Org Projects' },
+  { value: 'community', label: 'Community' },
+];
+
+const CATEGORY_OPTIONS = [
+  { value: '', label: 'All Categories' },
+  { value: 'law', label: 'Law' },
+  { value: 'money', label: 'Money' },
+  { value: 'data', label: 'Data' },
+  { value: 'election', label: 'Election' },
+  { value: 'health', label: 'Health' },
+  { value: 'infrastructure', label: 'Infrastructure' },
+  { value: 'other', label: 'Other' },
+];
+
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tab, setTab] = useState<Tab>('active');
   const [search, setSearch] = useState('');
+  const [repoType, setRepoType] = useState('');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     fetch('/api/projects.json')
@@ -44,9 +63,9 @@ export default function Projects() {
 
   const filtered = useMemo(() => {
     return projects.filter(p => {
-      if (tab === 'active' && p.status !== 'active') return false;
-      if (tab === 'development' && p.status !== 'development') return false;
-      if (tab === 'archived' && p.status !== 'archived') return false;
+      if (p.status !== tab) return false;
+      if (repoType && p.repoType !== repoType) return false;
+      if (category && p.category !== category) return false;
       const q = search.toLowerCase();
       if (
         q &&
@@ -56,7 +75,7 @@ export default function Projects() {
         return false;
       return true;
     });
-  }, [projects, tab, search]);
+  }, [projects, tab, search, repoType, category]);
 
   return (
     <div className='bg-gray-50 min-h-screen font-sans'>
@@ -97,9 +116,10 @@ export default function Projects() {
           })}
         </div>
 
-        {/* ── Search ───────────────────────────────────────────────────────── */}
-        <div className='mb-6'>
-          <div className='relative max-w-sm'>
+        {/* ── Filters row ──────────────────────────────────────────────────── */}
+        <div className='flex flex-wrap gap-3 mb-6'>
+          {/* Search */}
+          <div className='relative flex-1 min-w-45 max-w-sm'>
             <svg
               className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none'
               fill='none'
@@ -118,6 +138,46 @@ export default function Projects() {
               className='w-full bg-white border border-gray-200 rounded-lg text-gray-800 text-sm py-2 pl-9 pr-3 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all placeholder:text-gray-400 shadow-sm'
             />
           </div>
+
+          {/* Repo type filter */}
+          <select
+            value={repoType}
+            onChange={e => setRepoType(e.target.value)}
+            className='bg-white border border-gray-200 rounded-lg text-sm text-gray-700 py-2 px-3 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all shadow-sm cursor-pointer'
+          >
+            {REPO_TYPE_OPTIONS.map(o => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+
+          {/* Category filter */}
+          <select
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+            className='bg-white border border-gray-200 rounded-lg text-sm text-gray-700 py-2 px-3 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all shadow-sm cursor-pointer'
+          >
+            {CATEGORY_OPTIONS.map(o => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+
+          {/* Clear filters — only show when something is active */}
+          {(repoType || category || search) && (
+            <button
+              onClick={() => {
+                setRepoType('');
+                setCategory('');
+                setSearch('');
+              }}
+              className='text-sm text-gray-400 hover:text-gray-600 transition-colors px-2'
+            >
+              Clear filters ×
+            </button>
+          )}
         </div>
 
         {/* ── States ───────────────────────────────────────────────────────── */}
