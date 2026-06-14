@@ -31,7 +31,7 @@ export async function navigate(
     }
 
     if (option) {
-      await page.getByRole('button', { name: option }).first().click();
+      await page.getByRole('link', { name: option }).first().click();
     }
 
     if (subOption) {

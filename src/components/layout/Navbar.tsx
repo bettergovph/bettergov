@@ -328,7 +328,8 @@ const Navbar: FC = () => {
             const isActive = isActiveRoute(item.href);
             return (
               <div key={item.label}>
-                <button
+                <Link
+                  to={item.href}
                   onClick={() => toggleSubmenu(item.label)}
                   className={`w-full flex justify-between items-center px-4 py-2 text-base font-medium transition-colors ${
                     isActive
@@ -344,7 +345,7 @@ const Navbar: FC = () => {
                       } ${isActive ? 'text-primary-600' : ''}`}
                     />
                   )}
-                </button>
+                </Link>
                 {item.children && activeMenu === item.label && (
                   <div className='pl-6 py-2 space-y-1 bg-gray-50'>
                     {item.children.map(child => (
