@@ -38,6 +38,30 @@ export async function navigate(
       await page.getByRole('link', { name: subOption }).first().click();
     }
     return;
+  // For mobile
+  if (isMobile) {
+    const sidebarContainer = page.locator('div.block > div.container').first();
+    if (hamburger) {
+      await page
+        .getByRole('button', { name: 'Open main menu' })
+        .first()
+        .click();
+    }
+
+    if (option) {
+      await sidebarContainer
+        .getByRole('link', { name: option })
+        .first()
+        .click();
+    }
+
+    if (subOption) {
+      await sidebarContainer
+        .getByRole('link', { name: subOption })
+        .first()
+        .click();
+    }
+    return;
   }
 
   // For desktop
