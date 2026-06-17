@@ -65,7 +65,7 @@ const GovernmentSection: FC = () => {
           <path d='M5 16h14'></path>
         </svg>
       ),
-      link: '/government/judiciary',
+      link: '/government/judicial',
     },
   ];
 
