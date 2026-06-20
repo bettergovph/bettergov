@@ -25,8 +25,6 @@ export class CivicEngine {
 
   async initialize() {
     try {
-      // In a real app, we'd fetch these or import them.
-      // For this prototype, we'll focus on the core categories.
       const categories = [
         'passport-travel',
         'certificates-ids',
@@ -67,7 +65,6 @@ export class CivicEngine {
         searchTerms.forEach(term => {
           if (target.includes(term)) {
             score += 1;
-            // Exact word match bonus
             if (new RegExp(`\\b${term}\\b`).test(target)) score += 2;
           }
         });
@@ -82,3 +79,69 @@ export class CivicEngine {
 }
 
 export const civicEngine = new CivicEngine();
+
+export async function askAI(
+  question: string,
+  contextData: string
+): Promise<string> {
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+  const aiModel = 'openrouter/owl-alpha';
+
+  if (!apiKey) {
+    return 'AI assistant is not configured. Please set VITE_OPENROUTER_API_KEY in your environment.';
+  }
+
+  try {
+    const response = await fetch(
+      'https://openrouter.ai/api/v1/chat/completions',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: aiModel,
+          messages: [
+            {
+              role: 'system',
+              content: `You are a helpful civic assistant for a Philippine government services website.
+
+              Answer ONLY using the provided context data.
+              Do not use any external knowledge or make up information.
+              If the context data does not contain information relevant to the question, say:
+              "I could not find information related to your request."
+
+              Summarize the available data naturally and conversationally.
+              Be concise but helpful. NOTE: make the response easy and readable to user and 
+              include proper line spacing`,
+            },
+            {
+              role: 'user',
+              content: `Context:
+                ${JSON.stringify(contextData, null, 2)}
+
+                Question:
+                ${question}`,
+            },
+          ],
+        }),
+      }
+    );
+
+    const result = await response.json();
+
+    if (result.error) {
+      console.error('OpenRouter API error:', result.error);
+      return 'Sorry, I encountered an error processing your request.';
+    }
+
+    return (
+      result.choices?.[0]?.message?.content ||
+      'Sorry, I could not generate a response.'
+    );
+  } catch (error) {
+    console.error('Failed to query AI:', error);
+    return 'Sorry, I encountered an error connecting to the AI service.';
+  }
+}
