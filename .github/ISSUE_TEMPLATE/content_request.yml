@@ -1,0 +1,40 @@
+name: 💡 Content Request
+description: Have a content for the website? Please suggest! (Please submit a feature request for technical topics)
+title: "✨ <description>"
+labels: ["Content Request"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A brief description of the content you propose.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Please add screenshots if applicable
+    validations:
+      required: false
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Do you want to work on this request?
+      multiple: false
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this content request?
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        You can also join our Discord community [here](https://discord.gg/SWnda7Mw5u)
