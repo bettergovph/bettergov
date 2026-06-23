@@ -5,6 +5,7 @@ import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../../lib/exportData';
+import { useTranslation } from 'react-i18next';
 import {
   ChevronLeft,
   Download,
@@ -515,6 +516,7 @@ const initialCenter: LatLngExpression = [12.8797, 121.774];
 
 // Main Contractor Detail component
 const ContractorDetail: FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   const { 'contractor-name': contractorSlug } = useParams<{
     'contractor-name': string;
   }>();
@@ -617,10 +619,10 @@ const ContractorDetail: FC = () => {
         filename: `flood-control-projects-${createSlug(contractor.value)}`,
       });
       // Show success message
-      alert('Data exported successfully!');
+      alert(t('alerts.exportSuccess'));
     } catch (error) {
       console.error('Error exporting data:', error);
-      alert('Failed to export data. Please try again.');
+      alert(t('alerts.exportError'));
     } finally {
       // Reset loading state
       setIsExporting(false);
