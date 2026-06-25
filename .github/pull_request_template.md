@@ -34,3 +34,11 @@ This PR closes #XYZ
 <!-- Add video demos/screenshots, etc, other notes -->
 
 - ...
+
+---
+
+## AI Disclosure
+
+<!-- If no assistance from an AI agent, this section can be removed. -->
+
+- This contribution was developed with the assistance of an AI coding tool: "insert AI tool here".
