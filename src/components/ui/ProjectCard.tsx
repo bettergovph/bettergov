@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { Project } from '../../types/index';
 import { Banner } from '../ui/Banner';
 import { StatusBadge, RepoTypeBadge, CategoryBadge } from '../ui/StatusBadge';
@@ -7,8 +7,7 @@ import { StatusBadge, RepoTypeBadge, CategoryBadge } from '../ui/StatusBadge';
 
 function orgFromUrl(url: string): string {
   try {
-    const parts = new URL(url).pathname.split('/').filter(Boolean);
-    return parts[0] ?? '';
+    return new URL(url).pathname.split('/').filter(Boolean)[0] ?? '';
   } catch {
     return '';
   }
@@ -16,18 +15,21 @@ function orgFromUrl(url: string): string {
 
 function repoFromUrl(url: string): string {
   try {
-    const parts = new URL(url).pathname.split('/').filter(Boolean);
-    return parts[1] ?? '';
+    return new URL(url).pathname.split('/').filter(Boolean)[1] ?? '';
   } catch {
     return '';
   }
 }
 
-// Renders a Date as "3 days ago", "2 months ago", etc.
+function slugFromUrl(url: string): string {
+  const org = orgFromUrl(url);
+  const repo = repoFromUrl(url);
+  return org && repo ? `${org}/${repo}` : '';
+}
+
 function formatRelativeTime(date: Date): string {
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
   if (seconds < 60) return 'just now';
-
   const units: [number, string][] = [
     [60, 'second'],
     [60, 'minute'],
@@ -37,7 +39,6 @@ function formatRelativeTime(date: Date): string {
     [12, 'month'],
     [Number.POSITIVE_INFINITY, 'year'],
   ];
-
   let value = seconds;
   let unitName = 'second';
   for (const [divisor, name] of units) {
@@ -48,11 +49,9 @@ function formatRelativeTime(date: Date): string {
     value = Math.floor(value / divisor);
     unitName = name;
   }
-
   return `${value} ${unitName}${value === 1 ? '' : 's'} ago`;
 }
 
-// Renders a Date as "Jun 23, 2026" for the tooltip
 function formatAbsoluteDate(date: Date): string {
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -61,7 +60,87 @@ function formatAbsoluteDate(date: Date): string {
   });
 }
 
-// ── GitHub contributor + activity fetcher ─────────────────────────────────────
+// ── localStorage cache with ETag support ─────────────────────────────────────
+// Sends If-None-Match on repeat loads; 304s don't count against the rate limit.
+
+const LS_PREFIX = 'ghcache:';
+const CACHE_TTL_MS = 5 * 60 * 1000; // re-validate after 5 min
+
+interface StoredEntry<T> {
+  etag: string | null;
+  data: T;
+  ts: number;
+}
+
+function lsGet<T>(key: string): StoredEntry<T> | null {
+  try {
+    const raw = localStorage.getItem(LS_PREFIX + key);
+    return raw ? (JSON.parse(raw) as StoredEntry<T>) : null;
+  } catch {
+    return null;
+  }
+}
+
+function lsSet<T>(key: string, entry: StoredEntry<T>): void {
+  try {
+    localStorage.setItem(LS_PREFIX + key, JSON.stringify(entry));
+  } catch {
+    // quota exceeded or private mode
+  }
+}
+
+// ── In-memory dedup cache ─────────────────────────────────────────────────────
+// Shares one in-flight Promise per slug so concurrent card renders don't
+// each fire their own request.
+
+const inflightCache = new Map<string, Promise<unknown>>();
+
+async function ghFetchOnce<T>(
+  slug: string,
+  path: string,
+  fallback: T
+): Promise<T> {
+  const key = `${slug}${path}`;
+  const stored = lsGet<T>(key);
+  const now = Date.now();
+
+  if (stored && now - stored.ts < CACHE_TTL_MS) return stored.data;
+
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+  };
+  if (stored?.etag) headers['If-None-Match'] = stored.etag;
+
+  const res = await fetch(`https://api.github.com/repos/${slug}${path}`, {
+    headers,
+  });
+
+  if (res.status === 304 && stored) {
+    lsSet(key, { ...stored, ts: now });
+    return stored.data;
+  }
+
+  // Rate limited — return stale cache if available
+  if (res.status === 403 || res.status === 429) return stored?.data ?? fallback;
+
+  if (!res.ok) return stored?.data ?? fallback;
+
+  const data = (await res.json()) as T;
+  lsSet(key, { etag: res.headers.get('ETag'), data, ts: now });
+  return data;
+}
+
+function ghFetch<T>(slug: string, path: string, fallback: T): Promise<T> {
+  const key = `${slug}${path}`;
+  if (inflightCache.has(key)) return inflightCache.get(key) as Promise<T>;
+  const p = ghFetchOnce<T>(slug, path, fallback).finally(() => {
+    inflightCache.set(key, p);
+  });
+  inflightCache.set(key, p);
+  return p;
+}
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 interface GitHubContributor {
   login: string;
@@ -70,84 +149,62 @@ interface GitHubContributor {
   contributions: number;
 }
 
-interface RepoActivity {
-  repoUrl: string;
-  pushedAt: string | null; // ISO timestamp of last push, null if unavailable
+interface GitHubRepoMeta {
+  pushed_at?: string;
 }
 
 interface ProjectGitHubData {
   contributors: GitHubContributor[];
-  lastUpdated: Date | null; // most recent pushed_at across all repos
+  lastUpdated: Date | null;
 }
 
-// Fetches contributors AND repo metadata (for last-push time) for all repos in
-// a project, merging contributors (deduplicated, contributions summed) and
-// taking the most recent `pushed_at` across repos as the project's last-updated time.
+// ── GitHub data fetcher ───────────────────────────────────────────────────────
+
 async function fetchProjectGitHubData(
   repositoryUrls: string[]
 ): Promise<ProjectGitHubData> {
-  const githubUrls = repositoryUrls.filter(url => url.includes('github.com'));
-  if (githubUrls.length === 0) return { contributors: [], lastUpdated: null };
+  const slugs = [
+    ...new Set(
+      repositoryUrls
+        .filter(u => u.includes('github.com'))
+        .map(slugFromUrl)
+        .filter(Boolean)
+    ),
+  ];
+
+  if (slugs.length === 0) return { contributors: [], lastUpdated: null };
 
   const [contributorResults, repoMetaResults] = await Promise.all([
     Promise.allSettled(
-      githubUrls.map(url => {
-        const org = orgFromUrl(url);
-        const repo = repoFromUrl(url);
-        if (!org || !repo) return Promise.resolve([] as GitHubContributor[]);
-        return fetch(
-          `https://api.github.com/repos/${org}/${repo}/contributors?per_page=100`,
-          { headers: { Accept: 'application/vnd.github+json' } }
-        ).then(res =>
-          res.ok ? (res.json() as Promise<GitHubContributor[]>) : []
-        );
-      })
+      slugs.map(slug =>
+        ghFetch<GitHubContributor[]>(slug, '/contributors?per_page=100', [])
+      )
     ),
     Promise.allSettled(
-      githubUrls.map(url => {
-        const org = orgFromUrl(url);
-        const repo = repoFromUrl(url);
-        if (!org || !repo)
-          return Promise.resolve({
-            repoUrl: url,
-            pushedAt: null,
-          } as RepoActivity);
-        return fetch(`https://api.github.com/repos/${org}/${repo}`, {
-          headers: { Accept: 'application/vnd.github+json' },
-        })
-          .then(res => (res.ok ? res.json() : null))
-          .then(
-            (data): RepoActivity => ({
-              repoUrl: url,
-              pushedAt: data?.pushed_at ?? null,
-            })
-          );
-      })
+      slugs.map(slug => ghFetch<GitHubRepoMeta>(slug, '', {}))
     ),
   ]);
 
-  // Merge + deduplicate contributors across multiple repos
+  // Merge contributors across repos, skip bots
   const map = new Map<string, GitHubContributor>();
   for (const result of contributorResults) {
     if (result.status !== 'fulfilled') continue;
-    for (const c of result.value) {
-      if (c.login.endsWith('[bot]')) continue; // skip bots
+    const list = Array.isArray(result.value) ? result.value : [];
+    for (const c of list) {
+      if (c.login?.endsWith('[bot]')) continue;
       const existing = map.get(c.login);
-      if (existing) {
-        existing.contributions += c.contributions;
-      } else {
-        map.set(c.login, { ...c });
-      }
+      if (existing) existing.contributions += c.contributions;
+      else map.set(c.login, { ...c });
     }
   }
 
-  // Most recent pushed_at across all repos
+  // Pick most recent pushed_at across repos
   let lastUpdated: Date | null = null;
   for (const result of repoMetaResults) {
     if (result.status !== 'fulfilled') continue;
-    const { pushedAt } = result.value;
-    if (!pushedAt) continue;
-    const d = new Date(pushedAt);
+    const meta = result.value as GitHubRepoMeta;
+    if (!meta?.pushed_at) continue;
+    const d = new Date(meta.pushed_at);
     if (!lastUpdated || d > lastUpdated) lastUpdated = d;
   }
 
@@ -159,7 +216,41 @@ async function fetchProjectGitHubData(
   };
 }
 
-// ── useProjectGitHubData hook ──────────────────────────────────────────────────
+// ── useInView ─────────────────────────────────────────────────────────────────
+// Fires once when the element enters the viewport, then disconnects.
+
+function useInView<T extends Element>(
+  rootMargin = '200px'
+): [React.RefObject<T>, boolean] {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setInView(true);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [inView, rootMargin]);
+
+  return [ref, inView];
+}
+
+// ── useProjectGitHubData ──────────────────────────────────────────────────────
 
 type GitHubDataState =
   | { status: 'idle' }
@@ -190,35 +281,24 @@ function useProjectGitHubData(project: Project, enabled: boolean) {
   return state;
 }
 
-// ── Last updated badge ──────────────────────────────────────────────────────────
+// ── Last updated badge ────────────────────────────────────────────────────────
 
-// Color tiers based on staleness, mirroring StatusBadge/CategoryBadge styling:
-// green  = pushed within the last 30 days (actively maintained)
-// amber  = pushed within the last 6 months (slowing down)
-// gray   = stale (6+ months)
-function lastUpdatedTier(date: Date): {
-  bg: string;
-  text: string;
-  border: string;
-  dot: string;
-} {
+function lastUpdatedTier(date: Date) {
   const days = (Date.now() - date.getTime()) / (1000 * 60 * 60 * 24);
-  if (days <= 30) {
+  if (days <= 30)
     return {
       bg: 'bg-green-50',
       text: 'text-green-700',
       border: 'border-green-200',
       dot: 'bg-green-500',
     };
-  }
-  if (days <= 182) {
+  if (days <= 182)
     return {
       bg: 'bg-amber-50',
       text: 'text-amber-700',
       border: 'border-amber-200',
       dot: 'bg-amber-500',
     };
-  }
   return {
     bg: 'bg-gray-100',
     text: 'text-gray-500',
@@ -273,15 +353,16 @@ function ContributorPill({ contributor }: { contributor: GitHubContributor }) {
 
 function ProjectModal({
   project,
+  githubData,
   onClose,
 }: {
   project: Project;
+  githubData: GitHubDataState;
   onClose: () => void;
 }) {
   const primaryRepo = project.repositoryUrls[0] ?? project.projectUrl;
   const org = orgFromUrl(primaryRepo);
   const repo = repoFromUrl(primaryRepo);
-  const githubData = useProjectGitHubData(project, true);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -311,22 +392,19 @@ function ProjectModal({
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* ── Banner ─────────────────────────────────────────────────────── */}
+        {/* Banner */}
         <div className='relative h-56 shrink-0'>
           <Banner project={project} />
-
           <div className='absolute top-3 left-4 z-10 flex flex-wrap gap-1.5'>
             <StatusBadge status={project.status} />
             <RepoTypeBadge repoType={project.repoType} />
             <CategoryBadge category={project.category} />
           </div>
-
           {org && repo && (
             <div className='absolute bottom-3 left-4 z-10 text-[12px] text-white/75 font-mono drop-shadow'>
               {org} / {repo}
             </div>
           )}
-
           <button
             onClick={onClose}
             className='absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center transition-colors backdrop-blur-sm'
@@ -344,9 +422,8 @@ function ProjectModal({
           </button>
         </div>
 
-        {/* ── Scrollable body ─────────────────────────────────────────────── */}
+        {/* Scrollable body */}
         <div className='overflow-y-auto flex-1 px-6 py-5 flex flex-col gap-5'>
-          {/* Title + URL */}
           <div className='flex flex-col gap-1'>
             <div className='flex items-center justify-between gap-3 flex-wrap'>
               <h2 className='text-2xl font-bold text-gray-900 leading-tight'>
@@ -366,7 +443,6 @@ function ProjectModal({
             </a>
           </div>
 
-          {/* Description */}
           <div>
             <h4 className='text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1.5'>
               About
@@ -376,13 +452,11 @@ function ProjectModal({
             </p>
           </div>
 
-          {/* Contributors */}
           {project.repositoryUrls.length > 0 && (
             <div>
               <h4 className='text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2'>
                 Contributors
               </h4>
-
               {githubData.status === 'loading' && (
                 <div className='flex flex-wrap gap-2'>
                   {Array.from({ length: 4 }).map((_, i) => (
@@ -393,20 +467,17 @@ function ProjectModal({
                   ))}
                 </div>
               )}
-
               {githubData.status === 'error' && (
                 <p className='text-[13px] text-gray-400'>
                   Could not load contributors.
                 </p>
               )}
-
               {githubData.status === 'done' &&
                 githubData.data.contributors.length === 0 && (
                   <p className='text-[13px] text-gray-400'>
                     No contributors found.
                   </p>
                 )}
-
               {githubData.status === 'done' &&
                 githubData.data.contributors.length > 0 && (
                   <div className='flex flex-wrap gap-2'>
@@ -418,7 +489,6 @@ function ProjectModal({
             </div>
           )}
 
-          {/* Repositories */}
           {project.repositoryUrls.length > 0 && (
             <div>
               <h4 className='text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2'>
@@ -461,14 +531,12 @@ function ProjectModal({
           )}
         </div>
 
-        {/* ── Footer CTA ──────────────────────────────────────────────────── */}
+        {/* Footer CTA */}
         <div className='px-6 py-4 border-t border-gray-100 flex items-center justify-between gap-3 bg-gray-50/80'>
           <span className='text-xs text-gray-400'>
             {githubData.status === 'done' &&
             githubData.data.contributors.length > 0
-              ? `${githubData.data.contributors.length} contributor${
-                  githubData.data.contributors.length === 1 ? '' : 's'
-                }`
+              ? `${githubData.data.contributors.length} contributor${githubData.data.contributors.length === 1 ? '' : 's'}`
               : project.repositoryUrls.length > 0
                 ? `${project.repositoryUrls.length} ${project.repositoryUrls.length === 1 ? 'repository' : 'repositories'}`
                 : 'No public repositories'}
@@ -516,13 +584,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const org = orgFromUrl(primaryRepo);
   const repo = repoFromUrl(primaryRepo);
 
-  // Only fetch GitHub data for the card preview when the modal is NOT open
-  // to avoid double-fetching — modal fetches its own copy
-  const cardGitHubData = useProjectGitHubData(project, !open);
+  // Defer fetch until the card is near the viewport
+  const [cardRef, inView] = useInView<HTMLDivElement>('200px');
+  const githubData = useProjectGitHubData(project, inView);
 
   return (
     <>
       <div
+        ref={cardRef}
         className='bg-white rounded-xl overflow-hidden border border-gray-200 flex flex-col shadow-sm hover:shadow-lg hover:scale-[1.03] transition-all duration-200 cursor-pointer'
         onClick={() => setOpen(true)}
         role='button'
@@ -531,19 +600,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
           if (e.key === 'Enter' || e.key === ' ') setOpen(true);
         }}
       >
-        {/* ── Banner ───────────────────────────────────────────────────────── */}
+        {/* Banner */}
         <div className='relative h-36 shrink-0'>
           <Banner project={project} />
-
           <div className='absolute top-2.5 left-3 z-10 flex flex-wrap gap-1'>
             <StatusBadge status={project.status} />
             <RepoTypeBadge repoType={project.repoType} />
           </div>
-
           <div className='absolute top-2.5 right-3 z-10'>
             <CategoryBadge category={project.category} />
           </div>
-
           {org && repo && (
             <div className='absolute bottom-2.5 left-3.5 z-10 text-[11px] text-white/70 font-mono drop-shadow'>
               {org} / {repo}
@@ -551,16 +617,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </div>
 
-        {/* ── Body ─────────────────────────────────────────────────────────── */}
+        {/* Body */}
         <div className='flex flex-col gap-2 px-4 pt-3.5 pb-2.5 flex-1'>
           <div className='flex items-start justify-between gap-2'>
             <h3 className='text-[15px] font-semibold text-gray-900 leading-snug'>
               {project.title}
             </h3>
-            {cardGitHubData.status === 'done' &&
-              cardGitHubData.data.lastUpdated && (
-                <LastUpdatedBadge date={cardGitHubData.data.lastUpdated} />
-              )}
+            {githubData.status === 'done' && githubData.data.lastUpdated && (
+              <LastUpdatedBadge date={githubData.data.lastUpdated} />
+            )}
           </div>
           <p className='text-[13px] text-gray-500 leading-relaxed line-clamp-2'>
             {project.description}
@@ -579,10 +644,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </div>
 
-        {/* ── Footer ───────────────────────────────────────────────────────── */}
+        {/* Footer */}
         <div className='flex items-center justify-between gap-2 px-4 py-2.5 border-t border-gray-100'>
-          {/* Contributor avatars */}
-          {cardGitHubData.status === 'loading' && (
+          {githubData.status === 'loading' && (
             <div className='flex -space-x-1.5'>
               {Array.from({ length: 3 }).map((_, i) => (
                 <div
@@ -593,11 +657,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
 
-          {cardGitHubData.status === 'done' &&
-            cardGitHubData.data.contributors.length > 0 && (
+          {githubData.status === 'done' &&
+            githubData.data.contributors.length > 0 && (
               <div className='flex items-center gap-1.5'>
                 <div className='flex -space-x-2'>
-                  {cardGitHubData.data.contributors.slice(0, 5).map(c => (
+                  {githubData.data.contributors.slice(0, 5).map(c => (
                     <a
                       key={c.login}
                       href={c.html_url}
@@ -616,17 +680,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     </a>
                   ))}
                 </div>
-                {cardGitHubData.data.contributors.length > 5 && (
+                {githubData.data.contributors.length > 5 && (
                   <span className='text-xs text-gray-400'>
-                    +{cardGitHubData.data.contributors.length - 5}
+                    +{githubData.data.contributors.length - 5}
                   </span>
                 )}
               </div>
             )}
 
-          {(cardGitHubData.status === 'done' &&
-            cardGitHubData.data.contributors.length === 0) ||
-          cardGitHubData.status === 'error' ? (
+          {(githubData.status === 'done' &&
+            githubData.data.contributors.length === 0) ||
+          githubData.status === 'error' ||
+          githubData.status === 'idle' ? (
             <span className='text-[11.5px] text-gray-400 truncate max-w-[55%]'>
               {project.projectUrl.replace('https://', '')}
             </span>
@@ -639,7 +704,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {open && (
-        <ProjectModal project={project} onClose={() => setOpen(false)} />
+        <ProjectModal
+          project={project}
+          githubData={githubData}
+          onClose={() => setOpen(false)}
+        />
       )}
     </>
   );
