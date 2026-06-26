@@ -4,6 +4,7 @@ import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
+import { useTranslation } from 'react-i18next';
 import { DownloadIcon, InfoIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
@@ -96,6 +97,7 @@ const meiliSearchInstance = instantMeiliSearch(
 const searchClient = meiliSearchInstance.searchClient as any;
 
 const FloodControlProjectsMap: FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   // Loading state for export
   const [isExporting, setIsExporting] = useState<boolean>(false);
 
@@ -145,10 +147,10 @@ const FloodControlProjectsMap: FC = () => {
         filename: 'flood-control-projects-map',
       });
       // Show success message
-      alert('Data exported successfully!');
+      alert(t('alerts.exportSuccess'));
     } catch (error) {
       console.error('Error exporting data:', error);
-      alert('Failed to export data. Please try again.');
+      alert(t('alerts.exportError'));
     } finally {
       // Reset loading state
       setIsExporting(false);
