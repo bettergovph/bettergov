@@ -31,6 +31,8 @@ const Navbar: FC = () => {
     setActiveMenu(null);
   };
 
+  // Toggles the dropdown for a mobile nav item without navigating.
+  // Used by the chevron button only.
   const toggleSubmenu = (label: string) => {
     setActiveMenu(activeMenu === label ? null : label);
   };
@@ -328,24 +330,38 @@ const Navbar: FC = () => {
             const isActive = isActiveRoute(item.href);
             return (
               <div key={item.label}>
-                <Link
-                  to={item.href}
-                  onClick={() => toggleSubmenu(item.label)}
-                  className={`w-full flex justify-between items-center px-4 py-2 text-base font-medium transition-colors ${
+                <div
+                  className={`w-full flex justify-between items-center transition-colors ${
                     isActive
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-primary-500'
                   }`}
                 >
-                  {t(`navbar.${item.label.toLowerCase()}`)}
+                  <Link
+                    to={item.href}
+                    onClick={closeMenu}
+                    className='flex-1 px-4 py-2 text-base font-medium'
+                  >
+                    {t(`navbar.${item.label.toLowerCase()}`)}
+                  </Link>
                   {item.children && (
-                    <ChevronDownIcon
-                      className={`h-5 w-5 transition-transform ${
-                        activeMenu === item.label ? 'transform rotate-180' : ''
-                      } ${isActive ? 'text-primary-600' : ''}`}
-                    />
+                    <button
+                      type='button'
+                      onClick={() => toggleSubmenu(item.label)}
+                      aria-expanded={activeMenu === item.label}
+                      aria-label={`Toggle ${item.label} submenu`}
+                      className='px-4 py-2 shrink-0'
+                    >
+                      <ChevronDownIcon
+                        className={`h-5 w-5 transition-transform ${
+                          activeMenu === item.label
+                            ? 'transform rotate-180'
+                            : ''
+                        } ${isActive ? 'text-primary-600' : ''}`}
+                      />
+                    </button>
                   )}
-                </Link>
+                </div>
                 {item.children && activeMenu === item.label && (
                   <div className='pl-6 py-2 space-y-1 bg-gray-50'>
                     {item.children.map(child => (
