@@ -151,11 +151,13 @@ interface GitHubContributor {
 
 interface GitHubRepoMeta {
   pushed_at?: string;
+  created_at?: string; // ← new
 }
 
 interface ProjectGitHubData {
   contributors: GitHubContributor[];
   lastUpdated: Date | null;
+  createdAt: Date | null; // ← new
 }
 
 // ── GitHub data fetcher ───────────────────────────────────────────────────────
@@ -172,7 +174,8 @@ async function fetchProjectGitHubData(
     ),
   ];
 
-  if (slugs.length === 0) return { contributors: [], lastUpdated: null };
+  if (slugs.length === 0)
+    return { contributors: [], lastUpdated: null, createdAt: null };
 
   const [contributorResults, repoMetaResults] = await Promise.all([
     Promise.allSettled(
@@ -198,14 +201,23 @@ async function fetchProjectGitHubData(
     }
   }
 
-  // Pick most recent pushed_at across repos
+  // Pick most recent pushed_at and earliest created_at across repos
   let lastUpdated: Date | null = null;
+  let createdAt: Date | null = null;
+
   for (const result of repoMetaResults) {
     if (result.status !== 'fulfilled') continue;
     const meta = result.value as GitHubRepoMeta;
-    if (!meta?.pushed_at) continue;
-    const d = new Date(meta.pushed_at);
-    if (!lastUpdated || d > lastUpdated) lastUpdated = d;
+
+    if (meta?.pushed_at) {
+      const d = new Date(meta.pushed_at);
+      if (!lastUpdated || d > lastUpdated) lastUpdated = d;
+    }
+
+    if (meta?.created_at) {
+      const d = new Date(meta.created_at);
+      if (!createdAt || d < createdAt) createdAt = d; // earliest wins
+    }
   }
 
   return {
@@ -213,6 +225,7 @@ async function fetchProjectGitHubData(
       (a, b) => b.contributions - a.contributions
     ),
     lastUpdated,
+    createdAt,
   };
 }
 
@@ -267,7 +280,7 @@ function useProjectGitHubData(project: Project, enabled: boolean) {
     if (project.repositoryUrls.length === 0) {
       setState({
         status: 'done',
-        data: { contributors: [], lastUpdated: null },
+        data: { contributors: [], lastUpdated: null, createdAt: null },
       });
       return;
     }
@@ -316,6 +329,32 @@ function LastUpdatedBadge({ date }: { date: Date }) {
     >
       <span className={`w-1.5 h-1.5 rounded-full ${tier.dot} shrink-0`} />
       Updated {formatRelativeTime(date)}
+    </span>
+  );
+}
+
+// ── Created at badge ──────────────────────────────────────────────────────────
+
+function CreatedAtBadge({ date }: { date: Date }) {
+  return (
+    <span
+      title={`Created ${formatAbsoluteDate(date)}`}
+      className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border bg-slate-50 text-slate-500 border-slate-200 text-[11.5px] font-semibold whitespace-nowrap shrink-0'
+    >
+      {/* Calendar icon */}
+      <svg
+        className='w-3 h-3 shrink-0'
+        fill='none'
+        stroke='currentColor'
+        strokeWidth='2'
+        viewBox='0 0 24 24'
+      >
+        <rect x='3' y='4' width='18' height='18' rx='2' ry='2' />
+        <line x1='16' y1='2' x2='16' y2='6' />
+        <line x1='8' y1='2' x2='8' y2='6' />
+        <line x1='3' y1='10' x2='21' y2='10' />
+      </svg>
+      {formatAbsoluteDate(date)}
     </span>
   );
 }
@@ -425,6 +464,7 @@ function ProjectModal({
         {/* Scrollable body */}
         <div className='overflow-y-auto flex-1 px-6 py-5 flex flex-col gap-5'>
           <div className='flex flex-col gap-1'>
+            {/* Title row: name + last-updated badge */}
             <div className='flex items-center justify-between gap-3 flex-wrap'>
               <h2 className='text-2xl font-bold text-gray-900 leading-tight'>
                 {project.title}
@@ -433,14 +473,21 @@ function ProjectModal({
                 <LastUpdatedBadge date={githubData.data.lastUpdated} />
               )}
             </div>
-            <a
-              href={project.projectUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-sm text-blue-500 hover:text-blue-600 transition-colors'
-            >
-              {project.projectUrl}
-            </a>
+
+            {/* URL + created-at badge on the same row */}
+            <div className='flex items-center gap-2.5 flex-wrap'>
+              <a
+                href={project.projectUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-sm text-blue-500 hover:text-blue-600 transition-colors'
+              >
+                {project.projectUrl}
+              </a>
+              {githubData.status === 'done' && githubData.data.createdAt && (
+                <CreatedAtBadge date={githubData.data.createdAt} />
+              )}
+            </div>
           </div>
 
           <div>
@@ -641,6 +688,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 </span>
               ))}
             </div>
+          )}
+          {/* Created-at inline, styled to match repo URL text */}
+          {githubData.status === 'done' && githubData.data.createdAt && (
+            <span className='text-[11.5px] text-gray-400 flex items-center gap-1'>
+              <svg
+                className='w-3 h-3 shrink-0'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                viewBox='0 0 24 24'
+              >
+                <rect x='3' y='4' width='18' height='18' rx='2' ry='2' />
+                <line x1='16' y1='2' x2='16' y2='6' />
+                <line x1='8' y1='2' x2='8' y2='6' />
+                <line x1='3' y1='10' x2='21' y2='10' />
+              </svg>
+              Created {formatAbsoluteDate(githubData.data.createdAt)}
+            </span>
           )}
         </div>
 
