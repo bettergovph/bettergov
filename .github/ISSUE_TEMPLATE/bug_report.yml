@@ -1,0 +1,123 @@
+name: 🐛 Bug Report
+description: Report a bug to help us improve the project.
+title: '[BUG]: '
+type: BUG
+labels:
+  - bug
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: |
+        Example:
+        When clicking the Login button, the page stays on the loading screen forever.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Go to...
+        2. Click...
+        3. Scroll...
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened?
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop screenshots or paste images here.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Do you want to work on this issue?
+      multiple: false
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Minor
+        - Moderate
+        - Major
+        - Critical
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Suggested Priority
+      options:
+        - Low
+        - Medium
+        - High
+        - Urgent
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: Windows 11, Ubuntu 24.04, macOS 15...
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      placeholder: Chrome 138, Firefox 140, Safari 18...
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Application Version
+      placeholder: v2.4.1
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add anything else that may help us diagnose the issue.
+
+  - type: markdown
+    attributes:
+      value: |
+        You can also join our Discord community [here](https://discord.gg/PWm9NsFQzX)
