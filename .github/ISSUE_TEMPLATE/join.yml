@@ -1,5 +1,9 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Join our Community
+  - name: 💬 Join our Discord Community
     url: https://discord.gg/PWm9NsFQzX
-    about: Feel free to ask your question by joining our Discord server.
+    about: Ask questions, get help, or chat with the community on Discord.
+
+  - name: 💭 GitHub Discussions
+    url: https://github.com/orgs/bettergovph/discussions
+    about: Ask questions, share ideas, or start a discussion with the community.
