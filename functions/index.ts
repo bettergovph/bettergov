@@ -10,22 +10,35 @@ import {
 import { onRequest as crawlRequest } from './api/crawl';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
+import { onRequest as reportHotlineRequest } from './api/report-hotline';
 import { Env } from './types';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
 export { scheduled as scheduled_getForex } from './api/forex';
 
+// Helper function to add CORS headers to a response
+function addCorsHeaders(
+  response: Response,
+  corsHeaders: Record<string, string>
+): Response {
+  const newHeaders = new Headers(response.headers);
+  Object.keys(corsHeaders).forEach(key => {
+    newHeaders.set(key, corsHeaders[key]);
+  });
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: newHeaders,
+  });
+}
+
 // Handler for HTTP requests
 export default {
-  async scheduled(
-    controller: ScheduledController,
-    env: Env,
-    ctx: ExecutionContext
-  ): Promise<void> {
+  async scheduled(controller: ScheduledController, env: Env): Promise<void> {
     console.log('Scheduled update');
-    await getWeatherScheduled(controller, env, ctx);
-    await getForexScheduled(controller, env, ctx);
+    await getWeatherScheduled(controller, env);
+    await getForexScheduled(controller, env);
   },
 
   async fetch(
@@ -39,7 +52,7 @@ export default {
     // Add CORS headers to all responses
     const corsHeaders: Record<string, string> = {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
@@ -54,81 +67,41 @@ export default {
     // Route API requests to the appropriate handler
     if (path === '/api/weather') {
       const response = await weatherRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
+      return addCorsHeaders(response, corsHeaders);
     }
 
     if (path === '/api/forex') {
       const response = await forexRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
+      return addCorsHeaders(response, corsHeaders);
     }
 
     // Handle the new KV-only endpoints
     if (path === '/weather') {
       const response = await weatherKVRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
+      return addCorsHeaders(response, corsHeaders);
     }
 
     if (path === '/forex') {
       const response = await forexKVRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
+      return addCorsHeaders(response, corsHeaders);
     }
 
     if (path === '/api/crawl') {
       const response = await crawlRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
+      return addCorsHeaders(response, corsHeaders);
+    }
+
+    if (path === '/api/report-hotline') {
+      const response = await reportHotlineRequest({ request, env, ctx });
+      return addCorsHeaders(response, corsHeaders);
     }
 
     // Simple API to check if the functions are running
     if (path === '/api/status') {
-      return new Response(
+      const response = new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex', 'crawl'],
+          functions: ['weather', 'forex', 'crawl', 'report-hotline'],
           endpoints: [
             {
               path: '/api/weather',
@@ -205,20 +178,53 @@ export default {
                 },
               ],
             },
+            {
+              path: '/api/report-hotline',
+              description:
+                'Submit a report about outdated hotline information (creates GitHub issue)',
+              method: 'POST',
+              parameters: [
+                {
+                  name: 'hotlineName',
+                  required: true,
+                  description: 'Name of the hotline with outdated information',
+                },
+                {
+                  name: 'issue',
+                  required: true,
+                  description: 'Description of what is incorrect',
+                },
+                {
+                  name: 'correctInfo',
+                  required: false,
+                  description: 'The correct information if known',
+                },
+                {
+                  name: 'source',
+                  required: false,
+                  description: 'Link to official source',
+                },
+                {
+                  name: 'reporterEmail',
+                  required: false,
+                  description: 'Contact email of the reporter',
+                },
+              ],
+            },
           ],
           timestamp: new Date().toISOString(),
         }),
         {
           headers: {
             'Content-Type': 'application/json',
-            ...corsHeaders,
           },
         }
       );
+      return addCorsHeaders(response, corsHeaders);
     }
 
     // Return 404 for any other routes
-    return new Response(
+    const response = new Response(
       JSON.stringify({
         error: 'Not found',
         availableEndpoints: [
@@ -226,6 +232,7 @@ export default {
           '/api/weather',
           '/api/forex',
           '/api/crawl',
+          '/api/report-hotline',
           '/weather',
           '/forex',
         ],
@@ -234,9 +241,9 @@ export default {
         status: 404,
         headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders,
         },
       }
     );
+    return addCorsHeaders(response, corsHeaders);
   },
 };

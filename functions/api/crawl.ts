@@ -106,7 +106,6 @@ async function checkRateLimit(env: Env, clientIP: string): Promise<boolean> {
 export async function onRequest(context: {
   request: Request;
   env: Env;
-  params: Record<string, string>;
 }): Promise<Response> {
   const { request, env } = context;
 
