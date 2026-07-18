@@ -1,5 +1,7 @@
 FROM node:22-alpine AS builder
 
+RUN apk add --no-cache git
+
 ARG HEAD_COMMIT_HASH
 ENV HEAD_COMMIT_HASH=${HEAD_COMMIT_HASH}
 
