@@ -36,7 +36,6 @@ export default function ConstitutionSidebar() {
               <li key={version.slug}>
                 <Link
                   to={`/philippines/constitution/${version.slug}`}
-                  state={{ scrollToContent: true }}
                   title={version.name}
                   className={cn(
                     'block px-3 py-2 text-sm rounded-md transition-colors',

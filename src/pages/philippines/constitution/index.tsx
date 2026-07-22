@@ -1,5 +1,5 @@
 import { ScrollTextIcon } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import SEO from '../../../components/SEO';
 import { getConstitutionSEOData } from '../../../utils/seo-data';
 import { cn } from '../../../lib/utils';
@@ -160,8 +160,8 @@ function TimelineOverview() {
               >
                 <ScrollTextIcon className='h-4 w-4 text-white' />
               </span>
-              <a
-                href={`/philippines/constitution/${version.slug}`}
+              <Link
+                to={`/philippines/constitution/${version.slug}`}
                 className='block bg-white border border-gray-200 rounded-lg p-4 hover:border-primary-300 hover:shadow-sm transition-all'
               >
                 <div className='flex flex-wrap items-center gap-2 mb-1'>
@@ -178,7 +178,7 @@ function TimelineOverview() {
                   </span>
                 </div>
                 <p className='text-sm text-gray-800'>{version.period}</p>
-              </a>
+              </Link>
             </li>
           ))}
         </ol>
