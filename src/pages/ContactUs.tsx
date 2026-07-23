@@ -1,6 +1,5 @@
 import {
   MailIcon,
-  MessageCircleIcon,
   UsersIcon,
   GlobeIcon,
   ArrowRightIcon,
@@ -8,6 +7,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from 'lucide-react';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ const ContactUs: FC = () => {
       color: 'bg-blue-100 text-blue-600',
     },
     {
-      icon: <MessageCircleIcon className='h-8 w-8' />,
+      icon: <SiDiscord className='h-8 w-8' />,
       title: 'Discord Community',
       description:
         'Join our volunteer community for real-time discussions and support',

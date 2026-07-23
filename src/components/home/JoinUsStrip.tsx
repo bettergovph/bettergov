@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { UsersIcon, ArrowRightIcon, ZapIcon } from 'lucide-react';
+import { UsersIcon, ArrowRightIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
 
 const JoinUsStrip: FC = () => {
   const { t } = useTranslation('common');
@@ -13,11 +14,8 @@ const JoinUsStrip: FC = () => {
       {/* Animated background elements */}
       <div className='absolute left-0 top-0 w-full h-full opacity-20'>
         <div className='flex items-center justify-around h-full animate-pulse'>
-          <ZapIcon className='h-4 w-4' />
           <UsersIcon className='h-4 w-4' />
-          <ZapIcon className='h-4 w-4' />
           <UsersIcon className='h-4 w-4' />
-          <ZapIcon className='h-4 w-4' />
         </div>
       </div>
 
@@ -49,8 +47,9 @@ const JoinUsStrip: FC = () => {
               href='https://discord.gg/mHtThpN8bT'
               target='_blank'
               rel='noreferrer'
-              className='text-xs text-yellow-200 hover:text-yellow-100 underline transition-colors'
+              className='inline-flex items-center gap-1.5 text-xs text-yellow-200 hover:text-yellow-100 underline transition-colors'
             >
+              <SiDiscord className='h-3.5 w-3.5' />
               {t('joinUs.discord')}
             </a>
           </div>
