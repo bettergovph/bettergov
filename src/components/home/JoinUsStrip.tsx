@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UsersIcon, ArrowRightIcon } from 'lucide-react';
+import { UsersIcon, ArrowRightIcon, ZapIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SiDiscord } from '@icons-pack/react-simple-icons';
@@ -14,8 +14,11 @@ const JoinUsStrip: FC = () => {
       {/* Animated background elements */}
       <div className='absolute left-0 top-0 w-full h-full opacity-20'>
         <div className='flex items-center justify-around h-full animate-pulse'>
+          <ZapIcon className='h-4 w-4' />
           <UsersIcon className='h-4 w-4' />
+          <ZapIcon className='h-4 w-4' />
           <UsersIcon className='h-4 w-4' />
+          <ZapIcon className='h-4 w-4' />
         </div>
       </div>
 
