@@ -381,6 +381,24 @@ export function getConstitutionSEOData(
             {
               name: versionName,
               url: `/philippines/constitution/${encodeURIComponent(versionName)}`,
+            },
+          ]
+        : []),
+    ],
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Legislation',
+      name: versionName || 'Constitutions of the Philippines',
+      url: `https://gov.ph/philippines/constitution${
+        versionName ? `/${encodeURIComponent(versionName)}` : ''
+      }`,
+      description: versionName
+        ? `${versionName} - a constitution of the Philippines`
+        : 'A timeline of the constitutions of the Philippines',
+    },
+  };
+}
+
 export function getJudicialSEOData(courtName?: string): GovernmentSEOData {
   const baseTitle = 'Judicial Branch';
   const title = courtName ? `${courtName} - ${baseTitle}` : baseTitle;
@@ -418,14 +436,6 @@ export function getJudicialSEOData(courtName?: string): GovernmentSEOData {
     ],
     jsonLd: {
       '@context': 'https://schema.org',
-      '@type': 'Legislation',
-      name: versionName || 'Constitutions of the Philippines',
-      url: `https://gov.ph/philippines/constitution${
-        versionName ? `/${encodeURIComponent(versionName)}` : ''
-      }`,
-      description: versionName
-        ? `${versionName} - a constitution of the Philippines`
-        : 'A timeline of the constitutions of the Philippines',
       '@type': 'GovernmentOrganization',
       name: courtName || 'Philippine Judicial Branch',
       url: `https://gov.ph/government/judicial${
