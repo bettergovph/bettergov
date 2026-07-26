@@ -466,5 +466,23 @@
     },
     "createdAt": "2025-06-06T12:42:33.000Z",
     "updatedAt": "2025-06-06T12:42:33.000Z"
+  },
+  {
+    "service": "Pay Travel Tax Online",
+    "url": "https://tieza.gov.ph/online-travel-tax-services-system/",
+    "id": "6c69cbbe-4de3-4cd4-a1e5-c1ed71d7daa1",
+    "slug": "pay-travel-tax-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Passport and Travel",
+      "slug": "passport-travel"
+    },
+    "subcategory": {
+      "name": "Travel",
+      "slug": "travel"
+    },
+    "createdAt": "2026-07-26T16:21:12.466Z",
+    "updatedAt": "2026-07-26T16:21:12.466Z"
   }
 ]
