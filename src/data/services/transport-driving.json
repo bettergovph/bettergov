@@ -37,7 +37,7 @@
   },
   {
     "service": "Renew your Driver's License",
-    "url": "https://ltoexam.com/drivers-license-renewal/",
+    "url": "https://portal.lto.gov.ph/ords/f?p=1200:HOME::::::",
     "id": "608751b3-2353-4485-978f-027a6c7c5f64",
     "slug": "renew-your-drivers-license",
     "published": true,
@@ -73,7 +73,7 @@
   },
   {
     "service": "Foreign Driver's License Conversion",
-    "url": "https://ltoportal.ph/convert-foreign-drivers-license-philippines/",
+    "url": "https://lto.gov.ph/wp-content/uploads/2025/09/LTO-CC-2025-External-v2.pdf",
     "id": "82d3c19f-5862-4ffd-8bd2-f72ef1c1e47b",
     "slug": "foreign-license-conversion-philippines",
     "published": true,
