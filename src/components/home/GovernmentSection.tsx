@@ -23,7 +23,7 @@ const GovernmentSection: FC = () => {
           <path d='M12 17.8L5.8 21 7 14.1 2 9.3l7-1L12 2l3 6.3 7 1-5 4.8 1.2 6.9-6.2-3.2z'></path>
         </svg>
       ),
-      link: '/government/executive',
+      link: '/government/executive/office-of-the-president',
     },
     {
       id: 'legislative',
@@ -43,7 +43,7 @@ const GovernmentSection: FC = () => {
           <path d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'></path>
         </svg>
       ),
-      link: '/government/legislative',
+      link: '/government/legislative/senate-of-the-philippines-20th-congress',
     },
     {
       id: 'judiciary',
@@ -65,7 +65,7 @@ const GovernmentSection: FC = () => {
           <path d='M5 16h14'></path>
         </svg>
       ),
-      link: '/government/judiciary',
+      link: '/government/judicial/supreme-court',
     },
   ];
 
