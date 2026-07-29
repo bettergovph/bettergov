@@ -1,4 +1,4 @@
-import L, { LatLngExpression, Layer, GeoJSON as LeafletGeoJSON } from 'leaflet';
+import L, { type Layer, type GeoJSON as LeafletGeoJSON } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
   Building2Icon,
@@ -11,15 +11,96 @@ import {
   ZoomInIcon,
   ZoomOutIcon,
 } from 'lucide-react';
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
+import {
+  type FC,
+  type MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  GeoJSON,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+} from 'react-leaflet';
 import Button from '../../../components/ui/Button';
 import { ScrollArea } from '../../../components/ui/ScrollArea';
+import philippinesEezOutlineData from '../../../data/philippines-eez-outline.json';
 import philippinesRegionsData from '../../../data/philippines-regions.json'; // Renamed for clarity
 import pop2020Raw from '../../../data/population-2020.json';
+import {
+  CARTO_ATTRIBUTION,
+  CARTO_VOYAGER_URL,
+  PH_CENTER,
+  PH_DEFAULT_ZOOM,
+  PH_MAP_BOUNDS,
+  PH_MIN_ZOOM,
+  WPS_LABEL_POSITION,
+  WPS_POIS,
+} from '../../../lib/philippinesMap';
 import { resolveRegionPopulationKey } from '../../../lib/regionMapping';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+
+/**
+ * EEZ outer limit only (MultiLineString).
+ * Full EEZ polygons include land as holes — stroking those drew island coastlines.
+ */
+const philippinesEezOutline =
+  philippinesEezOutlineData as GeoJSON.FeatureCollection;
+
+const maritimeBoundaryStyle = {
+  color: '#1D4ED8',
+  weight: 3,
+  opacity: 1,
+  fillOpacity: 0,
+  fillColor: 'transparent',
+  lineJoin: 'round' as const,
+  lineCap: 'round' as const,
+};
+
+const wpsLabelIcon = L.divIcon({
+  className: '',
+  html: `<div style="font-family:system-ui,sans-serif;font-weight:700;font-size:13px;color:#0C4A6E;text-shadow:0 0 4px #fff,0 0 8px #fff;white-space:nowrap;pointer-events:none">West Philippine Sea</div>`,
+  iconSize: [160, 20],
+  iconAnchor: [80, 10],
+});
+
+const wpsPoiIcon = L.divIcon({
+  className: '',
+  html: `<div style="width:12px;height:12px;border-radius:50%;background:#0284C7;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)"></div>`,
+  iconSize: [12, 12],
+  iconAnchor: [6, 6],
+});
+
+/** Draw EEZ stroke above region fills */
+function MaritimePane() {
+  const map = useMap();
+  useEffect(() => {
+    if (!map.getPane('maritimeBoundary')) {
+      const pane = map.createPane('maritimeBoundary');
+      pane.style.zIndex = '450';
+      pane.style.pointerEvents = 'none';
+    }
+  }, [map]);
+  return null;
+}
+
+/** Bridge map instance into a ref (same pattern as Meet Me Halfway MapView) */
+function MapBridge({ mapRef }: { mapRef: MutableRefObject<L.Map | null> }) {
+  const map = useMap();
+  useEffect(() => {
+    mapRef.current = map;
+    return () => {
+      mapRef.current = null;
+    };
+  }, [map, mapRef]);
+  return null;
+}
 
 // Define types for region data and GeoJSON properties
 interface RegionData {
@@ -60,8 +141,6 @@ const wikipediaCache = new Map<
   { content?: string; summary?: string; [key: string]: unknown }
 >();
 
-const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
-
 const PhilippinesMap: FC = () => {
   const isMobile = useIsMobile();
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
@@ -78,11 +157,9 @@ const PhilippinesMap: FC = () => {
       RegionProperties
     >
   );
-  const mapRef = useRef<L.Map>(null);
+  const mapRef = useRef<L.Map | null>(null);
   const geoJsonLayerRef = useRef<LeafletGeoJSON | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const initialZoom = 6;
 
   // Fetch Wikipedia data
   const fetchWikipediaData = useCallback(async (regionName: string) => {
@@ -186,14 +263,15 @@ const PhilippinesMap: FC = () => {
 
     const isFilteredOut = searchQuery && !isMatched;
 
+    // Fill only by default — no blue coastline stroke (EEZ stroke is separate)
     return {
       fillColor:
         isSelected || isMatched ? '#2563EB' : isHovered ? '#60A5FA' : '#EFF6FF',
 
-      weight: isSelected || isHovered || isMatched ? 2 : 1,
+      weight: isSelected || isHovered || isMatched ? 2 : 0,
       opacity: 1,
 
-      color: isSelected || isHovered || isMatched ? '#1E3A8A' : '#93C5FD',
+      color: isSelected || isHovered || isMatched ? '#1E3A8A' : 'transparent',
 
       fillOpacity: isFilteredOut ? 0.2 : 0.7,
     };
@@ -237,8 +315,7 @@ const PhilippinesMap: FC = () => {
   const handleZoomIn = () => mapRef.current?.zoomIn();
   const handleZoomOut = () => mapRef.current?.zoomOut();
   const handleResetZoom = () => {
-    mapRef.current?.setZoom(initialZoom);
-    mapRef.current?.flyTo(initialCenter, initialZoom);
+    mapRef.current?.flyTo(PH_CENTER, PH_DEFAULT_ZOOM);
   };
 
   useEffect(() => {
@@ -314,30 +391,20 @@ const PhilippinesMap: FC = () => {
           </Button>
         </div>
 
-        {/* <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer> */}
-
         <MapContainer
-          center={initialCenter}
-          zoom={initialZoom}
-          ref={mapRef}
+          center={PH_CENTER}
+          zoom={PH_DEFAULT_ZOOM}
+          minZoom={PH_MIN_ZOOM}
+          maxBounds={PH_MAP_BOUNDS}
+          maxBoundsViscosity={1.0}
           zoomControl={false}
+          scrollWheelZoom
           style={{ height: '100%', width: '100%' }}
-          // whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
           className='z-0'
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          />
+          <MapBridge mapRef={mapRef} />
+          <MaritimePane />
+          <TileLayer attribution={CARTO_ATTRIBUTION} url={CARTO_VOYAGER_URL} />
           {mapData && mapData.features && (
             <GeoJSON
               key={searchQuery} // Re-render GeoJSON on search change to apply filtering style
@@ -347,7 +414,61 @@ const PhilippinesMap: FC = () => {
               onEachFeature={onEachFeature}
             />
           )}
+          {/* EEZ outer limit only — land holes omitted (they were drawing coastlines) */}
+          <GeoJSON
+            data={philippinesEezOutline}
+            style={maritimeBoundaryStyle}
+            interactive={false}
+            pane='maritimeBoundary'
+          />
+          <Marker
+            position={WPS_LABEL_POSITION}
+            icon={wpsLabelIcon}
+            interactive={false}
+          />
+          {WPS_POIS.map(poi => (
+            <Marker key={poi.id} position={poi.position} icon={wpsPoiIcon}>
+              <Popup>
+                <strong>{poi.name}</strong>
+                <br />
+                <span className='text-sm'>West Philippine Sea (AO No. 29)</span>
+              </Popup>
+            </Marker>
+          ))}
         </MapContainer>
+
+        <aside className='absolute bottom-5 left-4 z-10 max-w-sm rounded-lg border border-gray-200 bg-white/95 px-3 py-2 text-xs text-slate-600 shadow-md backdrop-blur-sm'>
+          <p className='font-semibold text-slate-800'>EEZ source</p>
+          <p className='mt-1 leading-relaxed'>
+            Flanders Marine Institute (2023). Maritime Boundaries Geodatabase:
+            EEZ (200NM), v12 —{' '}
+            <a
+              href='https://geo.vliz.be/geoserver/wfs?request=getfeature&service=wfs&version=1.1.0&typename=MarineRegions:eez&filter=%3CFilter%3E%3CPropertyIsEqualTo%3E%3CPropertyName%3Emrgid_eez%3C/PropertyName%3E%3CLiteral%3E8322%3C/Literal%3E%3C/PropertyIsEqualTo%3E%3C/Filter%3E'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-700 underline hover:text-blue-900'
+            >
+              Marine Regions WFS
+            </a>{' '}
+            (<code className='text-[10px]'>mrgid_eez=8322</code>).{' '}
+            <a
+              href='https://doi.org/10.14284/632'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-700 underline hover:text-blue-900'
+            >
+              doi:10.14284/632
+            </a>
+            <a
+              href='https://lawphil.net/statutes/presdecs/pd1978/pd_1596_1978.html'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-700 underline hover:text-blue-900'
+            >
+              PD 1596
+            </a>{' '}
+          </p>
+        </aside>
 
         {hoveredRegionName && (
           <div
@@ -430,10 +551,12 @@ const PhilippinesMap: FC = () => {
                   </div>
                 </div>
                 <button
+                  type='button'
                   onClick={() => setSelectedRegion(null)}
                   className='text-gray-400 hover:text-gray-800'
                 >
                   <svg
+                    aria-label='Close'
                     className='h-6 w-6'
                     fill='none'
                     stroke='currentColor'
