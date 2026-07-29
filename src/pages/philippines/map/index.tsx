@@ -407,7 +407,6 @@ const PhilippinesMap: FC = () => {
               onEachFeature={onEachFeature}
             />
           )}
-          {/* EEZ outer limit only — land holes omitted (they were drawing coastlines) */}
           <GeoJSON
             data={philippinesEezOutline}
             style={maritimeBoundaryStyle}
