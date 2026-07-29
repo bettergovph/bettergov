@@ -263,7 +263,6 @@ const PhilippinesMap: FC = () => {
 
     const isFilteredOut = searchQuery && !isMatched;
 
-    // Fill only by default — no blue coastline stroke (EEZ stroke is separate)
     return {
       fillColor:
         isSelected || isMatched ? '#2563EB' : isHovered ? '#60A5FA' : '#EFF6FF',
