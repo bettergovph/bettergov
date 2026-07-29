@@ -46,10 +46,6 @@ import { resolveRegionPopulationKey } from '../../../lib/regionMapping';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-/**
- * EEZ outer limit only (MultiLineString).
- * Full EEZ polygons include land as holes — stroking those drew island coastlines.
- */
 const philippinesEezOutline =
   philippinesEezOutlineData as GeoJSON.FeatureCollection;
 
@@ -77,7 +73,6 @@ const wpsPoiIcon = L.divIcon({
   iconAnchor: [6, 6],
 });
 
-/** Draw EEZ stroke above region fills */
 function MaritimePane() {
   const map = useMap();
   useEffect(() => {
@@ -90,7 +85,6 @@ function MaritimePane() {
   return null;
 }
 
-/** Bridge map instance into a ref (same pattern as Meet Me Halfway MapView) */
 function MapBridge({ mapRef }: { mapRef: MutableRefObject<L.Map | null> }) {
   const map = useMap();
   useEffect(() => {
