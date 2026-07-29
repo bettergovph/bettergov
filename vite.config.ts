@@ -14,4 +14,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  server: {
+    host: true, // Binds to 0.0.0.0 (all network interfaces)
+    port: 5173,
+    watch: {
+      usePolling: true, // Required for HMR hot-reloading on Windows Docker mounts
+    },
+  },
 });

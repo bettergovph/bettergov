@@ -9,6 +9,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+RUN apk add --no-cache git
 RUN npm run build
 
 # Development stage
