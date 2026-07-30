@@ -1,18 +1,162 @@
 {
+  "DA": {
+    "fullName": "Department of Agriculture",
+    "description": "Executive department responsible for the promotion of agricultural and fisheries development and growth."
+  },
+  "DAR": {
+    "fullName": "Department of Agrarian Reform",
+    "description": "Executive department responsible for the redistribution of agrarian land in the Philippines."
+  },
+  "DBM": {
+    "fullName": "Department of Budget and Management",
+    "description": "Executive body responsible for the sound, efficient and effective management and utilization of government resources."
+  },
+  "DENR": {
+    "fullName": "Department of Environment and Natural Resources",
+    "description": "Executive department responsible for governing and supervising the exploration, development, utilization, and conservation of the country's natural resources."
+  },
+  "DepEd": {
+    "fullName": "Department of Education",
+    "description": "Executive department responsible for ensuring access to, promoting equity in, and improving the quality of basic education."
+  },
+  "DFA": {
+    "fullName": "Department of Foreign Affairs",
+    "description": "Executive department tasked to contribute to the enhancement of national security and the protection of the territorial integrity and national sovereignty."
+  },
+  "DHSUD": {
+    "fullName": "Department of Human Settlements and Urban Development",
+    "description": "Executive department responsible for the management of housing, human settlement, and urban development."
+  },
+  "DICT": {
+    "fullName": "Department of Information and Communications Technology",
+    "description": "Executive department responsible for the planning, development and promotion of the country's information and communications technology agenda."
+  },
+  "DILG": {
+    "fullName": "Department of the Interior and Local Government",
+    "description": "Executive department responsible for promoting peace and order, ensuring public safety and strengthening local government capability."
+  },
+  "DND": {
+    "fullName": "Department of National Defense",
+    "description": "Executive department responsible for guarding against external and internal threats to national peace and security."
+  },
+  "DOE": {
+    "fullName": "Department of Energy",
+    "description": "Executive department responsible for preparing, integrating, coordinating, supervising and controlling all plans, programs, projects and activities of the Government relative to energy exploration, development, utilization, distribution and conservation."
+  },
+  "DOF": {
+    "fullName": "Department of Finance",
+    "description": "Executive department responsible for the formulation, institutionalization and administration of fiscal policies, management of the financial resources of the government."
+  },
+  "DOH": {
+    "fullName": "Department of Health",
+    "description": "Executive department responsible for ensuring access to basic public health services by all Filipinos."
+  },
+  "DOJ": {
+    "fullName": "Department of Justice",
+    "description": "Executive department responsible for upholding the rule of law in the Philippines. It is the government's principal law agency."
+  },
   "DOLE": {
     "fullName": "Department of Labor and Employment",
-    "description": "The executive department of the Philippine Government mandated to formulate policies, implement programs and serve as the policy-coordinating arm of the Executive Branch in the field of labor and employment."
+    "description": "Executive department responsible for formulating policies, implementing programs and serving as the policy-coordinating arm of the Executive Branch in the field of labor and employment."
   },
-  "DSWD": {
-    "fullName": "Department of Social Welfare and Development",
-    "description": "The executive department of the Philippine Government responsible for the protection of the social welfare rights of Filipinos and to promote social development."
+  "DOST": {
+    "fullName": "Department of Science and Technology",
+    "description": "Executive department responsible for the coordination of science and technology-related projects in the Philippines and to formulate policies and projects in the fields of science and technology."
+  },
+  "DOT": {
+    "fullName": "Department of Tourism",
+    "description": "Executive department responsible for the regulation of the Philippine tourism industry and the promotion of the Philippines as a tourist destination."
+  },
+  "DOTr": {
+    "fullName": "Department of Transportation",
+    "description": "Executive department responsible for the maintenance and expansion of viable, efficient, and dependable transportation systems as effective instruments for national recovery and economic progress."
   },
   "DPWH": {
     "fullName": "Department of Public Works and Highways",
-    "description": "The executive department of the Philippine government responsible for all safety of all infrastructure projects in the country."
+    "description": "Executive department responsible for the planning, design, construction and maintenance of infrastructure, especially the national highways, flood control and water resources development system."
+  },
+  "DSWD": {
+    "fullName": "Department of Social Welfare and Development",
+    "description": "Executive department responsible for the protection of the social welfare of rights of Filipinos and to promote social development."
+  },
+  "DTI": {
+    "fullName": "Department of Trade and Industry",
+    "description": "Executive department responsible for realizing the country's goal of globally competitive and innovative industry and services sector that contribute to inclusive growth and employment generation."
+  },
+  "CHED": {
+    "fullName": "Commission on Higher Education",
+    "description": "Government agency attached to the Office of the President for administrative purposes. It covers both public and private higher education institutions as well as degree-granting programs in all post-secondary educational institutions."
+  },
+  "CHR": {
+    "fullName": "Commission on Human Rights",
+    "description": "Independent constitutional office created under the 1987 Constitution, with the primary function of investigating all forms of human rights violations involving civil and political rights in the Philippines."
+  },
+  "COA": {
+    "fullName": "Commission on Audit",
+    "description": "Independent constitutional commission that examines, audits, and settles all accounts and expenditures of the funds and properties of the Philippine government."
+  },
+  "COMELEC": {
+    "fullName": "Commission on Elections",
+    "description": "Independent constitutional commission responsible for ensuring free, fair, and honest elections."
+  },
+  "CSC": {
+    "fullName": "Civil Service Commission",
+    "description": "Independent constitutional commission that serves as the central personnel agency of the Philippine government."
+  },
+  "BSP": {
+    "fullName": "Bangko Sentral ng Pilipinas",
+    "description": "The central bank of the Republic of the Philippines."
+  },
+  "NEDA": {
+    "fullName": "National Economic and Development Authority",
+    "description": "Independent cabinet-level agency responsible for economic development and planning."
+  },
+  "AFP": {
+    "fullName": "Armed Forces of the Philippines",
+    "description": "The military forces of the Philippines."
+  },
+  "BFAR": {
+    "fullName": "Bureau of Fisheries and Aquatic Resources",
+    "description": "Government agency responsible for the development, improvement, management and conservation of the country's fisheries and aquatic resources."
+  },
+  "BIR": {
+    "fullName": "Bureau of Internal Revenue",
+    "description": "Agency of Department of Finance, which collects more than half of the total revenues of the government."
+  },
+  "BOC": {
+    "fullName": "Bureau of Customs",
+    "description": "Agency of the Department of Finance, responsible for regulating customs, border control and preventing smuggling."
+  },
+  "BFP": {
+    "fullName": "Bureau of Fire Protection",
+    "description": "Agency of the Department of the Interior and Local Government responsible for implementing national policies related to firefighting and fire prevention."
+  },
+  "GSIS": {
+    "fullName": "Government Service Insurance System",
+    "description": "A government-owned and controlled corporation (GOCC) providing social security coverage to government employees."
   },
   "LTO": {
     "fullName": "Land Transportation Office",
     "description": "An agency of the Philippine government under the Department of Transportation responsible for all land transportation in the Philippines."
+  },
+  "MMDA": {
+    "fullName": "Metropolitan Manila Development Authority",
+    "description": "Agency responsible for the planning, monitoring and coordinative functions, and in the process exercise regulatory and supervisory authority over the delivery of metro-wide services within Metro Manila."
+  },
+  "NBI": {
+    "fullName": "National Bureau of Investigation",
+    "description": "An agency of the Department of Justice responsible for handling and solving major high-profile cases that are in the interest of the nation."
+  },
+  "PAGCOR": {
+    "fullName": "Philippine Amusement and Gaming Corporation",
+    "description": "A government-owned and controlled corporation (GOCC) responsible for regulating the gaming industry in the Philippines."
+  },
+  "SSS": {
+    "fullName": "Social Security System",
+    "description": "A state-run social insurance program in the Philippines to workers in the private, professional and informal sectors."
+  },
+  "TESDA": {
+    "fullName": "Technical Education and Skills Development Authority",
+    "description": "Government agency tasked to manage and supervise technical education and skills development in the Philippines."
   }
 }
