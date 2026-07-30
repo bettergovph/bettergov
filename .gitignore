@@ -42,3 +42,4 @@ wrangler.toml
 
 # Dev
 .cursor/*
+.worktrees
