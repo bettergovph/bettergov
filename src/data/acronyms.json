@@ -1,0 +1,18 @@
+{
+  "DOLE": {
+    "fullName": "Department of Labor and Employment",
+    "description": "The executive department of the Philippine Government mandated to formulate policies, implement programs and serve as the policy-coordinating arm of the Executive Branch in the field of labor and employment."
+  },
+  "DSWD": {
+    "fullName": "Department of Social Welfare and Development",
+    "description": "The executive department of the Philippine Government responsible for the protection of the social welfare rights of Filipinos and to promote social development."
+  },
+  "DPWH": {
+    "fullName": "Department of Public Works and Highways",
+    "description": "The executive department of the Philippine government responsible for all safety of all infrastructure projects in the country."
+  },
+  "LTO": {
+    "fullName": "Land Transportation Office",
+    "description": "An agency of the Philippine government under the Department of Transportation responsible for all land transportation in the Philippines."
+  }
+}
