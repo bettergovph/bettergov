@@ -307,7 +307,7 @@
   },
   {
     "service": "Apply for Certificate of Conformity",
-    "url": "https://opms.emb.gov.ph/https",
+    "url": "https://air.emb.gov.ph/services/certificate-of-conformity-coc-online/",
     "id": "d1c49abc-dcf9-4e61-9398-bfb47befec82",
     "slug": "apply-for-certificate-of-conformity",
     "published": true,
