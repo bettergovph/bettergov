@@ -21,7 +21,7 @@ if (hash === 'unknown') {
     const result = execSync('git rev-parse HEAD').toString().trim();
     if (result) hash = result;
   } catch {
-    // git not available or not in a git repository (e.g. Docker build)
+    console.warn('⚠️ Could not determine Git commit hash. Using "unknown".');
   }
 }
 
