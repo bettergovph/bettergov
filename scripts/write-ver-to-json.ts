@@ -15,10 +15,15 @@ const __dirname = path.dirname(__filename);
 const versionPath = path.join(__dirname, '..', 'src', 'version.json');
 
 // Get current commit hash
-const hash =
-  process.env.HEAD_COMMIT_HASH ||
-  execSync('git rev-parse HEAD').toString().trim() ||
-  'unknown';
+function getGitCommitHash(): string {
+  try {
+    return execSync('git rev-parse HEAD').toString().trim();
+  } catch {
+    return 'unknown';
+  }
+}
+
+const hash = process.env.HEAD_COMMIT_HASH || getGitCommitHash();
 
 // Prepare version object
 const versionData = { head_commit: hash };
