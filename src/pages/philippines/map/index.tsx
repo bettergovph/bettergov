@@ -2,6 +2,7 @@ import L, { LatLngExpression, Layer, GeoJSON as LeafletGeoJSON } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
   Building2Icon,
+  House,
   Loader2Icon,
   MapPinIcon,
   RefreshCcwIcon,
@@ -17,6 +18,8 @@ import { ScrollArea } from '../../../components/ui/ScrollArea';
 import philippinesRegionsData from '../../../data/philippines-regions.json'; // Renamed for clarity
 import pop2020Raw from '../../../data/population-2020.json';
 import { resolveRegionPopulationKey } from '../../../lib/regionMapping';
+import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Define types for region data and GeoJSON properties
 interface RegionData {
@@ -60,6 +63,7 @@ const wikipediaCache = new Map<
 const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
 
 const PhilippinesMap: FC = () => {
+  const isMobile = useIsMobile();
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegionName, setHoveredRegionName] = useState<string | null>(
     null
@@ -76,6 +80,7 @@ const PhilippinesMap: FC = () => {
   );
   const mapRef = useRef<L.Map>(null);
   const geoJsonLayerRef = useRef<LeafletGeoJSON | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const initialZoom = 6;
 
@@ -119,22 +124,15 @@ const PhilippinesMap: FC = () => {
       if (!feature.properties) return;
       const props = feature.properties;
       const regionName = props.name;
-      mapRef.current?.setZoom(7);
 
-      //get center coordinates from feature geometry
-      let center: LatLngExpression;
-      if (feature.geometry.type === 'Polygon') {
-        //extract the first coordinate from the first polygon
-        //these coorddinates are from /data/philippines-regions.json
-        const [[lng, lat]] = feature.geometry.coordinates[0];
-        center = [lat, lng];
-      } else if (feature.geometry.type === 'MultiPolygon') {
-        const [[[[lng, lat]]]] = feature.geometry.coordinates;
-        center = [lat, lng];
-      } else {
-        center = initialCenter;
+      if (!isMobile) {
+        const bounds = L.geoJSON(feature).getBounds();
+        mapRef.current?.fitBounds(bounds, {
+          paddingBottomRight: [400, 0],
+          maxZoom: 9,
+          animate: true,
+        });
       }
-      mapRef.current?.flyTo(center, 7);
 
       const popKey = resolveRegionPopulationKey(regionName.toUpperCase());
 
@@ -163,7 +161,7 @@ const PhilippinesMap: FC = () => {
         loading: false,
       }));
     },
-    [fetchWikipediaData]
+    [fetchWikipediaData, isMobile]
   );
 
   const getRegionName = (
@@ -173,30 +171,31 @@ const PhilippinesMap: FC = () => {
     return props?.name || '';
   };
 
-  // Style for GeoJSON features
   const regionStyle = (
     feature?: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>
   ) => {
     if (!feature) return {};
     const regionName = getRegionName(feature);
+
     const isSelected = selectedRegion?.id === regionName;
     const isHovered = hoveredRegionName === regionName;
-    const isFilteredOut =
+
+    const isMatched =
       searchQuery &&
-      !regionName.toLowerCase().includes(searchQuery.toLowerCase());
+      regionName.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const isFilteredOut = searchQuery && !isMatched;
 
     return {
-      fillColor: isSelected
-        ? '#6D28D9'
-        : isHovered
-          ? '#A78BFA'
-          : isFilteredOut
-            ? '#D1D5DB'
-            : '#EDE9FE',
-      weight: isSelected || isHovered ? 2 : 1,
+      fillColor:
+        isSelected || isMatched ? '#2563EB' : isHovered ? '#60A5FA' : '#EFF6FF',
+
+      weight: isSelected || isHovered || isMatched ? 2 : 1,
       opacity: 1,
-      color: isSelected || isHovered ? '#4C1D95' : '#A78BFA',
-      fillOpacity: isFilteredOut ? 0.3 : 0.7,
+
+      color: isSelected || isHovered || isMatched ? '#1E3A8A' : '#93C5FD',
+
+      fillOpacity: isFilteredOut ? 0.2 : 0.7,
     };
   };
 
@@ -209,12 +208,17 @@ const PhilippinesMap: FC = () => {
       click: () => onRegionClick(feature),
       mouseover: e => {
         setHoveredRegionName(getRegionName(feature));
-        e.target.setStyle(regionStyle(feature)); // Re-apply style with hover state
+        // Capture initial position
+        setMousePos({ x: e.originalEvent.pageX, y: e.originalEvent.pageY });
+        e.target.setStyle(regionStyle(feature));
         e.target.bringToFront();
+      },
+      mousemove: e => {
+        // Update position as mouse moves
+        setMousePos({ x: e.originalEvent.pageX, y: e.originalEvent.pageY });
       },
       mouseout: e => {
         setHoveredRegionName(null);
-        // Reset to default style or selected style if it's the selected region
         if (geoJsonLayerRef.current) {
           geoJsonLayerRef.current.resetStyle(e.target);
         }
@@ -243,23 +247,38 @@ const PhilippinesMap: FC = () => {
       zoomControls?.classList.add('right-105');
     } else {
       zoomControls?.classList.remove('right-105');
+      if (!isMobile) {
+        handleResetZoom();
+      }
     }
-  }, [selectedRegion]);
+  }, [selectedRegion, isMobile]);
 
   return (
     <div className='flex h-screen bg-gray-50'>
       {/* Map Section */}
       <div className='flex-1 relative'>
         {/* Search Bar */}
-        <div className='absolute top-4 left-4 right-4 z-[5] max-w-md'>
-          <div className='relative'>
+        <div className='absolute top-4 left-4 right-4 z-[5] max-w-md flex flex-row gap-4'>
+          <div>
+            <Link
+              to='/'
+              className='group flex items-center justify-center bg-blue-500 rounded-lg p-2 border-2 border-white text-white font-bold transition-all duration-300 ease-in-out hover:pr-4 shadow-md active:scale-95'
+              title='Back to Home'
+            >
+              <House className='h-6 w-6' />
+              <span className='max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out group-hover:max-w-xs group-hover:ml-2'>
+                Go back home
+              </span>
+            </Link>
+          </div>
+          <div className='relative flex-1'>
             <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
             <input
               type='text'
               placeholder='Search regions...'
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className='w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg shadow-xs focus:outline-hidden focus:ring-2 focus:ring-purple-500 focus:border-transparent'
+              className='w-full pl-10 pr-4 py-2 bg-white rounded-lg border-2 border-blue-500 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent'
             />
           </div>
         </div>
@@ -267,7 +286,7 @@ const PhilippinesMap: FC = () => {
         {/* Zoom Controls - Leaflet has its own, but we can add custom ones */}
         <div
           id='zoom-controls'
-          className='absolute top-5 right-4 z-10 flex flex-col gap-2'
+          className='absolute bottom-5 right-4 z-10 flex flex-col gap-3'
         >
           <Button
             variant='primary'
@@ -330,10 +349,15 @@ const PhilippinesMap: FC = () => {
           )}
         </MapContainer>
 
-        {/* Hover Tooltip - Can be implemented differently with Leaflet, e.g., L.tooltip */}
         {hoveredRegionName && (
-          <div className='absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow-lg z-1000'>
-            <p className='text-sm font-medium text-gray-800'>
+          <div
+            className='hidden md:block fixed pointer-events-none bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg shadow-lg z-[9999]'
+            style={{
+              left: `${mousePos.x + 20}px`,
+              top: `${mousePos.y + 10}px`,
+            }}
+          >
+            <p className='text-sm font-semibold text-blue-900 whitespace-nowrap'>
               {hoveredRegionName}
             </p>
           </div>
@@ -342,7 +366,7 @@ const PhilippinesMap: FC = () => {
 
       {selectedRegion && (
         <div
-          className={`absolute right-0 top-20px h-full w-[400px] bg-white shadow-xl transition-transform duration-300 z-10 ${
+          className={`absolute right-0 top-20px h-full w-full md:w-[400px] bg-white shadow-xl transition-transform duration-300 z-10 ${
             selectedRegion ? 'translate-x-0' : 'translate-x-full'
           }`}
         >

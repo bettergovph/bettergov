@@ -26,11 +26,18 @@ async function updateSettings() {
   try {
     console.log(`Setting maxTotalHits to 10000 for index ${INDEX_NAME}...`);
 
-    // Update the settings
+    // update only the pagination setting to ensure it gets applied
+    const paginationResult = await client.index(INDEX_NAME).updatePagination({
+      maxTotalHits: 10000,
+    });
+    console.log('Pagination update result:', paginationResult);
+
+    // wait bit for the task to process
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log('Pagination settings applied successfully');
+
+    // Update the other settings
     await client.index(INDEX_NAME).updateSettings({
-      pagination: {
-        maxTotalHits: 10000,
-      },
       searchableAttributes: [
         'ProjectDescription',
         'Municipality',

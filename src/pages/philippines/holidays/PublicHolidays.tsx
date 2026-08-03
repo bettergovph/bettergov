@@ -9,38 +9,31 @@ interface Holiday {
 }
 
 const REGULAR_HOLIDAYS: Holiday[] = [
-  { event: "New Year's Day", date: 'January 1', day: 'Wednesday' },
-  {
-    event: "Eid'l Fitr (Feast of Ramadhan)",
-    date: 'April 1',
-    day: 'Tuesday',
-  },
-  { event: 'Araw ng Kagitingan', date: 'April 9', day: 'Wednesday' },
-  { event: 'Maundy Thursday', date: 'April 17', day: 'Thursday' },
-  { event: 'Good Friday', date: 'April 18', day: 'Friday' },
-  { event: 'Labor Day', date: 'May 1', day: 'Thursday' },
-  { event: 'Eidul Adha (Feast of Sacrifice)', date: 'June 6', day: 'Friday' },
-  { event: 'Independence Day', date: 'June 12', day: 'Thursday' },
-  { event: 'National Heroes Day', date: 'August 25', day: 'Monday' },
-  { event: 'Bonifacio Day', date: 'November 30', day: 'Sunday' },
-  { event: 'Christmas Day', date: 'December 25', day: 'Thursday' },
-  { event: 'Rizal Day', date: 'December 30', day: 'Tuesday' },
+  { event: "New Year's Day", date: 'January 1', day: 'Thursday' },
+  { event: 'Maundy Thursday', date: 'April 2', day: 'Thursday' },
+  { event: 'Good Friday', date: 'April 3', day: 'Friday' },
+  { event: 'Araw ng Kagitingan', date: 'April 9', day: 'Thursday' },
+  { event: 'Labor Day', date: 'May 1', day: 'Friday' },
+  { event: 'Independence Day', date: 'June 12', day: 'Friday' },
+  { event: 'National Heroes Day', date: 'August 31', day: 'Monday' },
+  { event: 'Bonifacio Day', date: 'November 30', day: 'Monday' },
+  { event: 'Christmas Day', date: 'December 25', day: 'Friday' },
+  { event: 'Rizal Day', date: 'December 30', day: 'Wednesday' },
 ];
 
 const SPECIAL_HOLIDAYS: Holiday[] = [
-  { event: 'Chinese New Year', date: 'January 29', day: 'Wednesday' },
-  { event: 'Black Saturday', date: 'April 19', day: 'Saturday' },
-  { event: 'National and Local Elections', date: 'May 12', day: 'Monday' },
-  { event: 'Ninoy Aquino Day', date: 'August 21', day: 'Thursday' },
-  { event: "All Saints' Day Eve", date: 'October 31', day: 'Friday' },
-  { event: "All Saints' Day", date: 'November 1', day: 'Saturday' },
+  { event: 'Chinese New Year', date: 'February 17', day: 'Tuesday' },
+  { event: 'Black Saturday', date: 'April 4', day: 'Saturday' },
+  { event: 'Ninoy Aquino Day', date: 'August 21', day: 'Friday' },
+  { event: "All Saints' Day", date: 'November 1', day: 'Sunday' },
+  { event: "All Souls' Day", date: 'November 2', day: 'Monday' },
   {
     event: 'Feast of the Immaculate Conception of Mary',
     date: 'December 8',
-    day: 'Monday',
+    day: 'Tuesday',
   },
-  { event: 'Christmas Eve', date: 'December 24', day: 'Wednesday' },
-  { event: 'Last Day of the Year', date: 'December 31', day: 'Wednesday' },
+  { event: 'Christmas Eve', date: 'December 24', day: 'Thursday' },
+  { event: 'Last Day of the Year', date: 'December 31', day: 'Thursday' },
 ];
 
 function getHolidayWithDynamicDay(
@@ -175,7 +168,7 @@ const PublicHolidays: FC = () => {
           <div className='ml-3'>
             <p className='text-sm text-yellow-700'>
               Note: This list is based on the official holidays declared by the
-              Philippine government for the year 2025. Dates may be subject to
+              Philippine government for the year 2026. Dates may be subject to
               change based on official announcements.
             </p>
           </div>

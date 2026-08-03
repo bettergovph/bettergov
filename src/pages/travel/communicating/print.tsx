@@ -5,12 +5,16 @@ import { phrasesData } from './phrasesData';
 const CommunicatingPrintPage: FC = () => {
   const [searchParams] = useSearchParams();
   const [selectedLanguage, setSelectedLanguage] = useState<
-    'english' | 'chinese' | 'korean' | 'japanese'
+    'english' | 'chinese' | 'korean' | 'japanese' | 'arabic'
   >('english');
 
   useEffect(() => {
-    const lang = searchParams.get('lang') as 'chinese' | 'korean' | 'japanese';
-    if (lang && ['chinese', 'korean', 'japanese'].includes(lang)) {
+    const lang = searchParams.get('lang') as
+      | 'chinese'
+      | 'korean'
+      | 'japanese'
+      | 'arabic';
+    if (lang && ['chinese', 'korean', 'japanese', 'arabic'].includes(lang)) {
       setSelectedLanguage(lang);
     }
   }, [searchParams]);
@@ -25,6 +29,8 @@ const CommunicatingPrintPage: FC = () => {
         return '한국어 Korean';
       case 'japanese':
         return '日本語 Japanese';
+      case 'arabic':
+        return 'العربية Arabic';
       default:
         return '';
     }
@@ -103,6 +109,7 @@ const CommunicatingPrintPage: FC = () => {
                       | 'chinese'
                       | 'korean'
                       | 'japanese'
+                      | 'arabic'
                   )
                 }
                 className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white cursor-pointer'
@@ -111,6 +118,7 @@ const CommunicatingPrintPage: FC = () => {
                 <option value='chinese'>中文 Chinese</option>
                 <option value='korean'>한국어 Korean</option>
                 <option value='japanese'>日本語 Japanese</option>
+                <option value='arabic'>العربية Arabic</option>
               </select>
               <button
                 onClick={() => window.print()}
@@ -178,6 +186,7 @@ const CommunicatingPrintPage: FC = () => {
                         {selectedLanguage === 'chinese' && phrase.chinese}
                         {selectedLanguage === 'korean' && phrase.korean}
                         {selectedLanguage === 'japanese' && phrase.japanese}
+                        {selectedLanguage === 'arabic' && phrase.arabic}
                       </td>
                       {selectedLanguage !== 'english' && (
                         <td className='px-2 py-1.5 print:py-1 text-gray-900 font-medium'>

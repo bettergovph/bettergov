@@ -5,7 +5,7 @@ import {
   SearchIcon,
   XIcon,
 } from 'lucide-react';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
@@ -31,6 +31,8 @@ const Navbar: FC = () => {
     setActiveMenu(null);
   };
 
+  // Toggles the dropdown for a mobile nav item without navigating.
+  // Used by the chevron button only.
   const toggleSubmenu = (label: string) => {
     setActiveMenu(activeMenu === label ? null : label);
   };
@@ -113,44 +115,72 @@ const Navbar: FC = () => {
     return normalizedHref !== '/' && normalizedPath === normalizedHref;
   };
 
+  const closeTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
+
+  React.useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleDropdownMouseEnter = (label: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
     setHoveredDropdown(label);
   };
 
   const handleDropdownMouseLeave = () => {
-    setHoveredDropdown(null);
+    closeTimeoutRef.current = setTimeout(() => {
+      setHoveredDropdown(null);
+      closeTimeoutRef.current = null;
+    }, 80);
   };
 
+  if (location.pathname === '/philippines/map') return null;
+
   return (
-    <nav className='bg-white shadow-xs sticky top-0 z-50'>
+    <nav className='bg-white shadow-xs sticky top-0 z-50 overflow-x-clip'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
-        <div className='container mx-auto px-4 flex justify-end items-center h-10'>
-          <div className='flex items-center space-x-4'>
+        <div className='container mx-auto px-4 flex justify-center md:justify-end'>
+          <div className='flex flex-wrap items-center justify-center gap-x-4 gap-y-1 py-2 text-xs md:justify-end'>
             <Link
               to='/join-us'
-              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-1'
             >
               🚀 Join Us
             </Link>
             <Link
-              to='/about'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              to='https://about.bettergov.ph'
+              target='_blank'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-2'
             >
-              About <span className='hidden md:inline'>BetterGov.ph</span>
+              About
             </Link>
             <a
               href='https://www.gov.ph'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-3'
               target='_blank'
               rel='noreferrer'
             >
               Official Gov.ph
             </a>
-
+            <span className='hidden min-[340px]:max-[374px]:block min-[340px]:max-[374px]:basis-full min-[340px]:max-[374px]:order-4' />
+            <Link
+              to='/contact'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-5'
+            >
+              Contact Us
+            </Link>
             <Link
               to='/philippines/hotlines'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='inline-flex items-center text-gray-800 hover:text-primary-600 transition-colors whitespace-nowrap min-[340px]:max-[374px]:order-6'
             >
               Hotlines
             </Link>
@@ -172,14 +202,14 @@ const Navbar: FC = () => {
       </div>
 
       {/* Main navigation */}
-      <div className='container mx-auto px-4'>
+      <div className='container mx-auto px-1 md:px-4'>
         <div className='flex justify-between items-center py-4'>
-          <div className='flex items-center'>
+          <div className='flex items-center shrink-0'>
             <Link to='/' className='flex items-center'>
               <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
                 alt='BetterGov Logo'
-                className='h-12 w-12 mr-3'
+                className='h-12 w-12 mr-1 md:mr-3'
               />
               <div>
                 <div className='text-black font-bold'>BetterGov.ph</div>
@@ -191,7 +221,7 @@ const Navbar: FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden lg:flex items-center min-w-0 lg:space-x-1 xl:space-x-3 2xl:space-x-6 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -209,10 +239,12 @@ const Navbar: FC = () => {
                         : 'text-gray-700 hover:text-primary-600 border-transparent'
                     }`}
                   >
-                    {t(`navbar.${item.label.toLowerCase()}`)}
+                    <span className='lg:text-sm xl:text-base'>
+                      {t(`navbar.${item.label.toLowerCase()}`)}
+                    </span>
                     {item.children && (
                       <ChevronDownIcon
-                        className={`ml-1 h-4 w-4 transition-colors ${
+                        className={`ml-1 h-4 w-4 shrink-0 transition-colors ${
                           isActive
                             ? 'text-primary-600'
                             : 'text-gray-800 group-hover:text-primary-600'
@@ -222,10 +254,13 @@ const Navbar: FC = () => {
                   </Link>
                   {item.children && (
                     <div
-                      className={`absolute left-0 mt-2 lg:mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
+                      style={{
+                        WebkitTransform: 'translate3d(0,0,0)',
+                      }}
+                      className={`absolute left-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-[opacity] duration-200 z-50 pt-2 ${
                         hoveredDropdown === item.label
-                          ? 'opacity-100 visible'
-                          : 'opacity-0 invisible'
+                          ? 'opacity-100 visible pointer-events-auto'
+                          : 'opacity-0 invisible pointer-events-none'
                       }`}
                     >
                       <div
@@ -255,12 +290,12 @@ const Navbar: FC = () => {
               );
             })}
           </div>
-          <div className='hidden lg:flex items-center space-x-6'>
+          <div className='hidden lg:flex items-center shrink-0 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors'
+              className='flex items-center text-gray-700 hover:text-primary-600 font-semibold lg:text-base xl:text-lg transition-colors px-3 py-2 rounded-lg hover:bg-gray-50 whitespace-nowrap'
             >
-              <SearchIcon className='h-4 w-4 mr-1' />
+              <SearchIcon className='h-5 w-5 mr-2 shrink-0' />
               Search
             </Link>
             {/* <Link
@@ -295,23 +330,38 @@ const Navbar: FC = () => {
             const isActive = isActiveRoute(item.href);
             return (
               <div key={item.label}>
-                <button
-                  onClick={() => toggleSubmenu(item.label)}
-                  className={`w-full flex justify-between items-center px-4 py-2 text-base font-medium transition-colors ${
+                <div
+                  className={`w-full flex justify-between items-center transition-colors ${
                     isActive
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-primary-500'
                   }`}
                 >
-                  {t(`navbar.${item.label.toLowerCase()}`)}
+                  <Link
+                    to={item.href}
+                    onClick={closeMenu}
+                    className='flex-1 px-4 py-2 text-base font-medium'
+                  >
+                    {t(`navbar.${item.label.toLowerCase()}`)}
+                  </Link>
                   {item.children && (
-                    <ChevronDownIcon
-                      className={`h-5 w-5 transition-transform ${
-                        activeMenu === item.label ? 'transform rotate-180' : ''
-                      } ${isActive ? 'text-primary-600' : ''}`}
-                    />
+                    <button
+                      type='button'
+                      onClick={() => toggleSubmenu(item.label)}
+                      aria-expanded={activeMenu === item.label}
+                      aria-label={`Toggle ${item.label} submenu`}
+                      className='px-4 py-2 shrink-0'
+                    >
+                      <ChevronDownIcon
+                        className={`h-5 w-5 transition-transform ${
+                          activeMenu === item.label
+                            ? 'transform rotate-180'
+                            : ''
+                        } ${isActive ? 'text-primary-600' : ''}`}
+                      />
+                    </button>
                   )}
-                </button>
+                </div>
                 {item.children && activeMenu === item.label && (
                   <div className='pl-6 py-2 space-y-1 bg-gray-50'>
                     {item.children.map(child => (
@@ -337,25 +387,26 @@ const Navbar: FC = () => {
             🚀 Join Us
           </Link>
           <Link
-            to='/about'
+            to='https://about.bettergov.ph'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
             About
           </Link>
           <Link
-            to='/search'
+            to='/contact'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
-            Search
+            Contact Us
           </Link>
           <Link
-            to='/sitemap'
+            to='/search'
             onClick={closeMenu}
-            className='block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
+            className='flex items-center px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600'
           >
-            Sitemap
+            <SearchIcon className='h-5 w-5 mr-2' />
+            Search
           </Link>
           <div className='px-4 py-3 border-t border-gray-200'>
             <div className='flex items-center'>

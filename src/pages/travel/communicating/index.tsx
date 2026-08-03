@@ -19,7 +19,7 @@ const CommunicatingPage: FC = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedLanguage, setSelectedLanguage] = useState<
-    'english' | 'chinese' | 'korean' | 'japanese'
+    'english' | 'chinese' | 'korean' | 'japanese' | 'arabic'
   >('english');
 
   const categoryIcons: Record<string, ReactNode> = {
@@ -99,6 +99,7 @@ const CommunicatingPage: FC = () => {
                       | 'chinese'
                       | 'korean'
                       | 'japanese'
+                      | 'arabic'
                   )
                 }
                 className='px-6 py-3 border-2 border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-lg bg-blue-700 text-white cursor-pointer font-medium hover:bg-blue-800 transition-colors'
@@ -107,6 +108,7 @@ const CommunicatingPage: FC = () => {
                 <option value='chinese'>中文 Chinese</option>
                 <option value='korean'>한국어 Korean</option>
                 <option value='japanese'>日本語 Japanese</option>
+                <option value='arabic'>العربية Arabic</option>
               </select>
             </div>
 
@@ -116,8 +118,9 @@ const CommunicatingPage: FC = () => {
                 Language: {selectedLanguage === 'english' && 'English'}
                 {selectedLanguage === 'chinese' && '中文 Chinese'}
                 {selectedLanguage === 'korean' && '한국어 Korean'}
-                {selectedLanguage === 'japanese' && '日本語 Japanese'} • Tagalog
-                • Visaya
+                {selectedLanguage === 'japanese' && '日本語 Japanese'}
+                {selectedLanguage === 'arabic' && 'العربية Arabic'} • Tagalog •
+                Visaya
               </p>
             </div>
           </div>
@@ -177,6 +180,7 @@ const CommunicatingPage: FC = () => {
                             {selectedLanguage === 'korean' && '한국어 Korean'}
                             {selectedLanguage === 'japanese' &&
                               '日本語 Japanese'}
+                            {selectedLanguage === 'arabic' && 'العربية Arabic'}
                           </th>
                           {selectedLanguage !== 'english' && (
                             <th className='px-4 py-3 text-left font-semibold text-blue-900 bg-blue-50 text-sm md:text-base w-1/4'>
@@ -213,6 +217,7 @@ const CommunicatingPage: FC = () => {
                                 {selectedLanguage === 'korean' && phrase.korean}
                                 {selectedLanguage === 'japanese' &&
                                   phrase.japanese}
+                                {selectedLanguage === 'arabic' && phrase.arabic}
                               </td>
                               {selectedLanguage !== 'english' && (
                                 <td className='px-4 py-4 text-gray-900 font-medium text-sm md:text-base bg-blue-50/30'>

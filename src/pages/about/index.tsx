@@ -1,10 +1,8 @@
 import {
-  AlertTriangleIcon,
   BuildingIcon,
   GlobeIcon,
   HeartIcon,
   LightbulbIcon,
-  MailIcon,
   MessageCircleIcon,
   RocketIcon,
   ServerIcon,
@@ -15,6 +13,7 @@ import {
 } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const AboutPage: FC = () => {
@@ -218,133 +217,6 @@ const AboutPage: FC = () => {
                   </div>
                 </div>
               </section>
-              <section className='mb-10'>
-                <h2 className='flex items-center text-2xl font-bold text-gray-800 mb-4'>
-                  <UsersIcon className='mr-2 h-6 w-6 text-blue-600' />
-                  {t('volunteer.title')}
-                </h2>
-                <p className='mb-4 text-gray-700'>{t('volunteer.intro')}</p>
-                <div className='grid md:grid-cols-2 gap-4 mb-6'>
-                  <div className='bg-blue-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-gray-800 mb-2'>
-                      {t('volunteer.technical.title')}
-                    </h3>
-                    <ul className='list-disc pl-6 text-gray-700'>
-                      {(
-                        t('volunteer.technical.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className='bg-green-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-gray-800 mb-2'>
-                      {t('volunteer.content.title')}
-                    </h3>
-                    <ul className='list-disc pl-6 text-gray-700'>
-                      {(
-                        t('volunteer.content.skills', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((skill: string, index: number) => (
-                        <li key={index}>{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className='bg-blue-100 p-6 rounded-lg flex items-start mb-6'>
-                  <HeartIcon className='h-6 w-6 text-red-500 mr-3 flex-shrink-0 mt-1' />
-                  <div>
-                    <p className='font-medium text-gray-800 mb-2'>
-                      {t('volunteer.callToAction.title')}
-                    </p>
-                    <p className='text-gray-700 mb-4'>
-                      {t('volunteer.callToAction.description')}
-                      <a
-                        href='mailto:volunteers@bettergov.ph'
-                        className='text-blue-600 hover:text-blue-800 mx-1'
-                      >
-                        {t('volunteer.callToAction.email')}
-                      </a>
-                      {t('volunteer.callToAction.alternative')}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Join Our Community */}
-                <div className='bg-gradient-to-r from-primary-600 to-blue-600 rounded-xl p-6 md:p-8 text-white'>
-                  <h3 className='text-xl font-bold mb-4 text-center'>
-                    Ready to Make a Difference?
-                  </h3>
-                  <p className='text-center mb-6 text-blue-100'>
-                    Join our community of builders, dreamers, and changemakers.
-                  </p>
-                  <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-                    <a
-                      href='https://discord.gg/mHtThpN8bT'
-                      target='_blank'
-                      rel='noreferrer'
-                      className='inline-flex items-center justify-center px-6 py-3 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg'
-                    >
-                      <MessageCircleIcon className='h-5 w-5 mr-2' />
-                      Join Our Discord
-                    </a>
-                    <span className='text-white font-medium'>or</span>
-                    <a
-                      href='https://bettergov.ph/ideas'
-                      target='_blank'
-                      rel='noreferrer'
-                      className='inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all'
-                    >
-                      <LightbulbIcon className='h-5 w-5 mr-2' />
-                      Explore Project Ideas
-                    </a>
-                  </div>
-                </div>
-              </section>
-
-              <section className='mb-10'>
-                <h2 className='flex items-center text-2xl font-bold text-gray-800 mb-4'>
-                  <AlertTriangleIcon className='mr-2 h-6 w-6 text-amber-500' />
-                  {t('bugReport.title')}
-                </h2>
-                <p className='mb-4 text-gray-700'>{t('bugReport.intro')}</p>
-                <ol className='list-decimal pl-6 mb-6 text-gray-700'>
-                  {(
-                    t('bugReport.steps', { returnObjects: true }) as string[]
-                  ).map((step: string, index: number) => (
-                    <li key={index}>
-                      {step}
-                      {index === 2 && (
-                        <ul className='list-disc pl-6 mt-2'>
-                          {(
-                            t('bugReport.bugDetails', {
-                              returnObjects: true,
-                            }) as string[]
-                          ).map((detail: string, detailIndex: number) => (
-                            <li key={detailIndex}>{detail}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ol>
-                <div className='bg-amber-50 p-4 rounded-lg flex items-center'>
-                  <MailIcon className='h-5 w-5 text-amber-600 mr-2' />
-                  <p className='text-gray-700'>
-                    {t('bugReport.alternative.text')}
-                    <a
-                      href='mailto:bugs@bettergov.ph'
-                      className='text-blue-600 hover:text-blue-800 mx-1'
-                    >
-                      {t('bugReport.alternative.email')}
-                    </a>
-                  </p>
-                </div>
-              </section>
-
               <section>
                 <h2 className='text-2xl font-bold text-gray-800 mb-4'>
                   {t('license.title')}
@@ -360,6 +232,35 @@ const AboutPage: FC = () => {
                   {t('license.explanation')}
                 </p>
               </section>
+            </div>
+
+            {/* Call to Action */}
+            <div className='bg-blue-600 rounded-lg p-8 mt-8 text-center'>
+              <h3 className='text-2xl font-bold text-white mb-4'>
+                Ready to Make a Difference?
+              </h3>
+              <p className='text-blue-100 mb-6 max-w-2xl mx-auto'>
+                Join our community of builders, dreamers, and changemakers.
+              </p>
+              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                <Link
+                  to='/contact'
+                  className='inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors'
+                >
+                  <MessageCircleIcon className='w-5 h-5 mr-2' />
+                  Contacts
+                </Link>
+                <span className='text-white flex items-center justify-center'>
+                  or
+                </span>
+                <Link
+                  to='/join-us'
+                  className='inline-flex items-center bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors'
+                >
+                  <LightbulbIcon className='w-5 h-5 mr-2' />
+                  Join Us
+                </Link>
+              </div>
             </div>
           </div>
         </div>

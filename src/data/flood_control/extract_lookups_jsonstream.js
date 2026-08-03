@@ -33,6 +33,12 @@ fieldsToExtract.forEach(field => {
   lookups[field] = new Map();
 });
 
+const summaryStats = {
+  totalProjects: 0,
+  totalCost: 0,
+  uniqueContractors: new Set(),
+};
+
 // Process the file using JSONStream
 function processFile() {
   console.log('Starting to process flood_control.json...');
@@ -66,6 +72,22 @@ function processFile() {
         }
       }
     });
+
+    summaryStats.totalProjects += 1;
+
+    if (attributes && attributes.ContractCost !== undefined) {
+      const cost = Number(attributes.ContractCost);
+      if (!Number.isNaN(cost)) {
+        summaryStats.totalCost += cost;
+      }
+    }
+
+    if (attributes && attributes.Contractor) {
+      const contractor = attributes.Contractor.toString().trim();
+      if (contractor) {
+        summaryStats.uniqueContractors.add(contractor);
+      }
+    }
 
     recordCount++;
     if (recordCount % 1000 === 0) {
@@ -106,6 +128,24 @@ function processFile() {
 
       console.log(`Saved ${values.length} unique values for ${field}`);
     }
+
+    const summaryPath = path.join(
+      outputDir,
+      'Projects_Cost_UniqueContractors_Summary.json'
+    );
+    fs.writeFileSync(
+      summaryPath,
+      JSON.stringify(
+        {
+          totalProjects: summaryStats.totalProjects,
+          totalCost: summaryStats.totalCost,
+          uniqueContractors: summaryStats.uniqueContractors.size,
+        },
+        null,
+        2
+      )
+    );
+    console.log('Saved summary stats');
   });
 
   // Handle errors

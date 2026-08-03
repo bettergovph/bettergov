@@ -166,6 +166,9 @@ async function main() {
           'CompletionDateActual',
           'FundingYear',
         ],
+        pagination: {
+          maxTotalHits: 20000,
+        },
         typoTolerance: {
           enabled: true,
           minWordSizeForTypos: {

@@ -7,6 +7,7 @@ import {
   GlobeIcon,
   BookOpenIcon,
   MapPinIcon,
+  ScaleIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -63,6 +64,13 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         'Philippine embassies, consulates, and diplomatic missions around the world.',
       icon: <GlobeIcon className='h-4 w-4' />,
       path: '/government/diplomatic',
+    },
+    {
+      title: 'Judicial Branch',
+      description:
+        'The Supreme Court, Court of Appeals, and other courts that interpret and apply the law.',
+      icon: <ScaleIcon className='h-4 w-4' />,
+      path: '/government/judicial',
     },
   ];
 

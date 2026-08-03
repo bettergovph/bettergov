@@ -1,15 +1,20 @@
-import { useState, useEffect, useCallback, useRef, FC } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo, FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
+import { useTranslation } from 'react-i18next';
 import { DownloadIcon, InfoIcon, ZoomInIcon, ZoomOutIcon } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import L, { LatLngExpression, GeoJSON as LeafletGeoJSON, Layer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 import FloodControlProjectsTab from './tab';
+import ProjectMarker from '../../components/map/ProjectMarker';
 
 // Import region data
 import philippinesRegionsData from '../../data/philippines-regions.json';
@@ -92,6 +97,7 @@ const meiliSearchInstance = instantMeiliSearch(
 const searchClient = meiliSearchInstance.searchClient as any;
 
 const FloodControlProjectsMap: FC = () => {
+  const { t } = useTranslation('flood-control-projects');
   // Loading state for export
   const [isExporting, setIsExporting] = useState<boolean>(false);
 
@@ -117,8 +123,10 @@ const FloodControlProjectsMap: FC = () => {
   );
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([]);
   const [zoomLevel, setZoomLevel] = useState<number>(6);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const mapRef = useRef<L.Map>(null);
   const geoJsonLayerRef = useRef<LeafletGeoJSON | null>(null);
+  const hoveredRegionRef = useRef<string | null>(null);
 
   const initialCenter: LatLngExpression = [12.8797, 121.774]; // Philippines center
   const initialZoom = 6;
@@ -139,10 +147,10 @@ const FloodControlProjectsMap: FC = () => {
         filename: 'flood-control-projects-map',
       });
       // Show success message
-      alert('Data exported successfully!');
+      alert(t('alerts.exportSuccess'));
     } catch (error) {
       console.error('Error exporting data:', error);
-      alert('Failed to export data. Please try again.');
+      alert(t('alerts.exportError'));
     } finally {
       // Reset loading state
       setIsExporting(false);
@@ -218,6 +226,29 @@ const FloodControlProjectsMap: FC = () => {
   // filteredProjects is just the mapProjects returned from the search
   const filteredProjects = mapProjects;
 
+  // Memoize valid projects and marker rendering
+  const { validProjects, shouldCluster, markerIcon } = useMemo(() => {
+    const valid = filteredProjects.filter((project: FloodControlProject) => {
+      if (!project.Latitude || !project.Longitude) return false;
+      const lat = parseFloat(project.Latitude);
+      const lng = parseFloat(project.Longitude);
+      return !isNaN(lat) && !isNaN(lng);
+    });
+
+    const icon = L.icon({
+      iconUrl: '/marker-icon-2x.webp',
+      iconSize: [16, 24],
+      iconAnchor: [8, 8],
+      popupAnchor: [0, -25],
+    });
+
+    return {
+      validProjects: valid,
+      shouldCluster: valid.length > 10,
+      markerIcon: icon,
+    };
+  }, [filteredProjects]);
+
   // Update region statistics when filtered projects change
   useEffect(() => {
     if (selectedRegion && !selectedRegion.loading) {
@@ -269,6 +300,8 @@ const FloodControlProjectsMap: FC = () => {
         loading: true,
       };
       setSelectedRegion(regionDetails);
+      setHoveredRegionName(null);
+      hoveredRegionRef.current = null;
 
       // Only zoom/fit bounds if we're not already zoomed in (zoom level <= 8)
       if (mapRef.current && feature.geometry && zoomLevel <= 8) {
@@ -289,32 +322,47 @@ const FloodControlProjectsMap: FC = () => {
   );
 
   // Event handlers for each feature
-  const onEachFeature = (
-    feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>,
-    layer: Layer
-  ) => {
-    layer.on({
-      click: () => onRegionClick(feature),
-      mouseover: e => {
-        // Disable hover effects when zoomed in (zoom level > 8)
-        if (zoomLevel <= 8) {
-          setHoveredRegionName(getRegionName(feature));
-          // e.target.setStyle(regionStyle(feature)) // Re-apply style with hover state
+  const onEachFeature = useCallback(
+    (
+      feature: GeoJSON.Feature<GeoJSON.Geometry, RegionProperties>,
+      layer: Layer
+    ) => {
+      layer.on({
+        click: () => onRegionClick(feature),
+        mouseover: e => {
+          if (zoomLevel > 8 || isPopupOpen) return;
+
+          const regionName = getRegionName(feature);
+          if (hoveredRegionRef.current === regionName) return;
+
+          hoveredRegionRef.current = regionName;
+          setHoveredRegionName(regionName);
           e.target.bringToFront();
-        }
-      },
-      mouseout: e => {
-        // Only reset hover state if we're not zoomed in
-        if (zoomLevel <= 8) {
-          setHoveredRegionName(null);
-          // Reset to default style or selected style if it's the selected region
-          if (geoJsonLayerRef.current) {
-            geoJsonLayerRef.current.resetStyle(e.target);
+        },
+        mouseout: e => {
+          if (zoomLevel > 8 || isPopupOpen) return;
+
+          const relatedTarget = (e.originalEvent as MouseEvent)
+            .relatedTarget as HTMLElement | null;
+
+          if (
+            relatedTarget &&
+            relatedTarget.closest(
+              '.leaflet-popup, .leaflet-marker-icon, .leaflet-marker-shadow'
+            )
+          ) {
+            return;
           }
-        }
-      },
-    });
-  };
+
+          if (hoveredRegionRef.current === null) return;
+
+          hoveredRegionRef.current = null;
+          setHoveredRegionName(null);
+        },
+      });
+    },
+    [isPopupOpen, onRegionClick, zoomLevel]
+  );
 
   const handleZoomIn = () => mapRef.current?.zoomIn();
   const handleZoomOut = () => mapRef.current?.zoomOut();
@@ -400,6 +448,12 @@ const FloodControlProjectsMap: FC = () => {
                         setZoomLevel(mapRef.current.getZoom());
                       }
                     });
+                    mapRef.current.on('popupopen', () => {
+                      setIsPopupOpen(true);
+                    });
+                    mapRef.current.on('popupclose', () => {
+                      setIsPopupOpen(false);
+                    });
                   }
                 }}
               >
@@ -419,62 +473,31 @@ const FloodControlProjectsMap: FC = () => {
 
                 {/* Show project markers when zoomed in or region is selected */}
                 {(zoomLevel > 8 || selectedRegion) &&
-                  filteredProjects.map((project: FloodControlProject) => {
-                    // Check if we have valid coordinates
-                    if (!project.Latitude || !project.Longitude) return null;
-
-                    const lat = parseFloat(project.Latitude);
-                    const lng = parseFloat(project.Longitude);
-
-                    // Validate coordinates
-                    if (isNaN(lat) || isNaN(lng)) return null;
-
-                    return (
-                      <Marker
+                  validProjects.length > 0 &&
+                  (shouldCluster ? (
+                    <MarkerClusterGroup
+                      chunkedLoading
+                      spiderfyOnMaxZoom={true}
+                      showCoverageOnHover={false}
+                      zoomToBoundsOnClick={true}
+                    >
+                      {validProjects.map((project: FloodControlProject) => (
+                        <ProjectMarker
+                          key={project.GlobalID || project.objectID}
+                          project={project}
+                          icon={markerIcon}
+                        />
+                      ))}
+                    </MarkerClusterGroup>
+                  ) : (
+                    validProjects.map((project: FloodControlProject) => (
+                      <ProjectMarker
                         key={project.GlobalID || project.objectID}
-                        position={[lat, lng]}
-                        icon={L.icon({
-                          iconUrl: '/marker-icon-2x.webp',
-                          iconSize: [16, 24],
-                          iconAnchor: [8, 8],
-                          popupAnchor: [0, -25],
-                        })}
-                      >
-                        <Popup>
-                          <div className='min-w-[200px]'>
-                            <h3 className='font-bold text-gray-900'>
-                              {project.ProjectDescription || 'Unnamed Project'}
-                            </h3>
-                            <p className='text-sm text-gray-800 mt-1'>
-                              <strong>Region:</strong> {project.Region || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Province:</strong>{' '}
-                              {project.Province || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Municipality:</strong>{' '}
-                              {project.Municipality || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Contractor:</strong>{' '}
-                              {project.Contractor || 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Cost:</strong> ₱
-                              {project.ContractCost
-                                ? Number(project.ContractCost).toLocaleString()
-                                : 'N/A'}
-                            </p>
-                            <p className='text-sm text-gray-800'>
-                              <strong>Year:</strong>{' '}
-                              {project.InfraYear || 'N/A'}
-                            </p>
-                          </div>
-                        </Popup>
-                      </Marker>
-                    );
-                  })}
+                        project={project}
+                        icon={markerIcon}
+                      />
+                    ))
+                  ))}
               </MapContainer>
 
               {/* Zoom Controls */}

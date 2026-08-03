@@ -15,11 +15,16 @@ interface Category {
 export const ourProjects = [
   {
     label: 'Our Projects',
-    href: '#',
+    href: '/projects',
     children: [
       {
         label: '2026 Budget Tracker',
         href: 'https://2026-budget.bettergov.ph',
+        target: '_blank',
+      },
+      {
+        label: 'Better LGU',
+        href: 'https://lgu.bettergov.ph/',
         target: '_blank',
       },
       {
@@ -35,6 +40,11 @@ export const ourProjects = [
       {
         label: 'Open Data Portal',
         href: 'https://data.bettergov.ph',
+        target: '_blank',
+      },
+      {
+        label: 'Bantay PH',
+        href: 'https://bantay.bettergov.ph',
         target: '_blank',
       },
       {
@@ -130,6 +140,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judicial', href: '/government/judicial' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },
@@ -154,11 +165,12 @@ export const footerNavigation = {
       title: 'About',
       links: [
         { label: 'About the Portal', href: '/about' },
+        { label: 'About BetterGov.ph', href: 'https://about.bettergov.ph' },
         { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
         { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
-        { label: 'Contact Us', href: '/about' },
+        { label: 'Contact Us', href: '/contact' },
       ],
     },
     {

@@ -17,12 +17,14 @@ The following lookup files are available in the `lookups` directory:
 - `DistrictEngineeringOffice.json` / `DistrictEngineeringOffice_with_counts.json`: District engineering offices with project counts
 - `LegislativeDistrict.json` / `LegislativeDistrict_with_counts.json`: Legislative districts with project counts
 - `TypeofWork.json` / `TypeofWork_with_counts.json`: Types of work with project counts
+- `Projects_Cost_UniqueContractors_Summary.json`: Precomputed totals for the dashboard (total projects, total cost, unique contractors)
 
 Each `*_with_counts.json` file contains an array of objects with `value` and `count` properties, where `count` represents the number of projects for that value.
 
 ## Data Processing Scripts
 
 - `extract_lookups_jsonstream.js`: The final extraction script that uses JSONStream to efficiently parse the large JSON file and extract lookup data with counts
+- The same script also generates `lookups/Projects_Cost_UniqueContractors_Summary.json` with overall totals for the dashboard
 - Other extraction scripts show the evolution of the data processing approach
 
 ## Meilisearch Integration

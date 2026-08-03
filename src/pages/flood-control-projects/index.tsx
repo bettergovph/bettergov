@@ -48,6 +48,7 @@ import infraYearData from '../../data/flood_control/lookups/InfraYear_with_count
 import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
 import provinceData from '../../data/flood_control/lookups/Province_with_counts.json';
 import regionData from '../../data/flood_control/lookups/Region_with_counts.json';
+import summaryData from '../../data/flood_control/lookups/Projects_Cost_UniqueContractors_Summary.json';
 import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
 import { useSearchParams } from 'react-router-dom';
 
@@ -87,6 +88,8 @@ const COLORS = [
   '#FAAAA3',
 ];
 
+const DEFAULT_STATS = summaryData;
+
 // Statistics Display Component with hardcoded values for better performance
 const DashboardStatistics: FC = () => {
   const { t } = useTranslation('flood-control-projects');
@@ -94,11 +97,7 @@ const DashboardStatistics: FC = () => {
   const totalHits = results?.nbHits || 0;
 
   // Default statistics to display when no filters are applied
-  const defaultStats = {
-    totalProjects: 9855,
-    totalCost: 547603497105,
-    uniqueContractors: 2409,
-  };
+  const defaultStats = DEFAULT_STATS;
 
   // Check if we're using filters or search
   const isFiltered =
@@ -159,7 +158,8 @@ const YearlyChart: FC = () => {
   const typedHits = hits as FloodControlHit[];
 
   // Check if filters are applied (if total hits is different from default total)
-  const isFiltered = totalHits !== 0 && totalHits !== 9855;
+  const isFiltered =
+    totalHits !== 0 && totalHits !== DEFAULT_STATS.totalProjects;
 
   // Use pre-loaded data for initial render, switch to dynamic data when filtered
   let chartData;
@@ -212,7 +212,8 @@ const RegionChart: FC = () => {
   const typedHits = hits as FloodControlHit[];
 
   // Check if filters are applied
-  const isFiltered = totalHits !== 0 && totalHits !== 9855;
+  const isFiltered =
+    totalHits !== 0 && totalHits !== DEFAULT_STATS.totalProjects;
 
   // Use pre-loaded data for initial render, switch to dynamic data when filtered
   let chartData;
@@ -279,7 +280,8 @@ const TypeOfWorkChart: FC = () => {
   const typedHits = hits as FloodControlHit[];
 
   // Check if filters are applied
-  const isFiltered = totalHits !== 0 && totalHits !== 9855;
+  const isFiltered =
+    totalHits !== 0 && totalHits !== DEFAULT_STATS.totalProjects;
 
   // Use pre-loaded data for initial render, switch to dynamic data when filtered
   let chartData;
@@ -364,7 +366,8 @@ const ContractorChart: FC = () => {
   const typedHits = hits as FloodControlHit[];
 
   // Check if filters are applied
-  const isFiltered = totalHits !== 0 && totalHits !== 9855;
+  const isFiltered =
+    totalHits !== 0 && totalHits !== DEFAULT_STATS.totalProjects;
 
   // Use pre-loaded data for initial render, switch to dynamic data when filtered
   let chartData;
@@ -840,7 +843,9 @@ const FloodControlProjects: FC = () => {
                       <h3 className='text-sm font-medium text-gray-800 mb-1'>
                         {t('statistics.totalProjects')}
                       </h3>
-                      <p className='text-2xl font-bold text-blue-600'>9,855</p>
+                      <p className='text-2xl font-bold text-blue-600'>
+                        {DEFAULT_STATS.totalProjects.toLocaleString()}
+                      </p>
                     </div>
 
                     <div className='bg-white rounded-lg shadow-xs p-4'>
@@ -848,7 +853,7 @@ const FloodControlProjects: FC = () => {
                         {t('statistics.totalContractCost')}
                       </h3>
                       <p className='text-2xl font-bold text-green-600'>
-                        ₱547,603,497,105
+                        ₱{DEFAULT_STATS.totalCost.toLocaleString()}
                       </p>
                     </div>
 
@@ -857,7 +862,7 @@ const FloodControlProjects: FC = () => {
                         {t('statistics.uniqueContractors')}
                       </h3>
                       <p className='text-2xl font-bold text-purple-600'>
-                        2,409
+                        {DEFAULT_STATS.uniqueContractors.toLocaleString()}
                       </p>
                     </div>
                   </div>

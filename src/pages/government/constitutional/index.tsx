@@ -159,7 +159,12 @@ export default function ConstitutionalIndex() {
   if (!selectedOffice) {
     return (
       <>
-        <SEO {...seoData} />
+        <SEO
+          keywords={seoData.keywords}
+          canonical={seoData.canonical}
+          breadcrumbs={seoData.breadcrumbs}
+          jsonLd={seoData.jsonLd}
+        />
         <div className='@container bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
           <div className='mx-auto w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4'>
             <Building2Icon className='h-6 w-6 text-gray-400' />
@@ -183,7 +188,12 @@ export default function ConstitutionalIndex() {
 
   return (
     <>
-      <SEO {...seoData} />
+      <SEO
+        keywords={seoData.keywords}
+        canonical={seoData.canonical}
+        breadcrumbs={seoData.breadcrumbs}
+        jsonLd={seoData.jsonLd}
+      />
       <div className='@container space-y-6'>
         <div className='flex flex-col space-y-2'>
           <div>
