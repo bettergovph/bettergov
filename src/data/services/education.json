@@ -36,6 +36,24 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
+    "service": "Apply for DOST-SEI Undergraduate Scholarship Program",
+    "url": "https://ugs.science-scholarships.ph/",
+    "id": "d15ef007-bbfd-4f8c-a3a0-66f3d44282c5",
+    "slug": "apply-for-dost-sei-undergraduate-scholarship-program",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Education",
+      "slug": "education"
+    },
+    "subcategory": {
+      "name": "Professionals",
+      "slug": "professionals"
+    },
+    "createdAt": "2025-11-30T03:38:28.000Z",
+    "updatedAt": "2025-11-30T03:38:28.000Z"
+  },
+  {
     "service": "Apply for PCHRD Research Grant",
     "url": "http://www.projects.pchrd.dost.gov.ph/index.php/pms-home",
     "id": "d3f0ece7-75eb-4692-8214-ef7d0e3d6946",
