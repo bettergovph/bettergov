@@ -23,9 +23,9 @@
   },
   {
     "slug": "better-lgu",
-    "title": "Better LGU",
-    "description": "Directory and information platform for Philippine local government units, covering provinces, cities, and municipalities.",
-    "repositoryUrls": [],
+    "title": "BetterLGU Directory",
+    "description": "A community-run directory of Better LGU transparency portals — helping builders find existing efforts, contribute, and launch new ones.",
+    "repositoryUrls": ["https://github.com/jmacj/better-lgu-directory"],
     "projectUrl": "https://lgu.bettergov.ph",
     "status": "active",
     "repoType": "orgprojects",
