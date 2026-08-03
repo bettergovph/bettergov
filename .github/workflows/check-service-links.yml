@@ -1,0 +1,194 @@
+name: Check Service Links
+
+on:
+  schedule:
+    - cron: '17 3 1 */2 *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: service-link-checks
+  cancel-in-progress: false
+
+jobs:
+  check-service-links:
+    name: Check service links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Check service links
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: "'src/data/services/*.json'"
+          checkbox: false
+          fail: false
+          failIfEmpty: true
+          format: json
+          jobSummary: false
+          lycheeVersion: v0.24.2
+          output: lychee/service-links.json
+          token: ''
+
+      - name: Classify service link results
+        id: classify
+        if: ${{ always() }}
+        continue-on-error: true
+        run: |
+          node scripts/report-service-links.js \
+            lychee/service-links.json \
+            lychee/service-links.md
+
+      - name: Update service link issue
+        if: ${{ always() && github.repository == 'bettergovph/bettergov' }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          CLASSIFY_OUTCOME: ${{ steps.classify.outcome }}
+          HARD_FAILURE_COUNT: ${{ steps.classify.outputs.hard_failure_count }}
+          MANUAL_REVIEW_COUNT: ${{ steps.classify.outputs.manual_review_count }}
+          LYCHEE_EXIT_CODE: ${{ steps.lychee.outputs.exit_code }}
+          LYCHEE_OUTCOME: ${{ steps.lychee.outcome }}
+          REPORT_PATH: lychee/service-links.md
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            const title = '[Automated] Service link check report';
+            const labels = ['ci', 'needs-content-review', 'outdated-info'];
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              ...context.repo,
+              labels: 'ci',
+              state: 'open',
+              per_page: 100,
+            });
+            const existingIssue = issues.find(
+              (issue) => !issue.pull_request && issue.title === title,
+            );
+
+            const parseCount = (value) => /^\d+$/.test(value ?? '') ? Number(value) : null;
+            const hardFailureCount = parseCount(process.env.HARD_FAILURE_COUNT);
+            const manualReviewCount = parseCount(process.env.MANUAL_REVIEW_COUNT);
+            const lycheeCompleted = ['0', '2'].includes(process.env.LYCHEE_EXIT_CODE);
+            const classificationCompleted =
+              hardFailureCount !== null && manualReviewCount !== null;
+            const infrastructureFailure =
+              process.env.LYCHEE_OUTCOME !== 'success' ||
+              !lycheeCompleted ||
+              !classificationCompleted ||
+              (process.env.CLASSIFY_OUTCOME !== 'success' && hardFailureCount === 0);
+            const checkPassed =
+              !infrastructureFailure &&
+              hardFailureCount === 0 &&
+              manualReviewCount === 0;
+
+            if (checkPassed) {
+              if (existingIssue) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: existingIssue.number,
+                  body: `No hard failures or manual-review items were found in [this workflow run](${runUrl}). Closing this automated report.`,
+                });
+                await github.rest.issues.update({
+                  ...context.repo,
+                  issue_number: existingIssue.number,
+                  state: 'closed',
+                  state_reason: 'completed',
+                });
+              }
+              return;
+            }
+
+            const report = fs.existsSync(process.env.REPORT_PATH)
+              ? fs.readFileSync(process.env.REPORT_PATH, 'utf8')
+              : 'Lychee did not produce a report. Inspect the workflow logs for an infrastructure or configuration error.';
+            const maxReportLength = 55000;
+            const trimmedReport = report.length > maxReportLength
+              ? `${report.slice(0, maxReportLength)}\n\n_Report truncated. See the workflow run for complete output._`
+              : report;
+            const body = [
+              infrastructureFailure
+                ? 'The automated service link check could not complete.'
+                : 'The automated service link check found links that need attention.',
+              '',
+              `- Workflow run: ${runUrl}`,
+              '- Source: `src/data/services/*.json`',
+              '- Parent task: #676',
+              `- Hard failures: ${hardFailureCount ?? 'unknown'}`,
+              `- Needs manual review: ${manualReviewCount ?? 'unknown'}`,
+              '',
+              'Hard failures fail the workflow. Manual-review items open this issue without failing the workflow. Automation-limited observations are informational.',
+              '',
+              trimmedReport,
+            ].join('\n');
+
+            if (existingIssue) {
+              await github.rest.issues.update({
+                ...context.repo,
+                issue_number: existingIssue.number,
+                body,
+                labels,
+              });
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: existingIssue.number,
+                body: `Report updated from [this workflow run](${runUrl}).`,
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              ...context.repo,
+              title,
+              body,
+              labels,
+            });
+
+      - name: Fail on hard service link errors
+        if: ${{ always() }}
+        env:
+          CLASSIFY_OUTCOME: ${{ steps.classify.outcome }}
+          HARD_FAILURE_COUNT: ${{ steps.classify.outputs.hard_failure_count }}
+          LYCHEE_EXIT_CODE: ${{ steps.lychee.outputs.exit_code }}
+          LYCHEE_OUTCOME: ${{ steps.lychee.outcome }}
+        run: |
+          if [[ "$LYCHEE_OUTCOME" != 'success' ]]; then
+            echo 'Lychee did not complete successfully.'
+            exit 1
+          fi
+
+          if [[ "$LYCHEE_EXIT_CODE" != '0' && "$LYCHEE_EXIT_CODE" != '2' ]]; then
+            echo "Lychee exited unexpectedly with code: ${LYCHEE_EXIT_CODE:-unknown}"
+            exit 1
+          fi
+
+          if [[ ! "$HARD_FAILURE_COUNT" =~ ^[0-9]+$ ]]; then
+            echo 'The service link report did not provide a hard-failure count.'
+            exit 1
+          fi
+
+          if [[ "$CLASSIFY_OUTCOME" != 'success' && "$HARD_FAILURE_COUNT" == '0' ]]; then
+            echo 'The service link report could not be classified.'
+            exit 1
+          fi
+
+          if (( HARD_FAILURE_COUNT > 0 )); then
+            echo "Found $HARD_FAILURE_COUNT hard service link failure(s)."
+            exit 1
+          fi
