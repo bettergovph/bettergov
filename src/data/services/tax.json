@@ -47,8 +47,8 @@
       "slug": "tax"
     },
     "subcategory": {
-      "name": "Register",
-      "slug": "register"
+      "name": "File Taxes",
+      "slug": "file-taxes"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-06-06T11:30:06.318Z"
