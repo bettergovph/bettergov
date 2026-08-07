@@ -22,13 +22,24 @@ test.describe('Accessibility', () => {
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
+  test('skip link moves focus to main content', async ({ page }) => {
+    await page.goto('/');
+
+    await page.keyboard.press('Tab');
+    const skipLink = page.getByRole('link', { name: /Skip to main content/i });
+    await expect(skipLink).toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#main-content')).toBeFocused();
+  });
+
   test('keyboard navigation should work', async ({ page }) => {
     await page.goto('/');
 
-    // Tab through interactive elements
+    // First Tab focuses the skip link; continue into the navbar
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
 
-    // First tab should focus on Join Us link
     const focusedElement = await page.evaluate(
       () => document.activeElement?.textContent
     );
