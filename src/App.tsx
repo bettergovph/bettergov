@@ -115,11 +115,6 @@ function App() {
             <Route path='/ideas' element={<Ideas />} />
             <Route path='/join-us' element={<JoinUs />} />
             <Route path='/contribute' element={<Contribute />} />
-            {/* Issue #54 named this page /contributing; keep that address working. */}
-            <Route
-              path='/contributing'
-              element={<Navigate to='/contribute' replace />}
-            />
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
