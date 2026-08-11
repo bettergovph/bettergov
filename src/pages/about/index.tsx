@@ -40,7 +40,7 @@ const AboutPage: FC = () => {
         />
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://bettergov.ph/about' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
       </Helmet>
       <div className='container mx-auto px-4 py-6 md:py-8'>
         <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-24 mt-4'>
