@@ -92,6 +92,11 @@ export const ourProjects = [
         href: 'https://visualizations.bettergov.ph/',
         target: '_blank',
       },
+      {
+        label: 'Juris AI',
+        href: 'https://juris.ph',
+        target: '_blank',
+      },
     ],
   },
 ];

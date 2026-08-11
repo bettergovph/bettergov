@@ -180,5 +180,16 @@
     "repoType": "orgprojects",
     "category": "data",
     "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=840&q=80"
+  },
+  {
+    "slug": "juris-ai",
+    "title": "Juris AI",
+    "description": "Free, open access to Philippine Supreme Court decisions and Republic Acts with AI-powered search. Find cases by facts, issues, or doctrine — sourced from lawphil.net.",
+    "repositoryUrls": [],
+    "projectUrl": "https://juris.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "law",
+    "imageUrl": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1470"
   }
 ]
