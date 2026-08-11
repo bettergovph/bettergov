@@ -347,3 +347,51 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
     },
   };
 }
+export function getJudicialSEOData(courtName?: string): GovernmentSEOData {
+  const baseTitle = 'Judicial Branch';
+  const title = courtName ? `${courtName} - ${baseTitle}` : baseTitle;
+
+  return {
+    title,
+    description: courtName
+      ? `Information and incumbent justices of the ${courtName}. A directory of the Philippine Judicial Branch.`
+      : 'A directory of the Philippine Judicial Branch including the Supreme Court, Court of Appeals, and Sandiganbayan.',
+    keywords: [
+      ...baseKeywords,
+      'Judicial Branch',
+      'Supreme Court',
+      'Court of Appeals',
+      'Sandiganbayan',
+      'Incumbent Justices',
+      'Philippine Judiciary',
+      ...(courtName ? [courtName] : []),
+    ],
+    canonical: courtName
+      ? `/government/judicial/${encodeURIComponent(courtName)}`
+      : '/government/judicial',
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Government', url: '/government' },
+      { name: 'Judicial Branch', url: '/government/judicial' },
+      ...(courtName
+        ? [
+            {
+              name: courtName,
+              url: `/government/judicial/${encodeURIComponent(courtName)}`,
+            },
+          ]
+        : []),
+    ],
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'GovernmentOrganization',
+      name: courtName || 'Philippine Judicial Branch',
+      url: `https://gov.ph/government/judicial${
+        courtName ? `/${encodeURIComponent(courtName)}` : ''
+      }`,
+      description: courtName
+        ? `${courtName} - Philippine Judicial Branch`
+        : 'A directory of the Philippine Judicial Branch',
+    },
+  };
+}

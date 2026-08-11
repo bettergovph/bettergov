@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import routeMeta from '../data/seo-metadata.json';
 import {
@@ -33,7 +34,9 @@ export default function SEO({
   breadcrumbs,
 }: SEOProps = {}) {
   const location = useLocation();
+  const { i18n } = useTranslation();
   const [, forceUpdate] = useState({});
+  const dcLanguage = i18n.resolvedLanguage || i18n.language || 'en';
 
   const routeMetaMap = routeMeta as Record<string, unknown>;
 
@@ -158,7 +161,7 @@ export default function SEO({
     : null;
 
   return (
-    <Helmet key={`${location.pathname}${location.search}`}>
+    <Helmet key={`${location.pathname}${location.search}-${dcLanguage}`}>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name='description' content={finalDescription} />
@@ -189,7 +192,7 @@ export default function SEO({
       {/* Government Specific Meta Tags */}
       <meta name='geo.country' content='PH' />
       <meta name='geo.region' content='PH' />
-      <meta name='DC.language' content='en' />
+      <meta name='DC.language' content={dcLanguage} />
       <meta name='DC.creator' content='BetterGov.ph' />
       <meta name='DC.publisher' content='BetterGov.ph' />
 

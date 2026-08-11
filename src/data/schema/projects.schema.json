@@ -12,7 +12,9 @@
       "description",
       "repositoryUrls",
       "projectUrl",
-      "status"
+      "status",
+      "repoType",
+      "category"
     ],
     "additionalProperties": false,
     "properties": {
@@ -48,6 +50,29 @@
         "type": "string",
         "description": "Current development/deployment status of the project",
         "enum": ["active", "development", "archived"]
+      },
+      "repoType": {
+        "type": "string",
+        "description": "Whether this is an internal org project or an external community project",
+        "enum": ["orgprojects", "community"]
+      },
+      "category": {
+        "type": "string",
+        "description": "The civic domain this project belongs to",
+        "enum": [
+          "law",
+          "money",
+          "data",
+          "election",
+          "health",
+          "infrastructure",
+          "other"
+        ]
+      },
+      "imageUrl": {
+        "type": "string",
+        "description": "URL of the banner image displayed on the project card (must start with https://)",
+        "pattern": "^https://"
       }
     }
   }

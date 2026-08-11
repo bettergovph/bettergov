@@ -68,7 +68,7 @@ const CivicAssistant: React.FC = () => {
                 </div>
                 <div className='bg-gray-100 dark:bg-gray-800 p-3 rounded-2xl rounded-tl-none text-sm max-w-[85%] text-gray-700 dark:text-gray-300'>
                   {isInitializing
-                    ? 'Initialzing knowledge base...'
+                    ? 'Initializing knowledge base...'
                     : 'Hello! I can help you find government services. What are you looking for?'}
                 </div>
               </div>

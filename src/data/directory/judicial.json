@@ -1,0 +1,117 @@
+[
+  {
+    "slug": "supreme-court",
+    "name": "Supreme Court of the Philippines",
+    "office_type": "Judicial Court",
+    "description": "The highest court of the land, exercising judicial power over all courts in the Philippines.",
+    "address": "Padre Faura St., Ermita, Manila 1000",
+    "website": "sc.judiciary.gov.ph",
+    "officials": [
+      {
+        "name": "ALEXANDER G. GESMUNDO",
+        "role": "Chief Justice",
+        "date_of_appointment": "April 5, 2021"
+      },
+      {
+        "name": "MARVIC M.V.F. LEONEN",
+        "role": "Associate Justice",
+        "date_of_appointment": "November 8, 2012"
+      },
+      {
+        "name": "ALFREDO BENJAMIN S. CAGUIOA",
+        "role": "Associate Justice",
+        "date_of_appointment": "January 16, 2017"
+      },
+      {
+        "name": "AMY C. LAZARO-JAVIER",
+        "role": "Associate Justice",
+        "date_of_appointment": "July 22, 2019"
+      },
+      {
+        "name": "HENRI JEAN PAUL B. INTING",
+        "role": "Associate Justice",
+        "date_of_appointment": "July 22, 2019"
+      },
+      {
+        "name": "RODIL V. ZALAMEDA",
+        "role": "Associate Justice",
+        "date_of_appointment": "October 11, 2019"
+      },
+      {
+        "name": "RAMON PAUL L. HERNANDO",
+        "role": "Associate Justice",
+        "date_of_appointment": "October 10, 2018"
+      },
+      {
+        "name": "SAMUEL H. GAERLAN",
+        "role": "Associate Justice",
+        "date_of_appointment": "November 26, 2019"
+      },
+      {
+        "name": "RICARDO R. ROSARIO",
+        "role": "Associate Justice",
+        "date_of_appointment": "February 15, 2021"
+      },
+      {
+        "name": "JHOSEPH Y. LOPEZ",
+        "role": "Associate Justice",
+        "date_of_appointment": "April 5, 2021"
+      },
+      {
+        "name": "JAPAR B. DIMAAMPAO",
+        "role": "Associate Justice",
+        "date_of_appointment": "April 5, 2021"
+      },
+      {
+        "name": "JOSE MIDAS P. MARQUEZ",
+        "role": "Associate Justice",
+        "date_of_appointment": "August 2, 2022"
+      },
+      {
+        "name": "KHO JR., ANTONIO T.",
+        "role": "Associate Justice",
+        "date_of_appointment": "November 9, 2023"
+      },
+      {
+        "name": "MARIA FILOMENA D. SINGH",
+        "role": "Associate Justice",
+        "date_of_appointment": "November 9, 2023"
+      },
+      {
+        "name": "RAUL B. VILLANUEVA",
+        "role": "Associate Justice",
+        "date_of_appointment": "June 10, 2025"
+      }
+    ]
+  },
+  {
+    "slug": "court-of-appeals",
+    "name": "Court of Appeals",
+    "office_type": "Judicial Court",
+    "description": "Intermediate appellate court that reviews decisions of the Regional Trial Courts and certain quasi-judicial agencies.",
+    "address": "Maria Orosa St., Ermita, Manila 1000",
+    "website": "ca.judiciary.gov.ph",
+    "officials": [
+      {
+        "name": "FERNANDA C. LAMPAS-PERALTA",
+        "role": "Presiding Justice",
+        "date_of_appointment": "November 18, 2024"
+      }
+    ]
+  },
+  {
+    "slug": "sandiganbayan",
+    "name": "Sandiganbayan",
+    "office_type": "Judicial Court",
+    "description": "A special collegial court that handles criminal and civil cases involving graft, corruption, and other offenses committed by public officials and employees within its jurisdiction.",
+    "address": "Centennial Building, Commonwealth Ave., Quezon City",
+    "website": "sb.judiciary.gov.ph",
+    "officials": [
+      {
+        "name": "GERALDINE FAITH ABRACIA ECONG",
+        "role": "Presiding Justice",
+        "date_of_appointment": "January 7, 2025"
+      }
+    ]
+  }
+]

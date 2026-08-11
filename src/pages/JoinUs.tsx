@@ -5,7 +5,6 @@ import {
   GlobeIcon,
   HeartIcon,
   LightbulbIcon,
-  MessageCircleIcon,
   RocketIcon,
   ServerIcon,
   StarIcon,
@@ -13,6 +12,7 @@ import {
   UsersIcon,
   ZapIcon,
 } from 'lucide-react';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -62,7 +62,7 @@ const JoinUs: FC = () => {
                 rel='noreferrer'
                 className='inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg'
               >
-                <MessageCircleIcon className='h-5 w-5 mr-2' />
+                <SiDiscord className='h-5 w-5 mr-2' />
                 Join Our Discord
               </a>
               <a
@@ -268,7 +268,7 @@ const JoinUs: FC = () => {
                 rel='noreferrer'
                 className='inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg text-lg'
               >
-                <MessageCircleIcon className='h-6 w-6 mr-3' />
+                <SiDiscord className='h-6 w-6 mr-3' />
                 Join Our Discord Community
               </a>
 

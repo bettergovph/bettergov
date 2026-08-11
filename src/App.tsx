@@ -39,6 +39,7 @@ import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
 import GOCCsPage from './pages/government/constitutional/goccs';
 import SUCsPage from './pages/government/constitutional/sucs';
+import Projects from './pages/Projects';
 
 // Legislative Branch
 import LegislativeLayout from './pages/government/legislative/layout';
@@ -58,7 +59,9 @@ import OfficeOfThePresident from './pages/government/executive/office-of-the-pre
 import OtherExecutiveOffices from './pages/government/executive/other-executive-offices';
 import OfficeOfTheVicePresident from './pages/government/executive/office-of-the-vice-president';
 import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
-
+// Judicial Branch
+import JudicialLayout from './pages/government/judicial/layout';
+import JudicialIndex from './pages/government/judicial/index';
 // Local Government Units
 import LocalLayout from './pages/government/local/components/LocalLayout';
 import LocalGovernmentIndex from './pages/government/local/index';
@@ -113,6 +116,7 @@ function App() {
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
+            <Route path='/projects' element={<Projects />} />
 
             <Route path='/philippines'>
               <Route index element={<Navigate to='about' replace />} />
@@ -244,6 +248,11 @@ function App() {
               <Route path='local' element={<LocalLayout />}>
                 <Route index element={<LocalGovernmentIndex />} />
                 <Route path=':region' element={<RegionalLGUPage />} />
+              </Route>
+
+              <Route path='judicial' element={<JudicialLayout />}>
+                <Route index element={<JudicialIndex />} />
+                <Route path=':court' element={<JudicialIndex />} />
               </Route>
             </Route>
 

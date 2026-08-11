@@ -5,7 +5,10 @@
     "description": "Community-led Philippine national government portal providing accessible information on government services, agencies, and officials.",
     "repositoryUrls": ["https://github.com/bettergovph/bettergov"],
     "projectUrl": "https://bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "other",
+    "imageUrl": "https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=840&q=80"
   },
   {
     "slug": "budget-tracker-2026",
@@ -13,15 +16,21 @@
     "description": "Interactive tracker for the 2026 Philippine national budget, enabling citizens to monitor government spending allocations.",
     "repositoryUrls": ["https://github.com/bettergovph/2026-budget"],
     "projectUrl": "https://2026-budget.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "money",
+    "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=840&q=80"
   },
   {
     "slug": "better-lgu",
-    "title": "Better LGU",
-    "description": "Directory and information platform for Philippine local government units, covering provinces, cities, and municipalities.",
-    "repositoryUrls": [],
+    "title": "BetterLGU Directory",
+    "description": "A community-run directory of Better LGU transparency portals — helping builders find existing efforts, contribute, and launch new ones.",
+    "repositoryUrls": ["https://github.com/jmacj/better-lgu-directory"],
     "projectUrl": "https://lgu.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "other",
+    "imageUrl": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=840&q=80"
   },
   {
     "slug": "budget-tracker",
@@ -29,7 +38,10 @@
     "description": "Interactive platform for tracking and visualizing Philippine national budget allocations and expenditures.",
     "repositoryUrls": ["https://github.com/bettergovph/open-budget-browser"],
     "projectUrl": "https://budget.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "money",
+    "imageUrl": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=840&q=80"
   },
   {
     "slug": "transparency-portal",
@@ -37,7 +49,10 @@
     "description": "Civic transparency platform aggregating Philippine government financial and procurement data for public accountability.",
     "repositoryUrls": ["https://github.com/bettergovph/transparency-dashboard"],
     "projectUrl": "https://transparency.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=840&q=80"
   },
   {
     "slug": "open-data-portal",
@@ -45,7 +60,10 @@
     "description": "Public data platform providing accessible Philippine government datasets for transparency, research, and civic innovation.",
     "repositoryUrls": ["https://github.com/bettergovph/open-data-portal"],
     "projectUrl": "https://data.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=840&q=80"
   },
   {
     "slug": "bantay-ph",
@@ -53,7 +71,10 @@
     "description": "Community-powered watchdog platform for monitoring Philippine government projects, contracts, and public spending.",
     "repositoryUrls": [],
     "projectUrl": "https://bantay.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "community",
+    "category": "money",
+    "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=840&q=80"
   },
   {
     "slug": "petitions",
@@ -61,7 +82,10 @@
     "description": "Online petition platform for Filipino citizens to raise civic issues and advocate for government action.",
     "repositoryUrls": ["https://github.com/bettergovph/petition"],
     "projectUrl": "https://petition.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "community",
+    "category": "law",
+    "imageUrl": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=840&q=80"
   },
   {
     "slug": "tax-directory",
@@ -69,7 +93,10 @@
     "description": "Public-facing platform providing tax-related tools and calculators for easier citizen access to tax information.",
     "repositoryUrls": ["https://github.com/bettergovph/ph-tax-directory"],
     "projectUrl": "https://taxdirectory.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "money",
+    "imageUrl": "https://images.unsplash.com/photo-1586282391129-76a6df230234?w=840&q=80"
   },
   {
     "slug": "philgeps",
@@ -77,7 +104,10 @@
     "description": "BetterGov interface for exploring and monitoring Philippine Government Electronic Procurement System data.",
     "repositoryUrls": ["https://github.com/bettergovph/open-philgeps-data"],
     "projectUrl": "https://philgeps.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "money",
+    "imageUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=840&q=80"
   },
   {
     "slug": "saln-tracker",
@@ -85,7 +115,10 @@
     "description": "Platform for tracking and exploring Statement of Assets, Liabilities, and Net Worth filings of Philippine public officials.",
     "repositoryUrls": ["https://github.com/bettergovph/saln-tracker-ph"],
     "projectUrl": "https://saln.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=840&q=80"
   },
   {
     "slug": "hotlines",
@@ -93,7 +126,10 @@
     "description": "Comprehensive directory of emergency and government hotlines in the Philippines.",
     "repositoryUrls": ["https://github.com/bettergovph/hotlines"],
     "projectUrl": "https://hotlines.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "health",
+    "imageUrl": "https://images.unsplash.com/photo-1612532275214-e4ca76d0e4d1?w=840&q=80"
   },
   {
     "slug": "open-bayan",
@@ -101,7 +137,10 @@
     "description": "Open civic data platform connecting Filipinos to barangay-level government information.",
     "repositoryUrls": ["https://github.com/bettergovph/openbayan.org"],
     "projectUrl": "https://www.openbayan.org",
-    "status": "active"
+    "status": "active",
+    "repoType": "community",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1545579133-99bb5ad189be?w=840&q=80"
   },
   {
     "slug": "open-congress-api",
@@ -109,7 +148,10 @@
     "description": "Open API providing structured data on the Philippine Congress, including legislative records and member information.",
     "repositoryUrls": ["https://github.com/bettergovph/open-congress-api"],
     "projectUrl": "https://open-congress-api.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "law",
+    "imageUrl": "https://images.unsplash.com/photo-1569025591289-a2d1f86faa53?w=840&q=80"
   },
   {
     "slug": "opengov-blockchain",
@@ -121,7 +163,10 @@
       "https://github.com/bettergovph/govchain-ts"
     ],
     "projectUrl": "https://govchain.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=840&q=80"
   },
   {
     "slug": "research-and-visualizations",
@@ -131,6 +176,20 @@
       "https://github.com/bettergovph/open-data-visualization"
     ],
     "projectUrl": "https://visualizations.bettergov.ph",
-    "status": "active"
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data",
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=840&q=80"
+  },
+  {
+    "slug": "juris-ai",
+    "title": "Juris AI",
+    "description": "Free, open access to Philippine Supreme Court decisions and Republic Acts with AI-powered search. Find cases by facts, issues, or doctrine — sourced from lawphil.net.",
+    "repositoryUrls": [],
+    "projectUrl": "https://juris.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "law",
+    "imageUrl": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1470"
   }
 ]
