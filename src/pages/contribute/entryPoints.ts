@@ -1,20 +1,6 @@
-/**
- * The entry-point index behind /contribute.
- *
- * Contributing to BetterGov is not contributing to one repository. Every
- * destination below already exists somewhere on this site or on GitHub; what
- * did not exist was a single place that routes between them. This page is an
- * index, not a new surface, so it duplicates no CTA and asserts no priority.
- *
- * Two rules keep it evergreen, which matters because it has no dedicated
- * owner:
- *
- *   1. Ordering is by COMMITMENT, lowest first. Ranking by "what the project
- *      needs most" would need a curator and would rot the moment nobody
- *      curates it.
- *   2. No counts, no dates, no live data. A link cannot go stale the way a
- *      rendered issue count can.
- */
+// Every destination here already exists elsewhere on the site or on GitHub.
+// Ordered by commitment, lowest first, and deliberately free of counts, dates
+// and live data so the list cannot go stale.
 
 export type Mode =
   | 'community'
@@ -24,7 +10,7 @@ export type Mode =
   | 'review'
   | 'project';
 
-/** How a destination must be rendered. Derived from the href so it cannot drift. */
+// Derived from the href so an entry point cannot mislabel its own destination.
 export type LinkKind = 'internal' | 'external' | 'email';
 
 export const linkKind = (href: string): LinkKind => {
@@ -39,20 +25,13 @@ export interface EntryPointAction {
 
 export interface EntryPoint extends EntryPointAction {
   id: string;
-  /** Ascending commitment. Drives display order. */
+  // Ascending commitment, which is also the display order.
   commitment: 1 | 2 | 3 | 4 | 5;
   mode: Mode;
   modeLabel: string;
-  /** "Is this you?" is the router's actual job. */
   who: string;
-  /**
-   * Second channel for the same job. Reporting and ideas both accept GitHub or
-   * Discord, because forcing a GitHub account on someone who only wants to say
-   * "this number is wrong" loses the report. The primary is the channel that
-   * leaves a durable record; the alternate is the lower-friction one.
-   */
+  // Lower-friction second channel, for people without a GitHub account.
   alt?: EntryPointAction;
-  /** Small muted note. Must be evergreen: no counts, no dates. */
   note?: string;
 }
 
@@ -148,10 +127,7 @@ export const ENTRY_POINTS: EntryPoint[] = [
     modeLabel: 'Your project',
     who: 'You are building your own civic tech project and want it listed here.',
     action: 'Ask about listing your project',
-    // Deliberately routes to a human: the registry (public/api/projects.json,
-    // repoType: "community") is real and schema-enforced, but the submission
-    // path is undocumented. Pointing at /projects would be a dead end — it
-    // lists projects but never says how to get listed.
+    // Routes to a human because the registry submission path is undocumented.
     href: '/discord',
     alt: {
       action: 'or email the volunteers',
@@ -167,11 +143,6 @@ export interface Intro {
   standfirst: string;
 }
 
-/**
- * The list's own framing. It must not restate the hero headline above it, and
- * it carries full context because this page can be arrived at cold from a
- * search engine rather than from the pages that would otherwise explain it.
- */
 export const INTRO: Intro = {
   eyebrow: 'Ways to help',
   heading: 'Every way in, easiest first',

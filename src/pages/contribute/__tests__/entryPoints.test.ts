@@ -1,11 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ENTRY_POINTS, INTRO, linkKind } from '../entryPoints';
 
-/**
- * The page's promise is "every way in, easiest first". These invariants are
- * that promise, expressed as tests: the order is the content, so it cannot be
- * left to whoever edits the array next.
- */
 describe('linkKind', () => {
   it('classifies a site-relative path as internal', () => {
     expect(linkKind('/discord')).toBe('internal');

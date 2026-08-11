@@ -9,10 +9,6 @@ import {
   linkKind,
 } from './entryPoints';
 
-/**
- * What each entry point costs the reader, in the only unit that never goes
- * stale: their time.
- */
 const COMMITMENT_LABEL: Record<EntryPoint['commitment'], string> = {
   1: 'Minutes',
   2: 'Minutes',
@@ -21,11 +17,7 @@ const COMMITMENT_LABEL: Record<EntryPoint['commitment'], string> = {
   5: 'Ongoing',
 };
 
-/**
- * A single destination. The row cannot be one big link: rows with a second
- * channel would need a link nested inside a link, which is invalid HTML.
- * The cost is that the whole row is no longer a single tap target.
- */
+// Rows carry up to two actions, so the row itself cannot be one big link.
 const Action: FC<EntryPointAction & { primary?: boolean }> = ({
   action,
   href,
@@ -65,8 +57,7 @@ const Action: FC<EntryPointAction & { primary?: boolean }> = ({
       {...(newTab ? { target: '_blank', rel: 'noreferrer' } : {})}
     >
       {action}
-      {/* The whole page is a list of links, half of them off-site. The icon
-          only rides on the primary action, so the warning has to be spoken. */}
+      {/* New tab warning for screen readers */}
       {newTab && <span className='sr-only'> (opens in a new tab)</span>}
       {icon}
     </a>

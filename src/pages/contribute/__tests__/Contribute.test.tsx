@@ -33,7 +33,7 @@ describe('Contribute', () => {
     ).toBeInTheDocument();
   });
 
-  /** Off-site actions carry an appended sr-only new-tab warning. */
+  // Off-site actions append an sr-only new-tab warning to their name.
   const linkFor = (action: string) =>
     screen.getByRole('link', { name: name => name.startsWith(action) });
 

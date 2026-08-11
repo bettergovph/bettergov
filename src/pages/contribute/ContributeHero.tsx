@@ -2,18 +2,11 @@ import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- * Follows the front page's own hero pattern (primary gradient, two columns,
- * glass panel) so the page reads as native rather than invented. The panel
- * holds the lowest-commitment action, which is also the one the list below
- * opens with.
- */
 const MODES = ['Join in', 'Fix data', 'Write code', 'Build your own'];
 
 export const ContributeHero: FC = () => (
   <section className='bg-linear-to-r from-primary-600 to-primary-700 text-white'>
-    {/* max-w-4xl so the hero's left edge lines up with the list below it. The
-        front page hero is full-container, but nothing sits under it. */}
+    {/* max-w-4xl to line the hero up with the list below it */}
     <div className='container mx-auto px-4 max-w-4xl py-12 md:py-20'>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
         <div className='animate-fade-in'>

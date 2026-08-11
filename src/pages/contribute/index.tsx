@@ -3,19 +3,11 @@ import SEO from '../../components/SEO';
 import { ContributeHero } from './ContributeHero';
 import { ContributeRouter } from './ContributeRouter';
 
-/**
- * /contribute — the index of every way into BetterGov.
- *
- * It sits beside /join-us rather than replacing it, because the two do
- * different jobs: /join-us turns a stranger into someone interested,
- * /contribute turns someone interested into a first contribution.
- *
- * Origin: issue #54, section 3.
- */
+// Sits beside /join-us rather than replacing it: /join-us introduces the
+// project, /contribute routes someone already interested to a first task.
 const Contribute: FC = () => (
   <div className='min-h-screen bg-gray-50'>
-    {/* Title and description come from src/data/seo-metadata.json, keyed by
-        pathname. Passing them here too would be a second copy free to drift. */}
+    {/* Title and description come from src/data/seo-metadata.json */}
     <SEO
       keywords={[
         'contribute',
