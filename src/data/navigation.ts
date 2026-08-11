@@ -167,6 +167,7 @@ export const footerNavigation = {
         { label: 'About the Portal', href: '/about' },
         { label: 'About BetterGov.ph', href: 'https://about.bettergov.ph' },
         { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
+        { label: 'Contribute', href: '/contribute' },
         { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
