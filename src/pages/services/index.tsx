@@ -249,7 +249,7 @@ export default function ServicesPage() {
         <meta property='og:description' content={metaDescription} />
         <meta property='og:type' content='website' />
         <meta property='og:url' content={canonicalUrl} />
-        <meta property='og:image' content='https://gov.ph/ph-logo.webp' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
       </Helmet>
       <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}
