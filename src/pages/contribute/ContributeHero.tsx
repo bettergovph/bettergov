@@ -14,8 +14,8 @@ export const ContributeHero: FC = () => (
             Contribute to BetterGov.ph
           </h1>
           <p className='text-lg text-blue-100 mb-6 max-w-lg'>
-            Volunteer-led, open source, and always short of hands. Every current
-            way in is on this page, ordered by how much it asks of you.
+            Volunteer-led. Open source. Community-driven. Every current way in
+            is on this page, ordered by how much it asks of you.
           </p>
           <ul className='flex flex-wrap gap-2 list-none p-0 m-0'>
             {MODES.map(mode => (

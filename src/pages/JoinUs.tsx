@@ -15,6 +15,7 @@ import {
 import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const JoinUs: FC = () => {
   return (
@@ -274,15 +275,13 @@ const JoinUs: FC = () => {
 
               <div className='text-white font-medium'>or</div>
 
-              <a
-                href='https://bettergov.ph/ideas'
-                target='_blank'
-                rel='noreferrer'
+              <Link
+                to='/contribute'
                 className='inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all'
               >
                 <LightbulbIcon className='h-5 w-5 mr-2' />
-                Explore Project Ideas
-              </a>
+                Find a Way to Contribute
+              </Link>
             </div>
 
             <div className='mt-8 pt-6 border-t border-white/20'>

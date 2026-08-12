@@ -1,8 +1,12 @@
-import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
+import {
+  ArrowRightIcon,
+  LightbulbIcon,
+  UsersIcon,
+  ZapIcon,
+} from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { SiDiscord } from '@icons-pack/react-simple-icons';
 
 const JoinUsBanner: FC = () => {
   const { t } = useTranslation('common');
@@ -53,15 +57,13 @@ const JoinUsBanner: FC = () => {
 
             <div className='text-orange-100 font-medium'>{t('joinUs.or')}</div>
 
-            <a
-              href='https://discord.gg/mHtThpN8bT'
-              target='_blank'
-              rel='noreferrer'
+            <Link
+              to='/contribute'
               className='inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all'
             >
-              <SiDiscord className='h-5 w-5 mr-2' />
-              {t('joinUs.joinDiscord')}
-            </a>
+              <LightbulbIcon className='h-5 w-5 mr-2' />
+              {t('joinUs.findWayToContribute')}
+            </Link>
           </div>
 
           <div className='mt-8 pt-6 border-t border-white/20'>
