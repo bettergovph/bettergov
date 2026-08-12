@@ -25,7 +25,7 @@ export default function NotFound() {
         />
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://bettergov.ph/not-found' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
       </Helmet>
 
       <div className='relative'>
