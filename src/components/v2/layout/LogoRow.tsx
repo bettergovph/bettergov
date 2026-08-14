@@ -19,7 +19,7 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
   const { t } = useTranslation('common');
 
   return (
-    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-7 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
+    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-6 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
       <Link
         to='/'
         aria-label={`${SITE_NAME} home`}
