@@ -182,6 +182,19 @@ const PrimaryNav: FC = () => {
             </div>
           );
         })}
+
+        {/* Pushed to the far right and set off by a rule from the sections */}
+        <a
+          href='https://e.gov.ph'
+          target='_blank'
+          rel='noopener noreferrer'
+          className={cn(
+            navItemBase,
+            'ml-auto border-l border-ed-rule text-ed-navy'
+          )}
+        >
+          {t('navbar.downloadEgovApp', 'Download eGov App')}
+        </a>
       </Container>
     </nav>
   );
