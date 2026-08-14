@@ -9,15 +9,12 @@ import { cn } from '../../../lib/utils';
 const navItemBase =
   'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-semibold text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
 
-const activeClasses = 'bg-ed-navy text-white hover:bg-ed-navy hover:text-white';
-
-const isActivePath = (pathname: string, href: string) => {
-  if (!href) return false;
-  const path = pathname.replace(/\/$/, '');
-  const h = href.replace(/\/$/, '');
-  if (h === '') return path === '';
-  return path === h || path.startsWith(h + '/');
-};
+/**
+ * Applied only while a dropdown is open, so the trigger stays highlighted
+ * once the pointer moves into the menu. The current route is deliberately
+ * not highlighted.
+ */
+const openClasses = 'bg-ed-navy-tint text-ed-navy';
 
 const PrimaryNav: FC = () => {
   const { t } = useTranslation('common');
@@ -81,29 +78,18 @@ const PrimaryNav: FC = () => {
       aria-label='Primary'
     >
       <Container className='flex items-stretch justify-start flex-wrap'>
-        <Link
-          to='/'
-          className={cn(
-            navItemBase,
-            location.pathname === '/' && activeClasses
-          )}
-        >
+        <Link to='/' className={navItemBase}>
           {t('navbar.home', 'Home')}
         </Link>
 
         {mainNavigation.map(item => {
-          const active = isActivePath(location.pathname, item.href);
           const key = item.label.toLowerCase();
           const label = t(`navbar.${key}`, item.label);
           const isOpen = openItem === item.label;
 
           if (!item.children) {
             return (
-              <Link
-                key={item.label}
-                to={item.href}
-                className={cn(navItemBase, active && activeClasses)}
-              >
+              <Link key={item.label} to={item.href} className={navItemBase}>
                 {label}
               </Link>
             );
@@ -124,7 +110,7 @@ const PrimaryNav: FC = () => {
                 className={cn(
                   navItemBase,
                   'cursor-pointer select-none border-0 bg-transparent',
-                  (active || isOpen) && activeClasses
+                  isOpen && openClasses
                 )}
               >
                 <span>{label}</span>
