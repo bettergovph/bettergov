@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { MenuIcon, SearchIcon, UserIcon, XIcon } from 'lucide-react';
+import { MailIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import Button from '../ui/Button';
 import {
   COAT_OF_ARMS_ALT,
@@ -17,6 +17,15 @@ type Props = {
 
 const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+
+  // Global search — always lands on /search, with ?q= when something was typed.
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    navigate(q ? `/search?q=${encodeURIComponent(q)}` : '/search');
+  };
 
   return (
     <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-6 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
@@ -48,26 +57,37 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
       </div>
 
       <div className='flex items-center gap-3.5 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3'>
+        <form
+          role='search'
+          onSubmit={handleSearch}
+          className='relative max-md:hidden'
+        >
+          <SearchIcon
+            size={15}
+            className='pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ed-ink-3'
+          />
+          <input
+            type='search'
+            name='q'
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            aria-label={t('masthead.search', 'Search')}
+            placeholder={t(
+              'masthead.searchPlaceholder',
+              'Search services, agencies, and more'
+            )}
+            className='w-[300px] border border-ed-rule-strong bg-white py-2.5 pl-9 pr-3 font-sans-ed text-sm normal-case tracking-normal text-ed-ink outline-none placeholder:text-ed-ink-4 focus:border-ed-navy xl:w-[340px]'
+          />
+        </form>
         <Button
           as={Link}
-          to='/search'
-          variant='ghost'
-          size='sm'
-          aria-label='Search'
-          className='max-md:hidden'
-        >
-          <SearchIcon size={14} />
-          <span>{t('masthead.search', 'Search')}</span>
-        </Button>
-        <Button
-          as={Link}
-          to='/join-us'
+          to='/contact'
           variant='ghost'
           size='sm'
           className='max-md:hidden'
         >
-          <UserIcon size={14} />
-          <span>{t('masthead.joinUs', 'Join us')}</span>
+          <MailIcon size={14} />
+          <span>{t('masthead.contactUs', 'Contact us')}</span>
         </Button>
 
         <Button

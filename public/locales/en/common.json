@@ -49,7 +49,9 @@
     "search": "Search",
     "signIn": "Sign in",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "contactUs": "Contact us",
+    "searchPlaceholder": "Search services, agencies, and more"
   },
   "footerNav": {
     "servicesHeading": "Services",

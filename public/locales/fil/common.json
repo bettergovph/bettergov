@@ -42,7 +42,9 @@
     "search": "Hanapin",
     "signIn": "Mag-sign in",
     "menu": "Menu",
-    "close": "Isara"
+    "close": "Isara",
+    "contactUs": "Makipag-ugnayan",
+    "searchPlaceholder": "Maghanap ng serbisyo, ahensya, at iba pa"
   },
   "footerNav": {
     "servicesHeading": "Mga Serbisyo",
