@@ -8,6 +8,7 @@ type ApiCache = {
 
 const apiCache: ApiCache = {};
 
+const inFlightRequests: { [url: string]: Promise<unknown> } = {};
 /**
  * Fetch data from an API with caching
  * @param url The URL to fetch data from
@@ -25,20 +26,35 @@ export const fetchWithCache = async (
     return apiCache[url].data;
   }
 
-  // If no cache or expired, fetch new data
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`API request failed with status ${response.status}`);
+  // If a request for this URL is already in flight, reuse it instead of
+  // triggering a duplicate network request.
+  if (url in inFlightRequests) {
+    return inFlightRequests[url];
   }
+  const requestPromise = (async () => {
+    try {
+      // If no cache or expired, fetch new data
+      const response = await fetch(url);
 
-  const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
 
-  // Cache the new data
-  apiCache[url] = {
-    data,
-    timestamp: now,
-  };
+      const data = await response.json();
 
-  return data;
+      // Cache the new data
+      apiCache[url] = {
+        data,
+        timestamp: Date.now(),
+      };
+
+      return data;
+    } finally {
+      delete inFlightRequests[url];
+    }
+  })();
+
+  inFlightRequests[url] = requestPromise;
+
+  return requestPromise;
 };
