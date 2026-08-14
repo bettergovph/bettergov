@@ -11,7 +11,6 @@ import {
 import Container from '../ui/Container';
 import MeilisearchInstantSearch from '../../search/MeilisearchInstantSearch';
 import serviceCategories from '../../../data/service_categories.json';
-import { COAT_OF_ARMS_ALT, COAT_OF_ARMS_SRC } from '../../../lib/brand';
 
 interface Subcategory {
   name: string;
@@ -82,11 +81,6 @@ const Hero: FC = () => {
         <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2'>
           {/* Left: headline, search, and quick links */}
           <div className='animate-fade-in'>
-            <img
-              src={COAT_OF_ARMS_SRC}
-              alt={COAT_OF_ARMS_ALT}
-              className='mb-5 block h-20 w-auto'
-            />
             <h1 className='mb-4 font-serif-ed text-3xl font-bold leading-tight md:text-4xl lg:text-5xl'>
               {t('hero.title')}
             </h1>
