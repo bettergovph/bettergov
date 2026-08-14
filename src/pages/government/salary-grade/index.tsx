@@ -156,7 +156,7 @@ const SalaryGradePage: FC = () => {
 
 const Stat: FC<{ label: string; value: string }> = ({ label, value }) => (
   <div className='px-6 py-2 text-ed-ink-2'>
-    <div className='font-serif-ed text-[28px] font-medium leading-none text-ed-navy-ink'>
+    <div className='font-serif-ed text-[28px] font-semibold leading-none text-ed-navy-ink'>
       {value}
     </div>
     <div className='mt-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>

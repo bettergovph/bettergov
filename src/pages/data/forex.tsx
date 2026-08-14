@@ -145,7 +145,7 @@ const ForexPage: FC = () => {
                             {FLAG_MAP[r.code] ?? '🏴'}
                           </span>
                         </div>
-                        <div className='mt-3 font-serif-ed text-[28px] font-medium leading-none text-ed-ink'>
+                        <div className='mt-3 font-serif-ed text-[28px] font-semibold leading-none text-ed-ink'>
                           {r.rate ? `₱${r.rate.toFixed(2)}` : '—'}
                         </div>
                         <div className='mt-1.5 text-[11px] text-ed-ink-3'>
@@ -216,7 +216,7 @@ const ForexPage: FC = () => {
                       <div className='text-sm text-ed-ink-2'>
                         {toTitleCase(r.currency)}
                       </div>
-                      <div className='font-serif-ed text-[18px] font-medium text-ed-ink max-sm:font-sans-ed max-sm:text-sm'>
+                      <div className='font-serif-ed text-[18px] font-semibold text-ed-ink max-sm:font-sans-ed max-sm:text-sm'>
                         {r.rate ? `₱${r.rate.toFixed(4)}` : '—'}
                       </div>
                     </div>

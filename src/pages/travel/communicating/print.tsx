@@ -49,7 +49,7 @@ const CommunicatingPrintPage: FC = () => {
               <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
                 § Travel · Printable phrasebook
               </div>
-              <h1 className='mt-1 font-serif-ed text-[36px] font-medium leading-tight text-ed-ink'>
+              <h1 className='mt-1 font-serif-ed text-[36px] font-semibold leading-tight text-ed-ink'>
                 Travel Phrasebook
               </h1>
               <p className='mt-1 text-sm text-ed-ink-2'>
@@ -88,7 +88,7 @@ const CommunicatingPrintPage: FC = () => {
         {/* Print-only banner */}
         <div className='hidden print:block border-b-2 border-ed-navy px-6 pb-3 pt-4'>
           <div className='flex items-baseline justify-between gap-4'>
-            <h1 className='font-serif-ed text-[26px] font-medium text-ed-ink'>
+            <h1 className='font-serif-ed text-[26px] font-semibold text-ed-ink'>
               Travel Phrasebook
             </h1>
             <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -104,7 +104,7 @@ const CommunicatingPrintPage: FC = () => {
               className='break-inside-avoid border border-ed-rule print:break-inside-avoid'
             >
               <header className='border-b-2 border-ed-navy bg-ed-paper-2 px-4 py-2.5 print:py-1.5'>
-                <h2 className='m-0 font-serif-ed text-[18px] font-medium text-ed-navy-ink print:text-[15px]'>
+                <h2 className='m-0 font-serif-ed text-[18px] font-semibold text-ed-navy-ink print:text-[15px]'>
                   {cat.category}
                 </h2>
               </header>

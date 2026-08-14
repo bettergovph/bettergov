@@ -137,7 +137,7 @@ const JoinUs: FC = () => (
         <div className='grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1'>
           {HOW_WE_WORK.map(item => (
             <div key={item.label}>
-              <h3 className='font-serif-ed text-[20px] font-medium text-ed-navy-ink'>
+              <h3 className='font-serif-ed text-[20px] font-semibold text-ed-navy-ink'>
                 {item.label}
               </h3>
               <p className='mt-2 text-sm leading-relaxed text-ed-ink-2'>
@@ -164,7 +164,7 @@ const JoinUs: FC = () => (
               <div className='mb-4 inline-flex h-10 w-10 items-center justify-center border border-ed-rule text-ed-navy'>
                 <role.icon size={18} />
               </div>
-              <h3 className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+              <h3 className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                 {role.title}
               </h3>
               <p className='mt-2 text-sm leading-relaxed text-ed-ink-2'>
@@ -214,7 +214,7 @@ const JoinUs: FC = () => (
             <div className='mb-3'>
               <Eyebrow tone='navy'>Ready to contribute?</Eyebrow>
             </div>
-            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-normal leading-tight text-ed-ink'>
+            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight text-ed-ink'>
               Join the community and{' '}
               <span className='text-ed-navy'>start building today.</span>
             </h2>

@@ -19,7 +19,7 @@ const EditorialStrip: FC = () => {
               <div className='font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-3'>
                 {x.n}
               </div>
-              <h3 className='mt-3 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+              <h3 className='mt-3 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                 {x.heading}
               </h3>
               <p className='mt-3 text-sm leading-relaxed text-ed-ink-2'>

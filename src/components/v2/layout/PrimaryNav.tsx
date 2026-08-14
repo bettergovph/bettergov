@@ -7,7 +7,7 @@ import Container from '../ui/Container';
 import { cn } from '../../../lib/utils';
 
 const navItemBase =
-  'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-medium text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
+  'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-semibold text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
 
 const activeClasses = 'bg-ed-navy text-white hover:bg-ed-navy hover:text-white';
 

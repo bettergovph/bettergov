@@ -32,7 +32,7 @@ const TransparencyStrip: FC = () => {
         <div className='grid grid-cols-[1fr_1.4fr] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
           <div>
             <Eyebrow>{t('transparency.eyebrow')}</Eyebrow>
-            <h2 className='mt-2 font-serif-ed text-[clamp(36px,4vw,48px)] font-normal leading-none tracking-[-0.02em] text-ed-ink'>
+            <h2 className='mt-2 font-serif-ed text-[clamp(36px,4vw,48px)] font-bold leading-none tracking-[-0.02em] text-ed-ink'>
               ₱{total.toLocaleString()}
               <span className='text-2xl text-ed-ink-3'>
                 {' '}

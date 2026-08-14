@@ -203,7 +203,7 @@ const PassportGuide: FC = () => {
                   <Flag variant='navy'>Department of Foreign Affairs</Flag>
                   <Flag variant='red'>Most requested</Flag>
                 </div>
-                <h1 className='font-serif-ed text-[clamp(42px,6vw,72px)] font-normal leading-none tracking-[-0.03em] text-ed-ink'>
+                <h1 className='font-serif-ed text-[clamp(42px,6vw,72px)] font-bold leading-none tracking-[-0.03em] text-ed-ink'>
                   The Philippine
                   <br />
                   <em className='italic font-normal'>passport</em>, explained.
@@ -339,7 +339,7 @@ const PassportGuide: FC = () => {
 
                 <h2
                   id='requirements'
-                  className='mt-12 mb-4 scroll-mt-24 font-serif-ed text-[32px] font-medium leading-tight text-ed-ink'
+                  className='mt-12 mb-4 scroll-mt-24 font-serif-ed text-[32px] font-semibold leading-tight text-ed-ink'
                 >
                   Requirements
                 </h2>
@@ -365,7 +365,7 @@ const PassportGuide: FC = () => {
 
                 <h2
                   id='fees-timing'
-                  className='mt-12 mb-4 scroll-mt-24 font-serif-ed text-[32px] font-medium leading-tight text-ed-ink'
+                  className='mt-12 mb-4 scroll-mt-24 font-serif-ed text-[32px] font-semibold leading-tight text-ed-ink'
                 >
                   Fees &amp; timing
                 </h2>
@@ -421,7 +421,7 @@ const PassportGuide: FC = () => {
                   className='mt-12 scroll-mt-24 border border-ed-rule-strong bg-ed-paper-2 p-7'
                 >
                   <Eyebrow tone='red'>Common mistake</Eyebrow>
-                  <h3 className='mt-2 font-serif-ed text-[22px] font-medium leading-tight text-ed-ink'>
+                  <h3 className='mt-2 font-serif-ed text-[22px] font-semibold leading-tight text-ed-ink'>
                     Don&rsquo;t show up at the office with an appointment
                     screenshot only.
                   </h3>

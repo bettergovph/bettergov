@@ -45,7 +45,7 @@ const NewsAndHolidays: FC = () => {
                   </span>
                 )}
               </div>
-              <h2 className='mt-4 font-serif-ed text-[clamp(28px,3.2vw,40px)] font-normal leading-[1.05] tracking-[-0.01em] text-ed-ink'>
+              <h2 className='mt-4 font-serif-ed text-[clamp(28px,3.2vw,40px)] font-bold leading-[1.05] tracking-[-0.01em] text-ed-ink'>
                 {featured.title}
               </h2>
               <Dropcap className='mt-4 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
@@ -65,7 +65,7 @@ const NewsAndHolidays: FC = () => {
                       {n.date}
                     </span>
                   </div>
-                  <h3 className='mt-2 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                  <h3 className='mt-2 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                     {n.title}
                   </h3>
                   <p className='mt-2 text-sm leading-normal text-ed-ink-2'>
@@ -82,7 +82,7 @@ const NewsAndHolidays: FC = () => {
               <Eyebrow tone='onDark'>
                 {t('newsAndHolidays.holidaysEyebrow')} · 2026
               </Eyebrow>
-              <h3 className='mt-2 font-serif-ed text-[28px] font-normal tracking-[-0.01em] text-white'>
+              <h3 className='mt-2 font-serif-ed text-[28px] font-bold tracking-[-0.01em] text-white'>
                 {t('newsAndHolidays.holidaysTitle')}
               </h3>
               <div className='mt-6 border-t border-white/20'>
@@ -118,7 +118,7 @@ const NewsAndHolidays: FC = () => {
 
             <div className='mt-6 border border-ed-rule bg-white p-7'>
               <Eyebrow>{t('newsAndHolidays.hotlinesEyebrow')}</Eyebrow>
-              <h3 className='mt-1.5 font-serif-ed text-xl font-medium text-ed-ink'>
+              <h3 className='mt-1.5 font-serif-ed text-xl font-semibold text-ed-ink'>
                 {t('newsAndHolidays.hotlinesTitle')}
               </h3>
               <div className='mt-4 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-2.5'>

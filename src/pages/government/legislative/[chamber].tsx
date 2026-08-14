@@ -124,7 +124,7 @@ const RelatedCard: FC<{
     <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
       {eyebrow}
     </div>
-    <h3 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+    <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
       {title}
     </h3>
     <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>

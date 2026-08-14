@@ -51,7 +51,7 @@ const PageMasthead: FC<Props> = ({
         )}
         <h1
           className={cn(
-            'font-serif-ed font-normal leading-[1.05] tracking-[-0.02em]',
+            'font-serif-ed font-bold leading-[1.05] tracking-[-0.02em]',
             'text-[clamp(32px,5vw,56px)]',
             onDark ? 'text-white' : 'text-ed-ink'
           )}

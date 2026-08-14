@@ -100,7 +100,7 @@ const OrganizationsPage: FC = () => {
                   className='grid grid-cols-[1fr_minmax(280px,360px)] gap-6 py-6 max-md:grid-cols-1 max-md:gap-2'
                 >
                   <div>
-                    <div className='font-serif-ed text-[20px] font-medium leading-tight text-ed-navy-ink'>
+                    <div className='font-serif-ed text-[20px] font-semibold leading-tight text-ed-navy-ink'>
                       {titleCase(o.organization_name)}
                     </div>
                     {o.head && (

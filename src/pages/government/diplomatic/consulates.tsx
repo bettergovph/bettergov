@@ -106,7 +106,7 @@ const ConsulatesPage: FC = () => {
                     )}
                   </div>
                   <div>
-                    <div className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+                    <div className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
                       {c.office_name}
                     </div>
                     {c.address && (

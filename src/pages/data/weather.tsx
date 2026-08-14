@@ -107,7 +107,7 @@ const WeatherPage: FC = () => {
                             {getWeatherIcon(city.icon, 'h-4 w-4')}
                           </div>
                         </div>
-                        <div className='mt-3 font-serif-ed text-[36px] font-medium leading-none text-ed-ink'>
+                        <div className='mt-3 font-serif-ed text-[36px] font-semibold leading-none text-ed-ink'>
                           {city.temperature}°
                         </div>
                         <div className='mt-1.5 text-[12px] text-ed-ink-2'>
@@ -168,7 +168,7 @@ const WeatherPage: FC = () => {
                             {city.location}
                           </span>
                         </div>
-                        <div className='font-serif-ed text-[20px] font-medium text-ed-ink max-md:hidden'>
+                        <div className='font-serif-ed text-[20px] font-semibold text-ed-ink max-md:hidden'>
                           {city.temperature}°
                         </div>
                         <div className='text-sm text-ed-ink-2 max-md:hidden'>

@@ -127,7 +127,7 @@ const Ideas: FC = () => {
                       <Eyebrow key={tag}>{tag}</Eyebrow>
                     ))}
                   </div>
-                  <h2 className='mt-3 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                  <h2 className='mt-3 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                     {idea.title}
                   </h2>
                   <p className='mt-2 max-w-[680px] text-sm leading-relaxed text-ed-ink-2'>
@@ -158,7 +158,7 @@ const Ideas: FC = () => {
               <Eyebrow tone='onDark' className='mb-3'>
                 Get involved
               </Eyebrow>
-              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-normal leading-tight tracking-[-0.01em] text-white'>
+              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight tracking-[-0.01em] text-white'>
                 Have an idea? <em className='font-normal italic'>Submit it.</em>
               </h2>
               <p className='mt-2 max-w-md font-sans-ed text-base leading-relaxed text-white/80'>

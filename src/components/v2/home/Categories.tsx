@@ -38,7 +38,7 @@ const Categories: FC = () => {
                   {c.count} services
                 </span>
               </div>
-              <h3 className='mt-5 font-serif-ed text-2xl font-normal text-ed-ink'>
+              <h3 className='mt-5 font-serif-ed text-2xl font-bold text-ed-ink'>
                 {c.label}
               </h3>
               <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2'>

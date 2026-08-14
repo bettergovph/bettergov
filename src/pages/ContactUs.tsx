@@ -70,7 +70,7 @@ const ContactUs: FC = () => {
 
               {sent ? (
                 <div className='border border-ed-rule bg-ed-paper-2 p-8'>
-                  <p className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+                  <p className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                     Message received.
                   </p>
                   <p className='mt-2 text-sm text-ed-ink-2'>
@@ -97,7 +97,7 @@ const ContactUs: FC = () => {
                   <div className='grid grid-cols-2 gap-6 max-sm:grid-cols-1'>
                     <div>
                       <label
-                        className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                         htmlFor='name'
                       >
                         Your name
@@ -115,7 +115,7 @@ const ContactUs: FC = () => {
                     </div>
                     <div>
                       <label
-                        className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                         htmlFor='email'
                       >
                         Email address
@@ -135,7 +135,7 @@ const ContactUs: FC = () => {
 
                   <div>
                     <label
-                      className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                       htmlFor='subject'
                     >
                       Subject
@@ -160,7 +160,7 @@ const ContactUs: FC = () => {
 
                   <div>
                     <label
-                      className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                       htmlFor='message'
                     >
                       Message

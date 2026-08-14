@@ -423,7 +423,7 @@ export default function ServicesPage() {
                               {service.subcategory.name}
                             </span>
                           </div>
-                          <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                          <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                             {service.service}
                           </h3>
                           <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3'>

@@ -93,7 +93,7 @@ const AboutPhilippines: FC = () => {
           <div className='grid grid-cols-4 border-y border-ed-rule divide-x divide-y divide-ed-rule max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0'>
             {factItems.map(f => (
               <div key={f.id} className='px-6 py-7'>
-                <div className='font-serif-ed text-[42px] font-medium leading-none text-ed-navy-ink'>
+                <div className='font-serif-ed text-[42px] font-semibold leading-none text-ed-navy-ink'>
                   {f.num}
                 </div>
                 <div className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -123,7 +123,7 @@ const AboutPhilippines: FC = () => {
                   className={cn(
                     'mb-4 font-sans-ed text-lg leading-relaxed text-ed-ink-2',
                     i === 0 &&
-                      'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-medium first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
+                      'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-semibold first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
                   )}
                 >
                   {p}
@@ -172,7 +172,7 @@ const AboutPhilippines: FC = () => {
                 <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
                   {s.label}
                 </div>
-                <h3 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+                <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                   {s.title}
                 </h3>
                 <p className='mt-2 text-sm leading-normal text-ed-ink-2'>
@@ -196,7 +196,7 @@ const AboutPhilippines: FC = () => {
                     key={g.id}
                     className='grid grid-cols-[120px_1fr] gap-8 border-b border-ed-rule py-5 max-sm:grid-cols-[80px_1fr] max-sm:gap-4'
                   >
-                    <div className='font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+                    <div className='font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
                       {g.label}
                     </div>
                     <div className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
@@ -222,7 +222,7 @@ const AboutPhilippines: FC = () => {
                     className='grid grid-cols-[1fr_auto] items-center border-b border-ed-rule py-5 text-ed-ink no-underline'
                   >
                     <div>
-                      <div className='font-serif-ed text-2xl font-medium text-ed-navy-ink'>
+                      <div className='font-serif-ed text-2xl font-semibold text-ed-navy-ink'>
                         {e.title}
                       </div>
                       <div className='mt-1 text-sm text-ed-ink-2'>{e.desc}</div>

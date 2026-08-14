@@ -252,7 +252,7 @@ const PhilippinesCulture: FC = () => (
             <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
               {f.month}
             </div>
-            <h4 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+            <h4 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
               {f.name}
             </h4>
             <div className='mt-1 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2'>
@@ -286,13 +286,13 @@ const PhilippinesCulture: FC = () => (
           <div key={f.t} className='border border-ed-rule bg-white p-5'>
             <div
               className={cn(
-                'mb-4 flex h-[88px] items-center justify-center font-serif-ed text-[40px] font-medium text-ed-navy-ink',
+                'mb-4 flex h-[88px] items-center justify-center font-serif-ed text-[40px] font-semibold text-ed-navy-ink',
                 f.tone
               )}
             >
               {f.t[0]}
             </div>
-            <h4 className='font-serif-ed text-xl font-medium text-ed-navy-ink'>
+            <h4 className='font-serif-ed text-xl font-semibold text-ed-navy-ink'>
               {f.t}
             </h4>
             <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -339,7 +339,7 @@ const PhilippinesCulture: FC = () => (
               key={f.name}
               className='grid grid-cols-[80px_1fr_auto] items-baseline gap-4 border-b border-ed-rule py-3 last:border-b-0'
             >
-              <div className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+              <div className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                 {f.pct}%
               </div>
               <div className='font-serif-ed text-[17px] text-ed-ink'>
@@ -384,7 +384,7 @@ const Chapter: FC<{
         )}
       >
         <div>
-          <div className='font-serif-ed text-[80px] font-medium leading-none text-ed-navy-ink max-lg:text-[64px]'>
+          <div className='font-serif-ed text-[80px] font-semibold leading-none text-ed-navy-ink max-lg:text-[64px]'>
             {num}
           </div>
           <div className='mt-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -392,7 +392,7 @@ const Chapter: FC<{
           </div>
         </div>
         <div>
-          <h2 className='m-0 font-serif-ed text-[40px] font-medium leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[32px]'>
+          <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[32px]'>
             {title}
           </h2>
           {children}

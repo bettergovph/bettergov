@@ -264,7 +264,7 @@ const EditorialHits: FC = () => {
                     </span>
                   )}
                 </div>
-                <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                   <Highlight
                     attribute={titleAttr}
                     hit={hit as unknown as Hit<Record<string, string>>}

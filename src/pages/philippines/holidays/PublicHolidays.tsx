@@ -175,7 +175,7 @@ const PublicHolidays: FC = () => {
                             {h.type === 'regular' ? 'Regular' : 'Special'}
                           </Flag>
                         </div>
-                        <div className='font-serif-ed text-[17px] font-medium leading-snug text-ed-ink'>
+                        <div className='font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
                           {h.event}
                         </div>
                         <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -219,13 +219,13 @@ const PublicHolidays: FC = () => {
                           <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-sm:hidden'>
                             {i === 0 ? MONTH_NAMES[monthIdx] : ''}
                           </div>
-                          <div className='font-serif-ed text-[17px] font-medium text-ed-ink max-sm:hidden'>
+                          <div className='font-serif-ed text-[17px] font-semibold text-ed-ink max-sm:hidden'>
                             {h.dayOfMonth}
                           </div>
                           <div className='text-[12px] text-ed-ink-3 max-sm:hidden'>
                             {h.dayName.slice(0, 3)}
                           </div>
-                          <div className='font-serif-ed text-[16px] font-medium leading-snug text-ed-ink max-sm:text-[15px]'>
+                          <div className='font-serif-ed text-[16px] font-semibold leading-snug text-ed-ink max-sm:text-[15px]'>
                             {h.event}
                           </div>
                           <div className='max-sm:hidden'>
@@ -305,7 +305,7 @@ const PublicHolidays: FC = () => {
               {/* Stats */}
               <div className='mt-6 grid grid-cols-2 divide-x divide-ed-rule border border-ed-rule'>
                 <div className='p-4'>
-                  <div className='font-serif-ed text-[28px] font-medium text-ed-ink'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
                     {holidays.filter(h => h.type === 'regular').length}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -313,7 +313,7 @@ const PublicHolidays: FC = () => {
                   </div>
                 </div>
                 <div className='p-4'>
-                  <div className='font-serif-ed text-[28px] font-medium text-ed-ink'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
                     {holidays.filter(h => h.type === 'special').length}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>

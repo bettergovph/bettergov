@@ -117,7 +117,7 @@ const CommunicatingPage: FC = () => {
 
       {/* Print-only header */}
       <header className='hidden print:block px-6 pb-4 pt-8'>
-        <h1 className='font-serif-ed text-[36px] font-medium text-ed-ink'>
+        <h1 className='font-serif-ed text-[36px] font-semibold text-ed-ink'>
           Travel Phrasebook
         </h1>
         <p className='mt-1 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>

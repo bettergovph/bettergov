@@ -46,7 +46,7 @@ const PhilippinesHistory: FC = () => {
               <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/60'>
                 {e.yr}
               </div>
-              <h4 className='mt-1.5 font-serif-ed text-lg font-medium text-white'>
+              <h4 className='mt-1.5 font-serif-ed text-lg font-semibold text-white'>
                 {e.title}
               </h4>
               <p className='mt-1.5 text-xs leading-normal text-white/75'>
@@ -75,7 +75,7 @@ const PhilippinesHistory: FC = () => {
                 <div className='font-mono-ed text-[11px] uppercase tracking-[0.18em] text-ed-ink-3'>
                   {e.yr}
                 </div>
-                <h3 className='mt-2 font-serif-ed text-[32px] font-medium leading-tight text-ed-navy-ink max-md:text-[26px]'>
+                <h3 className='mt-2 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink max-md:text-[26px]'>
                   {e.title}
                 </h3>
                 <span className='mt-3 inline-block bg-ed-navy-tint px-2 py-[3px] font-mono-ed text-[9px] uppercase tracking-[0.16em] text-ed-navy-ink'>
@@ -111,7 +111,7 @@ const PhilippinesHistory: FC = () => {
           <div className='grid grid-cols-3 gap-8 max-lg:grid-cols-1 max-lg:gap-6'>
             {numbers.map(n => (
               <div key={n.label}>
-                <h3 className='m-0 font-serif-ed text-[40px] font-medium leading-none text-ed-navy-ink'>
+                <h3 className='m-0 font-serif-ed text-[40px] font-semibold leading-none text-ed-navy-ink'>
                   {n.num}
                 </h3>
                 <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
@@ -165,7 +165,7 @@ const NextCard: FC<{
     <div className='mb-3'>
       <Eyebrow>{eyebrow}</Eyebrow>
     </div>
-    <h3 className='m-0 font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+    <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
       {title}
     </h3>
     <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>

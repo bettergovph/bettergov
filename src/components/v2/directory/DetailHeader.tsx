@@ -75,7 +75,7 @@ const DetailHeader: FC<Props> = ({
         </div>
       )}
 
-      <h1 className='font-serif-ed text-[clamp(32px,5vw,56px)] font-normal leading-[1.04] tracking-[-0.02em] text-ed-ink'>
+      <h1 className='font-serif-ed text-[clamp(32px,5vw,56px)] font-bold leading-[1.04] tracking-[-0.02em] text-ed-ink'>
         {title}
       </h1>
 

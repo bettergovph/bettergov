@@ -93,7 +93,7 @@ const SenateCommitteesPage: FC = () => {
                   key={`${c.committee}-${i}`}
                   className='grid grid-cols-[1fr_minmax(260px,320px)] gap-6 py-5 max-md:grid-cols-1 max-md:gap-1.5'
                 >
-                  <div className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+                  <div className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
                     {titleCase(c.committee)}
                   </div>
                   <div>
