@@ -70,10 +70,10 @@ test.describe('Navigation', () => {
     // Scroll to footer
     await page.locator('footer').scrollIntoViewIfNeeded();
 
-    // Test About link
+    // Test About the Portal link
     const aboutLink = page
       .locator('footer')
-      .getByRole('link', { name: 'About' });
+      .getByRole('link', { name: 'About the Portal' });
     await expect(aboutLink).toBeVisible();
     await aboutLink.click();
     expect(page.url()).toContain('/about');

@@ -37,7 +37,7 @@
   },
   {
     "service": "Request a Birth Certificate via PSA Serbilis",
-    "url": "https://www.psaserbilis.com.ph/Census/BirthCertificate",
+    "url": "https://www.psaserbilis.com.ph/BirthCertificate",
     "id": "3f6e4e39-1c64-471a-8a05-c79cb186325a",
     "slug": "request-a-birth-certificate-via-psa-serbilis",
     "published": true,
@@ -73,7 +73,7 @@
   },
   {
     "service": "Request a Certificate of No Marriage Record (CENOMAR) via PSA Serbilis",
-    "url": "https://www.psaserbilis.com.ph/Census/CENOMARCertificate",
+    "url": "https://www.psaserbilis.com.ph/CENOMARCertificate",
     "id": "e4f3ea9f-8e61-4458-b746-f4b7537a47b1",
     "slug": "request-a-certificate-of-no-marriage-record-cenomar-via-psa-serbilis",
     "published": true,
@@ -106,6 +106,60 @@
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-06-06T11:30:06.318Z"
+  },
+  {
+    "service": "Request a Death Certificate via PSA Serbilis",
+    "url": "https://www.psaserbilis.com.ph/DeathCertificate",
+    "id": "8a9d4763-1235-4952-a713-ca283053900a",
+    "slug": "request-a-death-certificate-via-psa-serbilis",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Certificates and IDs",
+      "slug": "certificates-ids"
+    },
+    "subcategory": {
+      "name": "Certificates",
+      "slug": "certificates"
+    },
+    "createdAt": "2026-06-13T05:46:14Z",
+    "updatedAt": "2026-06-13T05:46:14Z"
+  },
+  {
+    "service": "Request a Marriage Certificate via PSA Serbilis",
+    "url": "https://www.psaserbilis.com.ph/MarriageCertificate",
+    "id": "8b8eb183-72e1-41d9-bba1-405f7d4b9584",
+    "slug": "request-a-marriage-certificate-via-psa-serbilis",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Certificates and IDs",
+      "slug": "certificates-ids"
+    },
+    "subcategory": {
+      "name": "Certificates",
+      "slug": "certificates"
+    },
+    "createdAt": "2026-06-13T05:46:14Z",
+    "updatedAt": "2026-06-13T05:46:14Z"
+  },
+  {
+    "service": "Request a Certificate of No Death Record (CENODEATH) via PSA Serbilis",
+    "url": "https://www.psaserbilis.com.ph/CENODEATHCertificate",
+    "id": "7708246d-9e02-4932-9fb3-9e051a2e0dd2",
+    "slug": "request-a-certificate-of-no-death-record-cenodeath-via-psa-serbilis",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Certificates and IDs",
+      "slug": "certificates-ids"
+    },
+    "subcategory": {
+      "name": "Certificates",
+      "slug": "certificates"
+    },
+    "createdAt": "2026-06-13T05:46:14Z",
+    "updatedAt": "2026-06-13T05:46:14Z"
   },
   {
     "service": "Request a Death Certificate via PSAHelpline.ph",

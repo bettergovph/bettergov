@@ -23,6 +23,7 @@ export async function navigate(
 
   // For mobile
   if (isMobile) {
+    const sidebarContainer = page.locator('div.block > div.container').first();
     if (hamburger) {
       await page
         .getByRole('button', { name: 'Open main menu' })
@@ -31,11 +32,17 @@ export async function navigate(
     }
 
     if (option) {
-      await page.getByRole('button', { name: option }).first().click();
+      await sidebarContainer
+        .getByRole('link', { name: option })
+        .first()
+        .click();
     }
 
     if (subOption) {
-      await page.getByRole('link', { name: subOption }).first().click();
+      await sidebarContainer
+        .getByRole('link', { name: subOption })
+        .first()
+        .click();
     }
     return;
   }

@@ -10,6 +10,7 @@ const TABS: TabDef[] = [
   { to: '/government/departments', label: 'Departments' },
   { to: '/government/executive', label: 'Executive' },
   { to: '/government/legislative', label: 'Legislative' },
+  { to: '/government/judicial', label: 'Judicial' },
   { to: '/government/constitutional', label: 'Constitutional' },
   { to: '/government/local', label: 'Local Government' },
   { to: '/government/diplomatic', label: 'Diplomatic' },

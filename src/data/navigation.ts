@@ -15,11 +15,16 @@ interface Category {
 export const ourProjects = [
   {
     label: 'Our Projects',
-    href: '#',
+    href: '/projects',
     children: [
       {
         label: '2026 Budget Tracker',
         href: 'https://2026-budget.bettergov.ph',
+        target: '_blank',
+      },
+      {
+        label: 'Better LGU',
+        href: 'https://lgu.bettergov.ph/',
         target: '_blank',
       },
       {
@@ -85,6 +90,11 @@ export const ourProjects = [
       {
         label: 'Research & Visualizations',
         href: 'https://visualizations.bettergov.ph/',
+        target: '_blank',
+      },
+      {
+        label: 'Juris AI',
+        href: 'https://juris.ph',
         target: '_blank',
       },
     ],

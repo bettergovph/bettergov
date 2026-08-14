@@ -1,11 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
-import {
-  GithubIcon,
-  MailIcon,
-  MessageCircleIcon,
-  ClockIcon,
-  ArrowRightIcon,
-} from 'lucide-react';
+import { GithubIcon, MailIcon, ClockIcon, ArrowRightIcon } from 'lucide-react';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Container from '../components/v2/ui/Container';
 import Eyebrow from '../components/v2/ui/Eyebrow';
@@ -36,6 +32,26 @@ const ContactUs: FC = () => {
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <Helmet>
+        <title>Contact Us | BetterGov.ph</title>
+        <meta
+          name='description'
+          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
+        />
+        <meta
+          name='keywords'
+          content='contact, bettergov, volunteer, feedback, support, philippines government'
+        />
+        <link rel='canonical' href='https://bettergov.ph/contact' />
+        <meta property='og:title' content='Contact Us | BetterGov.ph' />
+        <meta
+          property='og:description'
+          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
+        />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://bettergov.ph/contact' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
+      </Helmet>
       <PageMasthead
         variant='light'
         eyebrow='Contact · BetterGov.PH'
@@ -205,7 +221,7 @@ const ContactUs: FC = () => {
                 {/* Discord */}
                 <div className='flex gap-4 p-5'>
                   <div className='mt-0.5 shrink-0 text-ed-navy'>
-                    <MessageCircleIcon size={18} />
+                    <SiDiscord size={18} />
                   </div>
                   <div>
                     <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>

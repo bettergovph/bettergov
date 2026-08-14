@@ -2,8 +2,10 @@ import { SearchIcon, XIcon } from 'lucide-react';
 import { ChangeEvent, FormEvent, InputHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
-interface SearchInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+interface SearchInputProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size'
+> {
   onSearch?: (value: string) => void;
   className?: string;
   placeholder?: string;

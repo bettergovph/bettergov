@@ -5,6 +5,7 @@ import Container from '../../components/v2/ui/Container';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
 import Flag from '../../components/v2/ui/Flag';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
+import ReportHotlineModal from '../../components/ReportHotlineModal';
 import { cn } from '../../lib/utils';
 
 interface Hotline {
@@ -80,6 +81,7 @@ const getListFor = (category: CategoryId): Hotline[] => {
 const Hotlines: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   const counts = useMemo(() => {
     const entries = CATEGORY_KEYS.map(
@@ -238,13 +240,27 @@ const Hotlines: FC = () => {
             </ul>
           )}
 
-          <p className='mt-10 border-t border-ed-rule pt-6 font-serif-ed text-sm text-ed-ink-3'>
-            These hotlines are collected from official government sources. If
-            you notice any outdated information, please report it so the
-            registry stays useful.
-          </p>
+          <div className='mt-10 border-t border-ed-rule pt-6'>
+            <p className='font-serif-ed text-sm text-ed-ink-3'>
+              These hotlines are collected from official government sources. If
+              you notice any outdated information, please report it so the
+              registry stays useful.
+            </p>
+            <button
+              type='button'
+              onClick={() => setIsReportModalOpen(true)}
+              className='mt-3 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy hover:text-ed-red'
+            >
+              Report outdated information →
+            </button>
+          </div>
         </Container>
       </section>
+
+      <ReportHotlineModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+      />
     </main>
   );
 };

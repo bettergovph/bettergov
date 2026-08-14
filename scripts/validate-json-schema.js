@@ -51,7 +51,7 @@ try {
   process.exit(1);
 }
 
-const ajv = new Ajv({ allErrors: true, verbose: true });
+const ajv = new Ajv({ allErrors: true, verbose: true, strict: false });
 let validate;
 try {
   validate = ajv.compile(schema);

@@ -5,9 +5,10 @@ import {
   Languages,
   PaletteIcon,
   GithubIcon,
-  MessageCircleIcon,
   ArrowRightIcon,
 } from 'lucide-react';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
+import { Helmet } from 'react-helmet-async';
 import Container from '../components/v2/ui/Container';
 import Eyebrow from '../components/v2/ui/Eyebrow';
 import Button from '../components/v2/ui/Button';
@@ -73,6 +74,22 @@ const HOW_WE_WORK = [
 
 const JoinUs: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+    <Helmet>
+      <title>Join Us | BetterGov.ph</title>
+      <meta
+        name='description'
+        content='Join BetterGov.ph—A volunteer-led civic tech initiative building open-source tools to make government more transparent, efficient, and accessible.'
+      />
+      <link rel='canonical' href='https://bettergov.ph/join-us' />
+      <meta property='og:title' content='Join Us | BetterGov.ph' />
+      <meta
+        property='og:description'
+        content='Be part of a volunteer-led civic tech initiative building open-source projects for a better government.'
+      />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://bettergov.ph/join-us' />
+      <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
+    </Helmet>
     <PageMasthead
       variant='hero'
       eyebrow='Get involved · BetterGov.PH'
@@ -93,7 +110,7 @@ const JoinUs: FC = () => (
           size='md'
           className='bg-white text-ed-navy-ink border-white hover:bg-ed-paper-2 hover:border-ed-paper-2'
         >
-          <MessageCircleIcon size={15} />
+          <SiDiscord size={15} />
           Join Discord
         </Button>
         <Button
@@ -215,7 +232,7 @@ const JoinUs: FC = () => (
               variant='solid'
               size='md'
             >
-              <MessageCircleIcon size={15} />
+              <SiDiscord size={15} />
               Join Discord
             </Button>
             <Button

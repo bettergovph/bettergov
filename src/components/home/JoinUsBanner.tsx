@@ -2,6 +2,7 @@ import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { SiDiscord } from '@icons-pack/react-simple-icons';
 
 const JoinUsBanner: FC = () => {
   const { t } = useTranslation('common');
@@ -58,6 +59,7 @@ const JoinUsBanner: FC = () => {
               rel='noreferrer'
               className='inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all'
             >
+              <SiDiscord className='h-5 w-5 mr-2' />
               {t('joinUs.joinDiscord')}
             </a>
           </div>

@@ -8,6 +8,7 @@
     "build": "tsc && npm run generate:metadata && tsx ./scripts/write-ver-to-json.ts && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
+    "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
@@ -75,7 +76,11 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.9.1",
     "@playwright/test": "^1.55.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@tailwindcss/vite": "^4.1.13",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/glob": "^8.1.0",
     "@types/leaflet": "^1.9.18",
     "@types/node": "^24.5.2",
@@ -93,15 +98,18 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
+    "semantic-release": "^25.0.3",
     "tailwindcss": "^4.1.13",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "uuid": "^9.0.1",
-    "vite": "^5.4.2"
+    "vitest": "^4.1.4",
+    "vite": "^7.3.3"
   },
   "overrides": {
+    "ws": "8.20.1",
     "react-helmet-async": {
       "react": "^19.0.0",
       "react-dom": "^19.0.0"

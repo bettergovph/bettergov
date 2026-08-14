@@ -27,6 +27,7 @@ const AboutPage: FC = () => (
       />
       <meta property='og:type' content='website' />
       <meta property='og:url' content='https://bettergov.ph/about' />
+      <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
       <link rel='canonical' href='https://bettergov.ph/about' />
     </Helmet>
 

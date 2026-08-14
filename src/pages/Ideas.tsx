@@ -89,6 +89,7 @@ const Ideas: FC = () => {
         />
         <meta property='og:type' content='website' />
         <meta property='og:url' content='https://bettergov.ph/ideas' />
+        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
       </Helmet>
 
       <PageMasthead
