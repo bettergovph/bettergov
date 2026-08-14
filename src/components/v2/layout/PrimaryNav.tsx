@@ -10,11 +10,18 @@ const navItemBase =
   'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-semibold text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
 
 /**
- * Applied only while a dropdown is open, so the trigger stays highlighted
- * once the pointer moves into the menu. The current route is deliberately
- * not highlighted.
+ * Subtle tint — matches the hover treatment — used both for the current
+ * route and for a dropdown whose menu is open.
  */
-const openClasses = 'bg-ed-navy-tint text-ed-navy';
+const activeClasses = 'bg-ed-navy-tint text-ed-navy';
+
+const isActivePath = (pathname: string, href: string) => {
+  if (!href) return false;
+  const path = pathname.replace(/\/$/, '');
+  const h = href.replace(/\/$/, '');
+  if (h === '') return path === '';
+  return path === h || path.startsWith(h + '/');
+};
 
 const PrimaryNav: FC = () => {
   const { t } = useTranslation('common');
@@ -78,18 +85,29 @@ const PrimaryNav: FC = () => {
       aria-label='Primary'
     >
       <Container className='flex items-stretch justify-start flex-wrap'>
-        <Link to='/' className={navItemBase}>
+        <Link
+          to='/'
+          className={cn(
+            navItemBase,
+            location.pathname === '/' && activeClasses
+          )}
+        >
           {t('navbar.home', 'Home')}
         </Link>
 
         {mainNavigation.map(item => {
+          const active = isActivePath(location.pathname, item.href);
           const key = item.label.toLowerCase();
           const label = t(`navbar.${key}`, item.label);
           const isOpen = openItem === item.label;
 
           if (!item.children) {
             return (
-              <Link key={item.label} to={item.href} className={navItemBase}>
+              <Link
+                key={item.label}
+                to={item.href}
+                className={cn(navItemBase, active && activeClasses)}
+              >
                 {label}
               </Link>
             );
@@ -110,7 +128,7 @@ const PrimaryNav: FC = () => {
                 className={cn(
                   navItemBase,
                   'cursor-pointer select-none border-0 bg-transparent',
-                  isOpen && openClasses
+                  (active || isOpen) && activeClasses
                 )}
               >
                 <span>{label}</span>
