@@ -5,6 +5,12 @@ import versionData from '../../../version.json';
 import Container from '../ui/Container';
 import Flag from '../ui/Flag';
 import FooterColumn, { FooterLink } from './FooterColumn';
+import {
+  COAT_OF_ARMS_ALT,
+  COAT_OF_ARMS_SRC,
+  SITE_NAME,
+  SITE_OWNER,
+} from '../../../lib/brand';
 
 type Version = { head_commit: string };
 
@@ -121,15 +127,31 @@ const Footer: FC = () => {
       <Container>
         <div className='grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10 border-b border-white/10 pb-12 max-lg:grid-cols-[1fr_1fr_1fr] max-md:grid-cols-[1fr_1fr] max-md:gap-7 max-md:pb-8 max-[480px]:grid-cols-1'>
           <div className='max-md:col-span-full'>
-            <img
-              src='https://assets.bettergov.ph/logos/svg/horizontal-white.svg'
-              alt='BetterGov.ph'
-              className='block h-10 w-auto'
-            />
+            <div className='flex items-center gap-3'>
+              <img
+                src={COAT_OF_ARMS_SRC}
+                alt={COAT_OF_ARMS_ALT}
+                className='block h-12 w-auto'
+              />
+              <span className='block'>
+                <span className='block font-serif-ed text-xl font-bold leading-none text-white'>
+                  {SITE_NAME}
+                </span>
+                <span className='mt-1 block text-[11px] leading-tight text-white/60'>
+                  {SITE_OWNER}
+                </span>
+              </span>
+            </div>
             <p className='mt-4 max-w-[340px] leading-relaxed text-white/60'>
               {t(
                 'footerAbout.description',
-                'An independent, open-source project making Philippine government information and services easier to find, read, and use. Not affiliated with the Republic of the Philippines.'
+                'The official website of the Republic of the Philippines, making government information and services easier to find, read, and use.'
+              )}
+            </p>
+            <p className='mt-3 max-w-[340px] leading-relaxed text-white/60'>
+              {t(
+                'footerAbout.builtBy',
+                'Built by eGov, BetterGov, and hundreds of citizen volunteers.'
               )}
             </p>
             <div className='mt-6 flex gap-3'>
@@ -163,11 +185,11 @@ const Footer: FC = () => {
             © {new Date().getFullYear()}{' '}
             {t(
               'footerBottom.copyright',
-              'Bettergov.ph Civic Initiative · Makati City'
+              'Republic of the Philippines · All rights reserved'
             )}
           </span>
           <span>
-            {t('footerBottom.license', 'Built by volunteers · CC BY 4.0 · MIT')}
+            {t('footerBottom.license', 'CC BY 4.0 · MIT')}
             {version ? ` · ${version}` : ''}
           </span>
         </div>

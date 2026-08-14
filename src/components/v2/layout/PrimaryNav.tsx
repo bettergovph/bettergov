@@ -146,7 +146,7 @@ const PrimaryNav: FC = () => {
                     to={item.href}
                     role='menuitem'
                     onClick={() => setOpenItem(null)}
-                    className='block bg-ed-navy-tint px-6 py-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
+                    className='block bg-ed-navy-tint px-6 py-3 font-sans-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
                   >
                     {label} overview →
                   </Link>

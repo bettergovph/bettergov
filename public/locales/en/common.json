@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Welcome to BetterGov.ph",
-    "subtitle": "The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.",
+    "title": "Welcome to GOV.PH",
+    "subtitle": "The official portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
@@ -45,7 +45,7 @@
     "accessibility": "Accessibility",
     "about": "About",
     "joinUs": "Join us",
-    "tagline": "An independent civic service · open source",
+    "tagline": "The official website of the Republic of the Philippines",
     "search": "Search",
     "signIn": "Sign in",
     "menu": "Menu",
@@ -82,12 +82,13 @@
     "reportBug": "Report a bug"
   },
   "footerAbout": {
-    "description": "An independent, open-source project making Philippine government information and services easier to find, read, and use. Not affiliated with the Republic of the Philippines.",
-    "openSource": "Open Source"
+    "description": "The official website of the Republic of the Philippines, making government information and services easier to find, read, and use.",
+    "openSource": "Open Source",
+    "builtBy": "Built by eGov, BetterGov, and hundreds of citizen volunteers."
   },
   "footerBottom": {
-    "copyright": "Bettergov.ph Civic Initiative · Makati City",
-    "license": "Built by volunteers · CC BY 4.0 · MIT"
+    "copyright": "Republic of the Philippines · All rights reserved",
+    "license": "CC BY 4.0 · MIT"
   },
   "joinUs": {
     "stripTitle": "🚀 Join the #CivicTech Revolution",

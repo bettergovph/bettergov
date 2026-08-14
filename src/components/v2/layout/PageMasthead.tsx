@@ -17,8 +17,8 @@ type Props = {
   /**
    * `light` — paper-2 background with ed-ink title (default, good for
    * listing/detail pages).
-   * `hero` — navy gradient with white title (used sparingly for landing
-   * sections).
+   * `hero` — flat ed-navy-2 band with white title (used for landing
+   * sections and section mastheads).
    */
   variant?: Variant;
   className?: string;
@@ -26,7 +26,8 @@ type Props = {
 
 const variantClasses: Record<Variant, string> = {
   light: 'bg-ed-paper-2 border-b border-ed-ink text-ed-ink',
-  hero: 'bg-gradient-to-r from-ed-navy-2 to-ed-navy-ink text-white',
+  // Single flat blue shared by every hero band, including the landing hero.
+  hero: 'bg-ed-navy-2 text-white',
 };
 
 const PageMasthead: FC<Props> = ({
