@@ -70,12 +70,7 @@ const CommunicatingPage: FC = () => {
       <div className='print:hidden'>
         <PageMasthead
           variant='hero'
-          title={
-            <>
-              Essential phrases,{' '}
-              <em className='italic font-normal'>across the archipelago.</em>
-            </>
-          }
+          title='Essential phrases'
           lede='Greetings, directions, food, emergencies — written in Tagalog and Bisaya alongside your language of choice. Print a copy to carry, or browse by topic.'
         >
           <div className='mt-6 flex flex-wrap items-center gap-3'>
@@ -166,7 +161,7 @@ const CommunicatingPage: FC = () => {
                   className='break-inside-avoid print:break-inside-avoid'
                 >
                   <SectionHeader
-                    num={`§ ${String(i + 1).padStart(2, '0')}`}
+                    num={`${String(i + 1).padStart(2, '0')}`}
                     label={cat.category}
                     meta={`${cat.phrases.length} phrases`}
                   />

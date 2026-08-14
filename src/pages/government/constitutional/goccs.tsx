@@ -49,12 +49,7 @@ const GOCCsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            GOCCs,{' '}
-            <em className='italic font-normal'>corporations of the state.</em>
-          </>
-        }
+        title='Government-owned and controlled corporations'
         lede='Government-Owned and Controlled Corporations — state-owned entities chartered to carry out commercial, developmental, or regulatory mandates.'
       />
 

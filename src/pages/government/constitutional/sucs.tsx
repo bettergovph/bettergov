@@ -49,12 +49,7 @@ const SUCsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            State universities{' '}
-            <em className='italic font-normal'>and colleges.</em>
-          </>
-        }
+        title='State universities and colleges'
         lede='Public higher-education institutions funded by the national government — ranging from the University of the Philippines system to regional state colleges.'
       />
 

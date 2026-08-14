@@ -92,11 +92,7 @@ const JoinUs: FC = () => (
     </Helmet>
     <PageMasthead
       variant='hero'
-      title={
-        <>
-          Join the <span className='italic'>#CivicTech</span> revolution
-        </>
-      }
+      title='Join us'
       lede='We are volunteer-led builders, writers, and designers making government data open and accessible to every Filipino. No permission needed — just bring your skills.'
     >
       <div className='flex flex-wrap gap-3'>

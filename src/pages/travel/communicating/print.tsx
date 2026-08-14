@@ -47,7 +47,7 @@ const CommunicatingPrintPage: FC = () => {
           <div className='mx-auto flex max-w-[1360px] flex-wrap items-center justify-between gap-4 px-[18px] md:px-6 xl:px-8'>
             <div>
               <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
-                § Travel · Printable phrasebook
+                Travel · Printable phrasebook
               </div>
               <h1 className='mt-1 font-serif-ed text-[36px] font-semibold leading-tight text-ed-ink'>
                 Travel Phrasebook

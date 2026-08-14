@@ -39,12 +39,7 @@ const SalaryGradePage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Salary grades{' '}
-            <em className='italic font-normal'>one through thirty-three.</em>
-          </>
-        }
+        title='Salary grades'
         lede='The standardized compensation schedule for civilian personnel of the Philippine government — 33 salary grades, each with 8 steps, as published by the Department of Budget and Management.'
       />
 

@@ -56,12 +56,7 @@ const OrganizationsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            International organizations{' '}
-            <em className='italic font-normal'>based in Manila.</em>
-          </>
-        }
+        title='International organizations'
         lede='Offices of the United Nations, the Asian Development Bank, and other international bodies hosted in the Philippines — with resident representative and contact.'
       />
 

@@ -338,7 +338,7 @@ const EditorialPagination: FC = () => {
     <div className='mt-8 border-t border-ed-rule pt-6'>
       <div className='mb-3'>
         <Eyebrow>
-          § page {currentRefinement + 1} of {nbPages}
+          page {currentRefinement + 1} of {nbPages}
         </Eyebrow>
       </div>
       <div className='flex flex-wrap items-center gap-1'>

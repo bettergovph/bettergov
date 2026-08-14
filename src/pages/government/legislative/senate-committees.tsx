@@ -47,12 +47,7 @@ const SenateCommitteesPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Senate committees,{' '}
-            <em className='italic font-normal'>by chairperson.</em>
-          </>
-        }
+        title='Senate committees'
         lede='The Senate divides its legislative work across permanent committees — each led by a chairperson who steers deliberation on a specific policy area.'
       />
 

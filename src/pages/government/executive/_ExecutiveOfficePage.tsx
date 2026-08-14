@@ -142,7 +142,7 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug }) => {
           {divisions.map((d, i) => (
             <div key={d.office_division} className='mt-10'>
               <SectionHeader
-                num={`§ 0${i + (flat.length > 0 ? 2 : 1)}`}
+                num={`0${i + (flat.length > 0 ? 2 : 1)}`}
                 label={titleCase(d.office_division)}
                 meta={`${d.personnel.length} ${d.personnel.length === 1 ? 'person' : 'people'}`}
               />

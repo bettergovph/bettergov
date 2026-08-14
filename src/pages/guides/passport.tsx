@@ -204,9 +204,7 @@ const PassportGuide: FC = () => {
                   <Flag variant='red'>Most requested</Flag>
                 </div>
                 <h1 className='font-serif-ed text-[clamp(42px,6vw,72px)] font-bold leading-none tracking-[-0.03em] text-ed-ink'>
-                  The Philippine
-                  <br />
-                  <em className='italic font-normal'>passport</em>, explained.
+                  The Philippine passport
                 </h1>
                 <p className='mt-6 max-w-[560px] font-sans-ed text-xl leading-snug text-ed-ink-2'>
                   Whether you&rsquo;re applying for the first time, renewing an

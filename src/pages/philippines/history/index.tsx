@@ -27,15 +27,7 @@ const PhilippinesHistory: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            {t('history.hero.title')}{' '}
-            <em className='italic font-normal'>
-              {t('history.hero.titleEmphasis')}
-            </em>{' '}
-            {t('history.hero.titleSuffix')}
-          </>
-        }
+        title={t('history.hero.title')}
         lede={t('history.hero.description')}
       >
         {/* Era strip */}

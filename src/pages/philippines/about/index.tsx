@@ -74,15 +74,7 @@ const AboutPhilippines: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            {t('about.hero.title')}{' '}
-            <em className='italic font-normal'>
-              {t('about.hero.titleEmphasis')}
-            </em>{' '}
-            {t('about.hero.titleSuffix')}
-          </>
-        }
+        title={t('about.hero.title')}
         lede={t('about.hero.description')}
       />
 
@@ -107,7 +99,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §01 What is the Philippines */}
+      {/* 01 What is the Philippines */}
       <section className='mt-16'>
         <Container>
           <SectionHeader
@@ -150,7 +142,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §02 National symbols */}
+      {/* 02 National symbols */}
       <section className='mt-16'>
         <Container>
           <SectionHeader
@@ -183,7 +175,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §03 + §04 split */}
+      {/* 03 + 04 split */}
       <section className='mt-20 mb-20'>
         <Container>
           <div className='grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-12'>

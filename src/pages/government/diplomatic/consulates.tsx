@@ -48,11 +48,7 @@ const ConsulatesPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Consulates, <em className='italic font-normal'>ad honorem.</em>
-          </>
-        }
+        title='Consulates'
         lede='Consulates and honorary consulates representing foreign states in the Philippines — typically for citizen services, notarial acts, and trade promotion.'
       />
 

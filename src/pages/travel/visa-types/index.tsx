@@ -67,12 +67,7 @@ const VisaTypesPage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Philippine visa types,{' '}
-            <em className='italic font-normal'>by category.</em>
-          </>
-        }
+        title='Philippine visa types'
         lede='Explore the different types of visas available for travel to the Philippines — grouped by category, each linking to the specific requirements, fees, and validity.'
       />
 

@@ -1,10 +1,8 @@
 {
   "about": {
     "hero": {
-      "eyebrow": "§ Pilipinas · Panimula",
-      "title": "Ang Republika",
-      "titleEmphasis": "ng",
-      "titleSuffix": "Pilipinas",
+      "eyebrow": "Pilipinas · Panimula",
+      "title": "Ang Republika ng Pilipinas",
       "description": "Isang kapuluan ng 7,641 na isla sa Timog-Silangang Asya. Tahanan ng 117 milyong Pilipino sa 18 rehiyon, 82 probinsya, at higit sa 180 wikang sinasalita. Isang malayang demokratikong republika mula noong 1946."
     },
     "factbox": {
@@ -117,10 +115,8 @@
   },
   "history": {
     "hero": {
-      "eyebrow": "§ Pilipinas · Timeline",
-      "title": "Kasaysayan",
-      "titleEmphasis": "ng",
-      "titleSuffix": "mga isla",
+      "eyebrow": "Pilipinas · Timeline",
+      "title": "Kasaysayan ng Pilipinas",
       "description": "Mahigit 700,000 taon ng kuwentong-tao — mula sa mga unang naninirahan, sa mga polityang Austronesyano, 333 taon ng pananakop ng Espanya, kalahating siglo sa ilalim ng Estados Unidos, pananakop ng Hapon, hanggang sa Ikalimang Republika.",
       "photoCredit": "Photo credit"
     },
@@ -131,7 +127,7 @@
       "body": "Karamihan ng ating nalalaman tungkol sa pre-kolonyal na mga polity ay galing sa mga rekord ng Tsina, seramika, at panitikan; bihira ang nakasulat na katutubong arkibo at karamihan ay nawasak sa panahon ng Espanyol."
     },
     "byTheNumbers": {
-      "eyebrow": "§ 02 · Sa mga numero"
+      "eyebrow": "02 · Sa mga numero"
     },
     "timeline": {
       "title": "Timeline ng Kasaysayan",

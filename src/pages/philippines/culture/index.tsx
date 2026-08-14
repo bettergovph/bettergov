@@ -187,11 +187,7 @@ const PhilippinesCulture: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <PageMasthead
       variant='hero'
-      title={
-        <>
-          A nation of <em className='italic font-normal'>Bayanihan</em>
-        </>
-      }
+      title='Culture'
       lede='The Philippines is a mosaic — Austronesian at its roots, touched by China and India, shaped by three centuries of Spain and half a century of America, held together by family, faith, and fiesta.'
     />
 

@@ -55,11 +55,7 @@ const GuidesIndex: FC = () => {
 
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Every step, <em className='italic font-normal'>explained.</em>
-          </>
-        }
+        title='Guides'
         lede='Detailed, step-by-step guides to the most common transactions with the Philippine government. Written in plain language, organized as checklists, and updated when rules change.'
       >
         <div className='mt-7 grid grid-cols-4 gap-12 border-t border-white/20 pt-6 max-md:grid-cols-2 max-md:gap-6'>

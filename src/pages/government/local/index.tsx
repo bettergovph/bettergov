@@ -68,11 +68,7 @@ const LocalGovernmentIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            Local government, <em className='italic font-normal'>by region.</em>
-          </>
-        }
+        title='Local government'
         lede='The Philippines is divided into 18 administrative regions, subdivided into 82 provinces, 149 cities, and 1,493 municipalities. Pick a region to browse its LGUs.'
       />
 

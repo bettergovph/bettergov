@@ -434,12 +434,7 @@ const VisaPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        title={
-          <>
-            {t('hero.title')}{' '}
-            <em className='italic font-normal'>in plain terms.</em>
-          </>
-        }
+        title={t('hero.title')}
         lede={t('hero.subtitle')}
       >
         <div className='mt-3 flex flex-wrap items-center gap-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white/70'>
