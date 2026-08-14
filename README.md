@@ -78,7 +78,7 @@ npm install
 npm run dev
 ```
 
-**Access the application at:** `http://localhost:5173`
+**Access the application at:** `http://localhost:5125`
 
 ## GitHub Codespaces
 
@@ -119,7 +119,7 @@ docker-compose up -d
 # Stop the service
 docker-compose down
 ```
-**Access the application at:** `http://localhost:5173`
+**Access the application at:** `http://localhost:5125`
 
 ## Testing
 

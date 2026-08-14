@@ -4,7 +4,7 @@ services:
       context: .
       target: dev
     ports:
-      - '5173:5173'
+      - '5125:5125'
     volumes:
       - ./src:/app/src
       - ./public:/app/public
