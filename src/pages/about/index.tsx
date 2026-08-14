@@ -4,6 +4,7 @@ import { GithubIcon } from 'lucide-react';
 import Container from '../../components/v2/ui/Container';
 import Dropcap from '../../components/v2/ui/Dropcap';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Flag from '../../components/v2/ui/Flag';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
@@ -44,7 +45,7 @@ const AboutPage: FC = () => (
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 max-w-[900px]'>
           {/* Left column */}
           <div>
-            <Eyebrow className='mb-4'>Our mission</Eyebrow>
+            <SectionHeader label='Our mission' />
             <Dropcap className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph exists because government information in the
               Philippines is scattered, hard to navigate, and often inaccessible
@@ -62,7 +63,7 @@ const AboutPage: FC = () => (
 
           {/* Right column */}
           <div>
-            <Eyebrow className='mb-4'>How we work</Eyebrow>
+            <SectionHeader label='How we work' />
             <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph is open source, volunteer-run, and operates
               independently of any government body or political party. We are
@@ -109,10 +110,7 @@ const AboutPage: FC = () => (
     <section className='py-14 max-md:py-8 border-b border-ed-rule'>
       <Container>
         <div className='max-w-[900px]'>
-          <div className='mb-6 flex items-center gap-4'>
-            <Eyebrow>Maintainers</Eyebrow>
-            <span className='flex-1 h-px bg-ed-rule' />
-          </div>
+          <SectionHeader label='Maintainers' />
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {MAINTAINERS.map(m => (

@@ -10,7 +10,7 @@ import {
 import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { Helmet } from 'react-helmet-async';
 import Container from '../components/v2/ui/Container';
-import Eyebrow from '../components/v2/ui/Eyebrow';
+import SectionHeader from '../components/v2/ui/SectionHeader';
 import Button from '../components/v2/ui/Button';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 
@@ -126,9 +126,7 @@ const JoinUs: FC = () => (
     {/* How we work */}
     <section className='border-b border-ed-rule py-14 max-md:py-8'>
       <Container>
-        <div className='mb-8 border-t-2 border-ed-navy pt-5'>
-          <Eyebrow tone='navy'>How we work</Eyebrow>
-        </div>
+        <SectionHeader label='How we work' />
         <div className='grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1'>
           {HOW_WE_WORK.map(item => (
             <div key={item.label}>
@@ -147,9 +145,7 @@ const JoinUs: FC = () => (
     {/* Roles grid */}
     <section className='py-14 max-md:py-8'>
       <Container>
-        <div className='mb-8 border-t-2 border-ed-navy pt-5'>
-          <Eyebrow tone='navy'>Open roles</Eyebrow>
-        </div>
+        <SectionHeader label='Open roles' />
         <div className='grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
           {ROLES.map(role => (
             <div
@@ -184,9 +180,7 @@ const JoinUs: FC = () => (
     {/* Manifesto band */}
     <section className='bg-ed-navy-ink py-16 max-md:py-10'>
       <Container narrow>
-        <div className='mb-6'>
-          <Eyebrow tone='onDark'>Why we build</Eyebrow>
-        </div>
+        <SectionHeader label='Why we build' onDark />
         <blockquote className='space-y-5 font-sans-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
           <p>We&rsquo;re done waiting for government to modernise itself.</p>
           <p>
@@ -206,9 +200,6 @@ const JoinUs: FC = () => (
       <Container>
         <div className='flex items-start justify-between gap-8 max-md:flex-col'>
           <div>
-            <div className='mb-3'>
-              <Eyebrow tone='navy'>Ready to contribute?</Eyebrow>
-            </div>
             <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight text-ed-ink'>
               Join the community and{' '}
               <span className='text-ed-navy'>start building today.</span>

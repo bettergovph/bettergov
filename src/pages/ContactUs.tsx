@@ -4,9 +4,9 @@ import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Container from '../components/v2/ui/Container';
-import Eyebrow from '../components/v2/ui/Eyebrow';
 import Button from '../components/v2/ui/Button';
 import PageMasthead from '../components/v2/layout/PageMasthead';
+import SectionHeader from '../components/v2/ui/SectionHeader';
 
 const ContactUs: FC = () => {
   const [sent, setSent] = useState(false);
@@ -63,9 +63,7 @@ const ContactUs: FC = () => {
           <div className='grid grid-cols-[1fr_380px] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
             {/* Left: contact form */}
             <div>
-              <div className='mb-6 border-t-2 border-ed-navy pt-5'>
-                <Eyebrow tone='navy'>Send us a message</Eyebrow>
-              </div>
+              <SectionHeader label='Send us a message' />
 
               {sent ? (
                 <div className='border border-ed-rule bg-ed-paper-2 p-8'>
@@ -191,9 +189,7 @@ const ContactUs: FC = () => {
 
             {/* Right: contact card */}
             <div className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-10'>
-              <div className='mb-6 border-t-2 border-ed-navy pt-5 max-lg:border-t-0 max-lg:pt-0'>
-                <Eyebrow tone='navy'>Contact channels</Eyebrow>
-              </div>
+              <SectionHeader label='Contact channels' />
 
               <div className='space-y-0 divide-y divide-ed-rule border border-ed-rule'>
                 {/* Email */}

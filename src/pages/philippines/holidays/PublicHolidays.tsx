@@ -1,8 +1,8 @@
 import { FC, useMemo, useState } from 'react';
 import Container from '../../../components/v2/ui/Container';
-import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
 
 interface HolidayDef {
   event: string;
@@ -158,9 +158,7 @@ const PublicHolidays: FC = () => {
               {/* Upcoming strip */}
               {upcoming.length > 0 && (
                 <div className='mb-10'>
-                  <div className='mb-4 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Upcoming</Eyebrow>
-                  </div>
+                  <SectionHeader label='Upcoming' />
                   <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1'>
                     {upcoming.map(h => (
                       <div
@@ -188,9 +186,7 @@ const PublicHolidays: FC = () => {
               )}
 
               {/* Month-by-month table */}
-              <div className='mb-4 border-t-2 border-ed-navy pt-4'>
-                <Eyebrow tone='navy'>Full calendar · {year}</Eyebrow>
-              </div>
+              <SectionHeader label={`Full calendar · ${year}`} />
 
               {/* Column headers */}
               <div className='grid grid-cols-[100px_60px_60px_1fr_100px] border-b border-ed-rule pb-2 max-sm:hidden'>
@@ -254,9 +250,7 @@ const PublicHolidays: FC = () => {
             <aside className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-8'>
               {/* Legend */}
               <div className='mb-8'>
-                <div className='mb-4 border-t-2 border-ed-navy pt-4 max-lg:border-t-0 max-lg:pt-0'>
-                  <Eyebrow tone='navy'>Legend</Eyebrow>
-                </div>
+                <SectionHeader label='Legend' />
                 <div className='space-y-3'>
                   <div className='flex items-start gap-3'>
                     <Flag variant='navy'>Regular</Flag>

@@ -5,6 +5,7 @@ import { ForexRate } from '../../types';
 import Container from '../../components/v2/ui/Container';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 
 const FLAG_MAP: Record<string, string> = {
   USD: '🇺🇸',
@@ -127,9 +128,7 @@ const ForexPage: FC = () => {
               {/* Major-currency KPI strip */}
               {majorRates.length > 0 && (
                 <div className='mb-12'>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Major currencies</Eyebrow>
-                  </div>
+                  <SectionHeader label='Major currencies' />
                   <div className='grid grid-cols-5 gap-4 max-lg:grid-cols-3 max-sm:grid-cols-2'>
                     {majorRates.map(r => (
                       <div

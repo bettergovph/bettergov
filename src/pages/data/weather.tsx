@@ -2,8 +2,8 @@ import { useState, useEffect, FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { fetchWeatherData } from '../../lib/weather';
 import Container from '../../components/v2/ui/Container';
-import Eyebrow from '../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 
 interface CityWeather {
   location: string;
@@ -89,9 +89,7 @@ const WeatherPage: FC = () => {
               {/* Major city KPI cards */}
               {majorCities.length > 0 && (
                 <div className='mb-12'>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Major cities</Eyebrow>
-                  </div>
+                  <SectionHeader label='Major cities' />
                   <div className='grid grid-cols-5 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
                     {majorCities.map(city => (
                       <div
@@ -135,9 +133,7 @@ const WeatherPage: FC = () => {
               {/* All cities editorial list */}
               {allCities.length > 0 && (
                 <div>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>All cities</Eyebrow>
-                  </div>
+                  <SectionHeader label='All cities' />
 
                   {/* Table header */}
                   <div className='hidden border-b border-ed-rule pb-2 md:grid md:grid-cols-[2fr_1fr_1fr_1fr_1fr]'>
