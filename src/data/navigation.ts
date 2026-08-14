@@ -213,32 +213,30 @@ export const mainNavigation: NavigationItem[] = [
     ],
   },
   {
-    label: 'Flood Control Projects',
-    href: '/flood-control-projects',
+    label: 'Transparency',
+    href: 'https://transparency.bettergov.ph',
+    target: '_blank',
     children: [
       {
-        label: 'Charts',
-        href: '/flood-control-projects',
-        blurb: 'Overview of spending and completion trends.',
+        label: 'Budget Transparency',
+        href: 'https://compass.dbm.gov.ph',
+        target: '_blank',
+        blurb: 'DBM Compass — national budget allocations and releases.',
       },
       {
-        label: 'Table',
-        href: '/flood-control-projects/table',
-        blurb: 'Searchable project-by-project records.',
+        label: 'DPWH Transparency',
+        href: 'https://transparency.dpwh.gov.ph',
+        target: '_blank',
+        blurb: 'Infrastructure projects, contracts, and status.',
       },
       {
-        label: 'Map',
-        href: '/flood-control-projects/map',
-        blurb: 'Geospatial view of all projects.',
-      },
-      {
-        label: 'Contractors',
-        href: '/flood-control-projects/contractors',
-        blurb: 'Company profiles and award history.',
+        label: "Citizen's Transparency Portal",
+        href: 'https://transparency.bettergov.ph',
+        target: '_blank',
+        blurb: 'Citizen-facing view of government spending data.',
       },
     ],
   },
-  ...ourProjects,
 ];
 
 export const footerNavigation = {
