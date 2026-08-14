@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ChevronDownIcon } from 'lucide-react';
 import { LANGUAGES } from '../../../i18n/languages';
 import { LanguageType } from '../../../types';
 
@@ -7,12 +8,12 @@ const LangToggle: FC = () => {
   const { i18n } = useTranslation();
 
   return (
-    <div className='inline-flex'>
+    <div className='relative inline-flex'>
       <select
         aria-label='Language'
         value={i18n.language}
         onChange={e => i18n.changeLanguage(e.target.value as LanguageType)}
-        className='appearance-none border-0 bg-transparent p-0 font-sans-ed text-[12px] text-ed-ink-3 cursor-pointer hover:text-ed-navy focus:outline-none'
+        className='cursor-pointer appearance-none border border-ed-rule-strong bg-white py-1 pl-2.5 pr-7 font-serif-ed text-[12px] text-ed-ink-3 transition-colors hover:border-ed-navy hover:text-ed-navy focus:border-ed-navy focus:outline-none'
       >
         {Object.entries(LANGUAGES).map(([code, lang]) => (
           <option key={code} value={code}>
@@ -20,6 +21,10 @@ const LangToggle: FC = () => {
           </option>
         ))}
       </select>
+      <ChevronDownIcon
+        size={12}
+        className='pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-ed-ink-3'
+      />
     </div>
   );
 };

@@ -46,7 +46,7 @@ const MastheadTop: FC = () => {
   const currentRate = forexRates[forexIndex];
 
   return (
-    <div className='flex items-center justify-between border-b border-ed-rule py-2.5 font-sans-ed text-[12px] tracking-normal text-ed-ink-3 max-md:flex-col max-md:items-start max-md:gap-1.5 max-md:py-2 max-md:text-[11px]'>
+    <div className='flex items-center justify-between border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-md:flex-col max-md:items-start max-md:gap-1.5 max-md:py-2 max-md:text-[11px]'>
       <div className='flex items-center gap-4 max-md:flex-wrap max-md:gap-2'>
         <span>{today}</span>
         {weather.length > 0 && (
