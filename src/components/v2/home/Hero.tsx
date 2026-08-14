@@ -76,12 +76,12 @@ const Hero: FC = () => {
   ];
 
   return (
-    <section className='bg-ed-navy-2 py-12 text-white md:py-24'>
+    <section className='bg-ed-navy-2 py-16 text-white'>
       <Container>
         <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2'>
           {/* Left: headline, search, and quick links */}
           <div className='animate-fade-in'>
-            <h1 className='mb-4 font-serif-ed text-3xl font-bold leading-tight md:text-4xl lg:text-5xl'>
+            <h1 className='mb-4 font-serif-ed text-3xl font-bold leading-none md:text-4xl lg:text-5xl'>
               {t('hero.title')}
             </h1>
             <p className='mb-8 max-w-lg font-sans-ed text-lg text-blue-200'>
