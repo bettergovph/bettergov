@@ -126,7 +126,6 @@ const RegionalLGUPage: FC = () => {
           { label: 'Local Government', to: '/government/local' },
           { label: titleCase(regionData.region) },
         ]}
-        eyebrow={`Region · ${units.length} cities and municipalities`}
         title={titleCase(regionData.region)}
       />
 

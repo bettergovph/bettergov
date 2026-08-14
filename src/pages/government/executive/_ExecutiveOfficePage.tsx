@@ -39,10 +39,9 @@ type Office = {
 
 type Props = {
   officeSlug: string;
-  eyebrow?: string;
 };
 
-const ExecutiveOfficePage: FC<Props> = ({ officeSlug, eyebrow }) => {
+const ExecutiveOfficePage: FC<Props> = ({ officeSlug }) => {
   const office = useMemo(
     () => (executiveData as Office[]).find(o => o.slug === officeSlug),
     [officeSlug]
@@ -103,7 +102,6 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug, eyebrow }) => {
           { label: 'Executive', to: '/government/executive' },
           { label: name },
         ]}
-        eyebrow={eyebrow ?? 'Executive office'}
         title={name}
         address={office.address}
         trunkline={office.trunkline}

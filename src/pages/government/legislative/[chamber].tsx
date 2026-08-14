@@ -51,7 +51,6 @@ const LegislativeChamber: FC = () => {
           { label: 'Legislative', to: '/government/legislative' },
           { label: name },
         ]}
-        eyebrow={chamber.branch ?? 'Legislative branch'}
         title={name}
         address={chamber.address}
         trunkline={chamber.trunkline}

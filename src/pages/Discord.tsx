@@ -22,7 +22,6 @@ export default function Discord() {
       </Helmet>
 
       <PageMasthead
-        eyebrow='Community · Discord'
         title='Join us on Discord'
         lede='Connect with volunteer contributors and civic tech enthusiasts building a better government portal for the Philippines.'
       />

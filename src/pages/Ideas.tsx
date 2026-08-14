@@ -94,7 +94,6 @@ const Ideas: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Ideas'
         title='Project ideas'
         lede='Open civic tech concepts to improve transparency, accountability, and citizen engagement. Pick one up, build it, and ship it.'
       />

@@ -82,7 +82,6 @@ const WebsitesDirectory: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='Services · Directory'
         title='Government Websites'
         lede='Official online presence of Philippine government agencies, bureaus, SUCs, and diplomatic posts.'
       />

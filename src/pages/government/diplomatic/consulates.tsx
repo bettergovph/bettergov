@@ -48,7 +48,6 @@ const ConsulatesPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${all.length} consulates`}
         title={
           <>
             Consulates, <em className='italic font-normal'>ad honorem.</em>

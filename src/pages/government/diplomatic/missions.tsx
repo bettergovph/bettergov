@@ -18,7 +18,6 @@ const DiplomaticMissionsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${entries.length} missions`}
         title={
           <>
             Foreign missions{' '}

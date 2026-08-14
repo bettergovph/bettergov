@@ -54,7 +54,6 @@ const ContactUs: FC = () => {
       </Helmet>
       <PageMasthead
         variant='light'
-        eyebrow='Contact · BetterGov.PH'
         title='Get in touch'
         lede="We're a volunteer-led initiative. Reach us through any of the channels below, or drop us a message and we'll get back to you."
       />

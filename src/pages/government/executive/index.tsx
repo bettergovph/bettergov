@@ -18,7 +18,6 @@ const ExecutiveIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Executive · ${entries.length} offices`}
         title={
           <>
             Executive offices,{' '}

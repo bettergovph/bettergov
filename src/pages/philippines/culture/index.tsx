@@ -187,7 +187,6 @@ const PhilippinesCulture: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <PageMasthead
       variant='hero'
-      eyebrow='§ Philippines · Culture'
       title={
         <>
           A nation of <em className='italic font-normal'>Bayanihan</em>

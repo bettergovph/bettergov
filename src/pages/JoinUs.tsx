@@ -92,7 +92,6 @@ const JoinUs: FC = () => (
     </Helmet>
     <PageMasthead
       variant='hero'
-      eyebrow='Get involved · BetterGov.PH'
       title={
         <>
           Join the <span className='italic'>#CivicTech</span> revolution

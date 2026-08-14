@@ -70,7 +70,6 @@ const CommunicatingPage: FC = () => {
       <div className='print:hidden'>
         <PageMasthead
           variant='hero'
-          eyebrow='§ Travel · Phrasebook'
           title={
             <>
               Essential phrases,{' '}

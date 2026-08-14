@@ -39,7 +39,6 @@ const SalaryGradePage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='Government · Compensation'
         title={
           <>
             Salary grades{' '}

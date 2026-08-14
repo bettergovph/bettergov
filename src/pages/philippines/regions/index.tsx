@@ -189,7 +189,6 @@ const PhilippinesRegions: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <PageMasthead
       variant='hero'
-      eyebrow='§ Philippines · Regions'
       title='18 regions, 82 provinces'
       lede='The Philippines is organized into 18 administrative regions grouped under three island divisions. Regions are not local governments in themselves — they coordinate national agency services — but they are how most Filipinos locate themselves.'
     >

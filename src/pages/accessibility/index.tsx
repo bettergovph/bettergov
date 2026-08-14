@@ -18,7 +18,6 @@ const AccessibilityPage: FC = () => (
     </Helmet>
 
     <PageMasthead
-      eyebrow='Legal · Accessibility'
       title='Accessibility Statement'
       lede='Our commitment to inclusive digital access for everyone in the Philippines.'
     />

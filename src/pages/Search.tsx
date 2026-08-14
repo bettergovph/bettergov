@@ -389,7 +389,6 @@ const SearchPage: FC = () => {
       <InstantSearch searchClient={searchClient} indexName='bettergov'>
         {/* Navy-gradient masthead with BigSearch */}
         <PageMasthead
-          eyebrow='§ Search'
           title='Search the BetterGov index'
           lede='Official Philippine government services, offices, and resources — across every agency, searchable in one place.'
           variant='hero'

@@ -49,7 +49,6 @@ const SUCsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Constitutional · ${all.length} SUCs`}
         title={
           <>
             State universities{' '}

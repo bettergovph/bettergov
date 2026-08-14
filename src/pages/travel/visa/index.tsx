@@ -434,7 +434,6 @@ const VisaPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='§ Travel · Visa'
         title={
           <>
             {t('hero.title')}{' '}

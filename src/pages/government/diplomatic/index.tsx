@@ -18,7 +18,6 @@ const DiplomaticIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${entries.length} missions`}
         title={
           <>
             Missions accredited{' '}

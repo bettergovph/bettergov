@@ -67,7 +67,6 @@ const VisaTypesPage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Travel · Visa types'
         title={
           <>
             Philippine visa types,{' '}

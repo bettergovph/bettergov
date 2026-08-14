@@ -1,13 +1,10 @@
 import { FC, ReactNode } from 'react';
 import Container from '../ui/Container';
-import Eyebrow from '../ui/Eyebrow';
 import { cn } from '../../../lib/utils';
 
 type Variant = 'light' | 'hero';
 
 type Props = {
-  /** Small mono label above the title (e.g. "Section · Services Index"). */
-  eyebrow?: ReactNode;
   /** Main serif heading. */
   title: ReactNode;
   /** Optional lede below the title. */
@@ -31,7 +28,6 @@ const variantClasses: Record<Variant, string> = {
 };
 
 const PageMasthead: FC<Props> = ({
-  eyebrow,
   title,
   lede,
   children,
@@ -45,11 +41,6 @@ const PageMasthead: FC<Props> = ({
       className={cn('py-12 max-md:py-8', variantClasses[variant], className)}
     >
       <Container>
-        {eyebrow && (
-          <div className='mb-3'>
-            <Eyebrow tone={onDark ? 'onDark' : 'default'}>{eyebrow}</Eyebrow>
-          </div>
-        )}
         <h1
           className={cn(
             'font-serif-ed font-bold leading-[1.05] tracking-[-0.02em]',

@@ -108,7 +108,6 @@ const Hotlines: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
-        eyebrow='§ Philippines · Hotlines'
         title='When you need help now'
         lede='Emergency, disaster, and government hotlines — nationally available and updated from official sources. Tap any number to call directly.'
       >

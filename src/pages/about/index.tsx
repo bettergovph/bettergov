@@ -34,7 +34,6 @@ const AboutPage: FC = () => (
     {/* ── Hero ──────────────────────────────────────────────────────────── */}
     <PageMasthead
       variant='hero'
-      eyebrow='§ About this site'
       title='About BetterGov.ph'
       lede='A volunteer-led civic-tech project making Philippine government information cleaner, faster, and more useful for everyone.'
     />

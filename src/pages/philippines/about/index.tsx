@@ -74,7 +74,6 @@ const AboutPhilippines: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow={t('about.hero.eyebrow')}
         title={
           <>
             {t('about.hero.title')}{' '}

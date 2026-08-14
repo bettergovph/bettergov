@@ -98,7 +98,6 @@ const ForexPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='FX · Bangko Sentral ng Pilipinas'
         title='Foreign Exchange'
         lede={
           asOf

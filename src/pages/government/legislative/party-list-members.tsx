@@ -48,7 +48,6 @@ const PartyListMembersPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Legislative · ${members.length} party-list members`}
         title={
           <>
             Party-list members,{' '}

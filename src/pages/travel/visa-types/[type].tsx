@@ -55,7 +55,6 @@ const VisaTypeDetail: FC = () => {
           { label: category.name, to: '/travel/visa-types' },
           { label: v.name },
         ]}
-        eyebrow={`Visa · ${category.name}`}
         title={v.name}
         lede={v.description}
       >

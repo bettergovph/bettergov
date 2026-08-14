@@ -27,7 +27,6 @@ const PhilippinesHistory: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow={t('history.hero.eyebrow')}
         title={
           <>
             {t('history.hero.title')}{' '}

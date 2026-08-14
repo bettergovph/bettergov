@@ -129,7 +129,6 @@ const PublicHolidays: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='The Calendar · Philippines'
         title={`Public Holidays ${year}`}
         lede='Official regular and special non-working holidays declared by the Philippine government under Malacañang proclamations and Republic Act 9492.'
       >

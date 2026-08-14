@@ -7,13 +7,11 @@ import {
   PhoneIcon,
 } from 'lucide-react';
 import Container from '../ui/Container';
-import Eyebrow from '../ui/Eyebrow';
 
 export type DetailCrumb = { label: ReactNode; to?: string };
 
 type Props = {
   /** Small mono label row above the title. */
-  eyebrow?: ReactNode;
   /** Breadcrumb trail shown above the title. */
   breadcrumbs?: DetailCrumb[];
   /** Main serif title. */
@@ -34,7 +32,6 @@ const stripProtocol = (w: string) =>
 const normalizeUrl = (w: string) => (w.startsWith('http') ? w : `https://${w}`);
 
 const DetailHeader: FC<Props> = ({
-  eyebrow,
   breadcrumbs,
   title,
   lede,
@@ -67,12 +64,6 @@ const DetailHeader: FC<Props> = ({
             </span>
           ))}
         </nav>
-      )}
-
-      {eyebrow && (
-        <div className='mb-3'>
-          <Eyebrow>{eyebrow}</Eyebrow>
-        </div>
       )}
 
       <h1 className='font-serif-ed text-[clamp(32px,5vw,56px)] font-bold leading-[1.04] tracking-[-0.02em] text-ed-ink'>

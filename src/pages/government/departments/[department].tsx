@@ -156,7 +156,6 @@ const DepartmentDetail: FC = () => {
           { label: 'Departments', to: '/government/departments' },
           { label: displayName },
         ]}
-        eyebrow='Executive · Department'
         title={displayName}
         address={address}
         trunkline={trunkline}

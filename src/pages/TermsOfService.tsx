@@ -25,7 +25,6 @@ const TermsOfService: FC = () => (
     </Helmet>
 
     <PageMasthead
-      eyebrow='Legal · Terms of Service'
       title='Terms of Service'
       lede='Effective September 23, 2025'
     />

@@ -225,7 +225,6 @@ export default function ServicesPage() {
 
       <PageMasthead
         variant='hero'
-        eyebrow='Services · Index'
         title={
           selectedCategory ? selectedCategory.category : 'Government services'
         }

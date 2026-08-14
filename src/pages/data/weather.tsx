@@ -64,7 +64,6 @@ const WeatherPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='Data · PAGASA'
         title='Weather'
         lede='Current conditions across major Philippine cities. Data sourced from PAGASA — the Philippine Atmospheric, Geophysical and Astronomical Services Administration.'
       />

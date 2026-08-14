@@ -57,8 +57,6 @@ const LocalGovernmentIndex: FC = () => {
     return sorted.filter(r => r.name.toLowerCase().includes(n));
   }, [regions, q]);
 
-  const totalCities = regions.reduce((s, r) => s + r.cityCount, 0);
-
   return (
     <>
       <Helmet>
@@ -70,7 +68,6 @@ const LocalGovernmentIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Local Government · ${regions.length} regions · ${totalCities} cities and municipalities`}
         title={
           <>
             Local government, <em className='italic font-normal'>by region.</em>

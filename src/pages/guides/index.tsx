@@ -55,7 +55,6 @@ const GuidesIndex: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Guides · Plain-language walkthroughs'
         title={
           <>
             Every step, <em className='italic font-normal'>explained.</em>

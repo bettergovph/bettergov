@@ -153,7 +153,6 @@ const SitemapPage: FC = () => (
     </Helmet>
 
     <PageMasthead
-      eyebrow='Navigation · Sitemap'
       title='Sitemap'
       lede='A complete index of all pages and services on BetterGov.ph.'
     />

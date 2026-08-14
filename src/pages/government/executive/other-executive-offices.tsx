@@ -27,7 +27,6 @@ const OtherExecutiveOffices: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Executive · ${entries.length} offices`}
         title={
           <>
             Other executive offices,{' '}
