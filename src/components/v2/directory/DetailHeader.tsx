@@ -80,7 +80,7 @@ const DetailHeader: FC<Props> = ({
       </h1>
 
       {lede && (
-        <p className='mt-4 max-w-3xl font-serif-ed text-lg leading-relaxed text-ed-ink-2'>
+        <p className='mt-4 max-w-3xl font-sans-ed text-lg leading-relaxed text-ed-ink-2'>
           {lede}
         </p>
       )}

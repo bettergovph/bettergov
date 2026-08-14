@@ -84,7 +84,7 @@ const VisaTypeDetail: FC = () => {
                     <span className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                    <span className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                       {req}
                     </span>
                   </li>

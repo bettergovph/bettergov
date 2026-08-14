@@ -131,7 +131,7 @@ const GuidesIndex: FC = () => {
               <h2 className='mt-3.5 font-serif-ed text-[36px] font-medium leading-[1.12] tracking-[-0.01em] text-ed-navy-ink'>
                 {primary.title}
               </h2>
-              <p className='mt-4 max-w-[520px] font-serif-ed text-base leading-relaxed text-ed-ink-2'>
+              <p className='mt-4 max-w-[520px] font-sans-ed text-base leading-relaxed text-ed-ink-2'>
                 {primary.lede}
               </p>
               <div className='mt-6 flex flex-wrap gap-5 border-t border-ed-rule pt-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -265,7 +265,7 @@ const GuidesIndex: FC = () => {
               <h2 className='m-0 font-serif-ed text-[40px] font-medium leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[30px]'>
                 Suggest a guide. We&rsquo;ll write it.
               </h2>
-              <p className='mt-3.5 max-w-[560px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+              <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                 BetterGov.ph is written by volunteers. Every guide starts from a
                 real transaction someone needed help understanding. If
                 you&rsquo;ve navigated a government process and took notes,

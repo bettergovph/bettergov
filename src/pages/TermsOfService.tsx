@@ -33,7 +33,7 @@ const TermsOfService: FC = () => (
     <section className='py-12 max-md:py-8'>
       <Container narrow>
         <SectionHeader label='Acceptance of Terms' />
-        <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+        <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
           <Dropcap>
             By accessing and using this website, you accept and agree to be
             bound by the terms and provisions of this agreement. If you do not
@@ -43,7 +43,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='Public Domain Content & Volunteer Operation' />
-          <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               This website and all its content are in the public domain and
               operated entirely by volunteers. All information, data, documents,
@@ -62,7 +62,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='&ldquo;As Is&rdquo; Disclaimer' />
-          <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               All information on this website is provided &ldquo;as is&rdquo;
               without warranty of any kind, either express or implied, including
@@ -91,7 +91,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='Limitation of Liability' />
-          <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Under no circumstances shall the website operators, contributors,
               or affiliated parties be liable for any direct, indirect,
@@ -110,7 +110,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='User Responsibilities' />
-          <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Users are solely responsible for conducting their own independent
               verification of all information obtained from this website,
@@ -127,7 +127,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='No Professional Advice' />
-          <div className='max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               Information on this website is not intended as professional advice
               — legal, medical, financial, or otherwise. Users should consult
@@ -139,7 +139,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='Governing Law' />
-          <div className='max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               These terms are governed by the laws of the Republic of the
               Philippines without regard to conflict of law principles. If any
@@ -151,7 +151,7 @@ const TermsOfService: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='Content Concerns & Takedown Requests' />
-          <div className='max-w-2xl space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               While we strive to provide accurate public domain information, we
               recognise that errors, outdated information, or other concerns may

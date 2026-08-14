@@ -208,7 +208,7 @@ const PassportGuide: FC = () => {
                   <br />
                   <em className='italic font-normal'>passport</em>, explained.
                 </h1>
-                <p className='mt-6 max-w-[560px] font-serif-ed text-xl leading-snug text-ed-ink-2'>
+                <p className='mt-6 max-w-[560px] font-sans-ed text-xl leading-snug text-ed-ink-2'>
                   Whether you&rsquo;re applying for the first time, renewing an
                   expiring booklet, or replacing one that was lost — this page
                   walks you through exactly what happens, what to bring, and
@@ -320,7 +320,7 @@ const PassportGuide: FC = () => {
                 <div id='what-happens' className='scroll-mt-24'>
                   <SectionHeader label='What happens' />
                 </div>
-                <Dropcap className='font-serif-ed text-lg leading-[1.65] text-ed-ink-2'>
+                <Dropcap className='font-sans-ed text-lg leading-[1.65] text-ed-ink-2'>
                   The Philippine passport is issued by the Department of Foreign
                   Affairs. Every applicant — new or returning — must appear in
                   person at a DFA Consular Office for biometrics and document
@@ -330,7 +330,7 @@ const PassportGuide: FC = () => {
                   fingerprinted at the second, and you pay at the cashier before
                   you leave.
                 </Dropcap>
-                <p className='mt-5 font-serif-ed text-lg leading-[1.65] text-ed-ink-2'>
+                <p className='mt-5 font-sans-ed text-lg leading-[1.65] text-ed-ink-2'>
                   The booklet is printed at the DFA&rsquo;s central facility in
                   Pasay and couriered to the address you provide, or released at
                   the same office if you pick that option. Adult passports are

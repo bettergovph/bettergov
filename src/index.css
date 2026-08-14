@@ -5,7 +5,10 @@
   --font-sans: 'Figtree', ui-sans-serif, sans-serif;
 
   /* Editorial fonts — suffix avoids clashing with Tailwind defaults */
-  --font-serif-ed: 'EB Garamond', 'Garamond', 'Times New Roman', Georgia, serif;
+  /* NOTE: `serif-ed` is the display/heading role, not a serif face. It maps to
+     Figtree (headings, card titles, stat figures); `sans-ed` is Inter for body
+     copy. The token name predates the switch back off EB Garamond. */
+  --font-serif-ed: 'Figtree', ui-sans-serif, sans-serif;
   --font-sans-ed:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono-ed: 'JetBrains Mono', 'SF Mono', Menlo, monospace;

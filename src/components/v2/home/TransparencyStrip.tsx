@@ -39,7 +39,7 @@ const TransparencyStrip: FC = () => {
                 {t('transparency.totalSuffix')}
               </span>
             </h2>
-            <p className='mt-4 max-w-[420px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+            <p className='mt-4 max-w-[420px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
               {t('transparency.description')}
             </p>
             <div className='mt-6 flex flex-wrap gap-3'>

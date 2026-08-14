@@ -46,14 +46,14 @@ const AboutPage: FC = () => (
           {/* Left column */}
           <div>
             <Eyebrow className='mb-4'>Our mission</Eyebrow>
-            <Dropcap className='font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <Dropcap className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph exists because government information in the
               Philippines is scattered, hard to navigate, and often inaccessible
               to ordinary citizens. We consolidate it — hotlines, directories,
               holidays, regions, services — into one fast, well-designed
               reference.
             </Dropcap>
-            <p className='mt-5 font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <p className='mt-5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               We believe that transparency is not a feature — it is the
               foundation of a functioning democracy. Every page we ship is a
               small step toward a government that is legible to the people it
@@ -64,13 +64,13 @@ const AboutPage: FC = () => (
           {/* Right column */}
           <div>
             <Eyebrow className='mb-4'>How we work</Eyebrow>
-            <p className='font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph is open source, volunteer-run, and operates
               independently of any government body or political party. We are
               not affiliated with the Republic of the Philippines or any of its
               agencies — we are citizens building tools for citizens.
             </p>
-            <p className='mt-5 font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <p className='mt-5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               Our code is public, our data is sourced from official records, and
               our editorial decisions are made in the open. Pull requests are
               welcome. Ideas are welcome. Scrutiny is especially welcome.
@@ -85,7 +85,7 @@ const AboutPage: FC = () => (
       <Container>
         <div className='max-w-[700px] mx-auto'>
           <blockquote className='border-l-4 border-ed-navy pl-8 max-md:pl-5'>
-            <p className='font-serif-ed text-[26px] max-md:text-[20px] leading-[1.4] text-ed-ink font-normal italic'>
+            <p className='font-sans-ed text-[26px] max-md:text-[20px] leading-[1.4] text-ed-ink font-normal italic'>
               &ldquo;We&rsquo;re not waiting for permission to make things
               better. The tools exist, the data exists, the people exist — we
               just have to show up and build.&rdquo;

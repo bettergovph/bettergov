@@ -66,7 +66,7 @@ const SalaryGradePage: FC = () => {
         <Container>
           <div className='max-w-3xl border-l-[3px] border-ed-navy pl-6'>
             <Eyebrow>About the system</Eyebrow>
-            <p className='mt-3 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+            <p className='mt-3 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
               The Philippine government uses a standardized salary grade system
               (SG 1–33) to determine compensation for civilian employees. Each
               grade has eight steps — step 1 is entry, step 8 is the ceiling

@@ -86,12 +86,12 @@ const PhilippinesHistory: FC = () => {
                     <h5 className='mb-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-navy'>
                       {t('history.scholarNote.title')}
                     </h5>
-                    <p className='m-0 font-serif-ed text-sm leading-normal text-ed-ink-2'>
+                    <p className='m-0 font-sans-ed text-sm leading-normal text-ed-ink-2'>
                       {t('history.scholarNote.body')}
                     </p>
                   </aside>
                 )}
-                <p className='mt-3 max-w-[680px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                <p className='mt-3 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                   {e.body}
                 </p>
               </article>

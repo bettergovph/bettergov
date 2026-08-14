@@ -288,7 +288,7 @@ const ContactUs: FC = () => {
                 <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-2'>
                   Get involved
                 </div>
-                <p className='font-serif-ed text-[17px] leading-snug text-ed-ink-2'>
+                <p className='font-sans-ed text-[17px] leading-snug text-ed-ink-2'>
                   Want to contribute code, data, or design?
                 </p>
                 <Link

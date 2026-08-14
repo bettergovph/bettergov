@@ -121,7 +121,7 @@ const AboutPhilippines: FC = () => {
                 <p
                   key={i}
                   className={cn(
-                    'mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2',
+                    'mb-4 font-sans-ed text-lg leading-relaxed text-ed-ink-2',
                     i === 0 &&
                       'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-medium first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
                   )}
@@ -134,7 +134,7 @@ const AboutPhilippines: FC = () => {
               {overviewParagraphs.slice(2).map((p, i) => (
                 <p
                   key={i}
-                  className='mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2'
+                  className='mb-4 font-sans-ed text-lg leading-relaxed text-ed-ink-2'
                 >
                   {p}
                 </p>
@@ -142,7 +142,7 @@ const AboutPhilippines: FC = () => {
             </div>
           </div>
 
-          <blockquote className='my-9 border-l-[3px] border-ed-navy py-2 pl-6 font-serif-ed text-[26px] italic leading-snug text-ed-navy-ink'>
+          <blockquote className='my-9 border-l-[3px] border-ed-navy py-2 pl-6 font-sans-ed text-[26px] italic leading-snug text-ed-navy-ink'>
             &ldquo;{t('about.overview.pullquote.body')}&rdquo;
             <footer className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] not-italic text-ed-ink-3'>
               {t('about.overview.pullquote.source')}
@@ -199,7 +199,7 @@ const AboutPhilippines: FC = () => {
                     <div className='font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
                       {g.label}
                     </div>
-                    <div className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                    <div className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                       {renderBold(g.body)}
                     </div>
                   </div>

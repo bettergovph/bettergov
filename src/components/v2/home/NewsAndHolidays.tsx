@@ -48,7 +48,7 @@ const NewsAndHolidays: FC = () => {
               <h2 className='mt-4 font-serif-ed text-[clamp(28px,3.2vw,40px)] font-normal leading-[1.05] tracking-[-0.01em] text-ed-ink'>
                 {featured.title}
               </h2>
-              <Dropcap className='mt-4 max-w-[680px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+              <Dropcap className='mt-4 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                 {featured.excerpt}
               </Dropcap>
             </Link>

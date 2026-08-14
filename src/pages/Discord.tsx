@@ -29,7 +29,7 @@ export default function Discord() {
 
       <section className='py-12 max-md:py-8'>
         <Container narrow>
-          <p className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-xl mb-8'>
+          <p className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-xl mb-8'>
             You should be redirected automatically. If not, click the button
             below to open the BetterGov.ph Discord server.
           </p>

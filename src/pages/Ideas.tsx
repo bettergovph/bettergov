@@ -142,7 +142,7 @@ const Ideas: FC = () => {
             ))}
           </ul>
 
-          <p className='mt-10 border-t border-ed-rule pt-6 font-serif-ed text-sm text-ed-ink-3'>
+          <p className='mt-10 border-t border-ed-rule pt-6 font-sans-ed text-sm text-ed-ink-3'>
             These ideas are collected from the community and the editorial team.
             See something missing or have a refinement? Submit your own via
             GitHub.
@@ -161,7 +161,7 @@ const Ideas: FC = () => {
               <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-normal leading-tight tracking-[-0.01em] text-white'>
                 Have an idea? <em className='font-normal italic'>Submit it.</em>
               </h2>
-              <p className='mt-2 max-w-md font-serif-ed text-base leading-relaxed text-white/80'>
+              <p className='mt-2 max-w-md font-sans-ed text-base leading-relaxed text-white/80'>
                 Open a GitHub issue using our idea template — no login beyond
                 GitHub required. The best ideas get picked up and built.
               </p>

@@ -10,7 +10,7 @@ type Props = {
   eyebrow?: ReactNode;
   /** Main serif heading. */
   title: ReactNode;
-  /** Optional serif lede below the title. */
+  /** Optional lede below the title. */
   lede?: ReactNode;
   /** Content rendered below the lede — commonly a <BigSearch /> or filters. */
   children?: ReactNode;
@@ -61,7 +61,7 @@ const PageMasthead: FC<Props> = ({
         {lede && (
           <p
             className={cn(
-              'mt-4 max-w-2xl font-serif-ed text-lg leading-relaxed',
+              'mt-4 max-w-2xl font-sans-ed text-lg leading-relaxed',
               onDark ? 'text-white/85' : 'text-ed-ink-2'
             )}
           >

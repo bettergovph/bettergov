@@ -26,7 +26,7 @@ const AccessibilityPage: FC = () => (
     <section className='py-12 max-md:py-8'>
       <Container narrow>
         <SectionHeader label='Our Commitment' />
-        <div className='space-y-5 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-2xl'>
+        <div className='space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-2xl'>
           <Dropcap>
             BetterGov.ph is committed to ensuring digital accessibility for
             people with disabilities. We continuously improve the user
@@ -159,7 +159,7 @@ const AccessibilityPage: FC = () => (
 
         <div className='mt-14'>
           <SectionHeader label='Feedback & Contact' />
-          <div className='max-w-2xl space-y-4 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+          <div className='max-w-2xl space-y-4 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               We welcome feedback on the accessibility of BetterGov.ph. If you
               encounter barriers or have suggestions for improvement, please

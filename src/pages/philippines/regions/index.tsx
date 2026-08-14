@@ -316,7 +316,7 @@ const Island: FC<{
             {meta}
           </div>
         </div>
-        <p className='mt-6 max-w-[760px] font-serif-ed text-lg leading-relaxed text-ed-ink-2'>
+        <p className='mt-6 max-w-[760px] font-sans-ed text-lg leading-relaxed text-ed-ink-2'>
           {intro}
         </p>
         <div className='mt-8 grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1'>

@@ -241,7 +241,7 @@ const Hotlines: FC = () => {
           )}
 
           <div className='mt-10 border-t border-ed-rule pt-6'>
-            <p className='font-serif-ed text-sm text-ed-ink-3'>
+            <p className='font-sans-ed text-sm text-ed-ink-3'>
               These hotlines are collected from official government sources. If
               you notice any outdated information, please report it so the
               registry stays useful.

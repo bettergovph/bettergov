@@ -192,7 +192,7 @@ const JoinUs: FC = () => (
         <div className='mb-6'>
           <Eyebrow tone='onDark'>Why we build</Eyebrow>
         </div>
-        <blockquote className='space-y-5 font-serif-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
+        <blockquote className='space-y-5 font-sans-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
           <p>We&rsquo;re done waiting for government to modernise itself.</p>
           <p>
             We can contribute in our own ways —&nbsp;

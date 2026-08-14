@@ -355,7 +355,7 @@ const PhilippinesCulture: FC = () => (
     {/* Closing pullquote */}
     <section className='mb-20 mt-12'>
       <Container>
-        <blockquote className='my-9 max-w-[720px] border-l-[3px] border-ed-navy py-2 pl-6 font-serif-ed text-[28px] italic leading-snug text-ed-navy-ink'>
+        <blockquote className='my-9 max-w-[720px] border-l-[3px] border-ed-navy py-2 pl-6 font-sans-ed text-[28px] italic leading-snug text-ed-navy-ink'>
           &ldquo;A Filipino is somebody who eats with his fingers, travels with
           his whole family, and will not pass you on the sidewalk without
           greeting you.&rdquo;
@@ -403,7 +403,7 @@ const Chapter: FC<{
 );
 
 const Prose: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className='mt-5 [&>p]:mb-4 [&>p]:font-serif-ed [&>p]:text-lg [&>p]:leading-relaxed [&>p]:text-ed-ink-2 [&_strong]:font-semibold [&_strong]:text-ed-ink'>
+  <div className='mt-5 [&>p]:mb-4 [&>p]:font-sans-ed [&>p]:text-lg [&>p]:leading-relaxed [&>p]:text-ed-ink-2 [&_strong]:font-semibold [&_strong]:text-ed-ink'>
     {children}
   </div>
 );

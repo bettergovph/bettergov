@@ -171,7 +171,7 @@ const VisaTypesPage: FC = () => {
                             {c.name}
                           </h2>
                         </div>
-                        <p className='mt-3 max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                        <p className='mt-3 max-w-2xl font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                           {c.description}
                         </p>
                       </div>
