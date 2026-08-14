@@ -17,14 +17,54 @@
     "meta": "{{count}} services · across {{domains}} domains",
     "explore": "Explore",
     "items": [
-      { "id": "travel", "label": "Travel & Identification", "count": 14, "desc": "Passports, visas, NBI clearance, driver's license." },
-      { "id": "tax", "label": "Taxes & Revenue", "count": 22, "desc": "BIR filing, TIN, business permits, customs." },
-      { "id": "health", "label": "Health & Welfare", "count": 18, "desc": "PhilHealth, DOH programs, vaccines, hospitals." },
-      { "id": "social", "label": "Social Security", "count": 11, "desc": "SSS, GSIS, Pag-IBIG, pensions and benefits." },
-      { "id": "education", "label": "Education", "count": 16, "desc": "DepEd, CHED, TESDA, scholarships, school forms." },
-      { "id": "business", "label": "Business & Trade", "count": 19, "desc": "DTI, SEC, registration, licenses, exports." },
-      { "id": "justice", "label": "Justice & Legal", "count": 9, "desc": "Courts, notarization, barangay certificates." },
-      { "id": "labor", "label": "Labor & Employment", "count": 12, "desc": "DOLE, OWWA, POEA, work permits, OFW." }
+      {
+        "id": "travel",
+        "label": "Travel & Identification",
+        "count": 14,
+        "desc": "Passports, visas, NBI clearance, driver's license."
+      },
+      {
+        "id": "tax",
+        "label": "Taxes & Revenue",
+        "count": 22,
+        "desc": "BIR filing, TIN, business permits, customs."
+      },
+      {
+        "id": "health",
+        "label": "Health & Welfare",
+        "count": 18,
+        "desc": "PhilHealth, DOH programs, vaccines, hospitals."
+      },
+      {
+        "id": "social",
+        "label": "Social Security",
+        "count": 11,
+        "desc": "SSS, GSIS, Pag-IBIG, pensions and benefits."
+      },
+      {
+        "id": "education",
+        "label": "Education",
+        "count": 16,
+        "desc": "DepEd, CHED, TESDA, scholarships, school forms."
+      },
+      {
+        "id": "business",
+        "label": "Business & Trade",
+        "count": 19,
+        "desc": "DTI, SEC, registration, licenses, exports."
+      },
+      {
+        "id": "justice",
+        "label": "Justice & Legal",
+        "count": 9,
+        "desc": "Courts, notarization, barangay certificates."
+      },
+      {
+        "id": "labor",
+        "label": "Labor & Employment",
+        "count": 12,
+        "desc": "DOLE, OWWA, POEA, work permits, OFW."
+      }
     ]
   },
   "mostRequested": {
@@ -79,5 +119,10 @@
         "body": "Not affiliated with any agency. Every correction, commit, and editorial choice lives openly on GitHub. No ads, no tracking."
       }
     ]
+  },
+  "egovApp": {
+    "badge": "Available on iOS, Android & App Gallery",
+    "title": "Start Using eGovPH Today",
+    "lede": "Used by millions of Filipinos nationwide. Join them and experience government services like never before."
   }
 }

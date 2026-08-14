@@ -17,14 +17,54 @@
     "meta": "{{count}} serbisyo · sa {{domains}} kategorya",
     "explore": "Tuklasin",
     "items": [
-      { "id": "travel", "label": "Biyahe at Pagkakakilanlan", "count": 14, "desc": "Pasaporte, visa, NBI clearance, lisensya sa pagmamaneho." },
-      { "id": "tax", "label": "Buwis at Kita", "count": 22, "desc": "BIR, TIN, permit sa negosyo, customs." },
-      { "id": "health", "label": "Kalusugan at Kapakanan", "count": 18, "desc": "PhilHealth, DOH, bakuna, ospital." },
-      { "id": "social", "label": "Social Security", "count": 11, "desc": "SSS, GSIS, Pag-IBIG, pensiyon at benepisyo." },
-      { "id": "education", "label": "Edukasyon", "count": 16, "desc": "DepEd, CHED, TESDA, iskolarship, porma sa eskwela." },
-      { "id": "business", "label": "Negosyo at Kalakalan", "count": 19, "desc": "DTI, SEC, rehistro, lisensya, export." },
-      { "id": "justice", "label": "Hustisya at Legal", "count": 9, "desc": "Korte, notaryo, sertipiko ng barangay." },
-      { "id": "labor", "label": "Paggawa at Empleyo", "count": 12, "desc": "DOLE, OWWA, POEA, work permit, OFW." }
+      {
+        "id": "travel",
+        "label": "Biyahe at Pagkakakilanlan",
+        "count": 14,
+        "desc": "Pasaporte, visa, NBI clearance, lisensya sa pagmamaneho."
+      },
+      {
+        "id": "tax",
+        "label": "Buwis at Kita",
+        "count": 22,
+        "desc": "BIR, TIN, permit sa negosyo, customs."
+      },
+      {
+        "id": "health",
+        "label": "Kalusugan at Kapakanan",
+        "count": 18,
+        "desc": "PhilHealth, DOH, bakuna, ospital."
+      },
+      {
+        "id": "social",
+        "label": "Social Security",
+        "count": 11,
+        "desc": "SSS, GSIS, Pag-IBIG, pensiyon at benepisyo."
+      },
+      {
+        "id": "education",
+        "label": "Edukasyon",
+        "count": 16,
+        "desc": "DepEd, CHED, TESDA, iskolarship, porma sa eskwela."
+      },
+      {
+        "id": "business",
+        "label": "Negosyo at Kalakalan",
+        "count": 19,
+        "desc": "DTI, SEC, rehistro, lisensya, export."
+      },
+      {
+        "id": "justice",
+        "label": "Hustisya at Legal",
+        "count": 9,
+        "desc": "Korte, notaryo, sertipiko ng barangay."
+      },
+      {
+        "id": "labor",
+        "label": "Paggawa at Empleyo",
+        "count": 12,
+        "desc": "DOLE, OWWA, POEA, work permit, OFW."
+      }
     ]
   },
   "mostRequested": {
@@ -79,5 +119,10 @@
         "body": "Hindi kami konektado sa anumang ahensya. Bukas sa publiko ang bawat pagbabago sa GitHub."
       }
     ]
+  },
+  "egovApp": {
+    "badge": "Available sa iOS, Android at App Gallery",
+    "title": "Simulan ang Paggamit ng eGovPH Ngayon",
+    "lede": "Ginagamit ng milyun-milyong Pilipino sa buong bansa. Sumali at maranasan ang serbisyo ng pamahalaan na hindi mo pa naranasan."
   }
 }
