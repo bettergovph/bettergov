@@ -76,7 +76,7 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
               'masthead.searchPlaceholder',
               'Search services, agencies, and more'
             )}
-            className='w-[300px] border border-ed-rule-strong bg-white py-2.5 pl-9 pr-3 font-sans-ed text-sm normal-case tracking-normal text-ed-ink outline-none placeholder:text-ed-ink-4 focus:border-ed-navy xl:w-[340px]'
+            className='w-[300px] border border-ed-rule-strong bg-white py-2.5 pl-9 pr-3 font-sans-ed text-sm normal-case tracking-normal text-ed-ink outline-none placeholder:text-ed-ink-4 focus:border-ed-navy focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ed-navy xl:w-[340px]'
           />
         </form>
         <Button

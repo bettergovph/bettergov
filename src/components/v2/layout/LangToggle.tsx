@@ -13,7 +13,7 @@ const LangToggle: FC = () => {
         aria-label='Language'
         value={i18n.language}
         onChange={e => i18n.changeLanguage(e.target.value as LanguageType)}
-        className='cursor-pointer appearance-none border border-ed-rule-strong bg-white py-1 pl-2.5 pr-7 font-serif-ed text-[12px] text-ed-ink-3 transition-colors hover:border-ed-navy hover:text-ed-navy focus:border-ed-navy focus:outline-none'
+        className='cursor-pointer appearance-none border border-ed-rule-strong bg-white py-1 pl-2.5 pr-7 font-serif-ed text-[12px] text-ed-ink-3 transition-colors hover:border-ed-navy hover:text-ed-navy focus:border-ed-navy focus:outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ed-navy'
       >
         {Object.entries(LANGUAGES).map(([code, lang]) => (
           <option key={code} value={code}>

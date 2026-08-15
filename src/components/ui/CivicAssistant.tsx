@@ -53,6 +53,7 @@ const CivicAssistant: React.FC = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
+              aria-label='Close Civic Assistant'
               className='p-1 hover:bg-white/10 rounded-full transition-colors'
             >
               <X size={18} />
@@ -155,6 +156,8 @@ const CivicAssistant: React.FC = () => {
           setIsOpen(!isOpen);
           if (!isOpen) setTimeout(() => inputRef.current?.focus(), 100);
         }}
+        aria-label={isOpen ? 'Close Civic Assistant' : 'Open Civic Assistant'}
+        aria-expanded={isOpen}
         className={cn(
           'p-4 bg-primary-600 rounded-full text-white shadow-xl hover:bg-primary-700 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group',
           isOpen ? 'rotate-90 bg-gray-800 hover:bg-black' : ''

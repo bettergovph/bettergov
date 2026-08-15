@@ -180,7 +180,7 @@ const Footer: FC = () => {
             links={aboutCol}
           />
         </div>
-        <div className='flex justify-between pt-6 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-white/50 max-md:flex-col max-md:gap-2 max-md:text-[10px]'>
+        <div className='flex justify-between pt-6 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-white/70 max-md:flex-col max-md:gap-2 max-md:text-[10px]'>
           <span>
             © {new Date().getFullYear()}{' '}
             {t(

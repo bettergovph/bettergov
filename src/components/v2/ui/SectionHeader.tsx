@@ -34,7 +34,7 @@ const SectionHeader: FC<Props> = ({ label, meta, onDark, className }) => (
       <span
         className={cn(
           'font-sans-ed text-[13px] md:ml-auto max-md:w-full',
-          onDark ? 'text-white/60' : 'text-ed-ink-3'
+          onDark ? 'text-white/80' : 'text-ed-ink-3'
         )}
       >
         {meta}
