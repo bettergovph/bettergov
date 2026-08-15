@@ -44,7 +44,7 @@ const CommunicatingPrintPage: FC = () => {
       <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
         {/* Screen header */}
         <header className='border-b border-ed-ink bg-ed-paper-2 py-8 print:hidden'>
-          <div className='mx-auto flex max-w-[1360px] flex-wrap items-center justify-between gap-4 px-[18px] md:px-6 xl:px-8'>
+          <div className='mx-auto flex max-w-page flex-wrap items-center justify-between gap-4 px-[18px] md:px-6 xl:px-8'>
             <div>
               <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
                 Travel · Printable phrasebook
@@ -97,7 +97,7 @@ const CommunicatingPrintPage: FC = () => {
           </div>
         </div>
 
-        <div className='mx-auto max-w-[1360px] space-y-8 px-[18px] py-8 md:px-6 xl:px-8 print:space-y-3 print:px-4 print:py-3'>
+        <div className='mx-auto max-w-page space-y-8 px-[18px] py-8 md:px-6 xl:px-8 print:space-y-3 print:px-4 print:py-3'>
           {phrasesData.map(cat => (
             <section
               key={cat.category}
@@ -156,7 +156,7 @@ const CommunicatingPrintPage: FC = () => {
         </div>
 
         {/* Screen tip */}
-        <div className='mx-auto max-w-[1360px] px-[18px] pb-10 md:px-6 xl:px-8 print:hidden'>
+        <div className='mx-auto max-w-page px-[18px] pb-10 md:px-6 xl:px-8 print:hidden'>
           <div className='border border-ed-rule-strong bg-ed-paper-2 p-5'>
             <p className='text-sm text-ed-ink-2'>
               <strong className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy'>
@@ -169,7 +169,7 @@ const CommunicatingPrintPage: FC = () => {
           </div>
         </div>
 
-        <div className='hidden print:block mx-auto max-w-[1360px] border-t border-ed-rule px-6 pt-2'>
+        <div className='hidden print:block mx-auto max-w-page border-t border-ed-rule px-6 pt-2'>
           <p className='text-center font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
             Generated from BetterGov.ph · Travel Phrasebook · Personal use only
           </p>
