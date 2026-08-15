@@ -100,7 +100,7 @@ function resolveHolidays(year: number): ResolvedHoliday[] {
 }
 
 const PublicHolidays: FC = () => {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const currentYear = today.getFullYear();
   const [year, setYear] = useState(currentYear);
 
