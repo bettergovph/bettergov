@@ -9,7 +9,14 @@ import Flag from '../../components/v2/ui/Flag';
 import BigSearch from '../../components/v2/ui/BigSearch';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
 import OfficialsTable from '../../components/v2/directory/OfficialsTable';
-import { DocSection, Example, PageHeader, Prose, WhenToUse } from './shared';
+import {
+  DocSection,
+  Example,
+  PageHeader,
+  PagerNav,
+  Prose,
+  WhenToUse,
+} from './shared';
 
 const ComponentsPage: FC = () => {
   const [searchDemo, setSearchDemo] = useState('');
@@ -31,7 +38,7 @@ const ComponentsPage: FC = () => {
       />
 
       {/* ------------------------------------------------ Button */}
-      <DocSection first>
+      <DocSection first id='button'>
         <SectionHeader label='Button' meta='components/v2/ui/Button' />
         <Prose>
           <p>
@@ -65,7 +72,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Eyebrow & Flag */}
-      <DocSection>
+      <DocSection id='eyebrow-flag'>
         <SectionHeader
           label='Eyebrow & flag'
           meta='components/v2/ui/Eyebrow · Flag'
@@ -107,7 +114,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Card */}
-      <DocSection>
+      <DocSection id='card'>
         <SectionHeader label='Card' meta='components/v2/ui/Card' />
         <Prose>
           <p>
@@ -152,7 +159,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Page masthead */}
-      <DocSection>
+      <DocSection id='page-masthead'>
         <SectionHeader
           label='Page masthead'
           meta='components/v2/layout/PageMasthead'
@@ -188,7 +195,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Section header */}
-      <DocSection>
+      <DocSection id='section-header'>
         <SectionHeader
           label='Section header'
           meta='components/v2/ui/SectionHeader'
@@ -216,7 +223,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Big search */}
-      <DocSection>
+      <DocSection id='big-search'>
         <SectionHeader label='Big search' meta='components/v2/ui/BigSearch' />
         <Prose>
           <p>
@@ -247,7 +254,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Officials table */}
-      <DocSection>
+      <DocSection id='officials-table'>
         <SectionHeader
           label='Officials table'
           meta='components/v2/directory/OfficialsTable'
@@ -292,7 +299,7 @@ const ComponentsPage: FC = () => {
       </DocSection>
 
       {/* ------------------------------------------------ Proposing */}
-      <DocSection>
+      <DocSection id='propose'>
         <SectionHeader label='Need something that is not here?' />
         <Prose>
           <p>
@@ -305,6 +312,8 @@ const ComponentsPage: FC = () => {
           </ArrowLink>
         </Prose>
       </DocSection>
+
+      <PagerNav />
     </>
   );
 };

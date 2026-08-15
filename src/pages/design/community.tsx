@@ -4,7 +4,7 @@ import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
 import Card from '../../components/v2/ui/Card';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
-import { DocHeading, DocSection, PageHeader, Prose } from './shared';
+import { DocHeading, DocSection, PageHeader, PagerNav, Prose } from './shared';
 
 const CRITERIA = [
   {
@@ -83,7 +83,7 @@ const CommunityPage: FC = () => (
       lede='No agency owns this design system. It is maintained by volunteers, funded by nobody, and released into the public domain — which means it only gets better when people who use it push back on it.'
     />
 
-    <DocSection first>
+    <DocSection first id='criteria'>
       <SectionHeader
         label='The contribution criteria'
         meta='All three, always'
@@ -113,7 +113,7 @@ const CommunityPage: FC = () => (
       </div>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='propose'>
       <SectionHeader label='How to propose a component or pattern' />
       <ol className='max-w-2xl space-y-6'>
         {STEPS.map((s, i) => (
@@ -132,7 +132,7 @@ const CommunityPage: FC = () => (
       </ol>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='channels'>
       <SectionHeader label='Where the work happens' />
       <div className='grid gap-5 md:grid-cols-2'>
         {CHANNELS.map(ch =>
@@ -161,7 +161,7 @@ const CommunityPage: FC = () => (
       </div>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='reuse'>
       <SectionHeader label='Reuse it anywhere' />
       <Prose>
         <p>
@@ -176,6 +176,8 @@ const CommunityPage: FC = () => (
         </ArrowLink>
       </Prose>
     </DocSection>
+
+    <PagerNav />
   </>
 );
 

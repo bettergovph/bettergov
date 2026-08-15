@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
-import { DocHeading, DocSection, PageHeader, Prose } from './shared';
+import { DocHeading, DocSection, PageHeader, PagerNav, Prose } from './shared';
 
 const SYSTEM_PROVIDES = [
   {
@@ -67,7 +67,7 @@ const DesignAccessibilityPage: FC = () => (
       lede='Government services are for everyone, including the roughly one in seven Filipinos living with a disability. WCAG 2.1 AA is our floor. The system gets you part of the way; your content and testing do the rest.'
     />
 
-    <DocSection first>
+    <DocSection first id='system'>
       <SectionHeader label='What the system does for you' />
       <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
         {SYSTEM_PROVIDES.map(item => (
@@ -81,7 +81,7 @@ const DesignAccessibilityPage: FC = () => (
       </div>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='your-team'>
       <SectionHeader label='What your team still has to do' />
       <Prose>
         <p>
@@ -103,7 +103,7 @@ const DesignAccessibilityPage: FC = () => (
       </ul>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='testing'>
       <SectionHeader label='How to test' meta='Four checks before shipping' />
       <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
         {TESTS.map(t => (
@@ -127,6 +127,8 @@ const DesignAccessibilityPage: FC = () => (
         </ArrowLink>
       </Prose>
     </DocSection>
+
+    <PagerNav />
   </>
 );
 

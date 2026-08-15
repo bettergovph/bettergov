@@ -9,6 +9,7 @@ import {
   PageHeader,
   Prose,
   Swatch,
+  PagerNav,
 } from './shared';
 
 const TYPE_SCALE = [
@@ -78,7 +79,7 @@ const StylesPage: FC = () => (
     />
 
     {/* ------------------------------------------------ Typography */}
-    <DocSection first>
+    <DocSection first id='typography'>
       <SectionHeader label='Typography' meta='Two faces, one label style' />
       <Prose>
         <p>
@@ -153,7 +154,7 @@ const StylesPage: FC = () => (
     </DocSection>
 
     {/* ------------------------------------------------ Colour */}
-    <DocSection>
+    <DocSection id='colour'>
       <SectionHeader label='Colour' meta='bg-ed-* · text-ed-* · border-ed-*' />
       <Prose>
         <p>
@@ -348,8 +349,11 @@ const StylesPage: FC = () => (
     </DocSection>
 
     {/* ------------------------------------------------ Layout */}
-    <DocSection>
-      <SectionHeader label='Layout' meta='Container · 1504px / 1040px' />
+    <DocSection id='layout'>
+      <SectionHeader
+        label='Layout'
+        meta='Container · max-w-page / max-w-page-narrow'
+      />
       <Prose>
         <p>
           Pages are built from full-width horizontal bands — masthead, content
@@ -363,15 +367,28 @@ const StylesPage: FC = () => (
       <Example caption='Container widths'>
         <div className='space-y-3'>
           <div className='border border-ed-rule-strong bg-ed-paper-2 px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2'>
-            Default · max-w-[1504px] — directories, tables, card grids
+            Default · max-w-page (1504px) — directories, tables, card grids
           </div>
           <div className='mx-auto w-3/4 border border-ed-rule-strong bg-ed-paper-2 px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2'>
-            Narrow · max-w-[1040px] — reading pages, guides, articles
+            Narrow · max-w-page-narrow (1040px) — reading pages, guides,
+            articles
           </div>
         </div>
       </Example>
       <Prose>
         <ul className='list-disc space-y-2 pl-5'>
+          <li>
+            The page widths are design tokens:{' '}
+            <code className='font-mono-ed text-[13px]'>--container-page</code>{' '}
+            (1504px) and{' '}
+            <code className='font-mono-ed text-[13px]'>
+              --container-page-narrow
+            </code>{' '}
+            (1040px), defined once in{' '}
+            <code className='font-mono-ed text-[13px]'>index.css</code>. Always
+            reach them through the Container component — never hardcode a page
+            max-width.
+          </li>
           <li>
             Gutters are 18px on mobile, 24px on tablet, and 32px on wide screens
             — the Container handles this for you.
@@ -392,7 +409,7 @@ const StylesPage: FC = () => (
     </DocSection>
 
     {/* ------------------------------------------------ Links */}
-    <DocSection>
+    <DocSection id='links'>
       <SectionHeader label='Links' />
       <Prose>
         <p>
@@ -422,6 +439,8 @@ const StylesPage: FC = () => (
         </div>
       </Example>
     </DocSection>
+
+    <PagerNav />
   </>
 );
 

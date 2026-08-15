@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
-import { DocHeading, DocSection, PageHeader, Prose } from './shared';
+import { DocHeading, DocSection, PageHeader, PagerNav, Prose } from './shared';
 
 type Pattern = {
   title: string;
@@ -201,7 +201,7 @@ const PatternsPage: FC = () => (
       lede='Best-practice solutions to problems every government service shares. Each pattern has been shaped by real use on BetterGov.ph — follow it before inventing a new one.'
     />
 
-    <DocSection first>
+    <DocSection first id='task-patterns'>
       <SectionHeader
         label='Help people to…'
         meta='Task patterns · 4 documented'
@@ -211,14 +211,14 @@ const PatternsPage: FC = () => (
       ))}
     </DocSection>
 
-    <DocSection>
+    <DocSection id='page-types'>
       <SectionHeader label='Page types' meta='Page patterns · 3 documented' />
       {PAGE_PATTERNS.map(p => (
         <PatternEntry key={p.title} {...p} />
       ))}
     </DocSection>
 
-    <DocSection>
+    <DocSection id='propose'>
       <SectionHeader label='Propose a pattern' />
       <Prose>
         <p>
@@ -229,6 +229,8 @@ const PatternsPage: FC = () => (
         <ArrowLink to='/design/community'>How to propose a pattern</ArrowLink>
       </Prose>
     </DocSection>
+
+    <PagerNav />
   </>
 );
 

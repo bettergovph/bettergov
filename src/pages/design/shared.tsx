@@ -1,12 +1,18 @@
 import { FC, ReactNode } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../../lib/utils';
+import { DESIGN_SECTIONS } from './sections';
 
 /** In-column page header used by every design system page. */
-export const PageHeader: FC<{ title: string; lede?: string }> = ({
-  title,
-  lede,
-}) => (
+export const PageHeader: FC<{
+  title: string;
+  lede?: string;
+  kicker?: string;
+}> = ({ title, lede, kicker = 'National Design Guidelines' }) => (
   <header className='mb-10 border-b border-ed-ink pb-8 max-md:mb-8 max-md:pb-6'>
+    <div className='mb-3 font-sans-ed text-[11px] font-semibold uppercase tracking-[0.14em] text-ed-navy'>
+      {kicker}
+    </div>
     <h1 className='font-serif-ed text-[clamp(30px,4vw,44px)] font-bold leading-none tracking-[-0.02em] text-ed-ink'>
       {title}
     </h1>
@@ -18,17 +24,70 @@ export const PageHeader: FC<{ title: string; lede?: string }> = ({
   </header>
 );
 
-/** Stacked content section: every section after the first gets a top rule. */
-export const DocSection: FC<{ children: ReactNode; first?: boolean }> = ({
-  children,
-  first,
-}) => (
+/**
+ * Stacked content section: every section after the first gets a top rule.
+ * The id anchors the sidebar's subsection links — keep it in sync with
+ * sections.ts.
+ */
+export const DocSection: FC<{
+  children: ReactNode;
+  first?: boolean;
+  id?: string;
+}> = ({ children, first, id }) => (
   <section
-    className={cn(!first && 'mt-14 border-t border-ed-rule pt-10 max-md:mt-10')}
+    id={id}
+    className={cn(
+      'scroll-mt-6',
+      !first && 'mt-14 border-t border-ed-rule pt-10 max-md:mt-10'
+    )}
   >
     {children}
   </section>
 );
+
+/** Previous / next page navigation at the foot of every guideline page. */
+export const PagerNav: FC = () => {
+  const { pathname } = useLocation();
+  const index = DESIGN_SECTIONS.findIndex(s =>
+    s.end ? pathname === s.to : pathname.startsWith(s.to)
+  );
+  if (index === -1) return null;
+  const prev = index > 0 ? DESIGN_SECTIONS[index - 1] : null;
+  const next =
+    index < DESIGN_SECTIONS.length - 1 ? DESIGN_SECTIONS[index + 1] : null;
+
+  return (
+    <nav
+      aria-label='Previous and next page'
+      className='mt-16 grid grid-cols-2 gap-6 border-t-2 border-ed-ink pt-6 max-md:mt-12'
+    >
+      <div>
+        {prev && (
+          <Link to={prev.to} className='group block no-underline'>
+            <div className='font-sans-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+              Previous
+            </div>
+            <div className='mt-1 font-serif-ed text-lg font-semibold text-ed-navy transition-colors group-hover:text-ed-red'>
+              ← {prev.label}
+            </div>
+          </Link>
+        )}
+      </div>
+      <div className='text-right'>
+        {next && (
+          <Link to={next.to} className='group block no-underline'>
+            <div className='font-sans-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+              Next
+            </div>
+            <div className='mt-1 font-serif-ed text-lg font-semibold text-ed-navy transition-colors group-hover:text-ed-red'>
+              {next.label} →
+            </div>
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+};
 
 /** Long-form copy block used across design system pages. */
 export const Prose: FC<{ children: ReactNode; className?: string }> = ({

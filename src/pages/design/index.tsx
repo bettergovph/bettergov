@@ -4,7 +4,7 @@ import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Card from '../../components/v2/ui/Card';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
-import { DocSection, PageHeader, Prose } from './shared';
+import { DocSection, PageHeader, PagerNav, Prose } from './shared';
 
 const SECTIONS = [
   {
@@ -89,7 +89,7 @@ const DesignSystemHome: FC = () => (
       lede='Styles, components, and patterns for building consistent, accessible digital services for the Philippine government — so every service looks and feels like part of one government, because to the public, it is.'
     />
 
-    <DocSection first>
+    <DocSection first id='start-here'>
       <SectionHeader
         label='Start here'
         meta='Everything here is in production on BetterGov.ph'
@@ -106,7 +106,7 @@ const DesignSystemHome: FC = () => (
       </div>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='principles'>
       <SectionHeader label='Design principles' meta='Six rules we build by' />
       <ol className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
         {PRINCIPLES.map((p, i) => (
@@ -127,7 +127,7 @@ const DesignSystemHome: FC = () => (
       </ol>
     </DocSection>
 
-    <DocSection>
+    <DocSection id='use-it'>
       <SectionHeader label='Use it in your service' />
       <div className='grid gap-10 lg:grid-cols-2'>
         <Prose>
@@ -163,6 +163,8 @@ const DesignSystemHome: FC = () => (
         </div>
       </div>
     </DocSection>
+
+    <PagerNav />
   </>
 );
 
