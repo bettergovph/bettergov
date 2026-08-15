@@ -133,7 +133,7 @@ export const Example: FC<{
         Example
       </span>
       {caption && (
-        <span className='font-mono-ed text-[10px] text-ed-ink-4'>
+        <span className='font-mono-ed text-[10px] text-ed-ink-3'>
           {caption}
         </span>
       )}
@@ -191,7 +191,7 @@ export const Swatch: FC<{
     />
     <div className='min-w-0'>
       <div className='font-mono-ed text-[12px] text-ed-ink'>{token}</div>
-      <div className='font-mono-ed text-[11px] uppercase text-ed-ink-4'>
+      <div className='font-mono-ed text-[11px] uppercase text-ed-ink-3'>
         {hex}
       </div>
       <div className='mt-0.5 font-sans-ed text-[12px] leading-snug text-ed-ink-3'>

@@ -54,7 +54,7 @@ const DesignSystemLayout: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Container className='max-w-[1200px] py-10 max-md:py-6'>
         <div className='grid gap-12 lg:grid-cols-[230px_minmax(0,1fr)]'>
-          <aside>
+          <div>
             <nav
               aria-label='Design system sections'
               className='lg:sticky lg:top-6'
@@ -125,7 +125,7 @@ const DesignSystemLayout: FC = () => {
                 </a>
               </div>
             </nav>
-          </aside>
+          </div>
 
           <div className='min-w-0'>
             <Outlet />

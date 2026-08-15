@@ -112,7 +112,7 @@ const DesignSystemHome: FC = () => (
         {PRINCIPLES.map((p, i) => (
           <li key={p.title} className='max-w-md'>
             <div className='flex items-baseline gap-3 border-b border-ed-rule pb-2'>
-              <span className='font-serif-ed text-2xl font-semibold text-ed-ink-4'>
+              <span className='font-serif-ed text-2xl font-semibold text-ed-ink-3'>
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h3 className='font-sans-ed text-[15px] font-semibold text-ed-ink'>

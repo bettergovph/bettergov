@@ -30,7 +30,7 @@ const PatternEntry: FC<Pattern> = ({
         <ol className='max-w-2xl space-y-2 font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
           {howItWorks.map((step, i) => (
             <li key={i} className='flex gap-3'>
-              <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-4'>
+              <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-3'>
                 {String(i + 1).padStart(2, '0')}
               </span>
               <span>{step}</span>
@@ -39,12 +39,12 @@ const PatternEntry: FC<Pattern> = ({
         </ol>
       </div>
     </div>
-    <aside className='lg:pt-1'>
+    <div className='lg:pt-1'>
       <div className='border border-ed-rule bg-ed-paper-2 p-5'>
         <DocHeading>See it live</DocHeading>
         <ArrowLink to={liveTo}>{liveLabel}</ArrowLink>
       </div>
-    </aside>
+    </div>
   </article>
 );
 

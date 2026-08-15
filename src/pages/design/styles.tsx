@@ -117,7 +117,7 @@ const StylesPage: FC = () => (
           {TYPE_SCALE.map(t => (
             <div key={t.label} className='py-5'>
               <div className={t.classes}>{t.sample}</div>
-              <div className='mt-2 font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-4'>
+              <div className='mt-2 font-mono-ed text-[11px] uppercase tracking-[0.08em] text-ed-ink-3'>
                 {t.label}
               </div>
               <div className='font-sans-ed text-[13px] text-ed-ink-3'>
@@ -161,8 +161,9 @@ const StylesPage: FC = () => (
           The palette is deliberately quiet: near-black ink on paper white,
           ruled lines, and a single working blue. Red is reserved for urgency,
           and the sage and gold accents appear rarely and never for interactive
-          elements. All text/background pairs shown here meet
-          WCAG&nbsp;2.1&nbsp;AA contrast.
+          elements. Every pair documented for text meets WCAG&nbsp;2.1&nbsp;AA
+          contrast; tokens marked decorative-only fail AA and must never carry
+          text.
         </p>
       </Prose>
 
@@ -192,7 +193,7 @@ const StylesPage: FC = () => (
               colorClass='bg-ed-ink-4'
               token='ed-ink-4'
               hex='#8a95aa'
-              role='Placeholders, disabled — never body text'
+              role='Disabled states and decorative marks only — fails AA (3.0:1), never for text'
             />
           </div>
         </div>
@@ -292,7 +293,7 @@ const StylesPage: FC = () => (
               colorClass='bg-ed-gold'
               token='ed-gold'
               hex='#b8893a'
-              role='Sparing editorial accent — never interactive'
+              role='Sparing editorial accent — never interactive, not for text'
             />
           </div>
         </div>
@@ -301,10 +302,10 @@ const StylesPage: FC = () => (
           <DocHeading>Semantic — status only</DocHeading>
           <div className='grid gap-5 sm:grid-cols-2 xl:grid-cols-3'>
             <Swatch
-              colorClass='bg-success-600'
-              token='success-600'
-              hex='#008c4c'
-              role='Success and confirmation states'
+              colorClass='bg-success-700'
+              token='success-700'
+              hex='#006939'
+              role='Success and confirmation states — safe under white text'
             />
             <Swatch
               colorClass='bg-warning-500'

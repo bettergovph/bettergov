@@ -18,6 +18,12 @@ type Props = {
    * sections and section mastheads).
    */
   variant?: Variant;
+  /**
+   * Element used for the title. Defaults to h1 — override only when the
+   * masthead is rendered as a demo inside another page (e.g. the design
+   * system docs), where an extra h1 would break the heading outline.
+   */
+  titleAs?: 'h1' | 'h2' | 'p';
   className?: string;
 };
 
@@ -32,6 +38,7 @@ const PageMasthead: FC<Props> = ({
   lede,
   children,
   variant = 'light',
+  titleAs: TitleTag = 'h1',
   className,
 }) => {
   const onDark = variant === 'hero';
@@ -39,7 +46,7 @@ const PageMasthead: FC<Props> = ({
   return (
     <section className={cn('py-16', variantClasses[variant], className)}>
       <Container>
-        <h1
+        <TitleTag
           className={cn(
             'font-serif-ed font-bold tracking-[-0.02em]',
             // leading must follow the size class: tailwind-merge treats
@@ -49,7 +56,7 @@ const PageMasthead: FC<Props> = ({
           )}
         >
           {title}
-        </h1>
+        </TitleTag>
         {lede && (
           <p
             className={cn(

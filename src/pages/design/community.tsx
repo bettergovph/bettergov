@@ -98,7 +98,7 @@ const CommunityPage: FC = () => (
         {CRITERIA.map((c, i) => (
           <div key={c.title}>
             <div className='flex items-baseline gap-3 border-b border-ed-navy pb-2'>
-              <span className='font-serif-ed text-2xl font-semibold text-ed-ink-4'>
+              <span className='font-serif-ed text-2xl font-semibold text-ed-ink-3'>
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h3 className='font-sans-ed text-[15px] font-semibold text-ed-ink'>
@@ -118,7 +118,7 @@ const CommunityPage: FC = () => (
       <ol className='max-w-2xl space-y-6'>
         {STEPS.map((s, i) => (
           <li key={s.title} className='flex gap-5'>
-            <span className='font-serif-ed text-2xl font-semibold leading-none text-ed-ink-4'>
+            <span className='font-serif-ed text-2xl font-semibold leading-none text-ed-ink-3'>
               {String(i + 1).padStart(2, '0')}
             </span>
             <div>

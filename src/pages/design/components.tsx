@@ -175,12 +175,17 @@ const ComponentsPage: FC = () => {
         </Prose>
         <Example caption='variant: light' padded={false}>
           <PageMasthead
+            titleAs='p'
             title='A clear, plain-language title'
             lede='One sentence that tells people they are in the right place and what they can do here.'
           />
         </Example>
         <Example caption='variant: hero' padded={false}>
-          <PageMasthead variant='hero' title='Every agency, one directory' />
+          <PageMasthead
+            titleAs='p'
+            variant='hero'
+            title='Every agency, one directory'
+          />
         </Example>
         <WhenToUse
           use={[

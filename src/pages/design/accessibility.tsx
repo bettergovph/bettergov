@@ -92,7 +92,7 @@ const DesignAccessibilityPage: FC = () => (
       <ul className='mt-6 max-w-2xl divide-y divide-ed-rule border-y border-ed-rule'>
         {TEAM_MUST_DO.map((rule, i) => (
           <li key={i} className='flex gap-4 py-3'>
-            <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-4'>
+            <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-3'>
               {String(i + 1).padStart(2, '0')}
             </span>
             <span className='font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
