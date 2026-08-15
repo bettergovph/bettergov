@@ -1,14 +1,43 @@
 import { FC, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
-/** Serif long-form copy block used across design system pages. */
+/** In-column page header used by every design system page. */
+export const PageHeader: FC<{ title: string; lede?: string }> = ({
+  title,
+  lede,
+}) => (
+  <header className='mb-10 border-b border-ed-ink pb-8 max-md:mb-8 max-md:pb-6'>
+    <h1 className='font-serif-ed text-[clamp(30px,4vw,44px)] font-bold leading-none tracking-[-0.02em] text-ed-ink'>
+      {title}
+    </h1>
+    {lede && (
+      <p className='mt-4 max-w-2xl font-sans-ed text-lg leading-relaxed text-ed-ink-2'>
+        {lede}
+      </p>
+    )}
+  </header>
+);
+
+/** Stacked content section: every section after the first gets a top rule. */
+export const DocSection: FC<{ children: ReactNode; first?: boolean }> = ({
+  children,
+  first,
+}) => (
+  <section
+    className={cn(!first && 'mt-14 border-t border-ed-rule pt-10 max-md:mt-10')}
+  >
+    {children}
+  </section>
+);
+
+/** Long-form copy block used across design system pages. */
 export const Prose: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className,
 }) => (
   <div
     className={cn(
-      'max-w-2xl space-y-4 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2',
+      'max-w-2xl space-y-4 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2',
       className
     )}
   >
@@ -16,14 +45,14 @@ export const Prose: FC<{ children: ReactNode; className?: string }> = ({
   </div>
 );
 
-/** Small mono sub-heading inside a documented section. */
+/** Sub-heading inside a documented section. */
 export const DocHeading: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className,
 }) => (
   <h3
     className={cn(
-      'mb-3 font-mono-ed text-[11px] font-medium uppercase tracking-[0.14em] text-ed-ink',
+      'mb-3 font-serif-ed text-[17px] font-semibold text-ed-ink',
       className
     )}
   >
@@ -61,7 +90,7 @@ export const WhenToUse: FC<{
   <div className='my-6 grid max-w-3xl gap-8 md:grid-cols-2'>
     <div>
       <DocHeading>When to use it</DocHeading>
-      <ul className='space-y-2 font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
+      <ul className='space-y-2 font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
         {use.map((item, i) => (
           <li key={i} className='border-l-2 border-ed-sage pl-3'>
             {item}
@@ -72,7 +101,7 @@ export const WhenToUse: FC<{
     {avoid && avoid.length > 0 && (
       <div>
         <DocHeading>When not to use it</DocHeading>
-        <ul className='space-y-2 font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
+        <ul className='space-y-2 font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
           {avoid.map((item, i) => (
             <li key={i} className='border-l-2 border-ed-red pl-3'>
               {item}

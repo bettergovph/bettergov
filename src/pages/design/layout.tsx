@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import Container from '../../components/v2/ui/Container';
 import { cn } from '../../lib/utils';
 
-type TabDef = { to: string; label: string; end?: boolean };
+type ItemDef = { to: string; label: string; end?: boolean };
 
-const TABS: TabDef[] = [
+const ITEMS: ItemDef[] = [
   { to: '/design', label: 'Overview', end: true },
   { to: '/design/styles', label: 'Styles' },
   { to: '/design/components', label: 'Components' },
@@ -16,32 +16,43 @@ const TABS: TabDef[] = [
 
 const DesignSystemLayout: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
-    <nav
-      className='border-b border-ed-rule bg-white'
-      aria-label='Design system sections'
-    >
-      <Container className='flex flex-wrap'>
-        {TABS.map((t, i) => (
-          <NavLink
-            key={t.to}
-            to={t.to}
-            end={t.end}
-            className={({ isActive }) =>
-              cn(
-                'border-r border-ed-rule px-[18px] py-3.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] no-underline transition-colors',
-                isActive
-                  ? 'bg-ed-navy text-white'
-                  : 'bg-transparent text-ed-ink-2 hover:bg-ed-navy-tint hover:text-ed-navy-ink',
-                i === TABS.length - 1 && 'border-r-0'
-              )
-            }
+    <Container className='max-w-[1200px] py-10 max-md:py-6'>
+      <div className='grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]'>
+        <aside>
+          <nav
+            aria-label='Design system sections'
+            className='lg:sticky lg:top-6'
           >
-            {t.label}
-          </NavLink>
-        ))}
-      </Container>
-    </nav>
-    <Outlet />
+            <div className='mb-3 border-b border-ed-ink pb-2 font-sans-ed text-[11px] font-semibold uppercase tracking-[0.12em] text-ed-ink'>
+              Design System
+            </div>
+            <ul className='max-lg:flex max-lg:flex-wrap max-lg:gap-x-5 max-lg:gap-y-1'>
+              {ITEMS.map(item => (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={item.end}
+                    className={({ isActive }) =>
+                      cn(
+                        'block border-l-2 py-2 pl-3 font-sans-ed text-sm no-underline transition-colors max-lg:border-l-0 max-lg:pl-0',
+                        isActive
+                          ? 'border-ed-navy font-semibold text-ed-navy'
+                          : 'border-transparent text-ed-ink-2 hover:border-ed-rule-strong hover:text-ed-navy'
+                      )
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        <div className='min-w-0'>
+          <Outlet />
+        </div>
+      </div>
+    </Container>
   </main>
 );
 

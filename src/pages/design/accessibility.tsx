@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
-import PageMasthead from '../../components/v2/layout/PageMasthead';
-import Container from '../../components/v2/ui/Container';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
-import { DocHeading, Prose } from './shared';
+import { DocHeading, DocSection, PageHeader, Prose } from './shared';
 
 const SYSTEM_PROVIDES = [
   {
@@ -64,78 +62,71 @@ const DesignAccessibilityPage: FC = () => (
       <link rel='canonical' href='https://bettergov.ph/design/accessibility' />
     </Helmet>
 
-    <PageMasthead
-      eyebrow='Design System · Accessibility'
+    <PageHeader
       title='Accessibility'
       lede='Government services are for everyone, including the roughly one in seven Filipinos living with a disability. WCAG 2.1 AA is our floor. The system gets you part of the way; your content and testing do the rest.'
     />
 
-    <section className='py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader label='What the system does for you' />
-        <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
-          {SYSTEM_PROVIDES.map(item => (
-            <div key={item.title} className='max-w-md'>
-              <DocHeading>{item.title}</DocHeading>
-              <p className='font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
-                {item.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
+    <DocSection first>
+      <SectionHeader label='What the system does for you' />
+      <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
+        {SYSTEM_PROVIDES.map(item => (
+          <div key={item.title} className='max-w-md'>
+            <DocHeading>{item.title}</DocHeading>
+            <p className='font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
+              {item.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </DocSection>
 
-    <section className='border-t border-ed-rule bg-ed-paper-2 py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader label='What your team still has to do' />
-        <Prose>
-          <p>
-            Components cannot make content accessible. Using this system does
-            not exempt a page from the basics:
-          </p>
-        </Prose>
-        <ul className='mt-6 max-w-2xl divide-y divide-ed-rule border-y border-ed-rule'>
-          {TEAM_MUST_DO.map((rule, i) => (
-            <li key={i} className='flex gap-4 py-3'>
-              <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-4'>
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className='font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
-                {rule}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </section>
+    <DocSection>
+      <SectionHeader label='What your team still has to do' />
+      <Prose>
+        <p>
+          Components cannot make content accessible. Using this system does not
+          exempt a page from the basics:
+        </p>
+      </Prose>
+      <ul className='mt-6 max-w-2xl divide-y divide-ed-rule border-y border-ed-rule'>
+        {TEAM_MUST_DO.map((rule, i) => (
+          <li key={i} className='flex gap-4 py-3'>
+            <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-4'>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span className='font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
+              {rule}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </DocSection>
 
-    <section className='border-t border-ed-rule py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader label='How to test' meta='Four checks before shipping' />
-        <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
-          {TESTS.map(t => (
-            <div key={t.title} className='max-w-md'>
-              <DocHeading>{t.title}</DocHeading>
-              <p className='font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
-                {t.body}
-              </p>
-            </div>
-          ))}
-        </div>
-        <Prose className='mt-10'>
-          <p>
-            Automated checkers catch perhaps a third of real barriers; the four
-            manual checks above catch most of the rest. When they disagree with
-            this documentation, fix the page first and then report the gap so
-            the system improves too.
-          </p>
-          <ArrowLink to='/accessibility'>
-            Read the BetterGov.ph accessibility statement
-          </ArrowLink>
-        </Prose>
-      </Container>
-    </section>
+    <DocSection>
+      <SectionHeader label='How to test' meta='Four checks before shipping' />
+      <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
+        {TESTS.map(t => (
+          <div key={t.title} className='max-w-md'>
+            <DocHeading>{t.title}</DocHeading>
+            <p className='font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
+              {t.body}
+            </p>
+          </div>
+        ))}
+      </div>
+      <Prose className='mt-10'>
+        <p>
+          Automated checkers catch perhaps a third of real barriers; the four
+          manual checks above catch most of the rest. When they disagree with
+          this documentation, fix the page first and then report the gap so the
+          system improves too.
+        </p>
+        <ArrowLink to='/accessibility'>
+          Read the BetterGov.ph accessibility statement
+        </ArrowLink>
+      </Prose>
+    </DocSection>
   </>
 );
 

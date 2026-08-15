@@ -1,10 +1,8 @@
 import { FC, ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
-import PageMasthead from '../../components/v2/layout/PageMasthead';
-import Container from '../../components/v2/ui/Container';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
-import { DocHeading, Prose } from './shared';
+import { DocHeading, DocSection, PageHeader, Prose } from './shared';
 
 type Pattern = {
   title: string;
@@ -21,15 +19,15 @@ const PatternEntry: FC<Pattern> = ({
   liveTo,
   liveLabel,
 }) => (
-  <article className='grid gap-8 border-b border-ed-rule py-10 first:pt-0 last:border-b-0 lg:grid-cols-[1fr_320px]'>
+  <article className='grid gap-8 border-b border-ed-rule py-10 first:pt-0 last:border-b-0 last:pb-0 lg:grid-cols-[1fr_260px]'>
     <div>
-      <h3 className='font-serif-ed text-[24px] leading-snug text-ed-ink'>
+      <h3 className='font-serif-ed text-[24px] font-semibold leading-snug text-ed-ink'>
         {title}
       </h3>
       <Prose className='mt-3'>{body}</Prose>
       <div className='mt-5'>
         <DocHeading>How it works</DocHeading>
-        <ol className='max-w-2xl space-y-2 font-serif-ed text-[15px] leading-relaxed text-ed-ink-2'>
+        <ol className='max-w-2xl space-y-2 font-sans-ed text-[15px] leading-relaxed text-ed-ink-2'>
           {howItWorks.map((step, i) => (
             <li key={i} className='flex gap-3'>
               <span className='font-mono-ed text-[11px] leading-6 text-ed-ink-4'>
@@ -172,15 +170,15 @@ const PAGE_PATTERNS: Pattern[] = [
     body: (
       <p>
         History, culture, explainers — pages meant to be read, not scanned. They
-        use the narrow container, serif body text, and an opening drop cap.
-        Reading pages earn attention with restraint: no cards, no sidebars
-        competing with the text.
+        keep a narrow measure, relaxed Inter body text, and generous display
+        headings. Reading pages earn attention with restraint: no cards, no
+        sidebars competing with the text.
       </p>
     ),
     howItWorks: [
-      'Use the narrow container to keep lines under ~70 characters.',
-      'Open the first paragraph with a drop cap.',
-      'Break the text with section headers, pull quotes, or a single image — sparingly.',
+      'Keep lines under ~70 characters with a narrow content column.',
+      'Break the text with section headings, pull quotes, or a single image — sparingly.',
+      'A drop cap may open the first paragraph of a major section.',
     ],
     liveTo: '/philippines/history',
     liveLabel: 'History of the Philippines',
@@ -198,46 +196,39 @@ const PatternsPage: FC = () => (
       <link rel='canonical' href='https://bettergov.ph/design/patterns' />
     </Helmet>
 
-    <PageMasthead
-      eyebrow='Design System · Patterns'
+    <PageHeader
       title='Patterns'
       lede='Best-practice solutions to problems every government service shares. Each pattern has been shaped by real use on BetterGov.ph — follow it before inventing a new one.'
     />
 
-    <section className='py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader
-          label='Help people to…'
-          meta='Task patterns · 4 documented'
-        />
-        {TASK_PATTERNS.map(p => (
-          <PatternEntry key={p.title} {...p} />
-        ))}
-      </Container>
-    </section>
+    <DocSection first>
+      <SectionHeader
+        label='Help people to…'
+        meta='Task patterns · 4 documented'
+      />
+      {TASK_PATTERNS.map(p => (
+        <PatternEntry key={p.title} {...p} />
+      ))}
+    </DocSection>
 
-    <section className='border-t border-ed-rule bg-ed-paper-2 py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader label='Page types' meta='Page patterns · 3 documented' />
-        {PAGE_PATTERNS.map(p => (
-          <PatternEntry key={p.title} {...p} />
-        ))}
-      </Container>
-    </section>
+    <DocSection>
+      <SectionHeader label='Page types' meta='Page patterns · 3 documented' />
+      {PAGE_PATTERNS.map(p => (
+        <PatternEntry key={p.title} {...p} />
+      ))}
+    </DocSection>
 
-    <section className='border-t border-ed-rule py-12 max-md:py-8'>
-      <Container narrow>
-        <SectionHeader label='Propose a pattern' />
-        <Prose>
-          <p>
-            Patterns are added when the same problem keeps being solved the same
-            way. If you have solved something these patterns do not cover — and
-            you can show it working — propose it through the community process.
-          </p>
-          <ArrowLink to='/design/community'>How to propose a pattern</ArrowLink>
-        </Prose>
-      </Container>
-    </section>
+    <DocSection>
+      <SectionHeader label='Propose a pattern' />
+      <Prose>
+        <p>
+          Patterns are added when the same problem keeps being solved the same
+          way. If you have solved something these patterns do not cover — and
+          you can show it working — propose it through the community process.
+        </p>
+        <ArrowLink to='/design/community'>How to propose a pattern</ArrowLink>
+      </Prose>
+    </DocSection>
   </>
 );
 
