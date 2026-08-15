@@ -23,6 +23,7 @@ import 'leaflet/dist/leaflet.css';
 // Import contractor data
 import contractorData from '../../../data/flood_control/lookups/Contractor_with_counts.json';
 import FloodControlProjectsTab from '../tab';
+import { buildEqualityFilter } from '../utils';
 
 // Define types for our data
 interface DataItem {
@@ -591,7 +592,7 @@ const ContractorDetail: FC = () => {
 
     // Add contractor filter if contractor is available
     if (contractor) {
-      filters.push(`Contractor = "${contractor.value}"`);
+      filters.push(buildEqualityFilter('Contractor', contractor.value));
     }
 
     return filters.join(' AND ');
@@ -842,7 +843,7 @@ const ContractorDetail: FC = () => {
           >
             <Configure
               hitsPerPage={1}
-              filters={`slug = "${contractorSlug}"`}
+              filters={buildEqualityFilter('slug', contractorSlug)}
               query=''
             />
             <ContractorProfileFetcher onProfileUpdate={setContractorProfile} />

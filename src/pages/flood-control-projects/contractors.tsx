@@ -26,6 +26,7 @@ import { ScrollArea } from '../../components/ui/ScrollArea';
 // Import contractor data
 import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json';
 import FloodControlProjectsTab from './tab';
+import { buildEqualityFilter } from './utils';
 
 // Define types for our data
 interface DataItem {
@@ -564,7 +565,7 @@ const FloodControlProjectsContractors: FC = () => {
 
     // Add contractor filter if one is selected
     if (selectedContractor) {
-      filters.push(`Contractor = "${selectedContractor}"`);
+      filters.push(buildEqualityFilter('Contractor', selectedContractor));
     }
 
     return filters.join(' AND ');
