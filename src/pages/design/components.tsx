@@ -43,13 +43,18 @@ const ComponentsPage: FC = () => {
         <Prose>
           <p>
             Buttons start actions: submitting a search, filing a report,
-            confirming a step. The solid variant is for the single most
-            important action on a screen; the ghost variant is for secondary
-            actions beside it. If the element takes people to another page, it
-            is a link, not a button — style it as one.
+            confirming a step. The solid navy variant is the primary button —
+            one per view, for the most important action. The ghost variant is
+            for secondary actions beside it. If the element takes people to
+            another page, it is a link, not a button — style it as one.
+          </p>
+          <p>
+            Sizes have fixed heights — md is 44px, sm is 36px — so a button
+            always lines up exactly with an input or select placed beside it.
+            Never adjust a button&rsquo;s height with padding.
           </p>
         </Prose>
-        <Example caption='variant: solid · ghost — size: md · sm'>
+        <Example caption='variant: solid (primary) · ghost — size: md 44px · sm 36px'>
           <div className='flex flex-wrap items-center gap-4'>
             <Button>Start a report</Button>
             <Button variant='ghost'>Cancel</Button>
