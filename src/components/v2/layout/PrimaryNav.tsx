@@ -81,7 +81,7 @@ const PrimaryNav: FC = () => {
   return (
     <nav
       ref={rootRef}
-      className='border-ed-rule bg-white max-[960px]:hidden'
+      className='border-ed-rule bg-white max-lg:hidden'
       aria-label='Primary'
     >
       <Container className='flex items-stretch justify-start flex-wrap'>
@@ -188,7 +188,7 @@ const PrimaryNav: FC = () => {
           href='https://e.gov.ph'
           target='_blank'
           rel='noopener noreferrer'
-          className={cn(navItemBase, 'ml-auto')}
+          className={cn(navItemBase, 'ml-auto max-xl:hidden')}
         >
           {t('navbar.downloadEgovApp', 'Download eGov App')}
         </a>

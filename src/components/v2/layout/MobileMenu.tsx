@@ -19,7 +19,7 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   return (
-    <div className='border-b border-ed-ink bg-white px-0 py-2 pb-4 md:hidden'>
+    <div className='border-b border-ed-ink bg-white px-0 py-2 pb-4 lg:hidden'>
       <Container>
         <Link to='/' onClick={onClose} className={labelRow}>
           <span>{t('navbar.home', 'Home')}</span>
