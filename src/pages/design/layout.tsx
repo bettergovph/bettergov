@@ -5,8 +5,10 @@ import Container from '../../components/v2/ui/Container';
 import { cn } from '../../lib/utils';
 import { DESIGN_SECTIONS, SectionDef } from './sections';
 
-const isSectionActive = (section: SectionDef, pathname: string) =>
-  section.end ? pathname === section.to : pathname.startsWith(section.to);
+const isSectionActive = (section: SectionDef, pathname: string) => {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  return section.end ? path === section.to : path.startsWith(section.to);
+};
 
 /**
  * Tracks which subsection anchor is currently in view so the sidebar can

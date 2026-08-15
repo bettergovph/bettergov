@@ -48,8 +48,9 @@ export const DocSection: FC<{
 /** Previous / next page navigation at the foot of every guideline page. */
 export const PagerNav: FC = () => {
   const { pathname } = useLocation();
+  const path = pathname.replace(/\/+$/, '') || '/';
   const index = DESIGN_SECTIONS.findIndex(s =>
-    s.end ? pathname === s.to : pathname.startsWith(s.to)
+    s.end ? path === s.to : path.startsWith(s.to)
   );
   if (index === -1) return null;
   const prev = index > 0 ? DESIGN_SECTIONS[index - 1] : null;
