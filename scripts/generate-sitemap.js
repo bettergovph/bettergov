@@ -285,6 +285,22 @@ function generateSiteUrls(mainNavigation, governmentData) {
 
   mainPages.forEach(page => urls.add(page));
 
+  // Add design system pages
+  const designPages = [
+    '/design',
+    '/design/styles',
+    '/design/components',
+    '/design/patterns',
+    '/design/accessibility',
+    '/design/community',
+  ].map(path => ({
+    url: `${siteUrl}${path}`,
+    priority: '0.5',
+    changefreq: 'monthly',
+  }));
+
+  designPages.forEach(page => urls.add(page));
+
   // Add data pages
   const dataPages = [
     { url: `${siteUrl}/data/weather`, priority: '0.7', changefreq: 'hourly' },
