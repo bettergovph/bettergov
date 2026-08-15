@@ -11,6 +11,10 @@
     "title": "Accessibility Statement | BetterGov.ph | BetterGov.ph",
     "description": "Find important information about Accessibility Statement through BetterGov.ph, the Philippines\u2019 civic information portal."
   },
+  "/contribute": {
+    "title": "Contribute | BetterGov.ph",
+    "description": "Every way to contribute to BetterGov.ph, ordered from easiest to hardest: join the Discord, report a problem, share an idea, fix data, write code, review pull requests, or list your own civic tech project."
+  },
   "/data/forex": {
     "title": "Forex: Currency Converter - BetterGov.ph",
     "description": "Find important information about Forex: Currency Converter through BetterGov.ph, the Philippines\u2019 civic information portal."
