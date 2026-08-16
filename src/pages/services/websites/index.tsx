@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
 import { ExternalLinkIcon, SearchIcon, XIcon } from 'lucide-react';
 import Container from '../../../components/v2/ui/Container';
-import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import websitesData from '../../../data/websites.json';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
 
 interface Website {
   name: string;
@@ -82,7 +82,6 @@ const WebsitesDirectory: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='Services · Directory'
         title='Government Websites'
         lede='Official online presence of Philippine government agencies, bureaus, SUCs, and diplomatic posts.'
       />
@@ -93,9 +92,7 @@ const WebsitesDirectory: FC = () => {
             {/* Sidebar: category filter */}
             <aside className='max-lg:order-last'>
               <div className='sticky top-6'>
-                <div className='mb-4 border-t-2 border-ed-navy pt-4'>
-                  <Eyebrow tone='navy'>Filter by type</Eyebrow>
-                </div>
+                <SectionHeader label='Filter by type' />
                 <div className='space-y-0.5'>
                   <button
                     onClick={() => setSelectedType('')}

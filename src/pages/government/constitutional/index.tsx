@@ -18,13 +18,7 @@ const ConstitutionalIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Constitutional · ${entries.length} offices`}
-        title={
-          <>
-            Independent commissions,{' '}
-            <em className='italic font-normal'>by mandate.</em>
-          </>
-        }
+        title='Independent commissions'
         lede='Constitutional commissions and offices created by the 1987 Constitution to operate independently of the three political branches — the Civil Service Commission, Commission on Elections, Commission on Audit, Office of the Ombudsman, and the Commission on Human Rights.'
       />
       <DirectoryResults

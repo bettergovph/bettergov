@@ -37,12 +37,7 @@ const GovernmentDirectory: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow={`The Directory · ${allEntries.length} entries tracked`}
-        title={
-          <>
-            Every agency, <em className='italic font-normal'>one directory.</em>
-          </>
-        }
+        title='Government directory'
         lede='The executive branch and its departments, the constitutional commissions, the legislature, and diplomatic missions accredited to the Philippines — each with a verified head of office, trunkline, and official website.'
       />
 

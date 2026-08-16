@@ -48,12 +48,7 @@ const ConsulatesPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${all.length} consulates`}
-        title={
-          <>
-            Consulates, <em className='italic font-normal'>ad honorem.</em>
-          </>
-        }
+        title='Consulates'
         lede='Consulates and honorary consulates representing foreign states in the Philippines — typically for citizen services, notarial acts, and trade promotion.'
       />
 
@@ -106,7 +101,7 @@ const ConsulatesPage: FC = () => {
                     )}
                   </div>
                   <div>
-                    <div className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+                    <div className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
                       {c.office_name}
                     </div>
                     {c.address && (

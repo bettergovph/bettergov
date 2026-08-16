@@ -285,10 +285,39 @@ function generateSiteUrls(mainNavigation, governmentData) {
 
   mainPages.forEach(page => urls.add(page));
 
+  // Add design system pages
+  const designPages = [
+    '/design',
+    '/design/styles',
+    '/design/components',
+    '/design/patterns',
+    '/design/accessibility',
+    '/design/community',
+  ].map(path => ({
+    url: `${siteUrl}${path}`,
+    priority: '0.5',
+    changefreq: 'monthly',
+  }));
+
+  designPages.forEach(page => urls.add(page));
+
   // Add data pages
   const dataPages = [
     { url: `${siteUrl}/data/weather`, priority: '0.7', changefreq: 'hourly' },
     { url: `${siteUrl}/data/forex`, priority: '0.7', changefreq: 'daily' },
+    // Article pages are fetched live from the e.gov.ph API at runtime, so
+    // only the listing (and its category views) can be enumerated here.
+    { url: `${siteUrl}/news`, priority: '0.8', changefreq: 'daily' },
+    {
+      url: `${siteUrl}/news?category=circular`,
+      priority: '0.6',
+      changefreq: 'daily',
+    },
+    {
+      url: `${siteUrl}/news?category=press-release`,
+      priority: '0.6',
+      changefreq: 'daily',
+    },
   ];
 
   dataPages.forEach(page => urls.add(page));

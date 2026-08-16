@@ -5,6 +5,7 @@ import { ForexRate } from '../../types';
 import Container from '../../components/v2/ui/Container';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 
 const FLAG_MAP: Record<string, string> = {
   USD: '🇺🇸',
@@ -98,7 +99,6 @@ const ForexPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='FX · Bangko Sentral ng Pilipinas'
         title='Foreign Exchange'
         lede={
           asOf
@@ -128,9 +128,7 @@ const ForexPage: FC = () => {
               {/* Major-currency KPI strip */}
               {majorRates.length > 0 && (
                 <div className='mb-12'>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Major currencies</Eyebrow>
-                  </div>
+                  <SectionHeader label='Major currencies' />
                   <div className='grid grid-cols-5 gap-4 max-lg:grid-cols-3 max-sm:grid-cols-2'>
                     {majorRates.map(r => (
                       <div
@@ -145,7 +143,7 @@ const ForexPage: FC = () => {
                             {FLAG_MAP[r.code] ?? '🏴'}
                           </span>
                         </div>
-                        <div className='mt-3 font-serif-ed text-[28px] font-medium leading-none text-ed-ink'>
+                        <div className='mt-3 font-serif-ed text-[28px] font-semibold leading-none text-ed-ink'>
                           {r.rate ? `₱${r.rate.toFixed(2)}` : '—'}
                         </div>
                         <div className='mt-1.5 text-[11px] text-ed-ink-3'>
@@ -216,7 +214,7 @@ const ForexPage: FC = () => {
                       <div className='text-sm text-ed-ink-2'>
                         {toTitleCase(r.currency)}
                       </div>
-                      <div className='font-serif-ed text-[18px] font-medium text-ed-ink max-sm:font-sans-ed max-sm:text-sm'>
+                      <div className='font-serif-ed text-[18px] font-semibold text-ed-ink max-sm:font-sans-ed max-sm:text-sm'>
                         {r.rate ? `₱${r.rate.toFixed(4)}` : '—'}
                       </div>
                     </div>

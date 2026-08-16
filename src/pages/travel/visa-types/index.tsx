@@ -67,13 +67,7 @@ const VisaTypesPage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Travel · Visa types'
-        title={
-          <>
-            Philippine visa types,{' '}
-            <em className='italic font-normal'>by category.</em>
-          </>
-        }
+        title='Philippine visa types'
         lede='Explore the different types of visas available for travel to the Philippines — grouped by category, each linking to the specific requirements, fees, and validity.'
       />
 
@@ -167,11 +161,11 @@ const VisaTypesPage: FC = () => {
                           <span className='text-ed-navy' aria-hidden>
                             {c.icon}
                           </span>
-                          <h2 className='m-0 font-serif-ed text-[32px] font-medium leading-tight tracking-[-0.01em] text-ed-navy-ink'>
+                          <h2 className='m-0 font-serif-ed text-[32px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink'>
                             {c.name}
                           </h2>
                         </div>
-                        <p className='mt-3 max-w-2xl font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                        <p className='mt-3 max-w-2xl font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                           {c.description}
                         </p>
                       </div>
@@ -239,7 +233,7 @@ const VisaCard: FC<{ visa: VisaType }> = ({ visa }) => (
     className='group block border border-ed-rule bg-white p-5 text-ed-ink no-underline transition-colors hover:border-ed-ink [.grid-cols-2_&]:border-r-0 [.grid-cols-2_&:nth-child(odd)]:border-r [.grid-cols-2_&:not(:last-child):not(:nth-last-child(2))]:border-b [.grid-cols-2_&]:last:border-b-0 [.grid-cols-3_&]:border-r-0 [.grid-cols-3_&:not(:nth-child(3n))]:border-r [.grid-cols-3_&:not(:nth-last-child(-n+3))]:border-b'
   >
     <div className='flex items-start justify-between gap-3'>
-      <h3 className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+      <h3 className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
         {visa.name}
       </h3>
       <ArrowRightIcon

@@ -49,13 +49,7 @@ const GOCCsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Constitutional · ${all.length} GOCCs`}
-        title={
-          <>
-            GOCCs,{' '}
-            <em className='italic font-normal'>corporations of the state.</em>
-          </>
-        }
+        title='Government-owned and controlled corporations'
         lede='Government-Owned and Controlled Corporations — state-owned entities chartered to carry out commercial, developmental, or regulatory mandates.'
       />
 
@@ -92,7 +86,7 @@ const GOCCsPage: FC = () => {
                   key={e.slug}
                   className='grid grid-cols-[1fr_minmax(280px,360px)] gap-6 py-5 max-md:grid-cols-1 max-md:gap-2'
                 >
-                  <div className='font-serif-ed text-[18px] font-medium leading-tight text-ed-navy-ink'>
+                  <div className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
                     {titleCase(e.name)}
                   </div>
                   <div className='flex flex-col gap-1.5 border-l border-ed-rule pl-5 text-[13px] text-ed-ink-2 max-md:border-l-0 max-md:pl-0'>

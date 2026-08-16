@@ -187,12 +187,7 @@ const PhilippinesCulture: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <PageMasthead
       variant='hero'
-      eyebrow='§ Philippines · Culture'
-      title={
-        <>
-          A nation of <em className='italic font-normal'>Bayanihan</em>
-        </>
-      }
+      title='Culture'
       lede='The Philippines is a mosaic — Austronesian at its roots, touched by China and India, shaped by three centuries of Spain and half a century of America, held together by family, faith, and fiesta.'
     />
 
@@ -252,7 +247,7 @@ const PhilippinesCulture: FC = () => (
             <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
               {f.month}
             </div>
-            <h4 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+            <h4 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
               {f.name}
             </h4>
             <div className='mt-1 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-2'>
@@ -286,13 +281,13 @@ const PhilippinesCulture: FC = () => (
           <div key={f.t} className='border border-ed-rule bg-white p-5'>
             <div
               className={cn(
-                'mb-4 flex h-[88px] items-center justify-center font-serif-ed text-[40px] font-medium text-ed-navy-ink',
+                'mb-4 flex h-[88px] items-center justify-center font-serif-ed text-[40px] font-semibold text-ed-navy-ink',
                 f.tone
               )}
             >
               {f.t[0]}
             </div>
-            <h4 className='font-serif-ed text-xl font-medium text-ed-navy-ink'>
+            <h4 className='font-serif-ed text-xl font-semibold text-ed-navy-ink'>
               {f.t}
             </h4>
             <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -339,7 +334,7 @@ const PhilippinesCulture: FC = () => (
               key={f.name}
               className='grid grid-cols-[80px_1fr_auto] items-baseline gap-4 border-b border-ed-rule py-3 last:border-b-0'
             >
-              <div className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+              <div className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                 {f.pct}%
               </div>
               <div className='font-serif-ed text-[17px] text-ed-ink'>
@@ -355,7 +350,7 @@ const PhilippinesCulture: FC = () => (
     {/* Closing pullquote */}
     <section className='mb-20 mt-12'>
       <Container>
-        <blockquote className='my-9 max-w-[720px] border-l-[3px] border-ed-navy py-2 pl-6 font-serif-ed text-[28px] italic leading-snug text-ed-navy-ink'>
+        <blockquote className='my-9 max-w-[720px] border-l-[3px] border-ed-navy py-2 pl-6 font-sans-ed text-[28px] italic leading-snug text-ed-navy-ink'>
           &ldquo;A Filipino is somebody who eats with his fingers, travels with
           his whole family, and will not pass you on the sidewalk without
           greeting you.&rdquo;
@@ -384,7 +379,7 @@ const Chapter: FC<{
         )}
       >
         <div>
-          <div className='font-serif-ed text-[80px] font-medium leading-none text-ed-navy-ink max-lg:text-[64px]'>
+          <div className='font-serif-ed text-[80px] font-semibold leading-none text-ed-navy-ink max-lg:text-[64px]'>
             {num}
           </div>
           <div className='mt-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -392,7 +387,7 @@ const Chapter: FC<{
           </div>
         </div>
         <div>
-          <h2 className='m-0 font-serif-ed text-[40px] font-medium leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[32px]'>
+          <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[32px]'>
             {title}
           </h2>
           {children}
@@ -403,7 +398,7 @@ const Chapter: FC<{
 );
 
 const Prose: FC<{ children: ReactNode }> = ({ children }) => (
-  <div className='mt-5 [&>p]:mb-4 [&>p]:font-serif-ed [&>p]:text-lg [&>p]:leading-relaxed [&>p]:text-ed-ink-2 [&_strong]:font-semibold [&_strong]:text-ed-ink'>
+  <div className='mt-5 [&>p]:mb-4 [&>p]:font-sans-ed [&>p]:text-lg [&>p]:leading-relaxed [&>p]:text-ed-ink-2 [&_strong]:font-semibold [&_strong]:text-ed-ink'>
     {children}
   </div>
 );

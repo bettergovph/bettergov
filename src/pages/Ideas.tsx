@@ -94,7 +94,6 @@ const Ideas: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Ideas'
         title='Project ideas'
         lede='Open civic tech concepts to improve transparency, accountability, and citizen engagement. Pick one up, build it, and ship it.'
       />
@@ -127,7 +126,7 @@ const Ideas: FC = () => {
                       <Eyebrow key={tag}>{tag}</Eyebrow>
                     ))}
                   </div>
-                  <h2 className='mt-3 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                  <h2 className='mt-3 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                     {idea.title}
                   </h2>
                   <p className='mt-2 max-w-[680px] text-sm leading-relaxed text-ed-ink-2'>
@@ -142,7 +141,7 @@ const Ideas: FC = () => {
             ))}
           </ul>
 
-          <p className='mt-10 border-t border-ed-rule pt-6 font-serif-ed text-sm text-ed-ink-3'>
+          <p className='mt-10 border-t border-ed-rule pt-6 font-sans-ed text-sm text-ed-ink-3'>
             These ideas are collected from the community and the editorial team.
             See something missing or have a refinement? Submit your own via
             GitHub.
@@ -158,10 +157,10 @@ const Ideas: FC = () => {
               <Eyebrow tone='onDark' className='mb-3'>
                 Get involved
               </Eyebrow>
-              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-normal leading-tight tracking-[-0.01em] text-white'>
+              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight tracking-[-0.01em] text-white'>
                 Have an idea? <em className='font-normal italic'>Submit it.</em>
               </h2>
-              <p className='mt-2 max-w-md font-serif-ed text-base leading-relaxed text-white/80'>
+              <p className='mt-2 max-w-md font-sans-ed text-base leading-relaxed text-white/80'>
                 Open a GitHub issue using our idea template — no login beyond
                 GitHub required. The best ideas get picked up and built.
               </p>

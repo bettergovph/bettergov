@@ -156,7 +156,6 @@ const DepartmentDetail: FC = () => {
           { label: 'Departments', to: '/government/departments' },
           { label: displayName },
         ]}
-        eyebrow='Executive · Department'
         title={displayName}
         address={address}
         trunkline={trunkline}
@@ -185,7 +184,7 @@ const DepartmentDetail: FC = () => {
 
           {Object.entries(rest).map(([key, value]) => (
             <div key={key} className='mt-10 first:mt-0'>
-              <h2 className='mb-5 border-b border-ed-navy pb-2 font-serif-ed text-[26px] font-medium text-ed-navy-ink'>
+              <h2 className='mb-5 border-b border-ed-navy pb-2 font-serif-ed text-[26px] font-semibold text-ed-navy-ink'>
                 {humanKey(key)}
               </h2>
               <RenderValue value={value} label={humanKey(key)} />

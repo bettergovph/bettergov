@@ -27,13 +27,7 @@ const OtherExecutiveOffices: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Executive · ${entries.length} offices`}
-        title={
-          <>
-            Other executive offices,{' '}
-            <em className='italic font-normal'>boards and councils.</em>
-          </>
-        }
+        title='Other executive offices'
         lede='The constellation of authorities, boards, councils, and commissions under the Executive branch — independent of the Office of the President.'
       />
       <DirectoryResults

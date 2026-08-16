@@ -18,13 +18,7 @@ const DepartmentsIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Departments · ${entries.length} cabinet agencies`}
-        title={
-          <>
-            Cabinet departments,{' '}
-            <em className='italic font-normal'>by Secretary.</em>
-          </>
-        }
+        title='Cabinet departments'
         lede='The executive departments headed by the Cabinet — each the principal administrative arm for a sector of national life, from Education to Foreign Affairs.'
       />
       <DirectoryResults

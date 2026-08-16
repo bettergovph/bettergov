@@ -57,8 +57,6 @@ const LocalGovernmentIndex: FC = () => {
     return sorted.filter(r => r.name.toLowerCase().includes(n));
   }, [regions, q]);
 
-  const totalCities = regions.reduce((s, r) => s + r.cityCount, 0);
-
   return (
     <>
       <Helmet>
@@ -70,12 +68,7 @@ const LocalGovernmentIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Local Government · ${regions.length} regions · ${totalCities} cities and municipalities`}
-        title={
-          <>
-            Local government, <em className='italic font-normal'>by region.</em>
-          </>
-        }
+        title='Local government'
         lede='The Philippines is divided into 18 administrative regions, subdivided into 82 provinces, 149 cities, and 1,493 municipalities. Pick a region to browse its LGUs.'
       />
 
@@ -120,7 +113,7 @@ const LocalGovernmentIndex: FC = () => {
                       {r.cityCount} cities / munis
                     </span>
                   </div>
-                  <h3 className='mt-4 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-navy-ink'>
+                  <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink'>
                     {titleCase(r.name)}
                   </h3>
                   {r.provinceCount > 0 && (

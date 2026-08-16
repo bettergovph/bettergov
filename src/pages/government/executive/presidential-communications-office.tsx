@@ -11,10 +11,7 @@ const PresidentialCommunicationsOffice: FC = () => (
         content='The Presidential Communications Office — the press and information arm of the Office of the President.'
       />
     </Helmet>
-    <ExecutiveOfficePage
-      officeSlug='presidential-communications-office'
-      eyebrow='Executive · Communications'
-    />
+    <ExecutiveOfficePage officeSlug='presidential-communications-office' />
   </>
 );
 

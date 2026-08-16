@@ -2,6 +2,7 @@ import { FC } from 'react';
 import {
   Hero,
   Categories,
+  EgovAppBanner,
   MostRequested,
   NewsAndHolidays,
   TransparencyStrip,
@@ -12,6 +13,7 @@ const Home: FC = () => (
   <main className='grow bg-white font-sans-ed text-ed-ink antialiased'>
     <Hero />
     <Categories />
+    <EgovAppBanner />
     <MostRequested />
     <NewsAndHolidays />
     <TransparencyStrip />

@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Maligayang Pagdating sa BetterGov.ph",
-    "subtitle": "Ang volunteer-run portal ng Republika ng Pilipinas. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Pilipinas."
+    "title": "Maligayang Pagdating sa GOV.PH",
+    "subtitle": "Ang opisyal na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Pilipinas."
   },
   "services": {
     "title": "Mga Sikat na Serbisyo"
@@ -38,11 +38,13 @@
     "accessibility": "Accessibility",
     "about": "Tungkol sa Amin",
     "joinUs": "Sumali",
-    "tagline": "Malayang serbisyong sibiko · open source",
+    "tagline": "Ang opisyal na website ng Republika ng Pilipinas",
     "search": "Hanapin",
     "signIn": "Mag-sign in",
     "menu": "Menu",
-    "close": "Isara"
+    "close": "Isara",
+    "contactUs": "Makipag-ugnayan",
+    "searchPlaceholder": "Maghanap ng serbisyo, ahensya, at iba pa"
   },
   "footerNav": {
     "servicesHeading": "Mga Serbisyo",
@@ -75,11 +77,12 @@
     "reportBug": "Mag-report ng bug"
   },
   "footerAbout": {
-    "description": "Isang malaya at open-source na proyekto na naglalayong gawing mas madali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaang Pilipino. Hindi konektado sa Republika ng Pilipinas.",
-    "openSource": "Open Source"
+    "description": "Ang opisyal na website ng Republika ng Pilipinas, na ginagawang mas madali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaan.",
+    "openSource": "Open Source",
+    "builtBy": "Ginawa ng eGov, BetterGov, at daan-daang mamamayang boluntaryo."
   },
   "footerBottom": {
-    "copyright": "Bettergov.ph Civic Initiative · Makati City",
-    "license": "Ginawa ng mga boluntaryo · CC BY 4.0 · MIT"
+    "copyright": "Republika ng Pilipinas · Nakalaan ang lahat ng karapatan",
+    "license": "CC BY 4.0 · MIT"
   }
 }

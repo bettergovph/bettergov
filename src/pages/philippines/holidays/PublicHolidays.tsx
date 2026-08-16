@@ -1,8 +1,8 @@
 import { FC, useMemo, useState } from 'react';
 import Container from '../../../components/v2/ui/Container';
-import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
 
 interface HolidayDef {
   event: string;
@@ -100,7 +100,7 @@ function resolveHolidays(year: number): ResolvedHoliday[] {
 }
 
 const PublicHolidays: FC = () => {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const currentYear = today.getFullYear();
   const [year, setYear] = useState(currentYear);
 
@@ -129,7 +129,6 @@ const PublicHolidays: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='The Calendar · Philippines'
         title={`Public Holidays ${year}`}
         lede='Official regular and special non-working holidays declared by the Philippine government under Malacañang proclamations and Republic Act 9492.'
       >
@@ -159,9 +158,7 @@ const PublicHolidays: FC = () => {
               {/* Upcoming strip */}
               {upcoming.length > 0 && (
                 <div className='mb-10'>
-                  <div className='mb-4 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Upcoming</Eyebrow>
-                  </div>
+                  <SectionHeader label='Upcoming' />
                   <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1'>
                     {upcoming.map(h => (
                       <div
@@ -175,7 +172,7 @@ const PublicHolidays: FC = () => {
                             {h.type === 'regular' ? 'Regular' : 'Special'}
                           </Flag>
                         </div>
-                        <div className='font-serif-ed text-[17px] font-medium leading-snug text-ed-ink'>
+                        <div className='font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
                           {h.event}
                         </div>
                         <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -189,9 +186,7 @@ const PublicHolidays: FC = () => {
               )}
 
               {/* Month-by-month table */}
-              <div className='mb-4 border-t-2 border-ed-navy pt-4'>
-                <Eyebrow tone='navy'>Full calendar · {year}</Eyebrow>
-              </div>
+              <SectionHeader label={`Full calendar · ${year}`} />
 
               {/* Column headers */}
               <div className='grid grid-cols-[100px_60px_60px_1fr_100px] border-b border-ed-rule pb-2 max-sm:hidden'>
@@ -219,13 +214,13 @@ const PublicHolidays: FC = () => {
                           <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-sm:hidden'>
                             {i === 0 ? MONTH_NAMES[monthIdx] : ''}
                           </div>
-                          <div className='font-serif-ed text-[17px] font-medium text-ed-ink max-sm:hidden'>
+                          <div className='font-serif-ed text-[17px] font-semibold text-ed-ink max-sm:hidden'>
                             {h.dayOfMonth}
                           </div>
                           <div className='text-[12px] text-ed-ink-3 max-sm:hidden'>
                             {h.dayName.slice(0, 3)}
                           </div>
-                          <div className='font-serif-ed text-[16px] font-medium leading-snug text-ed-ink max-sm:text-[15px]'>
+                          <div className='font-serif-ed text-[16px] font-semibold leading-snug text-ed-ink max-sm:text-[15px]'>
                             {h.event}
                           </div>
                           <div className='max-sm:hidden'>
@@ -255,9 +250,7 @@ const PublicHolidays: FC = () => {
             <aside className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-8'>
               {/* Legend */}
               <div className='mb-8'>
-                <div className='mb-4 border-t-2 border-ed-navy pt-4 max-lg:border-t-0 max-lg:pt-0'>
-                  <Eyebrow tone='navy'>Legend</Eyebrow>
-                </div>
+                <SectionHeader label='Legend' />
                 <div className='space-y-3'>
                   <div className='flex items-start gap-3'>
                     <Flag variant='navy'>Regular</Flag>
@@ -305,7 +298,7 @@ const PublicHolidays: FC = () => {
               {/* Stats */}
               <div className='mt-6 grid grid-cols-2 divide-x divide-ed-rule border border-ed-rule'>
                 <div className='p-4'>
-                  <div className='font-serif-ed text-[28px] font-medium text-ed-ink'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
                     {holidays.filter(h => h.type === 'regular').length}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -313,7 +306,7 @@ const PublicHolidays: FC = () => {
                   </div>
                 </div>
                 <div className='p-4'>
-                  <div className='font-serif-ed text-[28px] font-medium text-ed-ink'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
                     {holidays.filter(h => h.type === 'special').length}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>

@@ -31,7 +31,7 @@ const GovernmentLayout: FC = () => (
             end={t.end}
             className={({ isActive }) =>
               cn(
-                'border-r border-ed-rule px-[18px] py-3.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] no-underline transition-colors',
+                'border-r border-ed-rule px-[18px] py-3.5 font-sans-ed text-[11px] uppercase tracking-[0.12em] no-underline transition-colors',
                 isActive
                   ? 'bg-ed-navy text-white'
                   : 'bg-transparent text-ed-ink-2 hover:bg-ed-navy-tint hover:text-ed-navy-ink',

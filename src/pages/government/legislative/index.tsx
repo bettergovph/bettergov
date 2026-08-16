@@ -18,12 +18,7 @@ const LegislativeIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Legislative · ${entries.length} chambers`}
-        title={
-          <>
-            Congress, <em className='italic font-normal'>two chambers.</em>
-          </>
-        }
+        title='Congress'
         lede='The bicameral Philippine Congress — a Senate of 24 members elected at-large, and a House of Representatives with roughly 316 district and party-list members.'
       />
       <DirectoryResults

@@ -58,13 +58,7 @@ const HouseMembersPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Legislative · ${members.length} district members`}
-        title={
-          <>
-            District members,{' '}
-            <em className='italic font-normal'>by province.</em>
-          </>
-        }
+        title='District members'
         lede='Members of the House of Representatives elected by congressional district — one seat per district, roughly 253 in total.'
       />
 

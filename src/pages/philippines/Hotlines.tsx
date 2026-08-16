@@ -108,7 +108,6 @@ const Hotlines: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
-        eyebrow='§ Philippines · Hotlines'
         title='When you need help now'
         lede='Emergency, disaster, and government hotlines — nationally available and updated from official sources. Tap any number to call directly.'
       >
@@ -208,7 +207,7 @@ const Hotlines: FC = () => {
                           {categoryLabel[cat] ?? h.category}
                         </Flag>
                       </div>
-                      <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                      <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                         {h.name}
                       </h3>
                       {h.description && (
@@ -241,7 +240,7 @@ const Hotlines: FC = () => {
           )}
 
           <div className='mt-10 border-t border-ed-rule pt-6'>
-            <p className='font-serif-ed text-sm text-ed-ink-3'>
+            <p className='font-sans-ed text-sm text-ed-ink-3'>
               These hotlines are collected from official government sources. If
               you notice any outdated information, please report it so the
               registry stays useful.

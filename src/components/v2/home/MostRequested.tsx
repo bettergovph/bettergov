@@ -35,10 +35,10 @@ const MostRequested: FC = () => {
               {t('mostRequested.featureAgency')} ·{' '}
               {t('mostRequested.featureMeta')}
             </div>
-            <h2 className='mt-3.5 font-serif-ed text-[clamp(30px,3.4vw,42px)] font-normal leading-[1.05] tracking-[-0.01em] text-ed-ink'>
+            <h2 className='mt-3.5 font-serif-ed text-[clamp(30px,3.4vw,42px)] font-bold leading-[1.05] tracking-[-0.01em] text-ed-ink'>
               {t('mostRequested.featureTitle')}
             </h2>
-            <p className='mt-4 max-w-[520px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+            <p className='mt-4 max-w-[520px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
               {t('mostRequested.featureLede')}
             </p>
             <div className='mt-6 flex flex-wrap gap-6 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -61,7 +61,7 @@ const MostRequested: FC = () => {
                 }`}
               >
                 <Eyebrow>{s.agency}</Eyebrow>
-                <h3 className='mt-3 font-serif-ed text-[28px] font-normal leading-[1.1] tracking-[-0.01em] text-ed-ink'>
+                <h3 className='mt-3 font-serif-ed text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-ed-ink'>
                   {s.title}
                 </h3>
                 <p className='mt-2.5 flex-1 text-[13px] leading-normal text-ed-ink-2'>

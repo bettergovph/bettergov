@@ -10,7 +10,13 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
 import Home from './pages/Home';
-import DesignGuide from './pages/DesignGuide';
+import DesignSystemLayout from './pages/design/layout';
+import DesignSystemHome from './pages/design';
+import DesignStyles from './pages/design/styles';
+import DesignComponents from './pages/design/components';
+import DesignPatterns from './pages/design/patterns';
+import DesignAccessibility from './pages/design/accessibility';
+import DesignCommunity from './pages/design/community';
 import Services from './pages/services';
 import AboutPage from './pages/about';
 import AccessibilityPage from './pages/accessibility';
@@ -62,6 +68,10 @@ import RegionalLGUPage from './pages/government/local/[region]';
 // Search Page
 import SearchPage from './pages/Search';
 
+// News (e.gov.ph)
+import NewsIndex from './pages/news';
+import NewsArticlePage from './pages/news/[id]';
+
 // Government directory (new /government index) + tabs layout
 import GovernmentDirectory from './pages/government';
 import GovernmentLayout from './pages/government/layout';
@@ -104,12 +114,23 @@ function App() {
           <CivicAssistant />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/design' element={<DesignGuide />} />
+            <Route path='/design' element={<DesignSystemLayout />}>
+              <Route index element={<DesignSystemHome />} />
+              <Route path='styles' element={<DesignStyles />} />
+              <Route path='components' element={<DesignComponents />} />
+              <Route path='patterns' element={<DesignPatterns />} />
+              <Route path='accessibility' element={<DesignAccessibility />} />
+              <Route path='community' element={<DesignCommunity />} />
+            </Route>
             <Route path='/services' element={<Services />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
+            <Route path='/news'>
+              <Route index element={<NewsIndex />} />
+              <Route path=':id' element={<NewsArticlePage />} />
+            </Route>
             <Route path='/guides' element={<GuidesIndex />} />
             <Route path='/guides/passport' element={<PassportGuide />} />
             <Route path='/ideas' element={<Ideas />} />

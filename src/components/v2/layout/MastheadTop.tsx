@@ -46,27 +46,29 @@ const MastheadTop: FC = () => {
   const currentRate = forexRates[forexIndex];
 
   return (
-    <div className='flex items-center justify-between border-b border-ed-rule py-2.5 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3 max-md:flex-col max-md:items-start max-md:gap-1.5 max-md:py-2 max-md:text-[10px]'>
-      <div className='flex items-center gap-4 max-md:flex-wrap max-md:gap-2'>
-        <span>{today}</span>
+    <div className='flex items-center justify-between gap-6 border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-sm:flex-col max-sm:items-start max-sm:gap-1.5 max-sm:py-2 max-sm:text-[11px]'>
+      <div className='flex min-w-0 items-center gap-4 max-sm:flex-wrap max-sm:gap-2'>
+        <span className='whitespace-nowrap'>{today}</span>
+        {/* Weather and forex are desktop-only — below xl they overflow the row. */}
         {weather.length > 0 && (
-          <>
+          <span className='inline-flex items-center gap-3 max-xl:hidden'>
             <span className='text-ed-rule-strong'>|</span>
-            <span className='inline-flex items-center gap-3 tabular-nums max-md:gap-2'>
+            <span className='inline-flex items-center gap-3 tabular-nums'>
               {weather.map(w => (
                 <span
                   key={w.location}
                   className='inline-flex items-center gap-1'
                 >
-                  <span>{w.location}</span>
+                  {/* API returns lowercase keys (e.g. "manila") */}
+                  <span className='capitalize'>{w.location}</span>
                   <span className='text-ed-ink'>{w.temperature}°C</span>
                 </span>
               ))}
             </span>
-          </>
+          </span>
         )}
         {currentRate && (
-          <>
+          <span className='inline-flex items-center gap-3 max-xl:hidden'>
             <span className='text-ed-rule-strong'>|</span>
             <span className='inline-flex items-center gap-1.5 tabular-nums'>
               <span>{currentRate.code}</span>
@@ -74,10 +76,10 @@ const MastheadTop: FC = () => {
                 ₱{currentRate.rate.toFixed(2)}
               </span>
             </span>
-          </>
+          </span>
         )}
       </div>
-      <div className='flex items-center gap-4 max-md:flex-wrap max-md:gap-2'>
+      <div className='flex shrink-0 items-center gap-4 max-sm:flex-wrap max-sm:gap-2'>
         <Link
           to='/contact'
           className='text-ed-ink-3 no-underline hover:text-ed-navy'

@@ -1,48 +1,70 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRightIcon } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeader from '../ui/SectionHeader';
+import serviceCategories from '../../../data/service_categories.json';
 
-type CategoryItem = {
-  id: string;
-  label: string;
-  count: number;
-  desc: string;
+type Subcategory = { name: string; slug: string };
+type Category = {
+  category: string;
+  slug: string;
+  subcategories: Subcategory[];
 };
+
+/** Service counts per category slug, read straight from the service files. */
+const serviceFiles = import.meta.glob<{ default: unknown[] }>(
+  '../../../data/services/*.json',
+  { eager: true }
+);
+
+const countBySlug: Record<string, number> = Object.fromEntries(
+  Object.entries(serviceFiles).map(([path, mod]) => [
+    path.split('/').pop()!.replace('.json', ''),
+    mod.default.length,
+  ])
+);
+
+// The first 12 are the real service domains; "uncategorized" sorts last and
+// is not a browsable category.
+const CATEGORIES = (serviceCategories.categories as Category[])
+  .filter(c => c.slug !== 'uncategorized')
+  .slice(0, 12);
 
 const Categories: FC = () => {
   const { t } = useTranslation('home');
-  const items = t('categories.items', {
-    returnObjects: true,
-  }) as CategoryItem[];
-  const total = items.reduce((s, c) => s + c.count, 0);
+
+  const total = useMemo(
+    () => CATEGORIES.reduce((sum, c) => sum + (countBySlug[c.slug] ?? 0), 0),
+    []
+  );
 
   return (
     <section className='mt-16'>
       <Container>
         <SectionHeader
           label={t('categories.label')}
-          meta={t('categories.meta', { count: total, domains: items.length })}
+          meta={t('categories.meta', {
+            count: total,
+            domains: CATEGORIES.length,
+          })}
         />
         <div className='grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]'>
-          {items.map(c => (
+          {CATEGORIES.map(c => (
             <Link
-              key={c.id}
-              to={`/services?category=${c.id}`}
+              key={c.slug}
+              to={`/services?category=${c.slug}`}
               className='relative block min-h-[180px] border border-ed-rule bg-white p-6 text-ed-ink no-underline transition-colors hover:border-ed-ink'
             >
-              <div className='flex items-baseline justify-end'>
-                <span className='font-mono-ed text-[10px] tracking-[0.14em] text-ed-ink-3'>
-                  {c.count} services
-                </span>
-              </div>
-              <h3 className='mt-5 font-serif-ed text-2xl font-normal text-ed-ink'>
-                {c.label}
+              <h3 className='font-serif-ed text-2xl font-bold text-ed-ink'>
+                {c.category}
               </h3>
               <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2'>
-                {c.desc}
+                {c.subcategories
+                  .slice(0, 3)
+                  .map(s => s.name)
+                  .join(', ')}
               </p>
               <div className='mt-4 flex items-center gap-1.5 text-xs font-medium text-ed-navy'>
                 {t('categories.explore')} <ArrowRightIcon size={14} />

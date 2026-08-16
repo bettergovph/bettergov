@@ -252,7 +252,7 @@ const GridView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
           )}
           {a.abbr && <Eyebrow>{a.branch}</Eyebrow>}
         </div>
-        <h3 className='mt-4 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-navy-ink'>
+        <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink'>
           {a.name}
         </h3>
         <dl className='mt-4 grid gap-1.5 border-t border-ed-rule pt-3.5 text-[13px] text-ed-ink-2'>

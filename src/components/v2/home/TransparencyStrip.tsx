@@ -32,14 +32,14 @@ const TransparencyStrip: FC = () => {
         <div className='grid grid-cols-[1fr_1.4fr] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
           <div>
             <Eyebrow>{t('transparency.eyebrow')}</Eyebrow>
-            <h2 className='mt-2 font-serif-ed text-[clamp(36px,4vw,48px)] font-normal leading-none tracking-[-0.02em] text-ed-ink'>
+            <h2 className='mt-2 font-serif-ed text-[clamp(36px,4vw,48px)] font-bold leading-none tracking-[-0.02em] text-ed-ink'>
               ₱{total.toLocaleString()}
               <span className='text-2xl text-ed-ink-3'>
                 {' '}
                 {t('transparency.totalSuffix')}
               </span>
             </h2>
-            <p className='mt-4 max-w-[420px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+            <p className='mt-4 max-w-[420px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
               {t('transparency.description')}
             </p>
             <div className='mt-6 flex flex-wrap gap-3'>

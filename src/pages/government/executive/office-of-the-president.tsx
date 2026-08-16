@@ -11,10 +11,7 @@ const OfficeOfThePresident: FC = () => (
         content='The Office of the President of the Philippines — the principal executive and administrative arm of the President, including the Office of the Executive Secretary.'
       />
     </Helmet>
-    <ExecutiveOfficePage
-      officeSlug='office-of-the-president'
-      eyebrow='Executive · Office of the President'
-    />
+    <ExecutiveOfficePage officeSlug='office-of-the-president' />
   </>
 );
 

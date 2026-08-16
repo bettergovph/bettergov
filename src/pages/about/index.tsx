@@ -4,6 +4,7 @@ import { GithubIcon } from 'lucide-react';
 import Container from '../../components/v2/ui/Container';
 import Dropcap from '../../components/v2/ui/Dropcap';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Flag from '../../components/v2/ui/Flag';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
@@ -34,7 +35,6 @@ const AboutPage: FC = () => (
     {/* ── Hero ──────────────────────────────────────────────────────────── */}
     <PageMasthead
       variant='hero'
-      eyebrow='§ About this site'
       title='About BetterGov.ph'
       lede='A volunteer-led civic-tech project making Philippine government information cleaner, faster, and more useful for everyone.'
     />
@@ -45,15 +45,15 @@ const AboutPage: FC = () => (
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 max-w-[900px]'>
           {/* Left column */}
           <div>
-            <Eyebrow className='mb-4'>Our mission</Eyebrow>
-            <Dropcap className='font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <SectionHeader label='Our mission' />
+            <Dropcap className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph exists because government information in the
               Philippines is scattered, hard to navigate, and often inaccessible
               to ordinary citizens. We consolidate it — hotlines, directories,
               holidays, regions, services — into one fast, well-designed
               reference.
             </Dropcap>
-            <p className='mt-5 font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <p className='mt-5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               We believe that transparency is not a feature — it is the
               foundation of a functioning democracy. Every page we ship is a
               small step toward a government that is legible to the people it
@@ -63,14 +63,14 @@ const AboutPage: FC = () => (
 
           {/* Right column */}
           <div>
-            <Eyebrow className='mb-4'>How we work</Eyebrow>
-            <p className='font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <SectionHeader label='How we work' />
+            <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               BetterGov.ph is open source, volunteer-run, and operates
               independently of any government body or political party. We are
               not affiliated with the Republic of the Philippines or any of its
               agencies — we are citizens building tools for citizens.
             </p>
-            <p className='mt-5 font-serif-ed text-[18px] leading-[1.6] text-ed-ink-2'>
+            <p className='mt-5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2'>
               Our code is public, our data is sourced from official records, and
               our editorial decisions are made in the open. Pull requests are
               welcome. Ideas are welcome. Scrutiny is especially welcome.
@@ -85,7 +85,7 @@ const AboutPage: FC = () => (
       <Container>
         <div className='max-w-[700px] mx-auto'>
           <blockquote className='border-l-4 border-ed-navy pl-8 max-md:pl-5'>
-            <p className='font-serif-ed text-[26px] max-md:text-[20px] leading-[1.4] text-ed-ink font-normal italic'>
+            <p className='font-sans-ed text-[26px] max-md:text-[20px] leading-[1.4] text-ed-ink font-normal italic'>
               &ldquo;We&rsquo;re not waiting for permission to make things
               better. The tools exist, the data exists, the people exist — we
               just have to show up and build.&rdquo;
@@ -110,10 +110,7 @@ const AboutPage: FC = () => (
     <section className='py-14 max-md:py-8 border-b border-ed-rule'>
       <Container>
         <div className='max-w-[900px]'>
-          <div className='mb-6 flex items-center gap-4'>
-            <Eyebrow>Maintainers</Eyebrow>
-            <span className='flex-1 h-px bg-ed-rule' />
-          </div>
+          <SectionHeader label='Maintainers' />
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {MAINTAINERS.map(m => (

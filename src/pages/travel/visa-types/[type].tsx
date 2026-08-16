@@ -55,7 +55,6 @@ const VisaTypeDetail: FC = () => {
           { label: category.name, to: '/travel/visa-types' },
           { label: v.name },
         ]}
-        eyebrow={`Visa · ${category.name}`}
         title={v.name}
         lede={v.description}
       >
@@ -84,7 +83,7 @@ const VisaTypeDetail: FC = () => {
                     <span className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                    <span className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                       {req}
                     </span>
                   </li>
@@ -105,7 +104,7 @@ const VisaTypeDetail: FC = () => {
                     key={i}
                     className='border border-ed-rule bg-white p-6'
                   >
-                    <h3 className='m-0 font-serif-ed text-[22px] font-medium leading-tight text-ed-navy-ink'>
+                    <h3 className='m-0 font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
                       {s.name}
                     </h3>
                     <p className='mt-2 text-sm leading-relaxed text-ed-ink-2'>

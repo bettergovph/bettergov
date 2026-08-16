@@ -434,13 +434,7 @@ const VisaPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='§ Travel · Visa'
-        title={
-          <>
-            {t('hero.title')}{' '}
-            <em className='italic font-normal'>in plain terms.</em>
-          </>
-        }
+        title={t('hero.title')}
         lede={t('hero.subtitle')}
       >
         <div className='mt-3 flex flex-wrap items-center gap-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white/70'>
@@ -564,7 +558,7 @@ const VisaPage: FC = () => {
                         )}
                       </div>
                       <div className='flex flex-1 flex-col justify-center px-4 py-3'>
-                        <h3 className='font-serif-ed text-base font-medium leading-tight text-ed-navy-ink'>
+                        <h3 className='font-serif-ed text-base font-semibold leading-tight text-ed-navy-ink'>
                           {country}
                         </h3>
                         {requirement && (
@@ -626,7 +620,7 @@ const VisaPage: FC = () => {
               <div>
                 {selectedCountry && visaRequirement ? (
                   <>
-                    <h2 className='mb-5 border-b border-ed-navy pb-3 font-serif-ed text-[32px] font-medium leading-tight text-ed-navy-ink'>
+                    <h2 className='mb-5 border-b border-ed-navy pb-3 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink'>
                       {t('requirements.title', { country: selectedCountry })}
                     </h2>
                     <VisaRequirementDetails
@@ -641,7 +635,7 @@ const VisaPage: FC = () => {
                       className='mb-4 text-ed-ink-3'
                       aria-hidden
                     />
-                    <h2 className='font-serif-ed text-[24px] font-medium text-ed-navy-ink'>
+                    <h2 className='font-serif-ed text-[24px] font-semibold text-ed-navy-ink'>
                       {t('defaultMessage.title')}
                     </h2>
                     <p className='mt-2 max-w-md text-sm text-ed-ink-2'>
@@ -661,7 +655,7 @@ const VisaPage: FC = () => {
       >
         <DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto font-sans-ed'>
           <DialogHeader>
-            <DialogTitle className='font-serif-ed text-[26px] font-medium text-ed-navy-ink'>
+            <DialogTitle className='font-serif-ed text-[26px] font-semibold text-ed-navy-ink'>
               {dialogCountry &&
                 t('requirements.title', { country: dialogCountry })}
             </DialogTitle>

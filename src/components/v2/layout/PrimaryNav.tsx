@@ -7,9 +7,13 @@ import Container from '../ui/Container';
 import { cn } from '../../../lib/utils';
 
 const navItemBase =
-  'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-medium text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
+  'inline-flex items-center gap-1.5 whitespace-nowrap px-5 py-3 font-serif-ed text-base font-semibold text-ed-ink-2 no-underline transition-colors hover:bg-ed-navy-tint hover:text-ed-navy';
 
-const activeClasses = 'bg-ed-navy text-white hover:bg-ed-navy hover:text-white';
+/**
+ * Subtle tint — matches the hover treatment — used both for the current
+ * route and for a dropdown whose menu is open.
+ */
+const activeClasses = 'bg-ed-navy-tint text-ed-navy';
 
 const isActivePath = (pathname: string, href: string) => {
   if (!href) return false;
@@ -77,7 +81,7 @@ const PrimaryNav: FC = () => {
   return (
     <nav
       ref={rootRef}
-      className='border-ed-rule bg-white max-[960px]:hidden'
+      className='border-ed-rule bg-white max-lg:hidden'
       aria-label='Primary'
     >
       <Container className='flex items-stretch justify-start flex-wrap'>
@@ -146,7 +150,7 @@ const PrimaryNav: FC = () => {
                     to={item.href}
                     role='menuitem'
                     onClick={() => setOpenItem(null)}
-                    className='block bg-ed-navy-tint px-6 py-3 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
+                    className='block bg-ed-navy-tint px-6 py-3 font-sans-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
                   >
                     {label} overview →
                   </Link>
@@ -178,6 +182,16 @@ const PrimaryNav: FC = () => {
             </div>
           );
         })}
+
+        {/* Pushed to the far right, styled the same as the section items */}
+        <a
+          href='https://e.gov.ph'
+          target='_blank'
+          rel='noopener noreferrer'
+          className={cn(navItemBase, 'ml-auto max-xl:hidden')}
+        >
+          {t('navbar.downloadEgovApp', 'Download eGov App')}
+        </a>
       </Container>
     </nav>
   );

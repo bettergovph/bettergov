@@ -48,13 +48,7 @@ const PartyListMembersPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Legislative · ${members.length} party-list members`}
-        title={
-          <>
-            Party-list members,{' '}
-            <em className='italic font-normal'>by sector.</em>
-          </>
-        }
+        title='Party-list members'
         lede='Representatives of marginalized and underrepresented sectors, elected through the party-list system to up to 20 percent of seats in the House of Representatives.'
       />
 

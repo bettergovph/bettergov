@@ -9,3 +9,4 @@ export { default as Card } from './Card';
 export { default as BigSearch } from './BigSearch';
 export { default as Dropcap } from './Dropcap';
 export { default as FilterSection } from './FilterSection';
+export { default as Pagination } from './Pagination';

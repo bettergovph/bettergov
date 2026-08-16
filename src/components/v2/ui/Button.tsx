@@ -12,9 +12,11 @@ type Size = 'md' | 'sm';
 const base =
   'inline-flex items-center justify-center gap-2.5 font-medium no-underline transition-colors cursor-pointer font-sans-ed';
 
+// Fixed heights (not padding) so buttons line up exactly with inputs and
+// selects placed beside them: md matches a 44px control row, sm a 36px one.
 const sizeClasses: Record<Size, string> = {
-  md: 'px-5 py-3 text-sm',
-  sm: 'px-3.5 py-2 text-xs',
+  md: 'h-11 px-5 text-sm',
+  sm: 'h-9 px-3.5 text-xs',
 };
 
 const variantClasses: Record<Variant, string> = {

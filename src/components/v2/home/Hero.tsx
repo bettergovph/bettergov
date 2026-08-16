@@ -1,75 +1,137 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import Eyebrow from '../ui/Eyebrow';
-import BigSearch from '../ui/BigSearch';
-import PageMasthead from '../layout/PageMasthead';
-import { SUGGESTIONS } from './data';
+import { Link } from 'react-router-dom';
+import {
+  ActivityIcon,
+  BriefcaseIcon,
+  GraduationCapIcon,
+  LucideIcon,
+  UserIcon,
+} from 'lucide-react';
+import Container from '../ui/Container';
+import MeilisearchInstantSearch from '../../search/MeilisearchInstantSearch';
+import serviceCategories from '../../../data/service_categories.json';
+
+interface Subcategory {
+  name: string;
+  slug: string;
+}
+
+interface Category {
+  category: string;
+  slug: string;
+  subcategories: Subcategory[];
+}
+
+const categories = serviceCategories.categories as Category[];
+
+const findCategorySlug = (categoryName: string) =>
+  categories.find(cat => cat.category === categoryName)?.slug || '';
+
+const findSubcategorySlug = (categoryName: string, subcategoryName: string) =>
+  categories
+    .find(cat => cat.category === categoryName)
+    ?.subcategories.find(sub => sub.name === subcategoryName)?.slug || '';
+
+/** The four service tiles shown in the "Popular Services" card. */
+const SERVICE_TILES: { label: string; icon: LucideIcon; category: string }[] = [
+  {
+    label: 'Citizenship & ID',
+    icon: UserIcon,
+    category: 'Certificates and IDs',
+  },
+  { label: 'Business', icon: BriefcaseIcon, category: 'Business and Trade' },
+  { label: 'Education', icon: GraduationCapIcon, category: 'Education' },
+  { label: 'Health', icon: ActivityIcon, category: 'Health' },
+];
 
 const Hero: FC = () => {
-  const { t } = useTranslation('home');
-  const [q, setQ] = useState('');
-  const navigate = useNavigate();
+  const { t } = useTranslation('common');
 
-  const submit = () => {
-    navigate(q ? `/search?q=${encodeURIComponent(q)}` : '/search');
-  };
+  const popularServices = [
+    {
+      label: t('hero.nationalId'),
+      href: `/services?category=${findCategorySlug(
+        'Certificates and IDs'
+      )}&subcategory=${findSubcategorySlug('Certificates and IDs', 'ID')}`,
+    },
+    {
+      label: t('hero.birthCertificate'),
+      href: `/services?category=${findCategorySlug(
+        'Certificates and IDs'
+      )}&subcategory=${findSubcategorySlug(
+        'Certificates and IDs',
+        'Certificates'
+      )}`,
+    },
+    {
+      label: t('hero.businessRegistration'),
+      href: `/services?category=${findCategorySlug(
+        'Business and Trade'
+      )}&subcategory=${findSubcategorySlug(
+        'Business and Trade',
+        'Business Registration, Certificates and Compliance'
+      )}`,
+    },
+  ];
 
   return (
-    <PageMasthead
-      variant='hero'
-      eyebrow={t('hero.eyebrow')}
-      title={t('hero.title')}
-      lede={t('hero.lede')}
-    >
-      <div className='mt-2 max-w-2xl'>
-        <BigSearch
-          value={q}
-          onChange={setQ}
-          onSubmit={submit}
-          placeholder={t('hero.placeholder')}
-          ariaLabel={t('hero.prompt')}
-          ctaLabel={t('hero.searchCta')}
-          onDark
-        />
-        <div className='mt-3 flex flex-wrap items-center gap-2'>
-          <Eyebrow tone='onDark' className='mr-1'>
-            {t('hero.popular')}
-          </Eyebrow>
-          {SUGGESTIONS.map(s => (
-            <button
-              key={s}
-              type='button'
-              onClick={() => setQ(s)}
-              className='cursor-pointer border border-ed-rule-strong bg-white/95 px-2.5 py-1 font-sans-ed text-xs text-ed-ink-2 hover:border-white hover:bg-white'
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats row — same editorial treatment as /guides */}
-      <div className='mt-7 grid grid-cols-3 gap-12 border-t border-white/20 pt-6 max-md:grid-cols-3 max-md:gap-6 max-sm:grid-cols-1'>
-        {[
-          { n: '486', l: t('hero.statsServices') },
-          { n: '142', l: t('hero.statsAgencies') },
-          {
-            n: t('hero.statsUpdatesLabel'),
-            l: t('hero.statsUpdates'),
-          },
-        ].map(s => (
-          <div key={s.l}>
-            <div className='font-serif-ed text-[32px] font-medium leading-none text-white'>
-              {s.n}
+    <section className='bg-ed-navy-2 py-16 text-white'>
+      <Container>
+        <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2'>
+          {/* Left: headline, search, and quick links */}
+          <div className='animate-fade-in'>
+            <h1 className='mb-4 font-serif-ed text-3xl font-bold leading-none md:text-4xl lg:text-5xl'>
+              {t('hero.title')}
+            </h1>
+            <p className='mb-8 max-w-lg font-sans-ed text-lg text-blue-200'>
+              {t('hero.subtitle')}
+            </p>
+            <div className='mb-8'>
+              <MeilisearchInstantSearch />
             </div>
-            <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/70'>
-              {s.l}
+            <div className='mt-4 flex flex-wrap gap-2'>
+              {popularServices.map(service => (
+                <Link
+                  key={service.label}
+                  to={service.href}
+                  className='rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm transition-colors hover:bg-white/20'
+                >
+                  {service.label}
+                </Link>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-    </PageMasthead>
+
+          {/* Right: popular services card */}
+          <div className='animate-slide-in rounded-xl bg-white/10 p-6 shadow-lg backdrop-blur-xs'>
+            <h2 className='mb-4 font-serif-ed text-2xl font-bold'>
+              {t('services.title')}
+            </h2>
+            <div className='grid grid-cols-2 gap-4'>
+              {SERVICE_TILES.map(tile => (
+                <Link
+                  key={tile.label}
+                  to={`/services?category=${findCategorySlug(tile.category)}`}
+                  className='flex flex-col items-center rounded-lg bg-white/10 p-4 text-center transition-colors duration-200 hover:bg-white/20'
+                >
+                  <div className='mb-3 rounded-full bg-primary-500 p-3'>
+                    <tile.icon className='h-6 w-6 text-white' />
+                  </div>
+                  <span className='font-medium'>{tile.label}</span>
+                </Link>
+              ))}
+            </div>
+            <Link
+              to='/services'
+              className='mt-4 block w-full rounded-lg bg-white/10 p-4 text-center transition-colors duration-200 hover:bg-white/20'
+            >
+              View All Services
+            </Link>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
 };
 

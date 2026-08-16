@@ -35,9 +35,9 @@ const OfficialsTable: FC<Props> = ({ officials, groupLabel, className }) => {
             className='grid grid-cols-[220px_1fr] gap-6 py-4 max-md:grid-cols-1 max-md:gap-1.5'
           >
             <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
-              {o.role ?? <span className='text-ed-ink-4'>—</span>}
+              {o.role ?? <span className='text-ed-ink-3'>—</span>}
               {o.office && (
-                <span className='mt-0.5 block normal-case tracking-normal text-ed-ink-4'>
+                <span className='mt-0.5 block normal-case tracking-normal text-ed-ink-3'>
                   {o.office}
                 </span>
               )}
@@ -48,7 +48,7 @@ const OfficialsTable: FC<Props> = ({ officials, groupLabel, className }) => {
                   {o.name}
                 </div>
               ) : (
-                <span className='text-ed-ink-4'>—</span>
+                <span className='text-ed-ink-3'>—</span>
               )}
               {(o.contact || o.email) && (
                 <div className='mt-1 flex flex-wrap gap-4 text-[13px] text-ed-ink-2'>

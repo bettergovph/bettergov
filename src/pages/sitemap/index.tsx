@@ -18,7 +18,7 @@ interface SitemapGroup {
 
 const groups: SitemapGroup[] = [
   {
-    num: '§ 01',
+    num: '01',
     label: 'Main',
     routes: [
       { title: 'Home', path: '/' },
@@ -28,7 +28,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 02',
+    num: '02',
     label: 'Philippines',
     routes: [
       { title: 'About the Philippines', path: '/philippines/about' },
@@ -41,7 +41,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 03',
+    num: '03',
     label: 'Government',
     routes: [
       { title: 'Executive Branch', path: '/government/executive' },
@@ -69,7 +69,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 04',
+    num: '04',
     label: 'Services',
     routes: [
       { title: 'All Services', path: '/services' },
@@ -101,7 +101,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 05',
+    num: '05',
     label: 'Travel',
     routes: [
       { title: 'Visa Information', path: '/travel/visa' },
@@ -110,7 +110,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 06',
+    num: '06',
     label: 'Data',
     routes: [
       { title: 'Weather', path: '/data/weather' },
@@ -118,7 +118,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 07',
+    num: '07',
     label: 'Infrastructure',
     routes: [
       { title: 'Flood Control Projects', path: '/flood-control-projects' },
@@ -131,7 +131,7 @@ const groups: SitemapGroup[] = [
     ],
   },
   {
-    num: '§ 08',
+    num: '08',
     label: 'Legal',
     routes: [
       { title: 'Accessibility Statement', path: '/accessibility' },
@@ -153,7 +153,6 @@ const SitemapPage: FC = () => (
     </Helmet>
 
     <PageMasthead
-      eyebrow='Navigation · Sitemap'
       title='Sitemap'
       lede='A complete index of all pages and services on BetterGov.ph.'
     />

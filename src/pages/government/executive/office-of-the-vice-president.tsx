@@ -11,10 +11,7 @@ const OfficeOfTheVicePresident: FC = () => (
         content='The Office of the Vice President of the Philippines — with the Vice President, her senior staff, and office divisions.'
       />
     </Helmet>
-    <ExecutiveOfficePage
-      officeSlug='office-of-the-vice-president'
-      eyebrow='Executive · Office of the Vice President'
-    />
+    <ExecutiveOfficePage officeSlug='office-of-the-vice-president' />
   </>
 );
 

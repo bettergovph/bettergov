@@ -5,11 +5,15 @@ type Props = HTMLAttributes<HTMLDivElement> & {
   narrow?: boolean;
 };
 
+/**
+ * Standard page container. Widths come from the --container-page tokens in
+ * index.css — pages should never set their own max-width for page layout.
+ */
 const Container: FC<Props> = ({ narrow, className, ...rest }) => (
   <div
     className={cn(
       'mx-auto w-full px-[18px] md:px-6 xl:px-8',
-      narrow ? 'max-w-[1040px]' : 'max-w-[1360px]',
+      narrow ? 'max-w-page-narrow' : 'max-w-page',
       className
     )}
     {...rest}

@@ -14,9 +14,9 @@ type Props = {
 
 const FooterColumn: FC<Props> = ({ heading, links }) => (
   <div>
-    <h4 className='mb-[18px] font-mono-ed text-[11px] font-medium uppercase tracking-[0.14em] text-white'>
+    <h3 className='mb-[18px] font-mono-ed text-[11px] font-medium uppercase tracking-[0.14em] text-white'>
       {heading}
-    </h4>
+    </h3>
     <ul className='m-0 list-none p-0'>
       {links.map(l =>
         l.external ? (

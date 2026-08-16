@@ -53,7 +53,6 @@ const ConstitutionalOfficePage: FC = () => {
           { label: 'Constitutional', to: '/government/constitutional' },
           { label: displayName },
         ]}
-        eyebrow={office.office_type ?? 'Constitutional office'}
         title={displayName}
         lede={office.description}
         address={office.address}

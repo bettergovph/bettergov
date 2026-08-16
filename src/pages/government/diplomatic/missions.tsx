@@ -18,13 +18,7 @@ const DiplomaticMissionsPage: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${entries.length} missions`}
-        title={
-          <>
-            Foreign missions{' '}
-            <em className='italic font-normal'>accredited to Manila.</em>
-          </>
-        }
+        title='Foreign missions'
         lede='Embassies and high commissions of foreign states based in the Philippines — with chief of mission, address, and contact of record.'
       />
       <DirectoryResults

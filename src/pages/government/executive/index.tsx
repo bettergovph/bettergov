@@ -18,13 +18,7 @@ const ExecutiveIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Executive · ${entries.length} offices`}
-        title={
-          <>
-            Executive offices,{' '}
-            <em className='italic font-normal'>under the President.</em>
-          </>
-        }
+        title='Executive offices'
         lede='The Office of the President, the Office of the Vice President, the Presidential Communications Office, and the constellation of boards, councils, authorities, and commissions under the Executive branch.'
       />
       <DirectoryResults

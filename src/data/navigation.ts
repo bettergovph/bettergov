@@ -162,6 +162,27 @@ export const mainNavigation: NavigationItem[] = [
     })),
   },
   {
+    label: 'News',
+    href: '/news',
+    children: [
+      {
+        label: 'All News',
+        href: '/news',
+        blurb: 'Latest announcements from across the government.',
+      },
+      {
+        label: 'Press Releases',
+        href: '/news?category=press-release',
+        blurb: 'Statements from the Presidential Communications Office.',
+      },
+      {
+        label: 'Circulars',
+        href: '/news?category=circular',
+        blurb: 'Memorandum circulars and proclamations.',
+      },
+    ],
+  },
+  {
     label: 'Guides',
     href: '/guides',
   },
@@ -213,32 +234,30 @@ export const mainNavigation: NavigationItem[] = [
     ],
   },
   {
-    label: 'Flood Control Projects',
-    href: '/flood-control-projects',
+    label: 'Transparency',
+    href: 'https://transparency.bettergov.ph',
+    target: '_blank',
     children: [
       {
-        label: 'Charts',
-        href: '/flood-control-projects',
-        blurb: 'Overview of spending and completion trends.',
+        label: 'Budget Transparency',
+        href: 'https://compass.dbm.gov.ph',
+        target: '_blank',
+        blurb: 'DBM Compass — national budget allocations and releases.',
       },
       {
-        label: 'Table',
-        href: '/flood-control-projects/table',
-        blurb: 'Searchable project-by-project records.',
+        label: 'DPWH Transparency',
+        href: 'https://transparency.dpwh.gov.ph',
+        target: '_blank',
+        blurb: 'Infrastructure projects, contracts, and status.',
       },
       {
-        label: 'Map',
-        href: '/flood-control-projects/map',
-        blurb: 'Geospatial view of all projects.',
-      },
-      {
-        label: 'Contractors',
-        href: '/flood-control-projects/contractors',
-        blurb: 'Company profiles and award history.',
+        label: "Citizen's Transparency Portal",
+        href: 'https://transparency.bettergov.ph',
+        target: '_blank',
+        blurb: 'Citizen-facing view of government spending data.',
       },
     ],
   },
-  ...ourProjects,
 ];
 
 export const footerNavigation = {
@@ -258,6 +277,7 @@ export const footerNavigation = {
     {
       title: 'Services',
       links: [
+        { label: 'News', href: '/news' },
         { label: 'All Services', href: '/services' },
         { label: 'Service Directory', href: '/services' },
         { label: 'Websites', href: '/services/websites' },

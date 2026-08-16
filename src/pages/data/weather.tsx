@@ -2,8 +2,8 @@ import { useState, useEffect, FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { fetchWeatherData } from '../../lib/weather';
 import Container from '../../components/v2/ui/Container';
-import Eyebrow from '../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
 
 interface CityWeather {
   location: string;
@@ -64,7 +64,6 @@ const WeatherPage: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow='Data · PAGASA'
         title='Weather'
         lede='Current conditions across major Philippine cities. Data sourced from PAGASA — the Philippine Atmospheric, Geophysical and Astronomical Services Administration.'
       />
@@ -90,9 +89,7 @@ const WeatherPage: FC = () => {
               {/* Major city KPI cards */}
               {majorCities.length > 0 && (
                 <div className='mb-12'>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>Major cities</Eyebrow>
-                  </div>
+                  <SectionHeader label='Major cities' />
                   <div className='grid grid-cols-5 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
                     {majorCities.map(city => (
                       <div
@@ -107,7 +104,7 @@ const WeatherPage: FC = () => {
                             {getWeatherIcon(city.icon, 'h-4 w-4')}
                           </div>
                         </div>
-                        <div className='mt-3 font-serif-ed text-[36px] font-medium leading-none text-ed-ink'>
+                        <div className='mt-3 font-serif-ed text-[36px] font-semibold leading-none text-ed-ink'>
                           {city.temperature}°
                         </div>
                         <div className='mt-1.5 text-[12px] text-ed-ink-2'>
@@ -136,9 +133,7 @@ const WeatherPage: FC = () => {
               {/* All cities editorial list */}
               {allCities.length > 0 && (
                 <div>
-                  <div className='mb-5 border-t-2 border-ed-navy pt-4'>
-                    <Eyebrow tone='navy'>All cities</Eyebrow>
-                  </div>
+                  <SectionHeader label='All cities' />
 
                   {/* Table header */}
                   <div className='hidden border-b border-ed-rule pb-2 md:grid md:grid-cols-[2fr_1fr_1fr_1fr_1fr]'>
@@ -168,7 +163,7 @@ const WeatherPage: FC = () => {
                             {city.location}
                           </span>
                         </div>
-                        <div className='font-serif-ed text-[20px] font-medium text-ed-ink max-md:hidden'>
+                        <div className='font-serif-ed text-[20px] font-semibold text-ed-ink max-md:hidden'>
                           {city.temperature}°
                         </div>
                         <div className='text-sm text-ed-ink-2 max-md:hidden'>

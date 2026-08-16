@@ -55,12 +55,7 @@ const GuidesIndex: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='§ Guides · Plain-language walkthroughs'
-        title={
-          <>
-            Every step, <em className='italic font-normal'>explained.</em>
-          </>
-        }
+        title='Guides'
         lede='Detailed, step-by-step guides to the most common transactions with the Philippine government. Written in plain language, organized as checklists, and updated when rules change.'
       >
         <div className='mt-7 grid grid-cols-4 gap-12 border-t border-white/20 pt-6 max-md:grid-cols-2 max-md:gap-6'>
@@ -71,7 +66,7 @@ const GuidesIndex: FC = () => {
             { n: 'Daily', l: 'Updates' },
           ].map(s => (
             <div key={s.l}>
-              <div className='font-serif-ed text-[32px] font-medium leading-none text-white'>
+              <div className='font-serif-ed text-[32px] font-semibold leading-none text-white'>
                 {s.n}
               </div>
               <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/70'>
@@ -128,10 +123,10 @@ const GuidesIndex: FC = () => {
               <Eyebrow tone='navy'>
                 {primary.agency} · {primary.steps}-step guide · {primary.time}
               </Eyebrow>
-              <h2 className='mt-3.5 font-serif-ed text-[36px] font-medium leading-[1.12] tracking-[-0.01em] text-ed-navy-ink'>
+              <h2 className='mt-3.5 font-serif-ed text-[36px] font-semibold leading-[1.12] tracking-[-0.01em] text-ed-navy-ink'>
                 {primary.title}
               </h2>
-              <p className='mt-4 max-w-[520px] font-serif-ed text-base leading-relaxed text-ed-ink-2'>
+              <p className='mt-4 max-w-[520px] font-sans-ed text-base leading-relaxed text-ed-ink-2'>
                 {primary.lede}
               </p>
               <div className='mt-6 flex flex-wrap gap-5 border-t border-ed-rule pt-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
@@ -154,7 +149,7 @@ const GuidesIndex: FC = () => {
                   <Eyebrow tone='navy'>
                     № 0{i + 2} · {g.agency}
                   </Eyebrow>
-                  <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight text-ed-navy-ink'>
+                  <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
                     {g.title}
                   </h3>
                   <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2'>
@@ -185,7 +180,7 @@ const GuidesIndex: FC = () => {
                       <div className='font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
                         {g.agency}
                       </div>
-                      <div className='mt-0.5 font-serif-ed text-[15px] font-medium leading-tight text-ed-navy-ink'>
+                      <div className='mt-0.5 font-serif-ed text-[15px] font-semibold leading-tight text-ed-navy-ink'>
                         {g.title}
                       </div>
                     </div>
@@ -233,7 +228,7 @@ const GuidesIndex: FC = () => {
                   <div className='font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
                     {g.agency}
                   </div>
-                  <h3 className='font-serif-ed text-[22px] font-medium leading-tight text-ed-navy-ink'>
+                  <h3 className='font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
                     {g.title}
                   </h3>
                   <p className='mb-auto text-[13px] leading-normal text-ed-ink-2'>
@@ -262,10 +257,10 @@ const GuidesIndex: FC = () => {
               <div className='mb-3'>
                 <Eyebrow tone='navy'>Don&rsquo;t see your transaction?</Eyebrow>
               </div>
-              <h2 className='m-0 font-serif-ed text-[40px] font-medium leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[30px]'>
+              <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[30px]'>
                 Suggest a guide. We&rsquo;ll write it.
               </h2>
-              <p className='mt-3.5 max-w-[560px] font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+              <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                 BetterGov.ph is written by volunteers. Every guide starts from a
                 real transaction someone needed help understanding. If
                 you&rsquo;ve navigated a government process and took notes,
@@ -302,7 +297,7 @@ const SimpleSectionHead: FC<{
     <span className='font-mono-ed text-[11px] tracking-[0.18em] text-ed-navy'>
       {num}
     </span>
-    <span className='font-serif-ed text-2xl font-medium text-ed-navy-ink'>
+    <span className='font-serif-ed text-2xl font-semibold text-ed-navy-ink'>
       {label}
     </span>
     {meta && (

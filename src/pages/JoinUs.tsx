@@ -10,7 +10,7 @@ import {
 import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { Helmet } from 'react-helmet-async';
 import Container from '../components/v2/ui/Container';
-import Eyebrow from '../components/v2/ui/Eyebrow';
+import SectionHeader from '../components/v2/ui/SectionHeader';
 import Button from '../components/v2/ui/Button';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 
@@ -92,12 +92,7 @@ const JoinUs: FC = () => (
     </Helmet>
     <PageMasthead
       variant='hero'
-      eyebrow='Get involved · BetterGov.PH'
-      title={
-        <>
-          Join the <span className='italic'>#CivicTech</span> revolution
-        </>
-      }
+      title='Join us'
       lede='We are volunteer-led builders, writers, and designers making government data open and accessible to every Filipino. No permission needed — just bring your skills.'
     >
       <div className='flex flex-wrap gap-3'>
@@ -131,13 +126,11 @@ const JoinUs: FC = () => (
     {/* How we work */}
     <section className='border-b border-ed-rule py-14 max-md:py-8'>
       <Container>
-        <div className='mb-8 border-t-2 border-ed-navy pt-5'>
-          <Eyebrow tone='navy'>How we work</Eyebrow>
-        </div>
+        <SectionHeader label='How we work' />
         <div className='grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1'>
           {HOW_WE_WORK.map(item => (
             <div key={item.label}>
-              <h3 className='font-serif-ed text-[20px] font-medium text-ed-navy-ink'>
+              <h3 className='font-serif-ed text-[20px] font-semibold text-ed-navy-ink'>
                 {item.label}
               </h3>
               <p className='mt-2 text-sm leading-relaxed text-ed-ink-2'>
@@ -152,9 +145,7 @@ const JoinUs: FC = () => (
     {/* Roles grid */}
     <section className='py-14 max-md:py-8'>
       <Container>
-        <div className='mb-8 border-t-2 border-ed-navy pt-5'>
-          <Eyebrow tone='navy'>Open roles</Eyebrow>
-        </div>
+        <SectionHeader label='Open roles' />
         <div className='grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
           {ROLES.map(role => (
             <div
@@ -164,7 +155,7 @@ const JoinUs: FC = () => (
               <div className='mb-4 inline-flex h-10 w-10 items-center justify-center border border-ed-rule text-ed-navy'>
                 <role.icon size={18} />
               </div>
-              <h3 className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+              <h3 className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                 {role.title}
               </h3>
               <p className='mt-2 text-sm leading-relaxed text-ed-ink-2'>
@@ -189,10 +180,8 @@ const JoinUs: FC = () => (
     {/* Manifesto band */}
     <section className='bg-ed-navy-ink py-16 max-md:py-10'>
       <Container narrow>
-        <div className='mb-6'>
-          <Eyebrow tone='onDark'>Why we build</Eyebrow>
-        </div>
-        <blockquote className='space-y-5 font-serif-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
+        <SectionHeader label='Why we build' onDark />
+        <blockquote className='space-y-5 font-sans-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
           <p>We&rsquo;re done waiting for government to modernise itself.</p>
           <p>
             We can contribute in our own ways —&nbsp;
@@ -211,10 +200,7 @@ const JoinUs: FC = () => (
       <Container>
         <div className='flex items-start justify-between gap-8 max-md:flex-col'>
           <div>
-            <div className='mb-3'>
-              <Eyebrow tone='navy'>Ready to contribute?</Eyebrow>
-            </div>
-            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-normal leading-tight text-ed-ink'>
+            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight text-ed-ink'>
               Join the community and{' '}
               <span className='text-ed-navy'>start building today.</span>
             </h2>

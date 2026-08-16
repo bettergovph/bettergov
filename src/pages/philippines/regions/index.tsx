@@ -189,7 +189,6 @@ const PhilippinesRegions: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <PageMasthead
       variant='hero'
-      eyebrow='§ Philippines · Regions'
       title='18 regions, 82 provinces'
       lede='The Philippines is organized into 18 administrative regions grouped under three island divisions. Regions are not local governments in themselves — they coordinate national agency services — but they are how most Filipinos locate themselves.'
     >
@@ -202,7 +201,7 @@ const PhilippinesRegions: FC = () => (
           { n: '1,488', l: 'Municipalities' },
         ].map(t => (
           <div key={t.l} className='px-4 py-4 text-white/85 first:pl-0'>
-            <div className='font-serif-ed text-[32px] font-medium leading-none text-white'>
+            <div className='font-serif-ed text-[32px] font-semibold leading-none text-white'>
               {t.n}
             </div>
             <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/70'>
@@ -263,7 +262,7 @@ const PhilippinesRegions: FC = () => (
             <div className='mb-3'>
               <Eyebrow>Visualize · Interactive map</Eyebrow>
             </div>
-            <h3 className='m-0 font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
               See the archipelago at a glance
             </h3>
             <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
@@ -281,7 +280,7 @@ const PhilippinesRegions: FC = () => (
             <div className='mb-3'>
               <Eyebrow>Directory · Local govt.</Eyebrow>
             </div>
-            <h3 className='m-0 font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
               Find your LGU
             </h3>
             <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
@@ -309,14 +308,14 @@ const Island: FC<{
     <Container>
       <div className={last ? '' : 'border-b border-ed-rule pb-14 max-md:pb-8'}>
         <div className='mt-14 grid grid-cols-[auto_1fr] items-baseline gap-6 border-t-2 border-ed-navy pt-6 max-md:grid-cols-1 max-md:gap-1 max-md:pt-4'>
-          <h2 className='m-0 font-serif-ed text-[48px] font-medium leading-none tracking-[-0.01em] text-ed-navy-ink max-md:text-[36px]'>
+          <h2 className='m-0 font-serif-ed text-[48px] font-semibold leading-none tracking-[-0.01em] text-ed-navy-ink max-md:text-[36px]'>
             {name}
           </h2>
           <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-2'>
             {meta}
           </div>
         </div>
-        <p className='mt-6 max-w-[760px] font-serif-ed text-lg leading-relaxed text-ed-ink-2'>
+        <p className='mt-6 max-w-[760px] font-sans-ed text-lg leading-relaxed text-ed-ink-2'>
           {intro}
         </p>
         <div className='mt-8 grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1'>
@@ -335,7 +334,7 @@ const RegionCard: FC<{ region: Region }> = ({ region: r }) => {
       <span className='inline-block bg-ed-navy px-2 py-[3px] font-mono-ed text-[10px] font-medium uppercase tracking-[0.14em] text-white'>
         {r.code}
       </span>
-      <h3 className='mt-4 font-serif-ed text-[22px] font-medium leading-tight text-ed-navy-ink'>
+      <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
         {r.name}
       </h3>
       <div className='mt-1.5 text-[13px] text-ed-ink-2'>

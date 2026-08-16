@@ -74,16 +74,7 @@ const AboutPhilippines: FC = () => {
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        eyebrow={t('about.hero.eyebrow')}
-        title={
-          <>
-            {t('about.hero.title')}{' '}
-            <em className='italic font-normal'>
-              {t('about.hero.titleEmphasis')}
-            </em>{' '}
-            {t('about.hero.titleSuffix')}
-          </>
-        }
+        title={t('about.hero.title')}
         lede={t('about.hero.description')}
       />
 
@@ -93,7 +84,7 @@ const AboutPhilippines: FC = () => {
           <div className='grid grid-cols-4 border-y border-ed-rule divide-x divide-y divide-ed-rule max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0'>
             {factItems.map(f => (
               <div key={f.id} className='px-6 py-7'>
-                <div className='font-serif-ed text-[42px] font-medium leading-none text-ed-navy-ink'>
+                <div className='font-serif-ed text-[42px] font-semibold leading-none text-ed-navy-ink'>
                   {f.num}
                 </div>
                 <div className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
@@ -108,7 +99,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §01 What is the Philippines */}
+      {/* 01 What is the Philippines */}
       <section className='mt-16'>
         <Container>
           <SectionHeader
@@ -121,9 +112,9 @@ const AboutPhilippines: FC = () => {
                 <p
                   key={i}
                   className={cn(
-                    'mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2',
+                    'mb-4 font-sans-ed text-lg leading-relaxed text-ed-ink-2',
                     i === 0 &&
-                      'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-medium first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
+                      'first-letter:float-left first-letter:pr-2.5 first-letter:pt-1.5 first-letter:font-serif-ed first-letter:text-[72px] first-letter:font-semibold first-letter:leading-[0.85] first-letter:text-ed-navy-ink'
                   )}
                 >
                   {p}
@@ -134,7 +125,7 @@ const AboutPhilippines: FC = () => {
               {overviewParagraphs.slice(2).map((p, i) => (
                 <p
                   key={i}
-                  className='mb-4 font-serif-ed text-lg leading-relaxed text-ed-ink-2'
+                  className='mb-4 font-sans-ed text-lg leading-relaxed text-ed-ink-2'
                 >
                   {p}
                 </p>
@@ -142,7 +133,7 @@ const AboutPhilippines: FC = () => {
             </div>
           </div>
 
-          <blockquote className='my-9 border-l-[3px] border-ed-navy py-2 pl-6 font-serif-ed text-[26px] italic leading-snug text-ed-navy-ink'>
+          <blockquote className='my-9 border-l-[3px] border-ed-navy py-2 pl-6 font-sans-ed text-[26px] italic leading-snug text-ed-navy-ink'>
             &ldquo;{t('about.overview.pullquote.body')}&rdquo;
             <footer className='mt-2.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] not-italic text-ed-ink-3'>
               {t('about.overview.pullquote.source')}
@@ -151,7 +142,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §02 National symbols */}
+      {/* 02 National symbols */}
       <section className='mt-16'>
         <Container>
           <SectionHeader
@@ -172,7 +163,7 @@ const AboutPhilippines: FC = () => {
                 <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
                   {s.label}
                 </div>
-                <h3 className='mt-2 font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+                <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                   {s.title}
                 </h3>
                 <p className='mt-2 text-sm leading-normal text-ed-ink-2'>
@@ -184,7 +175,7 @@ const AboutPhilippines: FC = () => {
         </Container>
       </section>
 
-      {/* §03 + §04 split */}
+      {/* 03 + 04 split */}
       <section className='mt-20 mb-20'>
         <Container>
           <div className='grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-12'>
@@ -196,10 +187,10 @@ const AboutPhilippines: FC = () => {
                     key={g.id}
                     className='grid grid-cols-[120px_1fr] gap-8 border-b border-ed-rule py-5 max-sm:grid-cols-[80px_1fr] max-sm:gap-4'
                   >
-                    <div className='font-serif-ed text-[28px] font-medium text-ed-navy-ink'>
+                    <div className='font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
                       {g.label}
                     </div>
-                    <div className='font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                    <div className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
                       {renderBold(g.body)}
                     </div>
                   </div>
@@ -222,7 +213,7 @@ const AboutPhilippines: FC = () => {
                     className='grid grid-cols-[1fr_auto] items-center border-b border-ed-rule py-5 text-ed-ink no-underline'
                   >
                     <div>
-                      <div className='font-serif-ed text-2xl font-medium text-ed-navy-ink'>
+                      <div className='font-serif-ed text-2xl font-semibold text-ed-navy-ink'>
                         {e.title}
                       </div>
                       <div className='mt-1 text-sm text-ed-ink-2'>{e.desc}</div>

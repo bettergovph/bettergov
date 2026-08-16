@@ -4,9 +4,9 @@ import { SiDiscord } from '@icons-pack/react-simple-icons';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Container from '../components/v2/ui/Container';
-import Eyebrow from '../components/v2/ui/Eyebrow';
 import Button from '../components/v2/ui/Button';
 import PageMasthead from '../components/v2/layout/PageMasthead';
+import SectionHeader from '../components/v2/ui/SectionHeader';
 
 const ContactUs: FC = () => {
   const [sent, setSent] = useState(false);
@@ -54,7 +54,6 @@ const ContactUs: FC = () => {
       </Helmet>
       <PageMasthead
         variant='light'
-        eyebrow='Contact · BetterGov.PH'
         title='Get in touch'
         lede="We're a volunteer-led initiative. Reach us through any of the channels below, or drop us a message and we'll get back to you."
       />
@@ -64,13 +63,11 @@ const ContactUs: FC = () => {
           <div className='grid grid-cols-[1fr_380px] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
             {/* Left: contact form */}
             <div>
-              <div className='mb-6 border-t-2 border-ed-navy pt-5'>
-                <Eyebrow tone='navy'>Send us a message</Eyebrow>
-              </div>
+              <SectionHeader label='Send us a message' />
 
               {sent ? (
                 <div className='border border-ed-rule bg-ed-paper-2 p-8'>
-                  <p className='font-serif-ed text-[22px] font-medium text-ed-navy-ink'>
+                  <p className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
                     Message received.
                   </p>
                   <p className='mt-2 text-sm text-ed-ink-2'>
@@ -97,7 +94,7 @@ const ContactUs: FC = () => {
                   <div className='grid grid-cols-2 gap-6 max-sm:grid-cols-1'>
                     <div>
                       <label
-                        className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                         htmlFor='name'
                       >
                         Your name
@@ -115,7 +112,7 @@ const ContactUs: FC = () => {
                     </div>
                     <div>
                       <label
-                        className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                         htmlFor='email'
                       >
                         Email address
@@ -135,7 +132,7 @@ const ContactUs: FC = () => {
 
                   <div>
                     <label
-                      className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                       htmlFor='subject'
                     >
                       Subject
@@ -160,7 +157,7 @@ const ContactUs: FC = () => {
 
                   <div>
                     <label
-                      className='block font-serif-ed text-[15px] font-medium text-ed-ink mb-1.5'
+                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
                       htmlFor='message'
                     >
                       Message
@@ -192,9 +189,7 @@ const ContactUs: FC = () => {
 
             {/* Right: contact card */}
             <div className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-10'>
-              <div className='mb-6 border-t-2 border-ed-navy pt-5 max-lg:border-t-0 max-lg:pt-0'>
-                <Eyebrow tone='navy'>Contact channels</Eyebrow>
-              </div>
+              <SectionHeader label='Contact channels' />
 
               <div className='space-y-0 divide-y divide-ed-rule border border-ed-rule'>
                 {/* Email */}
@@ -288,7 +283,7 @@ const ContactUs: FC = () => {
                 <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-2'>
                   Get involved
                 </div>
-                <p className='font-serif-ed text-[17px] leading-snug text-ed-ink-2'>
+                <p className='font-sans-ed text-[17px] leading-snug text-ed-ink-2'>
                   Want to contribute code, data, or design?
                 </p>
                 <Link

@@ -264,7 +264,7 @@ const EditorialHits: FC = () => {
                     </span>
                   )}
                 </div>
-                <h3 className='mt-2.5 font-serif-ed text-[22px] font-medium leading-tight tracking-[-0.005em] text-ed-ink'>
+                <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
                   <Highlight
                     attribute={titleAttr}
                     hit={hit as unknown as Hit<Record<string, string>>}
@@ -338,7 +338,7 @@ const EditorialPagination: FC = () => {
     <div className='mt-8 border-t border-ed-rule pt-6'>
       <div className='mb-3'>
         <Eyebrow>
-          § page {currentRefinement + 1} of {nbPages}
+          page {currentRefinement + 1} of {nbPages}
         </Eyebrow>
       </div>
       <div className='flex flex-wrap items-center gap-1'>
@@ -389,7 +389,6 @@ const SearchPage: FC = () => {
       <InstantSearch searchClient={searchClient} indexName='bettergov'>
         {/* Navy-gradient masthead with BigSearch */}
         <PageMasthead
-          eyebrow='§ Search'
           title='Search the BetterGov index'
           lede='Official Philippine government services, offices, and resources — across every agency, searchable in one place.'
           variant='hero'

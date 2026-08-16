@@ -39,13 +39,7 @@ const SalaryGradePage: FC = () => {
 
       <PageMasthead
         variant='hero'
-        eyebrow='Government · Compensation'
-        title={
-          <>
-            Salary grades{' '}
-            <em className='italic font-normal'>one through thirty-three.</em>
-          </>
-        }
+        title='Salary grades'
         lede='The standardized compensation schedule for civilian personnel of the Philippine government — 33 salary grades, each with 8 steps, as published by the Department of Budget and Management.'
       />
 
@@ -66,7 +60,7 @@ const SalaryGradePage: FC = () => {
         <Container>
           <div className='max-w-3xl border-l-[3px] border-ed-navy pl-6'>
             <Eyebrow>About the system</Eyebrow>
-            <p className='mt-3 font-serif-ed text-[17px] leading-relaxed text-ed-ink-2'>
+            <p className='mt-3 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
               The Philippine government uses a standardized salary grade system
               (SG 1–33) to determine compensation for civilian employees. Each
               grade has eight steps — step 1 is entry, step 8 is the ceiling
@@ -156,7 +150,7 @@ const SalaryGradePage: FC = () => {
 
 const Stat: FC<{ label: string; value: string }> = ({ label, value }) => (
   <div className='px-6 py-2 text-ed-ink-2'>
-    <div className='font-serif-ed text-[28px] font-medium leading-none text-ed-navy-ink'>
+    <div className='font-serif-ed text-[28px] font-semibold leading-none text-ed-navy-ink'>
       {value}
     </div>
     <div className='mt-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>

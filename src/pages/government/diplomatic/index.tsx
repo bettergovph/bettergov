@@ -18,13 +18,7 @@ const DiplomaticIndex: FC = () => {
       </Helmet>
       <PageMasthead
         variant='hero'
-        eyebrow={`Diplomatic · ${entries.length} missions`}
-        title={
-          <>
-            Missions accredited{' '}
-            <em className='italic font-normal'>to the Republic.</em>
-          </>
-        }
+        title='Diplomatic missions'
         lede='Embassies, consulates, and diplomatic representations accredited to the Philippines — each with a head of mission, address, and contact of record.'
       />
       <DirectoryResults
