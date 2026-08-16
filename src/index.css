@@ -181,6 +181,135 @@
   white-space: normal !important;
 }
 
+/*
+  Article bodies from the e.gov.ph news API arrive as raw HTML from a
+  different CMS, so they carry no classes we control. These rules give that
+  markup the editorial reading treatment. Scoped to .news-body so nothing
+  else on the site is affected.
+*/
+.news-body {
+  font-family: var(--font-sans-ed);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-ed-ink-2);
+}
+
+.news-body > :first-child {
+  margin-top: 0;
+}
+
+.news-body p,
+.news-body ul,
+.news-body ol,
+.news-body table,
+.news-body figure,
+.news-body blockquote {
+  margin: 1.25em 0;
+}
+
+.news-body h2,
+.news-body h3,
+.news-body h4,
+.news-body h5,
+.news-body h6 {
+  font-family: var(--font-serif-ed);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-ed-ink);
+  margin: 2em 0 0.6em;
+}
+
+.news-body h2 {
+  font-size: 26px;
+}
+.news-body h3 {
+  font-size: 22px;
+}
+.news-body h4,
+.news-body h5,
+.news-body h6 {
+  font-size: 18px;
+}
+
+.news-body a {
+  color: var(--color-ed-navy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.news-body a:hover {
+  color: var(--color-ed-navy-ink);
+}
+
+.news-body strong,
+.news-body b {
+  font-weight: 600;
+  color: var(--color-ed-ink);
+}
+
+.news-body ul,
+.news-body ol {
+  padding-left: 1.4em;
+}
+
+.news-body ul {
+  list-style: disc;
+}
+.news-body ol {
+  list-style: decimal;
+}
+
+.news-body li {
+  margin: 0.4em 0;
+}
+
+.news-body blockquote {
+  border-left: 3px solid var(--color-ed-navy);
+  padding-left: 1.1em;
+  font-style: italic;
+  color: var(--color-ed-ink);
+}
+
+.news-body img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-ed-rule);
+}
+
+.news-body figcaption {
+  font-family: var(--font-mono-ed);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--color-ed-ink-3);
+  margin-top: 0.5em;
+}
+
+.news-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.news-body th,
+.news-body td {
+  border: 1px solid var(--color-ed-rule);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.news-body th {
+  background: var(--color-ed-paper-2);
+  font-weight: 600;
+  color: var(--color-ed-ink);
+}
+
+.news-body hr {
+  border: 0;
+  border-top: 1px solid var(--color-ed-rule);
+  margin: 2em 0;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(100%);

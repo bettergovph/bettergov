@@ -162,6 +162,27 @@ export const mainNavigation: NavigationItem[] = [
     })),
   },
   {
+    label: 'News',
+    href: '/news',
+    children: [
+      {
+        label: 'All News',
+        href: '/news',
+        blurb: 'Latest announcements from across the government.',
+      },
+      {
+        label: 'Press Releases',
+        href: '/news?category=press-release',
+        blurb: 'Statements from the Presidential Communications Office.',
+      },
+      {
+        label: 'Circulars',
+        href: '/news?category=circular',
+        blurb: 'Memorandum circulars and proclamations.',
+      },
+    ],
+  },
+  {
     label: 'Guides',
     href: '/guides',
   },
@@ -256,6 +277,7 @@ export const footerNavigation = {
     {
       title: 'Services',
       links: [
+        { label: 'News', href: '/news' },
         { label: 'All Services', href: '/services' },
         { label: 'Service Directory', href: '/services' },
         { label: 'Websites', href: '/services/websites' },

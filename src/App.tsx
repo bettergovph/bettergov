@@ -68,6 +68,10 @@ import RegionalLGUPage from './pages/government/local/[region]';
 // Search Page
 import SearchPage from './pages/Search';
 
+// News (e.gov.ph)
+import NewsIndex from './pages/news';
+import NewsArticlePage from './pages/news/[id]';
+
 // Government directory (new /government index) + tabs layout
 import GovernmentDirectory from './pages/government';
 import GovernmentLayout from './pages/government/layout';
@@ -123,6 +127,10 @@ function App() {
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
             <Route path='/search' element={<SearchPage />} />
+            <Route path='/news'>
+              <Route index element={<NewsIndex />} />
+              <Route path=':id' element={<NewsArticlePage />} />
+            </Route>
             <Route path='/guides' element={<GuidesIndex />} />
             <Route path='/guides/passport' element={<PassportGuide />} />
             <Route path='/ideas' element={<Ideas />} />
