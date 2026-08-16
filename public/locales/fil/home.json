@@ -89,7 +89,10 @@
     "seeAllHolidays": "Tingnan ang lahat ng 18 holidays",
     "hotlinesEyebrow": "Hotline",
     "hotlinesTitle": "Kapag kailangan mo ng tulong ngayon",
-    "hotlinesAll": "Lahat ng hotline"
+    "hotlinesAll": "Lahat ng hotline",
+    "unavailable": "Hindi available ang pinakabagong balita sa ngayon.",
+    "readTime_one": "{{count}} minutong basa",
+    "readTime_other": "{{count}} minutong basa"
   },
   "transparency": {
     "label": "Saan napupunta ang pera ng bayan",

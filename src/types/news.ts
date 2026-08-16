@@ -89,6 +89,8 @@ export interface NewsArticleDetail extends NewsArticle {
   bodyHtml: string;
   /** Plain-text opening of the body, for meta descriptions and previews. */
   excerpt: string;
+  /** Estimated read time in whole minutes; 0 when there is no body. */
+  readingMinutes: number;
 }
 
 export interface NewsPagination {

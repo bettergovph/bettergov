@@ -125,11 +125,19 @@ export const formatNewsDateLong = (date: Date | null): string =>
       }).format(date)
     : '';
 
-/** Chrome the source CMS bakes into every body and that we don't want. */
+/**
+ * Chrome the source CMS bakes into every body and that we don't want.
+ *
+ * `.related-news` is its own related-articles rail — every entry links off to
+ * pco.gov.ph, and leaving it in also poisons the excerpt, which would
+ * otherwise open with the word "Related" and three unrelated headlines.
+ * The `.download-media` list is kept: for a circular that PDF *is* the item.
+ */
 const JUNK_SELECTORS = [
   '.addtoany_share_save_container',
   '.a2a_kit',
   '.sharedaddy',
+  '.related-news',
   'script',
   'style',
   'iframe',
@@ -220,13 +228,27 @@ export const sanitizeNewsHtml = (html: string | null | undefined): string => {
   });
 };
 
-/** Collapse sanitised HTML down to a plain-text preview. */
-export const htmlToExcerpt = (html: string, maxLength = 200): string => {
+/** Flatten sanitised HTML to its text content. */
+const htmlToText = (html: string): string => {
   if (!html || typeof document === 'undefined') return '';
 
   const el = document.createElement('div');
   el.innerHTML = html;
-  const text = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+  return (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+};
+
+/** Average adult reading speed, in words per minute. */
+const WORDS_PER_MINUTE = 220;
+
+export const readingMinutes = (html: string): number => {
+  const words = htmlToText(html).split(' ').filter(Boolean).length;
+  return words === 0 ? 0 : Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+};
+
+/** Collapse sanitised HTML down to a plain-text preview. */
+export const htmlToExcerpt = (html: string, maxLength = 200): string => {
+  const text = htmlToText(html);
+  if (!text) return '';
 
   if (text.length <= maxLength) return text;
   // Trim back to a word boundary so the ellipsis doesn't split a word.
@@ -250,12 +272,22 @@ const normalizeArticle = (item: EgovNewsItem): NewsArticle => ({
   sourceUrl: item.redirect_url || null,
 });
 
+/**
+ * Below this, whatever we extracted isn't a summary. A circular's body is
+ * often just a link reading "Full Transcript" — better no excerpt at all than
+ * a two-word meta description or a dropcap on a fragment.
+ */
+const MIN_EXCERPT_CHARS = 60;
+
 const normalizeDetail = (item: EgovNewsDetailItem): NewsArticleDetail => {
   const bodyHtml = sanitizeNewsHtml(item.body);
+  const excerpt = htmlToExcerpt(bodyHtml);
+
   return {
     ...normalizeArticle(item),
     bodyHtml,
-    excerpt: htmlToExcerpt(bodyHtml),
+    excerpt: excerpt.length >= MIN_EXCERPT_CHARS ? excerpt : '',
+    readingMinutes: readingMinutes(bodyHtml),
   };
 };
 

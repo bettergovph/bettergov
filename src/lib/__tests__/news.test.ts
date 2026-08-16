@@ -8,6 +8,7 @@ import {
   getNewsCategoryBySlug,
   htmlToExcerpt,
   parseEgovDate,
+  readingMinutes,
   sanitizeNewsHtml,
 } from '../news';
 
@@ -174,6 +175,23 @@ describe('news.ts', () => {
       expect(html).not.toContain('Facebook');
     });
 
+    it('removes the off-site related-articles rail', () => {
+      const html = sanitizeNewsHtml(
+        '<p>Body</p><div class="related-news row"><h4>Related</h4><ul class="related"><li><a href="https://pco.gov.ph/x">Some other headline</a></li></ul></div>'
+      );
+      expect(html).toContain('Body');
+      expect(html).not.toContain('Related');
+      expect(html).not.toContain('Some other headline');
+    });
+
+    it('keeps the download list — a circular is its PDF', () => {
+      const html = sanitizeNewsHtml(
+        '<ul class="download-media"><li><a href="https://pco.gov.ph/mc126.pdf">Full Transcript</a></li></ul>'
+      );
+      expect(html).toContain('Full Transcript');
+      expect(html).toContain('mc126.pdf');
+    });
+
     it('hardens outbound links', () => {
       const html = sanitizeNewsHtml(
         '<a href="https://www.officialgazette.gov.ph/mc-126">MC 126</a>'
@@ -200,6 +218,22 @@ describe('news.ts', () => {
       expect(excerpt.length).toBeLessThanOrEqual(61);
       expect(excerpt.endsWith('…')).toBe(true);
       expect(excerpt).not.toContain('wor…');
+    });
+  });
+
+  describe('readingMinutes', () => {
+    it('rounds to whole minutes at 220wpm', () => {
+      expect(readingMinutes(`<p>${'word '.repeat(220)}</p>`)).toBe(1);
+      expect(readingMinutes(`<p>${'word '.repeat(660)}</p>`)).toBe(3);
+    });
+
+    it('never reports a zero-minute read for real text', () => {
+      expect(readingMinutes('<p>Three short words</p>')).toBe(1);
+    });
+
+    it('reports 0 for an empty body', () => {
+      expect(readingMinutes('')).toBe(0);
+      expect(readingMinutes('<p></p>')).toBe(0);
     });
   });
 
@@ -271,14 +305,36 @@ describe('news.ts', () => {
         data: {
           ...listResponse.data.news[0],
           id: 6078,
-          body: '<p>Malacañang issued MC 126 on Friday.</p><script>alert(1)</script>',
+          body: '<p>Malacañang issued Memorandum Circular No. 126 on Friday, directing government offices to shift to alternative work arrangements.</p><script>alert(1)</script>',
         },
       });
 
       const article = await fetchNewsArticle(6078);
-      expect(article.bodyHtml).toContain('Malacañang issued MC 126');
+      expect(article.bodyHtml).toContain(
+        'Malacañang issued Memorandum Circular No. 126'
+      );
       expect(article.bodyHtml).not.toContain('script');
-      expect(article.excerpt).toBe('Malacañang issued MC 126 on Friday.');
+      expect(article.excerpt).toBe(
+        'Malacañang issued Memorandum Circular No. 126 on Friday, directing government offices to shift to alternative work arrangements.'
+      );
+      expect(article.readingMinutes).toBe(1);
+    });
+
+    it('drops an excerpt too thin to summarise anything', async () => {
+      mockFetchOnce({
+        status: 200,
+        message: 'OK',
+        data: {
+          ...listResponse.data.news[1],
+          id: 6077,
+          // A circular's whole body: a link to the PDF, nothing to preview.
+          body: '<ul class="download-media"><li><a href="https://pco.gov.ph/mc126.pdf">Full Transcript</a></li></ul>',
+        },
+      });
+
+      const article = await fetchNewsArticle(6077);
+      expect(article.excerpt).toBe('');
+      expect(article.bodyHtml).toContain('Full Transcript');
     });
 
     it('throws when the API returns no article', async () => {
