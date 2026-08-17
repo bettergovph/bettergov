@@ -111,6 +111,10 @@ const Footer: FC = () => {
     { label: t('footerNav.mission', 'Mission'), href: '/about' },
     { label: t('footerNav.contributors', 'Contributors'), href: '/join-us' },
     {
+      label: t('footerNav.designGuideline', 'Design Guideline'),
+      href: '/design',
+    },
+    {
       label: t('footerNav.github', 'GitHub'),
       href: 'https://github.com/bettergovph/bettergov',
       external: true,

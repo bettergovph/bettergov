@@ -572,27 +572,34 @@ const BrandGuidePage: FC = () => {
         </Container>
       </section>
 
-      {/* ------------------------------------------------ Closing */}
+      {/* ------------------------------------------------ Call to action */}
       <section className='bg-ed-navy-2 py-24 text-white max-md:py-14'>
         <Container>
-          <p className='max-w-4xl font-serif-ed text-[clamp(34px,5vw,64px)] font-bold leading-[1.02] tracking-[-0.02em]'>
+          <div className='font-mono-ed text-[11px] font-medium uppercase tracking-[0.2em] text-white/70'>
+            Start building
+          </div>
+          <p className='mt-6 max-w-4xl font-serif-ed text-[clamp(34px,5vw,64px)] font-bold leading-[1.02] tracking-[-0.02em]'>
             Public domain. Volunteer-built. Take it, use it, improve it.
           </p>
-          <div className='mt-10 flex flex-wrap gap-8'>
+          <p className='mt-6 max-w-2xl font-sans-ed text-lg leading-relaxed text-white/85'>
+            Every style, component, and pattern in this guide is documented in
+            full and ships as open-source code. Read the guidelines, then build
+            your service on them.
+          </p>
+          <div className='mt-10 flex flex-wrap items-center gap-4'>
             <Link
               to='/design/overview'
-              className='inline-flex items-center gap-2 border-b border-white pb-1 font-sans-ed text-sm font-medium text-white no-underline hover:border-white/50 hover:text-white/80'
+              className='inline-flex h-11 items-center justify-center gap-2.5 bg-white px-6 font-sans-ed text-sm font-semibold text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy-tint'
             >
-              Read the full design system{' '}
-              <ArrowRightIcon size={14} aria-hidden />
+              Read the full guidelines <ArrowRightIcon size={15} aria-hidden />
             </Link>
             <a
               href='https://github.com/bettergovph/bettergov'
               target='_blank'
               rel='noreferrer'
-              className='inline-flex items-center gap-2 border-b border-white pb-1 font-sans-ed text-sm font-medium text-white no-underline hover:border-white/50 hover:text-white/80'
+              className='inline-flex h-11 items-center justify-center gap-2.5 border border-white px-6 font-sans-ed text-sm font-semibold text-white no-underline transition-colors hover:bg-white hover:text-ed-navy-ink'
             >
-              Get the source on GitHub <ArrowRightIcon size={14} aria-hidden />
+              Get the source on GitHub
             </a>
           </div>
           <div className='mt-14 flex items-center justify-between border-t border-white/25 pt-6 font-mono-ed text-[11px] uppercase tracking-[0.16em] text-white/70'>
