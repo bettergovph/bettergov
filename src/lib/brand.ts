@@ -19,10 +19,12 @@ export const SITE_OWNER = 'Republic of the Philippines';
 /**
  * The national branding campaign mark, shown in the footer.
  *
- * Its "BAGONG PILIPINAS" wordmark is a dark blue that sits at about 1.6:1
- * against the navy footer, so it is always rendered on a white plate rather
- * than directly on the background.
+ * This is the dark-background variant: the emblem is untouched, but the
+ * "BAGONG PILIPINAS" wordmark is repainted white. In the original it is
+ * #011d92, which lands at roughly 1.4:1 on the navy footer and disappears.
+ * A light-background version can be regenerated from the Wikimedia Commons
+ * original, which is public domain as a Philippine government work.
  */
-export const BAGONG_PILIPINAS_SRC = '/logos/png/bagong-pilipinas.png';
+export const BAGONG_PILIPINAS_SRC = '/logos/png/bagong-pilipinas-inverse.png';
 
 export const BAGONG_PILIPINAS_ALT = 'Bagong Pilipinas';
