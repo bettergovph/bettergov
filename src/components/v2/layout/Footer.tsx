@@ -156,15 +156,15 @@ const Footer: FC = () => {
                 'Built by eGov, BetterGov, and hundreds of citizen volunteers.'
               )}
             </p>
-            <div className='mt-6 inline-block bg-white px-4 py-3'>
+            <div className='mt-6 inline-block bg-white px-3 py-2.5'>
               <img
                 src={BAGONG_PILIPINAS_SRC}
                 alt={BAGONG_PILIPINAS_ALT}
-                width={400}
-                height={372}
+                width={256}
+                height={238}
                 loading='lazy'
                 decoding='async'
-                className='block h-auto w-[132px]'
+                className='block h-auto w-24'
               />
             </div>
             <div className='mt-6 flex gap-3'>
