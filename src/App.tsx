@@ -17,6 +17,7 @@ import DesignComponents from './pages/design/components';
 import DesignPatterns from './pages/design/patterns';
 import DesignAccessibility from './pages/design/accessibility';
 import DesignCommunity from './pages/design/community';
+import DesignBrandGuide from './pages/design/guide';
 import Services from './pages/services';
 import AboutPage from './pages/about';
 import AccessibilityPage from './pages/accessibility';
@@ -114,6 +115,9 @@ function App() {
           <CivicAssistant />
           <Routes>
             <Route path='/' element={<Home />} />
+            {/* Brand guide is a full-bleed presentation — outside the
+                sidebar layout on purpose. */}
+            <Route path='/design/guide' element={<DesignBrandGuide />} />
             <Route path='/design' element={<DesignSystemLayout />}>
               <Route index element={<DesignSystemHome />} />
               <Route path='styles' element={<DesignStyles />} />

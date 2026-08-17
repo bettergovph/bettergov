@@ -114,7 +114,13 @@ const DesignSystemLayout: FC = () => {
                 })}
               </ul>
 
-              <div className='mt-6 border-t border-ed-rule pt-4 max-lg:hidden'>
+              <div className='mt-6 space-y-2.5 border-t border-ed-rule pt-4 max-lg:hidden'>
+                <NavLink
+                  to='/design/guide'
+                  className='block font-sans-ed text-[13px] font-medium text-ed-navy no-underline transition-colors hover:text-ed-red'
+                >
+                  Brand guide presentation →
+                </NavLink>
                 <a
                   href='https://github.com/bettergovph/bettergov/issues'
                   target='_blank'
