@@ -103,26 +103,6 @@
     "explore": "Silipin ang badyet",
     "download": "CSV"
   },
-  "editorial": {
-    "label": "Paano ito gumagana",
-    "items": [
-      {
-        "n": "01",
-        "heading": "Nakasulat nang malinaw",
-        "body": "Bawat pahina ay isinulat sa simpleng Ingles at Filipino, walang halong legal jargon."
-      },
-      {
-        "n": "02",
-        "heading": "Patuloy na nirerepaso",
-        "body": "Sina-check ng mga boluntaryo ang bawat pahina buwan-buwan at ikinukumpara sa opisyal na pinagmulan."
-      },
-      {
-        "n": "03",
-        "heading": "Malaya at open-source",
-        "body": "Hindi kami konektado sa anumang ahensya. Bukas sa publiko ang bawat pagbabago sa GitHub."
-      }
-    ]
-  },
   "egovApp": {
     "badge": "Available sa iOS, Android at App Gallery",
     "title": "Simulan ang Paggamit ng eGovPH Ngayon",

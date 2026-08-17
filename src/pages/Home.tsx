@@ -6,7 +6,6 @@ import {
   MostRequested,
   NewsAndHolidays,
   TransparencyStrip,
-  EditorialStrip,
 } from '../components/v2/home';
 
 const Home: FC = () => (
@@ -17,7 +16,6 @@ const Home: FC = () => (
     <MostRequested />
     <NewsAndHolidays />
     <TransparencyStrip />
-    <EditorialStrip />
   </main>
 );
 

@@ -15,3 +15,14 @@ export const SITE_NAME = 'GOV.PH';
 
 /** Sub-label rendered under the wordmark. */
 export const SITE_OWNER = 'Republic of the Philippines';
+
+/**
+ * The national branding campaign mark, shown in the footer.
+ *
+ * Its "BAGONG PILIPINAS" wordmark is a dark blue that sits at about 1.6:1
+ * against the navy footer, so it is always rendered on a white plate rather
+ * than directly on the background.
+ */
+export const BAGONG_PILIPINAS_SRC = '/logos/png/bagong-pilipinas.png';
+
+export const BAGONG_PILIPINAS_ALT = 'Bagong Pilipinas';

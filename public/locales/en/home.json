@@ -103,26 +103,6 @@
     "explore": "Explore the budget",
     "download": "CSV"
   },
-  "editorial": {
-    "label": "How this works",
-    "items": [
-      {
-        "n": "01",
-        "heading": "Written in plain language",
-        "body": "Every service page is rewritten in plain English and Filipino, free of legalese — with source citations linked at the end."
-      },
-      {
-        "n": "02",
-        "heading": "Updated continuously",
-        "body": "Our volunteer editors check every page against the official source at least monthly. Page-level timestamps show the last verified date."
-      },
-      {
-        "n": "03",
-        "heading": "Independent & open-source",
-        "body": "Not affiliated with any agency. Every correction, commit, and editorial choice lives openly on GitHub. No ads, no tracking."
-      }
-    ]
-  },
   "egovApp": {
     "badge": "Available on iOS, Android & App Gallery",
     "title": "Start Using eGovPH Today",

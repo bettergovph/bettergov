@@ -6,6 +6,8 @@ import Container from '../ui/Container';
 import Flag from '../ui/Flag';
 import FooterColumn, { FooterLink } from './FooterColumn';
 import {
+  BAGONG_PILIPINAS_ALT,
+  BAGONG_PILIPINAS_SRC,
   COAT_OF_ARMS_ALT,
   COAT_OF_ARMS_SRC,
   SITE_NAME,
@@ -154,6 +156,17 @@ const Footer: FC = () => {
                 'Built by eGov, BetterGov, and hundreds of citizen volunteers.'
               )}
             </p>
+            <div className='mt-6 inline-block bg-white px-4 py-3'>
+              <img
+                src={BAGONG_PILIPINAS_SRC}
+                alt={BAGONG_PILIPINAS_ALT}
+                width={400}
+                height={372}
+                loading='lazy'
+                decoding='async'
+                className='block h-auto w-[132px]'
+              />
+            </div>
             <div className='mt-6 flex gap-3'>
               <Flag variant='outline' className='border-white/25 text-white/70'>
                 {version ? `v${version}` : 'v4.2.0'}

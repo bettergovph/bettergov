@@ -4,4 +4,3 @@ export { default as EgovAppBanner } from './EgovAppBanner';
 export { default as MostRequested } from './MostRequested';
 export { default as NewsAndHolidays } from './NewsAndHolidays';
 export { default as TransparencyStrip } from './TransparencyStrip';
-export { default as EditorialStrip } from './EditorialStrip';
