@@ -113,12 +113,12 @@ const BrandGuidePage: FC = () => {
   return (
     <main className='bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Brand Guide — GOV.PH Design System | BetterGov.ph</title>
+        <title>Design — GOV.PH Brand Guidelines | BetterGov.ph</title>
         <meta
           name='description'
           content='The GOV.PH brand guidelines as a presentation: the mark, the colour system, the typography, and the voice of Philippine government digital services.'
         />
-        <link rel='canonical' href='https://bettergov.ph/design/guide' />
+        <link rel='canonical' href='https://bettergov.ph/design' />
       </Helmet>
 
       {/* ------------------------------------------------ Cover */}
@@ -144,12 +144,20 @@ const BrandGuidePage: FC = () => {
             </span>
           </h1>
         </Container>
-        <Container className='flex items-end justify-between'>
-          <p className='max-w-md font-sans-ed text-base leading-relaxed text-white/85'>
-            How the digital front door of the Philippine government looks,
-            reads, and behaves — so that every service feels like one
-            government.
-          </p>
+        <Container className='flex flex-wrap items-end justify-between gap-6'>
+          <div className='max-w-md'>
+            <p className='font-sans-ed text-base leading-relaxed text-white/85'>
+              How the digital front door of the Philippine government looks,
+              reads, and behaves — so that every service feels like one
+              government.
+            </p>
+            <Link
+              to='/design/overview'
+              className='mt-6 inline-flex h-11 items-center justify-center gap-2.5 bg-white px-6 font-sans-ed text-sm font-semibold text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy-tint'
+            >
+              Learn more <ArrowRightIcon size={15} aria-hidden />
+            </Link>
+          </div>
           <a
             href='#contents'
             className='inline-flex items-center gap-2 font-mono-ed text-[11px] uppercase tracking-[0.16em] text-white no-underline hover:text-white/70'
@@ -176,10 +184,10 @@ const BrandGuidePage: FC = () => {
             </a>
           ))}
           <Link
-            to='/design'
+            to='/design/overview'
             className='ml-auto flex shrink-0 items-center gap-2 px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-navy no-underline hover:text-ed-red'
           >
-            Full documentation <ArrowRightIcon size={12} aria-hidden />
+            Learn more <ArrowRightIcon size={12} aria-hidden />
           </Link>
         </Container>
       </nav>
@@ -572,7 +580,7 @@ const BrandGuidePage: FC = () => {
           </p>
           <div className='mt-10 flex flex-wrap gap-8'>
             <Link
-              to='/design'
+              to='/design/overview'
               className='inline-flex items-center gap-2 border-b border-white pb-1 font-sans-ed text-sm font-medium text-white no-underline hover:border-white/50 hover:text-white/80'
             >
               Read the full design system{' '}

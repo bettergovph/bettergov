@@ -115,16 +115,19 @@ function App() {
           <CivicAssistant />
           <Routes>
             <Route path='/' element={<Home />} />
-            {/* Brand guide is a full-bleed presentation — outside the
-                sidebar layout on purpose. */}
-            <Route path='/design/guide' element={<DesignBrandGuide />} />
-            <Route path='/design' element={<DesignSystemLayout />}>
-              <Route index element={<DesignSystemHome />} />
-              <Route path='styles' element={<DesignStyles />} />
-              <Route path='components' element={<DesignComponents />} />
-              <Route path='patterns' element={<DesignPatterns />} />
-              <Route path='accessibility' element={<DesignAccessibility />} />
-              <Route path='community' element={<DesignCommunity />} />
+            <Route path='/design'>
+              {/* The brand guide presentation is the front door — full
+                  bleed, outside the sidebar layout on purpose. */}
+              <Route index element={<DesignBrandGuide />} />
+              <Route path='guide' element={<Navigate to='/design' replace />} />
+              <Route element={<DesignSystemLayout />}>
+                <Route path='overview' element={<DesignSystemHome />} />
+                <Route path='styles' element={<DesignStyles />} />
+                <Route path='components' element={<DesignComponents />} />
+                <Route path='patterns' element={<DesignPatterns />} />
+                <Route path='accessibility' element={<DesignAccessibility />} />
+                <Route path='community' element={<DesignCommunity />} />
+              </Route>
             </Route>
             <Route path='/services' element={<Services />} />
             <Route path='/about' element={<AboutPage />} />

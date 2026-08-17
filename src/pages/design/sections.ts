@@ -14,9 +14,8 @@ export type SectionDef = {
  */
 export const DESIGN_SECTIONS: SectionDef[] = [
   {
-    to: '/design',
+    to: '/design/overview',
     label: 'Overview',
-    end: true,
     subsections: [
       { id: 'start-here', label: 'Start here' },
       { id: 'principles', label: 'Design principles' },

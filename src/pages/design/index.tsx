@@ -81,7 +81,7 @@ const DesignSystemHome: FC = () => (
         name='description'
         content='Styles, components, and patterns for designing consistent, accessible digital government services for the Philippines. Open source and free for any agency or civic project to use.'
       />
-      <link rel='canonical' href='https://bettergov.ph/design' />
+      <link rel='canonical' href='https://bettergov.ph/design/overview' />
     </Helmet>
 
     <PageHeader

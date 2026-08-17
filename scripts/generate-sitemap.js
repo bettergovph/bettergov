@@ -288,7 +288,7 @@ function generateSiteUrls(mainNavigation, governmentData) {
   // Add design system pages
   const designPages = [
     '/design',
-    '/design/guide',
+    '/design/overview',
     '/design/styles',
     '/design/components',
     '/design/patterns',
