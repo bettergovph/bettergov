@@ -31,6 +31,11 @@ const SitemapPage: FC = () => {
         { title: 'Home', url: '/', description: 'Main landing page' },
         { title: 'About', url: '/about', description: 'About BetterGov.ph' },
         {
+          title: 'Contribute',
+          url: '/contribute',
+          description: 'Every way to help, ordered from easiest to hardest',
+        },
+        {
           title: 'Accessibility',
           url: '/accessibility',
           description: 'Accessibility statement and features',
