@@ -10,6 +10,12 @@ import { Link, useParams } from 'react-router-dom';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '@/types/visa.ts';
 import { getCategoryIcon } from './visa.util';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/Accordion';
 
 interface VisaCategory {
   id: string;
@@ -22,6 +28,12 @@ interface VisaCategory {
 interface VisaTypeDetailParams {
   type: string;
 }
+
+type StructuredStep = {
+  title: string;
+  estimated_days?: number | string;
+  items?: string[];
+};
 
 const VisaTypeDetail: FC = () => {
   const { type } = useParams<VisaTypeDetailParams>();
@@ -298,6 +310,75 @@ const VisaTypeDetail: FC = () => {
                         </div>
                       </div>
                     )}
+
+                  {Array.isArray(visa.steps) && visa.steps.length > 0 && (
+                    <div className='mb-8'>
+                      <h3 className='text-xl font-semibold text-gray-800 mb-4'>
+                        Steps
+                      </h3>
+                      <Accordion type='multiple' className='space-y-4'>
+                        {visa.steps.map((step, index) => {
+                          const hasStructuredFields =
+                            step &&
+                            typeof step === 'object' &&
+                            'title' in step &&
+                            'items' in step;
+
+                          const structuredStep = hasStructuredFields
+                            ? (step as StructuredStep)
+                            : null;
+
+                          const accordionValue = `step-${index}`;
+                          const itemKey =
+                            structuredStep?.title ?? accordionValue;
+                          const estimatedDays = structuredStep?.estimated_days;
+
+                          return (
+                            <AccordionItem key={itemKey} value={accordionValue}>
+                              <AccordionTrigger className='text-base md:text-lg'>
+                                <span className='text-left'>
+                                  {structuredStep?.title
+                                    ? `${index + 1}. ${structuredStep.title}`
+                                    : `Step ${index + 1}`}
+                                </span>
+                              </AccordionTrigger>
+                              <AccordionContent>
+                                {structuredStep ? (
+                                  <div className='space-y-3 pt-2'>
+                                    {estimatedDays && (
+                                      <p className='text-sm font-medium text-blue-600 bg-blue-50 inline-flex px-3 py-1 rounded-full'>
+                                        Estimated {estimatedDays}
+                                        {typeof estimatedDays === 'number'
+                                          ? estimatedDays === 1
+                                            ? ' day'
+                                            : ' days'
+                                          : ''}
+                                      </p>
+                                    )}
+
+                                    {Array.isArray(structuredStep.items) &&
+                                      structuredStep.items.length > 0 && (
+                                        <ul className='list-disc pl-5 text-sm text-gray-700 space-y-1'>
+                                          {structuredStep.items.map(
+                                            (item, itemIndex) => (
+                                              <li key={itemIndex}>{item}</li>
+                                            )
+                                          )}
+                                        </ul>
+                                      )}
+                                  </div>
+                                ) : (
+                                  <p className='pt-2 text-sm text-gray-700'>
+                                    {String(step)}
+                                  </p>
+                                )}
+                              </AccordionContent>
+                            </AccordionItem>
+                          );
+                        })}
+                      </Accordion>
+                    </div>
+                  )}
 
                   {/* Visa Subtypes */}
                   {visa.subtypes && visa.subtypes.length > 0 && (
