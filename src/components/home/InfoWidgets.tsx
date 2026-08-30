@@ -129,7 +129,7 @@ const InfoWidgets: FC = () => {
                   ))}
                 </div>
               )}
-              <div className='flex space-between w-full items-center'>
+              <div className='mt-4 border-t border-gray-200 flex space-between w-full items-center'>
                 <p className='text-sm text-gray-700 mt-4 text-right'>
                   Weather data provided by{' '}
                   <a
@@ -222,7 +222,7 @@ const InfoWidgets: FC = () => {
                   </tbody>
                 </table>
               </div>
-              <div className='text-right mt-4'>
+              <div className='mt-4 pt-3 border-t border-gray-200 text-right'>
                 <a
                   href='/data/forex'
                   className='text-primary-600 text-sm hover:underline'
