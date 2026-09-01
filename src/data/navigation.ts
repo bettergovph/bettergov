@@ -92,6 +92,11 @@ export const ourProjects = [
         href: 'https://visualizations.bettergov.ph/',
         target: '_blank',
       },
+      {
+        label: 'Juris AI',
+        href: 'https://juris.ph',
+        target: '_blank',
+      },
     ],
   },
 ];
@@ -167,6 +172,7 @@ export const footerNavigation = {
         { label: 'About the Portal', href: '/about' },
         { label: 'About BetterGov.ph', href: 'https://about.bettergov.ph' },
         { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
+        { label: 'Contribute', href: '/contribute' },
         { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
