@@ -127,7 +127,7 @@
   },
   {
     "service": "Access Science for every Juan (Know about the Latest Breakthroughs and Developments in the Philippine Science Scene)",
-    "url": "http://www.science.ph/index.php",
+    "url": "http://www.science.ph",
     "id": "04f6253e-48f0-4402-8c54-3d610d958d79",
     "slug": "access-science-for-every-juan-know-about-the-latest-breakthroughs-and-developments-in-the-philippine-science-scene",
     "published": true,
@@ -178,24 +178,6 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-11-27T20:53:00.000Z"
-  },
-  {
-    "service": "DBP’s Electric Cooperative Loan Take-Out Assistance from PSALM (DELTA-P)",
-    "url": "https://www.dbp.ph/developmental-banking/infrastructure-and-logistics/dbps-electric-cooperative-loan-take-out-assistance-from-psalm-delta-p/",
-    "id": "e36e493f-6dc4-4cb3-896e-4e3530b47ada",
-    "slug": "dbps-electric-cooperative-loan-take-out-assistance-from-psalm-delta-p",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Uncategorized",
-      "slug": "uncategorized"
-    },
-    "subcategory": {
-      "name": "Uncategorized",
-      "slug": "uncategorized"
-    },
-    "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
   },
   {
     "service": "Financing Utilities for Sustainable Energy Development (FUSED)",

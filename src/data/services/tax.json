@@ -47,15 +47,15 @@
       "slug": "tax"
     },
     "subcategory": {
-      "name": "Register",
-      "slug": "register"
+      "name": "File Taxes",
+      "slug": "file-taxes"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
     "service": "Register for a Taxpayer Identification Number (TIN)",
-    "url": "https://orus.bir.gov.ph/",
+    "url": "https://orus.bir.gov.ph/home",
     "id": "387e8805-4277-4a21-bf1b-116bea0586cb",
     "slug": "register-for-a-taxpayer-identification-number-tin",
     "published": true,
