@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { TalaCmsClient } from './client';
+import type { Candidate } from './categories';
 
 /**
  * Explicit ceiling on how many records we ask TalaCMS for in one request.
@@ -220,4 +221,61 @@ export async function fetchServices(
   );
   assertStructure(raw);
   return raw;
+}
+
+export const SERVICES_SCHEMA_PATH =
+  'src/data/services/schema/services.schema.json';
+
+export const servicePathFor = (categorySlug: string) =>
+  `src/data/services/${categorySlug}.json`;
+
+/**
+ * The committed key order, reproduced exactly. All 194 committed records use
+ * it, and `prepare()` is byte-idempotent against every committed file under
+ * it — any other order would produce a whole-file no-op diff.
+ */
+const toRecord = (s: RawService) => ({
+  service: s.service,
+  url: s.url,
+  id: s.sourceId,
+  slug: s.slug,
+  published: s.published,
+  featured: s.featured,
+  category: { name: s.category.category, slug: s.category.slug },
+  subcategory: { name: s.subcategory.name, slug: s.subcategory.slug },
+  createdAt: s.createdAt,
+  updatedAt: s.updatedAt,
+});
+
+/**
+ * Stage 4: pure shaping. One candidate per TAXONOMY category — not per
+ * category that has records — so a new CMS category produces a named missing
+ * file rather than a silent no-op. `position` is dropped; ordering within a
+ * file is produced by sorting on it, never inherited from response order.
+ */
+export function shapeServices(
+  raw: RawServices,
+  taxonomyCategorySlugs: string[]
+): Candidate[] {
+  const byCategory = new Map<string, RawService[]>(
+    taxonomyCategorySlugs.map(slug => [slug, []])
+  );
+
+  for (const s of raw.allGovernmentServices) {
+    const bucket = byCategory.get(s.category.slug);
+    // Unreachable after the stage-3 pair check; belt and braces, because
+    // dropping a record silently would be far worse than failing.
+    if (!bucket) {
+      fail(
+        `service "${s.slug}" references category "${s.category.slug}", which is not in the taxonomy`
+      );
+    }
+    bucket!.push(s);
+  }
+
+  return [...byCategory].map(([slug, records]) => ({
+    path: servicePathFor(slug),
+    schemaPath: SERVICES_SCHEMA_PATH,
+    data: [...records].sort((a, b) => a.position - b.position).map(toRecord),
+  }));
 }
