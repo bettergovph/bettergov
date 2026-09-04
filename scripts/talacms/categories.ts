@@ -13,6 +13,20 @@ export type ServiceRecordRef = {
 };
 
 /**
+ * The committed `service_categories.json` shape, and the structural shape a
+ * freshly fetched raw taxonomy is read through by the stage-3 cross-validator.
+ * A raw CMS category carries `position` as well; that extra field is ignored
+ * here on purpose, because stage 3 runs before shaping.
+ */
+export type Taxonomy = {
+  categories: {
+    category: string;
+    slug: string;
+    subcategories: { name: string; slug: string }[];
+  }[];
+};
+
+/**
  * Explicit ceiling on how many records we ask TalaCMS for in one request.
  * Today's real count is 13. Reaching the ceiling fails rather than silently
  * serving an undercount — raise this constant if that ever fires.

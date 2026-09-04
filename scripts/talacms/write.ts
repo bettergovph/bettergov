@@ -3,9 +3,9 @@ import path from 'node:path';
 import { z } from 'zod';
 import { Ajv } from 'ajv';
 import * as prettier from 'prettier';
-import type { Candidate, ServiceRecordRef } from './categories';
+import type { Candidate, ServiceRecordRef, Taxonomy } from './categories';
 
-export type { Candidate } from './categories';
+export type { Candidate, Taxonomy } from './categories';
 
 export interface PreparedFile {
   path: string;
@@ -92,6 +92,91 @@ export function readServiceRecords(): ServiceRecordRef[] {
     }
     return parseServiceRecordsFile(file, raw);
   });
+}
+
+/**
+ * Schema-equivalence with src/data/schema/service_categories.schema.json,
+ * reproduced field by field. `.strict()` matters specifically: a stray key in
+ * the committed file would otherwise be tolerated here while `prepare()`
+ * rejects the generated file for the same thing — an asymmetry that would be
+ * confusing to debug.
+ */
+const CommittedTaxonomySchema = z
+  .object({
+    categories: z
+      .array(
+        z
+          .object({
+            category: z.string().min(1),
+            slug: z.string().regex(SERVICES_SLUG_PATTERN),
+            subcategories: z
+              .array(
+                z
+                  .object({
+                    name: z.string().min(1),
+                    slug: z.string().regex(SERVICES_SLUG_PATTERN),
+                  })
+                  .strict()
+              )
+              .min(1),
+          })
+          .strict()
+      )
+      .min(1),
+  })
+  .strict();
+
+/**
+ * Schema-equivalence plus the two uniqueness rules JSON Schema cannot express.
+ * Subcategory slugs are unique WITHIN a parent, never globally — they
+ * legitimately repeat across parents.
+ */
+export function parseTaxonomy(value: unknown): Taxonomy {
+  const parsed = CommittedTaxonomySchema.safeParse(value);
+  if (!parsed.success) {
+    const detail = parsed.error.issues
+      .map(i => `${i.path.join('.') || '/'} ${i.message}`)
+      .join('; ');
+    servicesFail(
+      `committed src/data/service_categories.json is malformed: ${detail}`
+    );
+  }
+
+  const seenCategories = new Set<string>();
+  for (const c of parsed.data!.categories) {
+    if (seenCategories.has(c.slug)) {
+      servicesFail(
+        `committed taxonomy has a duplicate category slug "${c.slug}"`
+      );
+    }
+    seenCategories.add(c.slug);
+    if (c.category.trim() === '') {
+      servicesFail(
+        `committed taxonomy category "${c.slug}" has a blank display name`
+      );
+    }
+    const seenSubs = new Set<string>();
+    for (const s of c.subcategories) {
+      if (seenSubs.has(s.slug)) {
+        servicesFail(
+          `committed taxonomy has a duplicate subcategory slug "${s.slug}" under "${c.slug}"`
+        );
+      }
+      seenSubs.add(s.slug);
+      if (s.name.trim() === '') {
+        servicesFail(
+          `committed taxonomy subcategory "${c.slug}/${s.slug}" has a blank display name`
+        );
+      }
+    }
+  }
+
+  return parsed.data!;
+}
+
+/** The committed taxonomy, validated before any consumer builds a map from it. */
+export function readTaxonomy(): Taxonomy {
+  return parseTaxonomy(readJson('src/data/service_categories.json'));
 }
 
 const ajv = new Ajv({ allErrors: true, strict: false });
