@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import {
-  buildCategories,
   fetchCategories,
   shapeCategories,
   assertReferentialIntegrity,
@@ -64,12 +63,10 @@ const category = (over: Record<string, unknown> = {}) => ({
   ...over,
 });
 
-describe('buildCategories', () => {
+describe('fetchCategories + shapeCategories', () => {
   it('produces the exact file contract, sorted by position, with no extra keys', async () => {
-    const candidate = await buildCategories(
-      clientReturning(validPayload),
-      records
-    );
+    const raw = await fetchCategories(clientReturning(validPayload));
+    const candidate = shapeCategories(raw);
 
     expect(candidate.path).toBe('src/data/service_categories.json');
     expect(candidate.schemaPath).toBe(
@@ -99,7 +96,8 @@ describe('buildCategories', () => {
     const payload = withCategories([
       category({ category: 'Education!', slug: 'education' }),
     ]);
-    const candidate = await buildCategories(clientReturning(payload), []);
+    const raw = await fetchCategories(clientReturning(payload));
+    const candidate = shapeCategories(raw);
     expect(
       (candidate.data as { categories: { category: string }[] }).categories[0]
         .category
@@ -168,7 +166,7 @@ describe('buildCategories', () => {
       /position/i,
     ],
   ])('fails closed on %s', async (_label, payload, pattern) => {
-    await expect(buildCategories(clientReturning(payload), [])).rejects.toThrow(
+    await expect(fetchCategories(clientReturning(payload))).rejects.toThrow(
       pattern
     );
   });
@@ -178,12 +176,12 @@ describe('buildCategories', () => {
       category({ position: i, slug: `cat-${i}` })
     );
     await expect(
-      buildCategories(clientReturning(withCategories(many)), [])
+      fetchCategories(clientReturning(withCategories(many)))
     ).rejects.toThrow(/ceiling/i);
   });
 
   describe('referential integrity against committed service records', () => {
-    it('fails when a category slug that records reference is missing', async () => {
+    it('fails when a category slug that records reference is missing', () => {
       const payload = withCategories([category()]);
       const orphaning = [
         {
@@ -191,12 +189,15 @@ describe('buildCategories', () => {
           subcategory: { name: 'Filing', slug: 'filing' },
         },
       ];
-      await expect(
-        buildCategories(clientReturning(payload), orphaning)
-      ).rejects.toThrow(/tax/);
+      expect(() =>
+        assertReferentialIntegrity(
+          { categories: payload.allServiceCategories } as Taxonomy,
+          orphaning
+        )
+      ).toThrow(/tax/);
     });
 
-    it('fails when a subcategory moved to a different parent', async () => {
+    it('fails when a subcategory moved to a different parent', () => {
       const payload = withCategories([
         category({ position: 0, slug: 'health' }),
         category({
@@ -225,29 +226,35 @@ describe('buildCategories', () => {
           ],
         }),
       ]);
-      await expect(
-        buildCategories(clientReturning(moved), [
-          {
-            category: { name: 'Health', slug: 'health' },
-            subcategory: {
-              name: 'Financial Assistance',
-              slug: 'financial-assistance',
+      expect(() =>
+        assertReferentialIntegrity(
+          { categories: moved.allServiceCategories } as Taxonomy,
+          [
+            {
+              category: { name: 'Health', slug: 'health' },
+              subcategory: {
+                name: 'Financial Assistance',
+                slug: 'financial-assistance',
+              },
             },
-          },
-        ])
-      ).rejects.toThrow(/health\/financial-assistance/);
+          ]
+        )
+      ).toThrow(/health\/financial-assistance/);
       // Sanity: the unmoved arrangement passes.
-      await expect(
-        buildCategories(clientReturning(payload), [
-          {
-            category: { name: 'Health', slug: 'health' },
-            subcategory: {
-              name: 'Financial Assistance',
-              slug: 'financial-assistance',
+      expect(() =>
+        assertReferentialIntegrity(
+          { categories: payload.allServiceCategories } as Taxonomy,
+          [
+            {
+              category: { name: 'Health', slug: 'health' },
+              subcategory: {
+                name: 'Financial Assistance',
+                slug: 'financial-assistance',
+              },
             },
-          },
-        ])
-      ).resolves.toBeDefined();
+          ]
+        )
+      ).not.toThrow();
     });
 
     it('ALLOWS a generated category that has no service records', async () => {
@@ -260,10 +267,14 @@ describe('buildCategories', () => {
           subcategories: [{ name: 'Something', slug: 'something' }],
         }),
       ]);
-      const candidate = await buildCategories(
-        clientReturning(payload),
-        records.slice(0, 1)
-      );
+      const raw = await fetchCategories(clientReturning(payload));
+      expect(() =>
+        assertReferentialIntegrity(
+          { categories: raw.allServiceCategories },
+          records.slice(0, 1)
+        )
+      ).not.toThrow();
+      const candidate = shapeCategories(raw);
       const slugs = (
         candidate.data as { categories: { slug: string }[] }
       ).categories.map(c => c.slug);
