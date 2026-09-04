@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { buildCategories, type ServiceRecordRef } from '../categories';
+import {
+  buildCategories,
+  fetchCategories,
+  shapeCategories,
+  assertReferentialIntegrity,
+  type ServiceRecordRef,
+  type Taxonomy,
+} from '../categories';
 import type { TalaCmsClient } from '../client';
 
 const clientReturning = (payload: unknown): TalaCmsClient =>
@@ -272,5 +279,96 @@ describe('buildCategories', () => {
     expect(collectionAt).toBeGreaterThan(metaAt);
     expect(CATEGORIES_QUERY).toContain('orderBy: [position_ASC]');
     expect(CATEGORIES_QUERY).toContain('first: 100');
+  });
+});
+
+const asTaxonomy = (raw: { allServiceCategories: unknown[] }): Taxonomy =>
+  ({ categories: raw.allServiceCategories }) as Taxonomy;
+
+describe('the staged categories pipeline', () => {
+  it('fetchCategories performs NO referential-integrity check of its own', async () => {
+    // A raw taxonomy that conflicts with the records must survive stage 2 and
+    // fail only at stage 3 — proving the check moved rather than being
+    // duplicated. Without this the cycle stage 3 exists to break returns.
+    const raw = await fetchCategories(clientReturning(validPayload));
+    expect(raw.allServiceCategories).toHaveLength(2);
+
+    expect(() =>
+      assertReferentialIntegrity(asTaxonomy(raw), [
+        {
+          category: { name: 'Tax', slug: 'tax' },
+          subcategory: { name: 'Filing', slug: 'filing' },
+        },
+      ])
+    ).toThrow(/\[sync:categories\].*"tax"/);
+  });
+
+  it('shapeCategories is pure: no client, no filesystem, same input same output', () => {
+    const raw = {
+      _allServiceCategoriesMeta: { count: 2 },
+      allServiceCategories: [...validPayload.allServiceCategories],
+    };
+    const first = shapeCategories(raw);
+    const second = shapeCategories(raw);
+    expect(first).toEqual(second);
+    expect(first.path).toBe('src/data/service_categories.json');
+    expect(
+      (first.data as { categories: { slug: string }[] }).categories.map(
+        c => c.slug
+      )
+    ).toEqual(['business-trade', 'health']);
+    // `position` never reaches the output.
+    expect(JSON.stringify(first.data)).not.toContain('position');
+  });
+
+  it('assertReferentialIntegrity still allows a category with zero records', () => {
+    expect(() =>
+      assertReferentialIntegrity(
+        {
+          categories: [
+            {
+              category: 'Health',
+              slug: 'health',
+              subcategories: [{ name: 'FA', slug: 'financial-assistance' }],
+            },
+            {
+              category: 'Brand New',
+              slug: 'brand-new',
+              subcategories: [{ name: 'S', slug: 'something' }],
+            },
+          ],
+        },
+        [
+          {
+            category: { name: 'Health', slug: 'health' },
+            subcategory: { name: 'FA', slug: 'financial-assistance' },
+          },
+        ]
+      )
+    ).not.toThrow();
+  });
+
+  it('assertReferentialIntegrity still catches a wrong-parent pair, verbatim', () => {
+    expect(() =>
+      assertReferentialIntegrity(
+        {
+          categories: [
+            {
+              category: 'Health',
+              slug: 'health',
+              subcategories: [{ name: 'FA', slug: 'financial-assistance' }],
+            },
+          ],
+        },
+        [
+          {
+            category: { name: 'Health', slug: 'health' },
+            subcategory: { name: 'Wrong', slug: 'wrong-parent' },
+          },
+        ]
+      )
+    ).toThrow(
+      '[sync:categories] committed service records reference "health/wrong-parent", which the CMS taxonomy no longer contains under that parent'
+    );
   });
 });

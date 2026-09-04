@@ -71,6 +71,7 @@ const RawResponseSchema = z.object({
   allServiceCategories: z.array(RawCategorySchema),
 });
 type RawResponse = z.infer<typeof RawResponseSchema>;
+export type RawCategories = RawResponse;
 
 const fail = (message: string): never => {
   throw new Error(`[sync:categories] ${message}`);
@@ -147,12 +148,12 @@ function assertStructure(raw: RawResponse): void {
  * services exist) and renders a valid empty filter view. Requiring coverage
  * would make committed records an authority over the CMS taxonomy.
  */
-function assertReferentialIntegrity(
-  raw: RawResponse,
+export function assertReferentialIntegrity(
+  taxonomy: Taxonomy,
   serviceRecords: ServiceRecordRef[]
 ): void {
   const pairs = new Map<string, Set<string>>(
-    raw.allServiceCategories.map(c => [
+    taxonomy.categories.map(c => [
       c.slug,
       new Set(c.subcategories.map(s => s.slug)),
     ])
@@ -173,21 +174,24 @@ function assertReferentialIntegrity(
   }
 }
 
-export async function buildCategories(
-  client: TalaCmsClient,
-  serviceRecords: ServiceRecordRef[]
-): Promise<Candidate> {
+/** Stage 2: query, parse, and apply the structural gates — nothing else. */
+export async function fetchCategories(
+  client: TalaCmsClient
+): Promise<RawCategories> {
   const raw = RawResponseSchema.parse(
     await client<RawResponse>(CATEGORIES_QUERY)
   );
-
   assertStructure(raw);
-  assertReferentialIntegrity(raw, serviceRecords);
+  return raw;
+}
 
-  // Ordering is produced, not inherited: `orderBy` is a convenience, and
-  // relying on response order would make every future diff depend on server
-  // behavior the client cannot verify. `position` is dropped from the output
-  // because the schema forbids extra properties.
+/**
+ * Stage 4: pure shaping. Ordering is produced, not inherited: `orderBy` is a
+ * convenience, and relying on response order would make every future diff
+ * depend on server behavior the client cannot verify. `position` is dropped
+ * from the output because the schema forbids extra properties.
+ */
+export function shapeCategories(raw: RawCategories): Candidate {
   const categories = [...raw.allServiceCategories]
     .sort((a, b) => a.position - b.position)
     .map(c => ({
@@ -201,4 +205,21 @@ export async function buildCategories(
     schemaPath: 'src/data/schema/service_categories.schema.json',
     data: { categories },
   };
+}
+
+/**
+ * Transitional composition preserving today's orchestrator call site.
+ * DELETED in the orchestrator task — the stages are called directly there so
+ * cross-validation can run once, over both datasets.
+ */
+export async function buildCategories(
+  client: TalaCmsClient,
+  serviceRecords: ServiceRecordRef[]
+): Promise<Candidate> {
+  const raw = await fetchCategories(client);
+  assertReferentialIntegrity(
+    { categories: raw.allServiceCategories },
+    serviceRecords
+  );
+  return shapeCategories(raw);
 }
