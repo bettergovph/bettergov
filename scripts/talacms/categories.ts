@@ -206,20 +206,3 @@ export function shapeCategories(raw: RawCategories): Candidate {
     data: { categories },
   };
 }
-
-/**
- * Transitional composition preserving today's orchestrator call site.
- * DELETED in the orchestrator task — the stages are called directly there so
- * cross-validation can run once, over both datasets.
- */
-export async function buildCategories(
-  client: TalaCmsClient,
-  serviceRecords: ServiceRecordRef[]
-): Promise<Candidate> {
-  const raw = await fetchCategories(client);
-  assertReferentialIntegrity(
-    { categories: raw.allServiceCategories },
-    serviceRecords
-  );
-  return shapeCategories(raw);
-}
