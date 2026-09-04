@@ -13,35 +13,24 @@ import { cn } from '../../lib/utils';
 import { smoothScrollToElement } from '@/lib/scrollUtils';
 
 import { serviceCategories } from '../../data/cms';
-import businessTradeServices from '../../data/services/business-trade.json';
-import certificatesIdsServices from '../../data/services/certificates-ids.json';
-import contributionsServices from '../../data/services/contributions.json';
-import disasterWeatherServices from '../../data/services/disaster-weather.json';
-import educationServices from '../../data/services/education.json';
-import employmentServices from '../../data/services/employment.json';
-import healthServices from '../../data/services/health.json';
-import housingServices from '../../data/services/housing.json';
-import passportTravelServices from '../../data/services/passport-travel.json';
-import socialServices from '../../data/services/social-services.json';
-import taxServices from '../../data/services/tax.json';
-import transportDrivingServices from '../../data/services/transport-driving.json';
-import uncategorizedServices from '../../data/services/uncategorized.json';
+import type { Service } from '../../types';
 
-const allServices = [
-  ...businessTradeServices,
-  ...certificatesIdsServices,
-  ...contributionsServices,
-  ...disasterWeatherServices,
-  ...educationServices,
-  ...employmentServices,
-  ...healthServices,
-  ...housingServices,
-  ...passportTravelServices,
-  ...socialServices,
-  ...taxServices,
-  ...transportDrivingServices,
-  ...uncategorizedServices,
-];
+/**
+ * A CMS-controlled file set cannot be enumerated by hand: a new file would be
+ * invisible here yet counted by sibling consumers, and a removed one would
+ * break the build. Sorted by CODEPOINT, not `localeCompare` — the latter is
+ * locale-sensitive about `-` and would make render order depend on the build
+ * environment. Verified: codepoint order equals the previous import order, and
+ * the concatenation equals global `position` order for all 194 records.
+ */
+const serviceFiles = import.meta.glob<{ default: Service[] }>(
+  '../../data/services/*.json',
+  { eager: true }
+);
+
+const allServices: Service[] = Object.entries(serviceFiles)
+  .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+  .flatMap(([, m]) => m.default);
 
 interface Subcategory {
   name: string;
