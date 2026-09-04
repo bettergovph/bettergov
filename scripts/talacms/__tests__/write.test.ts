@@ -9,6 +9,8 @@ import {
   readServiceRecords,
   readServiceFileNames,
   parseServiceRecordsFile,
+  readTaxonomy,
+  parseTaxonomy,
 } from '../write';
 
 const REPO_ROOT = process.cwd();
@@ -271,5 +273,78 @@ describe('readServiceRecords', () => {
         r => r.category.name.length > 0 && r.subcategory.name.length > 0
       )
     ).toBe(true);
+  });
+});
+
+const taxonomyWith = (categories: unknown[]) => ({ categories });
+const cat = (over: Record<string, unknown> = {}) => ({
+  category: 'Health',
+  slug: 'health',
+  subcategories: [
+    { name: 'Financial Assistance', slug: 'financial-assistance' },
+  ],
+  ...over,
+});
+
+describe('parseTaxonomy', () => {
+  it('accepts a well-formed taxonomy unchanged', () => {
+    const value = taxonomyWith([cat()]);
+    expect(parseTaxonomy(value)).toEqual(value);
+  });
+
+  it('accepts subcategory slugs that repeat across different parents', () => {
+    // `financial-assistance` legitimately appears under five parents.
+    expect(() =>
+      parseTaxonomy(
+        taxonomyWith([cat(), cat({ category: 'Education', slug: 'education' })])
+      )
+    ).not.toThrow();
+  });
+
+  it.each([
+    ['an empty categories array', taxonomyWith([])],
+    ['a missing categories key', {}],
+    ['an unknown root key', { ...taxonomyWith([cat()]), extra: 1 }],
+    ['an unknown category key', taxonomyWith([cat({ position: 0 })])],
+    [
+      'an unknown subcategory key',
+      taxonomyWith([
+        cat({ subcategories: [{ name: 'X', slug: 'x', position: 0 }] }),
+      ]),
+    ],
+    [
+      'a category with no subcategories',
+      taxonomyWith([cat({ subcategories: [] })]),
+    ],
+    ['a blank category display name', taxonomyWith([cat({ category: '  ' })])],
+    [
+      'a blank subcategory display name',
+      taxonomyWith([cat({ subcategories: [{ name: '  ', slug: 'x' }] })]),
+    ],
+    [
+      'a category slug breaking the pattern',
+      taxonomyWith([cat({ slug: 'Not A Slug' })]),
+    ],
+    ['a duplicate category slug', taxonomyWith([cat(), cat()])],
+    [
+      'a duplicate subcategory slug under one parent',
+      taxonomyWith([
+        cat({
+          subcategories: [
+            { name: 'A', slug: 'dup' },
+            { name: 'B', slug: 'dup' },
+          ],
+        }),
+      ]),
+    ],
+    ['a completely malformed value', 'nope'],
+  ])('fails closed with a prefixed error on %s', (_label, value) => {
+    expect(() => parseTaxonomy(value)).toThrow(/^\[sync:services\] /);
+  });
+});
+
+describe('readTaxonomy', () => {
+  it('accepts the committed taxonomy as it stands today', () => {
+    expect(readTaxonomy().categories).toHaveLength(13);
   });
 });
