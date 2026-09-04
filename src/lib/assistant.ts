@@ -14,6 +14,11 @@ export interface ServiceItem {
   };
 }
 
+/** Escape user input before interpolating into `new RegExp(...)`. */
+export function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 /**
  * Civic Assistant Logic
  * Performs client-side intent mapping and fuzzy search across curated JSON datasets.
@@ -21,7 +26,10 @@ export interface ServiceItem {
 export class CivicEngine {
   private data: ServiceItem[] = [];
 
-  constructor() {}
+  // ponytail: optional seed for unit tests; production uses initialize()
+  constructor(initialData: ServiceItem[] = []) {
+    this.data = initialData;
+  }
 
   async initialize() {
     try {
@@ -65,10 +73,12 @@ export class CivicEngine {
           `${item.service} ${item.category.name} ${item.subcategory.name}`.toLowerCase();
 
         searchTerms.forEach(term => {
-          if (target.includes(term)) {
-            score += 1;
-            // Exact word match bonus
-            if (new RegExp(`\\b${term}\\b`).test(target)) score += 2;
+          if (!term || !target.includes(term)) return;
+
+          score += 1;
+          // Exact word match bonus (escape so "(", "+", etc. cannot break RegExp)
+          if (new RegExp(`\\b${escapeRegExp(term)}\\b`).test(target)) {
+            score += 2;
           }
         });
 

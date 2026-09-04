@@ -95,6 +95,7 @@ import Discord from './pages/Discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
 import CivicAssistant from './components/ui/CivicAssistant';
 import NotFound from './pages/NotFound';
+import Contribute from './pages/contribute';
 
 function App() {
   return (
@@ -116,6 +117,7 @@ function App() {
             <Route path='/search' element={<SearchPage />} />
             <Route path='/ideas' element={<Ideas />} />
             <Route path='/join-us' element={<JoinUs />} />
+            <Route path='/contribute' element={<Contribute />} />
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />

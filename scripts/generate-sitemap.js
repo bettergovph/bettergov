@@ -278,6 +278,7 @@ function generateSiteUrls(mainNavigation, governmentData) {
   const mainPages = [
     { url: `${siteUrl}/`, priority: '1.0', changefreq: 'daily' },
     { url: `${siteUrl}/about`, priority: '0.8', changefreq: 'monthly' },
+    { url: `${siteUrl}/contribute`, priority: '0.7', changefreq: 'monthly' },
     { url: `${siteUrl}/search`, priority: '0.9', changefreq: 'weekly' },
     { url: `${siteUrl}/services`, priority: '0.9', changefreq: 'weekly' },
     { url: `${siteUrl}/sitemap`, priority: '0.5', changefreq: 'monthly' },
