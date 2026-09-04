@@ -8,8 +8,8 @@ export interface Candidate {
 }
 
 export type ServiceRecordRef = {
-  category: { slug: string };
-  subcategory: { slug: string };
+  category: { name: string; slug: string };
+  subcategory: { name: string; slug: string };
 };
 
 /**

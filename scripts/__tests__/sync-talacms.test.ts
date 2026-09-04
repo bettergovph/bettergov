@@ -56,8 +56,11 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
       readJson: vi.fn(() => existingHotlinesFile),
       readServiceRecords: vi.fn(() => [
         {
-          category: { slug: 'health' },
-          subcategory: { slug: 'financial-assistance' },
+          category: { name: 'Health', slug: 'health' },
+          subcategory: {
+            name: 'Financial Assistance',
+            slug: 'financial-assistance',
+          },
         },
       ]),
       prepare: vi.fn(async (c: { path: string }) => ({
