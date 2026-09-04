@@ -30,12 +30,15 @@ const validPayload = {
 
 const records: ServiceRecordRef[] = [
   {
-    category: { slug: 'health' },
-    subcategory: { slug: 'financial-assistance' },
+    category: { name: 'Health', slug: 'health' },
+    subcategory: { name: 'Financial Assistance', slug: 'financial-assistance' },
   },
   {
-    category: { slug: 'business-trade' },
-    subcategory: { slug: 'business-registration' },
+    category: { name: 'Business and Trade', slug: 'business-trade' },
+    subcategory: {
+      name: 'Business Registration',
+      slug: 'business-registration',
+    },
   },
 ];
 
@@ -176,7 +179,10 @@ describe('buildCategories', () => {
     it('fails when a category slug that records reference is missing', async () => {
       const payload = withCategories([category()]);
       const orphaning = [
-        { category: { slug: 'tax' }, subcategory: { slug: 'filing' } },
+        {
+          category: { name: 'Tax', slug: 'tax' },
+          subcategory: { name: 'Filing', slug: 'filing' },
+        },
       ];
       await expect(
         buildCategories(clientReturning(payload), orphaning)
@@ -215,8 +221,11 @@ describe('buildCategories', () => {
       await expect(
         buildCategories(clientReturning(moved), [
           {
-            category: { slug: 'health' },
-            subcategory: { slug: 'financial-assistance' },
+            category: { name: 'Health', slug: 'health' },
+            subcategory: {
+              name: 'Financial Assistance',
+              slug: 'financial-assistance',
+            },
           },
         ])
       ).rejects.toThrow(/health\/financial-assistance/);
@@ -224,8 +233,11 @@ describe('buildCategories', () => {
       await expect(
         buildCategories(clientReturning(payload), [
           {
-            category: { slug: 'health' },
-            subcategory: { slug: 'financial-assistance' },
+            category: { name: 'Health', slug: 'health' },
+            subcategory: {
+              name: 'Financial Assistance',
+              slug: 'financial-assistance',
+            },
           },
         ])
       ).resolves.toBeDefined();

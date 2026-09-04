@@ -2,7 +2,14 @@ import { describe, it, expect, afterEach } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { prepare, commitFiles, readJson, readServiceRecords } from '../write';
+import {
+  prepare,
+  commitFiles,
+  readJson,
+  readServiceRecords,
+  readServiceFileNames,
+  parseServiceRecordsFile,
+} from '../write';
 
 const REPO_ROOT = process.cwd();
 const CATEGORIES = 'src/data/service_categories.json';
@@ -187,5 +194,82 @@ describe('commitFiles', () => {
     expect(
       fs.readdirSync(path.dirname(target)).filter(f => f.endsWith('.tmp'))
     ).toEqual([]);
+  });
+});
+
+const validRecord = {
+  service: 'Apply for a Trademark',
+  url: 'https://example.gov.ph/',
+  id: 'abc',
+  slug: 'apply-for-a-trademark',
+  published: true,
+  featured: false,
+  category: { name: 'Business and Trade', slug: 'business-trade' },
+  subcategory: { name: 'Business Registration', slug: 'business-registration' },
+  createdAt: '2025-06-06T11:30:06.318Z',
+  updatedAt: '2025-06-06T11:30:06.318Z',
+};
+
+describe('parseServiceRecordsFile', () => {
+  it('keeps the display names the name-agreement gate needs', () => {
+    expect(parseServiceRecordsFile('health.json', [validRecord])).toEqual([
+      {
+        category: { name: 'Business and Trade', slug: 'business-trade' },
+        subcategory: {
+          name: 'Business Registration',
+          slug: 'business-registration',
+        },
+      },
+    ]);
+  });
+
+  it('accepts an empty file — a category with zero records is legitimate', () => {
+    expect(parseServiceRecordsFile('brand-new.json', [])).toEqual([]);
+  });
+
+  it.each([
+    ['not an array', {}],
+    ['a missing category name', [{ ...validRecord, category: { slug: 'x' } }]],
+    [
+      'a blank subcategory name',
+      [
+        {
+          ...validRecord,
+          subcategory: { name: '', slug: 'business-registration' },
+        },
+      ],
+    ],
+    [
+      'a slug that breaks the schema pattern',
+      [{ ...validRecord, category: { name: 'X', slug: 'Not A Slug' } }],
+    ],
+  ])('fails with a prefixed error, not a TypeError, on %s', (_label, value) => {
+    expect(() => parseServiceRecordsFile('health.json', value)).toThrow(
+      /^\[sync:services\] committed src\/data\/services\/health\.json is malformed/
+    );
+  });
+});
+
+describe('readServiceFileNames', () => {
+  it('returns the on-disk file set in codepoint order', () => {
+    const names = readServiceFileNames();
+    expect(names).toEqual(
+      [...names].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
+    );
+    expect(names).toContain('business-trade.json');
+    expect(names.every(n => n.endsWith('.json'))).toBe(true);
+    expect(names).not.toContain('schema');
+  });
+});
+
+describe('readServiceRecords', () => {
+  it('reads every committed record with its display names', () => {
+    const records = readServiceRecords();
+    expect(records).toHaveLength(194);
+    expect(
+      records.every(
+        r => r.category.name.length > 0 && r.subcategory.name.length > 0
+      )
+    ).toBe(true);
   });
 });
