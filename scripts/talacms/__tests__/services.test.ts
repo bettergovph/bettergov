@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { fetchServices, SERVICES_QUERY } from '../services';
+import { fetchServices, SERVICES_QUERY, shapeServices } from '../services';
 import type { TalaCmsClient } from '../client';
+import type { RawServices } from '../services';
 
 const clientReturning = (payload: unknown): TalaCmsClient =>
   (async () => payload) as TalaCmsClient;
@@ -239,5 +240,118 @@ describe('timestamp gates', () => {
         )
       )
     ).resolves.toBeDefined();
+  });
+});
+
+const businessTradeRelations = {
+  category: { slug: 'business-trade', category: 'Business and Trade.' },
+  subcategory: {
+    slug: 'business-registration',
+    name: 'Business Registration',
+    category: { slug: 'business-trade' },
+  },
+};
+const healthRelations = {
+  category: { slug: 'health', category: 'Health' },
+  subcategory: {
+    slug: 'financial-assistance',
+    name: 'Financial Assistance',
+    category: { slug: 'health' },
+  },
+};
+
+const twoCategories = withServices([
+  service({
+    sourceId: 'b',
+    position: 3,
+    slug: 'b-second',
+    ...businessTradeRelations,
+  }),
+  service({ sourceId: 'h', position: 1, slug: 'h-only', ...healthRelations }),
+  service({
+    sourceId: 'a',
+    position: 0,
+    slug: 'b-first',
+    ...businessTradeRelations,
+  }),
+]) as RawServices;
+
+describe('shapeServices', () => {
+  const slugs = ['business-trade', 'health', 'brand-new'];
+
+  it('emits one candidate per TAXONOMY category, including one with no records', () => {
+    const candidates = shapeServices(twoCategories, slugs);
+    expect(candidates.map(c => c.path)).toEqual([
+      'src/data/services/business-trade.json',
+      'src/data/services/health.json',
+      'src/data/services/brand-new.json',
+    ]);
+    // A named missing file, not a silent no-op.
+    expect(candidates[2].data).toEqual([]);
+    expect(
+      candidates.every(
+        c => c.schemaPath === 'src/data/services/schema/services.schema.json'
+      )
+    ).toBe(true);
+  });
+
+  it('sorts within a file by position, not by response order', () => {
+    const [businessTrade] = shapeServices(twoCategories, slugs);
+    expect((businessTrade.data as { slug: string }[]).map(r => r.slug)).toEqual(
+      ['b-first', 'b-second']
+    );
+  });
+
+  it('emits exactly the ten contract fields, in the committed key order, with no position', () => {
+    const [, health] = shapeServices(twoCategories, slugs);
+    const record = (health.data as Record<string, unknown>[])[0];
+    expect(Object.keys(record)).toEqual([
+      'service',
+      'url',
+      'id',
+      'slug',
+      'published',
+      'featured',
+      'category',
+      'subcategory',
+      'createdAt',
+      'updatedAt',
+    ]);
+    expect(Object.keys(record.category as object)).toEqual(['name', 'slug']);
+    expect(Object.keys(record.subcategory as object)).toEqual(['name', 'slug']);
+    expect(record.id).toBe('h');
+    expect(JSON.stringify(health.data)).not.toContain('position');
+  });
+
+  it('reproduces CMS punctuation byte-for-byte — it normalizes nothing', () => {
+    const [businessTrade] = shapeServices(twoCategories, slugs);
+    expect(
+      (businessTrade.data as { category: { name: string } }[])[0].category.name
+    ).toBe('Business and Trade.');
+  });
+
+  it('keeps a published: false record — there is no visibility filtering', () => {
+    const candidates = shapeServices(
+      withServices([service({ published: false })]) as RawServices,
+      ['business-trade']
+    );
+    expect(candidates[0].data).toHaveLength(1);
+    expect((candidates[0].data as { published: boolean }[])[0].published).toBe(
+      false
+    );
+  });
+
+  it('takes display names from the record relation, never from the taxonomy', () => {
+    const [businessTrade] = shapeServices(twoCategories, slugs);
+    const record = (
+      businessTrade.data as { subcategory: { name: string } }[]
+    )[0];
+    expect(record.subcategory.name).toBe('Business Registration');
+  });
+
+  it('is pure: same input, same output, no client and no filesystem', () => {
+    expect(shapeServices(twoCategories, slugs)).toEqual(
+      shapeServices(twoCategories, slugs)
+    );
   });
 });
