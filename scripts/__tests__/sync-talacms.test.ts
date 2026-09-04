@@ -29,6 +29,19 @@ const hotlinesPayload = {
   ],
 };
 
+const HOTLINE_KEYS = [
+  'emergencyHotlines',
+  'disasterHotlines',
+  'securityHotlines',
+  'transportHotlines',
+  'weatherHotlines',
+  'utilityHotlines',
+  'socialServicesHotlines',
+  'criticalHotlines',
+];
+
+const existingHotlinesFile = Object.fromEntries(HOTLINE_KEYS.map(k => [k, []]));
+
 const makeDeps = (over: Record<string, unknown> = {}) => {
   const client = vi.fn(async (query: string) =>
     query.includes('SyncServiceCategories')
@@ -40,6 +53,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
     client,
     deps: {
       createClient: () => client,
+      readJson: vi.fn(() => existingHotlinesFile),
       readServiceRecords: vi.fn(() => [
         {
           category: { slug: 'health' },
@@ -67,7 +81,7 @@ describe('run', () => {
       .calls[0][0];
     expect(written.map((f: { path: string }) => f.path)).toEqual([
       'src/data/service_categories.json',
-      'src/data/critical_hotlines.json',
+      'src/data/philippines_hotlines.json',
     ]);
   });
 
@@ -102,13 +116,14 @@ describe('run', () => {
     const written = (deps.commitFiles as ReturnType<typeof vi.fn>).mock
       .calls[0][0];
     expect(written.map((f: { path: string }) => f.path)).toEqual([
-      'src/data/critical_hotlines.json',
+      'src/data/philippines_hotlines.json',
     ]);
   });
 
-  it('--only=categories never queries or writes anything for hotlines', async () => {
+  it('--only=categories never reads the hotlines file', async () => {
     const { client, deps } = makeDeps();
     await expect(run(['--only=categories'], deps as never)).resolves.toBe(0);
+    expect(deps.readJson).not.toHaveBeenCalled();
     const queries = (
       client as unknown as ReturnType<typeof vi.fn>
     ).mock.calls.map(c => c[0] as string);
@@ -146,6 +161,7 @@ describe('run', () => {
 
     await expect(run([], deps as never)).resolves.toBe(1);
     expect(deps.readServiceRecords).not.toHaveBeenCalled();
+    expect(deps.readJson).not.toHaveBeenCalled();
     expect(deps.prepare).not.toHaveBeenCalled();
     expect(deps.commitFiles).not.toHaveBeenCalled();
   });

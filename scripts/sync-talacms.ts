@@ -6,6 +6,7 @@ import { buildCriticalHotlines } from './talacms/hotlines';
 import {
   commitFiles,
   prepare,
+  readJson,
   readServiceRecords,
   type Candidate,
   type PreparedFile,
@@ -19,6 +20,7 @@ interface Deps {
   createClient: () => TalaCmsClient;
   prepare: (candidate: Candidate) => Promise<PreparedFile>;
   commitFiles: (files: PreparedFile[]) => Promise<void>;
+  readJson: (relPath: string) => unknown;
   readServiceRecords: () => ServiceRecordRef[];
   log: (message: string) => void;
 }
@@ -27,6 +29,7 @@ const defaultDeps: Deps = {
   createClient: () => createTalaCmsClient(),
   prepare,
   commitFiles,
+  readJson,
   readServiceRecords,
   log: message => console.log(message),
 };
@@ -77,7 +80,10 @@ async function buildCandidate(
   if (dataset === 'categories') {
     return buildCategories(client, deps.readServiceRecords());
   }
-  return buildCriticalHotlines(client);
+  return buildCriticalHotlines(
+    client,
+    deps.readJson('src/data/philippines_hotlines.json')
+  );
 }
 
 export async function run(
