@@ -2,6 +2,14 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch';
 import { Link } from 'react-router-dom';
+import {
+  UserCheck,
+  Briefcase,
+  GraduationCap,
+  HeartPulse,
+  TrendingUp,
+  ArrowRight,
+} from 'lucide-react';
 import serviceCategories from '../../data/service_categories.json';
 
 interface Subcategory {
@@ -68,28 +76,50 @@ const Hero: FC = () => {
   ];
 
   return (
-    <div className='bg-linear-to-r from-primary-600 to-primary-700 text-white py-12 md:py-24'>
-      <div className='container mx-auto px-4'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
-          {/* Left section with title and search */}
-          <div className='animate-fade-in'>
-            <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight'>
-              {t('hero.title')}
+    <div className='relative min-h-[600px] lg:min-h-[700px] flex items-center bg-primary-900 text-white overflow-hidden'>
+      {/* Background Layer */}
+      <div
+        className='absolute inset-0 z-0 opacity-40 scale-110 animate-slow-zoom'
+        style={{
+          backgroundImage: 'url(/hero-bg.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className='absolute inset-0 bg-linear-to-r from-primary-950 via-primary-900/80 to-transparent z-10' />
+
+      {/* Content Container */}
+      <div className='container mx-auto px-4 relative z-20 py-12 md:py-24'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-center'>
+          {/* Left section: Text and Search */}
+          <div className='lg:col-span-7 animate-fade-in'>
+            <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight'>
+              {t('hero.title')
+                .split(' ')
+                .map((word, i) => (
+                  <span key={i} className={i === 0 ? 'text-blue-400' : ''}>
+                    {word}{' '}
+                  </span>
+                ))}
             </h1>
-            <p className='text-lg text-blue-200 mb-8 max-w-lg'>
+
+            <p className='text-lg md:text-xl text-blue-100/80 mb-10 max-w-xl leading-relaxed'>
               {t('hero.subtitle')}
             </p>
-            {/* Meilisearch component will be full width and include its own styling */}
-            {/* The background of Hero is dark, MeilisearchInstantSearch has a light theme by default */}
-            {/* Consider adjusting MeilisearchInstantSearch styles or Hero background for better blending */}
-            <div className='mb-8'>
+
+            <div className='mb-6 max-w-2xl'>
               <MeilisearchInstantSearch />
             </div>
-            <div className='mt-4 flex flex-wrap gap-2'>
+
+            <div className='flex flex-wrap items-center gap-2 sm:gap3'>
+              <span className='max-sm:hidden text-sm font-medium text-blue-200/60 flex items-center'>
+                <TrendingUp className='h-4 w-4 mr-2' />
+                Popular:
+              </span>
               {popularServices.map(service => (
                 <Link
                   key={service.label}
-                  className='bg-white/10 text-white border-white/20 hover:bg-white/20 py-2 px-4 rounded-xl text-sm'
+                  className='bg-white/5 backdrop-blur-sm text-white border border-white/10 hover:bg-white/20 hover:border-white/30 py-1.5 px-4 rounded-full text-sm transition-all duration-300'
                   to={service.href}
                 >
                   {service.label}
@@ -98,109 +128,55 @@ const Hero: FC = () => {
             </div>
           </div>
 
-          {/* Right section with quick access services */}
-          <div className='bg-white/10 backdrop-blur-xs rounded-xl p-6 shadow-lg animate-slide-in'>
-            <h2 className='text-2xl font-semibold mb-4'>
-              {t('services.title')}
-            </h2>
-            <div className='grid grid-cols-2 gap-4'>
-              <Link
+          {/* Right section: Quick Access Widgets */}
+          <div className='lg:col-span-5'>
+            <div className='grid grid-cols-2 gap-4 animate-slide-up'>
+              <QuickAccessCard
                 to={`/services?category=${findCategorySlug(
                   'Certificates and IDs'
                 )}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
-              >
-                <div className='bg-primary-500 p-3 rounded-full mb-3'>
-                  <svg
-                    className='h-6 w-6 text-white'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  >
-                    <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'></path>
-                    <circle cx='12' cy='7' r='4'></circle>
-                  </svg>
-                </div>
-                <span className='font-medium'>Citizenship & ID</span>
-              </Link>
-              <Link
+                icon={<UserCheck className='h-6 w-6' />}
+                title='Citizenship & ID'
+                description='IDs and Certificates'
+              />
+              <QuickAccessCard
                 to={`/services?category=${findCategorySlug(
                   'Business and Trade'
                 )}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
-              >
-                <div className='bg-primary-500 p-3 rounded-full mb-3'>
-                  <svg
-                    className='h-6 w-6 text-white'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  >
-                    <rect
-                      x='2'
-                      y='7'
-                      width='20'
-                      height='14'
-                      rx='2'
-                      ry='2'
-                    ></rect>
-                    <path d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'></path>
-                  </svg>
-                </div>
-                <span className='font-medium'>Business</span>
-              </Link>
-              <Link
+                icon={<Briefcase className='h-6 w-6' />}
+                title='Business'
+                description='Registration & Permits'
+              />
+              <QuickAccessCard
                 to={`/services?category=${findCategorySlug('Education')}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
-              >
-                <div className='bg-primary-500 p-3 rounded-full mb-3'>
-                  <svg
-                    className='h-6 w-6 text-white'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  >
-                    <path d='M22 10v6M2 10l10-5 10 5-10 5z'></path>
-                    <path d='M6 12v5c0 2 2 3 6 3s6-1 6-3v-5'></path>
-                  </svg>
-                </div>
-                <span className='font-medium'>Education</span>
-              </Link>
-              <Link
+                icon={<GraduationCap className='h-6 w-6' />}
+                title='Education'
+                description='Schools & Scholarships'
+              />
+              <QuickAccessCard
                 to={`/services?category=${findCategorySlug('Health')}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-500 flex flex-col items-center text-center'
-              >
-                <div className='bg-primary-500 p-3 rounded-full mb-3'>
-                  <svg
-                    className='h-6 w-6 text-white'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  >
-                    <path d='M22 12h-4l-3 9L9 3l-3 9H2'></path>
-                  </svg>
-                </div>
-                <span className='font-medium'>Health</span>
-              </Link>
-            </div>
-            <div className='mt-4 flex'>
+                icon={<HeartPulse className='h-6 w-6' />}
+                title='Health'
+                description='Medical & Insurance'
+              />
+
               <Link
-                className='bg-white/10 text-white hover:bg-white/20 transition-all duration-500 w-full rounded-lg p-4 text-center'
                 to='/services'
+                className='col-span-2 group mt-2 bg-blue-600 text-white rounded-2xl p-5 flex items-center justify-between transition-all duration-300 shadow-lg shadow-blue-900/20 hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-700 hover:shadow-[inset_0_2px_2px_rgba(255,255,255,0.4),inset_0_-4px_4px_rgba(0,0,0,0.2),0_12px_20px_-5px_rgba(29,78,216,0.6)] hover:border-blue-400/50 active:translate-y-1 active:shadow-[inset_0_4px_8px_rgba(0,0,0,0.5),0_2px_4px_rgba(29,78,216,0.4)]'
               >
-                View All Services
+                <div>
+                  <span className='block font-bold text-lg group-hover:drop-shadow-md transition-all'>
+                    View All Services
+                  </span>
+                  <span className='text-sm text-blue-100 group-hover:drop-shadow-sm transition-all'>
+                    Browse the complete directory
+                  </span>
+                </div>
+
+                {/* Made the arrow container look recessed/engraved on hover to match the tactile feel */}
+                <div className='bg-white/20 p-2 rounded-full transition-all duration-300 group-hover:translate-x-2 group-hover:bg-blue-800/40 group-hover:shadow-[inset_0_3px_5px_rgba(0,0,0,0.4),0_1px_1px_rgba(255,255,255,0.3)]'>
+                  <ArrowRight className='h-6 w-6 group-hover:drop-shadow-sm' />
+                </div>
               </Link>
             </div>
           </div>
@@ -209,5 +185,34 @@ const Hero: FC = () => {
     </div>
   );
 };
+
+interface QuickAccessCardProps {
+  to: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const QuickAccessCard: FC<QuickAccessCardProps> = ({
+  to,
+  icon,
+  title,
+  description,
+}) => (
+  <Link
+    to={to}
+    className='group bg-white/15 backdrop-blur-lg border border-white/20 hover:border-white/40 rounded-2xl p-5 transition-all duration-500 hover:bg-white/5 hover:-translate-y-1'
+  >
+    <div className='bg-blue-500/20 p-3 rounded-xl mb-4 w-fit group-hover:bg-blue-500/30 transition-colors text-blue-400 group-hover:text-blue-300'>
+      {icon}
+    </div>
+    <span className='block font-bold text-sm md:text-lg mb-1 group-hover:text-blue-400 transition-colors'>
+      {title}
+    </span>
+    <p className='text-xs text-white/90 leading-tight tracking-tight md:tracking-wide'>
+      {description}
+    </p>
+  </Link>
+);
 
 export default Hero;
