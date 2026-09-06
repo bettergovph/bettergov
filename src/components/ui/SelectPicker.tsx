@@ -155,12 +155,15 @@ const SelectPicker = ({
 
     document.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', handleScroll, true);
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+      capture: true,
+    });
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll, true);
+      window.removeEventListener('scroll', handleScroll, { capture: true });
     };
   }, [isOpen]);
 
