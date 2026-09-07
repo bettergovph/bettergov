@@ -62,8 +62,8 @@ BetterGov.ph provides detailed information about all branches of the Philippine 
 
 ### Services Directory
 Our comprehensive services are organized into the following categories:
-- Business and Trade (https://bettergov.ph/services?category=business-trade)
-  - Business Copyright, Trademark and Patent (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
+- Business and Trade! (https://bettergov.ph/services?category=business-trade)
+  - Business Copyright, Trademark and Patent! (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
   - Business Registration, Certificates and Compliance (https://bettergov.ph/services?category=business-trade&subcategory=business-registration)
   - Complaints (https://bettergov.ph/services?category=business-trade&subcategory=complaints)
   - Import and Export (https://bettergov.ph/services?category=business-trade&subcategory=import-export)
@@ -80,7 +80,7 @@ Our comprehensive services are organized into the following categories:
 - Disaster and Weather (https://bettergov.ph/services?category=disaster-weather)
   - Disaster-prone Areas (https://bettergov.ph/services?category=disaster-weather&subcategory=disaster-prone-areas)
   - Weather (https://bettergov.ph/services?category=disaster-weather&subcategory=weather)
-- Education (https://bettergov.ph/services?category=education)
+- Education! (https://bettergov.ph/services?category=education)
   - Financial Assistance (https://bettergov.ph/services?category=education&subcategory=financial-assistance)
   - Professionals (https://bettergov.ph/services?category=education&subcategory=professionals)
   - Research and Proposal (https://bettergov.ph/services?category=education&subcategory=research-proposal)
@@ -255,7 +255,7 @@ This website contains authoritative information about Philippine government serv
 5. Government data should be considered public domain unless otherwise specified
 
 ## Last Updated
-2026-07-21
+2026-09-04
 
 ## License
 This project is open source. Government data is considered public domain.

@@ -62,9 +62,6 @@ const config = {
   'src/data/seo-metadata.json': buildValidateCommand(
     'src/data/schema/seo-metadata.schema.json'
   ),
-  'src/data/service_categories.json': buildValidateCommand(
-    'src/data/schema/service_categories.schema.json'
-  ),
   'src/data/websites.json': buildValidateCommand(
     'src/data/schema/websites.schema.json'
   ),
