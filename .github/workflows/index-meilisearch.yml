@@ -24,8 +24,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # src/data/services/*.json (and service_categories.json,
+      # critical_hotlines.json) are build-time-generated and gitignored — a
+      # plain checkout has none. Without this step the indexing script's own
+      # fail-closed guard refuses to run rather than risk indexing an empty
+      # "service" dataset on top of an existing index.
+      - name: Fetch generated data from TalaCMS
+        run: npm run cms:fetch
+        env:
+          TALACMS_API_URL: ${{ secrets.TALACMS_API_URL }}
+          TALACMS_API_TOKEN: ${{ secrets.TALACMS_API_TOKEN }}
+
       - name: Run Meilisearch indexing script
         run: node scripts/index_meilisearch.cjs
         env:
-          MEILISEARCH_HOST: 'https://search.bettergov.ph' # Or your Meilisearch host
+          # The script (like every other admin script in scripts/) reads
+          # VITE_MEILISEARCH_HOST/_PORT, not MEILISEARCH_HOST — the previous
+          # name here didn't match, so the script silently fell back to its
+          # http://localhost:7700 default instead of the real host.
+          VITE_MEILISEARCH_HOST: 'https://search.bettergov.ph' # Or your Meilisearch host
+          VITE_MEILISEARCH_PORT: '443'
           MEILISEARCH_MASTER_KEY: ${{ secrets.MEILISEARCH_MASTER_KEY }}
