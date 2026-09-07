@@ -10,70 +10,64 @@ import {
 } from 'lucide-react';
 import Container from '../ui/Container';
 import MeilisearchInstantSearch from '../../search/MeilisearchInstantSearch';
-import serviceCategories from '../../../data/service_categories.json';
 
-interface Subcategory {
-  name: string;
-  slug: string;
-}
+/**
+ * Curated slugs for the landing page's quick links.
+ *
+ * Slugs rather than display names because display names are editable in
+ * TalaCMS and slugs are not — a CMS rename of "Education" would silently
+ * break a display-name lookup, which is exactly what this replaced.
+ *
+ * These pairs are asserted against the generated taxonomy by the routing
+ * contract in src/components/__tests__/ServicesRoutingContract.test.tsx.
+ */
+const CERTIFICATES_IDS = 'certificates-ids';
+const BUSINESS_TRADE = 'business-trade';
 
-interface Category {
+interface HeroLink {
   category: string;
-  slug: string;
-  subcategories: Subcategory[];
+  subcategory?: string;
 }
 
-const categories = serviceCategories.categories as Category[];
+const hrefFor = ({ category, subcategory }: HeroLink) =>
+  subcategory
+    ? `/services?category=${category}&subcategory=${subcategory}`
+    : `/services?category=${category}`;
 
-const findCategorySlug = (categoryName: string) =>
-  categories.find(cat => cat.category === categoryName)?.slug || '';
-
-const findSubcategorySlug = (categoryName: string, subcategoryName: string) =>
-  categories
-    .find(cat => cat.category === categoryName)
-    ?.subcategories.find(sub => sub.name === subcategoryName)?.slug || '';
-
-/** The four service tiles shown in the "Popular Services" card. */
-const SERVICE_TILES: { label: string; icon: LucideIcon; category: string }[] = [
+/** The three quick-link chips under the search box. */
+const POPULAR_SERVICES: (HeroLink & { labelKey: string })[] = [
   {
-    label: 'Citizenship & ID',
-    icon: UserIcon,
-    category: 'Certificates and IDs',
+    labelKey: 'hero.nationalId',
+    category: CERTIFICATES_IDS,
+    subcategory: 'id',
   },
-  { label: 'Business', icon: BriefcaseIcon, category: 'Business and Trade' },
-  { label: 'Education', icon: GraduationCapIcon, category: 'Education' },
-  { label: 'Health', icon: ActivityIcon, category: 'Health' },
+  {
+    labelKey: 'hero.birthCertificate',
+    category: CERTIFICATES_IDS,
+    subcategory: 'certificates',
+  },
+  {
+    labelKey: 'hero.businessRegistration',
+    category: BUSINESS_TRADE,
+    subcategory: 'business-registration',
+  },
+];
+
+/**
+ * The four tiles in the "Popular Services" card. Labels are short curated
+ * strings, deliberately not the taxonomy's category names ("Business" vs
+ * "Business and Trade"), and icons have no CMS equivalent — both are
+ * presentation choices that stay in code permanently, unlike the slugs.
+ */
+const SERVICE_TILES: (HeroLink & { label: string; icon: LucideIcon })[] = [
+  { label: 'Citizenship & ID', icon: UserIcon, category: CERTIFICATES_IDS },
+  { label: 'Business', icon: BriefcaseIcon, category: BUSINESS_TRADE },
+  { label: 'Education', icon: GraduationCapIcon, category: 'education' },
+  { label: 'Health', icon: ActivityIcon, category: 'health' },
 ];
 
 const Hero: FC = () => {
   const { t } = useTranslation('common');
-
-  const popularServices = [
-    {
-      label: t('hero.nationalId'),
-      href: `/services?category=${findCategorySlug(
-        'Certificates and IDs'
-      )}&subcategory=${findSubcategorySlug('Certificates and IDs', 'ID')}`,
-    },
-    {
-      label: t('hero.birthCertificate'),
-      href: `/services?category=${findCategorySlug(
-        'Certificates and IDs'
-      )}&subcategory=${findSubcategorySlug(
-        'Certificates and IDs',
-        'Certificates'
-      )}`,
-    },
-    {
-      label: t('hero.businessRegistration'),
-      href: `/services?category=${findCategorySlug(
-        'Business and Trade'
-      )}&subcategory=${findSubcategorySlug(
-        'Business and Trade',
-        'Business Registration, Certificates and Compliance'
-      )}`,
-    },
-  ];
 
   return (
     <section className='bg-ed-navy-2 py-16 text-white max-md:py-7'>
@@ -91,13 +85,13 @@ const Hero: FC = () => {
               <MeilisearchInstantSearch />
             </div>
             <div className='mt-4 flex flex-wrap gap-2 max-md:mt-0 max-md:gap-1.5'>
-              {popularServices.map(service => (
+              {POPULAR_SERVICES.map(service => (
                 <Link
-                  key={service.label}
-                  to={service.href}
+                  key={service.labelKey}
+                  to={hrefFor(service)}
                   className='rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm transition-colors hover:bg-white/20 max-md:px-3 max-md:py-1.5 max-md:text-[13px]'
                 >
-                  {service.label}
+                  {t(service.labelKey)}
                 </Link>
               ))}
             </div>
@@ -112,7 +106,7 @@ const Hero: FC = () => {
               {SERVICE_TILES.map(tile => (
                 <Link
                   key={tile.label}
-                  to={`/services?category=${findCategorySlug(tile.category)}`}
+                  to={hrefFor(tile)}
                   className='flex flex-col items-center rounded-lg bg-white/10 p-4 text-center transition-colors duration-200 hover:bg-white/20 max-md:flex-row max-md:gap-2.5 max-md:p-2.5 max-md:text-left'
                 >
                   <div className='mb-3 rounded-full bg-primary-500 p-3 max-md:mb-0 max-md:p-2'>

@@ -46,14 +46,6 @@ export const BUDGET_2026 = [
   { dept: 'Social Welfare', amount: 230, pct: 3.6 },
 ];
 
-export const HOTLINES = [
-  { label: 'Emergency / Police / Fire', number: '911', accent: true as const },
-  { label: 'NDRRMC', number: '(02) 8911-1406' },
-  { label: 'DOH Information', number: '1555' },
-  { label: 'SSS Call Center', number: '1455' },
-  { label: 'Red Cross', number: '143' },
-];
-
 export const SUGGESTIONS = [
   'passport renewal',
   'NBI clearance',

@@ -1,16 +1,5 @@
 import { NavigationItem } from '../types';
-import serviceCategories from './service_categories.json';
-
-interface Subcategory {
-  name: string;
-  slug: string;
-}
-
-interface Category {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
-}
+import { serviceCategories, type Category } from './cms';
 
 export const ourProjects = [
   {
