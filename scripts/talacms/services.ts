@@ -221,9 +221,16 @@ function assertStructure(raw: RawServices): void {
 export async function fetchServices(
   client: TalaCmsClient
 ): Promise<RawServices> {
-  const raw = RawServicesSchema.parse(
+  const parsed = RawServicesSchema.safeParse(
     await client<RawServices>(SERVICES_QUERY)
   );
+  if (!parsed.success) {
+    const detail = parsed.error.issues
+      .map(i => `${i.path.join('.') || '/'} ${i.message}`)
+      .join('; ');
+    fail(`TalaCMS returned a malformed service list: ${detail}`);
+  }
+  const raw = parsed.data!;
   assertStructure(raw);
   return raw;
 }

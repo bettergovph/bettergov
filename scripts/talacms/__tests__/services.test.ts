@@ -64,6 +64,42 @@ describe('fetchServices structural gates', () => {
 
   it.each([
     [
+      'a missing required field (sourceId)',
+      withServices([
+        {
+          position: 0,
+          service: 'Apply for a Trademark',
+          slug: 'apply-for-a-trademark',
+          url: 'https://example.gov.ph/',
+          published: true,
+          featured: false,
+          createdAt: '2025-06-06T11:30:06.318Z',
+          updatedAt: '2025-06-06T11:30:06.318Z',
+          category: { slug: 'business-trade', category: 'Business and Trade' },
+          subcategory: {
+            slug: 'business-registration',
+            name: 'Business Registration',
+            category: { slug: 'business-trade' },
+          },
+        },
+      ]),
+    ],
+    [
+      'a mistyped field (position as a string)',
+      withServices([service({ position: 'not-a-number' })]),
+    ],
+    ['a null relation (category)', withServices([service({ category: null })])],
+  ])(
+    'fails closed with a prefixed error, not a raw ZodError, on %s',
+    async (_label, payload) => {
+      await expect(fetchServices(clientReturning(payload))).rejects.toThrow(
+        /^\[sync:services\] TalaCMS returned a malformed service list:/
+      );
+    }
+  );
+
+  it.each([
+    [
       'the returned count disagrees with meta',
       {
         _allGovernmentServicesMeta: { count: 5 },

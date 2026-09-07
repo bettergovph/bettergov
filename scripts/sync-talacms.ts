@@ -12,7 +12,6 @@ import {
 import {
   commitFiles,
   prepare,
-  readJson,
   readServiceFileNames,
   readServiceRecords,
   readTaxonomy,
@@ -28,7 +27,6 @@ interface Deps {
   createClient: () => TalaCmsClient;
   prepare: (candidate: Candidate) => Promise<PreparedFile>;
   commitFiles: (files: PreparedFile[]) => Promise<void>;
-  readJson: (relPath: string) => unknown;
   readServiceRecords: () => ServiceRecordRef[];
   readServiceFileNames: () => string[];
   readTaxonomy: () => Taxonomy;
@@ -39,7 +37,6 @@ const defaultDeps: Deps = {
   createClient: () => createTalaCmsClient(),
   prepare,
   commitFiles,
-  readJson,
   readServiceRecords,
   readServiceFileNames,
   readTaxonomy,
@@ -169,12 +166,7 @@ async function buildCandidates(
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
   if (selected.has('hotlines')) {
-    candidates.push(
-      await buildCriticalHotlines(
-        client,
-        deps.readJson('src/data/philippines_hotlines.json')
-      )
-    );
+    candidates.push(await buildCriticalHotlines(client));
   }
   if (rawServices) {
     candidates.push(

@@ -174,9 +174,23 @@ export function parseTaxonomy(value: unknown): Taxonomy {
   return parsed.data!;
 }
 
+/**
+ * Reads and JSON-parses a committed file, converting a missing file or
+ * invalid JSON into a prefixed, fail-closed error instead of letting a raw
+ * `SyntaxError`/`ENOENT` escape. Exported so the failure path is testable
+ * without corrupting the real committed taxonomy file.
+ */
+export function readJsonOrFail(relPath: string): unknown {
+  try {
+    return readJson(relPath);
+  } catch {
+    servicesFail(`committed ${relPath} is not valid JSON`);
+  }
+}
+
 /** The committed taxonomy, validated before any consumer builds a map from it. */
 export function readTaxonomy(): Taxonomy {
-  return parseTaxonomy(readJson('src/data/service_categories.json'));
+  return parseTaxonomy(readJsonOrFail('src/data/service_categories.json'));
 }
 
 const ajv = new Ajv({ allErrors: true, strict: false });

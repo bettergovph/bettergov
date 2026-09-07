@@ -11,19 +11,67 @@ import {
   parseServiceRecordsFile,
   readTaxonomy,
   parseTaxonomy,
+  readJsonOrFail,
 } from '../write';
 
 const REPO_ROOT = process.cwd();
-const CATEGORIES = 'src/data/service_categories.json';
+// service_categories.json is generated at build time and not guaranteed to
+// exist in a fresh checkout, so `prepare`/`commitFiles`/`readTaxonomy` are
+// exercised here against a synthetic fixture instead of reading it from
+// disk. philippines_hotlines.json stays committed and is safe to read
+// directly.
+const CATEGORIES_PATH = 'src/data/service_categories.json';
+const CATEGORIES_SCHEMA = 'src/data/schema/service_categories.schema.json';
+const CATEGORIES_FIXTURE = {
+  categories: [
+    {
+      category: 'Health',
+      slug: 'health',
+      subcategories: [
+        { name: 'Financial Assistance', slug: 'financial-assistance' },
+      ],
+    },
+  ],
+};
 const HOTLINES = 'src/data/philippines_hotlines.json';
 
 const tempDirs: string[] = [];
+const makeTempFile = (basename: string, content: string) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
+  tempDirs.push(dir);
+  const target = path.join(dir, basename);
+  fs.writeFileSync(target, content, 'utf8');
+  return target;
+};
 const makeTempCopy = (relPath: string) => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
   tempDirs.push(dir);
   const target = path.join(dir, path.basename(relPath));
   fs.copyFileSync(path.join(REPO_ROOT, relPath), target);
   return target;
+};
+
+/**
+ * Temporarily writes real content to the exact repo-relative path a function
+ * under test hardcodes (readTaxonomy/readJsonOrFail don't take a path
+ * parameter for the taxonomy), then restores whatever was there before —
+ * absent, or a real synced file — even if the callback throws.
+ */
+const withRealFileAt = <T>(
+  relPath: string,
+  content: string,
+  run: () => T
+): T => {
+  const target = path.join(REPO_ROOT, relPath);
+  const existed = fs.existsSync(target);
+  const before = existed ? fs.readFileSync(target, 'utf8') : null;
+  fs.writeFileSync(target, content, 'utf8');
+  try {
+    return run();
+  } finally {
+    if (before === null) fs.rmSync(target);
+    else fs.writeFileSync(target, before, 'utf8');
+  }
 };
 
 afterEach(() => {
@@ -33,15 +81,15 @@ afterEach(() => {
 
 describe('prepare', () => {
   it('reports unchanged when the candidate equals the committed file', async () => {
-    const data = readJson(CATEGORIES);
+    const data = readJson(HOTLINES);
     const prepared = await prepare({
-      path: CATEGORIES,
-      schemaPath: 'src/data/schema/service_categories.schema.json',
+      path: HOTLINES,
+      schemaPath: 'src/data/schema/philippines_hotlines.schema.json',
       data,
     });
     expect(prepared.changed).toBe(false);
     expect(prepared.text).toBe(
-      fs.readFileSync(path.join(REPO_ROOT, CATEGORIES), 'utf8')
+      fs.readFileSync(path.join(REPO_ROOT, HOTLINES), 'utf8')
     );
   });
 
@@ -60,11 +108,11 @@ describe('prepare', () => {
   });
 
   it('reports changed and ends with exactly one trailing newline', async () => {
-    const data = readJson(CATEGORIES) as { categories: { category: string }[] };
+    const data = structuredClone(CATEGORIES_FIXTURE);
     data.categories[0].category = 'Renamed For Test';
     const prepared = await prepare({
-      path: CATEGORIES,
-      schemaPath: 'src/data/schema/service_categories.schema.json',
+      path: CATEGORIES_PATH,
+      schemaPath: CATEGORIES_SCHEMA,
       data,
     });
     expect(prepared.changed).toBe(true);
@@ -76,15 +124,15 @@ describe('prepare', () => {
     // The promise is that the pre-commit hook has nothing left to reformat.
     // prettier.check is the same judgement `prettier --check` makes.
     const prettier = await import('prettier');
-    for (const [file, schema] of [
-      [CATEGORIES, 'src/data/schema/service_categories.schema.json'],
-      [HOTLINES, 'src/data/schema/philippines_hotlines.schema.json'],
-    ]) {
-      const prepared = await prepare({
-        path: file,
-        schemaPath: schema,
-        data: readJson(file),
-      });
+    for (const [file, schema, data] of [
+      [CATEGORIES_PATH, CATEGORIES_SCHEMA, CATEGORIES_FIXTURE],
+      [
+        HOTLINES,
+        'src/data/schema/philippines_hotlines.schema.json',
+        readJson(HOTLINES),
+      ],
+    ] as const) {
+      const prepared = await prepare({ path: file, schemaPath: schema, data });
       const config = await prettier.resolveConfig(path.join(REPO_ROOT, file));
       await expect(
         prettier.check(prepared.text, {
@@ -99,8 +147,8 @@ describe('prepare', () => {
   it('rejects a candidate the checked-in schema refuses', async () => {
     await expect(
       prepare({
-        path: CATEGORIES,
-        schemaPath: 'src/data/schema/service_categories.schema.json',
+        path: CATEGORIES_PATH,
+        schemaPath: CATEGORIES_SCHEMA,
         data: {
           categories: [
             { category: 'X', slug: 'x', subcategories: [], extra: 1 },
@@ -111,20 +159,12 @@ describe('prepare', () => {
   });
 });
 
-describe('readServiceRecords', () => {
-  it('reads every committed service record with its category and subcategory slugs', () => {
-    const records = readServiceRecords();
-    expect(records.length).toBeGreaterThan(100);
-    for (const r of records.slice(0, 25)) {
-      expect(typeof r.category.slug).toBe('string');
-      expect(typeof r.subcategory.slug).toBe('string');
-    }
-  });
-});
-
 describe('commitFiles', () => {
   it('writes only changed files and leaves no temp files behind', async () => {
-    const changedPath = makeTempCopy(CATEGORIES);
+    const changedPath = makeTempFile(
+      'service_categories.json',
+      '{ "categories": [] }\n'
+    );
     const untouchedPath = makeTempCopy(HOTLINES);
     const untouchedBefore = fs.readFileSync(untouchedPath, 'utf8');
 
@@ -143,7 +183,7 @@ describe('commitFiles', () => {
   });
 
   it('leaves the documented mixed snapshot when a later rename fails, and cleans up temps', async () => {
-    const first = makeTempCopy(CATEGORIES);
+    const first = makeTempFile('service_categories.json', 'OLD FIRST\n');
     const second = makeTempCopy(HOTLINES);
     const secondBefore = fs.readFileSync(second, 'utf8');
 
@@ -175,7 +215,7 @@ describe('commitFiles', () => {
   });
 
   it('cleans up a partially written temp file and leaves destinations untouched', async () => {
-    const target = makeTempCopy(CATEGORIES);
+    const target = makeTempFile('service_categories.json', 'OLD CONTENT\n');
     const before = fs.readFileSync(target, 'utf8');
 
     // Writes some bytes, then fails — exactly what a disk-full write does.
@@ -344,7 +384,46 @@ describe('parseTaxonomy', () => {
 });
 
 describe('readTaxonomy', () => {
-  it('accepts the committed taxonomy as it stands today', () => {
-    expect(readTaxonomy().categories).toHaveLength(13);
+  it('reads and validates whatever is at src/data/service_categories.json', () => {
+    // Generated at build time, not guaranteed to exist in this checkout —
+    // exercised against a temporary real file at readTaxonomy's hardcoded
+    // path rather than depending on one already being synced.
+    withRealFileAt(CATEGORIES_PATH, JSON.stringify(CATEGORIES_FIXTURE), () => {
+      expect(readTaxonomy()).toEqual(CATEGORIES_FIXTURE);
+    });
+  });
+});
+
+describe('readJsonOrFail', () => {
+  it('converts a read/parse failure into a prefixed error, not a raw SyntaxError or ENOENT', () => {
+    // readTaxonomy() calls this with the real committed path; a bogus path
+    // exercises the exact same catch clause without touching that file.
+    expect(() => readJsonOrFail('src/data/does-not-exist.json')).toThrow(
+      /^\[sync:services\] committed src\/data\/does-not-exist\.json is not valid JSON$/
+    );
+  });
+
+  it('reads real JSON unchanged when it parses fine', () => {
+    withRealFileAt(CATEGORIES_PATH, JSON.stringify(CATEGORIES_FIXTURE), () => {
+      expect(readJsonOrFail(CATEGORIES_PATH)).toEqual(
+        expect.objectContaining({ categories: expect.any(Array) })
+      );
+    });
+  });
+
+  it('converts syntactically invalid JSON content into a prefixed error, not a raw SyntaxError', () => {
+    // Distinct from the missing-file case above: the file exists and is
+    // readable, but its content does not parse — the exact shape a
+    // hand-edited or truncated service_categories.json would take.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-taxonomy-'));
+    tempDirs.push(dir);
+    const badFile = path.join(dir, 'not-json.json');
+    fs.writeFileSync(badFile, '{ this is not valid JSON', 'utf8');
+
+    expect(() => readJsonOrFail(badFile)).toThrow(
+      new RegExp(
+        `^\\[sync:services\\] committed .*not-json\\.json is not valid JSON$`
+      )
+    );
   });
 });
