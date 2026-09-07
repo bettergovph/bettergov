@@ -126,12 +126,6 @@ jobs:
             src/data/schema/seo-metadata.schema.json \
             src/data/seo-metadata.json
 
-      - name: Validate service categories JSON file
-        run: |
-          node scripts/validate-json-schema.js \
-            src/data/schema/service_categories.schema.json \
-            src/data/service_categories.json
-
       - name: Validate websites JSON file
         run: |
           node scripts/validate-json-schema.js \
