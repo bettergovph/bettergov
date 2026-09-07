@@ -1,5 +1,17 @@
 import { Env, JinaResponse, JinaRecord, CFBrowserResult } from '../types';
 
+const encoder = new TextEncoder();
+
+/**
+ * Compute SHA-256 hash of content using Web Crypto API (Workers-compatible)
+ */
+async function hashContent(content: string): Promise<string> {
+  const data = encoder.encode(content);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 /**
  * Fetches content from a URL using Cloudflare's Browser Rendering API
  * @param env Environment variables including the Cloudflare API token and account ID
@@ -161,7 +173,7 @@ export async function saveCFBrowserContent(
         '', // summary (empty for now)
         now, // last_crawled
         'completed', // status
-        crypto.createHash('md5').update(data.content).digest('hex'), // content_hash
+        await hashContent(data.content), // content_hash
         now, // created_at
         now // updated_at
       )
