@@ -1,6 +1,6 @@
 {
-  "name": "bettergovph",
-  "account_id": "cd41784b73cc20f93b3137292f818ff6",
+  "name": "govph-dev",
+  "account_id": "4c8b67ea7626b52e375842607904dd07",
   "compatibility_date": "2025-11-17",
   "assets": {
     "directory": "./dist",
