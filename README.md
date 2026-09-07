@@ -129,29 +129,25 @@ For setup instructions, coverage details, and examples, see our [Testing Guide](
 
 ## Syncing content from TalaCMS
 
-`src/data/service_categories.json` and `src/data/critical_hotlines.json` are
-generated from TalaCMS by a **pre-build** step — they are gitignored and
-never committed. Deployment runs `npm run cms:fetch` before `npm run build`;
-`cms:fetch` fetches, validates, and writes both files and fails closed (no
-fallback, no placeholder data) if anything goes wrong. `npm run build` itself
-only consumes the already-generated files — it does not talk to TalaCMS and
-does not need credentials.
+`src/data/service_categories.json`, `src/data/critical_hotlines.json`, and
+`src/data/services/*.json` are generated from TalaCMS by a **pre-build**
+step — they are gitignored and never committed. Deployment runs
+`npm run cms:fetch` before `npm run build`; `cms:fetch` fetches, validates,
+and writes all three and fails closed (no fallback, no placeholder data) if
+anything goes wrong. `npm run build` itself only consumes the
+already-generated files — it does not talk to TalaCMS and does not need
+credentials.
 
 ```bash
 npm run cms:fetch && npm run build
 ```
 
-`src/data/cms.ts` is the only module that reads these two generated files —
-every other module goes through its `serviceCategories` and
-`criticalHotlines` exports. The website never queries the CMS at runtime.
+`src/data/cms.ts` is the only module that reads these generated files —
+every other module goes through its `serviceCategories`, `criticalHotlines`,
+and `services` exports. The website never queries the CMS at runtime.
 
-`src/data/cms.ts` also re-exports `services`, a read-time aggregation of
-`src/data/services/*.json`. `npm run cms:fetch` does write these files
-too, but — unlike `service_categories.json` and `critical_hotlines.json` —
-they stay tracked and committed to git. Moving them to the same
-gitignored, build-only model as the other two datasets is a later,
-services-specific ownership change; this repository still commits
-reviewed service data.
+`src/data/services/schema/services.schema.json` stays tracked — it's the
+contract the generated data must satisfy, not the data itself.
 
 `src/data/philippines_hotlines.json` keeps its own seven repo-owned hotline
 groups (emergency, disaster, security, transport, weather, utility, social
@@ -194,25 +190,31 @@ A category or subcategory display name is denormalised onto every service
 record as well as held in the taxonomy. Syncing one side alone after a rename
 would leave the sidebar showing the new name while every row beneath it shows
 the old one, so the sync refuses: `--only=categories` fails because the
-committed records still carry the old name, and `--only=services` fails because
-the committed taxonomy still carries it. That is correct fail-closed behavior,
-not a false positive.
+previously generated records still carry the old name, and `--only=services`
+fails because the previously generated taxonomy still carries it. That is
+correct fail-closed behavior, not a false positive. If nothing has ever been
+generated in this checkout, both isolated modes fail immediately, naming the
+missing generated file or directory — run a full sync first.
 
-`--only=services` **cannot** detect a category added or removed in TalaCMS — it
-validates against the committed taxonomy by design. Run a full sync to surface
-taxonomy file churn.
+`--only=services` **cannot** detect a category added or removed in TalaCMS —
+it validates against the last-generated taxonomy by design. Run a full sync
+to surface taxonomy file churn.
 
 For an unselected dataset the sync never queries TalaCMS, never prepares an
 output, never reports it as changed, and never writes it. It may read a
-committed file as a documented cross-validation input.
+previously generated file as a documented cross-validation input.
 
 ### Category churn checklist
 
-The sync fails, naming the files, when the CMS category set stops matching the
-files in `src/data/services/`. It never creates or deletes a file for you. Once
-you have added the placeholder (or deleted the retired file), record an explicit
-decision for each row below in the commit message — "added" or "deliberately
-skipped":
+A full sync handles file churn itself: adding a category in TalaCMS produces
+a new generated file automatically, and after a successful full sync, any
+`src/data/services/*.json` file left over from a category retired in TalaCMS
+is deleted and the removal is logged — never `src/data/services/schema/**`,
+and never before the write phase has actually succeeded. Nothing needs to be
+staged or committed either way; there's no generated file to review.
+
+What the sync can't do for you is update the handful of places that curate
+the taxonomy by hand. Check each row after a category is added or retired:
 
 1. **Home grid** (`src/components/v2/home/Categories.tsx`) — it caps the
    taxonomy at 12 non-`uncategorized` entries, so a 14th category is hidden.
@@ -225,25 +227,27 @@ skipped":
 4. **Guides** (`src/pages/guides/passport.tsx`) — only if a guide references it.
 5. **Assistant** (`src/lib/assistant.ts`) — five hardcoded filenames; add only
    for a high-traffic domain. It fails soft to `[]`.
-6. **`src/components/__tests__/ServicesRoutingContract.test.tsx`** — **must**
-   be updated if one of its four directly-imported files is removed, or the
-   suite fails to resolve. This is the only hard requirement; every other row
-   is a degradation, not a build failure.
-7. **Hero quick links** (`src/components/v2/home/Hero.tsx`) — three curated
-   category/subcategory pairs. Only relevant if one is retired; the contract
-   test will already be failing if so.
-8. **`src/data/seo-metadata.json`** — 44 `?category=` keys. Add an entry for a
+6. **Hero quick links** (`src/components/v2/home/Hero.tsx`) — three curated
+   category/subcategory pairs. Only relevant if one is retired.
+7. **`src/data/seo-metadata.json`** — 44 `?category=` keys. Add an entry for a
    new category, or remove orphans for a retired one. Nothing detects this.
-9. **Meilisearch** — see below.
+8. **Meilisearch** — see below.
 
-Navigation, the XML sitemap, `llms.txt`, `/services`, and the sync's own
-readers all derive from the taxonomy or the file set and need no action.
+Navigation, the XML sitemap, `llms.txt`, and `/services` all derive from the
+taxonomy or the generated file set and need no action.
 
 ### Reindexing Meilisearch after a data change
 
 `npm run index:meilisearch` calls `addDocuments` only: it upserts and never
 deletes. Removing a service, changing a slug, emptying a category or deleting a
 category file therefore leaves **stale documents searchable**.
+
+Both `npm run index:meilisearch` and `npm run index:meilisearch:reset` read
+`src/data/services/*.json` directly — sync before indexing, or the script
+refuses to run rather than index an empty or absent generated dataset (which
+under `--reset` would otherwise wipe real service search data). The
+`index-meilisearch.yml` workflow does this automatically; a local run needs
+`npm run sync:talacms` first.
 
 After a sync that removes records or changes any slug, run
 `npm run index:meilisearch:reset`. A pure addition or in-place field edit may

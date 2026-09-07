@@ -12,6 +12,7 @@ import {
   readTaxonomy,
   parseTaxonomy,
   readJsonOrFail,
+  removeStaleServiceFiles,
 } from '../write';
 
 const REPO_ROOT = process.cwd();
@@ -49,6 +50,33 @@ const makeTempCopy = (relPath: string) => {
   const target = path.join(dir, path.basename(relPath));
   fs.copyFileSync(path.join(REPO_ROOT, relPath), target);
   return target;
+};
+
+/**
+ * A synthetic services directory, entirely independent of the real
+ * (generated, gitignored) src/data/services/*.json — so these tests pass
+ * whether or not this checkout has ever been synced. `files` maps basename
+ * (without .json) to its record array; a `schema` subdirectory is always
+ * added alongside, to prove readServiceFileNames/readServiceRecords never
+ * pick it up.
+ */
+const makeServicesDir = (files: Record<string, unknown[]>): string => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-services-'));
+  tempDirs.push(dir);
+  fs.mkdirSync(path.join(dir, 'schema'));
+  fs.writeFileSync(
+    path.join(dir, 'schema', 'services.schema.json'),
+    '{}',
+    'utf8'
+  );
+  for (const [name, records] of Object.entries(files)) {
+    fs.writeFileSync(
+      path.join(dir, `${name}.json`),
+      JSON.stringify(records),
+      'utf8'
+    );
+  }
+  return dir;
 };
 
 /**
@@ -293,26 +321,70 @@ describe('parseServiceRecordsFile', () => {
 });
 
 describe('readServiceFileNames', () => {
-  it('returns the on-disk file set in codepoint order', () => {
-    const names = readServiceFileNames();
-    expect(names).toEqual(
-      [...names].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
-    );
-    expect(names).toContain('business-trade.json');
+  it('returns the on-disk file set in codepoint order, excluding schema/', () => {
+    const dir = makeServicesDir({
+      'transport-driving': [],
+      tax: [],
+      uncategorized: [],
+    });
+    const names = readServiceFileNames(dir);
+    expect(names).toEqual([
+      'tax.json',
+      'transport-driving.json',
+      'uncategorized.json',
+    ]);
     expect(names.every(n => n.endsWith('.json'))).toBe(true);
     expect(names).not.toContain('schema');
+  });
+
+  it('never touches src/data/services/schema — structurally excluded, not by convention', () => {
+    // A directory entry never ends in ".json", so the schema/ subdirectory
+    // itself cannot pass the filter regardless of what it's named. Asserted
+    // directly rather than trusted, since stale-file cleanup relies on it.
+    const dir = makeServicesDir({ health: [] });
+    expect(fs.statSync(path.join(dir, 'schema')).isDirectory()).toBe(true);
+    expect(readServiceFileNames(dir)).toEqual(['health.json']);
   });
 });
 
 describe('readServiceRecords', () => {
-  it('reads every committed record with its display names', () => {
-    const records = readServiceRecords();
-    expect(records).toHaveLength(194);
+  it('reads every generated record with its display names', () => {
+    const dir = makeServicesDir({
+      health: [
+        { ...validRecord, category: { name: 'Health', slug: 'health' } },
+      ],
+      tax: [validRecord, validRecord],
+    });
+    const records = readServiceRecords(dir);
+    expect(records).toHaveLength(3);
     expect(
       records.every(
         r => r.category.name.length > 0 && r.subcategory.name.length > 0
       )
     ).toBe(true);
+  });
+
+  it('fails closed when no generated service files exist yet — never fabricates an empty result', () => {
+    // Zero files here is ambiguous between "never synced" and "TalaCMS has
+    // no services", and the caller (--only=categories name-agreement) would
+    // otherwise read that silence as "no conflicts" and pass a rename it
+    // exists to catch.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-services-empty-'));
+    tempDirs.push(dir);
+    fs.mkdirSync(path.join(dir, 'schema'));
+    expect(() => readServiceRecords(dir)).toThrow(
+      /^\[sync:services\] no generated service files found under .+ — run a full sync first/
+    );
+  });
+
+  it('fails closed when files exist but contain zero records combined — file count alone is not enough', () => {
+    // One or more files can each individually parse as valid, empty arrays —
+    // e.g. a corrupted or partially-regenerated snapshot — and file-count
+    // alone would wrongly accept that as "has data".
+    const dir = makeServicesDir({ health: [], tax: [] });
+    expect(() => readServiceRecords(dir)).toThrow(
+      /^\[sync:services\] generated service files under .+ contain zero records combined — run a full sync first/
+    );
   });
 });
 
@@ -425,5 +497,80 @@ describe('readJsonOrFail', () => {
         `^\\[sync:services\\] committed .*not-json\\.json is not valid JSON$`
       )
     );
+  });
+});
+
+describe('removeStaleServiceFiles', () => {
+  it('deletes only files absent from the generated set, and logs each removal', () => {
+    const dir = makeServicesDir({ health: [], 'old-category': [] });
+    const logged: string[] = [];
+    const { removed, failed } = removeStaleServiceFiles(
+      ['health.json', 'old-category.json'],
+      ['health.json'],
+      {
+        dir,
+        unlink: target => fs.unlinkSync(target),
+        log: message => logged.push(message),
+      }
+    );
+
+    expect(removed).toEqual(['old-category.json']);
+    expect(failed).toEqual([]);
+    expect(fs.existsSync(path.join(dir, 'old-category.json'))).toBe(false);
+    expect(fs.existsSync(path.join(dir, 'health.json'))).toBe(true);
+    expect(logged.some(l => l.includes('removed stale'))).toBe(true);
+    expect(logged.some(l => l.includes('old-category.json'))).toBe(true);
+  });
+
+  it('never touches src/data/services/schema — it is structurally never in the before/generated lists', () => {
+    const dir = makeServicesDir({ health: [] });
+    removeStaleServiceFiles(['health.json'], [], {
+      dir,
+      unlink: target => fs.unlinkSync(target),
+      log: () => {},
+    });
+    expect(fs.statSync(path.join(dir, 'schema')).isDirectory()).toBe(true);
+  });
+
+  it('does nothing, and reports nothing, when the sets already match', () => {
+    const unlink = () => {
+      throw new Error('must not be called');
+    };
+    const { removed, failed } = removeStaleServiceFiles(
+      ['health.json'],
+      ['health.json'],
+      { unlink, log: () => {} }
+    );
+    expect(removed).toEqual([]);
+    expect(failed).toEqual([]);
+  });
+
+  it('is best-effort: one failed deletion does not stop the rest, and is reported, not swallowed', () => {
+    const logged: string[] = [];
+    const { removed, failed } = removeStaleServiceFiles(
+      ['a.json', 'b.json', 'c.json'],
+      [],
+      {
+        unlink: target => {
+          if (target.endsWith('b.json')) throw new Error('EACCES: simulated');
+          // a.json and c.json "succeed" without touching real disk.
+        },
+        log: message => logged.push(message),
+      }
+    );
+    expect(removed).toEqual(['a.json', 'c.json']);
+    expect(failed).toEqual(['b.json']);
+    expect(logged.some(l => l.includes('✖') && l.includes('b.json'))).toBe(
+      true
+    );
+  });
+
+  it('adding a new generated file never counts as stale', () => {
+    const { removed } = removeStaleServiceFiles(
+      ['health.json'],
+      ['health.json', 'brand-new.json'],
+      { unlink: () => {}, log: () => {} }
+    );
+    expect(removed).toEqual([]);
   });
 });

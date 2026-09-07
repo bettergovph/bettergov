@@ -4,46 +4,110 @@ import { HelmetProvider } from 'react-helmet-async';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import Services from '../../pages/services/index';
-import certificatesIds from '../../data/services/certificates-ids.json';
-import businessTrade from '../../data/services/business-trade.json';
-import education from '../../data/services/education.json';
-import health from '../../data/services/health.json';
 
-const { FIXTURE_CATEGORIES } = vi.hoisted(() => ({
-  FIXTURE_CATEGORIES: [
-    {
-      category: 'Certificates and IDs',
-      slug: 'certificates-ids',
-      subcategories: [
-        { name: 'ID', slug: 'id' },
-        { name: 'Certificates', slug: 'certificates' },
+const { FIXTURE_CATEGORIES, FIXTURE_SERVICES } = vi.hoisted(() => {
+  const record = (
+    categorySlug: string,
+    categoryName: string,
+    subcategorySlug: string,
+    subcategoryName: string,
+    n: number
+  ) => ({
+    service: `${categoryName} / ${subcategoryName} service ${n}`,
+    url: `https://example.gov.ph/${categorySlug}/${subcategorySlug}/${n}`,
+    id: `${categorySlug}-${subcategorySlug}-${n}`,
+    slug: `${categorySlug}-${subcategorySlug}-service-${n}`,
+    published: true,
+    featured: false,
+    category: { name: categoryName, slug: categorySlug },
+    subcategory: { name: subcategoryName, slug: subcategorySlug },
+    createdAt: '2025-06-06T11:30:06.318Z',
+    updatedAt: '2025-06-06T11:30:06.318Z',
+  });
+
+  return {
+    FIXTURE_CATEGORIES: [
+      {
+        category: 'Certificates and IDs',
+        slug: 'certificates-ids',
+        subcategories: [
+          { name: 'ID', slug: 'id' },
+          { name: 'Certificates', slug: 'certificates' },
+        ],
+      },
+      {
+        category: 'Business and Trade',
+        slug: 'business-trade',
+        subcategories: [
+          {
+            name: 'Business Registration, Certificates and Compliance',
+            slug: 'business-registration',
+          },
+        ],
+      },
+      {
+        category: 'Education',
+        slug: 'education',
+        subcategories: [{ name: 'Education', slug: 'education' }],
+      },
+      {
+        category: 'Health',
+        slug: 'health',
+        subcategories: [{ name: 'Health', slug: 'health' }],
+      },
+    ],
+    // Two records per subcategory: enough to prove a subcategory filter
+    // narrows the category-only result (matches.length < category total)
+    // without needing real generated data.
+    FIXTURE_SERVICES: {
+      'certificates-ids': [
+        ...[0, 1].map(n =>
+          record('certificates-ids', 'Certificates and IDs', 'id', 'ID', n)
+        ),
+        ...[0, 1].map(n =>
+          record(
+            'certificates-ids',
+            'Certificates and IDs',
+            'certificates',
+            'Certificates',
+            n
+          )
+        ),
       ],
-    },
-    {
-      category: 'Business and Trade',
-      slug: 'business-trade',
-      subcategories: [
-        {
-          name: 'Business Registration, Certificates and Compliance',
-          slug: 'business-registration',
-        },
+      'business-trade': [
+        ...[0, 1].map(n =>
+          record(
+            'business-trade',
+            'Business and Trade',
+            'business-registration',
+            'Business Registration, Certificates and Compliance',
+            n
+          )
+        ),
+        // A second subcategory the fixture taxonomy doesn't even declare —
+        // only needed so ?category=business-trade&subcategory=... has a
+        // real "some other subcategory" record to prove the filter narrows.
+        record(
+          'business-trade',
+          'Business and Trade',
+          'complaints',
+          'Complaints',
+          0
+        ),
       ],
+      education: [0, 1].map(n =>
+        record('education', 'Education', 'education', 'Education', n)
+      ),
+      health: [0, 1].map(n =>
+        record('health', 'Health', 'health', 'Health', n)
+      ),
     },
-    {
-      category: 'Education',
-      slug: 'education',
-      subcategories: [{ name: 'Education', slug: 'education' }],
-    },
-    {
-      category: 'Health',
-      slug: 'health',
-      subcategories: [{ name: 'Health', slug: 'health' }],
-    },
-  ],
-}));
+  };
+});
 
 vi.mock('../../data/cms', () => ({
   serviceCategories: { categories: FIXTURE_CATEGORIES },
+  services: FIXTURE_SERVICES,
 }));
 
 vi.mock('react-i18next', () => ({
@@ -85,12 +149,7 @@ type Record_ = {
   subcategory: { slug: string };
 };
 
-const allRecords = [
-  ...certificatesIds,
-  ...businessTrade,
-  ...education,
-  ...health,
-] as Record_[];
+const allRecords = Object.values(FIXTURE_SERVICES).flat() as Record_[];
 
 const expected = (category: string, subcategory?: string) =>
   allRecords.filter(
@@ -182,14 +241,11 @@ describe("Hero URL routing contract against today's /services", () => {
       });
 
       // A record from a different category must NOT appear — proving the
-      // category filter was applied, not just "show everything". Picked
-      // from businessTrade specifically (falling back to certificatesIds
-      // when that IS the category under test): the real page's own
-      // unfiltered `allServices` imports businessTrade first, so if the
-      // filter were silently dropped this record would land on page one
-      // and the negative assertion would still be meaningful.
+      // category filter was applied, not just "show everything".
       const other = (
-        category === 'business-trade' ? certificatesIds : businessTrade
+        category === 'business-trade'
+          ? FIXTURE_SERVICES['certificates-ids']
+          : FIXTURE_SERVICES['business-trade']
       )[0] as Record_;
       expect(screen.queryByText(other.service)).not.toBeInTheDocument();
     }

@@ -11,6 +11,13 @@ describe('generated CMS output is never committed', () => {
     expect(trackedFiles).not.toContain('src/data/critical_hotlines.json');
   });
 
+  it('does not track any top-level src/data/services/*.json file', () => {
+    const trackedTopLevelServiceFiles = trackedFiles.filter(f =>
+      /^src\/data\/services\/[^/]+\.json$/.test(f)
+    );
+    expect(trackedTopLevelServiceFiles).toEqual([]);
+  });
+
   it('still tracks the schemas that are the generated data’s contract', () => {
     expect(trackedFiles).toContain(
       'src/data/schema/service_categories.schema.json'
@@ -20,6 +27,9 @@ describe('generated CMS output is never committed', () => {
     );
     expect(trackedFiles).toContain(
       'src/data/schema/philippines_hotlines.schema.json'
+    );
+    expect(trackedFiles).toContain(
+      'src/data/services/schema/services.schema.json'
     );
   });
 });

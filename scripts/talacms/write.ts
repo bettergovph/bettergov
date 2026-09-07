@@ -68,30 +68,65 @@ export function parseServiceRecordsFile(
   }));
 }
 
-/** The on-disk service file set, in codepoint order. */
-export function readServiceFileNames(): string[] {
+/**
+ * The on-disk service file set, in codepoint order. `dir` defaults to the
+ * real services directory; tests pass a temporary one so this never depends
+ * on generated, gitignored data being present in the checkout.
+ */
+export function readServiceFileNames(dir: string = SERVICES_DIR): string[] {
   return fs
-    .readdirSync(abs(SERVICES_DIR))
+    .readdirSync(abs(dir))
     .filter(f => f.endsWith('.json'))
     .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
 }
 
 /**
- * Every committed service record's category/subcategory pair AND display
- * names. Under `--only=categories` the committed records are the
- * name-agreement counterparty, so the names are not optional.
+ * Every previously-generated service record's category/subcategory pair AND
+ * display names. Under `--only=categories` this is the name-agreement
+ * counterparty, so the names are not optional.
+ *
+ * `src/data/services/*.json` is generated build output, not committed — an
+ * empty result here is ambiguous between "this checkout was never synced (or
+ * left with a corrupted/partial snapshot)" and "TalaCMS genuinely has zero
+ * services", and silently treating it as the latter would let
+ * `--only=categories` pass a rename it exists to catch. At least one
+ * taxonomy category always exists (fetchCategories fails closed on zero),
+ * and a full sync's shapeServices always writes one file per taxonomy
+ * category with at least one record somewhere across the set (the CMS
+ * services query itself fails closed on zero results), so any successful
+ * prior full sync leaves at least one file AND at least one record here.
+ * Both zero files and zero aggregate records — the latter reachable from
+ * one or more files that individually parse but each contain `[]` — fail
+ * the same way.
  */
-export function readServiceRecords(): ServiceRecordRef[] {
-  const dir = abs(SERVICES_DIR);
-  return readServiceFileNames().flatMap(file => {
+export function readServiceRecords(
+  dir: string = SERVICES_DIR
+): ServiceRecordRef[] {
+  const names = readServiceFileNames(dir);
+  if (names.length === 0) {
+    servicesFail(
+      `no generated service files found under ${dir} — run a full sync first; ` +
+        '--only=categories needs previously generated Services data to validate against.'
+    );
+  }
+  const target = abs(dir);
+  const records = names.flatMap(file => {
     let raw: unknown;
     try {
-      raw = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+      raw = JSON.parse(fs.readFileSync(path.join(target, file), 'utf8'));
     } catch {
-      servicesFail(`committed ${SERVICES_DIR}/${file} is not valid JSON`);
+      servicesFail(`generated ${dir}/${file} is not valid JSON`);
     }
     return parseServiceRecordsFile(file, raw);
   });
+  if (records.length === 0) {
+    servicesFail(
+      `generated service files under ${dir} contain zero records combined ` +
+        '— run a full sync first; --only=categories needs previously generated ' +
+        'Services data to validate against.'
+    );
+  }
+  return records;
 }
 
 /**
@@ -291,4 +326,55 @@ export async function commitFiles(
       if (temp && fs.existsSync(temp)) fs.rmSync(temp, { force: true });
     }
   }
+}
+
+/**
+ * Deletes top-level `src/data/services/*.json` files that existed before this
+ * run but are not part of the newly generated candidate set — e.g. a category
+ * retired in TalaCMS. Never touches `src/data/services/schema/**`: `before`
+ * and `generated` both come from `readServiceFileNames()`, which only ever
+ * lists top-level `.json` files, so `schema` (a directory, not `.json`) can
+ * never appear in either list.
+ *
+ * Callers MUST only invoke this after `commitFiles` has already succeeded for
+ * a full sync — never before validation, never on any failure path, and
+ * never for an isolated `--only=` run, which does not see the complete
+ * picture needed to know what's genuinely stale.
+ *
+ * Deletion is best-effort and per-file: one failure doesn't stop the rest,
+ * and doesn't undo the (already-committed) write phase, whose atomicity
+ * guarantees are unaffected. Every attempt — success or failure — is logged,
+ * so a partial cleanup is always visible rather than silently incomplete.
+ */
+export function removeStaleServiceFiles(
+  before: string[],
+  generated: string[],
+  io: {
+    dir?: string;
+    unlink?: (target: string) => void;
+    log?: (message: string) => void;
+  } = {}
+): { removed: string[]; failed: string[] } {
+  const dir = io.dir ?? SERVICES_DIR;
+  const unlink = io.unlink ?? ((target: string) => fs.unlinkSync(target));
+  const log = io.log ?? (message => console.log(message));
+  const generatedSet = new Set(generated);
+  const stale = before
+    .filter(f => !generatedSet.has(f))
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
+  const removed: string[] = [];
+  const failed: string[] = [];
+  for (const file of stale) {
+    const relPath = `${dir}/${file}`;
+    try {
+      unlink(abs(relPath));
+      removed.push(file);
+      log(`  removed stale ${relPath}`);
+    } catch (error) {
+      failed.push(file);
+      log(`  ✖ failed to remove stale ${relPath}: ${(error as Error).message}`);
+    }
+  }
+  return { removed, failed };
 }

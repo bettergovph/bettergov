@@ -15,6 +15,7 @@ import {
   readServiceFileNames,
   readServiceRecords,
   readTaxonomy,
+  removeStaleServiceFiles,
   type Candidate,
   type PreparedFile,
 } from './talacms/write';
@@ -30,6 +31,10 @@ interface Deps {
   readServiceRecords: () => ServiceRecordRef[];
   readServiceFileNames: () => string[];
   readTaxonomy: () => Taxonomy;
+  removeStaleServiceFiles: (
+    before: string[],
+    generated: string[]
+  ) => { removed: string[]; failed: string[] };
   log: (message: string) => void;
 }
 
@@ -40,6 +45,7 @@ const defaultDeps: Deps = {
   readServiceRecords,
   readServiceFileNames,
   readTaxonomy,
+  removeStaleServiceFiles,
   log: message => console.log(message),
 };
 
@@ -148,14 +154,6 @@ async function buildCandidates(
             categorySlug: s.category.slug,
           }))
         : null,
-      // §6.6 guards the service files THIS RUN would generate; a
-      // categories-only run generates none, so the gate has no subject.
-      fileSet: rawServices
-        ? {
-            generated: taxonomy.categories.map(c => `${c.slug}.json`),
-            committed: deps.readServiceFileNames(),
-          }
-        : null,
     });
   }
 
@@ -184,6 +182,41 @@ async function buildCandidates(
   return candidates;
 }
 
+/**
+ * §6.6/§6.8 replacement: after a successful FULL sync only, delete top-level
+ * src/data/services/*.json files that existed before this run but fell out
+ * of the freshly generated candidate set (a category retired in TalaCMS).
+ * Never runs for an isolated `--only=` mode, which doesn't see the complete
+ * generated set and can't safely judge staleness, and never runs before a
+ * write has actually succeeded.
+ *
+ * Returns whether cleanup fully succeeded. A failed deletion is not a soft
+ * problem: cms.ts globs every top-level file in src/data/services/, so a
+ * stale file left behind after its category was retired from the taxonomy
+ * would still be bundled into the build. `run()` treats that as a failed
+ * sync, not a successful one with a warning.
+ */
+function cleanUpStaleServiceFiles(
+  deps: Deps,
+  beforeServiceFiles: string[],
+  candidates: Candidate[]
+): boolean {
+  const generated = candidates
+    .filter(c => c.path.startsWith('src/data/services/'))
+    .map(c => c.path.slice('src/data/services/'.length));
+  const { removed, failed } = deps.removeStaleServiceFiles(
+    beforeServiceFiles,
+    generated
+  );
+  if (removed.length === 0 && failed.length === 0) return true;
+  deps.log(
+    `\n${removed.length} stale service file(s) removed` +
+      (failed.length > 0 ? `, ${failed.length} failed to remove` : '') +
+      '.'
+  );
+  return failed.length === 0;
+}
+
 export async function run(
   argv: string[],
   deps: Deps = defaultDeps
@@ -196,7 +229,11 @@ export async function run(
     return 1;
   }
 
+  const isFullSync = options.selected.length === DATASETS.length;
+
   const prepared: PreparedFile[] = [];
+  let candidates: Candidate[];
+  let beforeServiceFiles: string[] = [];
 
   // Fetch and validate everything before any write. A failure here leaves
   // both files exactly as they were.
@@ -204,11 +241,12 @@ export async function run(
     // Created first, and it validates configuration eagerly — no local file is
     // opened until the credentials are known to be usable.
     const client = deps.createClient();
-    const candidates = await buildCandidates(
-      new Set(options.selected),
-      client,
-      deps
-    );
+    // Captured only now (config already validated), and before any fetch or
+    // write, so a later failure never influences what "before" meant —
+    // cleanup only ever compares real prior state against the newly
+    // generated set.
+    beforeServiceFiles = isFullSync ? deps.readServiceFileNames() : [];
+    candidates = await buildCandidates(new Set(options.selected), client, deps);
     for (const candidate of candidates) {
       prepared.push(await deps.prepare(candidate));
     }
@@ -235,6 +273,19 @@ export async function run(
 
   if (changed.length === 0) {
     deps.log('\nAlready up to date; nothing written.');
+    if (isFullSync) {
+      const cleanedUp = cleanUpStaleServiceFiles(
+        deps,
+        beforeServiceFiles,
+        candidates
+      );
+      if (!cleanedUp) {
+        deps.log(
+          '✖ sync failed: one or more stale service files could not be removed.'
+        );
+        return 1;
+      }
+    }
     return 0;
   }
 
@@ -246,6 +297,20 @@ export async function run(
       '  Writes are atomic per file, not across files — check `git status` for a mixed snapshot.'
     );
     return 1;
+  }
+
+  if (isFullSync) {
+    const cleanedUp = cleanUpStaleServiceFiles(
+      deps,
+      beforeServiceFiles,
+      candidates
+    );
+    if (!cleanedUp) {
+      deps.log(
+        '✖ sync failed: one or more stale service files could not be removed.'
+      );
+      return 1;
+    }
   }
 
   deps.log(

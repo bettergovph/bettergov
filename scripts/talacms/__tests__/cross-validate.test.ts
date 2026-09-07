@@ -43,10 +43,6 @@ const base = {
     { position: 0, categorySlug: 'business-trade' },
     { position: 1, categorySlug: 'health' },
   ],
-  fileSet: {
-    generated: ['business-trade.json', 'health.json'],
-    committed: ['business-trade.json', 'health.json'],
-  },
 };
 
 describe('crossValidate — pair integrity (§6.3)', () => {
@@ -82,10 +78,6 @@ describe('crossValidate — pair integrity (§6.3)', () => {
               subcategories: [{ name: 'S', slug: 's' }],
             },
           ],
-        },
-        fileSet: {
-          generated: ['business-trade.json', 'health.json', 'brand-new.json'],
-          committed: ['business-trade.json', 'health.json', 'brand-new.json'],
         },
       })
     ).not.toThrow();
@@ -204,78 +196,14 @@ describe('crossValidate — global ordering (§6.5)', () => {
   });
 
   it('is NOT APPLIED when ordering is null — position has no committed source', () => {
-    expect(() =>
-      crossValidate({ ...base, ordering: null, fileSet: null })
-    ).not.toThrow();
-  });
-});
-
-describe('crossValidate — file-set churn (§6.6, §6.8)', () => {
-  it('fails on an added file and states the unblocking action', () => {
-    let message = '';
-    try {
-      crossValidate({
-        ...base,
-        fileSet: {
-          generated: ['business-trade.json', 'business-x.json', 'health.json'],
-          committed: ['business-trade.json', 'health.json'],
-        },
-      });
-    } catch (error) {
-      message = (error as Error).message;
-    }
-    expect(message).toContain(
-      '[sync:services] the generated file set does not match the approved one.'
-    );
-    expect(message).toContain('would add: src/data/services/business-x.json');
-    expect(message).toContain('To unblock:');
-    expect(message).toContain('containing an empty array: []');
-    expect(message).toContain('Category churn checklist');
-    expect(message).not.toContain('would remove:');
+    expect(() => crossValidate({ ...base, ordering: null })).not.toThrow();
   });
 
-  it('fails on a removed file and never proposes deleting data automatically', () => {
-    let message = '';
-    try {
-      crossValidate({
-        ...base,
-        fileSet: {
-          generated: ['business-trade.json'],
-          committed: ['business-trade.json', 'old-category.json'],
-        },
-      });
-    } catch (error) {
-      message = (error as Error).message;
-    }
-    expect(message).toContain(
-      'would remove: src/data/services/old-category.json'
-    );
-    expect(message).toContain('Deleting data is never automatic in this sync.');
-  });
-
-  it('passes when the sets match — a category losing its last record is not churn', () => {
+  it('a category losing its last record is not a validation failure', () => {
+    // There is no file-set gate anymore: a taxonomy category with zero
+    // matching records is legitimate (an editor adds a category before its
+    // services exist), and stale-file cleanup — not validation — is what
+    // handles a category retired from the taxonomy.
     expect(() => crossValidate({ ...base, records: [] })).not.toThrow();
-  });
-
-  it('is NOT APPLIED when fileSet is null — a categories-only run generates no service files', () => {
-    // Without this the one-directional allowance breaks: a new CMS category
-    // with no service file yet would fail a run that works today.
-    expect(() =>
-      crossValidate({
-        ...base,
-        taxonomy: {
-          categories: [
-            ...taxonomy.categories,
-            {
-              category: 'Brand New',
-              slug: 'brand-new',
-              subcategories: [{ name: 'S', slug: 's' }],
-            },
-          ],
-        },
-        ordering: null,
-        fileSet: null,
-      })
-    ).not.toThrow();
   });
 });

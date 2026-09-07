@@ -95,6 +95,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
       ]),
       readTaxonomy: vi.fn(() => committedTaxonomy),
       readServiceFileNames: vi.fn(() => ['health.json']),
+      removeStaleServiceFiles: vi.fn(() => ({ removed: [], failed: [] })),
       prepare: vi.fn(async (c: { path: string }) => ({
         path: c.path,
         text: 'text',
@@ -305,9 +306,10 @@ describe('services orchestration', () => {
   });
 
   it('--only=categories succeeds when the CMS adds a category with no service file on disk', async () => {
-    // The one-directional allowance. Without this the file-set gate would be
-    // silently wired into a mode where it must not apply, breaking a workflow
-    // that works today.
+    // The one-directional allowance (assertReferentialIntegrity): a taxonomy
+    // category with no matching generated records is legitimate, and an
+    // isolated categories sync never touches readServiceFileNames at all —
+    // there is no file-set gate to wire it into.
     const client = vi.fn(async (query: string) => {
       if (query.includes('SyncServiceCategories')) {
         return {
@@ -330,17 +332,15 @@ describe('services orchestration', () => {
     expect(deps.readServiceFileNames).not.toHaveBeenCalled();
   });
 
-  it('--only=services is BLIND to a category added in TalaCMS — the file-set gate only ever confirms the status quo', async () => {
-    // Documents the §6.0 blindness as a test so it cannot be mistaken for a
-    // guarantee. The generated file set is derived from the COMMITTED
-    // taxonomy, which is already consistent with the on-disk files, so a
-    // category that exists in TalaCMS but not in that committed copy cannot
-    // be seen. Only a full sync surfaces taxonomy file churn.
+  it('--only=services never reads or removes stale service files — only a full sync does', async () => {
+    // Stale-file cleanup needs the complete generated picture to safely judge
+    // staleness; an isolated services sync doesn't have it, so it must not
+    // even capture a "before" snapshot, let alone delete anything.
     const { client, deps } = makeDeps();
     await expect(run(['--only=services'], deps as never)).resolves.toBe(0);
     expect(queriesOf(client)).toHaveLength(1);
-    expect(deps.readServiceFileNames).toHaveBeenCalled();
-    // Every generated path came from the committed taxonomy, not the CMS.
+    expect(deps.readServiceFileNames).not.toHaveBeenCalled();
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
     expect(pathsOf(deps)).toEqual(['src/data/services/health.json']);
   });
 
@@ -379,6 +379,73 @@ describe('services orchestration', () => {
       ]),
     });
     await expect(run(['--only=categories'], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('fails a full sync when the freshly fetched categories and services disagree with EACH OTHER', async () => {
+    // Distinct from the isolated-mode tests above (which disagree with a
+    // committed/generated counterpart): here both sides are fresh CMS
+    // fetches, proving crossValidate is actually wired into a full run()
+    // and not bypassed just because nothing "committed" is involved.
+    const client = vi.fn(async (query: string) => {
+      if (query.includes('SyncServiceCategories')) return categoriesPayload; // category "health"
+      if (query.includes('SyncGovernmentServices')) {
+        return {
+          _allGovernmentServicesMeta: { count: 1 },
+          allGovernmentServices: [
+            {
+              sourceId: 'svc-1',
+              position: 0,
+              service: 'Apply for Something',
+              slug: 'apply-for-something',
+              url: 'https://example.gov.ph/',
+              published: true,
+              featured: false,
+              createdAt: '2025-06-06T11:30:06.318Z',
+              updatedAt: '2025-06-06T11:30:06.318Z',
+              category: { slug: 'health', category: 'Health!' }, // disagrees with categoriesPayload's "Health"
+              subcategory: {
+                slug: 'financial-assistance',
+                name: 'Financial Assistance',
+                category: { slug: 'health' },
+              },
+            },
+          ],
+        };
+      }
+      return hotlinesPayload;
+    }) as unknown as TalaCmsClient;
+    const { deps } = makeDeps({ createClient: () => client });
+
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('propagates a real missing-counterpart failure through run() for --only=categories', async () => {
+    // Exercises the orchestrator against the actual failure shape
+    // readServiceRecords() now throws (see write.ts), not just a
+    // test-local stand-in mock — proves run() doesn't swallow or
+    // transform it before returning.
+    const { deps } = makeDeps({
+      readServiceRecords: vi.fn(() => {
+        throw new Error(
+          '[sync:services] no generated service files found under src/data/services — run a full sync first'
+        );
+      }),
+    });
+    await expect(run(['--only=categories'], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('propagates a real missing-counterpart failure through run() for --only=services', async () => {
+    const { deps } = makeDeps({
+      readTaxonomy: vi.fn(() => {
+        throw new Error(
+          '[sync:services] committed src/data/service_categories.json is not valid JSON'
+        );
+      }),
+    });
+    await expect(run(['--only=services'], deps as never)).resolves.toBe(1);
     expect(deps.commitFiles).not.toHaveBeenCalled();
   });
 
@@ -453,5 +520,152 @@ describe('services orchestration', () => {
       .map(c => c[0])
       .join('\n');
     expect(logged).toContain('categories, hotlines, services');
+  });
+});
+
+describe('stale service file cleanup', () => {
+  it('runs only after a successful full-sync write, with the before/after sets it captured', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+    });
+    await expect(run([], deps as never)).resolves.toBe(0);
+
+    expect(deps.commitFiles).toHaveBeenCalledTimes(1);
+    expect(deps.removeStaleServiceFiles).toHaveBeenCalledTimes(1);
+    const [before, generated] = (
+      deps.removeStaleServiceFiles as ReturnType<typeof vi.fn>
+    ).mock.calls[0];
+    expect(before).toEqual(['health.json', 'old-category.json']);
+    expect(generated).toEqual(['health.json']);
+
+    // Captured before commitFiles ran, not after — and cleanup itself runs
+    // strictly after commitFiles, not concurrently with or before it.
+    const beforeCallOrder = (
+      deps.readServiceFileNames as ReturnType<typeof vi.fn>
+    ).mock.invocationCallOrder[0];
+    const commitCallOrder = (deps.commitFiles as ReturnType<typeof vi.fn>).mock
+      .invocationCallOrder[0];
+    const cleanupCallOrder = (
+      deps.removeStaleServiceFiles as ReturnType<typeof vi.fn>
+    ).mock.invocationCallOrder[0];
+    expect(beforeCallOrder).toBeLessThan(commitCallOrder);
+    expect(cleanupCallOrder).toBeGreaterThan(commitCallOrder);
+  });
+
+  it('runs even when nothing changed, so a category retired since the last sync is still cleaned up', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(0);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    expect(deps.removeStaleServiceFiles).toHaveBeenCalledWith(
+      ['health.json', 'old-category.json'],
+      ['health.json']
+    );
+  });
+
+  it('never runs under --dry-run — nothing may be deleted when nothing is written', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
+  });
+
+  it('never runs when the write phase fails — no apparently-successful mixed snapshot', async () => {
+    const { deps } = makeDeps({
+      commitFiles: vi.fn(async () => {
+        throw new Error('disk full');
+      }),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
+  });
+
+  it('never runs when configuration fails before any fetch', async () => {
+    const { deps } = makeDeps({
+      createClient: () => {
+        throw new Error('TalaCMS is not configured');
+      },
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
+  });
+
+  it('never runs for an isolated --only=categories sync', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=categories'], deps as never)).resolves.toBe(0);
+    expect(deps.readServiceFileNames).not.toHaveBeenCalled();
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
+  });
+
+  it('logs removals distinctly from a normal "wrote N files" run', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      removeStaleServiceFiles: vi.fn(() => ({
+        removed: ['old-category.json'],
+        failed: [],
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(0);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('1 stale service file(s) removed');
+  });
+
+  it('fails the sync — not a quiet success — when a stale removal fails, but still logs it in detail', async () => {
+    // cms.ts globs every top-level file in src/data/services/, so a stale
+    // file the cleanup failed to delete would still be bundled into the
+    // build — this must not be reported as a successful sync.
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      removeStaleServiceFiles: vi.fn(() => ({
+        removed: [],
+        failed: ['old-category.json'],
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    // Per-file detail (which file, why) is removeStaleServiceFiles' own
+    // responsibility and is covered directly in write.test.ts; run() only
+    // needs to surface the failure count and turn it into a non-zero exit.
+    expect(logged).toContain('1 failed to remove');
+    expect(logged).toContain('sync failed');
+  });
+
+  it('fails the sync on a cleanup failure even when nothing else changed', async () => {
+    // The "already up to date; nothing written" branch is a separate code
+    // path from the "wrote N files" branch — both must propagate a cleanup
+    // failure, not just the one with an actual write.
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+      removeStaleServiceFiles: vi.fn(() => ({
+        removed: [],
+        failed: ['old-category.json'],
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+  });
+
+  it('still succeeds when every stale removal succeeds', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      removeStaleServiceFiles: vi.fn(() => ({
+        removed: ['old-category.json'],
+        failed: [],
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(0);
   });
 });
