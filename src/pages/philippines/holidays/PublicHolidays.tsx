@@ -150,7 +150,7 @@ const PublicHolidays: FC = () => {
         </div>
       </PageMasthead>
 
-      <section className='py-14 max-md:py-8'>
+      <section className='py-14 max-md:py-6'>
         <Container>
           <div className='grid grid-cols-[1fr_280px] gap-12 max-lg:grid-cols-1'>
             {/* Main: holiday table */}

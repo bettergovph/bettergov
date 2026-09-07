@@ -207,7 +207,7 @@ const Hotlines: FC = () => {
                           {categoryLabel[cat] ?? h.category}
                         </Flag>
                       </div>
-                      <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
+                      <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:text-[18px]'>
                         {h.name}
                       </h3>
                       {h.description && (

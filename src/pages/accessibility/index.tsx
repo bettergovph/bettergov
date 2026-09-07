@@ -22,7 +22,7 @@ const AccessibilityPage: FC = () => (
       lede='Our commitment to inclusive digital access for everyone in the Philippines.'
     />
 
-    <section className='py-12 max-md:py-8'>
+    <section className='py-12 max-md:py-6'>
       <Container narrow>
         <SectionHeader label='Our Commitment' />
         <div className='space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-2xl'>

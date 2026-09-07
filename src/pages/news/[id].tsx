@@ -104,7 +104,7 @@ const NewsArticlePage: FC = () => {
         <SEO title='News' noIndex />
       )}
 
-      <Container narrow className='py-12 max-md:py-8'>
+      <Container narrow className='py-12 max-md:py-6'>
         <div className='mb-8'>
           <BackLink />
         </div>

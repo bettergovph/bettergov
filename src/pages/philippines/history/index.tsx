@@ -49,7 +49,7 @@ const PhilippinesHistory: FC = () => {
       </PageMasthead>
 
       {/* Timeline */}
-      <section className='mt-16'>
+      <section className='mt-16 max-md:mt-8'>
         <Container>
           <SectionHeader
             label={t('history.entriesSectionLabel')}
@@ -92,7 +92,7 @@ const PhilippinesHistory: FC = () => {
       </section>
 
       {/* By the numbers */}
-      <section className='my-14 border-y border-ed-rule bg-ed-navy-tint py-10'>
+      <section className='my-14 border-y border-ed-rule bg-ed-navy-tint py-10 max-md:my-8 max-md:py-6'>
         <Container>
           <div className='mb-3'>
             <Eyebrow className='text-ed-navy-ink'>
@@ -118,7 +118,7 @@ const PhilippinesHistory: FC = () => {
       </section>
 
       {/* Next cards */}
-      <section className='mb-20 mt-16'>
+      <section className='mb-20 mt-16 max-md:mb-10 max-md:mt-8'>
         <Container>
           <div className='grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-6'>
             <NextCard
@@ -156,7 +156,7 @@ const NextCard: FC<{
     <div className='mb-3'>
       <Eyebrow>{eyebrow}</Eyebrow>
     </div>
-    <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
+    <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink max-md:text-[22px]'>
       {title}
     </h3>
     <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>

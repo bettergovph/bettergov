@@ -113,7 +113,7 @@ const LocalGovernmentIndex: FC = () => {
                       {r.cityCount} cities / munis
                     </span>
                   </div>
-                  <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink'>
+                  <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink max-md:text-[18px]'>
                     {titleCase(r.name)}
                   </h3>
                   {r.provinceCount > 0 && (

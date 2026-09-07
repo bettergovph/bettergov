@@ -252,7 +252,7 @@ const PhilippinesRegions: FC = () => (
     />
 
     {/* Next cards */}
-    <section className='mb-20 mt-16'>
+    <section className='mb-20 mt-16 max-md:mb-10 max-md:mt-8'>
       <Container>
         <div className='grid grid-cols-2 gap-8 max-md:grid-cols-1'>
           <Link
@@ -262,7 +262,7 @@ const PhilippinesRegions: FC = () => (
             <div className='mb-3'>
               <Eyebrow>Visualize · Interactive map</Eyebrow>
             </div>
-            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
+            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink max-md:text-[22px]'>
               See the archipelago at a glance
             </h3>
             <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
@@ -280,7 +280,7 @@ const PhilippinesRegions: FC = () => (
             <div className='mb-3'>
               <Eyebrow>Directory · Local govt.</Eyebrow>
             </div>
-            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink'>
+            <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink max-md:text-[22px]'>
               Find your LGU
             </h3>
             <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
@@ -308,7 +308,7 @@ const Island: FC<{
     <Container>
       <div className={last ? '' : 'border-b border-ed-rule pb-14 max-md:pb-8'}>
         <div className='mt-14 grid grid-cols-[auto_1fr] items-baseline gap-6 border-t-2 border-ed-navy pt-6 max-md:grid-cols-1 max-md:gap-1 max-md:pt-4'>
-          <h2 className='m-0 font-serif-ed text-[48px] font-semibold leading-none tracking-[-0.01em] text-ed-navy-ink max-md:text-[36px]'>
+          <h2 className='m-0 font-serif-ed text-[48px] font-semibold leading-none tracking-[-0.01em] text-ed-navy-ink max-md:text-[28px]'>
             {name}
           </h2>
           <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-2'>

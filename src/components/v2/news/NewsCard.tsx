@@ -72,7 +72,7 @@ const NewsCard: FC<Props> = ({ article, variant = 'card', className }) => {
   if (variant === 'lead') {
     return (
       <article
-        className={cn('border-b border-ed-ink pb-8 md:pb-10', className)}
+        className={cn('border-b border-ed-ink pb-5 md:pb-10', className)}
       >
         <div className='grid grid-cols-[1.15fr_1fr] items-start gap-8 max-md:grid-cols-1 max-md:gap-5'>
           <Link to={to} tabIndex={-1} aria-hidden='true' className='block'>
@@ -82,7 +82,7 @@ const NewsCard: FC<Props> = ({ article, variant = 'card', className }) => {
           </Link>
           <div>
             <Meta article={article} />
-            <h2 className='mt-4 font-serif-ed text-[clamp(24px,2.6vw,34px)] font-bold leading-[1.08] tracking-[-0.01em]'>
+            <h2 className='mt-4 font-serif-ed text-[clamp(24px,2.6vw,34px)] font-bold leading-[1.08] tracking-[-0.01em] max-md:mt-2.5 max-md:text-[22px]'>
               <Link
                 to={to}
                 className='text-ed-ink no-underline hover:underline'
@@ -108,9 +108,9 @@ const NewsCard: FC<Props> = ({ article, variant = 'card', className }) => {
           <Thumbnail article={article} />
         </div>
       </Link>
-      <div className='mt-4 flex flex-1 flex-col'>
+      <div className='mt-4 flex flex-1 flex-col max-md:mt-2.5'>
         <Meta article={article} />
-        <h3 className='mt-2 font-serif-ed text-[19px] font-semibold leading-snug tracking-[-0.005em]'>
+        <h3 className='mt-2 font-serif-ed text-[19px] font-semibold leading-snug tracking-[-0.005em] max-md:mt-1.5 max-md:text-[17px]'>
           <Link to={to} className='text-ed-ink no-underline hover:underline'>
             {article.title}
           </Link>

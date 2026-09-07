@@ -124,7 +124,7 @@ const JoinUs: FC = () => (
     </PageMasthead>
 
     {/* How we work */}
-    <section className='border-b border-ed-rule py-14 max-md:py-8'>
+    <section className='border-b border-ed-rule py-14 max-md:py-6'>
       <Container>
         <SectionHeader label='How we work' />
         <div className='grid grid-cols-4 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1'>
@@ -143,7 +143,7 @@ const JoinUs: FC = () => (
     </section>
 
     {/* Roles grid */}
-    <section className='py-14 max-md:py-8'>
+    <section className='py-14 max-md:py-6'>
       <Container>
         <SectionHeader label='Open roles' />
         <div className='grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
@@ -178,7 +178,7 @@ const JoinUs: FC = () => (
     </section>
 
     {/* Manifesto band */}
-    <section className='bg-ed-navy-ink py-16 max-md:py-10'>
+    <section className='bg-ed-navy-ink py-16 max-md:py-7'>
       <Container narrow>
         <SectionHeader label='Why we build' onDark />
         <blockquote className='space-y-5 font-sans-ed text-[clamp(18px,2.5vw,26px)] font-normal leading-relaxed text-white/90'>
@@ -196,11 +196,11 @@ const JoinUs: FC = () => (
     </section>
 
     {/* CTA band */}
-    <section className='border-t border-ed-rule py-14 max-md:py-8'>
+    <section className='border-t border-ed-rule py-14 max-md:py-6'>
       <Container>
         <div className='flex items-start justify-between gap-8 max-md:flex-col'>
           <div>
-            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight text-ed-ink'>
+            <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight text-ed-ink max-md:text-[22px]'>
               Join the community and{' '}
               <span className='text-ed-navy'>start building today.</span>
             </h2>
