@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sync:talacms && npm run generate:metadata && npm run build:app",
+    "build": "npm run generate:metadata && npm run build:app",
     "build:app": "tsc && tsx ./scripts/write-ver-to-json.ts && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
@@ -34,6 +34,7 @@
     "generate:llms-txt": "node ./scripts/generate-llms-txt.js",
     "generate:sitemap": "node ./scripts/generate-sitemap.js",
     "generate:metadata": "npm run generate:llms-txt && npm run generate:sitemap",
+    "cms:fetch": "npm run sync:talacms",
     "sync:talacms": "tsx ./scripts/sync-talacms.ts",
     "typecheck:scripts": "tsc --noEmit -p tsconfig.node.json"
   },

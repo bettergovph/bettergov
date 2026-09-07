@@ -31,7 +31,7 @@ const defaultDeps: Deps = {
   log: message => console.log(message),
 };
 
-const USAGE = `Usage: npm run sync:talacms [-- --dry-run] [-- --only=categories|hotlines]
+const USAGE = `Usage: npm run cms:fetch [-- --dry-run] [-- --only=categories|hotlines]
 
 Exit codes: 0 success, 1 failure, 3 drift detected (--dry-run only).`;
 

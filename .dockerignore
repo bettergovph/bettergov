@@ -1,0 +1,19 @@
+# Local credential files must never enter the Docker build context — the
+# builder stage gets TalaCMS credentials exclusively via BuildKit
+# `--secret` mounts (see Dockerfile), never by reading a copied file.
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+# Build/dependency artifacts — not part of the build context; the deps
+# stage runs its own `npm ci` inside the image.
+node_modules
+dist
+dist-ssr
+*.local
+.git
+.DS_Store
+.vscode
+.idea
