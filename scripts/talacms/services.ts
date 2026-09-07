@@ -297,18 +297,11 @@ export interface CrossValidateInput {
   records: ServiceRecordRef[];
   /**
    * §6.5. `null` where no candidate services were fetched: `position` is not
-   * emitted into the committed records, so there is no committed source for
-   * it, and querying services during a categories-only run would violate the
+   * emitted into the generated records, so there is no source for it, and
+   * querying services during a categories-only run would violate the
    * isolation contract.
    */
   ordering: { position: number; categorySlug: string }[] | null;
-  /**
-   * §6.6. `null` under --only=categories: the gate guards the set of service
-   * files THIS RUN would generate, and a categories-only run generates none.
-   * Applying it there would fail on a new CMS category that has no service
-   * file yet, contradicting the one-directional allowance.
-   */
-  fileSet: { generated: string[]; committed: string[] } | null;
 }
 
 /**
@@ -378,51 +371,23 @@ function assertGlobalOrdering(
   }
 }
 
-/** §6.6 and §6.8: fail naming every file, and state the next action. */
-function assertFileSet(generated: string[], committed: string[]): void {
-  const byCodepoint = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
-  const generatedSet = new Set(generated);
-  const committedSet = new Set(committed);
-  const added = generated.filter(f => !committedSet.has(f)).sort(byCodepoint);
-  const removed = committed.filter(f => !generatedSet.has(f)).sort(byCodepoint);
-  if (added.length === 0 && removed.length === 0) return;
-
-  const lines = ['the generated file set does not match the approved one.'];
-  for (const f of added) lines.push(`  would add: src/data/services/${f}`);
-  for (const f of removed) lines.push(`  would remove: src/data/services/${f}`);
-  lines.push('', '  To unblock:');
-  if (added.length > 0) {
-    lines.push(
-      '  1. Create each file listed above containing an empty array: []',
-      '  2. Re-run `npm run sync:talacms` (the placeholder need not be committed',
-      '     first — this is deliberate, so one reviewed commit can carry the',
-      '     placeholder, the taxonomy and the generated data together).',
-      '  3. Before committing, decide per curated consumer whether the new',
-      '     category belongs there. See "Category churn checklist" in the README.'
-    );
-  }
-  if (removed.length > 0) {
-    lines.push(
-      '  1. Confirm the category was intentionally retired in TalaCMS.',
-      '  2. Delete each file listed above, then re-run `npm run sync:talacms`.',
-      '  3. Audit the curated consumers in the README checklist for stale links.',
-      '  Deleting data is never automatic in this sync.'
-    );
-  }
-  fail(lines.join('\n'));
-}
-
 /**
  * Stage 3. The single cross-dataset validator, run once per invocation over
  * whichever records and taxonomy the run mode selects, before either candidate
  * is shaped. A `null` input means "not applicable in this mode" — never
  * "substitute a weaker check".
+ *
+ * There is deliberately no file-set gate here anymore: with services/*.json
+ * gitignored build output, "the committed file set" is no longer a reviewed
+ * baseline to validate against — it's whatever a previous run happened to
+ * leave on disk, which may not even exist. A full sync generates the
+ * complete candidate set fresh from the taxonomy and validates it against
+ * the freshly fetched service records directly; category churn (an added or
+ * retired category) is handled by stale-file cleanup after a successful
+ * write, not by failing here.
  */
 export function crossValidate(input: CrossValidateInput): void {
   assertReferentialIntegrity(input.taxonomy, input.records);
   assertNameAgreement(input.taxonomy, input.records);
   if (input.ordering) assertGlobalOrdering(input.ordering);
-  if (input.fileSet) {
-    assertFileSet(input.fileSet.generated, input.fileSet.committed);
-  }
 }

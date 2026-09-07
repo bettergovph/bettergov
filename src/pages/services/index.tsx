@@ -12,25 +12,15 @@ import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
 import { smoothScrollToElement } from '@/lib/scrollUtils';
 
-import { serviceCategories } from '../../data/cms';
-import type { Service } from '../../types';
+import { serviceCategories, services } from '../../data/cms';
 
 /**
- * A CMS-controlled file set cannot be enumerated by hand: a new file would be
- * invisible here yet counted by sibling consumers, and a removed one would
- * break the build. Sorted by CODEPOINT, not `localeCompare` — the latter is
- * locale-sensitive about `-` and would make render order depend on the build
- * environment. Verified: codepoint order equals the previous import order, and
- * the concatenation equals global `position` order for all 194 records.
+ * `services` (from src/data/cms.ts) is keyed by category slug, in the same
+ * codepoint order the accessor's own glob produces — a CMS-controlled file
+ * set can't be enumerated by hand, and the sync's own §6.5 gate guarantees
+ * that order equals global `position` order.
  */
-const serviceFiles = import.meta.glob<{ default: Service[] }>(
-  '../../data/services/*.json',
-  { eager: true }
-);
-
-const allServices: Service[] = Object.entries(serviceFiles)
-  .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
-  .flatMap(([, m]) => m.default);
+const allServices = Object.values(services).flat();
 
 interface Subcategory {
   name: string;

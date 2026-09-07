@@ -44,7 +44,7 @@ const config = {
   'src/data/directory/party_list_representatives.json': buildValidateCommand(
     'src/data/directory/schema/party_list_representatives.schema.json'
   ),
-  'src/data/services/*.json': buildValidateCommand(
+  'src/data/services/schema/services.schema.fixture.json': buildValidateCommand(
     'src/data/services/schema/services.schema.json'
   ),
   'src/data/philippines-regions.json': buildValidateCommand(

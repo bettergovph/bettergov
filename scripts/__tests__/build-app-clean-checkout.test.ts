@@ -6,8 +6,9 @@ import path from 'node:path';
 const ROOT = process.cwd();
 
 /**
- * The two files a checkout only ever gets from `npm run sync:talacms`. A
- * fresh clone, and every PR/fork CI checkout, never has them.
+ * The two single files a checkout only ever gets from `npm run
+ * sync:talacms`. A fresh clone, and every PR/fork CI checkout, never has
+ * them.
  */
 const GENERATED_FILES = [
   'src/data/service_categories.json',
@@ -17,8 +18,21 @@ const GENERATED_FILES = [
 /** Rewritten by build:app itself (write-ver-to-json.ts) — restore it after. */
 const BUILD_TOUCHED_FILES = ['src/version.json'];
 
+const SERVICES_DIR = path.join(ROOT, 'src/data/services');
+
+/**
+ * The generated top-level src/data/services/*.json files — same rule as
+ * GENERATED_FILES above, just a directory instead of a single path.
+ * src/data/services/schema/** (the tracked contract) is never touched.
+ */
+const listGeneratedServiceFiles = () =>
+  fs
+    .readdirSync(SERVICES_DIR)
+    .filter(f => f.endsWith('.json'))
+    .map(f => path.join(SERVICES_DIR, f));
+
 describe('secret-free build:app on a clean (never-synced) checkout', () => {
-  it('runs the exact PR-CI build command (`npm run build:app`) successfully with both generated CMS files absent', () => {
+  it('runs the exact PR-CI build command (`npm run build:app`) successfully with all generated CMS files absent', () => {
     const backups = new Map<string, Buffer>();
     for (const rel of [...GENERATED_FILES, ...BUILD_TOUCHED_FILES]) {
       const abs = path.join(ROOT, rel);
@@ -29,12 +43,17 @@ describe('secret-free build:app on a clean (never-synced) checkout', () => {
       if (fs.existsSync(abs)) fs.rmSync(abs);
     }
 
+    const serviceFiles = listGeneratedServiceFiles();
+    for (const abs of serviceFiles) backups.set(abs, fs.readFileSync(abs));
+    for (const abs of serviceFiles) fs.rmSync(abs);
+
     try {
       // This is the exact command the Dockerfile's `build-app` stage runs
       // (see build-test.yml's `build_image` job, target: build-app). It
-      // must succeed without TalaCMS credentials and without either
-      // generated file — a string-inspection test of package.json cannot
-      // prove this; only actually running the command can.
+      // must succeed without TalaCMS credentials and without any of the
+      // three generated datasets — a string-inspection test of
+      // package.json cannot prove this; only actually running the command
+      // can.
       execSync('npm run build:app', {
         cwd: ROOT,
         stdio: 'pipe',
@@ -53,7 +72,8 @@ describe('secret-free build:app on a clean (never-synced) checkout', () => {
       );
     } finally {
       for (const [rel, content] of backups) {
-        fs.writeFileSync(path.join(ROOT, rel), content);
+        const target = path.isAbsolute(rel) ? rel : path.join(ROOT, rel);
+        fs.writeFileSync(target, content);
       }
     }
   }, 120_000);
