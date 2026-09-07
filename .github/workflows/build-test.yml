@@ -22,20 +22,19 @@ jobs:
         with:
           persist-credentials: false
 
-      # The image is not pushed anywhere at the moment but serves the following purposes:
-      # (a) performs the npm run build when building the image, and
-      # (b) acts as a placeholder if we want to deploy as a container in the future.
-      - name: Build the image
+      # Validates that the app bundles correctly, without syncing TalaCMS —
+      # PR checks (including from forks) must never require TalaCMS
+      # credentials. This is not the deployable image; see the Dockerfile's
+      # `builder`/`production` stages for that.
+      - name: Build the app bundle (no TalaCMS sync, no secrets)
         uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
         with:
           context: .
+          target: build-app
           platforms: linux/amd64
           push: false
           build-args: |
             HEAD_COMMIT_HASH=${{ github.sha }}
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/bettergov:${{github.sha}}
-            ghcr.io/${{ github.repository_owner }}/bettergov:latest
 
   lint_checks:
     name: Lint
