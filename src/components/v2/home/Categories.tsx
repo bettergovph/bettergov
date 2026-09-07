@@ -41,7 +41,7 @@ const Categories: FC = () => {
   );
 
   return (
-    <section className='mt-16'>
+    <section className='mt-16 max-md:mt-10'>
       <Container>
         <SectionHeader
           label={t('categories.label')}
@@ -50,23 +50,23 @@ const Categories: FC = () => {
             domains: CATEGORIES.length,
           })}
         />
-        <div className='grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]'>
+        <div className='grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] max-md:gap-3'>
           {CATEGORIES.map(c => (
             <Link
               key={c.slug}
               to={`/services?category=${c.slug}`}
-              className='relative block min-h-[180px] border border-ed-rule bg-white p-6 text-ed-ink no-underline transition-colors hover:border-ed-ink'
+              className='relative block min-h-[180px] border border-ed-rule bg-white p-6 text-ed-ink no-underline transition-colors hover:border-ed-ink max-md:min-h-0 max-md:p-4'
             >
-              <h3 className='font-serif-ed text-2xl font-bold text-ed-ink'>
+              <h3 className='font-serif-ed text-2xl font-bold text-ed-ink max-md:text-lg'>
                 {c.category}
               </h3>
-              <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2'>
+              <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2 max-md:mt-1.5 max-md:text-xs'>
                 {c.subcategories
                   .slice(0, 3)
                   .map(s => s.name)
                   .join(', ')}
               </p>
-              <div className='mt-4 flex items-center gap-1.5 text-xs font-medium text-ed-navy'>
+              <div className='mt-4 flex items-center gap-1.5 text-xs font-medium text-ed-navy max-md:mt-2.5'>
                 {t('categories.explore')} <ArrowRightIcon size={14} />
               </div>
             </Link>
