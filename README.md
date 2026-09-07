@@ -245,7 +245,7 @@ Both `npm run index:meilisearch` and `npm run index:meilisearch:reset` read
 refuses to run rather than index an empty or absent generated dataset (which
 under `--reset` would otherwise wipe real service search data). The
 `index-meilisearch.yml` workflow does this automatically; a local run needs
-`npm run sync:talacms` first.
+`npm run cms:fetch` first.
 
 After a sync that removes records or changes any slug, run
 `npm run index:meilisearch:reset`. A pure addition or in-place field edit may
