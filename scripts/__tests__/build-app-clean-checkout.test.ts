@@ -63,10 +63,11 @@ describe('secret-free build:app on a clean (never-synced) checkout', () => {
       fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')
     ) as { scripts: Record<string, string> };
     expect(pkg.scripts['build:app']).not.toContain('generate:metadata');
-    // The full production build still generates metadata, but only after
-    // sync:talacms has produced service_categories.json.
-    expect(pkg.scripts.build).toMatch(
-      /sync:talacms.*generate:metadata.*build:app/
-    );
+    // The full production build still generates metadata, but the CMS fetch
+    // that produces service_categories.json now runs as a separate,
+    // preceding pre-build step (`npm run cms:fetch`), not inside `build`.
+    expect(pkg.scripts.build).not.toContain('cms:fetch');
+    expect(pkg.scripts.build).not.toContain('sync:talacms');
+    expect(pkg.scripts.build).toMatch(/generate:metadata.*build:app/);
   });
 });
