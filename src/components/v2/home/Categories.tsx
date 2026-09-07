@@ -4,26 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRightIcon } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeader from '../ui/SectionHeader';
-import serviceCategories from '../../../data/service_categories.json';
-
-type Subcategory = { name: string; slug: string };
-type Category = {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
-};
+import { serviceCategories, services, type Category } from '../../../data/cms';
 
 /** Service counts per category slug, read straight from the service files. */
-const serviceFiles = import.meta.glob<{ default: unknown[] }>(
-  '../../../data/services/*.json',
-  { eager: true }
-);
-
 const countBySlug: Record<string, number> = Object.fromEntries(
-  Object.entries(serviceFiles).map(([path, mod]) => [
-    path.split('/').pop()!.replace('.json', ''),
-    mod.default.length,
-  ])
+  Object.entries(services).map(([slug, records]) => [slug, records.length])
 );
 
 // The first 12 are the real service domains; "uncategorized" sorts last and

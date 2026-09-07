@@ -12,7 +12,7 @@ import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
 import { smoothScrollToElement } from '@/lib/scrollUtils';
 
-import serviceCategories from '../../data/service_categories.json';
+import { serviceCategories } from '../../data/cms';
 import businessTradeServices from '../../data/services/business-trade.json';
 import certificatesIdsServices from '../../data/services/certificates-ids.json';
 import contributionsServices from '../../data/services/contributions.json';

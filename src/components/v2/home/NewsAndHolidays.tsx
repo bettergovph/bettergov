@@ -13,13 +13,29 @@ import {
   formatNewsDateLong,
 } from '../../../lib/news';
 import { NewsArticle, NewsArticleDetail } from '../../../types/news';
-import { HOLIDAYS_2026, HOTLINES } from './data';
+import { criticalHotlines } from '../../../data/cms';
+import { HOLIDAYS_2026 } from './data';
 
 /**
  * One lead plus four secondary headlines fills the news column. We ask for
  * one spare so pulling the lead out of the middle still leaves four.
  */
 const HOME_NEWS_COUNT = 6;
+
+/**
+ * The card is a teaser, not the full list — `/philippines/hotlines` is one
+ * click away. `criticalHotlines` is generated from TalaCMS at build time by
+ * `npm run sync:talacms`; this component reads the generated data through
+ * `src/data/cms.ts` and makes no network request itself.
+ *
+ * The file carries every number for a hotline; the card shows the first —
+ * element 0 — which is this card's long-standing display convention. Whether
+ * TalaCMS formally designates element 0 as primary is unconfirmed and is a
+ * manual acceptance item, so this deliberately claims a convention, not a
+ * CMS contract. Later entries are never promoted into element 0's place.
+ */
+const HOME_HOTLINES_LIMIT = 5;
+const HOME_HOTLINES = criticalHotlines.slice(0, HOME_HOTLINES_LIMIT);
 
 /** Circulars carry no article text upstream — only a link to the PDF. */
 const CIRCULAR_CATEGORY_ID = 6;
@@ -231,15 +247,18 @@ const NewsAndHolidays: FC = () => {
                 {t('newsAndHolidays.hotlinesTitle')}
               </h3>
               <div className='mt-4 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-2.5'>
-                {HOTLINES.map(h => (
-                  <Fragment key={h.label}>
-                    <span className='text-sm'>{h.label}</span>
+                {HOME_HOTLINES.map((h, i) => (
+                  <Fragment key={h.name}>
+                    <span className='text-sm'>{h.name}</span>
+                    {/* The first row carries the red accent, matching the
+                        single accented row this card has always had.
+                        Ordered by TalaCMS `position`, so that is 911. */}
                     <span
                       className={`font-mono-ed text-sm font-medium ${
-                        h.accent ? 'text-ed-red' : 'text-ed-ink'
+                        i === 0 ? 'text-ed-red' : 'text-ed-ink'
                       }`}
                     >
-                      {h.number}
+                      {h.numbers[0]}
                     </span>
                   </Fragment>
                 ))}

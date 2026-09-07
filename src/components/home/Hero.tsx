@@ -2,18 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch';
 import { Link } from 'react-router-dom';
-import serviceCategories from '../../data/service_categories.json';
-
-interface Subcategory {
-  name: string;
-  slug: string;
-}
-
-interface Category {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
-}
+import { serviceCategories, type Category } from '../../data/cms';
 
 const Hero: FC = () => {
   const { t } = useTranslation('common');
