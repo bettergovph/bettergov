@@ -21,18 +21,6 @@ const MastheadTop: FC = () => {
       }),
     []
   );
-  // Compact form for phones, where the long date would push the language
-  // picker onto its own line.
-  const todayShort = useMemo(
-    () =>
-      new Date().toLocaleDateString('en-PH', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      }),
-    []
-  );
 
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
   const [forexIndex, setForexIndex] = useState(0);
@@ -58,10 +46,11 @@ const MastheadTop: FC = () => {
   const currentRate = forexRates[forexIndex];
 
   return (
-    <div className='flex flex-wrap items-center gap-x-6 gap-y-1 border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-sm:gap-x-3 max-sm:py-1.5 max-sm:text-[11px]'>
-      <div className='flex min-w-0 items-center gap-4 max-sm:order-1'>
-        <span className='whitespace-nowrap max-sm:hidden'>{today}</span>
-        <span className='whitespace-nowrap sm:hidden'>{todayShort}</span>
+    // Hidden on phones: the utility links and language picker live in the
+    // hamburger menu there (see MobileMenu).
+    <div className='flex items-center gap-6 border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-md:hidden'>
+      <div className='flex min-w-0 items-center gap-4'>
+        <span className='whitespace-nowrap'>{today}</span>
         {/* Weather and forex are desktop-only — below xl they overflow the row. */}
         {weather.length > 0 && (
           <span className='inline-flex items-center gap-3 max-xl:hidden'>
@@ -92,12 +81,9 @@ const MastheadTop: FC = () => {
           </span>
         )}
       </div>
-      <div className='ml-auto flex shrink-0 items-center gap-4 max-sm:order-2'>
-        <LangToggle />
-      </div>
       <nav
         aria-label='Utility'
-        className='flex shrink-0 flex-wrap items-center gap-4 max-sm:order-3 max-sm:w-full max-sm:gap-x-2 max-sm:gap-y-0.5'
+        className='ml-auto flex shrink-0 items-center gap-4'
       >
         <Link
           to='/contact'
@@ -121,6 +107,8 @@ const MastheadTop: FC = () => {
         >
           {t('masthead.about', 'About')}
         </a>
+        <span className='text-ed-rule-strong'>|</span>
+        <LangToggle />
       </nav>
     </div>
   );
