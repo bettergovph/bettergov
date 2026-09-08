@@ -78,3 +78,29 @@ export const services: Record<string, Service[]> = Object.fromEntries(
     mod.default,
   ])
 );
+
+export interface GovernmentDepartment {
+  slug: string;
+  office_name: string;
+  [key: string]: unknown;
+}
+
+export interface ExecutiveOffice {
+  slug: string;
+  office: string;
+  [key: string]: unknown;
+}
+
+const departmentsModules = import.meta.glob<{
+  default: GovernmentDepartment[];
+}>('./directory/departments.json', { eager: true });
+
+export const governmentDepartments: GovernmentDepartment[] =
+  required(departmentsModules);
+
+const executiveModules = import.meta.glob<{ default: ExecutiveOffice[] }>(
+  './directory/executive.json',
+  { eager: true }
+);
+
+export const executiveOffices: ExecutiveOffice[] = required(executiveModules);
