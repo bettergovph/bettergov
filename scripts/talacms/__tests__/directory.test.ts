@@ -6,6 +6,28 @@ import {
   parseExecutiveResponse,
 } from '../directory';
 import { shapeDepartments, shapeExecutive, sortForOutput } from '../directory';
+import departmentsResponse from './fixtures/departments-response.json';
+import executiveResponse from './fixtures/executive-response.json';
+import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
+import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
+import type { RawDepartment, RawExecutive } from '../directory';
+
+const rawDepartments =
+  departmentsResponse.allGovernmentDepartments as unknown as RawDepartment[];
+const rawExecutive =
+  executiveResponse.allExecutiveOffices as unknown as RawExecutive[];
+
+/** Deep key-sort, so equality compares content without regard to key order. */
+const sortDeep = (v: unknown): unknown =>
+  Array.isArray(v)
+    ? v.map(sortDeep)
+    : v && typeof v === 'object'
+      ? Object.fromEntries(
+          Object.keys(v as object)
+            .sort()
+            .map(k => [k, sortDeep((v as Record<string, unknown>)[k])])
+        )
+      : v;
 
 const dept = (over: Record<string, unknown> = {}) => ({
   position: 0,
@@ -402,5 +424,81 @@ describe('record ordering in shaped output', () => {
       dept({ position: 4, slug: 'alpha', officeName: 'A' }),
     ]);
     expect(out.map(r => r.slug)).toEqual(['alpha', 'zeta']);
+  });
+});
+
+describe('round-trip equivalence against the pre-migration files', () => {
+  it('reproduces every committed department record content-for-content', () => {
+    expect(sortDeep(shapeDepartments(rawDepartments))).toEqual(
+      sortDeep(expectedDepartments)
+    );
+  });
+
+  it('reproduces every committed executive record content-for-content', () => {
+    expect(sortDeep(shapeExecutive(rawExecutive))).toEqual(
+      sortDeep(expectedExecutive)
+    );
+  });
+
+  /**
+   * Kept because live data still reproduces today's file order exactly:
+   * position order equals committed file order for both models as of
+   * 2026-09-08, and the (position, nulls-last, slug) sort preserves that.
+   */
+  it('preserves the exact record order of the committed files', () => {
+    expect(shapeDepartments(rawDepartments).map(r => r.slug)).toEqual(
+      expectedDepartments.map(r => r.slug)
+    );
+    expect(shapeExecutive(rawExecutive).map(r => r.slug)).toEqual(
+      expectedExecutive.map(r => r.slug)
+    );
+  });
+
+  /**
+   * Executive is byte-exact for 35/38. The 3 exceptions differ only in nested
+   * key order inside `officials` entries ({personnel, office_division} from the
+   * CMS vs {office_division, personnel} locally). _ExecutiveOfficePage reads
+   * those by name (`'office_division' in e`, `d.personnel`), so the flip is
+   * not user-visible.
+   */
+  it('is byte-exact for every executive record without nested officials divisions', () => {
+    const NESTED = new Set([
+      'office-of-the-president',
+      'office-of-the-vice-president',
+      'presidential-communications-office',
+    ]);
+    const out = shapeExecutive(rawExecutive);
+    const byteExact = out.filter(
+      (r, i) => JSON.stringify(r) === JSON.stringify(expectedExecutive[i])
+    );
+    expect(byteExact).toHaveLength(expectedExecutive.length - NESTED.size);
+  });
+
+  /**
+   * Guards the ACCEPTED key-order delta (Option 1) so it can only shrink,
+   * never silently grow. 14/23 is the measured baseline with
+   * assistant_secretaries hoisted.
+   */
+  it('holds departments key-order agreement at or above the measured baseline', () => {
+    const out = shapeDepartments(rawDepartments);
+    const agree = out.filter(
+      (r, i) =>
+        Object.keys(r).join() === Object.keys(expectedDepartments[i]).join()
+    ).length;
+    expect(agree).toBeGreaterThanOrEqual(14);
+  });
+
+  /** Option 1's hard condition: no content may be lost or added. */
+  it('emits exactly the same top-level key SET per record as the committed file', () => {
+    for (const [i, rec] of shapeDepartments(rawDepartments).entries()) {
+      expect(Object.keys(rec).sort()).toEqual(
+        Object.keys(expectedDepartments[i]).sort()
+      );
+    }
+    for (const [i, rec] of shapeExecutive(rawExecutive).entries()) {
+      expect(Object.keys(rec).sort()).toEqual(
+        Object.keys(expectedExecutive[i]).sort()
+      );
+    }
   });
 });
