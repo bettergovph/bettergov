@@ -782,10 +782,13 @@ describe('assertUniqueDirectorySlugs', () => {
     problems: [],
   });
 
-  it('passes on the real repository snapshot', async () => {
-    const snap = await loadDirectorySnapshot();
-    expect(() => assertUniqueDirectorySlugs(snap)).not.toThrow();
-  });
+  it.runIf(hasGeneratedDirectoryData)(
+    'passes on the real repository snapshot',
+    async () => {
+      const snap = await loadDirectorySnapshot();
+      expect(() => assertUniqueDirectorySlugs(snap)).not.toThrow();
+    }
+  );
 
   it('fails closed when a department and an executive office share a slug', () => {
     expect(() =>
