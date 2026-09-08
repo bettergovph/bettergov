@@ -525,9 +525,23 @@ function applyFieldMap(
     hoist?: readonly string[];
     details?: Record<string, unknown> | null;
     trailing?: FieldMap;
+    /**
+     * Opt-in, Constitutional-only. The CMS carries `""` for three scalars on
+     * one SUC record where the committed file simply omits the key; without
+     * this the generated file would differ from its own contract for no
+     * visible benefit. OFF by default, so Departments and Executive keep
+     * preserving falsy-but-present values ([], "", 0, false) exactly as
+     * before.
+     */
+    omitEmptyStrings?: boolean;
   } = {}
 ): Record<string, unknown> {
   const out: Record<string, unknown> = {};
+  const present = (value: unknown) =>
+    value !== null &&
+    value !== undefined &&
+    !(options.omitEmptyStrings === true && value === '');
+
   const mapped = new Set<string>([
     ...fields.map(([, local]) => local),
     ...(options.trailing ?? []).map(([, local]) => local),
@@ -543,29 +557,99 @@ function applyFieldMap(
   }
 
   for (const [cms, local] of fields) {
-    if (raw[cms] !== null && raw[cms] !== undefined) out[local] = raw[cms];
+    if (present(raw[cms])) out[local] = raw[cms];
   }
 
   // Same null-vs-absent rule as the mapped scalars above: a null or undefined
   // value is OMITTED, never emitted. Applies to hoisted and ordinary detail
-  // keys alike. Falsy-but-present values ([], "", 0, false) are preserved.
+  // keys alike. Falsy-but-present values ([], "", 0, false) are preserved
+  // unless `omitEmptyStrings` is set, which drops "" as well.
   for (const key of options.hoist ?? []) {
     if (key in details) {
-      if (details[key] !== null && details[key] !== undefined)
-        out[key] = details[key];
+      if (present(details[key])) out[key] = details[key];
       delete details[key];
     }
   }
 
   for (const [key, value] of Object.entries(details)) {
-    if (value !== null && value !== undefined) out[key] = value;
+    if (present(value)) out[key] = value;
   }
 
   for (const [cms, local] of options.trailing ?? []) {
-    if (raw[cms] !== null && raw[cms] !== undefined) out[local] = raw[cms];
+    if (present(raw[cms])) out[local] = raw[cms];
   }
 
   return out;
+}
+
+/**
+ * Order matters: this array IS the emitted key order. Measured against the
+ * committed file, `email` after `officials` — not after `phone`, where the
+ * CMS lists it — raises exact key-order agreement from 26/229 to 103/229.
+ * The committed file's own key order is internally inconsistent (`email`
+ * precedes `website` in some records and follows `officials` in others), so
+ * exact agreement is unreachable; the residual difference is key order only,
+ * proven content-identical by the deep key-sorted round-trip test.
+ *
+ * `additionalDetails` is spread after these, via applyFieldMap's `details`
+ * option — it carries `region` and `satellite_office`.
+ */
+const CONSTITUTIONAL_FIELDS = [
+  ['slug', 'slug'],
+  ['officeType', 'office_type'],
+  ['name', 'name'],
+  ['description', 'description'],
+  ['address', 'address'],
+  ['phone', 'phone'],
+  ['trunklines', 'trunklines'],
+  ['website', 'website'],
+  ['officials', 'officials'],
+  ['email', 'email'],
+  ['regionalOffices', 'regional_offices'],
+  ['publicAssistance', 'public_assistance'],
+] as const;
+
+/**
+ * The CMS `trunklines` JsonField is polymorphic — an array for
+ * civil-service-commission-csc, a bare string for commission-on-audit-coa and
+ * office-of-the-ombudsman. The tracked JSON Schema declares an array and every
+ * consumer reads `trunklines?.[0]`, so a bare string would both fail schema
+ * validation and, if it slipped through, render as "(".
+ *
+ * Accepted consequence: those two offices currently render NO trunkline
+ * anywhere (their local keys are `trunk_line`/`trunkline`, which nothing
+ * reads) and will start showing one. That is a content improvement, approved
+ * as decision B.
+ *
+ * A blank string is treated as absent rather than emitted as [""].
+ */
+export function normalizeTrunklines(
+  value: string[] | string | null
+): string[] | null {
+  if (value === null) return null;
+  if (Array.isArray(value)) return value;
+  return value.trim() === '' ? null : [value];
+}
+
+export function shapeConstitutional(
+  records: RawConstitutional[]
+): Record<string, unknown>[] {
+  return sortForOutput(records).map(r => {
+    // Re-asserted here, not only in parseConstitutionalResponse: the shaper is
+    // exported and called directly by tests and by buildConstitutionalCandidate,
+    // and an unreviewed key must not be able to reach the generated file by any
+    // path. Runs BEFORE applyFieldMap's own collision check, and is strictly
+    // stronger than it.
+    assertAllowedDetailKeys(r.slug, r.additionalDetails);
+    return applyFieldMap(
+      {
+        ...r,
+        trunklines: normalizeTrunklines(r.trunklines),
+      } as unknown as Record<string, unknown>,
+      CONSTITUTIONAL_FIELDS,
+      { details: r.additionalDetails, omitEmptyStrings: true }
+    );
+  });
 }
 
 export function shapeDepartments(
@@ -601,6 +685,16 @@ export function buildExecutiveCandidate(raw: RawExecutives): Candidate {
     path: 'src/data/directory/executive.json',
     schemaPath: 'src/data/directory/schema/executive.schema.json',
     data: shapeExecutive(raw.allExecutiveOffices),
+  };
+}
+
+export function buildConstitutionalCandidate(
+  raw: RawConstitutionals
+): Candidate {
+  return {
+    path: 'src/data/directory/constitutional.json',
+    schemaPath: 'src/data/directory/schema/constitutional.schema.json',
+    data: shapeConstitutional(raw.allConstitutionalOffices),
   };
 }
 
