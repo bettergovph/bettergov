@@ -20,6 +20,7 @@ const {
   loadDirectorySnapshot,
   assertUniqueDirectorySlugs,
   assemblePreflightDocuments,
+  reconcileStaleDirectoryDocuments,
 } = indexMeilisearch;
 
 const REPO_ROOT = process.cwd();
@@ -1078,5 +1079,180 @@ describe.runIf(hasGeneratedDirectoryData)('real directory data', () => {
     );
     expect(snap.documents).toHaveLength(612);
     expect(snap.complete).toBe(true);
+  });
+});
+
+/**
+ * Fake index + fake waiter. The waiter stands in for waitForSuccess, which
+ * closes over the module-level Meilisearch client and would otherwise be hit
+ * for real. It resolves a succeeded task, exactly as the real one does.
+ */
+const fakeIndex = (indexed: { slug: string; type: string }[]) => {
+  const state = {
+    deleted: [] as string[],
+    filters: [] as string[],
+    getDocumentsCalls: 0,
+    async getDocuments({
+      filter,
+      limit,
+      offset,
+    }: {
+      filter: string;
+      limit: number;
+      offset: number;
+    }) {
+      state.getDocumentsCalls += 1;
+      state.filters.push(filter);
+      const rows = indexed.filter(d => d.type === filter.split('= ')[1].trim());
+      return {
+        results: rows.slice(offset, offset + limit),
+        total: rows.length,
+      };
+    },
+    deleteDocuments(slugs: string[]) {
+      state.deleted.push(...slugs);
+      return Promise.resolve({ taskUid: 42 });
+    },
+  };
+  return state;
+};
+
+const fakeWaiter = () => {
+  const awaited: { taskUid: number; label: string }[] = [];
+  const waiter = async (
+    taskPromise: Promise<{ taskUid: number }>,
+    label: string
+  ) => {
+    const task = await taskPromise;
+    awaited.push({ taskUid: task.taskUid, label });
+    return { status: 'succeeded', taskUid: task.taskUid };
+  };
+  return { waiter, awaited };
+};
+
+const snap = (slugs: string[], complete = true) => ({
+  documents: slugs.map(slug => ({ slug })),
+  bySourceFile: new Map(),
+  expectedFiles: [],
+  loadedFiles: [],
+  complete,
+  problems: complete ? [] : ['judicial.json failed to parse'],
+});
+
+describe('reconcileStaleDirectoryDocuments', () => {
+  it('deletes exactly the directory_item slugs missing from the current snapshot', async () => {
+    const index = fakeIndex([
+      { slug: 'department-of-x', type: 'directory_item' },
+      { slug: 'department-of-retired', type: 'directory_item' },
+      { slug: 'office-of-y', type: 'directory_item' },
+    ]);
+    const { waiter, awaited } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(
+      index,
+      snap(['department-of-x', 'office-of-y']),
+      { waiter }
+    );
+    expect(index.deleted).toEqual(['department-of-retired']);
+    expect(awaited).toEqual([
+      { taskUid: 42, label: 'Stale directory document removal' },
+    ]);
+  });
+
+  it("deletes a renamed record's old slug", async () => {
+    const index = fakeIndex([{ slug: 'old-slug', type: 'directory_item' }]);
+    const { waiter } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(index, snap(['new-slug']), {
+      waiter,
+    });
+    expect(index.deleted).toEqual(['old-slug']);
+  });
+
+  it('only ever queries type = directory_item', async () => {
+    const index = fakeIndex([{ slug: 'a', type: 'directory_item' }]);
+    const { waiter } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(index, snap(['a']), { waiter });
+    expect(index.filters.every(f => f === 'type = directory_item')).toBe(true);
+  });
+
+  it('never deletes a service or website document', async () => {
+    const index = fakeIndex([
+      { slug: 'some-service', type: 'service' },
+      { slug: 'some-website', type: 'website' },
+      { slug: 'a', type: 'directory_item' },
+    ]);
+    const { waiter } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(index, snap(['a']), { waiter });
+    expect(index.deleted).toEqual([]);
+  });
+
+  it('does not delete tolerant directory datasets that are still present', async () => {
+    const index = fakeIndex([
+      { slug: 'department-of-x', type: 'directory_item' },
+      { slug: 'civil-service-commission-csc', type: 'directory_item' },
+    ]);
+    const { waiter } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(
+      index,
+      snap(['department-of-x', 'civil-service-commission-csc']),
+      { waiter }
+    );
+    expect(index.deleted).toEqual([]);
+  });
+
+  /**
+   * The completeness guard. One malformed local directory file must stop the
+   * deletion path entirely — no query, no delete, no waiter call.
+   */
+  it('runs no query, no deletion and no task wait on an incomplete snapshot', async () => {
+    const index = fakeIndex([
+      { slug: 'department-of-x', type: 'directory_item' },
+      { slug: 'civil-service-commission-csc', type: 'directory_item' },
+    ]);
+    const { waiter, awaited } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(
+      index,
+      snap(['department-of-x'], /* complete */ false),
+      { waiter }
+    );
+    expect(index.getDocumentsCalls).toBe(0);
+    expect(index.deleted).toEqual([]);
+    expect(awaited).toEqual([]);
+  });
+
+  it('is a no-op, with no task wait, when nothing is stale', async () => {
+    const index = fakeIndex([{ slug: 'a', type: 'directory_item' }]);
+    const { waiter, awaited } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(index, snap(['a']), { waiter });
+    expect(index.deleted).toEqual([]);
+    expect(awaited).toEqual([]);
+  });
+
+  it('defaults to the real waitForSuccess when none is injected', () => {
+    // Signature guard: the waiter is optional, so production callers are
+    // unchanged and only tests substitute it.
+    expect(reconcileStaleDirectoryDocuments.length).toBe(2);
+  });
+});
+
+/**
+ * End-to-end of the completeness contract, at the loader level rather than
+ * with a fake: a malformed tolerant file must produce an incomplete snapshot,
+ * which is what gates the deletion path above.
+ */
+describe('malformed tolerant file blocks reconciliation', () => {
+  it('yields an incomplete snapshot that still contains the other files documents', async () => {
+    const snapshot = await loadDirectorySnapshot({
+      dir: fixtureDirWithMalformed('judicial.json'),
+    });
+    expect(snapshot.complete).toBe(false);
+    // Existing tolerant contract preserved: indexing may still proceed.
+    expect(snapshot.documents.length).toBeGreaterThan(0);
+
+    const index = fakeIndex([{ slug: 'anything', type: 'directory_item' }]);
+    const { waiter, awaited } = fakeWaiter();
+    await reconcileStaleDirectoryDocuments(index, snapshot, { waiter });
+    expect(index.getDocumentsCalls).toBe(0);
+    expect(index.deleted).toEqual([]);
+    expect(awaited).toEqual([]);
   });
 });
