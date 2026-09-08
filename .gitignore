@@ -55,3 +55,4 @@ wrangler.toml
 /src/data/services/*.json
 /src/data/directory/departments.json
 /src/data/directory/executive.json
+/src/data/directory/constitutional.json
