@@ -57,6 +57,17 @@ describe('CMS accessor boundary', () => {
     expect(violations).toEqual([]);
   });
 
+  it('routes generated directory data through the accessor only', () => {
+    const DIRECTORY_JSON_PATTERN =
+      /from\s+['"].*data\/directory\/(departments|executive)\.json['"]/;
+    const offenders = files
+      .filter(f => f.path !== ACCESSOR)
+      .filter(f => DIRECTORY_JSON_PATTERN.test(f.code))
+      .map(f => f.path);
+
+    expect(offenders).toEqual([]);
+  });
+
   describe('GENERATED_PATH_PATTERN — bite tests', () => {
     it.each([
       ["import x from '../../data/service_categories.json';"],

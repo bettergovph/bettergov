@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import departmentsData from '../../../data/directory/departments.json';
+import { governmentDepartments as departmentsData } from '../../../data/cms';
 import Container from '../../../components/v2/ui/Container';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';
 import DetailHeader from '../../../components/v2/directory/DetailHeader';

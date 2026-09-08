@@ -18,6 +18,11 @@ describe('generated CMS output is never committed', () => {
     expect(trackedTopLevelServiceFiles).toEqual([]);
   });
 
+  it('does not track src/data/directory/departments.json or executive.json', () => {
+    expect(trackedFiles).not.toContain('src/data/directory/departments.json');
+    expect(trackedFiles).not.toContain('src/data/directory/executive.json');
+  });
+
   it('still tracks the schemas that are the generated data’s contract', () => {
     expect(trackedFiles).toContain(
       'src/data/schema/service_categories.schema.json'
@@ -31,5 +36,16 @@ describe('generated CMS output is never committed', () => {
     expect(trackedFiles).toContain(
       'src/data/services/schema/services.schema.json'
     );
+  });
+
+  it('still tracks src/data/directory/schema/** and __fixtures__/**', () => {
+    const trackedDirectorySchemaFiles = trackedFiles.filter(f =>
+      f.startsWith('src/data/directory/schema/')
+    );
+    const trackedDirectoryFixtureFiles = trackedFiles.filter(f =>
+      f.startsWith('src/data/directory/__fixtures__/')
+    );
+    expect(trackedDirectorySchemaFiles.length).toBeGreaterThan(0);
+    expect(trackedDirectoryFixtureFiles.length).toBeGreaterThan(0);
   });
 });

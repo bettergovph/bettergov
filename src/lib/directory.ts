@@ -1,6 +1,8 @@
 import constitutional from '../data/directory/constitutional.json';
-import departments from '../data/directory/departments.json';
-import executive from '../data/directory/executive.json';
+import {
+  governmentDepartments as departments,
+  executiveOffices as executive,
+} from '../data/cms';
 import diplomatic from '../data/directory/diplomatic.json';
 import legislative from '../data/directory/legislative.json';
 
