@@ -59,13 +59,31 @@ describe('CMS accessor boundary', () => {
 
   it('routes generated directory data through the accessor only', () => {
     const DIRECTORY_JSON_PATTERN =
-      /from\s+['"].*data\/directory\/(departments|executive)\.json['"]/;
+      /from\s+['"].*data\/directory\/(departments|executive|constitutional)\.json['"]/;
     const offenders = files
       .filter(f => f.path !== ACCESSOR)
       .filter(f => DIRECTORY_JSON_PATTERN.test(f.code))
       .map(f => f.path);
 
     expect(offenders).toEqual([]);
+  });
+
+  it('DIRECTORY_JSON_PATTERN bites on each generated directory file', () => {
+    const DIRECTORY_JSON_PATTERN =
+      /from\s+['"].*data\/directory\/(departments|executive|constitutional)\.json['"]/;
+    for (const f of ['departments', 'executive', 'constitutional']) {
+      expect(
+        DIRECTORY_JSON_PATTERN.test(
+          `import x from '../../data/directory/${f}.json';`
+        )
+      ).toBe(true);
+    }
+    // The still-local datasets are deliberately NOT covered.
+    expect(
+      DIRECTORY_JSON_PATTERN.test(
+        "import x from '../../data/directory/judicial.json';"
+      )
+    ).toBe(false);
   });
 
   describe('GENERATED_PATH_PATTERN — bite tests', () => {
