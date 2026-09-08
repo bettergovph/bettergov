@@ -10,6 +10,13 @@ import {
   type RawService,
 } from './talacms/services';
 import {
+  assertNoCrossModelSlugCollision,
+  buildDepartmentsCandidate,
+  buildExecutiveCandidate,
+  fetchDepartments,
+  fetchExecutive,
+} from './talacms/directory';
+import {
   commitFiles,
   prepare,
   readServiceFileNames,
@@ -21,7 +28,13 @@ import {
 } from './talacms/write';
 import type { ServiceRecordRef, Taxonomy } from './talacms/categories';
 
-const DATASETS = ['categories', 'hotlines', 'services'] as const;
+export const DATASETS = [
+  'categories',
+  'hotlines',
+  'services',
+  'departments',
+  'executive',
+] as const;
 type DatasetName = (typeof DATASETS)[number];
 
 interface Deps {
@@ -157,10 +170,22 @@ async function buildCandidates(
     });
   }
 
+  // Departments and Executive: two independent fetches, each issued only when
+  // its own dataset is selected — see the isolation contract in this
+  // function's doc comment. Neither model is ever queried on behalf of the
+  // other, not even to discard the result.
+  const rawDepartments = selected.has('departments')
+    ? await fetchDepartments(client)
+    : null;
+  const rawExecutive = selected.has('executive')
+    ? await fetchExecutive(client)
+    : null;
+
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
-  // then services in path-codepoint order, so preparation order, the
-  // `~ changed / unchanged` status lines and commitFiles' rename order are all
-  // reproducible, including under partial failure.
+  // then services in path-codepoint order, then departments, then executive,
+  // so preparation order, the `~ changed / unchanged` status lines and
+  // commitFiles' rename order are all reproducible, including under partial
+  // failure.
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
   if (selected.has('hotlines')) {
@@ -174,6 +199,23 @@ async function buildCandidates(
       ).sort((a, b) => byCodepoint(a.path, b.path))
     );
   }
+
+  const departmentsCandidate = rawDepartments
+    ? buildDepartmentsCandidate(rawDepartments)
+    : null;
+  const executiveCandidate = rawExecutive
+    ? buildExecutiveCandidate(rawExecutive)
+    : null;
+
+  // §6.0 run-mode matrix: a gate whose inputs a mode does not have is not
+  // applied — no weaker substitute, and never a read of the other model's
+  // committed file. Only a run carrying BOTH candidates can compare them.
+  if (departmentsCandidate && executiveCandidate) {
+    assertNoCrossModelSlugCollision(departmentsCandidate, executiveCandidate);
+  }
+
+  if (departmentsCandidate) candidates.push(departmentsCandidate);
+  if (executiveCandidate) candidates.push(executiveCandidate);
 
   // Stage 5 — §6.10. This function returns before `run` prepares anything, so
   // the gate is structurally ahead of the first `prepare` call.
