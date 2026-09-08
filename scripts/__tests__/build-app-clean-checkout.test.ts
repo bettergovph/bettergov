@@ -15,6 +15,7 @@ const GENERATED_FILES = [
   'src/data/critical_hotlines.json',
   'src/data/directory/departments.json',
   'src/data/directory/executive.json',
+  'src/data/directory/constitutional.json',
 ];
 
 /** Rewritten by build:app itself (write-ver-to-json.ts) — restore it after. */
@@ -104,16 +105,17 @@ describe('generate:metadata fails closed without the generated directory data', 
     // behavior so a future refactor of loadData() cannot regress it back
     // into silently writing a sitemap/llms.txt missing every
     // department/executive URL.
-    const departmentsPath = path.join(
-      ROOT,
-      'src/data/directory/departments.json'
-    );
-    const executivePath = path.join(ROOT, 'src/data/directory/executive.json');
+    const generatedDirectoryFiles = [
+      'src/data/directory/departments.json',
+      'src/data/directory/executive.json',
+      'src/data/directory/constitutional.json',
+    ].map(rel => path.join(ROOT, rel));
+
     const backups = new Map<string, Buffer>();
-    for (const abs of [departmentsPath, executivePath]) {
+    for (const abs of generatedDirectoryFiles) {
       if (fs.existsSync(abs)) backups.set(abs, fs.readFileSync(abs));
     }
-    for (const abs of [departmentsPath, executivePath]) {
+    for (const abs of generatedDirectoryFiles) {
       if (fs.existsSync(abs)) fs.rmSync(abs);
     }
 
@@ -143,6 +145,44 @@ describe('generate:metadata fails closed without the generated directory data', 
       expect(output).toMatch(/ENOENT|Error loading data/);
     } finally {
       for (const [abs, content] of backups) fs.writeFileSync(abs, content);
+    }
+  }, 60_000);
+
+  it('names the missing constitutional file specifically', () => {
+    // generate-sitemap.js and generate-llms-txt.js both read
+    // constitutional.json through the same loadData() wrapper, which
+    // process.exit(1)s on any read/parse failure. Pin that, so a refactor
+    // cannot regress into silently emitting a sitemap missing every
+    // /government/constitutional/<slug> URL.
+    const abs = path.join(ROOT, 'src/data/directory/constitutional.json');
+    const backup = fs.existsSync(abs) ? fs.readFileSync(abs) : null;
+    if (backup) fs.rmSync(abs);
+
+    try {
+      let threw = false;
+      let output = '';
+      try {
+        execSync('npm run generate:metadata', {
+          cwd: ROOT,
+          stdio: 'pipe',
+          timeout: 60_000,
+        });
+      } catch (error) {
+        threw = true;
+        const e = error as {
+          status?: number;
+          stdout?: Buffer;
+          stderr?: Buffer;
+        };
+        expect(e.status).not.toBe(0);
+        output = [e.stdout?.toString(), e.stderr?.toString()]
+          .filter(Boolean)
+          .join('\n');
+      }
+      expect(threw).toBe(true);
+      expect(output).toMatch(/constitutional\.json/);
+    } finally {
+      if (backup) fs.writeFileSync(abs, backup);
     }
   }, 60_000);
 });
