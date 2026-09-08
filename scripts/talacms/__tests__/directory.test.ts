@@ -11,8 +11,16 @@ import {
   buildExecutiveCandidate,
   assertNoCrossModelSlugCollision,
 } from '../directory';
+import {
+  CONSTITUTIONAL_QUERY,
+  CONSTITUTIONAL_PAGE_SIZE,
+  CONSTITUTIONAL_DETAIL_KEYS,
+  assertAllowedDetailKeys,
+  parseConstitutionalResponse,
+} from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
+import constitutionalResponse from './fixtures/constitutional-response.json';
 import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
 import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
 import type { RawDepartment, RawExecutive } from '../directory';
@@ -598,5 +606,372 @@ describe('schema validation against tracked schemas', () => {
         data: [{ slug: 'x' }], // office_name is required
       })
     ).rejects.toThrow(/does not satisfy/);
+  });
+});
+
+const con = (over: Record<string, unknown> = {}) => ({
+  position: 0,
+  slug: 'commission-on-x',
+  name: 'COMMISSION ON X',
+  officeType: 'Constitutional Office',
+  description: null,
+  address: null,
+  phone: null,
+  trunklines: null,
+  website: null,
+  email: null,
+  officials: [{ name: 'A PERSON', role: 'Chairperson' }],
+  regionalOffices: null,
+  publicAssistance: null,
+  additionalDetails: null,
+  ...over,
+});
+
+const okCons = (cons = [con()]) => ({
+  _allConstitutionalOfficesMeta: { count: cons.length },
+  allConstitutionalOffices: cons,
+});
+
+describe('CONSTITUTIONAL_QUERY', () => {
+  it('declares its _all*Meta field before its collection field', () => {
+    const metaIndex = CONSTITUTIONAL_QUERY.indexOf('Meta');
+    expect(metaIndex).toBeGreaterThan(-1);
+    expect(metaIndex).toBeLessThan(
+      CONSTITUTIONAL_QUERY.indexOf('allConstitutionalOffices(')
+    );
+  });
+
+  it('orders by position_ASC', () => {
+    expect(
+      CONSTITUTIONAL_QUERY.match(/orderBy: \[position_ASC\]/g)
+    ).toHaveLength(1);
+  });
+
+  it('never requests the system timestamps', () => {
+    expect(CONSTITUTIONAL_QUERY).not.toContain('_createdAt');
+    expect(CONSTITUTIONAL_QUERY).not.toContain('_updatedAt');
+  });
+
+  it('requests its own page-size ceiling, not the shared one', () => {
+    expect(CONSTITUTIONAL_QUERY).toContain(
+      `first: ${CONSTITUTIONAL_PAGE_SIZE}`
+    );
+    expect(CONSTITUTIONAL_PAGE_SIZE).toBeGreaterThan(229);
+    // The CDA hard-caps `first` at 500; staying under it keeps the ceiling
+    // gate meaningful rather than aliasing the server's own limit.
+    expect(CONSTITUTIONAL_PAGE_SIZE).toBeLessThan(500);
+  });
+
+  it('never mentions the departments or executive collections', () => {
+    expect(CONSTITUTIONAL_QUERY).not.toContain('allGovernmentDepartments');
+    expect(CONSTITUTIONAL_QUERY).not.toContain('allExecutiveOffices');
+  });
+});
+
+describe('query isolation — constitutional', () => {
+  it('DEPARTMENTS_QUERY never mentions the constitutional collection', () => {
+    expect(DEPARTMENTS_QUERY).not.toContain('allConstitutionalOffices');
+    expect(DEPARTMENTS_QUERY).not.toContain('_allConstitutionalOfficesMeta');
+  });
+
+  it('EXECUTIVE_QUERY never mentions the constitutional collection', () => {
+    expect(EXECUTIVE_QUERY).not.toContain('allConstitutionalOffices');
+    expect(EXECUTIVE_QUERY).not.toContain('_allConstitutionalOfficesMeta');
+  });
+});
+
+describe('parseConstitutionalResponse', () => {
+  it('accepts a well-formed response', () => {
+    expect(
+      parseConstitutionalResponse(okCons()).allConstitutionalOffices
+    ).toHaveLength(1);
+  });
+
+  it('accepts the real 229-record fixture', () => {
+    expect(
+      parseConstitutionalResponse(constitutionalResponse)
+        .allConstitutionalOffices
+    ).toHaveLength(229);
+  });
+
+  it('accepts trunklines as an array and as a bare string', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ trunklines: ['(632) 1', '2'] })])
+      )
+    ).not.toThrow();
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ trunklines: '(632) 8952-5700' })])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed when trunklines is neither an array of strings nor a string', () => {
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ trunklines: { n: 1 } })]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it('fails closed when the collection is short of its meta count', () => {
+    const short = {
+      ...okCons(),
+      _allConstitutionalOfficesMeta: { count: 2 },
+    };
+    expect(() => parseConstitutionalResponse(short)).toThrow(/incomplete/i);
+  });
+
+  it('fails closed on zero records', () => {
+    expect(() => parseConstitutionalResponse(okCons([]))).toThrow(
+      /no constitutional offices/i
+    );
+  });
+
+  it('fails closed at its own page-size ceiling, not the shared 100', () => {
+    const many = Array.from({ length: CONSTITUTIONAL_PAGE_SIZE }, (_, i) =>
+      con({ slug: `office-${i}`, position: i })
+    );
+    expect(() => parseConstitutionalResponse(okCons(many))).toThrow(/ceiling/i);
+  });
+
+  it('does NOT fail at 229 records — the shared 100 ceiling must not apply', () => {
+    const many = Array.from({ length: 229 }, (_, i) =>
+      con({ slug: `office-${i}`, position: i })
+    );
+    expect(() => parseConstitutionalResponse(okCons(many))).not.toThrow();
+  });
+
+  it('fails closed on a duplicate slug', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ slug: 'same' }), con({ slug: 'same', position: 1 })])
+      )
+    ).toThrow(/duplicate slug "same"/);
+  });
+
+  it('fails closed on a slug that is not a valid slug', () => {
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ slug: 'Not A Slug' })]))
+    ).toThrow(/not a valid slug/);
+  });
+
+  it('fails closed on a blank display name', () => {
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ name: '   ' })]))
+    ).toThrow(/blank display name/);
+  });
+
+  it('fails closed on a blank office_type, naming the slug', () => {
+    // /government/constitutional/goccs and /sucs BOTH filter on office_type;
+    // a blank value silently drops the record from both pages.
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ officeType: '  ' })]))
+    ).toThrow(/commission-on-x.*office_type/s);
+  });
+
+  it('fails closed when an official is missing its name or role', () => {
+    // src/pages/government/constitutional/data.ts parses with
+    // ConstitutionalOfficeSchema at MODULE SCOPE — a missing name or role
+    // throws at import and takes down the whole route tree.
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ officials: [{ role: 'Chairperson' }] })])
+      )
+    ).toThrow(/unexpected constitutional offices shape/i);
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ officials: [{ name: 'A PERSON', role: '' }] })])
+      )
+    ).toThrow(/unexpected constitutional offices shape/i);
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ officials: [{ name: '', role: 'Chairperson' }] })])
+      )
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it.each([
+    ['name', { name: '   ', role: 'Chairperson' }],
+    ['name', { name: '\t\n', role: 'Chairperson' }],
+    ['role', { name: 'A PERSON', role: '   ' }],
+    ['role', { name: 'A PERSON', role: '\t\n' }],
+  ])('fails closed on a whitespace-only official %s', (_field, official) => {
+    // z.string().min(1) would ACCEPT "   ". A blank role renders as an empty
+    // cell in OfficialsTable and an empty sidebar row, while every
+    // count-based gate still reports a healthy 229.
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ officials: [official] })]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it('trims surrounding whitespace off an official name and role', () => {
+    // .trim() is a zod TRANSFORM, so parsed values are trimmed and the
+    // trimmed value is what reaches the generated file. Pinned so the
+    // normalization is deliberate rather than incidental.
+    const parsed = parseConstitutionalResponse(
+      okCons([
+        con({ officials: [{ name: '  A PERSON  ', role: ' Chairperson ' }] }),
+      ])
+    );
+    expect(parsed.allConstitutionalOffices[0].officials[0]).toMatchObject({
+      name: 'A PERSON',
+      role: 'Chairperson',
+    });
+  });
+
+  it('fails closed when officials is null rather than an array', () => {
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ officials: null })]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it('keeps unknown official keys rather than rejecting them', () => {
+    const parsed = parseConstitutionalResponse(
+      okCons([
+        con({
+          officials: [
+            {
+              name: 'A PERSON',
+              role: 'Chairperson',
+              office: 'Legal',
+              contact: 'loc. 1',
+            },
+          ],
+        }),
+      ])
+    );
+    expect(parsed.allConstitutionalOffices[0].officials[0]).toMatchObject({
+      office: 'Legal',
+      contact: 'loc. 1',
+    });
+  });
+
+  it('fails closed on a null position', () => {
+    // Unlike departments and executive, Constitutional record ORDER is
+    // consumed — ConstitutionalSidebar renders in array order and
+    // generate-sitemap.js emits URLs in array order. A null position would
+    // sink the record to the end of the file via sortForOutput's null-last
+    // rule, silently reordering the sidebar with no count changing.
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ position: null })]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it('fails closed on a missing or non-integer position', () => {
+    const noPosition: Record<string, unknown> = con();
+    delete noPosition.position;
+    expect(() =>
+      parseConstitutionalResponse(okCons([noPosition as never]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ position: 1.5 })]))
+    ).toThrow(/unexpected constitutional offices shape/i);
+  });
+
+  it('fails closed on a duplicate position, naming both slugs', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([
+          con({ slug: 'office-a', position: 7 }),
+          con({ slug: 'office-b', position: 7 }),
+        ])
+      )
+    ).toThrow(/office-a.*office-b.*duplicate position 7/s);
+  });
+
+  it('accepts non-contiguous positions — gaps are normal after a retirement', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([
+          con({ slug: 'office-a', position: 0 }),
+          con({ slug: 'office-b', position: 5 }),
+          con({ slug: 'office-c', position: 900 }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('accepts the real fixture, whose 229 positions are unique and non-null', () => {
+    const parsed = parseConstitutionalResponse(constitutionalResponse);
+    const positions = parsed.allConstitutionalOffices.map(r => r.position);
+    expect(positions).toHaveLength(229);
+    expect(new Set(positions).size).toBe(229);
+    expect(positions.every(p => Number.isInteger(p))).toBe(true);
+  });
+
+  it('accepts the two allowlisted additionalDetails keys', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([
+          con({
+            additionalDetails: {
+              region: 'NATIONAL CAPITAL REGION',
+              satellite_office: 'Baler, Aurora',
+            },
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('accepts a null additionalDetails', () => {
+    expect(() =>
+      parseConstitutionalResponse(okCons([con({ additionalDetails: null })]))
+    ).not.toThrow();
+  });
+
+  it('fails closed on an unknown additionalDetails key, naming the key and the slug', () => {
+    // The blob is spread verbatim onto the top level of the generated record,
+    // so any key the CMS gains would land in constitutional.json unreviewed.
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ additionalDetails: { motto: 'Serve the people' } })])
+      )
+    ).toThrow(/commission-on-x.*motto/s);
+  });
+
+  it('fails closed on a `position` key inside additionalDetails', () => {
+    // position is never a mapped OUTPUT key, so applyFieldMap's collision
+    // check cannot see this — only the allowlist can. It must never reach the
+    // generated file as content.
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ additionalDetails: { position: 3 } })])
+      )
+    ).toThrow(/commission-on-x.*position/s);
+  });
+
+  it('fails closed on a mapped-field key inside additionalDetails', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ additionalDetails: { website: 'sneaky.gov.ph' } })])
+      )
+    ).toThrow(/commission-on-x.*website/s);
+  });
+
+  it('reports every disallowed key, not just the first', () => {
+    expect(() =>
+      parseConstitutionalResponse(
+        okCons([con({ additionalDetails: { motto: 'x', founded: 1987 } })])
+      )
+    ).toThrow(/motto.*founded/s);
+  });
+});
+
+describe('assertAllowedDetailKeys', () => {
+  it('allows exactly region and satellite_office', () => {
+    expect(CONSTITUTIONAL_DETAIL_KEYS).toEqual(['region', 'satellite_office']);
+    expect(() =>
+      assertAllowedDetailKeys('x', { region: 'NCR', satellite_office: 'Baler' })
+    ).not.toThrow();
+  });
+
+  it('allows null and an empty object', () => {
+    expect(() => assertAllowedDetailKeys('x', null)).not.toThrow();
+    expect(() => assertAllowedDetailKeys('x', {})).not.toThrow();
+  });
+
+  it('rejects any other key', () => {
+    expect(() => assertAllowedDetailKeys('x', { motto: 'y' })).toThrow(/motto/);
   });
 });
