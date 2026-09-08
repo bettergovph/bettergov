@@ -104,3 +104,24 @@ const executiveModules = import.meta.glob<{ default: ExecutiveOffice[] }>(
 );
 
 export const executiveOffices: ExecutiveOffice[] = required(executiveModules);
+
+/**
+ * Constitutional Offices holds all 229 directory records — the 5 genuine
+ * constitutional bodies plus 110 GOCCs and 114 SUCs. They share one CMS
+ * model, one generated file and one route tree, so they are CMS-owned
+ * together.
+ */
+export interface ConstitutionalDirectoryOffice {
+  slug: string;
+  name: string;
+  office_type: string;
+  [key: string]: unknown;
+}
+
+const constitutionalModules = import.meta.glob<{
+  default: ConstitutionalDirectoryOffice[];
+}>('./directory/constitutional.json', { eager: true });
+
+export const constitutionalOffices: ConstitutionalDirectoryOffice[] = required(
+  constitutionalModules
+);

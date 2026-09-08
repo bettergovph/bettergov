@@ -18,9 +18,36 @@ describe('generated CMS output is never committed', () => {
     expect(trackedTopLevelServiceFiles).toEqual([]);
   });
 
-  it('does not track src/data/directory/departments.json or executive.json', () => {
+  it('does not track the generated directory files', () => {
     expect(trackedFiles).not.toContain('src/data/directory/departments.json');
     expect(trackedFiles).not.toContain('src/data/directory/executive.json');
+    expect(trackedFiles).not.toContain(
+      'src/data/directory/constitutional.json'
+    );
+  });
+
+  it('still tracks the constitutional schema and its pre-migration fixture', () => {
+    expect(trackedFiles).toContain(
+      'src/data/directory/schema/constitutional.schema.json'
+    );
+    expect(trackedFiles).toContain(
+      'src/data/directory/__fixtures__/constitutional.expected.json'
+    );
+  });
+
+  it('still tracks the directory files that stay local', () => {
+    // Judicial, legislative, diplomatic and the two orphaned member files are
+    // deliberately NOT migrated — pin that so a future sweep cannot silently
+    // gitignore them.
+    for (const f of [
+      'src/data/directory/judicial.json',
+      'src/data/directory/legislative.json',
+      'src/data/directory/diplomatic.json',
+      'src/data/directory/house_members.json',
+      'src/data/directory/party_list_representatives.json',
+    ]) {
+      expect(trackedFiles).toContain(f);
+    }
   });
 
   it('still tracks the schemas that are the generated data’s contract', () => {
