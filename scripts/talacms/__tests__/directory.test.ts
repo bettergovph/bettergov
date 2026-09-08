@@ -17,18 +17,28 @@ import {
   CONSTITUTIONAL_DETAIL_KEYS,
   assertAllowedDetailKeys,
   parseConstitutionalResponse,
+  normalizeTrunklines,
+  shapeConstitutional,
+  buildConstitutionalCandidate,
 } from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
 import constitutionalResponse from './fixtures/constitutional-response.json';
 import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
 import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
-import type { RawDepartment, RawExecutive } from '../directory';
+import expectedConstitutional from '../../../src/data/directory/__fixtures__/constitutional.expected.json';
+import type {
+  RawDepartment,
+  RawExecutive,
+  RawConstitutional,
+} from '../directory';
 
 const rawDepartments =
   departmentsResponse.allGovernmentDepartments as unknown as RawDepartment[];
 const rawExecutive =
   executiveResponse.allExecutiveOffices as unknown as RawExecutive[];
+const rawConstitutional =
+  constitutionalResponse.allConstitutionalOffices as unknown as RawConstitutional[];
 
 /** Deep key-sort, so equality compares content without regard to key order. */
 const sortDeep = (v: unknown): unknown =>
@@ -973,5 +983,236 @@ describe('assertAllowedDetailKeys', () => {
 
   it('rejects any other key', () => {
     expect(() => assertAllowedDetailKeys('x', { motto: 'y' })).toThrow(/motto/);
+  });
+});
+
+describe('normalizeTrunklines', () => {
+  it('passes an array through untouched', () => {
+    expect(normalizeTrunklines(['a', 'b'])).toEqual(['a', 'b']);
+  });
+
+  it('wraps a bare string into a one-element array', () => {
+    // The tracked JSON Schema declares trunklines as an array, and every
+    // consumer reads trunklines?.[0]. A bare string would render as "(".
+    expect(normalizeTrunklines('(632) 8952-5700')).toEqual(['(632) 8952-5700']);
+  });
+
+  it('treats a blank string as absent rather than emitting [""]', () => {
+    expect(normalizeTrunklines('')).toBeNull();
+    expect(normalizeTrunklines('   ')).toBeNull();
+  });
+
+  it('passes null through', () => {
+    expect(normalizeTrunklines(null)).toBeNull();
+  });
+
+  it('preserves an empty array — that is a present value, not an absent one', () => {
+    expect(normalizeTrunklines([])).toEqual([]);
+  });
+});
+
+describe('shapeConstitutional', () => {
+  it('reproduces the committed file, content for content', () => {
+    const out = shapeConstitutional(rawConstitutional);
+    expect(out).toHaveLength(expectedConstitutional.length);
+    // Deep key-sorted: content equality without regard to key order.
+    for (const [i, rec] of out.entries()) {
+      const expected = {
+        ...(expectedConstitutional[i] as Record<string, unknown>),
+      };
+      // The three ACCEPTED deltas, applied to the expected side so the rest
+      // of the record is still compared strictly. See §0.5 of the plan.
+      if (expected.trunk_line !== undefined) {
+        expected.trunklines = [expected.trunk_line];
+        delete expected.trunk_line;
+      }
+      if (expected.trunkline !== undefined) {
+        expected.trunklines = [expected.trunkline];
+        delete expected.trunkline;
+      }
+      expect(sortDeep(rec)).toEqual(sortDeep(expected));
+    }
+  });
+
+  it('emits records in committed file order', () => {
+    expect(shapeConstitutional(rawConstitutional).map(r => r.slug)).toEqual(
+      (expectedConstitutional as { slug: string }[]).map(r => r.slug)
+    );
+  });
+
+  it('normalizes the two string trunklines into arrays', () => {
+    const out = shapeConstitutional(rawConstitutional);
+    const bySlug = (s: string) => out.find(r => r.slug === s)!;
+    expect(bySlug('commission-on-audit-coa').trunklines).toEqual([
+      '(632) 8952-5700',
+    ]);
+    expect(bySlug('office-of-the-ombudsman').trunklines).toEqual([
+      '(632) 5317-8300; 8926-2662',
+    ]);
+    // And leaves the genuine array alone.
+    expect(bySlug('civil-service-commission-csc').trunklines).toEqual([
+      '(632) 8931-7935',
+      '8931-7939',
+      '8931-8092',
+    ]);
+  });
+
+  it('never emits trunk_line or trunkline — the CMS normalized those away', () => {
+    for (const rec of shapeConstitutional(rawConstitutional)) {
+      expect(rec).not.toHaveProperty('trunk_line');
+      expect(rec).not.toHaveProperty('trunkline');
+    }
+  });
+
+  it('omits empty-string scalars rather than emitting them', () => {
+    const out = shapeConstitutional(rawConstitutional);
+    const rec = out.find(
+      r => r.slug === 'tawi-tawi-regional-agricultural-college'
+    )!;
+    expect(rec).not.toHaveProperty('description');
+    expect(rec).not.toHaveProperty('phone');
+    expect(rec).not.toHaveProperty('email');
+  });
+
+  it('lifts additionalDetails to the top level', () => {
+    const out = shapeConstitutional(rawConstitutional);
+    expect(out.filter(r => 'region' in r)).toHaveLength(114);
+    expect(out.filter(r => 'satellite_office' in r)).toHaveLength(1);
+  });
+
+  it('never emits position — it is an ordering handle, not content', () => {
+    for (const rec of shapeConstitutional(rawConstitutional)) {
+      expect(rec).not.toHaveProperty('position');
+    }
+  });
+
+  it('spreads both allowlisted additionalDetails keys', () => {
+    const [rec] = shapeConstitutional([
+      con({
+        additionalDetails: {
+          region: 'NATIONAL CAPITAL REGION',
+          satellite_office: 'Baler, Aurora',
+        },
+      }) as never,
+    ]);
+    expect(rec.region).toBe('NATIONAL CAPITAL REGION');
+    expect(rec.satellite_office).toBe('Baler, Aurora');
+  });
+
+  it('fails closed on an unknown additionalDetails key, even called directly', () => {
+    // The parse gate already rejects this; the shaper gate exists so a direct
+    // shapeConstitutional() call cannot emit an unreviewed key either.
+    expect(() =>
+      shapeConstitutional([con({ additionalDetails: { motto: 'x' } }) as never])
+    ).toThrow(/not in the allowlist/);
+  });
+
+  it('fails closed on a `position` key inside additionalDetails', () => {
+    expect(() =>
+      shapeConstitutional([
+        con({ additionalDetails: { position: 3 } }) as never,
+      ])
+    ).toThrow(/not in the allowlist/);
+  });
+
+  it('fails closed when an additionalDetails key collides with a mapped field', () => {
+    // Reaches the allowlist first, which is strictly stronger. applyFieldMap's
+    // own collision check stays in place beneath it for the other models.
+    expect(() =>
+      shapeConstitutional([
+        con({ additionalDetails: { website: 'sneaky.gov.ph' } }) as never,
+      ])
+    ).toThrow(/not in the allowlist/);
+  });
+
+  it('sorts strictly by position ascending', () => {
+    // Deterministic position_ASC ordering is what reproduces the committed
+    // file order; §0.9 is why nulls and duplicates can no longer reach here.
+    const out = shapeConstitutional([
+      con({ slug: 'third', position: 900 }),
+      con({ slug: 'first', position: 0 }),
+      con({ slug: 'second', position: 5 }),
+    ] as never);
+    expect(out.map(r => r.slug)).toEqual(['first', 'second', 'third']);
+  });
+
+  it('leaves every official name and role byte-identical to the fixture', () => {
+    // .trim() on the officials schema is a transform. Zero of the 287 live
+    // rows carry surrounding whitespace, so the generated output must be
+    // unchanged by it — this is the pin for that claim.
+    const out = shapeConstitutional(rawConstitutional);
+    const flat = (recs: unknown[]) =>
+      recs.flatMap(r =>
+        (
+          (r as { officials?: { name: string; role: string }[] }).officials ??
+          []
+        ).map(o => `${o.role}\u0000${o.name}`)
+      );
+    expect(flat(out)).toEqual(flat(expectedConstitutional as unknown[]));
+  });
+
+  /**
+   * Guards the ACCEPTED key-order delta so it can only shrink, never silently
+   * grow. 103/229 is the measured baseline; the committed file's own key
+   * order is internally inconsistent, so exact agreement is not reachable.
+   */
+  it('holds constitutional key-order agreement at or above the measured baseline', () => {
+    const out = shapeConstitutional(rawConstitutional);
+    const agree = out.filter(
+      (r, i) =>
+        Object.keys(r).join() ===
+        Object.keys(expectedConstitutional[i] as object).join()
+    ).length;
+    expect(agree).toBeGreaterThanOrEqual(103);
+  });
+});
+
+describe('constitutional candidate emission', () => {
+  it('emits the candidate against the tracked constitutional schema', () => {
+    const c = buildConstitutionalCandidate({
+      _allConstitutionalOfficesMeta: { count: rawConstitutional.length },
+      allConstitutionalOffices: rawConstitutional,
+    });
+    expect(c.path).toBe('src/data/directory/constitutional.json');
+    expect(c.schemaPath).toBe(
+      'src/data/directory/schema/constitutional.schema.json'
+    );
+    expect(c.data).toHaveLength(229);
+  });
+
+  it('builds the candidate without reference to the other models', () => {
+    expect(buildConstitutionalCandidate.length).toBe(1);
+  });
+
+  it('produces a candidate that satisfies the tracked JSON Schema', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare(
+        buildConstitutionalCandidate({
+          _allConstitutionalOfficesMeta: { count: rawConstitutional.length },
+          allConstitutionalOffices: rawConstitutional,
+        })
+      )
+    ).resolves.toMatchObject({
+      path: 'src/data/directory/constitutional.json',
+    });
+  });
+
+  it('would REJECT an un-normalized string trunklines — proving the schema gate bites', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/constitutional.json',
+        schemaPath: 'src/data/directory/schema/constitutional.schema.json',
+        data: [
+          {
+            slug: 'x',
+            office_type: 'Constitutional Office',
+            name: 'X',
+            trunklines: '(632) 8952-5700',
+          },
+        ],
+      })
+    ).rejects.toThrow(/does not satisfy/);
   });
 });
