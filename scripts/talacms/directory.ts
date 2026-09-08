@@ -220,3 +220,150 @@ export async function fetchExecutive(
 ): Promise<RawExecutives> {
   return parseExecutiveResponse(await client<unknown>(EXECUTIVE_QUERY));
 }
+
+/**
+ * Explicit per-model field maps. NOT a generic camelCase→snake_case rule:
+ * `attachedAgencies` maps to `attached_agencies` on departments and to
+ * `attached_agency` (singular) on executive. Verified against the committed
+ * files. A generic rule would silently emit the wrong key, and
+ * [department].tsx renders leftover top-level keys as visible <h2> sections,
+ * so a wrong key is a visible defect, not a cosmetic one.
+ *
+ * Order matters: each array IS the emitted key order for its known fields.
+ */
+const DEPARTMENT_FIELDS = [
+  ['slug', 'slug'],
+  ['officeName', 'office_name'],
+  ['address', 'address'],
+  ['trunkline', 'trunkline'],
+  ['email', 'email'],
+  ['website', 'website'],
+  ['secretary', 'secretary'],
+  ['undersecretaries', 'undersecretaries'],
+] as const;
+
+/**
+ * Lifted out of `details` and emitted immediately after `undersecretaries`.
+ * Measured against the committed file: hoisting this one key raises exact
+ * key-order agreement from 1/23 to 14/23. See "Decisions taken" — Option 1.
+ */
+const DEPARTMENT_HOISTED_DETAILS = ['assistant_secretaries'] as const;
+
+/** Emitted after the `details` spread — all 13 committed records end with it. */
+const DEPARTMENT_TRAILING = [
+  ['attachedAgencies', 'attached_agencies'],
+] as const;
+
+const EXECUTIVE_FIELDS = [
+  ['slug', 'slug'],
+  ['office', 'office'],
+  ['address', 'address'],
+  ['phone', 'phone'],
+  ['trunkline', 'trunkline'],
+  ['email', 'email'],
+  ['website', 'website'],
+  ['officials', 'officials'],
+  ['bureaus', 'bureaus'],
+  ['attachedAgencies', 'attached_agency'],
+] as const;
+
+/**
+ * Deterministic output order: non-null `position` ascending, null `position`
+ * last, `slug` ascending as the tie-breaker. `position` is nullable and not
+ * unique in the CDA, and nothing downstream reads record order — this exists
+ * to keep the generated file stable and diff-clean, not to drive any UI.
+ *
+ * Pure: returns a new array, never mutates its input.
+ */
+export function sortForOutput<
+  T extends { position: number | null; slug: string },
+>(records: T[]): T[] {
+  return [...records].sort((a, b) => {
+    if (a.position === null && b.position === null) {
+      return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
+    }
+    if (a.position === null) return 1;
+    if (b.position === null) return -1;
+    if (a.position !== b.position) return a.position - b.position;
+    return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
+  });
+}
+
+type FieldMap = readonly (readonly [string, string])[];
+
+/**
+ * Builds one output record. `position` is deliberately never emitted — it is
+ * a CMS ordering handle, not content, and no committed record carries it.
+ * A null CMS scalar is OMITTED rather than emitted as null: the committed
+ * files express "no value" by absence, and [department].tsx keys its
+ * leftover-section rendering off key presence.
+ */
+function applyFieldMap(
+  raw: Record<string, unknown>,
+  fields: FieldMap,
+  options: {
+    hoist?: readonly string[];
+    details?: Record<string, unknown> | null;
+    trailing?: FieldMap;
+  } = {}
+): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  const mapped = new Set<string>([
+    ...fields.map(([, local]) => local),
+    ...(options.trailing ?? []).map(([, local]) => local),
+  ]);
+
+  const details = { ...(options.details ?? {}) };
+  for (const key of Object.keys(details)) {
+    if (mapped.has(key)) {
+      fail(
+        `record "${String(raw.slug)}" has a details key "${key}" that collides with a mapped top-level field`
+      );
+    }
+  }
+
+  for (const [cms, local] of fields) {
+    if (raw[cms] !== null && raw[cms] !== undefined) out[local] = raw[cms];
+  }
+
+  // Same null-vs-absent rule as the mapped scalars above: a null or undefined
+  // value is OMITTED, never emitted. Applies to hoisted and ordinary detail
+  // keys alike. Falsy-but-present values ([], "", 0, false) are preserved.
+  for (const key of options.hoist ?? []) {
+    if (key in details) {
+      if (details[key] !== null && details[key] !== undefined)
+        out[key] = details[key];
+      delete details[key];
+    }
+  }
+
+  for (const [key, value] of Object.entries(details)) {
+    if (value !== null && value !== undefined) out[key] = value;
+  }
+
+  for (const [cms, local] of options.trailing ?? []) {
+    if (raw[cms] !== null && raw[cms] !== undefined) out[local] = raw[cms];
+  }
+
+  return out;
+}
+
+export function shapeDepartments(
+  records: RawDepartment[]
+): Record<string, unknown>[] {
+  return sortForOutput(records).map(r =>
+    applyFieldMap(r as unknown as Record<string, unknown>, DEPARTMENT_FIELDS, {
+      hoist: DEPARTMENT_HOISTED_DETAILS,
+      details: r.details,
+      trailing: DEPARTMENT_TRAILING,
+    })
+  );
+}
+
+export function shapeExecutive(
+  records: RawExecutive[]
+): Record<string, unknown>[] {
+  return sortForOutput(records).map(r =>
+    applyFieldMap(r as unknown as Record<string, unknown>, EXECUTIVE_FIELDS)
+  );
+}

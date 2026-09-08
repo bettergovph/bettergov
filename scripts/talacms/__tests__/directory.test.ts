@@ -5,6 +5,7 @@ import {
   parseDepartmentsResponse,
   parseExecutiveResponse,
 } from '../directory';
+import { shapeDepartments, shapeExecutive, sortForOutput } from '../directory';
 
 const dept = (over: Record<string, unknown> = {}) => ({
   position: 0,
@@ -184,5 +185,222 @@ describe('parseExecutiveResponse', () => {
   it('fails closed when the collection is short of its meta count', () => {
     const short = { ...okExecs(), _allExecutiveOfficesMeta: { count: 2 } };
     expect(() => parseExecutiveResponse(short)).toThrow(/incomplete/i);
+  });
+});
+
+describe('sortForOutput', () => {
+  it('sorts by position ascending', () => {
+    const out = sortForOutput([
+      { position: 2, slug: 'c' },
+      { position: 0, slug: 'a' },
+      { position: 1, slug: 'b' },
+    ]);
+    expect(out.map(r => r.slug)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('breaks position ties by slug ascending', () => {
+    const out = sortForOutput([
+      { position: 3, slug: 'zeta' },
+      { position: 3, slug: 'alpha' },
+      { position: 3, slug: 'mu' },
+    ]);
+    expect(out.map(r => r.slug)).toEqual(['alpha', 'mu', 'zeta']);
+  });
+
+  it('places null positions last, themselves ordered by slug', () => {
+    const out = sortForOutput([
+      { position: null, slug: 'zulu' },
+      { position: 5, slug: 'mid' },
+      { position: null, slug: 'alpha' },
+      { position: 0, slug: 'first' },
+    ]);
+    expect(out.map(r => r.slug)).toEqual(['first', 'mid', 'alpha', 'zulu']);
+  });
+
+  it('is a pure function — it does not mutate its input', () => {
+    const input = [
+      { position: 1, slug: 'b' },
+      { position: 0, slug: 'a' },
+    ];
+    sortForOutput(input);
+    expect(input.map(r => r.slug)).toEqual(['b', 'a']);
+  });
+
+  it('is deterministic across repeated calls on ties and nulls', () => {
+    const input = [
+      { position: null, slug: 'b' },
+      { position: 1, slug: 'x' },
+      { position: 1, slug: 'a' },
+      { position: null, slug: 'a' },
+    ];
+    expect(sortForOutput(input).map(r => r.slug)).toEqual(
+      sortForOutput([...input].reverse()).map(r => r.slug)
+    );
+  });
+});
+
+describe('null-vs-absent normalization', () => {
+  it('omits a key whose CMS value is null rather than emitting null', () => {
+    const [rec] = shapeExecutive([
+      exec({ slug: 'x', office: 'X', address: 'A' }),
+    ]);
+    expect(Object.keys(rec)).toEqual(['slug', 'office', 'address']);
+    expect('phone' in rec).toBe(false);
+    expect('trunkline' in rec).toBe(false);
+  });
+
+  it('never emits a position key in the output', () => {
+    const [d] = shapeDepartments([dept({ position: 7 })]);
+    const [e] = shapeExecutive([exec({ position: 7 })]);
+    expect(d).not.toHaveProperty('position');
+    expect(e).not.toHaveProperty('position');
+  });
+});
+
+describe('per-model field maps', () => {
+  it('maps attachedAgencies to attached_agencies for departments', () => {
+    const [rec] = shapeDepartments([
+      dept({ attachedAgencies: [{ name: 'A' }] }),
+    ]);
+    expect(rec).toHaveProperty('attached_agencies');
+    expect(rec).not.toHaveProperty('attached_agency');
+  });
+
+  it('maps attachedAgencies to attached_agency (singular) for executive', () => {
+    const [rec] = shapeExecutive([exec({ attachedAgencies: [{ name: 'A' }] })]);
+    expect(rec).toHaveProperty('attached_agency');
+    expect(rec).not.toHaveProperty('attached_agencies');
+  });
+
+  it('maps officeName to office_name for departments', () => {
+    const [rec] = shapeDepartments([dept({ officeName: 'DEPARTMENT OF X' })]);
+    expect(rec.office_name).toBe('DEPARTMENT OF X');
+    expect(rec).not.toHaveProperty('officeName');
+  });
+});
+
+describe('details spreading', () => {
+  it('spreads details to top level and never emits a "details" key', () => {
+    const [rec] = shapeDepartments([
+      dept({ details: { bureaus: [{ name: 'B' }], regional_offices: [] } }),
+    ]);
+    expect(rec).not.toHaveProperty('details');
+    expect(rec.bureaus).toEqual([{ name: 'B' }]);
+    expect(rec.regional_offices).toEqual([]);
+  });
+
+  it('hoists assistant_secretaries to directly after undersecretaries', () => {
+    const [rec] = shapeDepartments([
+      dept({
+        undersecretaries: [{ name: 'U', role: 'R' }],
+        details: {
+          bureaus: [],
+          assistant_secretaries: [{ name: 'A', role: 'R' }],
+        },
+      }),
+    ]);
+    expect(Object.keys(rec)).toEqual([
+      'slug',
+      'office_name',
+      'undersecretaries',
+      'assistant_secretaries',
+      'bureaus',
+    ]);
+  });
+
+  it('emits attached_agencies after the details spread', () => {
+    const [rec] = shapeDepartments([
+      dept({ attachedAgencies: [{ name: 'A' }], details: { bureaus: [] } }),
+    ]);
+    expect(Object.keys(rec)).toEqual([
+      'slug',
+      'office_name',
+      'bureaus',
+      'attached_agencies',
+    ]);
+  });
+
+  it('passes through near-duplicate attached* keys inside details unchanged', () => {
+    const [rec] = shapeDepartments([
+      dept({
+        details: {
+          attached_agency: [{ name: 'A' }],
+          attached_agenices: [{ name: 'B' }],
+        },
+      }),
+    ]);
+    expect(rec).toHaveProperty('attached_agency');
+    expect(rec).toHaveProperty('attached_agenices');
+  });
+
+  it('fails closed if a details key collides with a mapped top-level key', () => {
+    expect(() =>
+      shapeDepartments([dept({ details: { office_name: 'shadow' } })])
+    ).toThrow(/collides/i);
+  });
+
+  /**
+   * REVISION — Sol finding 6. Measured today: zero null values inside details
+   * across all 23 records and zero explicit nulls in either committed file, so
+   * this is hardening rather than a live bug fix. It keeps one rule for the
+   * whole record: the committed files express "no value" by ABSENCE, and
+   * [department].tsx keys its leftover-section rendering off key presence — an
+   * emitted null would render an empty section that does not exist today.
+   */
+  it('omits an ordinary details key whose value is null', () => {
+    const [rec] = shapeDepartments([
+      dept({ details: { bureaus: [{ name: 'B' }], regional_offices: null } }),
+    ]);
+    expect(rec).toHaveProperty('bureaus');
+    expect(rec).not.toHaveProperty('regional_offices');
+  });
+
+  it('omits a hoisted details key whose value is null', () => {
+    const [rec] = shapeDepartments([
+      dept({
+        undersecretaries: [{ name: 'U', role: 'R' }],
+        details: { assistant_secretaries: null, bureaus: [] },
+      }),
+    ]);
+    expect(rec).not.toHaveProperty('assistant_secretaries');
+    expect(Object.keys(rec)).toEqual([
+      'slug',
+      'office_name',
+      'undersecretaries',
+      'bureaus',
+    ]);
+  });
+
+  it('omits an ordinary details key whose value is undefined', () => {
+    const [rec] = shapeDepartments([
+      dept({ details: { bureaus: [], regional_offices: undefined } }),
+    ]);
+    expect(rec).not.toHaveProperty('regional_offices');
+  });
+
+  it('still emits falsy-but-present values such as empty arrays and empty strings', () => {
+    const [rec] = shapeDepartments([
+      dept({ details: { bureaus: [], public_assistance_desk: '' } }),
+    ]);
+    expect(rec.bureaus).toEqual([]);
+    expect(rec.public_assistance_desk).toBe('');
+  });
+});
+
+describe('record ordering in shaped output', () => {
+  it('emits records in deterministic sort order regardless of response order', () => {
+    const out = shapeExecutive([
+      exec({ position: 1, slug: 'b', office: 'B' }),
+      exec({ position: 0, slug: 'a', office: 'A' }),
+    ]);
+    expect(out.map(r => r.slug)).toEqual(['a', 'b']);
+  });
+
+  it('resolves a position tie by slug in shaped output too', () => {
+    const out = shapeDepartments([
+      dept({ position: 4, slug: 'zeta', officeName: 'Z' }),
+      dept({ position: 4, slug: 'alpha', officeName: 'A' }),
+    ]);
+    expect(out.map(r => r.slug)).toEqual(['alpha', 'zeta']);
   });
 });
