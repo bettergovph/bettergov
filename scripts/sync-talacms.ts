@@ -10,7 +10,7 @@ import {
   type RawService,
 } from './talacms/services';
 import {
-  assertNoCrossModelSlugCollision,
+  assertNoCrossModelSlugCollisions,
   buildDepartmentsCandidate,
   buildExecutiveCandidate,
   fetchDepartments,
@@ -208,14 +208,16 @@ async function buildCandidates(
     : null;
 
   // §6.0 run-mode matrix: a gate whose inputs a mode does not have is not
-  // applied — no weaker substitute, and never a read of the other model's
-  // committed file. Only a run carrying BOTH candidates can compare them.
-  if (departmentsCandidate && executiveCandidate) {
-    assertNoCrossModelSlugCollision(departmentsCandidate, executiveCandidate);
+  // applied — no weaker substitute, and never a read of another model's
+  // committed file. Only a run carrying at least two candidates can compare.
+  const directoryCandidates = [departmentsCandidate, executiveCandidate].filter(
+    (c): c is Candidate => c !== null
+  );
+  if (directoryCandidates.length > 1) {
+    assertNoCrossModelSlugCollisions(directoryCandidates);
   }
 
-  if (departmentsCandidate) candidates.push(departmentsCandidate);
-  if (executiveCandidate) candidates.push(executiveCandidate);
+  for (const candidate of directoryCandidates) candidates.push(candidate);
 
   // Stage 5 — §6.10. This function returns before `run` prepares anything, so
   // the gate is structurally ahead of the first `prepare` call.
