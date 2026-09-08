@@ -200,7 +200,7 @@ const COMMON_INDEX_SETTINGS = {
 console.log(
   RESET_INDEX
     ? 'Running with --reset flag: Will recreate the index from scratch.'
-    : 'Running in update mode: Will add/update documents in the existing index, then remove stale service documents.'
+    : 'Running in update mode: Will add/update documents in the existing index, then remove stale service and directory documents.'
 );
 
 /**
@@ -727,6 +727,76 @@ async function reconcileStaleServiceDocuments(index, currentServiceDocuments) {
 }
 
 /**
+ * After successfully indexing the current directory documents, removes any
+ * previously-indexed "directory_item" document whose slug is no longer in the
+ * current snapshot — a department or executive office renamed or deleted in
+ * TalaCMS. Scoped strictly to `type = directory_item`: a service or website
+ * document can never be a candidate for removal here, by construction of the
+ * filter.
+ *
+ * `snapshot` MUST be the full directory snapshot, covering EVERY directory
+ * source — constitutional, diplomatic, judicial, legislative and the two
+ * orphaned member files all carry the same `type` and would otherwise all
+ * look stale.
+ *
+ * When `snapshot.complete` is false, nothing runs: not the paged query, not
+ * the deletion. An incomplete snapshot cannot distinguish "this record was
+ * removed from the CMS" from "this file failed to parse this run", and
+ * deleting on that ambiguity is exactly the fail-open behavior this function
+ * exists to prevent.
+ *
+ * `io.waiter` exists only so tests can observe task completion without the
+ * module-level Meilisearch client that waitForSuccess closes over.
+ *
+ * Only meaningful in update mode against a pre-existing index: a freshly
+ * created index (first run, or just recreated by --reset) cannot have any
+ * stale documents in it.
+ */
+async function reconcileStaleDirectoryDocuments(index, snapshot, io = {}) {
+  const waiter = io.waiter ?? waitForSuccess;
+
+  if (!snapshot.complete) {
+    console.log(
+      'Skipping stale directory reconciliation — the directory snapshot is ' +
+        `incomplete: ${snapshot.problems.join('; ')}`
+    );
+    return;
+  }
+
+  const currentSlugs = new Set(snapshot.documents.map(d => d.slug));
+  const staleSlugs = [];
+  const pageSize = 1000;
+  let offset = 0;
+
+  for (;;) {
+    const page = await index.getDocuments({
+      filter: 'type = directory_item',
+      fields: ['slug'],
+      limit: pageSize,
+      offset,
+    });
+    for (const doc of page.results) {
+      if (!currentSlugs.has(doc.slug)) staleSlugs.push(doc.slug);
+    }
+    offset += page.results.length;
+    if (page.results.length === 0 || offset >= page.total) break;
+  }
+
+  if (staleSlugs.length === 0) {
+    console.log('No stale directory documents to remove.');
+    return;
+  }
+
+  console.log(
+    `Removing ${staleSlugs.length} stale directory document(s): ${staleSlugs.join(', ')}`
+  );
+  await waiter(
+    index.deleteDocuments(staleSlugs),
+    'Stale directory document removal'
+  );
+}
+
+/**
  * Builds the complete document set to submit to Meilisearch, with ZERO
  * contact with Meilisearch. Extracted from main() so the final aggregate —
  * not merely its parts — can be asserted in tests.
@@ -803,7 +873,7 @@ async function main() {
   // ---- Preflight: load and validate every data source, with ZERO contact
   // with Meilisearch. A required source's failure throws here and nothing
   // below this block ever runs. ----
-  const { allDocumentsToIndex, requiredDocuments } =
+  const { allDocumentsToIndex, requiredDocuments, directorySnapshot } =
     await assemblePreflightDocuments();
 
   // ---- From here on, every Meilisearch call either succeeds or throws.
@@ -871,8 +941,7 @@ async function main() {
       index,
       requiredDocuments.filter(d => d.type === 'service')
     );
-    // Stale directory document reconciliation (reconcileStaleDirectoryDocuments)
-    // is added in Task 9 — out of scope here.
+    await reconcileStaleDirectoryDocuments(index, directorySnapshot);
   }
 
   console.log(
@@ -907,4 +976,5 @@ module.exports = {
   loadDirectorySnapshot,
   assertUniqueDirectorySlugs,
   assemblePreflightDocuments,
+  reconcileStaleDirectoryDocuments,
 };
