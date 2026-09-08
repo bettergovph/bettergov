@@ -1,0 +1,5839 @@
+{
+  "allConstitutionalOffices": [
+    {
+      "position": 0,
+      "slug": "civil-service-commission-csc",
+      "name": "Civil Service Commission (CSC)",
+      "officeType": "Constitutional Office",
+      "description": "The central personnel agency of the government.",
+      "address": "Constitution Hills, Batasang Pambansa Complex, Diliman, 1126 Quezon City",
+      "phone": null,
+      "trunklines": ["(632) 8931-7935", "8931-7939", "8931-8092"],
+      "website": "www.csc.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "MARILYN B. BARUA-YAP",
+          "role": "Chairperson",
+          "email": "och-yap@csc.gov.ph",
+          "contact": "8931-7997; 8931-7913"
+        },
+        {
+          "name": "AILEEN LOURDES A. LIZADA",
+          "role": "Commissioner",
+          "email": "ocom-lizada@csc.gov.ph",
+          "contact": "8931-7996; 8931-8026; 8931-4145 F"
+        },
+        {
+          "name": "RYAN ALVIN R. ACOSTA",
+          "role": "Commissioner",
+          "email": "ocom-acosta@csc.gov.ph",
+          "contact": "8931-7943; 8951-4625; 8931-7967 F"
+        },
+        {
+          "name": "ARIEL G. RONQUILLO",
+          "role": "Assistant Commissioner",
+          "email": "oacl@csc.gov.ph",
+          "office": "Office of the Assistant Commissioner for Legal",
+          "contact": "8931-8016"
+        },
+        {
+          "name": "KARIN LITZ P. ZERNA",
+          "role": "Assistant Commissioner",
+          "email": "oacsas@csc.gov.ph",
+          "office": "Office of the Assistant Commissioner for Support and Administrative Services",
+          "contact": "8932-2606; 8932-2710 F"
+        },
+        {
+          "name": "JUDITH A. DONGALLO-CHICANO",
+          "role": "Assistant Commissioner",
+          "email": "oacpac@csc.gov.ph",
+          "office": "Office of the Assistant Commissioner for Professionalization and Cooperation",
+          "contact": "8931-7971; 8931-4143"
+        },
+        {
+          "name": "NERISSA B. CANGUILAN",
+          "role": "Assistant Commissioner",
+          "email": "oacharg@csc.gov.ph",
+          "office": "Office of the Assistant Commissioner for Human Resource Governance",
+          "contact": "8932-2606"
+        }
+      ],
+      "regionalOffices": [
+        {
+          "email": "roncr@csc.gov.ph",
+          "region": "NCR",
+          "contact": "8740-8412; 8781-5864; 8749-0980 F",
+          "director": "VICTORIA F. ESBER"
+        },
+        {
+          "email": "rocar@csc.gov.ph",
+          "region": "CAR",
+          "contact": "(074) 443-9282 TF",
+          "director": "FERNANDO O. MENDOZA"
+        },
+        {
+          "email": "ro01.od@csc.gov.ph",
+          "region": "Region I",
+          "contact": "(072) 700-5626; 700-5639",
+          "director": "HEDY JOSE B. LARDIZABAL"
+        },
+        {
+          "email": "ro02@csc.gov.ph",
+          "title": "Acting Director",
+          "region": "Region II",
+          "contact": "(078) 844-3605; 844-5352; 396-1321 F",
+          "director": "MARITES P. LAPPAY"
+        },
+        {
+          "email": "ro03@csc.gov.ph; ro03.od@csc.gov.ph",
+          "title": "Acting Director",
+          "region": "Region III",
+          "contact": "(045) 455-3242: 455-3241 TF",
+          "director": "ROSALINDA A. TANALIGA-OLIVA"
+        },
+        {
+          "email": "ro04@csc.gov.ph",
+          "region": "Region IV",
+          "contact": "927-1830; 7508-0377",
+          "director": "MARIA LETICIA G. REYNA"
+        },
+        {
+          "email": "ro05@csc.gov.ph",
+          "region": "Region V",
+          "contact": "(052) 742-9568",
+          "director": "DAISY P. BRAGAIS"
+        },
+        {
+          "email": "ro06@csc.gov.ph",
+          "region": "Region VI",
+          "contact": "(033) 321-2668 to 69; 321-2667 F",
+          "director": "NELSON G. SARMIENTO"
+        },
+        {
+          "email": "ro07@csc.gov.ph",
+          "region": "Region VII",
+          "contact": "(032) 414-7676; 253-9050; 414-7488 TF",
+          "director": "ARIEL L. BACATAN"
+        },
+        {
+          "email": "ro08@csc.gov.ph",
+          "region": "Region VIII",
+          "contact": "(053) 888-0742",
+          "director": "MARILYN E. TALDO"
+        },
+        {
+          "email": "ro09@csc.gov.ph",
+          "region": "Region IX",
+          "contact": "(062) 955-1643; 955-2765",
+          "director": "ALVIN R. ARANETA"
+        },
+        {
+          "email": "ro10@csc.gov.ph",
+          "region": "Region X",
+          "contact": "(088) 858-7563",
+          "director": "NOEMI RABE-TORRES"
+        },
+        {
+          "email": "roll@csc.gov.ph",
+          "region": "Region XI",
+          "contact": "(082) 299-1727; 299-1724; 299-1725",
+          "director": "CYRIL-NATHAN SM. EAMIGUEL"
+        },
+        {
+          "email": "ro12@csc.gov.ph",
+          "region": "Region XII",
+          "contact": "(083) 825-1536",
+          "director": "GRACE R. BELGADO-SAQUETON"
+        },
+        {
+          "email": "rocaraga@csc.gov.ph",
+          "region": "CARAGA",
+          "contact": "(085) 815-3370",
+          "director": "WINSTON L. PLAZA"
+        },
+        {
+          "email": "robarmm@csc.gov.ph",
+          "region": "BARMM",
+          "contact": "(064) 552-0512; 552-0327; 552-1855",
+          "director": "LIDA C. AYON"
+        }
+      ],
+      "publicAssistance": {
+        "email": "paio@csc.gov.ph",
+        "office": "Public Assistance and Information Office",
+        "contact": "8931-7993; 8932-0381; 8932-0179 F",
+        "director": "FIABERNA U. SALUMBIDES"
+      },
+      "additionalDetails": null
+    },
+    {
+      "position": 1,
+      "slug": "commission-on-audit-coa",
+      "name": "Commission on Audit (COA)",
+      "officeType": "Constitutional Office",
+      "description": "Primary duty is to examine, audit and settle all accounts pertaining to the revenue and receipts of, and expenditures or uses of funds and property owned or held in trust by the Government or any of its subdivisions, agencies or instrumentalities.",
+      "address": "Commonwealth Avenue, 0880 Quezon City",
+      "phone": null,
+      "trunklines": "(632) 8952-5700",
+      "website": "www.coa.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "GAMALIEL A. CORDOBA",
+          "role": "Chairperson",
+          "email": "cho@coa.gov.ph",
+          "contact": "loc. 1011, 1012, 1030; 8931-5105"
+        },
+        {
+          "name": "ROLAND C. PONDOC",
+          "role": "Commissioner",
+          "email": "repondoc@coa.gov.ph",
+          "contact": "loc. 1002; 8931-7873"
+        },
+        {
+          "name": "MARIO G. LIPANA",
+          "role": "Commissioner",
+          "email": "mario.lipana@coa.gov.ph",
+          "contact": "loc. 1018, 1021; 8931-9306"
+        },
+        {
+          "name": "NILDA B. PLARAS",
+          "role": "OIC-Assistant Commissioner",
+          "email": "nbplaras@coa.gov.ph",
+          "office": "Intelligence and Confidential Funds Audit Office",
+          "contact": "loc. 1027; 8952-7223"
+        },
+        {
+          "name": "LORNA D. CABOCHAN",
+          "role": "Assistant Commissioner",
+          "email": "ldcabochan@coa.gov.ph",
+          "office": "Administration Sector",
+          "contact": "loc. 2000, 2005; 8931-9308; 8951-4260"
+        },
+        {
+          "name": "JOEL S. ESTOLATAN",
+          "role": "Assistant Commissioner",
+          "email": "jestolan@coa.gov.ph",
+          "office": "Commission Proper Adjudication Sector",
+          "contact": "loc. 8000, 8009; 8931-5109"
+        },
+        {
+          "name": "ADELA L. DONDONILLA",
+          "role": "Assistant Commissioner",
+          "email": "aldondonilla@coa.gov.ph",
+          "office": "Corporate Government Audit Sector",
+          "contact": "loc. 7000, 7013; 8951-0459; 8931-9215"
+        },
+        {
+          "name": "ROY L. URSAL",
+          "role": "Assistant Commissioner",
+          "email": "rlursal@coa.gov.ph",
+          "office": "Government Accountancy Sector",
+          "contact": "loc. 4003, 4022, 4024; 8951-0458"
+        },
+        {
+          "name": "FORTUNATA M. RUBICO",
+          "role": "Assistant Commissioner",
+          "email": "fortunata.rubico@coa.gov.ph",
+          "office": "Legal Services Sector",
+          "contact": "loc. 8020, 8005, 7023; 8931-9287"
+        },
+        {
+          "name": "MARTHA ROXANA C. SESE",
+          "role": "Assistant Commissioner",
+          "email": "mrcsese@coa.gov.ph",
+          "office": "National Government Audit Sector",
+          "contact": "loc. 5000, 5017, 5027; 8951-0445"
+        },
+        {
+          "name": "NILDA B. PLARAS",
+          "role": "Assistant Commissioner",
+          "email": "nbplaras@coa.gov.ph",
+          "office": "Planning, Finance and Management Sector",
+          "contact": "loc. 4000, 4007; 8931-9203; 8951-0456"
+        },
+        {
+          "name": "LITO Q. MARTIN",
+          "role": "Officer-in-Charge",
+          "email": "lqmartin@coa.gov.ph",
+          "office": "Professional and Institutional Development Sector",
+          "contact": "loc. 5036; 8931-9278"
+        },
+        {
+          "name": "ALEXANDER B. JULIANO",
+          "role": "OIC-Assistant Commissioner",
+          "email": "abjuliano@coa.gov.ph",
+          "office": "Special Services Sector",
+          "contact": "loc. 8002, 8014: 8951-4263"
+        },
+        {
+          "name": "PEARL L. RAMOS",
+          "role": "Assistant Commissioner",
+          "email": "pearl.ramos@coa.gov.ph",
+          "office": "Systems and Technical Services Sector",
+          "contact": "loc. 3000, 3005; 8931-9274"
+        },
+        {
+          "name": "ALEXANDER B. JULIANO",
+          "role": "Assistant Commissioner",
+          "email": "abjuliano@coa.gov.ph",
+          "office": "Local Government Audit Sector",
+          "contact": "loc. 3100, 3013, 3108; 8951-0478"
+        }
+      ],
+      "regionalOffices": [
+        {
+          "email": "mcpjpagayawan@coa.gov.ph",
+          "region": "NCR",
+          "contact": "loc. 3102, 3109, 3107; 8931-9271",
+          "director": "MARIA CARMINA PAULITA J. PAGAYAWAN"
+        },
+        {
+          "email": "rorosales@coa.gov.ph",
+          "region": "CAR",
+          "contact": "(074) 422-1327; 422-5585",
+          "director": "RENATO O. ROSALES"
+        },
+        {
+          "email": "kpalmonidovar@coa.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "Region I",
+          "contact": "(072) 888-0347; 888-0984",
+          "director": "KARLO P. ALMONIDOVAR"
+        },
+        {
+          "email": "lynflor.adolfo@coa.gov.ph",
+          "region": "Region II",
+          "contact": "(078) 396-9753; 396-0765",
+          "director": "LYNFLOR M. ADOLFO"
+        },
+        {
+          "email": "omar.roque@coa.gov.ph",
+          "region": "Region III",
+          "contact": "(045) 455-4266; 455-4267: 455-4268",
+          "director": "OMAR S. ROQUE"
+        },
+        {
+          "email": "cplabrague@coa.gov.ph",
+          "region": "Region IV-A",
+          "contact": "8951-1341; 8951-1351;8951-1382; 8951-3810",
+          "director": "CHONA P. LABRAGUE"
+        },
+        {
+          "email": "hlcortes@coa.gov.ph",
+          "region": "MIMAROPA",
+          "contact": "8951-3815; 8931-9304; 8277-3417",
+          "director": "HECTOR L. CORTES"
+        },
+        {
+          "email": "etbalina@coa.gov.ph",
+          "region": "Region V",
+          "contact": "(052) 482-0547; 482-0256; 482-0761; 482-0762",
+          "director": "ELSA T. BALIÑA"
+        },
+        {
+          "email": "marilou.rizarri@coa.gov.ph",
+          "region": "Region VI",
+          "contact": "(033) 329-2353; 329-7140",
+          "director": "MARILOU M. RIZARRI"
+        },
+        {
+          "email": "visitacion.mendoza@coa.gov.ph",
+          "region": "Region VII",
+          "contact": "(032) 254-2210; 255-5314; 255-5315; 255-6772",
+          "director": "VISITACION Q. MENDOZA"
+        },
+        {
+          "email": "fmbasallaje@coa.gov.ph",
+          "region": "Region VIII",
+          "contact": "(053) 323-7768; 323-6886; 323-6889",
+          "director": "FELIX M. BASALLAJE JR."
+        },
+        {
+          "email": "mdlegaspi@coa.gov.ph",
+          "region": "Region IX",
+          "contact": "(062) 955-8030; 926-1996",
+          "director": "MARISOL D. LEGASPI"
+        },
+        {
+          "email": "mrmmagno@coa.gov.ph",
+          "region": "Region X",
+          "contact": "(088) 858-7273; 858-1132; 858-2174",
+          "director": "MATHEW REY M. MAGNO"
+        },
+        {
+          "email": "eaasi@coa.gov.ph",
+          "region": "Region XI",
+          "contact": "(082) 241-2948",
+          "director": "EMILIO A. ASI JR."
+        },
+        {
+          "email": "aamasbud@coa.gov.ph",
+          "region": "Region XII",
+          "director": "ALIA A. ARUMPAC-MASBUD"
+        },
+        {
+          "email": "mtpenaranda@coa.gov.ph",
+          "region": "Region XIII",
+          "contact": "(085) 342-5637; 815-2534",
+          "director": "MERNE T. PEÑARANDA"
+        },
+        {
+          "email": "rmguiling@coa.gov.ph",
+          "region": "BARMM",
+          "contact": "(064) 421-7738",
+          "director": "RASDY M. GUILING"
+        }
+      ],
+      "publicAssistance": {
+        "email": "pio@coa.gov.ph",
+        "title": "OIC-Director",
+        "office": "Public Information Office",
+        "contact": "loc. 1007, 1023; 8951-0934; 851-0934",
+        "director": "HAIDE T. ESPUELAS"
+      },
+      "additionalDetails": null
+    },
+    {
+      "position": 2,
+      "slug": "commission-on-elections-comelec",
+      "name": "Commission on Elections (COMELEC)",
+      "officeType": "Constitutional Office",
+      "description": "Tasked to enforce and administer all laws and regulations relative to the conduct of elections, plebiscites, initiatives, referanda and recall.",
+      "address": "Palacio del Gobernador, Gen Luna St., Intramuros, 1002 Manila",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.comelec.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "GEORGE ERWIN M. GARCIA",
+          "role": "Chairman",
+          "email": "ocgemg@comelec.gov.ph",
+          "contact": "8521-5390, 8521-6659"
+        },
+        {
+          "name": "SOCORRO B. INTING",
+          "role": "Commissioner",
+          "email": "comm_inting@comelec.gov.ph",
+          "contact": "8527-0836, 8527-9766"
+        },
+        {
+          "name": "MARLON S. CASQUEJO",
+          "role": "Commissioner",
+          "email": "comm_casquejo@comelec.gov.ph",
+          "contact": "8524-2565, 8524-2753"
+        },
+        {
+          "name": "AIMEE P. FEROLINO",
+          "role": "Commissioner",
+          "email": "comm_ferolino@comelec.gov.ph",
+          "contact": "8527-3001, 8527-0723, 8524-3195"
+        },
+        {
+          "name": "REY E. BULAY",
+          "role": "Commissioner",
+          "email": "comm_bulay@comelec.gov.ph",
+          "contact": "8527-2994, 8524-0834"
+        },
+        {
+          "name": "ERNESTO FERDINAND P. MACEDA JR.",
+          "role": "Commissioner",
+          "email": "comm_maceda_jr@comelec.gov.ph",
+          "contact": "8527-2767"
+        },
+        {
+          "name": "NELSON J. CELIS",
+          "role": "Commissioner",
+          "email": "comm_celis@comelec.gov.ph",
+          "contact": "8554-5751,8527-3925, 8554-5752"
+        }
+      ],
+      "regionalOffices": [
+        {
+          "email": "redo_ncr@comelec.gov.ph",
+          "region": "NCR",
+          "contact": "8527-0846, 8527-9624",
+          "director": "JUBIL S. SURMIEDA"
+        },
+        {
+          "email": "redo_car@comelec.gov.ph",
+          "region": "CAR",
+          "contact": "(074) 619-0891",
+          "director": "JULIUS D. TORRES"
+        },
+        {
+          "email": "redo_region1@comelec.gov.ph",
+          "region": "Region I",
+          "contact": "(072) 609-2200",
+          "director": "NOLI R. PIPO"
+        },
+        {
+          "email": "redo_region2@comelec.gov.ph",
+          "region": "Region II",
+          "contact": "(078) 396-0099",
+          "director": "EDERLINO U. TABILAS"
+        },
+        {
+          "email": "redo_region3@comelec.gov.ph",
+          "region": "Region III",
+          "contact": "(046) 961-5015",
+          "director": "TEMIE P. LAMBINO"
+        },
+        {
+          "email": "redo_region4a@comelec.gov.ph",
+          "region": "Region IV-A",
+          "contact": "(02) 8527-5580",
+          "director": "ALLAN S. ENRIQUEZ"
+        },
+        {
+          "email": "redo_region4b@comelec.gov.ph",
+          "region": "MIMAROPA",
+          "contact": "(02) 8247-2930, 8260-5984",
+          "director": "GLORIA G. RAMOS-PETALLO"
+        },
+        {
+          "email": "redo_region5@comelec.gov.ph",
+          "region": "Region V",
+          "contact": "(052) 201-6426",
+          "director": "MARIA JUANA S. VALEZA"
+        },
+        {
+          "email": "redo_region6@comelec.gov.ph",
+          "region": "Region VI",
+          "contact": "(033) 320-6499, 321-6193",
+          "director": "DENNIS L. AUSAN"
+        },
+        {
+          "email": "redo_nir@comelec.gov.ph",
+          "region": "Negros Island Region",
+          "contact": "(035) 522-2060",
+          "director": "LIONEL MARCO R. CASTILLANO"
+        },
+        {
+          "email": "redo_region7@comelec.gov.ph",
+          "region": "Region VII",
+          "contact": "(032) 253-3344, 255-0418, 416-7726",
+          "director": "FRANCISCO G. POBE"
+        },
+        {
+          "email": "redo_region8@comelec.gov.ph",
+          "region": "Region VIII",
+          "contact": "(053) 523-1018",
+          "director": "REMLANE M. TAMBUANG"
+        },
+        {
+          "email": "redo_region9@comelec.gov.ph",
+          "region": "Region IX",
+          "contact": "(062) 955-5179",
+          "director": "RENAULT C. MACARAMBON"
+        },
+        {
+          "email": "redo_region10@comelec.gov.ph",
+          "region": "Region X",
+          "contact": "(088) 880-1838",
+          "director": "RENATO A. MAGBUTAY"
+        },
+        {
+          "email": "redo_region11@comelec.gov.ph",
+          "region": "Region XI",
+          "contact": "(082) 297-7221",
+          "director": "MICHAEL C. ABAS"
+        },
+        {
+          "email": "redo_region12@comelec.gov.ph",
+          "region": "Region XII",
+          "contact": "(083) 554-5574",
+          "director": "WILFRED JAY E. BALISADO"
+        },
+        {
+          "email": "redo_caraga@comelec.gov.ph",
+          "region": "CARAGA",
+          "contact": "(085) 225-7905",
+          "director": "EDWIN O. CADUNGOG"
+        },
+        {
+          "email": "redo_barmm@comelec.gov.ph",
+          "region": "BARMM",
+          "contact": "(064) 421-5277",
+          "director": "RAY F. SUMALIPAO"
+        }
+      ],
+      "publicAssistance": {
+        "email": "eid@comelec.gov.ph",
+        "office": "Education and Information Department",
+        "contact": "8525-5574",
+        "director": "JOHN REX C. LAUDIANGCO"
+      },
+      "additionalDetails": null
+    },
+    {
+      "position": 3,
+      "slug": "commission-on-human-rights-chr",
+      "name": "Commission on Human Rights (CHR)",
+      "officeType": "Constitutionally Mandated Body",
+      "description": "Primary function of investigating all forms of human rights violations involving civil and political rights.",
+      "address": "SAAC Building, UP Complex, Commonwealth Avenue, Diliman, 1101 Quezon City",
+      "phone": "(632) 8295-3886",
+      "trunklines": null,
+      "website": "www.chr.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "RICHARD P. PALPAL-LATOC",
+          "role": "Chairperson",
+          "email": "ocrpp@chr.gov.ph",
+          "contact": "loc. 2137"
+        },
+        {
+          "name": "BEDA A. EPRES",
+          "role": "Commissioner",
+          "email": "cbaeoffice@chr.gov.ph",
+          "contact": "loc. 2134"
+        },
+        {
+          "name": "FAYDAH MANIRI DUMARPA",
+          "role": "Commissioner",
+          "email": "oocdumarpa@chr.gov.ph",
+          "contact": "loc. 2132"
+        },
+        {
+          "name": "MONINA AREVALO ZENAROSA",
+          "role": "Commissioner",
+          "email": "ocmaz@chr.gov.ph",
+          "contact": "loc. 2130"
+        },
+        {
+          "name": "JACQUELINE ANN C. DE GUIA",
+          "role": "Executive Director",
+          "email": "executivedirector@chr.gov.ph",
+          "contact": "loc. 2109"
+        },
+        {
+          "name": "MARIA ASUNCION I. MARIANO-MARAVILLA",
+          "role": "Commission Secretary",
+          "email": "comsec@chr.gov.ph",
+          "contact": "loc. 2133"
+        }
+      ],
+      "regionalOffices": [
+        {
+          "email": "ncr@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "NCR",
+          "director": "KHRISTIAN JEFF C. EPISCOPE"
+        },
+        {
+          "email": "cordillera@chr.gov.ph",
+          "region": "CAR",
+          "contact": "(074) 620-0654; 619-9088",
+          "director": "ROMEL P. DAGUIMOL"
+        },
+        {
+          "email": "regofc1@chr.gov.ph",
+          "region": "Region I",
+          "contact": "(072) 607-8706",
+          "director": "HAROLD D. KUB-ARON"
+        },
+        {
+          "email": "regofc2@chr.gov.ph",
+          "region": "Region II",
+          "contact": "(078) 304-2047; 846-3976",
+          "director": "JIMMY P. BALIGA"
+        },
+        {
+          "email": "regofc3@chr.gov.ph",
+          "region": "Region III",
+          "contact": "(045) 961-4830",
+          "director": "LEORAE M. VALMONTE"
+        },
+        {
+          "email": "regofc4a@chr.gov.ph",
+          "region": "Region IV-A",
+          "contact": "(049) 562-5415",
+          "director": "REXFORD D. GUEVARRA"
+        },
+        {
+          "email": "regofc4b@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "MIMAROPA",
+          "director": "BRENDA CANAPI"
+        },
+        {
+          "email": "regofc5@chr.gov.ph",
+          "region": "Region V",
+          "contact": "(052) 742-0447",
+          "director": "ARLENE Q. ALANGCO"
+        },
+        {
+          "email": "regofc6@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "Region VI",
+          "contact": "(033) 502-0037; 329-2282",
+          "director": "JONNIE L. DABUCO"
+        },
+        {
+          "email": "regofc7@chr.gov.ph",
+          "region": "Region VII",
+          "contact": "(032) 254-6921; 253-5403",
+          "director": "ARVIN A. ODRON"
+        },
+        {
+          "email": "regofc8@chr.gov.ph",
+          "region": "Region VIII",
+          "contact": "(053) 832-0958",
+          "director": "DESIREE PONTEJOS"
+        },
+        {
+          "email": "regofc9@chr.gov.ph",
+          "region": "Region IX",
+          "contact": "(062) 993-0735; 993-2869",
+          "director": "JUDELYN MACAPILI"
+        },
+        {
+          "email": "regofc10@chr.gov.ph",
+          "region": "Region X",
+          "contact": "(088) 272-4525; 851-1519",
+          "director": "JEANNE IVY ABRINA"
+        },
+        {
+          "email": "regofc11@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "Region XI",
+          "contact": "(082) 298-2233",
+          "director": "JUNITTE ROSE F. BARROQUILLO"
+        },
+        {
+          "email": "regofc12@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "Region XII",
+          "contact": "(083) 228-6348; 228-2212",
+          "director": "KEYSIE MORALES GOMEZ"
+        },
+        {
+          "email": "caraga@chr.gov.ph",
+          "title": "Officer-in-Charge",
+          "region": "CARAGA",
+          "contact": "(085) 815-2247",
+          "director": "AURORA LUANNE R. CEMBRANO-RAMOS"
+        }
+      ],
+      "publicAssistance": {
+        "email": "publicassistantce@chr.gov.ph",
+        "title": "Officer-in-Charge",
+        "office": "Citizens' Help and Assistance Division",
+        "director": "JACQUELINE ANN C. DE GUIA"
+      },
+      "additionalDetails": null
+    },
+    {
+      "position": 4,
+      "slug": "office-of-the-ombudsman",
+      "name": "Office of the Ombudsman",
+      "officeType": "Constitutionally Mandated Body",
+      "description": "Has the power to investigate on its own or upon complaint, any act or omission of any public official, employee, office or agency deemed to be illegal, unjust, improper or inefficient.",
+      "address": "Sen. Miriam Defensor-Santiago Ave., Bagong Pag-Asa, Quezon City",
+      "phone": null,
+      "trunklines": "(632) 5317-8300; 8926-2662",
+      "website": "www.ombudsman.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "SAMUEL R. MARTIRES",
+          "role": "Ombudsman"
+        },
+        {
+          "name": "JOSE M. BALMEO JR.",
+          "role": "OIC-Overall Deputy Ombudsman"
+        },
+        {
+          "name": "CORNELIO L. SOMIDO",
+          "role": "OIC-Overall Deputy Ombudsman"
+        },
+        {
+          "name": "MARIFLOR PUNZALAN-CASTILLO",
+          "role": "Special Prosecutor"
+        },
+        {
+          "name": "CORNELIO L. SOMIDO",
+          "role": "Deputy Ombudsman",
+          "office": "Office of the Deputy Ombudsman for Luzon"
+        },
+        {
+          "name": "DANTE F. VARGAS",
+          "role": "Deputy Ombudsman",
+          "office": "Office of the Deputy Ombudsman for the Visayas",
+          "contact": "(032) 520-9733"
+        },
+        {
+          "name": "ANDERSON A. LO",
+          "role": "Deputy Ombudsman",
+          "office": "Office of the Deputy Ombudsman for Mindanao",
+          "contact": "(082) 333-2239"
+        },
+        {
+          "name": "JOSE M. BALMEO JR.",
+          "role": "Deputy Ombudsman",
+          "office": "Office of the Deputy Ombudsman for the Military and Other Law Enforcement Offices (MOLEO)"
+        },
+        {
+          "name": "PILARITA T. LAPITAN",
+          "role": "Assistant Ombudsman",
+          "office": "Ombudsman Proper"
+        },
+        {
+          "name": "JANET LEAH M. RAMOS",
+          "role": "Assistant Ombudsman",
+          "office": "Ombudsman Proper"
+        },
+        {
+          "name": "ASRYMAN T. RAFANAN",
+          "role": "Assistant Ombudsman",
+          "office": "Office of Legal Affairs",
+          "contact": "loc. 1521"
+        },
+        {
+          "name": "CAESAR D. ASUNCION",
+          "role": "Assistant Ombudsman",
+          "office": "Field Investigation Office I",
+          "contact": "loc. 1413"
+        },
+        {
+          "name": "JOSELITO P. FANGON",
+          "role": "Assistant Ombudsman",
+          "office": "Field Investigation Office II",
+          "contact": "loc. 1436"
+        },
+        {
+          "name": "MORENO F. GENEROSO",
+          "role": "Assistant Ombudsman",
+          "office": "Preliminary Investigation, Administrative Adjudication and Monitoring Office I",
+          "contact": "loc. 1337, 1339"
+        },
+        {
+          "name": "MEDWIN S. DIZON",
+          "role": "Assistant Ombudsman",
+          "office": "Preliminary Investigation, Administrative Adjudication and Monitoring Office II",
+          "contact": "loc. 1318"
+        },
+        {
+          "name": "AGNES B. AUTENCIO-DAQUIS",
+          "role": "Assistant Ombudsman",
+          "office": "Prosecution, Information, Evaluation and Monitoring Services",
+          "contact": "loc. 1324"
+        },
+        {
+          "name": "ADORIE T. CORNITO",
+          "role": "Officer-in-Charge",
+          "office": "Finance and Management Information Office",
+          "contact": "loc. 1227"
+        },
+        {
+          "name": "CAESAR D. ASUNCION",
+          "role": "Assistant Ombudsman",
+          "office": "General Administration Office",
+          "contact": "loc. 1226; 8426-7748"
+        },
+        {
+          "name": "MARIA JANINA J. HIDALGO",
+          "role": "Acting Assistant Ombudsman",
+          "office": "Public Assistance and Corruption Prevention Office"
+        },
+        {
+          "name": "ADORACION A. AGBADA",
+          "role": "Assistant Ombudsman",
+          "office": "Office of the Deputy Ombudsman for Luzon",
+          "contact": "loc. 4349"
+        },
+        {
+          "name": "GAUDIOSIO J. MELENDEZ",
+          "role": "Acting Assistant Ombudsman",
+          "office": "Office of the Deputy Ombudsman for Visayas",
+          "contact": "(032) 520-9733"
+        },
+        {
+          "name": "MARIA ILUMINADA S. LAPID-VIVA",
+          "role": "Assistant Ombudsman",
+          "office": "Office of the Deputy Ombudsman for Mindanao",
+          "contact": "(082) 221-3431 loc. 2401; 333-2239"
+        },
+        {
+          "name": "REX RAYNALDO C. SANDOVAL",
+          "role": "Assistant Ombudsman",
+          "office": "MOLEO",
+          "contact": "loc. 5308, 5309"
+        },
+        {
+          "name": "OMAR L. SAGADAL",
+          "role": "Deputy Special Prosecutor",
+          "office": "Office of the Special Prosecutor",
+          "contact": "loc. 3433"
+        },
+        {
+          "name": "MANUEL T. SORIANO JR.",
+          "role": "Deputy Special Prosecutor",
+          "office": "Office of the Special Prosecutor",
+          "contact": "loc. 3405"
+        },
+        {
+          "name": "LALAINE D. BENITEZ",
+          "role": "Acting Deputy Special Prosecutor",
+          "office": "Office of the Special Prosecutor",
+          "contact": "8951-3119"
+        },
+        {
+          "name": "LEILANIE BERNADETTE C. CABRAS",
+          "role": "Acting Deputy Special Prosecutor",
+          "office": "Office of the Special Prosecutor",
+          "contact": "loc. 3408; 8951-8053"
+        },
+        {
+          "name": "WEOMARK RYAN G. LAYSON",
+          "role": "Acting Deputy Special Prosecutor",
+          "office": "Office of the Special Prosecutor"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 5,
+      "slug": "al-amanah-islamic-investment-bank-of-the-philippines",
+      "name": "AL-AMANAH ISLAMIC INVESTMENT BANK OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Greenhills McKinley Arcade MA-104B, Ortigas Avenue corner Club Filipino St., San Juan City",
+      "phone": "8818-5249",
+      "trunklines": null,
+      "website": "www.amanahbank.gov.ph",
+      "email": "zambobr@amanahbank.gov.ph",
+      "officials": [
+        {
+          "name": "AMILBAHAR P. AMISALAN JR.",
+          "role": "Acting Chairperson and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 6,
+      "slug": "apo-production-unit-inc",
+      "name": "APO PRODUCTION UNIT, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "2/F PIA Building, Visayas Ave. VASRA, Quezon City",
+      "phone": "8282-5309 loc. 201",
+      "trunklines": null,
+      "website": "www.apo.gov.ph",
+      "email": "sales@apo.gov.ph",
+      "officials": [
+        {
+          "name": "HERMAN EMILIANO M. MEDINA-CUE",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 7,
+      "slug": "aurora-pacific-economic-zone-and-freeport-authority",
+      "name": "AURORA PACIFIC ECONOMIC ZONE AND FREEPORT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "1 Corporate Campus. Sitio Motyong, Brgy. Esteves, Casiguran, Aurora",
+      "phone": "(02) 7002 0905",
+      "trunklines": null,
+      "website": "www.apeco.gov.ph",
+      "email": "busdevmarketing@apecozonefreeport.com",
+      "officials": [
+        {
+          "name": "GIL G. TAWAY IV",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "satellite_office": "Unit 702-3 Philflex Bay Center Coral Way Drive, Mall of Asia Complex, Pasay City"
+      }
+    },
+    {
+      "position": 8,
+      "slug": "authority-of-the-freeport-area-of-bataan",
+      "name": "AUTHORITY OF THE FREEPORT AREA OF BATAAN",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "AFAB Administration Bldg., Freeport Area of Bataan, Mariveles, Bataan",
+      "phone": "8236-5010 loc. 8002, 8021; (045) 935-4004",
+      "trunklines": null,
+      "website": "www.afab.gov.ph",
+      "email": "info@afab.gov.ph",
+      "officials": [
+        {
+          "name": "MOHAMMED HUSSEIN PANGANDAMAN",
+          "role": "Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 9,
+      "slug": "bangko-sentral-ng-pilipinas",
+      "name": "BANGKO SENTRAL NG PILIPINAS",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "A. Mabini St. cor. P. Ocampo St., Malate, Manila",
+      "phone": "8811-1277",
+      "trunklines": null,
+      "website": "www.bsp.gov.ph",
+      "email": "bspmail@bsp.gov.ph",
+      "officials": [
+        {
+          "name": "ELI M. REMOLONA JR.",
+          "role": "Governor and Chairperson of the Monetary Board"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 10,
+      "slug": "bases-conversion-and-development-authority",
+      "name": "BASES CONVERSION AND DEVELOPMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "2/F Bonifacio Technology Center 31 St. cor. 2nd Ave., Bonifacio Global City, Taguig",
+      "phone": "8575-1705",
+      "trunklines": null,
+      "website": "www.bcda.gov.ph",
+      "email": "bcda@bcda.gov.ph",
+      "officials": [
+        {
+          "name": "JOSHUA M. BINGCANG",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 11,
+      "slug": "batangas-land-company-inc",
+      "name": "BATANGAS LAND COMPANY, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Makati City",
+      "phone": null,
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "LILIA L. ARCE",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 12,
+      "slug": "boy-scouts-of-the-philippines",
+      "name": "BOY SCOUTS OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "181 Natividad Almeda-Lopez St., Ermita, Manila",
+      "phone": "(063) 852 7831",
+      "trunklines": null,
+      "website": "scouts.gov.ph",
+      "email": "bsp@scouts.org.ph",
+      "officials": [
+        {
+          "name": "DALE B. CORDEVA",
+          "role": "National President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 13,
+      "slug": "bukidnon-forest-inc",
+      "name": "BUKIDNON FOREST, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "BFI Compound, Sumpong, Malaybalay City, Bukidnon",
+      "phone": "(088) 813-2654; 221-2175",
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "ESPERIDIAON R. JAVIER",
+          "role": "Chairperson"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 14,
+      "slug": "cagayan-economic-zone-authority",
+      "name": "CAGAYAN ECONOMIC ZONE AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "10/F Greenfield Tower, Mayflower cor. William Sts. Greenfield District, Mandaluyong",
+      "phone": "8291-6704 to 08 loc. 100, 101",
+      "trunklines": null,
+      "website": "ceza.gov.ph",
+      "email": "info@ceza.gov.ph",
+      "officials": [
+        {
+          "name": "KATRINA PONCE ENRILE",
+          "role": "Administrator and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 15,
+      "slug": "cebu-port-authority",
+      "name": "CEBU PORT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "CIP Complex, Sergio Osmeña Boulevard, North Reclamation Area, Cebu City",
+      "phone": "(032) 402-4040",
+      "trunklines": null,
+      "website": "www.cpa.gov.ph",
+      "email": "ogm_staff01@cpa.gov.ph",
+      "officials": [
+        {
+          "name": "FRANCISCO C. COMENDADOR III",
+          "role": "Acting General Manager and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 16,
+      "slug": "center-for-international-trade-expositions-and-missions",
+      "name": "CENTER FOR INTERNATIONAL TRADE EXPOSITIONS AND MISSIONS",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Golden Shell Pavilion, Roxas Boulevard cor. Sen. Gil J. Puyat Avenue, Pasay City",
+      "phone": "883-2201",
+      "trunklines": null,
+      "website": "www.citem.gov.ph",
+      "email": "info@citem.gov.ph",
+      "officials": [
+        {
+          "name": "ROMLEAH JULIET P. OCAMPO",
+          "role": "Acting Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 17,
+      "slug": "civil-aviation-authority-of-the-philippines",
+      "name": "CIVIL AVIATION AUTHORITY OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "MIA Road, Pasay City",
+      "phone": "8246-4988 loc. 2234, 2235",
+      "trunklines": null,
+      "website": "www.caap.gov.ph",
+      "email": "odg@caap.gov.ph; director.general@capp.gov.ph",
+      "officials": [
+        {
+          "name": "MANUEL ANTONIO L. TAMAYO",
+          "role": "Acting Director General"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 18,
+      "slug": "clark-development-corporation",
+      "name": "CLARK DEVELOPMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Bldg. 2125, Elpidio Quirino St., Clark Freeport Zone, Pampanga",
+      "phone": "(045) 599-9000",
+      "trunklines": null,
+      "website": "www.clark.com.ph",
+      "email": "information@clark.com.ph",
+      "officials": [
+        {
+          "name": "AGNES VST DEVANADERA",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 19,
+      "slug": "clark-international-airport-corporation",
+      "name": "CLARK INTERNATIONAL AIRPORT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Corporate Office Building, Civil Aviation Complex, Clark Freeport Zone, Pampanga",
+      "phone": "(045) 2888 to 92; 599-2895 to 97; 499-4467 to 68",
+      "trunklines": null,
+      "website": "www.ciac.gov.ph",
+      "email": "arreyperez@ciac.gov.ph; OP.Office@ciac.gov.ph",
+      "officials": [
+        {
+          "name": "ARREY A. PEREZ",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 20,
+      "slug": "coconut-industry-investment-fund-group",
+      "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
+      "phone": "8892-7961",
+      "trunklines": null,
+      "website": "www.ciif.ph",
+      "email": "trade-info@ciif.ph",
+      "officials": [
+        {
+          "name": "CARLO LUIS P. RABAT",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 21,
+      "slug": "credit-information-corporation",
+      "name": "CREDIT INFORMATION CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "6/F Exchange Corner Bldg. 107 V.A. Rufino St. cor. Esteban St., Legaspi Village, Makati City",
+      "phone": "8236-5900",
+      "trunklines": null,
+      "website": "www.creditinfo.gov.ph",
+      "email": "cichelpdesk@creditinfo.gov.ph",
+      "officials": [
+        {
+          "name": "BEN JOSHUA A. BALTAZAR",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 22,
+      "slug": "cultural-center-of-the-philippines",
+      "name": "CULTURAL CENTER OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "15/F Ramon Magsaysay Center, Quintos St., Malate, Manila",
+      "phone": "8832-3704; 8832-1125 loc. 1409",
+      "trunklines": null,
+      "website": "www.culturalcenter.gov.ph",
+      "email": "mdscorplan.cad@culturalcenter.gov.ph",
+      "officials": [
+        {
+          "name": "KAYE CHUA TINGA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 23,
+      "slug": "davao-international-airport-authority",
+      "name": "DAVAO INTERNATIONAL AIRPORT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Daang Maharlika Highway, Buhangin, Davao City, Davao del Sur",
+      "phone": null,
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "REX A. OBCENA",
+          "role": "Interim General Manager and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 24,
+      "slug": "dbp-data-center-inc",
+      "name": "DBP DATA CENTER, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "9/F DBP Building, Sen. Gil J. Puyat Avenue cor. Makati Avenue, Makati City",
+      "phone": "8818-9511 loc. 2913",
+      "trunklines": null,
+      "website": "www.dci.ph",
+      "email": "info@dci.ph",
+      "officials": [
+        {
+          "name": "MICHIELSON C. LUAKIAN",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 25,
+      "slug": "dbp-leasing-corporation",
+      "name": "DBP LEASING CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "2/F Pacific Star Bldg., San Miguel Ave., Pasig City",
+      "phone": "5304-7916",
+      "trunklines": null,
+      "website": "www.dbp-leasing.gov.ph",
+      "email": "customerservice@dbm-leasing.ph",
+      "officials": [
+        {
+          "name": "ANDREW C. KONG",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 26,
+      "slug": "development-academy-of-the-philippines",
+      "name": "DEVELOPMENT ACADEMY OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "DAP Bldg., San Miguel Ave., Pasig City",
+      "phone": "8631-0921 loc. 100",
+      "trunklines": null,
+      "website": "www.dap.edu.ph",
+      "email": "publicaffairsdesk@dap.edu.ph",
+      "officials": [
+        {
+          "name": "MAJAH-LEAH V. RAVAGO",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 27,
+      "slug": "development-bank-of-the-philippines",
+      "name": "DEVELOPMENT BANK OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Sen. Gil J. Puyat Avenue, Makati City",
+      "phone": "8818-9511 LOC. 4100, 4101; 8864-3242; 8893-4302",
+      "trunklines": null,
+      "website": "www.dbp.ph",
+      "email": "customerservice@dbp.ph",
+      "officials": [
+        {
+          "name": "MICHAEL O. DE JESUS",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 28,
+      "slug": "duty-free-philippines-corporation",
+      "name": "DUTY FREE PHILIPPINES CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Fiestamall, E.H.A. Bldg., Ninoy Aquino Avenue, Parañaque City",
+      "phone": "8552-4337",
+      "trunklines": null,
+      "website": "www.dutyfree.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "PATRICK JOEL M. CINCO",
+          "role": "Acting Chief Operating Officer"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 29,
+      "slug": "employees-compensation-commission",
+      "name": "EMPLOYEES' COMPENSATION COMMISSION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "4/F & 5/F ECC Bldg., 355 Sen. Gil Puyat Avenue, Makati City",
+      "phone": "8896-7837",
+      "trunklines": null,
+      "website": "www.ecc.gov.ph",
+      "email": "info@ecc.gov.ph",
+      "officials": [
+        {
+          "name": "KAIMA VIA B. VELASQUEZ",
+          "role": "Acting Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 30,
+      "slug": "food-terminal-inc",
+      "name": "FOOD TERMINAL, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "FTI Administration Building, Radian Street, Barangay Western Bicutan, Taguig City",
+      "phone": "838-4301 to 03",
+      "trunklines": null,
+      "website": "www.fti.gov.ph",
+      "email": "info@fti.gov.ph",
+      "officials": [
+        {
+          "name": "JOSEPH RUDOLPH C. LO",
+          "role": "Acting President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 31,
+      "slug": "government-service-insurance-system",
+      "name": "GOVERNMENT SERVICE INSURANCE SYSTEM",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Financial Center, Pasay City",
+      "phone": "8845-4747",
+      "trunklines": null,
+      "website": "www.gsis.gov.ph",
+      "email": "gsiscares@gsis.gov.ph",
+      "officials": [
+        {
+          "name": "JOSE ARNULFO A. VELOSO",
+          "role": "President and General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 32,
+      "slug": "gy-real-estate-inc",
+      "name": "GY REAL ESTATE, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
+      "phone": null,
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "LILIA L. ARCE",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 33,
+      "slug": "home-development-mutual-fund-pag-ibig",
+      "name": "HOME DEVELOPMENT MUTUAL FUND (PAG-IBIG)",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Petron Megaplaza Bldg., Sen. Gil J. Puyat Ave., Makati City",
+      "phone": "8422-3000 TL; 8724-4244",
+      "trunklines": null,
+      "website": "www.pagibigfund.gov.ph",
+      "email": "contactus@pagibigfund.gov.ph",
+      "officials": [
+        {
+          "name": "MARILENE C. ACOSTA",
+          "role": "Chief Executive Officer"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 34,
+      "slug": "intercontinental-broadcasting-corporation-ibc-13",
+      "name": "INTERCONTINENTAL BROADCASTING CORPORATION (IBC-13)",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Broadcast City, Capitol Hills, Diliman, Quezon City",
+      "phone": "(+632) 3433 7031",
+      "trunklines": null,
+      "website": "ibctv13.com",
+      "email": "info@ibctv13.com",
+      "officials": [
+        {
+          "name": "JOSE CRUZ POLICARPIO JR.",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 35,
+      "slug": "john-hay-management-corporation",
+      "name": "JOHN HAY MANAGEMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "JHMC Office Complex John Hay Special Economic Zone, Baguio, Benguet",
+      "phone": "8422-3000 TL; 8724-4244",
+      "trunklines": null,
+      "website": "www.jhmc.com.ph",
+      "email": "mgmt@jhmc.com.ph",
+      "officials": [
+        {
+          "name": "MARLO IGNACIO V. QUADRA",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 36,
+      "slug": "kamayan-realty-corporation",
+      "name": "KAMAYAN REALTY CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
+      "phone": "(02) 8840 4838",
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "LILIA L. ARCE",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 37,
+      "slug": "laguna-lake-development-authority",
+      "name": "LAGUNA LAKE DEVELOPMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "LLADA Bldg., National Ecology Center, East Avenue Diliman, Quezon City",
+      "phone": "8376-4061; 8332-2346; 8376-4076",
+      "trunklines": null,
+      "website": "llda.gov.ph",
+      "email": "info@llda.gov.ph",
+      "officials": [
+        {
+          "name": "SENANDO A. SANTIAGO",
+          "role": "Acting General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 38,
+      "slug": "land-bank-of-the-philippines",
+      "name": "LAND BANK OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "32/F Landbank Plaza, 1598 M. H. del Pilar cor. Dr. J. Quintos Sts., Malate, Manila",
+      "phone": "8405-7365",
+      "trunklines": null,
+      "website": "www.landbank.com",
+      "email": "customercare@landbank.com",
+      "officials": [
+        {
+          "name": "MA. LYNETTE V. ORTIZ",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 39,
+      "slug": "landbank-countryside-devt-foundation-inc",
+      "name": "LANDBANK COUNTRYSIDE DEV'T FOUNDATION, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "26/F Landbank Plaza, M.H. Del Pilar cor. Dr. Quintos St.",
+      "phone": "8522-0000 loc. 2062",
+      "trunklines": null,
+      "website": "www.landbankfoundation.com",
+      "email": "info@landbankfoundation.com",
+      "officials": [
+        {
+          "name": "ROY C. OSCILLADA",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 40,
+      "slug": "landbank-securities-inc",
+      "name": "LANDBANK SECURITIES, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "16/F Unit L2L16-11 The PSE Tower, One Bonifacio High Street, 5th Avenue corner 28th Street, Bonifacio Global City, Taguig City",
+      "phone": "8539-1771",
+      "trunklines": null,
+      "website": "www.landbanksec.com",
+      "email": "mystocks@landbank.com",
+      "officials": [
+        {
+          "name": "FLORENCE ROSALIND R. CLAVERIA",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 41,
+      "slug": "lbp-insurance-brokerage-inc",
+      "name": "LBP INSURANCE BROKERAGE, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "12/F SSHG Law Center 105 Paseo de Roxas, Legaspi Village, Makati City",
+      "phone": "8818-7794; 8893-5638",
+      "trunklines": null,
+      "website": "www.lbp-insurance.com",
+      "email": "libi@lbp-insurance.com",
+      "officials": [
+        {
+          "name": "EUSEBIO A. CORTEZ",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 42,
+      "slug": "lbp-leasing-and-finance-corporation",
+      "name": "LBP LEASING AND FINANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "15/F SYCIP Law Center, 105 Paseo de Roxas, Legazpi Village, Makati",
+      "phone": "8818-2200",
+      "trunklines": null,
+      "website": "www.lbpleasing.com",
+      "email": "info@lbpleasing.com",
+      "officials": [
+        {
+          "name": "MICHAEL P. ARAÑAS",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 43,
+      "slug": "lbp-resources-and-development-corporation",
+      "name": "LBP RESOURCES AND DEVELOPMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "24th Floor LBP Plaza, 1598 M.H. Del Pilar cor. Dr. J. Quintos St., Malate, Manila",
+      "phone": "8405-7402",
+      "trunklines": null,
+      "website": "lbpresources.com",
+      "email": "customerservice@lbpresources.com",
+      "officials": [
+        {
+          "name": "RICARDO C. JULIANO",
+          "role": "President, CEO, and Vice Chairperson"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 44,
+      "slug": "light-rail-transit-authority",
+      "name": "LIGHT RAIL TRANSIT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "1/F Line 2 Depot, Marcos Highway, Pasig City",
+      "phone": "8854-0456; 8647-3452",
+      "trunklines": null,
+      "website": "www.lrta.gov.ph",
+      "email": "administrator.office@Irta.gov.ph",
+      "officials": [
+        {
+          "name": "HERNANDO T. CABRERA",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 45,
+      "slug": "local-water-utilities-administration",
+      "name": "LOCAL WATER UTILITIES ADMINISTRATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "LWUA-MWSS Complex, Katipunan Ave., Balara, Quezon City",
+      "phone": "8929-5068; 8929-6107",
+      "trunklines": null,
+      "website": "www.lwua.gov.ph",
+      "email": "corplan.smd@lwua.gov.ph",
+      "officials": [
+        {
+          "name": "JOSE MOISES F. SALONGA",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 46,
+      "slug": "lung-center-of-the-philippines",
+      "name": "LUNG CENTER OF THE PHILIPPINES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Quezon Avenue Extension, Quezon City",
+      "phone": "8924-6101 loc. 4000",
+      "trunklines": null,
+      "website": "www.lcp.gov.ph",
+      "email": "director01@lcp.gov.ph",
+      "officials": [
+        {
+          "name": "VINCENT M. BALANAG JR.",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 47,
+      "slug": "mactan-cebu-international-airport-authority",
+      "name": "MACTAN-CEBU INTERNATIONAL AIRPORT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Lapu-Lapu Airport Road, Lapu-Lapu City, Cebu",
+      "phone": "(032) 494-8020 loc. 5001, 5002",
+      "trunklines": null,
+      "website": "www.mciaa.gov.ph",
+      "email": "ogm@mciaa.gov.ph",
+      "officials": [
+        {
+          "name": "JULIUS G. NERI JR.",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 48,
+      "slug": "maharlika-investment-corporation",
+      "name": "MAHARLIKA INVESTMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "29/F ORE Central 31st Street corner 9th Avenue Bonifacio Global City, Taguig",
+      "phone": null,
+      "trunklines": null,
+      "website": "maharlika.dof.gov.ph",
+      "email": "admin@mic.gov.ph; maharlikasecretariat@treasury.gov.ph",
+      "officials": [
+        {
+          "name": "RAFAEL D.C. CONSING JR.",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 49,
+      "slug": "manila-international-airport-authority",
+      "name": "MANILA INTERNATIONAL AIRPORT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "MIAA Administration Bldg., MIA Road, Pasay City",
+      "phone": "8877-1109 loc. 4089, 4329",
+      "trunklines": null,
+      "website": "www.miaa.gov.ph",
+      "email": "gmo@miaa.gov.ph",
+      "officials": [
+        {
+          "name": "ERIC JOSE C. INES",
+          "role": "General Manager and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 50,
+      "slug": "marawi-resort-hotel-inc",
+      "name": "MARAWI RESORT HOTEL, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Mindanao State University- Main Campus, Marawi City, Lanao del Sur",
+      "phone": "0985 834 0045",
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "IBRA G. MACAPANTON",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 51,
+      "slug": "metropolitan-waterworks-and-sewerage-system",
+      "name": "METROPOLITAN WATERWORKS AND SEWERAGE SYSTEM",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "MWSS Complex, 489 Katipunan Rd., Balara, Quezon City",
+      "phone": "3433-3987",
+      "trunklines": null,
+      "website": "mwss.gov.ph",
+      "email": "info@mwss.gov.ph",
+      "officials": [
+        {
+          "name": "LEONOR C. CLEOFAS",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 52,
+      "slug": "national-dairy-authority",
+      "name": "NATIONAL DAIRY AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "NDA Bldg., BAI Compound Visayas Avenue, Diliman, Quezon City",
+      "phone": "8926-0733 to 35 loc. 2008; 8926-0733 to 34 loc. 3007",
+      "trunklines": null,
+      "website": "nda.da.gov.ph",
+      "email": "sbsumagaysay@nda.da.gov.ph",
+      "officials": [
+        {
+          "name": "MARCUS ANTONIUS T. ANDAYA",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 53,
+      "slug": "national-development-company",
+      "name": "NATIONAL DEVELOPMENT COMPANY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "116 Tordesillas St., Salcedo Village, Makati City",
+      "phone": "8840-4838 to 47",
+      "trunklines": null,
+      "website": "www.ndc.gov.ph",
+      "email": "info@ndc.gov.ph",
+      "officials": [
+        {
+          "name": "VACANT",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 54,
+      "slug": "national-electrification-administration",
+      "name": "NATIONAL ELECTRIFICATION ADMINISTRATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "57 NEA Bldg., NIA Road, Government Center, Diliman, Quezon City",
+      "phone": "(+632) 8929-1909",
+      "trunklines": null,
+      "website": "www.nea.gov.ph",
+      "email": "nea@nea.gov.ph",
+      "officials": [
+        {
+          "name": "ANTONIO MARIANO C. ALMEDA",
+          "role": "Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 55,
+      "slug": "national-food-authority",
+      "name": "NATIONAL FOOD AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Visayas Avenue, Brgy. Vasra, Quezon City",
+      "phone": "0917-113-9347",
+      "trunklines": null,
+      "website": "www.nfa.gov.ph",
+      "email": "helpdesk@nfa.gov.ph",
+      "officials": [
+        {
+          "name": "LARRY DEL ROSARIO LACSON",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 56,
+      "slug": "national-home-mortgage-finance-corporation",
+      "name": "NATIONAL HOME MORTGAGE FINANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Filomena Bldg. III, 104 Amorsolo St., Legaspi Village, Makati City",
+      "phone": "8892-4950",
+      "trunklines": null,
+      "website": "www.nhmfc.gov.ph",
+      "email": "inquiry@nhmfc.gov.ph",
+      "officials": [
+        {
+          "name": "RENATO L. TOBIAS",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 57,
+      "slug": "national-housing-authority",
+      "name": "NATIONAL HOUSING AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Quezon Memorial Elliptical Road, Diliman, Quezon City",
+      "phone": "8790-0800; 8922-2460; 8922-2987; 8922-2058 TF",
+      "trunklines": null,
+      "website": "www.nha.gov.ph",
+      "email": "ogm@nha.gov.ph",
+      "officials": [
+        {
+          "name": "JOEBEN A. TAI",
+          "role": "Acting General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 58,
+      "slug": "national-irrigation-administration",
+      "name": "NATIONAL IRRIGATION ADMINISTRATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "National Government Center, EDSA, Diliman, Quezon City",
+      "phone": "8926-5896; 8926-2165",
+      "trunklines": null,
+      "website": "www.nia.gov.ph",
+      "email": "cps@nia.gov.ph",
+      "officials": [
+        {
+          "name": "EDUARDO EDDIE G. GUILLEN",
+          "role": "Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 59,
+      "slug": "national-kidney-and-transplant-institute",
+      "name": "NATIONAL KIDNEY AND TRANSPLANT INSTITUTE",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "East Avenue, Diliman, Quezon City",
+      "phone": "8981-0400",
+      "trunklines": null,
+      "website": "www.nkti.gov.ph",
+      "email": "pro@nkti.gov.ph",
+      "officials": [
+        {
+          "name": "ROSE MARIE O. ROSETE-LIQUETE",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 60,
+      "slug": "national-power-corporation",
+      "name": "NATIONAL POWER CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Gabriel Y. Itchon Building, Senator Miriam P. Defensor-Santiago Avenue corner Quezon Avenue, Diliman, Quezon City",
+      "phone": "8921-3541",
+      "trunklines": null,
+      "website": "www.napocor.gov.ph",
+      "email": "corpcomm@napocor.gov.ph",
+      "officials": [
+        {
+          "name": "FERNANDO MARTIN Y. ROXAS",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 61,
+      "slug": "national-tobacco-administration",
+      "name": "NATIONAL TOBACCO ADMINISTRATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "NTA Bldg., Scout Reyes cor. Panay Avenue, Brgy. Paligsahan, Quezon City",
+      "phone": "8374-2505; 8372-3185",
+      "trunklines": null,
+      "website": "www.nta.da.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "BELINDA S. SANCHEZ",
+          "role": "Acting Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 62,
+      "slug": "national-transmission-corporation",
+      "name": "NATIONAL TRANSMISSION CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "TransCo Head Office, Power Center Quezon Ave., cor. BIR Road, Diliman, Quezon City",
+      "phone": "7902-1500",
+      "trunklines": null,
+      "website": "www.transco.ph",
+      "email": "customerservice@transco.ph",
+      "officials": [
+        {
+          "name": "FORTUNATO C. LEYNES",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 63,
+      "slug": "natural-resources-development-corporation",
+      "name": "NATURAL RESOURCES DEVELOPMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "9/F DENR By the Bay Bldg., Roxas Blvd., Manila",
+      "phone": "8521-9421",
+      "trunklines": null,
+      "website": "www.nrdc.denr.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "ALEXANDER M. LINDE",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 64,
+      "slug": "nayong-pilipino-foundation-inc",
+      "name": "NAYONG PILIPINO FOUNDATION, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Plaza San Luis, General Luna St., Intramuros, Manila",
+      "phone": null,
+      "trunklines": null,
+      "website": "nayongpilipino.gov.ph",
+      "email": "planning@nayongpilipino.gov.ph",
+      "officials": [
+        {
+          "name": "GERTRUDES D. BATOCABE",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 65,
+      "slug": "overseas-filipino-bank",
+      "name": "OVERSEAS FILIPINO BANK",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "3/F Liwasang Bonifacio, Ofbank center, Ermita, Manila",
+      "phone": "8405-7000",
+      "trunklines": null,
+      "website": "www.ofbank.com.ph",
+      "email": "customer.care@ofbank.com.ph",
+      "officials": [
+        {
+          "name": "ELCID C. PANGILINAN",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 66,
+      "slug": "palacio-del-gobernador-condominium-corporation",
+      "name": "PALACIO DEL GOBERNADOR CONDOMINIUM CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Gen. Luna Street corner A. Soriano Street Intramuros, Manila",
+      "phone": "8559-9119",
+      "trunklines": null,
+      "website": "www.pdgcc.gov.ph",
+      "email": "info@pdgcc.gov.ph",
+      "officials": [
+        {
+          "name": "SHARON P. ALMANZA",
+          "role": "Chairperson and President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 67,
+      "slug": "pea-tollway-corporation",
+      "name": "PEA TOLLWAY CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PEATC Compound. Aguinaldo Boulevard, Brgy. San Dionisio, Parañaque City",
+      "phone": "8683-8001",
+      "trunklines": null,
+      "website": "www.peatc.gov.ph",
+      "email": "info@pea.gov.ph; peatollwaycorp@peatc.gov.ph",
+      "officials": [
+        {
+          "name": "DIOSCORO E. ESTEBAN, JR.",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 68,
+      "slug": "peoples-television-network-inc",
+      "name": "PEOPLE'S TELEVISION NETWORK, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Broadcast Complex, Visayas Ave Brgy. Vasra, Quezon City",
+      "phone": "8451-0914",
+      "trunklines": null,
+      "website": "www.ptni.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "ANTONIO BALTAZAR V. NEBRIDA JR.",
+          "role": "Acting General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 69,
+      "slug": "philippine-aerospace-development-corporation",
+      "name": "PHILIPPINE AEROSPACE DEVELOPMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PADC Hangar 2, General Aviation Area Domestic Road, Pasay City",
+      "phone": "8252-1672",
+      "trunklines": null,
+      "website": "padc.com.ph",
+      "email": "pocastaneda@padc.com.ph",
+      "officials": [
+        {
+          "name": "RAYMOND L. MITRA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 70,
+      "slug": "philippine-amusement-and-gaming-corporation",
+      "name": "PHILIPPINE AMUSEMENT AND GAMING CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "11th Floor, MET LIVE Bldg., Central Business Park 1-A Macapagal Blvd. corner EDSA Extension, Pasay City",
+      "phone": "8521-1542; 8522-0299",
+      "trunklines": null,
+      "website": "www.pagcor.ph",
+      "email": "info@pagcor.ph",
+      "officials": [
+        {
+          "name": "ALEJANDRO H. TENGCO",
+          "role": "Chairman and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 71,
+      "slug": "philippine-center-for-economic-development",
+      "name": "PHILIPPINE CENTER FOR ECONOMIC DEVELOPMENT",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Room 203, 2/F School of Economics University of the Philippines, Diliman, Quezon City",
+      "phone": "8981-8500 loc. 8500; 8920-5463",
+      "trunklines": null,
+      "website": "www.pced.gov.ph",
+      "email": "executivedirector@up.edu.ph",
+      "officials": [
+        {
+          "name": "MA. JOY V. ABRENICA",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 72,
+      "slug": "philippine-charity-sweepstakes-office",
+      "name": "PHILIPPINE CHARITY SWEEPSTAKES OFFICE",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "9/F Sun Plaza Bldg., 1507 Princeton St. cor. Shaw Blvd., Mandaluyong City",
+      "phone": "8706-3067",
+      "trunklines": null,
+      "website": "www.pcso.gov.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "MELQUIADES A. ROBLES",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 73,
+      "slug": "philippine-childrens-medical-center",
+      "name": "PHILIPPINE CHILDREN'S MEDICAL CENTER",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Quezon Avenue cor. Sen. Miriam Defensor-Santiago Ave., Bagong Pag-asa, Quezon City",
+      "phone": "8588-9900",
+      "trunklines": null,
+      "website": "www.pcmc.gov.ph",
+      "email": "officeofthedirector@pcmc.gov.ph",
+      "officials": [
+        {
+          "name": "SONIA B. GONZALEZ",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 74,
+      "slug": "philippine-coconut-authority",
+      "name": "PHILIPPINE COCONUT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Commonwealth Avenue, Diliman, Quezon City",
+      "phone": "8928-4501 loc. 410",
+      "trunklines": null,
+      "website": "pca.gov.ph",
+      "email": "cps@pca.gov.ph",
+      "officials": [
+        {
+          "name": "DEXTER R. BUTED",
+          "role": "Administrator and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 75,
+      "slug": "philippine-crop-insurance-corporation",
+      "name": "PHILIPPINE CROP INSURANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "7/F Bldg. A, NIA Complex, EDSA, Diliman, Quezon City",
+      "phone": "8533-4466; 8441-0667",
+      "trunklines": null,
+      "website": "pcic.gov.ph",
+      "email": "op@pcic.gov.ph",
+      "officials": [
+        {
+          "name": "JOVY C. BERNABE",
+          "role": "Acting President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 76,
+      "slug": "philippine-deposit-insurance-corporation",
+      "name": "PHILIPPINE DEPOSIT INSURANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "2228 Chino Roces Avenue, Makati City",
+      "phone": "8841-4141",
+      "trunklines": null,
+      "website": "www.pdic.gov.ph",
+      "email": "pad@pdic.gov.ph",
+      "officials": [
+        {
+          "name": "ROBERTO B. TAN",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 77,
+      "slug": "philippine-economic-zone-authority",
+      "name": "PHILIPPINE ECONOMIC ZONE AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "10/F Double Dragon Center West Building DD Meridian Park, Macapagal Avenue, Pasay City",
+      "phone": "8551-3451",
+      "trunklines": null,
+      "website": "www.peza.gov.ph",
+      "email": "odg@peza.gov.ph",
+      "officials": [
+        {
+          "name": "TERESO O. PANGA",
+          "role": "Director General"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 78,
+      "slug": "philippine-fisheries-development-authority",
+      "name": "PHILIPPINE FISHERIES DEVELOPMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PCA Annex Bldg. 1, Elliptical Road, Diliman, Quezon City",
+      "phone": "8925-6136",
+      "trunklines": null,
+      "website": "www.pfda.gov.ph",
+      "email": "cpmsid@da.gov.ph",
+      "officials": [
+        {
+          "name": "GLEN A. PANGAPALAN",
+          "role": "Acting General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 79,
+      "slug": "philippine-guarantee-corporation",
+      "name": "PHILIPPINE GUARANTEE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "22nd - 24th Floor, BPI AIA Makati, 6811 Ayala Avenue, Bel-air, 1209 City of Makati, Fourth District, Philippines",
+      "phone": "5322-8100",
+      "trunklines": null,
+      "website": "philguarantee.gov.ph",
+      "email": "info@philguarantee.gov.ph",
+      "officials": [
+        {
+          "name": "ALBERTO FRANCISCO E. PASCUAL",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 80,
+      "slug": "philippine-health-insurance-corporation",
+      "name": "PHILIPPINE HEALTH INSURANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "22/F-24/F BPI Philam Life Makati, 6811 Ayala Avenue, Makati City",
+      "phone": "8662-2588",
+      "trunklines": null,
+      "website": "www.philhealth.gov.ph",
+      "email": "actioncenter@philhealth.gov.ph",
+      "officials": [
+        {
+          "name": "EMMANUEL R. LEDESMA JR.",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 81,
+      "slug": "philippine-heart-center",
+      "name": "PHILIPPINE HEART CENTER",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "East Avenue, Quezon City",
+      "phone": "8925-2401 to 50",
+      "trunklines": null,
+      "website": "www.phc.gov.ph",
+      "email": "query@phc.gov.ph",
+      "officials": [
+        {
+          "name": "AVENILO L. AVENTURA JR.",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 82,
+      "slug": "philippine-institute-development-studies",
+      "name": "PHILIPPINE INSTITUTE DEVELOPMENT STUDIES",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "18/F Three Cyberpod Centris-North Tower EDSA cor. Quezon Ave., Quezon City",
+      "phone": "8877-4000",
+      "trunklines": null,
+      "website": "www.pids.gov.ph",
+      "email": "pids-op@pids.gov.ph",
+      "officials": [
+        {
+          "name": "ANICETO C. ORBETA JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 83,
+      "slug": "philippine-institute-of-traditional-and-alternative-health-care",
+      "name": "PHILIPPINE INSTITUTE OF TRADITIONAL AND ALTERNATIVE HEALTH CARE",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PITAHC Bldg., East Avenue Medical Center Compound Matapang St., Brgy. Central, Quezon City",
+      "phone": "8282-5193; 8282-5194; 8376-3067 TF 8376-3068 TF",
+      "trunklines": null,
+      "website": "www.pitahc.gov.ph",
+      "email": "contact@pitahc.gov.ph",
+      "officials": [
+        {
+          "name": "MA. TERESA C. IÑIGO",
+          "role": "Director General"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 84,
+      "slug": "philippine-international-trading-corporation",
+      "name": "PHILIPPINE INTERNATIONAL TRADING CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "NDC Bldg., 116 Tordesillas St. Salcedo Village, Makati City",
+      "phone": "8818-9801",
+      "trunklines": null,
+      "website": "www.pitc.gov.ph",
+      "email": "pitc@pitc.gov.ph",
+      "officials": [
+        {
+          "name": "MARIA GUDELIA C. GUESE",
+          "role": "OIC--President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 85,
+      "slug": "philippine-mining-development-corporation",
+      "name": "PHILIPPINE MINING DEVELOPMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Unit 3001B West Tower, Philippine Stock Exchange Centre, Ortigas Center, Pasig City",
+      "phone": "8706-1631",
+      "trunklines": null,
+      "website": "pmdc.gov.ph",
+      "email": "info@pmdc.com.ph",
+      "officials": [
+        {
+          "name": "ALBERTO B. SIPACO JR.",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 86,
+      "slug": "philippine-national-construction-corporation",
+      "name": "PHILIPPINE NATIONAL CONSTRUCTION CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "KM. 15 East Service Road, Bicutan, Parañaque City",
+      "phone": "8846-0209",
+      "trunklines": null,
+      "website": "www.pncc.ph",
+      "email": "op@pncc.ph",
+      "officials": [
+        {
+          "name": "MIGUEL E. UMALI",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 87,
+      "slug": "philippine-national-oil-company",
+      "name": "PHILIPPINE NATIONAL OIL COMPANY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PNOC Bldg. 6, Energy Center, Rizal Drive, Bonifacio Global City, Taguig",
+      "phone": "8789-7662",
+      "trunklines": null,
+      "website": "www.pnoc.com.ph",
+      "email": "pnocpacd@pnoc.com.ph",
+      "officials": [
+        {
+          "name": "OLIVER MARIO B. BUTALID",
+          "role": "Acting President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 88,
+      "slug": "philippine-national-railways",
+      "name": "PHILIPPINE NATIONAL RAILWAYS",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PNR Executive Bldg., Mayhaligue St. Tondo, Manila",
+      "phone": "5319-0041",
+      "trunklines": null,
+      "website": "www.pnr.gov.ph",
+      "email": "ogm@pnr.gov.ph",
+      "officials": [
+        {
+          "name": "DEOVANNI SALIDO MIRANDA",
+          "role": "Acting General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 89,
+      "slug": "philippine-pharma-procurement-inc",
+      "name": "PHILIPPINE PHARMA PROCUREMENT INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Penthouse, NDC Building, 116 Tordesillas St., Salcedo Village, Makati City",
+      "phone": "0919-337-8201",
+      "trunklines": null,
+      "website": "pppi.gov.ph",
+      "email": "info@pppi.gov.ph",
+      "officials": [
+        {
+          "name": "MA. BLANCA KIM B. LOKIN",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 90,
+      "slug": "philippine-ports-authority",
+      "name": "PHILIPPINE PORTS AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Bonifacio Drive, South Harbor, Port Area, Manila",
+      "phone": "5301-0545",
+      "trunklines": null,
+      "website": "www.ppa.com.ph",
+      "email": "ogm@ppa.com.ph",
+      "officials": [
+        {
+          "name": "JAY DANIEL R. SANTIAGO",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 91,
+      "slug": "philippine-postal-corporation",
+      "name": "PHILIPPINE POSTAL CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Manila Central Post Office Bldg. Liwasang Bonifacio, Manila",
+      "phone": "8288-7678",
+      "trunklines": null,
+      "website": "www.phlpost.gov.ph",
+      "email": "phipostcares@phlpost.gov.ph",
+      "officials": [
+        {
+          "name": "LUIS D. CARLOS",
+          "role": "Postmaster General"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 92,
+      "slug": "philippine-reclamation-authority",
+      "name": "PHILIPPINE RECLAMATION AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "7/F Legaspi Towers 200 Bldg., 107 Paseo de Roxas St. Legaspi Village, Makati City",
+      "phone": "8894-2464",
+      "trunklines": null,
+      "website": "www.pea.gov.ph",
+      "email": "info@pea.gov.ph",
+      "officials": [
+        {
+          "name": "CESAR S. SIADOR JR.",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 93,
+      "slug": "philippine-retirement-authority",
+      "name": "PHILIPPINE RETIREMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "29/F BDO Towers Valero, Paseo de Roxas, Makati City",
+      "phone": "8848-1412 to 14; 8247-1679; 8247-1632",
+      "trunklines": null,
+      "website": "www.pra.gov.ph",
+      "email": "clientrelations@pra.gov.ph",
+      "officials": [
+        {
+          "name": "ROBERTO Z. ZOZOBRADO",
+          "role": "General Manager"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 94,
+      "slug": "philippine-rice-research-institute",
+      "name": "PHILIPPINE RICE RESEARCH INSTITUTE",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Maligaya, Science City of Muñoz, Nueva Ecija",
+      "phone": "0917-111-7423",
+      "trunklines": null,
+      "website": "www.philrice.gov.ph",
+      "email": "philrice@philrice.gov.ph",
+      "officials": [
+        {
+          "name": "JOHN C. DE LEON",
+          "role": "Executive Director"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 95,
+      "slug": "philippine-tax-academy",
+      "name": "PHILIPPINE TAX ACADEMY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Roxas Blvd. cor. Pablo Ocampo St., Malate, Manila",
+      "phone": "5314-1800; 5317-6367",
+      "trunklines": null,
+      "website": "doftaxacademy.gov.ph",
+      "email": "info@doftaxacademy.gov.ph",
+      "officials": [
+        {
+          "name": "VACANT",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 96,
+      "slug": "pinagkaisa-realty-corporation",
+      "name": "PINAGKAISA REALTY CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Makati City",
+      "phone": null,
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "SATURNINO H. MEJIA",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 97,
+      "slug": "planters-product-inc",
+      "name": "PLANTERS PRODUCT INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Bldg. 109 Esteban Street, Legaspi Village Makati City",
+      "phone": "8818-2332",
+      "trunklines": null,
+      "website": "plantersproducts.com",
+      "email": null,
+      "officials": [
+        {
+          "name": "VACANT",
+          "role": "Chairperson and President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 98,
+      "slug": "pnoc-exploration-corporation",
+      "name": "PNOC EXPLORATION CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "PNOC Building 1, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
+      "phone": "8479-9400",
+      "trunklines": null,
+      "website": "pnoc-ec.com.ph",
+      "email": "info@pnoc-ec.com.ph",
+      "officials": [
+        {
+          "name": "JAIME A. BACUD",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 99,
+      "slug": "pnoc-renewables-corporation",
+      "name": "PNOC RENEWABLES CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Ground Floor, PNOC Building 5, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
+      "phone": "(+632) 8840-3079",
+      "trunklines": null,
+      "website": "www.pnoc-rc.com.ph",
+      "email": "inquiry@pnoc-rc.com.ph",
+      "officials": [
+        {
+          "name": "JOHN MARTIN FRANCIS J. ARENAS",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 100,
+      "slug": "poro-point-management-corporation",
+      "name": "PORO POINT MANAGEMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Gov. Joaquin L. Ortega Avenue San Fernando City, La Union",
+      "phone": "(072) 242-4016",
+      "trunklines": null,
+      "website": "www.poropointfreeport.gov.ph",
+      "email": "poropointfreeportzone@gmail.com",
+      "officials": [
+        {
+          "name": "FELIX S. RACADIO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 101,
+      "slug": "phividec-industrial-authority",
+      "name": "PHIVIDEC INDUSTRIAL AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Mindanao Container Terminal Complex, Tagoloan, Misamis Oriental",
+      "phone": "(088) 567-0315; 560-194",
+      "trunklines": null,
+      "website": "www.piamo.gov.ph",
+      "email": "oapia@piamo.gov.ph",
+      "officials": [
+        {
+          "name": "JOSEPH DONATO J. BERNEDO",
+          "role": "Administrator and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 102,
+      "slug": "power-sector-assets-and-liabilities-management-corporation",
+      "name": "POWER SECTOR ASSETS AND LIABILITIES MANAGEMENT CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "10/F & 24/F Vertis North Corporate Center 1 Astra corner Lux Drives, North Avenue, Quezon City",
+      "phone": "8248-4800",
+      "trunklines": null,
+      "website": "www.psalm.gov.ph",
+      "email": "infos@psalm.gov.ph",
+      "officials": [
+        {
+          "name": "DENNIS EDWARD A. DELA SERNA",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 103,
+      "slug": "quezon-city-development-authority",
+      "name": "QUEZON CITY DEVELOPMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": null,
+      "phone": null,
+      "trunklines": null,
+      "website": null,
+      "email": null,
+      "officials": [
+        {
+          "name": "MICHAEL VICTOR N. ALIMURUNG",
+          "role": "Chairperson"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 104,
+      "slug": "small-business-corporation",
+      "name": "SMALL BUSINESS CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "17/F & 18/F 139 Corporate Center 139 Valero St., Salcedo Village, Makati City",
+      "phone": "5328-1100 to 10; 5328-1112 to 16 loc. 1753,1731",
+      "trunklines": null,
+      "website": "www.sbgfc.org.ph",
+      "email": "sbcorporation@sbcorp.gov.ph",
+      "officials": [
+        {
+          "name": "ROBERT C. BASTILLO",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 105,
+      "slug": "social-housing-finance-corporation",
+      "name": "SOCIAL HOUSING FINANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "BDO Plaza, 8737 Paseo de Roxas, Makati City",
+      "phone": "7750-6337 TL; 8893-2947 loc. 101",
+      "trunklines": null,
+      "website": "www.shfc.dhsud.gov.ph",
+      "email": "contact@shfcph.com",
+      "officials": [
+        {
+          "name": "FEDERICO A. LAXA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 106,
+      "slug": "social-security-system",
+      "name": "SOCIAL SECURITY SYSTEM",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "SSS Bldg., East Avenue, Diliman, Quezon City",
+      "phone": "8709-7198",
+      "trunklines": null,
+      "website": "www.sss.gov.ph",
+      "email": "usssaptayo@sss.gov.ph",
+      "officials": [
+        {
+          "name": "ROLANDO L. MACASAET",
+          "role": "President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 107,
+      "slug": "southern-philippines-development-authority",
+      "name": "SOUTHERN PHILIPPINES DEVELOPMENT AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "KM. 12 Catalunan Pequeño, SPDA Compound Davao-Bukidnon Highway, Davao City",
+      "phone": "(082) 298-5745; 298-5756",
+      "trunklines": null,
+      "website": "spda.gov.ph",
+      "email": "info_mio@spda.gov.ph",
+      "officials": [
+        {
+          "name": "ABDULGHANI A. SALAPUDDIN",
+          "role": "Acting Administrator and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 108,
+      "slug": "subic-bay-metropolitan-authority",
+      "name": "SUBIC BAY METROPOLITAN AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Bldg. 229 Waterfront Road Subic Bay Freeport Zone",
+      "phone": "(047) 252-4000; 252-4185 F",
+      "trunklines": null,
+      "website": "www.mysubicbay.com.ph",
+      "email": "administratorsoffice@sbma.com",
+      "officials": [
+        {
+          "name": "EDUARDO JOSE L. ALIÑO",
+          "role": "Chairperson and Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 109,
+      "slug": "sugar-regulatory-administration",
+      "name": "SUGAR REGULATORY ADMINISTRATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "Sugar Center Bldg., North Avenue, Diliman, Quezon City",
+      "phone": "8929-6137; 3455-3376",
+      "trunklines": null,
+      "website": "www.sra.gov.ph",
+      "email": "ppspdsra@sra.gov.ph",
+      "officials": [
+        {
+          "name": "PABLO LUIS S. AZCONA",
+          "role": "Acting Administrator and CE"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 110,
+      "slug": "tourism-infrastructure-and-enterprise-zone-authority",
+      "name": "TOURISM INFRASTRUCTURE AND ENTERPRISE ZONE AUTHORITY",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "6/F & 7/F Tower 1 Double Dragon Plaza Double Dragon Meridian Park Macapagal Avenue corner EDSA Extension, 1302, Bay Area, Pasay City",
+      "phone": "8249-5900 to 79",
+      "trunklines": null,
+      "website": "www.tieza.gov.ph",
+      "email": "ocoo@tieza.gov.ph",
+      "officials": [
+        {
+          "name": "MARK T. LAPID",
+          "role": "Acting Chief Operating Officer"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 111,
+      "slug": "tourism-promotions-board",
+      "name": "TOURISM PROMOTIONS BOARD",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "6/F Five E-Com Center, Harbor Drive, Mall of Asia Complex, Pasay City",
+      "phone": "8525-9318 to 27",
+      "trunklines": null,
+      "website": "www.tpb.gov.ph",
+      "email": "info@tpb.gov.ph",
+      "officials": [
+        {
+          "name": "MARIA MARGARITA M. NOGRALES",
+          "role": "Acting Chief Operating Officer"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 112,
+      "slug": "zamboanga-city-special-economic-zone-authority-and-freeport",
+      "name": "ZAMBOANGA CITY SPECIAL ECONOMIC ZONE AUTHORITY AND FREEPORT",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "San Ramon, Zamboanga City",
+      "phone": "(062) 9975-3523",
+      "trunklines": null,
+      "website": "www.zfa.gov.ph",
+      "email": "ecozone@zfa.gov.ph",
+      "officials": [
+        {
+          "name": "RAUL M. REGONDOLA",
+          "role": "Chairperson and Administrator"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 113,
+      "slug": "ucpb-leasing-and-finance-corporation",
+      "name": "UCPB LEASING AND FINANCE CORPORATION",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "14/F Sycip Law Center, 105 Paseo de Roxas St. Brgy. San Lorenzo, Makati City",
+      "phone": "8818-2200",
+      "trunklines": null,
+      "website": "https://www.lbpleasing.com/",
+      "email": "customercare@lbpleasing.com",
+      "officials": [
+        {
+          "name": "KRISTINE MARIE G. CUEVAS",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 114,
+      "slug": "ucpb-savings-bank-inc",
+      "name": "UCPB SAVINGS BANK, INC.",
+      "officeType": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
+      "description": null,
+      "address": "7/F Robinsons Cybergate Magnolia, Aurora Boulevard corner Doña Hemady Street, Quezon City",
+      "phone": "8811-0278",
+      "trunklines": null,
+      "website": "www.ucpbsavings.com",
+      "email": "usb-camu@ucpbsavings.com",
+      "officials": [
+        {
+          "name": "LIZETTE MARGARET MARY J. RACELA",
+          "role": "OIC-President and CEO"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": null
+    },
+    {
+      "position": 115,
+      "slug": "eulogio-amang-rodriguez-institute-of-science-and-technology",
+      "name": "EULOGIO \"AMANG\" RODRIGUEZ INSTITUTE OF SCIENCE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Nagtahan St., Sta. Mesa, Manila",
+      "phone": "8230-2334 loc 101",
+      "trunklines": null,
+      "website": "earist.edu.ph",
+      "email": "rmamaradlo@earist.edu.ph",
+      "officials": [
+        {
+          "name": "ROGELIO T. MAMARADLO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 116,
+      "slug": "mindanao-state-university-iligan-institute-of-technology",
+      "name": "MINDANAO STATE UNIVERSITY - ILIGAN INSTITUTE OF TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Andres Bonifacio Avenue, Tibanga, 9200 Iligan City",
+      "phone": "221-4056",
+      "trunklines": null,
+      "website": "www.msuiit.edu.ph",
+      "email": "chancellor@g.msuiit.edu.ph",
+      "officials": [
+        {
+          "name": "PROF. ALIZEDNEY M. DITUCALAN, JD, LLM",
+          "role": "Chancellor"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 117,
+      "slug": "marikina-polytechnic-college",
+      "name": "MARIKINA POLYTECHNIC COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Mayor Juan Chanyungco St., Sta Elena, Marikina City",
+      "phone": "8682-0672 loc. 101, 102",
+      "trunklines": null,
+      "website": "mpc.edu.ph",
+      "email": "info@mpc.edu.ph",
+      "officials": [
+        {
+          "name": "RENE M. COLOCAR",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 118,
+      "slug": "philippine-normal-university",
+      "name": "PHILIPPINE NORMAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Taft Avenue, Manila",
+      "phone": "5317-1768 loc. 718",
+      "trunklines": null,
+      "website": "www.pnu.edu.ph",
+      "email": "president@pnu.edu.ph",
+      "officials": [
+        {
+          "name": "BERT J. TUGA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 119,
+      "slug": "philippine-state-college-of-aeronautics",
+      "name": "PHILIPPINE STATE COLLEGE OF AERONAUTICS",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Piccio Garden, Villamor Air Base, Pasay City",
+      "phone": "8401-5527",
+      "trunklines": null,
+      "website": "www.philsca.edu.ph",
+      "email": "pmdelacruz@philsca.edu.ph",
+      "officials": [
+        {
+          "name": "MARWIN M. DELA CRUZ",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 120,
+      "slug": "polytechnic-university-of-the-philippines",
+      "name": "POLYTECHNIC UNIVERSITY OF THE PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "A. Mabini Campus, Anonas St., Sta. Mesa, Manila",
+      "phone": "5335-1777 loc. 658, 659, 701, 702",
+      "trunklines": null,
+      "website": "www.pup.edu.ph",
+      "email": "president@pup.edu.ph",
+      "officials": [
+        {
+          "name": "MANUEL M. MUHI",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 121,
+      "slug": "rizal-technological-university",
+      "name": "RIZAL TECHNOLOGICAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Boni Avenue, Mandaluyong City",
+      "phone": "8534-8267 loc. 1113",
+      "trunklines": null,
+      "website": "www.rtu.edu.ph",
+      "email": "op@rtu.edu.ph",
+      "officials": [
+        {
+          "name": "MA. EUGENIA M. YANGCO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 122,
+      "slug": "technological-university-of-the-philippines",
+      "name": "TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Ayala Boulevard, Ermita, Manila",
+      "phone": "523-2293; 301-3001 loc. 112, 122",
+      "trunklines": null,
+      "website": "www.tup.edu.ph",
+      "email": "reynaldo_ramos@tup.edu.ph",
+      "officials": [
+        {
+          "name": "REYNALDO P. RAMOS",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 123,
+      "slug": "university-of-the-philippines-system",
+      "name": "UNIVERSITY OF THE PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Diliman, Quezon City",
+      "phone": "8928-0110; 8928-2866",
+      "trunklines": null,
+      "website": "up.edu.ph",
+      "email": "op@up.edu.ph",
+      "officials": [
+        {
+          "name": "ANGELO A. JIMENEZ",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "NATIONAL CAPITAL REGION"
+      }
+    },
+    {
+      "position": 124,
+      "slug": "university-of-abra",
+      "name": "UNIVERSITY OF ABRA",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Lagangilang, Abra",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.asist.edu.ph",
+      "email": "president@asist.edu.ph",
+      "officials": [
+        {
+          "name": "GREGORIO T. TURQUEZA JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 125,
+      "slug": "apayao-state-college",
+      "name": "APAYAO STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Conner, Apayao",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.asc.edu.ph",
+      "email": "op_asc@yahoo.com",
+      "officials": [
+        {
+          "name": "JOHN N. CABANSAG",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 126,
+      "slug": "benguet-state-university",
+      "name": "BENGUET STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "La Trinidad, Benguet",
+      "phone": "(074) 422-2281",
+      "trunklines": null,
+      "website": "www.bsu.edu.ph",
+      "email": "president@bsu.edu.ph",
+      "officials": [
+        {
+          "name": "KENNETH A. LARUAN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 127,
+      "slug": "ifugao-state-university",
+      "name": "IFUGAO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Lamut, Ifugao",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.ifsu.edu.ph",
+      "email": "president@ifsu.edu.ph",
+      "officials": [
+        {
+          "name": "EVA MARIE C. DUGYON",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 128,
+      "slug": "kalinga-state-university",
+      "name": "KALINGA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Tabuk, Kalinga, Apayao",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.ksu.edu.ph",
+      "email": "jgpdoctor@ksu.edu.ph",
+      "officials": [
+        {
+          "name": "JOY GRACE P. DOCTOR",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 129,
+      "slug": "mountain-province-state-polytechnic-college",
+      "name": "MOUNTAIN PROVINCE STATE POLYTECHNIC COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Bontoc, Mountain Province",
+      "phone": "(074) 601-1134",
+      "trunklines": null,
+      "website": "mpsu.edu.ph",
+      "email": "ecue@mpspc.edu.ph",
+      "officials": [
+        {
+          "name": "EDGAR G. CUE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "CORDILLERA ADMINISTRATIVE REGION"
+      }
+    },
+    {
+      "position": 130,
+      "slug": "don-mariano-marcos-memorial-state-university",
+      "name": "DON MARIANO MARCOS MEMORIAL STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Bacnotan, La Union",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.dmmmsu.edu.ph",
+      "email": "president@dmmmsu.edu.ph",
+      "officials": [
+        {
+          "name": "JAIME I. MANUEL JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION I ILOCOS REGION"
+      }
+    },
+    {
+      "position": 131,
+      "slug": "ilocos-sur-polytechnic-state-college",
+      "name": "ILOCOS SUR POLYTECHNIC STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Sta. Maria, Ilocos Sur",
+      "phone": "(077) 732-5512",
+      "trunklines": null,
+      "website": "www.ispsc.edu.ph",
+      "email": "op@ispsc.edu.ph",
+      "officials": [
+        {
+          "name": "CHRISTINE N. FERRER",
+          "role": "Officer-In-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION I ILOCOS REGION"
+      }
+    },
+    {
+      "position": 132,
+      "slug": "mariano-marcos-state-university",
+      "name": "MARIANO MARCOS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "City of Batac, Ilocos Norte",
+      "phone": "(077) 792-3191; 792-3507",
+      "trunklines": null,
+      "website": "www.mmsu.edu.ph",
+      "email": "op@mmsu.edu.ph",
+      "officials": [
+        {
+          "name": "PRIMA FE R. FRANCO",
+          "role": "Officer-in-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION I ILOCOS REGION"
+      }
+    },
+    {
+      "position": 133,
+      "slug": "pangasinan-state-university",
+      "name": "PANGASINAN STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Alvear St., Lingayen, Pangasinan",
+      "phone": "(075) 632-6513",
+      "trunklines": null,
+      "website": "www.psu.edu.ph",
+      "email": "prpio@psu.edu.ph",
+      "officials": [
+        {
+          "name": "ELBERT M. GALAS",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION I ILOCOS REGION"
+      }
+    },
+    {
+      "position": 134,
+      "slug": "university-of-northern-philippines",
+      "name": "UNIVERSITY OF NORTHERN PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Tamag, Vigan City, Ilocos Sur",
+      "phone": "(077) 644-2261",
+      "trunklines": null,
+      "website": "unp.edu.ph",
+      "email": "op@unp.edu.ph",
+      "officials": [
+        {
+          "name": "ERWIN F. CADORNA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION I ILOCOS REGION"
+      }
+    },
+    {
+      "position": 135,
+      "slug": "batanes-state-college",
+      "name": "BATANES STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Washington Ave., San Antonio, Basco, Batanes",
+      "phone": "+63 943 555 4578; +63 995 607 5114",
+      "trunklines": null,
+      "website": "www.bscbatanes.edu.ph",
+      "email": "infounit@bscbatanes.edu.ph",
+      "officials": [
+        {
+          "name": "DJOVI R. DURANTE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION II CAGAYAN VALLEY"
+      }
+    },
+    {
+      "position": 136,
+      "slug": "cagayan-state-university",
+      "name": "CAGAYAN STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Caritan Sur, Tuguegarao City, Cagayan",
+      "phone": "(078) 844 0099 loc. 104; 844 4119",
+      "trunklines": null,
+      "website": "www.csu.edu.ph",
+      "email": "president@csu.edu.ph",
+      "officials": [
+        {
+          "name": "ARTHUR G. IBAÑEZ",
+          "role": "Officer-in-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION II CAGAYAN VALLEY"
+      }
+    },
+    {
+      "position": 137,
+      "slug": "isabela-state-university",
+      "name": "ISABELA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Fabian, Echague, Isabela",
+      "phone": "(078) 305-9013",
+      "trunklines": null,
+      "website": "www.isu.edu.ph",
+      "email": "op@isu.edu.ph",
+      "officials": [
+        {
+          "name": "RICMAR P. AQUINO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION II CAGAYAN VALLEY"
+      }
+    },
+    {
+      "position": 138,
+      "slug": "nueva-vizcaya-state-university",
+      "name": "NUEVA VIZCAYA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Quezon St., Bayombong, Nueva Vizcaya",
+      "phone": "(078) 392-1111 loc. 100",
+      "trunklines": null,
+      "website": "www.nvsu.edu.ph",
+      "email": "info@nvsu.edu.ph",
+      "officials": [
+        {
+          "name": "WILFREDO A. DUMALE JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION II CAGAYAN VALLEY"
+      }
+    },
+    {
+      "position": 139,
+      "slug": "quirino-state-university",
+      "name": "QUIRINO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Diffun, Quirino Province",
+      "phone": "(078) 305-1006",
+      "trunklines": null,
+      "website": "www.qsu.edu.ph",
+      "email": "info@qsu.edu.ph",
+      "officials": [
+        {
+          "name": "HERMENEGILDO F. SAMOY JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION II CAGAYAN VALLEY"
+      }
+    },
+    {
+      "position": 140,
+      "slug": "aurora-state-college-of-technology",
+      "name": "AURORA STATE COLLEGE OF TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Baler, Aurora",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.ascot.edu.ph",
+      "email": "president@ascot.edu.ph",
+      "officials": [
+        {
+          "name": "RENATO G. REYES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 141,
+      "slug": "bataan-peninsula-state-university",
+      "name": "BATAAN PENINSULA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Balanga City, Bataan",
+      "phone": "(047) 237-2350; 237-5830",
+      "trunklines": null,
+      "website": "www.bpsu.edu.ph",
+      "email": "mc_admission@bpsu.edu.ph",
+      "officials": [
+        {
+          "name": "RUBY S. MATIBAG",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 142,
+      "slug": "bulacan-agricultural-state-college",
+      "name": "BULACAN AGRICULTURAL STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Ildefonso, Bulacan",
+      "phone": "(044) 792 4409; (044) 816 7121",
+      "trunklines": null,
+      "website": "www.basc.edu.ph",
+      "email": "info@basc.edu.ph",
+      "officials": [
+        {
+          "name": "JAMESON H. TAN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 143,
+      "slug": "bulacan-state-university",
+      "name": "BULACAN STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Guinhawa, City of Malolos, Bulacan",
+      "phone": "(044) 919-7800",
+      "trunklines": null,
+      "website": "www.bulsu.edu.ph",
+      "email": "officeofthepresident@bulsu.edu.ph",
+      "officials": [
+        {
+          "name": "TEODY C. SAN ANDRES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 144,
+      "slug": "central-luzon-state-university",
+      "name": "CENTRAL LUZON STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Science City of Muñoz, Nueva Ecija",
+      "phone": "(044) 456-0688; 940-8785",
+      "trunklines": null,
+      "website": "www.clsu.edu.ph",
+      "email": "op@clsu.edu.ph",
+      "officials": [
+        {
+          "name": "EVARISTO A. ABELLA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 145,
+      "slug": "pampanga-state-university",
+      "name": "PAMPANGA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Cabambangan, Bacolor, Pampanga",
+      "phone": "(045) 649-8050",
+      "trunklines": null,
+      "website": "www.dhvsu.edu.ph",
+      "email": "info@pampangastateu.edu.ph",
+      "officials": [
+        {
+          "name": "ENRIQUE G. BAKING",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 146,
+      "slug": "nueva-ecija-university-of-science-and-technology",
+      "name": "NUEVA ECIJA UNIVERSITY OF SCIENCE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Gen. Tinio Street, Brgy. Quezon District, Cabanatuan City, Nueva Ecija",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.neust.edu.ph",
+      "email": "neustmain@neust.edu.ph",
+      "officials": [
+        {
+          "name": "RHODORA R. JUGO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 147,
+      "slug": "pampanga-state-agricultural-university",
+      "name": "PAMPANGA STATE AGRICULTURAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Magalang, Pampanga",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.psau.edu.ph",
+      "email": "officeofthepresident@psau.edu.ph",
+      "officials": [
+        {
+          "name": "ANITA G. DAVID",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 148,
+      "slug": "philippine-merchant-marine-academy",
+      "name": "PHILIPPINE MERCHANT MARINE ACADEMY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "New PMMA-Complex Site, San Narciso, Zambales",
+      "phone": "(047) 913-4395; 9134396 loc.161; 913-4398 TF",
+      "trunklines": null,
+      "website": "www.pmma.edu.ph",
+      "email": "information@pmma.edu.ph",
+      "officials": [
+        {
+          "name": "COMM. JOEL Y. ABUTAL",
+          "role": "Superintendent"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 149,
+      "slug": "president-ramon-magsaysay-state-university",
+      "name": "PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Palanginan, Iba, Zambales",
+      "phone": "(047) 811-1683",
+      "trunklines": null,
+      "website": "www.prmsu.edu.ph",
+      "email": "universitypresident@prmsu.edu.ph",
+      "officials": [
+        {
+          "name": "ROY N. VILLALOBOS",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 150,
+      "slug": "tarlac-agricultural-university",
+      "name": "TARLAC AGRICULTURAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Camiling, Tarlac",
+      "phone": "(045) 934-0216",
+      "trunklines": null,
+      "website": "www.tau.edu.ph",
+      "email": null,
+      "officials": [
+        {
+          "name": "MAX P. GUILLERMO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 151,
+      "slug": "tarlac-state-university",
+      "name": "TARLAC STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Romulo Boulevard, San Vicente, Tarlac City, Tarlac",
+      "phone": "(045) 606-8101",
+      "trunklines": null,
+      "website": "www.tsu.edu.ph",
+      "email": "pres_office@tsu.edu.ph",
+      "officials": [
+        {
+          "name": "ARNOLD E. VELASCO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION III - CENTRAL LUZON"
+      }
+    },
+    {
+      "position": 152,
+      "slug": "batangas-state-university",
+      "name": "BATANGAS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Rizal Avenue Extension, Batangas",
+      "phone": "(043) 300-2202",
+      "trunklines": null,
+      "website": "www.batstate-u.edu.ph",
+      "email": "publicrelations@g.batstate-u.edu.ph",
+      "officials": [
+        {
+          "name": "TIRSO A. RONQUILLO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IV-CALABARZON"
+      }
+    },
+    {
+      "position": 153,
+      "slug": "cavite-state-university",
+      "name": "CAVITE STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Indang, Cavite",
+      "phone": "(046) 840-6937",
+      "trunklines": null,
+      "website": "cvsu.edu.ph",
+      "email": "office.president@cvsu.edu.ph",
+      "officials": [
+        {
+          "name": "JOHN XAVIER B. NEPOMUCENO",
+          "role": "Officer-in-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IV-CALABARZON"
+      }
+    },
+    {
+      "position": 154,
+      "slug": "laguna-state-polytechnic-university",
+      "name": "LAGUNA STATE POLYTECHNIC UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Los Baños, Laguna",
+      "phone": "(049) 501-6675; 813-0273",
+      "trunklines": null,
+      "website": "lspu.edu.ph",
+      "email": "info@lspu.edu.ph",
+      "officials": [
+        {
+          "name": "MARIO R. BRIONES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IV-CALABARZON"
+      }
+    },
+    {
+      "position": 155,
+      "slug": "southern-luzon-state-university",
+      "name": "SOUTHERN LUZON STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Lucban, Quezon",
+      "phone": "(042) 540-4816",
+      "trunklines": null,
+      "website": "www.slsu.edu.ph",
+      "email": "info@slsu.edu.ph",
+      "officials": [
+        {
+          "name": "NILO H. DATOR",
+          "role": "Officer-In-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IV-CALABARZON"
+      }
+    },
+    {
+      "position": 156,
+      "slug": "university-of-rizal-system",
+      "name": "UNIVERSITY OF RIZAL SYSTEM",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Morong, Rizal",
+      "phone": "(02) 8539-9950 to 56 loc 108",
+      "trunklines": null,
+      "website": "www.urs.edu.ph",
+      "email": "urs.opmorong@urs.edu.ph",
+      "officials": [
+        {
+          "name": "NANCY T. PASCUAL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IV-CALABARZON"
+      }
+    },
+    {
+      "position": 157,
+      "slug": "marinduque-state-university",
+      "name": "MARINDUQUE STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Boac, Marinduque",
+      "phone": "(042) 332-2028 332-2728",
+      "trunklines": null,
+      "website": "www.mscmarinduque.edu.ph",
+      "email": "info.office@marsu.edu.ph",
+      "officials": [
+        {
+          "name": "DIOSDADO P. ZULUETA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 158,
+      "slug": "mindoro-state-university",
+      "name": "MINDORO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Alcate, Victoria, Oriental Mindoro",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.minsu.edu.ph",
+      "email": "universitypresident@minsu.edu.ph",
+      "officials": [
+        {
+          "name": "ENYA MARIE D. APOSTOL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 159,
+      "slug": "occidental-mindoro-state-college",
+      "name": "OCCIDENTAL MINDORO STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Jose, Occidental Mindoro",
+      "phone": "(043) 491-1460",
+      "trunklines": null,
+      "website": "www.omsc.edu.ph",
+      "email": "president@omsc.edu.ph",
+      "officials": [
+        {
+          "name": "ELBERT C. EDANIOL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 160,
+      "slug": "palawan-state-university",
+      "name": "PALAWAN STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Puerto Princesa City, Palawan",
+      "phone": "(048) 433-2379",
+      "trunklines": null,
+      "website": "www.psu.palawan.edu.ph",
+      "email": "rdocto@psu.palawan.edu.ph",
+      "officials": [
+        {
+          "name": "RAMON M. DOCTO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 161,
+      "slug": "romblon-state-university",
+      "name": "ROMBLON STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Liwanag, Odiongan, Romblon",
+      "phone": "(042) 567-5273",
+      "trunklines": null,
+      "website": "www.rsu.edu.ph",
+      "email": "romblonstateu@gmail.com",
+      "officials": [
+        {
+          "name": "MERIAN C. MANI",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 162,
+      "slug": "western-philippines-university",
+      "name": "WESTERN PHILIPPINES UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Aborlan, Palawan",
+      "phone": "(048) 433-4367",
+      "trunklines": null,
+      "website": "wpu.edu.ph",
+      "email": "pres.office@wpu.edu.ph",
+      "officials": [
+        {
+          "name": "AMABEL S. LIAO",
+          "role": "Officer-In-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "MIMAROPA"
+      }
+    },
+    {
+      "position": 163,
+      "slug": "bicol-state-college-of-applied-sciences-and-technology",
+      "name": "BICOL STATE COLLEGE OF APPLIED SCIENCES AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Peñafrancia Avenue, Naga City",
+      "phone": "(054) 472-0415; 472-0408",
+      "trunklines": null,
+      "website": "www.biscast.edu.ph",
+      "email": "president@biscast.edu.ph",
+      "officials": [
+        {
+          "name": "ALEX H. NAVARROZA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 164,
+      "slug": "bicol-university",
+      "name": "BICOL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Rizal St., Legazpi City, Albay",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.bicol-u.edu.ph",
+      "email": "bupresident@bicol-u.edu.ph",
+      "officials": [
+        {
+          "name": "BABY BOY BENJAMIN D. NEBRES III",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 165,
+      "slug": "camarines-norte-state-college",
+      "name": "CAMARINES NORTE STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Daet, Camarines Norte",
+      "phone": "(054) 440-1199; 721-2015",
+      "trunklines": null,
+      "website": "www.cnsc.edu.ph",
+      "email": "president@cnsc.edu.ph",
+      "officials": [
+        {
+          "name": "MARLO M. DELA CRUZ",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 166,
+      "slug": "camarines-sur-polytechnic-colleges",
+      "name": "CAMARINES SUR POLYTECHNIC COLLEGES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Miguel, Nabua, Camarines Sur",
+      "phone": "(054) 2884421 to 23 loc. 101, 102",
+      "trunklines": null,
+      "website": "www.cspc.edu.ph",
+      "email": "mail@cspc.edu.ph",
+      "officials": [
+        {
+          "name": "AMADO A. OLIVA JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 167,
+      "slug": "catanduanes-state-university",
+      "name": "CATANDUANES STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Virac, Catanduanes",
+      "phone": "+63 969 025 9166",
+      "trunklines": null,
+      "website": "catsu.edu.ph",
+      "email": "catsu1961@catsu.edu.ph",
+      "officials": [
+        {
+          "name": "PATRICK ALAIN T. AZANZA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 168,
+      "slug": "central-bicol-state-university-of-agriculture",
+      "name": "CENTRAL BICOL STATE UNIVERSITY OF AGRICULTURE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Pili, Camarines Sur",
+      "phone": "(054) 472-0415; 871-5531",
+      "trunklines": null,
+      "website": "www.cbsua.edu.ph",
+      "email": "op@cbsua.edu.ph",
+      "officials": [
+        {
+          "name": "ALBERTO N. NAPERI",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 169,
+      "slug": "dr-emilio-b-espinosa-sr-memorial-state-college-of-agriculture-and-techonology",
+      "name": "DR. EMILIO B. ESPINOSA SR. MEMORIAL STATE COLLEGE OF AGRICULTURE AND TECHONOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Mandaon, Masbate",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.debesmscat.edu.ph",
+      "email": "arnel.millesca@debesmscat.edu.ph",
+      "officials": [
+        {
+          "name": "ARNEL B. MILLESCA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 170,
+      "slug": "partido-state-university",
+      "name": "PARTIDO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Juan Bautista St., Goa, Camarines Sur",
+      "phone": "(054) 871-209",
+      "trunklines": null,
+      "website": "www.parsu.edu.ph",
+      "email": "op@parsu.edu.ph",
+      "officials": [
+        {
+          "name": "ARNEL B. ZARCEDO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 171,
+      "slug": "sorsogon-state-university",
+      "name": "SORSOGON STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Sorsogon City",
+      "phone": "(056) 211-0178; 421-5881",
+      "trunklines": null,
+      "website": "www.sorsu.edu.ph",
+      "email": "ssc@sorsu.edu.ph",
+      "officials": [
+        {
+          "name": "GERALDINE F. DE JESUS",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION V - BICOL REGION"
+      }
+    },
+    {
+      "position": 172,
+      "slug": "aklan-state-university",
+      "name": "AKLAN STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Bacan, Banga, Aklan",
+      "phone": "(036) 267-5801",
+      "trunklines": null,
+      "website": "www.asu.edu.ph",
+      "email": "president@asu.edu.ph",
+      "officials": [
+        {
+          "name": "JEFFREY A. CLARIN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 173,
+      "slug": "capiz-state-university",
+      "name": "CAPIZ STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Fuentes Drive, Roxas City, Capiz",
+      "phone": "(036) 6211-350",
+      "trunklines": null,
+      "website": "www.capsu.edu.ph",
+      "email": "president@capsu.edu.ph",
+      "officials": [
+        {
+          "name": "EFREN L. LINAN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 174,
+      "slug": "carlos-hilado-memorial-state-college",
+      "name": "CARLOS HILADO MEMORIAL STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Talisay City, Negros Occidental",
+      "phone": "(034) 712-0003; 495-4064; 495-5389",
+      "trunklines": null,
+      "website": "chmsu.edu.ph",
+      "email": "president.office@chmsc.edu.ph",
+      "officials": [
+        {
+          "name": "NORBERTO P. MANGULABNAN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 175,
+      "slug": "central-philippines-state-university",
+      "name": "CENTRAL PHILIPPINES STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Brgy. Camingawan, Kabankalan City. Negros Occidental",
+      "phone": "(034) 702-9903",
+      "trunklines": null,
+      "website": "www.cpsu.edu.ph",
+      "email": "cpsu_presoffice@cpsu.edu.ph",
+      "officials": [
+        {
+          "name": "ALADINO C. MORACA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 176,
+      "slug": "guimaras-state-university",
+      "name": "GUIMARAS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Buenavista, Guimaras",
+      "phone": "(033) 580-8244",
+      "trunklines": null,
+      "website": "www.gsu.edu.ph",
+      "email": "university.president@gsu.edu.ph",
+      "officials": [
+        {
+          "name": "LILIAN DIANA B. PARREÑO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 177,
+      "slug": "iloilo-state-university-of-fisheries-science-and-technology",
+      "name": "ILOILO STATE UNIVERSITY OF FISHERIES SCIENCE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Barangay Tiwi, Barotac Nuevo, Iloilo",
+      "phone": "(033) 511 5663",
+      "trunklines": null,
+      "website": "www.isufst.edu.ph",
+      "email": "president@isufst.edu.ph",
+      "officials": [
+        {
+          "name": "NORDY D. SIASON JR",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 178,
+      "slug": "iloilo-science-and-technology-university",
+      "name": "ILOILO SCIENCE AND TECHNOLOGY UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Burgos St., La Paz, Iloilo City",
+      "phone": "(033) 329-4274; 320-7190",
+      "trunklines": null,
+      "website": "www.isatu.edu.ph",
+      "email": "mail@isatu.edu.ph",
+      "officials": [
+        {
+          "name": "GABRIEL M. SALISTRE JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 179,
+      "slug": "northern-iloilo-state-university",
+      "name": "NORTHERN ILOILO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Estancia, Iloilo",
+      "phone": "(033) 397-0314; 397-0315",
+      "trunklines": null,
+      "website": "www.nisu.edu.ph",
+      "email": "nisuadmin@nisu.edu.ph",
+      "officials": [
+        {
+          "name": "BOBBY D. GERARDO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 180,
+      "slug": "state-university-of-northern-negros",
+      "name": "STATE UNIVERSITY OF NORTHERN NEGROS",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Brgy. Rizal, Sagay City, Negros Occidental",
+      "phone": "(034) 703-8802",
+      "trunklines": null,
+      "website": "www.sunn.edu.ph",
+      "email": "president@sunn.edu.ph",
+      "officials": [
+        {
+          "name": "RENANTE A. EGCAS",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 181,
+      "slug": "university-of-antique",
+      "name": "UNIVERSITY OF ANTIQUE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Sibalom, Antique",
+      "phone": "(036) 543-5626; 543-8161",
+      "trunklines": null,
+      "website": "www.antiquespride.edu.ph",
+      "email": "president@antiquespride.edu.ph",
+      "officials": [
+        {
+          "name": "PABLO S. CRESPO JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 182,
+      "slug": "west-visayas-state-university",
+      "name": "WEST VISAYAS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Luna St., La Paz, Iloilo City",
+      "phone": "(033) 320-0870 to 77 loc. 1016",
+      "trunklines": null,
+      "website": "www.wvsu.edu.ph",
+      "email": "president@wvsu.edu.ph",
+      "officials": [
+        {
+          "name": "JOSELITO F. VILLARUZ",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VI - WESTERN VISAYAS"
+      }
+    },
+    {
+      "position": 183,
+      "slug": "bohol-island-state-university",
+      "name": "BOHOL ISLAND STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Tagbilaran City, Bohol",
+      "phone": null,
+      "trunklines": null,
+      "website": "bisu.edu.ph",
+      "email": "op@bisu.edu.ph",
+      "officials": [
+        {
+          "name": "REGUCIVILLA A. POBAR",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VII - CENTRAL VISAYAS"
+      }
+    },
+    {
+      "position": 184,
+      "slug": "cebu-normal-university",
+      "name": "CEBU NORMAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Osmeña Boulevard, Cebu City",
+      "phone": "(032) 253-9611; 254-1452 loc. 100, 101",
+      "trunklines": null,
+      "website": "www.cnu.edu.ph",
+      "email": "pres@cnu.edu.ph",
+      "officials": [
+        {
+          "name": "DANIEL A. ARIASO SR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VII - CENTRAL VISAYAS"
+      }
+    },
+    {
+      "position": 185,
+      "slug": "cebu-technological-university",
+      "name": "CEBU TECHNOLOGICAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "M.J. Cuenco Ave. cor. R. Palma St., Cebu City",
+      "phone": "(032) 402-4060 loc. 1137",
+      "trunklines": null,
+      "website": "www.ctu.edu.ph",
+      "email": "joseph.pepito@ctu.edu.ph",
+      "officials": [
+        {
+          "name": "JOSEPH C. PEPITO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VII - CENTRAL VISAYAS"
+      }
+    },
+    {
+      "position": 186,
+      "slug": "negros-oriental-state-university",
+      "name": "NEGROS ORIENTAL STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Kagawasan Ave., Capitol Area, Dumaguete City",
+      "phone": "(035) 522-5050 loc. 1000",
+      "trunklines": null,
+      "website": "www.norsu.edu.ph",
+      "email": "norsupres@norsu.edu.ph",
+      "officials": [
+        {
+          "name": "NOEL MARJON E. YASI",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VII - CENTRAL VISAYAS"
+      }
+    },
+    {
+      "position": 187,
+      "slug": "siquijor-state-college",
+      "name": "SIQUIJOR STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Larena, Siquijor",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.siquijorstate.edu.ph",
+      "email": "presoffice@siquijorstate.edu.ph",
+      "officials": [
+        {
+          "name": "STEVEN J. SUMAYLO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VII - CENTRAL VISAYAS"
+      }
+    },
+    {
+      "position": 188,
+      "slug": "eastern-samar-state-university",
+      "name": "EASTERN SAMAR STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Brgy. Maypangdan, Borongan City, Eastern Samar",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.essu.edu.ph",
+      "email": "op@essu.edu.ph",
+      "officials": [
+        {
+          "name": "ANDRES C. PAGATPATAN JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 189,
+      "slug": "eastern-visayas-state-university",
+      "name": "EASTERN VISAYAS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Archbishop Lino R. Gonzaga Ave., Tacloban City",
+      "phone": "(053) 888-2565",
+      "trunklines": null,
+      "website": "www.evsu.edu.ph",
+      "email": "president@evsu.edu.ph",
+      "officials": [
+        {
+          "name": "DENNIS C. DE PAZ",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 190,
+      "slug": "leyte-normal-university",
+      "name": "LEYTE NORMAL UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "P. Paterno St., Brgy. 50, Tacloban City, Leyte",
+      "phone": "(053) 321-2176; 832-3205",
+      "trunklines": null,
+      "website": "www.lnu.edu.ph",
+      "email": "president@Inu.edu.ph",
+      "officials": [
+        {
+          "name": "EVELYN B. AGUIRRE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 191,
+      "slug": "biliran-province-state-university",
+      "name": "BILIRAN PROVINCE STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Naval, Biliran",
+      "phone": "(053) 507-0014",
+      "trunklines": null,
+      "website": "www.bipsu.edu.ph",
+      "email": "op@bipsu.edu.ph",
+      "officials": [
+        {
+          "name": "VICTOR C. CAÑEZO JR.",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 192,
+      "slug": "northwest-samar-state-university",
+      "name": "NORTHWEST SAMAR STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Calbayog City",
+      "phone": "(055) 209-3657; 338-2501",
+      "trunklines": null,
+      "website": "www.nwssu.edu.ph",
+      "email": "president@nwssu.edu.ph",
+      "officials": [
+        {
+          "name": "BENJAMIN L. PECAYO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 193,
+      "slug": "palompon-institute-of-technology",
+      "name": "PALOMPON INSTITUTE OF TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Brgy. Guiwan II, Palompon, Leyte",
+      "phone": "(053) 555-9841",
+      "trunklines": null,
+      "website": "www.pit.edu.ph",
+      "email": "op@pit.edu.ph",
+      "officials": [
+        {
+          "name": "DENNIS ANNOTA MAPA DEL PILAR",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 194,
+      "slug": "samar-state-university",
+      "name": "SAMAR STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Catbalogan, Samar",
+      "phone": "(055) 543-8394",
+      "trunklines": null,
+      "website": "www.ssu.edu.ph",
+      "email": "marilyn.cardoso@ssu.edu.ph",
+      "officials": [
+        {
+          "name": "MARILYN D. CARDOSO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 195,
+      "slug": "southern-leyte-state-university",
+      "name": "SOUTHERN LEYTE STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Sogod, Southern Leyte",
+      "phone": "(053) 382-3294",
+      "trunklines": null,
+      "website": "www.southernleytestateu.edu.ph",
+      "email": "pyepes@southernleytestateu.edu.ph",
+      "officials": [
+        {
+          "name": "PROSE IVY G. YEPES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 196,
+      "slug": "university-of-eastern-philippines",
+      "name": "UNIVERSITY OF EASTERN PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Catarman, Northern Samar",
+      "phone": "(055) 251-8611",
+      "trunklines": null,
+      "website": "www.uep.edu.ph",
+      "email": "uepnsofficial@gmail.com",
+      "officials": [
+        {
+          "name": "JUDE A. DUARTE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 197,
+      "slug": "visayas-state-university",
+      "name": "VISAYAS STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Baybay City, Leyte",
+      "phone": "(053) 335-2600 loc. 1000",
+      "trunklines": null,
+      "website": "www.vsu.edu.ph",
+      "email": "op@vsu.edu.ph",
+      "officials": [
+        {
+          "name": "CHERRY IBAÑEZ-ULTRA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION VIII - EASTERN VISAYAS"
+      }
+    },
+    {
+      "position": 198,
+      "slug": "basilan-state-college",
+      "name": "BASILAN STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Isabela City, Basilan",
+      "phone": "+63 915 778 4922",
+      "trunklines": null,
+      "website": "www.bassc.edu.ph",
+      "email": "college_registrar@bassc.edu.ph",
+      "officials": [
+        {
+          "name": "NASSER A. SALAIN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 199,
+      "slug": "j-h-cerilles-state-college",
+      "name": "J. H. CERILLES STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "San Miguel, Zamboanga del Sur",
+      "phone": "(062) 925-0511",
+      "trunklines": null,
+      "website": "www.jhcsc.edu.ph",
+      "email": "president@jhcsc.edu.ph",
+      "officials": [
+        {
+          "name": "EDGARDO H. ROSALES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 200,
+      "slug": "jose-rizal-memorial-state-university",
+      "name": "JOSE RIZAL MEMORIAL STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Gov. Guading Adaza St., Sta. Cruz, Dapitan City, Zamboanga del Norte",
+      "phone": "(065) 908-8294",
+      "trunklines": null,
+      "website": "www.jrmsu.edu.ph",
+      "email": "university.president@jrmsu.edu.ph",
+      "officials": [
+        {
+          "name": "MA. RIO ABDON-NAGUIT",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 201,
+      "slug": "western-mindanao-state-university",
+      "name": "WESTERN MINDANAO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Normal Road, Baliwasan, Zamboanga City",
+      "phone": "(062) 992-4238; 992-5102",
+      "trunklines": null,
+      "website": "www.wmsu.edu.ph",
+      "email": "pres@wmsu.edu.ph",
+      "officials": [
+        {
+          "name": "MA. CARLA A. OCHOTORENA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 202,
+      "slug": "zamboanga-peninsula-polytechnic-state-university",
+      "name": "ZAMBOANGA PENINSULA POLYTECHNIC STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "R.T. Lim Boulevard, Baliwasan, Zamboanga City",
+      "phone": "(062) 991-3815",
+      "trunklines": null,
+      "website": "zppsu.edu.ph",
+      "email": "zppsu@zppsu.edu.ph",
+      "officials": [
+        {
+          "name": "NELSON P. CABRAL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 203,
+      "slug": "zamboanga-state-college-of-marine-sciences-and-technology",
+      "name": "ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Fort Pilar, Zamboanga City",
+      "phone": "(062) 992-3092",
+      "trunklines": null,
+      "website": "www.zscmst.edu.ph",
+      "email": "pres@zscmst.edu.ph",
+      "officials": [
+        {
+          "name": "RODERICK D. TRIO",
+          "role": "Officer-in-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION IX - ZAMBOANGA PENINSULA"
+      }
+    },
+    {
+      "position": 204,
+      "slug": "bukidnon-state-university",
+      "name": "BUKIDNON STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Malaybalay City, Bukidnon",
+      "phone": "(088) 221-2237; 813-2717",
+      "trunklines": null,
+      "website": "buksu.edu.ph",
+      "email": "buksupresoffice@buksu.edu.ph",
+      "officials": [
+        {
+          "name": "JOY M. MIRASOL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 205,
+      "slug": "camiguin-polytechnic-state-college",
+      "name": "CAMIGUIN POLYTECHNIC STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Balbagon, Mambajao, Camiguin",
+      "phone": "(088) 889-0183; 387-0495",
+      "trunklines": null,
+      "website": "www.cpsc.ph",
+      "email": "cpscregistrar@gmail.com",
+      "officials": [
+        {
+          "name": "MACARIO B. OCLARIT",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 206,
+      "slug": "central-mindanao-university",
+      "name": "CENTRAL MINDANAO UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Musuan, Maramag, Bukidnon",
+      "phone": "(088) 222-5748",
+      "trunklines": null,
+      "website": "www.cmu.edu.ph",
+      "email": "cmu1910op@cmu.edu.ph",
+      "officials": [
+        {
+          "name": "ROLITO G. EBALLE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 207,
+      "slug": "northwestern-mindanao-state-college-of-science-and-technology",
+      "name": "NORTHWESTERN MINDANAO STATE COLLEGE OF SCIENCE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Labuyo, Tangub City",
+      "phone": "(088) 586-0173",
+      "trunklines": null,
+      "website": "www.nmsc.edu.ph",
+      "email": "op@nmsc.edu.ph",
+      "officials": [
+        {
+          "name": "NELSON P. CABRAL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 208,
+      "slug": "northern-bukidnon-state-college",
+      "name": "NORTHERN BUKIDNON STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Manolo Fortich, Bukidnon",
+      "phone": null,
+      "trunklines": null,
+      "website": "www.nbsc.edu.ph",
+      "email": "opnbsc@nbsc.ph",
+      "officials": [
+        {
+          "name": "CRISTIE JEAN VILLANUEVA-GANIERA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 209,
+      "slug": "university-of-science-and-technology-of-southern-philippines",
+      "name": "UNIVERSITY OF SCIENCE AND TECHNOLOGY OF SOUTHERN PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Claro M. Recto Avenue, Lapasan, Cagayan de Oro City",
+      "phone": "(088) 856-1738; 856-4696",
+      "trunklines": null,
+      "website": "www.ustp.edu.ph",
+      "email": "president.office@ustp.edu.ph",
+      "officials": [
+        {
+          "name": "AMBROSIO B. CULTURA II",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION X - NORTHERN MINDANAO"
+      }
+    },
+    {
+      "position": 210,
+      "slug": "davao-de-oro-state-college",
+      "name": "DAVAO DE ORO STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Poblacion, Compostela, Davao de Oro",
+      "phone": "+63 929 169 5328",
+      "trunklines": null,
+      "website": "www.ddosc.edu.ph",
+      "email": "president@ddosc.edu.ph",
+      "officials": [
+        {
+          "name": "LILYBETH M. MATUNHAY",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 211,
+      "slug": "davao-del-norte-state-college",
+      "name": "DAVAO DEL NORTE STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "New Visayas, Panabo City",
+      "phone": "(084) 628-4301",
+      "trunklines": null,
+      "website": "www.dnsc.edu.ph",
+      "email": "president@dnsc.edu.ph",
+      "officials": [
+        {
+          "name": "JOY M. SORROSA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 212,
+      "slug": "davao-del-sur-state-college",
+      "name": "DAVAO DEL SUR STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Digos City, Davao del Sur",
+      "phone": "(082) 293-9136",
+      "trunklines": null,
+      "website": "www.dssc.edu.ph",
+      "email": "president@dssc.edu.ph",
+      "officials": [
+        {
+          "name": "AUGIE E. FUENTES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 213,
+      "slug": "davao-oriental-state-university",
+      "name": "DAVAO ORIENTAL STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Mati, Davao Oriental",
+      "phone": "(087) 388-3195",
+      "trunklines": null,
+      "website": "www.dorsu.edu.ph",
+      "email": "op@dorsu.edu.ph",
+      "officials": [
+        {
+          "name": "ROY G. PONCE",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 214,
+      "slug": "southern-philippines-agri-business-marine-and-aquatic-school-of-technology",
+      "name": "SOUTHERN PHILIPPINES AGRI-BUSINESS, MARINE AND AQUATIC SCHOOL OF TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Malita, Davao del Sur",
+      "phone": "(082) 553-8894; 296-1234",
+      "trunklines": null,
+      "website": "www.spamast.edu.ph",
+      "email": "op@spamast.edu.ph",
+      "officials": [
+        {
+          "name": "LYNETTE A. BONTIA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 215,
+      "slug": "university-of-southeastern-philippines",
+      "name": "UNIVERSITY OF SOUTHEASTERN PHILIPPINES",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Davao City",
+      "phone": "(082) 227-8192; 221-7737",
+      "trunklines": null,
+      "website": "www.usep.edu.ph",
+      "email": "president@usep.edu.ph",
+      "officials": [
+        {
+          "name": "PAULINO A. YABAO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XI - DAVAO REGION"
+      }
+    },
+    {
+      "position": 216,
+      "slug": "cotabato-foundation-college-of-science-and-technology",
+      "name": "COTABATO FOUNDATION COLLEGE OF SCIENCE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Doroluman, Arakan, Cotabato",
+      "phone": "(064) 577-1531",
+      "trunklines": null,
+      "website": "www.cfcst.edu.ph",
+      "email": "admin@cfcst.edu.ph",
+      "officials": [
+        {
+          "name": "ALI K. DILANGALEN",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XII - SOCCSKSARGEN"
+      }
+    },
+    {
+      "position": 217,
+      "slug": "south-cotabato-state-college",
+      "name": "SOUTH COTABATO STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Surallah, South Cotabato",
+      "phone": "(083) 238-5143",
+      "trunklines": null,
+      "website": "scsc.edu.ph",
+      "email": "southcotabatostatecollege@scsc.edu.ph",
+      "officials": [
+        {
+          "name": "EDWARD LOVELL B. BRILLANTES",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XII - SOCCSKSARGEN"
+      }
+    },
+    {
+      "position": 218,
+      "slug": "sultan-kudarat-state-university",
+      "name": "SULTAN KUDARAT STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Tacurong, Sultan Kudarat",
+      "phone": "(064) 200 7336",
+      "trunklines": null,
+      "website": "www.sksu.edu.ph",
+      "email": "info@sksu.edu.ph",
+      "officials": [
+        {
+          "name": "SAMSON L. MOLAO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XII - SOCCSKSARGEN"
+      }
+    },
+    {
+      "position": 219,
+      "slug": "university-of-southern-mindanao",
+      "name": "UNIVERSITY OF SOUTHERN MINDANAO",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Kabacan, Cotabato",
+      "phone": "(064) 248-2138",
+      "trunklines": null,
+      "website": "www.usm.edu.ph",
+      "email": "op@usm.edu.ph",
+      "officials": [
+        {
+          "name": "FRANCISCO GIL N. GARCIA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XII - SOCCSKSARGEN"
+      }
+    },
+    {
+      "position": 220,
+      "slug": "agusan-del-sur-state-college-of-agriculture-and-technology",
+      "name": "AGUSAN DEL SUR STATE COLLEGE OF AGRICULTURE AND TECHNOLOGY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Bunawan, Agusan del Sur",
+      "phone": "(085) 266-2525",
+      "trunklines": null,
+      "website": "www.asscat.edu.ph",
+      "email": "op@asscat.edu.ph",
+      "officials": [
+        {
+          "name": "JOY C. CAPISTRANO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XIII - CARAGA REGION"
+      }
+    },
+    {
+      "position": 221,
+      "slug": "caraga-state-university",
+      "name": "CARAGA STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Ampayon, Butuan City",
+      "phone": "(085) 341-7739; 342-1079",
+      "trunklines": null,
+      "website": "www.carsu.edu.ph",
+      "email": "op@carsu.edu.ph",
+      "officials": [
+        {
+          "name": "ROLYN G. DAGUIL",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XIII - CARAGA REGION"
+      }
+    },
+    {
+      "position": 222,
+      "slug": "north-eastern-mindanao-state-university",
+      "name": "NORTH EASTERN MINDANAO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Tandag, Surigao del Sur",
+      "phone": "(086) 211-4221",
+      "trunklines": null,
+      "website": "nemsu.edu.ph",
+      "email": "information@nemsu.edu.ph",
+      "officials": [
+        {
+          "name": "NEMESIO G. LOAYON",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XIII - CARAGA REGION"
+      }
+    },
+    {
+      "position": 223,
+      "slug": "surigao-del-norte-state-university",
+      "name": "SURIGAO DEL NORTE STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Surigao City",
+      "phone": "(086) 827-3741",
+      "trunklines": null,
+      "website": "www.ssct.edu.ph",
+      "email": "info@snsu.edu.ph",
+      "officials": [
+        {
+          "name": "ALMA SY-PATRON",
+          "role": "Officer-in-Charge"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "REGION XIII - CARAGA REGION"
+      }
+    },
+    {
+      "position": 224,
+      "slug": "cotabato-state-university",
+      "name": "COTABATO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Sinsuat Avenue, Cotabato City",
+      "phone": "(064) 552-1810; 421-5146; 552-1821",
+      "trunklines": null,
+      "website": "www.cotsu.edu.ph",
+      "email": "op@cotsu.edu.ph",
+      "officials": [
+        {
+          "name": "SEMA G. DILNA",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO"
+      }
+    },
+    {
+      "position": 225,
+      "slug": "adiong-memorial-state-college",
+      "name": "ADIONG MEMORIAL STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Ditsaan-Ramain, Lanao del Sur",
+      "phone": "+63 920 975 2206; +63 905 841 1981",
+      "trunklines": null,
+      "website": "amsc-edu.net",
+      "email": "adiongmemorialstatecollege@gmail.com",
+      "officials": [
+        {
+          "name": "SHERIFA ROHANNIE K. ADIONG",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO"
+      }
+    },
+    {
+      "position": 226,
+      "slug": "mindanao-state-university",
+      "name": "MINDANAO STATE UNIVERSITY",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Marawi City, Lanao del Sur",
+      "phone": "(02) 8526-4325",
+      "trunklines": null,
+      "website": "www.msumain.edu.ph",
+      "email": "op@msumain.edu.ph",
+      "officials": [
+        {
+          "name": "BASARI D. MAPUPUNO",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO"
+      }
+    },
+    {
+      "position": 227,
+      "slug": "sulu-state-college",
+      "name": "SULU STATE COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": null,
+      "address": "Jolo, Sulu",
+      "phone": "+63 917 133 9112",
+      "trunklines": null,
+      "website": "www.sulustatecollege.edu.ph",
+      "email": "sulustatecollege2018@gmail.com",
+      "officials": [
+        {
+          "name": "CHARISMA S. UTUTALUM",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO"
+      }
+    },
+    {
+      "position": 228,
+      "slug": "tawi-tawi-regional-agricultural-college",
+      "name": "TAWI-TAWI REGIONAL AGRICULTURAL COLLEGE",
+      "officeType": "State Universities and Colleges (SUCs)",
+      "description": "",
+      "address": "Bongao, Tawi-Tawi",
+      "phone": "",
+      "trunklines": null,
+      "website": "www.trac.edu.ph",
+      "email": "",
+      "officials": [
+        {
+          "name": "MUTTI A. ASAALI",
+          "role": "President"
+        }
+      ],
+      "regionalOffices": null,
+      "publicAssistance": null,
+      "additionalDetails": {
+        "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO"
+      }
+    }
+  ],
+  "_allConstitutionalOfficesMeta": {
+    "count": 229
+  }
+}
