@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { assertUniquePaths, run } from '../sync-talacms';
+import { DATASETS, assertUniquePaths, run } from '../sync-talacms';
 import type { TalaCmsClient } from '../talacms/client';
 
 const categoriesPayload = {
@@ -52,6 +52,59 @@ const servicesPayload = {
   ],
 };
 
+const departmentsPayload = {
+  _allGovernmentDepartmentsMeta: { count: 1 },
+  allGovernmentDepartments: [
+    {
+      position: 0,
+      slug: 'department-of-x',
+      officeName: 'DEPARTMENT OF X',
+      address: null,
+      trunkline: null,
+      email: null,
+      website: null,
+      secretary: null,
+      undersecretaries: null,
+      attachedAgencies: null,
+      details: null,
+    },
+  ],
+};
+
+const executivePayload = {
+  _allExecutiveOfficesMeta: { count: 1 },
+  allExecutiveOffices: [
+    {
+      position: 0,
+      slug: 'office-of-y',
+      office: 'OFFICE OF Y',
+      address: null,
+      phone: null,
+      trunkline: null,
+      email: null,
+      website: null,
+      officials: null,
+      bureaus: null,
+      attachedAgencies: null,
+    },
+  ],
+};
+
+/** Same slug on both sides — used only by the cross-model gate tests. */
+const collidingDepartmentsPayload = {
+  _allGovernmentDepartmentsMeta: { count: 1 },
+  allGovernmentDepartments: [
+    { ...departmentsPayload.allGovernmentDepartments[0], slug: 'shared-slug' },
+  ],
+};
+
+const collidingExecutivePayload = {
+  _allExecutiveOfficesMeta: { count: 1 },
+  allExecutiveOffices: [
+    { ...executivePayload.allExecutiveOffices[0], slug: 'shared-slug' },
+  ],
+};
+
 const committedTaxonomy = {
   categories: [
     {
@@ -77,6 +130,8 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
   const client = vi.fn(async (query: string) => {
     if (query.includes('SyncServiceCategories')) return categoriesPayload;
     if (query.includes('SyncGovernmentServices')) return servicesPayload;
+    if (query.includes('SyncGovernmentDepartments')) return departmentsPayload;
+    if (query.includes('SyncExecutiveOffices')) return executivePayload;
     return hotlinesPayload;
   }) as unknown as TalaCmsClient;
 
@@ -109,7 +164,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
 };
 
 describe('run', () => {
-  it('writes all three datasets and exits 0', async () => {
+  it('writes all five datasets and exits 0', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(deps.commitFiles).toHaveBeenCalledTimes(1);
@@ -119,6 +174,8 @@ describe('run', () => {
       'src/data/service_categories.json',
       'src/data/critical_hotlines.json',
       'src/data/services/health.json',
+      'src/data/directory/departments.json',
+      'src/data/directory/executive.json',
     ]);
   });
 
@@ -223,13 +280,15 @@ describe('run', () => {
 });
 
 describe('services orchestration', () => {
-  it('writes all three datasets, services last and in path order', async () => {
+  it('writes all five datasets, services last among the original three, then directory', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(pathsOf(deps)).toEqual([
       'src/data/service_categories.json',
       'src/data/critical_hotlines.json',
       'src/data/services/health.json',
+      'src/data/directory/departments.json',
+      'src/data/directory/executive.json',
     ]);
   });
 
@@ -265,6 +324,9 @@ describe('services orchestration', () => {
         };
       }
       if (query.includes('SyncGovernmentServices')) return servicesPayload;
+      if (query.includes('SyncGovernmentDepartments'))
+        return departmentsPayload;
+      if (query.includes('SyncExecutiveOffices')) return executivePayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
 
@@ -278,6 +340,8 @@ describe('services orchestration', () => {
       'src/data/critical_hotlines.json',
       'src/data/services/business-trade.json',
       'src/data/services/health.json',
+      'src/data/directory/departments.json',
+      'src/data/directory/executive.json',
     ]);
   });
 
@@ -667,5 +731,158 @@ describe('stale service file cleanup', () => {
       })),
     });
     await expect(run([], deps as never)).resolves.toBe(0);
+  });
+});
+
+describe('directory datasets', () => {
+  it('exposes departments and executive as selectable datasets', () => {
+    expect(DATASETS).toEqual([
+      'categories',
+      'hotlines',
+      'services',
+      'departments',
+      'executive',
+    ]);
+  });
+
+  it('--only=departments prepares only the departments file', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=departments'], deps as never)).resolves.toBe(0);
+    expect(pathsOf(deps)).toEqual(['src/data/directory/departments.json']);
+  });
+
+  it('--only=executive prepares only the executive file', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=executive'], deps as never)).resolves.toBe(0);
+    expect(pathsOf(deps)).toEqual(['src/data/directory/executive.json']);
+  });
+});
+
+/**
+ * These are the tests that actually prove the isolation contract: the
+ * UNSELECTED model's data is absent or malformed, and the selected one must
+ * still succeed. A client that returns the wrong shape for an unrequested
+ * query would fail these.
+ */
+describe('directory dataset isolation', () => {
+  /** A client that answers only the query naming `allowed`, and throws otherwise. */
+  const clientAnswering = (allowed: string, payload: unknown) =>
+    vi.fn(async (query: string) => {
+      if (!query.includes(allowed)) {
+        throw new Error(
+          `unexpected query for an unselected dataset: ${query.slice(0, 60)}`
+        );
+      }
+      return payload;
+    }) as unknown as TalaCmsClient;
+
+  it('--only=departments never issues the executive query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=departments'], deps as never);
+    const queries = queriesOf(client);
+    expect(queries.some(q => q.includes('SyncExecutiveOffices'))).toBe(false);
+    expect(queries.some(q => q.includes('SyncGovernmentDepartments'))).toBe(
+      true
+    );
+  });
+
+  it('--only=executive never issues the departments query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=executive'], deps as never);
+    const queries = queriesOf(client);
+    expect(queries.some(q => q.includes('SyncGovernmentDepartments'))).toBe(
+      false
+    );
+    expect(queries.some(q => q.includes('SyncExecutiveOffices'))).toBe(true);
+  });
+
+  it('--only=departments succeeds even when executive data would be invalid', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering('SyncGovernmentDepartments', departmentsPayload),
+    });
+    await expect(run(['--only=departments'], deps as never)).resolves.toBe(0);
+  });
+
+  it('--only=executive succeeds even when departments data would be invalid', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering('SyncExecutiveOffices', executivePayload),
+    });
+    await expect(run(['--only=executive'], deps as never)).resolves.toBe(0);
+  });
+
+  it('does not apply the cross-model slug gate in an isolated run', async () => {
+    // Both models deliberately carry the same slug. A full sync would fail;
+    // an isolated run has no second side to compare against and must not
+    // substitute a weaker check or read the other model's committed file.
+    // The collision is instead caught by assertUniqueDirectorySlugs at
+    // Meilisearch preflight — see Task 8. This test asserts the isolated run
+    // still generates its own file successfully.
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering(
+          'SyncGovernmentDepartments',
+          collidingDepartmentsPayload
+        ),
+    });
+    await expect(run(['--only=departments'], deps as never)).resolves.toBe(0);
+  });
+
+  it('applies the cross-model slug gate on a full sync', async () => {
+    const client = vi.fn(async (query: string) => {
+      if (query.includes('SyncServiceCategories')) return categoriesPayload;
+      if (query.includes('SyncGovernmentServices')) return servicesPayload;
+      if (query.includes('SyncGovernmentDepartments'))
+        return collidingDepartmentsPayload;
+      if (query.includes('SyncExecutiveOffices'))
+        return collidingExecutivePayload;
+      return hotlinesPayload;
+    }) as unknown as TalaCmsClient;
+    const { deps } = makeDeps({ createClient: () => client });
+
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toMatch(/appear in BOTH/i);
+  });
+});
+
+describe('directory dry-run, ordering and cleanup', () => {
+  it('--dry-run reports drift and exits 3 without writing for an isolated directory dataset', async () => {
+    const { deps } = makeDeps();
+    await expect(
+      run(['--dry-run', '--only=departments'], deps as never)
+    ).resolves.toBe(3);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('orders candidates categories, hotlines, services…, departments, executive', async () => {
+    const { deps } = makeDeps();
+    await expect(run([], deps as never)).resolves.toBe(0);
+    const written = pathsOf(deps);
+    const d = written.indexOf('src/data/directory/departments.json');
+    const e = written.indexOf('src/data/directory/executive.json');
+    const lastService = written
+      .map((p: string, i: number) =>
+        p.startsWith('src/data/services/') ? i : -1
+      )
+      .reduce((a: number, b: number) => Math.max(a, b), -1);
+    expect(lastService).toBeLessThan(d);
+    expect(d).toBeLessThan(e);
+  });
+
+  it('never runs service stale-file cleanup over the directory folder', async () => {
+    const { deps } = makeDeps();
+    await run([], deps as never);
+    const calls = (deps.removeStaleServiceFiles as ReturnType<typeof vi.fn>)
+      .mock.calls;
+    for (const [, generated] of calls) {
+      expect((generated as string[]).every(f => !f.includes('directory'))).toBe(
+        true
+      );
+    }
   });
 });
