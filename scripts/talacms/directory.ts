@@ -701,42 +701,46 @@ export function buildConstitutionalCandidate(
 /**
  * Meilisearch indexes every document into ONE index keyed by `slug`
  * (index_meilisearch.cjs: createIndex(..., { primaryKey: 'slug' })), so a slug
- * shared between a department and an executive office means one document
- * silently overwrites the other and one office becomes unsearchable.
+ * shared between two directory sources means one document silently overwrites
+ * the other and one office becomes unsearchable.
  *
- * Scope is deliberately limited to these two models — the ONLY two this branch
- * makes CMS-owned. An index-wide gate is NOT applied here: 289 slug collisions
- * already exist in that index (directory/*.json vs the derived websites.json),
- * so an index-wide gate would fail on pre-existing data and would require
- * changing Government Websites, which is out of scope. See Risks.
+ * Scope is deliberately limited to the models this repository makes CMS-owned
+ * — departments, executive and constitutional. An index-wide gate is NOT
+ * applied here: slug collisions already exist between directory/*.json and
+ * the derived websites.json, so an index-wide gate would fail on pre-existing
+ * data and would require changing Government Websites, which is out of scope.
  *
- * This is the FAST LOCAL gate, not the guarantee. It is applied only when BOTH
- * datasets are selected — per sync-talacms.ts's run-mode matrix, "a gate whose
- * inputs a mode does not have is not applied", and an isolated `--only=` run
- * cannot see the other side without breaking query isolation. Its value is
- * failing before any file is written.
+ * This is the FAST LOCAL gate, not the guarantee. Per sync-talacms.ts's
+ * run-mode matrix, "a gate whose inputs a mode does not have is not applied":
+ * it compares only the candidates a run actually carries, and an isolated
+ * `--only=` run has nothing to compare against. Its value is failing before
+ * any file is written.
  *
  * The AUTHORITATIVE gate is assertUniqueDirectorySlugs in
  * scripts/index_meilisearch.cjs, which runs over the complete loaded directory
- * snapshot in preflight and therefore also catches a collision that
- * `--only=departments` introduced against the committed executive.json.
+ * snapshot in preflight and therefore also catches a collision that an
+ * isolated run introduced against another model's already-generated file.
  */
-export function assertNoCrossModelSlugCollision(
-  departments: Candidate,
-  executive: Candidate
+export function assertNoCrossModelSlugCollisions(
+  candidates: Candidate[]
 ): void {
-  const executiveSlugs = new Set(
-    (executive.data as { slug: string }[]).map(r => r.slug)
-  );
-  const collisions = (departments.data as { slug: string }[])
-    .map(r => r.slug)
-    .filter(slug => executiveSlugs.has(slug));
+  for (let i = 0; i < candidates.length; i++) {
+    for (let j = i + 1; j < candidates.length; j++) {
+      const a = candidates[i];
+      const b = candidates[j];
+      const bSlugs = new Set((b.data as { slug: string }[]).map(r => r.slug));
+      const collisions = (a.data as { slug: string }[])
+        .map(r => r.slug)
+        .filter(slug => bSlugs.has(slug));
 
-  if (collisions.length > 0) {
-    fail(
-      `${collisions.length} slug(s) appear in BOTH government departments and executive offices: ` +
-        `${collisions.join(', ')}. Meilisearch keys its single index by slug, so these records ` +
-        'would overwrite each other and one office would become unsearchable.'
-    );
+      if (collisions.length > 0) {
+        fail(
+          `${collisions.length} slug(s) appear in BOTH ${a.path} and ${b.path}: ` +
+            `${collisions.join(', ')}. Meilisearch keys its single index by slug, so ` +
+            'these records would overwrite each other and one office would become ' +
+            'unsearchable.'
+        );
+      }
+    }
   }
 }

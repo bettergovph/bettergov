@@ -9,7 +9,7 @@ import { shapeDepartments, shapeExecutive, sortForOutput } from '../directory';
 import {
   buildDepartmentsCandidate,
   buildExecutiveCandidate,
-  assertNoCrossModelSlugCollision,
+  assertNoCrossModelSlugCollisions,
 } from '../directory';
 import {
   CONSTITUTIONAL_QUERY,
@@ -556,43 +556,66 @@ describe('candidate emission', () => {
   });
 });
 
-describe('assertNoCrossModelSlugCollision', () => {
+describe('assertNoCrossModelSlugCollisions', () => {
   const candidate = (path: string, slugs: string[]) => ({
     path,
     schemaPath: 'unused',
     data: slugs.map(slug => ({ slug })),
   });
 
-  it('passes when the two models share no slug', () => {
+  it('passes when no two models share a slug', () => {
     expect(() =>
-      assertNoCrossModelSlugCollision(
+      assertNoCrossModelSlugCollisions([
         candidate('d', ['department-of-x']),
-        candidate('e', ['office-of-y'])
-      )
+        candidate('e', ['office-of-y']),
+        candidate('c', ['commission-on-z']),
+      ])
     ).not.toThrow();
   });
 
-  it('fails closed when a department and an executive office share a slug', () => {
+  it('is not vacuous on a single candidate', () => {
     expect(() =>
-      assertNoCrossModelSlugCollision(
-        candidate('d', ['shared-slug']),
-        candidate('e', ['shared-slug'])
+      assertNoCrossModelSlugCollisions([candidate('d', ['a', 'b'])])
+    ).not.toThrow();
+  });
+
+  it.each([
+    ['departments and executive', 0, 1],
+    ['departments and constitutional', 0, 2],
+    ['executive and constitutional', 1, 2],
+  ])('fails closed when %s share a slug', (_label, i, j) => {
+    const paths = ['d', 'e', 'c'];
+    const slugs = [['a'], ['b'], ['c']];
+    slugs[i] = ['shared-slug'];
+    slugs[j] = ['shared-slug'];
+    expect(() =>
+      assertNoCrossModelSlugCollisions(
+        paths.map((p, k) => candidate(p, slugs[k]))
       )
     ).toThrow(/shared-slug/);
   });
 
+  it('names both colliding candidate paths', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('src/data/directory/departments.json', ['shared-slug']),
+        candidate('src/data/directory/constitutional.json', ['shared-slug']),
+      ])
+    ).toThrow(/departments\.json.*constitutional\.json/s);
+  });
+
   it('names every colliding slug, not just the first', () => {
     expect(() =>
-      assertNoCrossModelSlugCollision(
+      assertNoCrossModelSlugCollisions([
         candidate('d', ['a', 'b', 'c']),
-        candidate('e', ['a', 'c'])
-      )
+        candidate('e', ['a', 'c']),
+      ])
     ).toThrow(/a.*c/s);
   });
 
-  it('passes against the real generated candidates', () => {
+  it('passes against the real generated candidates for all three models', () => {
     expect(() =>
-      assertNoCrossModelSlugCollision(
+      assertNoCrossModelSlugCollisions([
         buildDepartmentsCandidate({
           _allGovernmentDepartmentsMeta: { count: rawDepartments.length },
           allGovernmentDepartments: rawDepartments,
@@ -600,8 +623,12 @@ describe('assertNoCrossModelSlugCollision', () => {
         buildExecutiveCandidate({
           _allExecutiveOfficesMeta: { count: rawExecutive.length },
           allExecutiveOffices: rawExecutive,
-        })
-      )
+        }),
+        buildConstitutionalCandidate({
+          _allConstitutionalOfficesMeta: { count: rawConstitutional.length },
+          allConstitutionalOffices: rawConstitutional,
+        }),
+      ])
     ).not.toThrow();
   });
 });
