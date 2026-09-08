@@ -105,6 +105,39 @@ const collidingExecutivePayload = {
   ],
 };
 
+const constitutionalPayload = {
+  _allConstitutionalOfficesMeta: { count: 1 },
+  allConstitutionalOffices: [
+    {
+      position: 0,
+      slug: 'commission-on-z',
+      name: 'COMMISSION ON Z',
+      officeType: 'Constitutional Office',
+      description: null,
+      address: null,
+      phone: null,
+      trunklines: null,
+      website: null,
+      email: null,
+      officials: [{ name: 'A PERSON', role: 'Chairperson' }],
+      regionalOffices: null,
+      publicAssistance: null,
+      additionalDetails: null,
+    },
+  ],
+};
+
+/** Same slug as the departments payload — used only by the gate tests. */
+const collidingConstitutionalPayload = {
+  _allConstitutionalOfficesMeta: { count: 1 },
+  allConstitutionalOffices: [
+    {
+      ...constitutionalPayload.allConstitutionalOffices[0],
+      slug: 'shared-slug',
+    },
+  ],
+};
+
 const committedTaxonomy = {
   categories: [
     {
@@ -132,6 +165,8 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
     if (query.includes('SyncGovernmentServices')) return servicesPayload;
     if (query.includes('SyncGovernmentDepartments')) return departmentsPayload;
     if (query.includes('SyncExecutiveOffices')) return executivePayload;
+    if (query.includes('SyncConstitutionalOffices'))
+      return constitutionalPayload;
     return hotlinesPayload;
   }) as unknown as TalaCmsClient;
 
@@ -164,7 +199,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
 };
 
 describe('run', () => {
-  it('writes all five datasets and exits 0', async () => {
+  it('writes all six datasets and exits 0', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(deps.commitFiles).toHaveBeenCalledTimes(1);
@@ -176,6 +211,7 @@ describe('run', () => {
       'src/data/services/health.json',
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
+      'src/data/directory/constitutional.json',
     ]);
   });
 
@@ -280,7 +316,7 @@ describe('run', () => {
 });
 
 describe('services orchestration', () => {
-  it('writes all five datasets, services last among the original three, then directory', async () => {
+  it('writes all six datasets, services last among the original three, then directory', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(pathsOf(deps)).toEqual([
@@ -289,6 +325,7 @@ describe('services orchestration', () => {
       'src/data/services/health.json',
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
+      'src/data/directory/constitutional.json',
     ]);
   });
 
@@ -327,6 +364,8 @@ describe('services orchestration', () => {
       if (query.includes('SyncGovernmentDepartments'))
         return departmentsPayload;
       if (query.includes('SyncExecutiveOffices')) return executivePayload;
+      if (query.includes('SyncConstitutionalOffices'))
+        return constitutionalPayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
 
@@ -342,6 +381,7 @@ describe('services orchestration', () => {
       'src/data/services/health.json',
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
+      'src/data/directory/constitutional.json',
     ]);
   });
 
@@ -735,13 +775,14 @@ describe('stale service file cleanup', () => {
 });
 
 describe('directory datasets', () => {
-  it('exposes departments and executive as selectable datasets', () => {
+  it('exposes departments, executive and constitutional as selectable datasets', () => {
     expect(DATASETS).toEqual([
       'categories',
       'hotlines',
       'services',
       'departments',
       'executive',
+      'constitutional',
     ]);
   });
 
@@ -837,6 +878,8 @@ describe('directory dataset isolation', () => {
         return collidingDepartmentsPayload;
       if (query.includes('SyncExecutiveOffices'))
         return collidingExecutivePayload;
+      if (query.includes('SyncConstitutionalOffices'))
+        return constitutionalPayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -850,6 +893,129 @@ describe('directory dataset isolation', () => {
   });
 });
 
+describe('constitutional dataset', () => {
+  const clientAnswering = (allowed: string, payload: unknown) =>
+    vi.fn(async (query: string) => {
+      if (!query.includes(allowed)) {
+        throw new Error(
+          `unexpected query for an unselected dataset: ${query.slice(0, 60)}`
+        );
+      }
+      return payload;
+    }) as unknown as TalaCmsClient;
+
+  it('--only=constitutional prepares only the constitutional file', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=constitutional'], deps as never)).resolves.toBe(
+      0
+    );
+    expect(pathsOf(deps)).toEqual(['src/data/directory/constitutional.json']);
+  });
+
+  it('--only=constitutional issues no departments or executive query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=constitutional'], deps as never);
+    const queries = queriesOf(client);
+    expect(queries.some(q => q.includes('SyncGovernmentDepartments'))).toBe(
+      false
+    );
+    expect(queries.some(q => q.includes('SyncExecutiveOffices'))).toBe(false);
+    expect(queries.some(q => q.includes('SyncConstitutionalOffices'))).toBe(
+      true
+    );
+  });
+
+  it('--only=departments never issues the constitutional query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=departments'], deps as never);
+    expect(
+      queriesOf(client).some(q => q.includes('SyncConstitutionalOffices'))
+    ).toBe(false);
+  });
+
+  it('--only=executive never issues the constitutional query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=executive'], deps as never);
+    expect(
+      queriesOf(client).some(q => q.includes('SyncConstitutionalOffices'))
+    ).toBe(false);
+  });
+
+  it('--only=constitutional succeeds even when departments data would be invalid', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering('SyncConstitutionalOffices', constitutionalPayload),
+    });
+    await expect(run(['--only=constitutional'], deps as never)).resolves.toBe(
+      0
+    );
+  });
+
+  it('applies the cross-model gate to constitutional on a full sync', async () => {
+    const client = vi.fn(async (query: string) => {
+      if (query.includes('SyncServiceCategories')) return categoriesPayload;
+      if (query.includes('SyncGovernmentServices')) return servicesPayload;
+      if (query.includes('SyncGovernmentDepartments'))
+        return collidingDepartmentsPayload;
+      if (query.includes('SyncExecutiveOffices')) return executivePayload;
+      if (query.includes('SyncConstitutionalOffices'))
+        return collidingConstitutionalPayload;
+      return hotlinesPayload;
+    }) as unknown as TalaCmsClient;
+    const { deps } = makeDeps({ createClient: () => client });
+
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toMatch(/appear in BOTH/i);
+    expect(logged).toMatch(/constitutional\.json/);
+  });
+
+  it('does not apply the cross-model gate in an isolated constitutional run', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering(
+          'SyncConstitutionalOffices',
+          collidingConstitutionalPayload
+        ),
+    });
+    await expect(run(['--only=constitutional'], deps as never)).resolves.toBe(
+      0
+    );
+  });
+
+  it('--dry-run reports drift and exits 3 without writing for --only=constitutional', async () => {
+    const { deps } = makeDeps();
+    await expect(
+      run(['--dry-run', '--only=constitutional'], deps as never)
+    ).resolves.toBe(3);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('never runs service stale-file cleanup over the constitutional file', async () => {
+    const { deps } = makeDeps();
+    await run([], deps as never);
+    const calls = (deps.removeStaleServiceFiles as ReturnType<typeof vi.fn>)
+      .mock.calls;
+    for (const [, generated] of calls) {
+      expect(
+        (generated as string[]).every(f => !f.includes('constitutional'))
+      ).toBe(true);
+    }
+  });
+
+  it('names constitutional in the unknown-dataset message', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=everything'], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('constitutional');
+  });
+});
+
 describe('directory dry-run, ordering and cleanup', () => {
   it('--dry-run reports drift and exits 3 without writing for an isolated directory dataset', async () => {
     const { deps } = makeDeps();
@@ -859,12 +1025,13 @@ describe('directory dry-run, ordering and cleanup', () => {
     expect(deps.commitFiles).not.toHaveBeenCalled();
   });
 
-  it('orders candidates categories, hotlines, services…, departments, executive', async () => {
+  it('orders candidates categories, hotlines, services…, departments, executive, constitutional', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     const written = pathsOf(deps);
     const d = written.indexOf('src/data/directory/departments.json');
     const e = written.indexOf('src/data/directory/executive.json');
+    const c = written.indexOf('src/data/directory/constitutional.json');
     const lastService = written
       .map((p: string, i: number) =>
         p.startsWith('src/data/services/') ? i : -1
@@ -872,6 +1039,7 @@ describe('directory dry-run, ordering and cleanup', () => {
       .reduce((a: number, b: number) => Math.max(a, b), -1);
     expect(lastService).toBeLessThan(d);
     expect(d).toBeLessThan(e);
+    expect(e).toBeLessThan(c);
   });
 
   it('never runs service stale-file cleanup over the directory folder', async () => {
