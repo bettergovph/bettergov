@@ -6,13 +6,15 @@ import path from 'node:path';
 const ROOT = process.cwd();
 
 /**
- * The two single files a checkout only ever gets from `npm run
+ * The single files a checkout only ever gets from `npm run
  * sync:talacms`. A fresh clone, and every PR/fork CI checkout, never has
  * them.
  */
 const GENERATED_FILES = [
   'src/data/service_categories.json',
   'src/data/critical_hotlines.json',
+  'src/data/directory/departments.json',
+  'src/data/directory/executive.json',
 ];
 
 /** Rewritten by build:app itself (write-ver-to-json.ts) — restore it after. */
@@ -90,4 +92,57 @@ describe('secret-free build:app on a clean (never-synced) checkout', () => {
     expect(pkg.scripts.build).not.toContain('sync:talacms');
     expect(pkg.scripts.build).toMatch(/generate:metadata.*build:app/);
   });
+});
+
+describe('generate:metadata fails closed without the generated directory data', () => {
+  it('exits non-zero and names the missing file, instead of silently emitting a truncated sitemap/llms.txt', () => {
+    // Observed behavior (Task 10 investigation): generate-llms-txt.js and
+    // generate-sitemap.js both read departments.json/executive.json via a
+    // loadData() wrapped in try/catch that calls process.exit(1) on any
+    // read/parse failure — so a missing generated directory file already
+    // fails the whole `generate:metadata` step loudly. This pins that
+    // behavior so a future refactor of loadData() cannot regress it back
+    // into silently writing a sitemap/llms.txt missing every
+    // department/executive URL.
+    const departmentsPath = path.join(
+      ROOT,
+      'src/data/directory/departments.json'
+    );
+    const executivePath = path.join(ROOT, 'src/data/directory/executive.json');
+    const backups = new Map<string, Buffer>();
+    for (const abs of [departmentsPath, executivePath]) {
+      if (fs.existsSync(abs)) backups.set(abs, fs.readFileSync(abs));
+    }
+    for (const abs of [departmentsPath, executivePath]) {
+      if (fs.existsSync(abs)) fs.rmSync(abs);
+    }
+
+    try {
+      let threw = false;
+      let output = '';
+      try {
+        execSync('npm run generate:metadata', {
+          cwd: ROOT,
+          stdio: 'pipe',
+          timeout: 60_000,
+        });
+      } catch (error) {
+        threw = true;
+        const e = error as {
+          status?: number;
+          stdout?: Buffer;
+          stderr?: Buffer;
+        };
+        expect(e.status).not.toBe(0);
+        output = [e.stdout?.toString(), e.stderr?.toString()]
+          .filter(Boolean)
+          .join('\n');
+      }
+      expect(threw).toBe(true);
+      expect(output).toMatch(/departments\.json/);
+      expect(output).toMatch(/ENOENT|Error loading data/);
+    } finally {
+      for (const [abs, content] of backups) fs.writeFileSync(abs, content);
+    }
+  }, 60_000);
 });
