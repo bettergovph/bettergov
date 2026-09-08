@@ -154,9 +154,37 @@ describe('generate:metadata fails closed without the generated directory data', 
     // process.exit(1)s on any read/parse failure. Pin that, so a refactor
     // cannot regress into silently emitting a sitemap missing every
     // /government/constitutional/<slug> URL.
-    const abs = path.join(ROOT, 'src/data/directory/constitutional.json');
-    const backup = fs.existsSync(abs) ? fs.readFileSync(abs) : null;
-    if (backup) fs.rmSync(abs);
+    //
+    // loadData() reads service_categories.json and departments.json BEFORE
+    // constitutional.json (see the field order in both scripts). Both are
+    // themselves build-generated and gitignored, so on a true clean checkout
+    // (or any environment without a prior `cms:fetch`) they are ALSO absent —
+    // loadData() would then throw on whichever of those it reaches first, and
+    // the failure output would never mention constitutional.json at all. Pin
+    // both as valid, schema-satisfying stand-ins so this test isolates the
+    // constitutional.json failure regardless of ambient sync state, rather
+    // than depending on files this test never arranged.
+    const constitutionalPath = path.join(
+      ROOT,
+      'src/data/directory/constitutional.json'
+    );
+    const prerequisites = new Map<string, string>([
+      [
+        path.join(ROOT, 'src/data/service_categories.json'),
+        JSON.stringify({ categories: [] }),
+      ],
+      [path.join(ROOT, 'src/data/directory/departments.json'), '[]'],
+    ]);
+
+    const backups = new Map<string, Buffer | null>();
+    for (const abs of [constitutionalPath, ...prerequisites.keys()]) {
+      backups.set(abs, fs.existsSync(abs) ? fs.readFileSync(abs) : null);
+    }
+
+    fs.rmSync(constitutionalPath, { force: true });
+    for (const [abs, content] of prerequisites) {
+      fs.writeFileSync(abs, content);
+    }
 
     try {
       let threw = false;
@@ -182,7 +210,10 @@ describe('generate:metadata fails closed without the generated directory data', 
       expect(threw).toBe(true);
       expect(output).toMatch(/constitutional\.json/);
     } finally {
-      if (backup) fs.writeFileSync(abs, backup);
+      for (const [abs, content] of backups) {
+        if (content === null) fs.rmSync(abs, { force: true });
+        else fs.writeFileSync(abs, content);
+      }
     }
   }, 60_000);
 });
