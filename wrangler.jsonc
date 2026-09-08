@@ -8,10 +8,6 @@
   },
   "kv_namespaces": [
     {
-      "id": "124001eaebfb4815b32db5344fc59251",
-      "binding": "BROWSER_KV",
-    },
-    {
       "id": "a1151781bef24f3092aa3ddefe86aac5",
       "binding": "FOREX_KV",
     },

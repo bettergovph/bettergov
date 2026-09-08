@@ -7,10 +7,8 @@ import {
   scheduled as getForexScheduled,
   onRequest as forexRequest,
 } from './api/forex';
-import { onRequest as crawlRequest } from './api/crawl';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
-import { onRequest as reportHotlineRequest } from './api/report-hotline';
 import { Env } from './types';
 
 // Export the scheduled handlers
@@ -86,22 +84,12 @@ export default {
       return addCorsHeaders(response, corsHeaders);
     }
 
-    if (path === '/api/crawl') {
-      const response = await crawlRequest({ request, env, ctx });
-      return addCorsHeaders(response, corsHeaders);
-    }
-
-    if (path === '/api/report-hotline') {
-      const response = await reportHotlineRequest({ request, env, ctx });
-      return addCorsHeaders(response, corsHeaders);
-    }
-
     // Simple API to check if the functions are running
     if (path === '/api/status') {
       const response = new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex', 'crawl', 'report-hotline'],
+          functions: ['weather', 'forex'],
           endpoints: [
             {
               path: '/api/weather',
@@ -161,56 +149,6 @@ export default {
                 },
               ],
             },
-            {
-              path: '/api/crawl',
-              description:
-                'Get content from a URL using web crawler and store in D1 database',
-              parameters: [
-                {
-                  name: 'url',
-                  required: true,
-                  description: 'URL to fetch content from',
-                },
-                {
-                  name: 'update',
-                  required: false,
-                  description: 'Set to "true" to force update from crawler',
-                },
-              ],
-            },
-            {
-              path: '/api/report-hotline',
-              description:
-                'Submit a report about outdated hotline information (creates GitHub issue)',
-              method: 'POST',
-              parameters: [
-                {
-                  name: 'hotlineName',
-                  required: true,
-                  description: 'Name of the hotline with outdated information',
-                },
-                {
-                  name: 'issue',
-                  required: true,
-                  description: 'Description of what is incorrect',
-                },
-                {
-                  name: 'correctInfo',
-                  required: false,
-                  description: 'The correct information if known',
-                },
-                {
-                  name: 'source',
-                  required: false,
-                  description: 'Link to official source',
-                },
-                {
-                  name: 'reporterEmail',
-                  required: false,
-                  description: 'Contact email of the reporter',
-                },
-              ],
-            },
           ],
           timestamp: new Date().toISOString(),
         }),
@@ -231,8 +169,6 @@ export default {
           '/api/status',
           '/api/weather',
           '/api/forex',
-          '/api/crawl',
-          '/api/report-hotline',
           '/weather',
           '/forex',
         ],
