@@ -161,6 +161,9 @@ npm run cms:fetch                 # write the files
 npm run cms:fetch -- --only=services
 npm run cms:fetch -- --only=categories
 npm run cms:fetch -- --only=hotlines
+npm run cms:fetch -- --only=departments
+npm run cms:fetch -- --only=executive
+npm run cms:fetch -- --only=constitutional
 ```
 
 Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
@@ -179,6 +182,30 @@ interrupted, check `git status`.
 | adding or retiring a category in TalaCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
 | editing service content only (titles, URLs) | `--only=services` is safe **if** no display name changed |
 | editing taxonomy display names only | `npm run cms:fetch` — see the rename row |
+| editing a government department, executive office or constitutional office | `--only=departments` / `--only=executive` / `--only=constitutional` — each is a single-model edit with no cross-dataset gate |
+
+### Generated directory datasets
+
+Three government-directory files are CMS-owned and gitignored:
+`src/data/directory/departments.json` (23), `executive.json` (38) and
+`constitutional.json` (229). The last one holds all Constitutional-branch
+records — 3 constitutional offices, 2 constitutionally mandated bodies, 110
+GOCCs and 114 SUCs — because they share one TalaCMS model, one file and one
+route tree. Everything else under `src/data/directory/` is still
+hand-maintained and committed: diplomatic, judicial, legislative and the two
+orphaned member files.
+
+Each model is fetched by its own GraphQL operation, so an isolated `--only=`
+run cannot be made to fail by another model's data. Constitutional uses its
+own page-size ceiling of 300 rather than the shared 100, because it carries
+229 records; the CDA hard-caps `first` at 500, so if the ceiling gate ever
+fires, raise it to at most 500 — beyond that the model needs real pagination.
+
+A run carrying two or more of these datasets also checks that no slug appears
+in more than one of them: Meilisearch keys its single index by `slug`, so a
+collision would make one office unsearchable. The authoritative version of
+that check runs over the complete directory snapshot during Meilisearch
+preflight.
 
 The isolated modes are optimizations for narrow, single-sided edits. **When in
 doubt, run the full sync**: it is the only mode that validates both datasets
