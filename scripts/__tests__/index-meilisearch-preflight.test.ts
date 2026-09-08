@@ -460,7 +460,12 @@ const syntheticDirectoryDir = (mutate: (dir: string) => void = () => {}) => {
 
   write(
     'constitutional.json',
-    rows(3, 'const', i => ({ name: `Constitutional ${i}` }))
+    // office_type is schema-required: constitutional.json is now a REQUIRED,
+    // schema-validated source, not a tolerant one.
+    rows(3, 'const', i => ({
+      name: `Constitutional ${i}`,
+      office_type: 'Constitutional Office',
+    }))
   );
   write(
     'departments.json',
@@ -549,11 +554,11 @@ describe('DATA_SOURCES registration', () => {
     expect(s.schemaPath).toContain('executive.schema.json');
   });
 
-  it('registers exactly two required directory sources and one tolerant source', () => {
+  it('registers exactly three required directory sources and one tolerant source', () => {
     const dirSources = DATA_SOURCES.filter(
       s => s.dataType === 'directory_item'
     );
-    expect(dirSources.filter(s => s.isFile)).toHaveLength(2);
+    expect(dirSources.filter(s => s.isFile)).toHaveLength(3);
     expect(dirSources.filter(s => !s.isFile)).toHaveLength(1);
   });
 
@@ -610,7 +615,6 @@ describe('DIRECTORY_EXPECTED_FILES manifest', () => {
 
   it('derives the tolerant subset rather than declaring it separately', () => {
     expect([...DIRECTORY_TOLERANT_FILES].sort()).toEqual([
-      'constitutional.json',
       'diplomatic.json',
       'house_members.json',
       'judicial.json',
@@ -742,6 +746,103 @@ describe.runIf(hasGeneratedDirectoryData)(
     });
   }
 );
+
+describe('constitutional.json as a generated source', () => {
+  const byPath = (suffix: string) =>
+    DATA_SOURCES.filter(s => s.dataPath.endsWith(suffix));
+
+  it('registers constitutional.json as a required single-file source', () => {
+    const [s] = byPath(path.join('directory', 'constitutional.json'));
+    expect(s).toMatchObject({
+      dataType: 'directory_item',
+      isFile: true,
+      requireNonEmpty: true,
+    });
+    expect(s.schemaPath).toContain('constitutional.schema.json');
+  });
+
+  it('is listed as generated, and therefore excluded from the tolerant loader', () => {
+    expect(DIRECTORY_GENERATED_FILES).toContain('constitutional.json');
+    expect(DIRECTORY_TOLERANT_FILES).not.toContain('constitutional.json');
+    const [tolerant] = DATA_SOURCES.filter(
+      s => s.dataType === 'directory_item' && !s.isFile
+    );
+    expect(tolerant.excludeFiles).toContain('constitutional.json');
+    expect(tolerant.expectedFiles).not.toContain('constitutional.json');
+  });
+
+  it('keeps constitutional.json in the COMPLETE expected manifest and its count', () => {
+    // The snapshot must stay complete: stale reconciliation compares
+    // `type = directory_item` against the FULL snapshot and would delete every
+    // still-local directory document if constitutional dropped out of it.
+    expect(DIRECTORY_EXPECTED_FILES).toContain('constitutional.json');
+    expect(DIRECTORY_EXPECTED_COUNTS['constitutional.json']).toBe(229);
+    const total = Object.values(DIRECTORY_EXPECTED_COUNTS).reduce(
+      (a: number, b: number) => a + b,
+      0
+    );
+    expect(total).toBe(612);
+  });
+
+  it('fails closed when constitutional.json is missing', async () => {
+    await expect(
+      loadDirectorySnapshot({ dir: fixtureDirWithout('constitutional.json') })
+    ).rejects.toThrow(/constitutional\.json/);
+  });
+
+  it('fails closed when constitutional.json is malformed JSON', async () => {
+    await expect(
+      loadDirectorySnapshot({
+        dir: fixtureDirWithMalformed('constitutional.json'),
+      })
+    ).rejects.toThrow(/constitutional\.json/);
+  });
+
+  it('fails closed when constitutional.json is an empty array', async () => {
+    const dir = syntheticDirectoryDir(d =>
+      fs.writeFileSync(path.join(d, 'constitutional.json'), '[]', 'utf8')
+    );
+    await expect(loadDirectorySnapshot({ dir })).rejects.toThrow(
+      /constitutional\.json/
+    );
+  });
+
+  it('fails closed when a constitutional record violates the tracked schema', async () => {
+    const dir = syntheticDirectoryDir(d =>
+      fs.writeFileSync(
+        path.join(d, 'constitutional.json'),
+        // office_type is required by constitutional.schema.json.
+        JSON.stringify([{ slug: 'x', name: 'X' }]),
+        'utf8'
+      )
+    );
+    await expect(loadDirectorySnapshot({ dir })).rejects.toThrow(
+      /constitutional\.json/
+    );
+  });
+
+  it('loads constitutional documents exactly once', async () => {
+    const snap = await loadDirectorySnapshot({ dir: syntheticDirectoryDir() });
+    expect(snap.bySourceFile.get('constitutional.json')).toBe(3);
+    expect(snap.complete).toBe(true);
+  });
+
+  it('fails closed when a constitutional slug collides with a department slug', () => {
+    expect(() =>
+      assertUniqueDirectorySlugs({
+        documents: [
+          { slug: 'shared', __sourceFile: 'departments.json' },
+          { slug: 'shared', __sourceFile: 'constitutional.json' },
+        ],
+        bySourceFile: new Map(),
+        expectedFiles: [],
+        loadedFiles: [],
+        complete: true,
+        problems: [],
+      })
+    ).toThrow(/constitutional\.json/);
+  });
+});
 
 /**
  * REVISION — the injected-`dir` path must be proven, not assumed. Every
@@ -968,7 +1069,7 @@ const makeJsonFile = (name: string, value: unknown) => {
 
 /**
  * The complete DATA_SOURCES shape, pointed entirely at fixtures. Mirrors
- * production ordering: service, the two required directory files, the
+ * production ordering: service, the three required directory files, the
  * tolerant directory source, then website.
  */
 const fixtureSources = (dirs: {
@@ -995,6 +1096,13 @@ const fixtureSources = (dirs: {
     isFile: true,
     requireNonEmpty: true,
     schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'executive.schema.json'),
+  },
+  {
+    dataType: 'directory_item',
+    dataPath: path.join(dirs.directory, 'constitutional.json'),
+    isFile: true,
+    requireNonEmpty: true,
+    schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'constitutional.schema.json'),
   },
   {
     dataType: 'directory_item',
