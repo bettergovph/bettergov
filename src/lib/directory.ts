@@ -1,5 +1,5 @@
-import constitutional from '../data/directory/constitutional.json';
 import {
+  constitutionalOffices as constitutional,
   governmentDepartments as departments,
   executiveOffices as executive,
 } from '../data/cms';
