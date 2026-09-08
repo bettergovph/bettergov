@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { TalaCmsClient } from './client';
+import type { Candidate } from './categories';
 
 /**
  * Explicit ceiling on how many records we ask TalaCMS for in one request.
@@ -366,4 +367,63 @@ export function shapeExecutive(
   return sortForOutput(records).map(r =>
     applyFieldMap(r as unknown as Record<string, unknown>, EXECUTIVE_FIELDS)
   );
+}
+
+export function buildDepartmentsCandidate(raw: RawDepartments): Candidate {
+  return {
+    path: 'src/data/directory/departments.json',
+    schemaPath: 'src/data/directory/schema/departments.schema.json',
+    data: shapeDepartments(raw.allGovernmentDepartments),
+  };
+}
+
+export function buildExecutiveCandidate(raw: RawExecutives): Candidate {
+  return {
+    path: 'src/data/directory/executive.json',
+    schemaPath: 'src/data/directory/schema/executive.schema.json',
+    data: shapeExecutive(raw.allExecutiveOffices),
+  };
+}
+
+/**
+ * Meilisearch indexes every document into ONE index keyed by `slug`
+ * (index_meilisearch.cjs: createIndex(..., { primaryKey: 'slug' })), so a slug
+ * shared between a department and an executive office means one document
+ * silently overwrites the other and one office becomes unsearchable.
+ *
+ * Scope is deliberately limited to these two models — the ONLY two this branch
+ * makes CMS-owned. An index-wide gate is NOT applied here: 289 slug collisions
+ * already exist in that index (directory/*.json vs the derived websites.json),
+ * so an index-wide gate would fail on pre-existing data and would require
+ * changing Government Websites, which is out of scope. See Risks.
+ *
+ * This is the FAST LOCAL gate, not the guarantee. It is applied only when BOTH
+ * datasets are selected — per sync-talacms.ts's run-mode matrix, "a gate whose
+ * inputs a mode does not have is not applied", and an isolated `--only=` run
+ * cannot see the other side without breaking query isolation. Its value is
+ * failing before any file is written.
+ *
+ * The AUTHORITATIVE gate is assertUniqueDirectorySlugs in
+ * scripts/index_meilisearch.cjs, which runs over the complete loaded directory
+ * snapshot in preflight and therefore also catches a collision that
+ * `--only=departments` introduced against the committed executive.json.
+ */
+export function assertNoCrossModelSlugCollision(
+  departments: Candidate,
+  executive: Candidate
+): void {
+  const executiveSlugs = new Set(
+    (executive.data as { slug: string }[]).map(r => r.slug)
+  );
+  const collisions = (departments.data as { slug: string }[])
+    .map(r => r.slug)
+    .filter(slug => executiveSlugs.has(slug));
+
+  if (collisions.length > 0) {
+    fail(
+      `${collisions.length} slug(s) appear in BOTH government departments and executive offices: ` +
+        `${collisions.join(', ')}. Meilisearch keys its single index by slug, so these records ` +
+        'would overwrite each other and one office would become unsearchable.'
+    );
+  }
 }

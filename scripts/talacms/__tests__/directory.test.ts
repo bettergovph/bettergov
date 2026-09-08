@@ -6,6 +6,11 @@ import {
   parseExecutiveResponse,
 } from '../directory';
 import { shapeDepartments, shapeExecutive, sortForOutput } from '../directory';
+import {
+  buildDepartmentsCandidate,
+  buildExecutiveCandidate,
+  assertNoCrossModelSlugCollision,
+} from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
 import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
@@ -500,5 +505,98 @@ describe('round-trip equivalence against the pre-migration files', () => {
         Object.keys(expectedExecutive[i]).sort()
       );
     }
+  });
+});
+
+describe('candidate emission', () => {
+  it('emits the departments candidate against the tracked departments schema', () => {
+    const c = buildDepartmentsCandidate({
+      _allGovernmentDepartmentsMeta: { count: rawDepartments.length },
+      allGovernmentDepartments: rawDepartments,
+    });
+    expect(c.path).toBe('src/data/directory/departments.json');
+    expect(c.schemaPath).toBe(
+      'src/data/directory/schema/departments.schema.json'
+    );
+  });
+
+  it('emits the executive candidate against the tracked executive schema', () => {
+    const c = buildExecutiveCandidate({
+      _allExecutiveOfficesMeta: { count: rawExecutive.length },
+      allExecutiveOffices: rawExecutive,
+    });
+    expect(c.path).toBe('src/data/directory/executive.json');
+    expect(c.schemaPath).toBe(
+      'src/data/directory/schema/executive.schema.json'
+    );
+  });
+
+  it('builds each candidate without reference to the other model', () => {
+    // Neither builder takes the other's data — isolation is structural.
+    expect(buildDepartmentsCandidate.length).toBe(1);
+    expect(buildExecutiveCandidate.length).toBe(1);
+  });
+});
+
+describe('assertNoCrossModelSlugCollision', () => {
+  const candidate = (path: string, slugs: string[]) => ({
+    path,
+    schemaPath: 'unused',
+    data: slugs.map(slug => ({ slug })),
+  });
+
+  it('passes when the two models share no slug', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollision(
+        candidate('d', ['department-of-x']),
+        candidate('e', ['office-of-y'])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed when a department and an executive office share a slug', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollision(
+        candidate('d', ['shared-slug']),
+        candidate('e', ['shared-slug'])
+      )
+    ).toThrow(/shared-slug/);
+  });
+
+  it('names every colliding slug, not just the first', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollision(
+        candidate('d', ['a', 'b', 'c']),
+        candidate('e', ['a', 'c'])
+      )
+    ).toThrow(/a.*c/s);
+  });
+
+  it('passes against the real generated candidates', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollision(
+        buildDepartmentsCandidate({
+          _allGovernmentDepartmentsMeta: { count: rawDepartments.length },
+          allGovernmentDepartments: rawDepartments,
+        }),
+        buildExecutiveCandidate({
+          _allExecutiveOfficesMeta: { count: rawExecutive.length },
+          allExecutiveOffices: rawExecutive,
+        })
+      )
+    ).not.toThrow();
+  });
+});
+
+describe('schema validation against tracked schemas', () => {
+  it('rejects a generated record missing a schema-required field', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/departments.json',
+        schemaPath: 'src/data/directory/schema/departments.schema.json',
+        data: [{ slug: 'x' }], // office_name is required
+      })
+    ).rejects.toThrow(/does not satisfy/);
   });
 });
