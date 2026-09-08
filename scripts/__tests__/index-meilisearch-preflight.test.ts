@@ -4,11 +4,104 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 
+/**
+ * Minimal type surface for `index_meilisearch.cjs`'s exports, declared here
+ * at the CommonJS `require` boundary rather than left as `any`. Type-only —
+ * these interfaces describe the shapes this test file already relies on at
+ * runtime (and that the .cjs script's own doc comments describe); they
+ * change nothing about how the module is loaded or executed.
+ *
+ * Without this, `require(...)` types as `any`, and TypeScript's
+ * `noImplicitAny` still flags an unannotated callback parameter passed to a
+ * method call on an `any`-typed value (e.g. `DATA_SOURCES.filter(s => ...)`,
+ * or `Object.values(DIRECTORY_EXPECTED_COUNTS).reduce(...)`, whose overload
+ * resolution against an `any` argument produces `unknown` elements) —  a
+ * well-known TS quirk where `any` does not propagate through every generic
+ * call signature. Typing the boundary once here fixes inference everywhere
+ * downstream without touching each call site individually.
+ */
+interface DirectoryDataSource {
+  dataType: string;
+  dataPath: string;
+  isFile?: boolean;
+  requireNonEmpty?: boolean;
+  schemaPath?: string;
+  excludeFiles?: string[];
+  expectedFiles?: string[];
+}
+
+interface IndexedDocument {
+  slug: string;
+  type?: string;
+  id?: string;
+  __sourceFile?: string;
+  [key: string]: unknown;
+}
+
+interface DirectorySnapshot {
+  documents: IndexedDocument[];
+  bySourceFile: Map<string, number>;
+  expectedFiles: string[];
+  loadedFiles: string[];
+  complete: boolean;
+  problems: string[];
+}
+
+interface PreflightAggregate {
+  allDocumentsToIndex: IndexedDocument[];
+  requiredDocuments: IndexedDocument[];
+  directorySnapshot: DirectorySnapshot;
+}
+
+interface ReconcileWaiterIo {
+  waiter?: (
+    taskPromise: Promise<{ taskUid: number }>,
+    label: string
+  ) => Promise<unknown>;
+}
+
+/** Structural — a fake or a real Meilisearch `Index` both satisfy this. */
+interface ReconcilableIndex {
+  getDocuments(opts: {
+    filter: string;
+    limit: number;
+    offset: number;
+  }): Promise<{ results: { slug: string }[]; total: number }>;
+  deleteDocuments(slugs: string[]): Promise<{ taskUid: number }>;
+}
+
+interface IndexMeilisearchModule {
+  FatalIndexingError: new (message?: string) => Error;
+  loadRequiredDocuments: (
+    dataSource: DirectoryDataSource
+  ) => Promise<IndexedDocument[]>;
+  DATA_SOURCES: DirectoryDataSource[];
+  DIRECTORY_EXPECTED_FILES: string[];
+  DIRECTORY_GENERATED_FILES: string[];
+  DIRECTORY_TOLERANT_FILES: string[];
+  DIRECTORY_EXPECTED_COUNTS: Record<string, number>;
+  loadDirectorySnapshot: (opts?: {
+    dir?: string;
+    sources?: DirectoryDataSource[];
+  }) => Promise<DirectorySnapshot>;
+  assertUniqueDirectorySlugs: (snapshot: DirectorySnapshot) => void;
+  assemblePreflightDocuments: (
+    sources?: DirectoryDataSource[],
+    opts?: { directoryDir?: string }
+  ) => Promise<PreflightAggregate>;
+  reconcileStaleDirectoryDocuments: (
+    index: ReconcilableIndex,
+    snapshot: DirectorySnapshot,
+    io?: ReconcileWaiterIo
+  ) => Promise<void>;
+}
+
 // This is a CommonJS script (see scripts/index_meilisearch.cjs); requiring
 // it does not run main() — see the require.main === module guard at the
 // bottom of that file — so this never contacts Meilisearch.
 // eslint-disable-next-line @typescript-eslint/no-require-imports -- .cjs script has no ESM build to import
-const indexMeilisearch = require('../index_meilisearch.cjs');
+const indexMeilisearchRaw = require('../index_meilisearch.cjs');
+const indexMeilisearch = indexMeilisearchRaw as IndexMeilisearchModule;
 const {
   FatalIndexingError,
   loadRequiredDocuments,
@@ -612,8 +705,10 @@ describe.runIf(hasGeneratedDirectoryData)(
         snap.documents.every(d => typeof d.__sourceFile === 'string')
       ).toBe(true);
       expect(
+        // Type-only cast: the line above just proved every document's
+        // __sourceFile is a string at runtime.
         snap.documents.every(d =>
-          DIRECTORY_EXPECTED_FILES.includes(d.__sourceFile)
+          DIRECTORY_EXPECTED_FILES.includes(d.__sourceFile as string)
         )
       ).toBe(true);
     });
@@ -952,8 +1047,13 @@ describe('preflight aggregate — directory documents enter through exactly one 
     // double-load through the generic loops doubles every count here — this
     // is the assertion that fails if `&& !isDirectorySource(s)` is dropped.
     const counts: Record<string, number> = {};
-    for (const d of dir)
-      counts[d.__sourceFile] = (counts[d.__sourceFile] ?? 0) + 1;
+    // Type-only cast: every document in `dir` came from
+    // assemblePreflightDocuments(), which tags every document it loads with
+    // __sourceFile — proven by the sibling provenance tests above.
+    for (const d of dir) {
+      const sourceFile = d.__sourceFile as string;
+      counts[sourceFile] = (counts[sourceFile] ?? 0) + 1;
+    }
     expect(counts).toEqual(SYNTHETIC_DIRECTORY_COUNTS);
   });
 
