@@ -130,10 +130,12 @@ For setup instructions, coverage details, and examples, see our [Testing Guide](
 ## Syncing content from TalaCMS
 
 `src/data/service_categories.json`, `src/data/critical_hotlines.json`,
-`src/data/services/*.json`, and the four Government Directory files under
-`src/data/directory/` (`departments.json`, `executive.json`,
-`constitutional.json`, `legislative.json` — see below) are all generated from
-TalaCMS by a **pre-build** step — they are gitignored and never committed.
+`src/data/services/*.json`, the four single-file Government Directory
+datasets under `src/data/directory/` (`departments.json`, `executive.json`,
+`constitutional.json`, `legislative.json` — see below), and the 19 per-region
+LGU files under `src/data/directory/lgu/*.json` (see below) are all generated
+from TalaCMS by a **pre-build** step — they are gitignored and never
+committed.
 Deployment runs `npm run cms:fetch` before `npm run build`; `cms:fetch`
 fetches, validates, and writes every generated dataset and fails closed (no
 fallback, no placeholder data) if anything goes wrong. `npm run build` itself
@@ -147,9 +149,11 @@ npm run cms:fetch && npm run build
 `src/data/cms.ts` is the only module that reads these generated files —
 every other module goes through its `serviceCategories`, `criticalHotlines`,
 and `services` exports for the service-related datasets, and its
-`governmentDepartments`, `executiveOffices`, `constitutionalOffices`, and
-`legislativeChambers` exports for the Government Directory ones. The website
-never queries the CMS at runtime.
+`governmentDepartments`, `executiveOffices`, `constitutionalOffices`,
+`legislativeChambers`, and `lguRegions` exports for the Government Directory
+ones (`src/lib/lgu.ts` is the one permitted indirection onto `lguRegions`,
+for the two `government/local` pages). The website never queries the CMS at
+runtime.
 
 `src/data/services/schema/services.schema.json` stays tracked — it's the
 contract the generated data must satisfy, not the data itself.
@@ -179,8 +183,22 @@ Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
 
 The script fails without writing anything if TalaCMS is unreachable, returns
 an incomplete result, or would produce a file that violates its JSON Schema.
-Writes are atomic per file but not across files: if the write phase is
-interrupted, check `git status`.
+The write phase is transactional across the whole batch: if a later rename
+fails partway through, every file the batch already replaced is rolled back
+to its pre-sync content (or deleted, if it didn't exist before), so a failed
+sync never leaves a mixed old/new snapshot on disk — for any dataset,
+including LGU's 19 files, whose generated output is gitignored, so `git
+status` cannot reveal a partial write there the way it can for tracked
+files. Recover from a failed sync by simply re-running it once the
+underlying cause (a network blip, disk pressure, TalaCMS unavailability) is
+resolved.
+
+`--only=lgu` additionally removes any locally-present LGU region file that
+no longer corresponds to a region in TalaCMS (e.g. a retired region), after
+a successful commit — unlike the other single-model `--only=` modes, LGU's
+own fetch always sees its complete region set in one shot, so it doesn't
+need a full sync to safely judge staleness. `--dry-run` reports a stale LGU
+file as drift (and exits `3`) without removing it.
 
 ### Choosing a run mode
 
