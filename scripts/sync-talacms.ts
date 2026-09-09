@@ -160,12 +160,23 @@ async function buildCandidates(
   deps: Deps
 ): Promise<Candidate[]> {
   // Stages 1 and 2 — fetch only what this run selected.
-  const rawServices = selected.has('services')
-    ? await fetchServices(client)
-    : null;
-  const rawCategories = selected.has('categories')
-    ? await fetchCategories(client)
-    : null;
+  let rawServices = null;
+  if (selected.has('services')) {
+    deps.log('  → Fetching services...');
+    rawServices = await fetchServices(client);
+    deps.log(
+      `    ✓ Received ${rawServices.allGovernmentServices.length} services`
+    );
+  }
+
+  let rawCategories = null;
+  if (selected.has('categories')) {
+    deps.log('  → Fetching service categories...');
+    rawCategories = await fetchCategories(client);
+    deps.log(
+      `    ✓ Received ${rawCategories.allServiceCategories.length} categories`
+    );
+  }
 
   // Stage 3 — one cross-validation, over whichever sides the mode selects,
   // before either candidate is shaped.
@@ -195,26 +206,57 @@ async function buildCandidates(
   // each issued only when its own dataset is selected — see the isolation
   // contract in this function's doc comment. No model is ever queried on
   // behalf of another, not even to discard the result.
-  const rawDepartments = selected.has('departments')
-    ? await fetchDepartments(client)
-    : null;
-  const rawExecutive = selected.has('executive')
-    ? await fetchExecutive(client)
-    : null;
-  const rawConstitutional = selected.has('constitutional')
-    ? await fetchConstitutional(client)
-    : null;
+  let rawDepartments = null;
+  if (selected.has('departments')) {
+    deps.log('  → Fetching executive departments...');
+    rawDepartments = await fetchDepartments(client);
+    deps.log(
+      `    ✓ Received ${rawDepartments.allGovernmentDepartments.length} departments`
+    );
+  }
+
+  let rawExecutive = null;
+  if (selected.has('executive')) {
+    deps.log('  → Fetching executive offices...');
+    rawExecutive = await fetchExecutive(client);
+    deps.log(
+      `    ✓ Received ${rawExecutive.allExecutiveOffices.length} executive offices`
+    );
+  }
+
+  let rawConstitutional = null;
+  if (selected.has('constitutional')) {
+    deps.log('  → Fetching constitutional commissions...');
+    rawConstitutional = await fetchConstitutional(client);
+    deps.log(
+      `    ✓ Received ${rawConstitutional.allConstitutionalOffices.length} constitutional offices`
+    );
+  }
+
   // Legislative is the fourth independent fetch. Its single operation carries
   // the two member relations, so House Members and Party-list Representatives
   // need no separate query and no separate dataset selector — they are fields
   // of the chamber record in the app's data contract.
-  const rawLegislative = selected.has('legislative')
-    ? await fetchLegislative(client)
-    : null;
+  let rawLegislative = null;
+  if (selected.has('legislative')) {
+    deps.log('  → Fetching legislative chambers and members...');
+    rawLegislative = await fetchLegislative(client);
+    deps.log(
+      `    ✓ Received ${rawLegislative.allLegislativeChambers.length} legislative chambers`
+    );
+  }
+
   // LGU is the fifth independent fetch, same isolation contract as the four
   // above: issued only when 'lgu' itself is selected, never on behalf of any
   // other dataset.
-  const rawLgu = selected.has('lgu') ? await fetchLgu(client) : null;
+  let rawLgu = null;
+  if (selected.has('lgu')) {
+    deps.log(
+      '  → Fetching local government units (regions, provinces, cities, municipalities)...'
+    );
+    rawLgu = await fetchLgu(client);
+    deps.log(`    ✓ Received ${rawLgu.length} LGU regions`);
+  }
 
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
   // then services in path-codepoint order, then departments, executive,
@@ -225,7 +267,9 @@ async function buildCandidates(
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
   if (selected.has('hotlines')) {
+    deps.log('  → Fetching critical hotlines...');
     candidates.push(await buildCriticalHotlines(client));
+    deps.log('    ✓ Received critical hotlines');
   }
   if (rawServices) {
     candidates.push(
@@ -443,7 +487,13 @@ export async function run(
     // comment for why `--only=lgu` alone already has complete visibility.
     beforeServiceFiles = isFullSync ? deps.readServiceFileNames() : [];
     beforeLguFiles = selectedSet.has('lgu') ? deps.readLguFileNames() : [];
+    deps.log(
+      `[sync] Selected datasets (${options.selected.length}): ${options.selected.join(', ')}`
+    );
     candidates = await buildCandidates(new Set(options.selected), client, deps);
+    deps.log(
+      `\n[sync] Preparing and formatting ${candidates.length} candidate file(s)...`
+    );
     for (const candidate of candidates) {
       prepared.push(await deps.prepare(candidate));
     }
@@ -453,6 +503,7 @@ export async function run(
     return 1;
   }
 
+  deps.log(`\n[sync] File comparison:`);
   for (const file of prepared) {
     deps.log(`${file.changed ? '~ changed  ' : '  unchanged'} ${file.path}`);
   }
