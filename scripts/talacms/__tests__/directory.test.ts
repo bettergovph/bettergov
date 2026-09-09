@@ -38,6 +38,7 @@ import {
   parseDiplomaticResponse,
   shapeDiplomatic,
   buildDiplomaticCandidate,
+  candidateSlugs,
 } from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
@@ -2757,5 +2758,131 @@ describe('diplomatic candidate emission', () => {
         data: { 'Diplomatic Mission': [], Consulate: [] },
       })
     ).rejects.toThrow(/does not satisfy/);
+  });
+});
+
+describe('candidateSlugs', () => {
+  const c = (data: unknown) => ({
+    path: 'x.json',
+    schemaPath: 'x.schema.json',
+    data,
+  });
+
+  it('extracts slugs from a flat array candidate', () => {
+    expect(candidateSlugs(c([{ slug: 'a' }, { slug: 'b' }]))).toEqual([
+      'a',
+      'b',
+    ]);
+  });
+
+  it('extracts slugs from a grouped object-of-arrays candidate', () => {
+    expect(
+      candidateSlugs(
+        c({
+          'Diplomatic Mission': [{ slug: 'japan' }, { slug: 'peru' }],
+          Consulate: [{ country: 'ALBANIA' }],
+          'International Organization': [],
+        })
+      )
+    ).toEqual(['japan', 'peru']);
+  });
+
+  it('extracts the slug from a single-object candidate (the LGU shape)', () => {
+    expect(
+      candidateSlugs(c({ slug: 'region-i-ilocos-region', provinces: [] }))
+    ).toEqual(['region-i-ilocos-region']);
+  });
+
+  it('skips records with no slug rather than emitting undefined', () => {
+    expect(
+      candidateSlugs(c([{ slug: 'a' }, { country: 'X' }, { slug: 'b' }]))
+    ).toEqual(['a', 'b']);
+  });
+
+  it('skips non-string slugs', () => {
+    expect(
+      candidateSlugs(c([{ slug: 'a' }, { slug: 42 }, { slug: null }]))
+    ).toEqual(['a']);
+  });
+
+  it('returns an empty array for a candidate with no slugs anywhere', () => {
+    expect(candidateSlugs(c({ categories: [{ category: 'X' }] }))).toEqual([]);
+  });
+});
+
+describe('assertNoCrossModelSlugCollisions — grouped candidates', () => {
+  const candidate = (path: string, data: unknown) => ({
+    path,
+    schemaPath: 'x.schema.json',
+    data,
+  });
+
+  it('does not throw on a grouped candidate with no collision', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('src/data/directory/departments.json', [{ slug: 'doh' }]),
+        candidate('src/data/directory/diplomatic.json', {
+          'Diplomatic Mission': [{ slug: 'japan' }],
+          Consulate: [{ country: 'ALBANIA' }],
+          'International Organization': [],
+        }),
+      ])
+    ).not.toThrow();
+  });
+
+  it('detects a collision between a grouped and a flat candidate', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('src/data/directory/departments.json', [{ slug: 'japan' }]),
+        candidate('src/data/directory/diplomatic.json', {
+          'Diplomatic Mission': [{ slug: 'japan' }],
+          Consulate: [],
+          'International Organization': [],
+        }),
+      ])
+    ).toThrow(/departments\.json.*diplomatic\.json/s);
+  });
+
+  it('names the colliding slug in the error', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('a.json', [{ slug: 'japan' }]),
+        candidate('b.json', { G: [{ slug: 'japan' }] }),
+      ])
+    ).toThrow(/japan/);
+  });
+
+  it('ignores slugless records entirely — 157 diplomatic records have none', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('a.json', [{ country: 'X' }]),
+        candidate('b.json', { G: [{ country: 'X' }] }),
+      ])
+    ).not.toThrow();
+  });
+
+  it('the real diplomatic candidate collides with none of the other models', () => {
+    // Empirically verified 2026-09-09: the 70 mission slugs collide with
+    // nothing across departments, executive, constitutional or legislative.
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        buildDepartmentsCandidate({
+          _allGovernmentDepartmentsMeta: { count: rawDepartments.length },
+          allGovernmentDepartments: rawDepartments,
+        }),
+        buildExecutiveCandidate({
+          _allExecutiveOfficesMeta: { count: rawExecutive.length },
+          allExecutiveOffices: rawExecutive,
+        }),
+        buildConstitutionalCandidate({
+          _allConstitutionalOfficesMeta: { count: rawConstitutional.length },
+          allConstitutionalOffices: rawConstitutional,
+        }),
+        buildDiplomaticCandidate({
+          _allDiplomaticEntitiesMeta: { count: rawDiplomatic.length },
+          allDiplomaticEntities: rawDiplomatic,
+        }),
+      ])
+    ).not.toThrow();
   });
 });

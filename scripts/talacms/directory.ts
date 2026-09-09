@@ -1558,27 +1558,56 @@ export function buildConstitutionalCandidate(
 }
 
 /**
- * Meilisearch indexes every document into ONE index keyed by `slug`
- * (index_meilisearch.cjs: createIndex(..., { primaryKey: 'slug' })), so a slug
- * shared between two directory sources means one document silently overwrites
- * the other and one office becomes unsearchable.
+ * Every slug a candidate contributes, whatever its payload shape.
  *
- * Scope is deliberately limited to the models this repository makes CMS-owned
- * — departments, executive and constitutional. An index-wide gate is NOT
- * applied here: slug collisions already exist between directory/*.json and
- * the derived websites.json, so an index-wide gate would fail on pre-existing
- * data and would require changing Government Websites, which is out of scope.
+ * Three shapes exist in this pipeline and all three are handled here rather
+ * than at the call site:
+ *   - an ARRAY of slugged records (departments, executive, constitutional,
+ *     legislative);
+ *   - an OBJECT of arrays keyed by group (diplomatic — three entity types);
+ *   - a SINGLE object with a top-level slug (each LGU region file).
  *
- * This is the FAST LOCAL gate, not the guarantee. Per sync-talacms.ts's
- * run-mode matrix, "a gate whose inputs a mode does not have is not applied":
- * it compares only the candidates a run actually carries, and an isolated
- * `--only=` run has nothing to compare against. Its value is failing before
- * any file is written.
+ * A record with no slug, or with a non-string slug, contributes nothing
+ * rather than an `undefined` that would then "collide" with another
+ * slugless record. That is the normal case for 157 of the 227 diplomatic
+ * records: only the 70 missions carry a slug.
+ */
+export function candidateSlugs(candidate: Candidate): string[] {
+  const slugs: string[] = [];
+
+  const take = (value: unknown) => {
+    if (value === null || typeof value !== 'object') return;
+    const slug = (value as { slug?: unknown }).slug;
+    if (typeof slug === 'string') slugs.push(slug);
+  };
+
+  const data = candidate.data;
+  if (Array.isArray(data)) {
+    for (const record of data) take(record);
+  } else if (data !== null && typeof data === 'object') {
+    // A single-object candidate carries its slug at the top level; a grouped
+    // candidate carries none there and holds arrays of records instead. Both
+    // are handled, and a candidate that is somehow both is handled correctly
+    // too — `take` is idempotent per object.
+    take(data);
+    for (const group of Object.values(data as Record<string, unknown>)) {
+      if (Array.isArray(group)) for (const record of group) take(record);
+    }
+  }
+
+  return slugs;
+}
+
+/**
+ * Meilisearch keys its single directory index by slug, so a slug appearing in
+ * two generated files would make one office unsearchable. Slugs are extracted
+ * through `candidateSlugs`, so every candidate shape in the pipeline is
+ * checked — including diplomatic's grouped object, which an array-only cast
+ * would have thrown on rather than checked.
  *
- * The AUTHORITATIVE gate is assertUniqueDirectorySlugs in
- * scripts/index_meilisearch.cjs, which runs over the complete loaded directory
- * snapshot in preflight and therefore also catches a collision that an
- * isolated run introduced against another model's already-generated file.
+ * The authoritative version of this check runs over the complete directory
+ * snapshot during Meilisearch preflight (`assertUniqueDirectorySlugs`); this
+ * one is the fast local gate that fails a sync before it writes.
  */
 export function assertNoCrossModelSlugCollisions(
   candidates: Candidate[]
@@ -1587,10 +1616,8 @@ export function assertNoCrossModelSlugCollisions(
     for (let j = i + 1; j < candidates.length; j++) {
       const a = candidates[i];
       const b = candidates[j];
-      const bSlugs = new Set((b.data as { slug: string }[]).map(r => r.slug));
-      const collisions = (a.data as { slug: string }[])
-        .map(r => r.slug)
-        .filter(slug => bSlugs.has(slug));
+      const bSlugs = new Set(candidateSlugs(b));
+      const collisions = candidateSlugs(a).filter(slug => bSlugs.has(slug));
 
       if (collisions.length > 0) {
         fail(
