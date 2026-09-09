@@ -129,14 +129,16 @@ For setup instructions, coverage details, and examples, see our [Testing Guide](
 
 ## Syncing content from TalaCMS
 
-`src/data/service_categories.json`, `src/data/critical_hotlines.json`, and
-`src/data/services/*.json` are generated from TalaCMS by a **pre-build**
-step — they are gitignored and never committed. Deployment runs
-`npm run cms:fetch` before `npm run build`; `cms:fetch` fetches, validates,
-and writes all three and fails closed (no fallback, no placeholder data) if
-anything goes wrong. `npm run build` itself only consumes the
-already-generated files — it does not talk to TalaCMS and does not need
-credentials.
+`src/data/service_categories.json`, `src/data/critical_hotlines.json`,
+`src/data/services/*.json`, and the four Government Directory files under
+`src/data/directory/` (`departments.json`, `executive.json`,
+`constitutional.json`, `legislative.json` — see below) are all generated from
+TalaCMS by a **pre-build** step — they are gitignored and never committed.
+Deployment runs `npm run cms:fetch` before `npm run build`; `cms:fetch`
+fetches, validates, and writes every generated dataset and fails closed (no
+fallback, no placeholder data) if anything goes wrong. `npm run build` itself
+only consumes the already-generated files — it does not talk to TalaCMS and
+does not need credentials.
 
 ```bash
 npm run cms:fetch && npm run build
@@ -144,7 +146,10 @@ npm run cms:fetch && npm run build
 
 `src/data/cms.ts` is the only module that reads these generated files —
 every other module goes through its `serviceCategories`, `criticalHotlines`,
-and `services` exports. The website never queries the CMS at runtime.
+and `services` exports for the service-related datasets, and its
+`governmentDepartments`, `executiveOffices`, `constitutionalOffices`, and
+`legislativeChambers` exports for the Government Directory ones. The website
+never queries the CMS at runtime.
 
 `src/data/services/schema/services.schema.json` stays tracked — it's the
 contract the generated data must satisfy, not the data itself.
