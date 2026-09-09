@@ -329,33 +329,32 @@ export async function commitFiles(
 }
 
 /**
- * Deletes top-level `src/data/services/*.json` files that existed before this
- * run but are not part of the newly generated candidate set — e.g. a category
- * retired in TalaCMS. Never touches `src/data/services/schema/**`: `before`
- * and `generated` both come from `readServiceFileNames()`, which only ever
- * lists top-level `.json` files, so `schema` (a directory, not `.json`) can
- * never appear in either list.
+ * Deletes top-level `{dir}/*.json` files that existed before this
+ * run but are not part of the newly generated candidate set — e.g. when a
+ * category/region is retired in a CMS. Never touches any `{dir}/schema/**` or
+ * other subdirectories: `before` and `generated` both come from the same
+ * file-listing logic, which only ever lists top-level `.json` files, so
+ * subdirectories (not `.json` files) can never appear in either list.
  *
- * Callers MUST only invoke this after `commitFiles` has already succeeded for
- * a full sync — never before validation, never on any failure path, and
- * never for an isolated `--only=` run, which does not see the complete
- * picture needed to know what's genuinely stale.
+ * Callers MUST only invoke this after the corresponding commit operation
+ * has already succeeded for a full sync — never before validation, never on
+ * any failure path, and never for an isolated partial run that does not see
+ * the complete picture needed to know what's genuinely stale.
  *
  * Deletion is best-effort and per-file: one failure doesn't stop the rest,
  * and doesn't undo the (already-committed) write phase, whose atomicity
  * guarantees are unaffected. Every attempt — success or failure — is logged,
  * so a partial cleanup is always visible rather than silently incomplete.
  */
-export function removeStaleServiceFiles(
+export function removeStaleFiles(
+  dir: string,
   before: string[],
   generated: string[],
   io: {
-    dir?: string;
     unlink?: (target: string) => void;
     log?: (message: string) => void;
   } = {}
 ): { removed: string[]; failed: string[] } {
-  const dir = io.dir ?? SERVICES_DIR;
   const unlink = io.unlink ?? ((target: string) => fs.unlinkSync(target));
   const log = io.log ?? (message => console.log(message));
   const generatedSet = new Set(generated);
@@ -377,4 +376,20 @@ export function removeStaleServiceFiles(
     }
   }
   return { removed, failed };
+}
+
+/**
+ * Convenience wrapper for `removeStaleFiles` that defaults `dir` to the
+ * services directory. See `removeStaleFiles` for behavior and guarantees.
+ */
+export function removeStaleServiceFiles(
+  before: string[],
+  generated: string[],
+  io: {
+    dir?: string;
+    unlink?: (target: string) => void;
+    log?: (message: string) => void;
+  } = {}
+): { removed: string[]; failed: string[] } {
+  return removeStaleFiles(io.dir ?? SERVICES_DIR, before, generated, io);
 }

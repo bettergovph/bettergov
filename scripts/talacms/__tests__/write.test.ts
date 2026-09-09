@@ -12,6 +12,7 @@ import {
   readTaxonomy,
   parseTaxonomy,
   readJsonOrFail,
+  removeStaleFiles,
   removeStaleServiceFiles,
 } from '../write';
 
@@ -572,5 +573,100 @@ describe('removeStaleServiceFiles', () => {
       { unlink: () => {}, log: () => {} }
     );
     expect(removed).toEqual([]);
+  });
+});
+
+describe('removeStaleFiles', () => {
+  it('deletes only files absent from the generated set when given a custom dir', () => {
+    const dir = makeServicesDir({ health: [], 'old-category': [] });
+    const logged: string[] = [];
+    const { removed, failed } = removeStaleFiles(
+      dir,
+      ['health.json', 'old-category.json'],
+      ['health.json'],
+      {
+        unlink: target => fs.unlinkSync(target),
+        log: message => logged.push(message),
+      }
+    );
+
+    expect(removed).toEqual(['old-category.json']);
+    expect(failed).toEqual([]);
+    expect(fs.existsSync(path.join(dir, 'old-category.json'))).toBe(false);
+    expect(fs.existsSync(path.join(dir, 'health.json'))).toBe(true);
+    expect(logged.some(l => l.includes('removed stale'))).toBe(true);
+    expect(logged.some(l => l.includes('old-category.json'))).toBe(true);
+  });
+
+  it('never touches schema subdirectories in the target dir', () => {
+    const dir = makeServicesDir({ health: [] });
+    removeStaleFiles(dir, ['health.json'], [], {
+      unlink: target => fs.unlinkSync(target),
+      log: () => {},
+    });
+    expect(fs.statSync(path.join(dir, 'schema')).isDirectory()).toBe(true);
+  });
+
+  it('does nothing when the sets already match', () => {
+    const unlink = () => {
+      throw new Error('must not be called');
+    };
+    const dir = makeServicesDir({ health: [] });
+    const { removed, failed } = removeStaleFiles(
+      dir,
+      ['health.json'],
+      ['health.json'],
+      { unlink, log: () => {} }
+    );
+    expect(removed).toEqual([]);
+    expect(failed).toEqual([]);
+  });
+
+  it('is best-effort: one failed deletion does not stop the rest', () => {
+    const logged: string[] = [];
+    const dir = makeServicesDir({ a: [], b: [], c: [] });
+    const { removed, failed } = removeStaleFiles(
+      dir,
+      ['a.json', 'b.json', 'c.json'],
+      [],
+      {
+        unlink: target => {
+          if (target.endsWith('b.json')) throw new Error('EACCES: simulated');
+        },
+        log: message => logged.push(message),
+      }
+    );
+    expect(removed).toEqual(['a.json', 'c.json']);
+    expect(failed).toEqual(['b.json']);
+    expect(logged.some(l => l.includes('✖') && l.includes('b.json'))).toBe(
+      true
+    );
+  });
+
+  it('sorts stale files in codepoint order before deletion', () => {
+    const dir = makeServicesDir({
+      zebra: [],
+      alpha: [],
+      beta: [],
+      gamma: [],
+    });
+    const unlinkOrder: string[] = [];
+    removeStaleFiles(
+      dir,
+      ['zebra.json', 'alpha.json', 'beta.json', 'gamma.json'],
+      [],
+      {
+        unlink: target => {
+          unlinkOrder.push(path.basename(target));
+        },
+        log: () => {},
+      }
+    );
+    expect(unlinkOrder).toEqual([
+      'alpha.json',
+      'beta.json',
+      'gamma.json',
+      'zebra.json',
+    ]);
   });
 });
