@@ -16,6 +16,7 @@ const GENERATED_FILES = [
   'src/data/directory/departments.json',
   'src/data/directory/executive.json',
   'src/data/directory/constitutional.json',
+  'src/data/directory/legislative.json',
 ];
 
 /** Rewritten by build:app itself (write-ver-to-json.ts) — restore it after. */
@@ -109,6 +110,7 @@ describe('generate:metadata fails closed without the generated directory data', 
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
+      'src/data/directory/legislative.json',
     ].map(rel => path.join(ROOT, rel));
 
     const backups = new Map<string, Buffer>();
@@ -209,6 +211,74 @@ describe('generate:metadata fails closed without the generated directory data', 
       }
       expect(threw).toBe(true);
       expect(output).toMatch(/constitutional\.json/);
+    } finally {
+      for (const [abs, content] of backups) {
+        if (content === null) fs.rmSync(abs, { force: true });
+        else fs.writeFileSync(abs, content);
+      }
+    }
+  }, 60_000);
+
+  it('names the missing legislative file specifically', () => {
+    // generate-sitemap.js and generate-llms-txt.js both read legislative.json
+    // through the same loadData() wrapper, which process.exit(1)s on any
+    // read/parse failure. Pin that, so a refactor cannot regress into
+    // silently emitting a sitemap missing both /government/legislative/<slug>
+    // URLs.
+    //
+    // loadData() reads service_categories.json, departments.json and
+    // constitutional.json BEFORE legislative.json (see the field order in
+    // both scripts). All three are themselves build-generated and gitignored,
+    // so on a clean checkout loadData() would throw on whichever it reaches
+    // first and never mention legislative.json. Pin all three as valid,
+    // schema-satisfying stand-ins so this test isolates the legislative.json
+    // failure regardless of ambient sync state.
+    const legislativePath = path.join(
+      ROOT,
+      'src/data/directory/legislative.json'
+    );
+    const prerequisites = new Map<string, string>([
+      [
+        path.join(ROOT, 'src/data/service_categories.json'),
+        JSON.stringify({ categories: [] }),
+      ],
+      [path.join(ROOT, 'src/data/directory/departments.json'), '[]'],
+      [path.join(ROOT, 'src/data/directory/constitutional.json'), '[]'],
+    ]);
+
+    const backups = new Map<string, Buffer | null>();
+    for (const abs of [legislativePath, ...prerequisites.keys()]) {
+      backups.set(abs, fs.existsSync(abs) ? fs.readFileSync(abs) : null);
+    }
+
+    fs.rmSync(legislativePath, { force: true });
+    for (const [abs, content] of prerequisites) {
+      fs.writeFileSync(abs, content);
+    }
+
+    try {
+      let threw = false;
+      let output = '';
+      try {
+        execSync('npm run generate:metadata', {
+          cwd: ROOT,
+          stdio: 'pipe',
+          timeout: 60_000,
+        });
+      } catch (error) {
+        threw = true;
+        const e = error as {
+          status?: number;
+          stdout?: Buffer;
+          stderr?: Buffer;
+        };
+        expect(e.status).not.toBe(0);
+        output = [e.stdout?.toString(), e.stderr?.toString()]
+          .filter(Boolean)
+          .join('\n');
+      }
+      expect(threw).toBe(true);
+      expect(output).toMatch(/legislative\.json/);
     } finally {
       for (const [abs, content] of backups) {
         if (content === null) fs.rmSync(abs, { force: true });
