@@ -97,16 +97,8 @@ query PageLguCities {
     position
     city
     zipCode
-    mayor {
-      name
-      contact
-      email
-    }
-    viceMayor {
-      name
-      contact
-      email
-    }
+    mayor
+    viceMayor
     region {
       id
     }
@@ -129,16 +121,8 @@ query PageLguMunicipalities {
     position
     municipality
     zipCode
-    mayor {
-      name
-      contact
-      email
-    }
-    viceMayor {
-      name
-      contact
-      email
-    }
+    mayor
+    viceMayor
     region {
       id
     }

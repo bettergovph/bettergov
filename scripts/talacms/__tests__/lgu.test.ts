@@ -182,8 +182,13 @@ describe('field selection', () => {
     ]) {
       expect(doc).toContain('region {');
       expect(doc).toContain('province {');
-      expect(doc).toContain('mayor {');
-      expect(doc).toContain('viceMayor {');
+      // mayor/viceMayor are JsonField on the live CDA schema and must be
+      // selected bare (no sub-selection) -- a `mayor { ... }` selection set
+      // fails live GraphQL validation with "must not have a selection".
+      expect(doc).toMatch(/\bmayor\b(?!\s*\{)/);
+      expect(doc).toMatch(/\bviceMayor\b(?!\s*\{)/);
+      expect(doc).not.toContain('mayor {');
+      expect(doc).not.toContain('viceMayor {');
     }
   });
 
