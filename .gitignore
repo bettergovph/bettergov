@@ -57,3 +57,4 @@ wrangler.toml
 /src/data/directory/executive.json
 /src/data/directory/constitutional.json
 /src/data/directory/legislative.json
+/src/data/directory/lgu/*.json

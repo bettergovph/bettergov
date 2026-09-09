@@ -35,6 +35,21 @@ const listGeneratedServiceFiles = () =>
     .filter(f => f.endsWith('.json'))
     .map(f => path.join(SERVICES_DIR, f));
 
+const LGU_DIR = path.join(ROOT, 'src/data/directory/lgu');
+
+/**
+ * The generated top-level src/data/directory/lgu/*.json region files — same
+ * rule as GENERATED_FILES/listGeneratedServiceFiles above, just another
+ * directory. src/data/directory/lgu/schema/** and
+ * src/data/directory/lgu/__fixtures__/** (the tracked contract and its
+ * pre-migration fixtures) are never touched.
+ */
+const listGeneratedLguFiles = () =>
+  fs
+    .readdirSync(LGU_DIR)
+    .filter(f => f.endsWith('.json'))
+    .map(f => path.join(LGU_DIR, f));
+
 describe('secret-free build:app on a clean (never-synced) checkout', () => {
   it('runs the exact PR-CI build command (`npm run build:app`) successfully with all generated CMS files absent', () => {
     const backups = new Map<string, Buffer>();
@@ -50,6 +65,10 @@ describe('secret-free build:app on a clean (never-synced) checkout', () => {
     const serviceFiles = listGeneratedServiceFiles();
     for (const abs of serviceFiles) backups.set(abs, fs.readFileSync(abs));
     for (const abs of serviceFiles) fs.rmSync(abs);
+
+    const lguFiles = listGeneratedLguFiles();
+    for (const abs of lguFiles) backups.set(abs, fs.readFileSync(abs));
+    for (const abs of lguFiles) fs.rmSync(abs);
 
     try {
       // This is the exact command the Dockerfile's `build-app` stage runs
