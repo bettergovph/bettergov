@@ -253,12 +253,13 @@ async function buildCandidates(
   //
   // LGU is deliberately NOT included here. assertNoCrossModelSlugCollisions
   // exists because Meilisearch keys one search index by each candidate's
-  // top-level `slug` — LGU is not indexed by Meilisearch, and its candidates
-  // are per-region objects with a nested `slug` (see shapeLguRegion), not a
-  // top-level one. Passing LGU candidates into this gate would not skip
-  // cleanly; it would crash trying to read a `slug` that isn't there. Do not
-  // "fix" this by adding lguCandidates below — there is nothing for it to
-  // check against.
+  // slug — LGU is not indexed by Meilisearch, and unlike every other
+  // directory model, each LGU candidate's `data` is a single region object
+  // (with a top-level `slug`), not an array of slugged records. The gate
+  // casts `candidate.data` to `{slug}[]` and calls `.map` on it; handed an
+  // LGU candidate, that throws ("data.map is not a function") rather than
+  // skipping cleanly. Do not "fix" this by adding lguCandidates below —
+  // there is nothing array-shaped for it to check against.
   const directoryCandidates = [
     departmentsCandidate,
     executiveCandidate,

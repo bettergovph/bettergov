@@ -1469,11 +1469,12 @@ describe('lgu dataset', () => {
   });
 
   it('never applies the cross-model slug gate to LGU candidates', async () => {
-    // LGU's candidates have no top-level `slug` — assertNoCrossModelSlugCollisions
-    // must never be handed them, or it would crash rather than skip cleanly.
-    // A full sync (which does include LGU) succeeding at all is the proof:
-    // if LGU were passed into the gate, it would throw reading `.slug` off a
-    // per-region object that has none at the top level.
+    // Each LGU candidate's `data` is a single region object, not an array of
+    // slugged records like every other directory model — the gate casts
+    // `candidate.data` to `{slug}[]` and calls `.map` on it, so handed an LGU
+    // candidate it would throw ("data.map is not a function"), not skip
+    // cleanly. A full sync (which does include LGU) succeeding at all is the
+    // proof it was never passed in.
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
   });
