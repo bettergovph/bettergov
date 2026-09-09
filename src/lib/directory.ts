@@ -2,9 +2,9 @@ import {
   constitutionalOffices as constitutional,
   governmentDepartments as departments,
   executiveOffices as executive,
+  legislativeChambers as legislative,
 } from '../data/cms';
 import diplomatic from '../data/directory/diplomatic.json';
-import legislative from '../data/directory/legislative.json';
 
 export type DirectoryBranch =
   | 'Executive'

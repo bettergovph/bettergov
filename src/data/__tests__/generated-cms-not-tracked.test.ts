@@ -24,6 +24,7 @@ describe('generated CMS output is never committed', () => {
     expect(trackedFiles).not.toContain(
       'src/data/directory/constitutional.json'
     );
+    expect(trackedFiles).not.toContain('src/data/directory/legislative.json');
   });
 
   it('still tracks the constitutional schema and its pre-migration fixture', () => {
@@ -35,13 +36,23 @@ describe('generated CMS output is never committed', () => {
     );
   });
 
+  it('still tracks the legislative schema and its pre-migration fixture', () => {
+    expect(trackedFiles).toContain(
+      'src/data/directory/schema/legislative.schema.json'
+    );
+    expect(trackedFiles).toContain(
+      'src/data/directory/__fixtures__/legislative.expected.json'
+    );
+  });
+
   it('still tracks the directory files that stay local', () => {
-    // Judicial, legislative, diplomatic and the two orphaned member files are
-    // deliberately NOT migrated — pin that so a future sweep cannot silently
-    // gitignore them.
+    // Judicial, diplomatic and the two orphaned member files are deliberately
+    // NOT migrated — pin that so a future sweep cannot silently gitignore
+    // them. legislative.json moved to the generated set; the two orphaned
+    // member files did NOT follow it, and are now a second, hand-maintained
+    // copy of content the CMS owns. Recorded, deliberately not resolved here.
     for (const f of [
       'src/data/directory/judicial.json',
-      'src/data/directory/legislative.json',
       'src/data/directory/diplomatic.json',
       'src/data/directory/house_members.json',
       'src/data/directory/party_list_representatives.json',
