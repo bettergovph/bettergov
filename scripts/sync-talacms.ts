@@ -316,22 +316,55 @@ function cleanUpStaleServiceFiles(
 }
 
 /**
- * LGU's equivalent of `cleanUpStaleServiceFiles` — same three rules: full
- * sync only, only after a write phase has already succeeded (or been found
- * unnecessary), and a failed deletion fails the whole sync. cms.ts globs
- * every top-level file in src/data/directory/lgu/, so a stale region file
- * left behind after it's retired from TalaCMS would still be bundled into
- * the build.
+ * The LGU region file names `lguCandidates` will write, derived the same way
+ * both `cleanUpStaleLguFiles` (for real deletion) and the dry-run drift
+ * report (for detection only) need it — a single source so the two never
+ * drift apart on what "generated" means.
+ */
+function lguGeneratedFileNames(candidates: Candidate[]): string[] {
+  const prefix = `${LGU_DIR}/`;
+  return candidates
+    .filter(c => c.path.startsWith(prefix))
+    .map(c => c.path.slice(prefix.length));
+}
+
+/**
+ * Pure: which of `beforeLguFiles` are NOT in this run's generated set —
+ * i.e. what `cleanUpStaleLguFiles` would remove, without removing anything.
+ * Used to report stale-file drift under `--dry-run`, which must write and
+ * delete nothing.
+ */
+function staleLguFileNames(
+  beforeLguFiles: string[],
+  candidates: Candidate[]
+): string[] {
+  const generated = new Set(lguGeneratedFileNames(candidates));
+  return beforeLguFiles
+    .filter(f => !generated.has(f))
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+}
+
+/**
+ * LGU's equivalent of `cleanUpStaleServiceFiles`, with one deliberate
+ * difference: it runs whenever `lgu` is selected, not only on a full sync.
+ * Unlike services (whose completeness depends on cross-validating against
+ * categories), `fetchLgu` always fetches all four LGU collections in one
+ * shot and `buildLguCandidates` always emits one candidate per CMS region
+ * that exists right now — `--only=lgu` sees LGU's complete generated set
+ * exactly as a full sync would, so the "only after seeing the complete
+ * picture" rule is satisfied by selection alone, not by requiring every
+ * other dataset too. Otherwise unchanged: only after a write phase has
+ * already succeeded (or been found unnecessary), and a failed deletion
+ * fails the whole sync — cms.ts globs every top-level file in
+ * src/data/directory/lgu/, so a stale region file left behind after it's
+ * retired from TalaCMS would still be bundled into the build.
  */
 function cleanUpStaleLguFiles(
   deps: Deps,
   beforeLguFiles: string[],
   candidates: Candidate[]
 ): boolean {
-  const prefix = `${LGU_DIR}/`;
-  const generated = candidates
-    .filter(c => c.path.startsWith(prefix))
-    .map(c => c.path.slice(prefix.length));
+  const generated = lguGeneratedFileNames(candidates);
   const { removed, failed } = deps.removeStaleLguFiles(
     beforeLguFiles,
     generated
@@ -358,6 +391,7 @@ export async function run(
   }
 
   const isFullSync = options.selected.length === DATASETS.length;
+  const selectedSet = new Set(options.selected);
 
   const prepared: PreparedFile[] = [];
   let candidates: Candidate[];
@@ -373,9 +407,11 @@ export async function run(
     // Captured only now (config already validated), and before any fetch or
     // write, so a later failure never influences what "before" meant —
     // cleanup only ever compares real prior state against the newly
-    // generated set.
+    // generated set. LGU's "before" is captured whenever `lgu` is selected
+    // at all (not only on a full sync) — see cleanUpStaleLguFiles's doc
+    // comment for why `--only=lgu` alone already has complete visibility.
     beforeServiceFiles = isFullSync ? deps.readServiceFileNames() : [];
-    beforeLguFiles = isFullSync ? deps.readLguFileNames() : [];
+    beforeLguFiles = selectedSet.has('lgu') ? deps.readLguFileNames() : [];
     candidates = await buildCandidates(new Set(options.selected), client, deps);
     for (const candidate of candidates) {
       prepared.push(await deps.prepare(candidate));
@@ -393,12 +429,23 @@ export async function run(
   const changed = prepared.filter(f => f.changed);
 
   if (options.dryRun) {
+    // A stale LGU file is drift too: it exists on disk (or would after a
+    // real sync elsewhere) but wasn't produced by this run, and a real
+    // (non-dry) run would remove it. Report it without removing anything —
+    // dry-run must write and delete nothing.
+    const staleLgu = selectedSet.has('lgu')
+      ? staleLguFileNames(beforeLguFiles, candidates)
+      : [];
+    for (const f of staleLgu) {
+      deps.log(`~ stale     ${LGU_DIR}/${f} (would be removed)`);
+    }
+    const totalDrift = changed.length + staleLgu.length;
     deps.log(
-      changed.length > 0
-        ? `\n--dry-run: ${changed.length} file(s) would change. Nothing was written.`
+      totalDrift > 0
+        ? `\n--dry-run: ${totalDrift} file(s) would change. Nothing was written.`
         : '\n--dry-run: no changes.'
     );
-    return changed.length > 0 ? 3 : 0;
+    return totalDrift > 0 ? 3 : 0;
   }
 
   if (changed.length === 0) {
@@ -409,17 +456,19 @@ export async function run(
         beforeServiceFiles,
         candidates
       );
-      const lguCleanedUp = cleanUpStaleLguFiles(
-        deps,
-        beforeLguFiles,
-        candidates
-      );
       if (!servicesCleanedUp) {
         deps.log(
           '✖ sync failed: one or more stale service files could not be removed.'
         );
         return 1;
       }
+    }
+    if (selectedSet.has('lgu')) {
+      const lguCleanedUp = cleanUpStaleLguFiles(
+        deps,
+        beforeLguFiles,
+        candidates
+      );
       if (!lguCleanedUp) {
         deps.log(
           '✖ sync failed: one or more stale LGU files could not be removed.'
@@ -435,7 +484,8 @@ export async function run(
   } catch (error) {
     deps.log(`✖ write phase failed: ${(error as Error).message}`);
     deps.log(
-      '  Writes are atomic per file, not across files — check `git status` for a mixed snapshot.'
+      '  The write batch was rolled back — no file was left mixed old/new. ' +
+        'Run `git status` to confirm, then re-run the sync.'
     );
     return 1;
   }
@@ -446,13 +496,15 @@ export async function run(
       beforeServiceFiles,
       candidates
     );
-    const lguCleanedUp = cleanUpStaleLguFiles(deps, beforeLguFiles, candidates);
     if (!servicesCleanedUp) {
       deps.log(
         '✖ sync failed: one or more stale service files could not be removed.'
       );
       return 1;
     }
+  }
+  if (selectedSet.has('lgu')) {
+    const lguCleanedUp = cleanUpStaleLguFiles(deps, beforeLguFiles, candidates);
     if (!lguCleanedUp) {
       deps.log(
         '✖ sync failed: one or more stale LGU files could not be removed.'
