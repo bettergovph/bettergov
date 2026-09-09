@@ -53,7 +53,7 @@ export async function fetchAllRecords<T extends { id: string }>(
   const countResponse =
     await client<Record<string, { count: unknown }>>(countQuery);
   const rawCount: unknown = countResponse[countField]?.count;
-  if (typeof rawCount !== 'number') {
+  if (typeof rawCount !== 'number' || Number.isNaN(rawCount)) {
     fail(`TalaCMS returned a non-numeric count for ${label}`);
   }
   // `fail` always throws; the cast just restates what the guard above
