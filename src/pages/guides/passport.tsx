@@ -195,24 +195,24 @@ const PassportGuide: FC = () => {
 
       <article>
         {/* Article header with quick facts */}
-        <header className='border-b border-ed-ink bg-ed-paper-2 py-12 max-md:py-8'>
+        <header className='border-b border-ed-ink bg-ed-paper-2 py-12 max-md:py-6'>
           <Container>
-            <div className='grid grid-cols-[1.6fr_1fr] items-end gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
+            <div className='grid grid-cols-[1.6fr_1fr] items-end gap-16 max-lg:grid-cols-1 max-lg:gap-10 max-md:gap-5'>
               <div>
                 <div className='mb-4 flex flex-wrap items-center gap-3'>
                   <Flag variant='navy'>Department of Foreign Affairs</Flag>
                   <Flag variant='red'>Most requested</Flag>
                 </div>
-                <h1 className='font-serif-ed text-[clamp(42px,6vw,72px)] font-bold leading-none tracking-[-0.03em] text-ed-ink'>
+                <h1 className='font-serif-ed text-[clamp(42px,6vw,72px)] font-bold leading-none tracking-[-0.03em] text-ed-ink max-md:text-[30px]'>
                   The Philippine passport
                 </h1>
-                <p className='mt-6 max-w-[560px] font-sans-ed text-xl leading-snug text-ed-ink-2'>
+                <p className='mt-6 max-w-[560px] font-sans-ed text-xl leading-snug text-ed-ink-2 max-md:mt-3 max-md:text-[15px]'>
                   Whether you&rsquo;re applying for the first time, renewing an
                   expiring booklet, or replacing one that was lost — this page
                   walks you through exactly what happens, what to bring, and
                   what you&rsquo;ll pay.
                 </p>
-                <div className='mt-6 flex flex-wrap gap-6 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                <div className='mt-6 flex flex-wrap gap-6 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-md:mt-4 max-md:gap-4'>
                   <span>
                     By <span className='text-ed-ink'>The Editors</span>
                   </span>
@@ -225,7 +225,7 @@ const PassportGuide: FC = () => {
               </div>
 
               {/* Quick facts card */}
-              <aside className='bg-ed-navy p-8 text-white max-md:p-6'>
+              <aside className='bg-ed-navy p-8 text-white max-md:p-4'>
                 <Eyebrow tone='onDark'>Quick facts</Eyebrow>
                 <dl className='mt-4 grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-3.5 text-sm'>
                   <dt className='pt-0.5 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-white/60'>
@@ -269,7 +269,7 @@ const PassportGuide: FC = () => {
         </header>
 
         {/* Situation selector */}
-        <section className='pt-12 max-md:pt-8'>
+        <section className='pt-12 max-md:pt-6'>
           <Container>
             <SectionHeader
               label='Pick your situation'
@@ -311,7 +311,7 @@ const PassportGuide: FC = () => {
         </section>
 
         {/* Two-column body */}
-        <section className='py-14 max-md:py-10'>
+        <section className='py-14 max-md:py-6'>
           <Container>
             <div className='grid grid-cols-[1.6fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
               <div>

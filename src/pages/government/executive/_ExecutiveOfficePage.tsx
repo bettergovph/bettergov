@@ -108,7 +108,7 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug }) => {
         website={office.website}
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           <div className='mb-8 flex items-center justify-between gap-4 max-md:flex-col max-md:items-stretch'>
             <Eyebrow>

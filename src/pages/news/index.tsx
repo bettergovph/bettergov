@@ -148,10 +148,13 @@ const NewsIndex: FC = () => {
         lede='Official announcements, press releases and circulars from the Philippine government, published by the Presidential Communications Office on e.gov.ph.'
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           {/* Category filter */}
-          <nav aria-label='Filter news by category' className='mb-8'>
+          <nav
+            aria-label='Filter news by category'
+            className='mb-8 max-md:mb-5'
+          >
             <ul className='flex flex-wrap gap-2'>
               {[{ slug: 'all', label: 'All' }, ...NEWS_CATEGORIES].map(c => {
                 const isActive = (categorySlug || 'all') === c.slug;
@@ -204,7 +207,7 @@ const NewsIndex: FC = () => {
             <div
               aria-busy='true'
               aria-live='polite'
-              className='grid grid-cols-3 gap-x-8 gap-y-10 max-lg:grid-cols-2 max-sm:grid-cols-1'
+              className='grid grid-cols-3 gap-x-8 gap-y-10 max-lg:grid-cols-2 max-md:gap-y-6 max-sm:grid-cols-1'
             >
               <span className='sr-only'>Loading news…</span>
               {Array.from({ length: DEFAULT_NEWS_PER_PAGE }).map((_, i) => (

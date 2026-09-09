@@ -112,7 +112,7 @@ const AboutPhilippines: FC = () => {
       />
 
       {/* Factbox */}
-      <section className='py-10'>
+      <section className='py-10 max-md:py-6'>
         <Container>
           <div className='grid grid-cols-4 border-y border-ed-rule divide-x divide-y divide-ed-rule max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0'>
             {factItems.map(f => (
@@ -133,7 +133,7 @@ const AboutPhilippines: FC = () => {
       </section>
 
       {/* 01 What is the Philippines */}
-      <section className='mt-16'>
+      <section className='mt-16 max-md:mt-8'>
         <Container>
           <SectionHeader
             label={t('about.overview.title')}
@@ -169,7 +169,7 @@ const AboutPhilippines: FC = () => {
       </section>
 
       {/* 02 National symbols */}
-      <section className='mt-16'>
+      <section className='mt-16 max-md:mt-8'>
         <Container>
           <SectionHeader
             label={t('about.symbols.title')}
@@ -200,7 +200,7 @@ const AboutPhilippines: FC = () => {
                 <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
                   {s.label}
                 </div>
-                <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
+                <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink max-md:text-[18px]'>
                   {s.title}
                 </h3>
                 <p className='mt-2 text-sm leading-normal text-ed-ink-2'>
@@ -223,6 +223,7 @@ const AboutPhilippines: FC = () => {
       </section>
 
       {/* Continue exploring */}
+      {/* 03 + 04 split */}
       <section className='mt-20 mb-20 max-md:mb-10 max-md:mt-8'>
         <Container>
           <SectionHeader label={t('about.explore.title')} />

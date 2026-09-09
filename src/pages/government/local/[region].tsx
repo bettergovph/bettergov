@@ -164,7 +164,7 @@ const RegionalLGUPage: FC = () => {
                 >
                   <div className='flex items-start justify-between gap-4'>
                     <div>
-                      <h3 className='font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
+                      <h3 className='font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink max-md:text-[18px]'>
                         {titleCase(u.name)}
                       </h3>
                       <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>

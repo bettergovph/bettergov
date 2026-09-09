@@ -75,7 +75,36 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
         <Link to='/join-us' onClick={onClose} className={labelRow}>
           <span>{t('masthead.joinUs', 'Join us')}</span>
         </Link>
-        <div className='pt-3'>
+
+        {/* Utility links that live in the top bar on desktop. */}
+        <nav
+          aria-label='Utility'
+          className='mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-ed-rule pt-4 font-sans-ed text-sm text-ed-ink-2'
+        >
+          <Link
+            to='/contact'
+            onClick={onClose}
+            className='text-ed-ink-2 no-underline hover:text-ed-navy'
+          >
+            {t('masthead.contact', 'Contact')}
+          </Link>
+          <Link
+            to='/accessibility'
+            onClick={onClose}
+            className='text-ed-ink-2 no-underline hover:text-ed-navy'
+          >
+            {t('masthead.accessibility', 'Accessibility')}
+          </Link>
+          <a
+            href='https://about.bettergov.ph'
+            target='_blank'
+            rel='noreferrer'
+            className='text-ed-ink-2 no-underline hover:text-ed-navy'
+          >
+            {t('masthead.about', 'About')}
+          </a>
+        </nav>
+        <div className='mt-3'>
           <LangToggle />
         </div>
       </Container>

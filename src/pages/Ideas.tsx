@@ -150,14 +150,14 @@ const Ideas: FC = () => {
       </section>
 
       {/* Submit-idea CTA band */}
-      <section className='border-t border-ed-ink bg-ed-navy py-14 max-md:py-10'>
+      <section className='border-t border-ed-ink bg-ed-navy py-14 max-md:py-7'>
         <Container>
           <div className='flex items-center justify-between gap-8 max-md:flex-col max-md:items-start'>
             <div>
               <Eyebrow tone='onDark' className='mb-3'>
                 Get involved
               </Eyebrow>
-              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight tracking-[-0.01em] text-white'>
+              <h2 className='font-serif-ed text-[clamp(24px,3vw,36px)] font-bold leading-tight tracking-[-0.01em] text-white max-md:text-[22px]'>
                 Have an idea? <em className='font-normal italic'>Submit it.</em>
               </h2>
               <p className='mt-2 max-w-md font-sans-ed text-base leading-relaxed text-white/80'>

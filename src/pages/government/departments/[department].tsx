@@ -163,7 +163,7 @@ const DepartmentDetail: FC = () => {
         email={email}
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           {secretaryRow.length > 0 && (
             <>
@@ -184,7 +184,7 @@ const DepartmentDetail: FC = () => {
 
           {Object.entries(rest).map(([key, value]) => (
             <div key={key} className='mt-10 first:mt-0'>
-              <h2 className='mb-5 border-b border-ed-navy pb-2 font-serif-ed text-[26px] font-semibold text-ed-navy-ink'>
+              <h2 className='mb-5 border-b border-ed-navy pb-2 font-serif-ed text-[26px] font-semibold text-ed-navy-ink max-md:mb-3 max-md:text-[21px]'>
                 {humanKey(key)}
               </h2>
               <RenderValue value={value} label={humanKey(key)} />

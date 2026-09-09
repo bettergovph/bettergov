@@ -68,7 +68,7 @@ const WeatherPage: FC = () => {
         lede='Current conditions across major Philippine cities. Data sourced from PAGASA — the Philippine Atmospheric, Geophysical and Astronomical Services Administration.'
       />
 
-      <section className='py-14 max-md:py-8'>
+      <section className='py-14 max-md:py-6'>
         <Container>
           {isLoading ? (
             <div className='py-20 text-center'>

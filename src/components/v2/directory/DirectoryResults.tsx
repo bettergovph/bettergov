@@ -168,7 +168,7 @@ const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
           ].map((h, i) => (
             <th
               key={i}
-              className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'
+              className='border-y border-ed-ink bg-ed-paper-2 px-4 py-3 text-left max-md:px-3 max-md:py-2 font-mono-ed text-[11px] font-medium uppercase tracking-[0.12em] text-ed-ink-2'
             >
               {h}
             </th>
@@ -181,10 +181,10 @@ const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
             key={`${a.kind}-${a.slug}`}
             className='border-b border-ed-rule transition-colors hover:bg-ed-paper-2/60'
           >
-            <td className='px-4 py-3.5 align-top'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5'>
               {a.abbr ? <Flag variant='navy'>{a.abbr}</Flag> : null}
             </td>
-            <td className='px-4 py-3.5 align-top font-serif-ed text-base text-ed-ink'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5 font-serif-ed text-base text-ed-ink'>
               <Link
                 to={a.detailHref}
                 className='text-ed-ink no-underline hover:text-ed-navy'
@@ -192,10 +192,10 @@ const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
                 {a.name}
               </Link>
             </td>
-            <td className='px-4 py-3.5 align-top font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-ink-3'>
               {a.branch}
             </td>
-            <td className='px-4 py-3.5 align-top text-[13px] text-ed-ink-2'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5 text-[13px] text-ed-ink-2'>
               {a.head ? (
                 <>
                   {a.headRole ? (
@@ -209,13 +209,13 @@ const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
                 <span className='text-ed-ink-4'>—</span>
               )}
             </td>
-            <td className='px-4 py-3.5 align-top text-[13px] text-ed-ink-2'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5 text-[13px] text-ed-ink-2'>
               {a.loc ?? <span className='text-ed-ink-4'>—</span>}
             </td>
-            <td className='px-4 py-3.5 align-top font-mono-ed text-[13px] text-ed-ink'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5 font-mono-ed text-[13px] text-ed-ink'>
               {a.hotline ?? <span className='text-ed-ink-4'>—</span>}
             </td>
-            <td className='px-4 py-3.5 align-top'>
+            <td className='px-4 py-3.5 align-top max-md:px-3 max-md:py-2.5'>
               {a.web ? (
                 <a
                   href={visitUrl(a.web)}
@@ -235,12 +235,12 @@ const ListView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
 );
 
 const GridView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
-  <div className='grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
+  <div className='grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:gap-3 max-sm:grid-cols-1'>
     {rows.map(a => (
       <Link
         key={`${a.kind}-${a.slug}`}
         to={a.detailHref}
-        className='group block border border-ed-rule bg-white p-7 text-ed-ink no-underline transition-colors hover:border-ed-ink'
+        className='group block border border-ed-rule bg-white p-7 text-ed-ink no-underline transition-colors hover:border-ed-ink max-md:p-4'
       >
         <div className='flex items-center justify-between'>
           {a.abbr ? (
@@ -252,10 +252,10 @@ const GridView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
           )}
           {a.abbr && <Eyebrow>{a.branch}</Eyebrow>}
         </div>
-        <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink'>
+        <h3 className='mt-4 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-navy-ink max-md:mt-2.5 max-md:text-[18px]'>
           {a.name}
         </h3>
-        <dl className='mt-4 grid gap-1.5 border-t border-ed-rule pt-3.5 text-[13px] text-ed-ink-2'>
+        <dl className='mt-4 grid gap-1.5 border-t border-ed-rule pt-3.5 text-[13px] text-ed-ink-2 max-md:mt-2.5 max-md:gap-1 max-md:pt-2.5 max-md:text-xs'>
           {a.head && (
             <div className='flex items-start gap-2'>
               <UserIcon
@@ -295,7 +295,7 @@ const GridView: FC<{ rows: DirectoryEntry[] }> = ({ rows }) => (
           )}
         </dl>
         {a.web && (
-          <span className='mt-5 inline-flex items-center gap-2 border-b border-ed-navy pb-0.5 font-sans-ed text-sm font-medium text-ed-navy'>
+          <span className='mt-5 inline-flex items-center gap-2 border-b border-ed-navy pb-0.5 font-sans-ed text-sm font-medium text-ed-navy max-md:mt-3 max-md:text-[13px]'>
             {a.web}
           </span>
         )}

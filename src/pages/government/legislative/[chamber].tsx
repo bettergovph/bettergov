@@ -57,7 +57,7 @@ const LegislativeChamber: FC = () => {
         website={chamber.website}
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           {chamber.officials && chamber.officials.length > 0 && (
             <>
@@ -123,7 +123,7 @@ const RelatedCard: FC<{
     <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3'>
       {eyebrow}
     </div>
-    <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
+    <h3 className='mt-2 font-serif-ed text-[22px] font-semibold text-ed-navy-ink max-md:text-[18px]'>
       {title}
     </h3>
     <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>

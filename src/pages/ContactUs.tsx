@@ -58,7 +58,7 @@ const ContactUs: FC = () => {
         lede="We're a volunteer-led initiative. Reach us through any of the channels below, or drop us a message and we'll get back to you."
       />
 
-      <section className='py-14 max-md:py-8'>
+      <section className='py-14 max-md:py-6'>
         <Container>
           <div className='grid grid-cols-[1fr_380px] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
             {/* Left: contact form */}

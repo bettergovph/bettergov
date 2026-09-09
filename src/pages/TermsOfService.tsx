@@ -29,7 +29,7 @@ const TermsOfService: FC = () => (
       lede='Effective September 23, 2025'
     />
 
-    <section className='py-12 max-md:py-8'>
+    <section className='py-12 max-md:py-6'>
       <Container narrow>
         <SectionHeader label='Acceptance of Terms' />
         <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>

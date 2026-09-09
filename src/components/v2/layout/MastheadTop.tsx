@@ -46,8 +46,10 @@ const MastheadTop: FC = () => {
   const currentRate = forexRates[forexIndex];
 
   return (
-    <div className='flex items-center justify-between gap-6 border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-sm:flex-col max-sm:items-start max-sm:gap-1.5 max-sm:py-2 max-sm:text-[11px]'>
-      <div className='flex min-w-0 items-center gap-4 max-sm:flex-wrap max-sm:gap-2'>
+    // Hidden on phones: the utility links and language picker live in the
+    // hamburger menu there (see MobileMenu).
+    <div className='flex items-center gap-6 border-b border-ed-rule py-2.5 font-serif-ed text-[12px] tracking-normal text-ed-ink-3 max-md:hidden'>
+      <div className='flex min-w-0 items-center gap-4'>
         <span className='whitespace-nowrap'>{today}</span>
         {/* Weather and forex are desktop-only — below xl they overflow the row. */}
         {weather.length > 0 && (
@@ -79,7 +81,10 @@ const MastheadTop: FC = () => {
           </span>
         )}
       </div>
-      <div className='flex shrink-0 items-center gap-4 max-sm:flex-wrap max-sm:gap-2'>
+      <nav
+        aria-label='Utility'
+        className='ml-auto flex shrink-0 items-center gap-4'
+      >
         <Link
           to='/contact'
           className='text-ed-ink-3 no-underline hover:text-ed-navy'
@@ -104,7 +109,7 @@ const MastheadTop: FC = () => {
         </a>
         <span className='text-ed-rule-strong'>|</span>
         <LangToggle />
-      </div>
+      </nav>
     </div>
   );
 };

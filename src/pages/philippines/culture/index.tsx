@@ -348,7 +348,7 @@ const PhilippinesCulture: FC = () => (
     </Chapter>
 
     {/* Closing pullquote */}
-    <section className='mb-20 mt-12'>
+    <section className='mb-20 mt-12 max-md:mb-10 max-md:mt-6'>
       <Container>
         <blockquote className='my-9 max-w-[720px] border-l-[3px] border-ed-navy py-2 pl-6 font-sans-ed text-[28px] italic leading-snug text-ed-navy-ink'>
           &ldquo;A Filipino is somebody who eats with his fingers, travels with
@@ -387,7 +387,7 @@ const Chapter: FC<{
           </div>
         </div>
         <div>
-          <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[32px]'>
+          <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[26px]'>
             {title}
           </h2>
           {children}

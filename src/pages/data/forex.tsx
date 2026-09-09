@@ -107,7 +107,7 @@ const ForexPage: FC = () => {
         }
       />
 
-      <section className='py-14 max-md:py-8'>
+      <section className='py-14 max-md:py-6'>
         <Container>
           {isLoading ? (
             <div className='py-20 text-center'>

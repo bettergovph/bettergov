@@ -86,7 +86,7 @@ const WebsitesDirectory: FC = () => {
         lede='Official online presence of Philippine government agencies, bureaus, SUCs, and diplomatic posts.'
       />
 
-      <section className='py-14 max-md:py-8'>
+      <section className='py-14 max-md:py-6'>
         <Container>
           <div className='grid grid-cols-[220px_1fr] gap-10 max-lg:grid-cols-1'>
             {/* Sidebar: category filter */}
