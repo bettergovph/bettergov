@@ -36,6 +36,8 @@ import {
   DIPLOMATIC_QUERY,
   DIPLOMATIC_PAGE_SIZE,
   parseDiplomaticResponse,
+  shapeDiplomatic,
+  buildDiplomaticCandidate,
 } from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
@@ -46,6 +48,7 @@ import expectedDepartments from '../../../src/data/directory/__fixtures__/depart
 import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
 import expectedConstitutional from '../../../src/data/directory/__fixtures__/constitutional.expected.json';
 import expectedLegislative from '../../../src/data/directory/__fixtures__/legislative.expected.json';
+import expectedDiplomatic from '../../../src/data/directory/__fixtures__/diplomatic.expected.json';
 import type {
   RawDepartment,
   RawExecutive,
@@ -59,6 +62,8 @@ const rawExecutive =
   executiveResponse.allExecutiveOffices as unknown as RawExecutive[];
 const rawConstitutional =
   constitutionalResponse.allConstitutionalOffices as unknown as RawConstitutional[];
+const rawDiplomatic =
+  diplomaticResponse.allDiplomaticEntities as unknown as RawDiplomatic[];
 
 /** Deep key-sort, so equality compares content without regard to key order. */
 const sortDeep = (v: unknown): unknown =>
@@ -2464,5 +2469,293 @@ describe('parseDiplomaticResponse', () => {
     expect(() => parseDiplomaticResponse({ nope: 1 })).toThrow(
       /unexpected diplomatic entities shape/i
     );
+  });
+});
+
+/**
+ * The ONE known content difference between TalaCMS and the pre-migration
+ * fixture, as an explicit allowlist rather than a code workaround.
+ *
+ * `holy-see`'s office_name carries a stray trailing period in the CMS. It is
+ * CMS content drift and is fixed by editing the CMS, not by normalizing in
+ * the shaper. This allowlist is written so it passes BOTH before and after
+ * that edit: the test asserts every difference is IN the list, never that a
+ * listed difference is present. When the CMS is corrected, delete the entry.
+ */
+const KNOWN_CMS_DRIFT: {
+  type: string;
+  index: number;
+  field: string;
+  cms: string;
+  fixture: string;
+}[] = [
+  {
+    type: 'Diplomatic Mission',
+    index: 0,
+    field: 'office_name',
+    cms: 'Apostolic Nunciature.',
+    fixture: 'Apostolic Nunciature',
+  },
+];
+
+describe('shapeDiplomatic', () => {
+  const shaped = () => shapeDiplomatic(rawDiplomatic);
+
+  it('emits exactly the three contract keys, in the fixture order', () => {
+    expect(Object.keys(shaped())).toEqual([
+      'Diplomatic Mission',
+      'Consulate',
+      'International Organization',
+    ]);
+  });
+
+  it('groups every record into the right bucket, with exact counts', () => {
+    const out = shaped();
+    expect(out['Diplomatic Mission']).toHaveLength(70);
+    expect(out['Consulate']).toHaveLength(139);
+    expect(out['International Organization']).toHaveLength(18);
+  });
+
+  it('reproduces the tracked fixture exactly, modulo the known CMS drift', () => {
+    const out = shaped() as unknown as Record<
+      string,
+      Record<string, unknown>[]
+    >;
+    const fixture = expectedDiplomatic as unknown as Record<
+      string,
+      Record<string, unknown>[]
+    >;
+    const differences: string[] = [];
+    for (const type of Object.keys(fixture)) {
+      out[type].forEach((rec, i) => {
+        const exp = fixture[type][i];
+        for (const key of new Set([...Object.keys(rec), ...Object.keys(exp)])) {
+          if (JSON.stringify(rec[key]) !== JSON.stringify(exp[key])) {
+            const allowed = KNOWN_CMS_DRIFT.some(
+              d => d.type === type && d.index === i && d.field === key
+            );
+            if (!allowed) {
+              differences.push(
+                `${type}[${i}].${key}: ${JSON.stringify(rec[key])} !== ${JSON.stringify(exp[key])}`
+              );
+            }
+          }
+        }
+      });
+    }
+    expect(differences).toEqual([]);
+  });
+
+  it('reproduces the fixture key order exactly, 227/227', () => {
+    // Unlike Departments (14/23) and Constitutional (103/229), the diplomatic
+    // field maps reproduce the committed key order for EVERY record. This is
+    // an exact pin, not a floor: if it ever regresses, the field maps changed.
+    const out = shaped() as unknown as Record<
+      string,
+      Record<string, unknown>[]
+    >;
+    const fixture = expectedDiplomatic as unknown as Record<
+      string,
+      Record<string, unknown>[]
+    >;
+    let agree = 0;
+    let total = 0;
+    for (const type of Object.keys(fixture)) {
+      out[type].forEach((rec, i) => {
+        total++;
+        if (Object.keys(rec).join() === Object.keys(fixture[type][i]).join()) {
+          agree++;
+        }
+      });
+    }
+    expect(total).toBe(227);
+    expect(agree).toBe(227);
+  });
+
+  it('preserves title: null on exactly the four live records', () => {
+    const withNullTitle = shaped()
+      ['Diplomatic Mission'].filter(r => r.title === null)
+      .map(r => r.slug);
+    expect(withNullTitle).toEqual([
+      'colombia',
+      'nigeria',
+      'palestine',
+      'papua-new-guinea',
+    ]);
+  });
+
+  it('keeps the title KEY present when the value is null', () => {
+    // Distinct from the assertion above: `undefined === null` is false but
+    // `{}.title === null` is also false, so absence must be ruled out directly.
+    const rec = shapeDiplomatic([dip({ title: null })])[
+      'Diplomatic Mission'
+    ][0];
+    expect('title' in rec).toBe(true);
+    expect(rec.title).toBeNull();
+  });
+
+  it('omits every OTHER null rather than emitting it', () => {
+    const rec = shapeDiplomatic([
+      dip({ website: null, email: null, contact: null, representative: null }),
+    ])['Diplomatic Mission'][0];
+    for (const key of ['website', 'email', 'contact', 'representative']) {
+      expect(key in rec).toBe(false);
+    }
+  });
+
+  it('omits empty strings — the Holy See carries email:"" and website:""', () => {
+    const rec = shapeDiplomatic([dip({ email: '', website: '' })])[
+      'Diplomatic Mission'
+    ][0];
+    expect('email' in rec).toBe(false);
+    expect('website' in rec).toBe(false);
+  });
+
+  it('maps name to office_name for missions and consulates', () => {
+    const out = shapeDiplomatic([
+      dip({ name: 'Australian Embassy' }),
+      dip({
+        position: 1,
+        slug: null,
+        entityType: 'Consulate',
+        name: 'Consulate of X',
+      }),
+    ]);
+    expect(out['Diplomatic Mission'][0].office_name).toBe('Australian Embassy');
+    expect(out['Consulate'][0].office_name).toBe('Consulate of X');
+  });
+
+  it('maps name to organization_name and representative to head for organizations', () => {
+    const rec = shapeDiplomatic([
+      dip({
+        position: 2,
+        slug: null,
+        entityType: 'International Organization',
+        name: 'ASIAN DEVELOPMENT BANK',
+        representative: 'MR. ASAKAWA MASATSUGU',
+        country: null,
+      }),
+    ])['International Organization'][0];
+    expect(rec.organization_name).toBe('ASIAN DEVELOPMENT BANK');
+    expect(rec.head).toBe('MR. ASAKAWA MASATSUGU');
+    expect('office_name' in rec).toBe(false);
+    expect('representative' in rec).toBe(false);
+    expect('country' in rec).toBe(false);
+  });
+
+  it('never emits slug for consulates or organizations', () => {
+    const out = shapeDiplomatic(rawDiplomatic);
+    expect(out['Consulate'].every(r => !('slug' in r))).toBe(true);
+    expect(out['International Organization'].every(r => !('slug' in r))).toBe(
+      true
+    );
+    expect(
+      out['Diplomatic Mission'].every(r => typeof r.slug === 'string')
+    ).toBe(true);
+  });
+
+  it('never emits position, entityType, or details', () => {
+    const out = shapeDiplomatic(rawDiplomatic);
+    for (const recs of Object.values(out)) {
+      for (const r of recs) {
+        expect('position' in r).toBe(false);
+        expect('entityType' in r).toBe(false);
+        expect('details' in r).toBe(false);
+      }
+    }
+  });
+
+  it('sorts each group strictly by position ascending', () => {
+    const out = shapeDiplomatic([
+      dip({ position: 900, slug: 'third' }),
+      dip({ position: 0, slug: 'first' }),
+      dip({ position: 5, slug: 'second' }),
+    ]);
+    expect(out['Diplomatic Mission'].map(r => r.slug)).toEqual([
+      'first',
+      'second',
+      'third',
+    ]);
+  });
+
+  it('emits all three keys even when a group is empty', () => {
+    // shapeDiplomatic is pure and callable directly; the parse gate is what
+    // refuses an empty group in a real sync. The shape must still be complete.
+    const out = shapeDiplomatic([dip()]);
+    expect(Object.keys(out)).toEqual([
+      'Diplomatic Mission',
+      'Consulate',
+      'International Organization',
+    ]);
+    expect(out['Consulate']).toEqual([]);
+  });
+
+  it('is pure — it never mutates its input', () => {
+    const input = [
+      dip({ position: 5, slug: 'b' }),
+      dip({ position: 0, slug: 'a' }),
+    ];
+    const before = JSON.stringify(input);
+    shapeDiplomatic(input);
+    expect(JSON.stringify(input)).toBe(before);
+  });
+});
+
+describe('applyFieldMap preserveNulls (via the other models)', () => {
+  it('leaves Departments, Executive and Constitutional null-omitting', () => {
+    // preserveNulls is opt-in. Proven here by the fact that Constitutional's
+    // own fixture comparison still passes with nulls absent.
+    const rec = shapeConstitutional([
+      con({ description: null, phone: null }) as never,
+    ])[0];
+    expect('description' in rec).toBe(false);
+    expect('phone' in rec).toBe(false);
+  });
+});
+
+describe('diplomatic candidate emission', () => {
+  const raw = () => ({
+    _allDiplomaticEntitiesMeta: { count: rawDiplomatic.length },
+    allDiplomaticEntities: rawDiplomatic,
+  });
+
+  it('emits the candidate against the tracked diplomatic schema', () => {
+    const c = buildDiplomaticCandidate(raw());
+    expect(c.path).toBe('src/data/directory/diplomatic.json');
+    expect(c.schemaPath).toBe(
+      'src/data/directory/schema/diplomatic.schema.json'
+    );
+  });
+
+  it('emits an OBJECT, not an array — the contract is three keyed groups', () => {
+    const c = buildDiplomaticCandidate(raw());
+    expect(Array.isArray(c.data)).toBe(false);
+    expect(Object.keys(c.data as object)).toEqual([
+      'Diplomatic Mission',
+      'Consulate',
+      'International Organization',
+    ]);
+  });
+
+  it('builds the candidate without reference to the other models', () => {
+    expect(buildDiplomaticCandidate.length).toBe(1);
+  });
+
+  it('produces a candidate that satisfies the tracked JSON Schema', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare(buildDiplomaticCandidate(raw()))
+    ).resolves.toMatchObject({ path: 'src/data/directory/diplomatic.json' });
+  });
+
+  it('would REJECT a candidate missing an entity-type key — the schema gate bites', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/diplomatic.json',
+        schemaPath: 'src/data/directory/schema/diplomatic.schema.json',
+        data: { 'Diplomatic Mission': [], Consulate: [] },
+      })
+    ).rejects.toThrow(/does not satisfy/);
   });
 });

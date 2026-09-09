@@ -1151,13 +1151,42 @@ function applyFieldMap(
      * before.
      */
     omitEmptyStrings?: boolean;
+    /**
+     * Opt-in, Diplomatic-only. Local output keys whose `null` is CONTENT and
+     * must survive into the generated file rather than being omitted.
+     *
+     * Four diplomatic missions (colombia, nigeria, palestine,
+     * papua-new-guinea) carry `title: null` in BOTH TalaCMS and the committed
+     * file, and the tracked schema types `title` as ["string","null"].
+     * Omitting them would leave the generated file differing from its own
+     * expected fixture for no reason. OFF by default, so every other model
+     * keeps the default null-is-absent rule that [department].tsx's
+     * leftover-section rendering depends on.
+     *
+     * Named by LOCAL output key, not CMS field, because that is the name the
+     * contract and the fixture are written in.
+     */
+    preserveNulls?: readonly string[];
   } = {}
 ): Record<string, unknown> {
   const out: Record<string, unknown> = {};
+  const preserved = new Set(options.preserveNulls ?? []);
   const present = (value: unknown) =>
     value !== null &&
     value !== undefined &&
     !(options.omitEmptyStrings === true && value === '');
+
+  // A preserved key emits an explicit null; every other absent value is
+  // omitted. `undefined` is never emitted for a preserved key either — that
+  // means the CMS did not return the field at all, which is a shape problem
+  // the raw schema already catches, not a content null.
+  const emit = (key: string, value: unknown) => {
+    if (present(value)) {
+      out[key] = value;
+    } else if (value === null && preserved.has(key)) {
+      out[key] = null;
+    }
+  };
 
   const mapped = new Set<string>([
     ...fields.map(([, local]) => local),
@@ -1174,26 +1203,26 @@ function applyFieldMap(
   }
 
   for (const [cms, local] of fields) {
-    if (present(raw[cms])) out[local] = raw[cms];
+    emit(local, raw[cms]);
   }
 
   // Same null-vs-absent rule as the mapped scalars above: a null or undefined
-  // value is OMITTED, never emitted. Applies to hoisted and ordinary detail
-  // keys alike. Falsy-but-present values ([], "", 0, false) are preserved
-  // unless `omitEmptyStrings` is set, which drops "" as well.
+  // value is OMITTED, never emitted, unless the key is in `preserveNulls`.
+  // Applies to hoisted and ordinary detail keys alike. Falsy-but-present
+  // values ([], "", 0, false) are preserved unless `omitEmptyStrings` is set.
   for (const key of options.hoist ?? []) {
     if (key in details) {
-      if (present(details[key])) out[key] = details[key];
+      emit(key, details[key]);
       delete details[key];
     }
   }
 
   for (const [key, value] of Object.entries(details)) {
-    if (present(value)) out[key] = value;
+    emit(key, value);
   }
 
   for (const [cms, local] of options.trailing ?? []) {
-    if (present(raw[cms])) out[local] = raw[cms];
+    emit(local, raw[cms]);
   }
 
   return out;
@@ -1253,6 +1282,121 @@ const LEGISLATIVE_FIELDS = [
   ['specialCommittees', 'special_committees'],
   ['secretariatOfficials', 'secretariat_officials'],
 ] as const;
+
+/**
+ * Three field maps over ONE CMS model. Order matters: each array IS the
+ * emitted key order for its group, and — unlike Departments (14/23) and
+ * Constitutional (103/229) — these reproduce the committed file's key order
+ * for ALL 227 records. Pinned exactly by a test; do not reorder.
+ *
+ * The three groups differ in more than membership:
+ *   - only missions emit `slug` (they are the only group in the aggregate
+ *     directory, via src/lib/directory.ts);
+ *   - organizations name the office `organization_name`, not `office_name`,
+ *     and its head `head`, not `representative`;
+ *   - organizations carry no `country`.
+ */
+const DIPLOMATIC_MISSION_FIELDS = [
+  ['slug', 'slug'],
+  ['country', 'country'],
+  ['name', 'office_name'],
+  ['address', 'address'],
+  ['contact', 'contact'],
+  ['email', 'email'],
+  ['website', 'website'],
+  ['representative', 'representative'],
+  ['title', 'title'],
+] as const;
+
+const DIPLOMATIC_CONSULATE_FIELDS = [
+  ['country', 'country'],
+  ['name', 'office_name'],
+  ['address', 'address'],
+  ['contact', 'contact'],
+  ['email', 'email'],
+  ['website', 'website'],
+  ['representative', 'representative'],
+  ['title', 'title'],
+] as const;
+
+const DIPLOMATIC_ORGANIZATION_FIELDS = [
+  ['name', 'organization_name'],
+  ['address', 'address'],
+  ['contact', 'contact'],
+  ['email', 'email'],
+  ['website', 'website'],
+  ['representative', 'head'],
+  ['title', 'title'],
+] as const;
+
+const DIPLOMATIC_FIELDS_BY_TYPE: Record<DiplomaticEntityType, FieldMap> = {
+  'Diplomatic Mission': DIPLOMATIC_MISSION_FIELDS,
+  Consulate: DIPLOMATIC_CONSULATE_FIELDS,
+  'International Organization': DIPLOMATIC_ORGANIZATION_FIELDS,
+};
+
+/**
+ * `title` is null-as-content in all three groups: the committed file carries
+ * `"title": null` on four missions and the tracked schema types it
+ * ["string","null"]. Every other null is omitted, per applyFieldMap's default.
+ */
+const DIPLOMATIC_PRESERVE_NULLS = ['title'] as const;
+
+export type ShapedDiplomatic = Record<
+  DiplomaticEntityType,
+  Record<string, unknown>[]
+>;
+
+/**
+ * Groups one flat CMS collection into the committed file's three arrays.
+ *
+ * Every group is emitted, in DIPLOMATIC_ENTITY_TYPES order, even if empty —
+ * the file's three top-level keys are a fixed contract and the schema marks
+ * all three required. (A genuinely empty group is refused upstream by
+ * parseDiplomaticResponse; this function stays pure and total.)
+ *
+ * Sorting is per-group by `position` ascending. `position` is globally unique
+ * across all 227 live records and the three types occupy contiguous runs in
+ * it, so this is equivalent to a single global sort today — but sorting
+ * per-group means a future CMS reshuffle that interleaves the types still
+ * produces a correctly ordered file rather than silently depending on the
+ * runs staying contiguous.
+ *
+ * `sortForOutput` is deliberately NOT reused: it tie-breaks on `slug`, and
+ * 157 of these records have `slug: null`. parseDiplomaticResponse already
+ * guarantees `position` is non-null, integer and unique, so there is no tie
+ * to break.
+ */
+export function shapeDiplomatic(records: RawDiplomatic[]): ShapedDiplomatic {
+  const out = {} as ShapedDiplomatic;
+
+  for (const type of DIPLOMATIC_ENTITY_TYPES) {
+    out[type] = records
+      .filter(r => r.entityType === type)
+      .slice()
+      .sort((a, b) => a.position - b.position)
+      .map(r =>
+        applyFieldMap(
+          r as unknown as Record<string, unknown>,
+          DIPLOMATIC_FIELDS_BY_TYPE[type],
+          {
+            omitEmptyStrings: true,
+            preserveNulls: DIPLOMATIC_PRESERVE_NULLS,
+          }
+        )
+      );
+  }
+
+  return out;
+}
+
+export function buildDiplomaticCandidate(raw: RawDiplomatics): Candidate {
+  return {
+    path: 'src/data/directory/diplomatic.json',
+    schemaPath: 'src/data/directory/schema/diplomatic.schema.json',
+    data: shapeDiplomatic(raw.allDiplomaticEntities),
+  };
+}
 
 const byPosition = (a: { position: number }, b: { position: number }) =>
   a.position - b.position;
