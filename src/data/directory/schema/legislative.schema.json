@@ -62,11 +62,13 @@
             "committee": {
               "type": "string",
               "minLength": 1,
+              "pattern": "\\S",
               "description": "Name of the committee"
             },
             "chairperson": {
               "type": "string",
               "minLength": 1,
+              "pattern": "\\S",
               "description": "Name of the committee chairperson"
             }
           }
