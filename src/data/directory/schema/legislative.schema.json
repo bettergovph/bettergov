@@ -57,13 +57,16 @@
         "description": "List of permanent committees (Senate)",
         "items": {
           "type": "object",
+          "required": ["committee", "chairperson"],
           "properties": {
             "committee": {
               "type": "string",
+              "minLength": 1,
               "description": "Name of the committee"
             },
             "chairperson": {
               "type": "string",
+              "minLength": 1,
               "description": "Name of the committee chairperson"
             }
           }
