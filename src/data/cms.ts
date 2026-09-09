@@ -125,3 +125,27 @@ const constitutionalModules = import.meta.glob<{
 export const constitutionalOffices: ConstitutionalDirectoryOffice[] = required(
   constitutionalModules
 );
+
+/**
+ * The two chambers of Congress. `house_members` and
+ * `party_list_representatives` are nested inside the House record — the app
+ * has always read them from there, and the sync fills them from the chamber's
+ * CMS relations rather than from separate files.
+ *
+ * `chamber` is not just a label: senate-committees.tsx selects on
+ * `chamber.includes('Senate')` and the two member pages on
+ * `chamber.includes('House of Representatives')`. The sync gates both.
+ */
+export interface LegislativeChamber {
+  slug: string;
+  chamber: string;
+  [key: string]: unknown;
+}
+
+const legislativeModules = import.meta.glob<{ default: LegislativeChamber[] }>(
+  './directory/legislative.json',
+  { eager: true }
+);
+
+export const legislativeChambers: LegislativeChamber[] =
+  required(legislativeModules);

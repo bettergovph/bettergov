@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import legislativeData from '../../../data/directory/legislative.json';
+import { legislativeChambers as legislativeData } from '../../../data/cms';
 import Container from '../../../components/v2/ui/Container';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../../components/v2/ui/ArrowLink';
