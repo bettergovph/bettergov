@@ -487,7 +487,12 @@ const syntheticDirectoryDir = (mutate: (dir: string) => void = () => {}) => {
   );
   write(
     'legislative.json',
-    rows(1, 'leg', i => ({ chamber: `Chamber ${i}` }))
+    // chamber and branch are schema-required: legislative.json is now a
+    // REQUIRED, schema-validated source, not a tolerant one.
+    rows(1, 'leg', i => ({
+      branch: 'Legislative Branch',
+      chamber: `Chamber ${i}`,
+    }))
   );
   write(
     'party_list_representatives.json',
@@ -554,11 +559,11 @@ describe('DATA_SOURCES registration', () => {
     expect(s.schemaPath).toContain('executive.schema.json');
   });
 
-  it('registers exactly three required directory sources and one tolerant source', () => {
+  it('registers exactly four required directory sources and one tolerant source', () => {
     const dirSources = DATA_SOURCES.filter(
       s => s.dataType === 'directory_item'
     );
-    expect(dirSources.filter(s => s.isFile)).toHaveLength(3);
+    expect(dirSources.filter(s => s.isFile)).toHaveLength(4);
     expect(dirSources.filter(s => !s.isFile)).toHaveLength(1);
   });
 
@@ -618,11 +623,33 @@ describe('DIRECTORY_EXPECTED_FILES manifest', () => {
       'diplomatic.json',
       'house_members.json',
       'judicial.json',
-      'legislative.json',
       'party_list_representatives.json',
     ]);
-    expect(DIRECTORY_TOLERANT_FILES).not.toContain('departments.json');
-    expect(DIRECTORY_TOLERANT_FILES).not.toContain('executive.json');
+    for (const f of [
+      'departments.json',
+      'executive.json',
+      'constitutional.json',
+      'legislative.json',
+    ]) {
+      expect(DIRECTORY_TOLERANT_FILES).not.toContain(f);
+    }
+  });
+
+  it('treats legislative.json as a generated, required source', () => {
+    expect(DIRECTORY_GENERATED_FILES).toContain('legislative.json');
+    const [source] = DATA_SOURCES.filter(
+      s => s.isFile && path.basename(s.dataPath) === 'legislative.json'
+    );
+    expect(source).toBeDefined();
+    expect(source.dataType).toBe('directory_item');
+    expect(source.requireNonEmpty).toBe(true);
+    expect(source.schemaPath).toBe(
+      path.join(REPO_ROOT, 'src/data/directory/schema/legislative.schema.json')
+    );
+  });
+
+  it('still counts legislative.json as exactly two documents', () => {
+    expect(DIRECTORY_EXPECTED_COUNTS['legislative.json']).toBe(2);
   });
 
   it('excludes from the tolerant loader exactly what the required loader owns', () => {
@@ -1069,7 +1096,7 @@ const makeJsonFile = (name: string, value: unknown) => {
 
 /**
  * The complete DATA_SOURCES shape, pointed entirely at fixtures. Mirrors
- * production ordering: service, the three required directory files, the
+ * production ordering: service, the four required directory files, the
  * tolerant directory source, then website.
  */
 const fixtureSources = (dirs: {
@@ -1103,6 +1130,13 @@ const fixtureSources = (dirs: {
     isFile: true,
     requireNonEmpty: true,
     schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'constitutional.schema.json'),
+  },
+  {
+    dataType: 'directory_item',
+    dataPath: path.join(dirs.directory, 'legislative.json'),
+    isFile: true,
+    requireNonEmpty: true,
+    schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'legislative.schema.json'),
   },
   {
     dataType: 'directory_item',
