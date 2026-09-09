@@ -89,19 +89,32 @@ describe('generated CMS output is never committed', () => {
   });
 
   it('still tracks the directory files that stay local', () => {
-    // Judicial, diplomatic and the two orphaned member files are deliberately
-    // NOT migrated — pin that so a future sweep cannot silently gitignore
-    // them. legislative.json moved to the generated set; the two orphaned
-    // member files did NOT follow it, and are now a second, hand-maintained
-    // copy of content the CMS owns. Recorded, deliberately not resolved here.
+    // Judicial and the two orphaned member files are deliberately NOT
+    // migrated — pin that so a future sweep cannot silently gitignore them.
+    // diplomatic.json moved to the generated set; the two orphaned member
+    // files did NOT follow legislative.json, and are now a second,
+    // hand-maintained copy of content the CMS owns. Recorded, deliberately
+    // not resolved here.
     for (const f of [
       'src/data/directory/judicial.json',
-      'src/data/directory/diplomatic.json',
       'src/data/directory/house_members.json',
       'src/data/directory/party_list_representatives.json',
     ]) {
       expect(trackedFiles).toContain(f);
     }
+  });
+
+  it('no longer tracks the generated diplomatic file', () => {
+    expect(trackedFiles).not.toContain('src/data/directory/diplomatic.json');
+  });
+
+  it('still tracks the diplomatic schema and its pre-migration fixture', () => {
+    expect(trackedFiles).toContain(
+      'src/data/directory/schema/diplomatic.schema.json'
+    );
+    expect(trackedFiles).toContain(
+      'src/data/directory/__fixtures__/diplomatic.expected.json'
+    );
   });
 
   it('still tracks the schemas that are the generated data’s contract', () => {
