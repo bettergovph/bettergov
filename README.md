@@ -164,6 +164,7 @@ npm run cms:fetch -- --only=hotlines
 npm run cms:fetch -- --only=departments
 npm run cms:fetch -- --only=executive
 npm run cms:fetch -- --only=constitutional
+npm run cms:fetch -- --only=legislative
 ```
 
 Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
@@ -182,18 +183,24 @@ interrupted, check `git status`.
 | adding or retiring a category in TalaCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
 | editing service content only (titles, URLs) | `--only=services` is safe **if** no display name changed |
 | editing taxonomy display names only | `npm run cms:fetch` — see the rename row |
-| editing a government department, executive office or constitutional office | `--only=departments` / `--only=executive` / `--only=constitutional` — each is a single-model edit with no cross-dataset gate |
+| editing a government department, executive office, constitutional office or legislative chamber | `--only=departments` / `--only=executive` / `--only=constitutional` / `--only=legislative` — each is a single-model edit with no cross-dataset gate |
 
 ### Generated directory datasets
 
-Three government-directory files are CMS-owned and gitignored:
-`src/data/directory/departments.json` (23), `executive.json` (38) and
-`constitutional.json` (229). The last one holds all Constitutional-branch
-records — 3 constitutional offices, 2 constitutionally mandated bodies, 110
-GOCCs and 114 SUCs — because they share one TalaCMS model, one file and one
-route tree. Everything else under `src/data/directory/` is still
-hand-maintained and committed: diplomatic, judicial, legislative and the two
-orphaned member files.
+Four government-directory files are CMS-owned and gitignored:
+`src/data/directory/departments.json` (23), `executive.json` (38),
+`constitutional.json` (229) and `legislative.json` (2). The third holds all
+Constitutional-branch records — 3 constitutional offices, 2 constitutionally
+mandated bodies, 110 GOCCs and 114 SUCs — because they share one TalaCMS
+model, one file and one route tree. The fourth holds the Senate and House of
+Representatives; House Members and Party-list Representatives are not synced
+as their own datasets — they arrive as nested relations on the House
+`LegislativeChamber` record and are projected into `house_members` and
+`party_list_representatives` inside that same file, exactly where the app has
+always read them. Everything else under `src/data/directory/` is still
+hand-maintained and committed: diplomatic, judicial, and the two orphaned
+member files (`house_members.json`, `party_list_representatives.json` — now a
+second, hand-maintained copy of content the CMS owns via `legislative.json`).
 
 Each model is fetched by its own GraphQL operation, so an isolated `--only=`
 run cannot be made to fail by another model's data. Constitutional uses its
