@@ -40,10 +40,18 @@ export async function loadRegionLgu(
 ): Promise<RegionLGU | null> {
   if (!slug) return null;
   // Previously this tried a filename-derived slug match first, then fell
-  // back to scanning for an internal `slug` field match. Both paths now
-  // resolve to the same lookup because the two are identical for
-  // uniformly-generated data — filenames are the region's own slug — so a
-  // single scan over `lguRegions` preserves both resolution paths' behavior.
+  // back to scanning for an internal `slug` field match, as a safety net in
+  // case a region's output filename ever diverged from its own `slug`
+  // field. That divergence is not merely absent from today's 19 files — it
+  // is structurally impossible for anything the sync pipeline produces:
+  // `buildLguCandidates` in scripts/talacms/lgu.ts derives both the output
+  // path (`src/data/directory/lgu/${r.region.slug}.json`) and the emitted
+  // `slug` field (`shapeLguRegion`'s `out.slug = joined.region.slug`) from
+  // the exact same `r.region.slug` value, in the same function call, before
+  // either is written — there is no code path that can write a file whose
+  // basename and internal `slug` field disagree. A single match on the
+  // internal `slug` field is therefore equivalent to the original two-step
+  // lookup for any file this pipeline can generate, not just the current set.
   return lguRegions.find(r => r.slug === slug) || null;
 }
 
