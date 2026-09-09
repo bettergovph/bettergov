@@ -1,27 +1,18 @@
 import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { MailIcon, PhoneIcon, SearchIcon } from 'lucide-react';
-import diplomaticData from '../../../data/directory/diplomatic.json';
+import {
+  diplomaticEntities,
+  type DiplomaticConsulate,
+} from '../../../data/cms';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import { titleCase } from '../../../lib/directory';
 
-type Consulate = {
-  country: string;
-  office_name: string;
-  address?: string;
-  contact?: string;
-  email?: string;
-  representative?: string;
-  title?: string;
-};
-
 const ConsulatesPage: FC = () => {
-  const all = useMemo<Consulate[]>(
-    () =>
-      (diplomaticData as unknown as { Consulate?: Consulate[] }).Consulate ??
-      [],
+  const all = useMemo<DiplomaticConsulate[]>(
+    () => diplomaticEntities.Consulate,
     []
   );
   const [q, setQ] = useState('');

@@ -71,7 +71,7 @@ describe('CMS accessor boundary', () => {
 
   it('routes generated directory data through the accessor only', () => {
     const DIRECTORY_JSON_PATTERN =
-      /from\s+['"].*data\/directory\/(departments|executive|constitutional|lgu)\.json['"]/;
+      /from\s+['"].*data\/directory\/(departments|executive|constitutional|diplomatic|lgu)\.json['"]/;
     const offenders = files
       .filter(f => f.path !== ACCESSOR)
       .filter(f => DIRECTORY_JSON_PATTERN.test(f.code))

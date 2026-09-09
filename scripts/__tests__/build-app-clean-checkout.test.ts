@@ -17,6 +17,7 @@ const GENERATED_FILES = [
   'src/data/directory/executive.json',
   'src/data/directory/constitutional.json',
   'src/data/directory/legislative.json',
+  'src/data/directory/diplomatic.json',
 ];
 
 /** Rewritten by build:app itself (write-ver-to-json.ts) — restore it after. */

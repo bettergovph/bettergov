@@ -171,3 +171,66 @@ if (Object.keys(lguModules).length === 0) throw new Error(MISSING);
 export const lguRegions: RegionLGU[] = Object.values(lguModules).map(
   m => m.default
 );
+
+/**
+ * The diplomatic directory: foreign missions, consulates, and international
+ * organizations. Unlike every other generated directory dataset this is a
+ * single OBJECT keyed by entity type, not an array — one TalaCMS model
+ * (`DiplomaticEntity`) discriminated by `entityType`, grouped into the three
+ * arrays the three /government/diplomatic pages have always read.
+ *
+ * Only missions carry a `slug`: they are the only group that appears in the
+ * aggregate directory (`src/lib/directory.ts`). Consulates and organizations
+ * have no detail route and therefore no slug.
+ *
+ * `title` is `string | null | undefined` on purpose. Four missions carry an
+ * explicit `null` in both TalaCMS and the generated file, and the tracked
+ * schema types it ["string","null"]; every other record simply omits the key.
+ * Consumers must treat null and absent alike.
+ */
+export interface DiplomaticMission {
+  slug: string;
+  country: string;
+  office_name: string;
+  address?: string;
+  contact?: string;
+  email?: string;
+  website?: string;
+  representative?: string;
+  title?: string | null;
+}
+
+export interface DiplomaticConsulate {
+  country: string;
+  office_name: string;
+  address?: string;
+  contact?: string;
+  email?: string;
+  website?: string;
+  representative?: string;
+  title?: string | null;
+}
+
+export interface DiplomaticOrganization {
+  organization_name: string;
+  address?: string;
+  contact?: string;
+  email?: string;
+  website?: string;
+  head?: string;
+  title?: string | null;
+}
+
+export interface DiplomaticEntities {
+  'Diplomatic Mission': DiplomaticMission[];
+  Consulate: DiplomaticConsulate[];
+  'International Organization': DiplomaticOrganization[];
+}
+
+const diplomaticModules = import.meta.glob<{ default: DiplomaticEntities }>(
+  './directory/diplomatic.json',
+  { eager: true }
+);
+
+export const diplomaticEntities: DiplomaticEntities =
+  required(diplomaticModules);
