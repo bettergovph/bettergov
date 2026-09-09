@@ -6,7 +6,7 @@ import {
   PhoneIcon,
   SearchIcon,
 } from 'lucide-react';
-import constitutionalData from '../../../data/directory/constitutional.json';
+import { constitutionalOffices as constitutionalData } from '../../../data/cms';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';

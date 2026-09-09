@@ -53,3 +53,8 @@ wrangler.toml
 /src/data/service_categories.json
 /src/data/critical_hotlines.json
 /src/data/services/*.json
+/src/data/directory/departments.json
+/src/data/directory/executive.json
+/src/data/directory/constitutional.json
+/src/data/directory/legislative.json
+/src/data/directory/lgu/*.json

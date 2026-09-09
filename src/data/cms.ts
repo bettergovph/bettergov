@@ -1,4 +1,5 @@
 import type { Service } from '../types';
+import type { RegionLGU } from '../lib/lgu';
 
 export interface Subcategory {
   name: string;
@@ -77,4 +78,102 @@ export const services: Record<string, Service[]> = Object.fromEntries(
     path.split('/').pop()!.replace('.json', ''),
     mod.default,
   ])
+);
+
+export interface GovernmentDepartment {
+  slug: string;
+  office_name: string;
+  [key: string]: unknown;
+}
+
+export interface ExecutiveOffice {
+  slug: string;
+  office: string;
+  [key: string]: unknown;
+}
+
+const departmentsModules = import.meta.glob<{
+  default: GovernmentDepartment[];
+}>('./directory/departments.json', { eager: true });
+
+export const governmentDepartments: GovernmentDepartment[] =
+  required(departmentsModules);
+
+const executiveModules = import.meta.glob<{ default: ExecutiveOffice[] }>(
+  './directory/executive.json',
+  { eager: true }
+);
+
+export const executiveOffices: ExecutiveOffice[] = required(executiveModules);
+
+/**
+ * Constitutional Offices holds all 229 directory records — the 5 genuine
+ * constitutional bodies plus 110 GOCCs and 114 SUCs. They share one CMS
+ * model, one generated file and one route tree, so they are CMS-owned
+ * together.
+ */
+export interface ConstitutionalDirectoryOffice {
+  slug: string;
+  name: string;
+  office_type: string;
+  [key: string]: unknown;
+}
+
+const constitutionalModules = import.meta.glob<{
+  default: ConstitutionalDirectoryOffice[];
+}>('./directory/constitutional.json', { eager: true });
+
+export const constitutionalOffices: ConstitutionalDirectoryOffice[] = required(
+  constitutionalModules
+);
+
+/**
+ * The two chambers of Congress. `house_members` and
+ * `party_list_representatives` are nested inside the House record — the app
+ * has always read them from there, and the sync fills them from the chamber's
+ * CMS relations rather than from separate files.
+ *
+ * `chamber` is not just a label: senate-committees.tsx selects on
+ * `chamber.includes('Senate')` and the two member pages on
+ * `chamber.includes('House of Representatives')`. The sync gates both.
+ */
+export interface LegislativeChamber {
+  slug: string;
+  chamber: string;
+  [key: string]: unknown;
+}
+
+const legislativeModules = import.meta.glob<{ default: LegislativeChamber[] }>(
+  './directory/legislative.json',
+  { eager: true }
+);
+
+export const legislativeChambers: LegislativeChamber[] =
+  required(legislativeModules);
+
+/**
+ * LGU data is one file per region (19 files) rather than a single file, so
+ * it follows the `services` glob-array pattern, not `required()`. The
+ * `Object.keys(...).length === 0` guard matters here for the same reason it
+ * matters for services: `import.meta.glob` resolves to `{}` when nothing
+ * matches, instead of failing the way a static `import` of an absent file
+ * would. Without this guard, a never-synced checkout would silently produce
+ * an empty `lguRegions` array — every LGU page would quietly render zero
+ * regions instead of failing loudly.
+ *
+ * That failure happens at runtime, not at build time: Vite resolves the
+ * eager glob to static imports when bundling, without executing this
+ * module's top-level code, so `npm run build` still succeeds against a
+ * never-synced checkout. The throw below only fires when a browser actually
+ * evaluates this module — i.e. when someone loads a page that imports it.
+ */
+const lguModules = import.meta.glob<{ default: RegionLGU }>(
+  './directory/lgu/*.json',
+  { eager: true }
+);
+
+if (Object.keys(lguModules).length === 0) throw new Error(MISSING);
+
+export const lguRegions: RegionLGU[] = Object.values(lguModules).map(
+  m => m.default
 );

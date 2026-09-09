@@ -1,16 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { UsersIcon } from 'lucide-react';
-import type { RegionLGU } from '../../../../lib/lgu';
-
-// Eagerly import all per-region LGU JSON files and flatten into an array
-const modules = import.meta.glob<{ default: RegionLGU }>(
-  '../../../../data/directory/lgu/*.json',
-  { eager: true }
-);
-const lguData: RegionLGU[] = Object.values(modules).map(m => m.default);
+import { lguRegions } from '../../../../lib/lgu';
 
 export default function LocalSidebar() {
-  const regions = lguData.map(regionData => {
+  const regions = lguRegions.map(regionData => {
     let cityCount = 0;
 
     // Count direct cities (if any)

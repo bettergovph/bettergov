@@ -42,11 +42,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate LGU region JSON files
+      # src/data/directory/lgu/*.json is build-time-generated and gitignored,
+      # so it never exists on a clean checkout — validate the schema against
+      # its committed pre-migration fixtures instead.
+      - name: Validate LGU schema against its committed fixtures
         run: |
           node scripts/validate-json-schema.js \
             src/data/directory/lgu/schema/lgu-region.schema.json \
-            "src/data/directory/lgu/*.json"
+            "src/data/directory/lgu/__fixtures__/*.expected.json"
 
       - name: Validate constitutional JSON file
         run: |

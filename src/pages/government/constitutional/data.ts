@@ -1,8 +1,10 @@
-import constitutionalJSON from '../../../data/directory/constitutional.json';
+import { constitutionalOffices } from '../../../data/cms';
 import { ConstitutionalOfficeSchema, GovernmentOfficeSchema } from '../schema';
 
-export const constitutionalData =
-  ConstitutionalOfficeSchema.array().parse(constitutionalJSON);
+export const constitutionalData = ConstitutionalOfficeSchema.array().parse(
+  constitutionalOffices
+);
 
-export const institutionData =
-  GovernmentOfficeSchema.array().parse(constitutionalJSON);
+export const institutionData = GovernmentOfficeSchema.array().parse(
+  constitutionalOffices
+);
