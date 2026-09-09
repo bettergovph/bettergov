@@ -36,6 +36,7 @@ import { buildLguCandidates, fetchLgu } from './talacms/lgu';
 import type { ServiceRecordRef, Taxonomy } from './talacms/categories';
 
 const LGU_DIR = 'src/data/directory/lgu';
+const SERVICES_DIR = 'src/data/services';
 
 export const DATASETS = [
   'categories',
@@ -282,6 +283,37 @@ async function buildCandidates(
 }
 
 /**
+ * The Service file names `candidates` will write, derived the same way both
+ * `cleanUpStaleServiceFiles` (for real deletion) and the dry-run drift
+ * report (for detection only) need it — a single source so the two never
+ * drift apart on what "generated" means. Mirrors `lguGeneratedFileNames`.
+ */
+function serviceGeneratedFileNames(candidates: Candidate[]): string[] {
+  const prefix = `${SERVICES_DIR}/`;
+  return candidates
+    .filter(c => c.path.startsWith(prefix))
+    .map(c => c.path.slice(prefix.length));
+}
+
+/**
+ * Pure: which of `beforeServiceFiles` are NOT in this run's generated set —
+ * i.e. what `cleanUpStaleServiceFiles` would remove, without removing
+ * anything. Used to report stale-file drift under `--dry-run`, which must
+ * write and delete nothing. Mirrors `staleLguFileNames`; like real cleanup,
+ * only meaningful on a full sync (see `cleanUpStaleServiceFiles`), so
+ * callers gate this on `isFullSync` the same way.
+ */
+function staleServiceFileNames(
+  beforeServiceFiles: string[],
+  candidates: Candidate[]
+): string[] {
+  const generated = new Set(serviceGeneratedFileNames(candidates));
+  return beforeServiceFiles
+    .filter(f => !generated.has(f))
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+}
+
+/**
  * §6.6/§6.8 replacement: after a successful FULL sync only, delete top-level
  * src/data/services/*.json files that existed before this run but fell out
  * of the freshly generated candidate set (a category retired in TalaCMS).
@@ -300,9 +332,7 @@ function cleanUpStaleServiceFiles(
   beforeServiceFiles: string[],
   candidates: Candidate[]
 ): boolean {
-  const generated = candidates
-    .filter(c => c.path.startsWith('src/data/services/'))
-    .map(c => c.path.slice('src/data/services/'.length));
+  const generated = serviceGeneratedFileNames(candidates);
   const { removed, failed } = deps.removeStaleServiceFiles(
     beforeServiceFiles,
     generated
@@ -430,17 +460,26 @@ export async function run(
   const changed = prepared.filter(f => f.changed);
 
   if (options.dryRun) {
-    // A stale LGU file is drift too: it exists on disk (or would after a
-    // real sync elsewhere) but wasn't produced by this run, and a real
-    // (non-dry) run would remove it. Report it without removing anything —
-    // dry-run must write and delete nothing.
+    // A stale file is drift too: it exists on disk (or would after a real
+    // sync elsewhere) but wasn't produced by this run, and a real (non-dry)
+    // run would remove it. Report it without removing anything — dry-run
+    // must write and delete nothing. Services mirrors LGU here: gated on
+    // `isFullSync` for the same reason `cleanUpStaleServiceFiles` is —
+    // an isolated `--only=` run doesn't see the complete generated set and
+    // can't safely judge staleness.
+    const staleServices = isFullSync
+      ? staleServiceFileNames(beforeServiceFiles, candidates)
+      : [];
+    for (const f of staleServices) {
+      deps.log(`~ stale     ${SERVICES_DIR}/${f} (would be removed)`);
+    }
     const staleLgu = selectedSet.has('lgu')
       ? staleLguFileNames(beforeLguFiles, candidates)
       : [];
     for (const f of staleLgu) {
       deps.log(`~ stale     ${LGU_DIR}/${f} (would be removed)`);
     }
-    const totalDrift = changed.length + staleLgu.length;
+    const totalDrift = changed.length + staleServices.length + staleLgu.length;
     deps.log(
       totalDrift > 0
         ? `\n--dry-run: ${totalDrift} file(s) would change. Nothing was written.`

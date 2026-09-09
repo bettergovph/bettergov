@@ -156,10 +156,16 @@ export const legislativeChambers: LegislativeChamber[] =
  * it follows the `services` glob-array pattern, not `required()`. The
  * `Object.keys(...).length === 0` guard matters here for the same reason it
  * matters for services: `import.meta.glob` resolves to `{}` when nothing
- * matches, instead of failing the build the way a static `import` of an
- * absent file would. Without this guard, a never-synced checkout would
- * silently produce an empty `lguRegions` array — every LGU page would
- * quietly render zero regions instead of the build failing loudly.
+ * matches, instead of failing the way a static `import` of an absent file
+ * would. Without this guard, a never-synced checkout would silently produce
+ * an empty `lguRegions` array — every LGU page would quietly render zero
+ * regions instead of failing loudly.
+ *
+ * That failure happens at runtime, not at build time: Vite resolves the
+ * eager glob to static imports when bundling, without executing this
+ * module's top-level code, so `npm run build` still succeeds against a
+ * never-synced checkout. The throw below only fires when a browser actually
+ * evaluates this module — i.e. when someone loads a page that imports it.
  */
 const lguModules = import.meta.glob<{ default: RegionLGU }>(
   './directory/lgu/*.json',

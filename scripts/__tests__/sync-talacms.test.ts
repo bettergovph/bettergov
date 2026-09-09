@@ -992,6 +992,73 @@ describe('stale service file cleanup', () => {
     });
     await expect(run([], deps as never)).resolves.toBe(0);
   });
+
+  it('--dry-run reports a stale service file as drift and exits 3, without removing it', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+    });
+    await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
+    expect(deps.readServiceFileNames).toHaveBeenCalledTimes(1);
+    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain(
+      'src/data/services/old-category.json (would be removed)'
+    );
+    expect(logged).toContain('--dry-run: 1 file(s) would change.');
+  });
+
+  it('--dry-run counts both stale services and stale LGU files in one drift total', async () => {
+    const { deps } = makeDeps({
+      readServiceFileNames: vi.fn(() => ['health.json', 'old-category.json']),
+      readLguFileNames: vi.fn(() => [
+        ...lguRegions.map(r => `${r.slug}.json`),
+        'retired-region.json',
+      ]),
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+    });
+    await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain(
+      'src/data/services/old-category.json (would be removed)'
+    );
+    expect(logged).toContain(
+      'src/data/directory/lgu/retired-region.json (would be removed)'
+    );
+    expect(logged).toContain('--dry-run: 2 file(s) would change.');
+  });
+
+  it('--only=services --dry-run never reports stale service files — not a full sync', async () => {
+    const { client, deps } = makeDeps({
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+    });
+    await expect(
+      run(['--only=services', '--dry-run'], deps as never)
+    ).resolves.toBe(0);
+    expect(queriesOf(client)).toHaveLength(1);
+    expect(deps.readServiceFileNames).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).not.toContain('would be removed');
+  });
 });
 
 describe('directory datasets', () => {
