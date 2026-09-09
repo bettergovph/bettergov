@@ -2304,7 +2304,7 @@ describe('parseDiplomaticResponse', () => {
           dip({ position: 1, slug: 'filler-mission' }),
           dip({
             position: 2,
-            slug: 'filler-org',
+            slug: null,
             entityType: 'International Organization',
           }),
         ])
@@ -2320,12 +2320,12 @@ describe('parseDiplomaticResponse', () => {
           dip({ title: null }),
           dip({
             position: 1,
-            slug: 'filler-consulate',
+            slug: null,
             entityType: 'Consulate',
           }),
           dip({
             position: 2,
-            slug: 'filler-org',
+            slug: null,
             entityType: 'International Organization',
           }),
         ])
@@ -2360,7 +2360,7 @@ describe('parseDiplomaticResponse', () => {
   it('fails closed on an unknown entityType', () => {
     expect(() =>
       parseDiplomaticResponse(dipResponse([dip({ entityType: 'Embassy' })]))
-    ).toThrow(/entityType "Embassy" is not one of/i);
+    ).toThrow(/entityType "Embassy", which is not one of/i);
   });
 
   it('fails closed on a blank entityType', () => {
@@ -2409,12 +2409,12 @@ describe('parseDiplomaticResponse', () => {
           dip({ position: 900, slug: 'b' }),
           dip({
             position: 1,
-            slug: 'filler-consulate',
+            slug: null,
             entityType: 'Consulate',
           }),
           dip({
             position: 2,
-            slug: 'filler-org',
+            slug: null,
             entityType: 'International Organization',
           }),
         ])
@@ -2445,7 +2445,7 @@ describe('parseDiplomaticResponse', () => {
           dip({ position: 2, slug: 'filler-mission' }),
           dip({
             position: 3,
-            slug: 'filler-org',
+            slug: null,
             entityType: 'International Organization',
           }),
         ])

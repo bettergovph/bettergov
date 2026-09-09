@@ -229,20 +229,21 @@ TalaCMS model, one file and one route tree. The fourth holds the Senate and Hous
 Representatives; House Members and Party-list Representatives are not synced as their
 own datasets — they arrive as nested relations on the House `LegislativeChamber` record
 and are projected into `house_members` and `party_list_representatives` inside that same
-file, exactly where the app has always read them. The fifth, LGU, is organized by region
-in separate generated files rather than a single consolidated file, but only the
-top-level `*.json` region files are gitignored; `src/data/directory/lgu/schema/` and
+file, exactly where the app has always read them. The fifth, Diplomatic, is the
+only generated dataset whose file is an OBJECT rather than an array: one
+TalaCMS model (`DiplomaticEntity`) discriminated by `entityType` and grouped
+into the three arrays the app has always read — `"Diplomatic Mission"` (70),
+`"Consulate"` (139) and `"International Organization"` (18). All three keys
+are required by the tracked schema, and a fourth `entityType` fails the sync
+rather than silently adding a top-level key no page renders. Only the 70
+missions carry a `slug`; consulates and organizations have no detail route
+and none. `title` is the one field whose `null` is preserved rather than
+omitted — four missions carry an explicit null in both TalaCMS and the
+generated file. The sixth, LGU, is organized by region in separate generated
+files rather than a single consolidated file, but only the top-level
+`*.json` region files are gitignored; `src/data/directory/lgu/schema/` and
 `src/data/directory/lgu/__fixtures__/` stay tracked.
-The sixth, Diplomatic, is the only generated dataset whose file is an OBJECT
-rather than an array: one TalaCMS model (`DiplomaticEntity`) discriminated by
-`entityType` and grouped into the three arrays the app has always read —
-`"Diplomatic Mission"` (70), `"Consulate"` (139) and `"International
-Organization"` (18). All three keys are required by the tracked schema, and a
-fourth `entityType` fails the sync rather than silently adding a top-level key
-no page renders. Only the 70 missions carry a `slug`; consulates and
-organizations have no detail route and none. `title` is the one field whose
-`null` is preserved rather than omitted — four missions carry an explicit null
-in both TalaCMS and the generated file. Everything else under
+Everything else under
 `src/data/directory/` is still hand-maintained and committed: judicial and the
 two orphaned member files (`house_members.json`,
 `party_list_representatives.json` — now a second, hand-maintained copy of

@@ -774,8 +774,8 @@ export function parseDiplomaticResponse(value: unknown): RawDiplomatics {
 
     if (!allowed.has(r.entityType)) {
       fail(
-        `diplomatic entities record "${id}" has entityType "${r.entityType}" ` +
-          `is not one of: ${DIPLOMATIC_ENTITY_TYPES.join(', ')}. The generated ` +
+        `diplomatic entities record "${id}" has entityType "${r.entityType}", ` +
+          `which is not one of: ${DIPLOMATIC_ENTITY_TYPES.join(', ')}. The generated ` +
           'file has exactly three top-level keys and no page renders a fourth.'
       );
     }
@@ -1608,6 +1608,11 @@ export function candidateSlugs(candidate: Candidate): string[] {
  * The authoritative version of this check runs over the complete directory
  * snapshot during Meilisearch preflight (`assertUniqueDirectorySlugs`); this
  * one is the fast local gate that fails a sync before it writes.
+ *
+ * Scoped to CMS-owned models only, not the whole index: `websites.json` is
+ * separately derived from these same directory files and already has 289
+ * pre-existing, expected slug collisions with them, so widening this gate to
+ * include it would fail every run on a defect this branch does not own.
  */
 export function assertNoCrossModelSlugCollisions(
   candidates: Candidate[]
