@@ -34,6 +34,29 @@ export const CONSTITUTIONAL_PAGE_SIZE = 300;
 export const LEGISLATIVE_PAGE_SIZE = 50;
 
 /**
+ * Diplomatic Entities carries 227 records in ONE flat model discriminated by
+ * `entityType` — 70 missions, 139 consulates, 18 international organizations.
+ * 300 leaves ~70 records of headroom and still fails loudly below the CDA's
+ * hard `first` cap of 500. If this ever fires, raise it to at most 500;
+ * beyond that the model needs real pagination, which is out of scope here.
+ */
+export const DIPLOMATIC_PAGE_SIZE = 300;
+
+/**
+ * The closed set of `entityType` values, in the generated file's key order.
+ * This IS the output contract: the shaper emits exactly these three keys, in
+ * exactly this order, and a fourth CMS value fails the sync rather than
+ * silently adding an undocumented fourth top-level key that no page renders.
+ */
+export const DIPLOMATIC_ENTITY_TYPES = [
+  'Diplomatic Mission',
+  'Consulate',
+  'International Organization',
+] as const;
+
+export type DiplomaticEntityType = (typeof DIPLOMATIC_ENTITY_TYPES)[number];
+
+/**
  * Ceilings for the two NESTED relations. These are NOT `first:` arguments —
  * the reverse relations take no `first` argument at all, so nothing is being
  * enforced or bypassed here (`first: 600` on one of them returned all 255
@@ -205,6 +228,46 @@ query SyncConstitutionalOffices {
 }
 `;
 
+/**
+ * A SIXTH independent operation. Same rule as every model above: a combined
+ * query would make `--only=diplomatic` fail on another model's data and vice
+ * versa. Its own `_allDiplomaticEntitiesMeta` is declared BEFORE its own
+ * collection field, per the per-operation resolver-ordering rule in
+ * ./categories.ts — verified against the live CDA on 2026-09-09, returning
+ * count 227 with 227 records in one request.
+ *
+ * ONE flat model, not three: `entityType` discriminates missions, consulates
+ * and international organizations, and the shaper groups on it. `position` is
+ * globally unique across all 227 and the three types occupy three contiguous
+ * runs in it, so a single `position_ASC` page reproduces the committed file's
+ * order for all three groups at once.
+ *
+ * `details` is a JsonField carried by the model but `null` on all 227 live
+ * records; it is deliberately NOT selected. No local field maps to it, and
+ * selecting it would invite a future editor to put content somewhere nothing
+ * reads. `id`, `_status` and the system timestamps are likewise not selected.
+ */
+export const DIPLOMATIC_QUERY = `
+query SyncDiplomaticEntities {
+  _allDiplomaticEntitiesMeta {
+    count
+  }
+  allDiplomaticEntities(orderBy: [position_ASC], first: ${DIPLOMATIC_PAGE_SIZE}) {
+    position
+    slug
+    entityType
+    name
+    country
+    address
+    contact
+    email
+    website
+    representative
+    title
+  }
+}
+`;
+
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const fail = (message: string): never => {
@@ -364,6 +427,44 @@ const RawConstitutionalsSchema = z.object({
 
 export type RawConstitutional = z.infer<typeof RawConstitutionalSchema>;
 export type RawConstitutionals = z.infer<typeof RawConstitutionalsSchema>;
+
+/**
+ * Record order IS consumed — it is the generated file's record order for all
+ * three groups and the render order of all three pages — so `position` is
+ * required, non-null and integer here, the same rule Constitutional and
+ * Legislative use and for the same reason. Uniqueness needs the whole
+ * collection and is enforced in parseDiplomaticResponse.
+ *
+ * `slug` is NULLABLE and that is correct: only the 70 missions carry one
+ * (they are the only group in the aggregate directory). All 139 consulates
+ * and all 18 organizations carry `slug: null`, matching a committed file that
+ * simply omits the key for them.
+ *
+ * `title` is nullable AND its null is preserved into the output — see
+ * DIPLOMATIC_*_FIELDS and shapeDiplomatic. Every other nullable scalar here
+ * is omitted when null, per applyFieldMap's default.
+ */
+const RawDiplomaticSchema = z.object({
+  position: z.number().int(),
+  slug: z.string().nullable(),
+  entityType: z.string(),
+  name: z.string(),
+  country: z.string().nullable(),
+  address: z.string().nullable(),
+  contact: z.string().nullable(),
+  email: z.string().nullable(),
+  website: z.string().nullable(),
+  representative: z.string().nullable(),
+  title: z.string().nullable(),
+});
+
+const RawDiplomaticsSchema = z.object({
+  _allDiplomaticEntitiesMeta: z.object({ count: z.number() }),
+  allDiplomaticEntities: z.array(RawDiplomaticSchema),
+});
+
+export type RawDiplomatic = z.infer<typeof RawDiplomaticSchema>;
+export type RawDiplomatics = z.infer<typeof RawDiplomaticsSchema>;
 
 /**
  * Chamber order IS consumed — it is the generated file's record order and
@@ -633,6 +734,107 @@ export async function fetchConstitutional(
   return parseConstitutionalResponse(
     await client<unknown>(CONSTITUTIONAL_QUERY)
   );
+}
+
+/**
+ * Diplomatic's own collection gate. It deliberately does NOT call the shared
+ * `assertCollection`: that helper requires every record to carry a unique,
+ * pattern-valid `slug`, and 157 of the 227 diplomatic records legitimately
+ * carry `slug: null`. Handing it a null slug would fail a healthy sync. The
+ * count, ceiling and blank-name rules are identical; slug uniqueness applies
+ * only to the records that actually have a slug.
+ */
+export function parseDiplomaticResponse(value: unknown): RawDiplomatics {
+  const raw = parseOrFail(RawDiplomaticsSchema, value, 'diplomatic entities');
+
+  const records = raw.allDiplomaticEntities;
+  const metaCount = raw._allDiplomaticEntitiesMeta.count;
+  const returned = records.length;
+
+  if (returned !== metaCount) {
+    fail(
+      `TalaCMS returned an incomplete diplomatic entities list (returned ${returned}, meta reported ${metaCount})`
+    );
+  }
+  if (metaCount === 0) fail('TalaCMS returned no diplomatic entities');
+  if (returned >= DIPLOMATIC_PAGE_SIZE) {
+    fail(
+      `diplomatic entities count reached the page-size ceiling of ${DIPLOMATIC_PAGE_SIZE}; raise the ceiling for this model and re-run`
+    );
+  }
+
+  const allowed = new Set<string>(DIPLOMATIC_ENTITY_TYPES);
+  const seenTypes = new Set<string>();
+  const slugs = new Set<string>();
+  const positions = new Map<number, string>();
+
+  for (const r of records) {
+    // Identity for error messages: consulates and organizations have no slug.
+    const id = r.slug ?? r.name;
+
+    if (!allowed.has(r.entityType)) {
+      fail(
+        `diplomatic entities record "${id}" has entityType "${r.entityType}" ` +
+          `is not one of: ${DIPLOMATIC_ENTITY_TYPES.join(', ')}. The generated ` +
+          'file has exactly three top-level keys and no page renders a fourth.'
+      );
+    }
+    seenTypes.add(r.entityType);
+
+    if (r.name.trim() === '') {
+      fail(`diplomatic entities record "${id}" has a blank display name`);
+    }
+
+    // Uniqueness needs the whole collection, so it cannot live in the schema.
+    // Contiguity is deliberately NOT checked — gaps are normal when a record
+    // is retired in the CMS.
+    const seenAt = positions.get(r.position);
+    if (seenAt !== undefined) {
+      fail(
+        `diplomatic entities records "${seenAt}" and "${id}" share duplicate ` +
+          `position ${r.position}. Record order is the generated file's order ` +
+          'and the render order of all three diplomatic pages, so a tie would ' +
+          'be resolved arbitrarily rather than by editorial intent.'
+      );
+    }
+    positions.set(r.position, id);
+
+    // Only the 70 missions carry a slug; null is the normal case for the
+    // other 157 and must never be treated as a collision.
+    if (r.slug !== null) {
+      if (slugs.has(r.slug)) {
+        fail(
+          `duplicate slug "${r.slug}" in diplomatic entities — slugs address ` +
+            'the aggregate directory and must be unique'
+        );
+      }
+      slugs.add(r.slug);
+      if (!SLUG_PATTERN.test(r.slug)) {
+        fail(
+          `diplomatic entities record has slug "${r.slug}", which is not a valid slug`
+        );
+      }
+    }
+  }
+
+  // A group emptying out would emit `[]` for a whole page while every count
+  // above still looked healthy.
+  for (const type of DIPLOMATIC_ENTITY_TYPES) {
+    if (!seenTypes.has(type)) {
+      fail(
+        `TalaCMS returned no records for entityType "${type}" — ` +
+          '/government/diplomatic renders a page per entity type and would show an empty list'
+      );
+    }
+  }
+
+  return raw;
+}
+
+export async function fetchDiplomatic(
+  client: TalaCmsClient
+): Promise<RawDiplomatics> {
+  return parseDiplomaticResponse(await client<unknown>(DIPLOMATIC_QUERY));
 }
 
 /**

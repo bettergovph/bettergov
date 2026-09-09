@@ -32,10 +32,16 @@ import {
   projectHouseMembers,
   projectPartyList,
 } from '../directory';
+import {
+  DIPLOMATIC_QUERY,
+  DIPLOMATIC_PAGE_SIZE,
+  parseDiplomaticResponse,
+} from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
 import constitutionalResponse from './fixtures/constitutional-response.json';
 import legislativeResponse from './fixtures/legislative-response.json';
+import diplomaticResponse from './fixtures/diplomatic-response.json';
 import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
 import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
 import expectedConstitutional from '../../../src/data/directory/__fixtures__/constitutional.expected.json';
@@ -44,6 +50,7 @@ import type {
   RawDepartment,
   RawExecutive,
   RawConstitutional,
+  RawDiplomatic,
 } from '../directory';
 
 const rawDepartments =
@@ -2197,5 +2204,265 @@ describe('legislative candidate emission', () => {
         ],
       })
     ).rejects.toThrow(/does not satisfy/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Diplomatic                                                         */
+/* ------------------------------------------------------------------ */
+
+/** One valid diplomatic record, overridable per test. */
+const dip = (over: Partial<RawDiplomatic> = {}): RawDiplomatic => ({
+  position: 0,
+  slug: 'holy-see',
+  entityType: 'Diplomatic Mission',
+  name: 'Apostolic Nunciature',
+  country: 'HOLY SEE',
+  address: '2140 Taft Avenue, Manila',
+  contact: '8521-0306',
+  email: null,
+  website: null,
+  representative: 'H.E. MOST REV. CHARLES JOHN BROWN',
+  title: 'Apostolic Nuncio',
+  ...over,
+});
+
+const dipResponse = (records: RawDiplomatic[]) => ({
+  _allDiplomaticEntitiesMeta: { count: records.length },
+  allDiplomaticEntities: records,
+});
+
+describe('query isolation — diplomatic', () => {
+  it('DIPLOMATIC_QUERY is one operation over only its own collection', () => {
+    expect(DIPLOMATIC_QUERY).toContain('allDiplomaticEntities');
+    expect(DIPLOMATIC_QUERY).toContain('_allDiplomaticEntitiesMeta');
+    for (const other of [
+      'allGovernmentDepartments',
+      'allExecutiveOffices',
+      'allConstitutionalOffices',
+      'allLegislativeChambers',
+    ]) {
+      expect(DIPLOMATIC_QUERY).not.toContain(other);
+    }
+  });
+
+  it('declares the meta field BEFORE the collection field', () => {
+    // The CDA returns count: 0 for any _all*Meta field that follows a
+    // collection field in the same operation. Do not reorder.
+    expect(DIPLOMATIC_QUERY.indexOf('_allDiplomaticEntitiesMeta')).toBeLessThan(
+      DIPLOMATIC_QUERY.indexOf('allDiplomaticEntities(')
+    );
+  });
+
+  it('orders by position_ASC and requests the whole collection in one page', () => {
+    expect(DIPLOMATIC_QUERY).toContain('orderBy: [position_ASC]');
+    expect(DIPLOMATIC_QUERY).toContain(`first: ${DIPLOMATIC_PAGE_SIZE}`);
+  });
+
+  it('stays below the CDA hard cap of 500', () => {
+    expect(DIPLOMATIC_PAGE_SIZE).toBeLessThanOrEqual(500);
+    expect(DIPLOMATIC_PAGE_SIZE).toBeGreaterThan(227);
+  });
+
+  it('never selects `details` — it is null on every live record', () => {
+    expect(DIPLOMATIC_QUERY).not.toContain('details');
+  });
+
+  it('the other queries never mention the diplomatic collection', () => {
+    for (const q of [
+      DEPARTMENTS_QUERY,
+      EXECUTIVE_QUERY,
+      CONSTITUTIONAL_QUERY,
+      LEGISLATIVE_QUERY,
+    ]) {
+      expect(q).not.toContain('DiplomaticEntities');
+    }
+  });
+});
+
+describe('parseDiplomaticResponse', () => {
+  it('accepts the live fixture', () => {
+    const parsed = parseDiplomaticResponse(diplomaticResponse);
+    expect(parsed.allDiplomaticEntities).toHaveLength(227);
+    expect(parsed._allDiplomaticEntitiesMeta.count).toBe(227);
+  });
+
+  it('accepts a record with a null slug — 157 live records have one', () => {
+    // Fillers of the other two entityTypes so the collection satisfies the
+    // separately-tested "every entityType present" gate; this test is only
+    // about the null-slug record.
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ slug: null, entityType: 'Consulate' }),
+          dip({ position: 1, slug: 'filler-mission' }),
+          dip({
+            position: 2,
+            slug: 'filler-org',
+            entityType: 'International Organization',
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('accepts a null title — 4 live records have one', () => {
+    // Fillers of the other two entityTypes, same reasoning as above.
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ title: null }),
+          dip({
+            position: 1,
+            slug: 'filler-consulate',
+            entityType: 'Consulate',
+          }),
+          dip({
+            position: 2,
+            slug: 'filler-org',
+            entityType: 'International Organization',
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed on a count/length mismatch', () => {
+    expect(() =>
+      parseDiplomaticResponse({
+        _allDiplomaticEntitiesMeta: { count: 227 },
+        allDiplomaticEntities: [dip()],
+      })
+    ).toThrow(/incomplete diplomatic entities list/i);
+  });
+
+  it('fails closed on an empty collection', () => {
+    expect(() => parseDiplomaticResponse(dipResponse([]))).toThrow(
+      /no diplomatic entities/i
+    );
+  });
+
+  it('fails closed at the page-size ceiling', () => {
+    const many = Array.from({ length: DIPLOMATIC_PAGE_SIZE }, (_, i) =>
+      dip({ position: i, slug: `m-${i}` })
+    );
+    expect(() => parseDiplomaticResponse(dipResponse(many))).toThrow(
+      /page-size ceiling/i
+    );
+  });
+
+  it('fails closed on an unknown entityType', () => {
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ entityType: 'Embassy' })]))
+    ).toThrow(/entityType "Embassy" is not one of/i);
+  });
+
+  it('fails closed on a blank entityType', () => {
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ entityType: '   ' })]))
+    ).toThrow(/entityType/i);
+  });
+
+  it('fails closed on a blank name', () => {
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ name: '  ' })]))
+    ).toThrow(/blank display name/i);
+  });
+
+  it('fails closed on a null position', () => {
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([dip({ position: null as unknown as number })])
+      )
+    ).toThrow(/unexpected diplomatic entities shape/i);
+  });
+
+  it('fails closed on a non-integer position', () => {
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ position: 1.5 })]))
+    ).toThrow(/unexpected diplomatic entities shape/i);
+  });
+
+  it('fails closed on duplicate positions', () => {
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ position: 3, slug: 'a' }),
+          dip({ position: 3, slug: 'b' }),
+        ])
+      )
+    ).toThrow(/duplicate position 3/i);
+  });
+
+  it('tolerates gaps in position — retiring a record is normal', () => {
+    // Fillers of the other two entityTypes, same reasoning as above.
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ position: 0, slug: 'a' }),
+          dip({ position: 900, slug: 'b' }),
+          dip({
+            position: 1,
+            slug: 'filler-consulate',
+            entityType: 'Consulate',
+          }),
+          dip({
+            position: 2,
+            slug: 'filler-org',
+            entityType: 'International Organization',
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed on a duplicate non-null slug', () => {
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ position: 0, slug: 'japan' }),
+          dip({ position: 1, slug: 'japan' }),
+        ])
+      )
+    ).toThrow(/duplicate slug "japan"/i);
+  });
+
+  it('does NOT treat two null slugs as a duplicate', () => {
+    // 157 live records carry slug: null. Uniqueness applies only to the
+    // records that actually have one. Fillers of the other two entityTypes,
+    // same reasoning as above.
+    expect(() =>
+      parseDiplomaticResponse(
+        dipResponse([
+          dip({ position: 0, slug: null, entityType: 'Consulate' }),
+          dip({ position: 1, slug: null, entityType: 'Consulate' }),
+          dip({ position: 2, slug: 'filler-mission' }),
+          dip({
+            position: 3,
+            slug: 'filler-org',
+            entityType: 'International Organization',
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed on a malformed slug', () => {
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ slug: 'Holy See' })]))
+    ).toThrow(/not a valid slug/i);
+  });
+
+  it('fails closed when an entityType disappears entirely', () => {
+    // A group that empties out would silently emit `[]` for a whole page.
+    expect(() =>
+      parseDiplomaticResponse(dipResponse([dip({ entityType: 'Consulate' })]))
+    ).toThrow(/no records for entityType "Diplomatic Mission"/i);
+  });
+
+  it('fails closed on an unexpected envelope shape', () => {
+    expect(() => parseDiplomaticResponse({ nope: 1 })).toThrow(
+      /unexpected diplomatic entities shape/i
+    );
   });
 });
