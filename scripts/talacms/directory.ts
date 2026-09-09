@@ -6,8 +6,12 @@ import type { Candidate } from './categories';
  * Explicit ceiling on how many records we ask TalaCMS for in one request.
  * Today's real counts are 23 and 38. Reaching the ceiling fails rather than
  * silently serving an undercount — raise this constant if that ever fires.
- * The CDA caps `first` at 500; that cap is deliberately not approached here
- * and pagination is out of scope for this branch.
+ * On top-level collection fields the CDA hard-CAPS `first` at 500 —
+ * `first: 501`, `1000` and `1500` all return exactly 500 (verified
+ * 2026-09-09 against `allLguMunicipalities`, 1435 records) — and that cap is
+ * enforced, not merely documented. This page size is deliberately far below
+ * it; a collection that needs to exceed 500 uses `fetchAllRecords` in
+ * `./paginate`.
  */
 export const DIRECTORY_PAGE_SIZE = 100;
 
@@ -31,10 +35,12 @@ export const LEGISLATIVE_PAGE_SIZE = 50;
 
 /**
  * Ceilings for the two NESTED relations. These are NOT `first:` arguments —
- * the reverse relations take none, and the CDA does not enforce `first`
- * anyway (`first: 600` returned all 255 records with no error, verified
- * 2026-09-09). They are asserted against the top-level `_all*Meta` counts, so
- * a relation that silently truncates fails on the reconciliation gate and an
+ * the reverse relations take no `first` argument at all, so nothing is being
+ * enforced or bypassed here (`first: 600` on one of them returned all 255
+ * records with no error, verified 2026-09-09, simply because there was no
+ * `first` for it to apply to). Completeness is guaranteed instead by
+ * reconciling against the top-level `_all*Meta` counts below, full stop: a
+ * relation that silently truncates fails on that reconciliation gate and an
  * unexpectedly large dataset fails here with a clearer message.
  *
  * Today: 254 house members (255 in TalaCMS until the duplicate Speaker record
