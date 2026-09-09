@@ -53,13 +53,6 @@
       "items": {
         "$ref": "#/definitions/hotline"
       }
-    },
-    "criticalHotlines": {
-      "type": "array",
-      "description": "Critical hotlines for most urgent situations",
-      "items": {
-        "$ref": "#/definitions/hotline"
-      }
     }
   },
   "additionalProperties": false,

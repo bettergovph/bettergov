@@ -12,36 +12,15 @@ import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { cn } from '../../lib/utils';
 import { smoothScrollToElement } from '@/lib/scrollUtils';
 
-import serviceCategories from '../../data/service_categories.json';
-import businessTradeServices from '../../data/services/business-trade.json';
-import certificatesIdsServices from '../../data/services/certificates-ids.json';
-import contributionsServices from '../../data/services/contributions.json';
-import disasterWeatherServices from '../../data/services/disaster-weather.json';
-import educationServices from '../../data/services/education.json';
-import employmentServices from '../../data/services/employment.json';
-import healthServices from '../../data/services/health.json';
-import housingServices from '../../data/services/housing.json';
-import passportTravelServices from '../../data/services/passport-travel.json';
-import socialServices from '../../data/services/social-services.json';
-import taxServices from '../../data/services/tax.json';
-import transportDrivingServices from '../../data/services/transport-driving.json';
-import uncategorizedServices from '../../data/services/uncategorized.json';
+import { serviceCategories, services } from '../../data/cms';
 
-const allServices = [
-  ...businessTradeServices,
-  ...certificatesIdsServices,
-  ...contributionsServices,
-  ...disasterWeatherServices,
-  ...educationServices,
-  ...employmentServices,
-  ...healthServices,
-  ...housingServices,
-  ...passportTravelServices,
-  ...socialServices,
-  ...taxServices,
-  ...transportDrivingServices,
-  ...uncategorizedServices,
-];
+/**
+ * `services` (from src/data/cms.ts) is keyed by category slug, in the same
+ * codepoint order the accessor's own glob produces — a CMS-controlled file
+ * set can't be enumerated by hand, and the sync's own §6.5 gate guarantees
+ * that order equals global `position` order.
+ */
+const allServices = Object.values(services).flat();
 
 interface Subcategory {
   name: string;

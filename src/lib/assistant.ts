@@ -32,33 +32,19 @@ export class CivicEngine {
   }
 
   async initialize() {
-    try {
-      // In a real app, we'd fetch these or import them.
-      // For this prototype, we'll focus on the core categories.
-      const categories = [
-        'passport-travel',
-        'certificates-ids',
-        'health',
-        'social-services',
-        'business-trade',
-      ];
+    // We focus on a curated set of core categories, not the full taxonomy.
+    const categories = [
+      'passport-travel',
+      'certificates-ids',
+      'health',
+      'social-services',
+      'business-trade',
+    ];
 
-      const datasets = await Promise.all(
-        categories.map(async cat => {
-          try {
-            const module = await import(`../data/services/${cat}.json`);
-            return module.default as ServiceItem[];
-          } catch (e) {
-            console.error(`Failed to load category: ${cat}`, e);
-            return [];
-          }
-        })
-      );
-
-      this.data = datasets.flat();
-    } catch (error) {
-      console.error('CivicEngine initialization failed:', error);
-    }
+    // Deferred so importing this module never touches the generated CMS
+    // data — only calling initialize() does.
+    const { services } = await import('../data/cms');
+    this.data = categories.flatMap(cat => services[cat] ?? []);
   }
 
   query(input: string): ServiceItem[] {

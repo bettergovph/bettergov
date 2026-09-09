@@ -44,7 +44,7 @@ const config = {
   'src/data/directory/party_list_representatives.json': buildValidateCommand(
     'src/data/directory/schema/party_list_representatives.schema.json'
   ),
-  'src/data/services/*.json': buildValidateCommand(
+  'src/data/services/schema/services.schema.fixture.json': buildValidateCommand(
     'src/data/services/schema/services.schema.json'
   ),
   'src/data/philippines-regions.json': buildValidateCommand(
@@ -61,9 +61,6 @@ const config = {
   ),
   'src/data/seo-metadata.json': buildValidateCommand(
     'src/data/schema/seo-metadata.schema.json'
-  ),
-  'src/data/service_categories.json': buildValidateCommand(
-    'src/data/schema/service_categories.schema.json'
   ),
   'src/data/websites.json': buildValidateCommand(
     'src/data/schema/websites.schema.json'
