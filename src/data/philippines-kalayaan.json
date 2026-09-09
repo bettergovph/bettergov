@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kalayaan Island Group",
+        "source": "Presidential Decree No. 1596 (1978)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116, 7.666666666666667],
+            [112.16666666666667, 7.666666666666667],
+            [112.16666666666667, 9],
+            [114.5, 12],
+            [118, 12],
+            [118, 10],
+            [116, 7.666666666666667]
+          ]
+        ]
+      }
+    }
+  ]
+}
