@@ -1,4 +1,5 @@
 import type { Service } from '../types';
+import type { RegionLGU } from '../lib/lgu';
 
 export interface Subcategory {
   name: string;
@@ -149,3 +150,24 @@ const legislativeModules = import.meta.glob<{ default: LegislativeChamber[] }>(
 
 export const legislativeChambers: LegislativeChamber[] =
   required(legislativeModules);
+
+/**
+ * LGU data is one file per region (19 files) rather than a single file, so
+ * it follows the `services` glob-array pattern, not `required()`. The
+ * `Object.keys(...).length === 0` guard matters here for the same reason it
+ * matters for services: `import.meta.glob` resolves to `{}` when nothing
+ * matches, instead of failing the build the way a static `import` of an
+ * absent file would. Without this guard, a never-synced checkout would
+ * silently produce an empty `lguRegions` array — every LGU page would
+ * quietly render zero regions instead of the build failing loudly.
+ */
+const lguModules = import.meta.glob<{ default: RegionLGU }>(
+  './directory/lgu/*.json',
+  { eager: true }
+);
+
+if (Object.keys(lguModules).length === 0) throw new Error(MISSING);
+
+export const lguRegions: RegionLGU[] = Object.values(lguModules).map(
+  m => m.default
+);
