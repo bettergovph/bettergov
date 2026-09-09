@@ -379,9 +379,13 @@ We use Pull Requests (PRs) to review and merge changes. Follow these steps when 
 **Open a Pull Request to the main repository:**
 
 - Target the main branch (or the branch specified by maintainers).
-- Provide a clear title and detailed description of your changes.
-- Reference any related issues (e.g., Closes #12).
-- **AI-Assisted Work Disclosure:** If you used AI tools to help generate or significantly modify code in your PR, please disclose this in the PR description. This helps maintainers conduct a more thorough review.
+- Provide a clear title for your changes.
+- **Follow the Pull Request Template:** Your PR description must follow the structure provided in the `.github/pull_request_template.md` template. Please ensure you fill out all required sections:
+  - **PR Type:** Select the appropriate category (Bug, Change, Feature, Miscellaneous).
+  - **Description:** Provide a detailed summary of what you changed and why under the "What you changed and why?" heading.
+  - **Issue Reference:** Specify any related issues under "Please specify which issue this PR Resolves" (e.g., `Closes #12`).
+  - **Checklist:** Complete the pre-submission checklist, including self-review and draft status.
+  - **AI-Assisted Work Disclosure:** If you used AI tools to help generate or significantly modify code, you must check the AI assistance box in the checklist **AND** disclose the specific tool used under the "AI Disclosure" heading at the bottom of the template.
 
 **Wait for review:**
 
