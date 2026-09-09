@@ -14,6 +14,7 @@ import {
   readJsonOrFail,
   removeStaleFiles,
   removeStaleServiceFiles,
+  CommitFilesError,
 } from '../write';
 
 const REPO_ROOT = process.cwd();
@@ -223,15 +224,18 @@ describe('commitFiles', () => {
       fs.renameSync(from, to);
     };
 
-    await expect(
-      commitFiles(
+    let caught: unknown;
+    try {
+      await commitFiles(
         [
           { path: first, text: 'FIRST WRITTEN\n', changed: true },
           { path: second, text: 'SECOND NOT WRITTEN\n', changed: true },
         ],
         { rename: flakyRename }
-      )
-    ).rejects.toThrow(/simulated rename failure/);
+      );
+    } catch (error) {
+      caught = error;
+    }
 
     // A later rename's failure rolls back every file this batch already
     // renamed — the first file must be restored to its pre-batch content,
@@ -242,6 +246,72 @@ describe('commitFiles', () => {
     for (const dir of [path.dirname(first), path.dirname(second)]) {
       expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
     }
+
+    // run() must only ever report a clean rollback when commitFiles has
+    // actually confirmed one — assert the structured signal it confirms on.
+    expect(caught).toBeInstanceOf(CommitFilesError);
+    const err = caught as CommitFilesError;
+    expect(err.rollbackComplete).toBe(true);
+    expect(err.incompleteRollbackPaths).toEqual([]);
+    expect(err.message).toMatch(/simulated rename failure/);
+    expect(err.message).toMatch(/fully rolled back/);
+  });
+
+  it('surfaces an INCOMPLETE rollback, rather than swallowing it, when a restoration itself fails', async () => {
+    // Two pre-existing files: the first's forward rename succeeds (so it
+    // becomes eligible for rollback), the second's forward rename fails
+    // (triggering rollback of the first) — and then the first's OWN
+    // restoration rename also fails. This must never be silently absorbed:
+    // commitFiles must surface it as an explicitly incomplete rollback,
+    // naming the affected path, rather than reporting a clean one it never
+    // achieved.
+    const first = makeTempFile('service_categories.json', 'OLD FIRST\n');
+    const second = makeTempCopy(HOTLINES);
+    const secondBefore = fs.readFileSync(second, 'utf8');
+
+    let calls = 0;
+    const flakyRename = (from: string, to: string) => {
+      calls += 1;
+      if (calls === 1) {
+        fs.renameSync(from, to); // forward rename of `first` succeeds
+        return;
+      }
+      if (calls === 2) throw new Error('simulated forward rename failure');
+      // call 3: the restoration rename for `first`, during rollback
+      throw new Error('simulated restoration rename failure');
+    };
+
+    let caught: unknown;
+    try {
+      await commitFiles(
+        [
+          { path: first, text: 'FIRST WRITTEN\n', changed: true },
+          { path: second, text: 'SECOND NOT WRITTEN\n', changed: true },
+        ],
+        { rename: flakyRename }
+      );
+    } catch (error) {
+      caught = error;
+    }
+
+    expect(caught).toBeInstanceOf(CommitFilesError);
+    const err = caught as CommitFilesError;
+    expect(err.rollbackComplete).toBe(false);
+    expect(err.incompleteRollbackPaths).toEqual([first]);
+    expect(err.message).toMatch(/incomplete/i);
+    expect(err.message).toContain(first);
+
+    // The restoration genuinely failed: `first` is left holding the NEW
+    // content from this failed batch, not restored to its pre-batch state —
+    // exactly the state the thrown error must tell the caller about.
+    expect(fs.readFileSync(first, 'utf8')).toBe('FIRST WRITTEN\n');
+    expect(fs.readFileSync(second, 'utf8')).toBe(secondBefore);
+
+    // The restore-temp file for the failed restoration must still be
+    // cleaned up, not left behind as litter.
+    expect(
+      fs.readdirSync(path.dirname(first)).filter(f => f.endsWith('.tmp'))
+    ).toEqual([]);
   });
 
   it('deletes a brand-new file on rollback, rather than leaving it behind', async () => {

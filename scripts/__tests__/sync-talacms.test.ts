@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { DATASETS, assertUniquePaths, run } from '../sync-talacms';
+import { CommitFilesError } from '../talacms/write';
 import type { TalaCmsClient } from '../talacms/client';
 
 const categoriesPayload = {
@@ -378,6 +379,59 @@ describe('run', () => {
     const { deps } = makeDeps();
     await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
     expect(deps.commitFiles).not.toHaveBeenCalled();
+  });
+
+  it('reports a clean rollback only when commitFiles confirms one', async () => {
+    const { deps } = makeDeps({
+      commitFiles: vi.fn(async () => {
+        throw new CommitFilesError(
+          'write phase failed and was fully rolled back: simulated failure',
+          true
+        );
+      }),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('write phase failed');
+    expect(logged).toContain('No file was left mixed old/new');
+    expect(logged).not.toContain('ROLLBACK WAS INCOMPLETE');
+    expect(logged).not.toContain('could not be confirmed');
+  });
+
+  it('never claims a clean rollback when commitFiles reports it was incomplete', async () => {
+    const { deps } = makeDeps({
+      commitFiles: vi.fn(async () => {
+        throw new CommitFilesError(
+          'write phase failed (simulated) AND rollback was INCOMPLETE for ' +
+            '1 file(s): /abs/path/to/negros-island-region.json',
+          false,
+          ['/abs/path/to/negros-island-region.json']
+        );
+      }),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('ROLLBACK WAS INCOMPLETE');
+    expect(logged).not.toContain('No file was left mixed old/new');
+  });
+
+  it('never claims a rollback outcome it cannot confirm, for a non-CommitFilesError failure', async () => {
+    const { deps } = makeDeps({
+      commitFiles: vi.fn(async () => {
+        throw new Error('some other unexpected failure');
+      }),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('Rollback status could not be confirmed');
+    expect(logged).not.toContain('No file was left mixed old/new');
+    expect(logged).not.toContain('ROLLBACK WAS INCOMPLETE');
   });
 
   it('exits 0 under --dry-run when nothing changed', async () => {

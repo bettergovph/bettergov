@@ -181,15 +181,20 @@ Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
 
 The script fails without writing anything if TalaCMS is unreachable, returns
 an incomplete result, or would produce a file that violates its JSON Schema.
-The write phase is transactional across the whole batch: if a later rename
-fails partway through, every file the batch already replaced is rolled back
-to its pre-sync content (or deleted, if it didn't exist before), so a failed
-sync never leaves a mixed old/new snapshot on disk — for any dataset,
-including LGU's 19 files, whose generated output is gitignored, so `git
-status` cannot reveal a partial write there the way it can for tracked
-files. Recover from a failed sync by simply re-running it once the
-underlying cause (a network blip, disk pressure, TalaCMS unavailability) is
-resolved.
+If a later rename fails partway through a write batch, every file the batch
+already replaced is rolled back to its pre-sync content (or deleted, if it
+didn't exist before) — for any dataset, including LGU's 19 files, whose
+generated output is gitignored, so `git status` cannot reveal a partial
+write there the way it can for tracked files. This rollback runs in-process
+and covers a rename failing while the sync is still running to react to it
+(disk pressure, permissions, a concurrent process); it does not cover the
+Node process itself being killed or crashing mid-batch, which leaves
+whatever the OS's own per-file atomic rename already guaranteed and nothing
+more. If a restoration itself fails, the sync does not claim a clean
+rollback it didn't achieve: it fails with the specific path(s) that may
+still hold new, unreviewed content, for manual inspection before
+re-running. Absent that explicit warning, recover from a failed sync by
+simply re-running it once the underlying cause is resolved.
 
 `--only=lgu` additionally removes any locally-present LGU region file that
 no longer corresponds to a region in TalaCMS (e.g. a retired region), after

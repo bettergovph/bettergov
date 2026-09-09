@@ -28,6 +28,7 @@ import {
   readTaxonomy,
   removeStaleServiceFiles,
   removeStaleFiles,
+  CommitFilesError,
   type Candidate,
   type PreparedFile,
 } from './talacms/write';
@@ -483,10 +484,25 @@ export async function run(
     await deps.commitFiles(prepared);
   } catch (error) {
     deps.log(`✖ write phase failed: ${(error as Error).message}`);
-    deps.log(
-      '  The write batch was rolled back — no file was left mixed old/new. ' +
-        'Run `git status` to confirm, then re-run the sync.'
-    );
+    // Only claim a clean rollback when commitFiles has actually confirmed
+    // one — never assert it from a generic catch.
+    if (error instanceof CommitFilesError && error.rollbackComplete) {
+      deps.log('  No file was left mixed old/new; re-run the sync when ready.');
+    } else if (error instanceof CommitFilesError) {
+      deps.log(
+        '  ROLLBACK WAS INCOMPLETE — the path(s) named above may hold new, ' +
+          'unreviewed content from this failed batch and must be inspected ' +
+          'and resolved manually before re-running the sync.'
+      );
+    } else {
+      // commitFiles is expected to always throw CommitFilesError on a write
+      // failure; anything else (e.g. a test double, or a bug) means
+      // rollback status was never confirmed.
+      deps.log(
+        '  Rollback status could not be confirmed — inspect the generated ' +
+          'files directly before re-running.'
+      );
+    }
     return 1;
   }
 
