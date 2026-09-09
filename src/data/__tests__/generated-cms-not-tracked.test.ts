@@ -27,6 +27,49 @@ describe('generated CMS output is never committed', () => {
     expect(trackedFiles).not.toContain('src/data/directory/legislative.json');
   });
 
+  it('does not track any top-level src/data/directory/lgu/*.json region file', () => {
+    const trackedTopLevelLguFiles = trackedFiles.filter(f =>
+      /^src\/data\/directory\/lgu\/[^/]+\.json$/.test(f)
+    );
+    expect(trackedTopLevelLguFiles).toEqual([]);
+  });
+
+  it('still tracks the LGU schema and all 19 pre-migration fixtures', () => {
+    expect(trackedFiles).toContain(
+      'src/data/directory/lgu/schema/lgu-region.schema.json'
+    );
+    const trackedLguFixtureFiles = trackedFiles.filter(f =>
+      f.startsWith('src/data/directory/lgu/__fixtures__/')
+    );
+    expect(trackedLguFixtureFiles.sort()).toEqual(
+      [
+        'bangsamoro-autonomous-region-in-muslim-mindanao',
+        'cordillera-administrative-region',
+        'mimaropa-region',
+        'national-capital-region',
+        'negros-island-region',
+        'region-i-ilocos-region',
+        'region-ii-cagayan-valley',
+        'region-iii-central-luzon',
+        'region-iva-calabarzon',
+        'region-ix-zamboanga-peninsula',
+        'region-v-bicol-region',
+        'region-vi-western-visayas',
+        'region-vii-central-visayas',
+        'region-viii-eastern-visayas',
+        'region-x-northern-mindanao',
+        'region-xi-davao-region',
+        'region-xii-soccsksargen',
+        'region-xiiicaraga',
+        'special-geographic-area',
+      ]
+        .map(
+          slug => `src/data/directory/lgu/__fixtures__/${slug}.expected.json`
+        )
+        .sort()
+    );
+  });
+
   it('still tracks the constitutional schema and its pre-migration fixture', () => {
     expect(trackedFiles).toContain(
       'src/data/directory/schema/constitutional.schema.json'
