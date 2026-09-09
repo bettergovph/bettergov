@@ -278,17 +278,49 @@ export async function prepare(candidate: Candidate): Promise<PreparedFile> {
  * Writes each changed file via a uniquely-named temp file in the same
  * directory, then renames it into place.
  *
- * `rename` is atomic per file. It is NOT a transaction across files: if a
- * later rename fails or the process dies mid-phase, the result is a mixed
- * snapshot — one file new, one old. That is visible and recoverable in
- * `git status` / `git checkout`, and is asserted by a test rather than
- * papered over. Every validation failure happens before this function runs.
+ * `rename` is atomic per file, but a batch can contain many files — LGU
+ * alone can commit up to 19 in one call. If a later rename in the batch
+ * fails (or the process dies mid-phase), every rename this batch already
+ * completed is rolled back to its PRE-BATCH content (or deleted, if the
+ * target did not exist before this batch), so the result is never a mixed
+ * old/new snapshot: either every changed file in the batch lands, or none
+ * of them do. Rollback is best-effort per file; if a restore itself fails,
+ * that is a second, independent failure on top of the original error (which
+ * is still what the caller sees and fails the sync on), and `git status` /
+ * `git checkout` remains the fallback recovery path. Every validation
+ * failure happens before this function runs.
  *
  * `io` exists only so tests can inject failing write/rename operations.
  */
 export interface WriteIo {
   write?: (target: string, text: string) => void;
   rename?: (from: string, to: string) => void;
+}
+
+interface CommittedRename {
+  target: string;
+  /** The target's content before this batch renamed a new file over it, or
+   * `null` if the target did not exist before this batch. */
+  previous: string | null;
+}
+
+/**
+ * Reverses every rename `commitFiles` already completed in this batch, in
+ * reverse order. Best-effort per file — see `commitFiles`'s doc comment.
+ */
+function rollbackCommitted(committed: CommittedRename[]): void {
+  for (let i = committed.length - 1; i >= 0; i -= 1) {
+    const { target, previous } = committed[i];
+    try {
+      if (previous === null) {
+        fs.rmSync(target, { force: true });
+      } else {
+        fs.writeFileSync(target, previous, 'utf8');
+      }
+    } catch {
+      // Best-effort; see commitFiles's doc comment.
+    }
+  }
 }
 
 export async function commitFiles(
@@ -300,6 +332,7 @@ export async function commitFiles(
   const rename = io.rename ?? fs.renameSync;
   const changed = files.filter(f => f.changed);
   const temps: string[] = [];
+  const committed: CommittedRename[] = [];
 
   try {
     for (const file of changed) {
@@ -318,7 +351,19 @@ export async function commitFiles(
     }
 
     for (let i = 0; i < changed.length; i += 1) {
-      rename(temps[i], abs(changed[i].path));
+      const target = abs(changed[i].path);
+      // Captured immediately before this rename, so a later failure in the
+      // SAME batch can restore exactly what was here before the batch began.
+      const previous = fs.existsSync(target)
+        ? fs.readFileSync(target, 'utf8')
+        : null;
+      try {
+        rename(temps[i], target);
+      } catch (error) {
+        rollbackCommitted(committed);
+        throw error;
+      }
+      committed.push({ target, previous });
       temps[i] = '';
     }
   } finally {

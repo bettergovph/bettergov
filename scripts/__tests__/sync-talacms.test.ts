@@ -1404,11 +1404,37 @@ describe('lgu dataset', () => {
     }
   });
 
-  it('--only=lgu never reads or removes stale LGU files — only a full sync does', async () => {
+  it('--only=lgu also runs LGU stale-file cleanup, since it sees the complete LGU candidate set', async () => {
+    const { deps } = makeDeps({
+      readLguFileNames: vi.fn(() => [
+        ...lguRegions.map(r => `${r.slug}.json`),
+        'retired-region.json',
+      ]),
+    });
+    await expect(run(['--only=lgu'], deps as never)).resolves.toBe(0);
+    expect(deps.readLguFileNames).toHaveBeenCalledTimes(1);
+    expect(deps.removeStaleLguFiles).toHaveBeenCalledTimes(1);
+    const [before, generated] = (
+      deps.removeStaleLguFiles as ReturnType<typeof vi.fn>
+    ).mock.calls[0];
+    expect(before).toEqual([
+      ...lguRegions.map(r => `${r.slug}.json`),
+      'retired-region.json',
+    ]);
+    expect(generated).toEqual(
+      lguCandidatePaths.map(p => p.slice('src/data/directory/lgu/'.length))
+    );
+  });
+
+  it('--only=lgu with nothing stale still runs cleanup, but reports nothing removed', async () => {
     const { deps } = makeDeps();
     await expect(run(['--only=lgu'], deps as never)).resolves.toBe(0);
-    expect(deps.readLguFileNames).not.toHaveBeenCalled();
-    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+    expect(deps.readLguFileNames).toHaveBeenCalledTimes(1);
+    expect(deps.removeStaleLguFiles).toHaveBeenCalledTimes(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).not.toContain('stale LGU file');
   });
 
   it('a full sync produces the existing candidates plus the 19 LGU files', async () => {
@@ -1462,10 +1488,73 @@ describe('lgu dataset', () => {
     expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
   });
 
-  it('never runs LGU stale-file cleanup under --dry-run', async () => {
+  it('never removes anything under --dry-run, even with LGU drift', async () => {
     const { deps } = makeDeps();
     await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
     expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+  });
+
+  it('--dry-run reports a stale LGU file as drift and exits 3, without removing it', async () => {
+    const { deps } = makeDeps({
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+      readLguFileNames: vi.fn(() => [
+        ...lguRegions.map(r => `${r.slug}.json`),
+        'retired-region.json',
+      ]),
+    });
+    await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
+    expect(deps.readLguFileNames).toHaveBeenCalledTimes(1);
+    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain(
+      'src/data/directory/lgu/retired-region.json (would be removed)'
+    );
+    expect(logged).toContain('--dry-run: 1 file(s) would change.');
+  });
+
+  it('--only=lgu --dry-run reports a stale LGU file as drift and exits 3', async () => {
+    const { deps } = makeDeps({
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+      readLguFileNames: vi.fn(() => [
+        ...lguRegions.map(r => `${r.slug}.json`),
+        'retired-region.json',
+      ]),
+    });
+    await expect(run(['--only=lgu', '--dry-run'], deps as never)).resolves.toBe(
+      3
+    );
+    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain(
+      'src/data/directory/lgu/retired-region.json (would be removed)'
+    );
+  });
+
+  it('--only=departments --dry-run never reads LGU files or reports LGU drift', async () => {
+    const { deps } = makeDeps({
+      prepare: vi.fn(async (c: { path: string }) => ({
+        path: c.path,
+        text: 'text',
+        changed: false,
+      })),
+    });
+    await expect(
+      run(['--only=departments', '--dry-run'], deps as never)
+    ).resolves.toBe(0);
+    expect(deps.readLguFileNames).not.toHaveBeenCalled();
   });
 
   it('never applies the cross-model slug gate to LGU candidates', async () => {

@@ -211,7 +211,7 @@ describe('commitFiles', () => {
     expect(leftovers).toEqual([]);
   });
 
-  it('leaves the documented mixed snapshot when a later rename fails, and cleans up temps', async () => {
+  it('rolls back an already-renamed file when a later rename fails, and cleans up temps', async () => {
     const first = makeTempFile('service_categories.json', 'OLD FIRST\n');
     const second = makeTempCopy(HOTLINES);
     const secondBefore = fs.readFileSync(second, 'utf8');
@@ -233,14 +233,87 @@ describe('commitFiles', () => {
       )
     ).rejects.toThrow(/simulated rename failure/);
 
-    // This asserts the documented limitation, not an atomicity guarantee:
-    // the first file is new, the second is old.
-    expect(fs.readFileSync(first, 'utf8')).toBe('FIRST WRITTEN\n');
+    // A later rename's failure rolls back every file this batch already
+    // renamed — the first file must be restored to its pre-batch content,
+    // not left holding the new one. No mixed old/new snapshot survives.
+    expect(fs.readFileSync(first, 'utf8')).toBe('OLD FIRST\n');
     expect(fs.readFileSync(second, 'utf8')).toBe(secondBefore);
 
     for (const dir of [path.dirname(first), path.dirname(second)]) {
       expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
     }
+  });
+
+  it('deletes a brand-new file on rollback, rather than leaving it behind', async () => {
+    // The target for `brandNew` never existed before this batch — rollback
+    // must delete it, not try to "restore" content that was never there.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
+    tempDirs.push(dir);
+    const brandNew = path.join(dir, 'new-region.json');
+    const existing = makeTempFile('service_categories.json', 'OLD\n');
+
+    let calls = 0;
+    const flakyRename = (from: string, to: string) => {
+      calls += 1;
+      if (calls === 2) throw new Error('simulated rename failure');
+      fs.renameSync(from, to);
+    };
+
+    await expect(
+      commitFiles(
+        [
+          { path: brandNew, text: 'NEW REGION\n', changed: true },
+          { path: existing, text: 'NOT WRITTEN\n', changed: true },
+        ],
+        { rename: flakyRename }
+      )
+    ).rejects.toThrow(/simulated rename failure/);
+
+    expect(fs.existsSync(brandNew)).toBe(false);
+    expect(fs.readFileSync(existing, 'utf8')).toBe('OLD\n');
+  });
+
+  it('rolls back every already-renamed file in a large (LGU-shaped) multi-file batch', async () => {
+    // Mirrors the shape of a real LGU sync: many files in one commitFiles
+    // call, a mix of pre-existing and brand-new targets, and a failure partway
+    // through — every file the batch already touched must come back exactly
+    // as it was, and every never-reached file must be untouched.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
+    tempDirs.push(dir);
+
+    const existingPaths = Array.from({ length: 3 }, (_, i) => {
+      const p = path.join(dir, `region-${i}.json`);
+      fs.writeFileSync(p, `OLD ${i}\n`, 'utf8');
+      return p;
+    });
+    const brandNewPaths = Array.from({ length: 2 }, (_, i) =>
+      path.join(dir, `new-region-${i}.json`)
+    );
+    const files = [
+      { path: existingPaths[0], text: 'NEW 0\n', changed: true },
+      { path: brandNewPaths[0], text: 'NEW-NEW 0\n', changed: true },
+      { path: existingPaths[1], text: 'NEW 1\n', changed: true },
+      { path: brandNewPaths[1], text: 'NEW-NEW 1\n', changed: true },
+      { path: existingPaths[2], text: 'NEW 2\n', changed: true }, // this rename is the one that fails
+    ];
+
+    let calls = 0;
+    const flakyRename = (from: string, to: string) => {
+      calls += 1;
+      if (calls === 5) throw new Error('simulated rename failure on file 5');
+      fs.renameSync(from, to);
+    };
+
+    await expect(commitFiles(files, { rename: flakyRename })).rejects.toThrow(
+      /simulated rename failure on file 5/
+    );
+
+    expect(fs.readFileSync(existingPaths[0], 'utf8')).toBe('OLD 0\n');
+    expect(fs.readFileSync(existingPaths[1], 'utf8')).toBe('OLD 1\n');
+    expect(fs.readFileSync(existingPaths[2], 'utf8')).toBe('OLD 2\n');
+    expect(fs.existsSync(brandNewPaths[0])).toBe(false);
+    expect(fs.existsSync(brandNewPaths[1])).toBe(false);
+    expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
   });
 
   it('cleans up a partially written temp file and leaves destinations untouched', async () => {
