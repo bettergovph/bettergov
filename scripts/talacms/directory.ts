@@ -395,6 +395,19 @@ const RawPartyListRepresentativeSchema = z.object({
 });
 
 /**
+ * senate-committees.tsx sorts and filters this array by calling
+ * `.localeCompare()` directly on `committee` and interpolating `chairperson`
+ * into its search string — both unconditionally, with no null/undefined
+ * guard. `.trim().min(1)` on both fields, the same rule the member schemas
+ * use, so a malformed CMS record fails the sync instead of crashing that page
+ * at render time.
+ */
+const RawCommitteeSchema = z.object({
+  committee: z.string().trim().min(1),
+  chairperson: z.string().trim().min(1),
+});
+
+/**
  * The two chambers populate DISJOINT field sets — the Senate carries
  * `officials` and `permanentCommittees` and no house_* fields; the House
  * carries the reverse. Every blob is therefore nullable, and no unconditional
@@ -414,7 +427,7 @@ const RawLegislativeSchema = z.object({
   trunkline: z.string().nullable(),
   website: z.string().nullable(),
   officials: z.unknown(),
-  permanentCommittees: z.unknown(),
+  permanentCommittees: z.array(RawCommitteeSchema).nullable(),
   houseLeaders: z.unknown(),
   houseCommittees: z.unknown(),
   specialCommittees: z.unknown(),
@@ -621,12 +634,17 @@ export async function fetchConstitutional(
  * A duplicate is a real defect: house-members.tsx renders one row per record
  * and prints `{results.length} of {members.length}`, so a duplicate is a
  * visible repeated row and an inflated count.
+ *
+ * Serialized via JSON.stringify on the tuple, not a space-joined template
+ * string: a plain join can collide across different field boundaries (e.g.
+ * name "A B" + district "C" and name "A" + district "B C" would both join to
+ * "A B C"), which would silently hide a real duplicate or misreport one.
  */
 const houseMemberIdentity = (m: RawHouseMember) =>
-  `${m.name} ${m.provinceCity} ${m.district}`;
+  JSON.stringify([m.name, m.provinceCity, m.district]);
 
 const partyListIdentity = (m: RawPartyListRepresentative) =>
-  `${m.name} ${m.partyList}`;
+  JSON.stringify([m.name, m.partyList]);
 
 function assertMemberPositionsUnique(
   label: string,

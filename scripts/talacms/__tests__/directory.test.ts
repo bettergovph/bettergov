@@ -1758,6 +1758,171 @@ describe('parseLegislativeResponse — member field gates', () => {
   });
 });
 
+describe('parseLegislativeResponse — committee field gates', () => {
+  /**
+   * senate-committees.tsx calls `.localeCompare()` directly on `committee`
+   * and interpolates `chairperson` into its search string, both unconditional
+   * — a malformed record here would pass sync/schema validation today and
+   * then crash that page at render time.
+   */
+  it('fails closed when a committee is missing the committee field', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: [{ chairperson: 'A PERSON' }],
+          }),
+          house(),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed when a committee is missing the chairperson field', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: [{ committee: 'Blue Ribbon' }],
+          }),
+          house(),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a blank committee name', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: [{ committee: '   ', chairperson: 'A' }],
+          }),
+          house(),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a blank chairperson name', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: [
+              { committee: 'Blue Ribbon', chairperson: '' },
+            ],
+          }),
+          house(),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed when permanentCommittees is not an array', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: 'Blue Ribbon',
+          }),
+          house(),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('accepts null permanentCommittees — the House record has none', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ permanentCommittees: null }), house()])
+      )
+    ).not.toThrow();
+  });
+
+  it('accepts a well-formed committee list', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({
+            permanentCommittees: [
+              { committee: 'Blue Ribbon', chairperson: 'A PERSON' },
+            ],
+          }),
+          house(),
+        ])
+      )
+    ).not.toThrow();
+  });
+});
+
+describe('parseLegislativeResponse — member identity serialization', () => {
+  /**
+   * Regression for a space-joined identity string: two DISTINCT house
+   * members whose (name, provinceCity, district) tuples split the same
+   * concatenated text differently would previously serialize to the same
+   * "A B C D" string and be misreported as duplicates of each other.
+   */
+  it('does not collide house members whose fields differ only in whitespace boundary', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            houseMembers: [
+              hm({
+                position: 0,
+                name: 'A',
+                provinceCity: 'B C',
+                district: 'D',
+              }),
+              hm({
+                position: 1,
+                name: 'A B',
+                provinceCity: 'C',
+                district: 'D',
+              }),
+            ],
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  /**
+   * Same regression for party-list identity, which joins only two fields
+   * (name, partyList).
+   */
+  it('does not collide party-list reps whose fields differ only in whitespace boundary', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            partyListRepresentatives: [
+              plr({ position: 0, name: 'A', partyList: 'B C' }),
+              plr({ position: 1, name: 'A B', partyList: 'C' }),
+            ],
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('still catches a genuine duplicate house member sharing every field', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            houseMembers: [hm({ position: 0 }), hm({ position: 1 })],
+          }),
+        ])
+      )
+    ).toThrow(/duplicate house member/i);
+  });
+});
+
 describe('projectHouseMembers / projectPartyList', () => {
   it('renames the CMS fields to the committed local keys, in committed key order', () => {
     expect(projectHouseMembers([hm() as never])).toEqual([
