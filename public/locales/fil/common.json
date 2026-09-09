@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Maligayang Pagdating sa GOV.PH",
-    "subtitle": "Ang opisyal na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Pilipinas."
+    "subtitle": "Ang opisyal na portal ng Republika ng Pilipinas, na binuo sa pamamagitan ng pakikipagtulungan ng pamahalaan at komunidad. Maghanap ng impormasyon, gumamit ng mga serbisyo ng pamahalaan, at manatiling updated sa pinakabagong balita tungkol sa Pilipinas."
   },
   "services": {
     "title": "Mga Sikat na Serbisyo"
@@ -38,7 +38,7 @@
     "accessibility": "Accessibility",
     "about": "Tungkol sa Amin",
     "joinUs": "Sumali",
-    "tagline": "Ang opisyal na website ng Republika ng Pilipinas",
+    "tagline": "Ang opisyal na portal ng Republika ng Pilipinas",
     "search": "Hanapin",
     "signIn": "Mag-sign in",
     "menu": "Menu",
@@ -78,7 +78,7 @@
     "reportBug": "Mag-report ng bug"
   },
   "footerAbout": {
-    "description": "Ang opisyal na website ng Republika ng Pilipinas, na ginagawang mas madali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaan.",
+    "description": "Ang opisyal na portal ng Republika ng Pilipinas, na binuo sa pamamagitan ng pakikipagtulungan ng pamahalaan at komunidad upang mapadali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaan.",
     "openSource": "Open Source",
     "builtBy": "Ginawa ng eGov, BetterGov, at daan-daang mamamayang boluntaryo."
   },

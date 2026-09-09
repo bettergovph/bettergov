@@ -5,7 +5,7 @@
   },
   "/about": {
     "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Learn more about BetterGov.ph, the official community-powered portal promoting transparency and civic engagement in the Philippines."
+    "description": "Learn more about BetterGov.ph, an independent community project promoting transparency and civic engagement in the Philippines."
   },
   "/accessibility": {
     "title": "Accessibility Statement | BetterGov.ph | BetterGov.ph",
@@ -38,6 +38,10 @@
   "/government": {
     "title": "The Philippine Government: Learn More - BetterGov.ph",
     "description": "Find important information about The Philippine Government: Learn More through BetterGov.ph, the Philippines\u2019 civic information portal."
+  },
+  "/government/overview": {
+    "title": "Government at a Glance | BetterGov.ph",
+    "description": "Understand the three branches, constitutional commissions, and local government structure of the Philippines."
   },
   "/government/constitutional": {
     "title": "Civil Service Commission (CSC) in Philippines | BetterGov.ph",
@@ -285,8 +289,8 @@
     "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
   },
   "/philippines/about": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Learn more about BetterGov.ph, the official community-powered portal promoting transparency and civic engagement in the Philippines."
+    "title": "About the Philippines | BetterGov.ph",
+    "description": "A source-backed introduction to Philippine geography, population, national symbols, history, culture, and regions."
   },
   "/philippines/culture": {
     "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",

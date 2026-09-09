@@ -61,6 +61,10 @@ const Footer: FC = () => {
 
   const governmentCol: FooterLink[] = [
     {
+      label: t('footerNav.governmentOverview', 'Government at a Glance'),
+      href: '/government/overview',
+    },
+    {
       label: t('footerNav.allAgencies', 'All Agencies'),
       href: '/government/departments',
     },
@@ -151,7 +155,7 @@ const Footer: FC = () => {
             <p className='mt-4 max-w-[340px] leading-relaxed text-white/60'>
               {t(
                 'footerAbout.description',
-                'The official website of the Republic of the Philippines, making government information and services easier to find, read, and use.'
+                'The official portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.'
               )}
             </p>
             <p className='mt-3 max-w-[340px] leading-relaxed text-white/60'>

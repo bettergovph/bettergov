@@ -70,6 +70,7 @@ const mainNavigation = [
     label: 'Government',
     href: '/government',
     children: [
+      { label: 'Government at a Glance', href: '/government/overview' },
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },

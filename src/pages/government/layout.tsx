@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils';
 type TabDef = { to: string; label: string; end?: boolean };
 
 const TABS: TabDef[] = [
+  { to: '/government/overview', label: 'Overview' },
   { to: '/government', label: 'Directory', end: true },
   { to: '/government/departments', label: 'Departments' },
   { to: '/government/executive', label: 'Executive' },

@@ -76,6 +76,7 @@ import NewsArticlePage from './pages/news/[id]';
 // Government directory (new /government index) + tabs layout
 import GovernmentDirectory from './pages/government';
 import GovernmentLayout from './pages/government/layout';
+import GovernmentOverview from './pages/government/overview';
 
 // Guides
 import GuidesIndex from './pages/guides';
@@ -214,6 +215,7 @@ function App() {
             {/* Government Routes */}
             <Route path='/government' element={<GovernmentLayout />}>
               <Route index element={<GovernmentDirectory />} />
+              <Route path='overview' element={<GovernmentOverview />} />
               <Route path='salary-grade' element={<SalaryGradePage />} />
 
               {/* Executive */}
