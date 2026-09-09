@@ -707,6 +707,25 @@ export function parseLegislativeResponse(value: unknown): RawLegislatives {
     }
   }
   const houseChamber = matching(HOUSE_DISCRIMINATOR)[0];
+  const senateChamber = matching(SENATE_DISCRIMINATOR)[0];
+
+  // permanentCommittees is nullable at the schema level because the House
+  // record carries none — but senate-committees.tsx reads it unconditionally
+  // from the Senate chamber and renders "N of N committees". A null or empty
+  // list there is a real defect (the whole page would show zero results),
+  // not a legitimate "no committees" state, so it is gated here rather than
+  // in the raw schema, which cannot tell the two chambers apart.
+  if (
+    senateChamber.permanentCommittees === null ||
+    senateChamber.permanentCommittees.length === 0
+  ) {
+    fail(
+      `the "Senate" chamber ("${senateChamber.slug}") has no permanent ` +
+        'committees. senate-committees.tsx reads permanentCommittees from ' +
+        'that chamber unconditionally, so a null or empty list would render ' +
+        'the whole page empty.'
+    );
+  }
 
   // Reconcile the nested relations against the top-level meta counts. The
   // relations take no `first` and the CDA does not enforce one, so this is

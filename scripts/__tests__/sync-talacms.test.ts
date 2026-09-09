@@ -152,7 +152,9 @@ const legislativePayload = {
       trunkline: null,
       website: null,
       officials: [{ role: 'Senate President', name: 'A PERSON' }],
-      permanentCommittees: null,
+      permanentCommittees: [
+        { committee: 'Blue Ribbon', chairperson: 'A PERSON' },
+      ],
       houseLeaders: null,
       houseCommittees: null,
       specialCommittees: null,

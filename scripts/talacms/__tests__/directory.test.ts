@@ -1832,10 +1832,10 @@ describe('parseLegislativeResponse — committee field gates', () => {
     ).toThrow(/unexpected legislative chambers shape/i);
   });
 
-  it('accepts null permanentCommittees — the House record has none', () => {
+  it('accepts null permanentCommittees on the House — it carries none', () => {
     expect(() =>
       parseLegislativeResponse(
-        okLeg([senate({ permanentCommittees: null }), house()])
+        okLeg([senate(), house({ permanentCommittees: null })])
       )
     ).not.toThrow();
   });
@@ -1851,6 +1851,40 @@ describe('parseLegislativeResponse — committee field gates', () => {
           }),
           house(),
         ])
+      )
+    ).not.toThrow();
+  });
+});
+
+describe('parseLegislativeResponse — Senate permanent committees gate', () => {
+  /**
+   * senate-committees.tsx reads permanentCommittees off the Senate chamber
+   * unconditionally and renders "N of N committees" — unlike the House's
+   * house_* fields, which are genuinely absent by design, an empty or null
+   * Senate committee list means the whole page renders with zero results.
+   * The raw schema cannot express this because it can't tell chambers apart;
+   * it is gated here, after chamber identification.
+   */
+  it('fails closed when the Senate chamber has null permanentCommittees', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ permanentCommittees: null }), house()])
+      )
+    ).toThrow(/"Senate" chamber.*no permanent committees/is);
+  });
+
+  it('fails closed when the Senate chamber has an empty permanentCommittees array', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ permanentCommittees: [] }), house()])
+      )
+    ).toThrow(/"Senate" chamber.*no permanent committees/is);
+  });
+
+  it('does not require permanentCommittees on the House chamber', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ permanentCommittees: null })])
       )
     ).not.toThrow();
   });
@@ -2118,6 +2152,47 @@ describe('legislative candidate emission', () => {
             branch: 'Legislative Branch',
             chamber: 'House of Representatives (20th Congress)',
             house_members: [{ name: 'A', district: '1st District' }],
+          },
+        ],
+      })
+    ).rejects.toThrow(/does not satisfy/);
+  });
+
+  it('would REJECT a whitespace-only committee name — minLength alone cannot catch it', async () => {
+    // minLength counts characters, so "   " satisfies minLength: 1. The
+    // pattern: "\\S" requirement is what actually enforces "not blank" at the
+    // JSON Schema layer, matching Zod's .trim().min(1) on the same field.
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/legislative.json',
+        schemaPath: 'src/data/directory/schema/legislative.schema.json',
+        data: [
+          {
+            slug: 'x',
+            branch: 'Legislative Branch',
+            chamber: 'Senate of the Philippines (20th Congress)',
+            permanent_committees: [{ committee: '   ', chairperson: 'A' }],
+          },
+        ],
+      })
+    ).rejects.toThrow(/does not satisfy/);
+  });
+
+  it('would REJECT a whitespace-only chairperson name', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/legislative.json',
+        schemaPath: 'src/data/directory/schema/legislative.schema.json',
+        data: [
+          {
+            slug: 'x',
+            branch: 'Legislative Branch',
+            chamber: 'Senate of the Philippines (20th Congress)',
+            permanent_committees: [
+              { committee: 'Blue Ribbon', chairperson: '   ' },
+            ],
           },
         ],
       })
