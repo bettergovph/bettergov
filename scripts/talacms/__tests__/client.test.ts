@@ -139,7 +139,17 @@ describe('createTalaCmsClient', () => {
     );
   });
 
-  it('aborts a stalled fetch after the 8s timeout', async () => {
+  it.each([
+    [{ TALACMS_TIMEOUT_MS: '0' }, 'positive number'],
+    [{ TALACMS_TIMEOUT_MS: '-500' }, 'positive number'],
+    [{ TALACMS_TIMEOUT_MS: 'not-a-number' }, 'positive number'],
+  ])('rejects invalid TALACMS_TIMEOUT_MS (%#)', (env, fragment) => {
+    expect(() =>
+      createTalaCmsClient({ ...baseEnv, ...(env as NodeJS.ProcessEnv) })
+    ).toThrow(new RegExp(fragment as string, 'i'));
+  });
+
+  it('aborts a stalled fetch after the 30s timeout', async () => {
     vi.useFakeTimers();
     // Resolves only if aborted — proves the timeout is what ends the request.
     vi.stubGlobal(
@@ -155,8 +165,33 @@ describe('createTalaCmsClient', () => {
     );
 
     const pending = createTalaCmsClient(baseEnv)('query{ok}');
-    const assertion = expect(pending).rejects.toThrow(/failed to reach/i);
-    await vi.advanceTimersByTimeAsync(8000);
+    const assertion = expect(pending).rejects.toThrow(/timed out/i);
+    await vi.advanceTimersByTimeAsync(30000);
+    await assertion;
+  });
+
+  it('supports custom timeout from TALACMS_TIMEOUT_MS', async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        (_url: string, init: { signal: AbortSignal }) =>
+          new Promise((_resolve, reject) => {
+            init.signal.addEventListener('abort', () =>
+              reject(new DOMException('aborted', 'AbortError'))
+            );
+          })
+      )
+    );
+
+    const pending = createTalaCmsClient({
+      ...baseEnv,
+      TALACMS_TIMEOUT_MS: '5000',
+    })('query{ok}');
+    const assertion = expect(pending).rejects.toThrow(
+      /timed out after 5000ms/i
+    );
+    await vi.advanceTimersByTimeAsync(5000);
     await assertion;
   });
 
@@ -180,7 +215,7 @@ describe('createTalaCmsClient', () => {
 
     const pending = createTalaCmsClient(baseEnv)('query{ok}');
     const assertion = expect(pending).rejects.toThrow(/malformed/i);
-    await vi.advanceTimersByTimeAsync(8000);
+    await vi.advanceTimersByTimeAsync(30000);
     await assertion;
   });
 });

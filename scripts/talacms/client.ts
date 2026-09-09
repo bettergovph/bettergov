@@ -10,7 +10,7 @@ export class TalaCmsError extends Error {
 
 export type TalaCmsClient = <T>(query: string) => Promise<T>;
 
-const REQUEST_TIMEOUT_MS = 8000;
+const DEFAULT_REQUEST_TIMEOUT_MS = 30000;
 
 /**
  * `extensions` is a standard top-level GraphQL response key (tracing IDs,
@@ -55,6 +55,16 @@ function environmentOf(env: NodeJS.ProcessEnv): string {
   return value ? value : 'production';
 }
 
+function timeoutOf(env: NodeJS.ProcessEnv): number {
+  const value = env.TALACMS_TIMEOUT_MS?.trim();
+  if (!value) return DEFAULT_REQUEST_TIMEOUT_MS;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new TalaCmsError('TALACMS_TIMEOUT_MS must be a positive number');
+  }
+  return parsed;
+}
+
 /**
  * Configuration is validated **eagerly**, when the client is created — not on
  * first use. The orchestrator creates the client before it opens any local
@@ -72,10 +82,11 @@ export function createTalaCmsClient(
     );
   }
   const environment = environmentOf(env);
+  const timeoutMs = timeoutOf(env);
 
   return async function query<T>(document: string): Promise<T> {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     // The timeout must stay armed through response.json(): a server can send
     // headers promptly and then stall the body.
@@ -93,6 +104,11 @@ export function createTalaCmsClient(
           signal: controller.signal,
         });
       } catch {
+        if (controller.signal.aborted) {
+          throw new TalaCmsError(
+            `Failed to reach TalaCMS: request timed out after ${timeoutMs}ms`
+          );
+        }
         // Deliberately does not forward the caught error: it can carry the
         // request init, and therefore the bearer token, into logs.
         throw new TalaCmsError('Failed to reach TalaCMS');
