@@ -13,10 +13,12 @@ import {
   assertNoCrossModelSlugCollisions,
   buildConstitutionalCandidate,
   buildDepartmentsCandidate,
+  buildDiplomaticCandidate,
   buildExecutiveCandidate,
   buildLegislativeCandidate,
   fetchConstitutional,
   fetchDepartments,
+  fetchDiplomatic,
   fetchExecutive,
   fetchLegislative,
 } from './talacms/directory';
@@ -45,6 +47,7 @@ export const DATASETS = [
   'executive',
   'constitutional',
   'legislative',
+  'diplomatic',
   'lgu',
 ] as const;
 type DatasetName = (typeof DATASETS)[number];
@@ -210,6 +213,13 @@ async function buildCandidates(
   const rawLegislative = selected.has('legislative')
     ? await fetchLegislative(client)
     : null;
+  // Diplomatic is the sixth independent fetch, same isolation contract as the
+  // five above: issued only when 'diplomatic' itself is selected, never on
+  // behalf of any other dataset. One flat CMS model discriminated by
+  // entityType; the shaper groups it into the file's three arrays.
+  const rawDiplomatic = selected.has('diplomatic')
+    ? await fetchDiplomatic(client)
+    : null;
   // LGU is the fifth independent fetch, same isolation contract as the four
   // above: issued only when 'lgu' itself is selected, never on behalf of any
   // other dataset.
@@ -217,9 +227,9 @@ async function buildCandidates(
 
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
   // then services in path-codepoint order, then departments, executive,
-  // constitutional, legislative, then the 19 LGU region files (themselves
-  // already path-codepoint-sorted by buildLguCandidates), so preparation
-  // order, the status lines and commitFiles' rename order are all
+  // constitutional, legislative, diplomatic, then the 19 LGU region files
+  // (themselves already path-codepoint-sorted by buildLguCandidates), so
+  // preparation order, the status lines and commitFiles' rename order are all
   // reproducible, including under partial failure.
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
@@ -247,25 +257,29 @@ async function buildCandidates(
   const legislativeCandidate = rawLegislative
     ? buildLegislativeCandidate(rawLegislative)
     : null;
+  const diplomaticCandidate = rawDiplomatic
+    ? buildDiplomaticCandidate(rawDiplomatic)
+    : null;
 
   // §6.0 run-mode matrix: a gate whose inputs a mode does not have is not
   // applied — no weaker substitute, and never a read of another model's
   // committed file. Only a run carrying at least two candidates can compare.
   //
-  // LGU is deliberately NOT included here. assertNoCrossModelSlugCollisions
-  // exists because Meilisearch keys one search index by each candidate's
-  // slug — LGU is not indexed by Meilisearch, and unlike every other
-  // directory model, each LGU candidate's `data` is a single region object
-  // (with a top-level `slug`), not an array of slugged records. The gate
-  // casts `candidate.data` to `{slug}[]` and calls `.map` on it; handed an
-  // LGU candidate, that throws ("data.map is not a function") rather than
-  // skipping cleanly. Do not "fix" this by adding lguCandidates below —
-  // there is nothing array-shaped for it to check against.
+  // Diplomatic IS included, even though its `data` is an object of three
+  // arrays rather than a flat array: `candidateSlugs` extracts slugs
+  // shape-aware, so the grouped candidate is checked rather than throwing.
+  // Its 70 mission slugs share the aggregate directory with the other models;
+  // its 157 slugless consulates and organizations contribute nothing.
+  //
+  // LGU is still deliberately NOT included: it is not indexed by Meilisearch
+  // at all, so there is no index for its slugs to collide in. This is a
+  // scoping decision, no longer a shape limitation.
   const directoryCandidates = [
     departmentsCandidate,
     executiveCandidate,
     constitutionalCandidate,
     legislativeCandidate,
+    diplomaticCandidate,
   ].filter((c): c is Candidate => c !== null);
   if (directoryCandidates.length > 1) {
     assertNoCrossModelSlugCollisions(directoryCandidates);
