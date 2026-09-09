@@ -25,6 +25,7 @@ interface DirectoryDataSource {
   dataPath: string;
   isFile?: boolean;
   requireNonEmpty?: boolean;
+  objectDocument?: boolean;
   schemaPath?: string;
   excludeFiles?: string[];
   expectedFiles?: string[];
@@ -471,8 +472,14 @@ const syntheticDirectoryDir = (mutate: (dir: string) => void = () => {}) => {
     'departments.json',
     rows(2, 'dept', i => ({ office_name: `DEPARTMENT ${i}` }))
   );
-  // Object, not array — mirrors the real file's shape.
-  write('diplomatic.json', { 'Diplomatic Mission': [], Consulate: [] });
+  // Object, not array — mirrors the real file's shape. All three entity-type
+  // keys are present because the tracked schema now marks them required and
+  // diplomatic.json is a REQUIRED, schema-validated source, not a tolerant one.
+  write('diplomatic.json', {
+    'Diplomatic Mission': [],
+    Consulate: [],
+    'International Organization': [],
+  });
   write(
     'executive.json',
     rows(2, 'exec', i => ({ office: `OFFICE ${i}` }))
@@ -559,17 +566,108 @@ describe('DATA_SOURCES registration', () => {
     expect(s.schemaPath).toContain('executive.schema.json');
   });
 
-  it('registers exactly four required directory sources and one tolerant source', () => {
+  it('registers exactly five required directory sources and one tolerant source', () => {
     const dirSources = DATA_SOURCES.filter(
       s => s.dataType === 'directory_item'
     );
-    expect(dirSources.filter(s => s.isFile)).toHaveLength(4);
+    expect(dirSources.filter(s => s.isFile)).toHaveLength(5);
     expect(dirSources.filter(s => !s.isFile)).toHaveLength(1);
   });
 
   // The exclusion/expectation pairing is asserted once, against the derived
   // constants, in the DIRECTORY_EXPECTED_FILES manifest describe below —
   // deliberately not duplicated here with a literal that could drift.
+});
+
+describe('diplomatic.json as a generated, required, object-shaped source', () => {
+  it('is declared generated', () => {
+    expect(DIRECTORY_GENERATED_FILES).toContain('diplomatic.json');
+  });
+
+  it('has its own required source with the tracked schema', () => {
+    const [source] = (DATA_SOURCES as DirectoryDataSource[]).filter(
+      s =>
+        s.dataType === 'directory_item' &&
+        s.isFile &&
+        s.dataPath.endsWith('diplomatic.json')
+    );
+    expect(source).toBeDefined();
+    expect(source.requireNonEmpty).toBe(true);
+    expect(source.objectDocument).toBe(true);
+    expect(source.schemaPath).toMatch(/diplomatic\.schema\.json$/);
+  });
+
+  it('is the ONLY source declaring objectDocument', () => {
+    // The array guard must stay strict for every other generated file.
+    const withFlag = (DATA_SOURCES as DirectoryDataSource[])
+      .filter(s => s.objectDocument)
+      .map(s => path.basename(s.dataPath));
+    expect(withFlag).toEqual(['diplomatic.json']);
+  });
+
+  it('keeps the expected count at 1 and the total at 612', () => {
+    expect(DIRECTORY_EXPECTED_COUNTS['diplomatic.json']).toBe(1);
+    const total = Object.values(DIRECTORY_EXPECTED_COUNTS).reduce(
+      (a: number, b: number) => a + b,
+      0
+    );
+    expect(total).toBe(612);
+  });
+
+  it('contributes exactly one document from the synthetic directory', async () => {
+    const dir = syntheticDirectoryDir();
+    const snap = await loadDirectorySnapshot({ dir });
+    expect(snap.bySourceFile.get('diplomatic.json')).toBe(1);
+    expect(snap.complete).toBe(true);
+  });
+
+  it('gives the object document the same id and slug as before the move', async () => {
+    // buildDocument derives id === slug === 'diplomatic' from the basename,
+    // because the object carries no slug/name/title/service and is alone in
+    // its file. Pinned so the move cannot orphan the indexed document.
+    const dir = syntheticDirectoryDir();
+    const snap = await loadDirectorySnapshot({ dir });
+    const [doc] = snap.documents.filter(
+      (d: IndexedDocument) => d.__sourceFile === 'diplomatic.json'
+    );
+    expect(doc.id).toBe('diplomatic');
+    expect(doc.slug).toBe('diplomatic');
+    expect(doc.type).toBe('directory_item');
+  });
+
+  it('FAILS CLOSED when diplomatic.json is missing', async () => {
+    const dir = syntheticDirectoryDir(d =>
+      fs.rmSync(path.join(d, 'diplomatic.json'))
+    );
+    await expect(loadDirectorySnapshot({ dir })).rejects.toThrow(
+      /diplomatic\.json/
+    );
+  });
+
+  it('FAILS CLOSED when diplomatic.json violates the tracked schema', async () => {
+    const dir = syntheticDirectoryDir(d =>
+      fs.writeFileSync(
+        path.join(d, 'diplomatic.json'),
+        JSON.stringify({ 'Diplomatic Mission': [] })
+      )
+    );
+    await expect(loadDirectorySnapshot({ dir })).rejects.toThrow(
+      /does not satisfy/
+    );
+  });
+
+  it('still refuses a non-array in a source that did NOT opt in', async () => {
+    // The objectDocument escape hatch must not weaken the other four.
+    const dir = syntheticDirectoryDir(d =>
+      fs.writeFileSync(
+        path.join(d, 'departments.json'),
+        JSON.stringify({ nope: true })
+      )
+    );
+    await expect(loadDirectorySnapshot({ dir })).rejects.toThrow(
+      /must contain a JSON array/
+    );
+  });
 });
 
 /**
@@ -620,7 +718,6 @@ describe('DIRECTORY_EXPECTED_FILES manifest', () => {
 
   it('derives the tolerant subset rather than declaring it separately', () => {
     expect([...DIRECTORY_TOLERANT_FILES].sort()).toEqual([
-      'diplomatic.json',
       'house_members.json',
       'judicial.json',
       'party_list_representatives.json',
@@ -630,6 +727,7 @@ describe('DIRECTORY_EXPECTED_FILES manifest', () => {
       'executive.json',
       'constitutional.json',
       'legislative.json',
+      'diplomatic.json',
     ]) {
       expect(DIRECTORY_TOLERANT_FILES).not.toContain(f);
     }
@@ -747,8 +845,9 @@ describe.runIf(hasGeneratedDirectoryData)(
     it('preserves the pre-existing shapes: diplomatic.json contributes one document', async () => {
       const snap = await loadDirectorySnapshot();
       // diplomatic.json is an object keyed by entity type, not an array. The
-      // tolerant loader wraps it as a single document. Pre-existing behavior —
-      // asserted so this branch cannot change it by accident.
+      // required loader wraps it as a single document under its explicit
+      // `objectDocument` opt-in, exactly as the tolerant loader did before the
+      // migration — same count, same id. Asserted so this cannot drift.
       expect(snap.bySourceFile.get('diplomatic.json')).toBe(1);
     });
 
@@ -1096,7 +1195,7 @@ const makeJsonFile = (name: string, value: unknown) => {
 
 /**
  * The complete DATA_SOURCES shape, pointed entirely at fixtures. Mirrors
- * production ordering: service, the four required directory files, the
+ * production ordering: service, the five required directory files, the
  * tolerant directory source, then website.
  */
 const fixtureSources = (dirs: {
@@ -1137,6 +1236,14 @@ const fixtureSources = (dirs: {
     isFile: true,
     requireNonEmpty: true,
     schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'legislative.schema.json'),
+  },
+  {
+    dataType: 'directory_item',
+    dataPath: path.join(dirs.directory, 'diplomatic.json'),
+    isFile: true,
+    requireNonEmpty: true,
+    objectDocument: true,
+    schemaPath: path.join(DIRECTORY_SCHEMA_DIR, 'diplomatic.schema.json'),
   },
   {
     dataType: 'directory_item',
