@@ -138,6 +138,72 @@ const collidingConstitutionalPayload = {
   ],
 };
 
+const legislativePayload = {
+  _allLegislativeChambersMeta: { count: 2 },
+  _allHouseMembersMeta: { count: 1 },
+  _allPartyListRepresentativesMeta: { count: 1 },
+  allLegislativeChambers: [
+    {
+      position: 0,
+      slug: 'senate-of-the-philippines-20th-congress',
+      branch: 'Legislative Branch',
+      chamber: 'Senate of the Philippines (20th Congress)',
+      address: null,
+      trunkline: null,
+      website: null,
+      officials: [{ role: 'Senate President', name: 'A PERSON' }],
+      permanentCommittees: null,
+      houseLeaders: null,
+      houseCommittees: null,
+      specialCommittees: null,
+      secretariatOfficials: null,
+      houseMembers: [],
+      partyListRepresentatives: [],
+    },
+    {
+      position: 1,
+      slug: 'house-of-representatives-20th-congress',
+      branch: 'Legislative Branch',
+      chamber: 'House of Representatives (20th Congress)',
+      address: null,
+      trunkline: null,
+      website: null,
+      officials: null,
+      permanentCommittees: null,
+      houseLeaders: null,
+      houseCommittees: null,
+      specialCommittees: null,
+      secretariatOfficials: null,
+      houseMembers: [
+        {
+          position: 0,
+          name: 'DELA CRUZ, JUAN M.',
+          provinceCity: 'Isabela',
+          district: '1st District',
+          contact: null,
+        },
+      ],
+      partyListRepresentatives: [
+        {
+          position: 0,
+          name: 'SANTOS, MARIA C.',
+          partyList: 'EXAMPLE',
+          contact: null,
+        },
+      ],
+    },
+  ],
+};
+
+/** Same slug as the departments payload — used only by the gate tests. */
+const collidingLegislativePayload = {
+  ...legislativePayload,
+  allLegislativeChambers: [
+    { ...legislativePayload.allLegislativeChambers[0], slug: 'shared-slug' },
+    legislativePayload.allLegislativeChambers[1],
+  ],
+};
+
 const committedTaxonomy = {
   categories: [
     {
@@ -167,6 +233,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
     if (query.includes('SyncExecutiveOffices')) return executivePayload;
     if (query.includes('SyncConstitutionalOffices'))
       return constitutionalPayload;
+    if (query.includes('SyncLegislativeChambers')) return legislativePayload;
     return hotlinesPayload;
   }) as unknown as TalaCmsClient;
 
@@ -199,7 +266,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
 };
 
 describe('run', () => {
-  it('writes all six datasets and exits 0', async () => {
+  it('writes all seven datasets and exits 0', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(deps.commitFiles).toHaveBeenCalledTimes(1);
@@ -212,6 +279,7 @@ describe('run', () => {
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
+      'src/data/directory/legislative.json',
     ]);
   });
 
@@ -316,7 +384,7 @@ describe('run', () => {
 });
 
 describe('services orchestration', () => {
-  it('writes all six datasets, services last among the original three, then directory', async () => {
+  it('writes all seven datasets, services last among the original three, then directory', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(pathsOf(deps)).toEqual([
@@ -326,6 +394,7 @@ describe('services orchestration', () => {
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
+      'src/data/directory/legislative.json',
     ]);
   });
 
@@ -366,6 +435,7 @@ describe('services orchestration', () => {
       if (query.includes('SyncExecutiveOffices')) return executivePayload;
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
+      if (query.includes('SyncLegislativeChambers')) return legislativePayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
 
@@ -382,6 +452,7 @@ describe('services orchestration', () => {
       'src/data/directory/departments.json',
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
+      'src/data/directory/legislative.json',
     ]);
   });
 
@@ -775,7 +846,7 @@ describe('stale service file cleanup', () => {
 });
 
 describe('directory datasets', () => {
-  it('exposes departments, executive and constitutional as selectable datasets', () => {
+  it('exposes all four directory models as selectable datasets', () => {
     expect(DATASETS).toEqual([
       'categories',
       'hotlines',
@@ -783,6 +854,7 @@ describe('directory datasets', () => {
       'departments',
       'executive',
       'constitutional',
+      'legislative',
     ]);
   });
 
@@ -880,6 +952,7 @@ describe('directory dataset isolation', () => {
         return collidingExecutivePayload;
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
+      if (query.includes('SyncLegislativeChambers')) return legislativePayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -960,6 +1033,7 @@ describe('constitutional dataset', () => {
       if (query.includes('SyncExecutiveOffices')) return executivePayload;
       if (query.includes('SyncConstitutionalOffices'))
         return collidingConstitutionalPayload;
+      if (query.includes('SyncLegislativeChambers')) return legislativePayload;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -1013,6 +1087,120 @@ describe('constitutional dataset', () => {
       .map(c => c[0])
       .join('\n');
     expect(logged).toContain('constitutional');
+  });
+});
+
+describe('legislative dataset', () => {
+  const clientAnswering = (allowed: string, payload: unknown) =>
+    vi.fn(async (query: string) => {
+      if (!query.includes(allowed)) {
+        throw new Error(
+          `unexpected query for an unselected dataset: ${query.slice(0, 60)}`
+        );
+      }
+      return payload;
+    }) as unknown as TalaCmsClient;
+
+  it('--only=legislative prepares only the legislative file', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=legislative'], deps as never)).resolves.toBe(0);
+    expect(pathsOf(deps)).toEqual(['src/data/directory/legislative.json']);
+  });
+
+  it('--only=legislative issues no other model query', async () => {
+    const { client, deps } = makeDeps();
+    await run(['--only=legislative'], deps as never);
+    const queries = queriesOf(client);
+    expect(queries.some(q => q.includes('SyncLegislativeChambers'))).toBe(true);
+    for (const other of [
+      'SyncGovernmentDepartments',
+      'SyncExecutiveOffices',
+      'SyncConstitutionalOffices',
+      'SyncServiceCategories',
+      'SyncGovernmentServices',
+    ]) {
+      expect(queries.some(q => q.includes(other))).toBe(false);
+    }
+  });
+
+  it('no other --only= run issues the legislative query', async () => {
+    for (const only of [
+      '--only=departments',
+      '--only=executive',
+      '--only=constitutional',
+    ]) {
+      const { client, deps } = makeDeps();
+      await run([only], deps as never);
+      expect(
+        queriesOf(client).some(q => q.includes('SyncLegislativeChambers'))
+      ).toBe(false);
+    }
+  });
+
+  it('--only=legislative succeeds even when every other model would be invalid', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering('SyncLegislativeChambers', legislativePayload),
+    });
+    await expect(run(['--only=legislative'], deps as never)).resolves.toBe(0);
+  });
+
+  it('fails the whole run and writes nothing when legislative data is invalid', async () => {
+    const broken = {
+      ...legislativePayload,
+      _allHouseMembersMeta: { count: 99 },
+    };
+    const { deps } = makeDeps({
+      createClient: () =>
+        vi.fn(async (query: string) => {
+          if (query.includes('SyncServiceCategories')) return categoriesPayload;
+          if (query.includes('SyncGovernmentServices')) return servicesPayload;
+          if (query.includes('SyncGovernmentDepartments'))
+            return departmentsPayload;
+          if (query.includes('SyncExecutiveOffices')) return executivePayload;
+          if (query.includes('SyncConstitutionalOffices'))
+            return constitutionalPayload;
+          if (query.includes('SyncLegislativeChambers')) return broken;
+          return hotlinesPayload;
+        }) as unknown as TalaCmsClient,
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toMatch(/incomplete house members/i);
+    expect(logged).toContain('No files were written.');
+  });
+
+  it('applies the cross-model slug gate to legislative on a full sync', async () => {
+    const client = vi.fn(async (query: string) => {
+      if (query.includes('SyncServiceCategories')) return categoriesPayload;
+      if (query.includes('SyncGovernmentServices')) return servicesPayload;
+      if (query.includes('SyncGovernmentDepartments'))
+        return collidingDepartmentsPayload;
+      if (query.includes('SyncExecutiveOffices')) return executivePayload;
+      if (query.includes('SyncConstitutionalOffices'))
+        return constitutionalPayload;
+      if (query.includes('SyncLegislativeChambers'))
+        return collidingLegislativePayload;
+      return hotlinesPayload;
+    }) as unknown as TalaCmsClient;
+    const { deps } = makeDeps({ createClient: () => client });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    expect(deps.commitFiles).not.toHaveBeenCalled();
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toMatch(/appear in BOTH/i);
+  });
+
+  it('does not apply the cross-model gate in an isolated legislative run', async () => {
+    const { deps } = makeDeps({
+      createClient: () =>
+        clientAnswering('SyncLegislativeChambers', collidingLegislativePayload),
+    });
+    await expect(run(['--only=legislative'], deps as never)).resolves.toBe(0);
   });
 });
 
