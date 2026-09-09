@@ -206,6 +206,90 @@ const collidingLegislativePayload = {
   ],
 };
 
+/**
+ * Minimal LGU payload shaped like the real CDA response: 19 regions (so a
+ * full sync's LGU candidate count matches production), each with at least
+ * one child so `joinLgu`'s "no empty region" gate passes. Region 1 nests a
+ * province with one city (so the province gate passes too); regions 2-19
+ * each carry one region-level city. One municipality is included solely so
+ * the municipalities collection (which must be non-empty — `fetchAllRecords`
+ * fails closed on a zero count) has a record.
+ */
+const LGU_REGION_COUNT = 19;
+const lguRegions = Array.from({ length: LGU_REGION_COUNT }, (_, i) => ({
+  id: `r${i + 1}`,
+  position: i,
+  slug: `region-${i + 1}`,
+  region: `Region ${i + 1}`,
+}));
+const lguProvinces = [
+  { id: 'p1', position: 0, province: 'Province One', region: { id: 'r1' } },
+];
+const lguOfficial = { name: 'Juan Dela Cruz', contact: null, email: null };
+const lguCities = [
+  {
+    id: 'c0',
+    position: 0,
+    city: 'City Under Province One',
+    zipCode: null,
+    mayor: lguOfficial,
+    viceMayor: lguOfficial,
+    region: { id: 'r1' },
+    province: { id: 'p1' },
+  },
+  ...Array.from({ length: LGU_REGION_COUNT - 1 }, (_, i) => ({
+    id: `c${i + 1}`,
+    position: 0,
+    city: `City of Region ${i + 2}`,
+    zipCode: null,
+    mayor: lguOfficial,
+    viceMayor: lguOfficial,
+    region: { id: `r${i + 2}` },
+    province: null,
+  })),
+];
+const lguMunicipalities = [
+  {
+    id: 'm1',
+    position: 0,
+    municipality: 'Sole Municipality',
+    zipCode: null,
+    mayor: lguOfficial,
+    viceMayor: lguOfficial,
+    region: { id: 'r1' },
+    province: null,
+  },
+];
+
+/** Dispatches on the LGU operation names, minimal-payload shaped. */
+function lguResponseFor(query: string): unknown | undefined {
+  if (query.includes('CountLguRegions')) {
+    return { _allLguRegionsMeta: { count: lguRegions.length } };
+  }
+  if (query.includes('PageLguRegions')) return { allLguRegions: lguRegions };
+  if (query.includes('CountLguProvinces')) {
+    return { _allLguProvincesMeta: { count: lguProvinces.length } };
+  }
+  if (query.includes('PageLguProvinces')) {
+    return { allLguProvinces: lguProvinces };
+  }
+  if (query.includes('CountLguCities')) {
+    return { _allLguCitiesMeta: { count: lguCities.length } };
+  }
+  if (query.includes('PageLguCities')) return { allLguCities: lguCities };
+  if (query.includes('CountLguMunicipalities')) {
+    return { _allLguMunicipalitiesMeta: { count: lguMunicipalities.length } };
+  }
+  if (query.includes('PageLguMunicipalities')) {
+    return { allLguMunicipalities: lguMunicipalities };
+  }
+  return undefined;
+}
+
+const lguCandidatePaths = lguRegions
+  .map(r => `src/data/directory/lgu/${r.slug}.json`)
+  .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
 const committedTaxonomy = {
   categories: [
     {
@@ -236,6 +320,8 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
     if (query.includes('SyncConstitutionalOffices'))
       return constitutionalPayload;
     if (query.includes('SyncLegislativeChambers')) return legislativePayload;
+    const lguResponse = lguResponseFor(query);
+    if (lguResponse !== undefined) return lguResponse;
     return hotlinesPayload;
   }) as unknown as TalaCmsClient;
 
@@ -255,6 +341,8 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
       readTaxonomy: vi.fn(() => committedTaxonomy),
       readServiceFileNames: vi.fn(() => ['health.json']),
       removeStaleServiceFiles: vi.fn(() => ({ removed: [], failed: [] })),
+      readLguFileNames: vi.fn(() => lguRegions.map(r => `${r.slug}.json`)),
+      removeStaleLguFiles: vi.fn(() => ({ removed: [], failed: [] })),
       prepare: vi.fn(async (c: { path: string }) => ({
         path: c.path,
         text: 'text',
@@ -268,7 +356,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
 };
 
 describe('run', () => {
-  it('writes all seven datasets and exits 0', async () => {
+  it('writes all eight datasets (19 LGU files included) and exits 0', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(deps.commitFiles).toHaveBeenCalledTimes(1);
@@ -282,6 +370,7 @@ describe('run', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
+      ...lguCandidatePaths,
     ]);
   });
 
@@ -386,7 +475,7 @@ describe('run', () => {
 });
 
 describe('services orchestration', () => {
-  it('writes all seven datasets, services last among the original three, then directory', async () => {
+  it('writes all eight datasets, services last among the original three, then directory, then LGU', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(pathsOf(deps)).toEqual([
@@ -397,6 +486,7 @@ describe('services orchestration', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
+      ...lguCandidatePaths,
     ]);
   });
 
@@ -438,6 +528,8 @@ describe('services orchestration', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
+      const lguResponse = lguResponseFor(query);
+      if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
 
@@ -455,6 +547,7 @@ describe('services orchestration', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
+      ...lguCandidatePaths,
     ]);
   });
 
@@ -848,7 +941,7 @@ describe('stale service file cleanup', () => {
 });
 
 describe('directory datasets', () => {
-  it('exposes all four directory models as selectable datasets', () => {
+  it('exposes all five directory models as selectable datasets', () => {
     expect(DATASETS).toEqual([
       'categories',
       'hotlines',
@@ -857,6 +950,7 @@ describe('directory datasets', () => {
       'executive',
       'constitutional',
       'legislative',
+      'lgu',
     ]);
   });
 
@@ -955,6 +1049,8 @@ describe('directory dataset isolation', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
+      const lguResponse = lguResponseFor(query);
+      if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -1036,6 +1132,8 @@ describe('constitutional dataset', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return collidingConstitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
+      const lguResponse = lguResponseFor(query);
+      if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -1186,6 +1284,8 @@ describe('legislative dataset', () => {
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers'))
         return collidingLegislativePayload;
+      const lguResponse = lguResponseFor(query);
+      if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
     }) as unknown as TalaCmsClient;
     const { deps } = makeDeps({ createClient: () => client });
@@ -1242,5 +1342,139 @@ describe('directory dry-run, ordering and cleanup', () => {
         true
       );
     }
+  });
+});
+
+describe('lgu dataset', () => {
+  it('--only=lgu prepares exactly the 19 LGU files, in path-codepoint order', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=lgu'], deps as never)).resolves.toBe(0);
+    expect(pathsOf(deps)).toHaveLength(19);
+    expect(pathsOf(deps)).toEqual(lguCandidatePaths);
+  });
+
+  it('--only=lgu issues LGU queries and no other model query', async () => {
+    const { client, deps } = makeDeps();
+    await expect(run(['--only=lgu'], deps as never)).resolves.toBe(0);
+    const queries = queriesOf(client);
+    expect(
+      queries.some(
+        q => q.includes('CountLguRegions') || q.includes('PageLguRegions')
+      )
+    ).toBe(true);
+    for (const other of [
+      'SyncServiceCategories',
+      'SyncCriticalHotlines',
+      'SyncGovernmentServices',
+      'SyncGovernmentDepartments',
+      'SyncExecutiveOffices',
+      'SyncConstitutionalOffices',
+      'SyncLegislativeChambers',
+    ]) {
+      expect(queries.some(q => q.includes(other))).toBe(false);
+    }
+  });
+
+  it('no other --only= run issues an LGU query', async () => {
+    for (const only of [
+      '--only=categories',
+      '--only=hotlines',
+      '--only=services',
+      '--only=departments',
+      '--only=executive',
+      '--only=constitutional',
+      '--only=legislative',
+    ]) {
+      const { client, deps } = makeDeps();
+      await run([only], deps as never);
+      const queries = queriesOf(client);
+      expect(
+        queries.some(
+          q =>
+            q.includes('CountLguRegions') ||
+            q.includes('PageLguRegions') ||
+            q.includes('CountLguProvinces') ||
+            q.includes('PageLguProvinces') ||
+            q.includes('CountLguCities') ||
+            q.includes('PageLguCities') ||
+            q.includes('CountLguMunicipalities') ||
+            q.includes('PageLguMunicipalities')
+        )
+      ).toBe(false);
+    }
+  });
+
+  it('--only=lgu never reads or removes stale LGU files — only a full sync does', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=lgu'], deps as never)).resolves.toBe(0);
+    expect(deps.readLguFileNames).not.toHaveBeenCalled();
+    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+  });
+
+  it('a full sync produces the existing candidates plus the 19 LGU files', async () => {
+    const { deps } = makeDeps();
+    await expect(run([], deps as never)).resolves.toBe(0);
+    const written = pathsOf(deps);
+    expect(written).toHaveLength(7 + 19);
+    expect(written.slice(-19)).toEqual(lguCandidatePaths);
+  });
+
+  it('runs LGU stale-file cleanup after a successful full sync, with the before/generated sets it captured', async () => {
+    const { deps } = makeDeps({
+      readLguFileNames: vi.fn(() => [
+        ...lguRegions.map(r => `${r.slug}.json`),
+        'retired-region.json',
+      ]),
+    });
+    await expect(run([], deps as never)).resolves.toBe(0);
+    expect(deps.removeStaleLguFiles).toHaveBeenCalledTimes(1);
+    const [before, generated] = (
+      deps.removeStaleLguFiles as ReturnType<typeof vi.fn>
+    ).mock.calls[0];
+    expect(before).toEqual([
+      ...lguRegions.map(r => `${r.slug}.json`),
+      'retired-region.json',
+    ]);
+    expect(generated).toEqual(
+      lguCandidatePaths.map(p => p.slice('src/data/directory/lgu/'.length))
+    );
+  });
+
+  it('fails the sync when a stale LGU removal fails, mirroring the services contract', async () => {
+    const { deps } = makeDeps({
+      removeStaleLguFiles: vi.fn(() => ({
+        removed: [],
+        failed: ['retired-region.json'],
+      })),
+    });
+    await expect(run([], deps as never)).resolves.toBe(1);
+    const logged = (deps.log as ReturnType<typeof vi.fn>).mock.calls
+      .map(c => c[0])
+      .join('\n');
+    expect(logged).toContain('1 failed to remove');
+    expect(logged).toContain('sync failed');
+  });
+
+  it('never runs LGU stale-file cleanup for an isolated non-lgu directory sync', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--only=departments'], deps as never)).resolves.toBe(0);
+    expect(deps.readLguFileNames).not.toHaveBeenCalled();
+    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+  });
+
+  it('never runs LGU stale-file cleanup under --dry-run', async () => {
+    const { deps } = makeDeps();
+    await expect(run(['--dry-run'], deps as never)).resolves.toBe(3);
+    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
+  });
+
+  it('never applies the cross-model slug gate to LGU candidates', async () => {
+    // LGU's candidates have no top-level `slug` — assertNoCrossModelSlugCollisions
+    // must never be handed them, or it would crash rather than skip cleanly.
+    // A full sync (which does include LGU) succeeding at all is the proof:
+    // if LGU were passed into the gate, it would throw reading `.slug` off a
+    // per-region object that has none at the top level.
+    const { deps } = makeDeps();
+    await expect(run([], deps as never)).resolves.toBe(0);
   });
 });
