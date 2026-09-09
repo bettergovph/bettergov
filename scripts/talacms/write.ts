@@ -280,21 +280,59 @@ export async function prepare(candidate: Candidate): Promise<PreparedFile> {
  *
  * `rename` is atomic per file, but a batch can contain many files — LGU
  * alone can commit up to 19 in one call. If a later rename in the batch
- * fails (or the process dies mid-phase), every rename this batch already
- * completed is rolled back to its PRE-BATCH content (or deleted, if the
- * target did not exist before this batch), so the result is never a mixed
- * old/new snapshot: either every changed file in the batch lands, or none
- * of them do. Rollback is best-effort per file; if a restore itself fails,
- * that is a second, independent failure on top of the original error (which
- * is still what the caller sees and fails the sync on), and `git status` /
- * `git checkout` remains the fallback recovery path. Every validation
+ * fails, every rename this batch already completed is rolled back to its
+ * PRE-BATCH content (or deleted, if the target did not exist before this
+ * batch), restoring each one the same temp-file-then-rename way as the
+ * forward write, rather than overwriting it directly — so a failure
+ * mid-restore leaves that target exactly as it was, not partially rewritten.
+ * If every restoration succeeds, the result is never a mixed old/new
+ * snapshot: either every changed file in the batch lands, or none of them
+ * do. This guarantee holds only while THIS function is still running and
+ * able to catch the failure and run its own rollback code — it protects
+ * against a rename failing (ENOSPC, permissions, a concurrent process) with
+ * this process still alive to react, NOT against the Node process itself
+ * being killed or crashing mid-batch, which leaves whatever the OS's
+ * per-file atomic rename already guaranteed and nothing more.
+ *
+ * A rollback failure — a restoration itself failing — is never swallowed:
+ * `commitFiles` throws a `CommitFilesError` naming every path it could NOT
+ * restore, distinct from the case where every restoration succeeded, so a
+ * caller can tell "rolled back cleanly" from "rollback itself failed" and
+ * must not report the former unless this error says so. Every validation
  * failure happens before this function runs.
  *
- * `io` exists only so tests can inject failing write/rename operations.
+ * `io` exists only so tests can inject failing write/rename operations —
+ * rollback reuses the SAME `write`/`rename`, so a test can simulate a
+ * restoration failure the same way it simulates a forward one.
  */
 export interface WriteIo {
   write?: (target: string, text: string) => void;
   rename?: (from: string, to: string) => void;
+}
+
+/**
+ * Thrown by `commitFiles` when the write phase fails. `rollbackComplete`
+ * tells the caller whether every already-renamed file in the batch was
+ * successfully restored (`true` — this also covers the case where no
+ * rename had committed yet, so there was nothing to restore) or whether one
+ * or more restorations themselves failed (`false`, with the affected
+ * absolute paths in `incompleteRollbackPaths`). A caller must not claim a
+ * clean rollback unless `rollbackComplete` is `true`.
+ */
+export class CommitFilesError extends Error {
+  readonly rollbackComplete: boolean;
+  readonly incompleteRollbackPaths: string[];
+
+  constructor(
+    message: string,
+    rollbackComplete: boolean,
+    incompleteRollbackPaths: string[] = []
+  ) {
+    super(message);
+    this.name = 'CommitFilesError';
+    this.rollbackComplete = rollbackComplete;
+    this.incompleteRollbackPaths = incompleteRollbackPaths;
+  }
 }
 
 interface CommittedRename {
@@ -305,22 +343,59 @@ interface CommittedRename {
 }
 
 /**
- * Reverses every rename `commitFiles` already completed in this batch, in
- * reverse order. Best-effort per file — see `commitFiles`'s doc comment.
+ * Restores one target to its pre-batch state: deletes it if it did not
+ * exist before this batch, otherwise writes its prior content to a fresh
+ * temp file and renames that into place — the same atomic swap the forward
+ * write path uses, instead of overwriting `target` directly, so a failure
+ * partway through this restoration cannot leave `target` half-written.
  */
-function rollbackCommitted(committed: CommittedRename[]): void {
+function restoreOne(
+  committed: CommittedRename,
+  write: (target: string, text: string) => void,
+  rename: (from: string, to: string) => void
+): void {
+  const { target, previous } = committed;
+  if (previous === null) {
+    fs.rmSync(target, { force: true });
+    return;
+  }
+  const restoreTemp = path.join(
+    path.dirname(target),
+    `.${path.basename(target)}.${process.pid}.${Math.random()
+      .toString(36)
+      .slice(2)}.restore.tmp`
+  );
+  try {
+    write(restoreTemp, previous);
+    rename(restoreTemp, target);
+  } finally {
+    if (fs.existsSync(restoreTemp)) fs.rmSync(restoreTemp, { force: true });
+  }
+}
+
+/**
+ * Reverses every rename `commitFiles` already completed in this batch, in
+ * reverse order, and returns the target paths it could NOT restore — an
+ * empty array means the rollback fully succeeded (including the vacuous
+ * case of nothing having been committed yet). Never swallows a restoration
+ * failure: every attempt either succeeds or is recorded, so the caller can
+ * distinguish "rolled back cleanly" from "rollback itself failed" instead of
+ * asserting a guarantee that did not hold.
+ */
+function rollbackCommitted(
+  committed: CommittedRename[],
+  write: (target: string, text: string) => void,
+  rename: (from: string, to: string) => void
+): string[] {
+  const failures: string[] = [];
   for (let i = committed.length - 1; i >= 0; i -= 1) {
-    const { target, previous } = committed[i];
     try {
-      if (previous === null) {
-        fs.rmSync(target, { force: true });
-      } else {
-        fs.writeFileSync(target, previous, 'utf8');
-      }
+      restoreOne(committed[i], write, rename);
     } catch {
-      // Best-effort; see commitFiles's doc comment.
+      failures.push(committed[i].target);
     }
   }
+  return failures;
 }
 
 export async function commitFiles(
@@ -335,36 +410,50 @@ export async function commitFiles(
   const committed: CommittedRename[] = [];
 
   try {
-    for (const file of changed) {
-      const target = abs(file.path);
-      const temp = path.join(
-        path.dirname(target),
-        `.${path.basename(target)}.${process.pid}.${Math.random()
-          .toString(36)
-          .slice(2)}.tmp`
-      );
-      // Registered BEFORE the write: a write that throws partway (ENOSPC,
-      // permissions) still leaves a file behind, and an unregistered path
-      // cannot be cleaned up by the `finally` below.
-      temps.push(temp);
-      write(temp, file.text);
-    }
-
-    for (let i = 0; i < changed.length; i += 1) {
-      const target = abs(changed[i].path);
-      // Captured immediately before this rename, so a later failure in the
-      // SAME batch can restore exactly what was here before the batch began.
-      const previous = fs.existsSync(target)
-        ? fs.readFileSync(target, 'utf8')
-        : null;
-      try {
-        rename(temps[i], target);
-      } catch (error) {
-        rollbackCommitted(committed);
-        throw error;
+    try {
+      for (const file of changed) {
+        const target = abs(file.path);
+        const temp = path.join(
+          path.dirname(target),
+          `.${path.basename(target)}.${process.pid}.${Math.random()
+            .toString(36)
+            .slice(2)}.tmp`
+        );
+        // Registered BEFORE the write: a write that throws partway (ENOSPC,
+        // permissions) still leaves a file behind, and an unregistered path
+        // cannot be cleaned up by the `finally` below.
+        temps.push(temp);
+        write(temp, file.text);
       }
-      committed.push({ target, previous });
-      temps[i] = '';
+
+      for (let i = 0; i < changed.length; i += 1) {
+        const target = abs(changed[i].path);
+        // Captured immediately before this rename, so a later failure in
+        // the SAME batch can restore exactly what was here before the
+        // batch began.
+        const previous = fs.existsSync(target)
+          ? fs.readFileSync(target, 'utf8')
+          : null;
+        rename(temps[i], target);
+        committed.push({ target, previous });
+        temps[i] = '';
+      }
+    } catch (error) {
+      const rollbackFailures = rollbackCommitted(committed, write, rename);
+      if (rollbackFailures.length > 0) {
+        throw new CommitFilesError(
+          `write phase failed (${(error as Error).message}) AND rollback was ` +
+            `INCOMPLETE for ${rollbackFailures.length} file(s): ` +
+            `${rollbackFailures.join(', ')}. These paths may hold new, ` +
+            'unreviewed content from this failed batch — inspect them directly.',
+          false,
+          rollbackFailures
+        );
+      }
+      throw new CommitFilesError(
+        `write phase failed and was fully rolled back: ${(error as Error).message}`,
+        true
+      );
     }
   } finally {
     for (const temp of temps) {
