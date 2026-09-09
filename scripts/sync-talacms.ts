@@ -27,10 +27,14 @@ import {
   readServiceRecords,
   readTaxonomy,
   removeStaleServiceFiles,
+  removeStaleFiles,
   type Candidate,
   type PreparedFile,
 } from './talacms/write';
+import { buildLguCandidates, fetchLgu } from './talacms/lgu';
 import type { ServiceRecordRef, Taxonomy } from './talacms/categories';
+
+const LGU_DIR = 'src/data/directory/lgu';
 
 export const DATASETS = [
   'categories',
@@ -40,6 +44,7 @@ export const DATASETS = [
   'executive',
   'constitutional',
   'legislative',
+  'lgu',
 ] as const;
 type DatasetName = (typeof DATASETS)[number];
 
@@ -54,6 +59,11 @@ interface Deps {
     before: string[],
     generated: string[]
   ) => { removed: string[]; failed: string[] };
+  readLguFileNames: () => string[];
+  removeStaleLguFiles: (
+    before: string[],
+    generated: string[]
+  ) => { removed: string[]; failed: string[] };
   log: (message: string) => void;
 }
 
@@ -65,6 +75,9 @@ const defaultDeps: Deps = {
   readServiceFileNames,
   readTaxonomy,
   removeStaleServiceFiles,
+  readLguFileNames: () => readServiceFileNames(LGU_DIR),
+  removeStaleLguFiles: (before, generated) =>
+    removeStaleFiles(LGU_DIR, before, generated),
   log: message => console.log(message),
 };
 
@@ -196,12 +209,17 @@ async function buildCandidates(
   const rawLegislative = selected.has('legislative')
     ? await fetchLegislative(client)
     : null;
+  // LGU is the fifth independent fetch, same isolation contract as the four
+  // above: issued only when 'lgu' itself is selected, never on behalf of any
+  // other dataset.
+  const rawLgu = selected.has('lgu') ? await fetchLgu(client) : null;
 
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
-  // then services in path-codepoint order, then departments, executive, then
-  // constitutional, then legislative, so preparation order, the status lines
-  // and commitFiles' rename order are all reproducible, including under
-  // partial failure.
+  // then services in path-codepoint order, then departments, executive,
+  // constitutional, legislative, then the 19 LGU region files (themselves
+  // already path-codepoint-sorted by buildLguCandidates), so preparation
+  // order, the status lines and commitFiles' rename order are all
+  // reproducible, including under partial failure.
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
   if (selected.has('hotlines')) {
@@ -232,6 +250,15 @@ async function buildCandidates(
   // §6.0 run-mode matrix: a gate whose inputs a mode does not have is not
   // applied — no weaker substitute, and never a read of another model's
   // committed file. Only a run carrying at least two candidates can compare.
+  //
+  // LGU is deliberately NOT included here. assertNoCrossModelSlugCollisions
+  // exists because Meilisearch keys one search index by each candidate's
+  // top-level `slug` — LGU is not indexed by Meilisearch, and its candidates
+  // are per-region objects with a nested `slug` (see shapeLguRegion), not a
+  // top-level one. Passing LGU candidates into this gate would not skip
+  // cleanly; it would crash trying to read a `slug` that isn't there. Do not
+  // "fix" this by adding lguCandidates below — there is nothing for it to
+  // check against.
   const directoryCandidates = [
     departmentsCandidate,
     executiveCandidate,
@@ -243,6 +270,7 @@ async function buildCandidates(
   }
 
   for (const candidate of directoryCandidates) candidates.push(candidate);
+  if (rawLgu) candidates.push(...buildLguCandidates(rawLgu));
 
   // Stage 5 — §6.10. This function returns before `run` prepares anything, so
   // the gate is structurally ahead of the first `prepare` call.
@@ -286,6 +314,36 @@ function cleanUpStaleServiceFiles(
   return failed.length === 0;
 }
 
+/**
+ * LGU's equivalent of `cleanUpStaleServiceFiles` — same three rules: full
+ * sync only, only after a write phase has already succeeded (or been found
+ * unnecessary), and a failed deletion fails the whole sync. cms.ts globs
+ * every top-level file in src/data/directory/lgu/, so a stale region file
+ * left behind after it's retired from TalaCMS would still be bundled into
+ * the build.
+ */
+function cleanUpStaleLguFiles(
+  deps: Deps,
+  beforeLguFiles: string[],
+  candidates: Candidate[]
+): boolean {
+  const prefix = `${LGU_DIR}/`;
+  const generated = candidates
+    .filter(c => c.path.startsWith(prefix))
+    .map(c => c.path.slice(prefix.length));
+  const { removed, failed } = deps.removeStaleLguFiles(
+    beforeLguFiles,
+    generated
+  );
+  if (removed.length === 0 && failed.length === 0) return true;
+  deps.log(
+    `\n${removed.length} stale LGU file(s) removed` +
+      (failed.length > 0 ? `, ${failed.length} failed to remove` : '') +
+      '.'
+  );
+  return failed.length === 0;
+}
+
 export async function run(
   argv: string[],
   deps: Deps = defaultDeps
@@ -303,6 +361,7 @@ export async function run(
   const prepared: PreparedFile[] = [];
   let candidates: Candidate[];
   let beforeServiceFiles: string[] = [];
+  let beforeLguFiles: string[] = [];
 
   // Fetch and validate everything before any write. A failure here leaves
   // both files exactly as they were.
@@ -315,6 +374,7 @@ export async function run(
     // cleanup only ever compares real prior state against the newly
     // generated set.
     beforeServiceFiles = isFullSync ? deps.readServiceFileNames() : [];
+    beforeLguFiles = isFullSync ? deps.readLguFileNames() : [];
     candidates = await buildCandidates(new Set(options.selected), client, deps);
     for (const candidate of candidates) {
       prepared.push(await deps.prepare(candidate));
@@ -343,14 +403,25 @@ export async function run(
   if (changed.length === 0) {
     deps.log('\nAlready up to date; nothing written.');
     if (isFullSync) {
-      const cleanedUp = cleanUpStaleServiceFiles(
+      const servicesCleanedUp = cleanUpStaleServiceFiles(
         deps,
         beforeServiceFiles,
         candidates
       );
-      if (!cleanedUp) {
+      const lguCleanedUp = cleanUpStaleLguFiles(
+        deps,
+        beforeLguFiles,
+        candidates
+      );
+      if (!servicesCleanedUp) {
         deps.log(
           '✖ sync failed: one or more stale service files could not be removed.'
+        );
+        return 1;
+      }
+      if (!lguCleanedUp) {
+        deps.log(
+          '✖ sync failed: one or more stale LGU files could not be removed.'
         );
         return 1;
       }
@@ -369,14 +440,21 @@ export async function run(
   }
 
   if (isFullSync) {
-    const cleanedUp = cleanUpStaleServiceFiles(
+    const servicesCleanedUp = cleanUpStaleServiceFiles(
       deps,
       beforeServiceFiles,
       candidates
     );
-    if (!cleanedUp) {
+    const lguCleanedUp = cleanUpStaleLguFiles(deps, beforeLguFiles, candidates);
+    if (!servicesCleanedUp) {
       deps.log(
         '✖ sync failed: one or more stale service files could not be removed.'
+      );
+      return 1;
+    }
+    if (!lguCleanedUp) {
+      deps.log(
+        '✖ sync failed: one or more stale LGU files could not be removed.'
       );
       return 1;
     }
