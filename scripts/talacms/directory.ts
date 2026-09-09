@@ -23,6 +23,92 @@ export const DIRECTORY_PAGE_SIZE = 100;
 export const CONSTITUTIONAL_PAGE_SIZE = 300;
 
 /**
+ * Legislative has exactly TWO chambers. 50 is a deliberately loose ceiling
+ * for a collection with no realistic growth path — it exists to fail loudly
+ * on a runaway response, not to bound a real dataset.
+ */
+export const LEGISLATIVE_PAGE_SIZE = 50;
+
+/**
+ * Ceilings for the two NESTED relations. These are NOT `first:` arguments —
+ * the reverse relations take none, and the CDA does not enforce `first`
+ * anyway (`first: 600` returned all 255 records with no error, verified
+ * 2026-09-09). They are asserted against the top-level `_all*Meta` counts, so
+ * a relation that silently truncates fails on the reconciliation gate and an
+ * unexpectedly large dataset fails here with a clearer message.
+ *
+ * Today: 254 house members (255 in TalaCMS until the duplicate Speaker record
+ * is deleted) and 61 party-list representatives. The House has ~316 seats
+ * total, so these leave real headroom without being meaningless.
+ */
+export const HOUSE_MEMBERS_CEILING = 400;
+export const PARTY_LIST_CEILING = 150;
+
+/**
+ * A FOURTH independent operation. Same isolation rule as the three above: a
+ * combined query would make `--only=legislative` fail on invalid Departments
+ * data and vice versa.
+ *
+ * All THREE `_all*Meta` fields are declared before `allLegislativeChambers`.
+ * This is not stylistic — the CDA returns `count: 0` for any `_all*Meta`
+ * field that follows a collection field anywhere in the same operation (see
+ * ./categories.ts). Verified working in exactly this configuration against
+ * the live CDA on 2026-09-09: 2 / 255 / 61. Do not reorder.
+ *
+ * `houseMembers` and `partyListRepresentatives` are REVERSE relations. They
+ * accept no `first` and no `orderBy`; the CDA resolved all 255 and all 61 in
+ * one round trip, in `position` order. We do not rely on that order — the
+ * shaper sorts by `position` itself, which is why `position` is selected on
+ * both — but we DO rely on completeness, which is why the response carries
+ * the two top-level meta counts to reconcile against.
+ *
+ * Members cannot be fetched per-chamber: neither HouseMemberModelFilter nor
+ * PartyListRepresentativeModelFilter exposes a `chamber` field. The nested
+ * relation is the only chamber-scoped access there is.
+ */
+export const LEGISLATIVE_QUERY = `
+query SyncLegislativeChambers {
+  _allLegislativeChambersMeta {
+    count
+  }
+  _allHouseMembersMeta {
+    count
+  }
+  _allPartyListRepresentativesMeta {
+    count
+  }
+  allLegislativeChambers(orderBy: [position_ASC], first: ${LEGISLATIVE_PAGE_SIZE}) {
+    position
+    slug
+    branch
+    chamber
+    address
+    trunkline
+    website
+    officials
+    permanentCommittees
+    houseLeaders
+    houseCommittees
+    specialCommittees
+    secretariatOfficials
+    houseMembers {
+      position
+      name
+      provinceCity
+      district
+      contact
+    }
+    partyListRepresentatives {
+      position
+      name
+      partyList
+      contact
+    }
+  }
+}
+`;
+
+/**
  * TWO independent operations, one per model — NOT one combined query.
  * `sync-talacms.ts` guarantees that an unselected dataset is never queried or
  * validated; a combined query would make `--only=departments` fail on invalid
@@ -273,6 +359,95 @@ const RawConstitutionalsSchema = z.object({
 export type RawConstitutional = z.infer<typeof RawConstitutionalSchema>;
 export type RawConstitutionals = z.infer<typeof RawConstitutionalsSchema>;
 
+/**
+ * Chamber order IS consumed — it is the generated file's record order and
+ * generate-sitemap.js emits detail URLs in that order — so `position` is
+ * required and non-null here, the same rule Constitutional uses and for the
+ * same reason. Uniqueness needs the whole collection and is enforced in
+ * parseLegislativeResponse.
+ */
+const LegislativePositionSchema = z.number().int();
+
+/**
+ * `.trim().min(1)` on every field the two member pages actually render.
+ * `.min(1)` alone would accept "   ", which renders as a blank row, a blank
+ * Flag chip, or a blank entry in the province/city facet dropdown while every
+ * count still reports healthy. `.trim()` is a zod TRANSFORM, so the trimmed
+ * value is what reaches the generated file — a deliberate normalization, and
+ * a no-op on today's data (pinned by the round-trip test in Task 3).
+ *
+ * `contact` is nullable: house-members.tsx and party-list-members.tsx both
+ * render it inside `{m.contact && ...}`.
+ */
+const RawHouseMemberSchema = z.object({
+  position: LegislativePositionSchema,
+  name: z.string().trim().min(1),
+  provinceCity: z.string().trim().min(1),
+  district: z.string().trim().min(1),
+  contact: z.string().nullable(),
+});
+
+const RawPartyListRepresentativeSchema = z.object({
+  position: LegislativePositionSchema,
+  name: z.string().trim().min(1),
+  partyList: z.string().trim().min(1),
+  contact: z.string().nullable(),
+});
+
+/**
+ * The two chambers populate DISJOINT field sets — the Senate carries
+ * `officials` and `permanentCommittees` and no house_* fields; the House
+ * carries the reverse. Every blob is therefore nullable, and no unconditional
+ * "must be present" gate may be added: it would fail on the other chamber.
+ * What IS gated, in parseLegislativeResponse, is that each discriminator
+ * matches exactly one chamber and that the House carries every member.
+ *
+ * The two relations are non-null LISTS in the schema (`[HouseMemberRecord!]!`)
+ * — an empty array, not null, is how "no members" arrives.
+ */
+const RawLegislativeSchema = z.object({
+  position: LegislativePositionSchema,
+  slug: z.string(),
+  branch: z.string().nullable(),
+  chamber: z.string(),
+  address: z.string().nullable(),
+  trunkline: z.string().nullable(),
+  website: z.string().nullable(),
+  officials: z.unknown(),
+  permanentCommittees: z.unknown(),
+  houseLeaders: z.unknown(),
+  houseCommittees: z.unknown(),
+  specialCommittees: z.unknown(),
+  secretariatOfficials: z.unknown(),
+  houseMembers: z.array(RawHouseMemberSchema),
+  partyListRepresentatives: z.array(RawPartyListRepresentativeSchema),
+});
+
+const RawLegislativesSchema = z.object({
+  _allLegislativeChambersMeta: z.object({ count: z.number() }),
+  _allHouseMembersMeta: z.object({ count: z.number() }),
+  _allPartyListRepresentativesMeta: z.object({ count: z.number() }),
+  allLegislativeChambers: z.array(RawLegislativeSchema),
+});
+
+export type RawHouseMember = z.infer<typeof RawHouseMemberSchema>;
+export type RawPartyListRepresentative = z.infer<
+  typeof RawPartyListRepresentativeSchema
+>;
+export type RawLegislative = z.infer<typeof RawLegislativeSchema>;
+export type RawLegislatives = z.infer<typeof RawLegislativesSchema>;
+
+/**
+ * The substrings three page components select on:
+ *   senate-committees.tsx   -> chamber.includes('Senate')
+ *   house-members.tsx       -> chamber.includes('House of Representatives')
+ *   party-list-members.tsx  -> chamber.includes('House of Representatives')
+ * A CMS rename silently empties those pages with no count changing, which is
+ * why this is gated rather than trusted.
+ */
+const SENATE_DISCRIMINATOR = 'Senate';
+const HOUSE_DISCRIMINATOR = 'House of Representatives';
+
 const RawDepartmentsSchema = z.object({
   _allGovernmentDepartmentsMeta: z.object({ count: z.number() }),
   allGovernmentDepartments: z.array(RawDepartmentSchema),
@@ -442,6 +617,203 @@ export async function fetchConstitutional(
 }
 
 /**
+ * Members carry no `slug` in the CDA, so identity is the tuple the UI shows.
+ * A duplicate is a real defect: house-members.tsx renders one row per record
+ * and prints `{results.length} of {members.length}`, so a duplicate is a
+ * visible repeated row and an inflated count.
+ */
+const houseMemberIdentity = (m: RawHouseMember) =>
+  `${m.name} ${m.provinceCity} ${m.district}`;
+
+const partyListIdentity = (m: RawPartyListRepresentative) =>
+  `${m.name} ${m.partyList}`;
+
+function assertMemberPositionsUnique(
+  label: string,
+  slug: string,
+  members: { position: number }[]
+): void {
+  const seen = new Set<number>();
+  for (const m of members) {
+    if (seen.has(m.position)) {
+      fail(
+        `chamber "${slug}" has two ${label} sharing duplicate position ` +
+          `${m.position}. Member order is the generated file's array order, so ` +
+          'a tie would be resolved arbitrarily rather than by editorial intent.'
+      );
+    }
+    seen.add(m.position);
+  }
+}
+
+export function parseLegislativeResponse(value: unknown): RawLegislatives {
+  const raw = parseOrFail(RawLegislativesSchema, value, 'legislative chambers');
+  const chambers = raw.allLegislativeChambers;
+
+  assertCollection(
+    'legislative chambers',
+    chambers.map(r => ({ slug: r.slug, name: r.chamber })),
+    raw._allLegislativeChambersMeta.count,
+    LEGISLATIVE_PAGE_SIZE
+  );
+
+  // Chamber position: unique, so record order is editorial rather than a
+  // slug-tie-break accident. Gaps are fine.
+  const positions = new Map<number, string>();
+  for (const r of chambers) {
+    const seen = positions.get(r.position);
+    if (seen !== undefined) {
+      fail(
+        `legislative chambers "${seen}" and "${r.slug}" share duplicate ` +
+          `position ${r.position}. Record order drives the generated file and ` +
+          'the sitemap, so a tie would be resolved by the slug tie-breaker ' +
+          'rather than by editorial intent.'
+      );
+    }
+    positions.set(r.position, r.slug);
+  }
+
+  // Discriminator gate — see SENATE_DISCRIMINATOR.
+  const matching = (needle: string) =>
+    chambers.filter(r => r.chamber.includes(needle));
+  for (const needle of [SENATE_DISCRIMINATOR, HOUSE_DISCRIMINATOR]) {
+    const hits = matching(needle);
+    if (hits.length !== 1) {
+      fail(
+        `expected exactly one chamber whose name contains "${needle}", found ` +
+          `${hits.length} (${chambers.map(r => `"${r.chamber}"`).join(', ')}). ` +
+          'senate-committees.tsx, house-members.tsx and party-list-members.tsx ' +
+          'all select their chamber by that substring, so this would silently ' +
+          'empty a page with no count changing.'
+      );
+    }
+  }
+  const houseChamber = matching(HOUSE_DISCRIMINATOR)[0];
+
+  // Reconcile the nested relations against the top-level meta counts. The
+  // relations take no `first` and the CDA does not enforce one, so this is
+  // the ONLY thing standing between a truncated relation and a short file.
+  const nestedHouseMembers = chambers.reduce(
+    (n, r) => n + r.houseMembers.length,
+    0
+  );
+  const nestedPartyList = chambers.reduce(
+    (n, r) => n + r.partyListRepresentatives.length,
+    0
+  );
+
+  const reconcile = (
+    label: string,
+    nested: number,
+    metaCount: number,
+    ceiling: number
+  ) => {
+    if (metaCount === 0) fail(`TalaCMS returned no ${label}`);
+    if (nested !== metaCount) {
+      fail(
+        `TalaCMS returned an incomplete ${label} list: the chamber relations ` +
+          `carry ${nested} nested record(s), meta reported ${metaCount}. The ` +
+          'reverse relation is unpaginated and the CDA does not enforce a ' +
+          'result cap, so a mismatch means records were lost in transit — ' +
+          'never that the dataset shrank.'
+      );
+    }
+    if (nested >= ceiling) {
+      fail(
+        `${label} count reached the ceiling of ${ceiling}; raise the ceiling ` +
+          'for this relation and re-run'
+      );
+    }
+  };
+
+  reconcile(
+    'house members',
+    nestedHouseMembers,
+    raw._allHouseMembersMeta.count,
+    HOUSE_MEMBERS_CEILING
+  );
+  reconcile(
+    'party-list representatives',
+    nestedPartyList,
+    raw._allPartyListRepresentativesMeta.count,
+    PARTY_LIST_CEILING
+  );
+
+  // Reconciliation alone still passes if members were re-linked to the wrong
+  // chamber: the totals match and /house-members renders empty. Pin the
+  // chamber the two member pages actually read.
+  if (houseChamber.houseMembers.length !== nestedHouseMembers) {
+    fail(
+      `the "House of Representatives" chamber ("${houseChamber.slug}") ` +
+        `carries ${houseChamber.houseMembers.length} of ${nestedHouseMembers} ` +
+        'house members. house-members.tsx reads that chamber and no other, so ' +
+        'the rest would vanish from the site.'
+    );
+  }
+  if (houseChamber.partyListRepresentatives.length !== nestedPartyList) {
+    fail(
+      `the "House of Representatives" chamber ("${houseChamber.slug}") ` +
+        `carries ${houseChamber.partyListRepresentatives.length} of ` +
+        `${nestedPartyList} party-list representatives. ` +
+        'party-list-members.tsx reads that chamber and no other, so the rest ' +
+        'would vanish from the site.'
+    );
+  }
+
+  // Duplicate members. Members have no slug, so identity is the tuple the UI
+  // renders. NOT de-duplicated here — a duplicate is a CMS data defect and
+  // must be fixed there, or it is hidden forever.
+  for (const r of chambers) {
+    assertMemberPositionsUnique('house members', r.slug, r.houseMembers);
+    assertMemberPositionsUnique(
+      'party-list representatives',
+      r.slug,
+      r.partyListRepresentatives
+    );
+
+    const seenMembers = new Set<string>();
+    for (const m of r.houseMembers) {
+      const id = houseMemberIdentity(m);
+      if (seenMembers.has(id)) {
+        fail(
+          `duplicate house member "${m.name}" (${m.provinceCity}, ` +
+            `${m.district}) in chamber "${r.slug}". Members carry no slug, so ` +
+            'identity is name + province/city + district. house-members.tsx ' +
+            'renders one row per record, so this would show a repeated row and ' +
+            'an inflated count. Delete the duplicate record in TalaCMS — the ' +
+            'sync will not de-duplicate it, because that would hide the defect ' +
+            'permanently.'
+        );
+      }
+      seenMembers.add(id);
+    }
+
+    const seenReps = new Set<string>();
+    for (const m of r.partyListRepresentatives) {
+      const id = partyListIdentity(m);
+      if (seenReps.has(id)) {
+        fail(
+          `duplicate party-list representative "${m.name}" (${m.partyList}) ` +
+            `in chamber "${r.slug}". Members carry no slug, so identity is ` +
+            'name + party-list. Delete the duplicate record in TalaCMS — the ' +
+            'sync will not de-duplicate it, because that would hide the defect ' +
+            'permanently.'
+        );
+      }
+      seenReps.add(id);
+    }
+  }
+
+  return raw;
+}
+
+export async function fetchLegislative(
+  client: TalaCmsClient
+): Promise<RawLegislatives> {
+  return parseLegislativeResponse(await client<unknown>(LEGISLATIVE_QUERY));
+}
+
+/**
  * Explicit per-model field maps. NOT a generic camelCase→snake_case rule:
  * `attachedAgencies` maps to `attached_agencies` on departments and to
  * `attached_agency` (singular) on executive. Verified against the committed
@@ -608,6 +980,104 @@ const CONSTITUTIONAL_FIELDS = [
   ['regionalOffices', 'regional_offices'],
   ['publicAssistance', 'public_assistance'],
 ] as const;
+
+/**
+ * ONE ordered map covering BOTH chambers. Order matters: this array IS the
+ * emitted key order. Because applyFieldMap omits absent keys, the Senate
+ * (no house_* fields) and the House (no officials/permanent_committees) each
+ * fall out of this single order exactly as committed — measured 2/2 exact
+ * key-order agreement on 2026-09-09, which is why the Task 3 test asserts
+ * hard equality rather than Constitutional's "at or above baseline".
+ *
+ * `houseMembers` / `partyListRepresentatives` are relations, not scalars;
+ * shapeLegislative pre-projects them onto the raw record before this map runs.
+ */
+const LEGISLATIVE_FIELDS = [
+  ['slug', 'slug'],
+  ['branch', 'branch'],
+  ['chamber', 'chamber'],
+  ['address', 'address'],
+  ['trunkline', 'trunkline'],
+  ['website', 'website'],
+  ['officials', 'officials'],
+  ['permanentCommittees', 'permanent_committees'],
+  ['houseLeaders', 'house_leaders'],
+  ['houseMembers', 'house_members'],
+  ['partyListRepresentatives', 'party_list_representatives'],
+  ['houseCommittees', 'house_committees'],
+  ['specialCommittees', 'special_committees'],
+  ['secretariatOfficials', 'secretariat_officials'],
+] as const;
+
+const byPosition = (a: { position: number }, b: { position: number }) =>
+  a.position - b.position;
+
+/**
+ * Returns NULL for an empty relation, never `[]`.
+ *
+ * applyFieldMap treats `[]` as a present value and would emit
+ * `"house_members": []` onto the Senate record, where the committed file has
+ * no such key at all. Returning null routes it through the same
+ * omit-when-absent rule as every other field.
+ *
+ * A null contact is omitted rather than emitted, matching the committed file
+ * and the `{m.contact && ...}` render in both member pages.
+ *
+ * Key order inside each member object is the committed order:
+ * province_city, name, district, contact.
+ */
+export function projectHouseMembers(
+  members: RawHouseMember[]
+): Record<string, unknown>[] | null {
+  if (members.length === 0) return null;
+  return [...members].sort(byPosition).map(m => {
+    const out: Record<string, unknown> = {
+      province_city: m.provinceCity,
+      name: m.name,
+      district: m.district,
+    };
+    if (m.contact !== null) out.contact = m.contact;
+    return out;
+  });
+}
+
+/** Committed member key order: party_list, name, contact. */
+export function projectPartyList(
+  members: RawPartyListRepresentative[]
+): Record<string, unknown>[] | null {
+  if (members.length === 0) return null;
+  return [...members].sort(byPosition).map(m => {
+    const out: Record<string, unknown> = {
+      party_list: m.partyList,
+      name: m.name,
+    };
+    if (m.contact !== null) out.contact = m.contact;
+    return out;
+  });
+}
+
+export function shapeLegislative(
+  records: RawLegislative[]
+): Record<string, unknown>[] {
+  return sortForOutput(records).map(r =>
+    applyFieldMap(
+      {
+        ...r,
+        houseMembers: projectHouseMembers(r.houseMembers),
+        partyListRepresentatives: projectPartyList(r.partyListRepresentatives),
+      } as unknown as Record<string, unknown>,
+      LEGISLATIVE_FIELDS
+    )
+  );
+}
+
+export function buildLegislativeCandidate(raw: RawLegislatives): Candidate {
+  return {
+    path: 'src/data/directory/legislative.json',
+    schemaPath: 'src/data/directory/schema/legislative.schema.json',
+    data: shapeLegislative(raw.allLegislativeChambers),
+  };
+}
 
 /**
  * The CMS `trunklines` JsonField is polymorphic — an array for

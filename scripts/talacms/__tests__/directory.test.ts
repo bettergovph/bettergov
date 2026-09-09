@@ -21,12 +21,25 @@ import {
   shapeConstitutional,
   buildConstitutionalCandidate,
 } from '../directory';
+import {
+  LEGISLATIVE_QUERY,
+  LEGISLATIVE_PAGE_SIZE,
+  HOUSE_MEMBERS_CEILING,
+  PARTY_LIST_CEILING,
+  parseLegislativeResponse,
+  shapeLegislative,
+  buildLegislativeCandidate,
+  projectHouseMembers,
+  projectPartyList,
+} from '../directory';
 import departmentsResponse from './fixtures/departments-response.json';
 import executiveResponse from './fixtures/executive-response.json';
 import constitutionalResponse from './fixtures/constitutional-response.json';
+import legislativeResponse from './fixtures/legislative-response.json';
 import expectedDepartments from '../../../src/data/directory/__fixtures__/departments.expected.json';
 import expectedExecutive from '../../../src/data/directory/__fixtures__/executive.expected.json';
 import expectedConstitutional from '../../../src/data/directory/__fixtures__/constitutional.expected.json';
+import expectedLegislative from '../../../src/data/directory/__fixtures__/legislative.expected.json';
 import type {
   RawDepartment,
   RawExecutive,
@@ -613,7 +626,16 @@ describe('assertNoCrossModelSlugCollisions', () => {
     ).toThrow(/a.*c/s);
   });
 
-  it('passes against the real generated candidates for all three models', () => {
+  it('catches a legislative slug that collides with departments', () => {
+    expect(() =>
+      assertNoCrossModelSlugCollisions([
+        candidate('src/data/directory/departments.json', ['shared-slug']),
+        candidate('src/data/directory/legislative.json', ['shared-slug']),
+      ])
+    ).toThrow(/departments\.json.*legislative\.json/s);
+  });
+
+  it('passes against the real generated candidates for all four models', () => {
     expect(() =>
       assertNoCrossModelSlugCollisions([
         buildDepartmentsCandidate({
@@ -628,6 +650,9 @@ describe('assertNoCrossModelSlugCollisions', () => {
           _allConstitutionalOfficesMeta: { count: rawConstitutional.length },
           allConstitutionalOffices: rawConstitutional,
         }),
+        buildLegislativeCandidate(
+          parseLegislativeResponse(legislativeResponse)
+        ),
       ])
     ).not.toThrow();
   });
@@ -1237,6 +1262,697 @@ describe('constitutional candidate emission', () => {
             office_type: 'Constitutional Office',
             name: 'X',
             trunklines: '(632) 8952-5700',
+          },
+        ],
+      })
+    ).rejects.toThrow(/does not satisfy/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Legislative                                                        */
+/* ------------------------------------------------------------------ */
+
+const hm = (over: Record<string, unknown> = {}) => ({
+  position: 0,
+  name: 'DELA CRUZ, JUAN M.',
+  provinceCity: 'Isabela',
+  district: '1st District',
+  contact: '8931-0000; local 1000',
+  ...over,
+});
+
+const plr = (over: Record<string, unknown> = {}) => ({
+  position: 0,
+  name: 'SANTOS, MARIA C.',
+  partyList: 'EXAMPLE',
+  contact: '8931-1111; local 1111',
+  ...over,
+});
+
+const senate = (over: Record<string, unknown> = {}) => ({
+  position: 0,
+  slug: 'senate-of-the-philippines-20th-congress',
+  branch: 'Legislative Branch',
+  chamber: 'Senate of the Philippines (20th Congress)',
+  address: 'Pasay City',
+  trunkline: '(632) 8552-6601 to 70',
+  website: 'www.senate.gov.ph',
+  officials: [{ role: 'Senate President', name: 'A PERSON' }],
+  permanentCommittees: [{ committee: 'Blue Ribbon', chairperson: 'B PERSON' }],
+  houseLeaders: null,
+  houseCommittees: null,
+  specialCommittees: null,
+  secretariatOfficials: [{ role: 'Secretary', name: 'C PERSON' }],
+  houseMembers: [],
+  partyListRepresentatives: [],
+  ...over,
+});
+
+const house = (over: Record<string, unknown> = {}) => ({
+  position: 1,
+  slug: 'house-of-representatives-20th-congress',
+  branch: 'Legislative Branch',
+  chamber: 'House of Representatives (20th Congress)',
+  address: 'Quezon City',
+  trunkline: '(632) 8931-5001',
+  website: 'www.congress.gov.ph',
+  officials: null,
+  permanentCommittees: null,
+  houseLeaders: { speaker: { name: 'D PERSON', contact: { contact: 'x' } } },
+  houseCommittees: { chairpersons: [{ committee: 'Accounts', name: 'E' }] },
+  specialCommittees: [{ committee: 'Bases', chairperson: 'F' }],
+  secretariatOfficials: [{ role: 'Secretary General', name: 'G PERSON' }],
+  houseMembers: [hm()],
+  partyListRepresentatives: [plr()],
+  ...over,
+});
+
+/** A well-formed response whose three meta counts agree with its content. */
+const okLeg = (chambers: Record<string, unknown>[] = [senate(), house()]) => ({
+  _allLegislativeChambersMeta: { count: chambers.length },
+  _allHouseMembersMeta: {
+    count: chambers.reduce(
+      (n, c) => n + (c.houseMembers as unknown[]).length,
+      0
+    ),
+  },
+  _allPartyListRepresentativesMeta: {
+    count: chambers.reduce(
+      (n, c) => n + (c.partyListRepresentatives as unknown[]).length,
+      0
+    ),
+  },
+  allLegislativeChambers: chambers,
+});
+
+describe('LEGISLATIVE_QUERY', () => {
+  it('declares ALL THREE _all*Meta fields before the collection field', () => {
+    // The CDA returns count: 0 for a _all*Meta field if ANY collection field
+    // appears earlier in the same operation. With three metas this is the
+    // whole ballgame — verified against the live CDA 2026-09-02.
+    const collection = LEGISLATIVE_QUERY.indexOf('allLegislativeChambers(');
+    for (const meta of [
+      '_allLegislativeChambersMeta',
+      '_allHouseMembersMeta',
+      '_allPartyListRepresentativesMeta',
+    ]) {
+      const at = LEGISLATIVE_QUERY.indexOf(meta);
+      expect(at).toBeGreaterThan(-1);
+      expect(at).toBeLessThan(collection);
+    }
+  });
+
+  it('orders chambers by position_ASC', () => {
+    expect(LEGISLATIVE_QUERY.match(/orderBy: \[position_ASC\]/g)).toHaveLength(
+      1
+    );
+  });
+
+  it('requests position on both nested relations, so member order is reproducible', () => {
+    // The nested relations take no orderBy argument; we sort by position
+    // ourselves in the shaper, so position must be selected.
+    expect(LEGISLATIVE_QUERY).toMatch(/houseMembers \{[^}]*position/s);
+    expect(LEGISLATIVE_QUERY).toMatch(
+      /partyListRepresentatives \{[^}]*position/s
+    );
+  });
+
+  it('never requests the system timestamps', () => {
+    expect(LEGISLATIVE_QUERY).not.toContain('_createdAt');
+    expect(LEGISLATIVE_QUERY).not.toContain('_updatedAt');
+  });
+
+  it('requests its own page-size ceiling', () => {
+    expect(LEGISLATIVE_QUERY).toContain(`first: ${LEGISLATIVE_PAGE_SIZE}`);
+    expect(LEGISLATIVE_PAGE_SIZE).toBeGreaterThan(2);
+  });
+});
+
+describe('query isolation — legislative', () => {
+  it('LEGISLATIVE_QUERY names no other model', () => {
+    for (const other of [
+      'allGovernmentDepartments',
+      'allExecutiveOffices',
+      'allConstitutionalOffices',
+    ]) {
+      expect(LEGISLATIVE_QUERY).not.toContain(other);
+    }
+  });
+
+  it('no other directory query names the legislative collections', () => {
+    for (const q of [
+      DEPARTMENTS_QUERY,
+      EXECUTIVE_QUERY,
+      CONSTITUTIONAL_QUERY,
+    ]) {
+      expect(q).not.toContain('allLegislativeChambers');
+      expect(q).not.toContain('_allLegislativeChambersMeta');
+      expect(q).not.toContain('_allHouseMembersMeta');
+      expect(q).not.toContain('_allPartyListRepresentativesMeta');
+    }
+  });
+});
+
+describe('parseLegislativeResponse — shared collection gates', () => {
+  it('accepts a well-formed response', () => {
+    expect(
+      parseLegislativeResponse(okLeg()).allLegislativeChambers
+    ).toHaveLength(2);
+  });
+
+  it('accepts the real fixture', () => {
+    const parsed = parseLegislativeResponse(legislativeResponse);
+    expect(parsed.allLegislativeChambers).toHaveLength(2);
+    expect(parsed._allHouseMembersMeta.count).toBe(254);
+    expect(parsed._allPartyListRepresentativesMeta.count).toBe(61);
+  });
+
+  it('fails closed on a chamber count short of its meta', () => {
+    const short = { ...okLeg(), _allLegislativeChambersMeta: { count: 3 } };
+    expect(() => parseLegislativeResponse(short)).toThrow(/incomplete/i);
+  });
+
+  it('fails closed on zero chambers', () => {
+    expect(() => parseLegislativeResponse(okLeg([]))).toThrow(
+      /no legislative chambers/i
+    );
+  });
+
+  it('fails closed at the chamber page-size ceiling', () => {
+    const many = Array.from({ length: LEGISLATIVE_PAGE_SIZE }, (_, i) =>
+      senate({ position: i, slug: `chamber-${i}`, chamber: `Senate ${i}` })
+    );
+    expect(() => parseLegislativeResponse(okLeg(many))).toThrow(/ceiling/i);
+  });
+
+  it('fails closed on a duplicate or malformed chamber slug', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ slug: senate().slug })])
+      )
+    ).toThrow(/duplicate slug/i);
+    expect(() =>
+      parseLegislativeResponse(okLeg([senate({ slug: 'Not A Slug' }), house()]))
+    ).toThrow(/not a valid slug/i);
+  });
+
+  it('fails closed on a blank chamber display name', () => {
+    expect(() =>
+      parseLegislativeResponse(okLeg([senate({ chamber: '   ' }), house()]))
+    ).toThrow(/blank display name/i);
+  });
+
+  it('fails closed on a null or non-integer position', () => {
+    // Chamber order IS the emitted file order and the sitemap's URL order.
+    expect(() =>
+      parseLegislativeResponse(okLeg([senate({ position: null }), house()]))
+    ).toThrow(/unexpected legislative chambers shape/i);
+    expect(() =>
+      parseLegislativeResponse(okLeg([senate({ position: 1.5 }), house()]))
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a duplicate chamber position, naming both slugs', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ position: 4 }), house({ position: 4 })])
+      )
+    ).toThrow(
+      /senate-of-the-philippines-20th-congress.*house-of-representatives-20th-congress.*duplicate position 4/s
+    );
+  });
+});
+
+describe('parseLegislativeResponse — chamber discriminator gate', () => {
+  /**
+   * senate-committees.tsx selects on chamber.includes('Senate');
+   * house-members.tsx and party-list-members.tsx select on
+   * chamber.includes('House of Representatives'). A CMS rename empties those
+   * pages while every count still looks healthy — nothing else can catch it.
+   */
+  it('fails closed when no chamber matches "Senate"', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ chamber: 'Upper House' }), house()])
+      )
+    ).toThrow(/exactly one chamber whose name contains "Senate"/i);
+  });
+
+  it('fails closed when no chamber matches "House of Representatives"', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ chamber: 'Lower House' })])
+      )
+    ).toThrow(
+      /exactly one chamber whose name contains "House of Representatives"/i
+    );
+  });
+
+  it('fails closed when TWO chambers match the same discriminator', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house(),
+          senate({
+            position: 2,
+            slug: 'senate-of-the-philippines-21st-congress',
+            chamber: 'Senate of the Philippines (21st Congress)',
+          }),
+        ])
+      )
+    ).toThrow(/exactly one chamber whose name contains "Senate"/i);
+  });
+
+  it('accepts the real fixture, whose two chambers match one discriminator each', () => {
+    expect(() => parseLegislativeResponse(legislativeResponse)).not.toThrow();
+  });
+});
+
+describe('parseLegislativeResponse — member reconciliation gates', () => {
+  it('fails closed when nested house members undercount their meta', () => {
+    // The single most important gate: the nested relation takes no `first`
+    // argument and the CDA does not error on an oversized one, so a
+    // truncated relation is otherwise indistinguishable from a real shrink.
+    const truncated = { ...okLeg(), _allHouseMembersMeta: { count: 9 } };
+    expect(() => parseLegislativeResponse(truncated)).toThrow(
+      /house members.*1 nested record.*meta reported 9/is
+    );
+  });
+
+  it('fails closed when nested party-list reps undercount their meta', () => {
+    const truncated = {
+      ...okLeg(),
+      _allPartyListRepresentativesMeta: { count: 7 },
+    };
+    expect(() => parseLegislativeResponse(truncated)).toThrow(
+      /party-list representatives.*1 nested record.*meta reported 7/is
+    );
+  });
+
+  it('fails closed at the house-members ceiling', () => {
+    const members = Array.from({ length: HOUSE_MEMBERS_CEILING }, (_, i) =>
+      hm({ position: i, name: `MEMBER ${i}` })
+    );
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ houseMembers: members })])
+      )
+    ).toThrow(/house members count reached the ceiling/i);
+  });
+
+  it('fails closed at the party-list ceiling', () => {
+    const reps = Array.from({ length: PARTY_LIST_CEILING }, (_, i) =>
+      plr({ position: i, name: `REP ${i}` })
+    );
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ partyListRepresentatives: reps })])
+      )
+    ).toThrow(/party-list representatives count reached the ceiling/i);
+  });
+
+  it('fails closed when the House chamber does not carry every house member', () => {
+    // Reconciliation alone would still pass if members were re-linked to the
+    // Senate: totals match, but /house-members renders empty.
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate({ houseMembers: [hm()] }), house({ houseMembers: [] })])
+      )
+    ).toThrow(/House of Representatives.*carries 0 of 1 house members/is);
+  });
+
+  it('fails closed when the House chamber does not carry every party-list rep', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate({ partyListRepresentatives: [plr()] }),
+          house({ partyListRepresentatives: [] }),
+        ])
+      )
+    ).toThrow(
+      /House of Representatives.*carries 0 of 1 party-list representatives/is
+    );
+  });
+});
+
+describe('parseLegislativeResponse — duplicate member gates', () => {
+  /**
+   * THE gate this branch exists for. TalaCMS currently carries two identical
+   * records for DY, FAUSTINO "BOJIE" G. III / Isabela / 6th District,
+   * inherited from the orphaned house_members.json. That is a CMS data
+   * defect, and the sync must refuse to ship it rather than de-duplicate it
+   * in code — a silent de-dup would hide the defect forever and would
+   * violate the never-drop-a-record rule.
+   */
+  it('fails closed on two house members with the same name, province and district', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({ houseMembers: [hm({ position: 0 }), hm({ position: 1 })] }),
+        ])
+      )
+    ).toThrow(
+      /duplicate house member "DELA CRUZ, JUAN M\." \(Isabela, 1st District\)/i
+    );
+  });
+
+  it('names the chamber and the CMS as the place to fix it', () => {
+    let message = '';
+    try {
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({ houseMembers: [hm({ position: 0 }), hm({ position: 1 })] }),
+        ])
+      );
+    } catch (e) {
+      message = (e as Error).message;
+    }
+    expect(message).toContain('house-of-representatives-20th-congress');
+    expect(message).toMatch(/TalaCMS/);
+  });
+
+  it('allows two same-named members in different districts — namesakes are real', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            houseMembers: [
+              hm({ position: 0, district: '1st District' }),
+              hm({ position: 1, district: '2nd District' }),
+            ],
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed on two party-list reps with the same name and party-list', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            partyListRepresentatives: [
+              plr({ position: 0 }),
+              plr({ position: 1 }),
+            ],
+          }),
+        ])
+      )
+    ).toThrow(
+      /duplicate party-list representative "SANTOS, MARIA C\." \(EXAMPLE\)/i
+    );
+  });
+
+  it('would REJECT the CMS state as it stands today', () => {
+    // Reconstructs production's known defect on top of the fixture: the
+    // Speaker's record, duplicated. This is the proof the gate bites on the
+    // real thing, not only on synthetic data.
+    const live = structuredClone(legislativeResponse) as ReturnType<
+      typeof okLeg
+    >;
+    const h = live.allLegislativeChambers.find(c =>
+      (c.slug as string).includes('house')
+    )!;
+    const members = h.houseMembers as { name: string; position: number }[];
+    const speaker = members.find(m =>
+      m.name.startsWith('DY, FAUSTINO "BOJIE"')
+    )!;
+    members.push({ ...speaker, position: members.length });
+    live._allHouseMembersMeta = { count: members.length };
+    expect(() => parseLegislativeResponse(live)).toThrow(
+      /duplicate house member/i
+    );
+  });
+});
+
+describe('parseLegislativeResponse — member field gates', () => {
+  it('fails closed on a blank member name', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ houseMembers: [hm({ name: '  ' })] })])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a blank province/city — it drives the facet dropdown', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ houseMembers: [hm({ provinceCity: '' })] })])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a blank district — it renders as a Flag chip', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([senate(), house({ houseMembers: [hm({ district: '   ' })] })])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('fails closed on a blank party-list label', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({ partyListRepresentatives: [plr({ partyList: ' ' })] }),
+        ])
+      )
+    ).toThrow(/unexpected legislative chambers shape/i);
+  });
+
+  it('accepts a null contact — the pages render it conditionally', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            houseMembers: [hm({ contact: null })],
+            partyListRepresentatives: [plr({ contact: null })],
+          }),
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  it('fails closed on a duplicate member position within a chamber', () => {
+    expect(() =>
+      parseLegislativeResponse(
+        okLeg([
+          senate(),
+          house({
+            houseMembers: [
+              hm({ position: 3, name: 'A' }),
+              hm({ position: 3, name: 'B' }),
+            ],
+          }),
+        ])
+      )
+    ).toThrow(/duplicate position 3/i);
+  });
+});
+
+describe('projectHouseMembers / projectPartyList', () => {
+  it('renames the CMS fields to the committed local keys, in committed key order', () => {
+    expect(projectHouseMembers([hm() as never])).toEqual([
+      {
+        province_city: 'Isabela',
+        name: 'DELA CRUZ, JUAN M.',
+        district: '1st District',
+        contact: '8931-0000; local 1000',
+      },
+    ]);
+    expect(Object.keys(projectHouseMembers([hm() as never])![0])).toEqual([
+      'province_city',
+      'name',
+      'district',
+      'contact',
+    ]);
+    expect(projectPartyList([plr() as never])).toEqual([
+      {
+        party_list: 'EXAMPLE',
+        name: 'SANTOS, MARIA C.',
+        contact: '8931-1111; local 1111',
+      },
+    ]);
+  });
+
+  it('sorts by position, not by the order the relation happened to arrive in', () => {
+    const out = projectHouseMembers([
+      hm({ position: 2, name: 'C' }),
+      hm({ position: 0, name: 'A' }),
+      hm({ position: 1, name: 'B' }),
+    ] as never);
+    expect(out!.map(m => m.name)).toEqual(['A', 'B', 'C']);
+  });
+
+  it('omits a null contact rather than emitting contact: null', () => {
+    const out = projectHouseMembers([hm({ contact: null }) as never])!;
+    expect(out[0]).not.toHaveProperty('contact');
+    expect(
+      projectPartyList([plr({ contact: null }) as never])![0]
+    ).not.toHaveProperty('contact');
+  });
+
+  it('returns null for an empty relation, so the key is omitted entirely', () => {
+    // The Senate record has no house_members key at all in the committed
+    // file — not an empty array. applyFieldMap preserves [] as a present
+    // value, so the projection must hand it null instead.
+    expect(projectHouseMembers([])).toBeNull();
+    expect(projectPartyList([])).toBeNull();
+  });
+});
+
+describe('shapeLegislative', () => {
+  const shaped = () =>
+    shapeLegislative(
+      parseLegislativeResponse(legislativeResponse).allLegislativeChambers
+    );
+
+  it('reproduces the committed file, content for content', () => {
+    const out = shaped();
+    const expected = structuredClone(expectedLegislative) as Record<
+      string,
+      unknown
+    >[];
+    // ACCEPTED DELTA 1, applied to the expected side so the rest of the
+    // record is still compared strictly.
+    for (const p of expected[1].party_list_representatives as {
+      party_list: string;
+    }[]) {
+      if (p.party_list === 'MANILA TEACHERS') p.party_list = 'Manila Teachers';
+    }
+    expect(out).toHaveLength(expected.length);
+    for (const [i, rec] of out.entries()) {
+      expect(sortDeep(rec)).toEqual(sortDeep(expected[i]));
+    }
+  });
+
+  it('reproduces the committed key order EXACTLY, for both records', () => {
+    // Unlike Constitutional, exact agreement is reachable here: one ordered
+    // field map covers both chambers because applyFieldMap omits absent keys.
+    // Measured 2/2 on 2026-09-09. This is a hard equality, not a baseline.
+    const out = shaped();
+    for (const [i, rec] of out.entries()) {
+      expect(Object.keys(rec)).toEqual(
+        Object.keys(expectedLegislative[i] as object)
+      );
+    }
+  });
+
+  it('emits records in committed file order', () => {
+    expect(shaped().map(r => r.slug)).toEqual(
+      (expectedLegislative as { slug: string }[]).map(r => r.slug)
+    );
+  });
+
+  it('never emits position, at the chamber or the member level', () => {
+    for (const rec of shaped()) {
+      expect(rec).not.toHaveProperty('position');
+      for (const key of ['house_members', 'party_list_representatives']) {
+        for (const m of (rec[key] as { position?: number }[]) ?? []) {
+          expect(m).not.toHaveProperty('position');
+        }
+      }
+    }
+  });
+
+  it('omits the House-only keys from the Senate record and vice versa', () => {
+    const [senateRec, houseRec] = shaped();
+    for (const k of [
+      'house_leaders',
+      'house_members',
+      'party_list_representatives',
+      'house_committees',
+      'special_committees',
+    ]) {
+      expect(senateRec).not.toHaveProperty(k);
+    }
+    for (const k of ['officials', 'permanent_committees']) {
+      expect(houseRec).not.toHaveProperty(k);
+    }
+  });
+
+  it('preserves the exact member counts the two pages display', () => {
+    const houseRec = shaped()[1];
+    expect(houseRec.house_members).toHaveLength(254);
+    expect(houseRec.party_list_representatives).toHaveLength(61);
+  });
+
+  it('leaves every member name byte-identical to the fixture', () => {
+    // .trim() on the member schemas is a transform; zero live rows carry
+    // surrounding whitespace, so the output must be unchanged by it.
+    const houseRec = shaped()[1];
+    const expectedHouse = expectedLegislative[1] as {
+      house_members: { name: string }[];
+    };
+    expect(
+      (houseRec.house_members as { name: string }[]).map(m => m.name)
+    ).toEqual(expectedHouse.house_members.map(m => m.name));
+  });
+
+  it('is pure — it never mutates its input', () => {
+    const parsed = parseLegislativeResponse(legislativeResponse);
+    const before = JSON.stringify(parsed);
+    shapeLegislative(parsed.allLegislativeChambers);
+    expect(JSON.stringify(parsed)).toBe(before);
+  });
+});
+
+describe('legislative candidate emission', () => {
+  it('emits the candidate against the tracked legislative schema', () => {
+    const c = buildLegislativeCandidate(
+      parseLegislativeResponse(legislativeResponse)
+    );
+    expect(c.path).toBe('src/data/directory/legislative.json');
+    expect(c.schemaPath).toBe(
+      'src/data/directory/schema/legislative.schema.json'
+    );
+    expect(c.data).toHaveLength(2);
+  });
+
+  it('builds the candidate without reference to the other models', () => {
+    expect(buildLegislativeCandidate.length).toBe(1);
+  });
+
+  it('produces a candidate that satisfies the tracked JSON Schema', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare(
+        buildLegislativeCandidate(parseLegislativeResponse(legislativeResponse))
+      )
+    ).resolves.toMatchObject({ path: 'src/data/directory/legislative.json' });
+  });
+
+  it('would REJECT a record missing the required chamber field', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/legislative.json',
+        schemaPath: 'src/data/directory/schema/legislative.schema.json',
+        data: [{ slug: 'x', branch: 'Legislative Branch' }],
+      })
+    ).rejects.toThrow(/does not satisfy/);
+  });
+
+  it('would REJECT a house member missing province_city — the schema gate bites', async () => {
+    const { prepare } = await import('../write');
+    await expect(
+      prepare({
+        path: 'src/data/directory/legislative.json',
+        schemaPath: 'src/data/directory/schema/legislative.schema.json',
+        data: [
+          {
+            slug: 'x',
+            branch: 'Legislative Branch',
+            chamber: 'House of Representatives (20th Congress)',
+            house_members: [{ name: 'A', district: '1st District' }],
           },
         ],
       })
