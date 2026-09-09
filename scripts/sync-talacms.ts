@@ -14,9 +14,11 @@ import {
   buildConstitutionalCandidate,
   buildDepartmentsCandidate,
   buildExecutiveCandidate,
+  buildLegislativeCandidate,
   fetchConstitutional,
   fetchDepartments,
   fetchExecutive,
+  fetchLegislative,
 } from './talacms/directory';
 import {
   commitFiles,
@@ -37,6 +39,7 @@ export const DATASETS = [
   'departments',
   'executive',
   'constitutional',
+  'legislative',
 ] as const;
 type DatasetName = (typeof DATASETS)[number];
 
@@ -186,11 +189,18 @@ async function buildCandidates(
   const rawConstitutional = selected.has('constitutional')
     ? await fetchConstitutional(client)
     : null;
+  // Legislative is the fourth independent fetch. Its single operation carries
+  // the two member relations, so House Members and Party-list Representatives
+  // need no separate query and no separate dataset selector — they are fields
+  // of the chamber record in the app's data contract.
+  const rawLegislative = selected.has('legislative')
+    ? await fetchLegislative(client)
+    : null;
 
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
   // then services in path-codepoint order, then departments, executive, then
-  // constitutional, so preparation order, the `~ changed / unchanged` status
-  // lines and commitFiles' rename order are all reproducible, including under
+  // constitutional, then legislative, so preparation order, the status lines
+  // and commitFiles' rename order are all reproducible, including under
   // partial failure.
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
@@ -215,6 +225,9 @@ async function buildCandidates(
   const constitutionalCandidate = rawConstitutional
     ? buildConstitutionalCandidate(rawConstitutional)
     : null;
+  const legislativeCandidate = rawLegislative
+    ? buildLegislativeCandidate(rawLegislative)
+    : null;
 
   // §6.0 run-mode matrix: a gate whose inputs a mode does not have is not
   // applied — no weaker substitute, and never a read of another model's
@@ -223,6 +236,7 @@ async function buildCandidates(
     departmentsCandidate,
     executiveCandidate,
     constitutionalCandidate,
+    legislativeCandidate,
   ].filter((c): c is Candidate => c !== null);
   if (directoryCandidates.length > 1) {
     assertNoCrossModelSlugCollisions(directoryCandidates);
