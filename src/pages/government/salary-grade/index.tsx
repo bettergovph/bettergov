@@ -44,7 +44,7 @@ const SalaryGradePage: FC = () => {
       />
 
       {/* Stat strip */}
-      <section className='border-b border-ed-rule bg-white py-10 max-md:py-8'>
+      <section className='border-b border-ed-rule bg-white py-10 max-md:py-6'>
         <Container>
           <div className='grid grid-cols-4 divide-x divide-ed-rule max-md:grid-cols-2 max-md:divide-x-0 max-md:divide-y'>
             <Stat label='Highest salary' value={formatPeso(highest)} />
@@ -56,7 +56,7 @@ const SalaryGradePage: FC = () => {
       </section>
 
       {/* Intro */}
-      <section className='py-10'>
+      <section className='py-10 max-md:py-6'>
         <Container>
           <div className='max-w-3xl border-l-[3px] border-ed-navy pl-6'>
             <Eyebrow>About the system</Eyebrow>
@@ -85,7 +85,7 @@ const SalaryGradePage: FC = () => {
       </section>
 
       {/* Table */}
-      <section className='pb-14 max-md:pb-8'>
+      <section className='pb-14 max-md:pb-6'>
         <Container>
           <SectionHeader
             label='Monthly salary schedule'

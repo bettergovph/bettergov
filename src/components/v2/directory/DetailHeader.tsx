@@ -41,12 +41,12 @@ const DetailHeader: FC<Props> = ({
   email,
   children,
 }) => (
-  <section className='border-b border-ed-ink bg-ed-paper-2 py-12 max-md:py-8'>
+  <section className='border-b border-ed-ink bg-ed-paper-2 py-12 max-md:py-6'>
     <Container>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <nav
           aria-label='Breadcrumb'
-          className='mb-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'
+          className='mb-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-md:mb-2.5 max-md:text-[10px]'
         >
           {breadcrumbs.map((c, i) => (
             <span key={i}>
@@ -66,18 +66,18 @@ const DetailHeader: FC<Props> = ({
         </nav>
       )}
 
-      <h1 className='font-serif-ed text-[clamp(32px,5vw,56px)] font-bold leading-[1.04] tracking-[-0.02em] text-ed-ink'>
+      <h1 className='font-serif-ed text-[clamp(32px,5vw,56px)] font-bold leading-[1.04] tracking-[-0.02em] text-ed-ink max-md:text-[26px]'>
         {title}
       </h1>
 
       {lede && (
-        <p className='mt-4 max-w-3xl font-sans-ed text-lg leading-relaxed text-ed-ink-2'>
+        <p className='mt-4 max-w-3xl font-sans-ed text-lg leading-relaxed text-ed-ink-2 max-md:mt-2.5 max-md:text-[15px] max-md:leading-snug'>
           {lede}
         </p>
       )}
 
       {(address || trunkline || website || email) && (
-        <dl className='mt-6 grid grid-cols-1 gap-x-10 gap-y-2 text-sm text-ed-ink-2 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(260px,1fr))]'>
+        <dl className='mt-6 grid grid-cols-1 gap-x-10 gap-y-2 text-sm text-ed-ink-2 max-md:mt-4 max-md:gap-y-1.5 max-md:text-[13px] md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(260px,1fr))]'>
           {address && (
             <div className='flex items-start gap-2'>
               <MapPinIcon
@@ -133,7 +133,7 @@ const DetailHeader: FC<Props> = ({
         </dl>
       )}
 
-      {children && <div className='mt-6'>{children}</div>}
+      {children && <div className='mt-6 max-md:mt-4'>{children}</div>}
     </Container>
   </section>
 );

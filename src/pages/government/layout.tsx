@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils';
 type TabDef = { to: string; label: string; end?: boolean };
 
 const TABS: TabDef[] = [
+  { to: '/government/overview', label: 'Overview' },
   { to: '/government', label: 'Directory', end: true },
   { to: '/government/departments', label: 'Departments' },
   { to: '/government/executive', label: 'Executive' },
@@ -23,7 +24,7 @@ const GovernmentLayout: FC = () => (
       className='border-b border-ed-rule bg-white'
       aria-label='Government sections'
     >
-      <Container className='flex flex-wrap'>
+      <Container className='flex flex-wrap max-md:flex-nowrap max-md:overflow-x-auto max-md:px-0'>
         {TABS.map((t, i) => (
           <NavLink
             key={t.to}
@@ -31,7 +32,7 @@ const GovernmentLayout: FC = () => (
             end={t.end}
             className={({ isActive }) =>
               cn(
-                'border-r border-ed-rule px-[18px] py-3.5 font-sans-ed text-[11px] uppercase tracking-[0.12em] no-underline transition-colors',
+                'border-r border-ed-rule px-[18px] py-3.5 font-sans-ed text-[11px] uppercase tracking-[0.12em] no-underline transition-colors max-md:shrink-0 max-md:whitespace-nowrap max-md:px-3.5 max-md:py-2.5 max-md:text-[10px]',
                 isActive
                   ? 'bg-ed-navy text-white'
                   : 'bg-transparent text-ed-ink-2 hover:bg-ed-navy-tint hover:text-ed-navy-ink',

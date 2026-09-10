@@ -116,7 +116,7 @@ const NewsAndHolidays: FC = () => {
   const rest = articles.filter((_, i) => i !== leadIndex);
 
   return (
-    <section className='mt-20'>
+    <section className='mt-20 max-md:mt-8'>
       <Container>
         <SectionHeader
           label={t('newsAndHolidays.label')}
@@ -129,7 +129,7 @@ const NewsAndHolidays: FC = () => {
             </Link>
           }
         />
-        <div className='grid grid-cols-[1.6fr_1fr] gap-12 max-lg:grid-cols-1 max-lg:gap-10'>
+        <div className='grid grid-cols-[1.6fr_1fr] gap-12 max-lg:grid-cols-1 max-lg:gap-10 max-md:gap-6'>
           {/* News column */}
           <div>
             {isLoading ? (
@@ -149,7 +149,7 @@ const NewsAndHolidays: FC = () => {
               <>
                 <Link
                   to={`/news/${featured.id}`}
-                  className='block border-b border-ed-ink pb-8 text-ed-ink no-underline'
+                  className='block border-b border-ed-ink pb-8 text-ed-ink no-underline max-md:pb-4'
                 >
                   <div className='flex flex-wrap items-baseline gap-3'>
                     <Flag
@@ -169,16 +169,16 @@ const NewsAndHolidays: FC = () => {
                       </span>
                     )}
                   </div>
-                  <h2 className='mt-4 font-serif-ed text-[clamp(28px,3.2vw,40px)] font-bold leading-[1.05] tracking-[-0.01em] text-ed-ink'>
+                  <h2 className='mt-4 font-serif-ed text-[clamp(28px,3.2vw,40px)] font-bold leading-[1.05] tracking-[-0.01em] text-ed-ink max-md:mt-2 max-md:text-[22px]'>
                     {featured.title}
                   </h2>
                   {leadDetail?.excerpt && (
-                    <Dropcap className='mt-4 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                    <Dropcap className='mt-4 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-md:mt-2 max-md:text-[14px] max-md:leading-snug'>
                       {leadDetail.excerpt}
                     </Dropcap>
                   )}
                 </Link>
-                <div className='mt-8 grid gap-x-12 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]'>
+                <div className='mt-8 grid gap-x-12 gap-y-8 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] max-md:mt-4 max-md:gap-y-4'>
                   {rest.slice(0, 4).map(n => (
                     <Link
                       key={n.id}
@@ -191,7 +191,7 @@ const NewsAndHolidays: FC = () => {
                           {formatNewsDateLong(n.publishedAt)}
                         </span>
                       </div>
-                      <h3 className='mt-2 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
+                      <h3 className='mt-2 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:mt-1 max-md:text-[17px]'>
                         {n.title}
                       </h3>
                     </Link>
@@ -203,28 +203,28 @@ const NewsAndHolidays: FC = () => {
 
           {/* Sidebar */}
           <aside>
-            <div className='bg-ed-navy p-8 text-white'>
+            <div className='bg-ed-navy p-8 text-white max-md:p-4'>
               <Eyebrow tone='onDark'>
                 {t('newsAndHolidays.holidaysEyebrow')} · 2026
               </Eyebrow>
-              <h3 className='mt-2 font-serif-ed text-[28px] font-bold tracking-[-0.01em] text-white'>
+              <h3 className='mt-2 font-serif-ed text-[28px] font-bold tracking-[-0.01em] text-white max-md:mt-1 max-md:text-[21px]'>
                 {t('newsAndHolidays.holidaysTitle')}
               </h3>
-              <div className='mt-6 border-t border-white/20'>
+              <div className='mt-6 border-t border-white/20 max-md:mt-3'>
                 {HOLIDAYS_2026.map(h => (
                   <div
                     key={h.date}
-                    className='grid grid-cols-[70px_1fr_auto] items-baseline gap-3 border-b border-white/10 py-3.5'
+                    className='grid grid-cols-[70px_1fr_auto] items-baseline gap-3 border-b border-white/10 py-3.5 max-md:grid-cols-[56px_1fr_auto] max-md:py-2'
                   >
                     <div>
-                      <div className='font-serif-ed text-xl tracking-[-0.01em] text-white'>
+                      <div className='font-serif-ed text-xl tracking-[-0.01em] text-white max-md:text-base'>
                         {h.date}
                       </div>
                       <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/60'>
                         {h.day}
                       </div>
                     </div>
-                    <div className='font-serif-ed text-[15px] text-white'>
+                    <div className='font-serif-ed text-[15px] text-white max-md:text-[14px]'>
                       {h.name}
                     </div>
                     <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/65'>
@@ -235,18 +235,18 @@ const NewsAndHolidays: FC = () => {
               </div>
               <Link
                 to='/philippines/holidays'
-                className='mt-6 inline-flex items-center gap-1.5 border-b border-white/50 pb-0.5 text-[13px] text-white no-underline'
+                className='mt-6 inline-flex items-center gap-1.5 border-b border-white/50 pb-0.5 text-[13px] text-white no-underline max-md:mt-3.5'
               >
                 {t('newsAndHolidays.seeAllHolidays')} →
               </Link>
             </div>
 
-            <div className='mt-6 border border-ed-rule bg-white p-7'>
+            <div className='mt-6 border border-ed-rule bg-white p-7 max-md:mt-3 max-md:p-4'>
               <Eyebrow>{t('newsAndHolidays.hotlinesEyebrow')}</Eyebrow>
               <h3 className='mt-1.5 font-serif-ed text-xl font-semibold text-ed-ink'>
                 {t('newsAndHolidays.hotlinesTitle')}
               </h3>
-              <div className='mt-4 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-2.5'>
+              <div className='mt-4 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-2.5 max-md:mt-2.5 max-md:gap-y-1.5'>
                 {HOME_HOTLINES.map((h, i) => (
                   <Fragment key={h.name}>
                     <span className='text-sm'>{h.name}</span>
@@ -263,7 +263,7 @@ const NewsAndHolidays: FC = () => {
                   </Fragment>
                 ))}
               </div>
-              <div className='mt-6'>
+              <div className='mt-6 max-md:mt-3.5'>
                 <ArrowLink to='/philippines/hotlines'>
                   {t('newsAndHolidays.hotlinesAll')}
                 </ArrowLink>

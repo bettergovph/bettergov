@@ -44,14 +44,16 @@ const PageMasthead: FC<Props> = ({
   const onDark = variant === 'hero';
 
   return (
-    <section className={cn('py-16', variantClasses[variant], className)}>
+    <section
+      className={cn('py-16 max-md:py-7', variantClasses[variant], className)}
+    >
       <Container>
         <TitleTag
           className={cn(
             'font-serif-ed font-bold tracking-[-0.02em]',
             // leading must follow the size class: tailwind-merge treats
             // text-[...] as conflicting and would otherwise drop it.
-            'text-[clamp(32px,5vw,56px)] leading-none',
+            'text-[clamp(32px,5vw,56px)] leading-none max-md:text-[26px]',
             onDark ? 'text-white' : 'text-ed-ink'
           )}
         >
@@ -60,14 +62,14 @@ const PageMasthead: FC<Props> = ({
         {lede && (
           <p
             className={cn(
-              'mt-4 max-w-2xl font-sans-ed text-lg leading-relaxed',
+              'mt-4 max-w-2xl font-sans-ed text-lg leading-relaxed max-md:mt-2.5 max-md:text-[15px] max-md:leading-snug',
               onDark ? 'text-white/85' : 'text-ed-ink-2'
             )}
           >
             {lede}
           </p>
         )}
-        {children && <div className='mt-6'>{children}</div>}
+        {children && <div className='mt-6 max-md:mt-4'>{children}</div>}
       </Container>
     </section>
   );

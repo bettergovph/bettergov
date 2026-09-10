@@ -28,7 +28,7 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
   };
 
   return (
-    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-6 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3'>
+    <div className='grid grid-cols-[auto_1fr_auto] items-center gap-8 py-6 max-md:grid-cols-[auto_auto] max-md:justify-between max-md:gap-3 max-md:py-3'>
       <Link
         to='/'
         aria-label={`${SITE_NAME} home`}
@@ -37,13 +37,13 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
         <img
           src={COAT_OF_ARMS_SRC}
           alt={COAT_OF_ARMS_ALT}
-          className='block h-14 w-auto'
+          className='block h-14 w-auto max-md:h-10'
         />
         <span className='block'>
-          <span className='block font-serif-ed text-2xl font-bold leading-none text-ed-navy-ink'>
+          <span className='block font-serif-ed text-2xl font-bold leading-none text-ed-navy-ink max-md:text-xl'>
             {SITE_NAME}
           </span>
-          <span className='mt-1 block font-sans-ed text-[11px] leading-tight text-ed-ink-3'>
+          <span className='mt-1 block font-sans-ed text-[11px] leading-tight text-ed-ink-3 max-md:mt-0.5 max-md:text-[10px]'>
             {SITE_OWNER}
           </span>
         </span>
@@ -54,7 +54,7 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
       <div className='border-l border-ed-rule pl-6 font-mono-ed text-[10px] uppercase leading-tight tracking-[0.16em] text-ed-ink-3 max-w-[320px] max-xl:hidden'>
         {t(
           'masthead.tagline',
-          'The official website of the Republic of the Philippines'
+          'The official portal of the Republic of the Philippines'
         )}
       </div>
 

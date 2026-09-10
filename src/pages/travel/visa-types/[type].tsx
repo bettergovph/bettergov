@@ -66,7 +66,7 @@ const VisaTypeDetail: FC = () => {
         )}
       </DetailHeader>
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           {v.minimumRequirements && v.minimumRequirements.length > 0 && (
             <>

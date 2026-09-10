@@ -620,7 +620,7 @@ const VisaPage: FC = () => {
               <div>
                 {selectedCountry && visaRequirement ? (
                   <>
-                    <h2 className='mb-5 border-b border-ed-navy pb-3 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink'>
+                    <h2 className='mb-5 border-b border-ed-navy pb-3 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink max-md:mb-3 max-md:text-[24px]'>
                       {t('requirements.title', { country: selectedCountry })}
                     </h2>
                     <VisaRequirementDetails
@@ -635,7 +635,7 @@ const VisaPage: FC = () => {
                       className='mb-4 text-ed-ink-3'
                       aria-hidden
                     />
-                    <h2 className='font-serif-ed text-[24px] font-semibold text-ed-navy-ink'>
+                    <h2 className='font-serif-ed text-[24px] font-semibold text-ed-navy-ink max-md:text-[21px]'>
                       {t('defaultMessage.title')}
                     </h2>
                     <p className='mt-2 max-w-md text-sm text-ed-ink-2'>

@@ -392,19 +392,19 @@ export default function ServicesPage() {
                         href={service.url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='grid grid-cols-[1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-1 max-lg:gap-4 max-md:py-5'
+                        className='grid grid-cols-[1fr_220px] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-lg:grid-cols-1 max-lg:gap-4 max-md:py-3.5'
                       >
                         <div>
-                          <div className='flex flex-wrap items-baseline gap-3'>
+                          <div className='flex flex-wrap items-baseline gap-3 max-md:gap-2'>
                             <Flag variant='navy'>{service.category.name}</Flag>
                             <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
                               {service.subcategory.name}
                             </span>
                           </div>
-                          <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink'>
+                          <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:mt-1.5 max-md:text-[18px]'>
                             {service.service}
                           </h3>
-                          <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3'>
+                          <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3 max-md:mt-1 max-md:text-xs'>
                             {service.url}
                           </p>
                         </div>

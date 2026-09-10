@@ -61,7 +61,7 @@ const ConstitutionalOfficePage: FC = () => {
         email={office.email}
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container>
           {office.officials && office.officials.length > 0 && (
             <>

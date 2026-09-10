@@ -38,6 +38,7 @@ import { buildLguCandidates, fetchLgu } from './talacms/lgu';
 import type { ServiceRecordRef, Taxonomy } from './talacms/categories';
 
 const LGU_DIR = 'src/data/directory/lgu';
+const SERVICES_DIR = 'src/data/services';
 
 export const DATASETS = [
   'categories',
@@ -162,12 +163,23 @@ async function buildCandidates(
   deps: Deps
 ): Promise<Candidate[]> {
   // Stages 1 and 2 — fetch only what this run selected.
-  const rawServices = selected.has('services')
-    ? await fetchServices(client)
-    : null;
-  const rawCategories = selected.has('categories')
-    ? await fetchCategories(client)
-    : null;
+  let rawServices = null;
+  if (selected.has('services')) {
+    deps.log('  → Fetching services...');
+    rawServices = await fetchServices(client);
+    deps.log(
+      `    ✓ Received ${rawServices.allGovernmentServices.length} services`
+    );
+  }
+
+  let rawCategories = null;
+  if (selected.has('categories')) {
+    deps.log('  → Fetching service categories...');
+    rawCategories = await fetchCategories(client);
+    deps.log(
+      `    ✓ Received ${rawCategories.allServiceCategories.length} categories`
+    );
+  }
 
   // Stage 3 — one cross-validation, over whichever sides the mode selects,
   // before either candidate is shaped.
@@ -197,33 +209,70 @@ async function buildCandidates(
   // each issued only when its own dataset is selected — see the isolation
   // contract in this function's doc comment. No model is ever queried on
   // behalf of another, not even to discard the result.
-  const rawDepartments = selected.has('departments')
-    ? await fetchDepartments(client)
-    : null;
-  const rawExecutive = selected.has('executive')
-    ? await fetchExecutive(client)
-    : null;
-  const rawConstitutional = selected.has('constitutional')
-    ? await fetchConstitutional(client)
-    : null;
+  let rawDepartments = null;
+  if (selected.has('departments')) {
+    deps.log('  → Fetching executive departments...');
+    rawDepartments = await fetchDepartments(client);
+    deps.log(
+      `    ✓ Received ${rawDepartments.allGovernmentDepartments.length} departments`
+    );
+  }
+
+  let rawExecutive = null;
+  if (selected.has('executive')) {
+    deps.log('  → Fetching executive offices...');
+    rawExecutive = await fetchExecutive(client);
+    deps.log(
+      `    ✓ Received ${rawExecutive.allExecutiveOffices.length} executive offices`
+    );
+  }
+
+  let rawConstitutional = null;
+  if (selected.has('constitutional')) {
+    deps.log('  → Fetching constitutional commissions...');
+    rawConstitutional = await fetchConstitutional(client);
+    deps.log(
+      `    ✓ Received ${rawConstitutional.allConstitutionalOffices.length} constitutional offices`
+    );
+  }
+
   // Legislative is the fourth independent fetch. Its single operation carries
   // the two member relations, so House Members and Party-list Representatives
   // need no separate query and no separate dataset selector — they are fields
   // of the chamber record in the app's data contract.
-  const rawLegislative = selected.has('legislative')
-    ? await fetchLegislative(client)
-    : null;
+  let rawLegislative = null;
+  if (selected.has('legislative')) {
+    deps.log('  → Fetching legislative chambers and members...');
+    rawLegislative = await fetchLegislative(client);
+    deps.log(
+      `    ✓ Received ${rawLegislative.allLegislativeChambers.length} legislative chambers`
+    );
+  }
+
   // Diplomatic is the sixth independent fetch, same isolation contract as the
   // five above: issued only when 'diplomatic' itself is selected, never on
   // behalf of any other dataset. One flat CMS model discriminated by
   // entityType; the shaper groups it into the file's three arrays.
-  const rawDiplomatic = selected.has('diplomatic')
-    ? await fetchDiplomatic(client)
-    : null;
+  let rawDiplomatic = null;
+  if (selected.has('diplomatic')) {
+    deps.log('  → Fetching diplomatic entities...');
+    rawDiplomatic = await fetchDiplomatic(client);
+    deps.log(
+      `    ✓ Received ${rawDiplomatic.allDiplomaticEntities.length} diplomatic entities`
+    );
+  }
+
   // LGU is the fifth independent fetch, same isolation contract as the four
   // above: issued only when 'lgu' itself is selected, never on behalf of any
   // other dataset.
-  const rawLgu = selected.has('lgu') ? await fetchLgu(client) : null;
+  let rawLgu = null;
+  if (selected.has('lgu')) {
+    deps.log(
+      '  → Fetching local government units (regions, provinces, cities, municipalities)...'
+    );
+    rawLgu = await fetchLgu(client);
+    deps.log(`    ✓ Received ${rawLgu.length} LGU regions`);
+  }
 
   // Stage 4 — shaping is pure. Candidate order is fixed: categories, hotlines,
   // then services in path-codepoint order, then departments, executive,
@@ -234,7 +283,9 @@ async function buildCandidates(
   const candidates: Candidate[] = [];
   if (rawCategories) candidates.push(shapeCategories(rawCategories));
   if (selected.has('hotlines')) {
+    deps.log('  → Fetching critical hotlines...');
     candidates.push(await buildCriticalHotlines(client));
+    deps.log('    ✓ Received critical hotlines');
   }
   if (rawServices) {
     candidates.push(
@@ -296,6 +347,37 @@ async function buildCandidates(
 }
 
 /**
+ * The Service file names `candidates` will write, derived the same way both
+ * `cleanUpStaleServiceFiles` (for real deletion) and the dry-run drift
+ * report (for detection only) need it — a single source so the two never
+ * drift apart on what "generated" means. Mirrors `lguGeneratedFileNames`.
+ */
+function serviceGeneratedFileNames(candidates: Candidate[]): string[] {
+  const prefix = `${SERVICES_DIR}/`;
+  return candidates
+    .filter(c => c.path.startsWith(prefix))
+    .map(c => c.path.slice(prefix.length));
+}
+
+/**
+ * Pure: which of `beforeServiceFiles` are NOT in this run's generated set —
+ * i.e. what `cleanUpStaleServiceFiles` would remove, without removing
+ * anything. Used to report stale-file drift under `--dry-run`, which must
+ * write and delete nothing. Mirrors `staleLguFileNames`; like real cleanup,
+ * only meaningful on a full sync (see `cleanUpStaleServiceFiles`), so
+ * callers gate this on `isFullSync` the same way.
+ */
+function staleServiceFileNames(
+  beforeServiceFiles: string[],
+  candidates: Candidate[]
+): string[] {
+  const generated = new Set(serviceGeneratedFileNames(candidates));
+  return beforeServiceFiles
+    .filter(f => !generated.has(f))
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+}
+
+/**
  * §6.6/§6.8 replacement: after a successful FULL sync only, delete top-level
  * src/data/services/*.json files that existed before this run but fell out
  * of the freshly generated candidate set (a category retired in TalaCMS).
@@ -314,9 +396,7 @@ function cleanUpStaleServiceFiles(
   beforeServiceFiles: string[],
   candidates: Candidate[]
 ): boolean {
-  const generated = candidates
-    .filter(c => c.path.startsWith('src/data/services/'))
-    .map(c => c.path.slice('src/data/services/'.length));
+  const generated = serviceGeneratedFileNames(candidates);
   const { removed, failed } = deps.removeStaleServiceFiles(
     beforeServiceFiles,
     generated
@@ -427,7 +507,13 @@ export async function run(
     // comment for why `--only=lgu` alone already has complete visibility.
     beforeServiceFiles = isFullSync ? deps.readServiceFileNames() : [];
     beforeLguFiles = selectedSet.has('lgu') ? deps.readLguFileNames() : [];
+    deps.log(
+      `[sync] Selected datasets (${options.selected.length}): ${options.selected.join(', ')}`
+    );
     candidates = await buildCandidates(new Set(options.selected), client, deps);
+    deps.log(
+      `\n[sync] Preparing and formatting ${candidates.length} candidate file(s)...`
+    );
     for (const candidate of candidates) {
       prepared.push(await deps.prepare(candidate));
     }
@@ -437,6 +523,7 @@ export async function run(
     return 1;
   }
 
+  deps.log(`\n[sync] File comparison:`);
   for (const file of prepared) {
     deps.log(`${file.changed ? '~ changed  ' : '  unchanged'} ${file.path}`);
   }
@@ -444,17 +531,26 @@ export async function run(
   const changed = prepared.filter(f => f.changed);
 
   if (options.dryRun) {
-    // A stale LGU file is drift too: it exists on disk (or would after a
-    // real sync elsewhere) but wasn't produced by this run, and a real
-    // (non-dry) run would remove it. Report it without removing anything —
-    // dry-run must write and delete nothing.
+    // A stale file is drift too: it exists on disk (or would after a real
+    // sync elsewhere) but wasn't produced by this run, and a real (non-dry)
+    // run would remove it. Report it without removing anything — dry-run
+    // must write and delete nothing. Services mirrors LGU here: gated on
+    // `isFullSync` for the same reason `cleanUpStaleServiceFiles` is —
+    // an isolated `--only=` run doesn't see the complete generated set and
+    // can't safely judge staleness.
+    const staleServices = isFullSync
+      ? staleServiceFileNames(beforeServiceFiles, candidates)
+      : [];
+    for (const f of staleServices) {
+      deps.log(`~ stale     ${SERVICES_DIR}/${f} (would be removed)`);
+    }
     const staleLgu = selectedSet.has('lgu')
       ? staleLguFileNames(beforeLguFiles, candidates)
       : [];
     for (const f of staleLgu) {
       deps.log(`~ stale     ${LGU_DIR}/${f} (would be removed)`);
     }
-    const totalDrift = changed.length + staleLgu.length;
+    const totalDrift = changed.length + staleServices.length + staleLgu.length;
     deps.log(
       totalDrift > 0
         ? `\n--dry-run: ${totalDrift} file(s) would change. Nothing was written.`

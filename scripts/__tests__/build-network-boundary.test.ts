@@ -10,6 +10,20 @@ const ROOT = process.cwd();
  * Deliberately minimal, schema-valid fixtures — just enough for
  * generate:metadata to run. Their content is irrelevant; this test asserts
  * on `npm run build`'s exit code and network behavior, not on output data.
+ *
+ * generate-llms-txt.js and generate-sitemap.js (both run by
+ * generate:metadata, which `build` runs before `build:app`) read
+ * departments/executive/constitutional/legislative/diplomatic via
+ * `fs.readFileSync`, so those also need stub files or `npm run build` fails
+ * on ENOENT before ever reaching the TalaCMS boundary this test is
+ * checking. diplomatic.json is included here (unlike when this comment was
+ * first written) because it is now CMS-generated and gitignored too — a
+ * clean checkout has no committed copy for it to fall back on. LGU isn't
+ * included: it's read only through `import.meta.glob` in src/data/cms.ts,
+ * which Vite resolves at bundle time without executing the module — the
+ * module's own missing-data guard only throws when a browser loads an LGU
+ * page at runtime, not during `npm run build` (verified empirically: build
+ * succeeds with zero files under src/data/directory/lgu/).
  */
 const FIXTURE_CATEGORIES = {
   categories: [
@@ -28,10 +42,34 @@ const FIXTURE_HOTLINES = [
     description: 'National emergency response hotline',
   },
 ];
+const FIXTURE_DEPARTMENTS = [
+  { slug: 'test-department', office_name: 'Test Department' },
+];
+const FIXTURE_EXECUTIVE = [{ slug: 'test-office', office: 'Test Office' }];
+const FIXTURE_CONSTITUTIONAL = [
+  { slug: 'test-body', office_type: 'Test Type', name: 'Test Body' },
+];
+const FIXTURE_LEGISLATIVE = [
+  { slug: 'test-chamber', branch: 'Legislative', chamber: 'Test Chamber' },
+];
+// Object-of-three-arrays contract, minimal but schema-valid: each group's
+// required fields per src/data/directory/schema/diplomatic.schema.json.
+const FIXTURE_DIPLOMATIC = {
+  'Diplomatic Mission': [
+    { slug: 'test-mission', country: 'TESTLAND', office_name: 'Test Embassy' },
+  ],
+  Consulate: [{ country: 'TESTLAND', office_name: 'Test Consulate' }],
+  'International Organization': [{ organization_name: 'Test Organization' }],
+};
 
 const MANAGED_FILES = [
   'src/data/service_categories.json',
   'src/data/critical_hotlines.json',
+  'src/data/directory/departments.json',
+  'src/data/directory/executive.json',
+  'src/data/directory/constitutional.json',
+  'src/data/directory/legislative.json',
+  'src/data/directory/diplomatic.json',
   'public/sitemap.xml',
   'public/llms.txt',
   'src/version.json',
@@ -60,6 +98,26 @@ describe('npm run build — execution-level network boundary', () => {
     fs.writeFileSync(
       path.join(ROOT, 'src/data/critical_hotlines.json'),
       JSON.stringify(FIXTURE_HOTLINES)
+    );
+    fs.writeFileSync(
+      path.join(ROOT, 'src/data/directory/departments.json'),
+      JSON.stringify(FIXTURE_DEPARTMENTS)
+    );
+    fs.writeFileSync(
+      path.join(ROOT, 'src/data/directory/executive.json'),
+      JSON.stringify(FIXTURE_EXECUTIVE)
+    );
+    fs.writeFileSync(
+      path.join(ROOT, 'src/data/directory/constitutional.json'),
+      JSON.stringify(FIXTURE_CONSTITUTIONAL)
+    );
+    fs.writeFileSync(
+      path.join(ROOT, 'src/data/directory/legislative.json'),
+      JSON.stringify(FIXTURE_LEGISLATIVE)
+    );
+    fs.writeFileSync(
+      path.join(ROOT, 'src/data/directory/diplomatic.json'),
+      JSON.stringify(FIXTURE_DIPLOMATIC)
     );
 
     const env = { ...process.env };

@@ -44,6 +44,7 @@ const groups: SitemapGroup[] = [
     num: '03',
     label: 'Government',
     routes: [
+      { title: 'Government at a Glance', path: '/government/overview' },
       { title: 'Executive Branch', path: '/government/executive' },
       {
         title: 'Office of the President',
@@ -157,7 +158,7 @@ const SitemapPage: FC = () => (
       lede='A complete index of all pages and services on BetterGov.ph.'
     />
 
-    <section className='py-12 max-md:py-8'>
+    <section className='py-12 max-md:py-6'>
       <Container narrow>
         {groups.map(({ num, label, routes }) => (
           <div key={num} className='mb-12'>

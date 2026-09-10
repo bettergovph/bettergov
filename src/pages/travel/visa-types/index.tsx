@@ -161,7 +161,7 @@ const VisaTypesPage: FC = () => {
                           <span className='text-ed-navy' aria-hidden>
                             {c.icon}
                           </span>
-                          <h2 className='m-0 font-serif-ed text-[32px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink'>
+                          <h2 className='m-0 font-serif-ed text-[32px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[24px]'>
                             {c.name}
                           </h2>
                         </div>

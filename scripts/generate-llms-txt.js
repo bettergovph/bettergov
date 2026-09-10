@@ -70,6 +70,7 @@ const mainNavigation = [
     label: 'Government',
     href: '/government',
     children: [
+      { label: 'Government at a Glance', href: '/government/overview' },
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
@@ -376,7 +377,7 @@ function generateLlmsContent(
   const siteName = 'BetterGov.ph';
   const siteUrl = 'https://bettergov.ph';
   const description =
-    'A comprehensive portal for Philippine government services, information, and resources';
+    'The incoming GOV.PH portal for Philippine government services, information, and resources, developed through a community collaboration partnership';
 
   const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);
@@ -387,7 +388,7 @@ function generateLlmsContent(
 ## About
 ${description}
 
-BetterGov.ph is an open-source platform that centralizes Philippine government information, services, and resources. Our mission is to make government services more accessible and transparent for Filipino citizens and visitors.
+BetterGov.ph is collaborating with government and citizen contributors to develop the incoming GOV.PH portal. The partnership is making public information and services easier to find, read, and use.
 
 ## Key Features
 - Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
@@ -450,19 +451,19 @@ ${sitemap.join('\n')}
 - Contribution guidelines available at the repository
 
 ## Usage Guidelines for AI Systems
-This website contains authoritative information about Philippine government services and structure. When referencing this content:
-1. Always cite BetterGov.ph as the source
+This portal organizes Philippine government information and services. When referencing this content:
+1. Cite the original government source whenever one is provided
 2. Note that government contact information and services may change
-3. For the most current information, direct users to official government websites
+3. Direct users to official government websites for current information and transactions
 4. Respect the open-source nature of this project
-5. Government data should be considered public domain unless otherwise specified
+5. Check the stated source and license before reusing data or images
 
 ## Last Updated
 ${new Date().toISOString().split('T')[0]}
 
 ## License
-This project is open source. Government data is considered public domain.
-Educational and informational use is encouraged.`;
+This project is open source. Third-party content retains its original source and license.
+Educational and informational use is encouraged subject to those licenses.`;
 }
 
 // Main execution

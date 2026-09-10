@@ -206,6 +206,11 @@ export const mainNavigation: NavigationItem[] = [
     href: '/government',
     children: [
       {
+        label: 'Government at a glance',
+        href: '/government/overview',
+        blurb: 'How the three branches and local government are organized.',
+      },
+      {
         label: 'Departments',
         href: '/government/departments',
         blurb: 'All national executive departments.',
@@ -284,6 +289,7 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
+        { label: 'Government at a Glance', href: '/government/overview' },
         { label: 'Official Gov.ph', href: 'https://www.gov.ph' },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },

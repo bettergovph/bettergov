@@ -103,7 +103,7 @@ const GuidesIndex: FC = () => {
       </section>
 
       {/* Featured row */}
-      <section className='mt-10'>
+      <section className='mt-10 max-md:mt-6'>
         <Container>
           <SimpleSectionHead
             label='Most requested this week'
@@ -123,7 +123,7 @@ const GuidesIndex: FC = () => {
               <Eyebrow tone='navy'>
                 {primary.agency} · {primary.steps}-step guide · {primary.time}
               </Eyebrow>
-              <h2 className='mt-3.5 font-serif-ed text-[36px] font-semibold leading-[1.12] tracking-[-0.01em] text-ed-navy-ink'>
+              <h2 className='mt-3.5 font-serif-ed text-[36px] font-semibold leading-[1.12] tracking-[-0.01em] text-ed-navy-ink max-md:text-[26px]'>
                 {primary.title}
               </h2>
               <p className='mt-4 max-w-[520px] font-sans-ed text-base leading-relaxed text-ed-ink-2'>
@@ -196,7 +196,7 @@ const GuidesIndex: FC = () => {
       </section>
 
       {/* Full grid */}
-      <section className='mt-16 mb-20'>
+      <section className='mt-16 mb-20 max-md:mb-10 max-md:mt-8'>
         <Container>
           <SimpleSectionHead
             label={
@@ -228,7 +228,7 @@ const GuidesIndex: FC = () => {
                   <div className='font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
                     {g.agency}
                   </div>
-                  <h3 className='font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
+                  <h3 className='font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink max-md:text-[18px]'>
                     {g.title}
                   </h3>
                   <p className='mb-auto text-[13px] leading-normal text-ed-ink-2'>
@@ -250,14 +250,14 @@ const GuidesIndex: FC = () => {
       </section>
 
       {/* CTA band */}
-      <section className='border-y border-ed-rule bg-ed-navy-tint py-14'>
+      <section className='border-y border-ed-rule bg-ed-navy-tint py-14 max-md:py-7'>
         <Container>
           <div className='grid grid-cols-[1fr_auto] items-center gap-12 max-md:grid-cols-1 max-md:gap-6'>
             <div>
               <div className='mb-3'>
                 <Eyebrow tone='navy'>Don&rsquo;t see your transaction?</Eyebrow>
               </div>
-              <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[30px]'>
+              <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[26px]'>
                 Suggest a guide. We&rsquo;ll write it.
               </h2>
               <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>

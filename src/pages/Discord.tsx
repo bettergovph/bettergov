@@ -26,7 +26,7 @@ export default function Discord() {
         lede='Connect with volunteer contributors and civic tech enthusiasts building a better government portal for the Philippines.'
       />
 
-      <section className='py-12 max-md:py-8'>
+      <section className='py-12 max-md:py-6'>
         <Container narrow>
           <p className='font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-xl mb-8'>
             You should be redirected automatically. If not, click the button
