@@ -635,6 +635,45 @@ describe('diplomatic.json as a generated, required, object-shaped source', () =>
     expect(doc.type).toBe('directory_item');
   });
 
+  /**
+   * REVISION — reviewer finding (Major 2). Models the exact scenario the
+   * finding describes: an ISOLATED diplomatic sync (`--only=diplomatic`)
+   * can write a mission slug that collides with another already-committed
+   * directory source, and the sync-side gate structurally cannot see it
+   * (query isolation means it never loads the other source's candidate).
+   * This is the fallback that must catch it: the authoritative,
+   * full-snapshot Meilisearch preflight, run over the COMPLETE directory
+   * (as it always is in real indexing), must still detect a collision
+   * involving a nested diplomatic mission slug — not just the derived
+   * top-level 'diplomatic' document slug.
+   */
+  it('full-snapshot preflight detects a collision from an isolated diplomatic sync', async () => {
+    const dir = syntheticDirectoryDir(d => {
+      // departments.json (written by syntheticDirectoryDir) already has a
+      // record with slug 'dept-0'. An isolated `--only=diplomatic` sync
+      // landing a mission with that same slug is exactly the scenario the
+      // sync-side gate cannot see (it never loads departments.json).
+      fs.writeFileSync(
+        path.join(d, 'diplomatic.json'),
+        JSON.stringify({
+          'Diplomatic Mission': [
+            {
+              slug: 'dept-0',
+              country: 'TESTLAND',
+              office_name: 'Embassy of Testland',
+            },
+          ],
+          Consulate: [],
+          'International Organization': [],
+        })
+      );
+    });
+    const snap = await loadDirectorySnapshot({ dir });
+    expect(() => assertUniqueDirectorySlugs(snap)).toThrow(
+      /dept-0 \(departments\.json \+ diplomatic\.json\)/
+    );
+  });
+
   it('FAILS CLOSED when diplomatic.json is missing', async () => {
     const dir = syntheticDirectoryDir(d =>
       fs.rmSync(path.join(d, 'diplomatic.json'))
@@ -1096,7 +1135,13 @@ describe('loadDirectorySnapshot — completeness', () => {
  * something the sync-side gate structurally cannot see.
  */
 describe('assertUniqueDirectorySlugs', () => {
-  const snapOf = (docs: { slug: string; __sourceFile: string }[]) => ({
+  const snapOf = (
+    docs: {
+      slug: string;
+      __sourceFile: string;
+      __nestedSlugs?: string[];
+    }[]
+  ) => ({
     documents: docs,
     bySourceFile: new Map(),
     expectedFiles: [],
@@ -1162,6 +1207,50 @@ describe('assertUniqueDirectorySlugs', () => {
         snapOf([
           { slug: 'dupe', __sourceFile: 'house_members.json' },
           { slug: 'dupe', __sourceFile: 'house_members.json' },
+        ])
+      )
+    ).not.toThrow();
+  });
+
+  /**
+   * REVISION — reviewer finding (Major 2). diplomatic.json is folded into
+   * ONE Meilisearch document (`slug: 'diplomatic'`), so without
+   * `__nestedSlugs` this gate would only ever see that one derived slug and
+   * never the 70 nested mission slugs a real diplomatic.json carries —
+   * meaning a mission slug colliding with another directory source (e.g. an
+   * isolated `--only=diplomatic` sync landing a slug departments.json
+   * already uses) would sail through undetected. `loadRequiredDocuments`
+   * attaches those nested slugs as `__nestedSlugs` on the diplomatic
+   * document specifically so this authoritative, full-snapshot check can
+   * still catch that collision.
+   */
+  it('fails closed when a diplomatic mission slug (nested) collides with another source', () => {
+    expect(() =>
+      assertUniqueDirectorySlugs(
+        snapOf([
+          { slug: 'japan', __sourceFile: 'departments.json' },
+          {
+            slug: 'diplomatic',
+            __sourceFile: 'diplomatic.json',
+            __nestedSlugs: ['japan', 'peru'],
+          },
+        ])
+      )
+    ).toThrow(/japan \(departments\.json \+ diplomatic\.json\)/);
+  });
+
+  it('does not flag nested mission slugs against each other or against their own document', () => {
+    // The nested slugs collide with nothing: not with the derived
+    // top-level 'diplomatic' slug, and not with each other.
+    expect(() =>
+      assertUniqueDirectorySlugs(
+        snapOf([
+          {
+            slug: 'diplomatic',
+            __sourceFile: 'diplomatic.json',
+            __nestedSlugs: ['japan', 'peru'],
+          },
+          { slug: 'dept-0', __sourceFile: 'departments.json' },
         ])
       )
     ).not.toThrow();

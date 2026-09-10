@@ -29,6 +29,18 @@ const GENERATED_PATH_PATTERN =
  */
 const LGU_DIRECTORY_GLOB_PATTERN = /data\/directory\/lgu\/\S*\.json/;
 
+/**
+ * Every generated directory dataset that has a single, named JSON file
+ * (i.e. everything except LGU, which is one file per region — see
+ * LGU_DIRECTORY_GLOB_PATTERN above). A single shared constant so the
+ * boundary-scan test and its own bite test can never drift apart — a
+ * dataset added to the boundary scan but missed here (or vice versa) would
+ * otherwise go undetected, exactly as happened when `diplomatic` was added
+ * to one copy of this pattern but not the other.
+ */
+const DIRECTORY_JSON_PATTERN =
+  /from\s+['"].*data\/directory\/(departments|executive|constitutional|diplomatic|lgu)\.json['"]/;
+
 const stripComments = (source: string) =>
   source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '');
 
@@ -70,8 +82,6 @@ describe('CMS accessor boundary', () => {
   });
 
   it('routes generated directory data through the accessor only', () => {
-    const DIRECTORY_JSON_PATTERN =
-      /from\s+['"].*data\/directory\/(departments|executive|constitutional|diplomatic|lgu)\.json['"]/;
     const offenders = files
       .filter(f => f.path !== ACCESSOR)
       .filter(f => DIRECTORY_JSON_PATTERN.test(f.code))
@@ -81,9 +91,12 @@ describe('CMS accessor boundary', () => {
   });
 
   it('DIRECTORY_JSON_PATTERN bites on each generated directory file', () => {
-    const DIRECTORY_JSON_PATTERN =
-      /from\s+['"].*data\/directory\/(departments|executive|constitutional|lgu)\.json['"]/;
-    for (const f of ['departments', 'executive', 'constitutional']) {
+    for (const f of [
+      'departments',
+      'executive',
+      'constitutional',
+      'diplomatic',
+    ]) {
       expect(
         DIRECTORY_JSON_PATTERN.test(
           `import x from '../../data/directory/${f}.json';`

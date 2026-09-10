@@ -2482,22 +2482,72 @@ describe('parseDiplomaticResponse', () => {
  * the shaper. This allowlist is written so it passes BOTH before and after
  * that edit: the test asserts every difference is IN the list, never that a
  * listed difference is present. When the CMS is corrected, delete the entry.
+ *
+ * Matched by `slug` (identity), never by array index — index is fragile to
+ * reordering and would silently "allow" an unrelated record's drift once
+ * the CMS is edited and positions shift. The `cms`/`fixture` values are also
+ * matched EXACTLY, not just the type/field/slug: a difference must equal
+ * this precise before/after pair to be allowed, so an unrelated change to
+ * `holy-see`'s own `office_name` (a different actual/expected pair) still
+ * fails the test rather than being silently swallowed by a type+field+slug
+ * match alone.
  */
 const KNOWN_CMS_DRIFT: {
   type: string;
-  index: number;
+  slug: string;
   field: string;
   cms: string;
   fixture: string;
 }[] = [
   {
     type: 'Diplomatic Mission',
-    index: 0,
+    slug: 'holy-see',
     field: 'office_name',
     cms: 'Apostolic Nunciature.',
     fixture: 'Apostolic Nunciature',
   },
 ];
+
+type CmsDriftEntry = (typeof KNOWN_CMS_DRIFT)[number];
+
+/**
+ * Extracted so the allowlist-matching rules themselves — not just the real
+ * 227-record dataset — can be exercised directly with small synthetic
+ * fixtures. Returns every `type[index].field` difference between `out` and
+ * `fixture` that is NOT covered by `allowlist`, matched by type, field,
+ * slug, and the exact cms/fixture value pair (see KNOWN_CMS_DRIFT's doc
+ * comment for why index is never used as the match key).
+ */
+function diffAgainstFixtureModuloDrift(
+  out: Record<string, Record<string, unknown>[]>,
+  fixture: Record<string, Record<string, unknown>[]>,
+  allowlist: readonly CmsDriftEntry[]
+): string[] {
+  const differences: string[] = [];
+  for (const type of Object.keys(fixture)) {
+    (out[type] ?? []).forEach((rec, i) => {
+      const exp = fixture[type][i];
+      for (const key of new Set([...Object.keys(rec), ...Object.keys(exp)])) {
+        if (JSON.stringify(rec[key]) !== JSON.stringify(exp[key])) {
+          const allowed = allowlist.some(
+            d =>
+              d.type === type &&
+              d.field === key &&
+              rec.slug === d.slug &&
+              JSON.stringify(rec[key]) === JSON.stringify(d.cms) &&
+              JSON.stringify(exp[key]) === JSON.stringify(d.fixture)
+          );
+          if (!allowed) {
+            differences.push(
+              `${type}[${i}].${key}: ${JSON.stringify(rec[key])} !== ${JSON.stringify(exp[key])}`
+            );
+          }
+        }
+      }
+    });
+  }
+  return differences;
+}
 
 describe('shapeDiplomatic', () => {
   const shaped = () => shapeDiplomatic(rawDiplomatic);
@@ -2526,25 +2576,125 @@ describe('shapeDiplomatic', () => {
       string,
       Record<string, unknown>[]
     >;
-    const differences: string[] = [];
-    for (const type of Object.keys(fixture)) {
-      out[type].forEach((rec, i) => {
-        const exp = fixture[type][i];
-        for (const key of new Set([...Object.keys(rec), ...Object.keys(exp)])) {
-          if (JSON.stringify(rec[key]) !== JSON.stringify(exp[key])) {
-            const allowed = KNOWN_CMS_DRIFT.some(
-              d => d.type === type && d.index === i && d.field === key
-            );
-            if (!allowed) {
-              differences.push(
-                `${type}[${i}].${key}: ${JSON.stringify(rec[key])} !== ${JSON.stringify(exp[key])}`
-              );
-            }
-          }
-        }
-      });
-    }
+    const differences = diffAgainstFixtureModuloDrift(
+      out,
+      fixture,
+      KNOWN_CMS_DRIFT
+    );
     expect(differences).toEqual([]);
+  });
+
+  describe('KNOWN_CMS_DRIFT allowlist matching', () => {
+    const holySeeOut = {
+      'Diplomatic Mission': [
+        { slug: 'holy-see', office_name: 'Apostolic Nunciature.' },
+      ],
+    };
+    const holySeeFixture = {
+      'Diplomatic Mission': [
+        { slug: 'holy-see', office_name: 'Apostolic Nunciature' },
+      ],
+    };
+
+    it('allows the exact drift it was written for', () => {
+      expect(
+        diffAgainstFixtureModuloDrift(
+          holySeeOut,
+          holySeeFixture,
+          KNOWN_CMS_DRIFT
+        )
+      ).toEqual([]);
+    });
+
+    it('still passes once the CMS is corrected (zero differences)', () => {
+      const corrected = {
+        'Diplomatic Mission': [
+          { slug: 'holy-see', office_name: 'Apostolic Nunciature' },
+        ],
+      };
+      expect(
+        diffAgainstFixtureModuloDrift(
+          corrected,
+          holySeeFixture,
+          KNOWN_CMS_DRIFT
+        )
+      ).toEqual([]);
+    });
+
+    it('does NOT allow the same field/value drift on a DIFFERENT record', () => {
+      // Same type, same field, same before/after values — but a different
+      // slug. Matching by index alone (the old behavior) would have let
+      // this through if it happened to land at index 0; matching by slug
+      // must not.
+      const otherRecordOut = {
+        'Diplomatic Mission': [
+          { slug: 'japan', office_name: 'Apostolic Nunciature.' },
+        ],
+      };
+      const otherRecordFixture = {
+        'Diplomatic Mission': [
+          { slug: 'japan', office_name: 'Apostolic Nunciature' },
+        ],
+      };
+      expect(
+        diffAgainstFixtureModuloDrift(
+          otherRecordOut,
+          otherRecordFixture,
+          KNOWN_CMS_DRIFT
+        )
+      ).toEqual([
+        'Diplomatic Mission[0].office_name: "Apostolic Nunciature." !== "Apostolic Nunciature"',
+      ]);
+    });
+
+    it('does NOT allow a DIFFERENT value pair on the holy-see record itself', () => {
+      // Same slug, same type, same field — but an unrelated content change
+      // to office_name, not the one specific drift this allowlist names.
+      const driftedOut = {
+        'Diplomatic Mission': [
+          { slug: 'holy-see', office_name: 'Something Else Entirely' },
+        ],
+      };
+      expect(
+        diffAgainstFixtureModuloDrift(
+          driftedOut,
+          holySeeFixture,
+          KNOWN_CMS_DRIFT
+        )
+      ).toEqual([
+        'Diplomatic Mission[0].office_name: "Something Else Entirely" !== "Apostolic Nunciature"',
+      ]);
+    });
+
+    it('does NOT allow the known drift value pair on an unrelated field', () => {
+      const wrongFieldOut = {
+        'Diplomatic Mission': [
+          {
+            slug: 'holy-see',
+            office_name: 'Apostolic Nunciature',
+            representative: 'Apostolic Nunciature.',
+          },
+        ],
+      };
+      const wrongFieldFixture = {
+        'Diplomatic Mission': [
+          {
+            slug: 'holy-see',
+            office_name: 'Apostolic Nunciature',
+            representative: 'Apostolic Nunciature',
+          },
+        ],
+      };
+      expect(
+        diffAgainstFixtureModuloDrift(
+          wrongFieldOut,
+          wrongFieldFixture,
+          KNOWN_CMS_DRIFT
+        )
+      ).toEqual([
+        'Diplomatic Mission[0].representative: "Apostolic Nunciature." !== "Apostolic Nunciature"',
+      ]);
+    });
   });
 
   it('reproduces the fixture key order exactly, 227/227', () => {

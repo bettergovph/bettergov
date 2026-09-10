@@ -435,6 +435,7 @@ async function loadRequiredDocuments(dataSource) {
     // opt-in preserves that shape and count while keeping this guard strict
     // for every array-shaped generated file. Do not relax it globally.
     let records;
+    let nestedSlugs = null;
     if (Array.isArray(parsed)) {
       records = parsed;
     } else if (
@@ -443,6 +444,30 @@ async function loadRequiredDocuments(dataSource) {
       typeof parsed === 'object'
     ) {
       records = [parsed];
+      // Diplomatic is folded into ONE Meilisearch document, so
+      // `assertUniqueDirectorySlugs` below would otherwise only ever see the
+      // derived top-level "diplomatic" slug and never the 70 nested mission
+      // slugs each group array carries — an isolated `--only=diplomatic`
+      // sync (which the LOCAL sync-side gate can't compare against, since it
+      // has no other candidate to compare with) could then collide with
+      // another directory source and the authoritative full-snapshot
+      // preflight would miss it too. Extracted here, once, from the object's
+      // own arrays, and carried on the single resulting document as
+      // provenance for that gate — this does NOT add extra indexed
+      // documents; diplomatic still contributes exactly one.
+      nestedSlugs = [];
+      for (const group of Object.values(parsed)) {
+        if (!Array.isArray(group)) continue;
+        for (const record of group) {
+          if (
+            record &&
+            typeof record === 'object' &&
+            typeof record.slug === 'string'
+          ) {
+            nestedSlugs.push(record.slug);
+          }
+        }
+      }
     } else {
       throw new FatalIndexingError(
         `Required file ${filePath} must contain a JSON array, got ${typeof parsed}.`
@@ -472,6 +497,17 @@ async function loadRequiredDocuments(dataSource) {
         enumerable: false,
         writable: false,
       });
+      // Nested mission slugs for an objectDocument source (see above) —
+      // attached to the same, single document so assertUniqueDirectorySlugs
+      // can check them without this source contributing more than one
+      // indexed document. Non-enumerable for the same reason as __sourceFile.
+      if (nestedSlugs) {
+        Object.defineProperty(document, '__nestedSlugs', {
+          value: nestedSlugs,
+          enumerable: false,
+          writable: false,
+        });
+      }
       documents.push(document);
     });
   }
@@ -721,13 +757,27 @@ async function loadDirectorySnapshot(opts = {}) {
  * index-wide identity and 289 such collisions already exist (websites.json is
  * derived from these very files), so that gate would fail on the first run and
  * would require changing Government Websites — out of scope.
+ *
+ * Diplomatic is folded into ONE indexed document, but its groups carry their
+ * own mission slugs (70 of them) that never appear as `doc.slug` on that one
+ * document — `loadRequiredDocuments` attaches them separately as
+ * `__nestedSlugs` (see there), and they are checked here alongside every
+ * other document's own slug, so a mission slug colliding with another
+ * directory source is still caught even though diplomatic.json itself only
+ * ever contributes one Meilisearch document.
  */
 function assertUniqueDirectorySlugs(snapshot) {
   const bySlug = new Map();
+  const track = (slug, file) => {
+    if (!bySlug.has(slug)) bySlug.set(slug, new Set());
+    bySlug.get(slug).add(file);
+  };
   for (const doc of snapshot.documents) {
     const file = doc.__sourceFile ?? '(unknown)';
-    if (!bySlug.has(doc.slug)) bySlug.set(doc.slug, new Set());
-    bySlug.get(doc.slug).add(file);
+    track(doc.slug, file);
+    if (doc.__nestedSlugs) {
+      for (const nestedSlug of doc.__nestedSlugs) track(nestedSlug, file);
+    }
   }
 
   const collisions = [...bySlug]
