@@ -249,8 +249,8 @@ async function buildCandidates(
     );
   }
 
-  // Diplomatic is the sixth independent fetch, same isolation contract as the
-  // five above: issued only when 'diplomatic' itself is selected, never on
+  // Diplomatic is the fifth independent fetch, same isolation contract as the
+  // four above: issued only when 'diplomatic' itself is selected, never on
   // behalf of any other dataset. One flat CMS model discriminated by
   // entityType; the shaper groups it into the file's three arrays.
   let rawDiplomatic = null;
@@ -262,7 +262,7 @@ async function buildCandidates(
     );
   }
 
-  // LGU is the fifth independent fetch, same isolation contract as the four
+  // LGU is the sixth independent fetch, same isolation contract as the five
   // above: issued only when 'lgu' itself is selected, never on behalf of any
   // other dataset.
   let rawLgu = null;
