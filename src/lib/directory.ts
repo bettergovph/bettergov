@@ -1,10 +1,10 @@
 import {
   constitutionalOffices as constitutional,
+  diplomaticEntities as diplomatic,
   governmentDepartments as departments,
   executiveOffices as executive,
   legislativeChambers as legislative,
 } from '../data/cms';
-import diplomatic from '../data/directory/diplomatic.json';
 
 export type DirectoryBranch =
   | 'Executive'
@@ -216,17 +216,6 @@ type LegislativeSrc = {
   officials?: OfficialLike[];
 };
 
-type DiplomaticSrc = {
-  slug: string;
-  country: string;
-  office_name: string;
-  address?: string;
-  contact?: string;
-  representative?: string;
-  title?: string;
-  website?: string;
-};
-
 function flattenConstitutional(): DirectoryEntry[] {
   return (constitutional as ConstitutionalSrc[]).map(c => {
     const head = firstPerson(c.officials);
@@ -315,16 +304,17 @@ function flattenLegislative(): DirectoryEntry[] {
 }
 
 function flattenDiplomatic(): DirectoryEntry[] {
-  const missions = (diplomatic as { 'Diplomatic Mission'?: DiplomaticSrc[] })[
-    'Diplomatic Mission'
-  ];
-  return (missions ?? []).map(m => ({
+  // Missions only: consulates and organizations carry no slug and have no
+  // detail route, so they are not part of the aggregate directory.
+  return diplomatic['Diplomatic Mission'].map(m => ({
     slug: m.slug,
     name: m.office_name,
     abbr: undefined,
     branch: 'Diplomatic',
     kind: 'diplomatic',
-    headRole: m.title,
+    // `title` is `string | null | undefined` — four missions carry an explicit
+    // null. `headRole` is `string | undefined`, so normalize rather than cast.
+    headRole: m.title ?? undefined,
     head: m.representative,
     address: m.address,
     loc: deriveLoc(m.address),

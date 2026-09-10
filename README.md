@@ -212,13 +212,14 @@ file as drift (and exits `3`) without removing it.
 | adding or retiring a category in TalaCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
 | editing service content only (titles, URLs) | `--only=services` is safe **if** no display name changed |
 | editing taxonomy display names only | `npm run cms:fetch` — see the rename row |
-| editing a government department, executive office, constitutional office, legislative chamber or LGU | `--only=departments` / `--only=executive` / `--only=constitutional` / `--only=legislative` / `--only=lgu` — each is a single-model edit with no cross-dataset gate |
+| editing a government department, executive office, constitutional office, legislative chamber, diplomatic entity or LGU | `--only=departments` / `--only=executive` / `--only=constitutional` / `--only=legislative` / `--only=diplomatic` / `--only=lgu` — each is a single-model edit with no cross-dataset gate |
 
 ### Generated directory datasets
 
-Five government-directory datasets are CMS-owned and gitignored:
+Six government-directory datasets are CMS-owned and gitignored:
 `src/data/directory/departments.json` (23), `executive.json` (38),
-`constitutional.json` (229), `legislative.json` (2), and `src/data/directory/lgu/`
+`constitutional.json` (229), `legislative.json` (2), `diplomatic.json` (227
+records in 3 groups), and `src/data/directory/lgu/`
 (19 per-region JSON files: 19 regions, 80 provinces, 110 cities, 1435 municipalities).
 The third holds all Constitutional-branch records — 3 constitutional offices, 2
 constitutionally mandated bodies, 110 GOCCs and 114 SUCs — because they share one
@@ -226,19 +227,35 @@ TalaCMS model, one file and one route tree. The fourth holds the Senate and Hous
 Representatives; House Members and Party-list Representatives are not synced as their
 own datasets — they arrive as nested relations on the House `LegislativeChamber` record
 and are projected into `house_members` and `party_list_representatives` inside that same
-file, exactly where the app has always read them. The fifth, LGU, is organized by region
-in separate generated files rather than a single consolidated file, but only the
-top-level `*.json` region files are gitignored; `src/data/directory/lgu/schema/` and
-`src/data/directory/lgu/__fixtures__/` stay tracked. Everything else under
-`src/data/directory/` is still hand-maintained and committed: diplomatic, judicial, and
-the two orphaned member files (`house_members.json`, `party_list_representatives.json` —
-now a second, hand-maintained copy of content the CMS owns via `legislative.json`).
+file, exactly where the app has always read them. The fifth, Diplomatic, is the
+only generated dataset whose file is an OBJECT rather than an array: one
+TalaCMS model (`DiplomaticEntity`) discriminated by `entityType` and grouped
+into the three arrays the app has always read — `"Diplomatic Mission"` (70),
+`"Consulate"` (139) and `"International Organization"` (18). All three keys
+are required by the tracked schema, and a fourth `entityType` fails the sync
+rather than silently adding a top-level key no page renders. Only the 70
+missions carry a `slug`; consulates and organizations have no detail route
+and none. `title` is the one field whose `null` is preserved rather than
+omitted — four missions carry an explicit null in both TalaCMS and the
+generated file. The sixth, LGU, is organized by region in separate generated
+files rather than a single consolidated file, but only the top-level
+`*.json` region files are gitignored; `src/data/directory/lgu/schema/` and
+`src/data/directory/lgu/__fixtures__/` stay tracked.
+Everything else under
+`src/data/directory/` is still hand-maintained and committed: judicial and the
+two orphaned member files (`house_members.json`,
+`party_list_representatives.json` — now a second, hand-maintained copy of
+content the CMS owns via `legislative.json`).
 
 Each model is fetched by its own GraphQL operation, so an isolated `--only=`
 run cannot be made to fail by another model's data. Constitutional uses its
 own page-size ceiling of 300 rather than the shared 100, because it carries
 229 records; the CDA hard-caps `first` at 500, so if the ceiling gate ever
 fires, raise it to at most 500 — beyond that the model needs real pagination.
+
+Diplomatic likewise uses its own ceiling of 300 for its 227 records, with the
+same escalation rule: raise to at most 500, and beyond that the model needs
+real pagination.
 
 LGU is the first dataset in this repo to exceed the 500 hard-cap (1435 municipalities).
 It uses `scripts/talacms/paginate.ts`'s `fetchAllRecords` helper for skip-based
@@ -252,6 +269,12 @@ in more than one of them: Meilisearch keys its single index by `slug`, so a
 collision would make one office unsearchable. The authoritative version of
 that check runs over the complete directory snapshot during Meilisearch
 preflight.
+
+`diplomatic.json` is loaded by the Meilisearch preflight's REQUIRED,
+schema-validated loader like the other five, but declares `objectDocument`
+because it is a single object rather than an array — it contributes exactly
+one document, which is what it contributed before the migration. The array
+guard stays strict for every other required source.
 
 The isolated modes are optimizations for narrow, single-sided edits. **When in
 doubt, run the full sync**: it is the only mode that validates both datasets

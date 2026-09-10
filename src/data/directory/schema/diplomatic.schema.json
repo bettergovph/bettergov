@@ -1,19 +1,45 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Diplomatic Missions",
-  "description": "Schema for diplomatic mission directory data",
+  "title": "Diplomatic Entities",
+  "description": "Schema for the diplomatic directory: foreign missions, consulates, and international organizations accredited to or hosted in the Philippines. Generated from TalaCMS's DiplomaticEntity model by `npm run cms:fetch`; one CMS model, discriminated by entityType, grouped into three arrays.",
   "type": "object",
+  "additionalProperties": false,
+  "required": ["Diplomatic Mission", "Consulate", "International Organization"],
+  "$defs": {
+    "address": {
+      "type": "string",
+      "description": "Physical address of the office"
+    },
+    "contact": {
+      "type": "string",
+      "description": "Contact phone numbers, semicolon-separated; may carry TL/F/TF suffixes"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address (can contain multiple addresses separated by semicolons)",
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
+    },
+    "website": {
+      "type": "string",
+      "description": "Official website URL, with or without protocol"
+    },
+    "title": {
+      "type": ["string", "null"],
+      "description": "Title of the representative (e.g. Ambassador, Consul, Nuncio). Null on records where TalaCMS carries no title; null is preserved rather than omitted so the generated file matches its tracked fixture."
+    }
+  },
   "properties": {
     "Diplomatic Mission": {
       "type": "array",
-      "description": "List of diplomatic missions in the Philippines",
+      "description": "Embassies and high commissions of foreign states in the Philippines. The only group carrying slugs.",
       "items": {
         "type": "object",
         "required": ["slug", "country", "office_name"],
         "properties": {
           "slug": {
             "type": "string",
-            "description": "URL-friendly identifier for the mission"
+            "description": "URL-friendly identifier for the mission",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "country": {
             "type": "string",
@@ -23,31 +49,65 @@
             "type": "string",
             "description": "Official name of the diplomatic mission"
           },
-          "address": {
-            "type": "string",
-            "description": "Physical address of the mission"
-          },
-          "contact": {
-            "type": "string",
-            "description": "Contact phone numbers"
-          },
-          "email": {
-            "type": "string",
-            "description": "Email address (can contain multiple addresses separated by semicolons)",
-            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(;\\s*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})*$"
-          },
-          "website": {
-            "type": "string",
-            "description": "Official website URL"
-          },
+          "address": { "$ref": "#/$defs/address" },
+          "contact": { "$ref": "#/$defs/contact" },
+          "email": { "$ref": "#/$defs/email" },
+          "website": { "$ref": "#/$defs/website" },
           "representative": {
             "type": "string",
-            "description": "Name of the diplomatic representative"
+            "description": "Name of the head of mission"
           },
-          "title": {
-            "type": ["string", "null"],
-            "description": "Title of the diplomatic representative (e.g., Ambassador, Nuncio)"
-          }
+          "title": { "$ref": "#/$defs/title" }
+        }
+      }
+    },
+    "Consulate": {
+      "type": "array",
+      "description": "Consulates and honorary consulates. Carry no slug — they have no detail route.",
+      "items": {
+        "type": "object",
+        "required": ["country", "office_name"],
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "Country name in uppercase"
+          },
+          "office_name": {
+            "type": "string",
+            "description": "Official name of the consulate"
+          },
+          "address": { "$ref": "#/$defs/address" },
+          "contact": { "$ref": "#/$defs/contact" },
+          "email": { "$ref": "#/$defs/email" },
+          "website": { "$ref": "#/$defs/website" },
+          "representative": {
+            "type": "string",
+            "description": "Name of the consul"
+          },
+          "title": { "$ref": "#/$defs/title" }
+        }
+      }
+    },
+    "International Organization": {
+      "type": "array",
+      "description": "Multilateral bodies hosted in the Philippines. Named by organization_name and headed by `head`, not `representative`; carry no country and no slug.",
+      "items": {
+        "type": "object",
+        "required": ["organization_name"],
+        "properties": {
+          "organization_name": {
+            "type": "string",
+            "description": "Official name of the organization"
+          },
+          "address": { "$ref": "#/$defs/address" },
+          "contact": { "$ref": "#/$defs/contact" },
+          "email": { "$ref": "#/$defs/email" },
+          "website": { "$ref": "#/$defs/website" },
+          "head": {
+            "type": "string",
+            "description": "Name of the resident representative or head of office"
+          },
+          "title": { "$ref": "#/$defs/title" }
         }
       }
     }
