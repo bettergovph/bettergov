@@ -89,7 +89,7 @@ const Hero: FC = () => {
               {popularServices.map(service => (
                 <Link
                   key={service.label}
-                  className='bg-white/10 text-white border-white/20 hover:bg-white/20 py-2 px-4 rounded-xl text-sm'
+                  className='bg-white/10 text-white border-white/20 hover:bg-blue-200 py-2 px-4 rounded-xl text-sm'
                   to={service.href}
                 >
                   {service.label}
@@ -108,7 +108,7 @@ const Hero: FC = () => {
                 to={`/services?category=${findCategorySlug(
                   'Certificates and IDs'
                 )}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
+                className='bg-white/10 hover:bg-blue-200 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
               >
                 <div className='bg-primary-500 p-3 rounded-full mb-3'>
                   <svg
@@ -130,7 +130,7 @@ const Hero: FC = () => {
                 to={`/services?category=${findCategorySlug(
                   'Business and Trade'
                 )}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
+                className='bg-white/10 hover:bg-blue-200 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
               >
                 <div className='bg-primary-500 p-3 rounded-full mb-3'>
                   <svg
@@ -157,7 +157,7 @@ const Hero: FC = () => {
               </Link>
               <Link
                 to={`/services?category=${findCategorySlug('Education')}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
+                className='bg-white/10 hover:bg-blue-200 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center'
               >
                 <div className='bg-primary-500 p-3 rounded-full mb-3'>
                   <svg
@@ -177,7 +177,7 @@ const Hero: FC = () => {
               </Link>
               <Link
                 to={`/services?category=${findCategorySlug('Health')}`}
-                className='bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-500 flex flex-col items-center text-center'
+                className='bg-white/10 hover:bg-blue-200 rounded-lg p-4 transition-all duration-500 flex flex-col items-center text-center'
               >
                 <div className='bg-primary-500 p-3 rounded-full mb-3'>
                   <svg
@@ -197,7 +197,7 @@ const Hero: FC = () => {
             </div>
             <div className='mt-4 flex'>
               <Link
-                className='bg-white/10 text-white hover:bg-white/20 transition-all duration-500 w-full rounded-lg p-4 text-center'
+                className='bg-white/10 text-white hover:bg-blue-200 transition-all duration-500 w-full rounded-lg p-4 text-center'
                 to='/services'
               >
                 View All Services
