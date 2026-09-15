@@ -17,6 +17,9 @@ import AboutPage from './pages/about';
 import AccessibilityPage from './pages/accessibility';
 import AboutPhilippines from './pages/philippines/about';
 import PhilippinesHistory from './pages/philippines/history';
+import ConstitutionLayout from './pages/philippines/constitution/layout';
+import ConstitutionIndex from './pages/philippines/constitution/index';
+import ConstitutionVersionPage from './pages/philippines/constitution/[version]';
 import PhilippinesCulture from './pages/philippines/culture';
 import PhilippinesRegions from './pages/philippines/regions';
 import PhilippinesMap from './pages/philippines/map';
@@ -124,6 +127,10 @@ function App() {
               <Route index element={<Navigate to='about' replace />} />
               <Route path='about' element={<AboutPhilippines />} />
               <Route path='history' element={<PhilippinesHistory />} />
+              <Route path='constitution' element={<ConstitutionLayout />}>
+                <Route index element={<ConstitutionIndex />} />
+                <Route path=':version' element={<ConstitutionVersionPage />} />
+              </Route>
               <Route path='culture' element={<PhilippinesCulture />} />
               <Route path='regions' element={<PhilippinesRegions />} />
               <Route path='map' element={<PhilippinesMap />} />

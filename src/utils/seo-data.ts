@@ -347,6 +347,58 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
     },
   };
 }
+
+export function getConstitutionSEOData(
+  versionName?: string
+): GovernmentSEOData {
+  const baseTitle = 'Philippine Constitutions Through History';
+  const title = versionName ? `${versionName} - ${baseTitle}` : baseTitle;
+
+  return {
+    title,
+    description: versionName
+      ? `An overview of ${versionName}, part of the history of Philippine constitutions from 1899 to the present.`
+      : 'Explore the constitutions of the Philippines from the 1899 Malolos Constitution to the 1987 Constitution currently in force, and what changed between them.',
+    keywords: [
+      ...baseKeywords,
+      'Philippine Constitution',
+      'Malolos Constitution',
+      '1935 Constitution',
+      '1973 Constitution',
+      '1987 Constitution',
+      'Freedom Constitution',
+      ...(versionName ? [versionName] : []),
+    ],
+    canonical: versionName
+      ? `/philippines/constitution/${encodeURIComponent(versionName)}`
+      : '/philippines/constitution',
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Philippines', url: '/philippines' },
+      { name: 'Constitution', url: '/philippines/constitution' },
+      ...(versionName
+        ? [
+            {
+              name: versionName,
+              url: `/philippines/constitution/${encodeURIComponent(versionName)}`,
+            },
+          ]
+        : []),
+    ],
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Legislation',
+      name: versionName || 'Constitutions of the Philippines',
+      url: `https://gov.ph/philippines/constitution${
+        versionName ? `/${encodeURIComponent(versionName)}` : ''
+      }`,
+      description: versionName
+        ? `${versionName} - a constitution of the Philippines`
+        : 'A timeline of the constitutions of the Philippines',
+    },
+  };
+}
+
 export function getJudicialSEOData(courtName?: string): GovernmentSEOData {
   const baseTitle = 'Judicial Branch';
   const title = courtName ? `${courtName} - ${baseTitle}` : baseTitle;

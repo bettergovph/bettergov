@@ -108,6 +108,7 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { label: 'About the Philippines', href: '/philippines/about' },
       { label: 'History', href: '/philippines/history' },
+      { label: 'Constitution', href: '/philippines/constitution' },
       { label: 'Culture', href: '/philippines/culture' },
       { label: 'Regions', href: '/philippines/regions' },
       { label: 'Map', href: '/philippines/map' },
