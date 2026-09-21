@@ -25,7 +25,7 @@ import deoData from '../../data/flood_control/lookups/DistrictEngineeringOffice_
 import legislativeDistrictData from '../../data/flood_control/lookups/LegislativeDistrict_with_counts.json';
 import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_counts.json';
 import { useSearchParams } from 'react-router-dom';
-import { generateUrlParams } from './utils';
+import { buildFilterString, generateUrlParams } from './utils';
 
 // Define types for our data
 interface DataItem {
@@ -652,53 +652,6 @@ const FloodControlProjectsTable: FC = () => {
     setSearchParams(generateUrlParams(newFilters));
   };
 
-  // Build filter string for Meilisearch
-  const buildFilterString = (): string => {
-    // Start with an empty array - we'll add filters as needed
-    const filterStrings: string[] = [];
-
-    // Based on the error message, these are the only filterable attributes:
-    // CompletionDateActual, DistrictEngineeringOffice, FundingYear, GlobalID,
-    // LegislativeDistrict, Municipality, Province, Region, StartDate, TypeofWork, type
-
-    // Always filter by type - format it correctly
-    filterStrings.push('type = "flood_control"');
-
-    // InfraYear is not filterable, try using FundingYear instead if they represent the same data
-    if (filters.InfraYear && filters.InfraYear.trim()) {
-      filterStrings.push(`FundingYear = ${filters.InfraYear.trim()}`);
-    }
-
-    if (filters.Region && filters.Region.trim()) {
-      filterStrings.push(`Region = "${filters.Region.trim()}"`);
-    }
-
-    if (filters.Province && filters.Province.trim()) {
-      filterStrings.push(`Province = "${filters.Province.trim()}"`);
-    }
-
-    if (filters.TypeofWork && filters.TypeofWork.trim()) {
-      filterStrings.push(`TypeofWork = "${filters.TypeofWork.trim()}"`);
-    }
-
-    if (
-      filters.DistrictEngineeringOffice &&
-      filters.DistrictEngineeringOffice.trim()
-    ) {
-      filterStrings.push(
-        `DistrictEngineeringOffice = "${filters.DistrictEngineeringOffice.trim()}"`
-      );
-    }
-
-    if (filters.LegislativeDistrict && filters.LegislativeDistrict.trim()) {
-      filterStrings.push(
-        `LegislativeDistrict = "${filters.LegislativeDistrict.trim()}"`
-      );
-    }
-
-    return filterStrings.length > 0 ? filterStrings.join(' AND ') : '';
-  };
-
   const provinceOptions = useMemo(() => {
     if (filters.Region === 'National Capital Region') {
       const nationalCapitalRegion = provinceData.Province.filter(
@@ -724,7 +677,7 @@ const FloodControlProjectsTable: FC = () => {
     setIsExporting(true);
 
     // Build filter string based on selected filters
-    const filterString = buildFilterString();
+    const filterString = buildFilterString(filters);
     // Get effective search term including year filter if present
     const effectiveSearchTerm = getEffectiveSearchTerm();
 
@@ -927,7 +880,7 @@ const FloodControlProjectsTable: FC = () => {
               >
                 <Configure
                   hitsPerPage={1000}
-                  filters={buildFilterString()}
+                  filters={buildFilterString(filters)}
                   query={getEffectiveSearchTerm()}
                 />
                 <TableHits filters={filters} searchTerm={searchTerm} />
