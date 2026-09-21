@@ -1,0 +1,19 @@
+verbose = "info"
+no_progress = true
+
+max_redirects = 10
+max_retries = 3
+max_concurrency = 16
+host_concurrency = 1
+host_request_interval = "1s"
+
+timeout = 45
+retry_wait_time = 2
+method = "get"
+user_agent = "Mozilla/5.0 (compatible; BetterGov service link checker/1.0; +https://github.com/bettergovph/bettergov)"
+
+extensions = ["json"]
+scheme = ["http", "https"]
+exclude_all_private = true
+insecure = false
+accept_timeouts = false

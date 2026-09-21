@@ -224,6 +224,18 @@ Schema validation runs automatically in CI/CD when changes are made to:
 - Schema files (`src/data/**/schema/*.json`)
 - The validation script (`scripts/validate-json-schema.js`)
 
+## Service Link Checks
+
+Government service URLs in `src/data/services/*.json` are checked every two months with [Lychee](https://lychee.cli.rs/). Install Lychee v0.24.2, then generate and classify the results locally:
+
+```sh
+lychee --config lychee.toml 'src/data/services/*.json'
+```
+
+Lychee may exit with an error for results that the workflow does not treat as hard failures. The report groups results into three levels: `404`, `410`, and DNS-resolution failures fail the workflow; connection failures and unknown errors open an issue for manual review without failing the workflow; and access restrictions, TLS compatibility errors, timeouts, connection resets, malformed responses, and redirects are informational because automated requests can behave differently from a browser.
+
+A successful HTTP response only confirms that the page is reachable; verify manually that it still describes the listed service.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- This can be added later -->
