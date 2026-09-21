@@ -1,24 +1,45 @@
 import { ForexRate } from '../types';
 import { fetchWithCache } from './api';
 
+// BSP (Bangko Sentral ng Pilipinas) official exchange-rate list, queried
+// directly from the browser. BSP serves `Access-Control-Allow-Origin: *`, so
+// no proxy/backend is needed. (Their WAF blocks datacenter/worker runtimes but
+// allows real browser clients.)
+const BSP_FOREX_URL =
+  "https://www.bsp.gov.ph/_api/web/lists/getByTitle('Exchange%20Rate')/items?$select=*&$filter=Group%20eq%20%271%27&$orderby=Ordering%20asc";
+
+// Raw item shape returned by the BSP OData API.
+interface BSPRateItem {
+  Title: string;
+  Symbol: string;
+  PHPequivalent: string;
+}
+
 /**
- * Fetch forex data from the API
+ * Fetch forex data directly from the BSP exchange-rate API.
  * @param filterSymbols Optional array of currency symbols to filter by
  * @returns Transformed forex data
  */
 export const fetchForexData = async (
   filterSymbols?: string[]
 ): Promise<ForexRate[]> => {
-  const data = await fetchWithCache('https://api.bettergov.ph/forex');
+  // BSP's OData API defaults to XML; request JSON explicitly.
+  const data = (await fetchWithCache(BSP_FOREX_URL, undefined, {
+    headers: { Accept: 'application/json' },
+  })) as {
+    value: BSPRateItem[];
+  };
 
-  // Transform API data to match our ForexRate type
-  let transformedData: ForexRate[] = data.rates.map(
-    (rate: { country: string; symbol: string; phpEquivalent: number }) => ({
-      currency: rate.country,
-      code: rate.symbol,
-      rate: rate.phpEquivalent,
-    })
-  );
+  // Transform BSP data to match our ForexRate type. BSP occasionally reports
+  // "N/A" for a currency (e.g. KWD); parseFloat yields NaN, so we drop those
+  // rows rather than render a blank rate.
+  let transformedData: ForexRate[] = data.value
+    .map(item => ({
+      currency: item.Title,
+      code: item.Symbol,
+      rate: parseFloat(item.PHPequivalent),
+    }))
+    .filter(rate => Number.isFinite(rate.rate));
 
   // Filter by symbols if provided
   if (filterSymbols && filterSymbols.length > 0) {
