@@ -4,18 +4,9 @@
  */
 
 import { Env } from './types';
+import { fetchForexData, ProcessedForexData } from './api/forex';
 
-interface RateItem {
-  symbol: string;
-  country?: string;
-  phpEquivalent?: number;
-  [key: string]: unknown;
-}
-
-interface ForexCachedData {
-  metadata: Record<string, unknown>;
-  rates: RateItem[];
-}
+type ForexCachedData = ProcessedForexData;
 
 export async function onRequest(context: {
   request: Request;
@@ -27,25 +18,37 @@ export async function onRequest(context: {
     const symbolParam = url.searchParams.get('symbol');
 
     // Get data from KV store
-    const cachedData = (await context.env.FOREX_KV.get('bsp_exchange_rates', {
+    let cachedData = (await context.env.FOREX_KV.get('bsp_exchange_rates', {
       type: 'json',
     })) as ForexCachedData | null;
 
+    // On a cache miss (e.g. the scheduled refresh hasn't run yet, or failed
+    // upstream), fall back to fetching fresh data directly instead of
+    // hard-404ing the client.
     if (!cachedData) {
-      return new Response(
-        JSON.stringify({
-          error: 'No forex data found in KV store',
-          message:
-            'Try calling /api/forex?update=true to fetch and store fresh data',
-        }),
-        {
-          status: 404,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      );
+      try {
+        const freshData = await fetchForexData();
+        await context.env.FOREX_KV.put(
+          'bsp_exchange_rates',
+          JSON.stringify(freshData),
+          { expirationTtl: 3600 }
+        );
+        cachedData = freshData;
+      } catch (error) {
+        return new Response(
+          JSON.stringify({
+            error: 'No forex data found in KV store',
+            message: (error as Error).message,
+          }),
+          {
+            status: 404,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        );
+      }
     }
 
     // If symbol parameter is provided, filter the data

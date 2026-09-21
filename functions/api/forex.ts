@@ -29,7 +29,7 @@ interface ProcessedRateItem {
 }
 
 // Interface for processed forex data
-interface ProcessedForexData {
+export interface ProcessedForexData {
   metadata: {
     source: string;
     fetchedAt: string;
@@ -44,13 +44,19 @@ interface BSPApiResponse {
 }
 
 // Core function to fetch currency exchange rates
-async function fetchForexData(): Promise<ProcessedForexData> {
+export async function fetchForexData(): Promise<ProcessedForexData> {
   try {
-    // Fetch exchange rate data
+    // Fetch exchange rate data. BSP's WAF rejects requests that don't look
+    // like they came from a browser (e.g. the default Cloudflare Worker
+    // fetch), so send browser-like headers.
     const response = await fetch(BSP_URL, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        Referer:
+          'https://www.bsp.gov.ph/SitePages/Statistics/ExchangeRate.aspx',
       },
     });
 
