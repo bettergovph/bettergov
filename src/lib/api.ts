@@ -16,7 +16,8 @@ const apiCache: ApiCache = {};
  */
 export const fetchWithCache = async (
   url: string,
-  cacheDuration = 60 * 60 * 1000
+  cacheDuration = 60 * 60 * 1000,
+  init?: RequestInit
 ) => {
   const now = Date.now();
 
@@ -26,7 +27,7 @@ export const fetchWithCache = async (
   }
 
   // If no cache or expired, fetch new data
-  const response = await fetch(url);
+  const response = await fetch(url, init);
 
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`);
