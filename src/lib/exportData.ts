@@ -3,6 +3,19 @@
  */
 
 /**
+ * Sanitizes a CSV cell value to prevent formula injection (CWE-1236 / OWASP CSV Injection).
+ * Spreadsheet applications (Excel, Google Sheets, LibreOffice) may interpret cell values
+ * starting with '=', '+', '-', '@', tab, or carriage return as formulas.
+ * Prefixing with a single quote neutralizes this without destroying the original data.
+ */
+export function sanitizeCSVValue(valueStr: string): string {
+  if (/^[=+\-@\t\r]/.test(valueStr)) {
+    return `'${valueStr}`;
+  }
+  return valueStr;
+}
+
+/**
  * Exports data to CSV format and triggers download
  * @param data Array of objects to export
  * @param filename Name of the file to download
@@ -32,7 +45,7 @@ export function exportToCSV(
             row[header] === null || row[header] === undefined
               ? ''
               : row[header];
-          const valueStr = String(value);
+          const valueStr = sanitizeCSVValue(String(value));
 
           if (
             valueStr.includes(',') ||
