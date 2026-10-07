@@ -19,7 +19,7 @@
     "wrangler": "wrangler",
     "preview": "vite preview",
     "prepare": "husky",
-    "functions:dev": "wrangler dev ./functions/index.ts",
+    "functions:dev": "wrangler dev ./functions/index.ts --ip 127.0.0.1 --port 5525",
     "functions:build": "tsc -p ./functions/tsconfig.json",
     "functions:deploy": "wrangler deploy ./functions/index.ts",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",
