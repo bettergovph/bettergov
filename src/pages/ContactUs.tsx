@@ -1,304 +1,189 @@
-import { FC, FormEvent, useState } from 'react';
-import { GithubIcon, MailIcon, ClockIcon, ArrowRightIcon } from 'lucide-react';
-import { SiDiscord } from '@icons-pack/react-simple-icons';
+import { FC } from 'react';
+import {
+  AccessibilityIcon,
+  FileTextIcon,
+  GithubIcon,
+  PhoneCallIcon,
+  PhoneIcon,
+  type LucideIcon,
+} from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Container from '../components/v2/ui/Container';
-import Button from '../components/v2/ui/Button';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 import SectionHeader from '../components/v2/ui/SectionHeader';
+import ArrowLink from '../components/v2/ui/ArrowLink';
+import { ISSUES_URL, SITE_NAME, SITE_URL } from '../lib/brand';
 
-const ContactUs: FC = () => {
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+const DESCRIPTION =
+  'Official channels for reaching the Philippine government: the 8888 Citizens’ Complaint Hotline, emergency numbers, Freedom of Information, and feedback for this website.';
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSent(true);
-  };
+interface Channel {
+  icon: LucideIcon;
+  label: string;
+  title: string;
+  href: string;
+  external?: boolean;
+  blurb: string;
+}
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+const GOVERNMENT_CHANNELS: Channel[] = [
+  {
+    icon: PhoneIcon,
+    label: 'Complaints and inquiries',
+    title: 'Contact Center ng Bayan · 8888',
+    href: 'https://contactcenterngbayan.gov.ph',
+    external: true,
+    blurb:
+      'The national hotline for complaints, requests, and questions about any government agency, office, or service. Dial 8888 from any phone, or file online.',
+  },
+  {
+    icon: PhoneCallIcon,
+    label: 'Emergencies',
+    title: 'Emergency hotline · 911',
+    href: '/philippines/hotlines',
+    blurb:
+      'For police, fire, and medical emergencies dial 911. Disaster, health, and agency-specific numbers are listed on the hotlines page.',
+  },
+  {
+    icon: FileTextIcon,
+    label: 'Freedom of Information',
+    title: 'eFOI portal',
+    href: 'https://www.foi.gov.ph',
+    external: true,
+    blurb:
+      'Request records and documents from national government agencies under the Freedom of Information programme.',
+  },
+];
+
+const WEBSITE_CHANNELS: Channel[] = [
+  {
+    icon: GithubIcon,
+    label: 'Website feedback',
+    title: 'Report a problem with this site',
+    href: ISSUES_URL,
+    external: true,
+    blurb:
+      'Found a broken link, outdated information, or a bug? Open an issue and the portal team will review it against the official source.',
+  },
+  {
+    icon: AccessibilityIcon,
+    label: 'Accessibility',
+    title: 'Accessibility statement',
+    href: '/accessibility',
+    blurb:
+      'How this site supports assistive technology, and how to tell us about a barrier you encountered.',
+  },
+];
+
+const ChannelCard: FC<{ channel: Channel }> = ({ channel }) => {
+  const Icon = channel.icon;
+  const inner = (
+    <>
+      <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
+        {channel.label}
+      </div>
+      <span className='font-sans-ed text-sm font-medium text-ed-navy group-hover:underline'>
+        {channel.title}
+      </span>
+      <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
+        {channel.blurb}
+      </p>
+    </>
+  );
 
   return (
-    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
-      <Helmet>
-        <title>Contact Us | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
-        />
-        <meta
-          name='keywords'
-          content='contact, bettergov, volunteer, feedback, support, philippines government'
-        />
-        <link rel='canonical' href='https://bettergov.ph/contact' />
-        <meta property='og:title' content='Contact Us | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/contact' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
-      </Helmet>
-      <PageMasthead
-        variant='light'
-        title='Get in touch'
-        lede="We're a volunteer-led initiative. Reach us through any of the channels below, or drop us a message and we'll get back to you."
-      />
-
-      <section className='py-14 max-md:py-6'>
-        <Container>
-          <div className='grid grid-cols-[1fr_380px] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
-            {/* Left: contact form */}
-            <div>
-              <SectionHeader label='Send us a message' />
-
-              {sent ? (
-                <div className='border border-ed-rule bg-ed-paper-2 p-8'>
-                  <p className='font-serif-ed text-[22px] font-semibold text-ed-navy-ink'>
-                    Message received.
-                  </p>
-                  <p className='mt-2 text-sm text-ed-ink-2'>
-                    Thank you for reaching out. We&apos;ll respond within a few
-                    business days.
-                  </p>
-                  <button
-                    className='mt-4 text-[13px] font-medium text-ed-navy underline'
-                    onClick={() => {
-                      setSent(false);
-                      setForm({
-                        name: '',
-                        email: '',
-                        subject: '',
-                        message: '',
-                      });
-                    }}
-                  >
-                    Send another message
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className='space-y-6'>
-                  <div className='grid grid-cols-2 gap-6 max-sm:grid-cols-1'>
-                    <div>
-                      <label
-                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
-                        htmlFor='name'
-                      >
-                        Your name
-                      </label>
-                      <input
-                        id='name'
-                        name='name'
-                        type='text'
-                        required
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder='Juan dela Cruz'
-                        className='w-full border border-ed-rule bg-white px-3 py-2.5 font-sans-ed text-sm text-ed-ink placeholder:text-ed-ink-4 focus:border-ed-ink focus:outline-none'
-                      />
-                    </div>
-                    <div>
-                      <label
-                        className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
-                        htmlFor='email'
-                      >
-                        Email address
-                      </label>
-                      <input
-                        id='email'
-                        name='email'
-                        type='email'
-                        required
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder='you@example.com'
-                        className='w-full border border-ed-rule bg-white px-3 py-2.5 font-sans-ed text-sm text-ed-ink placeholder:text-ed-ink-4 focus:border-ed-ink focus:outline-none'
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
-                      htmlFor='subject'
-                    >
-                      Subject
-                    </label>
-                    <select
-                      id='subject'
-                      name='subject'
-                      required
-                      value={form.subject}
-                      onChange={handleChange}
-                      className='w-full border border-ed-rule bg-white px-3 py-2.5 font-sans-ed text-sm text-ed-ink focus:border-ed-ink focus:outline-none'
-                    >
-                      <option value=''>Select a topic…</option>
-                      <option value='general'>General inquiry</option>
-                      <option value='bug'>Bug report</option>
-                      <option value='feature'>Feature suggestion</option>
-                      <option value='data'>Data correction</option>
-                      <option value='volunteer'>Volunteer inquiry</option>
-                      <option value='press'>Press / media</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      className='block font-serif-ed text-[15px] font-semibold text-ed-ink mb-1.5'
-                      htmlFor='message'
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id='message'
-                      name='message'
-                      required
-                      rows={6}
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder='What would you like to tell us?'
-                      className='w-full border border-ed-rule bg-white px-3 py-2.5 font-sans-ed text-sm text-ed-ink placeholder:text-ed-ink-4 focus:border-ed-ink focus:outline-none resize-none'
-                    />
-                  </div>
-
-                  <div>
-                    <Button type='submit' variant='solid' size='md'>
-                      Send message
-                    </Button>
-                    <p className='mt-3 text-[12px] text-ed-ink-3'>
-                      We typically respond within 2–4 business days. For urgent
-                      matters use Discord.
-                    </p>
-                  </div>
-                </form>
-              )}
-            </div>
-
-            {/* Right: contact card */}
-            <div className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-10'>
-              <SectionHeader label='Contact channels' />
-
-              <div className='space-y-0 divide-y divide-ed-rule border border-ed-rule'>
-                {/* Email */}
-                <div className='flex gap-4 p-5'>
-                  <div className='mt-0.5 shrink-0 text-ed-navy'>
-                    <MailIcon size={18} />
-                  </div>
-                  <div>
-                    <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
-                      Email
-                    </div>
-                    <a
-                      href='mailto:volunteers@bettergov.ph'
-                      className='font-sans-ed text-sm font-medium text-ed-navy hover:underline'
-                    >
-                      volunteers@bettergov.ph
-                    </a>
-                    <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
-                      General inquiries and collaboration
-                    </p>
-                  </div>
-                </div>
-
-                {/* Discord */}
-                <div className='flex gap-4 p-5'>
-                  <div className='mt-0.5 shrink-0 text-ed-navy'>
-                    <SiDiscord size={18} />
-                  </div>
-                  <div>
-                    <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
-                      Discord
-                    </div>
-                    <a
-                      href='https://discord.gg/mHtThpN8bT'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='font-sans-ed text-sm font-medium text-ed-navy hover:underline'
-                    >
-                      discord.gg/mHtThpN8bT
-                    </a>
-                    <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
-                      Real-time community chat for volunteers
-                    </p>
-                  </div>
-                </div>
-
-                {/* GitHub */}
-                <div className='flex gap-4 p-5'>
-                  <div className='mt-0.5 shrink-0 text-ed-navy'>
-                    <GithubIcon size={18} />
-                  </div>
-                  <div>
-                    <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
-                      GitHub
-                    </div>
-                    <a
-                      href='https://github.com/bettergovph/bettergov/issues'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='font-sans-ed text-sm font-medium text-ed-navy hover:underline'
-                    >
-                      bettergovph/bettergov
-                    </a>
-                    <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
-                      Bug reports and feature requests
-                    </p>
-                  </div>
-                </div>
-
-                {/* Office hours */}
-                <div className='flex gap-4 p-5'>
-                  <div className='mt-0.5 shrink-0 text-ed-navy'>
-                    <ClockIcon size={18} />
-                  </div>
-                  <div>
-                    <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
-                      Office hours
-                    </div>
-                    <p className='font-sans-ed text-sm font-medium text-ed-ink'>
-                      Saturdays, 10 AM – 12 PM PHT
-                    </p>
-                    <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
-                      Open community calls on Discord — all welcome
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Volunteer CTA */}
-              <div className='mt-6 border border-ed-rule bg-ed-paper-2 p-5'>
-                <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-2'>
-                  Get involved
-                </div>
-                <p className='font-sans-ed text-[17px] leading-snug text-ed-ink-2'>
-                  Want to contribute code, data, or design?
-                </p>
-                <Link
-                  to='/join-us'
-                  className='mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-ed-navy hover:underline'
-                >
-                  See open roles <ArrowRightIcon size={13} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-    </main>
+    <div className='flex gap-4 p-5'>
+      <div className='mt-0.5 shrink-0 text-ed-navy'>
+        <Icon size={18} />
+      </div>
+      <div className='group min-w-0'>
+        {channel.external ? (
+          <a
+            href={channel.href}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='block no-underline'
+          >
+            {inner}
+          </a>
+        ) : (
+          <Link to={channel.href} className='block no-underline'>
+            {inner}
+          </Link>
+        )}
+      </div>
+    </div>
   );
 };
+
+const ContactUs: FC = () => (
+  <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+    <Helmet>
+      <title>Contact | {SITE_NAME}</title>
+      <meta name='description' content={DESCRIPTION} />
+      <meta
+        name='keywords'
+        content='contact, 8888, hotline, complaint, freedom of information, feedback, philippines government'
+      />
+      <link rel='canonical' href={`${SITE_URL}/contact`} />
+      <meta property='og:title' content={`Contact | ${SITE_NAME}`} />
+      <meta property='og:description' content={DESCRIPTION} />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content={`${SITE_URL}/contact`} />
+      <meta property='og:image' content={`${SITE_URL}/og-image.png`} />
+    </Helmet>
+
+    <PageMasthead
+      variant='light'
+      title='Get in touch'
+      lede='Reach the right office for your concern. These are the official channels for government inquiries and for feedback about this website.'
+    />
+
+    <section className='py-14 max-md:py-6'>
+      <Container>
+        <div className='grid grid-cols-[1fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
+          <div>
+            <SectionHeader label='Government services and concerns' />
+            <div className='divide-y divide-ed-rule border border-ed-rule'>
+              {GOVERNMENT_CHANNELS.map(channel => (
+                <ChannelCard key={channel.title} channel={channel} />
+              ))}
+            </div>
+            <p className='mt-4 text-[13px] leading-relaxed text-ed-ink-3'>
+              For a specific agency, the{' '}
+              <Link to='/government/departments' className='text-ed-navy'>
+                departments directory
+              </Link>{' '}
+              lists official addresses, trunk lines, and websites.
+            </p>
+          </div>
+
+          <div className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-10'>
+            <SectionHeader label='About this website' />
+            <div className='divide-y divide-ed-rule border border-ed-rule'>
+              {WEBSITE_CHANNELS.map(channel => (
+                <ChannelCard key={channel.title} channel={channel} />
+              ))}
+            </div>
+
+            <div className='mt-6 border border-ed-rule bg-ed-paper-2 p-5'>
+              <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-2'>
+                Open source
+              </div>
+              <p className='font-sans-ed text-[17px] leading-snug text-ed-ink-2'>
+                This portal is built in the open. Corrections and improvements
+                are welcome as pull requests.
+              </p>
+              <ArrowLink to='/about' className='mt-3'>
+                How GOV.PH is built
+              </ArrowLink>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+);
 
 export default ContactUs;

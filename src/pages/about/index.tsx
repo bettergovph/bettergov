@@ -8,149 +8,101 @@ import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Flag from '../../components/v2/ui/Flag';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
+import {
+  ISSUES_URL,
+  REPO_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from '../../lib/brand';
 
-const MAINTAINERS = [
-  { name: 'Jason Torres', role: 'Founder & Lead', github: 'jasontorres' },
-];
+const DESCRIPTION =
+  'GOV.PH is the official portal of the Republic of the Philippines — one place to find government services, agencies, hotlines, and information.';
 
 const AboutPage: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <Helmet>
-      <title>About | BetterGov.ph</title>
-      <meta
-        name='description'
-        content='BetterGov.ph is a volunteer-led civic-tech initiative making Philippine government information transparent, accessible, and well-designed.'
-      />
-      <meta property='og:title' content='About | BetterGov.ph' />
-      <meta
-        property='og:description'
-        content='BetterGov.ph is a volunteer-led civic-tech initiative making Philippine government information transparent, accessible, and well-designed.'
-      />
+      <title>About | {SITE_NAME}</title>
+      <meta name='description' content={DESCRIPTION} />
+      <meta property='og:title' content={`About | ${SITE_NAME}`} />
+      <meta property='og:description' content={DESCRIPTION} />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://bettergov.ph/about' />
-      <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
-      <link rel='canonical' href='https://bettergov.ph/about' />
+      <meta property='og:url' content={`${SITE_URL}/about`} />
+      <meta property='og:image' content={`${SITE_URL}/og-image.png`} />
+      <link rel='canonical' href={`${SITE_URL}/about`} />
     </Helmet>
 
     {/* ── Hero ──────────────────────────────────────────────────────────── */}
     <PageMasthead
       variant='hero'
-      title='About BetterGov.ph'
-      lede='A volunteer-led civic-tech project making Philippine government information cleaner, faster, and more useful for everyone.'
+      title={`About ${SITE_NAME}`}
+      lede={`${SITE_TAGLINE}. One place to find government services, agencies, hotlines, and information — written plainly and sourced from official records.`}
     />
 
     {/* ── Editorial essay ───────────────────────────────────────────────── */}
     <section className='py-14 max-md:py-6 border-b border-ed-rule'>
       <Container>
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 max-w-[900px]'>
-          {/* Left column */}
           <div>
-            <SectionHeader label='Our mission' />
+            <SectionHeader label='What this portal is for' />
             <Dropcap className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
-              BetterGov.ph exists because government information in the
-              Philippines is scattered, hard to navigate, and often inaccessible
-              to ordinary citizens. We consolidate it — hotlines, directories,
-              holidays, regions, services — into one fast, well-designed
-              reference.
+              Government information in the Philippines is spread across
+              hundreds of agency websites. GOV.PH brings it together — services,
+              directories, hotlines, holidays, news, and travel requirements —
+              so that a citizen can find what they need in one place and get to
+              the responsible office quickly.
             </Dropcap>
             <p className='mt-5 max-md:mt-3.5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
-              We believe that transparency is not a feature — it is the
-              foundation of a functioning democracy. Every page we ship is a
-              small step toward a government that is legible to the people it
-              serves.
+              Every page points back to its official source. For transactions,
+              GOV.PH directs you to the agency that handles them; it does not
+              replace their systems or their authority.
             </p>
           </div>
 
-          {/* Right column */}
           <div>
-            <SectionHeader label='How we work' />
+            <SectionHeader label='How it is built' />
             <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
-              BetterGov.ph is open source, volunteer-run, and operates
-              independently of any government body or political party. We are
-              not affiliated with the Republic of the Philippines or any of its
-              agencies — we are citizens building tools for citizens.
+              GOV.PH is developed through a community collaboration partnership
+              between eGov Philippines and citizen contributors. The code is
+              open source and released into the public domain, so any national
+              agency, local government unit, or civic project may reuse it.
             </p>
             <p className='mt-5 max-md:mt-3.5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
-              Our code is public, our data is sourced from official records, and
-              our editorial decisions are made in the open. Pull requests are
-              welcome. Ideas are welcome. Scrutiny is especially welcome.
+              Content is drawn from official records and government
+              publications. If you find something outdated or incorrect, report
+              it through the issue tracker and it will be reviewed against the
+              source.
             </p>
+            <ArrowLink to={ISSUES_URL} external className='mt-5'>
+              Report an error or outdated information
+            </ArrowLink>
           </div>
         </div>
       </Container>
     </section>
 
-    {/* ── Pullquote ─────────────────────────────────────────────────────── */}
+    {/* ── Origins & attribution ─────────────────────────────────────────── */}
     <section className='py-14 max-md:py-6 bg-ed-paper-2 border-b border-ed-rule'>
       <Container>
-        <div className='max-w-[700px] mx-auto'>
-          <blockquote className='border-l-4 border-ed-navy pl-8 max-md:pl-5'>
-            <p className='font-sans-ed text-[26px] max-md:text-[20px] leading-[1.4] text-ed-ink font-normal italic'>
-              &ldquo;We&rsquo;re not waiting for permission to make things
-              better. The tools exist, the data exists, the people exist — we
-              just have to show up and build.&rdquo;
-            </p>
-            <footer className='mt-6 flex items-center gap-3'>
-              <div className='w-px h-8 bg-ed-rule-strong' />
-              <div>
-                <p className='font-sans-ed text-sm font-medium text-ed-ink'>
-                  Volunteer contributor
-                </p>
-                <p className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3 mt-0.5'>
-                  BetterGov.ph community
-                </p>
-              </div>
-            </footer>
-          </blockquote>
-        </div>
-      </Container>
-    </section>
-
-    {/* ── Maintainers card ──────────────────────────────────────────────── */}
-    <section className='py-14 max-md:py-6 border-b border-ed-rule'>
-      <Container>
         <div className='max-w-[900px]'>
-          <SectionHeader label='Maintainers' />
-
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {MAINTAINERS.map(m => (
-              <div
-                key={m.github}
-                className='border border-ed-rule bg-white p-5 flex flex-col gap-3'
-              >
-                <div>
-                  <p className='font-serif-ed text-[18px] text-ed-ink leading-tight'>
-                    {m.name}
-                  </p>
-                  <p className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-3 mt-1'>
-                    {m.role}
-                  </p>
-                </div>
-                <ArrowLink
-                  to={`https://github.com/${m.github}`}
-                  external
-                  className='mt-auto'
-                >
-                  <GithubIcon size={13} />@{m.github}
-                </ArrowLink>
-              </div>
-            ))}
-
-            {/* Open contributor slot */}
-            <div className='border border-dashed border-ed-rule bg-ed-paper-2 p-5 flex flex-col gap-3'>
-              <div>
-                <p className='font-serif-ed text-[18px] text-ed-ink-3 leading-tight'>
-                  You?
-                </p>
-                <p className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-4 mt-1'>
-                  Volunteer contributor
-                </p>
-              </div>
-              <ArrowLink
-                to='https://github.com/jasontorres/bettergov-v2'
-                external
-              >
-                Contribute on GitHub
+          <SectionHeader label='Origins and attribution' />
+          <div className='grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12'>
+            <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
+              This portal builds on the open-source BetterGov.ph project, a
+              volunteer-led civic-tech initiative that set out to make
+              Philippine government information easier to find, read, and use.
+              Its code, design system, and data pipelines became the foundation
+              of GOV.PH.
+            </p>
+            <div>
+              <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
+                The Republic of the Philippines thanks the hundreds of citizen
+                volunteers who contributed to that work. Their contributions
+                remain in the public domain, and their repository remains
+                available for anyone who wants to build on it.
+              </p>
+              <ArrowLink to='https://bettergov.ph' external className='mt-5'>
+                BetterGov.ph
               </ArrowLink>
             </div>
           </div>
@@ -158,7 +110,7 @@ const AboutPage: FC = () => (
       </Container>
     </section>
 
-    {/* ── GitHub + License flags ────────────────────────────────────────── */}
+    {/* ── Project info ──────────────────────────────────────────────────── */}
     <section className='py-10 max-md:py-6'>
       <Container>
         <div className='max-w-[900px] flex flex-wrap items-center gap-4'>
@@ -168,12 +120,9 @@ const AboutPage: FC = () => (
             Open source
           </Flag>
           <Flag variant='outline'>CC0 1.0 Public Domain</Flag>
-          <Flag variant='outline'>Not affiliated with the Republic</Flag>
+          <Flag variant='outline'>Republic of the Philippines</Flag>
           <div className='flex-1 flex justify-end max-sm:justify-start'>
-            <ArrowLink
-              to='https://github.com/jasontorres/bettergov-v2'
-              external
-            >
+            <ArrowLink to={REPO_URL} external>
               View source on GitHub
             </ArrowLink>
           </div>
