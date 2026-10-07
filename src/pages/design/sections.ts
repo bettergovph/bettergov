@@ -64,14 +64,4 @@ export const DESIGN_SECTIONS: SectionDef[] = [
       { id: 'testing', label: 'How to test' },
     ],
   },
-  {
-    to: '/design/community',
-    label: 'Community',
-    subsections: [
-      { id: 'criteria', label: 'Contribution criteria' },
-      { id: 'propose', label: 'How to propose' },
-      { id: 'channels', label: 'Where the work happens' },
-      { id: 'reuse', label: 'Reuse it anywhere' },
-    ],
-  },
 ];

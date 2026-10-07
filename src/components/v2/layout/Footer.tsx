@@ -10,6 +10,8 @@ import {
   BAGONG_PILIPINAS_SRC,
   COAT_OF_ARMS_ALT,
   COAT_OF_ARMS_SRC,
+  ISSUES_URL,
+  REPO_URL,
   SITE_NAME,
   SITE_OWNER,
 } from '../../../lib/brand';
@@ -113,21 +115,20 @@ const Footer: FC = () => {
 
   const aboutCol: FooterLink[] = [
     { label: t('footerNav.mission', 'Mission'), href: '/about' },
-    { label: t('footerNav.contributors', 'Contributors'), href: '/join-us' },
     {
       label: t('footerNav.designGuideline', 'Design Guideline'),
       href: '/design',
     },
     {
       label: t('footerNav.github', 'GitHub'),
-      href: 'https://github.com/bettergovph/bettergov',
+      href: REPO_URL,
       external: true,
     },
     { label: t('footerNav.terms', 'Terms of Use'), href: '/terms-of-service' },
     { label: t('footerNav.contact', 'Contact'), href: '/contact' },
     {
       label: t('footerNav.reportBug', 'Report a bug'),
-      href: 'https://github.com/bettergovph/bettergov/issues',
+      href: ISSUES_URL,
       external: true,
     },
   ];

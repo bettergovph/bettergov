@@ -99,14 +99,12 @@ const MastheadTop: FC = () => {
           {t('masthead.accessibility', 'Accessibility')}
         </Link>
         <span className='text-ed-rule-strong'>|</span>
-        <a
-          href='https://about.bettergov.ph'
-          target='_blank'
-          rel='noreferrer'
+        <Link
+          to='/about'
           className='text-ed-ink-3 no-underline hover:text-ed-navy'
         >
           {t('masthead.about', 'About')}
-        </a>
+        </Link>
         <span className='text-ed-rule-strong'>|</span>
         <LangToggle />
       </nav>

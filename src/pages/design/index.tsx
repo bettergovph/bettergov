@@ -11,7 +11,7 @@ const SECTIONS = [
     to: '/design/styles',
     title: 'Styles',
     description:
-      'Colour, typography, spacing, and layout — the raw material every BetterGov page is built from.',
+      'Colour, typography, spacing, and layout — the raw material every GOV.PH page is built from.',
   },
   {
     to: '/design/components',
@@ -30,12 +30,6 @@ const SECTIONS = [
     title: 'Accessibility',
     description:
       'What the design system does for you, what your team still has to do, and how to test that everyone can use your service.',
-  },
-  {
-    to: '/design/community',
-    title: 'Community',
-    description:
-      'The design system is open source and volunteer-built. Learn how to propose, discuss, and contribute changes.',
   },
 ];
 
@@ -76,12 +70,12 @@ const LIVE_EXAMPLES = [
 const DesignSystemHome: FC = () => (
   <>
     <Helmet>
-      <title>Design System | BetterGov.ph</title>
+      <title>Design System | GOV.PH</title>
       <meta
         name='description'
         content='Styles, components, and patterns for designing consistent, accessible digital government services for the Philippines. Open source and free for any agency or civic project to use.'
       />
-      <link rel='canonical' href='https://bettergov.ph/design/overview' />
+      <link rel='canonical' href='https://www.gov.ph/design/overview' />
     </Helmet>
 
     <PageHeader
@@ -92,7 +86,7 @@ const DesignSystemHome: FC = () => (
     <DocSection first id='start-here'>
       <SectionHeader
         label='Start here'
-        meta='Everything here is in production on BetterGov.ph'
+        meta='Everything here is in production on GOV.PH'
       />
       <div className='grid gap-5 md:grid-cols-2'>
         {SECTIONS.map(s => (
@@ -133,17 +127,17 @@ const DesignSystemHome: FC = () => (
         <Prose>
           <p>
             This design system exists so that teams do not have to solve the
-            same problems twice. It is the working style guide for BetterGov.ph,
-            and it is released into the public domain under CC0 — any national
+            same problems twice. It is the working style guide for GOV.PH, and
+            it is released into the public domain under CC0 — any national
             agency, local government unit, or civic technology project may use
             it, in whole or in part, without asking.
           </p>
           <p>
             The fastest way to adopt it is to start from the source. Every
             style, component, and pattern documented here ships as code in the
-            open-source BetterGov repository.
+            open-source GOV.PH repository.
           </p>
-          <ArrowLink to='https://github.com/bettergovph/bettergov' external>
+          <ArrowLink to='https://github.com/govph/govph-2026' external>
             View the source on GitHub
           </ArrowLink>
         </Prose>

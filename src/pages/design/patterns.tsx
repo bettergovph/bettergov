@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
 import { DocHeading, DocSection, PageHeader, PagerNav, Prose } from './shared';
+import { NEW_ISSUE_URL } from '../../lib/brand';
 
 type Pattern = {
   title: string;
@@ -188,17 +189,17 @@ const PAGE_PATTERNS: Pattern[] = [
 const PatternsPage: FC = () => (
   <>
     <Helmet>
-      <title>Patterns — Design System | BetterGov.ph</title>
+      <title>Patterns — Design System | GOV.PH</title>
       <meta
         name='description'
         content='Design patterns for common government service problems: helping people find services, contact agencies, follow processes, and get help in emergencies.'
       />
-      <link rel='canonical' href='https://bettergov.ph/design/patterns' />
+      <link rel='canonical' href='https://www.gov.ph/design/patterns' />
     </Helmet>
 
     <PageHeader
       title='Patterns'
-      lede='Best-practice solutions to problems every government service shares. Each pattern has been shaped by real use on BetterGov.ph — follow it before inventing a new one.'
+      lede='Best-practice solutions to problems every government service shares. Each pattern has been shaped by real use on GOV.PH — follow it before inventing a new one.'
     />
 
     <DocSection first id='task-patterns'>
@@ -224,9 +225,12 @@ const PatternsPage: FC = () => (
         <p>
           Patterns are added when the same problem keeps being solved the same
           way. If you have solved something these patterns do not cover — and
-          you can show it working — propose it through the community process.
+          you can show it working — propose it by opening an issue in the
+          portal&rsquo;s repository.
         </p>
-        <ArrowLink to='/design/community'>How to propose a pattern</ArrowLink>
+        <ArrowLink to={NEW_ISSUE_URL} external>
+          Propose a pattern on GitHub
+        </ArrowLink>
       </Prose>
     </DocSection>
 

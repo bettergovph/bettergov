@@ -17,6 +17,7 @@ import {
   Prose,
   WhenToUse,
 } from './shared';
+import { NEW_ISSUE_URL } from '../../lib/brand';
 
 const ComponentsPage: FC = () => {
   const [searchDemo, setSearchDemo] = useState('');
@@ -24,12 +25,12 @@ const ComponentsPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Components — Design System | BetterGov.ph</title>
+        <title>Components — Design System | GOV.PH</title>
         <meta
           name='description'
           content='Ready-made, accessible UI components for Philippine government digital services: buttons, cards, tables, search, tags, and more.'
         />
-        <link rel='canonical' href='https://bettergov.ph/design/components' />
+        <link rel='canonical' href='https://www.gov.ph/design/components' />
       </Helmet>
 
       <PageHeader
@@ -315,10 +316,11 @@ const ComponentsPage: FC = () => {
           <p>
             If no component fits, first try composing existing styles — most
             needs are a heading, a rule, and restraint. If the need is real and
-            recurring, propose a new component through the community process.
+            recurring, propose a new component by opening an issue in the
+            portal&rsquo;s repository.
           </p>
-          <ArrowLink to='/design/community'>
-            How to propose a component
+          <ArrowLink to={NEW_ISSUE_URL} external>
+            Propose a component on GitHub
           </ArrowLink>
         </Prose>
       </DocSection>

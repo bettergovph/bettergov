@@ -1,95 +1,6 @@
 import { NavigationItem } from '../types';
 import { serviceCategories, type Category } from './cms';
 
-export const ourProjects = [
-  {
-    label: 'Our Projects',
-    href: '/projects',
-    children: [
-      {
-        label: '2026 Budget Tracker',
-        href: 'https://2026-budget.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Better LGU',
-        href: 'https://lgu.bettergov.ph/',
-        target: '_blank',
-      },
-      {
-        label: 'Budget Tracker',
-        href: 'https://budget.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Transparency Portal',
-        href: 'https://transparency.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Open Data Portal',
-        href: 'https://data.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Bantay PH',
-        href: 'https://bantay.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Petitions',
-        href: 'https://petition.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Tax Directory',
-        href: 'https://taxdirectory.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Philgeps',
-        href: 'https://philgeps.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'SALN Tracker',
-        href: 'https://saln.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Hotlines',
-        href: 'https://hotlines.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Open Bayan',
-        href: 'https://www.openbayan.org',
-        target: '_blank',
-      },
-      {
-        label: 'Open Congress API',
-        href: 'https://open-congress-api.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'OpenGov Blockchain',
-        href: 'https://govchain.bettergov.ph',
-        target: '_blank',
-      },
-      {
-        label: 'Research & Visualizations',
-        href: 'https://visualizations.bettergov.ph/',
-        target: '_blank',
-      },
-      {
-        label: 'Juris AI',
-        href: 'https://juris.ph',
-        target: '_blank',
-      },
-    ],
-  },
-];
-
 export const mainNavigation: NavigationItem[] = [
   {
     label: 'Philippines',
@@ -229,9 +140,13 @@ export const mainNavigation: NavigationItem[] = [
   },
   {
     label: 'Transparency',
-    href: 'https://transparency.bettergov.ph',
-    target: '_blank',
+    href: '/flood-control-projects',
     children: [
+      {
+        label: 'Flood Control Projects',
+        href: '/flood-control-projects',
+        blurb: 'DPWH flood control projects, contractors, and status.',
+      },
       {
         label: 'Budget Transparency',
         href: 'https://compass.dbm.gov.ph',
@@ -245,69 +160,11 @@ export const mainNavigation: NavigationItem[] = [
         blurb: 'Infrastructure projects, contracts, and status.',
       },
       {
-        label: "Citizen's Transparency Portal",
-        href: 'https://transparency.bettergov.ph',
+        label: 'Freedom of Information',
+        href: 'https://www.foi.gov.ph',
         target: '_blank',
-        blurb: 'Citizen-facing view of government spending data.',
+        blurb: 'Request records from any national government agency.',
       },
     ],
   },
 ];
-
-export const footerNavigation = {
-  mainSections: [
-    {
-      title: 'About',
-      links: [
-        { label: 'About the Portal', href: '/about' },
-        { label: 'About BetterGov.ph', href: 'https://about.bettergov.ph' },
-        { label: 'Documentation', href: 'https://docs.bettergov.ph/' },
-        { label: 'Project Ideas', href: '/ideas' },
-        { label: 'Accessibility', href: '/accessibility' },
-        { label: 'Terms of Use', href: '/terms-of-service' },
-        { label: 'Contact Us', href: '/contact' },
-      ],
-    },
-    {
-      title: 'Services',
-      links: [
-        { label: 'News', href: '/news' },
-        { label: 'All Services', href: '/services' },
-        { label: 'Service Directory', href: '/services' },
-        { label: 'Websites', href: '/services/websites' },
-        { label: 'Forex', href: '/data/forex' },
-        { label: 'Weather', href: '/data/weather' },
-        { label: 'Hotlines', href: '/philippines/hotlines' },
-        { label: 'Holidays', href: '/philippines/holidays' },
-        { label: 'Flood Control Projects', href: '/flood-control-projects' },
-      ],
-    },
-    {
-      title: 'Our Projects',
-      links: ourProjects[0].children,
-    },
-    {
-      title: 'Government',
-      links: [
-        { label: 'Government at a Glance', href: '/government/overview' },
-        { label: 'Official Gov.ph', href: 'https://www.gov.ph' },
-        { label: 'Open Data', href: 'https://data.gov.ph' },
-        { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
-        {
-          label: 'Contact Center',
-          href: 'https://contactcenterngbayan.gov.ph',
-        },
-        {
-          label: 'Official Gazette',
-          href: 'https://www.officialgazette.gov.ph',
-        },
-      ],
-    },
-  ],
-  socialLinks: [
-    { label: 'Facebook', href: 'https://facebook.com/bettergovph' },
-    { label: 'Discord', href: '/discord' },
-    // { label: 'Instagram', href: 'https://instagram.com/govph' },
-    // { label: 'YouTube', href: 'https://youtube.com/govph' },
-  ],
-};
