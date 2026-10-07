@@ -27,6 +27,10 @@ vi.mock('../api/crawl', () => ({
 vi.mock('../api/report-hotline', () => ({
   onRequest: vi.fn(async () => handlerResponse('report-hotline')),
 }));
+vi.mock('../api/assistant', () => ({
+  onRequest: vi.fn(async () => handlerResponse('assistant')),
+  onRequestStream: vi.fn(async () => handlerResponse('assistant-stream')),
+}));
 
 const worker = (await import('../index')).default;
 
@@ -51,6 +55,8 @@ describe('Worker routing after the CMS routes are removed', () => {
     ['/forex', 'forex-kv'],
     ['/api/crawl', 'crawl'],
     ['/api/report-hotline', 'report-hotline'],
+    ['/api/assistant', 'assistant'],
+    ['/api/assistant/stream', 'assistant-stream'],
   ])('still DISPATCHES %s to its handler', async (path, handler) => {
     const response = await call(path);
     expect(response.status).toBe(200);
@@ -87,6 +93,8 @@ describe('Worker routing after the CMS routes are removed', () => {
       '/forex',
       '/api/crawl',
       '/api/report-hotline',
+      '/api/assistant',
+      '/api/assistant/stream',
     ]) {
       expect(paths).toContain(path);
     }
@@ -105,6 +113,8 @@ describe('Worker routing after the CMS routes are removed', () => {
       '/api/forex',
       '/api/crawl',
       '/api/report-hotline',
+      '/api/assistant',
+      '/api/assistant/stream',
       '/weather',
       '/forex',
     ]) {

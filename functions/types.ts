@@ -18,6 +18,12 @@ export interface Env {
   CF_API_TOKEN?: string;
   GITHUB_TOKEN?: string;
   NODE_ENV?: string;
+
+  // eGovAI assistant (server-side only — never shipped to the browser)
+  EGOVAI_BASE_URL?: string;
+  EGOVAI_API_KEY?: string;
+  EGOVAI_API_SECRET?: string;
+  EGOVAI_AGENT_ENGINE_CODE?: string;
 }
 
 export interface WeatherData {

@@ -11,6 +11,10 @@ import { onRequest as crawlRequest } from './api/crawl';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
 import { onRequest as reportHotlineRequest } from './api/report-hotline';
+import {
+  onRequest as assistantRequest,
+  onRequestStream as assistantStreamRequest,
+} from './api/assistant';
 import { Env } from './types';
 
 // Export the scheduled handlers
@@ -96,12 +100,28 @@ export default {
       return addCorsHeaders(response, corsHeaders);
     }
 
+    if (path === '/api/assistant') {
+      const response = await assistantRequest({ request, env, ctx });
+      return addCorsHeaders(response, corsHeaders);
+    }
+
+    if (path === '/api/assistant/stream') {
+      const response = await assistantStreamRequest({ request, env, ctx });
+      return addCorsHeaders(response, corsHeaders);
+    }
+
     // Simple API to check if the functions are running
     if (path === '/api/status') {
       const response = new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex', 'crawl', 'report-hotline'],
+          functions: [
+            'weather',
+            'forex',
+            'crawl',
+            'report-hotline',
+            'assistant',
+          ],
           endpoints: [
             {
               path: '/api/weather',
@@ -211,6 +231,56 @@ export default {
                 },
               ],
             },
+            {
+              path: '/api/assistant',
+              description:
+                'Ask the eGovAI "govph" engine a question (single JSON answer)',
+              method: 'POST',
+              parameters: [
+                {
+                  name: 'question',
+                  required: true,
+                  description: 'The question to ask',
+                },
+                {
+                  name: 'session_id',
+                  required: false,
+                  description:
+                    'Session returned by a previous answer, to keep context',
+                },
+                {
+                  name: 'confirmation',
+                  required: false,
+                  description:
+                    '{ token, approved: true } to approve a pending_confirmation',
+                },
+              ],
+            },
+            {
+              path: '/api/assistant/stream',
+              description:
+                'Same as /api/assistant but streams progress, chunk and complete events over Server-Sent Events',
+              method: 'POST',
+              parameters: [
+                {
+                  name: 'question',
+                  required: true,
+                  description: 'The question to ask',
+                },
+                {
+                  name: 'session_id',
+                  required: false,
+                  description:
+                    'Session returned by a previous answer, to keep context',
+                },
+                {
+                  name: 'confirmation',
+                  required: false,
+                  description:
+                    '{ token, approved: true } to approve a pending_confirmation',
+                },
+              ],
+            },
           ],
           timestamp: new Date().toISOString(),
         }),
@@ -233,6 +303,8 @@ export default {
           '/api/forex',
           '/api/crawl',
           '/api/report-hotline',
+          '/api/assistant',
+          '/api/assistant/stream',
           '/weather',
           '/forex',
         ],
