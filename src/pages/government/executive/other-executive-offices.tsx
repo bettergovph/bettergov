@@ -19,7 +19,7 @@ const OtherExecutiveOffices: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Other Executive Offices | BetterGov.ph</title>
+        <title>Other Executive Offices | GOV.PH</title>
         <meta
           name='description'
           content='Authorities, boards, councils, and commissions under the Executive branch of the Philippine government — everything outside the Office of the President, Vice President, and Presidential Communications Office.'

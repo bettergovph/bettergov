@@ -97,7 +97,7 @@ const SearchBoxBridge: FC = () => {
       onChange={handleChange}
       onSubmit={() => refine(localQuery)}
       placeholder='What do you need? — e.g. passport, SSS, NBI clearance'
-      ariaLabel='Search BetterGov'
+      ariaLabel='Search GOV.PH'
       ctaLabel='Search'
       onDark
     />
@@ -379,7 +379,7 @@ const SearchPage: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Search — BetterGov.ph</title>
+        <title>Search — GOV.PH</title>
         <meta
           name='description'
           content='Search Philippine government services, offices, and resources in one place.'
@@ -389,7 +389,7 @@ const SearchPage: FC = () => {
       <InstantSearch searchClient={searchClient} indexName='bettergov'>
         {/* Navy-gradient masthead with BigSearch */}
         <PageMasthead
-          title='Search the BetterGov index'
+          title='Search GOV.PH'
           lede='Official Philippine government services, offices, and resources — across every agency, searchable in one place.'
           variant='hero'
         >

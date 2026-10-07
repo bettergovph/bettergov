@@ -133,7 +133,7 @@ const NewsIndex: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>{`${heading}${canonicalPage} | BetterGov.ph`}</title>
+        <title>{`${heading}${canonicalPage} | GOV.PH`}</title>
         <meta
           name='description'
           content='Official news, press releases and circulars from the Philippine government, republished from e.gov.ph.'

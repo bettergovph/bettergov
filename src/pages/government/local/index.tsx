@@ -54,7 +54,7 @@ const LocalGovernmentIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Local Government Units | BetterGov.ph</title>
+        <title>Local Government Units | GOV.PH</title>
         <meta
           name='description'
           content='Local government units of the Philippines — regions, provinces, cities, and municipalities.'

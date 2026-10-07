@@ -5,7 +5,7 @@ import ExecutiveOfficePage from './_ExecutiveOfficePage';
 const OfficeOfThePresident: FC = () => (
   <>
     <Helmet>
-      <title>Office of the President | BetterGov.ph</title>
+      <title>Office of the President | GOV.PH</title>
       <meta
         name='description'
         content='The Office of the President of the Philippines — the principal executive and administrative arm of the President, including the Office of the Executive Secretary.'

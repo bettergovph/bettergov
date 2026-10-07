@@ -48,9 +48,7 @@ const HouseMembersPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>
-          House of Representatives · District Members | BetterGov.ph
-        </title>
+        <title>House of Representatives · District Members | GOV.PH</title>
         <meta
           name='description'
           content='District representatives of the Philippine House of Representatives — sortable by province/city and searchable by name.'

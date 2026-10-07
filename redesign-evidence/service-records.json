@@ -1,7 +1,7 @@
 {
   "source_input": {
     "kind": "mixed",
-    "location": "/home/jason/projects/bettergov-v2 and linked Philippine government sources",
+    "location": "this repository and linked Philippine government sources",
     "observed_at": "2026-09-08T00:00:00Z",
     "notes": "This change covers institutional country information rather than a public transaction, so there are no service records. Content provenance is documented in content-sources.md."
   },

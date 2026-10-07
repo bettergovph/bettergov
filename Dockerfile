@@ -44,9 +44,8 @@ FROM builder AS dev
 
 FROM nginx:alpine AS production
 
-LABEL org.opencontainers.image.authors="volunteers@bettergov.ph"
-LABEL org.opencontainers.image.url="https://bettergov.ph"
-LABEL org.opencontainers.image.source="https://github.com/bettergovph/bettergov"
+LABEL org.opencontainers.image.url="https://www.gov.ph"
+LABEL org.opencontainers.image.source="https://github.com/govph/govph-2026"
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 

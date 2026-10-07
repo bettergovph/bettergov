@@ -65,12 +65,12 @@ const TYPE_SCALE = [
 const StylesPage: FC = () => (
   <>
     <Helmet>
-      <title>Styles — Design System | BetterGov.ph</title>
+      <title>Styles — Design System | GOV.PH</title>
       <meta
         name='description'
-        content='Colour, typography, spacing, and layout styles for BetterGov.ph and Philippine government digital services.'
+        content='Colour, typography, spacing, and layout styles for GOV.PH and Philippine government digital services.'
       />
-      <link rel='canonical' href='https://bettergov.ph/design/styles' />
+      <link rel='canonical' href='https://www.gov.ph/design/styles' />
     </Helmet>
 
     <PageHeader
@@ -85,7 +85,7 @@ const StylesPage: FC = () => (
         <p>
           The system uses three typefaces, and each one has exactly one job.
           Mixing their roles is the fastest way to make a page stop looking like
-          BetterGov.
+          GOV.PH.
         </p>
         <ul className='list-disc space-y-2 pl-5'>
           <li>

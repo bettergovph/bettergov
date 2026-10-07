@@ -1,9 +1,9 @@
 {
   "hero": {
-    "eyebrow": "BetterGov.ph",
+    "eyebrow": "GOV.PH",
     "eyebrowEst": "Itinatag noong 2024",
-    "title": "Maligayang pagdating sa BetterGov.ph",
-    "lede": "Ang volunteer-run na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, ma-access ang mga serbisyo ng pamahalaan, at manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
+    "title": "Maligayang pagdating sa GOV.PH",
+    "lede": "Ang opisyal na portal ng Republika ng Pilipinas. Maghanap ng impormasyon, ma-access ang mga serbisyo ng pamahalaan, at manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
     "startHere": "Simula",
     "prompt": "Ano ang kailangan mo sa pamahalaan?",
     "placeholder": "hal. mag-renew ng pasaporte",

@@ -196,8 +196,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
       } else {
         setSubmitStatus({
           type: 'error',
-          message:
-            'Network error. Please try again or contact us at bugs@bettergov.ph',
+          message: 'Network error. Please try again later.',
         });
       }
     } finally {

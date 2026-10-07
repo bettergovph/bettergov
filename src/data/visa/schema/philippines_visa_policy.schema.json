@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bettergov.ph/schemas/philippines_visa_policy.schema.json",
+  "$id": "https://www.gov.ph/schemas/philippines_visa_policy.schema.json",
   "title": "Philippines Visa Policy",
   "description": "Schema for Philippines visa policy data including visa types, visa-free entry policies, and visa-required nationals",
   "type": "object",

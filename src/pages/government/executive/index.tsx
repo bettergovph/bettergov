@@ -10,7 +10,7 @@ const ExecutiveIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Executive Offices | BetterGov.ph</title>
+        <title>Executive Offices | GOV.PH</title>
         <meta
           name='description'
           content='Offices, bureaus, and councils under the Executive branch of the Philippine government — from the Office of the President to independent boards and commissions.'

@@ -1,6 +1,6 @@
-# BetterGov Cloudflare Functions
+# GOV.PH Cloudflare Functions
 
-This folder contains Cloudflare Functions that run on a schedule to fetch and store data for the BetterGov application. The functions are written in TypeScript for improved type safety and developer experience.
+This folder contains Cloudflare Functions that run on a schedule to fetch and store data for the GOV.PH portal. The functions are written in TypeScript for improved type safety and developer experience.
 
 ## Functions
 

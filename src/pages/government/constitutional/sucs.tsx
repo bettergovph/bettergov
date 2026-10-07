@@ -41,7 +41,7 @@ const SUCsPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>SUCs · State Universities and Colleges | BetterGov.ph</title>
+        <title>SUCs · State Universities and Colleges | GOV.PH</title>
         <meta
           name='description'
           content='State Universities and Colleges (SUCs) — public higher-education institutions funded by the national government.'

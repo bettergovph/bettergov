@@ -114,13 +114,13 @@ ${data.reporterEmail ? `\n<!-- Reporter contact (private): ${data.reporterEmail}
     // Create GitHub issue
     try {
       const githubResponse = await fetch(
-        'https://api.github.com/repos/bettergovph/bettergov/issues',
+        'https://api.github.com/repos/govph/govph-2026/issues',
         {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${githubToken}`,
             'Content-Type': 'application/json',
-            'User-Agent': 'BetterGov-Hotline-Reporter',
+            'User-Agent': 'GOVPH-Hotline-Reporter',
             Accept: 'application/vnd.github.v3+json',
           },
           body: JSON.stringify({

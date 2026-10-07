@@ -10,7 +10,7 @@ const DepartmentsIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Executive Departments | BetterGov.ph</title>
+        <title>Executive Departments | GOV.PH</title>
         <meta
           name='description'
           content='Every cabinet-level executive department of the Philippine government — with the Secretary of record, trunkline, and official domain.'

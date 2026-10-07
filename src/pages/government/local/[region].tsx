@@ -117,7 +117,7 @@ const RegionalLGUPage: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>{titleCase(regionData.region)} · LGUs | BetterGov.ph</title>
+        <title>{titleCase(regionData.region)} · LGUs | GOV.PH</title>
       </Helmet>
 
       <DetailHeader

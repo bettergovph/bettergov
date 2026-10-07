@@ -31,7 +31,7 @@ const ConsulatesPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Consulates | BetterGov.ph</title>
+        <title>Consulates | GOV.PH</title>
         <meta
           name='description'
           content='Consulates and honorary consulates in the Philippines — representation of foreign states outside the main embassy, often ad honorem.'

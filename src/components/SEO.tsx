@@ -7,6 +7,13 @@ import {
   formatStandardDescription,
   formatStandardTitle,
 } from '@/lib/seoTemplates';
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_OWNER,
+  SITE_TAGLINE,
+  SITE_URL,
+} from '@/lib/brand';
 
 interface SEOProps {
   title?: string;
@@ -26,7 +33,7 @@ interface SEOProps {
 export default function SEO({
   title,
   description,
-  ogImage = '/logos/jpg/BetterGov_Vertical-White.jpg',
+  ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
   noIndex = false,
   keywords = [],
@@ -120,10 +127,9 @@ export default function SEO({
   }
 
   // Default values
-  const defaultTitle =
-    'BetterGov.ph Philippines | Community Powered Government Portal';
+  const defaultTitle = `${SITE_NAME} | ${SITE_TAGLINE}`;
   const defaultDescription =
-    'Community-powered portal of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+    'The official portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
   const defaultCanonical = location.pathname + location.search;
 
   useEffect(() => {
@@ -136,9 +142,9 @@ export default function SEO({
   const finalDescription =
     description || routeDescription || defaultDescription;
 
-  const siteTitle = 'BetterGov.ph';
+  const siteTitle = SITE_NAME;
   const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
-  const baseUrl = 'https://bettergov.ph';
+  const baseUrl = SITE_URL;
   const fullCanonical = defaultCanonical
     ? `${baseUrl}${defaultCanonical}`
     : undefined;
@@ -193,8 +199,8 @@ export default function SEO({
       <meta name='geo.country' content='PH' />
       <meta name='geo.region' content='PH' />
       <meta name='DC.language' content={dcLanguage} />
-      <meta name='DC.creator' content='BetterGov.ph' />
-      <meta name='DC.publisher' content='BetterGov.ph' />
+      <meta name='DC.creator' content={SITE_OWNER} />
+      <meta name='DC.publisher' content={SITE_OWNER} />
 
       {/* Structured Data */}
       {jsonLd && (

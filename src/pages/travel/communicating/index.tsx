@@ -60,7 +60,7 @@ const CommunicatingPage: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased print:bg-white'>
       <Helmet>
-        <title>Travel Phrasebook | BetterGov.ph</title>
+        <title>Travel Phrasebook | GOV.PH</title>
         <meta
           name='description'
           content='Essential phrases for travellers to the Philippines — translated between English, Chinese, Korean, Japanese, Arabic, Tagalog, and Bisaya.'

@@ -58,7 +58,7 @@ const VisaTypesPage: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Philippine Visa Types | BetterGov.ph</title>
+        <title>Philippine Visa Types | GOV.PH</title>
         <meta
           name='description'
           content='Visa categories for travel to the Philippines — tourist, non-immigrant, immigrant, and special visas.'

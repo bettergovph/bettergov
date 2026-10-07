@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
+import { SITE_NAME } from '../lib/brand';
 
-const SITE_TITLE = 'BetterGov.ph';
+const SITE_TITLE = SITE_NAME;
 
 /**
  * Set the document title imperatively.
