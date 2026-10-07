@@ -42,10 +42,9 @@ Fetches currency exchange rates from Bangko Sentral ng Pilipinas (BSP) and store
   - `/api/forex` - Fetches from API if needed
   - `/forex` - Reads only from KV store
 
-### 4. Civic Assistant proxy (`api/assistant.ts`)
+### 4. GovPH Chatbot proxy (`api/assistant.ts`)
 
-Server-side proxy for the eGovAI "govph" engine that powers the site's Civic
-Assistant chat widget (`src/components/ui/CivicAssistant.tsx`, client in
+Server-side proxy for the eGovAI "govph" engine that powers the site's GovPH Chatbot widget (`src/components/ui/GovPhChatbot.tsx`, client in
 `src/lib/assistant.ts`). The browser only ever talks to this Worker; the eGovAI
 API key and secret are attached here and never reach the bundle.
 

@@ -25,7 +25,7 @@ const JSON_UPSTREAM_TIMEOUT_MS = 90_000;
 // Workers' fetch sends no User-Agent by default and the eGovAI edge answers
 // an empty one with a bare 403, so always identify ourselves.
 export const UPSTREAM_USER_AGENT =
-  'BetterGov-CivicAssistant/1.0 (+https://bettergov.ph)';
+  'BetterGov-GovPHChatbot/1.0 (+https://bettergov.ph)';
 
 export interface AssistantConfirmation {
   token: string;

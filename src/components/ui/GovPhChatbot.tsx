@@ -28,7 +28,7 @@ import {
 } from '../../lib/assistant';
 
 /**
- * Civic Assistant — a floating chat window backed by the eGovAI "govph"
+ * GovPH Chatbot — a floating chat window backed by the eGovAI "govph"
  * engine through this site's own Worker (see src/lib/assistant.ts).
  */
 
@@ -61,7 +61,7 @@ interface ChatMessage {
 const newId = () =>
   `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
-const CivicAssistant: React.FC = () => {
+const GovPhChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -279,7 +279,7 @@ const CivicAssistant: React.FC = () => {
       {isOpen && (
         <section
           role='dialog'
-          aria-label='Civic Assistant'
+          aria-label='GovPH Chatbot'
           onKeyDown={event => {
             if (event.key === 'Escape') close();
           }}
@@ -293,7 +293,7 @@ const CivicAssistant: React.FC = () => {
               </div>
               <div className='leading-tight'>
                 <div className='text-sm font-semibold tracking-tight'>
-                  Civic Assistant
+                  GovPH Chatbot
                 </div>
                 <div className='text-[11px] text-white/80'>
                   Powered by eGovAI
@@ -378,11 +378,11 @@ const CivicAssistant: React.FC = () => {
             className='border-t border-gray-200 px-3 pb-3 pt-2'
           >
             <div className='flex items-end gap-2 rounded-xl bg-gray-50 px-3 py-2 focus-within:ring-2 focus-within:ring-primary-500'>
-              <label htmlFor='civic-assistant-input' className='sr-only'>
+              <label htmlFor='govph-chatbot-input' className='sr-only'>
                 Ask a question
               </label>
               <textarea
-                id='civic-assistant-input'
+                id='govph-chatbot-input'
                 ref={inputRef}
                 rows={1}
                 value={input}
@@ -425,7 +425,7 @@ const CivicAssistant: React.FC = () => {
       <button
         type='button'
         onClick={() => (isOpen ? close() : open())}
-        aria-label={isOpen ? 'Close Civic Assistant' : 'Open Civic Assistant'}
+        aria-label={isOpen ? 'Close GovPH Chatbot' : 'Open GovPH Chatbot'}
         aria-expanded={isOpen}
         className={cn(
           'group flex items-center justify-center rounded-full bg-primary-600 p-4 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-primary-700 active:scale-95',
@@ -589,4 +589,4 @@ const AssistantMessage: React.FC<{
   );
 };
 
-export default CivicAssistant;
+export default GovPhChatbot;

@@ -78,7 +78,7 @@ npm run dev
 
 **Access the application at:** `http://localhost:5125`
 
-The Civic Assistant chat widget talks to the Cloudflare Worker in
+The GovPH Chatbot widget talks to the Cloudflare Worker in
 `functions/`, so run the Worker next to Vite when you want the assistant to
 answer locally. It reads the eGovAI secrets from a gitignored `.dev.vars`
 file — see `functions/README.md` for the `EGOVAI_*` variables.
@@ -335,7 +335,7 @@ the taxonomy by hand. Check each row after a category is added or retired:
    new category, or remove orphans for a retired one. Nothing detects this.
 7. **Meilisearch** — see below.
 
-The Civic Assistant chat widget is not on this list: it answers through the
+The GovPH Chatbot widget is not on this list: it answers through the
 eGovAI engine (see `functions/README.md`), not from the service taxonomy.
 
 Navigation, the XML sitemap, `llms.txt`, and `/services` all derive from the

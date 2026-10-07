@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5125,
     strictPort: true,
-    // The Civic Assistant talks to the Worker (functions/api/assistant.ts),
+    // The GovPH Chatbot talks to the Worker (functions/api/assistant.ts),
     // which `npm run functions:dev` serves on 127.0.0.1:5525. Only this path
     // is forwarded so static files under public/api stay served by Vite.
     proxy: {

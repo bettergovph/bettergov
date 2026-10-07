@@ -7,7 +7,7 @@ import {
   waitFor,
   within,
 } from '@testing-library/react';
-import CivicAssistant from '../ui/CivicAssistant';
+import GovPhChatbot from '../ui/GovPhChatbot';
 import {
   ASSISTANT_STORAGE_KEY,
   askAssistant,
@@ -33,7 +33,7 @@ const answer = (overrides: Partial<AssistantAnswer> = {}): AssistantAnswer => ({
 });
 
 const openWidget = () => {
-  fireEvent.click(screen.getByRole('button', { name: 'Open Civic Assistant' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Open GovPH Chatbot' }));
   return screen.getByLabelText('Ask a question') as HTMLTextAreaElement;
 };
 
@@ -42,7 +42,7 @@ const send = (input: HTMLTextAreaElement, text: string) => {
   fireEvent.keyDown(input, { key: 'Enter' });
 };
 
-describe('CivicAssistant', () => {
+describe('GovPhChatbot', () => {
   beforeEach(() => {
     window.sessionStorage.clear();
     askMock.mockReset();
@@ -51,13 +51,13 @@ describe('CivicAssistant', () => {
   afterEach(() => vi.useRealTimers());
 
   it('opens to a greeting with suggested questions', () => {
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     expect(screen.queryByRole('dialog')).toBeNull();
 
     openWidget();
 
     expect(
-      screen.getByRole('dialog', { name: 'Civic Assistant' })
+      screen.getByRole('dialog', { name: 'GovPH Chatbot' })
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Ask me about Philippine government services/)
@@ -78,7 +78,7 @@ describe('CivicAssistant', () => {
       });
     });
 
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     const input = openWidget();
     send(input, 'How do I renew my passport?');
 
@@ -152,7 +152,7 @@ describe('CivicAssistant', () => {
       })
     );
 
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     const input = openWidget();
     send(input, 'Report a broken streetlight');
 
@@ -181,7 +181,7 @@ describe('CivicAssistant', () => {
         pendingConfirmation: { token: 'c'.repeat(32), message: 'Proceed?' },
       })
     );
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     send(openWidget(), 'Do the thing');
     await screen.findByText('Approval needed');
 
@@ -199,7 +199,7 @@ describe('CivicAssistant', () => {
       new AssistantError('Slow down.', 'http', 429)
     );
 
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     send(openWidget(), 'Where is the nearest SSS branch?');
 
     await screen.findByText('Slow down.');
@@ -227,7 +227,7 @@ describe('CivicAssistant', () => {
           );
         })
     );
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     send(openWidget(), 'Long question');
     expect(askMock.mock.calls[0][0].signal?.aborted).toBe(false);
 
@@ -252,7 +252,7 @@ describe('CivicAssistant', () => {
       })
     );
 
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     openWidget();
     expect(screen.getByText('Earlier question')).toBeInTheDocument();
     expect(screen.getByText('Earlier answer')).toBeInTheDocument();
@@ -276,7 +276,7 @@ describe('CivicAssistant', () => {
   });
 
   it('closes on Escape and from the header button', () => {
-    render(<CivicAssistant />);
+    render(<GovPhChatbot />);
     const input = openWidget();
     fireEvent.keyDown(input, { key: 'Escape' });
     expect(screen.queryByRole('dialog')).toBeNull();
