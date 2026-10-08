@@ -228,5 +228,145 @@
     "repoType": "orgprojects",
     "category": "law",
     "imageUrl": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1470"
+  },
+  {
+    "slug": "bills-juris",
+    "title": "Bills Juris",
+    "description": "Senate and House bills tracker.",
+    "repositoryUrls": [],
+    "projectUrl": "https://bills.juris.ph",
+    "status": "active",
+    "repoType": "community",
+    "category": "law"
+  },
+  {
+    "slug": "asean-data",
+    "title": "ASEAN Data",
+    "description": "Philippine ASEAN data portal.",
+    "repositoryUrls": [],
+    "projectUrl": "https://asean.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data"
+  },
+  {
+    "slug": "philippine-statistics",
+    "title": "Philippine Statistics",
+    "description": "Philippine statistics portal.",
+    "repositoryUrls": [],
+    "projectUrl": "https://statistics.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data"
+  },
+  {
+    "slug": "philippine-dynasties",
+    "title": "Philippine Dynasties",
+    "description": "Explorer for Philippine political dynasties.",
+    "repositoryUrls": [],
+    "projectUrl": "https://dynasties.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "election"
+  },
+  {
+    "slug": "flood-control-browser",
+    "title": "Flood Control Browser",
+    "description": "Browser for flood control projects.",
+    "repositoryUrls": [],
+    "projectUrl": "https://flood-control.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "infrastructure"
+  },
+  {
+    "slug": "bisto",
+    "title": "Bisto",
+    "description": "Citizen reporting platform.",
+    "repositoryUrls": [],
+    "projectUrl": "https://bisto.ph",
+    "status": "active",
+    "repoType": "community",
+    "category": "other"
+  },
+  {
+    "slug": "ai-council",
+    "title": "AI Council",
+    "description": "AI council to debate current events and issues.",
+    "repositoryUrls": [],
+    "projectUrl": "https://aicouncil.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "other"
+  },
+  {
+    "slug": "child-safety",
+    "title": "Child Safety",
+    "description": "Child safety website to educate parents about parental control features.",
+    "repositoryUrls": [],
+    "projectUrl": "https://safety.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "other"
+  },
+  {
+    "slug": "games-satire",
+    "title": "Games (Satire)",
+    "description": "Satire online gambling awareness website.",
+    "repositoryUrls": [],
+    "projectUrl": "https://games.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "other"
+  },
+  {
+    "slug": "officials-portal",
+    "title": "Officials Portal",
+    "description": "Ongoing officials portal.",
+    "repositoryUrls": [],
+    "projectUrl": "https://officials.bettergov.ph",
+    "status": "development",
+    "repoType": "orgprojects",
+    "category": "other"
+  },
+  {
+    "slug": "dpwh-transparency-api",
+    "title": "DPWH Transparency API",
+    "description": "DPWH transparency portal API.",
+    "repositoryUrls": [],
+    "projectUrl": "https://api.dpwh.bettergov.ph",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "infrastructure"
+  },
+  {
+    "slug": "statistics-api",
+    "title": "Statistics API",
+    "description": "Philippine statistics API and MCP.",
+    "repositoryUrls": [],
+    "projectUrl": "https://statistics.bettergov.ph/api",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data"
+  },
+  {
+    "slug": "asean-api",
+    "title": "ASEAN API",
+    "description": "ASEAN data API and MCP.",
+    "repositoryUrls": [],
+    "projectUrl": "https://asean.bettergov.ph/api",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "data"
+  },
+  {
+    "slug": "budget-api",
+    "title": "Budget API",
+    "description": "Philippine budget API documentation.",
+    "repositoryUrls": [],
+    "projectUrl": "https://budget.bettergov.ph/docs",
+    "status": "active",
+    "repoType": "orgprojects",
+    "category": "money"
   }
 ]
