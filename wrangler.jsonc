@@ -2,9 +2,16 @@
   "name": "govph-dev",
   "account_id": "4c8b67ea7626b52e375842607904dd07",
   "compatibility_date": "2025-11-17",
+  // The Worker script. Declared here so a bare `wrangler deploy` (the
+  // Workers Builds default) ships the API routes, not just the static site.
+  "main": "functions/index.ts",
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application",
+    // API paths always reach the Worker, even for browser navigations
+    // (which otherwise get the single-page-application fallback first).
+    // The one static file under /api keeps being served as an asset.
+    "run_worker_first": ["/api/*", "!/api/projects.json"],
   },
   "kv_namespaces": [
     {
