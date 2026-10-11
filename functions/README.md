@@ -42,6 +42,42 @@ Fetches currency exchange rates from Bangko Sentral ng Pilipinas (BSP) and store
   - `/api/forex` - Fetches from API if needed
   - `/forex` - Reads only from KV store
 
+### 4. GovPH Chatbot proxy (`api/assistant.ts`)
+
+Server-side proxy for the eGovAI "govph" engine that powers the site's GovPH Chatbot widget (`src/components/ui/GovPhChatbot.tsx`, client in
+`src/lib/assistant.ts`). The browser only ever talks to this Worker; the eGovAI
+API key and secret are attached here and never reach the bundle.
+
+- **Environment Variables** (runtime secrets, not build variables):
+  - `EGOVAI_BASE_URL` - eGovAI API origin, e.g. `https://egovai.example.gov.ph`.
+    A full endpoint URL pasted here is tolerated and reduced to the origin.
+  - `EGOVAI_API_KEY` - sent as `X-EGOVAI-API-KEY`
+  - `EGOVAI_API_SECRET` - sent as `X-EGOVAI-API-SECRET`
+  - `EGOVAI_AGENT_ENGINE_CODE` - optional, defaults to `govph`
+- **Endpoints** (both `POST`, body `{ question, session_id?, confirmation? }`):
+  - `/api/assistant` - forwards to eGovAI `/api/v1/engines/generate` and returns
+    the single JSON answer
+  - `/api/assistant/stream` - forwards to `/api/v1/engines/generate_stream` and
+    pipes the Server-Sent Events through unchanged (`progress`, `chunk`,
+    `complete`, `error`)
+- **Behaviour**:
+  - Validates the body before anything reaches eGovAI (question required and at
+    most 4000 characters; `confirmation` must be `{ token, approved: true }`).
+  - Returns `503` when the three required variables are not all set.
+  - Upstream `422` and `429` pass through with their message; any other
+    upstream failure (bad key, unknown engine, wrong base URL, 5xx, network)
+    becomes a generic `502` and the detail is logged server-side only. Upstream
+    stack traces are never forwarded.
+  - When the engine replies with `pending_confirmation`, the client shows an
+    approval prompt and, on approval, resends the same question and
+    `session_id` with `confirmation: { token, approved: true }`.
+
+Local development: put the four variables in a gitignored `.dev.vars` file and
+run `npm run functions:dev` (Worker on `127.0.0.1:5525`). The Vite dev server
+proxies `/api/assistant*` to that port, so `npm run dev` on `5125` works
+same-origin. Because the Worker serves `./dist` as static assets, run
+`npm run build` once first if you want the full site from the Worker port.
+
 ### Web Crawler Architecture
 
 The web crawler is designed with a flexible abstraction layer that allows for multiple crawler implementations:
@@ -148,6 +184,9 @@ The `types.ts` file contains TypeScript interfaces for:
    wrangler secret put JINA_API_KEY
    wrangler secret put CF_API_TOKEN
    wrangler secret put CF_ACCOUNT_ID
+   wrangler secret put EGOVAI_BASE_URL
+   wrangler secret put EGOVAI_API_KEY
+   wrangler secret put EGOVAI_API_SECRET
    ```
 
 6. Install TypeScript dependencies:

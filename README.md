@@ -78,6 +78,16 @@ npm run dev
 
 **Access the application at:** `http://localhost:5125`
 
+The GovPH Chatbot widget talks to the Cloudflare Worker in
+`functions/`, so run the Worker next to Vite when you want the assistant to
+answer locally. It reads the eGovAI secrets from a gitignored `.dev.vars`
+file — see `functions/README.md` for the `EGOVAI_*` variables.
+
+```bash
+# Second terminal — Worker on 127.0.0.1:5525; Vite proxies /api/assistant to it
+npm run functions:dev
+```
+
 ## GitHub Codespaces
 
 You may use GitHub Codespaces for an instant development environment with dependencies automatically installed for you.
@@ -319,13 +329,14 @@ the taxonomy by hand. Check each row after a category is added or retired:
 3. **Footer** (`src/components/v2/layout/Footer.tsx`) — curated top-5; usually
    skip. (Its `revenue-taxation` link is already broken — not a taxonomy slug.)
 4. **Guides** (`src/pages/guides/passport.tsx`) — only if a guide references it.
-5. **Assistant** (`src/lib/assistant.ts`) — five hardcoded filenames; add only
-   for a high-traffic domain. It fails soft to `[]`.
-6. **Hero quick links** (`src/components/v2/home/Hero.tsx`) — three curated
+5. **Hero quick links** (`src/components/v2/home/Hero.tsx`) — three curated
    category/subcategory pairs. Only relevant if one is retired.
-7. **`src/data/seo-metadata.json`** — 44 `?category=` keys. Add an entry for a
+6. **`src/data/seo-metadata.json`** — 44 `?category=` keys. Add an entry for a
    new category, or remove orphans for a retired one. Nothing detects this.
-8. **Meilisearch** — see below.
+7. **Meilisearch** — see below.
+
+The GovPH Chatbot widget is not on this list: it answers through the
+eGovAI engine (see `functions/README.md`), not from the service taxonomy.
 
 Navigation, the XML sitemap, `llms.txt`, and `/services` all derive from the
 taxonomy or the generated file set and need no action.
