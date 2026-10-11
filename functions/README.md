@@ -170,12 +170,24 @@ The `types.ts` file contains TypeScript interfaces for:
 3. Create KV namespaces and D1 database:
 
    ```
-   wrangler kv:namespace create WEATHER_KV
-   wrangler kv:namespace create FOREX_KV
-   wrangler d1 create bettergov
+   wrangler kv namespace create WEATHER_KV
+   wrangler kv namespace create FOREX_KV
+   wrangler kv namespace create BROWSER_KV
+   wrangler d1 create govph
    ```
 
-4. Update the `wrangler.toml` file with the KV namespace IDs and D1 database ID from the previous step.
+4. Declare the bindings in `wrangler.jsonc` with the IDs printed by the previous step. None are declared today: the IDs the project used to carry belonged to a different Cloudflare account, and a deploy fails validation when a declared namespace does not exist in the deploying account. Until the bindings exist, `/api/weather`, `/weather`, `/api/forex`, `/forex` and `/api/crawl` answer `503 Not configured` naming the missing binding; the other routes are unaffected.
+
+   ```jsonc
+   "kv_namespaces": [
+     { "binding": "WEATHER_KV", "id": "<id from the create command>" },
+     { "binding": "FOREX_KV", "id": "<id>" },
+     { "binding": "BROWSER_KV", "id": "<id>" },
+   ],
+   "d1_databases": [
+     { "binding": "BETTERGOV_DB", "database_name": "govph", "database_id": "<id>" },
+   ],
+   ```
 
 5. Add your API keys as secrets:
 
