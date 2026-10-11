@@ -34,16 +34,68 @@ vi.mock('../api/assistant', () => ({
 
 const worker = (await import('../index')).default;
 
-// No TALACMS_* — the Worker has no CMS role.
-const env = {} as Env;
+// Stub bindings so every route dispatches. No TALACMS_* — the Worker has
+// no CMS role.
+const env = {
+  WEATHER_KV: {},
+  FOREX_KV: {},
+  BROWSER_KV: {},
+  BETTERGOV_DB: {},
+} as unknown as Env;
 const ctx = {} as ExecutionContext;
 
-const call = (path: string, method = 'GET') =>
+const call = (path: string, method = 'GET', withEnv: Env = env) =>
   worker.fetch(
     new Request(`https://api.bettergov.ph${path}`, { method }),
-    env,
+    withEnv,
     ctx
   );
+
+describe('Routes whose bindings are not declared', () => {
+  const bare = {} as Env;
+
+  it.each([
+    ['/api/weather', ['WEATHER_KV']],
+    ['/weather', ['WEATHER_KV']],
+    ['/api/forex', ['FOREX_KV']],
+    ['/forex', ['FOREX_KV']],
+    ['/api/crawl', ['BROWSER_KV', 'BETTERGOV_DB']],
+  ])(
+    'answer 503 for %s naming the missing binding(s)',
+    async (path, missing) => {
+      const response = await call(path, 'GET', bare);
+      expect(response.status).toBe(503);
+      expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+      await expect(response.json()).resolves.toMatchObject({
+        error: 'Not configured',
+        missingBindings: missing,
+      });
+    }
+  );
+
+  it.each([
+    ['/api/assistant', 'assistant'],
+    ['/api/assistant/stream', 'assistant-stream'],
+    ['/api/report-hotline', 'report-hotline'],
+  ])('still dispatch %s, which needs no binding', async (path, handler) => {
+    const response = await call(path, 'GET', bare);
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ handler });
+  });
+
+  it('still serves /api/status', async () => {
+    expect((await call('/api/status', 'GET', bare)).status).toBe(200);
+  });
+
+  it('skips the scheduled refreshes instead of throwing', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await expect(
+      worker.scheduled({} as ScheduledController, bare)
+    ).resolves.toBeUndefined();
+    expect(warn).toHaveBeenCalledTimes(2);
+    warn.mockRestore();
+  });
+});
 
 describe('Worker routing after the CMS routes are removed', () => {
   beforeEach(() => vi.clearAllMocks());

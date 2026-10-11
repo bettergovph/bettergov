@@ -21,6 +21,38 @@ import { Env } from './types';
 export { scheduled as scheduled_getWeather } from './api/weather';
 export { scheduled as scheduled_getForex } from './api/forex';
 
+type BindingName = 'WEATHER_KV' | 'FOREX_KV' | 'BROWSER_KV' | 'BETTERGOV_DB';
+
+/**
+ * Bindings are provisioned per Cloudflare account and declared in
+ * wrangler.jsonc. A route whose binding is not declared answers a clear
+ * 503 here instead of letting its handler throw on `undefined`.
+ */
+const ROUTE_BINDINGS: Record<string, BindingName[]> = {
+  '/api/weather': ['WEATHER_KV'],
+  '/weather': ['WEATHER_KV'],
+  '/api/forex': ['FOREX_KV'],
+  '/forex': ['FOREX_KV'],
+  '/api/crawl': ['BROWSER_KV', 'BETTERGOV_DB'],
+};
+
+function missingBindings(env: Env, names: BindingName[]): BindingName[] {
+  return names.filter(name => !env[name]);
+}
+
+function notConfigured(missing: BindingName[]): Response {
+  return new Response(
+    JSON.stringify({
+      error: 'Not configured',
+      message: `This route needs the ${missing.join(', ')} binding${
+        missing.length > 1 ? 's' : ''
+      }, which ${missing.length > 1 ? 'are' : 'is'} not declared for this deployment. See functions/README.md.`,
+      missingBindings: missing,
+    }),
+    { status: 503, headers: { 'Content-Type': 'application/json' } }
+  );
+}
+
 // Helper function to add CORS headers to a response
 function addCorsHeaders(
   response: Response,
@@ -41,8 +73,10 @@ function addCorsHeaders(
 export default {
   async scheduled(controller: ScheduledController, env: Env): Promise<void> {
     console.log('Scheduled update');
-    await getWeatherScheduled(controller, env);
-    await getForexScheduled(controller, env);
+    if (env.WEATHER_KV) await getWeatherScheduled(controller, env);
+    else console.warn('[scheduled] WEATHER_KV not declared; skipping weather');
+    if (env.FOREX_KV) await getForexScheduled(controller, env);
+    else console.warn('[scheduled] FOREX_KV not declared; skipping forex');
   },
 
   async fetch(
@@ -66,6 +100,15 @@ export default {
         status: 204,
         headers: corsHeaders,
       });
+    }
+
+    // Routes backed by a binding this deployment does not declare
+    const required = ROUTE_BINDINGS[path];
+    if (required) {
+      const missing = missingBindings(env, required);
+      if (missing.length > 0) {
+        return addCorsHeaders(notConfigured(missing), corsHeaders);
+      }
     }
 
     // Route API requests to the appropriate handler

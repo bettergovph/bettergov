@@ -13,18 +13,9 @@
     // The one static file under /api keeps being served as an asset.
     "run_worker_first": ["/api/*", "!/api/projects.json"],
   },
-  "kv_namespaces": [
-    {
-      "id": "124001eaebfb4815b32db5344fc59251",
-      "binding": "BROWSER_KV",
-    },
-    {
-      "id": "a1151781bef24f3092aa3ddefe86aac5",
-      "binding": "FOREX_KV",
-    },
-    {
-      "id": "7e1c950bb42d4282b13e3e9524ce5335",
-      "binding": "WEATHER_KV",
-    },
-  ],
+  // Bindings are provisioned per Cloudflare account. The KV namespaces and
+  // D1 database that the weather, forex and crawl routes use have not been
+  // created in this account, so none are declared and those routes answer
+  // 503 until they are. See functions/README.md, "Setup Instructions", to
+  // create them and add `kv_namespaces` / `d1_databases` blocks here.
 }
