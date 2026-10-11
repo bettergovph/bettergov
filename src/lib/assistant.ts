@@ -524,7 +524,7 @@ export function sanitizeAssistantHtml(html: string | null | undefined): string {
 // ---------------------------------------------------------------------------
 // Conversation persistence (sessionStorage — survives reloads, not tabs)
 
-export const ASSISTANT_STORAGE_KEY = 'bettergov.assistant.v1';
+export const ASSISTANT_STORAGE_KEY = 'govph.chatbot.v1';
 const MAX_STORED_MESSAGES = 40;
 
 export interface StoredMessage {
