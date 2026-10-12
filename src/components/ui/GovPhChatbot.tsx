@@ -61,6 +61,13 @@ interface ChatMessage {
 const newId = () =>
   `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
+/**
+ * Below Tailwind's `sm` breakpoint the panel takes over the whole viewport
+ * instead of floating as a card, so the page underneath must stop scrolling
+ * and the floating toggle gets out of the way.
+ */
+const COMPACT_QUERY = '(max-width: 639px)';
+
 const GovPhChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -68,6 +75,7 @@ const GovPhChatbot: React.FC = () => {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [isBusy, setIsBusy] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
@@ -118,6 +126,27 @@ const GovPhChatbot: React.FC = () => {
 
   // Abort any in-flight request when the widget unmounts.
   useEffect(() => () => abortRef.current?.abort(), []);
+
+  // Follow the viewport so the full-screen phone layout and the floating
+  // desktop card switch live when the window is resized or rotated.
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
+    const query = window.matchMedia(COMPACT_QUERY);
+    const update = () => setIsCompact(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+
+  // Full-screen on a phone means the page behind must not scroll.
+  useEffect(() => {
+    if (!isOpen || !isCompact) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen, isCompact]);
 
   const patchMessage = useCallback(
     (id: string, patch: Partial<ChatMessage>) => {
@@ -280,13 +309,13 @@ const GovPhChatbot: React.FC = () => {
         <section
           role='dialog'
           aria-label='GovPH Chatbot'
+          aria-modal={isCompact || undefined}
           onKeyDown={event => {
             if (event.key === 'Escape') close();
           }}
-          className='mb-4 flex w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:w-[26rem] md:w-[30rem]'
-          style={{ height: 'min(38rem, calc(100vh - 8rem))' }}
+          className='fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col overflow-hidden bg-white sm:static sm:mb-4 sm:h-[min(38rem,calc(100vh-8rem))] sm:w-[26rem] sm:rounded-2xl sm:border sm:border-gray-200 sm:shadow-2xl md:w-[30rem]'
         >
-          <header className='flex items-center justify-between bg-primary-600 px-4 py-3 text-white'>
+          <header className='flex items-center justify-between bg-primary-600 px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] text-white sm:pt-3'>
             <div className='flex items-center gap-2.5'>
               <div className='rounded-lg bg-white/20 p-1.5'>
                 <Bot size={20} aria-hidden='true' />
@@ -375,7 +404,7 @@ const GovPhChatbot: React.FC = () => {
 
           <form
             onSubmit={handleSubmit}
-            className='border-t border-gray-200 px-3 pb-3 pt-2'
+            className='border-t border-gray-200 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 sm:pb-3'
           >
             <div className='flex items-end gap-2 rounded-xl bg-gray-50 px-3 py-2 focus-within:ring-2 focus-within:ring-primary-500'>
               <label htmlFor='govph-chatbot-input' className='sr-only'>
@@ -429,7 +458,7 @@ const GovPhChatbot: React.FC = () => {
         aria-expanded={isOpen}
         className={cn(
           'group flex items-center justify-center rounded-full bg-primary-600 p-4 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-primary-700 active:scale-95',
-          isOpen && 'rotate-90 bg-gray-800 hover:bg-black'
+          isOpen && 'rotate-90 bg-gray-800 hover:bg-black max-sm:hidden'
         )}
       >
         {isOpen ? (

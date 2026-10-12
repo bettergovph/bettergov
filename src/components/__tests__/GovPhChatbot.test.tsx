@@ -48,7 +48,11 @@ describe('GovPhChatbot', () => {
     askMock.mockReset();
   });
 
-  afterEach(() => vi.useRealTimers());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    document.body.style.overflow = '';
+  });
 
   it('opens to a greeting with suggested questions', () => {
     render(<GovPhChatbot />);
@@ -273,6 +277,43 @@ describe('GovPhChatbot', () => {
     expect(
       screen.getByRole('button', { name: 'How do I renew my passport?' })
     ).toBeInTheDocument();
+  });
+
+  const stubViewport = (compact: boolean) =>
+    vi.stubGlobal(
+      'matchMedia',
+      vi.fn((query: string) => ({
+        matches: compact,
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }))
+    );
+
+  it('takes over the page on a phone: modal dialog, page scroll locked', () => {
+    stubViewport(true);
+    render(<GovPhChatbot />);
+    expect(document.body.style.overflow).toBe('');
+
+    openWidget();
+    expect(
+      screen.getByRole('dialog', { name: 'GovPH Chatbot' })
+    ).toHaveAttribute('aria-modal', 'true');
+    expect(document.body.style.overflow).toBe('hidden');
+
+    fireEvent.click(
+      within(screen.getByRole('dialog')).getByRole('button', { name: 'Close' })
+    );
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(document.body.style.overflow).toBe('');
+  });
+
+  it('stays a floating card on wider screens: page keeps scrolling', () => {
+    stubViewport(false);
+    render(<GovPhChatbot />);
+    openWidget();
+    expect(screen.getByRole('dialog')).not.toHaveAttribute('aria-modal');
+    expect(document.body.style.overflow).toBe('');
   });
 
   it('closes on Escape and from the header button', () => {
