@@ -10,6 +10,7 @@ import {
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
 import { Env } from './types';
+import { handleGisLocality } from './api/gis-ph';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
@@ -73,6 +74,11 @@ export default {
       return addCorsHeaders(response, corsHeaders);
     }
 
+    if (path === '/api/gis/locality') {
+      const response = await handleGisLocality(env);
+      return addCorsHeaders(response, corsHeaders);
+    }
+
     // Handle the new KV-only endpoints
     if (path === '/weather') {
       const response = await weatherKVRequest({ request, env, ctx });
@@ -89,7 +95,7 @@ export default {
       const response = new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex'],
+          functions: ['weather', 'forex', 'gis'],
           endpoints: [
             {
               path: '/api/weather',
@@ -124,6 +130,12 @@ export default {
                   description: 'Set to "true" to force update KV store',
                 },
               ],
+            },
+            {
+              path: '/api/gis/locality',
+              description:
+                'Barangays for a city PSGC, or cities and municipalities for a province PSGC.',
+              parameters: [],
             },
             {
               path: '/weather',
@@ -169,6 +181,7 @@ export default {
           '/api/status',
           '/api/weather',
           '/api/forex',
+          '/api/gis/locality',
           '/weather',
           '/forex',
         ],

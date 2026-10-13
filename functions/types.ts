@@ -10,6 +10,9 @@ export interface Env {
   MEILISEARCH_HOST?: string;
   MEILISEARCH_API_KEY?: string;
   NODE_ENV?: string;
+  GIS_PH_API_KEY?: string;
+  GIS_PSGC_CODE?: string;
+  GIS_PH_BASE_URL?: string;
 }
 
 export interface WeatherData {

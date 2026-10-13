@@ -126,6 +126,15 @@ export const mainNavigation: NavigationItem[] = [
       href: `/services?category=${category.slug}`,
     })),
   },
+  ...(import.meta.env.GIS_PSGC_CODE
+    ? [
+        {
+          label: 'Map',
+          href: '/map',
+          children: [{ label: 'Administrative', href: '/map' }],
+        },
+      ]
+    : []),
   {
     label: 'Travel',
     href: '/travel',
