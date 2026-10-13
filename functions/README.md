@@ -15,7 +15,13 @@ Fetches weather data for major Philippine cities from OpenWeatherMap API and sto
   - `/api/weather` - Fetches from API if needed
   - `/weather` - Reads only from KV store
 
-### 2. Currency Exchange Rates (`api/forex.ts`)
+### 2. Administrative map (`api/gis-ph.ts`)
+
+`GET /api/gis/locality` resolves `GIS_PSGC_CODE`. A city or municipality returns its outline and barangays. A province returns its cities and municipalities and does not load barangays. `GIS_PH_API_KEY` is sent only from this Worker. Both variables are empty on the national site, and the `/map` page is not registered unless `GIS_PSGC_CODE` is set at build time.
+
+`npm run build` does not serve this route. Local `npm run dev` answers it from the Vite server. A deployed site needs `npm run functions:deploy` on the same origin as the static app.
+
+### 3. Currency Exchange Rates (`api/forex.ts`)
 
 Fetches currency exchange rates from Bangko Sentral ng Pilipinas (BSP) and stores them in Cloudflare KV.
 

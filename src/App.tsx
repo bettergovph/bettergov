@@ -93,6 +93,7 @@ import SalaryGradePage from './pages/government/salary-grade/index';
 import CivicAssistant from './components/ui/CivicAssistant';
 import NotFound from './pages/NotFound';
 import Contribute from './pages/contribute';
+import LocalityMapPage from './pages/map';
 
 function App() {
   return (
@@ -119,6 +120,9 @@ function App() {
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
             <Route path='/projects' element={<Projects />} />
+            {import.meta.env.GIS_PSGC_CODE ? (
+              <Route path='/map' element={<LocalityMapPage />} />
+            ) : null}
 
             <Route path='/philippines'>
               <Route index element={<Navigate to='about' replace />} />
