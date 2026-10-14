@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRightIcon } from 'lucide-react';
 import Container from '../../components/v2/ui/Container';
@@ -7,25 +7,28 @@ import Eyebrow from '../../components/v2/ui/Eyebrow';
 import Flag from '../../components/v2/ui/Flag';
 import Button from '../../components/v2/ui/Button';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
-import PlaceholderImage from '../../components/v2/ui/PlaceholderImage';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
-import { GUIDES, GUIDE_CATEGORIES, GuideCategory, GuideSummary } from './data';
+import {
+  GUIDES,
+  GUIDE_CATEGORIES,
+  GuideCategory,
+  findGuide,
+  formatGuideDate,
+  guideHref,
+  latestGuideReview,
+} from './data';
 import { cn } from '../../lib/utils';
 import { NEW_ISSUE_URL, REPO_URL } from '../../lib/brand';
-
-const guideHref = (g: GuideSummary) =>
-  g.id === 'passport' ? '/guides/passport' : `/guides?topic=${g.id}`;
 
 const totalSteps = GUIDES.reduce((s, g) => s + g.steps, 0);
 
 const GuidesIndex: FC = () => {
   const [cat, setCat] = useState<GuideCategory>('All');
+  const [params] = useSearchParams();
+  const legacyGuide = findGuide(params.get('topic') ?? '');
 
   const list = useMemo(
-    () =>
-      (cat === 'All' ? GUIDES : GUIDES.filter(g => g.cat === cat))
-        .slice()
-        .sort((a, b) => b.pop - a.pop),
+    () => (cat === 'All' ? GUIDES : GUIDES.filter(g => g.cat === cat)),
     [cat]
   );
 
@@ -44,30 +47,32 @@ const GuidesIndex: FC = () => {
     return c;
   }, []);
 
+  if (legacyGuide) return <Navigate to={guideHref(legacyGuide)} replace />;
+
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
         <title>Guides · Plain-language walkthroughs | GOV.PH</title>
         <meta
           name='description'
-          content='Detailed, step-by-step guides to the most common transactions with the Philippine government. Written in plain language, organized as checklists, and updated when rules change.'
+          content='Plain-language guides to Philippine government transactions, with requirements, application steps, fees, and source references.'
         />
       </Helmet>
 
       <PageMasthead
         variant='hero'
         title='Guides'
-        lede='Detailed, step-by-step guides to the most common transactions with the Philippine government. Written in plain language, organized as checklists, and updated when rules change.'
+        lede='Plain-language guides to Philippine government transactions. Find the requirements, prepare your documents, and follow the steps to complete your application.'
       >
-        <div className='mt-7 grid grid-cols-4 gap-12 border-t border-white/20 pt-6 max-md:grid-cols-2 max-md:gap-6'>
+        <div className='mt-7 grid grid-cols-4 gap-12 border-t border-white/20 pt-6 max-md:mt-4 max-md:grid-cols-2 max-md:gap-5 max-md:pt-4'>
           {[
             { n: GUIDES.length.toString(), l: 'Published guides' },
             { n: (GUIDE_CATEGORIES.length - 1).toString(), l: 'Topics' },
             { n: totalSteps.toString(), l: 'Steps documented' },
-            { n: 'Daily', l: 'Updates' },
+            { n: formatGuideDate(latestGuideReview), l: 'Last reviewed' },
           ].map(s => (
             <div key={s.l}>
-              <div className='font-serif-ed text-[32px] font-semibold leading-none text-white'>
+              <div className='font-serif-ed text-[32px] font-semibold leading-none text-white max-md:text-2xl'>
                 {s.n}
               </div>
               <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/70'>
@@ -86,9 +91,10 @@ const GuidesIndex: FC = () => {
               <button
                 key={c}
                 type='button'
+                aria-pressed={cat === c}
                 onClick={() => setCat(c)}
                 className={cn(
-                  'border-r border-ed-rule px-[18px] py-3.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] transition-colors',
+                  'min-h-11 border-r border-ed-rule px-[18px] py-3.5 font-mono-ed text-[11px] uppercase tracking-[0.12em] transition-colors max-md:px-3 max-md:py-3 max-md:tracking-[0.08em]',
                   cat === c
                     ? 'bg-ed-navy text-white'
                     : 'bg-transparent text-ed-ink-2 hover:bg-ed-navy-tint hover:text-ed-navy-ink',
@@ -107,8 +113,8 @@ const GuidesIndex: FC = () => {
       <section className='mt-10 max-md:mt-6'>
         <Container>
           <SimpleSectionHead
-            label='Most requested this week'
-            meta={`Updated ${new Date().toLocaleDateString()}`}
+            label='Start with these guides'
+            meta={`Last reviewed ${formatGuideDate(latestGuideReview)}`}
           />
           <div className='grid grid-cols-[1.4fr_1fr_1fr] border border-ed-rule bg-white max-lg:grid-cols-1'>
             <Link
@@ -116,24 +122,21 @@ const GuidesIndex: FC = () => {
               className='flex flex-col border-r border-ed-rule p-10 text-ed-ink no-underline max-lg:border-r-0 max-lg:border-b max-md:p-6'
             >
               <Flag variant='red' className='self-start'>
-                Most searched
+                Featured guide
               </Flag>
-              <PlaceholderImage height={220} className='my-6'>
-                DFA consular lobby photo
-              </PlaceholderImage>
-              <Eyebrow tone='navy'>
+              <Eyebrow tone='navy' className='mt-6'>
                 {primary.agency} · {primary.steps}-step guide · {primary.time}
               </Eyebrow>
               <h2 className='mt-3.5 font-serif-ed text-[36px] font-semibold leading-[1.12] tracking-[-0.01em] text-ed-navy-ink max-md:text-[26px]'>
                 {primary.title}
               </h2>
-              <p className='mt-4 max-w-[520px] font-sans-ed text-base leading-relaxed text-ed-ink-2'>
+              <p className='mt-4 max-w-[520px] font-sans-ed text-base leading-relaxed text-ed-ink-2 max-md:mt-3 max-md:text-sm'>
                 {primary.lede}
               </p>
               <div className='mt-6 flex flex-wrap gap-5 border-t border-ed-rule pt-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
                 <span>{primary.steps} steps</span>
                 <span>{primary.time}</span>
-                <span>Updated 3 days ago</span>
+                <span>Reviewed {formatGuideDate(primary.reviewedAt)}</span>
               </div>
             </Link>
 
@@ -150,7 +153,7 @@ const GuidesIndex: FC = () => {
                   <Eyebrow tone='navy'>
                     № 0{i + 2} · {g.agency}
                   </Eyebrow>
-                  <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink'>
+                  <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight text-ed-navy-ink max-md:text-xl'>
                     {g.title}
                   </h3>
                   <p className='mt-2.5 text-[13px] leading-normal text-ed-ink-2'>
@@ -166,7 +169,7 @@ const GuidesIndex: FC = () => {
             </div>
 
             <div className='bg-ed-paper-2 p-7 max-md:p-6'>
-              <Eyebrow className='text-ed-ink-2'>Also trending</Eyebrow>
+              <Eyebrow className='text-ed-ink-2'>More guides</Eyebrow>
               <div className='mt-3.5'>
                 {trending.map((g, i) => (
                   <Link
@@ -208,7 +211,7 @@ const GuidesIndex: FC = () => {
                 </span>
               </>
             }
-            meta='Sorted by popularity'
+            meta='Requirements · Steps · Sources'
           />
 
           {list.length === 0 ? (
@@ -221,7 +224,7 @@ const GuidesIndex: FC = () => {
                 <Link
                   key={g.id}
                   to={guideHref(g)}
-                  className='flex min-h-[260px] flex-col gap-3 border-b border-r border-ed-rule bg-white p-7 text-ed-ink no-underline transition-colors hover:bg-ed-navy-tint last:border-r-0 max-lg:[&:nth-child(2n)]:border-r-0 max-lg:[&:nth-child(2n+1)]:border-r lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r max-sm:!border-r-0'
+                  className='flex min-h-[260px] flex-col gap-3 border-b border-r border-ed-rule bg-white p-7 text-ed-ink no-underline transition-colors hover:bg-ed-navy-tint last:border-r-0 max-lg:[&:nth-child(2n)]:border-r-0 max-lg:[&:nth-child(2n+1)]:border-r lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r max-sm:!border-r-0 max-md:min-h-0 max-md:gap-2.5 max-md:p-5'
                 >
                   <Flag variant='navy' className='self-start'>
                     {g.cat}
@@ -261,7 +264,7 @@ const GuidesIndex: FC = () => {
               <h2 className='m-0 font-serif-ed text-[40px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[26px]'>
                 Suggest a guide. We&rsquo;ll write it.
               </h2>
-              <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
+              <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-md:mt-3 max-md:text-sm'>
                 Every guide starts from a real transaction someone needed help
                 understanding. If you&rsquo;ve navigated a government process
                 and took notes, we&rsquo;d love to publish them.
@@ -294,15 +297,11 @@ const GuidesIndex: FC = () => {
 };
 
 const SimpleSectionHead: FC<{
-  num: string;
   label: React.ReactNode;
   meta?: React.ReactNode;
-}> = ({ num, label, meta }) => (
-  <div className='mb-6 grid grid-cols-[auto_1fr_auto] items-baseline gap-6 border-t-2 border-ed-navy py-4 max-md:grid-cols-1 max-md:gap-2'>
-    <span className='font-mono-ed text-[11px] tracking-[0.18em] text-ed-navy'>
-      {num}
-    </span>
-    <span className='font-serif-ed text-2xl font-semibold text-ed-navy-ink'>
+}> = ({ label, meta }) => (
+  <div className='mb-6 grid grid-cols-[1fr_auto] items-baseline gap-6 border-t-2 border-ed-navy py-4 max-md:grid-cols-1 max-md:gap-2'>
+    <span className='font-serif-ed text-2xl font-semibold text-ed-navy-ink max-md:text-xl'>
       {label}
     </span>
     {meta && (

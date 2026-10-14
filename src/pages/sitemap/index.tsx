@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import Container from '../../components/v2/ui/Container';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
+import { GUIDES, guideHref } from '../guides/data';
 
 interface RouteRow {
   title: string;
@@ -17,6 +18,14 @@ interface SitemapGroup {
 }
 
 const groups: SitemapGroup[] = [
+  {
+    num: '00',
+    label: 'Guides',
+    routes: [
+      { title: 'All guides', path: '/guides' },
+      ...GUIDES.map(guide => ({ title: guide.title, path: guideHref(guide) })),
+    ],
+  },
   {
     num: '01',
     label: 'Main',

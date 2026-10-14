@@ -1,16 +1,4 @@
-export type GuideSummary = {
-  id: string;
-  title: string;
-  agency: string;
-  cat: string;
-  steps: number;
-  time: string;
-  /** Popularity score (0-100). Used for sort order. */
-  pop: number;
-  lede: string;
-  /** Set to 'primary' for the featured top card. */
-  featured?: 'primary';
-};
+import manifest from '../../data/guides/manifest.json';
 
 export const GUIDE_CATEGORIES = [
   'All',
@@ -25,198 +13,31 @@ export const GUIDE_CATEGORIES = [
 
 export type GuideCategory = (typeof GUIDE_CATEGORIES)[number];
 
-export const GUIDES: GuideSummary[] = [
-  {
-    id: 'passport',
-    title: 'Getting a Philippine passport',
-    agency: 'DFA',
-    cat: 'Travel & ID',
-    steps: 6,
-    time: '15 min read',
-    pop: 94,
-    lede: 'From booking an appointment to the day you receive the booklet — every document, fee, and waiting period spelled out.',
-    featured: 'primary',
-  },
-  {
-    id: 'nbi',
-    title: 'Apply for NBI Clearance online',
-    agency: 'NBI',
-    cat: 'Travel & ID',
-    steps: 5,
-    time: '8 min read',
-    pop: 88,
-    lede: "Online application, fee payment, and biometrics capture. Same-day release if you have no 'hit'.",
-  },
-  {
-    id: 'tin',
-    title: 'Getting your TIN for the first time',
-    agency: 'BIR',
-    cat: 'Taxes',
-    steps: 4,
-    time: '6 min read',
-    pop: 82,
-    lede: "Whether you're a new employee, self-employed, or a mixed-income earner — which BIR form is for you.",
-  },
-  {
-    id: 'umid',
-    title: 'Applying for a UMID card',
-    agency: 'SSS',
-    cat: 'Travel & ID',
-    steps: 5,
-    time: '10 min read',
-    pop: 76,
-    lede: 'The unified multi-purpose ID works as your SSS, GSIS, PhilHealth, and Pag-IBIG card in one.',
-  },
-  {
-    id: 'psa',
-    title: 'Requesting a PSA Birth Certificate',
-    agency: 'PSA',
-    cat: 'Civil Registry',
-    steps: 3,
-    time: '5 min read',
-    pop: 73,
-    lede: 'Order online, pick up at the delivery address. For court submissions, request a CENOMAR too.',
-  },
-  {
-    id: 'drivers',
-    title: "Renewing your driver's license",
-    agency: 'LTO',
-    cat: 'Travel & ID',
-    steps: 6,
-    time: '12 min read',
-    pop: 71,
-    lede: 'The new 10-year license, the medical exam, and how to avoid the ₱300 late renewal surcharge.',
-  },
-  {
-    id: 'itr',
-    title: 'Filing your Annual ITR (BIR Form 1700)',
-    agency: 'BIR',
-    cat: 'Taxes',
-    steps: 7,
-    time: '20 min read',
-    pop: 68,
-    lede: 'For purely-compensation employees. What BIR Form 2316 is, and when you need to file at all.',
-  },
-  {
-    id: 'bir-1701',
-    title: 'Filing BIR Form 1701A (self-employed)',
-    agency: 'BIR',
-    cat: 'Taxes',
-    steps: 8,
-    time: '22 min read',
-    pop: 64,
-    lede: 'For professionals and freelancers choosing the 8% income tax rate. Includes eBIRForms walkthrough.',
-  },
-  {
-    id: 'vat',
-    title: 'Registering as a VAT taxpayer',
-    agency: 'BIR',
-    cat: 'Business',
-    steps: 6,
-    time: '18 min read',
-    pop: 51,
-    lede: 'When your annual gross sales exceed ₱3 million — what changes for your receipts and books.',
-  },
-  {
-    id: 'philhealth',
-    title: 'PhilHealth Member Registration',
-    agency: 'PhilHealth',
-    cat: 'Health',
-    steps: 4,
-    time: '7 min read',
-    pop: 70,
-    lede: 'Employed, self-earning, OFW, or senior — the four member categories and how contributions differ.',
-  },
-  {
-    id: 'sss-claim',
-    title: 'Claiming your SSS pension',
-    agency: 'SSS',
-    cat: 'Benefits',
-    steps: 6,
-    time: '14 min read',
-    pop: 66,
-    lede: 'Retirement, disability, or survivor claims. The forms, the physical exam, and the My.SSS portal.',
-  },
-  {
-    id: 'pagibig',
-    title: 'Pag-IBIG Fund Membership',
-    agency: 'Pag-IBIG',
-    cat: 'Benefits',
-    steps: 4,
-    time: '8 min read',
-    pop: 59,
-    lede: 'From your first contribution to your first housing loan. What the MID number is, and why you need it.',
-  },
-  {
-    id: 'dti',
-    title: 'Registering a single proprietorship (DTI)',
-    agency: 'DTI',
-    cat: 'Business',
-    steps: 5,
-    time: '12 min read',
-    pop: 62,
-    lede: 'Business name search, DTI certificate, and the ten-day cooling-off period. ₱200 to ₱2,000 depending on scope.',
-  },
-  {
-    id: 'sec',
-    title: 'Registering a corporation (SEC)',
-    agency: 'SEC',
-    cat: 'Business',
-    steps: 8,
-    time: '25 min read',
-    pop: 48,
-    lede: 'One Person Corporations, stock corporations, and partnership filings through the SEC Electronic Filing System.',
-  },
-  {
-    id: 'mayors',
-    title: "Getting your Mayor's Permit",
-    agency: 'LGU',
-    cat: 'Business',
-    steps: 7,
-    time: '15 min read',
-    pop: 55,
-    lede: 'Barangay clearance, zoning, fire safety, sanitary — the path from DTI to full business permit.',
-  },
-  {
-    id: 'title-transfer',
-    title: 'Transferring a land title',
-    agency: 'LRA · BIR',
-    cat: 'Property',
-    steps: 9,
-    time: '25 min read',
-    pop: 47,
-    lede: 'From Deed of Sale to the new TCT under your name. DST, CGT, and transfer tax explained.',
-  },
-  {
-    id: 'amilyar',
-    title: 'Paying your real property tax (amilyar)',
-    agency: 'LGU',
-    cat: 'Property',
-    steps: 4,
-    time: '6 min read',
-    pop: 58,
-    lede: 'Quarterly or annual payment, discounts for paying early, and the penalty if you skip a year.',
-  },
-  {
-    id: 'marriage',
-    title: 'Getting married in the Philippines',
-    agency: 'PSA · LGU',
-    cat: 'Civil Registry',
-    steps: 7,
-    time: '16 min read',
-    pop: 61,
-    lede: 'Marriage license, pre-Cana, church or civil ceremony, and registering the marriage with the PSA.',
-  },
-  {
-    id: 'cenomar',
-    title: 'Requesting a CENOMAR',
-    agency: 'PSA',
-    cat: 'Civil Registry',
-    steps: 2,
-    time: '3 min read',
-    pop: 54,
-    lede: "Certificate of No Marriage Record — what it's for, and why embassies always ask for it.",
-  },
-];
+export type GuideSummary = {
+  id: string;
+  title: string;
+  agency: string;
+  cat: string;
+  steps: number;
+  time: string;
+  lede: string;
+  reviewedAt: string;
+  sourceUrl: string;
+  featured?: string;
+};
 
+/** Editorial order, with dates taken from the source research. */
+export const GUIDES: GuideSummary[] = manifest;
 export const findGuide = (id: string) => GUIDES.find(g => g.id === id);
+export const guideHref = (guide: GuideSummary) => `/guides/${guide.id}`;
+export const formatGuideDate = (date: string) =>
+  new Intl.DateTimeFormat('en-PH', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'Asia/Manila',
+  }).format(new Date(`${date}T00:00:00Z`));
+export const latestGuideReview = GUIDES.reduce(
+  (latest, guide) => (guide.reviewedAt > latest ? guide.reviewedAt : latest),
+  ''
+);

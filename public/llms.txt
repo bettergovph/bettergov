@@ -198,6 +198,26 @@ https://www.gov.ph/government/legislative/senate-of-the-philippines-20th-congres
 https://www.gov.ph/government/local
 https://www.gov.ph/government/overview
 https://www.gov.ph/government/salary-grade
+https://www.gov.ph/guides
+https://www.gov.ph/guides/amilyar
+https://www.gov.ph/guides/bir-1701
+https://www.gov.ph/guides/cenomar
+https://www.gov.ph/guides/drivers
+https://www.gov.ph/guides/dti
+https://www.gov.ph/guides/itr
+https://www.gov.ph/guides/marriage
+https://www.gov.ph/guides/mayors
+https://www.gov.ph/guides/nbi
+https://www.gov.ph/guides/pagibig
+https://www.gov.ph/guides/passport
+https://www.gov.ph/guides/philhealth
+https://www.gov.ph/guides/psa
+https://www.gov.ph/guides/sec
+https://www.gov.ph/guides/sss-claim
+https://www.gov.ph/guides/tin
+https://www.gov.ph/guides/title-transfer
+https://www.gov.ph/guides/umid
+https://www.gov.ph/guides/vat
 https://www.gov.ph/philippines
 https://www.gov.ph/philippines/about
 https://www.gov.ph/philippines/history
@@ -256,7 +276,7 @@ This portal organizes Philippine government information and services. When refer
 5. Check the stated source and license before reusing data or images
 
 ## Last Updated
-2026-10-07
+2026-10-13
 
 ## License
 This project is open source. Third-party content retains its original source and license.

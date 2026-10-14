@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -78,7 +78,8 @@ import GovernmentOverview from './pages/government/overview';
 
 // Guides
 import GuidesIndex from './pages/guides';
-import PassportGuide from './pages/guides/passport';
+import GuideLoading from './pages/guides/GuideLoading';
+const GuideArticle = lazy(() => import('./pages/guides/GuideArticle'));
 
 // Data Pages
 import WeatherPage from './pages/data/weather';
@@ -134,7 +135,14 @@ function App() {
               <Route path=':id' element={<NewsArticlePage />} />
             </Route>
             <Route path='/guides' element={<GuidesIndex />} />
-            <Route path='/guides/passport' element={<PassportGuide />} />
+            <Route
+              path='/guides/:guideId'
+              element={
+                <Suspense fallback={<GuideLoading />}>
+                  <GuideArticle />
+                </Suspense>
+              }
+            />
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
 
