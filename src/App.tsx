@@ -16,7 +16,6 @@ import DesignStyles from './pages/design/styles';
 import DesignComponents from './pages/design/components';
 import DesignPatterns from './pages/design/patterns';
 import DesignAccessibility from './pages/design/accessibility';
-import DesignCommunity from './pages/design/community';
 import DesignBrandGuide from './pages/design/guide';
 import Services from './pages/services';
 import AboutPage from './pages/about';
@@ -41,7 +40,6 @@ import ConstitutionalIndex from './pages/government/constitutional/index';
 import ConstitutionalOffice from './pages/government/constitutional/[office]';
 import GOCCsPage from './pages/government/constitutional/goccs';
 import SUCsPage from './pages/government/constitutional/sucs';
-import Projects from './pages/Projects';
 
 // Legislative Branch
 import LegislativeIndex from './pages/government/legislative/index';
@@ -96,11 +94,8 @@ import WebsitesDirectory from './pages/services/websites';
 
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
-import Ideas from './pages/Ideas';
-import JoinUs from './pages/JoinUs';
 import TermsOfService from './pages/TermsOfService';
 import ScrollToTop from './components/ui/ScrollToTop';
-import Discord from './pages/Discord';
 import SalaryGradePage from './pages/government/salary-grade/index';
 import GovPhChatbot from './components/ui/GovPhChatbot';
 import NotFound from './pages/NotFound';
@@ -127,7 +122,6 @@ function App() {
                 <Route path='components' element={<DesignComponents />} />
                 <Route path='patterns' element={<DesignPatterns />} />
                 <Route path='accessibility' element={<DesignAccessibility />} />
-                <Route path='community' element={<DesignCommunity />} />
               </Route>
             </Route>
             <Route path='/services' element={<Services />} />
@@ -141,12 +135,8 @@ function App() {
             </Route>
             <Route path='/guides' element={<GuidesIndex />} />
             <Route path='/guides/passport' element={<PassportGuide />} />
-            <Route path='/ideas' element={<Ideas />} />
-            <Route path='/join-us' element={<JoinUs />} />
             <Route path='/terms-of-service' element={<TermsOfService />} />
             <Route path='/sitemap' element={<SitemapPage />} />
-            <Route path='/discord' Component={Discord} />
-            <Route path='/projects' element={<Projects />} />
 
             <Route path='/philippines'>
               <Route index element={<Navigate to='about' replace />} />

@@ -27,7 +27,7 @@ const CommunicatingPrintPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Travel Phrasebook · Print | BetterGov.ph</title>
+        <title>Travel Phrasebook · Print | GOV.PH</title>
       </Helmet>
 
       {/* Hide site chrome when printing */}
@@ -53,7 +53,7 @@ const CommunicatingPrintPage: FC = () => {
                 Travel Phrasebook
               </h1>
               <p className='mt-1 text-sm text-ed-ink-2'>
-                BetterGov.ph · {languageLabel[lang]} · Tagalog · Bisaya
+                GOV.PH · {languageLabel[lang]} · Tagalog · Bisaya
               </p>
             </div>
             <div className='flex items-center gap-3'>
@@ -92,7 +92,7 @@ const CommunicatingPrintPage: FC = () => {
               Travel Phrasebook
             </h1>
             <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-              BetterGov.ph · {languageLabel[lang]} · Tagalog · Bisaya
+              GOV.PH · {languageLabel[lang]} · Tagalog · Bisaya
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ const CommunicatingPrintPage: FC = () => {
 
         <div className='hidden print:block mx-auto max-w-page border-t border-ed-rule px-6 pt-2'>
           <p className='text-center font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-            Generated from BetterGov.ph · Travel Phrasebook · Personal use only
+            Generated from GOV.PH · Travel Phrasebook · Personal use only
           </p>
         </div>
       </main>

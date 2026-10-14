@@ -28,7 +28,7 @@ const GovernmentDirectory: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Government Directory | BetterGov.ph</title>
+        <title>Government Directory | GOV.PH</title>
         <meta
           name='description'
           content='Every branch of the Philippine government in one directory — executive departments, constitutional bodies, the legislature, and diplomatic missions, with verified hotlines, heads of office, and official domains.'

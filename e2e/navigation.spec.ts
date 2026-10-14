@@ -42,28 +42,6 @@ test.describe('Navigation', () => {
     }
   });
 
-  test('should navigate to Join Us page', async ({ page }) => {
-    await page.goto('/');
-
-    // Click Join Us link
-    await page
-      .getByRole('link', { name: /Join Us/i })
-      .first()
-      .click();
-    expect(page.url()).toContain('/join-us');
-    await expect(page.getByRole('heading').first()).toContainText(
-      'Join the #CivicTech Revolution'
-    );
-  });
-
-  test('should navigate to Ideas page', async ({ page }) => {
-    await page.goto('/');
-
-    // Click Project Ideas link
-    await page.getByRole('link', { name: 'Project Ideas' }).first().click();
-    expect(page.url()).toContain('/ideas');
-  });
-
   test('should have working footer links', async ({ page }) => {
     await page.goto('/');
 

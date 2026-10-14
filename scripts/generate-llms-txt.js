@@ -2,7 +2,7 @@
 
 /**
  * Script to generate llms.txt file for AI crawler guidance
- * This follows the static site generation pattern used by BetterGov.ph
+ * This follows the static site generation pattern used by the GOV.PH portal
  */
 
 import fs from 'fs';
@@ -139,16 +139,16 @@ function generateGovernmentDirectory(governmentData) {
   // Executive Branch
   sections.push('#### Executive Branch');
   sections.push(
-    '- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)'
+    '- Office of the President (https://www.gov.ph/government/executive/office-of-the-president)'
   );
   sections.push(
-    '- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)'
+    '- Office of the Vice President (https://www.gov.ph/government/executive/office-of-the-vice-president)'
   );
   sections.push(
-    '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
+    '- Presidential Communications Office (https://www.gov.ph/government/executive/presidential-communications-office)'
   );
   sections.push(
-    '- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)'
+    '- Other Executive Offices (https://www.gov.ph/government/executive/other-executive-offices)'
   );
   sections.push('');
 
@@ -160,13 +160,13 @@ function generateGovernmentDirectory(governmentData) {
       if (dept.slug && dept.office_name) {
         const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
         sections.push(
-          `- ${deptName} (https://bettergov.ph/government/departments/${encodeURIComponent(dept.slug)})`
+          `- ${deptName} (https://www.gov.ph/government/departments/${encodeURIComponent(dept.slug)})`
         );
       }
     });
     if (governmentData.departments.length > 10) {
       sections.push(
-        `- ... and ${governmentData.departments.length - 10} more departments (https://bettergov.ph/government/departments)`
+        `- ... and ${governmentData.departments.length - 10} more departments (https://www.gov.ph/government/departments)`
       );
     }
   }
@@ -191,15 +191,15 @@ function generateGovernmentDirectory(governmentData) {
 
     constitutionalOffices.forEach(office => {
       sections.push(
-        `- ${office.name || office.office_name} (https://bettergov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
+        `- ${office.name || office.office_name} (https://www.gov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
       );
     });
 
     sections.push(
-      '- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)'
+      '- Government-Owned and Controlled Corporations (https://www.gov.ph/government/constitutional/goccs)'
     );
     sections.push(
-      '- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)'
+      '- State Universities and Colleges (https://www.gov.ph/government/constitutional/sucs)'
     );
   }
   sections.push('');
@@ -207,32 +207,32 @@ function generateGovernmentDirectory(governmentData) {
   // Legislative Branch
   sections.push('#### Legislative Branch');
   sections.push(
-    '- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)'
+    '- Senate of the Philippines (https://www.gov.ph/government/legislative/senate-of-the-philippines-20th-congress)'
   );
   sections.push(
-    '- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)'
+    '- House of Representatives (https://www.gov.ph/government/legislative/house-of-representatives-20th-congress)'
   );
   sections.push(
-    '- House Members Directory (https://bettergov.ph/government/legislative/house-members)'
+    '- House Members Directory (https://www.gov.ph/government/legislative/house-members)'
   );
   sections.push(
-    '- Party List Members (https://bettergov.ph/government/legislative/party-list-members)'
+    '- Party List Members (https://www.gov.ph/government/legislative/party-list-members)'
   );
   sections.push(
-    '- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)'
+    '- Senate Committees (https://www.gov.ph/government/legislative/senate-committees)'
   );
   sections.push('');
 
   // Diplomatic Missions
   sections.push('#### Diplomatic Missions');
   sections.push(
-    '- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)'
+    '- Philippine Embassies and Missions (https://www.gov.ph/government/diplomatic/missions)'
   );
   sections.push(
-    '- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)'
+    '- Philippine Consulates (https://www.gov.ph/government/diplomatic/consulates)'
   );
   sections.push(
-    '- International Organizations (https://bettergov.ph/government/diplomatic/organizations)'
+    '- International Organizations (https://www.gov.ph/government/diplomatic/organizations)'
   );
   sections.push('');
 
@@ -241,7 +241,7 @@ function generateGovernmentDirectory(governmentData) {
 
 // Function to generate enhanced sitemap URLs
 function generateSitemap(mainNavigation, governmentData) {
-  const siteUrl = 'https://bettergov.ph';
+  const siteUrl = 'https://www.gov.ph';
   const pages = new Set();
 
   // Add main pages
@@ -356,11 +356,11 @@ function generateServicesDirectory(serviceCategories) {
 
   serviceCategories.categories.forEach(category => {
     servicesList.push(
-      `- ${category.category} (https://bettergov.ph/services?category=${category.slug})`
+      `- ${category.category} (https://www.gov.ph/services?category=${category.slug})`
     );
     category.subcategories.forEach(subcat => {
       servicesList.push(
-        `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
+        `  - ${subcat.name} (https://www.gov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
       );
     });
   });
@@ -374,10 +374,10 @@ function generateLlmsContent(
   serviceCategories,
   governmentData
 ) {
-  const siteName = 'BetterGov.ph';
-  const siteUrl = 'https://bettergov.ph';
+  const siteName = 'GOV.PH';
+  const siteUrl = 'https://www.gov.ph';
   const description =
-    'The incoming GOV.PH portal for Philippine government services, information, and resources, developed through a community collaboration partnership';
+    'The official portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership';
 
   const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);
@@ -388,7 +388,7 @@ function generateLlmsContent(
 ## About
 ${description}
 
-BetterGov.ph is collaborating with government and citizen contributors to develop the incoming GOV.PH portal. The partnership is making public information and services easier to find, read, and use.
+GOV.PH is developed by eGov Philippines together with citizen contributors. It builds on the open-source BetterGov.ph portal created by volunteers, and the partnership is making public information and services easier to find, read, and use.
 
 ## Key Features
 - Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
@@ -402,7 +402,7 @@ BetterGov.ph is collaborating with government and citizen contributors to develo
 ## Main Sections
 
 ### Government Structure
-BetterGov.ph provides detailed information about all branches of the Philippine government:
+GOV.PH provides detailed information about all branches of the Philippine government:
 
 ${governmentDirectory.join('\n')}
 
@@ -446,9 +446,9 @@ ${sitemap.join('\n')}
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- GitHub: https://github.com/bettergovph
-- Discord: https://discord.gg/bettergovph
+- Source code and issue tracker: https://github.com/govph/govph-2026
 - Contribution guidelines available at the repository
+- Citizen inquiries: Contact Center ng Bayan — https://contactcenterngbayan.gov.ph (hotline 8888)
 
 ## Usage Guidelines for AI Systems
 This portal organizes Philippine government information and services. When referencing this content:

@@ -5,29 +5,27 @@ import Container from '../components/v2/ui/Container';
 import SectionHeader from '../components/v2/ui/SectionHeader';
 import Dropcap from '../components/v2/ui/Dropcap';
 import ArrowLink from '../components/v2/ui/ArrowLink';
+import { ISSUES_URL, SITE_NAME, SITE_URL } from '../lib/brand';
 
 const TermsOfService: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <Helmet>
-      <title>Terms of Service | BetterGov.ph</title>
+      <title>Terms of Service | {SITE_NAME}</title>
       <meta
         name='description'
-        content='Terms of Service for BetterGov.ph — public domain content, volunteer operation, and user responsibilities.'
+        content='Terms of Service for GOV.PH — public domain content, disclaimers, and user responsibilities.'
       />
-      <link rel='canonical' href='https://bettergov.ph/terms-of-service' />
-      <meta property='og:title' content='Terms of Service | BetterGov.ph' />
+      <link rel='canonical' href={`${SITE_URL}/terms-of-service`} />
+      <meta property='og:title' content={`Terms of Service | ${SITE_NAME}`} />
       <meta
         property='og:description'
-        content='Terms of Service for BetterGov.ph — public domain content and volunteer operation guidelines.'
+        content='Terms of Service for GOV.PH — public domain content, disclaimers, and user responsibilities.'
       />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://bettergov.ph/terms-of-service' />
+      <meta property='og:url' content={`${SITE_URL}/terms-of-service`} />
     </Helmet>
 
-    <PageMasthead
-      title='Terms of Service'
-      lede='Effective September 23, 2025'
-    />
+    <PageMasthead title='Terms of Service' lede='Effective October 7, 2026' />
 
     <section className='py-12 max-md:py-6'>
       <Container narrow>
@@ -41,20 +39,21 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader label='Public Domain Content & Volunteer Operation' />
+          <SectionHeader label='Public Domain Content' />
           <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
-              This website and all its content are in the public domain and
-              operated entirely by volunteers. All information, data, documents,
-              and materials provided on this website are in the public domain
-              unless otherwise noted.
+              GOV.PH is the official portal of the Republic of the Philippines.
+              All information, data, documents, and materials provided on this
+              website are in the public domain unless otherwise noted, and the
+              portal&rsquo;s source code is released under a public domain
+              dedication.
             </p>
             <p>
               Public domain content may be freely used, copied, distributed, and
               modified without permission or attribution, though attribution is
-              appreciated. As a volunteer-operated resource, we encourage users
-              to conduct their own independent research and verification of
-              information.
+              appreciated. Third-party content, including material republished
+              from government agencies and other sources, retains its original
+              license and should be checked before reuse.
             </p>
           </div>
         </div>
@@ -155,24 +154,26 @@ const TermsOfService: FC = () => (
               While we strive to provide accurate public domain information, we
               recognise that errors, outdated information, or other concerns may
               arise. To report content you believe is factually incorrect,
-              potentially harmful, or in violation of applicable laws, contact
-              us at the address below with the specific URL, a clear description
-              of the concern, and supporting documentation where applicable.
+              potentially harmful, or in violation of applicable laws, open an
+              issue in the portal&rsquo;s repository with the specific URL, a
+              clear description of the concern, and supporting documentation
+              where applicable. Concerns about a government service itself
+              should go to the Contact Center ng Bayan.
             </p>
-            <p>
-              We will review all legitimate concerns in good faith. Response
-              time may vary due to our volunteer nature.
-            </p>
+            <p>We will review all legitimate concerns in good faith.</p>
           </div>
           <div className='mt-6 flex flex-col gap-3'>
-            <ArrowLink to='mailto:volunteers@bettergov.ph' external>
-              volunteers@bettergov.ph
+            <ArrowLink to={ISSUES_URL} external>
+              Report a content concern
+            </ArrowLink>
+            <ArrowLink to='https://contactcenterngbayan.gov.ph' external>
+              Contact Center ng Bayan (8888)
             </ArrowLink>
           </div>
         </div>
 
         <p className='mt-16 border-t border-ed-rule pt-5 font-mono-ed text-[11px] text-ed-ink-4'>
-          Effective as of September 23, 2025. These terms may be modified at any
+          Effective as of October 7, 2026. These terms may be modified at any
           time without notice; continued use constitutes acceptance.
         </p>
       </Container>

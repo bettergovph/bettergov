@@ -46,7 +46,7 @@ const ctx = {} as ExecutionContext;
 
 const call = (path: string, method = 'GET', withEnv: Env = env) =>
   worker.fetch(
-    new Request(`https://api.bettergov.ph${path}`, { method }),
+    new Request(`https://api.gov.ph${path}`, { method }),
     withEnv,
     ctx
   );

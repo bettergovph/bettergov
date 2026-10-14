@@ -10,7 +10,7 @@ const DiplomaticMissionsPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Diplomatic Missions | BetterGov.ph</title>
+        <title>Diplomatic Missions | GOV.PH</title>
         <meta
           name='description'
           content='Foreign embassies and high commissions accredited to the Republic of the Philippines.'

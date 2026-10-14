@@ -10,7 +10,7 @@ const ConstitutionalIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Constitutional Offices | BetterGov.ph</title>
+        <title>Constitutional Offices | GOV.PH</title>
         <meta
           name='description'
           content='Constitutional commissions and offices created by the 1987 Philippine Constitution — independent bodies with specific mandates.'

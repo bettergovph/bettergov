@@ -1,30 +1,34 @@
-# BetterGov.ph
+# GOV.PH Portal
 
-A community-led initiative to create a better and more usable Philippine national government website.
+Source code of **GOV.PH**, the official portal of the Republic of the
+Philippines — one place to find government services, agencies, hotlines,
+holidays, news, and travel information, written plainly and sourced from
+official records.
 
-## Why We're Building This Project
+## About this project
 
-The current state of Philippine government websites, particularly the main portal [www.gov.ph](https://www.gov.ph), presents numerous challenges for citizens:
+GOV.PH is developed through a community collaboration partnership between
+eGov Philippines and citizen contributors. The portal is open source and its
+code is dedicated to the public domain, so any national agency, local
+government unit, or civic project may reuse it.
 
-- The main Gov.ph website is outdated and has not been updated for a long time
-- Full of broken links and difficult navigation paths
-- Inconsistent formatting and design across pages
-- Poor user experience and accessibility issues
-- Similar problems exist across most Philippine government agency websites
+Goals:
 
-These issues create barriers for citizens trying to access essential government services and information.
+- A national website that reflects Filipino values and culture
+- Intuitive navigation and search across every agency
+- Accessibility for all citizens, including those with disabilities
+- Accurate, up-to-date information that always points back to its official
+  source
+- A model for how government digital services can and should work
 
-## Our Mission
+## Origins and attribution
 
-We are a volunteer-led initiative with a clear mission: to provide a 'better' and 'usable' website for the Philippines.
-
-Our goals include:
-
-- Building a proper national website that reflects Filipino values and culture
-- Creating intuitive navigation and search functionality
-- Ensuring accessibility for all citizens, including those with disabilities
-- Providing accurate, up-to-date information about government services
-- Establishing a model for how government digital services can and should work
+This portal builds on the open-source [BetterGov.ph](https://bettergov.ph)
+project, a volunteer-led civic-tech initiative that set out to make
+Philippine government information easier to find, read, and use. Its code,
+design system, and data pipelines became the foundation of GOV.PH, and the
+hundreds of citizen volunteers who built it are gratefully acknowledged.
+Their contributions remain in the public domain.
 
 ## Features
 
@@ -34,23 +38,12 @@ Our goals include:
 - Accessibility features for users with disabilities
 - Regular updates and maintenance
 
-## Documentation
+## Contributing
 
-For an easy-to-read overview of the project, visit the [BetterGov Docs](https://docs.bettergov.ph/).
-
-## Join Us as a Volunteer
-
-We're always looking for passionate individuals to help improve BetterGov.ph. We need volunteers with various skills:
-
-- Frontend and backend developers
-- UX/UI designers
-- Content writers and editors
-- Translators (for Filipino and other local languages)
-- Accessibility experts
-- Project managers
-- QA testers
-
-If you're interested in contributing, please reach out to us at [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph) or open an issue in this repository.
+Contributions are welcome — bug reports, corrections to data, translations,
+documentation, and code. Please see the [Contributing Guide](./CONTRIBUTING.md)
+for development setup and the pull request workflow, and open an issue in
+this repository to report a problem or propose a change.
 
 ## Code of Conduct
 
@@ -92,7 +85,7 @@ npm run functions:dev
 
 You may use GitHub Codespaces for an instant development environment with dependencies automatically installed for you.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/bettergovph/bettergov?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/govph/govph-2026?quickstart=1)
 
 ## Docker
 
@@ -103,13 +96,13 @@ This project includes Docker support for easy deployment and consistent environm
 ```bash
 # Build the Docker image — the default (final) stage needs TalaCMS build
 # secrets; see "Syncing content from TalaCMS" > "Failure contract" below.
-docker build -t bettergov .
+docker build -t govph .
 
 # Run the container
-docker run -p 8080:80 bettergov
+docker run -p 8080:80 govph
 
 # Run in detached mode
-docker run -d -p 8080:80 --name bettergov bettergov
+docker run -d -p 8080:80 --name govph govph
 ```
 
 **Access the application at:** `http://localhost:8080`
@@ -378,7 +371,7 @@ DOCKER_BUILDKIT=1 docker build \
   --secret id=talacms_api_url,env=TALACMS_API_URL \
   --secret id=talacms_api_token,env=TALACMS_API_TOKEN \
   --target builder \
-  -t bettergov .
+  -t govph .
 ```
 
 (`env=` reads the value from that variable in the shell running `docker
@@ -458,8 +451,8 @@ working tree, produced fresh by `npm run cms:fetch` every time.
 
 Thanks to all the people who already contributed!
 
-<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
-    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
+<a href="https://github.com/govph/govph-2026/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=govph/govph-2026&max=750&columns=20" />
 </a>
 
 ## License

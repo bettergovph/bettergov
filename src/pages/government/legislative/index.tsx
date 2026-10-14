@@ -10,7 +10,7 @@ const LegislativeIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Legislative Branch | BetterGov.ph</title>
+        <title>Legislative Branch | GOV.PH</title>
         <meta
           name='description'
           content='The Senate of the Philippines and the House of Representatives — the two chambers of the Philippine Congress.'

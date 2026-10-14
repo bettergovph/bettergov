@@ -145,17 +145,17 @@ const groups: SitemapGroup[] = [
 const SitemapPage: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <Helmet>
-      <title>Sitemap | BetterGov.ph</title>
+      <title>Sitemap | GOV.PH</title>
       <meta
         name='description'
-        content='Complete sitemap of BetterGov.ph — find all pages and services on the Philippine Government Portal.'
+        content='Complete sitemap of GOV.PH — find all pages and services on the Philippine Government Portal.'
       />
-      <link rel='canonical' href='https://bettergov.ph/sitemap' />
+      <link rel='canonical' href='https://www.gov.ph/sitemap' />
     </Helmet>
 
     <PageMasthead
       title='Sitemap'
-      lede='A complete index of all pages and services on BetterGov.ph.'
+      lede='A complete index of all pages and services on GOV.PH.'
     />
 
     <section className='py-12 max-md:py-6'>

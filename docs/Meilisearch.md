@@ -1,6 +1,6 @@
 # Meilisearch Setup and Data Processing
 
-Welcome! This guide covers setting up Meilisearch for BetterGov's search functionality and documents all the data processing scripts. Whether you're setting up search for the first time or maintaining existing data, you'll find everything you need here.
+Welcome! This guide covers setting up Meilisearch for the portal's search functionality and documents all the data processing scripts. Whether you're setting up search for the first time or maintaining existing data, you'll find everything you need here.
 
 ## What's Inside
 
@@ -12,7 +12,7 @@ Welcome! This guide covers setting up Meilisearch for BetterGov's search functio
 
 ## Getting Started with Meilisearch
 
-Think of Meilisearch as the brain behind BetterGov's search feature. It helps users quickly find government services, offices, and information they need. Here's how to get it running on your machine.
+Think of Meilisearch as the brain behind the portal's search feature. It helps users quickly find government services, offices, and information they need. Here's how to get it running on your machine.
 
 ### What You'll Need
 
@@ -397,15 +397,14 @@ This gives Node 4GB of memory to work with.
 
 - **[Meilisearch Docs](https://www.meilisearch.com/docs)** - Everything about Meilisearch
 - **[JavaScript SDK Guide](https://github.com/meilisearch/meilisearch-js)** - How we integrate with Meilisearch
-- **[Contributing to BetterGov](../CONTRIBUTING.md)** - Join us in improving government services!
+- **[Contributing](../CONTRIBUTING.md)** - How to propose and land changes
 
 ## Questions?
 
 If you run into issues or have questions:
 
 1. Check the troubleshooting section above
-2. Search existing [GitHub issues](https://github.com/bettergovph/bettergov/issues)
-3. Ask in our [Discord community](https://discord.gg/mHtThpN8bT)
-4. Open a new issue if you've found a bug
+2. Search existing [GitHub issues](https://github.com/govph/govph-2026/issues)
+3. Open a new issue if you've found a bug
 
 Happy coding! Together, we're making government services more accessible for everyone.

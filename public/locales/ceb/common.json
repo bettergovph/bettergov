@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Maayong Pag-abot sa BetterGov.ph",
+    "title": "Maayong Pag-abot sa GOV.PH",
     "subtitle": "Ang ganghaan nga gidagan sa mga boluntaryo sa Republika sa Pilipinas. Pangitaa ang kasayuran, gamita ang mga serbisyo sa kagamhanan, ug magpabiling nahibalo sa pinakabag-ong balita mahitungod sa Pilipinas.",
     "nationalId": "Nasudnong ID",
     "birthCertificate": "Sertipiko sa Pagkatawo",
@@ -23,7 +23,7 @@
     "title": "Pinakabag-ong Balita ug mga Update"
   },
   "footer": {
-    "copyright": "2025 BetterGov.ph - Ang tanang sulod kay public domain gawas kung lahi ang gisulti."
+    "copyright": "2025 GOV.PH - Ang tanang sulod kay public domain gawas kung lahi ang gisulti."
   },
   "navbar": {
     "philippines": "Pilipinas",
@@ -31,19 +31,6 @@
     "travel": "Pagbiyahe",
     "government": "Kagamhanan",
     "flood control projects": "Mga Proyekto sa Flood Control"
-  },
-  "joinUs": {
-    "stripTitle": "🚀 Apil sa #CivicTech nga Rebolusyon",
-    "stripSubtitle": "Tabangi sa pagtukod sa kaugmaon sa Pilipinas ug sa pagdumala pinaagi sa teknolohiya",
-    "joinNow": "Apil Karon",
-    "discord": "Discord",
-    "bannerTitle": "Apil sa #CivicTech nga Rebolusyon",
-    "bannerSubtitle": "Tabangi sa pagtukod sa kaugmaon sa Pilipinas ug sa pagdumala pinaagi sa teknolohiya.",
-    "bannerHighlight": "Gipangulohan sa boluntaryo. Open source. Giduso sa komunidad.",
-    "joinMovement": "Apil sa Among Kalihukan",
-    "or": "o",
-    "joinDiscord": "Apil sa Discord",
-    "features": "🚀 Inprastruktura • 💡 Pag-mentor • 🤝 Komunidad • 🏢 Espasyo sa Opisina"
   },
   "data": {
     "title": "Mga Alagad sa Datos nga Diha-diha Dayon",

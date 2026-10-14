@@ -5,16 +5,17 @@ import Container from '../../components/v2/ui/Container';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Dropcap from '../../components/v2/ui/Dropcap';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
+import { ISSUES_URL, SITE_NAME, SITE_URL } from '../../lib/brand';
 
 const AccessibilityPage: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <Helmet>
-      <title>Accessibility Statement | BetterGov.ph</title>
+      <title>Accessibility Statement | {SITE_NAME}</title>
       <meta
         name='description'
-        content="Learn about BetterGov.ph's commitment to web accessibility, WCAG compliance, and how to request assistance."
+        content="Learn about GOV.PH's commitment to web accessibility, WCAG compliance, and how to request assistance."
       />
-      <link rel='canonical' href='https://bettergov.ph/accessibility' />
+      <link rel='canonical' href={`${SITE_URL}/accessibility`} />
     </Helmet>
 
     <PageMasthead
@@ -27,10 +28,10 @@ const AccessibilityPage: FC = () => (
         <SectionHeader label='Our Commitment' />
         <div className='space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2 max-w-2xl'>
           <Dropcap>
-            BetterGov.ph is committed to ensuring digital accessibility for
-            people with disabilities. We continuously improve the user
-            experience for everyone and apply the relevant accessibility
-            standards to our platform.
+            GOV.PH is committed to ensuring digital accessibility for people
+            with disabilities. We continuously improve the user experience for
+            everyone and apply the relevant accessibility standards to our
+            platform.
           </Dropcap>
           <p>
             We believe that everyone should have equal access to government
@@ -160,21 +161,27 @@ const AccessibilityPage: FC = () => (
           <SectionHeader label='Feedback & Contact' />
           <div className='max-w-2xl space-y-4 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
-              We welcome feedback on the accessibility of BetterGov.ph. If you
-              encounter barriers or have suggestions for improvement, please
-              reach out to us.
+              We welcome feedback on the accessibility of GOV.PH. If you
+              encounter a barrier or have a suggestion, open an issue in the
+              portal&rsquo;s repository describing the page and the assistive
+              technology you were using. If you need help with a government
+              service in the meantime, the Contact Center ng Bayan can assist by
+              phone.
             </p>
           </div>
           <div className='mt-6 flex flex-col gap-3'>
-            <ArrowLink to='mailto:accessibility@bettergov.ph' external>
-              accessibility@bettergov.ph
+            <ArrowLink to={ISSUES_URL} external>
+              Report an accessibility barrier
+            </ArrowLink>
+            <ArrowLink to='https://contactcenterngbayan.gov.ph' external>
+              Contact Center ng Bayan (8888)
             </ArrowLink>
           </div>
         </div>
 
         <p className='mt-16 border-t border-ed-rule pt-5 font-mono-ed text-[11px] text-ed-ink-4'>
           This statement was last reviewed on{' '}
-          <time dateTime='2025-09-08'>September 8, 2025</time>.
+          <time dateTime='2026-10-07'>October 7, 2026</time>.
         </p>
       </Container>
     </section>

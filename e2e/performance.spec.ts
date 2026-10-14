@@ -8,7 +8,7 @@ test.describe('Performance', () => {
 
     // Wait for the main content to be visible
     await expect(
-      page.getByRole('heading', { name: /Welcome to BetterGov.ph/i })
+      page.getByRole('heading', { name: /Welcome to GOV\.PH/i })
     ).toBeVisible();
 
     const loadTime = Date.now() - startTime;
@@ -109,7 +109,7 @@ test.describe('Performance', () => {
     await slowPage.goto('/');
 
     // Even on slow network, critical content should appear
-    await expect(slowPage.getByText('BetterGov.ph').first()).toBeVisible({
+    await expect(slowPage.getByText('GOV.PH').first()).toBeVisible({
       timeout: 10000,
     });
 

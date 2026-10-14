@@ -30,7 +30,7 @@ const SalaryGradePage: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Government Salary Grades | BetterGov.ph</title>
+        <title>Government Salary Grades | GOV.PH</title>
         <meta
           name='description'
           content='The Philippine government salary grade schedule (SG 1–33, 8 steps) — based on DBM National Budget Circular 597, effective January 2025.'

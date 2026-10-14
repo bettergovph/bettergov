@@ -66,12 +66,12 @@ const LOCAL_COUNTS = [
 const GovernmentOverview: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
     <Helmet>
-      <title>Government at a Glance | BetterGov.ph</title>
+      <title>Government at a Glance | GOV.PH</title>
       <meta
         name='description'
         content='A plain-language overview of the executive, legislative, and judicial branches of the Philippine government, constitutional commissions, and local government.'
       />
-      <link rel='canonical' href='https://bettergov.ph/government/overview' />
+      <link rel='canonical' href='https://www.gov.ph/government/overview' />
     </Helmet>
 
     <PageMasthead

@@ -10,7 +10,7 @@ const DiplomaticIndex: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Diplomatic Missions | BetterGov.ph</title>
+        <title>Diplomatic Missions | GOV.PH</title>
         <meta
           name='description'
           content='Foreign embassies, consulates, and diplomatic missions accredited to the Republic of the Philippines — with addresses, contacts, and heads of mission.'

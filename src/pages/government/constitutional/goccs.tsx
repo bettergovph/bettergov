@@ -41,7 +41,7 @@ const GOCCsPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>GOCCs | BetterGov.ph</title>
+        <title>GOCCs | GOV.PH</title>
         <meta
           name='description'
           content='Government-Owned and Controlled Corporations — state corporations with commercial operations, chartered by law to serve public or regulatory purposes.'

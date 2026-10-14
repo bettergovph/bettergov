@@ -149,14 +149,14 @@ export default function ServicesPage() {
 
   const { metaTitle, metaDescription, metaKeywords, canonicalUrl } =
     useMemo(() => {
-      const baseTitle = 'Government Services Directory | BetterGov.ph';
+      const baseTitle = 'Government Services Directory | GOV.PH';
       const baseDescription =
         'Browse and search a comprehensive directory of Philippine government services across categories and subcategories.';
       const phrases: string[] = [];
       if (selectedCategory) phrases.push(selectedCategory.category);
       if (selectedSubcategory) phrases.push(selectedSubcategory.name);
       const title = phrases.length
-        ? `${phrases.join(' – ')} | BetterGov.ph`
+        ? `${phrases.join(' – ')} | GOV.PH`
         : baseTitle;
       const description = phrases.length
         ? `Explore Philippine government services for ${phrases.join(' ')}. Find online resources, requirements, and assistance.`
@@ -168,7 +168,7 @@ export default function ServicesPage() {
         'government portal',
         ...phrases.map(p => p.toLowerCase()),
       ].join(', ');
-      let canonical = 'https://bettergov.ph/services';
+      let canonical = 'https://www.gov.ph/services';
       if (selectedCategorySlug !== 'all') {
         canonical += `?category=${selectedCategorySlug}`;
         if (selectedSubcategorySlug !== 'all') {
@@ -199,7 +199,7 @@ export default function ServicesPage() {
         <meta property='og:description' content={metaDescription} />
         <meta property='og:type' content='website' />
         <meta property='og:url' content={canonicalUrl} />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
+        <meta property='og:image' content='https://www.gov.ph/og-image.png' />
       </Helmet>
 
       <PageMasthead

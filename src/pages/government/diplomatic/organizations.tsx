@@ -36,7 +36,7 @@ const OrganizationsPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>International Organizations | BetterGov.ph</title>
+        <title>International Organizations | GOV.PH</title>
         <meta
           name='description'
           content='Offices of the United Nations, multilateral banks, and other international organizations hosted in the Philippines.'

@@ -241,7 +241,7 @@ describe('CMS access boundary', () => {
         findViolations([
           {
             path: 'src/lib/content.ts',
-            code: "export const load = () => fetch('https://api.bettergov.ph/cms/taxonomy');",
+            code: "export const load = () => fetch('https://api.gov.ph/cms/taxonomy');",
           },
         ])
       ).toEqual(['src/lib/content.ts: constructs a /cms/ endpoint']);

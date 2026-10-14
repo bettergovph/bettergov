@@ -97,12 +97,12 @@ const AboutPhilippines: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>About the Philippines | BetterGov.ph</title>
+        <title>About the Philippines | GOV.PH</title>
         <meta
           name='description'
           content='A source-backed introduction to the Philippines: geography, population, national symbols, history, culture, and regions.'
         />
-        <link rel='canonical' href='https://bettergov.ph/philippines/about' />
+        <link rel='canonical' href='https://www.gov.ph/philippines/about' />
       </Helmet>
 
       <PageMasthead

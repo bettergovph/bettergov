@@ -72,9 +72,6 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
           <span>{t('masthead.search', 'Search')}</span>
           <SearchIcon size={14} />
         </Link>
-        <Link to='/join-us' onClick={onClose} className={labelRow}>
-          <span>{t('masthead.joinUs', 'Join us')}</span>
-        </Link>
 
         {/* Utility links that live in the top bar on desktop. */}
         <nav
@@ -95,14 +92,13 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
           >
             {t('masthead.accessibility', 'Accessibility')}
           </Link>
-          <a
-            href='https://about.bettergov.ph'
-            target='_blank'
-            rel='noreferrer'
+          <Link
+            to='/about'
+            onClick={onClose}
             className='text-ed-ink-2 no-underline hover:text-ed-navy'
           >
             {t('masthead.about', 'About')}
-          </a>
+          </Link>
         </nav>
         <div className='mt-3'>
           <LangToggle />

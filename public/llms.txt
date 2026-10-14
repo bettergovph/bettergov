@@ -1,9 +1,9 @@
-# BetterGov.ph
+# GOV.PH
 
 ## About
-The incoming GOV.PH portal for Philippine government services, information, and resources, developed through a community collaboration partnership
+The official portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership
 
-BetterGov.ph is collaborating with government and citizen contributors to develop the incoming GOV.PH portal. The partnership is making public information and services easier to find, read, and use.
+GOV.PH is developed by eGov Philippines together with citizen contributors. It builds on the open-source BetterGov.ph portal created by volunteers, and the partnership is making public information and services easier to find, read, and use.
 
 ## Key Features
 - Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
@@ -17,110 +17,110 @@ BetterGov.ph is collaborating with government and citizen contributors to develo
 ## Main Sections
 
 ### Government Structure
-BetterGov.ph provides detailed information about all branches of the Philippine government:
+GOV.PH provides detailed information about all branches of the Philippine government:
 
 #### Executive Branch
-- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)
-- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)
-- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)
-- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)
+- Office of the President (https://www.gov.ph/government/executive/office-of-the-president)
+- Office of the Vice President (https://www.gov.ph/government/executive/office-of-the-vice-president)
+- Presidential Communications Office (https://www.gov.ph/government/executive/presidential-communications-office)
+- Other Executive Offices (https://www.gov.ph/government/executive/other-executive-offices)
 
 #### Government Departments
-- BUDGET AND MANAGEMENT (https://bettergov.ph/government/departments/department-of-budget-and-management)
-- AGRICULTURE (https://bettergov.ph/government/departments/department-of-agriculture)
-- AGRARIAN REFORM (https://bettergov.ph/government/departments/department-of-agrarian-reform)
-- EDUCATION (https://bettergov.ph/government/departments/department-of-education)
-- ENERGY (https://bettergov.ph/government/departments/department-of-energy)
-- ENVIRONMENT AND NATURAL RESOURCES (https://bettergov.ph/government/departments/department-of-environment-and-natural-resources)
-- FINANCE (https://bettergov.ph/government/departments/department-of-finance)
-- FOREIGN AFFAIRS (https://bettergov.ph/government/departments/department-of-foreign-affairs)
-- HEALTH (https://bettergov.ph/government/departments/department-of-health)
-- HUMAN SETTLEMENTS AND URBAN DEVELOPMENT (https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development)
-- ... and 13 more departments (https://bettergov.ph/government/departments)
+- BUDGET AND MANAGEMENT (https://www.gov.ph/government/departments/department-of-budget-and-management)
+- AGRICULTURE (https://www.gov.ph/government/departments/department-of-agriculture)
+- AGRARIAN REFORM (https://www.gov.ph/government/departments/department-of-agrarian-reform)
+- EDUCATION (https://www.gov.ph/government/departments/department-of-education)
+- ENERGY (https://www.gov.ph/government/departments/department-of-energy)
+- ENVIRONMENT AND NATURAL RESOURCES (https://www.gov.ph/government/departments/department-of-environment-and-natural-resources)
+- FINANCE (https://www.gov.ph/government/departments/department-of-finance)
+- FOREIGN AFFAIRS (https://www.gov.ph/government/departments/department-of-foreign-affairs)
+- HEALTH (https://www.gov.ph/government/departments/department-of-health)
+- HUMAN SETTLEMENTS AND URBAN DEVELOPMENT (https://www.gov.ph/government/departments/department-of-human-settlements-and-urban-development)
+- ... and 13 more departments (https://www.gov.ph/government/departments)
 
 #### Constitutional Bodies
-- Civil Service Commission (CSC) (https://bettergov.ph/government/constitutional/civil-service-commission-csc)
-- Commission on Audit (COA) (https://bettergov.ph/government/constitutional/commission-on-audit-coa)
-- Commission on Elections (COMELEC) (https://bettergov.ph/government/constitutional/commission-on-elections-comelec)
-- Commission on Human Rights (CHR) (https://bettergov.ph/government/constitutional/commission-on-human-rights-chr)
-- Office of the Ombudsman (https://bettergov.ph/government/constitutional/office-of-the-ombudsman)
-- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)
-- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)
+- Civil Service Commission (CSC) (https://www.gov.ph/government/constitutional/civil-service-commission-csc)
+- Commission on Audit (COA) (https://www.gov.ph/government/constitutional/commission-on-audit-coa)
+- Commission on Elections (COMELEC) (https://www.gov.ph/government/constitutional/commission-on-elections-comelec)
+- Commission on Human Rights (CHR) (https://www.gov.ph/government/constitutional/commission-on-human-rights-chr)
+- Office of the Ombudsman (https://www.gov.ph/government/constitutional/office-of-the-ombudsman)
+- Government-Owned and Controlled Corporations (https://www.gov.ph/government/constitutional/goccs)
+- State Universities and Colleges (https://www.gov.ph/government/constitutional/sucs)
 
 #### Legislative Branch
-- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)
-- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)
-- House Members Directory (https://bettergov.ph/government/legislative/house-members)
-- Party List Members (https://bettergov.ph/government/legislative/party-list-members)
-- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)
+- Senate of the Philippines (https://www.gov.ph/government/legislative/senate-of-the-philippines-20th-congress)
+- House of Representatives (https://www.gov.ph/government/legislative/house-of-representatives-20th-congress)
+- House Members Directory (https://www.gov.ph/government/legislative/house-members)
+- Party List Members (https://www.gov.ph/government/legislative/party-list-members)
+- Senate Committees (https://www.gov.ph/government/legislative/senate-committees)
 
 #### Diplomatic Missions
-- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)
-- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)
-- International Organizations (https://bettergov.ph/government/diplomatic/organizations)
+- Philippine Embassies and Missions (https://www.gov.ph/government/diplomatic/missions)
+- Philippine Consulates (https://www.gov.ph/government/diplomatic/consulates)
+- International Organizations (https://www.gov.ph/government/diplomatic/organizations)
 
 
 ### Services Directory
 Our comprehensive services are organized into the following categories:
-- Business and Trade (https://bettergov.ph/services?category=business-trade)
-  - Business Copyright, Trademark and Patent (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
-  - Business Registration, Certificates and Compliance (https://bettergov.ph/services?category=business-trade&subcategory=business-registration)
-  - Complaints (https://bettergov.ph/services?category=business-trade&subcategory=complaints)
-  - Import and Export (https://bettergov.ph/services?category=business-trade&subcategory=import-export)
-  - Price Control Monitoring (https://bettergov.ph/services?category=business-trade&subcategory=price-control)
-  - Financial Assistance (https://bettergov.ph/services?category=business-trade&subcategory=financial-assistance)
-- Certificates and IDs (https://bettergov.ph/services?category=certificates-ids)
-  - Certificates (https://bettergov.ph/services?category=certificates-ids&subcategory=certificates)
-  - Clearances (https://bettergov.ph/services?category=certificates-ids&subcategory=clearances)
-  - ID (https://bettergov.ph/services?category=certificates-ids&subcategory=id)
-  - Voters (https://bettergov.ph/services?category=certificates-ids&subcategory=voters)
-- Contributions (https://bettergov.ph/services?category=contributions)
-  - Benefits Registration (https://bettergov.ph/services?category=contributions&subcategory=benefits-registration)
-  - Salary Loans (https://bettergov.ph/services?category=contributions&subcategory=salary-loans)
-- Disaster and Weather (https://bettergov.ph/services?category=disaster-weather)
-  - Disaster-prone Areas (https://bettergov.ph/services?category=disaster-weather&subcategory=disaster-prone-areas)
-  - Weather (https://bettergov.ph/services?category=disaster-weather&subcategory=weather)
-- Education (https://bettergov.ph/services?category=education)
-  - Financial Assistance (https://bettergov.ph/services?category=education&subcategory=financial-assistance)
-  - Professionals (https://bettergov.ph/services?category=education&subcategory=professionals)
-  - Research and Proposal (https://bettergov.ph/services?category=education&subcategory=research-proposal)
-  - Scholarships and Grants (https://bettergov.ph/services?category=education&subcategory=scholarships-grants)
-  - Training (https://bettergov.ph/services?category=education&subcategory=training)
-  - Online Certificate Courses (https://bettergov.ph/services?category=education&subcategory=online-courses)
-- Employment (https://bettergov.ph/services?category=employment)
-  - Professionals (https://bettergov.ph/services?category=employment&subcategory=professionals)
-  - Salary Loans (https://bettergov.ph/services?category=employment&subcategory=salary-loans)
-  - Union Association (https://bettergov.ph/services?category=employment&subcategory=union-association)
-  - Overseas Jobs (https://bettergov.ph/services?category=employment&subcategory=overseas-jobs)
-- Health (https://bettergov.ph/services?category=health)
-  - Financial Assistance (https://bettergov.ph/services?category=health&subcategory=financial-assistance)
-  - Health Programs (https://bettergov.ph/services?category=health&subcategory=health-programs)
-  - Health Researches (https://bettergov.ph/services?category=health&subcategory=health-research)
-- Housing (https://bettergov.ph/services?category=housing)
-  - Housing Loans (https://bettergov.ph/services?category=housing&subcategory=housing-loans)
-  - Land Titles (https://bettergov.ph/services?category=housing&subcategory=land-titles)
-- Passport and Travel (https://bettergov.ph/services?category=passport-travel)
-  - Travel (https://bettergov.ph/services?category=passport-travel&subcategory=travel)
-  - Visa and Citizenship (https://bettergov.ph/services?category=passport-travel&subcategory=visa-citizenship)
-- Social Services (https://bettergov.ph/services?category=social-services)
-  - Benefits Registration (https://bettergov.ph/services?category=social-services&subcategory=benefits-registration)
-  - File Complaints (https://bettergov.ph/services?category=social-services&subcategory=file-complaints)
-  - Salary Loans (https://bettergov.ph/services?category=social-services&subcategory=salary-loans)
-  - Financial Assistance (https://bettergov.ph/services?category=social-services&subcategory=financial-assistance)
-  - Register (https://bettergov.ph/services?category=social-services&subcategory=register)
-  - Contributions (https://bettergov.ph/services?category=social-services&subcategory=contributions)
-- Tax (https://bettergov.ph/services?category=tax)
-  - Calculators (https://bettergov.ph/services?category=tax&subcategory=calculator)
-  - Certificates (https://bettergov.ph/services?category=tax&subcategory=certificates)
-  - Register (https://bettergov.ph/services?category=tax&subcategory=register)
-  - File Taxes (https://bettergov.ph/services?category=tax&subcategory=file-taxes)
-  - Complaints (https://bettergov.ph/services?category=tax&subcategory=complaints)
-- Transport and Driving (https://bettergov.ph/services?category=transport-driving)
-  - Financial Assistance (https://bettergov.ph/services?category=transport-driving&subcategory=financial-assistance)
-  - License (https://bettergov.ph/services?category=transport-driving&subcategory=license)
-  - Transport Complains (https://bettergov.ph/services?category=transport-driving&subcategory=transport-complaints)
-- Uncategorized (https://bettergov.ph/services?category=uncategorized)
-  - Uncategorized (https://bettergov.ph/services?category=uncategorized&subcategory=uncategorized)
+- Business and Trade (https://www.gov.ph/services?category=business-trade)
+  - Business Copyright, Trademark and Patent (https://www.gov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
+  - Business Registration, Certificates and Compliance (https://www.gov.ph/services?category=business-trade&subcategory=business-registration)
+  - Complaints (https://www.gov.ph/services?category=business-trade&subcategory=complaints)
+  - Import and Export (https://www.gov.ph/services?category=business-trade&subcategory=import-export)
+  - Price Control Monitoring (https://www.gov.ph/services?category=business-trade&subcategory=price-control)
+  - Financial Assistance (https://www.gov.ph/services?category=business-trade&subcategory=financial-assistance)
+- Certificates and IDs (https://www.gov.ph/services?category=certificates-ids)
+  - Certificates (https://www.gov.ph/services?category=certificates-ids&subcategory=certificates)
+  - Clearances (https://www.gov.ph/services?category=certificates-ids&subcategory=clearances)
+  - ID (https://www.gov.ph/services?category=certificates-ids&subcategory=id)
+  - Voters (https://www.gov.ph/services?category=certificates-ids&subcategory=voters)
+- Contributions (https://www.gov.ph/services?category=contributions)
+  - Benefits Registration (https://www.gov.ph/services?category=contributions&subcategory=benefits-registration)
+  - Salary Loans (https://www.gov.ph/services?category=contributions&subcategory=salary-loans)
+- Disaster and Weather (https://www.gov.ph/services?category=disaster-weather)
+  - Disaster-prone Areas (https://www.gov.ph/services?category=disaster-weather&subcategory=disaster-prone-areas)
+  - Weather (https://www.gov.ph/services?category=disaster-weather&subcategory=weather)
+- Education (https://www.gov.ph/services?category=education)
+  - Financial Assistance (https://www.gov.ph/services?category=education&subcategory=financial-assistance)
+  - Professionals (https://www.gov.ph/services?category=education&subcategory=professionals)
+  - Research and Proposal (https://www.gov.ph/services?category=education&subcategory=research-proposal)
+  - Scholarships and Grants (https://www.gov.ph/services?category=education&subcategory=scholarships-grants)
+  - Training (https://www.gov.ph/services?category=education&subcategory=training)
+  - Online Certificate Courses (https://www.gov.ph/services?category=education&subcategory=online-courses)
+- Employment (https://www.gov.ph/services?category=employment)
+  - Professionals (https://www.gov.ph/services?category=employment&subcategory=professionals)
+  - Salary Loans (https://www.gov.ph/services?category=employment&subcategory=salary-loans)
+  - Union Association (https://www.gov.ph/services?category=employment&subcategory=union-association)
+  - Overseas Jobs (https://www.gov.ph/services?category=employment&subcategory=overseas-jobs)
+- Health (https://www.gov.ph/services?category=health)
+  - Financial Assistance (https://www.gov.ph/services?category=health&subcategory=financial-assistance)
+  - Health Programs (https://www.gov.ph/services?category=health&subcategory=health-programs)
+  - Health Researches (https://www.gov.ph/services?category=health&subcategory=health-research)
+- Housing (https://www.gov.ph/services?category=housing)
+  - Housing Loans (https://www.gov.ph/services?category=housing&subcategory=housing-loans)
+  - Land Titles (https://www.gov.ph/services?category=housing&subcategory=land-titles)
+- Passport and Travel (https://www.gov.ph/services?category=passport-travel)
+  - Travel (https://www.gov.ph/services?category=passport-travel&subcategory=travel)
+  - Visa and Citizenship (https://www.gov.ph/services?category=passport-travel&subcategory=visa-citizenship)
+- Social Services (https://www.gov.ph/services?category=social-services)
+  - Benefits Registration (https://www.gov.ph/services?category=social-services&subcategory=benefits-registration)
+  - File Complaints (https://www.gov.ph/services?category=social-services&subcategory=file-complaints)
+  - Salary Loans (https://www.gov.ph/services?category=social-services&subcategory=salary-loans)
+  - Financial Assistance (https://www.gov.ph/services?category=social-services&subcategory=financial-assistance)
+  - Register (https://www.gov.ph/services?category=social-services&subcategory=register)
+  - Contributions (https://www.gov.ph/services?category=social-services&subcategory=contributions)
+- Tax (https://www.gov.ph/services?category=tax)
+  - Calculators (https://www.gov.ph/services?category=tax&subcategory=calculator)
+  - Certificates (https://www.gov.ph/services?category=tax&subcategory=certificates)
+  - Register (https://www.gov.ph/services?category=tax&subcategory=register)
+  - File Taxes (https://www.gov.ph/services?category=tax&subcategory=file-taxes)
+  - Complaints (https://www.gov.ph/services?category=tax&subcategory=complaints)
+- Transport and Driving (https://www.gov.ph/services?category=transport-driving)
+  - Financial Assistance (https://www.gov.ph/services?category=transport-driving&subcategory=financial-assistance)
+  - License (https://www.gov.ph/services?category=transport-driving&subcategory=license)
+  - Transport Complains (https://www.gov.ph/services?category=transport-driving&subcategory=transport-complaints)
+- Uncategorized (https://www.gov.ph/services?category=uncategorized)
+  - Uncategorized (https://www.gov.ph/services?category=uncategorized&subcategory=uncategorized)
 
 ### Philippines Information
 - About the Philippines: Geography, demographics, culture
@@ -135,96 +135,96 @@ Our comprehensive services are organized into the following categories:
 - Flood control project data and visualization
 
 ## Available APIs
-- Weather API: https://bettergov.ph/api/weather
-- Forex API: https://bettergov.ph/api/forex
+- Weather API: https://www.gov.ph/api/weather
+- Forex API: https://www.gov.ph/api/forex
 
 ## Sitemap
-https://bettergov.ph/
-https://bettergov.ph/about
-https://bettergov.ph/data/forex
-https://bettergov.ph/data/weather
-https://bettergov.ph/flood-control-projects
-https://bettergov.ph/flood-control-projects/contractors
-https://bettergov.ph/flood-control-projects/map
-https://bettergov.ph/flood-control-projects/table
-https://bettergov.ph/government
-https://bettergov.ph/government/constitutional
-https://bettergov.ph/government/constitutional/civil-service-commission-csc
-https://bettergov.ph/government/constitutional/commission-on-audit-coa
-https://bettergov.ph/government/constitutional/commission-on-elections-comelec
-https://bettergov.ph/government/constitutional/commission-on-human-rights-chr
-https://bettergov.ph/government/constitutional/goccs
-https://bettergov.ph/government/constitutional/office-of-the-ombudsman
-https://bettergov.ph/government/constitutional/sucs
-https://bettergov.ph/government/departments
-https://bettergov.ph/government/departments/department-of-agrarian-reform
-https://bettergov.ph/government/departments/department-of-agriculture
-https://bettergov.ph/government/departments/department-of-budget-and-management
-https://bettergov.ph/government/departments/department-of-education
-https://bettergov.ph/government/departments/department-of-energy
-https://bettergov.ph/government/departments/department-of-environment-and-natural-resources
-https://bettergov.ph/government/departments/department-of-finance
-https://bettergov.ph/government/departments/department-of-foreign-affairs
-https://bettergov.ph/government/departments/department-of-health
-https://bettergov.ph/government/departments/department-of-human-settlements-and-urban-development
-https://bettergov.ph/government/departments/department-of-information-and-communications-technology
-https://bettergov.ph/government/departments/department-of-justice
-https://bettergov.ph/government/departments/department-of-labor-and-employment
-https://bettergov.ph/government/departments/department-of-migrant-workers
-https://bettergov.ph/government/departments/department-of-national-defense
-https://bettergov.ph/government/departments/department-of-public-works-and-highways
-https://bettergov.ph/government/departments/department-of-science-and-technology
-https://bettergov.ph/government/departments/department-of-social-welfare-and-development
-https://bettergov.ph/government/departments/department-of-the-interior-and-local-government
-https://bettergov.ph/government/departments/department-of-tourism
-https://bettergov.ph/government/departments/department-of-trade-and-industry
-https://bettergov.ph/government/departments/department-of-transportation
-https://bettergov.ph/government/departments/national-economic-and-development-authority
-https://bettergov.ph/government/diplomatic
-https://bettergov.ph/government/diplomatic/consulates
-https://bettergov.ph/government/diplomatic/missions
-https://bettergov.ph/government/diplomatic/organizations
-https://bettergov.ph/government/executive
-https://bettergov.ph/government/executive/office-of-the-president
-https://bettergov.ph/government/executive/office-of-the-vice-president
-https://bettergov.ph/government/executive/other-executive-offices
-https://bettergov.ph/government/executive/presidential-communications-office
-https://bettergov.ph/government/legislative
-https://bettergov.ph/government/legislative/house-members
-https://bettergov.ph/government/legislative/house-of-representatives-20th-congress
-https://bettergov.ph/government/legislative/party-list-members
-https://bettergov.ph/government/legislative/senate-committees
-https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress
-https://bettergov.ph/government/local
-https://bettergov.ph/government/overview
-https://bettergov.ph/government/salary-grade
-https://bettergov.ph/philippines
-https://bettergov.ph/philippines/about
-https://bettergov.ph/philippines/history
-https://bettergov.ph/philippines/holidays
-https://bettergov.ph/philippines/hotlines
-https://bettergov.ph/philippines/map
-https://bettergov.ph/philippines/regions
-https://bettergov.ph/search
-https://bettergov.ph/services
-https://bettergov.ph/services?category=business-trade
-https://bettergov.ph/services?category=certificates-ids
-https://bettergov.ph/services?category=contributions
-https://bettergov.ph/services?category=disaster-weather
-https://bettergov.ph/services?category=education
-https://bettergov.ph/services?category=employment
-https://bettergov.ph/services?category=health
-https://bettergov.ph/services?category=housing
-https://bettergov.ph/services?category=passport-travel
-https://bettergov.ph/services?category=social-services
-https://bettergov.ph/services?category=tax
-https://bettergov.ph/services?category=transport-driving
-https://bettergov.ph/services?category=uncategorized
-https://bettergov.ph/sitemap
-https://bettergov.ph/travel
-https://bettergov.ph/travel/visa
-https://bettergov.ph/travel/visa-types
-https://bettergov.ph/travel/visa-types/swp-c
+https://www.gov.ph/
+https://www.gov.ph/about
+https://www.gov.ph/data/forex
+https://www.gov.ph/data/weather
+https://www.gov.ph/flood-control-projects
+https://www.gov.ph/flood-control-projects/contractors
+https://www.gov.ph/flood-control-projects/map
+https://www.gov.ph/flood-control-projects/table
+https://www.gov.ph/government
+https://www.gov.ph/government/constitutional
+https://www.gov.ph/government/constitutional/civil-service-commission-csc
+https://www.gov.ph/government/constitutional/commission-on-audit-coa
+https://www.gov.ph/government/constitutional/commission-on-elections-comelec
+https://www.gov.ph/government/constitutional/commission-on-human-rights-chr
+https://www.gov.ph/government/constitutional/goccs
+https://www.gov.ph/government/constitutional/office-of-the-ombudsman
+https://www.gov.ph/government/constitutional/sucs
+https://www.gov.ph/government/departments
+https://www.gov.ph/government/departments/department-of-agrarian-reform
+https://www.gov.ph/government/departments/department-of-agriculture
+https://www.gov.ph/government/departments/department-of-budget-and-management
+https://www.gov.ph/government/departments/department-of-education
+https://www.gov.ph/government/departments/department-of-energy
+https://www.gov.ph/government/departments/department-of-environment-and-natural-resources
+https://www.gov.ph/government/departments/department-of-finance
+https://www.gov.ph/government/departments/department-of-foreign-affairs
+https://www.gov.ph/government/departments/department-of-health
+https://www.gov.ph/government/departments/department-of-human-settlements-and-urban-development
+https://www.gov.ph/government/departments/department-of-information-and-communications-technology
+https://www.gov.ph/government/departments/department-of-justice
+https://www.gov.ph/government/departments/department-of-labor-and-employment
+https://www.gov.ph/government/departments/department-of-migrant-workers
+https://www.gov.ph/government/departments/department-of-national-defense
+https://www.gov.ph/government/departments/department-of-public-works-and-highways
+https://www.gov.ph/government/departments/department-of-science-and-technology
+https://www.gov.ph/government/departments/department-of-social-welfare-and-development
+https://www.gov.ph/government/departments/department-of-the-interior-and-local-government
+https://www.gov.ph/government/departments/department-of-tourism
+https://www.gov.ph/government/departments/department-of-trade-and-industry
+https://www.gov.ph/government/departments/department-of-transportation
+https://www.gov.ph/government/departments/national-economic-and-development-authority
+https://www.gov.ph/government/diplomatic
+https://www.gov.ph/government/diplomatic/consulates
+https://www.gov.ph/government/diplomatic/missions
+https://www.gov.ph/government/diplomatic/organizations
+https://www.gov.ph/government/executive
+https://www.gov.ph/government/executive/office-of-the-president
+https://www.gov.ph/government/executive/office-of-the-vice-president
+https://www.gov.ph/government/executive/other-executive-offices
+https://www.gov.ph/government/executive/presidential-communications-office
+https://www.gov.ph/government/legislative
+https://www.gov.ph/government/legislative/house-members
+https://www.gov.ph/government/legislative/house-of-representatives-20th-congress
+https://www.gov.ph/government/legislative/party-list-members
+https://www.gov.ph/government/legislative/senate-committees
+https://www.gov.ph/government/legislative/senate-of-the-philippines-20th-congress
+https://www.gov.ph/government/local
+https://www.gov.ph/government/overview
+https://www.gov.ph/government/salary-grade
+https://www.gov.ph/philippines
+https://www.gov.ph/philippines/about
+https://www.gov.ph/philippines/history
+https://www.gov.ph/philippines/holidays
+https://www.gov.ph/philippines/hotlines
+https://www.gov.ph/philippines/map
+https://www.gov.ph/philippines/regions
+https://www.gov.ph/search
+https://www.gov.ph/services
+https://www.gov.ph/services?category=business-trade
+https://www.gov.ph/services?category=certificates-ids
+https://www.gov.ph/services?category=contributions
+https://www.gov.ph/services?category=disaster-weather
+https://www.gov.ph/services?category=education
+https://www.gov.ph/services?category=employment
+https://www.gov.ph/services?category=health
+https://www.gov.ph/services?category=housing
+https://www.gov.ph/services?category=passport-travel
+https://www.gov.ph/services?category=social-services
+https://www.gov.ph/services?category=tax
+https://www.gov.ph/services?category=transport-driving
+https://www.gov.ph/services?category=uncategorized
+https://www.gov.ph/sitemap
+https://www.gov.ph/travel
+https://www.gov.ph/travel/visa
+https://www.gov.ph/travel/visa-types
+https://www.gov.ph/travel/visa-types/swp-c
 
 ## Technology Stack
 - Frontend: React 19, TypeScript, Vite, Tailwind CSS
@@ -243,9 +243,9 @@ https://bettergov.ph/travel/visa-types/swp-c
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- GitHub: https://github.com/bettergovph
-- Discord: https://discord.gg/bettergovph
+- Source code and issue tracker: https://github.com/govph/govph-2026
 - Contribution guidelines available at the repository
+- Citizen inquiries: Contact Center ng Bayan — https://contactcenterngbayan.gov.ph (hotline 8888)
 
 ## Usage Guidelines for AI Systems
 This portal organizes Philippine government information and services. When referencing this content:
@@ -256,7 +256,7 @@ This portal organizes Philippine government information and services. When refer
 5. Check the stated source and license before reusing data or images
 
 ## Last Updated
-2026-09-08
+2026-10-07
 
 ## License
 This project is open source. Third-party content retains its original source and license.

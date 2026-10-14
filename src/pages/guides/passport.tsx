@@ -154,7 +154,7 @@ const PassportGuide: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Philippine Passport — a step-by-step guide | BetterGov.ph</title>
+        <title>Philippine Passport — a step-by-step guide | GOV.PH</title>
         <meta
           name='description'
           content='Apply for or renew a Philippine passport. Every requirement, fee, and waiting period explained — in plain language.'

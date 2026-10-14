@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Comprehensive Security Test Suite for BetterGov.ph
+ * Comprehensive Security Test Suite for GOV.PH
  * Tests all critical security measures implemented in the crawl endpoint
  */
 
@@ -496,7 +496,7 @@ async function testHttpMethodValidation() {
  * Main test runner
  */
 async function runTests() {
-  console.log('🔒 BetterGov.ph Security Test Suite');
+  console.log('🔒 GOV.PH Security Test Suite');
   console.log('=====================================');
   console.log(`Base URL: ${BASE_URL}`);
   console.log(`Timeout: ${TEST_TIMEOUT}ms per test`);

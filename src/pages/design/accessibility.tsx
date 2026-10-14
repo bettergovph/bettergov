@@ -54,12 +54,12 @@ const TESTS = [
 const DesignAccessibilityPage: FC = () => (
   <>
     <Helmet>
-      <title>Accessibility — Design System | BetterGov.ph</title>
+      <title>Accessibility — Design System | GOV.PH</title>
       <meta
         name='description'
-        content='How the BetterGov design system supports WCAG 2.1 AA, what service teams still need to do, and how to test that everyone can use your service.'
+        content='How the GOV.PH design system supports WCAG 2.1 AA, what service teams still need to do, and how to test that everyone can use your service.'
       />
-      <link rel='canonical' href='https://bettergov.ph/design/accessibility' />
+      <link rel='canonical' href='https://www.gov.ph/design/accessibility' />
     </Helmet>
 
     <PageHeader
@@ -123,7 +123,7 @@ const DesignAccessibilityPage: FC = () => (
           system improves too.
         </p>
         <ArrowLink to='/accessibility'>
-          Read the BetterGov.ph accessibility statement
+          Read the GOV.PH accessibility statement
         </ArrowLink>
       </Prose>
     </DocSection>

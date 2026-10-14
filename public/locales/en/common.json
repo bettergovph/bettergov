@@ -23,7 +23,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "2025 BetterGov.ph - All content is public domain unless otherwise specified."
+    "copyright": "2025 GOV.PH - All content is public domain unless otherwise specified."
   },
   "navbar": {
     "home": "Home",
@@ -32,8 +32,7 @@
     "guides": "Guides",
     "travel": "Travel",
     "directory": "Directory",
-    "flood control projects": "Flood Control Projects",
-    "our projects": "Our Projects"
+    "flood control projects": "Flood Control Projects"
   },
   "masthead": {
     "advisory": "Advisory",
@@ -44,7 +43,6 @@
     "contact": "Contact",
     "accessibility": "Accessibility",
     "about": "About",
-    "joinUs": "Join us",
     "tagline": "The official portal of the Republic of the Philippines",
     "search": "Search",
     "signIn": "Sign in",
@@ -92,19 +90,6 @@
   "footerBottom": {
     "copyright": "Republic of the Philippines · All rights reserved",
     "license": "CC BY 4.0 · MIT"
-  },
-  "joinUs": {
-    "stripTitle": "🚀 Join the #CivicTech Revolution",
-    "stripSubtitle": "Help build the future of the Philippines and governance through technology",
-    "joinNow": "Join Now",
-    "discord": "Discord",
-    "bannerTitle": "Join the #CivicTech Revolution",
-    "bannerSubtitle": "Help build the future of the Philippines and governance through technology.",
-    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
-    "joinMovement": "Join Our Movement",
-    "or": "or",
-    "joinDiscord": "Join Discord",
-    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
   },
   "data": {
     "title": "Real-Time Data Services",

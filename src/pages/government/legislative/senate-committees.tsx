@@ -39,7 +39,7 @@ const SenateCommitteesPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Senate · Permanent Committees | BetterGov.ph</title>
+        <title>Senate · Permanent Committees | GOV.PH</title>
         <meta
           name='description'
           content='Permanent committees of the Philippine Senate and their chairpersons.'

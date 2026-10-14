@@ -38,9 +38,7 @@ const PartyListMembersPage: FC = () => {
   return (
     <>
       <Helmet>
-        <title>
-          House of Representatives · Party-list Members | BetterGov.ph
-        </title>
+        <title>House of Representatives · Party-list Members | GOV.PH</title>
         <meta
           name='description'
           content='Party-list representatives of the Philippine House of Representatives — marginalized and underrepresented sectors, up to 20 percent of House seats.'

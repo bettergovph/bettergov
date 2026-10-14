@@ -11,6 +11,7 @@ import PlaceholderImage from '../../components/v2/ui/PlaceholderImage';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import { GUIDES, GUIDE_CATEGORIES, GuideCategory, GuideSummary } from './data';
 import { cn } from '../../lib/utils';
+import { NEW_ISSUE_URL, REPO_URL } from '../../lib/brand';
 
 const guideHref = (g: GuideSummary) =>
   g.id === 'passport' ? '/guides/passport' : `/guides?topic=${g.id}`;
@@ -46,7 +47,7 @@ const GuidesIndex: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Guides · Plain-language walkthroughs | BetterGov.ph</title>
+        <title>Guides · Plain-language walkthroughs | GOV.PH</title>
         <meta
           name='description'
           content='Detailed, step-by-step guides to the most common transactions with the Philippine government. Written in plain language, organized as checklists, and updated when rules change.'
@@ -261,19 +262,23 @@ const GuidesIndex: FC = () => {
                 Suggest a guide. We&rsquo;ll write it.
               </h2>
               <p className='mt-3.5 max-w-[560px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
-                BetterGov.ph is written by volunteers. Every guide starts from a
-                real transaction someone needed help understanding. If
-                you&rsquo;ve navigated a government process and took notes,
-                we&rsquo;d love to publish them.
+                Every guide starts from a real transaction someone needed help
+                understanding. If you&rsquo;ve navigated a government process
+                and took notes, we&rsquo;d love to publish them.
               </p>
             </div>
             <div className='flex flex-col gap-2.5'>
-              <Button as={Link} to='/ideas'>
+              <Button
+                as='a'
+                href={NEW_ISSUE_URL}
+                target='_blank'
+                rel='noreferrer'
+              >
                 <span>Suggest a guide</span> <ArrowRightIcon size={14} />
               </Button>
               <Button
                 as='a'
-                href='https://github.com/bettergovph/bettergov'
+                href={REPO_URL}
                 target='_blank'
                 rel='noreferrer'
                 variant='ghost'

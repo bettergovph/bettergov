@@ -763,7 +763,7 @@ const FloodControlProjectsTable: FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       <Helmet>
-        <title>Flood Control Projects Table | BetterGov.ph</title>
+        <title>Flood Control Projects Table | GOV.PH</title>
         <meta
           name='description'
           content='Explore flood control projects data in tabular format'

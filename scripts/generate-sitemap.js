@@ -272,7 +272,7 @@ function generateGovernmentUrls(siteUrl, governmentData) {
 
 // Function to generate all site URLs
 function generateSiteUrls(mainNavigation, governmentData) {
-  const siteUrl = 'https://bettergov.ph';
+  const siteUrl = 'https://www.gov.ph';
   const urls = new Set();
 
   // Add main pages with priorities and change frequencies
@@ -294,7 +294,6 @@ function generateSiteUrls(mainNavigation, governmentData) {
     '/design/components',
     '/design/patterns',
     '/design/accessibility',
-    '/design/community',
   ].map(path => ({
     url: `${siteUrl}${path}`,
     priority: '0.5',

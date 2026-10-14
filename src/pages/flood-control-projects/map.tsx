@@ -370,7 +370,7 @@ const FloodControlProjectsMap: FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       <Helmet>
-        <title>Flood Control Projects Map | BetterGov.ph</title>
+        <title>Flood Control Projects Map | GOV.PH</title>
         <meta
           name='description'
           content='Explore flood control projects on an interactive map'

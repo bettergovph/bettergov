@@ -122,7 +122,7 @@ const DesignSystemLayout: FC = () => {
                   Brand guide presentation →
                 </NavLink>
                 <a
-                  href='https://github.com/bettergovph/bettergov/issues'
+                  href='https://github.com/govph/govph-2026/issues'
                   target='_blank'
                   rel='noreferrer'
                   className='inline-flex items-center gap-1.5 font-sans-ed text-[13px] text-ed-ink-2 no-underline transition-colors hover:text-ed-navy'

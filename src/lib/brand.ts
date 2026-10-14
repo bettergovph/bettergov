@@ -16,6 +16,24 @@ export const SITE_NAME = 'GOV.PH';
 /** Sub-label rendered under the wordmark. */
 export const SITE_OWNER = 'Republic of the Philippines';
 
+/** One-line description used in page titles and social cards. */
+export const SITE_TAGLINE =
+  'The Official Portal of the Republic of the Philippines';
+
+/**
+ * Canonical origin for absolute URLs (canonical links, Open Graph, sitemap,
+ * llms.txt). Change it here if the production host differs.
+ */
+export const SITE_URL = 'https://www.gov.ph';
+
+/** Social-card image, served from `public/`. */
+export const DEFAULT_OG_IMAGE = '/og-image.png';
+
+/** Source repository for this portal. */
+export const REPO_URL = 'https://github.com/govph/govph-2026';
+export const ISSUES_URL = `${REPO_URL}/issues`;
+export const NEW_ISSUE_URL = `${REPO_URL}/issues/new`;
+
 /**
  * The national branding campaign mark, shown in the footer.
  *

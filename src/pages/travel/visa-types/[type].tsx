@@ -44,7 +44,7 @@ const VisaTypeDetail: FC = () => {
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>{v.name} · Philippine Visa | BetterGov.ph</title>
+        <title>{v.name} · Philippine Visa | GOV.PH</title>
         <meta name='description' content={v.description} />
       </Helmet>
 

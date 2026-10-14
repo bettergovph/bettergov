@@ -113,12 +113,12 @@ const BrandGuidePage: FC = () => {
   return (
     <main className='bg-white font-sans-ed text-ed-ink antialiased'>
       <Helmet>
-        <title>Design — GOV.PH Brand Guidelines | BetterGov.ph</title>
+        <title>Design — GOV.PH Brand Guidelines | GOV.PH</title>
         <meta
           name='description'
           content='The GOV.PH brand guidelines as a presentation: the mark, the colour system, the typography, and the voice of Philippine government digital services.'
         />
-        <link rel='canonical' href='https://bettergov.ph/design' />
+        <link rel='canonical' href='https://www.gov.ph/design' />
       </Helmet>
 
       {/* ------------------------------------------------ Cover */}
@@ -246,9 +246,9 @@ const BrandGuidePage: FC = () => {
                 the task someone came to finish.
               </p>
               <p>
-                Everything in this guide ships as code in the open-source
-                BetterGov design system, released to the public domain. Any
-                agency, LGU, or civic project may take it and use it.
+                Everything in this guide ships as code in the open-source GOV.PH
+                design system, released to the public domain. Any agency, LGU,
+                or civic project may take it and use it.
               </p>
             </div>
           </div>
@@ -594,7 +594,7 @@ const BrandGuidePage: FC = () => {
               Read the full guidelines <ArrowRightIcon size={15} aria-hidden />
             </Link>
             <a
-              href='https://github.com/bettergovph/bettergov'
+              href='https://github.com/govph/govph-2026'
               target='_blank'
               rel='noreferrer'
               className='inline-flex h-11 items-center justify-center gap-2.5 border border-white px-6 font-sans-ed text-sm font-semibold text-white no-underline transition-colors hover:bg-white hover:text-ed-navy-ink'

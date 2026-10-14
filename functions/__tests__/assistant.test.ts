@@ -30,7 +30,7 @@ const post = (
     headers.set('content-type', init.contentType ?? 'application/json');
   }
   const method = init.method ?? 'POST';
-  return new Request('https://api.bettergov.ph/api/assistant', {
+  return new Request('https://api.gov.ph/api/assistant', {
     method,
     headers,
     body:

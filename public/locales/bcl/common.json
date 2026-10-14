@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Maogmang Pag-abot sa BetterGov.ph",
+    "title": "Maogmang Pag-abot sa GOV.PH",
     "subtitle": "An volunteer-run portal kan Republika kan Pilipinas. Maghanap nin impormasyon, pag-access sa mga serbisyo kan gobyerno, magpirmi na updated sa pinakabagong balita tungkol sa Pilipinas."
   },
   "services": {
@@ -16,7 +16,7 @@
     "title": "Pinakabagong Balita asin Updates"
   },
   "footer": {
-    "copyright": "2025 BetterGov.ph - Gabos na laog iyo sa public domain kun mayo an ibang nakasurat."
+    "copyright": "2025 GOV.PH - Gabos na laog iyo sa public domain kun mayo an ibang nakasurat."
   },
   "navbar": {
     "philippines": "Pilipinas",
