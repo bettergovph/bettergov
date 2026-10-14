@@ -11,6 +11,12 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const guides = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, '../src/data/guides/manifest.json'),
+    'utf8'
+  )
+);
 
 // Import data from the project
 const serviceCategoriesPath = path.join(
@@ -40,6 +46,14 @@ const executivePath = path.join(
 
 // Static navigation data (extracted from navigation.ts to avoid import issues)
 const mainNavigation = [
+  {
+    label: 'Guides',
+    href: '/guides',
+    children: guides.map(guide => ({
+      label: guide.title,
+      href: `/guides/${guide.id}`,
+    })),
+  },
   {
     label: 'Philippines',
     href: '/philippines',

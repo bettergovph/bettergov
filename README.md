@@ -128,6 +128,13 @@ docker-compose down
 This project uses Playwright for end-to-end testing.
 For setup instructions, coverage details, and examples, see our [Testing Guide](./TESTING.md).
 
+## Guide content
+
+The 19 guides under `/guides/:guideId` use repository-owned Markdown articles
+adapted from the Notion drafts for public use. See [the guide content notes](src/data/guides/README.md)
+for source provenance, review dates, and editing instructions. The guide index,
+HTML/XML sitemaps, and `llms.txt` use `src/data/guides/manifest.json`.
+
 ## Syncing content from TalaCMS
 
 `src/data/service_categories.json`, `src/data/critical_hotlines.json`,
@@ -321,7 +328,7 @@ the taxonomy by hand. Check each row after a category is added or retired:
    as an unfiltered directory.
 3. **Footer** (`src/components/v2/layout/Footer.tsx`) — curated top-5; usually
    skip. (Its `revenue-taxation` link is already broken — not a taxonomy slug.)
-4. **Guides** (`src/pages/guides/passport.tsx`) — only if a guide references it.
+4. **Guides** (`src/data/guides/*.md`) — only if a guide references it.
 5. **Hero quick links** (`src/components/v2/home/Hero.tsx`) — three curated
    category/subcategory pairs. Only relevant if one is retired.
 6. **`src/data/seo-metadata.json`** — 44 `?category=` keys. Add an entry for a

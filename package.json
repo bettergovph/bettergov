@@ -67,9 +67,11 @@
     "react-instantsearch": "^7.15.8",
     "react-leaflet": "^5.0.0",
     "react-leaflet-cluster": "^4.0.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^6.22.2",
     "react-world-flags": "^1.6.0",
     "recharts": "^2.15.3",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.2.1",
     "wrangler": "^4.19.1",
     "zod": "^4.1.11"
