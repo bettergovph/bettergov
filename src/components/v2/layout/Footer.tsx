@@ -111,6 +111,17 @@ const Footer: FC = () => {
     },
     { label: t('footerNav.forex', 'Forex'), href: '/data/forex' },
     { label: t('footerNav.weather', 'Weather'), href: '/data/weather' },
+    {
+      label: t('footerNav.pna', 'Philippine News Agency'),
+      href: 'https://www.pna.gov.ph',
+      external: true,
+    },
+    {
+      // .gov.ph: officialgazette.ph isn't the government's (redirects to spam).
+      label: t('footerNav.officialGazette', 'Official Gazette'),
+      href: 'https://www.officialgazette.gov.ph',
+      external: true,
+    },
   ];
 
   const aboutCol: FooterLink[] = [

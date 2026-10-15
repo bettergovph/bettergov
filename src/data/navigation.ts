@@ -80,6 +80,20 @@ export const mainNavigation: NavigationItem[] = [
         href: '/news?category=circular',
         blurb: 'Memorandum circulars and proclamations.',
       },
+      {
+        label: 'Philippine News Agency',
+        href: 'https://www.pna.gov.ph',
+        target: '_blank',
+        blurb: 'The official news agency of the government.',
+      },
+      {
+        label: 'Official Gazette',
+        // Not officialgazette.ph: that domain isn't the government's and
+        // redirects to spam.
+        href: 'https://www.officialgazette.gov.ph',
+        target: '_blank',
+        blurb: 'Laws, executive orders, and proclamations.',
+      },
     ],
   },
   {
