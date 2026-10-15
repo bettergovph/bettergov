@@ -22,7 +22,7 @@ jobs:
           persist-credentials: false
 
       - name: Install actionlint
-        uses: supplypike/setup-bin@1fafb085795af4a3f183502f3a9dffa8f7b83217 # v5.0.0
+        uses: supplypike/setup-bin@73f5356f4d8a8588c525365fad26435ee1de4eaa # v5.0.2
         with:
           uri: 'https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz'
           name: 'actionlint'
