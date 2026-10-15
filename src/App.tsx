@@ -10,6 +10,7 @@ import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
+import Home from './pages/Home';
 import ComingSoon from './pages/ComingSoon';
 import DesignSystemLayout from './pages/design/layout';
 import DesignSystemHome from './pages/design';
@@ -120,9 +121,11 @@ function App() {
             <GovPhChatbot />
           </SiteChrome>
           <Routes>
-            {/* Coming-soon page until launch. Swap back to <Home /> (and drop
-                SiteChrome) to restore the portal home page. */}
+            {/* Coming-soon page until launch; the portal home page lives at
+                /home meanwhile. To restore it, route `/` back to <Home /> and
+                drop SiteChrome. */}
             <Route path='/' element={<ComingSoon />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/design'>
               {/* The brand guide presentation is the front door — full
                   bleed, outside the sidebar layout on purpose. */}
