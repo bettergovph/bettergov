@@ -88,29 +88,36 @@ const ExecutiveIndex: FC = () => {
 
             <Link
               to={`/government/executive/${vicePresident.slug}`}
-              className='group grid grid-cols-[104px_minmax(0,1fr)] items-center gap-5 self-start border border-ed-rule bg-white p-5 text-ed-ink no-underline transition-colors hover:border-ed-navy max-md:grid-cols-[72px_minmax(0,1fr)] max-md:gap-4 max-md:p-4'
+              className='group grid grid-cols-[minmax(110px,150px)_minmax(0,1fr)] overflow-hidden border border-ed-rule bg-white text-ed-ink no-underline transition-colors hover:border-ed-navy max-sm:grid-cols-[120px_minmax(0,1fr)]'
             >
               <img
-                src={vicePresident.portrait.thumb}
+                src={vicePresident.portrait.src}
                 alt=''
-                width={240}
-                height={300}
-                className='aspect-[4/5] w-full bg-ed-paper-3 object-cover'
+                width={vicePresident.portrait.width}
+                height={vicePresident.portrait.height}
+                className='h-full w-full bg-ed-paper-3 object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]'
               />
-              <span className='min-w-0'>
-                <Eyebrow tone='red'>{vicePresident.title}</Eyebrow>
-                <span className='mt-1.5 block font-serif-ed text-[22px] font-semibold leading-tight text-ed-ink group-hover:text-ed-navy max-md:text-lg'>
-                  {vicePresident.name}
+              <span className='flex min-w-0 flex-col justify-between gap-6 p-6 max-md:p-5 max-sm:gap-4 max-sm:p-4'>
+                <span>
+                  <Eyebrow tone='red'>{vicePresident.title}</Eyebrow>
+                  <span className='mt-3 block font-serif-ed text-[26px] font-bold leading-[1.05] tracking-[-0.02em] text-ed-ink group-hover:text-ed-navy max-sm:text-[22px]'>
+                    {vicePresident.name}
+                  </span>
+                  <span className='mt-3 block text-[14px] text-ed-ink-2 max-sm:text-[13px]'>
+                    {vicePresident.ordinal} · Term ends{' '}
+                    {
+                      vicePresident.keyFacts.find(f => f.label === 'Term ends')
+                        ?.value
+                    }
+                  </span>
                 </span>
-                <span className='mt-1 block text-[13px] text-ed-ink-2'>
-                  {vicePresident.ordinal} · Term ends{' '}
-                  {
-                    vicePresident.keyFacts.find(f => f.label === 'Term ends')
-                      ?.value
-                  }
-                </span>
-                <span className='mt-3 inline-flex items-center gap-1.5 text-sm text-ed-navy'>
-                  Profile and role <ArrowRightIcon size={14} aria-hidden />
+                <span className='inline-flex items-center gap-1.5 text-sm font-medium text-ed-navy'>
+                  Profile and role{' '}
+                  <ArrowRightIcon
+                    size={14}
+                    aria-hidden
+                    className='transition-transform group-hover:translate-x-1'
+                  />
                 </span>
               </span>
             </Link>

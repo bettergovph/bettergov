@@ -3,11 +3,13 @@ import departments from '../data/directory/departments.json';
 import executive from '../data/directory/executive.json';
 import diplomatic from '../data/directory/diplomatic.json';
 import legislative from '../data/directory/legislative.json';
+import judicial from '../data/directory/judicial.json';
 
 export type DirectoryBranch =
   | 'Executive'
   | 'Constitutional'
   | 'Legislative'
+  | 'Judicial'
   | 'Diplomatic';
 
 /**
@@ -19,6 +21,7 @@ export type DirectoryKind =
   | 'executive'
   | 'constitutional'
   | 'legislative'
+  | 'judicial'
   | 'diplomatic';
 
 export type DirectoryEntry = {
@@ -217,6 +220,14 @@ type LegislativeSrc = {
   officials?: OfficialLike[];
 };
 
+type JudicialSrc = {
+  slug: string;
+  name: string;
+  address?: string;
+  website?: string;
+  officials?: OfficialLike[];
+};
+
 type DiplomaticSrc = {
   slug: string;
   country: string;
@@ -315,6 +326,24 @@ function flattenLegislative(): DirectoryEntry[] {
   });
 }
 
+function flattenJudicial(): DirectoryEntry[] {
+  return (judicial as JudicialSrc[]).map(c => {
+    const head = firstPerson(c.officials);
+    return {
+      slug: c.slug,
+      name: c.name,
+      branch: 'Judicial',
+      kind: 'judicial',
+      headRole: head.role,
+      head: head.name,
+      address: c.address,
+      loc: deriveLoc(c.address),
+      web: stripProtocol(c.website),
+      detailHref: `/government/judicial/${c.slug}`,
+    };
+  });
+}
+
 function flattenDiplomatic(): DirectoryEntry[] {
   const missions = (diplomatic as { 'Diplomatic Mission'?: DiplomaticSrc[] })[
     'Diplomatic Mission'
@@ -348,6 +377,7 @@ export function loadDirectoryEntries(): DirectoryEntry[] {
     ...flattenDepartments(),
     ...flattenConstitutional(),
     ...flattenLegislative(),
+    ...flattenJudicial(),
     ...flattenDiplomatic(),
   ];
   return cached;
@@ -357,6 +387,7 @@ export const DIRECTORY_BRANCHES: readonly DirectoryBranch[] = [
   'Executive',
   'Constitutional',
   'Legislative',
+  'Judicial',
   'Diplomatic',
 ];
 

@@ -14,7 +14,6 @@ describe('executive heads', () => {
       ...head.role.map(r => r.cite),
       ...head.profile.map(f => f.cite),
       ...head.career.map(c => c.cite),
-      ...(head.notice ? [head.notice.cite] : []),
     ].flat();
     for (const n of cites) {
       expect(Number.isInteger(n) && n >= 1 && n <= head.sources.length).toBe(

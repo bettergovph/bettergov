@@ -43,6 +43,10 @@ const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
 );
+const judicialPath = path.join(
+  __dirname,
+  '../src/data/directory/judicial.json'
+);
 
 // Static navigation data (same as in generate-llms-txt.js to maintain consistency)
 const mainNavigation = [
@@ -89,6 +93,7 @@ const mainNavigation = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judicial', href: '/government/judicial' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },
@@ -121,6 +126,7 @@ function loadData() {
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
     const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+    const judicial = JSON.parse(fs.readFileSync(judicialPath, 'utf8'));
 
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
@@ -139,6 +145,7 @@ function loadData() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
   } catch (error) {
     console.error('Error loading data:', error);
@@ -263,6 +270,19 @@ function generateGovernmentUrls(siteUrl, governmentData) {
       if (chamber.slug) {
         urls.add({
           url: `${siteUrl}/government/legislative/${encodeURIComponent(chamber.slug)}`,
+          priority: '0.7',
+          changefreq: 'monthly',
+        });
+      }
+    });
+  }
+
+  // Courts of the judicial branch
+  if (governmentData.judicial && Array.isArray(governmentData.judicial)) {
+    governmentData.judicial.forEach(court => {
+      if (court.slug) {
+        urls.add({
+          url: `${siteUrl}/government/judicial/${encodeURIComponent(court.slug)}`,
           priority: '0.7',
           changefreq: 'monthly',
         });
@@ -466,6 +486,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     } = loadData();
 
     // Prepare government data object
@@ -475,6 +496,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
 
     // Generate URLs
