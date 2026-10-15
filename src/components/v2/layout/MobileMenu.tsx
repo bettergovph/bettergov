@@ -44,13 +44,15 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
               </button>
               {item.children && open && (
                 <div className='ml-1 flex flex-col border-l-2 border-ed-rule py-1 pl-3'>
-                  <Link
-                    to={item.href}
-                    onClick={onClose}
-                    className='px-3.5 py-2 text-sm text-ed-ink-2 no-underline hover:text-ed-navy'
-                  >
-                    {t(`navbar.${key}`, item.label)} →
-                  </Link>
+                  {item.href && (
+                    <Link
+                      to={item.href}
+                      onClick={onClose}
+                      className='px-3.5 py-2 text-sm text-ed-ink-2 no-underline hover:text-ed-navy'
+                    >
+                      {t(`navbar.${key}`, item.label)} →
+                    </Link>
+                  )}
                   {item.children.map(child => (
                     <Link
                       key={child.label}

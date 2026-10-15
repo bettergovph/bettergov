@@ -145,15 +145,18 @@ const PrimaryNav: FC = () => {
                   role='menu'
                   className='absolute left-[-1px] top-full z-[100] min-w-[420px] border border-ed-navy border-t-2 bg-white py-2 shadow-[0_12px_32px_rgba(8,40,110,0.14)]'
                 >
-                  {/* First item: navigate to the parent section's landing page */}
-                  <Link
-                    to={item.href}
-                    role='menuitem'
-                    onClick={() => setOpenItem(null)}
-                    className='block bg-ed-navy-tint px-6 py-3 font-sans-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
-                  >
-                    {label} overview →
-                  </Link>
+                  {/* First item: navigate to the parent section's landing page,
+                      if it has one */}
+                  {item.href && (
+                    <Link
+                      to={item.href}
+                      role='menuitem'
+                      onClick={() => setOpenItem(null)}
+                      className='block bg-ed-navy-tint px-6 py-3 font-sans-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink no-underline transition-colors hover:bg-ed-navy hover:text-white'
+                    >
+                      {label} overview →
+                    </Link>
+                  )}
                   {item.children.map(child => (
                     <Link
                       key={child.label}

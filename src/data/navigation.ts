@@ -140,13 +140,9 @@ export const mainNavigation: NavigationItem[] = [
   },
   {
     label: 'Transparency',
-    href: '/flood-control-projects',
+    // No landing page of its own, so the menu has no "overview" link.
+    href: '',
     children: [
-      {
-        label: 'Flood Control Projects',
-        href: '/flood-control-projects',
-        blurb: 'DPWH flood control projects, contractors, and status.',
-      },
       {
         label: 'Budget Transparency',
         href: 'https://compass.dbm.gov.ph',
