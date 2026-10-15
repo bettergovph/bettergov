@@ -113,7 +113,9 @@ function App() {
   return (
     <Router>
       <NuqsAdapter>
-        <div className='min-h-screen flex flex-col'>
+        {/* svh, not vh: on phones 100vh is taller than the screen while the
+            browser bars show, so short pages like the landing would scroll. */}
+        <div className='min-h-svh flex flex-col'>
           <SEO />
           <ScrollToTop />
           <SiteChrome>
