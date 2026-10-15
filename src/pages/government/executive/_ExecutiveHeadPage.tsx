@@ -40,9 +40,9 @@ const stripProtocol = (w: string) =>
   w.replace(/^https?:\/\//i, '').replace(/\/$/, '');
 
 /** Superscript links into the numbered source list at the foot of the page. */
-const Cite: FC<{ refs?: number[] }> = ({ refs }) =>
+const Cite: FC<{ refs?: number[]; onDark?: boolean }> = ({ refs, onDark }) =>
   refs && refs.length > 0 ? (
-    <sup className='ml-0.5 font-mono-ed text-[10px] tracking-normal'>
+    <sup className='ml-0.5 whitespace-nowrap font-mono-ed text-[10px] tracking-normal'>
       {[...refs]
         .sort((a, b) => a - b)
         .map((n, i) => (
@@ -51,7 +51,11 @@ const Cite: FC<{ refs?: number[] }> = ({ refs }) =>
             <a
               href={`#source-${n}`}
               aria-label={`Source ${n}`}
-              className='text-ed-navy no-underline hover:underline'
+              className={
+                onDark
+                  ? 'text-white/55 no-underline hover:text-white hover:underline'
+                  : 'text-ed-navy no-underline hover:underline'
+              }
             >
               [{n}]
             </a>
@@ -93,6 +97,7 @@ const ExecutiveHeadPage: FC<{ slug: ExecutiveHeadSlug }> = ({ slug }) => {
     o => o.slug === head.officeSlug
   );
   const pageUrl = `/government/executive/${head.slug}`;
+  const ordinalNumber = head.ordinal.match(/^\d+/)?.[0];
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
@@ -109,81 +114,100 @@ const ExecutiveHeadPage: FC<{ slug: ExecutiveHeadSlug }> = ({ slug }) => {
         ]}
       />
 
-      <header className='border-b border-ed-ink bg-ed-paper-2 py-12 max-md:py-6'>
+      <header className='relative isolate overflow-hidden bg-primary-900 text-white'>
+        {/* Flag-colour rule across the top of the band. */}
+        <div aria-hidden className='flex h-1.5'>
+          <span className='flex-1 bg-ed-navy' />
+          <span className='flex-1 bg-ed-red' />
+          <span className='flex-1 bg-ed-gold' />
+        </div>
+        <div
+          aria-hidden
+          className='absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_28%_40%,rgba(11,79,217,0.45),transparent_62%)]'
+        />
+        {ordinalNumber && (
+          <span
+            aria-hidden
+            className='pointer-events-none absolute -bottom-[0.18em] right-[-0.1em] -z-10 select-none font-serif-ed text-[clamp(220px,34vw,520px)] font-bold leading-none tracking-[-0.06em] text-white/[0.045] max-md:hidden'
+          >
+            {ordinalNumber}
+          </span>
+        )}
+
         <Container>
           <nav
             aria-label='Breadcrumb'
-            className='mb-6 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-md:mb-4 max-md:text-[10px]'
+            className='pt-8 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white/60 max-md:pt-5 max-md:text-[10px]'
           >
             <Link
               to='/government'
-              className='text-ed-ink-3 no-underline hover:text-ed-navy'
+              className='text-white/60 no-underline hover:text-white'
             >
               Directory
             </Link>
             {' / '}
             <Link
               to='/government/executive'
-              className='text-ed-ink-3 no-underline hover:text-ed-navy'
+              className='text-white/60 no-underline hover:text-white'
             >
               Executive
             </Link>
             {' / '}
-            <span className='text-ed-ink'>{head.shortTitle}</span>
+            <span className='text-white'>{head.shortTitle}</span>
           </nav>
 
-          <div className='grid grid-cols-[minmax(0,1fr)_280px] items-start gap-12 max-lg:grid-cols-[minmax(0,1fr)_220px] max-lg:gap-8 max-md:grid-cols-1 max-md:gap-6'>
-            <div className='min-w-0'>
-              <Eyebrow tone='red'>{head.ordinal}</Eyebrow>
-              <h1 className='mt-3 font-serif-ed text-[clamp(34px,5.4vw,64px)] font-bold leading-[1.02] tracking-[-0.025em] text-ed-ink max-md:text-[30px]'>
-                {head.name}
-              </h1>
-              <p className='mt-2 font-serif-ed text-xl text-ed-ink-2 max-md:text-[17px]'>
-                {head.title}
-              </p>
-              <p className='mt-6 max-w-[680px] text-lg leading-relaxed text-ed-ink-2 max-md:mt-4 max-md:text-[15px] max-md:leading-snug'>
-                {head.lede}
-                <Cite refs={head.ledeCite} />
-              </p>
-
-              <dl className='mt-8 grid max-w-[720px] grid-cols-3 border-y border-ed-rule max-md:mt-6 max-md:grid-cols-1'>
-                {head.keyFacts.map(f => (
-                  <div
-                    key={f.label}
-                    className='border-r border-ed-rule py-4 pr-4 last:border-r-0 max-md:border-r-0 max-md:border-b max-md:py-3 max-md:last:border-b-0 md:pl-4 md:first:pl-0'
-                  >
-                    <dt className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-                      {f.label}
-                    </dt>
-                    <dd className='mt-1.5 font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
-                      {f.value}
-                      <Cite refs={f.cite} />
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <figure className='m-0 max-md:order-first max-md:max-w-[200px]'>
+          <div className='mt-8 grid grid-cols-[minmax(260px,420px)_minmax(0,1fr)] items-end gap-14 max-lg:grid-cols-[minmax(220px,320px)_minmax(0,1fr)] max-lg:gap-10 max-md:mt-6 max-md:grid-cols-1 max-md:gap-7'>
+            <figure className='relative m-0 max-md:max-w-[300px]'>
               <img
                 src={head.portrait.src}
                 alt={head.portrait.alt}
                 width={head.portrait.width}
                 height={head.portrait.height}
-                className='block h-auto w-full border border-ed-rule bg-ed-paper-3'
+                fetchPriority='high'
+                className='block aspect-[4/5] w-full bg-primary-800 object-cover object-top shadow-[0_30px_80px_-20px_rgba(0,0,0,0.65)]'
               />
-              <figcaption className='mt-2 text-[11px] leading-snug text-ed-ink-3'>
+              <figcaption className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-3 pt-10 text-[10px] leading-snug text-white/75'>
                 {head.portrait.credit}.{' '}
                 <a
                   href={head.portrait.sourceUrl}
                   target='_blank'
                   rel='noreferrer'
-                  className='text-ed-ink-3 underline hover:text-ed-navy'
+                  className='text-white/75 underline hover:text-white'
                 >
                   {head.portrait.license}
                 </a>
               </figcaption>
             </figure>
+
+            <div className='min-w-0 pb-14 max-md:pb-10'>
+              <p className='font-mono-ed text-[12px] font-medium uppercase tracking-[0.2em] text-ed-gold max-md:text-[11px]'>
+                {head.ordinal} of the Philippines
+              </p>
+              <h1 className='mt-4 font-serif-ed text-balance text-[clamp(44px,6vw,88px)] font-bold leading-[0.98] tracking-[-0.035em] text-white max-md:text-[38px]'>
+                {head.name}
+              </h1>
+              <p className='mt-6 max-w-[620px] text-lg leading-relaxed text-white/80 max-md:mt-4 max-md:text-[15px] max-md:leading-snug'>
+                {head.lede}
+                <Cite refs={head.ledeCite} onDark />
+              </p>
+
+              <dl className='mt-10 grid max-w-[640px] grid-cols-3 border-t border-white/20 max-md:mt-7 max-sm:grid-cols-1'>
+                {head.keyFacts.map(f => (
+                  <div
+                    key={f.label}
+                    className='border-white/20 pt-4 pr-4 max-sm:border-b max-sm:py-3 sm:border-l sm:pl-5 sm:first:border-l-0 sm:first:pl-0'
+                  >
+                    <dt className='font-mono-ed text-[10px] uppercase tracking-[0.16em] text-white/60'>
+                      {f.label}
+                    </dt>
+                    <dd className='mt-2 font-serif-ed text-[22px] font-semibold leading-tight text-white max-md:text-[19px]'>
+                      {f.value}
+                      <Cite refs={f.cite} onDark />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </Container>
       </header>
