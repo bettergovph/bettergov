@@ -7,7 +7,6 @@ import SectionHeader from '../ui/SectionHeader';
 import ArrowLink from '../ui/ArrowLink';
 import Eyebrow from '../ui/Eyebrow';
 import Flag from '../ui/Flag';
-import PlaceholderImage from '../ui/PlaceholderImage';
 import { ALSO_TRENDING, FEATURED_TRENDING } from './data';
 
 const MostRequested: FC = () => {
@@ -28,12 +27,15 @@ const MostRequested: FC = () => {
             className='block p-10 text-ed-ink no-underline border-r border-ed-rule max-lg:border-r-0 max-lg:border-b max-md:p-4'
           >
             <Flag variant='red'>{t('mostRequested.mostSearched')}</Flag>
-            <PlaceholderImage
-              height={200}
-              className='my-6 max-md:my-3 max-md:h-[110px]!'
-            >
-              DFA consular lobby photo
-            </PlaceholderImage>
+            <img
+              src='/assets/guides/passport-guide.webp'
+              alt={t('mostRequested.featureImageAlt')}
+              width={1440}
+              height={720}
+              loading='lazy'
+              decoding='async'
+              className='my-6 aspect-[2/1] h-auto w-full object-cover max-md:my-3'
+            />
             <div className='font-mono-ed text-[10px] uppercase tracking-[0.16em] text-ed-ink-3'>
               {t('mostRequested.featureAgency')} ·{' '}
               {t('mostRequested.featureMeta')}
