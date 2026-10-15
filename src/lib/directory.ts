@@ -70,13 +70,16 @@ export function titleCase(s: string): string {
     .split(/(\([^)]+\))/g)
     .map(chunk => {
       if (chunk.startsWith('(') && chunk.endsWith(')')) return chunk;
-      return chunk
-        .toLowerCase()
-        .replace(/\b([a-z])/g, c => c.toUpperCase())
-        .replace(
-          / (Of|And|The|For|On|In|To|A|An|At) /g,
-          (_m, w) => ' ' + w.toLowerCase() + ' '
-        );
+      return (
+        chunk
+          .toLowerCase()
+          .replace(/\b([a-z])/g, c => c.toUpperCase())
+          // Lookahead, so back-to-back small words ("Of The") both match.
+          .replace(
+            / (Of|And|The|For|On|In|To|A|An|At)(?= )/g,
+            (_m, w) => ' ' + w.toLowerCase()
+          )
+      );
     })
     .join('')
     .trim();
