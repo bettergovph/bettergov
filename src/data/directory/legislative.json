@@ -3,13 +3,13 @@
     "slug": "senate-of-the-philippines-20th-congress",
     "branch": "Legislative Branch",
     "chamber": "Senate of the Philippines (20th Congress)",
-    "address": "GSIS Building, Financial Center Roxas Blvd., 1300 Pasay City",
+    "address": "GSIS Building, Financial Center, J.W. Diokno Blvd., 1300 Pasay City",
     "trunkline": "(632) 8552-6601 to 70",
     "website": "www.senate.gov.ph",
     "officials": [
       {
         "role": "Senate President",
-        "name": "SHERWIN GATCHALIAN",
+        "name": "WIN GATCHALIAN",
         "contact": "local nos. 5710, 8622"
       },
       {
@@ -28,6 +28,21 @@
         "contact": "local nos. 8526 and 2539"
       },
       {
+        "role": "Senior Deputy Majority Leader",
+        "name": "JOSEPH VICTOR G. EJERCITO",
+        "contact": "local no. 5851"
+      },
+      {
+        "role": "Deputy Majority Leader",
+        "name": "JOEL VILLANUEVA",
+        "contact": "local no. 4675"
+      },
+      {
+        "role": "Deputy Minority Leader",
+        "name": "IMEE R. MARCOS",
+        "contact": "local nos. 5707, 5755, 5776, 5777"
+      },
+      {
         "role": "Senator",
         "name": "BAM AQUINO",
         "contact": "local no. 6518"
@@ -41,11 +56,6 @@
         "role": "Senator",
         "name": "RONALD DELA ROSA",
         "contact": "local nos. 5614 / 5615 / 5617 / 8611"
-      },
-      {
-        "role": "Senator",
-        "name": "JOSEPH VICTOR G. EJERCITO",
-        "contact": "local no. 5851"
       },
       {
         "role": "Senator",
@@ -89,11 +99,6 @@
       },
       {
         "role": "Senator",
-        "name": "IMEE R. MARCOS",
-        "contact": "local nos. 5707, 5755, 5776, 5777"
-      },
-      {
-        "role": "Senator",
         "name": "ROBINHOOD C. PADILLA",
         "contact": "local nos. 5843, 5844, 8624"
       },
@@ -114,11 +119,6 @@
       },
       {
         "role": "Senator",
-        "name": "JOEL VILLANUEVA",
-        "contact": "local no. 4675"
-      },
-      {
-        "role": "Senator",
         "name": "CAMILLE A. VILLAR",
         "contact": "local nos. 6508, 6509"
       },
@@ -131,11 +131,11 @@
     "permanent_committees": [
       {
         "committee": "Accountability of Public Officers and Investigations (Blue Ribbon)",
-        "chairperson": "PANFILO M. LACSON"
+        "chairperson": "ERWIN T. TULFO"
       },
       {
         "committee": "Accounts",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Agriculture, Food and Agrarian Reform",
@@ -143,7 +143,7 @@
       },
       {
         "committee": "Banks, Financial Institutions and Currencies",
-        "chairperson": "JOEL VILLANUEVA"
+        "chairperson": "MARK A. VILLAR"
       },
       {
         "committee": "Basic Education",
@@ -151,7 +151,7 @@
       },
       {
         "committee": "Civil Service, Government Reorganization and Professional Regulation",
-        "chairperson": "RONALD DELA ROSA"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Constitutional Amendments and Revision of Codes",
@@ -159,7 +159,7 @@
       },
       {
         "committee": "Cooperatives",
-        "chairperson": "MANUEL M. LAPID"
+        "chairperson": "IMEE R. MARCOS"
       },
       {
         "committee": "Cultural Communities and Muslim Affairs",
@@ -171,39 +171,39 @@
       },
       {
         "committee": "Economic Affairs",
-        "chairperson": "CAMILLE A. VILLAR"
+        "chairperson": "RISA HONTIVEROS"
       },
       {
         "committee": "Electoral Reforms and People's Participation",
-        "chairperson": "PANFILO M. LACSON"
+        "chairperson": "JINGGOY EJERCITO ESTRADA"
       },
       {
         "committee": "Energy",
-        "chairperson": "PIA S. CAYETANO"
-      },
-      {
-        "committee": "Environment, Natural Resources and Climate Change",
-        "chairperson": "CAMILLE A. VILLAR"
-      },
-      {
-        "committee": "Ethics and Privileges",
-        "chairperson": "VACANT"
-      },
-      {
-        "committee": "Finance",
-        "chairperson": "SHERWIN GATCHALIAN"
-      },
-      {
-        "committee": "Foreign Relations",
-        "chairperson": "IMEE R. MARCOS"
-      },
-      {
-        "committee": "Games and Amusement",
         "chairperson": "ERWIN T. TULFO"
       },
       {
+        "committee": "Environment, Natural Resources and Climate Change",
+        "chairperson": "RAFFY T. TULFO"
+      },
+      {
+        "committee": "Ethics and Privileges",
+        "chairperson": "VICENTE C. SOTTO III"
+      },
+      {
+        "committee": "Finance",
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+      },
+      {
+        "committee": "Foreign Relations",
+        "chairperson": "JUAN MIGUEL F. ZUBIRI"
+      },
+      {
+        "committee": "Games and Amusement",
+        "chairperson": "MANUEL M. LAPID"
+      },
+      {
         "committee": "Government Corporations and Public Enterprises",
-        "chairperson": "MARK A. VILLAR"
+        "chairperson": "CAMILLE A. VILLAR"
       },
       {
         "committee": "Health and Demography",
@@ -211,7 +211,7 @@
       },
       {
         "committee": "Higher, Technical and Vocational Education",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "JOEL VILLANUEVA"
       },
       {
         "committee": "Justice and Human Rights",
@@ -219,11 +219,11 @@
       },
       {
         "committee": "Labor, Employment and Human Resources Development",
-        "chairperson": "RAFFY T. TULFO"
+        "chairperson": "JOEL VILLANUEVA"
       },
       {
         "committee": "Local Government",
-        "chairperson": "JINGGOY EJERCITO ESTRADA"
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
       },
       {
         "committee": "Migrant Workers",
@@ -231,7 +231,7 @@
       },
       {
         "committee": "National Defense and Security, Peace, Unification and Reconciliation",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "VICENTE C. SOTTO III"
       },
       {
         "committee": "Public Information and Mass Media",
@@ -239,7 +239,7 @@
       },
       {
         "committee": "Public Order and Dangerous Drugs",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Public Services",
@@ -271,11 +271,11 @@
       },
       {
         "committee": "Tourism",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "chairperson": "RODANTE D. MARCOLETA"
       },
       {
         "committee": "Trade, Commerce and Entrepreneurship",
-        "chairperson": "RODANTE D. MARCOLETA"
+        "chairperson": "BAM AQUINO"
       },
       {
         "committee": "Urban Planning, Housing and Resettlement",
@@ -283,7 +283,7 @@
       },
       {
         "committee": "Ways and Means",
-        "chairperson": "PIA S. CAYETANO"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Women, Children, Family Relations and Gender Equality",
