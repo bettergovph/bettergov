@@ -467,9 +467,8 @@
       },
       {
         "province_city": "City of Antipolo",
-        "name": "ACOP, ROMEO M.",
-        "district": "2nd District",
-        "contact": "8442-4034; local 7974"
+        "name": "ACOP, PHILIP CONRAD M.",
+        "district": "2nd District"
       },
       {
         "province_city": "Palawan",
@@ -659,9 +658,8 @@
       },
       {
         "province_city": "Cavite",
-        "name": "BARZAGA, FRANCISCO \"KIKO\" A.",
-        "district": "4th District",
-        "contact": "8951-8881; local 7003"
+        "name": "BARZAGA, JENNIFER \"JENNY\" A.",
+        "district": "4th District"
       },
       {
         "province_city": "Agusan Del Sur",
@@ -1097,9 +1095,9 @@
       },
       {
         "province_city": "Batanes",
-        "name": "GATO, CIRIACO B., JR., MD, FPSO-HNS",
+        "name": "VACANT",
         "district": "Lone",
-        "contact": "8931-7327; local 7270"
+        "vacancy": "Vacant since the death of Rep. Ciriaco B. Gato Jr. on 21 September 2026. COMELEC has set a special election for 28 November 2026."
       },
       {
         "province_city": "Isabela",
@@ -2041,14 +2039,17 @@
         "contact": "8951-8891; local 7011"
       },
       {
+        "party_list": "1TAHANAN",
+        "name": "CATULPOS, ELMER V."
+      },
+      {
         "party_list": "AKBAYAN",
         "name": "CENDAÑA, PERCIVAL \"PERCI\"",
         "contact": "8931-6730; local 7288"
       },
       {
         "party_list": "AKO BICOL",
-        "name": "CO, ELIZALDY S.",
-        "contact": "-; local 7787"
+        "name": "CHAN, JAN FRANZ NORBERT JOSELITO A."
       },
       {
         "party_list": "KABATAAN",
@@ -2071,6 +2072,10 @@
         "contact": "8931-6074; local 7343"
       },
       {
+        "party_list": "ANG PROBINSYANO",
+        "name": "DELOS SANTOS, ALFRED C."
+      },
+      {
         "party_list": "AKBAYAN",
         "name": "DIOKNO, JOSE MANUEL TADEO \"CHEL\" I.",
         "contact": "8931-6313; local 7280"
@@ -2084,6 +2089,10 @@
         "party_list": "COOP NATCCO",
         "name": "ESPARES, FELIMON M.",
         "contact": "8931-6229; local 7273"
+      },
+      {
+        "party_list": "ABONO",
+        "name": "ESTRELLA, ROBERT RAYMUND \"ESKIMO\" M."
       },
       {
         "party_list": "AKO BICOL",
@@ -2127,8 +2136,7 @@
       },
       {
         "party_list": "PINOY WORKERS",
-        "name": "LEGAZPI, FRANZ VINCENT F.",
-        "contact": "__; local __"
+        "name": "LEGAZPI, KARL FERNANDEZ"
       },
       {
         "party_list": "4PS",
@@ -2174,11 +2182,6 @@
         "party_list": "ASENSO PINOY",
         "name": "OAMINAL, HENRY \"INDY\" F. JR.",
         "contact": "8931-5116; local 7320"
-      },
-      {
-        "party_list": "1TAHANAN",
-        "name": "ODUCADO, NATHANIEL M.",
-        "contact": "8931-4709; local 7396"
       },
       {
         "party_list": "SENIOR CITIZENS PARTYLIST",
@@ -2231,6 +2234,10 @@
         "contact": "8931-8534; local 7216"
       },
       {
+        "party_list": "ACT-CIS",
+        "name": "SORIANO, JEFFREY"
+      },
+      {
         "party_list": "KUSUG TAUSUG",
         "name": "TAN, AIMAN T.",
         "contact": "8931-3488; local 7434"
@@ -2276,9 +2283,8 @@
         "contact": "8931-5442; local 7356"
       },
       {
-        "party_list": "ACT-CIS",
-        "name": "YAP, EDVIC G.",
-        "contact": "8931-6317; local 7234"
+        "party_list": "MURANG KURYENTE",
+        "name": "YAP, ARTHUR C."
       },
       {
         "party_list": "NANAY",

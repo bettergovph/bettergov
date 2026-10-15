@@ -229,6 +229,10 @@
               "type": "string",
               "description": "District represented"
             },
+            "vacancy": {
+              "type": "string",
+              "description": "Set when the seat is vacant: why, since when, and how it will be filled. `name` is then \"VACANT\"."
+            },
             "contact": {
               "type": "string",
               "description": "Contact information"

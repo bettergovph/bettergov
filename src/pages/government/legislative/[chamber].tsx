@@ -92,7 +92,7 @@ const LegislativeChamber: FC = () => {
                 <RelatedCard
                   eyebrow='District members'
                   title='District representatives'
-                  desc='One member per congressional district — roughly 253 seats apportioned by population.'
+                  desc='One member per congressional district — 254 seats apportioned by population.'
                   to='/government/legislative/house-members'
                   cta='Browse district members'
                 />

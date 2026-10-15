@@ -19,7 +19,7 @@ const LegislativeIndex: FC = () => {
       <PageMasthead
         variant='hero'
         title='Congress'
-        lede='The bicameral Philippine Congress — a Senate of 24 members elected at-large, and a House of Representatives with roughly 316 district and party-list members.'
+        lede='The bicameral Philippine Congress — a Senate of 24 members elected at-large, and a House of Representatives of 318 seats: 254 district and 64 party-list members in the 20th Congress.'
       />
       <DirectoryResults
         entries={entries}
