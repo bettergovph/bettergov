@@ -116,6 +116,24 @@
               }
             }
           },
+          "senior_deputy_speaker": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Senior Deputy Speaker"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
           "deputy_speakers": {
             "type": "array",
             "items": {

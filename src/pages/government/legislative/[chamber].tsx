@@ -10,6 +10,40 @@ import OfficialsTable, {
 } from '../../../components/v2/directory/OfficialsTable';
 import { titleCase } from '../../../lib/directory';
 
+type Leader = { name: string; contact?: { contact?: string } };
+
+type HouseLeaders = {
+  speaker?: Leader;
+  senior_deputy_speaker?: Leader;
+  deputy_speakers?: Leader[];
+  majority_floor_leader?: Leader;
+  senior_deputy_majority_floor_leader?: Leader;
+  minority_floor_leader?: Leader;
+  senior_deputy_minority_floor_leader?: Leader;
+};
+
+/** House leadership as officer rows, in order of precedence. */
+function houseOfficers(l?: HouseLeaders): OfficialRow[] {
+  if (!l) return [];
+  const row = (role: string, x?: Leader): OfficialRow[] =>
+    x ? [{ role, name: x.name, contact: x.contact?.contact }] : [];
+  return [
+    ...row('Speaker', l.speaker),
+    ...row('Senior Deputy Speaker', l.senior_deputy_speaker),
+    ...(l.deputy_speakers ?? []).flatMap(x => row('Deputy Speaker', x)),
+    ...row('Majority Floor Leader', l.majority_floor_leader),
+    ...row(
+      'Senior Deputy Majority Floor Leader',
+      l.senior_deputy_majority_floor_leader
+    ),
+    ...row('Minority Floor Leader', l.minority_floor_leader),
+    ...row(
+      'Senior Deputy Minority Floor Leader',
+      l.senior_deputy_minority_floor_leader
+    ),
+  ];
+}
+
 type Chamber = {
   slug: string;
   chamber: string;
@@ -18,6 +52,7 @@ type Chamber = {
   trunkline?: string;
   website?: string;
   officials?: OfficialRow[];
+  house_leaders?: HouseLeaders;
 };
 
 const LegislativeChamber: FC = () => {
@@ -42,6 +77,7 @@ const LegislativeChamber: FC = () => {
 
   const name = titleCase(chamber.chamber);
   const isSenate = chamber.slug.includes('senate');
+  const officers = chamber.officials ?? houseOfficers(chamber.house_leaders);
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
@@ -59,13 +95,13 @@ const LegislativeChamber: FC = () => {
 
       <section className='py-12 max-md:py-6'>
         <Container>
-          {chamber.officials && chamber.officials.length > 0 && (
+          {officers.length > 0 && (
             <>
               <SectionHeader
                 label='Officers'
-                meta={`${chamber.officials.length} officials`}
+                meta={`${officers.length} officials`}
               />
-              <OfficialsTable officials={chamber.officials} />
+              <OfficialsTable officials={officers} />
             </>
           )}
 

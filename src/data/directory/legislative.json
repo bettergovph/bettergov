@@ -377,6 +377,12 @@
           "contact": "8952-2232; local 7242"
         }
       },
+      "senior_deputy_speaker": {
+        "name": "HERNANDEZ, FERDINAND L.",
+        "contact": {
+          "contact": "8442-4131; local 7986/7987"
+        }
+      },
       "deputy_speakers": [
         {
           "name": "GARIN, JANETTE L.",
@@ -394,12 +400,6 @@
           "name": "ORTEGA, FRANCISCO PAOLO P., V",
           "contact": {
             "contact": "8931-5350; local 7382"
-          }
-        },
-        {
-          "name": "SINGSON-MEEHAN, KRISTINE",
-          "contact": {
-            "contact": "loc. 7573; 8931-5926"
           }
         },
         {
@@ -431,6 +431,36 @@
           "contact": {
             "contact": "8951-3011; local 7265"
           }
+        },
+        {
+          "name": "SUAREZ, DAVID \"JAY-JAY\" C.",
+          "contact": {
+            "contact": "8931-5956; local 7367"
+          }
+        },
+        {
+          "name": "ARENAS, MARIA RACHEL J.",
+          "contact": {
+            "contact": "8931-5667; local 7236"
+          }
+        },
+        {
+          "name": "FRASCO, VINCENT FRANCO \"DUKE\" D.",
+          "contact": {
+            "contact": "8952-6032; local 7712"
+          }
+        },
+        {
+          "name": "BENITEZ, ALFREDO \"ALBEE\" B.",
+          "contact": {
+            "contact": "8283-8926; local 7906"
+          }
+        },
+        {
+          "name": "ALVAREZ, MERCEDES K.",
+          "contact": {
+            "contact": "8931-6640; local 7211"
+          }
         }
       ],
       "majority_floor_leader": {
@@ -452,9 +482,9 @@
         }
       },
       "senior_deputy_minority_floor_leader": {
-        "name": "ERICE, EDGAR R.",
+        "name": "DE LIMA, LEILA M.",
         "contact": {
-          "contact": "8931-6615; local 7300"
+          "contact": "8931-6074; local 7343"
         }
       }
     },
@@ -2333,7 +2363,7 @@
         },
         {
           "committee": "Climate Change",
-          "name": "ANIELA TOLENTINO"
+          "name": "ANNA VICTORIA VELOSO-TUAZON"
         },
         {
           "committee": "Constitutional Amendments",
@@ -2353,11 +2383,11 @@
         },
         {
           "committee": "Ecology",
-          "name": "VANVAN AUMENTADO"
+          "name": "ANIELA TOLENTINO"
         },
         {
           "committee": "Economic Affairs",
-          "name": "ANTONIO LEGARDA JR."
+          "name": "JULES LEDESMA"
         },
         {
           "committee": "Energy",
@@ -2369,7 +2399,7 @@
         },
         {
           "committee": "Flagship Programs and Projects",
-          "name": "JOSE ARTURO GARCIA JR."
+          "name": "KENNETH GATCHALIAN"
         },
         {
           "committee": "Foreign Affairs",
@@ -2393,7 +2423,7 @@
         },
         {
           "committee": "Health",
-          "name": "JUN GATO"
+          "name": "GISELLE MACEDA"
         },
         {
           "committee": "Higher and Technical Education",
@@ -2497,7 +2527,7 @@
         },
         {
           "committee": "Revision of Laws",
-          "name": "DINO TANJUATCO"
+          "name": "KING COLLANTES"
         },
         {
           "committee": "Rules",
@@ -2509,7 +2539,7 @@
         },
         {
           "committee": "Science and Technology",
-          "name": "JULES LEDESMA"
+          "name": "JESS MARQUEZ"
         },
         {
           "committee": "Senior Citizens",
@@ -2525,7 +2555,7 @@
         },
         {
           "committee": "Sustainable Development Goals",
-          "name": "JOSE MANUEL ALBA"
+          "name": "PHILIP CONRAD ACOP"
         },
         {
           "committee": "Tourism",
@@ -2588,7 +2618,7 @@
       },
       {
         "committee": "Globalization and WTO",
-        "chairperson": "ALEXIE TUTOR"
+        "chairperson": "QUEENIE GONZALES"
       },
       {
         "committee": "Land Use",
@@ -2604,7 +2634,7 @@
       },
       {
         "committee": "Persons with Disabilities",
-        "chairperson": "ALFEL BASCUG"
+        "chairperson": "DIMSZAR SALI"
       },
       {
         "committee": "Reforestation",
@@ -2626,7 +2656,7 @@
     "secretariat_officials": [
       {
         "role": "Secretary General",
-        "name": "REGINALD S. VELASCO",
+        "name": "CHELOY E. VELICARIA-GARAFIL",
         "office": "Office of the Secretary General",
         "contact": "loc. 7459, 7498, 7762; 8931-6216; 8931-6298",
         "email": "secretary-general@house.gov.ph"
@@ -2640,7 +2670,7 @@
       },
       {
         "role": "Sergeant-at-Arms",
-        "name": "PMGEN. NAPOLEON C. TAAS",
+        "name": "BGEN. FERDINAND MELCHOR C. DE LA CRUZ (RET.)",
         "office": "Office of the Sergeant-at-Arms",
         "contact": "loc. 7511, 7537; 8931-5808; 8931-6137",
         "email": "osaa@house.gov.ph"
