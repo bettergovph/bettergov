@@ -9,6 +9,7 @@ const env = {
   ASSISTANT_RATE_LIMITER: limiter,
   CRAWL_RATE_LIMITER: limiter,
   REPORT_RATE_LIMITER: limiter,
+  MEILISEARCH_ORIGIN: 'https://search.example.test',
   MEILISEARCH_SEARCH_API_KEY: 'server-search-key',
 } as unknown as Env;
 const fetchMock = vi.fn<typeof fetch>();
@@ -71,7 +72,7 @@ describe('Meilisearch proxy', () => {
       expect(response.status).toBe(200);
       expect(await response.json()).toEqual(data);
       const [url, init] = fetchMock.mock.calls[0];
-      expect(url).toBe('https://search2.bettergov.ph/multi-search');
+      expect(url).toBe('https://search.example.test/multi-search');
       expect(JSON.parse(init!.body as string)).toEqual(batch);
       expect(new Headers(init?.headers).get('Authorization')).toBe(
         'Bearer server-search-key'
@@ -93,7 +94,7 @@ describe('Meilisearch proxy', () => {
           (await call(`/api/search/indexes/${index}/${operation}`, body)).status
         ).toBe(200);
         expect(fetchMock.mock.lastCall?.[0]).toBe(
-          `https://search2.bettergov.ph/indexes/${index}/${operation}`
+          `https://search.example.test/indexes/${index}/${operation}`
         );
       }
     }
@@ -157,6 +158,53 @@ describe('Meilisearch proxy', () => {
     expect(
       (await call('/api/search?url=https://evil.example', batch)).status
     ).toBe(400);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('uses the configured origin, including a custom HTTPS port', async () => {
+    fetchMock.mockResolvedValue(json({ results: [] }));
+    const response = await call(
+      '/api/search',
+      batch,
+      {},
+      {
+        ...env,
+        MEILISEARCH_ORIGIN: '  https://other-search.example.test:8443/  ',
+      }
+    );
+    expect(response.status).toBe(200);
+    expect(fetchMock.mock.lastCall?.[0]).toBe(
+      'https://other-search.example.test:8443/multi-search'
+    );
+  });
+
+  it.each([
+    undefined,
+    '',
+    '   ',
+    'not-a-url',
+    '/relative',
+    'http://search.example.test',
+    'ftp://search.example.test',
+    'https://user:password@search.example.test',
+    'https://search.example.test/path',
+    'https://search.example.test?key=value',
+    'https://search.example.test#fragment',
+  ])('does not send credentials with an invalid origin %j', async origin => {
+    const response = await call(
+      '/api/search',
+      batch,
+      {},
+      {
+        ...env,
+        MEILISEARCH_ORIGIN: origin,
+      }
+    );
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({
+      error: 'Search is not configured',
+      message: 'Search is not configured',
+    });
     expect(fetchMock).not.toHaveBeenCalled();
   });
 

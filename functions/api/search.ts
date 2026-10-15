@@ -1,7 +1,6 @@
 import type { Env } from '../types';
 import { proxyError, proxyJson, UPSTREAM_HEADERS } from '../lib/json-proxy';
 
-const SEARCH_ORIGIN = 'https://search2.bettergov.ph';
 const PUBLIC_INDEXES = new Set([
   'bettergov',
   'bettergov_flood_control',
@@ -44,6 +43,25 @@ const FACET_FIELDS = new Set([
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function searchOrigin(raw: string | undefined): string | null {
+  if (!raw?.trim()) return null;
+  try {
+    const url = new URL(raw.trim());
+    if (
+      url.protocol !== 'https:' ||
+      url.username ||
+      url.password ||
+      url.pathname !== '/' ||
+      url.search ||
+      url.hash
+    )
+      return null;
+    return url.origin;
+  } catch {
+    return null;
+  }
 }
 
 // Bound the actual stream too: Content-Length can be absent or dishonest.
@@ -174,12 +192,13 @@ export async function onRequest({
     return proxyError('Invalid search query', 400);
   }
   const key = env.MEILISEARCH_SEARCH_API_KEY?.trim();
-  if (!key) return proxyError('Search is not configured', 503);
+  const origin = searchOrigin(env.MEILISEARCH_ORIGIN);
+  if (!key || !origin) return proxyError('Search is not configured', 503);
 
   const upstreamPath = multi
     ? '/multi-search'
     : `/indexes/${match![1]}/${match![2]}`;
-  return proxyJson(new URL(upstreamPath, SEARCH_ORIGIN), {
+  return proxyJson(new URL(upstreamPath, origin), {
     method: 'POST',
     headers: {
       ...UPSTREAM_HEADERS,

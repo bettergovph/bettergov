@@ -74,7 +74,8 @@ npm run dev
 The chatbot, weather, forex and search use same-origin `/api` routes served by
 the Cloudflare Worker in `functions/`, so run the Worker next to Vite for these
 features. It reads the `EGOVAI_*`, `OPENWEATHERMAP_API_KEY` and
-`MEILISEARCH_SEARCH_API_KEY` runtime secrets from gitignored `.dev.vars`.
+`MEILISEARCH_SEARCH_API_KEY` runtime secrets and the `MEILISEARCH_ORIGIN`
+runtime variable from gitignored `.dev.vars`.
 Weather and forex use this Worker's KV namespaces; only search uses the
 Meilisearch proxy. The default deployment uses the production account and its
 KV namespaces; `npm run functions:deploy:staging` selects the separate staging
