@@ -3,145 +3,84 @@ import Container from '../../../components/v2/ui/Container';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import {
+  HOLIDAY_PAY,
+  HOLIDAY_TYPE_LABEL,
+  HOLIDAY_YEARS,
+  HOLIDAYS_VERIFIED_ON,
+  holidayParts,
+  isDayOff,
+  manilaToday,
+  type Holiday,
+  type HolidayType,
+} from '../../../data/holidays';
 
-interface HolidayDef {
-  event: string;
-  monthIndex: number; // 0-based
-  dayOfMonth: number;
-  type: 'regular' | 'special';
-}
+const FLAG_VARIANT: Record<HolidayType, 'navy' | 'default' | 'outline'> = {
+  regular: 'navy',
+  'special-non-working': 'default',
+  'special-working': 'outline',
+};
 
-const HOLIDAYS: HolidayDef[] = [
-  { event: "New Year's Day", monthIndex: 0, dayOfMonth: 1, type: 'regular' },
-  { event: 'Maundy Thursday', monthIndex: 3, dayOfMonth: 2, type: 'regular' },
-  { event: 'Good Friday', monthIndex: 3, dayOfMonth: 3, type: 'regular' },
-  {
-    event: 'Araw ng Kagitingan',
-    monthIndex: 3,
-    dayOfMonth: 9,
-    type: 'regular',
-  },
-  { event: 'Labor Day', monthIndex: 4, dayOfMonth: 1, type: 'regular' },
-  { event: 'Independence Day', monthIndex: 5, dayOfMonth: 12, type: 'regular' },
-  {
-    event: 'National Heroes Day',
-    monthIndex: 7,
-    dayOfMonth: 31,
-    type: 'regular',
-  },
-  { event: 'Bonifacio Day', monthIndex: 10, dayOfMonth: 30, type: 'regular' },
-  { event: 'Christmas Day', monthIndex: 11, dayOfMonth: 25, type: 'regular' },
-  { event: 'Rizal Day', monthIndex: 11, dayOfMonth: 30, type: 'regular' },
-  { event: 'Chinese New Year', monthIndex: 1, dayOfMonth: 17, type: 'special' },
-  { event: 'Black Saturday', monthIndex: 3, dayOfMonth: 4, type: 'special' },
-  { event: 'Ninoy Aquino Day', monthIndex: 7, dayOfMonth: 21, type: 'special' },
-  { event: "All Saints' Day", monthIndex: 10, dayOfMonth: 1, type: 'special' },
-  { event: "All Souls' Day", monthIndex: 10, dayOfMonth: 2, type: 'special' },
-  {
-    event: 'Feast of the Immaculate Conception',
-    monthIndex: 11,
-    dayOfMonth: 8,
-    type: 'special',
-  },
-  { event: 'Christmas Eve', monthIndex: 11, dayOfMonth: 24, type: 'special' },
-  {
-    event: 'Last Day of the Year',
-    monthIndex: 11,
-    dayOfMonth: 31,
-    type: 'special',
-  },
-];
+const TypeFlag: FC<{ type: HolidayType }> = ({ type }) => (
+  <Flag variant={FLAG_VARIANT[type]}>{HOLIDAY_TYPE_LABEL[type]}</Flag>
+);
 
-const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
-const DAY_NAMES = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
-
-const YEARS = [2025, 2026, 2027];
-
-interface ResolvedHoliday {
-  event: string;
-  monthIndex: number;
-  dayOfMonth: number;
-  dayName: string;
-  date: Date;
-  type: 'regular' | 'special';
-}
-
-function resolveHolidays(year: number): ResolvedHoliday[] {
-  return HOLIDAYS.map(h => {
-    const date = new Date(year, h.monthIndex, h.dayOfMonth);
-    return {
-      ...h,
-      dayName: DAY_NAMES[date.getDay()],
-      date,
-    };
-  }).sort((a, b) => a.date.getTime() - b.date.getTime());
-}
+const formatVerified = (iso: string) =>
+  new Date(`${iso}T00:00:00+08:00`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Asia/Manila',
+  });
 
 const PublicHolidays: FC = () => {
-  const today = useMemo(() => new Date(), []);
-  const currentYear = today.getFullYear();
-  const [year, setYear] = useState(currentYear);
-
-  const holidays = useMemo(() => resolveHolidays(year), [year]);
+  const today = useMemo(() => manilaToday(), []);
+  const currentYear = Number(today.slice(0, 4));
+  const years = HOLIDAY_YEARS.map(y => y.year);
+  const [year, setYear] = useState(
+    years.includes(currentYear) ? currentYear : years[years.length - 1]
+  );
+  const entry = HOLIDAY_YEARS.find(y => y.year === year)!;
 
   const upcoming = useMemo(
     () =>
       year === currentYear
-        ? holidays.filter(h => h.date >= today).slice(0, 4)
+        ? entry.holidays.filter(h => h.date >= today && isDayOff(h)).slice(0, 4)
         : [],
-    [holidays, year, currentYear, today]
+    [entry, year, currentYear, today]
   );
 
   const byMonth = useMemo(() => {
-    const map = new Map<number, ResolvedHoliday[]>();
-    holidays.forEach(h => {
-      if (!map.has(h.monthIndex)) map.set(h.monthIndex, []);
-      map.get(h.monthIndex)!.push(h);
-    });
-    return map;
-  }, [holidays]);
+    const map = new Map<string, Holiday[]>();
+    for (const h of entry.holidays) {
+      const { month } = holidayParts(h);
+      if (!map.has(month)) map.set(month, []);
+      map.get(month)!.push(h);
+    }
+    return [...map.entries()];
+  }, [entry]);
 
-  const monthsWithHolidays = Array.from(byMonth.keys()).sort((a, b) => a - b);
+  const count = (type: HolidayType) =>
+    entry.holidays.filter(h => h.type === type).length;
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
       <PageMasthead
         variant='hero'
-        title={`Public Holidays ${year}`}
-        lede='Official regular and special non-working holidays declared by the Philippine government under Malacañang proclamations and Republic Act 9492.'
+        title={`Public holidays ${year}`}
+        lede='Regular holidays and special days declared nationwide under Republic Act No. 9492 and the proclamations of the Office of the President.'
       >
-        {/* Year switcher */}
         <div className='flex items-center gap-2'>
-          {YEARS.map(y => (
+          {years.map(y => (
             <button
               key={y}
+              type='button'
+              aria-pressed={y === year}
               onClick={() => setYear(y)}
               className={
                 y === year
                   ? 'border border-white bg-white px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink'
-                  : 'border border-white/40 px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-white/70 hover:border-white hover:text-white transition-colors'
+                  : 'border border-white/40 px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-white/70 transition-colors hover:border-white hover:text-white'
               }
             >
               {y}
@@ -152,44 +91,44 @@ const PublicHolidays: FC = () => {
 
       <section className='py-14 max-md:py-6'>
         <Container>
-          <div className='grid grid-cols-[1fr_280px] gap-12 max-lg:grid-cols-1'>
-            {/* Main: holiday table */}
+          <div className='grid grid-cols-[1fr_300px] gap-12 max-lg:grid-cols-1'>
             <div>
-              {/* Upcoming strip */}
+              {entry.note && (
+                <p className='mb-10 border-l-4 border-ed-navy bg-ed-navy-tint px-5 py-4 text-[14px] leading-relaxed text-ed-ink-2'>
+                  {entry.note}
+                </p>
+              )}
+
               {upcoming.length > 0 && (
                 <div className='mb-10'>
                   <SectionHeader label='Upcoming' />
                   <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1'>
-                    {upcoming.map(h => (
-                      <div
-                        key={h.event}
-                        className='border border-ed-rule bg-ed-paper-2 p-4'
-                      >
-                        <div className='mb-1.5'>
-                          <Flag
-                            variant={h.type === 'regular' ? 'navy' : 'default'}
-                          >
-                            {h.type === 'regular' ? 'Regular' : 'Special'}
-                          </Flag>
+                    {upcoming.map(h => {
+                      const p = holidayParts(h);
+                      return (
+                        <div
+                          key={h.date + h.name}
+                          className='border border-ed-rule bg-ed-paper-2 p-4'
+                        >
+                          <div className='mb-1.5'>
+                            <TypeFlag type={h.type} />
+                          </div>
+                          <div className='font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
+                            {h.name}
+                          </div>
+                          <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                            {p.month} {p.day} · {p.weekday}
+                          </div>
                         </div>
-                        <div className='font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
-                          {h.event}
-                        </div>
-                        <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
-                          {MONTH_NAMES[h.monthIndex]} {h.dayOfMonth} ·{' '}
-                          {h.dayName}
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
-              {/* Month-by-month table */}
               <SectionHeader label={`Full calendar · ${year}`} />
 
-              {/* Column headers */}
-              <div className='grid grid-cols-[100px_60px_60px_1fr_100px] border-b border-ed-rule pb-2 max-sm:hidden'>
+              <div className='grid grid-cols-[100px_60px_60px_1fr_150px] border-b border-ed-rule pb-2 max-sm:hidden'>
                 {['Month', 'Date', 'Day', 'Holiday', 'Type'].map(h => (
                   <div
                     key={h}
@@ -201,105 +140,92 @@ const PublicHolidays: FC = () => {
               </div>
 
               <div>
-                {monthsWithHolidays.map(monthIdx => {
-                  const monthHolidays = byMonth.get(monthIdx)!;
-                  return (
-                    <div key={monthIdx}>
-                      {monthHolidays.map((h, i) => (
+                {byMonth.map(([month, list]) => (
+                  <div key={month}>
+                    {list.map((h, i) => {
+                      const p = holidayParts(h);
+                      return (
                         <div
-                          key={h.event}
-                          className='grid grid-cols-[100px_60px_60px_1fr_100px] items-baseline border-b border-ed-rule py-3 max-sm:grid-cols-1 max-sm:gap-0.5 max-sm:py-4'
+                          key={h.date + h.name}
+                          className='grid grid-cols-[100px_60px_60px_1fr_150px] items-baseline border-b border-ed-rule py-3 max-sm:grid-cols-1 max-sm:gap-0.5 max-sm:py-4'
                         >
-                          {/* Month label — only on first row of each month */}
                           <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-sm:hidden'>
-                            {i === 0 ? MONTH_NAMES[monthIdx] : ''}
+                            {i === 0 ? month : ''}
                           </div>
                           <div className='font-serif-ed text-[17px] font-semibold text-ed-ink max-sm:hidden'>
-                            {h.dayOfMonth}
+                            {p.day}
                           </div>
                           <div className='text-[12px] text-ed-ink-3 max-sm:hidden'>
-                            {h.dayName.slice(0, 3)}
+                            {p.weekday.slice(0, 3)}
                           </div>
-                          <div className='font-serif-ed text-[16px] font-semibold leading-snug text-ed-ink max-sm:text-[15px]'>
-                            {h.event}
+                          <div>
+                            <div className='font-serif-ed text-[16px] font-semibold leading-snug text-ed-ink max-sm:text-[15px]'>
+                              {h.name}
+                            </div>
+                            <div className='mt-0.5 text-[12px] leading-snug text-ed-ink-3'>
+                              {h.basis}
+                              {h.note && ` · ${h.note}`}
+                            </div>
                           </div>
                           <div className='max-sm:hidden'>
-                            <Flag
-                              variant={
-                                h.type === 'regular' ? 'navy' : 'default'
-                              }
-                            >
-                              {h.type === 'regular' ? 'Regular' : 'Special'}
-                            </Flag>
+                            <TypeFlag type={h.type} />
                           </div>
-                          {/* Mobile summary line */}
                           <div className='font-mono-ed text-[10px] uppercase tracking-[0.1em] text-ed-ink-3 sm:hidden'>
-                            {MONTH_NAMES[monthIdx]} {h.dayOfMonth} ·{' '}
-                            {h.dayName.slice(0, 3)} ·{' '}
-                            {h.type === 'regular' ? 'Regular' : 'Special'}
+                            {p.month} {p.day} · {p.weekday.slice(0, 3)} ·{' '}
+                            {HOLIDAY_TYPE_LABEL[h.type]}
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Sidebar: source notes + legend */}
             <aside className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-8'>
-              {/* Legend */}
               <div className='mb-8'>
-                <SectionHeader label='Legend' />
+                <SectionHeader label='Pay rules' />
                 <div className='space-y-3'>
-                  <div className='flex items-start gap-3'>
-                    <Flag variant='navy'>Regular</Flag>
-                    <p className='text-[12px] text-ed-ink-2 leading-normal'>
-                      Employees entitled to 200% of daily rate if required to
-                      work.
-                    </p>
-                  </div>
-                  <div className='flex items-start gap-3'>
-                    <Flag variant='default'>Special</Flag>
-                    <p className='text-[12px] text-ed-ink-2 leading-normal'>
-                      Employees entitled to 130% if required to work.
-                    </p>
-                  </div>
+                  {(Object.keys(HOLIDAY_PAY) as HolidayType[]).map(type => (
+                    <div key={type} className='flex items-start gap-3'>
+                      <span className='w-[136px] shrink-0'>
+                        <TypeFlag type={type} />
+                      </span>
+                      <p className='text-[12px] leading-normal text-ed-ink-2'>
+                        {HOLIDAY_PAY[type]}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Source notes */}
               <div className='border border-ed-rule p-5'>
                 <div className='mb-3 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-                  Sources
+                  Sources · {year}
                 </div>
-                <ul className='space-y-2.5 text-[12px] text-ed-ink-2 leading-normal'>
-                  <li>
-                    <span className='font-medium text-ed-ink'>
-                      Republic Act 9492
-                    </span>{' '}
-                    — rationalises the observance of national public holidays.
-                  </li>
-                  <li>
-                    <span className='font-medium text-ed-ink'>
-                      Malacañang Proclamations
-                    </span>{' '}
-                    — annual adjustments issued by the Office of the President.
-                  </li>
-                  <li>
-                    <span className='font-medium text-ed-ink'>
-                      DOLE Labour Advisory
-                    </span>{' '}
-                    — guidelines on pay rules for holidays.
-                  </li>
+                <ul className='space-y-2.5 text-[12px] leading-normal text-ed-ink-2'>
+                  {entry.sources.map(s => (
+                    <li key={s.url}>
+                      <a
+                        href={s.url}
+                        target='_blank'
+                        rel='noreferrer'
+                        className='text-ed-navy underline decoration-ed-rule-strong underline-offset-2 hover:decoration-ed-navy'
+                      >
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
+                <p className='mt-4 text-[11px] text-ed-ink-3'>
+                  Last checked {formatVerified(HOLIDAYS_VERIFIED_ON)}.
+                </p>
               </div>
 
-              {/* Stats */}
               <div className='mt-6 grid grid-cols-2 divide-x divide-ed-rule border border-ed-rule'>
                 <div className='p-4'>
                   <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
-                    {holidays.filter(h => h.type === 'regular').length}
+                    {count('regular')}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
                     Regular
@@ -307,10 +233,10 @@ const PublicHolidays: FC = () => {
                 </div>
                 <div className='p-4'>
                   <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
-                    {holidays.filter(h => h.type === 'special').length}
+                    {count('special-non-working')}
                   </div>
                   <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
-                    Special
+                    Special non-working
                   </div>
                 </div>
               </div>

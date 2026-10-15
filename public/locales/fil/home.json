@@ -87,7 +87,7 @@
     "newsroom": "Buong newsroom →",
     "holidaysEyebrow": "Ang Kalendaryo",
     "holidaysTitle": "Mga darating na pista opisyal",
-    "seeAllHolidays": "Tingnan ang lahat ng 18 holidays",
+    "seeAllHolidays": "Tingnan ang lahat ng {{count}} holidays",
     "hotlinesEyebrow": "Hotline",
     "hotlinesTitle": "Kapag kailangan mo ng tulong ngayon",
     "hotlinesAll": "Lahat ng hotline",
