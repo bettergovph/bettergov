@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Container from '../ui/Container';
@@ -14,7 +14,13 @@ import {
 } from '../../../lib/news';
 import { NewsArticle, NewsArticleDetail } from '../../../types/news';
 import { criticalHotlines } from '../../../data/cms';
-import { HOLIDAYS_2026 } from './data';
+import {
+  HOLIDAY_TYPE_LABEL,
+  holidayParts,
+  holidaysInYear,
+  manilaToday,
+  upcomingHolidays,
+} from '../../../data/holidays';
 
 /**
  * One lead plus four secondary headlines fills the news column. We ask for
@@ -73,6 +79,8 @@ const NewsColumnSkeleton: FC = () => (
 
 const NewsAndHolidays: FC = () => {
   const { t } = useTranslation('home');
+  const upcoming = useMemo(() => upcomingHolidays(manilaToday(), 5), []);
+  const holidayYear = Number((upcoming[0]?.date ?? manilaToday()).slice(0, 4));
 
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   // The listing endpoint carries no body text, so the lead's excerpt and read
@@ -205,30 +213,30 @@ const NewsAndHolidays: FC = () => {
           <aside>
             <div className='bg-ed-navy p-8 text-white max-md:p-4'>
               <Eyebrow tone='onDark'>
-                {t('newsAndHolidays.holidaysEyebrow')} · 2026
+                {t('newsAndHolidays.holidaysEyebrow')} · {holidayYear}
               </Eyebrow>
               <h3 className='mt-2 font-serif-ed text-[28px] font-bold tracking-[-0.01em] text-white max-md:mt-1 max-md:text-[21px]'>
                 {t('newsAndHolidays.holidaysTitle')}
               </h3>
               <div className='mt-6 border-t border-white/20 max-md:mt-3'>
-                {HOLIDAYS_2026.map(h => (
+                {upcoming.map(h => (
                   <div
-                    key={h.date}
+                    key={h.date + h.name}
                     className='grid grid-cols-[70px_1fr_auto] items-baseline gap-3 border-b border-white/10 py-3.5 max-md:grid-cols-[56px_1fr_auto] max-md:py-2'
                   >
                     <div>
                       <div className='font-serif-ed text-xl tracking-[-0.01em] text-white max-md:text-base'>
-                        {h.date}
+                        {holidayParts(h).short}
                       </div>
                       <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/60'>
-                        {h.day}
+                        {holidayParts(h).weekday.slice(0, 3)}
                       </div>
                     </div>
                     <div className='font-serif-ed text-[15px] text-white max-md:text-[14px]'>
                       {h.name}
                     </div>
                     <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/65'>
-                      {h.type}
+                      {HOLIDAY_TYPE_LABEL[h.type]}
                     </div>
                   </div>
                 ))}
@@ -237,7 +245,10 @@ const NewsAndHolidays: FC = () => {
                 to='/philippines/holidays'
                 className='mt-6 inline-flex items-center gap-1.5 border-b border-white/50 pb-0.5 text-[13px] text-white no-underline max-md:mt-3.5'
               >
-                {t('newsAndHolidays.seeAllHolidays')} →
+                {t('newsAndHolidays.seeAllHolidays', {
+                  count: holidaysInYear(holidayYear).length,
+                })}{' '}
+                →
               </Link>
             </div>
 

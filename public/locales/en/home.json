@@ -87,7 +87,7 @@
     "newsroom": "Full newsroom →",
     "holidaysEyebrow": "The Calendar",
     "holidaysTitle": "Upcoming holidays",
-    "seeAllHolidays": "See all 18 holidays",
+    "seeAllHolidays": "See all {{count}} holidays",
     "hotlinesEyebrow": "Hotlines",
     "hotlinesTitle": "When you need help now",
     "hotlinesAll": "All national hotlines",

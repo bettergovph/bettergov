@@ -29,14 +29,6 @@ export const ALSO_TRENDING = [
   { agency: 'PSA', title: 'PSA Birth Certificate' },
 ];
 
-export const HOLIDAYS_2026 = [
-  { date: 'Apr 18', day: 'Sat', name: "Eid'l Fitr", type: 'Regular' },
-  { date: 'May 01', day: 'Fri', name: 'Labor Day', type: 'Regular' },
-  { date: 'Jun 12', day: 'Fri', name: 'Independence Day', type: 'Regular' },
-  { date: 'Jul 27', day: 'Mon', name: "Eid'l Adha", type: 'Regular' },
-  { date: 'Aug 21', day: 'Fri', name: 'Ninoy Aquino Day', type: 'Special' },
-];
-
 export const BUDGET_2026 = [
   { dept: 'Education', amount: 1089, pct: 17.1 },
   { dept: 'Public Works & Highways', amount: 822, pct: 12.9 },
