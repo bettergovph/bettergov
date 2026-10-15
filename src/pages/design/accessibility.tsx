@@ -3,23 +3,24 @@ import { Helmet } from 'react-helmet-async';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
 import { DocHeading, DocSection, PageHeader, PagerNav, Prose } from './shared';
+import { ACCESSIBILITY_REVIEW } from '../../data/accessibility';
 
 const SYSTEM_PROVIDES = [
   {
-    title: 'Contrast-checked colour',
-    body: 'Every documented text/background pair meets WCAG 2.1 AA. Stay inside the palette roles and contrast takes care of itself.',
+    title: 'Colour roles to build on',
+    body: 'The palette provides consistent roles, but a token is not a contrast guarantee. The current audit found failures in secondary text. Check the rendered foreground, background, opacity, size, and state together.',
   },
   {
-    title: 'Visible focus states',
-    body: 'Interactive components ship with focus styles, so keyboard users can always see where they are.',
+    title: 'Keyboard behaviour to verify',
+    body: 'Some components include focus styles, but the services search field lacks a visible indicator. Skip navigation and mobile-menu dismissal also need work. Test each complete interaction with a keyboard.',
   },
   {
     title: 'Semantic structure',
-    body: 'Components render real HTML — buttons are <button>, links are <a>, navigation is <nav> — so assistive technology gets meaning for free.',
+    body: 'Use native buttons, links, and navigation landmarks. Check the assembled page too: the current directory has a missing main landmark and an empty table header, and some pages skip heading levels.',
   },
   {
-    title: 'Honest weight',
-    body: 'No heavy frameworks of images or effects. Pages stay usable on slow connections and older phones, which is an accessibility feature in the Philippines.',
+    title: 'Responsive layouts',
+    body: 'The nine sampled pages fit 320 and 720 CSS-pixel viewports without page-level horizontal scrolling. Text resizing, browser zoom, assistive technology, and slow connections still need separate testing.',
   },
 ];
 
@@ -43,7 +44,7 @@ const TESTS = [
   },
   {
     title: 'Zoom to 200%',
-    body: 'Nothing should overlap, truncate, or require horizontal scrolling at double zoom on a laptop screen.',
+    body: 'Check 200% text resizing and 400% browser zoom, as well as custom text spacing. Look for clipped content, overlap, lost controls, and unnecessary horizontal scrolling.',
   },
   {
     title: 'Throttled connection',
@@ -57,18 +58,28 @@ const DesignAccessibilityPage: FC = () => (
       <title>Accessibility — Design System | GOV.PH</title>
       <meta
         name='description'
-        content='How the GOV.PH design system supports WCAG 2.1 AA, what service teams still need to do, and how to test that everyone can use your service.'
+        content='The GOV.PH accessibility target, known design-system gaps, and the automated and manual checks contributors need to run.'
       />
       <link rel='canonical' href='https://www.gov.ph/design/accessibility' />
     </Helmet>
 
     <PageHeader
       title='Accessibility'
-      lede='Government services are for everyone, including the roughly one in seven Filipinos living with a disability. WCAG 2.1 AA is our floor. The system gets you part of the way; your content and testing do the rest.'
+      lede='Government services are for everyone. Our target is WCAG 2.2 Level AA; full conformance has not been established. Use the public checklist to see verified support, known barriers, and the checks still to do.'
     />
 
     <DocSection first id='system'>
-      <SectionHeader label='What the system does for you' />
+      <SectionHeader label='What the system provides today' />
+      <Prose className='mb-8'>
+        <p>
+          Reviewed on {ACCESSIBILITY_REVIEW.label}. Automated checks found
+          barriers in the current build. Component reuse does not replace
+          testing the page and the complete task.
+        </p>
+        <ArrowLink to='/accessibility'>
+          Read the accessibility checklist and review scope
+        </ArrowLink>
+      </Prose>
       <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
         {SYSTEM_PROVIDES.map(item => (
           <div key={item.title} className='max-w-md'>
@@ -104,7 +115,21 @@ const DesignAccessibilityPage: FC = () => (
     </DocSection>
 
     <DocSection id='testing'>
-      <SectionHeader label='How to test' meta='Four checks before shipping' />
+      <SectionHeader label='How to test' meta='Automation plus human review' />
+      <Prose className='mb-8'>
+        <p>
+          Run <code>npm run test:a11y</code> for the repeatable desktop and
+          mobile-sized Chromium audit. It checks nine default page states with
+          axe-core and exercises layout, labels, keyboard behaviour, and reduced
+          motion. Known failures remain failures in the report.
+        </p>
+        <p>
+          See <code>docs/accessibility-audit.md</code> in the repository for
+          findings, reproduction steps, and the follow-up checklist. When a fix
+          passes, update the public checklist with its evidence and review date.
+          Keep untested features marked as unverified.
+        </p>
+      </Prose>
       <div className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
         {TESTS.map(t => (
           <div key={t.title} className='max-w-md'>
@@ -117,13 +142,19 @@ const DesignAccessibilityPage: FC = () => (
       </div>
       <Prose className='mt-10'>
         <p>
-          Automated checkers catch perhaps a third of real barriers; the four
-          manual checks above catch most of the rest. When they disagree with
-          this documentation, fix the page first and then report the gap so the
-          system improves too.
+          Automated checks cannot establish WCAG conformance. Review findings
+          marked as incomplete, test interactive and error states, and include
+          people with disabilities in task-based testing. Use the{' '}
+          <a
+            className='text-ed-navy underline underline-offset-4'
+            href='https://www.w3.org/WAI/test-evaluate/preliminary/'
+          >
+            W3C accessibility checks
+          </a>{' '}
+          as a starting point, then evaluate the applicable success criteria.
         </p>
         <ArrowLink to='/accessibility'>
-          Read the GOV.PH accessibility statement
+          Read the GOV.PH accessibility checklist
         </ArrowLink>
       </Prose>
     </DocSection>
