@@ -136,7 +136,7 @@ describe('native data routes', () => {
       expect(new URL(String(url)).origin).toBe(
         'https://api.openweathermap.org'
       );
-      expect(init?.redirect).toBe('error');
+      expect(init?.redirect).toBe('manual');
       expect(init?.signal).toBeInstanceOf(AbortSignal);
     }
     expect(weatherKV.put).toHaveBeenCalledWith(
@@ -162,6 +162,7 @@ describe('native data routes', () => {
     expect(new URL(String(fetchMock.mock.calls[0][0])).origin).toBe(
       'https://www.bsp.gov.ph'
     );
+    expect(fetchMock.mock.calls[0][1]?.redirect).toBe('manual');
     expect(forexKV.put).toHaveBeenCalledWith(
       'bsp_exchange_rates',
       expect.any(String),
@@ -176,6 +177,26 @@ describe('native data routes', () => {
     expect((await call('/api/weather', 'GET', noKey)).status).toBe(503);
     expect(fetchMock).not.toHaveBeenCalled();
   });
+
+  it.each(['/api/weather', '/api/forex'])(
+    'rejects provider redirects at %s',
+    async path => {
+      weatherKV.get.mockResolvedValue(null);
+      forexKV.get.mockResolvedValue(null);
+      fetchMock.mockImplementation(
+        async () =>
+          new Response(null, {
+            status: 302,
+            headers: { Location: 'https://other.example' },
+          })
+      );
+      expect((await call(path)).status).toBe(502);
+      for (const [, init] of fetchMock.mock.calls)
+        expect(init?.redirect).toBe('manual');
+      expect(weatherKV.put).not.toHaveBeenCalled();
+      expect(forexKV.put).not.toHaveBeenCalled();
+    }
+  );
 
   it.each(['/api/weather', '/api/forex'])(
     'does not cache failed provider data for %s',

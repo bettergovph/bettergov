@@ -49,7 +49,7 @@ async function fetchForexData(): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
-      redirect: 'error',
+      redirect: 'manual',
       signal: AbortSignal.timeout(15_000),
       headers: {
         Accept: 'application/json;odata=nometadata',
@@ -58,6 +58,7 @@ async function fetchForexData(): Promise<ProcessedForexData> {
     });
 
     if (!response.ok) {
+      await response.body?.cancel();
       throw new Error(
         `Failed to fetch BSP data: ${response.status} ${response.statusText}`
       );

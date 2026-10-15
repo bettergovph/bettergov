@@ -2,7 +2,7 @@
 // Use --env staging for the separate govph.workers.dev account.
 // Production bindings are repeated for the explicit --env production alias;
 // named environments do not inherit KV or rate limit bindings.
-// Staging KV is automatically provisioned in its own account on first deploy.
+// Staging uses separate namespaces provisioned in its own account.
 {
   "name": "govph-dev",
   "account_id": "aad322f46c1fe4bdd854d8b1367b1d7f",
@@ -132,12 +132,15 @@
       "kv_namespaces": [
         {
           "binding": "BROWSER_KV",
+          "id": "f2aa98f458de4014af13220e6a5ebef7",
         },
         {
           "binding": "FOREX_KV",
+          "id": "5ce3e37fb2f946de96960f60518e843d",
         },
         {
           "binding": "WEATHER_KV",
+          "id": "14d798beca3048ff8121de2a6d75b4dd",
         },
       ],
       "ratelimits": [

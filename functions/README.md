@@ -103,13 +103,17 @@ Production uses the `www.gov.ph` custom domain and the namespaces you supplied:
 | `FOREX_KV` | `3907d2c4829148a8a83974839f273d45` |
 | `WEATHER_KV` | `afd30412016d46c9b3482c8da86bf419` |
 
-Staging declares the same binding names without production IDs. Wrangler
-[automatically provisions](https://developers.cloudflare.com/workers/wrangler/configuration/#automatic-provisioning)
-separate namespaces in its own account on deployment; local development uses
-local storage. CLI deployments write the new IDs back into the configuration;
-retain those IDs for subsequent deployments. KV bindings and rate limit bindings
-are declared separately for production because environment bindings are not
-inherited. The hourly schedule and assets configuration are inherited.
+Staging uses separate namespaces created in account `4c8b67…`:
+
+| Binding | Staging namespace ID |
+| --- | --- |
+| `BROWSER_KV` | `f2aa98f458de4014af13220e6a5ebef7` |
+| `FOREX_KV` | `5ce3e37fb2f946de96960f60518e843d` |
+| `WEATHER_KV` | `14d798beca3048ff8121de2a6d75b4dd` |
+
+KV and rate limit bindings are declared separately for each named environment
+because bindings are not inherited. The hourly schedule and assets configuration
+are inherited. Local development uses local storage, not either remote account.
 
 Secrets are also separate per deployment. Supply an account-scoped Cloudflare
 API token for the selected target; do not export a conflicting

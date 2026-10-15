@@ -116,10 +116,11 @@ async function fetchWeatherData(env: Env): Promise<WeatherResponseData> {
       // Use the standard weather API with coordinates
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&units=metric&appid=${apiKey}`,
-        { redirect: 'error', signal: AbortSignal.timeout(15_000) }
+        { redirect: 'manual', signal: AbortSignal.timeout(15_000) }
       );
 
       if (!response.ok) {
+        await response.body?.cancel();
         console.error(
           `Failed to fetch weather data for ${cityName}: ${response.statusText}`
         );
