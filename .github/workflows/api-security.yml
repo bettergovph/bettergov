@@ -1,0 +1,61 @@
+name: API security and deployment
+
+on:
+  pull_request:
+    branches: [v2, main]
+    paths:
+      - 'functions/**'
+      - 'src/lib/**'
+      - 'src/components/search/**'
+      - 'src/pages/Search.tsx'
+      - 'src/pages/flood-control-projects/**'
+      - 'vite.config.ts'
+      - 'wrangler.jsonc'
+      - 'package*.json'
+      - '.github/workflows/api-security.yml'
+  push:
+    branches: [v2, main]
+    paths:
+      - 'functions/**'
+      - 'src/lib/**'
+      - 'src/components/search/**'
+      - 'src/pages/Search.tsx'
+      - 'src/pages/flood-control-projects/**'
+      - 'vite.config.ts'
+      - 'wrangler.jsonc'
+      - 'package*.json'
+      - '.github/workflows/api-security.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  api-security:
+    name: API tests and Worker bundles
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - name: Test security, native data, search and assistant
+        run: >-
+          npx vitest run
+          functions/__tests__/request-security.test.ts
+          functions/__tests__/index.test.ts
+          functions/__tests__/api-proxy.test.ts
+          functions/__tests__/native-data.test.ts
+          functions/__tests__/assistant.test.ts
+          src/lib/__tests__/same-origin-api.test.ts
+          src/lib/__tests__/assistant.test.ts
+      - name: Build frontend without deployment secrets
+        run: npm run build:app
+      - name: Validate staging Worker and bindings
+        run: npx wrangler deploy --env "" --dry-run
+      - name: Validate production Worker and bindings
+        run: npx wrangler deploy --env production --dry-run

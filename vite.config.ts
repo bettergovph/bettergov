@@ -9,13 +9,33 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5125,
     strictPort: true,
-    // The GovPH Chatbot talks to the Worker (functions/api/assistant.ts),
-    // which `npm run functions:dev` serves on 127.0.0.1:5525. Only this path
-    // is forwarded so static files under public/api stay served by Vite.
+    // Dynamic APIs use the Worker on 127.0.0.1:5525 during development.
+    // Static files such as /api/projects.json stay served by Vite.
     proxy: {
-      '/api/assistant': {
+      '^/api/(assistant(?:/stream)?|weather|forex|search(?:/.*)?)(?:\\?|$)': {
         target: 'http://127.0.0.1:5525',
         changeOrigin: true,
+        configure(proxy) {
+          proxy.on('proxyReq', (proxyRequest, request) => {
+            const origin = request.headers.origin;
+            if (!origin) return;
+            try {
+              // Keep the production allowlist strict while supporting the
+              // existing same-origin Vite preview. Foreign origins pass
+              // through unchanged and are rejected by the Worker.
+              const url = new URL(origin);
+              if (
+                (url.protocol === 'http:' || url.protocol === 'https:') &&
+                url.origin === origin &&
+                url.host === request.headers.host
+              ) {
+                proxyRequest.setHeader('Origin', 'https://www.gov.ph');
+              }
+            } catch {
+              // Malformed origins are rejected by the Worker.
+            }
+          });
+        },
       },
     },
   },

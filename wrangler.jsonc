@@ -1,21 +1,91 @@
 {
+  // Default deployment remains staging, preserving the existing Workers Build.
+  // Production is explicit: wrangler deploy --env production.
   "name": "govph-dev",
   "account_id": "4c8b67ea7626b52e375842607904dd07",
   "compatibility_date": "2025-11-17",
   // The Worker script. Declared here so a bare `wrangler deploy` (the
   // Workers Builds default) ships the API routes, not just the static site.
   "main": "functions/index.ts",
+  "workers_dev": true,
+  // Preserve runtime variables managed in each account's dashboard.
+  "keep_vars": true,
+  // Staging gets its own namespaces on deployment (Wrangler auto-provisioning).
+  // Never put production namespace IDs in this account's bindings.
+  "kv_namespaces": [
+    { "binding": "BROWSER_KV" },
+    { "binding": "FOREX_KV" },
+    { "binding": "WEATHER_KV" },
+  ],
+  "triggers": { "crons": ["0 * * * *"] },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application",
     // API paths always reach the Worker, even for browser navigations
     // (which otherwise get the single-page-application fallback first).
     // The one static file under /api keeps being served as an asset.
-    "run_worker_first": ["/api/*", "!/api/projects.json"],
+    "run_worker_first": ["/api/*", "!/api/projects.json", "/weather", "/forex"],
   },
-  // Bindings are provisioned per Cloudflare account. The KV namespaces and
-  // D1 database that the weather, forex and crawl routes use have not been
-  // created in this account, so none are declared and those routes answer
-  // 503 until they are. See functions/README.md, "Setup Instructions", to
-  // create them and add `kv_namespaces` / `d1_databases` blocks here.
+  // Limits per client IP per Cloudflare location. Both assistant endpoints
+  // share one quota. Keep limits in sync with functions/lib/request-security.ts.
+  "ratelimits": [
+    {
+      "name": "API_RATE_LIMITER",
+      "namespace_id": "2026101401",
+      "simple": { "limit": 120, "period": 60 },
+    },
+    {
+      "name": "ASSISTANT_RATE_LIMITER",
+      "namespace_id": "2026101402",
+      "simple": { "limit": 20, "period": 60 },
+    },
+    {
+      "name": "CRAWL_RATE_LIMITER",
+      "namespace_id": "2026101403",
+      "simple": { "limit": 10, "period": 60 },
+    },
+    {
+      "name": "REPORT_RATE_LIMITER",
+      "namespace_id": "2026101404",
+      "simple": { "limit": 5, "period": 60 },
+    },
+  ],
+  "env": {
+    "production": {
+      "name": "govph-dev",
+      "account_id": "aad322f46c1fe4bdd854d8b1367b1d7f",
+      "routes": [{ "pattern": "www.gov.ph", "custom_domain": true }],
+      "kv_namespaces": [
+        { "binding": "BROWSER_KV", "id": "0c903bf8530b4a6a9019e7445c2f9aff" },
+        { "binding": "FOREX_KV", "id": "3907d2c4829148a8a83974839f273d45" },
+        { "binding": "WEATHER_KV", "id": "afd30412016d46c9b3482c8da86bf419" },
+      ],
+      // Bindings are not inherited by named environments.
+      "ratelimits": [
+        {
+          "name": "API_RATE_LIMITER",
+          "namespace_id": "2026101401",
+          "simple": { "limit": 120, "period": 60 },
+        },
+        {
+          "name": "ASSISTANT_RATE_LIMITER",
+          "namespace_id": "2026101402",
+          "simple": { "limit": 20, "period": 60 },
+        },
+        {
+          "name": "CRAWL_RATE_LIMITER",
+          "namespace_id": "2026101403",
+          "simple": { "limit": 10, "period": 60 },
+        },
+        {
+          "name": "REPORT_RATE_LIMITER",
+          "namespace_id": "2026101404",
+          "simple": { "limit": 5, "period": 60 },
+        },
+      ],
+    },
+  },
+  // Required runtime secrets per environment: OPENWEATHERMAP_API_KEY,
+  // MEILISEARCH_SEARCH_API_KEY (search-only), and the existing EGOVAI_* secrets.
+  // Crawl additionally requires BETTERGOV_DB; see functions/README.md.
 }

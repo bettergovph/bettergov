@@ -24,6 +24,9 @@ vi.mock('../forex', () => ({
 vi.mock('../api/crawl', () => ({
   onRequest: vi.fn(async () => handlerResponse('crawl')),
 }));
+vi.mock('../api/search', () => ({
+  onRequest: vi.fn(async () => handlerResponse('search')),
+}));
 vi.mock('../api/report-hotline', () => ({
   onRequest: vi.fn(async () => handlerResponse('report-hotline')),
 }));
@@ -36,7 +39,15 @@ const worker = (await import('../index')).default;
 
 // Stub bindings so every route dispatches. No TALACMS_* — the Worker has
 // no CMS role.
+const rateLimiters = {
+  API_RATE_LIMITER: { limit: vi.fn(async () => ({ success: true })) },
+  ASSISTANT_RATE_LIMITER: { limit: vi.fn(async () => ({ success: true })) },
+  CRAWL_RATE_LIMITER: { limit: vi.fn(async () => ({ success: true })) },
+  REPORT_RATE_LIMITER: { limit: vi.fn(async () => ({ success: true })) },
+};
+
 const env = {
+  ...rateLimiters,
   WEATHER_KV: {},
   FOREX_KV: {},
   BROWSER_KV: {},
@@ -46,13 +57,19 @@ const ctx = {} as ExecutionContext;
 
 const call = (path: string, method = 'GET', withEnv: Env = env) =>
   worker.fetch(
-    new Request(`https://api.gov.ph${path}`, { method }),
+    new Request(`https://www.gov.ph${path}`, {
+      method,
+      headers: {
+        Origin: 'https://www.gov.ph',
+        'CF-Connecting-IP': '192.0.2.1',
+      },
+    }),
     withEnv,
     ctx
   );
 
 describe('Routes whose bindings are not declared', () => {
-  const bare = {} as Env;
+  const bare = { ...rateLimiters } as unknown as Env;
 
   it.each([
     ['/api/weather', ['WEATHER_KV']],
@@ -65,7 +82,9 @@ describe('Routes whose bindings are not declared', () => {
     async (path, missing) => {
       const response = await call(path, 'GET', bare);
       expect(response.status).toBe(503);
-      expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+      expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
+        'https://www.gov.ph'
+      );
       await expect(response.json()).resolves.toMatchObject({
         error: 'Not configured',
         missingBindings: missing,
@@ -74,10 +93,11 @@ describe('Routes whose bindings are not declared', () => {
   );
 
   it.each([
+    ['/api/search', 'search'],
     ['/api/assistant', 'assistant'],
     ['/api/assistant/stream', 'assistant-stream'],
     ['/api/report-hotline', 'report-hotline'],
-  ])('still dispatch %s, which needs no binding', async (path, handler) => {
+  ])('still dispatch %s without storage bindings', async (path, handler) => {
     const response = await call(path, 'GET', bare);
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ handler });
@@ -101,7 +121,35 @@ describe('Worker routing after the CMS routes are removed', () => {
   beforeEach(() => vi.clearAllMocks());
 
   it.each([
+    '/api/weather',
+    '/api/search/multi-search',
+    '/weather',
+    '/api/forex',
+    '/forex',
+    '/api/crawl',
+    '/api/report-hotline',
+    '/api/assistant',
+    '/api/assistant/stream',
+    '/api/status',
+    '/unknown',
+  ])('blocks unapproved origins at %s before dispatch', async path => {
+    const response = await worker.fetch(
+      new Request(`https://www.gov.ph${path}`, {
+        headers: { Origin: 'https://evil.example' },
+      }),
+      env,
+      ctx
+    );
+    expect(response.status).toBe(403);
+    expect(response.headers.has('Access-Control-Allow-Origin')).toBe(false);
+    expect(rateLimiters.API_RATE_LIMITER.limit).not.toHaveBeenCalled();
+  });
+
+  it.each([
     ['/api/weather', 'weather'],
+    ['/api/search', 'search'],
+    ['/api/search/multi-search', 'search'],
+    ['/api/search/indexes/bettergov/facet-search', 'search'],
     ['/api/forex', 'forex'],
     ['/weather', 'weather-kv'],
     ['/forex', 'forex-kv'],
@@ -114,7 +162,9 @@ describe('Worker routing after the CMS routes are removed', () => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ handler });
     // CORS is applied by the router, so this also proves it went through it.
-    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
+      'https://www.gov.ph'
+    );
   });
 
   it.each([['/cms/categories'], ['/cms/hotlines']])(

@@ -71,13 +71,17 @@ npm run dev
 
 **Access the application at:** `http://localhost:5125`
 
-The GovPH Chatbot widget talks to the Cloudflare Worker in
-`functions/`, so run the Worker next to Vite when you want the assistant to
-answer locally. It reads the eGovAI secrets from a gitignored `.dev.vars`
-file — see `functions/README.md` for the `EGOVAI_*` variables.
+The chatbot, weather, forex and search use same-origin `/api` routes served by
+the Cloudflare Worker in `functions/`, so run the Worker next to Vite for these
+features. It reads the `EGOVAI_*`, `OPENWEATHERMAP_API_KEY` and
+`MEILISEARCH_SEARCH_API_KEY` runtime secrets from gitignored `.dev.vars`.
+Weather and forex use this Worker's KV namespaces; only search uses the
+Meilisearch proxy. The default deployment stays `govph-dev` staging;
+`npm run functions:deploy:production` selects the production account and its
+KV namespaces. See [the Worker setup](functions/README.md) for configuration.
 
 ```bash
-# Second terminal — Worker on 127.0.0.1:5525; Vite proxies /api/assistant to it
+# Second terminal — Worker on 127.0.0.1:5525; Vite proxies the dynamic API routes
 npm run functions:dev
 ```
 

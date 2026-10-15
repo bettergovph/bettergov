@@ -314,7 +314,10 @@ async function handle(
     const mapped = mapUpstreamError(upstream.status, body);
     return json(
       { error: mapped.error, message: mapped.message },
-      mapped.status
+      mapped.status,
+      mapped.status === 429
+        ? { 'Retry-After': upstream.headers.get('Retry-After') || '60' }
+        : undefined
     );
   }
 

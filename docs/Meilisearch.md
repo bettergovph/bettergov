@@ -12,7 +12,12 @@ Welcome! This guide covers setting up Meilisearch for the portal's search functi
 
 ## Getting Started with Meilisearch
 
-Think of Meilisearch as the brain behind the portal's search feature. It helps users quickly find government services, offices, and information they need. Here's how to get it running on your machine.
+The website searches through its same-origin `/api/search` Worker proxy. The
+proxy targets `https://search2.bettergov.ph`, limits access to the three public
+indexes, and keeps the search-only key server-side. See
+[`functions/README.md`](../functions/README.md#meilisearch) for the runtime secret
+and deployment setup. The self-hosting steps below are for maintaining/indexing
+a Meilisearch server; changing script host variables does not redirect the browser.
 
 ### What You'll Need
 
@@ -108,9 +113,6 @@ VITE_MEILISEARCH_PORT=7700
 # Example: aSampleMasterKey
 MEILISEARCH_MASTER_KEY=aSampleMasterKey
 
-# Search key for the frontend (we'll generate this in Step 4)
-VITE_MEILISEARCH_SEARCH_API_KEY=your_search_api_key_here
-
 # Perplexity API key (required for contractor data processing)
 # Get your key at: https://www.perplexity.ai/settings/api
 PERPLEXITY_API_KEY=your_perplexity_api_key_here
@@ -176,19 +178,19 @@ npm run index:contractor-profiles
 
 #### Step 5: Generate Your Search Key
 
-Now we need to create a special key that the website will use for searching. In a new terminal window, run:
+Create a search-only key for the Worker's target Meilisearch server. The key must allow `search` on `bettergov`, `bettergov_flood_control` and `contractors`. In a new terminal window, run:
 
 ```bash
 npm run index:create-key
 ```
 
-This will show you a new API key. Copy it and update your `.env` file:
+Store the generated key in gitignored `.dev.vars` for local Worker development:
 
 ```env
-VITE_MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
+MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
 ```
 
-This key can only search - it can't modify data, making it safe to use in the browser
+For deployment, set the same name with `npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production`. The frontend no longer needs a `VITE_MEILISEARCH_SEARCH_API_KEY`; the key stays in the Worker. A key created on another/local Meilisearch server cannot authenticate against `search2.bettergov.ph`.
 
 #### Step 6: Verify Everything Works
 

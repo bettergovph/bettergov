@@ -11,7 +11,7 @@ import {
   useClearRefinements,
 } from 'react-instantsearch';
 import type { Hit } from 'instantsearch.js';
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import { createSearchClient } from '../lib/search';
 import { Helmet } from 'react-helmet-async';
 import { MenuIcon, XIcon } from 'lucide-react';
 
@@ -25,41 +25,30 @@ import { cn } from '../lib/utils';
 
 // ─── Meilisearch client ───────────────────────────────────────────────────────
 
-const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_SEARCH_API_KEY =
-  import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here';
-
-const { searchClient } = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'slug',
-    keepZeroFacets: true,
-    meiliSearchParams: {
-      attributesToHighlight: [
-        'name',
-        'office_name',
-        'office',
-        'service',
-        'description',
-      ],
-      attributesToSearchOn: [
-        'name',
-        'office_name',
-        'office',
-        'service',
-        'website',
-        'description',
-        'category',
-        'subcategory',
-        'address',
-      ],
-    },
-  }
-);
+const { searchClient } = createSearchClient({
+  primaryKey: 'slug',
+  keepZeroFacets: true,
+  meiliSearchParams: {
+    attributesToHighlight: [
+      'name',
+      'office_name',
+      'office',
+      'service',
+      'description',
+    ],
+    attributesToSearchOn: [
+      'name',
+      'office_name',
+      'office',
+      'service',
+      'website',
+      'description',
+      'category',
+      'subcategory',
+      'address',
+    ],
+  },
+});
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

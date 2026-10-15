@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, FC } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { InstantSearch, Configure, useHits } from 'react-instantsearch';
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import { createSearchClient } from '../../../lib/search';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../../lib/exportData';
 import { useTranslation } from 'react-i18next';
@@ -55,32 +55,18 @@ interface ContractorProfile {
 }
 
 // Meilisearch configuration
-const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_SEARCH_API_KEY =
-  import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here';
 
 // Create search client with proper type casting
-const meiliSearchInstance = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'GlobalID',
-    keepZeroFacets: true,
-  }
-);
+const meiliSearchInstance = createSearchClient({
+  primaryKey: 'GlobalID',
+  keepZeroFacets: true,
+});
 
 // Create contractors search client
-const contractorsSearchInstance = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'slug',
-    keepZeroFacets: true,
-  }
-);
+const contractorsSearchInstance = createSearchClient({
+  primaryKey: 'slug',
+  keepZeroFacets: true,
+});
 
 // Extract the searchClient from meiliSearchInstance
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -610,9 +596,6 @@ const ContractorDetail: FC = () => {
 
     try {
       await exportMeilisearchData({
-        host: MEILISEARCH_HOST,
-        port: MEILISEARCH_PORT,
-        apiKey: MEILISEARCH_SEARCH_API_KEY,
         indexName: 'bettergov_flood_control',
         filters: filterString,
         searchTerm: searchTerm,
