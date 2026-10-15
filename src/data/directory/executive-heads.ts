@@ -3,8 +3,7 @@
  * /government/executive. Unlike the office directories (executive.json),
  * these are short sourced profiles: every fact cites an entry in `sources`
  * by its 1-based number, and `verifiedOn` is the date the whole profile was
- * last checked. Re-check the VP's `notice` whenever the impeachment trial
- * moves; it is dated on purpose.
+ * last checked.
  */
 
 export type ExecutiveHeadSlug = 'president' | 'vice-president';
@@ -43,7 +42,6 @@ export type ExecutiveHead = {
     sourceUrl: string;
   };
   keyFacts: { label: string; value: string; cite: Cite }[];
-  notice?: { heading: string; text: string; cite: Cite };
   role: { text: string; cite: Cite }[];
   profile: { label: string; value: string; cite: Cite }[];
   career: { period: string; office: string; cite: Cite }[];
@@ -249,11 +247,6 @@ const vicePresident: ExecutiveHead = {
     { label: 'Term ends', value: '30 June 2028', cite: [1] },
     { label: 'Votes in 2022', value: '32,208,417', cite: [2] },
   ],
-  notice: {
-    heading: 'Impeachment trial in progress · as of 15 October 2026',
-    text: 'The House of Representatives impeached the Vice President on 11 May 2026, and the Senate, sitting as an impeachment court, opened the trial on 6 July 2026. On 13 October 2026 the prosecution withdrew three of the four articles of impeachment and is proceeding on Article II only; the trial resumes on 9 November 2026. An earlier impeachment, transmitted to the Senate in February 2025, was declared unconstitutional by the Supreme Court on 25 July 2025. The Vice President remains in office while the trial is pending.',
-    cite: [7, 9, 10, 8, 5],
-  },
   role: [
     {
       text: 'Has the same qualifications and term of office as the President, and is elected with and in the same manner as the President (Article VII, Section 3).',
@@ -291,7 +284,7 @@ const vicePresident: ExecutiveHead = {
         '19 June 2022, at San Pedro Square in Davao City, before Associate Justice Ramon Paul Hernando; assumed office at noon on 30 June 2022',
       cite: [3],
     },
-    { label: 'Elected under', value: 'Lakas–CMD', cite: [11] },
+    { label: 'Elected under', value: 'Lakas–CMD', cite: [7] },
   ],
   career: [
     {
@@ -351,30 +344,6 @@ const vicePresident: ExecutiveHead = {
       publisher: 'GMA News',
       url: 'https://www.gmanetwork.com/news/topstories/nation/910976/vp-sara-duterte-says-she-remains-friendly-with-marcos-resignation-in-deped-s-best-interest/story/',
       date: '2024-06-23',
-    },
-    {
-      title: 'Report on the House vote to impeach the Vice President',
-      publisher: 'GMA News',
-      url: 'https://www.gmanetwork.com/news/topstories/nation/987211/vice-president-sara-duterte-impeached-by-house-of-representatives/story/',
-      date: '2026-05-11',
-    },
-    {
-      title: 'Press briefer on Duterte v. House of Representatives',
-      publisher: 'Supreme Court of the Philippines',
-      url: 'https://sc.judiciary.gov.ph/wp-content/uploads/2026/01/PRESS-BRIEFER-January-29-2026.pdf',
-      date: '2026-01-29',
-    },
-    {
-      title: 'Report on the withdrawal of three articles of impeachment',
-      publisher: 'GMA News',
-      url: 'https://www.gmanetwork.com/news/topstories/nation/1005740/prosecution-drops-3-articles-retains-article-ii-in-sara-duterte-impeachment-trial/story/',
-      date: '2026-10-13',
-    },
-    {
-      title: 'Report on the adjournment of the impeachment trial',
-      publisher: 'The Manila Times',
-      url: 'https://www.manilatimes.net/2026/10/14/news/duterte-impeachment-trial-adjourned-until-nov-9/2445120',
-      date: '2026-10-14',
     },
     {
       title: '2022 national election results (Open Halalan dataset)',

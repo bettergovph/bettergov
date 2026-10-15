@@ -214,24 +214,6 @@ const ExecutiveHeadPage: FC<{ slug: ExecutiveHeadSlug }> = ({ slug }) => {
 
       <Container className='grid grid-cols-[minmax(0,1fr)_300px] items-start gap-14 py-12 max-lg:grid-cols-1 max-lg:gap-10 max-md:py-6'>
         <div className='min-w-0 max-w-[760px] space-y-12 max-md:space-y-8'>
-          {head.notice && (
-            <section
-              aria-labelledby='status-heading'
-              className='border-l-4 border-ed-navy bg-ed-navy-tint px-6 py-5 max-md:px-4 max-md:py-4'
-            >
-              <h2
-                id='status-heading'
-                className='font-mono-ed text-[11px] font-medium uppercase tracking-[0.14em] text-ed-navy-ink'
-              >
-                {head.notice.heading}
-              </h2>
-              <p className='mt-2 text-[15px] leading-relaxed text-ed-ink-2'>
-                {head.notice.text}
-                <Cite refs={head.notice.cite} />
-              </p>
-            </section>
-          )}
-
           <section aria-labelledby='role-heading'>
             <SectionHeader label={<span id='role-heading'>The role</span>} />
             <ul className='space-y-4'>
