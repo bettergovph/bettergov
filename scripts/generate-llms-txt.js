@@ -153,6 +153,12 @@ function generateGovernmentDirectory(governmentData) {
   // Executive Branch
   sections.push('#### Executive Branch');
   sections.push(
+    '- The President of the Philippines (https://www.gov.ph/government/executive/president)'
+  );
+  sections.push(
+    '- The Vice President of the Philippines (https://www.gov.ph/government/executive/vice-president)'
+  );
+  sections.push(
     '- Office of the President (https://www.gov.ph/government/executive/office-of-the-president)'
   );
   sections.push(
@@ -292,6 +298,8 @@ function generateSitemap(mainNavigation, governmentData) {
   // Add detailed government pages
   if (governmentData) {
     // Executive branch pages
+    pages.add(`${siteUrl}/government/executive/president`);
+    pages.add(`${siteUrl}/government/executive/vice-president`);
     pages.add(`${siteUrl}/government/executive/office-of-the-president`);
     pages.add(`${siteUrl}/government/executive/office-of-the-vice-president`);
     pages.add(

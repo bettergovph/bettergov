@@ -59,6 +59,8 @@ import OfficeOfThePresident from './pages/government/executive/office-of-the-pre
 import OtherExecutiveOffices from './pages/government/executive/other-executive-offices';
 import OfficeOfTheVicePresident from './pages/government/executive/office-of-the-vice-president';
 import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
+import President from './pages/government/executive/president';
+import VicePresident from './pages/government/executive/vice-president';
 // Judicial Branch
 import JudicialLayout from './pages/government/judicial/layout';
 import JudicialIndex from './pages/government/judicial/index';
@@ -239,6 +241,8 @@ function App() {
                   path='other-executive-offices'
                   element={<OtherExecutiveOffices />}
                 />
+                <Route path='president' element={<President />} />
+                <Route path='vice-president' element={<VicePresident />} />
                 <Route
                   path='office-of-the-president'
                   element={<OfficeOfThePresident />}
