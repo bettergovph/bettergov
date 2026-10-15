@@ -63,15 +63,11 @@ jobs:
             src/data/directory/schema/departments.schema.json \
             src/data/directory/departments.json
 
-      # src/data/directory/diplomatic.json is build-time-generated and
-      # gitignored, so it never exists on a clean checkout — validate the
-      # schema against its committed pre-migration fixture instead, the same
-      # way the LGU step above does.
-      - name: Validate diplomatic schema against its committed fixture
+      - name: Validate diplomatic JSON file
         run: |
           node scripts/validate-json-schema.js \
             src/data/directory/schema/diplomatic.schema.json \
-            src/data/directory/__fixtures__/diplomatic.expected.json
+            src/data/directory/diplomatic.json
 
       - name: Validate executive JSON file
         run: |

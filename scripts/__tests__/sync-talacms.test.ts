@@ -207,51 +207,6 @@ const collidingLegislativePayload = {
   ],
 };
 
-const diplomaticPayload = {
-  _allDiplomaticEntitiesMeta: { count: 3 },
-  allDiplomaticEntities: [
-    {
-      position: 0,
-      slug: 'holy-see',
-      entityType: 'Diplomatic Mission',
-      name: 'Apostolic Nunciature',
-      country: 'Holy See',
-      address: null,
-      contact: null,
-      email: null,
-      website: null,
-      representative: null,
-      title: null,
-    },
-    {
-      position: 1,
-      slug: null,
-      entityType: 'Consulate',
-      name: 'Consulate of Example',
-      country: 'Example',
-      address: null,
-      contact: null,
-      email: null,
-      website: null,
-      representative: null,
-      title: null,
-    },
-    {
-      position: 2,
-      slug: null,
-      entityType: 'International Organization',
-      name: 'Example International Organization',
-      country: null,
-      address: null,
-      contact: null,
-      email: null,
-      website: null,
-      representative: null,
-      title: null,
-    },
-  ],
-};
-
 /**
  * Minimal LGU payload shaped like the real CDA response: 19 regions (so a
  * full sync's LGU candidate count matches production), each with at least
@@ -366,7 +321,6 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
     if (query.includes('SyncConstitutionalOffices'))
       return constitutionalPayload;
     if (query.includes('SyncLegislativeChambers')) return legislativePayload;
-    if (query.includes('SyncDiplomaticEntities')) return diplomaticPayload;
     const lguResponse = lguResponseFor(query);
     if (lguResponse !== undefined) return lguResponse;
     return hotlinesPayload;
@@ -403,7 +357,7 @@ const makeDeps = (over: Record<string, unknown> = {}) => {
 };
 
 describe('run', () => {
-  it('writes all nine datasets (19 LGU files included) and exits 0', async () => {
+  it('writes all eight datasets (19 LGU files included) and exits 0', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(deps.commitFiles).toHaveBeenCalledTimes(1);
@@ -417,7 +371,6 @@ describe('run', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
-      'src/data/directory/diplomatic.json',
       ...lguCandidatePaths,
     ]);
   });
@@ -576,7 +529,7 @@ describe('run', () => {
 });
 
 describe('services orchestration', () => {
-  it('writes all nine datasets, services last among the original three, then directory, then LGU', async () => {
+  it('writes all eight datasets, services last among the original three, then directory, then LGU', async () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     expect(pathsOf(deps)).toEqual([
@@ -587,7 +540,6 @@ describe('services orchestration', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
-      'src/data/directory/diplomatic.json',
       ...lguCandidatePaths,
     ]);
   });
@@ -630,7 +582,6 @@ describe('services orchestration', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
-      if (query.includes('SyncDiplomaticEntities')) return diplomaticPayload;
       const lguResponse = lguResponseFor(query);
       if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
@@ -650,7 +601,6 @@ describe('services orchestration', () => {
       'src/data/directory/executive.json',
       'src/data/directory/constitutional.json',
       'src/data/directory/legislative.json',
-      'src/data/directory/diplomatic.json',
       ...lguCandidatePaths,
     ]);
   });
@@ -1112,7 +1062,7 @@ describe('stale service file cleanup', () => {
 });
 
 describe('directory datasets', () => {
-  it('exposes all six directory models as selectable datasets', () => {
+  it('exposes all five directory models as selectable datasets', () => {
     expect(DATASETS).toEqual([
       'categories',
       'hotlines',
@@ -1121,7 +1071,6 @@ describe('directory datasets', () => {
       'executive',
       'constitutional',
       'legislative',
-      'diplomatic',
       'lgu',
     ]);
   });
@@ -1221,7 +1170,6 @@ describe('directory dataset isolation', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
-      if (query.includes('SyncDiplomaticEntities')) return diplomaticPayload;
       const lguResponse = lguResponseFor(query);
       if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
@@ -1305,7 +1253,6 @@ describe('constitutional dataset', () => {
       if (query.includes('SyncConstitutionalOffices'))
         return collidingConstitutionalPayload;
       if (query.includes('SyncLegislativeChambers')) return legislativePayload;
-      if (query.includes('SyncDiplomaticEntities')) return diplomaticPayload;
       const lguResponse = lguResponseFor(query);
       if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
@@ -1458,7 +1405,6 @@ describe('legislative dataset', () => {
         return constitutionalPayload;
       if (query.includes('SyncLegislativeChambers'))
         return collidingLegislativePayload;
-      if (query.includes('SyncDiplomaticEntities')) return diplomaticPayload;
       const lguResponse = lguResponseFor(query);
       if (lguResponse !== undefined) return lguResponse;
       return hotlinesPayload;
@@ -1616,7 +1562,7 @@ describe('lgu dataset', () => {
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
     const written = pathsOf(deps);
-    expect(written).toHaveLength(8 + 19);
+    expect(written).toHaveLength(7 + 19);
     expect(written.slice(-19)).toEqual(lguCandidatePaths);
   });
 
@@ -1741,47 +1687,5 @@ describe('lgu dataset', () => {
     // proof it was never passed in.
     const { deps } = makeDeps();
     await expect(run([], deps as never)).resolves.toBe(0);
-  });
-});
-
-describe('--only=diplomatic', () => {
-  it('is an accepted dataset name', () => {
-    expect(DATASETS).toContain('diplomatic');
-  });
-
-  it('writes only diplomatic.json', async () => {
-    const { deps } = makeDeps();
-    await run(['--only=diplomatic'], deps as never);
-    const written = (deps.commitFiles as ReturnType<typeof vi.fn>).mock
-      .calls[0][0] as { path: string }[];
-    expect(written.map(f => f.path)).toEqual([
-      'src/data/directory/diplomatic.json',
-    ]);
-  });
-
-  it('queries ONLY the diplomatic collection', async () => {
-    const { client, deps } = makeDeps();
-    await run(['--only=diplomatic'], deps as never);
-    const queries = queriesOf(client).join('\n');
-    expect(queries).toContain('allDiplomaticEntities');
-    for (const other of [
-      'allGovernmentDepartments',
-      'allExecutiveOffices',
-      'allConstitutionalOffices',
-      'allLegislativeChambers',
-      'allGovernmentServices',
-      'allServiceCategories',
-      'allLguRegions',
-    ]) {
-      expect(queries).not.toContain(other);
-    }
-  });
-
-  it('does not read or remove service or LGU files', async () => {
-    const { deps } = makeDeps();
-    await run(['--only=diplomatic'], deps as never);
-    expect(deps.readServiceRecords).not.toHaveBeenCalled();
-    expect(deps.removeStaleServiceFiles).not.toHaveBeenCalled();
-    expect(deps.removeStaleLguFiles).not.toHaveBeenCalled();
   });
 });

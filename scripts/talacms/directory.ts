@@ -34,29 +34,6 @@ export const CONSTITUTIONAL_PAGE_SIZE = 300;
 export const LEGISLATIVE_PAGE_SIZE = 50;
 
 /**
- * Diplomatic Entities carries 227 records in ONE flat model discriminated by
- * `entityType` — 70 missions, 139 consulates, 18 international organizations.
- * 300 leaves ~70 records of headroom and still fails loudly below the CDA's
- * hard `first` cap of 500. If this ever fires, raise it to at most 500;
- * beyond that the model needs real pagination, which is out of scope here.
- */
-export const DIPLOMATIC_PAGE_SIZE = 300;
-
-/**
- * The closed set of `entityType` values, in the generated file's key order.
- * This IS the output contract: the shaper emits exactly these three keys, in
- * exactly this order, and a fourth CMS value fails the sync rather than
- * silently adding an undocumented fourth top-level key that no page renders.
- */
-export const DIPLOMATIC_ENTITY_TYPES = [
-  'Diplomatic Mission',
-  'Consulate',
-  'International Organization',
-] as const;
-
-export type DiplomaticEntityType = (typeof DIPLOMATIC_ENTITY_TYPES)[number];
-
-/**
  * Ceilings for the two NESTED relations. These are NOT `first:` arguments —
  * the reverse relations take no `first` argument at all, so nothing is being
  * enforced or bypassed here (`first: 600` on one of them returned all 255
@@ -228,46 +205,6 @@ query SyncConstitutionalOffices {
 }
 `;
 
-/**
- * A SIXTH independent operation. Same rule as every model above: a combined
- * query would make `--only=diplomatic` fail on another model's data and vice
- * versa. Its own `_allDiplomaticEntitiesMeta` is declared BEFORE its own
- * collection field, per the per-operation resolver-ordering rule in
- * ./categories.ts — verified against the live CDA on 2026-09-09, returning
- * count 227 with 227 records in one request.
- *
- * ONE flat model, not three: `entityType` discriminates missions, consulates
- * and international organizations, and the shaper groups on it. `position` is
- * globally unique across all 227 and the three types occupy three contiguous
- * runs in it, so a single `position_ASC` page reproduces the committed file's
- * order for all three groups at once.
- *
- * `details` is a JsonField carried by the model but `null` on all 227 live
- * records; it is deliberately NOT selected. No local field maps to it, and
- * selecting it would invite a future editor to put content somewhere nothing
- * reads. `id`, `_status` and the system timestamps are likewise not selected.
- */
-export const DIPLOMATIC_QUERY = `
-query SyncDiplomaticEntities {
-  _allDiplomaticEntitiesMeta {
-    count
-  }
-  allDiplomaticEntities(orderBy: [position_ASC], first: ${DIPLOMATIC_PAGE_SIZE}) {
-    position
-    slug
-    entityType
-    name
-    country
-    address
-    contact
-    email
-    website
-    representative
-    title
-  }
-}
-`;
-
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const fail = (message: string): never => {
@@ -427,44 +364,6 @@ const RawConstitutionalsSchema = z.object({
 
 export type RawConstitutional = z.infer<typeof RawConstitutionalSchema>;
 export type RawConstitutionals = z.infer<typeof RawConstitutionalsSchema>;
-
-/**
- * Record order IS consumed — it is the generated file's record order for all
- * three groups and the render order of all three pages — so `position` is
- * required, non-null and integer here, the same rule Constitutional and
- * Legislative use and for the same reason. Uniqueness needs the whole
- * collection and is enforced in parseDiplomaticResponse.
- *
- * `slug` is NULLABLE and that is correct: only the 70 missions carry one
- * (they are the only group in the aggregate directory). All 139 consulates
- * and all 18 organizations carry `slug: null`, matching a committed file that
- * simply omits the key for them.
- *
- * `title` is nullable AND its null is preserved into the output — see
- * DIPLOMATIC_*_FIELDS and shapeDiplomatic. Every other nullable scalar here
- * is omitted when null, per applyFieldMap's default.
- */
-const RawDiplomaticSchema = z.object({
-  position: z.number().int(),
-  slug: z.string().nullable(),
-  entityType: z.string(),
-  name: z.string(),
-  country: z.string().nullable(),
-  address: z.string().nullable(),
-  contact: z.string().nullable(),
-  email: z.string().nullable(),
-  website: z.string().nullable(),
-  representative: z.string().nullable(),
-  title: z.string().nullable(),
-});
-
-const RawDiplomaticsSchema = z.object({
-  _allDiplomaticEntitiesMeta: z.object({ count: z.number() }),
-  allDiplomaticEntities: z.array(RawDiplomaticSchema),
-});
-
-export type RawDiplomatic = z.infer<typeof RawDiplomaticSchema>;
-export type RawDiplomatics = z.infer<typeof RawDiplomaticsSchema>;
 
 /**
  * Chamber order IS consumed — it is the generated file's record order and
@@ -734,107 +633,6 @@ export async function fetchConstitutional(
   return parseConstitutionalResponse(
     await client<unknown>(CONSTITUTIONAL_QUERY)
   );
-}
-
-/**
- * Diplomatic's own collection gate. It deliberately does NOT call the shared
- * `assertCollection`: that helper requires every record to carry a unique,
- * pattern-valid `slug`, and 157 of the 227 diplomatic records legitimately
- * carry `slug: null`. Handing it a null slug would fail a healthy sync. The
- * count, ceiling and blank-name rules are identical; slug uniqueness applies
- * only to the records that actually have a slug.
- */
-export function parseDiplomaticResponse(value: unknown): RawDiplomatics {
-  const raw = parseOrFail(RawDiplomaticsSchema, value, 'diplomatic entities');
-
-  const records = raw.allDiplomaticEntities;
-  const metaCount = raw._allDiplomaticEntitiesMeta.count;
-  const returned = records.length;
-
-  if (returned !== metaCount) {
-    fail(
-      `TalaCMS returned an incomplete diplomatic entities list (returned ${returned}, meta reported ${metaCount})`
-    );
-  }
-  if (metaCount === 0) fail('TalaCMS returned no diplomatic entities');
-  if (returned >= DIPLOMATIC_PAGE_SIZE) {
-    fail(
-      `diplomatic entities count reached the page-size ceiling of ${DIPLOMATIC_PAGE_SIZE}; raise the ceiling for this model and re-run`
-    );
-  }
-
-  const allowed = new Set<string>(DIPLOMATIC_ENTITY_TYPES);
-  const seenTypes = new Set<string>();
-  const slugs = new Set<string>();
-  const positions = new Map<number, string>();
-
-  for (const r of records) {
-    // Identity for error messages: consulates and organizations have no slug.
-    const id = r.slug ?? r.name;
-
-    if (!allowed.has(r.entityType)) {
-      fail(
-        `diplomatic entities record "${id}" has entityType "${r.entityType}", ` +
-          `which is not one of: ${DIPLOMATIC_ENTITY_TYPES.join(', ')}. The generated ` +
-          'file has exactly three top-level keys and no page renders a fourth.'
-      );
-    }
-    seenTypes.add(r.entityType);
-
-    if (r.name.trim() === '') {
-      fail(`diplomatic entities record "${id}" has a blank display name`);
-    }
-
-    // Uniqueness needs the whole collection, so it cannot live in the schema.
-    // Contiguity is deliberately NOT checked — gaps are normal when a record
-    // is retired in the CMS.
-    const seenAt = positions.get(r.position);
-    if (seenAt !== undefined) {
-      fail(
-        `diplomatic entities records "${seenAt}" and "${id}" share duplicate ` +
-          `position ${r.position}. Record order is the generated file's order ` +
-          'and the render order of all three diplomatic pages, so a tie would ' +
-          'be resolved arbitrarily rather than by editorial intent.'
-      );
-    }
-    positions.set(r.position, id);
-
-    // Only the 70 missions carry a slug; null is the normal case for the
-    // other 157 and must never be treated as a collision.
-    if (r.slug !== null) {
-      if (slugs.has(r.slug)) {
-        fail(
-          `duplicate slug "${r.slug}" in diplomatic entities — slugs address ` +
-            'the aggregate directory and must be unique'
-        );
-      }
-      slugs.add(r.slug);
-      if (!SLUG_PATTERN.test(r.slug)) {
-        fail(
-          `diplomatic entities record has slug "${r.slug}", which is not a valid slug`
-        );
-      }
-    }
-  }
-
-  // A group emptying out would emit `[]` for a whole page while every count
-  // above still looked healthy.
-  for (const type of DIPLOMATIC_ENTITY_TYPES) {
-    if (!seenTypes.has(type)) {
-      fail(
-        `TalaCMS returned no records for entityType "${type}" — ` +
-          '/government/diplomatic renders a page per entity type and would show an empty list'
-      );
-    }
-  }
-
-  return raw;
-}
-
-export async function fetchDiplomatic(
-  client: TalaCmsClient
-): Promise<RawDiplomatics> {
-  return parseDiplomaticResponse(await client<unknown>(DIPLOMATIC_QUERY));
 }
 
 /**
@@ -1151,42 +949,13 @@ function applyFieldMap(
      * before.
      */
     omitEmptyStrings?: boolean;
-    /**
-     * Opt-in, Diplomatic-only. Local output keys whose `null` is CONTENT and
-     * must survive into the generated file rather than being omitted.
-     *
-     * Four diplomatic missions (colombia, nigeria, palestine,
-     * papua-new-guinea) carry `title: null` in BOTH TalaCMS and the committed
-     * file, and the tracked schema types `title` as ["string","null"].
-     * Omitting them would leave the generated file differing from its own
-     * expected fixture for no reason. OFF by default, so every other model
-     * keeps the default null-is-absent rule that [department].tsx's
-     * leftover-section rendering depends on.
-     *
-     * Named by LOCAL output key, not CMS field, because that is the name the
-     * contract and the fixture are written in.
-     */
-    preserveNulls?: readonly string[];
   } = {}
 ): Record<string, unknown> {
   const out: Record<string, unknown> = {};
-  const preserved = new Set(options.preserveNulls ?? []);
   const present = (value: unknown) =>
     value !== null &&
     value !== undefined &&
     !(options.omitEmptyStrings === true && value === '');
-
-  // A preserved key emits an explicit null; every other absent value is
-  // omitted. `undefined` is never emitted for a preserved key either — that
-  // means the CMS did not return the field at all, which is a shape problem
-  // the raw schema already catches, not a content null.
-  const emit = (key: string, value: unknown) => {
-    if (present(value)) {
-      out[key] = value;
-    } else if (value === null && preserved.has(key)) {
-      out[key] = null;
-    }
-  };
 
   const mapped = new Set<string>([
     ...fields.map(([, local]) => local),
@@ -1203,26 +972,26 @@ function applyFieldMap(
   }
 
   for (const [cms, local] of fields) {
-    emit(local, raw[cms]);
+    if (present(raw[cms])) out[local] = raw[cms];
   }
 
   // Same null-vs-absent rule as the mapped scalars above: a null or undefined
-  // value is OMITTED, never emitted, unless the key is in `preserveNulls`.
-  // Applies to hoisted and ordinary detail keys alike. Falsy-but-present
-  // values ([], "", 0, false) are preserved unless `omitEmptyStrings` is set.
+  // value is OMITTED, never emitted. Applies to hoisted and ordinary detail
+  // keys alike. Falsy-but-present values ([], "", 0, false) are preserved
+  // unless `omitEmptyStrings` is set, which drops "" as well.
   for (const key of options.hoist ?? []) {
     if (key in details) {
-      emit(key, details[key]);
+      if (present(details[key])) out[key] = details[key];
       delete details[key];
     }
   }
 
   for (const [key, value] of Object.entries(details)) {
-    emit(key, value);
+    if (present(value)) out[key] = value;
   }
 
   for (const [cms, local] of options.trailing ?? []) {
-    emit(local, raw[cms]);
+    if (present(raw[cms])) out[local] = raw[cms];
   }
 
   return out;
@@ -1282,121 +1051,6 @@ const LEGISLATIVE_FIELDS = [
   ['specialCommittees', 'special_committees'],
   ['secretariatOfficials', 'secretariat_officials'],
 ] as const;
-
-/**
- * Three field maps over ONE CMS model. Order matters: each array IS the
- * emitted key order for its group, and — unlike Departments (14/23) and
- * Constitutional (103/229) — these reproduce the committed file's key order
- * for ALL 227 records. Pinned exactly by a test; do not reorder.
- *
- * The three groups differ in more than membership:
- *   - only missions emit `slug` (they are the only group in the aggregate
- *     directory, via src/lib/directory.ts);
- *   - organizations name the office `organization_name`, not `office_name`,
- *     and its head `head`, not `representative`;
- *   - organizations carry no `country`.
- */
-const DIPLOMATIC_MISSION_FIELDS = [
-  ['slug', 'slug'],
-  ['country', 'country'],
-  ['name', 'office_name'],
-  ['address', 'address'],
-  ['contact', 'contact'],
-  ['email', 'email'],
-  ['website', 'website'],
-  ['representative', 'representative'],
-  ['title', 'title'],
-] as const;
-
-const DIPLOMATIC_CONSULATE_FIELDS = [
-  ['country', 'country'],
-  ['name', 'office_name'],
-  ['address', 'address'],
-  ['contact', 'contact'],
-  ['email', 'email'],
-  ['website', 'website'],
-  ['representative', 'representative'],
-  ['title', 'title'],
-] as const;
-
-const DIPLOMATIC_ORGANIZATION_FIELDS = [
-  ['name', 'organization_name'],
-  ['address', 'address'],
-  ['contact', 'contact'],
-  ['email', 'email'],
-  ['website', 'website'],
-  ['representative', 'head'],
-  ['title', 'title'],
-] as const;
-
-const DIPLOMATIC_FIELDS_BY_TYPE: Record<DiplomaticEntityType, FieldMap> = {
-  'Diplomatic Mission': DIPLOMATIC_MISSION_FIELDS,
-  Consulate: DIPLOMATIC_CONSULATE_FIELDS,
-  'International Organization': DIPLOMATIC_ORGANIZATION_FIELDS,
-};
-
-/**
- * `title` is null-as-content in all three groups: the committed file carries
- * `"title": null` on four missions and the tracked schema types it
- * ["string","null"]. Every other null is omitted, per applyFieldMap's default.
- */
-const DIPLOMATIC_PRESERVE_NULLS = ['title'] as const;
-
-export type ShapedDiplomatic = Record<
-  DiplomaticEntityType,
-  Record<string, unknown>[]
->;
-
-/**
- * Groups one flat CMS collection into the committed file's three arrays.
- *
- * Every group is emitted, in DIPLOMATIC_ENTITY_TYPES order, even if empty —
- * the file's three top-level keys are a fixed contract and the schema marks
- * all three required. (A genuinely empty group is refused upstream by
- * parseDiplomaticResponse; this function stays pure and total.)
- *
- * Sorting is per-group by `position` ascending. `position` is globally unique
- * across all 227 live records and the three types occupy contiguous runs in
- * it, so this is equivalent to a single global sort today — but sorting
- * per-group means a future CMS reshuffle that interleaves the types still
- * produces a correctly ordered file rather than silently depending on the
- * runs staying contiguous.
- *
- * `sortForOutput` is deliberately NOT reused: it tie-breaks on `slug`, and
- * 157 of these records have `slug: null`. parseDiplomaticResponse already
- * guarantees `position` is non-null, integer and unique, so there is no tie
- * to break.
- */
-export function shapeDiplomatic(records: RawDiplomatic[]): ShapedDiplomatic {
-  const out = {} as ShapedDiplomatic;
-
-  for (const type of DIPLOMATIC_ENTITY_TYPES) {
-    out[type] = records
-      .filter(r => r.entityType === type)
-      .slice()
-      .sort((a, b) => a.position - b.position)
-      .map(r =>
-        applyFieldMap(
-          r as unknown as Record<string, unknown>,
-          DIPLOMATIC_FIELDS_BY_TYPE[type],
-          {
-            omitEmptyStrings: true,
-            preserveNulls: DIPLOMATIC_PRESERVE_NULLS,
-          }
-        )
-      );
-  }
-
-  return out;
-}
-
-export function buildDiplomaticCandidate(raw: RawDiplomatics): Candidate {
-  return {
-    path: 'src/data/directory/diplomatic.json',
-    schemaPath: 'src/data/directory/schema/diplomatic.schema.json',
-    data: shapeDiplomatic(raw.allDiplomaticEntities),
-  };
-}
 
 const byPosition = (a: { position: number }, b: { position: number }) =>
   a.position - b.position;
@@ -1558,61 +1212,27 @@ export function buildConstitutionalCandidate(
 }
 
 /**
- * Every slug a candidate contributes, whatever its payload shape.
+ * Meilisearch indexes every document into ONE index keyed by `slug`
+ * (index_meilisearch.cjs: createIndex(..., { primaryKey: 'slug' })), so a slug
+ * shared between two directory sources means one document silently overwrites
+ * the other and one office becomes unsearchable.
  *
- * Three shapes exist in this pipeline and all three are handled here rather
- * than at the call site:
- *   - an ARRAY of slugged records (departments, executive, constitutional,
- *     legislative);
- *   - an OBJECT of arrays keyed by group (diplomatic — three entity types);
- *   - a SINGLE object with a top-level slug (each LGU region file).
+ * Scope is deliberately limited to the models this repository makes CMS-owned
+ * — departments, executive and constitutional. An index-wide gate is NOT
+ * applied here: slug collisions already exist between directory/*.json and
+ * the derived websites.json, so an index-wide gate would fail on pre-existing
+ * data and would require changing Government Websites, which is out of scope.
  *
- * A record with no slug, or with a non-string slug, contributes nothing
- * rather than an `undefined` that would then "collide" with another
- * slugless record. That is the normal case for 157 of the 227 diplomatic
- * records: only the 70 missions carry a slug.
- */
-export function candidateSlugs(candidate: Candidate): string[] {
-  const slugs: string[] = [];
-
-  const take = (value: unknown) => {
-    if (value === null || typeof value !== 'object') return;
-    const slug = (value as { slug?: unknown }).slug;
-    if (typeof slug === 'string') slugs.push(slug);
-  };
-
-  const data = candidate.data;
-  if (Array.isArray(data)) {
-    for (const record of data) take(record);
-  } else if (data !== null && typeof data === 'object') {
-    // A single-object candidate carries its slug at the top level; a grouped
-    // candidate carries none there and holds arrays of records instead. Both
-    // are handled, and a candidate that is somehow both is handled correctly
-    // too — `take` is idempotent per object.
-    take(data);
-    for (const group of Object.values(data as Record<string, unknown>)) {
-      if (Array.isArray(group)) for (const record of group) take(record);
-    }
-  }
-
-  return slugs;
-}
-
-/**
- * Meilisearch keys its single directory index by slug, so a slug appearing in
- * two generated files would make one office unsearchable. Slugs are extracted
- * through `candidateSlugs`, so every candidate shape in the pipeline is
- * checked — including diplomatic's grouped object, which an array-only cast
- * would have thrown on rather than checked.
+ * This is the FAST LOCAL gate, not the guarantee. Per sync-talacms.ts's
+ * run-mode matrix, "a gate whose inputs a mode does not have is not applied":
+ * it compares only the candidates a run actually carries, and an isolated
+ * `--only=` run has nothing to compare against. Its value is failing before
+ * any file is written.
  *
- * The authoritative version of this check runs over the complete directory
- * snapshot during Meilisearch preflight (`assertUniqueDirectorySlugs`); this
- * one is the fast local gate that fails a sync before it writes.
- *
- * Scoped to CMS-owned models only, not the whole index: `websites.json` is
- * separately derived from these same directory files and already has 289
- * pre-existing, expected slug collisions with them, so widening this gate to
- * include it would fail every run on a defect this branch does not own.
+ * The AUTHORITATIVE gate is assertUniqueDirectorySlugs in
+ * scripts/index_meilisearch.cjs, which runs over the complete loaded directory
+ * snapshot in preflight and therefore also catches a collision that an
+ * isolated run introduced against another model's already-generated file.
  */
 export function assertNoCrossModelSlugCollisions(
   candidates: Candidate[]
@@ -1621,8 +1241,10 @@ export function assertNoCrossModelSlugCollisions(
     for (let j = i + 1; j < candidates.length; j++) {
       const a = candidates[i];
       const b = candidates[j];
-      const bSlugs = new Set(candidateSlugs(b));
-      const collisions = candidateSlugs(a).filter(slug => bSlugs.has(slug));
+      const bSlugs = new Set((b.data as { slug: string }[]).map(r => r.slug));
+      const collisions = (a.data as { slug: string }[])
+        .map(r => r.slug)
+        .filter(slug => bSlugs.has(slug));
 
       if (collisions.length > 0) {
         fail(
