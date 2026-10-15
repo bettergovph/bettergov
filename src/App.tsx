@@ -1,15 +1,16 @@
-import { lazy, Suspense } from 'react';
+import { lazy, ReactNode, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from 'react-router-dom';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
-import Home from './pages/Home';
+import ComingSoon from './pages/ComingSoon';
 import DesignSystemLayout from './pages/design/layout';
 import DesignSystemHome from './pages/design';
 import DesignStyles from './pages/design/styles';
@@ -101,17 +102,27 @@ import SalaryGradePage from './pages/government/salary-grade/index';
 import GovPhChatbot from './components/ui/GovPhChatbot';
 import NotFound from './pages/NotFound';
 
+/** Site header, footer and assistant — kept off the full-bleed landing. */
+function SiteChrome({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  return pathname === '/' ? null : <>{children}</>;
+}
+
 function App() {
   return (
     <Router>
       <NuqsAdapter>
         <div className='min-h-screen flex flex-col'>
           <SEO />
-          <Navbar />
           <ScrollToTop />
-          <GovPhChatbot />
+          <SiteChrome>
+            <Navbar />
+            <GovPhChatbot />
+          </SiteChrome>
           <Routes>
-            <Route path='/' element={<Home />} />
+            {/* Coming-soon page until launch. Swap back to <Home /> (and drop
+                SiteChrome) to restore the portal home page. */}
+            <Route path='/' element={<ComingSoon />} />
             <Route path='/design'>
               {/* The brand guide presentation is the front door — full
                   bleed, outside the sidebar layout on purpose. */}
@@ -292,7 +303,9 @@ function App() {
             {/*Not Found/404 Page */}
             <Route path='*' element={<NotFound />} />
           </Routes>
-          <Footer />
+          <SiteChrome>
+            <Footer />
+          </SiteChrome>
         </div>
       </NuqsAdapter>
     </Router>
