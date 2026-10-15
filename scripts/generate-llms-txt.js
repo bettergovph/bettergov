@@ -43,6 +43,10 @@ const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
 );
+const judicialPath = path.join(
+  __dirname,
+  '../src/data/directory/judicial.json'
+);
 
 // Static navigation data (extracted from navigation.ts to avoid import issues)
 const mainNavigation = [
@@ -89,6 +93,7 @@ const mainNavigation = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judicial', href: '/government/judicial' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },
@@ -121,6 +126,7 @@ function loadData() {
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
     const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+    const judicial = JSON.parse(fs.readFileSync(judicialPath, 'utf8'));
 
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
@@ -139,6 +145,7 @@ function loadData() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
   } catch (error) {
     console.error('Error loading data:', error);
@@ -242,6 +249,17 @@ function generateGovernmentDirectory(governmentData) {
     '- Senate Committees (https://www.gov.ph/government/legislative/senate-committees)'
   );
   sections.push('');
+
+  // Judicial Branch
+  if (governmentData.judicial && Array.isArray(governmentData.judicial)) {
+    sections.push('#### Judicial Branch');
+    governmentData.judicial.forEach(court => {
+      sections.push(
+        `- ${court.name} (https://www.gov.ph/government/judicial/${court.slug})`
+      );
+    });
+    sections.push('');
+  }
 
   // Diplomatic Missions
   sections.push('#### Diplomatic Missions');
@@ -502,6 +520,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     } = loadData();
 
     // Prepare government data object
@@ -511,6 +530,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
 
     // Generate content

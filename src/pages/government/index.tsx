@@ -31,14 +31,14 @@ const GovernmentDirectory: FC = () => {
         <title>Government Directory | GOV.PH</title>
         <meta
           name='description'
-          content='Every branch of the Philippine government in one directory — executive departments, constitutional bodies, the legislature, and diplomatic missions, with verified hotlines, heads of office, and official domains.'
+          content='Every branch of the Philippine government in one directory — executive departments, constitutional bodies, the legislature, the courts, and diplomatic missions, with verified hotlines, heads of office, and official domains.'
         />
       </Helmet>
 
       <PageMasthead
         variant='hero'
         title='Government directory'
-        lede='The executive branch and its departments, the constitutional commissions, the legislature, and diplomatic missions accredited to the Philippines — each with a verified head of office, trunkline, and official website.'
+        lede='The executive branch and its departments, the constitutional commissions, the legislature, the courts, and diplomatic missions accredited to the Philippines — each with a verified head of office, trunkline, and official website.'
       />
 
       <DirectoryResults

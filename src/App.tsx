@@ -62,8 +62,8 @@ import PresidentialCommunicationsOffice from './pages/government/executive/presi
 import President from './pages/government/executive/president';
 import VicePresident from './pages/government/executive/vice-president';
 // Judicial Branch
-import JudicialLayout from './pages/government/judicial/layout';
 import JudicialIndex from './pages/government/judicial/index';
+import JudicialCourt from './pages/government/judicial/[court]';
 // Local Government Units
 import LocalGovernmentIndex from './pages/government/local/index';
 import RegionalLGUPage from './pages/government/local/[region]';
@@ -313,9 +313,9 @@ function App() {
                 <Route path=':region' element={<RegionalLGUPage />} />
               </Route>
 
-              <Route path='judicial' element={<JudicialLayout />}>
+              <Route path='judicial'>
                 <Route index element={<JudicialIndex />} />
-                <Route path=':court' element={<JudicialIndex />} />
+                <Route path=':court' element={<JudicialCourt />} />
               </Route>
             </Route>
 
