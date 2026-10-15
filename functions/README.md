@@ -90,12 +90,12 @@ any storage access or provider request.
 
 | Target | Wrangler selection | Worker | Account |
 | --- | --- | --- | --- |
-| Staging | Default (`--env ""`) | `govph-dev` | `4c8b67ea7626b52e375842607904dd07` |
-| Production | `--env production` | `govph-dev` | `aad322f46c1fe4bdd854d8b1367b1d7f` |
+| Staging | `--env staging` | `govph-dev` | `4c8b67ea7626b52e375842607904dd07` |
+| Production | Default, or `--env production` | `govph-dev` | `aad322f46c1fe4bdd854d8b1367b1d7f` |
 
-The default stays staging so existing Workers Builds and local development keep
-their target. Production uses the `www.gov.ph` custom domain and the namespaces
-you supplied:
+Production is the default so the connected Cloudflare Workers Build deploys to
+its own account. `functions:dev` explicitly selects staging for local development.
+Production uses the `www.gov.ph` custom domain and the namespaces you supplied:
 
 | Binding | Production namespace ID |
 | --- | --- |
@@ -150,7 +150,7 @@ only `search` permissions on the three public indexes:
 npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production
 ```
 
-Use `--env ""` instead when setting staging secrets. For local development, put the same variable in gitignored `.dev.vars`. An
+Use `--env staging` instead when setting staging secrets. For local development, put the same variable in gitignored `.dev.vars`. An
 existing `VITE_MEILISEARCH_SEARCH_API_KEY` can be moved there if it has the
 required search-only scope. Never use a master/admin key. Without the secret,
 valid searches return `503 Search is not configured`. The browser no longer
@@ -316,7 +316,7 @@ npx wrangler secret put EGOVAI_API_KEY --env production
 npx wrangler secret put EGOVAI_API_SECRET --env production
 ```
 
-For staging, repeat those commands with `--env ""` and the staging account's
+For staging, repeat those commands with `--env staging` and the staging account's
 credentials. `.dev.vars` is local only and is not uploaded by deployment.
 Search must use a search-only key; the eGovAI engine code defaults to `govph`.
 Weather and the assistant cannot refresh or call their providers without their
@@ -326,6 +326,7 @@ Build and validate both configurations before rollout:
 
 ```bash
 npm run build
+npx wrangler deploy --env staging --dry-run
 npx wrangler deploy --env "" --dry-run
 npx wrangler deploy --env production --dry-run
 ```
@@ -338,9 +339,10 @@ npm run functions:deploy:staging
 npm run functions:deploy:production
 ```
 
-These deploy the frontend assets and Worker together. In Workers Builds, use
-`npm run functions:deploy:production` for the production project's deploy command;
-the existing default command continues to target staging. A dry run checks the
+These deploy the frontend assets and Worker together. The production Workers
+Build can keep its default `npx wrangler deploy` command, or use
+`npm run functions:deploy:production`. Staging must select `--env staging` (or
+`npm run functions:deploy:staging`) explicitly. A dry run checks the
 bundle and configuration but does not verify remote namespace access, secrets,
 or domain ownership. After deploying, check `/api/weather`, `/api/forex`,
 `/api/search` and the assistant on that target, plus the hourly scheduled logs.

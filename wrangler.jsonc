@@ -1,91 +1,185 @@
+// Production is the default for the connected Cloudflare Workers Build.
+// Use --env staging for the separate govph.workers.dev account.
+// Production bindings are repeated for the explicit --env production alias;
+// named environments do not inherit KV or rate limit bindings.
+// Staging KV is automatically provisioned in its own account on first deploy.
 {
-  // Default deployment remains staging, preserving the existing Workers Build.
-  // Production is explicit: wrangler deploy --env production.
   "name": "govph-dev",
-  "account_id": "4c8b67ea7626b52e375842607904dd07",
+  "account_id": "aad322f46c1fe4bdd854d8b1367b1d7f",
   "compatibility_date": "2025-11-17",
-  // The Worker script. Declared here so a bare `wrangler deploy` (the
-  // Workers Builds default) ships the API routes, not just the static site.
   "main": "functions/index.ts",
   "workers_dev": true,
-  // Preserve runtime variables managed in each account's dashboard.
   "keep_vars": true,
-  // Staging gets its own namespaces on deployment (Wrangler auto-provisioning).
-  // Never put production namespace IDs in this account's bindings.
   "kv_namespaces": [
-    { "binding": "BROWSER_KV" },
-    { "binding": "FOREX_KV" },
-    { "binding": "WEATHER_KV" },
+    {
+      "binding": "BROWSER_KV",
+      "id": "0c903bf8530b4a6a9019e7445c2f9aff",
+    },
+    {
+      "binding": "FOREX_KV",
+      "id": "3907d2c4829148a8a83974839f273d45",
+    },
+    {
+      "binding": "WEATHER_KV",
+      "id": "afd30412016d46c9b3482c8da86bf419",
+    },
   ],
-  "triggers": { "crons": ["0 * * * *"] },
+  "triggers": {
+    "crons": ["0 * * * *"],
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application",
-    // API paths always reach the Worker, even for browser navigations
-    // (which otherwise get the single-page-application fallback first).
-    // The one static file under /api keeps being served as an asset.
     "run_worker_first": ["/api/*", "!/api/projects.json", "/weather", "/forex"],
   },
-  // Limits per client IP per Cloudflare location. Both assistant endpoints
-  // share one quota. Keep limits in sync with functions/lib/request-security.ts.
   "ratelimits": [
     {
       "name": "API_RATE_LIMITER",
       "namespace_id": "2026101401",
-      "simple": { "limit": 120, "period": 60 },
+      "simple": {
+        "limit": 120,
+        "period": 60,
+      },
     },
     {
       "name": "ASSISTANT_RATE_LIMITER",
       "namespace_id": "2026101402",
-      "simple": { "limit": 20, "period": 60 },
+      "simple": {
+        "limit": 20,
+        "period": 60,
+      },
     },
     {
       "name": "CRAWL_RATE_LIMITER",
       "namespace_id": "2026101403",
-      "simple": { "limit": 10, "period": 60 },
+      "simple": {
+        "limit": 10,
+        "period": 60,
+      },
     },
     {
       "name": "REPORT_RATE_LIMITER",
       "namespace_id": "2026101404",
-      "simple": { "limit": 5, "period": 60 },
+      "simple": {
+        "limit": 5,
+        "period": 60,
+      },
     },
   ],
   "env": {
     "production": {
       "name": "govph-dev",
       "account_id": "aad322f46c1fe4bdd854d8b1367b1d7f",
-      "routes": [{ "pattern": "www.gov.ph", "custom_domain": true }],
-      "kv_namespaces": [
-        { "binding": "BROWSER_KV", "id": "0c903bf8530b4a6a9019e7445c2f9aff" },
-        { "binding": "FOREX_KV", "id": "3907d2c4829148a8a83974839f273d45" },
-        { "binding": "WEATHER_KV", "id": "afd30412016d46c9b3482c8da86bf419" },
+      "routes": [
+        {
+          "pattern": "www.gov.ph",
+          "custom_domain": true,
+        },
       ],
-      // Bindings are not inherited by named environments.
+      "kv_namespaces": [
+        {
+          "binding": "BROWSER_KV",
+          "id": "0c903bf8530b4a6a9019e7445c2f9aff",
+        },
+        {
+          "binding": "FOREX_KV",
+          "id": "3907d2c4829148a8a83974839f273d45",
+        },
+        {
+          "binding": "WEATHER_KV",
+          "id": "afd30412016d46c9b3482c8da86bf419",
+        },
+      ],
       "ratelimits": [
         {
           "name": "API_RATE_LIMITER",
           "namespace_id": "2026101401",
-          "simple": { "limit": 120, "period": 60 },
+          "simple": {
+            "limit": 120,
+            "period": 60,
+          },
         },
         {
           "name": "ASSISTANT_RATE_LIMITER",
           "namespace_id": "2026101402",
-          "simple": { "limit": 20, "period": 60 },
+          "simple": {
+            "limit": 20,
+            "period": 60,
+          },
         },
         {
           "name": "CRAWL_RATE_LIMITER",
           "namespace_id": "2026101403",
-          "simple": { "limit": 10, "period": 60 },
+          "simple": {
+            "limit": 10,
+            "period": 60,
+          },
         },
         {
           "name": "REPORT_RATE_LIMITER",
           "namespace_id": "2026101404",
-          "simple": { "limit": 5, "period": 60 },
+          "simple": {
+            "limit": 5,
+            "period": 60,
+          },
+        },
+      ],
+    },
+    "staging": {
+      "name": "govph-dev",
+      "account_id": "4c8b67ea7626b52e375842607904dd07",
+      "routes": [],
+      "kv_namespaces": [
+        {
+          "binding": "BROWSER_KV",
+        },
+        {
+          "binding": "FOREX_KV",
+        },
+        {
+          "binding": "WEATHER_KV",
+        },
+      ],
+      "ratelimits": [
+        {
+          "name": "API_RATE_LIMITER",
+          "namespace_id": "2026101401",
+          "simple": {
+            "limit": 120,
+            "period": 60,
+          },
+        },
+        {
+          "name": "ASSISTANT_RATE_LIMITER",
+          "namespace_id": "2026101402",
+          "simple": {
+            "limit": 20,
+            "period": 60,
+          },
+        },
+        {
+          "name": "CRAWL_RATE_LIMITER",
+          "namespace_id": "2026101403",
+          "simple": {
+            "limit": 10,
+            "period": 60,
+          },
+        },
+        {
+          "name": "REPORT_RATE_LIMITER",
+          "namespace_id": "2026101404",
+          "simple": {
+            "limit": 5,
+            "period": 60,
+          },
         },
       ],
     },
   },
-  // Required runtime secrets per environment: OPENWEATHERMAP_API_KEY,
-  // MEILISEARCH_SEARCH_API_KEY (search-only), and the existing EGOVAI_* secrets.
-  // Crawl additionally requires BETTERGOV_DB; see functions/README.md.
+  "routes": [
+    {
+      "pattern": "www.gov.ph",
+      "custom_domain": true,
+    },
+  ],
 }

@@ -76,9 +76,9 @@ the Cloudflare Worker in `functions/`, so run the Worker next to Vite for these
 features. It reads the `EGOVAI_*`, `OPENWEATHERMAP_API_KEY` and
 `MEILISEARCH_SEARCH_API_KEY` runtime secrets from gitignored `.dev.vars`.
 Weather and forex use this Worker's KV namespaces; only search uses the
-Meilisearch proxy. The default deployment stays `govph-dev` staging;
-`npm run functions:deploy:production` selects the production account and its
-KV namespaces. See [the Worker setup](functions/README.md) for configuration.
+Meilisearch proxy. The default deployment uses the production account and its
+KV namespaces; `npm run functions:deploy:staging` selects the separate staging
+account. Both Workers are named `govph-dev`. See [the Worker setup](functions/README.md) for configuration.
 
 ```bash
 # Second terminal — Worker on 127.0.0.1:5525; Vite proxies the dynamic API routes

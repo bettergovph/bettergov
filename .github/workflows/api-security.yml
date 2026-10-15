@@ -56,6 +56,6 @@ jobs:
       - name: Build frontend without deployment secrets
         run: npm run build:app
       - name: Validate staging Worker and bindings
-        run: npx wrangler deploy --env "" --dry-run
+        run: npx wrangler deploy --env staging --dry-run
       - name: Validate production Worker and bindings
-        run: npx wrangler deploy --env production --dry-run
+        run: npx wrangler deploy --env "" --dry-run
