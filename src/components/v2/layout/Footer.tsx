@@ -8,8 +8,12 @@ import FooterColumn, { FooterLink } from './FooterColumn';
 import {
   BAGONG_PILIPINAS_ALT,
   BAGONG_PILIPINAS_SRC,
+  BETTERGOV_LOGO_ALT,
+  BETTERGOV_LOGO_SRC,
   COAT_OF_ARMS_ALT,
   COAT_OF_ARMS_SRC,
+  EGOV_LOGO_ALT,
+  EGOV_LOGO_SRC,
   ISSUES_URL,
   REPO_URL,
   SITE_NAME,
@@ -172,15 +176,35 @@ const Footer: FC = () => {
                 'Built by eGov, BetterGov, and hundreds of citizen volunteers.'
               )}
             </p>
-            <img
-              src={BAGONG_PILIPINAS_SRC}
-              alt={BAGONG_PILIPINAS_ALT}
-              width={256}
-              height={238}
-              loading='lazy'
-              decoding='async'
-              className='mt-6 block h-auto w-24'
-            />
+            <div className='mt-6 flex flex-wrap items-center gap-x-4 gap-y-3'>
+              <img
+                src={BAGONG_PILIPINAS_SRC}
+                alt={BAGONG_PILIPINAS_ALT}
+                width={256}
+                height={238}
+                loading='lazy'
+                decoding='async'
+                className='block h-10 w-auto'
+              />
+              <img
+                src={EGOV_LOGO_SRC}
+                alt={EGOV_LOGO_ALT}
+                width={743}
+                height={213}
+                loading='lazy'
+                decoding='async'
+                className='block h-5.5 w-auto'
+              />
+              <img
+                src={BETTERGOV_LOGO_SRC}
+                alt={BETTERGOV_LOGO_ALT}
+                width={600}
+                height={150}
+                loading='lazy'
+                decoding='async'
+                className='block h-6 w-auto'
+              />
+            </div>
             <div className='mt-6 flex gap-3'>
               <Flag variant='outline' className='border-white/25 text-white/70'>
                 {version ? `v${version}` : 'v4.2.0'}

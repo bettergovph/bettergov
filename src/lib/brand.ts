@@ -46,3 +46,17 @@ export const NEW_ISSUE_URL = `${REPO_URL}/issues/new`;
 export const BAGONG_PILIPINAS_SRC = '/logos/png/bagong-pilipinas-inverse.png';
 
 export const BAGONG_PILIPINAS_ALT = 'Bagong Pilipinas';
+
+/**
+ * Partner marks shown beside Bagong Pilipinas in the footer, also in
+ * dark-background variants. eGovPH: the official logo (e.gov.ph) with its
+ * #0040e7 wordmark repainted white; the yellow and red of the "O" are
+ * untouched. BetterGov.ph: its single-colour horizontal logo in white.
+ */
+export const EGOV_LOGO_SRC = '/logos/png/egovph-inverse.png';
+
+export const EGOV_LOGO_ALT = 'eGovPH';
+
+export const BETTERGOV_LOGO_SRC = '/logos/png/bettergov-inverse.png';
+
+export const BETTERGOV_LOGO_ALT = 'BetterGov.ph';
