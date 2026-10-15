@@ -256,6 +256,16 @@ function App() {
               {/* Departments */}
               <Route path='departments'>
                 <Route index element={<DepartmentsIndex />} />
+                {/* NEDA became DEPDev under RA 12145 (2025). */}
+                <Route
+                  path='national-economic-and-development-authority'
+                  element={
+                    <Navigate
+                      to='/government/departments/department-of-economy-planning-and-development'
+                      replace
+                    />
+                  }
+                />
                 <Route path=':department' element={<DepartmentDetail />} />
               </Route>
 

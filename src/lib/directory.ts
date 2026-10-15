@@ -193,7 +193,7 @@ type DepartmentSrc = {
   address?: string;
   trunkline?: string;
   website?: string;
-  secretary?: { name?: string };
+  secretary?: { name?: string; role?: string };
 };
 
 type ExecutiveSrc = {
@@ -252,7 +252,7 @@ function flattenDepartments(): DirectoryEntry[] {
     abbr: deriveAbbr(d.office_name),
     branch: 'Executive',
     kind: 'department',
-    headRole: 'Secretary',
+    headRole: d.secretary?.role ?? 'Secretary',
     head: d.secretary?.name,
     address: d.address,
     loc: deriveLoc(d.address),

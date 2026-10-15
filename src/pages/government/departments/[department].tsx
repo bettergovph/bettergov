@@ -11,6 +11,8 @@ import { titleCase } from '../../../lib/directory';
 
 type Secretary = {
   name?: string;
+  /** Set when the title isn't plain "Secretary", e.g. "Acting Secretary". */
+  role?: string;
   contact?: string;
   email?: string;
 };
@@ -140,7 +142,7 @@ const DepartmentDetail: FC = () => {
   const secretaryRow: OfficialRow[] = secretary?.name
     ? [
         {
-          role: 'Secretary',
+          role: secretary.role ?? 'Secretary',
           name: secretary.name,
           contact: secretary.contact,
           email: secretary.email,

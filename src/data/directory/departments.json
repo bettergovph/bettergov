@@ -6,9 +6,10 @@
     "trunkline": "(632) 8657-3300",
     "website": "www.dbm.gov.ph",
     "secretary": {
-      "name": "ROLANDO U. TOLEDO",
+      "name": "KIM ROBERT C. DE LEON",
       "contact": "loc. 2601, 3310; 8735-4936 F",
-      "email": "osec@dbm.gov.ph"
+      "email": "osec@dbm.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -1350,9 +1351,8 @@
     "trunkline": "(632) 8479-2900",
     "website": "www.doe.gov.ph",
     "secretary": {
-      "name": "RAPHAEL PERPETUO M. LOTILLA",
-      "contact": "8840-2008; 8840-2134",
-      "email": "rlotilla@doe.gov.ph"
+      "name": "SHARON S. GARIN",
+      "contact": "8840-2008; 8840-2134"
     },
     "undersecretaries": [
       {
@@ -1464,9 +1464,10 @@
     "trunkline": "(632) 8929-6626/IP Phone Trunkline No. 8248-3367",
     "website": "www.denr.gov.ph",
     "secretary": {
-      "name": "MARIA ANTONIA YULO-LOYZAGA",
+      "name": "JUAN MIGUEL T. CUNA",
       "contact": "loc. 2295, 2013; 8925-8277; 8920-4301",
-      "email": "osec@denr.gov.ph"
+      "email": "osec@denr.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -1729,7 +1730,7 @@
     "website": "www.dof.gov.ph",
     "email": "helpdesk@dof.gov.ph",
     "secretary": {
-      "name": "RALPH G. RECTO",
+      "name": "FREDERICK D. GO",
       "contact": "8523-9215",
       "email": "secfin@dof.gov.ph"
     },
@@ -1941,7 +1942,7 @@
     "trunkline": "(632) 8834-4000",
     "website": "www.dfa.gov.ph",
     "secretary": {
-      "name": "ENRIQUE A. MANALO",
+      "name": "MA. THERESA P. LAZARO",
       "contact": "8834-4881; 8832-1597 F",
       "email": "osec@dfa.gov.ph"
     },
@@ -3050,9 +3051,10 @@
     "trunkline": "(632) 8651-7800; 8711-6744 F",
     "website": "www.doh.gov.ph",
     "secretary": {
-      "name": "TEODORO J. HERBOSA",
+      "name": "EDWIN M. MERCADO",
       "contact": "loc. 1112, 1114",
-      "email": "dohosec@doh.gov.ph"
+      "email": "dohosec@doh.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -3425,7 +3427,7 @@
     "email": "info@dhsud.gov.ph",
     "website": "www.dhsud.gov.ph",
     "secretary": {
-      "name": "JOSE RIZALINO L. ACUZAR",
+      "name": "JOSE RAMON P. ALILING",
       "email": "osec@dhsud.gov.ph"
     },
     "undersecretaries": [
@@ -3613,9 +3615,8 @@
     "trunkline": "(02) 8920-0101",
     "website": "www.dict.gov.ph",
     "secretary": {
-      "name": "HENRY RHOEL R. AGUDA",
-      "contact": "loc. 1009/1005/1001",
-      "email": "henry.aguda@dict.gov.ph"
+      "name": "ROBERT JOSEPH M. DE CLARO",
+      "contact": "loc. 1009/1005/1001"
     },
     "undersecretaries": [
       {
@@ -4335,9 +4336,10 @@
     "trunkline": "(632) 8523-8481 to 98",
     "website": "www.doj.gov.ph",
     "secretary": {
-      "name": "JESUS CRISPIN C. REMULLA",
+      "name": "FREDDERICK A. VIDA",
       "contact": "loc. 217; 8521-8348",
-      "email": "osec@doj.gov.ph"
+      "email": "osec@doj.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -4659,9 +4661,10 @@
     "trunkline": "(632) 8527-3000",
     "website": "www.dole.gov.ph",
     "secretary": {
-      "name": "BIENVENIDO E. LAGUESMA",
+      "name": "FRANCIS N. TOLENTINO",
       "contact": "loc. 728; 8527-5523; 8527-3494 F",
-      "email": "belaguesma@dole.gov.ph; osec@dole.gov.ph"
+      "email": "osec@dole.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -4908,7 +4911,7 @@
     "office_name": "DEPARTMENT OF MIGRANT WORKERS",
     "address": "Blas F. Ople Bldg., Ortigas Ave. cor. EDSA Ave., Mandaluyong City",
     "trunkline": "(632) 8722-1144; 8722-1155",
-    "website": "www.dmw.gov.ph",
+    "website": "dmw.gov.ph",
     "secretary": {
       "name": "HANS LEO J. CACDAC",
       "contact": "8727-7771",
@@ -5587,7 +5590,8 @@
     "secretary": {
       "name": "VIVENCIO \"VINCE\" B. DIZON",
       "contact": "5304-3300",
-      "email": "osec@dpwh.gov.ph"
+      "email": "osec@dpwh.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -6513,7 +6517,7 @@
     "trunkline": "(632) 8459-5200 to 30",
     "website": "www.tourism.gov.ph",
     "secretary": {
-      "name": "MA. ESPERANZA CHRISTINA GARCIA FRASCO",
+      "name": "DITA ANGARA-MATHAY",
       "contact": "loc. 604/605",
       "email": "dot.osec@tourism.gov.ph"
     },
@@ -7016,9 +7020,10 @@
     "trunkline": "(632) 8790-8300; 8790-8400",
     "website": "www.dotr.gov.ph",
     "secretary": {
-      "name": "JAIME J. BAUTISTA",
+      "name": "GIOVANNI Z. LOPEZ",
       "contact": "loc. 9001, 9002",
-      "email": "jaime.bautista@dotr.gov.ph; osec@dotr.gov.ph"
+      "email": "osec@dotr.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -7228,11 +7233,11 @@
     ]
   },
   {
-    "slug": "national-economic-and-development-authority",
-    "office_name": "NATIONAL ECONOMIC AND DEVELOPMENT AUTHORITY",
+    "slug": "department-of-economy-planning-and-development",
+    "office_name": "DEPARTMENT OF ECONOMY, PLANNING, AND DEVELOPMENT",
     "address": "12 Escriva Drive, Ortigas Center, 1605 Pasig City",
     "trunkline": "(632) 8631-0945 to 68",
-    "website": "www.neda.gov.ph",
+    "website": "depdev.gov.ph",
     "secretary": {
       "name": "ARSENIO M. BALISACAN",
       "contact": "8631-0946; 8631-0952 loc. 28603",

@@ -35,6 +35,10 @@
             "type": "string",
             "description": "Name of the secretary"
           },
+          "role": {
+            "type": "string",
+            "description": "Title when it isn't plain \"Secretary\", e.g. \"Acting Secretary\""
+          },
           "contact": {
             "type": "string",
             "description": "Contact information"
