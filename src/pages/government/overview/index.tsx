@@ -83,10 +83,7 @@ const GovernmentOverview: FC = () => (
     <section className='border-b border-ed-rule py-14 max-md:py-7'>
       <Container>
         <div className='max-w-[760px]'>
-          <SectionHeader
-            label='The constitutional structure'
-            meta='Three co-equal branches'
-          />
+          <SectionHeader label='The constitutional structure' />
           <p className='font-serif-ed text-[28px] leading-snug text-ed-navy-ink max-md:text-[21px]'>
             The Philippines is a democratic and republican State. Government
             authority is divided among the executive, legislative, and judicial
