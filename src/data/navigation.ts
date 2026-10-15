@@ -91,7 +91,7 @@ export const mainNavigation: NavigationItem[] = [
     href: '/travel',
     children: [
       {
-        label: 'Visa Information',
+        label: 'Visiting the Philippines',
         href: '/travel/visa',
         blurb: 'Entry requirements and categories.',
       },
