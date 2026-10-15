@@ -137,18 +137,14 @@ HTML/XML sitemaps, and `llms.txt` use `src/data/guides/manifest.json`.
 
 ## Syncing content from TalaCMS
 
-`src/data/service_categories.json`, `src/data/critical_hotlines.json`,
-`src/data/services/*.json`, the four single-file Government Directory
-datasets under `src/data/directory/` (`departments.json`, `executive.json`,
-`constitutional.json`, `legislative.json` — see below), and the 19 per-region
-LGU files under `src/data/directory/lgu/*.json` (see below) are all generated
-from TalaCMS by a **pre-build** step — they are gitignored and never
-committed.
-Deployment runs `npm run cms:fetch` before `npm run build`; `cms:fetch`
-fetches, validates, and writes every generated dataset and fails closed (no
-fallback, no placeholder data) if anything goes wrong. `npm run build` itself
-only consumes the already-generated files — it does not talk to TalaCMS and
-does not need credentials.
+`src/data/service_categories.json`, `src/data/critical_hotlines.json`, and
+`src/data/services/*.json` are generated from TalaCMS by a **pre-build**
+step — they are gitignored and never committed. Deployment runs
+`npm run cms:fetch` before `npm run build`; `cms:fetch` fetches, validates,
+and writes all three and fails closed (no fallback, no placeholder data) if
+anything goes wrong. `npm run build` itself only consumes the
+already-generated files — it does not talk to TalaCMS and does not need
+credentials.
 
 ```bash
 npm run cms:fetch && npm run build
@@ -156,12 +152,7 @@ npm run cms:fetch && npm run build
 
 `src/data/cms.ts` is the only module that reads these generated files —
 every other module goes through its `serviceCategories`, `criticalHotlines`,
-and `services` exports for the service-related datasets, and its
-`governmentDepartments`, `executiveOffices`, `constitutionalOffices`,
-`legislativeChambers`, and `lguRegions` exports for the Government Directory
-ones (`src/lib/lgu.ts` is the one permitted indirection onto `lguRegions`,
-for the two `government/local` pages). The website never queries the CMS at
-runtime.
+and `services` exports. The website never queries the CMS at runtime.
 
 `src/data/services/schema/services.schema.json` stays tracked — it's the
 contract the generated data must satisfy, not the data itself.
@@ -180,38 +171,14 @@ npm run cms:fetch                 # write the files
 npm run cms:fetch -- --only=services
 npm run cms:fetch -- --only=categories
 npm run cms:fetch -- --only=hotlines
-npm run cms:fetch -- --only=departments
-npm run cms:fetch -- --only=executive
-npm run cms:fetch -- --only=constitutional
-npm run cms:fetch -- --only=legislative
-npm run cms:fetch -- --only=lgu
 ```
 
 Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
 
 The script fails without writing anything if TalaCMS is unreachable, returns
 an incomplete result, or would produce a file that violates its JSON Schema.
-If a later rename fails partway through a write batch, every file the batch
-already replaced is rolled back to its pre-sync content (or deleted, if it
-didn't exist before) — for any dataset, including LGU's 19 files, whose
-generated output is gitignored, so `git status` cannot reveal a partial
-write there the way it can for tracked files. This rollback runs in-process
-and covers a rename failing while the sync is still running to react to it
-(disk pressure, permissions, a concurrent process); it does not cover the
-Node process itself being killed or crashing mid-batch, which leaves
-whatever the OS's own per-file atomic rename already guaranteed and nothing
-more. If a restoration itself fails, the sync does not claim a clean
-rollback it didn't achieve: it fails with the specific path(s) that may
-still hold new, unreviewed content, for manual inspection before
-re-running. Absent that explicit warning, recover from a failed sync by
-simply re-running it once the underlying cause is resolved.
-
-`--only=lgu` additionally removes any locally-present LGU region file that
-no longer corresponds to a region in TalaCMS (e.g. a retired region), after
-a successful commit — unlike the other single-model `--only=` modes, LGU's
-own fetch always sees its complete region set in one shot, so it doesn't
-need a full sync to safely judge staleness. `--dry-run` reports a stale LGU
-file as drift (and exits `3`) without removing it.
+Writes are atomic per file but not across files: if the write phase is
+interrupted, check `git status`.
 
 ### Choosing a run mode
 
@@ -222,46 +189,6 @@ file as drift (and exits `3`) without removing it.
 | adding or retiring a category in TalaCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
 | editing service content only (titles, URLs) | `--only=services` is safe **if** no display name changed |
 | editing taxonomy display names only | `npm run cms:fetch` — see the rename row |
-| editing a government department, executive office, constitutional office, legislative chamber or LGU | `--only=departments` / `--only=executive` / `--only=constitutional` / `--only=legislative` / `--only=lgu` — each is a single-model edit with no cross-dataset gate |
-
-### Generated directory datasets
-
-Five government-directory datasets are CMS-owned and gitignored:
-`src/data/directory/departments.json` (23), `executive.json` (38),
-`constitutional.json` (229), `legislative.json` (2), and `src/data/directory/lgu/`
-(19 per-region JSON files: 19 regions, 80 provinces, 110 cities, 1435 municipalities).
-The third holds all Constitutional-branch records — 3 constitutional offices, 2
-constitutionally mandated bodies, 110 GOCCs and 114 SUCs — because they share one
-TalaCMS model, one file and one route tree. The fourth holds the Senate and House of
-Representatives; House Members and Party-list Representatives are not synced as their
-own datasets — they arrive as nested relations on the House `LegislativeChamber` record
-and are projected into `house_members` and `party_list_representatives` inside that same
-file, exactly where the app has always read them. The fifth, LGU, is organized by region
-in separate generated files rather than a single consolidated file, but only the
-top-level `*.json` region files are gitignored; `src/data/directory/lgu/schema/` and
-`src/data/directory/lgu/__fixtures__/` stay tracked. Everything else under
-`src/data/directory/` is still hand-maintained and committed: diplomatic, judicial, and
-the two orphaned member files (`house_members.json`, `party_list_representatives.json` —
-now a second, hand-maintained copy of content the CMS owns via `legislative.json`).
-
-Each model is fetched by its own GraphQL operation, so an isolated `--only=`
-run cannot be made to fail by another model's data. Constitutional uses its
-own page-size ceiling of 300 rather than the shared 100, because it carries
-229 records; the CDA hard-caps `first` at 500, so if the ceiling gate ever
-fires, raise it to at most 500 — beyond that the model needs real pagination.
-
-LGU is the first dataset in this repo to exceed the 500 hard-cap (1435 municipalities).
-It uses `scripts/talacms/paginate.ts`'s `fetchAllRecords` helper for skip-based
-pagination. Paging orders by `id_ASC`, not `position_ASC`, because `position` is
-per-parent (a per-region province index, per-province city index, etc.) and cannot
-order a flat top-level page spanning many parents — only `id` is both present and
-globally unique across the whole flat collection.
-
-A run carrying two or more of these datasets also checks that no slug appears
-in more than one of them: Meilisearch keys its single index by `slug`, so a
-collision would make one office unsearchable. The authoritative version of
-that check runs over the complete directory snapshot during Meilisearch
-preflight.
 
 The isolated modes are optimizations for narrow, single-sided edits. **When in
 doubt, run the full sync**: it is the only mode that validates both datasets

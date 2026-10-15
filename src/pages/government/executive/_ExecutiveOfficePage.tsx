@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import { SearchIcon } from 'lucide-react';
-import { executiveOffices as executiveData } from '../../../data/cms';
+import executiveData from '../../../data/directory/executive.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';

@@ -57,18 +57,13 @@
         "description": "List of permanent committees (Senate)",
         "items": {
           "type": "object",
-          "required": ["committee", "chairperson"],
           "properties": {
             "committee": {
               "type": "string",
-              "minLength": 1,
-              "pattern": "\\S",
               "description": "Name of the committee"
             },
             "chairperson": {
               "type": "string",
-              "minLength": 1,
-              "pattern": "\\S",
               "description": "Name of the committee chairperson"
             }
           }
@@ -216,53 +211,22 @@
           }
         }
       },
-      "house_committees": {
-        "type": "object",
-        "description": "House committee chairpersons",
-        "properties": {
-          "chairpersons": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "committee": { "type": "string" },
-                "name": { "type": "string" }
-              }
-            }
-          }
-        }
-      },
-      "special_committees": {
-        "type": "array",
-        "description": "Special committees of the House",
-        "items": {
-          "type": "object",
-          "properties": {
-            "committee": { "type": "string" },
-            "chairperson": { "type": "string" }
-          }
-        }
-      },
       "house_members": {
         "type": "array",
         "description": "List of House of Representatives members",
         "items": {
           "type": "object",
-          "required": ["province_city", "name", "district"],
           "properties": {
             "province_city": {
               "type": "string",
-              "minLength": 1,
               "description": "Province or city represented"
             },
             "name": {
               "type": "string",
-              "minLength": 1,
               "description": "Full name of the representative"
             },
             "district": {
               "type": "string",
-              "minLength": 1,
               "description": "District represented"
             },
             "contact": {
@@ -277,16 +241,13 @@
         "description": "List of party-list representatives",
         "items": {
           "type": "object",
-          "required": ["party_list", "name"],
           "properties": {
             "party_list": {
               "type": "string",
-              "minLength": 1,
               "description": "Name of the party-list organization"
             },
             "name": {
               "type": "string",
-              "minLength": 1,
               "description": "Full name of the representative"
             },
             "contact": {

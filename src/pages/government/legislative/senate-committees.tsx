@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { SearchIcon } from 'lucide-react';
-import { legislativeChambers as legislativeData } from '../../../data/cms';
+import legislativeData from '../../../data/directory/legislative.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
