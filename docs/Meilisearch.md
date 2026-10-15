@@ -13,9 +13,10 @@ Welcome! This guide covers setting up Meilisearch for the portal's search functi
 ## Getting Started with Meilisearch
 
 The website searches through its same-origin `/api/search` Worker proxy. The
-proxy targets `https://search2.bettergov.ph`, limits access to the three public
+proxy reads its target from the Worker runtime variable `MEILISEARCH_ORIGIN`,
+limits access to the three public
 indexes, and keeps the search-only key server-side. See
-[`functions/README.md`](../functions/README.md#meilisearch) for the runtime secret
+[`functions/README.md`](../functions/README.md#meilisearch) for the runtime origin, secret
 and deployment setup. The self-hosting steps below are for maintaining/indexing
 a Meilisearch server; changing script host variables does not redirect the browser.
 
@@ -184,13 +185,20 @@ Create a search-only key for the Worker's target Meilisearch server. The key mus
 npm run index:create-key
 ```
 
-Store the generated key in gitignored `.dev.vars` for local Worker development:
+Store the server's HTTPS origin and generated key in gitignored `.dev.vars`
+for local Worker development:
 
 ```env
+MEILISEARCH_ORIGIN=https://search.example.com
 MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
 ```
 
-For deployment, set the same name with `npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production`. The frontend no longer needs a `VITE_MEILISEARCH_SEARCH_API_KEY`; the key stays in the Worker. A key created on another/local Meilisearch server cannot authenticate against `search2.bettergov.ph`.
+For deployment, set `MEILISEARCH_ORIGIN` in the Worker's Variables & Secrets
+settings and set the key with `npx wrangler secret put MEILISEARCH_SEARCH_API_KEY
+--env production`. The origin must use HTTPS and have no path, query, fragment
+or credentials. The frontend no longer needs a
+`VITE_MEILISEARCH_SEARCH_API_KEY`; the key stays in the Worker. Create the key on
+the same Meilisearch server selected by `MEILISEARCH_ORIGIN`.
 
 #### Step 6: Verify Everything Works
 

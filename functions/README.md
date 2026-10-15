@@ -129,7 +129,8 @@ continues to return `503` until that separate dependency is configured.
 
 ### Meilisearch
 
-`api/search.ts` proxies only these read operations to `https://search2.bettergov.ph`:
+`api/search.ts` proxies only these read operations to the Worker runtime
+variable `MEILISEARCH_ORIGIN`:
 
 | Browser endpoint | Meilisearch endpoint |
 | --- | --- |
@@ -147,6 +148,12 @@ one-hit pagination lookahead. Single-index search supports the existing
 120/minute API allowance. Upstream calls have a 15-second timeout; `429` retry
 advice is preserved. Browser-supplied authorization is never used upstream.
 
+Set `MEILISEARCH_ORIGIN` in the Worker's **Variables & Secrets** settings to your
+Meilisearch HTTPS origin (for example, `https://search.example.com`). A custom
+HTTPS port is supported; paths, query strings, fragments and URL credentials are
+rejected. There is no default origin. Configure this separately in production
+and staging before deploying; `keep_vars` preserves the dashboard setting.
+
 Set `MEILISEARCH_SEARCH_API_KEY` as a **Worker runtime secret**, using a key with
 only `search` permissions on the three public indexes:
 
@@ -154,17 +161,19 @@ only `search` permissions on the three public indexes:
 npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production
 ```
 
-Use `--env staging` instead when setting staging secrets. For local development, put the same variable in gitignored `.dev.vars`. An
+Use `--env staging` instead when setting staging secrets. For local development,
+put both `MEILISEARCH_ORIGIN` and the key in gitignored `.dev.vars`. An
 existing `VITE_MEILISEARCH_SEARCH_API_KEY` can be moved there if it has the
-required search-only scope. Never use a master/admin key. Without the secret,
-valid searches return `503 Search is not configured`. The browser no longer
+required search-only scope. Never use a master/admin key. Without the key or a
+valid origin, searches return `503 Search is not configured` without calling an
+upstream server. The browser no longer
 reads a search key, host or port from Vite variables. The old host/port variables
 remain useful to the offline indexing scripts.
 
 All search UIs use `src/lib/search.ts`; exports also use the same-origin proxy.
 The [Meilisearch multi-search API](https://specs.meilisearch.dev/specifications/text/0192-multi-search-api.html)
 keeps the InstantSearch integration intact, including its initial facet requests.
-Provision the runtime secret and deploy frontend + Worker together. Once old
+Provision the runtime origin and secret and deploy frontend + Worker together. Once old
 frontends have migrated, revoke previously public keys and separately restrict
 direct access to the upstream if bypass protection is required.
 
@@ -310,7 +319,8 @@ Worker binds only to `127.0.0.1:5525`. Local KV is persistent but separate from
 both remote environments.
 
 Before deploying production, use credentials for account
-`aad322f46c1fe4bdd854d8b1367b1d7f` and set its runtime secrets:
+`aad322f46c1fe4bdd854d8b1367b1d7f`, set `MEILISEARCH_ORIGIN` in the Worker's
+**Variables & Secrets** settings, and set its runtime secrets:
 
 ```bash
 npx wrangler secret put OPENWEATHERMAP_API_KEY --env production

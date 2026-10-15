@@ -17,6 +17,7 @@ export interface Env {
   WEATHER_API_KEY?: string;
   OPENWEATHERMAP_API_KEY?: string; // Added this to match the code
   FOREX_API_KEY?: string;
+  MEILISEARCH_ORIGIN?: string; // HTTPS origin configured in the Worker runtime
   MEILISEARCH_SEARCH_API_KEY?: string; // Search-only runtime secret, never a master key
   JINA_API_KEY?: string;
   CF_ACCOUNT_ID?: string;
