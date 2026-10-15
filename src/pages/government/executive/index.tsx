@@ -9,7 +9,8 @@ import DirectoryResults from '../../../components/v2/directory/DirectoryResults'
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 
-const HEADS = [executiveHeads.president, executiveHeads['vice-president']];
+const president = executiveHeads.president;
+const vicePresident = executiveHeads['vice-president'];
 
 const ExecutiveIndex: FC = () => {
   const entries = useMemo(() => entriesByKind('executive'), []);
@@ -33,31 +34,86 @@ const ExecutiveIndex: FC = () => {
         className='pt-10 max-md:pt-6'
       >
         <Container>
-          <div className='grid grid-cols-2 gap-6 max-md:grid-cols-1 max-md:gap-3'>
-            {HEADS.map(h => (
-              <Link
-                key={h.slug}
-                to={`/government/executive/${h.slug}`}
-                className='group grid grid-cols-[96px_1fr] items-center gap-5 border border-ed-rule bg-white p-5 text-ed-ink no-underline transition-colors hover:border-ed-navy max-md:grid-cols-[72px_1fr] max-md:gap-4 max-md:p-4'
-              >
-                <img
-                  src={h.portrait.thumb}
-                  alt=''
-                  width={240}
-                  height={300}
-                  className='aspect-[4/5] w-full border border-ed-rule bg-ed-paper-3 object-cover'
-                />
-                <span className='min-w-0'>
-                  <Eyebrow tone='red'>{h.title}</Eyebrow>
-                  <span className='mt-1.5 block font-serif-ed text-[22px] font-semibold leading-tight text-ed-ink group-hover:text-ed-navy max-md:text-lg'>
-                    {h.name}
+          <div className='grid grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-6 max-lg:grid-cols-1 max-md:gap-3'>
+            <Link
+              to={`/government/executive/${president.slug}`}
+              className='group relative isolate grid grid-cols-[minmax(170px,240px)_minmax(0,1fr)] overflow-hidden bg-primary-900 text-white no-underline max-sm:grid-cols-[120px_minmax(0,1fr)]'
+            >
+              <img
+                src={president.portrait.src}
+                alt=''
+                width={president.portrait.width}
+                height={president.portrait.height}
+                className='h-full w-full bg-primary-800 object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]'
+              />
+              <span aria-hidden className='absolute inset-x-0 top-0 flex h-1'>
+                <span className='flex-1 bg-ed-navy' />
+                <span className='flex-1 bg-ed-red' />
+                <span className='flex-1 bg-ed-gold' />
+              </span>
+              <span className='relative flex min-w-0 flex-col justify-between gap-8 p-8 max-md:p-6 max-sm:gap-4 max-sm:p-4'>
+                <span
+                  aria-hidden
+                  className='pointer-events-none absolute -bottom-[0.22em] right-2 -z-10 select-none font-serif-ed text-[200px] font-bold leading-none tracking-[-0.06em] text-white/[0.05] max-sm:hidden'
+                >
+                  {president.ordinal.match(/^\d+/)?.[0]}
+                </span>
+                <span>
+                  <span className='block font-mono-ed text-[11px] font-medium uppercase tracking-[0.2em] text-ed-gold'>
+                    {president.title}
                   </span>
-                  <span className='mt-2 inline-flex items-center gap-1.5 text-sm text-ed-navy'>
-                    Profile and role <ArrowRightIcon size={14} aria-hidden />
+                  <span className='mt-3 block font-serif-ed text-[clamp(30px,3.6vw,46px)] font-bold leading-[1] tracking-[-0.03em] text-white max-sm:text-[24px]'>
+                    {president.name}
+                  </span>
+                  <span className='mt-3 block text-[15px] text-white/70 max-sm:text-[13px]'>
+                    {president.ordinal} · Term ends{' '}
+                    {
+                      president.keyFacts.find(f => f.label === 'Term ends')
+                        ?.value
+                    }
                   </span>
                 </span>
-              </Link>
-            ))}
+                <span className='inline-flex items-center gap-2 text-sm font-medium text-white'>
+                  <span className='border-b border-white/40 pb-0.5 group-hover:border-white'>
+                    Profile and role
+                  </span>
+                  <ArrowRightIcon
+                    size={15}
+                    aria-hidden
+                    className='transition-transform group-hover:translate-x-1'
+                  />
+                </span>
+              </span>
+            </Link>
+
+            <Link
+              to={`/government/executive/${vicePresident.slug}`}
+              className='group grid grid-cols-[104px_minmax(0,1fr)] items-center gap-5 self-start border border-ed-rule bg-white p-5 text-ed-ink no-underline transition-colors hover:border-ed-navy max-md:grid-cols-[72px_minmax(0,1fr)] max-md:gap-4 max-md:p-4'
+            >
+              <img
+                src={vicePresident.portrait.thumb}
+                alt=''
+                width={240}
+                height={300}
+                className='aspect-[4/5] w-full bg-ed-paper-3 object-cover'
+              />
+              <span className='min-w-0'>
+                <Eyebrow tone='red'>{vicePresident.title}</Eyebrow>
+                <span className='mt-1.5 block font-serif-ed text-[22px] font-semibold leading-tight text-ed-ink group-hover:text-ed-navy max-md:text-lg'>
+                  {vicePresident.name}
+                </span>
+                <span className='mt-1 block text-[13px] text-ed-ink-2'>
+                  {vicePresident.ordinal} · Term ends{' '}
+                  {
+                    vicePresident.keyFacts.find(f => f.label === 'Term ends')
+                      ?.value
+                  }
+                </span>
+                <span className='mt-3 inline-flex items-center gap-1.5 text-sm text-ed-navy'>
+                  Profile and role <ArrowRightIcon size={14} aria-hidden />
+                </span>
+              </span>
+            </Link>
           </div>
         </Container>
       </section>

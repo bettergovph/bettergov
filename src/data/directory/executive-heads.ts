@@ -82,8 +82,8 @@ const president: ExecutiveHead = {
   portrait: {
     src: '/images/officials/president.jpg',
     thumb: '/images/officials/president-thumb.jpg',
-    width: 640,
-    height: 1037,
+    width: 880,
+    height: 1100,
     alt: 'Official portrait of President Ferdinand R. Marcos Jr., standing before the Philippine flag and the Seal of the President',
     credit: 'Official portrait, Office of the President',
     license: 'Public domain, via Wikimedia Commons',
@@ -236,8 +236,8 @@ const vicePresident: ExecutiveHead = {
   portrait: {
     src: '/images/officials/vice-president.jpg',
     thumb: '/images/officials/vice-president-thumb.jpg',
-    width: 640,
-    height: 1037,
+    width: 880,
+    height: 1100,
     alt: 'Official portrait of Vice President Sara Z. Duterte, standing before the Philippine flag and the Seal of the Vice President',
     credit: 'Official portrait, Office of the Vice President',
     license: 'Public domain, via Wikimedia Commons',
