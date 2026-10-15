@@ -154,7 +154,7 @@ export const mainNavigation: NavigationItem[] = [
   },
   {
     label: 'Transparency',
-    // No landing page of its own, so the menu has no "overview" link.
+    // No section page: every link in this menu is external.
     href: '',
     children: [
       {
