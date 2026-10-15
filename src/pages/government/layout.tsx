@@ -5,17 +5,17 @@ import { cn } from '../../lib/utils';
 
 type TabDef = { to: string; label: string; end?: boolean };
 
+// /government/salary-grade is still routed; it's just not a tab.
 const TABS: TabDef[] = [
   { to: '/government/overview', label: 'Overview' },
-  { to: '/government', label: 'Directory', end: true },
-  { to: '/government/departments', label: 'Departments' },
   { to: '/government/executive', label: 'Executive' },
+  { to: '/government/departments', label: 'Departments' },
   { to: '/government/legislative', label: 'Legislative' },
   { to: '/government/judicial', label: 'Judicial' },
   { to: '/government/constitutional', label: 'Constitutional' },
   { to: '/government/local', label: 'Local Government' },
   { to: '/government/diplomatic', label: 'Diplomatic' },
-  { to: '/government/salary-grade', label: 'Salary Grades' },
+  { to: '/government', label: 'Directory', end: true },
 ];
 
 const GovernmentLayout: FC = () => (
