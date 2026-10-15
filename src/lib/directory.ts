@@ -1,10 +1,8 @@
-import {
-  constitutionalOffices as constitutional,
-  diplomaticEntities as diplomatic,
-  governmentDepartments as departments,
-  executiveOffices as executive,
-  legislativeChambers as legislative,
-} from '../data/cms';
+import constitutional from '../data/directory/constitutional.json';
+import departments from '../data/directory/departments.json';
+import executive from '../data/directory/executive.json';
+import diplomatic from '../data/directory/diplomatic.json';
+import legislative from '../data/directory/legislative.json';
 
 export type DirectoryBranch =
   | 'Executive'
@@ -72,13 +70,16 @@ export function titleCase(s: string): string {
     .split(/(\([^)]+\))/g)
     .map(chunk => {
       if (chunk.startsWith('(') && chunk.endsWith(')')) return chunk;
-      return chunk
-        .toLowerCase()
-        .replace(/\b([a-z])/g, c => c.toUpperCase())
-        .replace(
-          / (Of|And|The|For|On|In|To|A|An|At) /g,
-          (_m, w) => ' ' + w.toLowerCase() + ' '
-        );
+      return (
+        chunk
+          .toLowerCase()
+          .replace(/\b([a-z])/g, c => c.toUpperCase())
+          // Lookahead, so back-to-back small words ("Of The") both match.
+          .replace(
+            / (Of|And|The|For|On|In|To|A|An|At)(?= )/g,
+            (_m, w) => ' ' + w.toLowerCase()
+          )
+      );
     })
     .join('')
     .trim();
@@ -195,7 +196,7 @@ type DepartmentSrc = {
   address?: string;
   trunkline?: string;
   website?: string;
-  secretary?: { name?: string };
+  secretary?: { name?: string; role?: string };
 };
 
 type ExecutiveSrc = {
@@ -214,6 +215,17 @@ type LegislativeSrc = {
   trunkline?: string;
   website?: string;
   officials?: OfficialLike[];
+};
+
+type DiplomaticSrc = {
+  slug: string;
+  country: string;
+  office_name: string;
+  address?: string;
+  contact?: string;
+  representative?: string;
+  title?: string;
+  website?: string;
 };
 
 function flattenConstitutional(): DirectoryEntry[] {
@@ -243,7 +255,7 @@ function flattenDepartments(): DirectoryEntry[] {
     abbr: deriveAbbr(d.office_name),
     branch: 'Executive',
     kind: 'department',
-    headRole: 'Secretary',
+    headRole: d.secretary?.role ?? 'Secretary',
     head: d.secretary?.name,
     address: d.address,
     loc: deriveLoc(d.address),
@@ -304,17 +316,16 @@ function flattenLegislative(): DirectoryEntry[] {
 }
 
 function flattenDiplomatic(): DirectoryEntry[] {
-  // Missions only: consulates and organizations carry no slug and have no
-  // detail route, so they are not part of the aggregate directory.
-  return diplomatic['Diplomatic Mission'].map(m => ({
+  const missions = (diplomatic as { 'Diplomatic Mission'?: DiplomaticSrc[] })[
+    'Diplomatic Mission'
+  ];
+  return (missions ?? []).map(m => ({
     slug: m.slug,
     name: m.office_name,
     abbr: undefined,
     branch: 'Diplomatic',
     kind: 'diplomatic',
-    // `title` is `string | null | undefined` — four missions carry an explicit
-    // null. `headRole` is `string | undefined`, so normalize rather than cast.
-    headRole: m.title ?? undefined,
+    headRole: m.title,
     head: m.representative,
     address: m.address,
     loc: deriveLoc(m.address),

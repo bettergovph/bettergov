@@ -153,6 +153,16 @@ function generateGovernmentUrls(siteUrl, governmentData) {
   // Executive branch specific pages
   const executivePages = [
     {
+      url: `${siteUrl}/government/executive/president`,
+      priority: '0.8',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/executive/vice-president`,
+      priority: '0.8',
+      changefreq: 'monthly',
+    },
+    {
       url: `${siteUrl}/government/executive/office-of-the-president`,
       priority: '0.8',
       changefreq: 'monthly',

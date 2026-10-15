@@ -5,7 +5,7 @@
   # Directory to publish (relative to root of your repo)
   publish = "dist"
   # Default build command
-  command = "npm run cms:fetch && npm run build"
+  command = "npm run build"
 
 # The following redirect is intended for use with single-page applications (SPA)
 # like React Router. It allows client-side routing to work correctly by

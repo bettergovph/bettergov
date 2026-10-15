@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import { governmentDepartments as departmentsData } from '../../../data/cms';
+import departmentsData from '../../../data/directory/departments.json';
 import Container from '../../../components/v2/ui/Container';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';
 import DetailHeader from '../../../components/v2/directory/DetailHeader';
@@ -11,11 +11,31 @@ import { titleCase } from '../../../lib/directory';
 
 type Secretary = {
   name?: string;
+  /** Set when the title isn't plain "Secretary", e.g. "Acting Secretary". */
+  role?: string;
   contact?: string;
   email?: string;
 };
 
 type Undersecretary = OfficialRow;
+
+/** Where the undersecretary and assistant secretary lists were last checked. */
+type OfficialsSource = {
+  url: string;
+  checked: string;
+  /** Date the source itself states its list is current as of. */
+  as_of?: string;
+  /** Set when the source isn't the department's own live list. */
+  label?: string;
+};
+
+const formatDay = (iso: string) =>
+  new Date(`${iso}T00:00:00+08:00`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Asia/Manila',
+  });
 
 type Department = {
   slug: string;
@@ -26,6 +46,7 @@ type Department = {
   email?: string;
   secretary?: Secretary;
   undersecretaries?: Undersecretary[];
+  officials_source?: OfficialsSource;
   /** Fallback bucket for anything else the JSON happens to carry. */
   [key: string]: unknown;
 };
@@ -131,6 +152,7 @@ const DepartmentDetail: FC = () => {
     email,
     secretary,
     undersecretaries,
+    officials_source: officialsSource,
     slug,
     ...rest
   } = department;
@@ -140,7 +162,7 @@ const DepartmentDetail: FC = () => {
   const secretaryRow: OfficialRow[] = secretary?.name
     ? [
         {
-          role: 'Secretary',
+          role: secretary.role ?? 'Secretary',
           name: secretary.name,
           contact: secretary.contact,
           email: secretary.email,
@@ -170,6 +192,25 @@ const DepartmentDetail: FC = () => {
               <SectionHeader label='Head of department' />
               <OfficialsTable officials={secretaryRow} />
             </>
+          )}
+
+          {officialsSource && (
+            <p className='mb-8 max-w-3xl border-l-2 border-ed-rule pl-4 text-[13px] leading-relaxed text-ed-ink-2 max-md:mb-6'>
+              Undersecretaries and assistant secretaries were checked on{' '}
+              {formatDay(officialsSource.checked)} against{' '}
+              <a
+                href={officialsSource.url}
+                target='_blank'
+                rel='noreferrer'
+                className='text-ed-navy underline decoration-ed-rule-strong underline-offset-2 hover:decoration-ed-navy'
+              >
+                {officialsSource.label ?? 'the department’s list of officials'}
+              </a>
+              {officialsSource.as_of &&
+                !officialsSource.label?.includes('data as of') &&
+                `, dated ${formatDay(officialsSource.as_of)}`}
+              .
+            </p>
           )}
 
           {undersecretaries && undersecretaries.length > 0 && (

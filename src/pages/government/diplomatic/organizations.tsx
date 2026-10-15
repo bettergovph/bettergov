@@ -6,18 +6,30 @@ import {
   PhoneIcon,
   SearchIcon,
 } from 'lucide-react';
-import {
-  diplomaticEntities,
-  type DiplomaticOrganization,
-} from '../../../data/cms';
+import diplomaticData from '../../../data/directory/diplomatic.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import { titleCase } from '../../../lib/directory';
 
+type Organization = {
+  organization_name: string;
+  address?: string;
+  contact?: string;
+  email?: string;
+  website?: string;
+  head?: string;
+  title?: string;
+};
+
 const OrganizationsPage: FC = () => {
-  const all = useMemo<DiplomaticOrganization[]>(
-    () => diplomaticEntities['International Organization'],
+  const all = useMemo<Organization[]>(
+    () =>
+      (
+        diplomaticData as unknown as {
+          'International Organization'?: Organization[];
+        }
+      )['International Organization'] ?? [],
     []
   );
   const [q, setQ] = useState('');

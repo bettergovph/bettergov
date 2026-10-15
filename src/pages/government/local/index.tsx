@@ -2,12 +2,18 @@ import { FC, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRightIcon, SearchIcon } from 'lucide-react';
-import { lguRegions, type RegionLGU } from '../../../lib/lgu';
+import type { RegionLGU } from '../../../lib/lgu';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import { titleCase } from '../../../lib/directory';
+
+const modules = import.meta.glob<{ default: RegionLGU }>(
+  '../../../data/directory/lgu/*.json',
+  { eager: true }
+);
+const lguData: RegionLGU[] = Object.values(modules).map(m => m.default);
 
 type RegionSummary = {
   name: string;
@@ -41,7 +47,7 @@ const countLGUs = (regionData: RegionLGU): RegionSummary => {
 };
 
 const LocalGovernmentIndex: FC = () => {
-  const regions = useMemo(() => lguRegions.map(countLGUs), []);
+  const regions = useMemo(() => lguData.map(countLGUs), []);
   const [q, setQ] = useState('');
 
   const results = useMemo(() => {

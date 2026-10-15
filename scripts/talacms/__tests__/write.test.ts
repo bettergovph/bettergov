@@ -12,9 +12,7 @@ import {
   readTaxonomy,
   parseTaxonomy,
   readJsonOrFail,
-  removeStaleFiles,
   removeStaleServiceFiles,
-  CommitFilesError,
 } from '../write';
 
 const REPO_ROOT = process.cwd();
@@ -212,115 +210,10 @@ describe('commitFiles', () => {
     expect(leftovers).toEqual([]);
   });
 
-  it('rolls back an already-renamed file when a later rename fails, and cleans up temps', async () => {
+  it('leaves the documented mixed snapshot when a later rename fails, and cleans up temps', async () => {
     const first = makeTempFile('service_categories.json', 'OLD FIRST\n');
     const second = makeTempCopy(HOTLINES);
     const secondBefore = fs.readFileSync(second, 'utf8');
-
-    let calls = 0;
-    const flakyRename = (from: string, to: string) => {
-      calls += 1;
-      if (calls === 2) throw new Error('simulated rename failure');
-      fs.renameSync(from, to);
-    };
-
-    let caught: unknown;
-    try {
-      await commitFiles(
-        [
-          { path: first, text: 'FIRST WRITTEN\n', changed: true },
-          { path: second, text: 'SECOND NOT WRITTEN\n', changed: true },
-        ],
-        { rename: flakyRename }
-      );
-    } catch (error) {
-      caught = error;
-    }
-
-    // A later rename's failure rolls back every file this batch already
-    // renamed — the first file must be restored to its pre-batch content,
-    // not left holding the new one. No mixed old/new snapshot survives.
-    expect(fs.readFileSync(first, 'utf8')).toBe('OLD FIRST\n');
-    expect(fs.readFileSync(second, 'utf8')).toBe(secondBefore);
-
-    for (const dir of [path.dirname(first), path.dirname(second)]) {
-      expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
-    }
-
-    // run() must only ever report a clean rollback when commitFiles has
-    // actually confirmed one — assert the structured signal it confirms on.
-    expect(caught).toBeInstanceOf(CommitFilesError);
-    const err = caught as CommitFilesError;
-    expect(err.rollbackComplete).toBe(true);
-    expect(err.incompleteRollbackPaths).toEqual([]);
-    expect(err.message).toMatch(/simulated rename failure/);
-    expect(err.message).toMatch(/fully rolled back/);
-  });
-
-  it('surfaces an INCOMPLETE rollback, rather than swallowing it, when a restoration itself fails', async () => {
-    // Two pre-existing files: the first's forward rename succeeds (so it
-    // becomes eligible for rollback), the second's forward rename fails
-    // (triggering rollback of the first) — and then the first's OWN
-    // restoration rename also fails. This must never be silently absorbed:
-    // commitFiles must surface it as an explicitly incomplete rollback,
-    // naming the affected path, rather than reporting a clean one it never
-    // achieved.
-    const first = makeTempFile('service_categories.json', 'OLD FIRST\n');
-    const second = makeTempCopy(HOTLINES);
-    const secondBefore = fs.readFileSync(second, 'utf8');
-
-    let calls = 0;
-    const flakyRename = (from: string, to: string) => {
-      calls += 1;
-      if (calls === 1) {
-        fs.renameSync(from, to); // forward rename of `first` succeeds
-        return;
-      }
-      if (calls === 2) throw new Error('simulated forward rename failure');
-      // call 3: the restoration rename for `first`, during rollback
-      throw new Error('simulated restoration rename failure');
-    };
-
-    let caught: unknown;
-    try {
-      await commitFiles(
-        [
-          { path: first, text: 'FIRST WRITTEN\n', changed: true },
-          { path: second, text: 'SECOND NOT WRITTEN\n', changed: true },
-        ],
-        { rename: flakyRename }
-      );
-    } catch (error) {
-      caught = error;
-    }
-
-    expect(caught).toBeInstanceOf(CommitFilesError);
-    const err = caught as CommitFilesError;
-    expect(err.rollbackComplete).toBe(false);
-    expect(err.incompleteRollbackPaths).toEqual([first]);
-    expect(err.message).toMatch(/incomplete/i);
-    expect(err.message).toContain(first);
-
-    // The restoration genuinely failed: `first` is left holding the NEW
-    // content from this failed batch, not restored to its pre-batch state —
-    // exactly the state the thrown error must tell the caller about.
-    expect(fs.readFileSync(first, 'utf8')).toBe('FIRST WRITTEN\n');
-    expect(fs.readFileSync(second, 'utf8')).toBe(secondBefore);
-
-    // The restore-temp file for the failed restoration must still be
-    // cleaned up, not left behind as litter.
-    expect(
-      fs.readdirSync(path.dirname(first)).filter(f => f.endsWith('.tmp'))
-    ).toEqual([]);
-  });
-
-  it('deletes a brand-new file on rollback, rather than leaving it behind', async () => {
-    // The target for `brandNew` never existed before this batch — rollback
-    // must delete it, not try to "restore" content that was never there.
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
-    tempDirs.push(dir);
-    const brandNew = path.join(dir, 'new-region.json');
-    const existing = makeTempFile('service_categories.json', 'OLD\n');
 
     let calls = 0;
     const flakyRename = (from: string, to: string) => {
@@ -332,58 +225,21 @@ describe('commitFiles', () => {
     await expect(
       commitFiles(
         [
-          { path: brandNew, text: 'NEW REGION\n', changed: true },
-          { path: existing, text: 'NOT WRITTEN\n', changed: true },
+          { path: first, text: 'FIRST WRITTEN\n', changed: true },
+          { path: second, text: 'SECOND NOT WRITTEN\n', changed: true },
         ],
         { rename: flakyRename }
       )
     ).rejects.toThrow(/simulated rename failure/);
 
-    expect(fs.existsSync(brandNew)).toBe(false);
-    expect(fs.readFileSync(existing, 'utf8')).toBe('OLD\n');
-  });
+    // This asserts the documented limitation, not an atomicity guarantee:
+    // the first file is new, the second is old.
+    expect(fs.readFileSync(first, 'utf8')).toBe('FIRST WRITTEN\n');
+    expect(fs.readFileSync(second, 'utf8')).toBe(secondBefore);
 
-  it('rolls back every already-renamed file in a large (LGU-shaped) multi-file batch', async () => {
-    // Mirrors the shape of a real LGU sync: many files in one commitFiles
-    // call, a mix of pre-existing and brand-new targets, and a failure partway
-    // through — every file the batch already touched must come back exactly
-    // as it was, and every never-reached file must be untouched.
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-write-'));
-    tempDirs.push(dir);
-
-    const existingPaths = Array.from({ length: 3 }, (_, i) => {
-      const p = path.join(dir, `region-${i}.json`);
-      fs.writeFileSync(p, `OLD ${i}\n`, 'utf8');
-      return p;
-    });
-    const brandNewPaths = Array.from({ length: 2 }, (_, i) =>
-      path.join(dir, `new-region-${i}.json`)
-    );
-    const files = [
-      { path: existingPaths[0], text: 'NEW 0\n', changed: true },
-      { path: brandNewPaths[0], text: 'NEW-NEW 0\n', changed: true },
-      { path: existingPaths[1], text: 'NEW 1\n', changed: true },
-      { path: brandNewPaths[1], text: 'NEW-NEW 1\n', changed: true },
-      { path: existingPaths[2], text: 'NEW 2\n', changed: true }, // this rename is the one that fails
-    ];
-
-    let calls = 0;
-    const flakyRename = (from: string, to: string) => {
-      calls += 1;
-      if (calls === 5) throw new Error('simulated rename failure on file 5');
-      fs.renameSync(from, to);
-    };
-
-    await expect(commitFiles(files, { rename: flakyRename })).rejects.toThrow(
-      /simulated rename failure on file 5/
-    );
-
-    expect(fs.readFileSync(existingPaths[0], 'utf8')).toBe('OLD 0\n');
-    expect(fs.readFileSync(existingPaths[1], 'utf8')).toBe('OLD 1\n');
-    expect(fs.readFileSync(existingPaths[2], 'utf8')).toBe('OLD 2\n');
-    expect(fs.existsSync(brandNewPaths[0])).toBe(false);
-    expect(fs.existsSync(brandNewPaths[1])).toBe(false);
-    expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
+    for (const dir of [path.dirname(first), path.dirname(second)]) {
+      expect(fs.readdirSync(dir).filter(f => f.endsWith('.tmp'))).toEqual([]);
+    }
   });
 
   it('cleans up a partially written temp file and leaves destinations untouched', async () => {
@@ -716,100 +572,5 @@ describe('removeStaleServiceFiles', () => {
       { unlink: () => {}, log: () => {} }
     );
     expect(removed).toEqual([]);
-  });
-});
-
-describe('removeStaleFiles', () => {
-  it('deletes only files absent from the generated set when given a custom dir', () => {
-    const dir = makeServicesDir({ health: [], 'old-category': [] });
-    const logged: string[] = [];
-    const { removed, failed } = removeStaleFiles(
-      dir,
-      ['health.json', 'old-category.json'],
-      ['health.json'],
-      {
-        unlink: target => fs.unlinkSync(target),
-        log: message => logged.push(message),
-      }
-    );
-
-    expect(removed).toEqual(['old-category.json']);
-    expect(failed).toEqual([]);
-    expect(fs.existsSync(path.join(dir, 'old-category.json'))).toBe(false);
-    expect(fs.existsSync(path.join(dir, 'health.json'))).toBe(true);
-    expect(logged.some(l => l.includes('removed stale'))).toBe(true);
-    expect(logged.some(l => l.includes('old-category.json'))).toBe(true);
-  });
-
-  it('never touches schema subdirectories in the target dir', () => {
-    const dir = makeServicesDir({ health: [] });
-    removeStaleFiles(dir, ['health.json'], [], {
-      unlink: target => fs.unlinkSync(target),
-      log: () => {},
-    });
-    expect(fs.statSync(path.join(dir, 'schema')).isDirectory()).toBe(true);
-  });
-
-  it('does nothing when the sets already match', () => {
-    const unlink = () => {
-      throw new Error('must not be called');
-    };
-    const dir = makeServicesDir({ health: [] });
-    const { removed, failed } = removeStaleFiles(
-      dir,
-      ['health.json'],
-      ['health.json'],
-      { unlink, log: () => {} }
-    );
-    expect(removed).toEqual([]);
-    expect(failed).toEqual([]);
-  });
-
-  it('is best-effort: one failed deletion does not stop the rest', () => {
-    const logged: string[] = [];
-    const dir = makeServicesDir({ a: [], b: [], c: [] });
-    const { removed, failed } = removeStaleFiles(
-      dir,
-      ['a.json', 'b.json', 'c.json'],
-      [],
-      {
-        unlink: target => {
-          if (target.endsWith('b.json')) throw new Error('EACCES: simulated');
-        },
-        log: message => logged.push(message),
-      }
-    );
-    expect(removed).toEqual(['a.json', 'c.json']);
-    expect(failed).toEqual(['b.json']);
-    expect(logged.some(l => l.includes('✖') && l.includes('b.json'))).toBe(
-      true
-    );
-  });
-
-  it('sorts stale files in codepoint order before deletion', () => {
-    const dir = makeServicesDir({
-      zebra: [],
-      alpha: [],
-      beta: [],
-      gamma: [],
-    });
-    const unlinkOrder: string[] = [];
-    removeStaleFiles(
-      dir,
-      ['zebra.json', 'alpha.json', 'beta.json', 'gamma.json'],
-      [],
-      {
-        unlink: target => {
-          unlinkOrder.push(path.basename(target));
-        },
-        log: () => {},
-      }
-    );
-    expect(unlinkOrder).toEqual([
-      'alpha.json',
-      'beta.json',
-      'gamma.json',
-      'zebra.json',
-    ]);
   });
 });

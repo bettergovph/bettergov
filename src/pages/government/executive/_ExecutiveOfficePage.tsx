@@ -1,14 +1,16 @@
 import { FC, useMemo, useState } from 'react';
 import { SearchIcon } from 'lucide-react';
-import { executiveOffices as executiveData } from '../../../data/cms';
+import executiveData from '../../../data/directory/executive.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import ArrowLink from '../../../components/v2/ui/ArrowLink';
 import DetailHeader from '../../../components/v2/directory/DetailHeader';
 import OfficialsTable, {
   type OfficialRow,
 } from '../../../components/v2/directory/OfficialsTable';
 import { titleCase } from '../../../lib/directory';
+import { executiveHeads } from '../../../data/directory/executive-heads';
 
 type FlatOfficial = {
   name: string;
@@ -65,6 +67,9 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug }) => {
   }
 
   const name = titleCase(office.office);
+  const head = Object.values(executiveHeads).find(
+    h => h.officeSlug === office.slug
+  );
   const flat: OfficialRow[] = (office.officials ?? [])
     .filter((e): e is FlatOfficial => 'name' in e)
     .filter(o =>
@@ -106,7 +111,15 @@ const ExecutiveOfficePage: FC<Props> = ({ officeSlug }) => {
         address={office.address}
         trunkline={office.trunkline}
         website={office.website}
-      />
+      >
+        {head && (
+          <div className='mt-6 max-md:mt-4'>
+            <ArrowLink to={`/government/executive/${head.slug}`}>
+              About {head.shortTitle.replace(/^The /, 'the ')}, {head.name}
+            </ArrowLink>
+          </div>
+        )}
+      </DetailHeader>
 
       <section className='py-12 max-md:py-6'>
         <Container>

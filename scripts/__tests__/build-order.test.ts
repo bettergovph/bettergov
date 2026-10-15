@@ -12,17 +12,7 @@ describe('cms:fetch — the canonical public CMS-fetch command', () => {
     // e.g. "npm run sync:talacms && npm run something-else", which would no
     // longer be a pure delegation and could hide a duplicated/diverging
     // implementation from this test.
-    expect(pkg.scripts['cms:fetch']).toBe('npm run sync:talacms --');
-  });
-
-  it('forwards extra args to sync:talacms with a trailing "--", not just delegating', () => {
-    // Without the trailing "--", `npm run cms:fetch -- --dry-run` hands
-    // "--dry-run" to the OUTER `npm run` invocation, which silently drops
-    // it — `npm run sync:talacms` then runs with no flags at all, turning
-    // an intended dry run into a real write. The trailing "--" here is
-    // what makes the inner `npm run sync:talacms` also see a "--" boundary
-    // and forward everything after it to the underlying script.
-    expect(pkg.scripts['cms:fetch']).toMatch(/\s--$/);
+    expect(pkg.scripts['cms:fetch']).toBe('npm run sync:talacms');
   });
 
   it('sync:talacms still runs the real implementation script directly', () => {

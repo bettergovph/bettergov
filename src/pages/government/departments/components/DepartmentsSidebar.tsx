@@ -2,7 +2,7 @@ import { Building2Icon } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
-import { governmentDepartments as departmentsData } from '../../../../data/cms';
+import departmentsData from '../../../../data/directory/departments.json';
 
 interface Department {
   office_name: string;

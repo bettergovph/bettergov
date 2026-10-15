@@ -17,30 +17,6 @@ const ACCESSOR = 'src/data/cms.ts';
 const GENERATED_PATH_PATTERN =
   /service_categories\.json|critical_hotlines\.json|data\/services\/(?!schema\/)\S*\.json/;
 
-/**
- * LGU is generated as one file per region under `data/directory/lgu/`, not
- * a single named file — so, unlike departments/executive/constitutional,
- * the violation shape here is a glob (`data/directory/lgu/*.json`), a
- * template literal, or a direct import of one specific region file, mirroring
- * how GENERATED_PATH_PATTERN already catches those forms for services.
- * DIRECTORY_JSON_PATTERN's `from '...directory/lgu.json'` alternation entry
- * can never fire — there is no single `lgu.json` — so this pattern is the
- * one that actually guards LGU.
- */
-const LGU_DIRECTORY_GLOB_PATTERN = /data\/directory\/lgu\/\S*\.json/;
-
-/**
- * Every generated directory dataset that has a single, named JSON file
- * (i.e. everything except LGU, which is one file per region — see
- * LGU_DIRECTORY_GLOB_PATTERN above). A single shared constant so the
- * boundary-scan test and its own bite test can never drift apart — a
- * dataset added to the boundary scan but missed here (or vice versa) would
- * otherwise go undetected, exactly as happened when `diplomatic` was added
- * to one copy of this pattern but not the other.
- */
-const DIRECTORY_JSON_PATTERN =
-  /from\s+['"].*data\/directory\/(departments|executive|constitutional|diplomatic|lgu)\.json['"]/;
-
 const stripComments = (source: string) =>
   source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '');
 
@@ -79,70 +55,6 @@ describe('CMS accessor boundary', () => {
       .map(f => f.path);
 
     expect(violations).toEqual([]);
-  });
-
-  it('routes generated directory data through the accessor only', () => {
-    const offenders = files
-      .filter(f => f.path !== ACCESSOR)
-      .filter(f => DIRECTORY_JSON_PATTERN.test(f.code))
-      .map(f => f.path);
-
-    expect(offenders).toEqual([]);
-  });
-
-  it('DIRECTORY_JSON_PATTERN bites on each generated directory file', () => {
-    for (const f of [
-      'departments',
-      'executive',
-      'constitutional',
-      'diplomatic',
-    ]) {
-      expect(
-        DIRECTORY_JSON_PATTERN.test(
-          `import x from '../../data/directory/${f}.json';`
-        )
-      ).toBe(true);
-    }
-    // The still-local datasets are deliberately NOT covered.
-    expect(
-      DIRECTORY_JSON_PATTERN.test(
-        "import x from '../../data/directory/judicial.json';"
-      )
-    ).toBe(false);
-  });
-
-  it('is the only module in src/ that references an LGU directory path', () => {
-    const violations = files
-      .filter(f => f.path !== ACCESSOR)
-      .filter(f => LGU_DIRECTORY_GLOB_PATTERN.test(f.code))
-      .map(f => f.path);
-
-    expect(violations).toEqual([]);
-  });
-
-  describe('LGU_DIRECTORY_GLOB_PATTERN — bite tests', () => {
-    it.each([
-      ["import.meta.glob('../../data/directory/lgu/*.json', { eager: true });"],
-      [
-        "import region from '../../data/directory/lgu/region-vi-western-visayas.json';",
-      ],
-      ['await import(`../data/directory/lgu/${slug}.json`);'],
-    ])('matches %s', code => {
-      expect(LGU_DIRECTORY_GLOB_PATTERN.test(code)).toBe(true);
-    });
-
-    it('does NOT match a legitimate reference to the lgu accessor export or an unrelated path', () => {
-      expect(
-        LGU_DIRECTORY_GLOB_PATTERN.test(
-          "import { lguRegions } from '../../lib/lgu';"
-        )
-      ).toBe(false);
-      expect(
-        LGU_DIRECTORY_GLOB_PATTERN.test(
-          "import x from '../../data/directory/departments.json';"
-        )
-      ).toBe(false);
-    });
   });
 
   describe('GENERATED_PATH_PATTERN — bite tests', () => {

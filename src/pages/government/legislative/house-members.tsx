@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { PhoneIcon, SearchIcon } from 'lucide-react';
-import { legislativeChambers as legislativeData } from '../../../data/cms';
+import legislativeData from '../../../data/directory/legislative.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
@@ -12,6 +12,8 @@ type HouseMember = {
   province_city: string;
   district: string;
   contact?: string;
+  /** Present when the seat is vacant; `name` is then "VACANT". */
+  vacancy?: string;
 };
 
 const HouseMembersPage: FC = () => {
@@ -42,8 +44,16 @@ const HouseMembersPage: FC = () => {
         `${m.name} ${m.district} ${m.province_city}`.toLowerCase().includes(n)
       );
     }
-    return r.sort((a, b) => a.name.localeCompare(b.name));
+    return r.sort(
+      (a, b) =>
+        Number(!!a.vacancy) - Number(!!b.vacancy) ||
+        a.name.localeCompare(b.name)
+    );
   }, [members, q, province]);
+
+  const seated = members.filter(m => !m.vacancy).length;
+  const shown = results.filter(m => !m.vacancy).length;
+  const vacant = members.length - seated;
 
   return (
     <>
@@ -57,7 +67,7 @@ const HouseMembersPage: FC = () => {
       <PageMasthead
         variant='hero'
         title='District members'
-        lede='Members of the House of Representatives elected by congressional district — one seat per district, roughly 253 in total.'
+        lede='Members of the House of Representatives elected by congressional district — one seat for each of the 254 districts in the 20th Congress.'
       />
 
       <section className='py-10 max-md:py-6'>
@@ -93,7 +103,9 @@ const HouseMembersPage: FC = () => {
 
           <div className='mb-4'>
             <Eyebrow>
-              {results.length} of {members.length} representatives
+              {shown} of {seated} representatives
+              {vacant > 0 &&
+                ` · ${vacant} vacant ${vacant === 1 ? 'seat' : 'seats'}`}
             </Eyebrow>
           </div>
 
@@ -114,9 +126,20 @@ const HouseMembersPage: FC = () => {
                       {m.province_city}
                     </div>
                   </div>
-                  <div className='font-serif-ed text-[17px] text-ed-ink'>
-                    {m.name}
-                  </div>
+                  {m.vacancy ? (
+                    <div>
+                      <div className='font-serif-ed text-[17px] italic text-ed-ink-3'>
+                        Vacant seat
+                      </div>
+                      <p className='mt-1 text-[13px] leading-snug text-ed-ink-2'>
+                        {m.vacancy}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className='font-serif-ed text-[17px] text-ed-ink'>
+                      {m.name}
+                    </div>
+                  )}
                   <div className='flex items-center gap-2 border-l border-ed-rule pl-5 text-[13px] max-md:border-l-0 max-md:pl-0'>
                     {m.contact && (
                       <>

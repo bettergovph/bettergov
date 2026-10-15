@@ -35,6 +35,10 @@
             "type": "string",
             "description": "Name of the secretary"
           },
+          "role": {
+            "type": "string",
+            "description": "Title when it isn't plain \"Secretary\", e.g. \"Acting Secretary\""
+          },
           "contact": {
             "type": "string",
             "description": "Contact information"
@@ -168,6 +172,29 @@
               "type": "string",
               "description": "Official website URL"
             }
+          }
+        }
+      },
+      "officials_source": {
+        "type": "object",
+        "description": "Where the undersecretary and assistant secretary lists were last checked",
+        "required": ["url", "checked"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The list of officials that was compared"
+          },
+          "checked": {
+            "type": "string",
+            "description": "Date of the check (YYYY-MM-DD)"
+          },
+          "as_of": {
+            "type": "string",
+            "description": "Date the source states its list is current as of (YYYY-MM-DD)"
+          },
+          "label": {
+            "type": "string",
+            "description": "Shown instead of a generic label when the source isn't the department's own live list"
           }
         }
       }
