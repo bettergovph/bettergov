@@ -98,10 +98,6 @@ const Footer: FC = () => {
       href: '/flood-control-projects',
     },
     {
-      label: t('footerNav.dataTransparency', 'Data & Transparency'),
-      href: '/data/forex',
-    },
-    {
       label: t('footerNav.holidays', 'Holidays'),
       href: '/philippines/holidays',
     },
