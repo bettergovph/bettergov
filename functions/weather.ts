@@ -4,12 +4,15 @@
  */
 
 import { Env } from './types';
+import { validateDataRequest } from './lib/data-request';
 
 export async function onRequest(context: {
   request: Request;
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
+  const invalid = validateDataRequest(context.request, 'city');
+  if (invalid) return invalid;
   try {
     const url = new URL(context.request.url);
     const cityParam = url.searchParams.get('city');
@@ -25,13 +28,12 @@ export async function onRequest(context: {
         JSON.stringify({
           error: 'No weather data found in KV store',
           message:
-            'Try calling /api/weather?update=true to fetch and store fresh data',
+            'Weather is refreshed automatically; try /api/weather to initialize an empty cache',
         }),
         {
           status: 404,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
           },
         }
       );
@@ -40,13 +42,12 @@ export async function onRequest(context: {
     // If city parameter is provided, filter the data
     if (cityParam) {
       const cityKey = cityParam.toLowerCase();
-      if (cachedData[cityKey]) {
+      if (Object.hasOwn(cachedData, cityKey)) {
         return new Response(
           JSON.stringify({ [cityKey]: cachedData[cityKey] }),
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
               'Cache-Control': 'max-age=3600',
             },
           }
@@ -61,7 +62,6 @@ export async function onRequest(context: {
             status: 404,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
             },
           }
         );
@@ -72,21 +72,18 @@ export async function onRequest(context: {
     return new Response(JSON.stringify(cachedData), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'max-age=3600',
       },
     });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({
-        error: (error as Error).message,
-        stack: (error as Error).stack,
+        error: 'Weather service temporarily unavailable',
       }),
       {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         },
       }
     );

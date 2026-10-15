@@ -1,4 +1,4 @@
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import { createSearchClient } from '../../lib/search';
 import 'instantsearch.css/themes/satellite.css';
 import {
   BarChart3Icon,
@@ -53,22 +53,12 @@ import typeOfWorkData from '../../data/flood_control/lookups/TypeofWork_with_cou
 import { useSearchParams } from 'react-router-dom';
 
 // Meilisearch configuration
-const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_SEARCH_API_KEY =
-  import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here';
 
 // Create search client with proper type casting
-const meiliSearchInstance = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'GlobalID',
-    keepZeroFacets: true,
-  }
-);
+const meiliSearchInstance = createSearchClient({
+  primaryKey: 'GlobalID',
+  keepZeroFacets: true,
+});
 
 // Extract the searchClient from meiliSearchInstance
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -592,9 +582,6 @@ const FloodControlProjects: FC = () => {
 
     try {
       await exportMeilisearchData({
-        host: MEILISEARCH_HOST,
-        port: MEILISEARCH_PORT,
-        apiKey: MEILISEARCH_SEARCH_API_KEY,
         indexName: 'bettergov_flood_control',
         filters: filterString,
         searchTerm: effectiveSearchTerm,

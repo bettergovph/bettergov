@@ -2,6 +2,172 @@
 
 This folder contains Cloudflare Functions that run on a schedule to fetch and store data for the GOV.PH portal. The functions are written in TypeScript for improved type safety and developer experience.
 
+## HTTP security
+
+Every dynamic route in this repository's single Worker passes through
+`lib/request-security.ts`, including both assistant endpoints, `/api/status`,
+the `/weather` and `/forex` aliases, and error/404 responses.
+
+- Only `https://www.gov.ph` and HTTPS subdomains of `govph.workers.dev` and
+  `oueg.workers.dev` are approved browser origins. The bare `govph.workers.dev`
+  and `oueg.workers.dev`, other `gov.ph`
+  subdomains, HTTP origins, custom ports, and `null` origins are rejected with
+  `403` before a handler runs. Version-preview subdomains are supported.
+- Approved origins receive their exact `Access-Control-Allow-Origin` and
+  `Access-Control-Allow-Credentials: true`. Preflights permit `GET`, `POST`,
+  `OPTIONS` and the `Content-Type` / `X-Meilisearch-Client` request headers. Responses vary by origin
+  and preflight headers and are not cached across clients. Rejected origins
+  receive no CORS grant.
+- Requests without an `Origin` (for example, same-origin GETs and server
+  clients) remain usable and rate limited, but receive no CORS grant.
+  Origin-less browser requests marked `Sec-Fetch-Site: cross-site` or `same-site`
+  are rejected because they originate outside the Worker's own origin.
+  CORS is a browser policy, not authentication: non-browser clients can spoof
+  `Origin`, so it must not be relied on to authorize access.
+
+Native Cloudflare rate-limit bindings declared in `wrangler.jsonc` apply before
+body parsing, storage access or upstream calls. Limits use `CF-Connecting-IP`,
+not client-supplied forwarding headers. Missing IPs share one fallback bucket.
+
+| Scope | Requests per 60 seconds per IP |
+| --- | --- |
+| All dynamic requests combined | 120 |
+| Assistant JSON and SSE combined | 20 |
+| Crawler | 10 |
+| Hotline reports | 5 |
+
+Preflights do not consume quota. A denied request returns `429`,
+`Retry-After: 60`, `RateLimit-Limit` and `RateLimit-Remaining: 0`.
+Successful responses include `RateLimit-Limit`; the native binding does not
+expose an accurate remaining count, so none is invented. These headers are
+exposed to approved browser clients. Upstream assistant `429` responses retain
+their `Retry-After`, defaulting to 60 seconds if absent. Missing or failing
+rate-limit bindings fail closed with `503` and `Retry-After: 60`.
+
+Keep the policy limits in `lib/request-security.ts` and `wrangler.jsonc` in sync.
+Deploy the Worker code and configuration together; no KV counter or separately
+provisioned rate-limit service is needed. Each namespace ID is account-wide:
+reuse it deliberately only when another Worker should share that quota.
+
+Cloudflare's [rate-limit bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)
+are local to each Cloudflare location and eventually consistent, rather than
+an exact global quota. Shared NAT/mobile IPs share their allowance. This is
+application abuse mitigation; distributed DDoS protection still relies on
+Cloudflare's edge protections/WAF. Static assets (including `/api/projects.json`)
+stay on Cloudflare's asset-serving path and do not consume Worker API quotas.
+Other Workers outside this repository need the same policy applied separately.
+
+## Same-origin data and search
+
+The browser uses relative URLs, so a site served on `www.gov.ph` makes requests
+to `https://www.gov.ph/api/weather`, `/api/forex` and `/api/search`. Preview
+deployments use their own origin. The existing `/api/*` Worker routing already
+covers these paths; no separate backend deployment or browser CORS exception is
+needed. The deployment serving `www.gov.ph` must receive this code and its bindings.
+
+### Weather and forex
+
+Weather and forex run natively inside the site's Worker. There is no HTTP
+proxy or fallback to `api.bettergov.ph`. `/api/weather` and `/api/forex` read
+`WEATHER_KV` and `FOREX_KV`; a cold cache is populated directly from
+OpenWeatherMap and BSP respectively. `/weather` and `/forex` are KV-only aliases.
+Missing bindings return `503` rather than forwarding to another deployment.
+
+Both environments refresh the data every hour (`0 * * * *`, UTC). Cached data
+lasts six hours to cover temporary provider failures. Failed refreshes preserve
+existing data. Weather needs the `OPENWEATHERMAP_API_KEY` runtime secret; BSP
+needs no API key. A newly bound, empty weather namespace cannot initialize until
+that secret is configured. The API routes fill an empty cache on their first
+successful request, so a separate migration of old KV values is not required.
+
+Public data endpoints accept only `GET` and a single optional `city` / `symbol`
+filter. Public force-refresh parameters (`update`, `force`) are rejected; cache
+bypass is reserved for the scheduled handler. Unknown filters return `404`,
+and provider failures return sanitized errors. CORS and rate limits apply before
+any storage access or provider request.
+
+### Production and staging
+
+| Target | Wrangler selection | Worker | Account |
+| --- | --- | --- | --- |
+| Staging | `--env staging` | `govph-dev` | `4c8b67ea7626b52e375842607904dd07` |
+| Production | Default, or `--env production` | `govph-dev` | `aad322f46c1fe4bdd854d8b1367b1d7f` |
+
+Production is the default so the connected Cloudflare Workers Build deploys to
+its own account. `functions:dev` explicitly selects staging for local development.
+Production uses the `www.gov.ph` custom domain and the namespaces you supplied:
+
+| Binding | Production namespace ID |
+| --- | --- |
+| `BROWSER_KV` | `0c903bf8530b4a6a9019e7445c2f9aff` |
+| `FOREX_KV` | `3907d2c4829148a8a83974839f273d45` |
+| `WEATHER_KV` | `afd30412016d46c9b3482c8da86bf419` |
+
+Staging uses separate namespaces created in account `4c8b67…`:
+
+| Binding | Staging namespace ID |
+| --- | --- |
+| `BROWSER_KV` | `f2aa98f458de4014af13220e6a5ebef7` |
+| `FOREX_KV` | `5ce3e37fb2f946de96960f60518e843d` |
+| `WEATHER_KV` | `14d798beca3048ff8121de2a6d75b4dd` |
+
+KV and rate limit bindings are declared separately for each named environment
+because bindings are not inherited. The hourly schedule and assets configuration
+are inherited. Local development uses local storage, not either remote account.
+
+Secrets are also separate per deployment. Supply an account-scoped Cloudflare
+API token for the selected target; do not export a conflicting
+`CLOUDFLARE_ACCOUNT_ID`. Both Workers are named `govph-dev`; the account and
+Wrangler environment distinguish them. `keep_vars` preserves dashboard-managed
+runtime variables, and Worker secrets remain server-side. Production targets the
+existing Worker at account `aad322…` / Workers / `govph-dev`, as confirmed in its
+dashboard. The production custom domain is declared as `www.gov.ph`.
+
+`BROWSER_KV` alone does not enable crawling: `/api/crawl` also requires the
+existing `BETTERGOV_DB` D1 binding. No database ID was supplied, so crawling
+continues to return `503` until that separate dependency is configured.
+
+### Meilisearch
+
+`api/search.ts` proxies only these read operations to `https://search2.bettergov.ph`:
+
+| Browser endpoint | Meilisearch endpoint |
+| --- | --- |
+| `POST /api/search` or `/api/search/multi-search` | `POST /multi-search` |
+| `POST /api/search/indexes/{index}/search` | `POST /indexes/{index}/search` |
+| `POST /api/search/indexes/{index}/facet-search` | `POST /indexes/{index}/facet-search` |
+
+Only `bettergov`, `bettergov_flood_control`, and `contractors` are exposed.
+Keys, documents, settings, administrative operations, federated remote searches,
+and AI/vector requests are not exposed. The proxy accepts at most 64 KiB of JSON
+and 20 queries per batch, with at most 20,002 requested hits across the batch.
+Each query allows 10,001 hits to preserve the map/statistics views and the SDK's
+one-hit pagination lookahead. Single-index search supports the existing
+10,000-row CSV export. Requests consume the shared
+120/minute API allowance. Upstream calls have a 15-second timeout; `429` retry
+advice is preserved. Browser-supplied authorization is never used upstream.
+
+Set `MEILISEARCH_SEARCH_API_KEY` as a **Worker runtime secret**, using a key with
+only `search` permissions on the three public indexes:
+
+```bash
+npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production
+```
+
+Use `--env staging` instead when setting staging secrets. For local development, put the same variable in gitignored `.dev.vars`. An
+existing `VITE_MEILISEARCH_SEARCH_API_KEY` can be moved there if it has the
+required search-only scope. Never use a master/admin key. Without the secret,
+valid searches return `503 Search is not configured`. The browser no longer
+reads a search key, host or port from Vite variables. The old host/port variables
+remain useful to the offline indexing scripts.
+
+All search UIs use `src/lib/search.ts`; exports also use the same-origin proxy.
+The [Meilisearch multi-search API](https://specs.meilisearch.dev/specifications/text/0192-multi-search-api.html)
+keeps the InstantSearch integration intact, including its initial facet requests.
+Provision the runtime secret and deploy frontend + Worker together. Once old
+frontends have migrated, revoke previously public keys and separately restrict
+direct access to the upstream if bypass protection is required.
+
 ## Functions
 
 ### 1. Web Crawler (`api/crawl.ts`)
@@ -22,7 +188,7 @@ A generic web crawler that fetches and stores web content using multiple backend
 
 ### 2. Weather Data (`api/weather.ts`)
 
-Fetches weather data for major Philippine cities from OpenWeatherMap API and stores it in Cloudflare KV.
+Fetches weather data for major Philippine cities directly from OpenWeatherMap and stores it in this deployment's Cloudflare KV namespace.
 
 - **Schedule**: Runs hourly
 - **KV Store**: `WEATHER_KV`
@@ -33,7 +199,7 @@ Fetches weather data for major Philippine cities from OpenWeatherMap API and sto
 
 ### 3. Currency Exchange Rates (`api/forex.ts`)
 
-Fetches currency exchange rates from Bangko Sentral ng Pilipinas (BSP) and stores them in Cloudflare KV.
+Fetches currency exchange rates directly from Bangko Sentral ng Pilipinas (BSP) and stores them in this deployment's Cloudflare KV namespace.
 
 - **Schedule**: Runs hourly
 - **KV Store**: `FOREX_KV`
@@ -74,8 +240,11 @@ API key and secret are attached here and never reach the bundle.
 
 Local development: put the four variables in a gitignored `.dev.vars` file and
 run `npm run functions:dev` (Worker on `127.0.0.1:5525`). The Vite dev server
-proxies `/api/assistant*` to that port, so `npm run dev` on `5125` works
-same-origin. Because the Worker serves `./dist` as static assets, run
+proxies assistant, weather, forex and search API routes to that port, so `npm run dev` on `5125` works
+same-origin. For same-origin browser calls only, the development proxy rewrites
+the outgoing Origin to `https://www.gov.ph`; the production allowlist has no
+localhost or development-IP exceptions. Direct Worker calls with an unapproved
+Origin will return `403`. Because the Worker serves `./dist` as static assets, run
 `npm run build` once first if you want the full site from the Worker port.
 
 ### Web Crawler Architecture
@@ -132,87 +301,60 @@ The `types.ts` file contains TypeScript interfaces for:
 - Forex API response data structures
 - Web crawler response data structures (Jina.ai and Cloudflare Browser API)
 
-## Development Workflow
+## Development and deployment
 
-1. Make changes to TypeScript files in the `functions/` directory
-2. Run the TypeScript compiler to build the project:
+Install the pinned dependencies with `npm ci`. Put local runtime secrets in
+`.dev.vars` (gitignored), then build assets with `npm run build` and start the
+Worker with `npm run functions:dev`. Vite uses the reserved port `5125`; the
+Worker binds only to `127.0.0.1:5525`. Local KV is persistent but separate from
+both remote environments.
 
-   ```
-   npm run functions:build
-   ```
+Before deploying production, use credentials for account
+`aad322f46c1fe4bdd854d8b1367b1d7f` and set its runtime secrets:
 
-3. Run the development server to test locally:
+```bash
+npx wrangler secret put OPENWEATHERMAP_API_KEY --env production
+npx wrangler secret put MEILISEARCH_SEARCH_API_KEY --env production
+npx wrangler secret put EGOVAI_BASE_URL --env production
+npx wrangler secret put EGOVAI_API_KEY --env production
+npx wrangler secret put EGOVAI_API_SECRET --env production
+```
 
-   ```
-   npm run functions:dev
-   ```
+For staging, repeat those commands with `--env staging` and the staging account's
+credentials. `.dev.vars` is local only and is not uploaded by deployment.
+Search must use a search-only key; the eGovAI engine code defaults to `govph`.
+Weather and the assistant cannot refresh or call their providers without their
+respective secrets. Existing cached weather remains readable without its key.
 
-4. Deploy to Cloudflare:
+Build and validate both configurations before rollout:
 
-   ```
-   npm run functions:deploy
-   ```
+```bash
+npm run build
+npx wrangler deploy --env staging --dry-run
+npx wrangler deploy --env "" --dry-run
+npx wrangler deploy --env production --dry-run
+```
 
-## Setup Instructions
+Then deploy the chosen target:
 
-1. Install Wrangler CLI (Cloudflare Workers CLI):
+```bash
+npm run functions:deploy:staging
+# Or, with production account credentials:
+npm run functions:deploy:production
+```
 
-   ```
-   npm install -g wrangler
-   ```
+These deploy the frontend assets and Worker together. The production Workers
+Build can keep its default `npx wrangler deploy` command, or use
+`npm run functions:deploy:production`. Staging must select `--env staging` (or
+`npm run functions:deploy:staging`) explicitly. A dry run checks the
+bundle and configuration but does not verify remote namespace access, secrets,
+or domain ownership. After deploying, check `/api/weather`, `/api/forex`,
+`/api/search` and the assistant on that target, plus the hourly scheduled logs.
 
-2. Login to your Cloudflare account:
-
-   ```
-   wrangler login
-   ```
-
-3. Create KV namespaces and D1 database:
-
-   ```
-   wrangler kv namespace create WEATHER_KV
-   wrangler kv namespace create FOREX_KV
-   wrangler kv namespace create BROWSER_KV
-   wrangler d1 create govph
-   ```
-
-4. Declare the bindings in `wrangler.jsonc` with the IDs printed by the previous step. None are declared today: the IDs the project used to carry belonged to a different Cloudflare account, and a deploy fails validation when a declared namespace does not exist in the deploying account. Until the bindings exist, `/api/weather`, `/weather`, `/api/forex`, `/forex` and `/api/crawl` answer `503 Not configured` naming the missing binding; the other routes are unaffected.
-
-   ```jsonc
-   "kv_namespaces": [
-     { "binding": "WEATHER_KV", "id": "<id from the create command>" },
-     { "binding": "FOREX_KV", "id": "<id>" },
-     { "binding": "BROWSER_KV", "id": "<id>" },
-   ],
-   "d1_databases": [
-     { "binding": "BETTERGOV_DB", "database_name": "govph", "database_id": "<id>" },
-   ],
-   ```
-
-5. Add your API keys as secrets:
-
-   ```
-   wrangler secret put OPENWEATHERMAP_API_KEY
-   wrangler secret put JINA_API_KEY
-   wrangler secret put CF_API_TOKEN
-   wrangler secret put CF_ACCOUNT_ID
-   wrangler secret put EGOVAI_BASE_URL
-   wrangler secret put EGOVAI_API_KEY
-   wrangler secret put EGOVAI_API_SECRET
-   ```
-
-6. Install TypeScript dependencies:
-
-   ```
-   npm install --save-dev typescript @cloudflare/workers-types
-   ```
-
-7. Build and deploy the functions:
-
-   ```
-   npm run functions:build
-   npm run functions:deploy
-   ```
+To enable the crawler, bind the appropriate account's D1 database as
+`BETTERGOV_DB` and set `JINA_API_KEY`, or `CF_ACCOUNT_ID` / `CF_API_TOKEN` for the
+Cloudflare Browser Rendering integration. The three supplied KV namespaces do
+not substitute for the crawler's database.
 
 ## Accessing the Data
 

@@ -36,7 +36,7 @@ export const mapWeatherIconToLucide = (iconCode: string): string => {
  * @returns Transformed weather data
  */
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
-  const data = await fetchWithCache('https://api.bettergov.ph/weather');
+  const data = await fetchWithCache('/api/weather');
 
   // Transform API data to match our WeatherData type
   const transformedData: WeatherData[] = Object.keys(data).map(

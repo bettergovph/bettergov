@@ -42,64 +42,6 @@ function isValidUrl(url: string): boolean {
 }
 
 /**
- * Simple rate limiting using KV storage
- * @param env Environment variables
- * @param clientIP Client IP address
- * @returns Whether request is allowed
- */
-async function checkRateLimit(env: Env, clientIP: string): Promise<boolean> {
-  const rateLimitKey = `rate_limit:${clientIP}`;
-  const now = Date.now();
-  const windowMs = 60 * 1000; // 1 minute window
-  const maxRequests = 10; // Max 10 requests per minute
-
-  try {
-    const kv = env.BROWSER_KV;
-    const existing = await kv.get(rateLimitKey);
-
-    if (!existing) {
-      // First request from this IP
-      await kv.put(
-        rateLimitKey,
-        JSON.stringify({
-          count: 1,
-          resetTime: now + windowMs,
-        }),
-        { expirationTtl: Math.ceil(windowMs / 1000) }
-      );
-      return true;
-    }
-
-    const data = JSON.parse(existing);
-
-    if (now > data.resetTime) {
-      // Window expired, reset
-      await kv.put(
-        rateLimitKey,
-        JSON.stringify({
-          count: 1,
-          resetTime: now + windowMs,
-        }),
-        { expirationTtl: Math.ceil(windowMs / 1000) }
-      );
-      return true;
-    }
-
-    if (data.count >= maxRequests) {
-      return false; // Rate limited
-    }
-
-    // Increment count
-    data.count++;
-    await kv.put(rateLimitKey, JSON.stringify(data));
-    return true;
-  } catch (error) {
-    console.error('Rate limit check failed:', error);
-    return true; // Allow request if rate limit fails
-  }
-}
-
-/**
  * Handler for HTTP requests to the web crawling endpoint
  * This is a generic interface for crawling web content, currently using Jina.ai
  */
@@ -109,18 +51,7 @@ export async function onRequest(context: {
 }): Promise<Response> {
   const { request, env } = context;
 
-  // Handle CORS preflight requests
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
-
+  // CORS and rate limiting are enforced by the Worker entry point.
   // Only allow GET requests
   if (request.method !== 'GET') {
     return new Response('Method not allowed', { status: 405 });
@@ -152,7 +83,6 @@ export async function onRequest(context: {
           status: 400,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
           },
         }
       );
@@ -169,28 +99,6 @@ export async function onRequest(context: {
           status: 400,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      );
-    }
-
-    // Check rate limit
-    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
-    const rateLimitAllowed = await checkRateLimit(env, clientIP);
-
-    if (!rateLimitAllowed) {
-      return new Response(
-        JSON.stringify({
-          error: 'Rate limit exceeded',
-          message: 'Maximum 10 requests per minute per IP address',
-        }),
-        {
-          status: 429,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Retry-After': '60', // Retry after 60 seconds
           },
         }
       );
@@ -202,7 +110,7 @@ export async function onRequest(context: {
         const result = await fetchAndSaveContent(env, targetUrl, crawler);
 
         if (!result.success) {
-          // Return the response with CORS headers
+          // Return the crawler error
           return new Response(
             JSON.stringify({
               ...result,
@@ -212,7 +120,6 @@ export async function onRequest(context: {
               status: 500,
               headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
               },
             }
           );
@@ -227,7 +134,6 @@ export async function onRequest(context: {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
             },
           }
         );
@@ -244,7 +150,6 @@ export async function onRequest(context: {
             status: 503,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
             },
           }
         );
@@ -264,7 +169,6 @@ export async function onRequest(context: {
             {
               headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
               },
             }
           );
@@ -280,7 +184,6 @@ export async function onRequest(context: {
               status: 404,
               headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
               },
             }
           );
@@ -297,7 +200,6 @@ export async function onRequest(context: {
             status: 503,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
             },
           }
         );
@@ -315,7 +217,6 @@ export async function onRequest(context: {
         status: 400,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         },
       }
     );

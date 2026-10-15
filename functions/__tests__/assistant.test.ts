@@ -407,6 +407,24 @@ describe('onRequest (JSON) and onRequestStream (SSE)', () => {
     });
   });
 
+  it.each([onRequest, onRequestStream])(
+    'preserves upstream 429 retry advice or supplies a default',
+    async endpoint => {
+      for (const retryAfter of ['120', 'Wed, 14 Oct 2026 10:00:00 GMT', null]) {
+        const upstream = jsonResponse({ message: 'Too many requests' }, 429);
+        if (retryAfter) upstream.headers.set('Retry-After', retryAfter);
+        fetchMock.mockResolvedValueOnce(upstream);
+        const response = await endpoint({
+          request: post({ question: 'q' }),
+          env: configuredEnv,
+          ctx,
+        });
+        expect(response.status).toBe(429);
+        expect(response.headers.get('Retry-After')).toBe(retryAfter ?? '60');
+      }
+    }
+  );
+
   it('turns an upstream 500 or a network failure into a 502', async () => {
     fetchMock.mockResolvedValueOnce(
       jsonResponse({ code: 500, message: 'Internal server error' }, 500)
