@@ -45,3 +45,68 @@ describe('resolveHitLink', () => {
     ).toEqual({ href: 'https://www.pagasa.dost.gov.ph/', external: true });
   });
 });
+
+describe('resolveHitLink for index entries without a URL', () => {
+  it('opens an agency website, adding https:// when the index omits it', () => {
+    expect(
+      resolveHitLink({ type: 'website', website: 'www.ched.gov.ph' })
+    ).toEqual({ href: 'https://www.ched.gov.ph', external: true });
+    expect(
+      resolveHitLink({ type: 'website', website: 'http://example.gov.ph' })
+    ).toEqual({ href: 'http://example.gov.ph', external: true });
+  });
+
+  it('filters the members list to a legislator’s surname', () => {
+    expect(
+      resolveHitLink({
+        type: 'directory_item',
+        name: 'ABANTE, BIENVENIDO M., JR.',
+        district: '6th District',
+      }).href
+    ).toBe('/government/legislative/house-members?q=Abante');
+    expect(
+      resolveHitLink({
+        type: 'directory_item',
+        name: 'DE LA CRUZ-ABAD, MARIA',
+        party_list: 'SAMPLE',
+      }).href
+    ).toBe('/government/legislative/party-list-members?q=De%20La%20Cruz-Abad');
+  });
+
+  it('links chambers and office types to their GOV.PH pages', () => {
+    const page = (hit: Record<string, unknown>) =>
+      resolveHitLink({ type: 'directory_item', ...hit });
+    expect(
+      page({
+        slug: 'senate-of-the-philippines-20th-congress',
+        chamber: 'Senate',
+      })
+    ).toEqual({
+      href: '/government/legislative/senate-of-the-philippines-20th-congress',
+      external: false,
+    });
+    expect(
+      page({
+        office_type: 'Government-Owned And/Or -Controlled Corporations (GOCCs)',
+      }).href
+    ).toBe('/government/constitutional/goccs');
+    expect(
+      page({ office_type: 'State Universities and Colleges (SUCs)' }).href
+    ).toBe('/government/constitutional/sucs');
+  });
+
+  it('prefers the directory page withSitePages found, and never links nowhere', () => {
+    expect(
+      resolveHitLink({
+        type: 'website',
+        siteUrl: '/government/departments/department-of-migrant-workers',
+      }).href
+    ).toBe('/government/departments/department-of-migrant-workers');
+    expect(resolveHitLink({ type: 'website', name: 'Unknown office' })).toEqual(
+      {
+        href: '/government',
+        external: false,
+      }
+    );
+  });
+});

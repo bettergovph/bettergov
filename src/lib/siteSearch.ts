@@ -240,6 +240,7 @@ export function withSitePages(
         indexed: Indexed[];
         siteTypes: Set<string>;
         directorySlugs: Set<string | undefined>;
+        directoryUrls: Map<string | undefined, string>;
       }
     | undefined;
   const load = () => {
@@ -251,6 +252,11 @@ export function withSitePages(
         siteTypes: new Set(pages.map(p => p.type)),
         directorySlugs: new Set(
           pages.filter(p => p.type === 'directory_item').map(p => p.slug)
+        ),
+        directoryUrls: new Map(
+          pages
+            .filter(p => p.type === 'directory_item')
+            .map(p => [p.slug, p.url])
         ),
       };
     }
@@ -281,7 +287,7 @@ export function withSitePages(
     if (request.indexName !== INDEX_NAME) {
       return { remote: [request], build: ([result]) => result };
     }
-    const { pages, indexed, siteTypes, directorySlugs } = load();
+    const { pages, indexed, siteTypes, directorySlugs, directoryUrls } = load();
     const params = request.params ?? {};
     const query = String(params.query ?? '').trim();
     const terms = queryTerms(query);
@@ -347,6 +353,22 @@ export function withSitePages(
       };
     };
 
+    /**
+     * The index's agency entries carry no GOV.PH link of their own. Point
+     * them at the directory page for the same slug or, for a bureau, its
+     * parent department's (resolveHitLink reads `siteUrl`).
+     */
+    const withSiteUrl = (hit: Hit): Hit => {
+      if (hit.type !== 'website' && hit.type !== 'directory_item') return hit;
+      const parent = String(hit.parent_department ?? '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+      const siteUrl =
+        directoryUrls.get(hit.slug as string) ?? directoryUrls.get(parent);
+      return siteUrl ? { ...hit, siteUrl } : hit;
+    };
+
     return {
       remote,
       build: results => {
@@ -364,6 +386,7 @@ export function withSitePages(
                     directorySlugs.has(hit.slug as string)
                   )
               )
+              .map(withSiteUrl)
           : [];
         const nbHits = listed.length + (results[0]?.nbHits ?? 0);
         return {

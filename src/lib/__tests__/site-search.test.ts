@@ -229,6 +229,26 @@ describe('withSitePages', () => {
     ]);
   });
 
+  it('points index agency entries without a link at their directory page', async () => {
+    const index = fakeIndex([
+      { objectID: 'w1', type: 'website', slug: 'senate', name: 'SENATE' },
+      {
+        objectID: 'w2',
+        type: 'website',
+        slug: 'adjudication-bureau',
+        parent_department: 'SENATE',
+      },
+      { objectID: 's1', type: 'service', slug: 'svc' },
+    ]);
+    const client = withSitePages(index.client, () => sitePages);
+    const { hits } = await run(client, { query: '' });
+    expect(hits.map(h => h.siteUrl)).toEqual([
+      '/government/legislative/senate',
+      '/government/legislative/senate',
+      undefined,
+    ]);
+  });
+
   it('passes other indexes through untouched', async () => {
     const index = fakeIndex();
     const client = withSitePages(index.client, () => sitePages);

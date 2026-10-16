@@ -1,6 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { PhoneIcon, SearchIcon } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import legislativeData from '../../../data/directory/legislative.json';
 import Container from '../../../components/v2/ui/Container';
 import Eyebrow from '../../../components/v2/ui/Eyebrow';
@@ -27,7 +28,9 @@ const HouseMembersPage: FC = () => {
     return house?.house_members ?? [];
   }, []);
 
-  const [q, setQ] = useState('');
+  // Search results link here with ?q= set to the member's surname.
+  const [searchParams] = useSearchParams();
+  const [q, setQ] = useState(() => searchParams.get('q') ?? '');
   const [province, setProvince] = useState<string>('All');
 
   const provinces = useMemo(() => {
