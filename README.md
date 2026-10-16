@@ -99,8 +99,7 @@ This project includes Docker support for easy deployment and consistent environm
 ### Building and Running
 
 ```bash
-# Build the Docker image — the default (final) stage needs TalaCMS build
-# secrets; see "Syncing content from TalaCMS" > "Failure contract" below.
+# Build the Docker image
 docker build -t govph .
 
 # Run the container
@@ -140,35 +139,53 @@ adapted from the Notion drafts for public use. See [the guide content notes](src
 for source provenance, review dates, and editing instructions. The guide index,
 HTML/XML sitemaps, and `llms.txt` use `src/data/guides/manifest.json`.
 
-## Syncing content from TalaCMS
+## Services, categories and hotlines data
 
-`src/data/service_categories.json`, `src/data/critical_hotlines.json`, and
-`src/data/services/*.json` are generated from TalaCMS by a **pre-build**
-step — they are gitignored and never committed. Deployment runs
-`npm run cms:fetch` before `npm run build`; `cms:fetch` fetches, validates,
-and writes all three and fails closed (no fallback, no placeholder data) if
-anything goes wrong. `npm run build` itself only consumes the
-already-generated files — it does not talk to TalaCMS and does not need
-credentials.
+The services directory and the home page's critical hotlines read three
+committed datasets:
+
+| File | Holds | Schema |
+|---|---|---|
+| `src/data/service_categories.json` | the category and subcategory taxonomy | `src/data/schema/service_categories.schema.json` |
+| `src/data/services/<category-slug>.json` | the services in one category | `src/data/services/schema/services.schema.json` |
+| `src/data/critical_hotlines.json` | the critical hotlines on the home page | `src/data/schema/critical_hotlines.schema.json` |
+
+Edit them in a pull request like any other data file. `npm run build` uses
+them as they are — it never contacts a CMS and needs no credentials. The
+pre-commit hook validates staged copies against their schemas; to check by
+hand:
 
 ```bash
-npm run cms:fetch && npm run build
+node scripts/validate-json-schema.js \
+  src/data/services/schema/services.schema.json \
+  "src/data/services/*.json"
 ```
 
-`src/data/cms.ts` is the only module that reads these generated files —
-every other module goes through its `serviceCategories`, `criticalHotlines`,
-and `services` exports. The website never queries the CMS at runtime.
+The schemas check each file on its own, so keep the files in agreement
+yourself: a service's `category` and `subcategory` (name and slug) must
+match an entry in `service_categories.json`, the record goes in the file
+named after its category slug, and each record needs a unique `id` (the
+existing ones are UUIDs).
 
-`src/data/services/schema/services.schema.json` stays tracked — it's the
-contract the generated data must satisfy, not the data itself.
+`src/data/cms.ts` is the only module that reads these files — every other
+module goes through its `serviceCategories`, `criticalHotlines`, and
+`services` exports. The website never queries a CMS at runtime.
 
-`src/data/philippines_hotlines.json` keeps its own seven repo-owned hotline
-groups (emergency, disaster, security, transport, weather, utility, social
-services) and stays committed — only the CMS-owned critical hotlines moved
-out into their own generated file.
+`src/data/philippines_hotlines.json` keeps its own seven hotline groups
+(emergency, disaster, security, transport, weather, utility, social
+services) for the hotlines page; `critical_hotlines.json` is only the short
+list on the home page.
 
-For local development, put credentials in a local `.env` (see
-`.env.example`), then:
+### Refreshing from TalaCMS (optional)
+
+These files were imported from TalaCMS, and `npm run cms:fetch` can still
+pull TalaCMS's current copy into them. The repository is the source of
+truth, though: a fetch overwrites the files wholesale, so it undoes any edit
+made here that wasn't also made in TalaCMS. Review `git diff` and commit only
+the changes you mean to take. The TalaCMS token is read-only; nothing is
+written back to TalaCMS.
+
+Put credentials in a local `.env` (see `.env.example`), then:
 
 ```bash
 npm run cms:fetch -- --dry-run    # show what would change, write nothing
@@ -203,31 +220,29 @@ A category or subcategory display name is denormalised onto every service
 record as well as held in the taxonomy. Syncing one side alone after a rename
 would leave the sidebar showing the new name while every row beneath it shows
 the old one, so the sync refuses: `--only=categories` fails because the
-previously generated records still carry the old name, and `--only=services`
-fails because the previously generated taxonomy still carries it. That is
-correct fail-closed behavior, not a false positive. If nothing has ever been
-generated in this checkout, both isolated modes fail immediately, naming the
-missing generated file or directory — run a full sync first.
+committed records still carry the old name, and `--only=services` fails
+because the committed taxonomy still carries it. That is correct fail-closed
+behavior, not a false positive.
 
 `--only=services` **cannot** detect a category added or removed in TalaCMS —
-it validates against the last-generated taxonomy by design. Run a full sync
-to surface taxonomy file churn.
+it validates against the committed taxonomy by design. Run a full sync to
+surface taxonomy file churn.
 
 For an unselected dataset the sync never queries TalaCMS, never prepares an
 output, never reports it as changed, and never writes it. It may read a
-previously generated file as a documented cross-validation input.
+committed file as a documented cross-validation input.
 
 ### Category churn checklist
 
-A full sync handles file churn itself: adding a category in TalaCMS produces
-a new generated file automatically, and after a successful full sync, any
-`src/data/services/*.json` file left over from a category retired in TalaCMS
-is deleted and the removal is logged — never `src/data/services/schema/**`,
-and never before the write phase has actually succeeded. Nothing needs to be
-staged or committed either way; there's no generated file to review.
+Adding a category means adding it to `service_categories.json` together with
+its `src/data/services/<slug>.json` file; retiring one means removing both.
+A full TalaCMS sync does the same for categories added or retired in
+TalaCMS: it writes the new file, and after a successful write deletes any
+`src/data/services/*.json` file whose category TalaCMS no longer has — never
+`src/data/services/schema/**`. Commit the result.
 
-What the sync can't do for you is update the handful of places that curate
-the taxonomy by hand. Check each row after a category is added or retired:
+Either way, a handful of places curate the taxonomy by hand. Check each row
+after a category is added or retired:
 
 1. **Home grid** (`src/components/v2/home/Categories.tsx`) — it caps the
    taxonomy at 12 non-`uncategorized` entries, so a 14th category is hidden.
@@ -248,7 +263,7 @@ The GovPH Chatbot widget is not on this list: it answers through the
 eGovAI engine (see `functions/README.md`), not from the service taxonomy.
 
 Navigation, the XML sitemap, `llms.txt`, and `/services` all derive from the
-taxonomy or the generated file set and need no action.
+taxonomy or the committed file set and need no action.
 
 ### Reindexing Meilisearch after a data change
 
@@ -257,13 +272,12 @@ deletes. Removing a service, changing a slug, emptying a category or deleting a
 category file therefore leaves **stale documents searchable**.
 
 Both `npm run index:meilisearch` and `npm run index:meilisearch:reset` read
-`src/data/services/*.json` directly — sync before indexing, or the script
-refuses to run rather than index an empty or absent generated dataset (which
-under `--reset` would otherwise wipe real service search data). The
-`index-meilisearch.yml` workflow does this automatically; a local run needs
-`npm run cms:fetch` first.
+the committed `src/data/services/*.json` directly, and refuse to run if those
+files are missing, empty or fail their schema rather than index an empty
+dataset (which under `--reset` would otherwise wipe real service search
+data).
 
-After a sync that removes records or changes any slug, run
+After a change that removes records or changes any slug, run
 `npm run index:meilisearch:reset`. A pure addition or in-place field edit may
 use the plain command.
 
@@ -271,36 +285,12 @@ use the plain command.
 
 Missing credentials, an unreachable CMS, an HTTP/GraphQL error, a malformed
 response, or a failed validation gate — any of these fails `npm run
-cms:fetch` before it writes anything, so the pre-build step never hands
-`npm run build` a partial or stale dataset. `npm run build` itself never
-contacts TalaCMS and has no failure mode tied to it. Deployment credentials
-(`TALACMS_API_URL`, `TALACMS_API_TOKEN`, optional `TALACMS_ENVIRONMENT`)
-belong in the deployment environment, never in the repository: Netlify site
-environment variables for the Netlify build, and — for a Docker build using
-the `builder` target, which runs `npm run cms:fetch && npm run build` —
-[BuildKit secret mounts](https://docs.docker.com/build/building/secrets/),
-passed only for the duration of that one `RUN` instruction and never baked
-into an `ARG`, `ENV`, layer, or the build cache:
-
-```bash
-DOCKER_BUILDKIT=1 docker build \
-  --secret id=talacms_api_url,env=TALACMS_API_URL \
-  --secret id=talacms_api_token,env=TALACMS_API_TOKEN \
-  --target builder \
-  -t govph .
-```
-
-(`env=` reads the value from that variable in the shell running `docker
-build`; `src=<file>` works the same way from a local file instead. Either
-way, the value never appears in the Dockerfile, an image layer, or `docker
-history` — the exact deployment platform that runs this build is not yet
-decided, and this command works the same regardless of which one is used.)
-Both secrets are required — the build fails before any `RUN` step executes
-if either is omitted, and `cms:fetch`'s own fail-closed check catches an
-empty or invalid value as a second line of defense. Pull request and fork
-checks build through the Dockerfile's `build-app` target instead, which
-never fetches from TalaCMS, never needs credentials, and does not accept or
-require these secrets.
+cms:fetch` before it writes anything, so a failed fetch never leaves a
+partial or schema-invalid dataset behind. `npm run build` never contacts
+TalaCMS and has no failure mode tied to it, and no Dockerfile target needs
+CMS credentials. Keep `TALACMS_API_URL`, `TALACMS_API_TOKEN` and the
+optional `TALACMS_ENVIRONMENT` in your local `.env`, never in the
+repository.
 
 ### Required checks before opening a PR that changes the sync pipeline
 
@@ -317,12 +307,12 @@ npm run build                         # the site must still bundle
 
 Note: `validate-json-schema.js` prints `unknown format … ignored` and does
 **not** check URL or timestamp formats — `ajv-formats` is not installed. The
-sync's own gates are the real enforcement for those.
+sync's own gates enforce them for fetched data; check them by eye when
+editing by hand.
 
 `npm run build` also rewrites three tracked files: `public/sitemap.xml` and
-`public/llms.txt` (derived from the generated `service_categories.json`, and
-both stamped with today's date on **every** build) and `src/version.json`
-(commit hash).
+`public/llms.txt` (derived from `service_categories.json`, and both stamped
+with today's date on **every** build) and `src/version.json` (commit hash).
 
 - Always discard `src/version.json`.
 - Judge `public/llms.txt` and `public/sitemap.xml` **separately**, by
@@ -359,9 +349,6 @@ both stamped with today's date on **every** build) and `src/version.json`
   names, while `sitemap.xml` carries only slug-based URLs, so a display-name
   edit changes the first and not the second.
 - If the build fails, restore all three before investigating.
-
-**Generated CMS data is never committed.** It exists only in a build's
-working tree, produced fresh by `npm run cms:fetch` every time.
 
 ## Contributing
 

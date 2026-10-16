@@ -14,11 +14,11 @@ import MeilisearchInstantSearch from '../../search/MeilisearchInstantSearch';
 /**
  * Curated slugs for the landing page's quick links.
  *
- * Slugs rather than display names because display names are editable in
- * TalaCMS and slugs are not — a CMS rename of "Education" would silently
- * break a display-name lookup, which is exactly what this replaced.
+ * Slugs rather than display names because display names get edited and
+ * slugs are stable URLs — renaming "Education" would silently break a
+ * display-name lookup, which is exactly what this replaced.
  *
- * These pairs are asserted against the generated taxonomy by the routing
+ * These pairs are asserted against the committed taxonomy by the routing
  * contract in src/components/__tests__/ServicesRoutingContract.test.tsx.
  */
 const CERTIFICATES_IDS = 'certificates-ids';

@@ -6,13 +6,13 @@ const ROOT = process.cwd();
 const ACCESSOR = 'src/data/cms.ts';
 
 /**
- * Every path a build-time-generated CMS dataset can live at: the two
- * single-file datasets, and ANY .json path under the services directory —
- * a glob (`data/services/*.json`), a template literal
+ * Every path a CMS-sourced dataset can live at: the two single-file
+ * datasets, and ANY .json path under the services directory — a glob
+ * (`data/services/*.json`), a template literal
  * (`` data/services/${cat}.json ``), or a direct import of one specific
- * generated file (`data/services/health.json`) are all violations alike.
- * The negative lookahead excludes services/schema/** — that's a tracked
- * contract, not generated data.
+ * services file (`data/services/health.json`) are all violations alike.
+ * The negative lookahead excludes services/schema/** — that's the
+ * contract, not data.
  */
 const GENERATED_PATH_PATTERN =
   /service_categories\.json|critical_hotlines\.json|data\/services\/(?!schema\/)\S*\.json/;
@@ -48,7 +48,7 @@ describe('CMS accessor boundary', () => {
     expect(files.some(f => f.path === ACCESSOR)).toBe(true);
   });
 
-  it('is the only module in src/ that references a generated CMS path', () => {
+  it('is the only module in src/ that references a CMS data path', () => {
     const violations = files
       .filter(f => f.path !== ACCESSOR)
       .filter(f => GENERATED_PATH_PATTERN.test(f.code))

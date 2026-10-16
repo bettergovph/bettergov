@@ -1,0 +1,266 @@
+{
+  "categories": [
+    {
+      "category": "Business and Trade",
+      "slug": "business-trade",
+      "subcategories": [
+        {
+          "name": "Business Copyright, Trademark and Patent",
+          "slug": "business-copyright-trademark-patent"
+        },
+        {
+          "name": "Business Registration, Certificates and Compliance",
+          "slug": "business-registration"
+        },
+        {
+          "name": "Complaints",
+          "slug": "complaints"
+        },
+        {
+          "name": "Import and Export",
+          "slug": "import-export"
+        },
+        {
+          "name": "Price Control Monitoring",
+          "slug": "price-control"
+        },
+        {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        }
+      ]
+    },
+    {
+      "category": "Certificates and IDs",
+      "slug": "certificates-ids",
+      "subcategories": [
+        {
+          "name": "Certificates",
+          "slug": "certificates"
+        },
+        {
+          "name": "Clearances",
+          "slug": "clearances"
+        },
+        {
+          "name": "ID",
+          "slug": "id"
+        },
+        {
+          "name": "Voters",
+          "slug": "voters"
+        }
+      ]
+    },
+    {
+      "category": "Contributions",
+      "slug": "contributions",
+      "subcategories": [
+        {
+          "name": "Benefits Registration",
+          "slug": "benefits-registration"
+        },
+        {
+          "name": "Salary Loans",
+          "slug": "salary-loans"
+        }
+      ]
+    },
+    {
+      "category": "Disaster and Weather",
+      "slug": "disaster-weather",
+      "subcategories": [
+        {
+          "name": "Disaster-prone Areas",
+          "slug": "disaster-prone-areas"
+        },
+        {
+          "name": "Weather",
+          "slug": "weather"
+        }
+      ]
+    },
+    {
+      "category": "Education",
+      "slug": "education",
+      "subcategories": [
+        {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        },
+        {
+          "name": "Professionals",
+          "slug": "professionals"
+        },
+        {
+          "name": "Research and Proposal",
+          "slug": "research-proposal"
+        },
+        {
+          "name": "Scholarships and Grants",
+          "slug": "scholarships-grants"
+        },
+        {
+          "name": "Training",
+          "slug": "training"
+        },
+        {
+          "name": "Online Certificate Courses",
+          "slug": "online-courses"
+        }
+      ]
+    },
+    {
+      "category": "Employment",
+      "slug": "employment",
+      "subcategories": [
+        {
+          "name": "Professionals",
+          "slug": "professionals"
+        },
+        {
+          "name": "Salary Loans",
+          "slug": "salary-loans"
+        },
+        {
+          "name": "Union Association",
+          "slug": "union-association"
+        },
+        {
+          "name": "Overseas Jobs",
+          "slug": "overseas-jobs"
+        }
+      ]
+    },
+    {
+      "category": "Health",
+      "slug": "health",
+      "subcategories": [
+        {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        },
+        {
+          "name": "Health Programs",
+          "slug": "health-programs"
+        },
+        {
+          "name": "Health Researches",
+          "slug": "health-research"
+        }
+      ]
+    },
+    {
+      "category": "Housing",
+      "slug": "housing",
+      "subcategories": [
+        {
+          "name": "Housing Loans",
+          "slug": "housing-loans"
+        },
+        {
+          "name": "Land Titles",
+          "slug": "land-titles"
+        }
+      ]
+    },
+    {
+      "category": "Passport and Travel",
+      "slug": "passport-travel",
+      "subcategories": [
+        {
+          "name": "Travel",
+          "slug": "travel"
+        },
+        {
+          "name": "Visa and Citizenship",
+          "slug": "visa-citizenship"
+        }
+      ]
+    },
+    {
+      "category": "Social Services",
+      "slug": "social-services",
+      "subcategories": [
+        {
+          "name": "Benefits Registration",
+          "slug": "benefits-registration"
+        },
+        {
+          "name": "File Complaints",
+          "slug": "file-complaints"
+        },
+        {
+          "name": "Salary Loans",
+          "slug": "salary-loans"
+        },
+        {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        },
+        {
+          "name": "Register",
+          "slug": "register"
+        },
+        {
+          "name": "Contributions",
+          "slug": "contributions"
+        }
+      ]
+    },
+    {
+      "category": "Tax",
+      "slug": "tax",
+      "subcategories": [
+        {
+          "name": "Calculators",
+          "slug": "calculator"
+        },
+        {
+          "name": "Certificates",
+          "slug": "certificates"
+        },
+        {
+          "name": "Register",
+          "slug": "register"
+        },
+        {
+          "name": "File Taxes",
+          "slug": "file-taxes"
+        },
+        {
+          "name": "Complaints",
+          "slug": "complaints"
+        }
+      ]
+    },
+    {
+      "category": "Transport and Driving",
+      "slug": "transport-driving",
+      "subcategories": [
+        {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        },
+        {
+          "name": "License",
+          "slug": "license"
+        },
+        {
+          "name": "Transport Complains",
+          "slug": "transport-complaints"
+        }
+      ]
+    },
+    {
+      "category": "Uncategorized",
+      "slug": "uncategorized",
+      "subcategories": [
+        {
+          "name": "Uncategorized",
+          "slug": "uncategorized"
+        }
+      ]
+    }
+  ]
+}

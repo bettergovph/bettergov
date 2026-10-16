@@ -377,14 +377,12 @@ function assertGlobalOrdering(
  * is shaped. A `null` input means "not applicable in this mode" — never
  * "substitute a weaker check".
  *
- * There is deliberately no file-set gate here anymore: with services/*.json
- * gitignored build output, "the committed file set" is no longer a reviewed
- * baseline to validate against — it's whatever a previous run happened to
- * leave on disk, which may not even exist. A full sync generates the
+ * There is deliberately no file-set gate here: a full sync generates the
  * complete candidate set fresh from the taxonomy and validates it against
  * the freshly fetched service records directly; category churn (an added or
  * retired category) is handled by stale-file cleanup after a successful
- * write, not by failing here.
+ * write — and reviewed in `git status` before committing — not by failing
+ * here.
  */
 export function crossValidate(input: CrossValidateInput): void {
   assertReferentialIntegrity(input.taxonomy, input.records);

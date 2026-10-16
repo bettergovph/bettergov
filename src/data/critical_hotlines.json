@@ -1,0 +1,46 @@
+[
+  {
+    "name": "National Emergency Hotline",
+    "category": "Emergency",
+    "numbers": ["911"],
+    "description": "Nationwide emergency hotline for police, fire, and medical assistance."
+  },
+  {
+    "name": "Philippine National Police (PNP)",
+    "category": "Security",
+    "numbers": [
+      "117 (Emergency Hotline)",
+      "(02) 8722-0650",
+      "0917-847-5757 (Text Hotline)"
+    ],
+    "description": "Law enforcement hotline for crimes, threats, and public safety concerns."
+  },
+  {
+    "name": "National Center for Mental Health (NCMH)",
+    "category": "Social Services",
+    "numbers": [
+      "0917-899-8727 (USAP)",
+      "989-8727 (USAP)",
+      "(02) 8531-9001 to 10 local 201"
+    ],
+    "description": "Provides 24/7 crisis hotline and mental health support services."
+  },
+  {
+    "name": "PNP Emergency",
+    "category": "Security",
+    "numbers": ["117"],
+    "description": "Police emergency hotline"
+  },
+  {
+    "name": "Red Cross",
+    "category": "Emergency",
+    "numbers": ["143"],
+    "description": "Red Cross emergency hotline"
+  },
+  {
+    "name": "Mental Health Crisis Line",
+    "category": "Social Services",
+    "numbers": ["0917-899-8727", "989-8727"],
+    "description": "NCMH crisis hotline"
+  }
+]

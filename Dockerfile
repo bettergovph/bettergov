@@ -8,9 +8,8 @@ RUN npm ci
 
 COPY . .
 
-# CI-only target: bundles the app without syncing TalaCMS, so pull request
-# checks (including from forks) never need TalaCMS credentials. This is a
-# build correctness check only — its output is not the deployable image.
+# CI-only target: type-checks and bundles the app as a build correctness
+# check. Its output is not the deployable image.
 FROM deps AS build-app
 
 ARG HEAD_COMMIT_HASH
@@ -18,26 +17,15 @@ ENV HEAD_COMMIT_HASH=${HEAD_COMMIT_HASH}
 
 RUN npm run build:app
 
-# Deployable image. `npm run build` only consumes already-generated CMS data,
-# so this stage runs the `cms:fetch` pre-build step first, using the same
-# TALACMS_API_URL/TALACMS_API_TOKEN env vars scripts/talacms/client.ts already
-# reads — supplied here as BuildKit secrets, never as ARG/ENV, so they never
-# land in an image layer or build cache. `required=true` fails the build
-# before any RUN command executes if either secret is not passed in; the
-# `&&` chain then fails closed a second time (via cms:fetch's own
-# fail-closed check) if a secret is present but empty, and either failure
-# happens before `npm run build` ever runs.
+# Deployable image. The services, categories and hotlines data is committed
+# under src/data, so this builds exactly what is in the repository and needs
+# no CMS credentials.
 FROM deps AS builder
 
 ARG HEAD_COMMIT_HASH
 ENV HEAD_COMMIT_HASH=${HEAD_COMMIT_HASH}
 
-RUN --mount=type=secret,id=talacms_api_url,required=true \
-    --mount=type=secret,id=talacms_api_token,required=true \
-    export TALACMS_API_URL="$(cat /run/secrets/talacms_api_url)" && \
-    export TALACMS_API_TOKEN="$(cat /run/secrets/talacms_api_token)" && \
-    npm run cms:fetch && \
-    npm run build
+RUN npm run build
 
 # Development stage
 FROM builder AS dev

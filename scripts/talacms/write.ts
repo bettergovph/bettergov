@@ -71,7 +71,7 @@ export function parseServiceRecordsFile(
 /**
  * The on-disk service file set, in codepoint order. `dir` defaults to the
  * real services directory; tests pass a temporary one so this never depends
- * on generated, gitignored data being present in the checkout.
+ * on the committed data's content.
  */
 export function readServiceFileNames(dir: string = SERVICES_DIR): string[] {
   return fs
@@ -85,10 +85,9 @@ export function readServiceFileNames(dir: string = SERVICES_DIR): string[] {
  * display names. Under `--only=categories` this is the name-agreement
  * counterparty, so the names are not optional.
  *
- * `src/data/services/*.json` is generated build output, not committed — an
- * empty result here is ambiguous between "this checkout was never synced (or
- * left with a corrupted/partial snapshot)" and "TalaCMS genuinely has zero
- * services", and silently treating it as the latter would let
+ * An empty result here is ambiguous between "the committed files were
+ * deleted or left as a corrupted/partial snapshot" and "TalaCMS genuinely has
+ * zero services", and silently treating it as the latter would let
  * `--only=categories` pass a rename it exists to catch. At least one
  * taxonomy category always exists (fetchCategories fails closed on zero),
  * and a full sync's shapeServices always writes one file per taxonomy

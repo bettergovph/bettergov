@@ -90,17 +90,23 @@ jobs:
             src/data/directory/schema/party_list_representatives.schema.json \
             src/data/directory/party_list_representatives.json
 
-      # src/data/services/*.json is build-time-generated and gitignored, so
-      # there's nothing committed to validate it against — but the schema
-      # itself (the contract) stays tracked and must stay meaningfully
-      # checked. Validates a small committed fixture against it: catches a
-      # malformed or accidentally-weakened schema without requiring
-      # generated Services data or TalaCMS credentials.
-      - name: Validate services schema against its committed fixture
+      - name: Validate services JSON files
         run: |
           node scripts/validate-json-schema.js \
             src/data/services/schema/services.schema.json \
-            src/data/services/schema/services.schema.fixture.json
+            "src/data/services/*.json"
+
+      - name: Validate service categories JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/service_categories.schema.json \
+            src/data/service_categories.json
+
+      - name: Validate critical hotlines JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/critical_hotlines.schema.json \
+            src/data/critical_hotlines.json
 
       - name: Validate Philippines regions GeoJSON file
         run: |
