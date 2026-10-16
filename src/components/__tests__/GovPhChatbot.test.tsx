@@ -308,6 +308,43 @@ describe('GovPhChatbot', () => {
     expect(document.body.style.overflow).toBe('');
   });
 
+  it('follows the visual viewport so the keyboard never covers the composer', () => {
+    stubViewport(true);
+    const listeners: Record<string, () => void> = {};
+    const visual = {
+      height: 800,
+      offsetTop: 0,
+      addEventListener: vi.fn((type: string, listener: () => void) => {
+        listeners[type] = listener;
+      }),
+      removeEventListener: vi.fn(),
+    };
+    vi.stubGlobal('visualViewport', visual);
+
+    render(<GovPhChatbot />);
+    openWidget();
+    const dialog = screen.getByRole('dialog', { name: 'GovPH Chatbot' });
+    expect(dialog.style.height).toBe('800px');
+    expect(dialog.style.top).toBe('0px');
+
+    // The keyboard opens: the visual viewport shrinks and iOS pans the page.
+    visual.height = 480;
+    visual.offsetTop = 60;
+    act(() => listeners.resize());
+    expect(dialog.style.height).toBe('480px');
+    expect(dialog.style.top).toBe('60px');
+
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(visual.removeEventListener).toHaveBeenCalledWith(
+      'resize',
+      expect.any(Function)
+    );
+    expect(visual.removeEventListener).toHaveBeenCalledWith(
+      'scroll',
+      expect.any(Function)
+    );
+  });
+
   it('stays a floating card on wider screens: page keeps scrolling', () => {
     stubViewport(false);
     render(<GovPhChatbot />);

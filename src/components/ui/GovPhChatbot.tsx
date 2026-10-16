@@ -76,6 +76,10 @@ const GovPhChatbot: React.FC = () => {
   const [isBusy, setIsBusy] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
+  const [viewport, setViewport] = useState<{
+    height: number;
+    top: number;
+  } | null>(null);
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
@@ -118,11 +122,11 @@ const GovPhChatbot: React.FC = () => {
     });
   }, [hydrated, messages, sessionId]);
 
-  // Keep the newest message in view.
+  // Keep the newest message in view, also when the keyboard shrinks the log.
   useLayoutEffect(() => {
     const log = logRef.current;
     if (log) log.scrollTop = log.scrollHeight;
-  }, [messages, isOpen]);
+  }, [messages, isOpen, viewport]);
 
   // Abort any in-flight request when the widget unmounts.
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -145,6 +149,30 @@ const GovPhChatbot: React.FC = () => {
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previous;
+    };
+  }, [isOpen, isCompact]);
+
+  // The on-screen keyboard shrinks the *visual* viewport but leaves 100dvh
+  // and the layout viewport alone, so a fixed full-height panel keeps its
+  // composer underneath the keyboard. While open on a phone, size the panel
+  // from the visual viewport instead, and follow its offset so that iOS
+  // panning the page to reveal the focused input keeps the panel in place.
+  useEffect(() => {
+    if (!isOpen || !isCompact) return;
+    const visual = window.visualViewport;
+    if (!visual) return;
+    const update = () =>
+      setViewport({
+        height: Math.round(visual.height),
+        top: Math.round(visual.offsetTop),
+      });
+    update();
+    visual.addEventListener('resize', update);
+    visual.addEventListener('scroll', update);
+    return () => {
+      visual.removeEventListener('resize', update);
+      visual.removeEventListener('scroll', update);
+      setViewport(null);
     };
   }, [isOpen, isCompact]);
 
@@ -314,6 +342,11 @@ const GovPhChatbot: React.FC = () => {
             if (event.key === 'Escape') close();
           }}
           className='fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col overflow-hidden bg-white sm:static sm:mb-4 sm:h-[min(38rem,calc(100vh-8rem))] sm:w-[26rem] sm:rounded-2xl sm:border sm:border-gray-200 sm:shadow-2xl md:w-[30rem]'
+          style={
+            viewport
+              ? { height: viewport.height, top: viewport.top }
+              : undefined
+          }
         >
           <header className='flex items-center justify-between bg-primary-600 px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] text-white sm:pt-3'>
             <div className='flex items-center gap-2.5'>
