@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   InstantSearch,
   Highlight,
@@ -13,6 +13,7 @@ import {
 import type { Hit } from 'instantsearch.js';
 import { createSearchClient } from '../lib/search';
 import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 
 import Container from '../components/v2/ui/Container';
@@ -71,13 +72,39 @@ type SearchHit = {
 
 // ─── BigSearch wired to InstantSearch's search box ───────────────────────────
 
+/**
+ * `?q=` is the source of truth for the query: the header search box links
+ * here with it, and typing on this page rewrites it (replacing the history
+ * entry), so a results page can be shared or reloaded.
+ */
 const SearchBoxBridge: FC = () => {
   const { query, refine } = useSearchBox();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlQuery = searchParams.get('q') ?? '';
   const [localQuery, setLocalQuery] = useState(query);
+
+  // A new ?q= while this page is open — e.g. a second search from the header.
+  useEffect(() => {
+    if (urlQuery !== query) refine(urlQuery);
+    // Only a URL change should push into InstantSearch; typing goes the
+    // other way through handleChange.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlQuery]);
+
+  useEffect(() => setLocalQuery(query), [query]);
 
   const handleChange = (v: string) => {
     setLocalQuery(v);
     refine(v);
+    setSearchParams(
+      prev => {
+        const next = new URLSearchParams(prev);
+        if (v) next.set('q', v);
+        else next.delete('q');
+        return next;
+      },
+      { replace: true }
+    );
   };
 
   return (
@@ -364,6 +391,10 @@ const EditorialPagination: FC = () => {
 
 const SearchPage: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  // Read once: InstantSearch only applies initialUiState on mount, and
+  // SearchBoxBridge follows later ?q= changes itself.
+  const [initialQuery] = useState(() => searchParams.get('q') ?? '');
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
@@ -375,7 +406,11 @@ const SearchPage: FC = () => {
         />
       </Helmet>
 
-      <InstantSearch searchClient={searchClient} indexName='bettergov'>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName='bettergov'
+        initialUiState={{ bettergov: { query: initialQuery } }}
+      >
         {/* Navy-gradient masthead with BigSearch */}
         <PageMasthead
           title='Search GOV.PH'
