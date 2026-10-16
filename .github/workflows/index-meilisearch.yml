@@ -24,17 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # src/data/services/*.json (and service_categories.json,
-      # critical_hotlines.json) are build-time-generated and gitignored — a
-      # plain checkout has none. Without this step the indexing script's own
-      # fail-closed guard refuses to run rather than risk indexing an empty
-      # "service" dataset on top of an existing index.
-      - name: Fetch generated data from TalaCMS
-        run: npm run cms:fetch
-        env:
-          TALACMS_API_URL: ${{ secrets.TALACMS_API_URL }}
-          TALACMS_API_TOKEN: ${{ secrets.TALACMS_API_TOKEN }}
-
       - name: Run Meilisearch indexing script
         run: node scripts/index_meilisearch.cjs
         env:
