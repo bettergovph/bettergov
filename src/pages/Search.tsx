@@ -12,9 +12,15 @@ import {
 } from 'react-instantsearch';
 import type { Hit } from 'instantsearch.js';
 import { createSearchClient } from '../lib/search';
-import { typeFacetLabel, typeFlagLabel } from '../lib/searchResults';
+import {
+  resolveHitLink,
+  typeFacetLabel,
+  typeFlagLabel,
+} from '../lib/searchResults';
+import { withSitePages } from '../lib/siteSearch';
+import { buildSitePages } from '../lib/sitePages';
 import { Helmet } from 'react-helmet-async';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 
 import Container from '../components/v2/ui/Container';
@@ -25,9 +31,9 @@ import FilterSection from '../components/v2/ui/FilterSection';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 import { cn } from '../lib/utils';
 
-// ─── Meilisearch client ───────────────────────────────────────────────────────
+// ─── Meilisearch client, plus GOV.PH's own pages (see siteSearch.ts) ─────────
 
-const { searchClient } = createSearchClient({
+const { searchClient: indexClient } = createSearchClient({
   primaryKey: 'slug',
   keepZeroFacets: true,
   meiliSearchParams: {
@@ -56,6 +62,8 @@ const { searchClient } = createSearchClient({
     ],
   },
 });
+
+const searchClient = withSitePages(indexClient, buildSitePages);
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -256,45 +264,53 @@ const EditorialHits: FC = () => {
               ? 'office_name'
               : 'office';
 
-        const link =
-          (hit.url as string | undefined) ||
-          (hit.slug ? `/directory/${hit.slug}` : '#');
+        const { href, external } = resolveHitLink(hit);
 
+        // Site pages name their section ("Philippines", "Department").
         const categoryName =
           hit.category != null && typeof hit.category === 'object'
             ? (hit.category as { name: string }).name
-            : (hit.category as string | undefined);
+            : ((hit.category as string | undefined) ??
+              (hit.section as string | undefined));
 
         const typeName = hit.type as string | undefined;
-        const sourceUrl =
-          (hit.website as string | undefined) ||
-          (hit.url as string | undefined);
+        const sourceUrl = external
+          ? (hit.website as string | undefined) ||
+            (hit.url as string | undefined)
+          : `www.gov.ph${href}`;
 
-        return (
-          <li key={hit.objectID} role='listitem'>
-            <a
-              href={link}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5'
-            >
-              <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
-                {String(i + 1).padStart(2, '0')}
+        const rowClass =
+          'grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5';
+        const row = (
+          <>
+            <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <div>
+              <div className='flex flex-wrap items-baseline gap-3'>
+                {typeName && (
+                  <Flag variant='navy'>{typeFlagLabel(typeName)}</Flag>
+                )}
+                {categoryName && (
+                  <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                    {categoryName}
+                  </span>
+                )}
               </div>
-              <div>
-                <div className='flex flex-wrap items-baseline gap-3'>
-                  {typeName && (
-                    <Flag variant='navy'>{typeFlagLabel(typeName)}</Flag>
-                  )}
-                  {categoryName && (
-                    <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
-                      {categoryName}
-                    </span>
-                  )}
-                </div>
-                <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:text-[18px]'>
-                  <Highlight
-                    attribute={titleAttr}
+              <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:text-[18px]'>
+                <Highlight
+                  attribute={titleAttr}
+                  hit={hit as unknown as Hit<Record<string, string>>}
+                  classNames={{
+                    highlighted: 'bg-ed-navy-tint text-ed-navy-ink not-italic',
+                    nonHighlighted: '',
+                  }}
+                />
+              </h3>
+              {hit.description && (
+                <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 [&_mark]:bg-ed-navy-tint [&_mark]:text-ed-navy-ink'>
+                  <Snippet
+                    attribute='description'
                     hit={hit as unknown as Hit<Record<string, string>>}
                     classNames={{
                       highlighted:
@@ -302,27 +318,33 @@ const EditorialHits: FC = () => {
                       nonHighlighted: '',
                     }}
                   />
-                </h3>
-                {hit.description && (
-                  <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 [&_mark]:bg-ed-navy-tint [&_mark]:text-ed-navy-ink'>
-                    <Snippet
-                      attribute='description'
-                      hit={hit as unknown as Hit<Record<string, string>>}
-                      classNames={{
-                        highlighted:
-                          'bg-ed-navy-tint text-ed-navy-ink not-italic',
-                        nonHighlighted: '',
-                      }}
-                    />
-                  </p>
-                )}
-                {sourceUrl && (
-                  <p className='mt-2 break-all font-mono-ed text-[11px] tracking-[0.04em] text-ed-ink-4'>
-                    {sourceUrl}
-                  </p>
-                )}
-              </div>
-            </a>
+                </p>
+              )}
+              {sourceUrl && (
+                <p className='mt-2 break-all font-mono-ed text-[11px] tracking-[0.04em] text-ed-ink-4'>
+                  {sourceUrl}
+                </p>
+              )}
+            </div>
+          </>
+        );
+
+        return (
+          <li key={hit.objectID} role='listitem'>
+            {external ? (
+              <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={rowClass}
+              >
+                {row}
+              </a>
+            ) : (
+              <Link to={href} className={rowClass}>
+                {row}
+              </Link>
+            )}
           </li>
         );
       })}
