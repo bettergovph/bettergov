@@ -1,6 +1,5 @@
-# Local credential files must never enter the Docker build context — the
-# builder stage gets TalaCMS credentials exclusively via BuildKit
-# `--secret` mounts (see Dockerfile), never by reading a copied file.
+# Local credential files must never enter the Docker build context — no
+# stage needs them, and `COPY . .` would bake them into an image layer.
 .env
 .env.*
 !.env.example

@@ -99,8 +99,7 @@ This project includes Docker support for easy deployment and consistent environm
 ### Building and Running
 
 ```bash
-# Build the Docker image — the default (final) stage needs TalaCMS build
-# secrets; see "Syncing content from TalaCMS" > "Failure contract" below.
+# Build the Docker image
 docker build -t govph .
 
 # Run the container
