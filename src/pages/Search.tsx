@@ -37,6 +37,9 @@ const { searchClient } = createSearchClient({
       'service',
       'description',
     ],
+    // Services store category and subcategory as { name, slug } objects;
+    // Meilisearch only searches their names when the nested paths are
+    // listed. Without them "weather" found 1 service instead of 10.
     attributesToSearchOn: [
       'name',
       'office_name',
@@ -45,7 +48,9 @@ const { searchClient } = createSearchClient({
       'website',
       'description',
       'category',
+      'category.name',
       'subcategory',
+      'subcategory.name',
       'address',
     ],
   },
@@ -126,11 +131,14 @@ const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
   attribute,
   label,
 }) => {
-  const { items, refine } = useRefinementList({
+  const { items: allItems, refine } = useRefinementList({
     attribute,
     limit: 20,
     sortBy: ['count:desc'],
   });
+  // keepZeroFacets lists every value, mostly at 0. Show only values with
+  // matches, plus a selected one so it can still be cleared.
+  const items = allItems.filter(item => item.count > 0 || item.isRefined);
 
   if (items.length === 0) return null;
 
@@ -455,12 +463,14 @@ const SearchPage: FC = () => {
                 </div>
 
                 <EditorialRefinementList attribute='type' label='Type' />
+                {/* Nested paths: a facet on the { name, slug } object itself
+                    is always empty, which hid both lists. */}
                 <EditorialRefinementList
-                  attribute='category'
+                  attribute='category.name'
                   label='Category'
                 />
                 <EditorialRefinementList
-                  attribute='subcategory'
+                  attribute='subcategory.name'
                   label='Subcategory'
                 />
               </aside>
