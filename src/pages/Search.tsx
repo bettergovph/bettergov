@@ -12,6 +12,7 @@ import {
 } from 'react-instantsearch';
 import type { Hit } from 'instantsearch.js';
 import { createSearchClient } from '../lib/search';
+import { typeFacetLabel, typeFlagLabel } from '../lib/searchResults';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
@@ -127,10 +128,11 @@ const SearchBoxBridge: FC = () => {
 
 // ─── Left-rail refinement list ────────────────────────────────────────────────
 
-const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
-  attribute,
-  label,
-}) => {
+const EditorialRefinementList: FC<{
+  attribute: string;
+  label: string;
+  formatLabel?: (value: string) => string;
+}> = ({ attribute, label, formatLabel }) => {
   const { items: allItems, refine } = useRefinementList({
     attribute,
     limit: 20,
@@ -155,7 +157,7 @@ const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
               item.isRefined ? 'font-semibold text-ed-ink' : 'text-ed-ink-2'
             )}
           >
-            <span>{item.label}</span>
+            <span>{formatLabel ? formatLabel(item.value) : item.label}</span>
             <span className='font-mono-ed text-[11px] text-ed-ink-4'>
               {item.count}
             </span>
@@ -281,7 +283,9 @@ const EditorialHits: FC = () => {
               </div>
               <div>
                 <div className='flex flex-wrap items-baseline gap-3'>
-                  {typeName && <Flag variant='navy'>{typeName}</Flag>}
+                  {typeName && (
+                    <Flag variant='navy'>{typeFlagLabel(typeName)}</Flag>
+                  )}
                   {categoryName && (
                     <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
                       {categoryName}
@@ -462,7 +466,11 @@ const SearchPage: FC = () => {
                   <ClearAllButton className='text-[10px]' />
                 </div>
 
-                <EditorialRefinementList attribute='type' label='Type' />
+                <EditorialRefinementList
+                  attribute='type'
+                  label='Type'
+                  formatLabel={typeFacetLabel}
+                />
                 {/* Nested paths: a facet on the { name, slug } object itself
                     is always empty, which hid both lists. */}
                 <EditorialRefinementList
