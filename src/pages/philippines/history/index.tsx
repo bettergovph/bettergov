@@ -1,169 +1,184 @@
-import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { ArrowRightIcon } from 'lucide-react';
 import Container from '../../../components/v2/ui/Container';
-import SectionHeader from '../../../components/v2/ui/SectionHeader';
-import Eyebrow from '../../../components/v2/ui/Eyebrow';
-import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import SEO from '../../../components/SEO';
+import {
+  ChapterNav,
+  HeritageHero,
+  HeritageNext,
+  ReferenceLink,
+} from '../../../components/v2/heritage/Heritage';
+import {
+  heritageImages,
+  historySources,
+  type HistorySourceId,
+} from '../../../data/heritage';
 
-type Era = { yr: string; title: string; blurb: string };
-type Entry = { yr: string; era: string; title: string; body: string };
-type Number = { num: string; body: string; label: string };
+type Era = { id: string; yr: string; title: string; blurb: string };
+type Entry = {
+  id: string;
+  chapter: string;
+  yr: string;
+  title: string;
+  body: string;
+  sources: HistorySourceId[];
+};
 
-/** Index where the sidebar "scholarly note" appears in the timeline column. */
-const SCHOLAR_NOTE_AT = 3;
-
-const PhilippinesHistory: FC = () => {
-  const { t } = useTranslation('about-philippines');
-
+export default function PhilippinesHistory() {
+  const { t, i18n } = useTranslation('about-philippines');
   const eras = t('history.eras', { returnObjects: true }) as Era[];
   const entries = t('history.entries', { returnObjects: true }) as Entry[];
-  const numbers = t('history.byTheNumbers.items', {
-    returnObjects: true,
-  }) as Number[];
+  const contentLanguage = i18n.getResource(
+    i18n.resolvedLanguage || 'en',
+    'about-philippines',
+    'history.entries'
+  )
+    ? i18n.resolvedLanguage
+    : 'en';
 
   return (
-    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
-      <PageMasthead
-        variant='hero'
+    <main className='heritage-page'>
+      <SEO
         title={t('history.hero.title')}
-        lede={t('history.hero.description')}
+        description={t('history.hero.description')}
+      />
+      <HeritageHero
+        eyebrow={t('history.hero.eyebrow')}
+        title={t('history.hero.title')}
+        description={t('history.hero.description')}
+        image={heritageImages.terraces}
+        href='#early-peoples'
+        cta={t('history.hero.cta')}
+      />
+      <ChapterNav
+        lang={contentLanguage}
+        label={t('history.navigationLabel')}
+        items={eras.map(e => ({ id: e.id, label: e.title }))}
+      />
+      <section
+        className='heritage-intro'
+        aria-labelledby='history-intro'
+        lang={contentLanguage}
       >
-        {/* Era strip */}
-        <div className='mt-10 grid grid-cols-6 divide-x divide-white/20 max-lg:grid-cols-3 max-lg:divide-y max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:divide-x-0 max-sm:divide-y'>
-          {eras.map(e => (
-            <div key={e.title} className='px-4 py-5 text-white/85'>
-              <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-white/60'>
-                {e.yr}
+        <Container className='heritage-intro-grid'>
+          <p className='heritage-kicker'>{t('history.intro.eyebrow')}</p>
+          <div>
+            <h2 id='history-intro'>{t('history.intro.title')}</h2>
+            <p className='heritage-body'>{t('history.intro.body')}</p>
+          </div>
+        </Container>
+      </section>
+      <div className='heritage-timeline' lang={contentLanguage}>
+        <Container>
+          {eras.map((era, index) => (
+            <section
+              id={era.id}
+              key={era.id}
+              className='heritage-era'
+              aria-labelledby={`${era.id}-title`}
+            >
+              <div className='heritage-era-heading'>
+                <p className='heritage-kicker'>
+                  {String(index + 1).padStart(2, '0')} / {era.yr}
+                </p>
+                <h2 id={`${era.id}-title`}>{era.title}</h2>
+                <p>{era.blurb}</p>
               </div>
-              <h4 className='mt-1.5 font-serif-ed text-lg font-semibold text-white'>
-                {e.title}
-              </h4>
-              <p className='mt-1.5 text-xs leading-normal text-white/75'>
-                {e.blurb}
-              </p>
-            </div>
+              <div className='heritage-events'>
+                {entries
+                  .filter(entry => entry.chapter === era.id)
+                  .map(entry => (
+                    <article
+                      id={entry.id}
+                      key={entry.id}
+                      aria-labelledby={`${entry.id}-title`}
+                    >
+                      <p className='heritage-kicker'>{entry.yr}</p>
+                      <h3 id={`${entry.id}-title`}>{entry.title}</h3>
+                      <p className='heritage-body'>{entry.body}</p>
+                      <div className='heritage-event-links'>
+                        {entry.sources.map(id => (
+                          <ReferenceLink key={id} href={historySources[id].url}>
+                            {historySources[id].title}
+                          </ReferenceLink>
+                        ))}
+                      </div>
+                      {entry.id === 'tabon' && (
+                        <div
+                          className='heritage-note'
+                          role='note'
+                          lang={i18n.resolvedLanguage}
+                        >
+                          <strong className='heritage-kicker'>
+                            {t('history.scholarNote.title')}
+                          </strong>
+                          <p>{t('history.scholarNote.body')}</p>
+                        </div>
+                      )}
+                    </article>
+                  ))}
+              </div>
+            </section>
           ))}
-        </div>
-      </PageMasthead>
-
-      {/* Timeline */}
-      <section className='mt-16 max-md:mt-8'>
+        </Container>
+      </div>
+      <section
+        className='heritage-dates heritage-dark'
+        aria-labelledby='independence-dates'
+        lang={contentLanguage}
+      >
         <Container>
-          <SectionHeader
-            label={t('history.entriesSectionLabel')}
-            meta={t('history.entriesSectionMeta')}
-          />
-
-          <div className='relative ml-10 border-l-2 border-ed-navy pl-8 max-sm:ml-5 max-sm:pl-6'>
-            {entries.map((e, i) => (
-              <article key={e.title} className='relative pb-12 last:pb-0'>
-                <span
-                  aria-hidden
-                  className='absolute -left-[41px] top-2.5 h-4 w-4 border-4 border-white bg-ed-navy max-sm:-left-[25px] max-sm:h-3 max-sm:w-3'
-                />
-                <div className='font-mono-ed text-[11px] uppercase tracking-[0.18em] text-ed-ink-3'>
-                  {e.yr}
-                </div>
-                <h3 className='mt-2 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink max-md:text-[26px]'>
-                  {e.title}
-                </h3>
-                <span className='mt-3 inline-block bg-ed-navy-tint px-2 py-[3px] font-mono-ed text-[9px] uppercase tracking-[0.16em] text-ed-navy-ink'>
-                  {e.era}
-                </span>
-                {i === SCHOLAR_NOTE_AT && (
-                  <aside className='float-right mb-5 ml-9 w-[280px] border border-ed-rule border-l-[3px] border-l-ed-navy bg-white px-5 py-4 max-lg:float-none max-lg:mx-0 max-lg:my-4 max-lg:w-auto'>
-                    <h5 className='mb-2 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-navy'>
-                      {t('history.scholarNote.title')}
-                    </h5>
-                    <p className='m-0 font-sans-ed text-sm leading-normal text-ed-ink-2'>
-                      {t('history.scholarNote.body')}
-                    </p>
-                  </aside>
-                )}
-                <p className='mt-3 max-w-[680px] font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
-                  {e.body}
-                </p>
-              </article>
-            ))}
+          <p className='heritage-kicker mb-4'>
+            {t('history.milestones.eyebrow')}
+          </p>
+          <h2 id='independence-dates'>{t('history.milestones.title')}</h2>
+          <div className='heritage-dates-grid'>
+            <div>
+              <strong>1898</strong>
+              <p className='heritage-body'>
+                {t('history.milestones.declaration')}
+              </p>
+              <ReferenceLink href={historySources.independence.url}>
+                {historySources.independence.title}
+              </ReferenceLink>
+            </div>
+            <div>
+              <strong>1946</strong>
+              <p className='heritage-body'>
+                {t('history.milestones.recognition')}
+              </p>
+              <ReferenceLink href={historySources.american.url}>
+                {historySources.american.title}
+              </ReferenceLink>
+            </div>
           </div>
         </Container>
       </section>
-
-      {/* By the numbers */}
-      <section className='my-14 border-y border-ed-rule bg-ed-navy-tint py-10 max-md:my-8 max-md:py-6'>
+      <HeritageNext
+        to='/philippines/culture'
+        label={t('history.nextCards.culture.eyebrow')}
+        title={t('history.nextCards.culture.title')}
+        description={t('history.nextCards.culture.desc')}
+      />
+      <section
+        id='sources'
+        className='heritage-sources'
+        aria-labelledby='history-sources'
+        lang={contentLanguage}
+      >
         <Container>
-          <div className='mb-3'>
-            <Eyebrow className='text-ed-navy-ink'>
-              {t('history.byTheNumbers.eyebrow')}
-            </Eyebrow>
-          </div>
-          <div className='grid grid-cols-3 gap-8 max-lg:grid-cols-1 max-lg:gap-6'>
-            {numbers.map(n => (
-              <div key={n.label}>
-                <h3 className='m-0 font-serif-ed text-[40px] font-semibold leading-none text-ed-navy-ink'>
-                  {n.num}
-                </h3>
-                <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>
-                  {n.body}
-                </p>
-                <div className='mt-1.5 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
-                  {n.label}
-                </div>
-              </div>
+          <h2 id='history-sources'>{t('history.sourcesTitle')}</h2>
+          <p className='heritage-small mt-3'>
+            {t('history.sourcesDescription')}
+          </p>
+          <ul>
+            {Object.values(historySources).map(s => (
+              <li key={s.title}>
+                <ReferenceLink href={s.url}>{s.title}</ReferenceLink>
+              </li>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Next cards */}
-      <section className='mb-20 mt-16 max-md:mb-10 max-md:mt-8'>
-        <Container>
-          <div className='grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-6'>
-            <NextCard
-              to='/philippines/culture'
-              eyebrow={t('history.nextCards.culture.eyebrow')}
-              title={t('history.nextCards.culture.title')}
-              desc={t('history.nextCards.culture.desc')}
-              cta={t('history.nextCards.culture.cta')}
-            />
-            <NextCard
-              to='/philippines/regions'
-              eyebrow={t('history.nextCards.regions.eyebrow')}
-              title={t('history.nextCards.regions.title')}
-              desc={t('history.nextCards.regions.desc')}
-              cta={t('history.nextCards.regions.cta')}
-            />
-          </div>
+          </ul>
         </Container>
       </section>
     </main>
   );
-};
-
-const NextCard: FC<{
-  to: string;
-  eyebrow: string;
-  title: string;
-  desc: string;
-  cta: string;
-}> = ({ to, eyebrow, title, desc, cta }) => (
-  <Link
-    to={to}
-    className='block border border-ed-rule bg-white p-8 text-ed-ink no-underline transition-colors hover:border-ed-ink'
-  >
-    <div className='mb-3'>
-      <Eyebrow>{eyebrow}</Eyebrow>
-    </div>
-    <h3 className='m-0 font-serif-ed text-[28px] font-semibold text-ed-navy-ink max-md:text-[22px]'>
-      {title}
-    </h3>
-    <p className='mt-2.5 text-sm leading-normal text-ed-ink-2'>{desc}</p>
-    <div className='mt-4 flex items-center gap-1.5 text-[13px] font-medium text-ed-navy'>
-      {cta} <ArrowRightIcon size={14} />
-    </div>
-  </Link>
-);
-
-export default PhilippinesHistory;
+}
