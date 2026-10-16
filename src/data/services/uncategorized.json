@@ -306,7 +306,7 @@
     "updatedAt": "2025-06-06T11:30:06.320Z"
   },
   {
-    "service": "Verify the Status of the Contractor's Profile.",
+    "service": "Verify the Status of the Contractor's Profile",
     "url": "https://apps.dpwh.gov.ph/contractor_profile_application/signin.aspx",
     "id": "1ad8e130-17f5-4edc-864d-d44fbb66e49c",
     "slug": "verify-the-status-of-the-contractors-profile",

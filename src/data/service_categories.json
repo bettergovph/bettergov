@@ -1,11 +1,11 @@
 {
   "categories": [
     {
-      "category": "Business and Trade.",
+      "category": "Business and Trade",
       "slug": "business-trade",
       "subcategories": [
         {
-          "name": "Business Copyright, Trademark and Patent.",
+          "name": "Business Copyright, Trademark and Patent",
           "slug": "business-copyright-trademark-patent"
         },
         {
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "category": "Education!",
+      "category": "Education",
       "slug": "education",
       "subcategories": [
         {
