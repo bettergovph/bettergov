@@ -16,11 +16,10 @@ import {
 } from '../write';
 
 const REPO_ROOT = process.cwd();
-// service_categories.json is generated at build time and not guaranteed to
-// exist in a fresh checkout, so `prepare`/`commitFiles`/`readTaxonomy` are
-// exercised here against a synthetic fixture instead of reading it from
-// disk. philippines_hotlines.json stays committed and is safe to read
-// directly.
+// `prepare`/`commitFiles`/`readTaxonomy` are exercised here against a
+// synthetic taxonomy fixture rather than the committed
+// service_categories.json, so these tests never depend on its content.
+// philippines_hotlines.json is safe to read directly.
 const CATEGORIES_PATH = 'src/data/service_categories.json';
 const CATEGORIES_SCHEMA = 'src/data/schema/service_categories.schema.json';
 const CATEGORIES_FIXTURE = {
@@ -53,12 +52,11 @@ const makeTempCopy = (relPath: string) => {
 };
 
 /**
- * A synthetic services directory, entirely independent of the real
- * (generated, gitignored) src/data/services/*.json — so these tests pass
- * whether or not this checkout has ever been synced. `files` maps basename
- * (without .json) to its record array; a `schema` subdirectory is always
- * added alongside, to prove readServiceFileNames/readServiceRecords never
- * pick it up.
+ * A synthetic services directory, entirely independent of the committed
+ * src/data/services/*.json — so these tests never depend on its content.
+ * `files` maps basename (without .json) to its record array; a `schema`
+ * subdirectory is always added alongside, to prove
+ * readServiceFileNames/readServiceRecords never pick it up.
  */
 const makeServicesDir = (files: Record<string, unknown[]>): string => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-services-'));
@@ -457,9 +455,8 @@ describe('parseTaxonomy', () => {
 
 describe('readTaxonomy', () => {
   it('reads and validates whatever is at src/data/service_categories.json', () => {
-    // Generated at build time, not guaranteed to exist in this checkout —
-    // exercised against a temporary real file at readTaxonomy's hardcoded
-    // path rather than depending on one already being synced.
+    // Exercised against a temporary real file at readTaxonomy's hardcoded
+    // path, so the test never depends on the committed taxonomy's content.
     withRealFileAt(CATEGORIES_PATH, JSON.stringify(CATEGORIES_FIXTURE), () => {
       expect(readTaxonomy()).toEqual(CATEGORIES_FIXTURE);
     });

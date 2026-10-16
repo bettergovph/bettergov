@@ -30,9 +30,9 @@ const HOME_NEWS_COUNT = 6;
 
 /**
  * The card is a teaser, not the full list — `/philippines/hotlines` is one
- * click away. `criticalHotlines` is generated from TalaCMS at build time by
- * `npm run sync:talacms`; this component reads the generated data through
- * `src/data/cms.ts` and makes no network request itself.
+ * click away. `criticalHotlines` is the committed
+ * src/data/critical_hotlines.json (imported from TalaCMS); this component
+ * reads it through `src/data/cms.ts` and makes no network request itself.
  *
  * The file carries every number for a hotline; the card shows the first —
  * element 0 — which is this card's long-standing display convention. Whether

@@ -216,7 +216,15 @@ node scripts/validate-json-schema.js \
 node scripts/validate-json-schema.js \
   src/data/directory/lgu/schema/lgu-region.schema.json \
   "src/data/directory/lgu/region-vi-western-visayas.json"
+
+# Validate the government services files
+node scripts/validate-json-schema.js \
+  src/data/services/schema/services.schema.json \
+  "src/data/services/*.json"
 ```
+
+The services, categories and critical hotlines data is described in the
+[README](./README.md#services-categories-and-hotlines-data).
 
 Schema validation runs automatically in CI/CD when changes are made to:
 - JSON data files (`src/data/**/*.json`)
