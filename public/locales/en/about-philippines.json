@@ -150,177 +150,236 @@
     "hero": {
       "eyebrow": "Philippines · A timeline",
       "title": "History of the Philippines",
-      "description": "More than 700,000 years of human story — from the peopling of the archipelago, to Austronesian maritime polities, 333 years of Spanish rule, half a century under the United States, wartime occupation, and the long road to the Fifth Republic.",
-      "photoCredit": "Photo credit"
+      "description": "From the earliest traces of human activity to maritime communities, colonial encounters and an independent republic: explore the events that shaped the Philippines.",
+      "photoCredit": "Photo credit",
+      "cta": "Explore the timeline"
     },
     "eras": [
       {
-        "yr": "−47,000",
-        "title": "Prehistoric",
-        "blurb": "First modern humans arrive; Tabon, Callao, maritime settlements."
+        "id": "early-peoples",
+        "yr": "Before 900 CE",
+        "title": "Early peoples",
+        "blurb": "Archaeological evidence of life in the archipelago."
       },
       {
+        "id": "maritime-societies",
         "yr": "900–1565",
-        "title": "Pre-Colonial",
-        "blurb": "Sultanates, rajahnates; trade with China, India, the Malay world."
+        "title": "Maritime societies",
+        "blurb": "Trade, local communities and encounters across the seas."
       },
       {
+        "id": "colonial-period",
         "yr": "1565–1898",
-        "title": "Spanish",
-        "blurb": "333 years of colonial rule; introduction of Catholicism."
+        "title": "Colonial rule & revolution",
+        "blurb": "Spanish administration and the movement for independence."
       },
       {
+        "id": "war-and-commonwealth",
         "yr": "1898–1946",
-        "title": "American & WWII",
-        "blurb": "Commonwealth; Japanese occupation; postwar independence."
+        "title": "War & Commonwealth",
+        "blurb": "American rule, the Commonwealth and the Second World War."
       },
       {
+        "id": "independent-republic",
         "yr": "1946–1986",
-        "title": "Third Republic",
-        "blurb": "Independence; Marcos regime; People Power Revolution."
+        "title": "An independent republic",
+        "blurb": "Postwar independence, martial law and political transition."
       },
       {
-        "yr": "1987–Today",
-        "title": "Fifth Republic",
-        "blurb": "1987 Constitution; democratic restoration; OFW era; EDSA II."
+        "id": "contemporary-philippines",
+        "yr": "1987–present",
+        "title": "Contemporary Philippines",
+        "blurb": "Constitutional government, local governance and regional autonomy."
       }
     ],
     "entriesSectionLabel": "Selected entries",
-    "entriesSectionMeta": "17 moments · prehistoric to modern",
+    "entriesSectionMeta": "17 selected events",
     "scholarNote": {
-      "title": "Scholarly note",
-      "body": "Most of what we know of pre-colonial polities comes from Chinese records, ceramics, and oral traditions; written indigenous archives were rare and largely destroyed in the Spanish era."
+      "title": "Reading the historical record",
+      "body": "Dates for prehistoric finds are approximate. Written accounts, objects and oral traditions offer different kinds of evidence, and interpretations can change as research develops."
     },
     "entries": [
       {
-        "yr": "c. 700,000 BCE",
-        "era": "Prehistoric",
-        "title": "Earliest human presence",
-        "body": "Stone tools and butchered rhinoceros bones found in Kalinga, northern Luzon, suggest hominins — possibly Homo erectus — were present in the Philippines some 700,000 years ago. Who exactly they were remains one of the great open questions of Southeast Asian prehistory."
+        "id": "early-human-presence",
+        "chapter": "early-peoples",
+        "yr": "About 709,000 years ago",
+        "title": "Early human activity",
+        "body": "Stone tools and rhinoceros bones bearing cut marks, excavated in Kalinga, provide evidence of early hominin activity in Luzon. The species responsible has not been identified.",
+        "sources": [
+          "archaeology"
+        ]
       },
       {
-        "yr": "c. 47,000 BCE",
-        "era": "Prehistoric",
-        "title": "Tabon Man",
-        "body": "Skull fragments discovered in Tabon Cave, Palawan, are the oldest confirmed remains of modern humans in the Philippines. The cave complex shows continuous human occupation for tens of millennia."
+        "id": "tabon",
+        "chapter": "early-peoples",
+        "yr": "Tens of thousands of years ago",
+        "title": "The Tabon Cave discoveries",
+        "body": "Excavations at the Tabon Cave Complex in Palawan uncovered early Homo sapiens remains and evidence of toolmaking and burial practices. Finds from different periods help researchers study the long human history of the islands.",
+        "sources": [
+          "archaeology"
+        ]
       },
       {
+        "id": "copperplate",
+        "chapter": "maritime-societies",
         "yr": "900 CE",
-        "era": "Pre-Colonial",
         "title": "Laguna Copperplate Inscription",
-        "body": "The oldest known written document found in the Philippines. Inscribed in Kawi script, it records the forgiveness of a debt of gold and demonstrates Philippine connections to a wider Hindu-Buddhist maritime world. It was recovered near the mouth of the Lumbang River in 1989."
+        "body": "This copperplate records the settlement of a debt. Its language and script show connections between communities in the archipelago and the wider trading world of Southeast Asia.",
+        "sources": [
+          "sourcebook"
+        ]
       },
       {
-        "yr": "1380",
-        "era": "Pre-Colonial",
-        "title": "Arrival of Islam",
-        "body": "Makdum Karim, a Muslim missionary, lands in Sulu. Islam spreads through the southern islands, giving rise to the Sultanates of Sulu (1457) and Maguindanao, which would resist Spanish rule for three centuries."
+        "id": "islam",
+        "chapter": "maritime-societies",
+        "yr": "14th–15th centuries",
+        "title": "Islam and the southern sultanates",
+        "body": "Islam spread through trade and religious networks in the southern islands. Muslim communities and, later, sultanates became important centers of political, commercial and religious life.",
+        "sources": [
+          "sourcebook"
+        ]
       },
       {
+        "id": "mactan",
+        "chapter": "maritime-societies",
         "yr": "1521",
-        "era": "Spanish",
-        "title": "Magellan's expedition",
-        "body": "Ferdinand Magellan, sailing under the Spanish crown, reaches the archipelago and is killed at the Battle of Mactan by warriors led by Lapu-Lapu. The encounter is now commemorated annually as a founding moment of Filipino resistance."
+        "title": "Magellan’s expedition and Mactan",
+        "body": "The expedition led by Ferdinand Magellan reached the archipelago while sailing for Spain. Magellan died at Mactan in a battle with forces led by Lapulapu. Permanent Spanish settlement began decades later.",
+        "sources": [
+          "sourcebook"
+        ]
       },
       {
-        "yr": "1565",
-        "era": "Spanish",
-        "title": "Spanish colonization begins",
-        "body": "Miguel López de Legazpi establishes the first permanent Spanish settlement in Cebu, and by 1571, Manila becomes the capital of the new colony. The islands are named after King Philip II of Spain. Spanish rule will last 333 years."
+        "id": "spanish-settlement",
+        "chapter": "colonial-period",
+        "yr": "1565–1571",
+        "title": "Spanish settlement and administration",
+        "body": "Miguel López de Legazpi established a Spanish settlement in Cebu in 1565. Manila became the colonial capital in 1571. Spanish administration expanded unevenly across the islands, alongside communities that maintained their independence.",
+        "sources": [
+          "sourcebook"
+        ]
       },
       {
+        "id": "revolution",
+        "chapter": "colonial-period",
         "yr": "1896",
-        "era": "Spanish",
         "title": "Philippine Revolution",
-        "body": "The secret society Katipunan, founded by Andrés Bonifacio, launches an armed revolt against Spanish colonial rule. The revolution will produce the first national army, flag, and anthem."
+        "body": "The Katipunan, founded in 1892 with Andrés Bonifacio among its organizers, began an armed revolution against Spanish colonial rule. The conflict led to revolutionary governments and the declaration of independence in 1898.",
+        "sources": [
+          "independence",
+          "sourcebook"
+        ]
       },
       {
-        "yr": "June 12, 1898",
-        "era": "Independence",
+        "id": "independence-declared",
+        "chapter": "colonial-period",
+        "yr": "12 June 1898",
         "title": "Declaration of independence",
-        "body": "Emilio Aguinaldo proclaims Philippine independence from a window in Kawit, Cavite. The national flag is unfurled for the first time and the Marcha Nacional Filipina (later Lupang Hinirang) is played publicly."
+        "body": "Philippine independence was proclaimed at Emilio Aguinaldo’s home in Kawit, Cavite. The Philippine flag was displayed and Julián Felipe’s march, which became the national anthem, was performed.",
+        "sources": [
+          "independence"
+        ]
       },
       {
-        "yr": "1898",
-        "era": "American",
-        "title": "Treaty of Paris",
-        "body": "Spain cedes the Philippines to the United States for $20 million following the Spanish-American War. The Philippine-American War (1899–1902) follows. American rule would last nearly 50 years and shape the country's institutions, education, and English-speaking civil service."
+        "id": "treaty-of-paris",
+        "chapter": "war-and-commonwealth",
+        "yr": "1898–1902",
+        "title": "Treaty of Paris and the Philippine-American War",
+        "body": "Under the Treaty of Paris, Spain ceded the Philippines to the United States. Filipino forces contested American sovereignty, and war began in 1899. Although the United States declared the war ended in 1902, armed resistance continued in some areas.",
+        "sources": [
+          "american"
+        ]
       },
       {
-        "yr": "1935",
-        "era": "American",
-        "title": "Commonwealth established",
-        "body": "The Tydings-McDuffie Act creates the Commonwealth of the Philippines as a transitional government toward independence. Manuel L. Quezon becomes the first President of the Commonwealth."
+        "id": "commonwealth",
+        "chapter": "war-and-commonwealth",
+        "yr": "15 November 1935",
+        "title": "Commonwealth inaugurated",
+        "body": "Following the 1934 Tydings–McDuffie Act, the Commonwealth was inaugurated as a transitional government toward independence. Manuel L. Quezon served as its first president.",
+        "sources": [
+          "american"
+        ]
       },
       {
+        "id": "world-war-two",
+        "chapter": "war-and-commonwealth",
         "yr": "1941–1945",
-        "era": "WWII",
-        "title": "Japanese occupation",
-        "body": "Imperial Japan invades and occupies the Philippines for three and a half years. The Bataan Death March (1942) and the Battle of Manila (1945) are among WWII's most harrowing episodes. Guerrilla resistance and the U.S.-Philippine liberation campaign end the occupation."
+        "title": "War and Japanese occupation",
+        "body": "Japan invaded in December 1941. The occupation brought widespread loss of life and destruction, including the Bataan Death March and the Battle of Manila. Filipino guerrillas and Allied forces fought in the campaign to end the occupation.",
+        "sources": [
+          "american",
+          "sourcebook"
+        ]
       },
       {
-        "yr": "July 4, 1946",
-        "era": "Third Republic",
+        "id": "independence-recognized",
+        "chapter": "independent-republic",
+        "yr": "4 July 1946",
         "title": "Independence recognized",
-        "body": "The United States formally grants Philippine independence. Manuel Roxas becomes the first president of the Third Republic. The date of independence will later be moved back to June 12, 1898 by President Diosdado Macapagal in 1962."
+        "body": "The United States recognized Philippine independence, and Manuel Roxas became president of the Third Republic. The annual Independence Day observance later shifted to June 12 to commemorate the 1898 declaration.",
+        "sources": [
+          "american"
+        ]
       },
       {
-        "yr": "1972",
-        "era": "Martial Law",
-        "title": "Marcos declares martial law",
-        "body": "President Ferdinand Marcos issues Proclamation 1081, placing the entire country under martial law for 14 years. Thousands are detained, tortured, or killed; press freedom is suspended; the 1935 Constitution is replaced. Billions in public funds are diverted."
+        "id": "martial-law",
+        "chapter": "independent-republic",
+        "yr": "1972–1981",
+        "title": "Declaration of martial law",
+        "body": "President Ferdinand E. Marcos placed the Philippines under martial law through Proclamation No. 1081, dated 21 September 1972, citing rebellion and threats to public order. The period brought expanded presidential powers, restrictions on the press and civil liberties, and documented human rights violations. Martial law was formally lifted on 17 January 1981 through Proclamation No. 2045; Marcos remained president until February 1986.",
+        "sources": [
+          "proclamation1081",
+          "proclamation2045",
+          "recognition"
+        ]
       },
       {
-        "yr": "Feb 22–25, 1986",
-        "era": "EDSA",
-        "title": "People Power Revolution",
-        "body": "Millions of Filipinos converge on Epifanio de los Santos Avenue (EDSA) in a peaceful, four-day uprising that topples the Marcos regime. Corazon Aquino is sworn in as President. The revolution inspires democratic movements worldwide and remains a defining moment in Philippine history."
+        "id": "edsa",
+        "chapter": "independent-republic",
+        "yr": "22–25 February 1986",
+        "title": "EDSA People Power Revolution",
+        "body": "Large civilian demonstrations, following a disputed presidential election and the withdrawal of support by key military officials, led to a change in government. Corazon C. Aquino took office on February 25, and Ferdinand E. Marcos left the country.",
+        "sources": [
+          "sourcebook"
+        ]
       },
       {
+        "id": "constitution",
+        "chapter": "contemporary-philippines",
         "yr": "1987",
-        "era": "Fifth Republic",
-        "title": "Ratification of the 1987 Constitution",
-        "body": "A new Constitution is overwhelmingly ratified in a national plebiscite. It restores a democratic, presidential system with a Bill of Rights, an independent judiciary, and strict limits on presidential power. It remains the country's supreme law today."
+        "title": "The 1987 Constitution",
+        "body": "Ratified in a national plebiscite, the Constitution established the framework for the present presidential system. It provides for a Bill of Rights, three branches of government, constitutional commissions and limits on the exercise of public power.",
+        "sources": [
+          "constitution"
+        ]
       },
       {
+        "id": "local-government",
+        "chapter": "contemporary-philippines",
         "yr": "1991",
-        "era": "Fifth Republic",
         "title": "Local Government Code",
-        "body": "Republic Act 7160 devolves significant powers, functions, and revenues from the national government to provinces, cities, municipalities, and barangays — reshaping how public services are delivered and laying the foundation for modern local governance."
+        "body": "Republic Act No. 7160 transferred specified functions, responsibilities and resources to local governments. It remains a central framework for how provinces, cities, municipalities and barangays deliver public services.",
+        "sources": [
+          "localGovernment"
+        ]
       },
       {
+        "id": "bangsamoro",
+        "chapter": "contemporary-philippines",
         "yr": "2019",
-        "era": "Fifth Republic",
-        "title": "BARMM established",
-        "body": "The Bangsamoro Autonomous Region in Muslim Mindanao (BARMM) replaces the ARMM after decades of peace talks between the national government and the Moro Islamic Liberation Front. It is the country's only autonomous region with a parliamentary form of government."
+        "title": "Establishment of BARMM",
+        "body": "Following plebiscites on the Bangsamoro Organic Law, the Bangsamoro Autonomous Region in Muslim Mindanao replaced the ARMM. The law provides for a parliamentary regional government within the Philippine constitutional system.",
+        "sources": [
+          "bangsamoro"
+        ]
       }
     ],
-    "byTheNumbers": {
-      "eyebrow": "02 · By the numbers",
-      "items": [
-        {
-          "num": "333",
-          "body": "Years of Spanish colonial rule, from 1565 to 1898. One of the longest colonial tenures in Asia.",
-          "label": "Years · Spain"
-        },
-        {
-          "num": "48",
-          "body": "Years of American sovereignty (1898–1946), including commonwealth and wartime periods.",
-          "label": "Years · United States"
-        },
-        {
-          "num": "~70,000",
-          "body": "Estimated detentions under Martial Law (1972–1986), based on records of the Human Rights Victims' Claims Board.",
-          "label": "Martial Law detainees"
-        }
-      ]
-    },
     "nextCards": {
       "culture": {
-        "eyebrow": "Next · Culture",
-        "title": "Languages, fiestas, food, and faith",
-        "desc": "The culture that grew from this history — what Filipinos speak, cook, celebrate, and believe.",
-        "cta": "Read culture"
+        "eyebrow": "Continue exploring · Culture",
+        "title": "History lives on.",
+        "desc": "Discover the languages, food, celebrations and creative traditions carried into the present.",
+        "cta": "Explore culture"
       },
       "regions": {
         "eyebrow": "Also see · Regions",
@@ -412,7 +471,21 @@
         "regions": "Regions",
         "tourism": "Tourism"
       }
-    }
+    },
+    "navigationLabel": "Historical eras",
+    "intro": {
+      "eyebrow": "The past, in perspective",
+      "title": "Many communities. An interconnected history.",
+      "body": "The history of the Philippines reaches far beyond the founding of the republic. Archaeology, written records and community traditions reveal different experiences across the archipelago. This timeline introduces selected events and links to records for further reading."
+    },
+    "milestones": {
+      "eyebrow": "Two dates in context",
+      "title": "Declaration and recognition of independence",
+      "declaration": "On 12 June 1898, independence was proclaimed in Kawit, Cavite. June 12 is observed as Philippine Independence Day.",
+      "recognition": "On 4 July 1946, the United States formally recognized the independence of the Republic of the Philippines."
+    },
+    "sourcesTitle": "Sources & further reading",
+    "sourcesDescription": "Selected institutional references and primary documents. Dates and events are presented as an introduction to a wider historical record."
   },
   "regions": {
     "hero": {

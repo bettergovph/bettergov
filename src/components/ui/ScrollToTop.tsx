@@ -7,6 +7,8 @@ export default function ScrollToTop() {
   useEffect(() => {
     // Add a small delay to allow page content to load before scrolling
     const scrollTimeout = setTimeout(() => {
+      // Preserve incoming chapter links and anchors clicked during loading.
+      if (window.location.hash) return;
       window.scrollTo({
         top: 0,
         left: 0,
