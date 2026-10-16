@@ -19,21 +19,24 @@ export interface Hotline {
 }
 
 const MISSING =
-  'Generated CMS data is missing. Run the CMS sync script defined in package.json before building.';
+  'Service data is missing from src/data. Restore the committed files with `git checkout -- src/data`.';
 
 /**
+ * These datasets are committed under src/data — originally imported from
+ * TalaCMS, now edited in the repository like any other data file.
+ *
  * `import.meta.glob` resolves to `{}` when nothing matches, instead of
- * failing the transform the way a static `import` of an absent file would —
- * this is what lets `vite build`/`vitest` run against a checkout that has
- * never been synced.
+ * failing the transform the way a static `import` of an absent file would,
+ * so a deleted file surfaces as the MISSING error above rather than a
+ * bundler error.
  *
  * Every glob call below runs with `{ eager: true }`, so the emptiness check
  * — categories' and hotlines' via `required()`, services' inline below —
  * executes and can throw the moment this module is evaluated, not lazily
  * when a caller later reads one specific export. Importing any one of
  * `serviceCategories`, `criticalHotlines`, or `services` therefore evaluates
- * and validates all three generated datasets: there is no way to import
- * just one without the others' presence being checked too.
+ * and validates all three datasets: there is no way to import just one
+ * without the others' presence being checked too.
  */
 function required<T>(modules: Record<string, { default: T }>): T {
   const modulePath = Object.keys(modules)[0];
@@ -56,10 +59,9 @@ const hotlinesModules = import.meta.glob<{ default: Hotline[] }>(
 export const criticalHotlines: Hotline[] = required(hotlinesModules);
 
 /**
- * Service records are generated the same way as the two datasets above —
- * `npm run sync:talacms` writes one gitignored file per taxonomy category
- * under src/data/services/. `src/data/services/schema/**` stays tracked;
- * it's the contract, not the data.
+ * One committed file per taxonomy category under src/data/services/, named
+ * by category slug. `src/data/services/schema/**` is the contract the files
+ * must satisfy, not data, and is not globbed.
  *
  * Codepoint-sorted by filename, same as `import.meta.glob`'s own default
  * ordering — carried over from the contract test this accessor replaces.
