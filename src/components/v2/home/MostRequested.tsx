@@ -9,6 +9,9 @@ import Eyebrow from '../ui/Eyebrow';
 import Flag from '../ui/Flag';
 import { ALSO_TRENDING, FEATURED_TRENDING } from './data';
 
+/** A guide's own page, or the services directory for cards without one. */
+const hrefFor = (guide?: string) => (guide ? `/guides/${guide}` : '/services');
+
 const MostRequested: FC = () => {
   const { t } = useTranslation('home');
   const updated = new Date().toLocaleDateString('en-PH');
@@ -23,7 +26,7 @@ const MostRequested: FC = () => {
         <div className='grid grid-cols-[1.4fr_1fr_1fr] border border-ed-rule bg-white max-lg:grid-cols-1'>
           {/* Feature story */}
           <Link
-            to='/services?q=passport'
+            to={hrefFor('passport')}
             className='block p-10 text-ed-ink no-underline border-r border-ed-rule max-lg:border-r-0 max-lg:border-b max-md:p-4'
           >
             <Flag variant='red'>{t('mostRequested.mostSearched')}</Flag>
@@ -60,7 +63,7 @@ const MostRequested: FC = () => {
             {FEATURED_TRENDING.map((s, i) => (
               <Link
                 key={s.id}
-                to='/services'
+                to={hrefFor(s.guide)}
                 className={`flex flex-1 flex-col p-8 text-ed-ink no-underline max-md:p-4 ${
                   i === 0 ? 'border-b border-ed-rule' : ''
                 }`}
@@ -90,7 +93,7 @@ const MostRequested: FC = () => {
               {ALSO_TRENDING.map((s, i) => (
                 <Link
                   key={s.title}
-                  to='/services'
+                  to={hrefFor(s.guide)}
                   className={`block py-3.5 text-ed-ink no-underline max-md:py-2 ${
                     i < ALSO_TRENDING.length - 1
                       ? 'border-b border-ed-rule'

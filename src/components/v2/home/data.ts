@@ -1,9 +1,14 @@
 // Mock/seed data for the v2 Home sections.
 // TODO: replace with live data sources where available.
 
+/**
+ * `guide` is a guide id from src/data/guides/manifest.json; cards with one
+ * open /guides/:id, the rest open the services directory.
+ */
 export const FEATURED_TRENDING = [
   {
     id: 'nbi',
+    guide: 'nbi',
     agency: 'NBI',
     title: 'NBI Clearance',
     lede: 'Apply, renew, or reprint for employment, travel, or local use.',
@@ -11,6 +16,7 @@ export const FEATURED_TRENDING = [
     cost: '₱155',
   },
   {
+    // No SSS registration guide yet.
     id: 'sss',
     agency: 'SSS',
     title: 'Register for an SSS Number',
@@ -21,12 +27,20 @@ export const FEATURED_TRENDING = [
 ];
 
 export const ALSO_TRENDING = [
-  { agency: 'PhilHealth', title: 'Register with PhilHealth' },
-  { agency: 'BIR', title: 'Apply for a TIN (Tax ID Number)' },
-  { agency: 'LTO', title: "Driver's License — New or Renewal" },
-  { agency: 'DTI', title: 'Business Name Registration' },
-  { agency: 'Pag-IBIG', title: 'Pag-IBIG Membership & MID' },
-  { agency: 'PSA', title: 'PSA Birth Certificate' },
+  {
+    agency: 'PhilHealth',
+    title: 'Register with PhilHealth',
+    guide: 'philhealth',
+  },
+  { agency: 'BIR', title: 'Apply for a TIN (Tax ID Number)', guide: 'tin' },
+  {
+    agency: 'LTO',
+    title: "Driver's License — New or Renewal",
+    guide: 'drivers',
+  },
+  { agency: 'DTI', title: 'Business Name Registration', guide: 'dti' },
+  { agency: 'Pag-IBIG', title: 'Pag-IBIG Membership & MID', guide: 'pagibig' },
+  { agency: 'PSA', title: 'PSA Birth Certificate', guide: 'psa' },
 ];
 
 export const BUDGET_2026 = [
