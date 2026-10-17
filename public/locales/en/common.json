@@ -22,9 +22,6 @@
   "news": {
     "title": "Latest News & Updates"
   },
-  "footer": {
-    "copyright": "2025 GOV.PH - All content is public domain unless otherwise specified."
-  },
   "navbar": {
     "home": "Home",
     "philippines": "Philippines",
@@ -90,12 +87,12 @@
   },
   "footerAbout": {
     "description": "The official portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.",
-    "openSource": "Open Source",
+    "openSource": "Built in the open",
     "builtBy": "Built by eGov, BetterGov, and hundreds of citizen volunteers."
   },
   "footerBottom": {
     "copyright": "Republic of the Philippines · All rights reserved",
-    "license": "CC BY 4.0 · MIT"
+    "license": "CC BY-NC-ND 4.0"
   },
   "data": {
     "title": "Real-Time Data Services",

@@ -53,7 +53,7 @@ const PRINCIPLES = [
   },
   {
     title: 'Open by default',
-    body: 'Everything here is public domain (CC0) and built in the open. Any agency, LGU, or civic project can copy, adapt, and improve it — no permission needed.',
+    body: 'Everything here is built in the open and published under CC BY-NC-ND 4.0: anyone may read it, and share it unchanged, with credit, for non-commercial use.',
   },
   {
     title: 'Prove it with use',
@@ -74,7 +74,7 @@ const DesignSystemHome: FC = () => (
       <title>Design System | GOV.PH</title>
       <meta
         name='description'
-        content='Styles, components, and patterns for designing consistent, accessible digital government services for the Philippines. Open source and free for any agency or civic project to use.'
+        content='Styles, components, and patterns for designing consistent, accessible digital government services for the Philippines. Built in the open and published under CC BY-NC-ND 4.0.'
       />
       <link rel='canonical' href='https://www.gov.ph/design/overview' />
     </Helmet>
@@ -128,15 +128,17 @@ const DesignSystemHome: FC = () => (
         <Prose>
           <p>
             This design system exists so that teams do not have to solve the
-            same problems twice. It is the working style guide for GOV.PH, and
-            it is released into the public domain under CC0 — any national
-            agency, local government unit, or civic technology project may use
-            it, in whole or in part, without asking.
+            same problems twice. It is the working style guide for GOV.PH,
+            published under the Creative Commons
+            Attribution-NonCommercial-NoDerivatives 4.0 license (CC BY-NC-ND
+            4.0): it may be copied and shared unchanged, for non-commercial
+            purposes, with credit. Sharing an adapted version needs separate
+            permission.
           </p>
           <p>
             The fastest way to adopt it is to start from the source. Every
             style, component, and pattern documented here ships as code in the
-            open-source GOV.PH repository.
+            GOV.PH repository on GitHub.
           </p>
           <ArrowLink to={REPO_URL} external>
             View the source on GitHub

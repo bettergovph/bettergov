@@ -13,13 +13,13 @@ const TermsOfService: FC = () => (
       <title>Terms of Service | {SITE_NAME}</title>
       <meta
         name='description'
-        content='Terms of Service for GOV.PH — public domain content, disclaimers, and user responsibilities.'
+        content='Terms of Service for GOV.PH — content licensing, disclaimers, and user responsibilities.'
       />
       <link rel='canonical' href={`${SITE_URL}/terms-of-service`} />
       <meta property='og:title' content={`Terms of Service | ${SITE_NAME}`} />
       <meta
         property='og:description'
-        content='Terms of Service for GOV.PH — public domain content, disclaimers, and user responsibilities.'
+        content='Terms of Service for GOV.PH — content licensing, disclaimers, and user responsibilities.'
       />
       <meta property='og:type' content='website' />
       <meta property='og:url' content={`${SITE_URL}/terms-of-service`} />
@@ -39,21 +39,24 @@ const TermsOfService: FC = () => (
         </div>
 
         <div className='mt-14'>
-          <SectionHeader label='Public Domain Content' />
+          <SectionHeader label='Content and License' />
           <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
               GOV.PH is the official portal of the Republic of the Philippines.
-              All information, data, documents, and materials provided on this
-              website are in the public domain unless otherwise noted, and the
-              portal&rsquo;s source code is released under a public domain
-              dedication.
+              Unless otherwise noted, the information, data, documents, and
+              materials on this website, and the portal&rsquo;s source code, are
+              published under the Creative Commons
+              Attribution-NonCommercial-NoDerivatives 4.0 International license
+              (CC BY-NC-ND 4.0).
             </p>
             <p>
-              Public domain content may be freely used, copied, distributed, and
-              modified without permission or attribution, though attribution is
-              appreciated. Third-party content, including material republished
-              from government agencies and other sources, retains its original
-              license and should be checked before reuse.
+              You may copy and share this material unchanged, for non-commercial
+              purposes, if you give appropriate credit and link to the license.
+              Sharing an adapted version needs separate permission. Third-party
+              content, including material republished from government agencies
+              and other sources, retains its original license and should be
+              checked before reuse. Work released earlier under the CC0 1.0
+              public domain dedication remains in the public domain.
             </p>
           </div>
         </div>
@@ -151,14 +154,14 @@ const TermsOfService: FC = () => (
           <SectionHeader label='Content Concerns & Takedown Requests' />
           <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
-              While we strive to provide accurate public domain information, we
-              recognise that errors, outdated information, or other concerns may
-              arise. To report content you believe is factually incorrect,
-              potentially harmful, or in violation of applicable laws, open an
-              issue in the portal&rsquo;s repository with the specific URL, a
-              clear description of the concern, and supporting documentation
-              where applicable. Concerns about a government service itself
-              should go to the Contact Center ng Bayan.
+              While we strive to provide accurate information, we recognise that
+              errors, outdated information, or other concerns may arise. To
+              report content you believe is factually incorrect, potentially
+              harmful, or in violation of applicable laws, open an issue in the
+              portal&rsquo;s repository with the specific URL, a clear
+              description of the concern, and supporting documentation where
+              applicable. Concerns about a government service itself should go
+              to the Contact Center ng Bayan.
             </p>
             <p>We will review all legitimate concerns in good faith.</p>
           </div>

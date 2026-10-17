@@ -210,7 +210,7 @@ const Footer: FC = () => {
                 {version ? `v${version}` : 'v4.2.0'}
               </Flag>
               <Flag variant='outline' className='border-white/25 text-white/70'>
-                {t('footerAbout.openSource', 'Open Source')}
+                {t('footerAbout.openSource', 'Built in the open')}
               </Flag>
             </div>
           </div>
@@ -240,7 +240,7 @@ const Footer: FC = () => {
             )}
           </span>
           <span>
-            {t('footerBottom.license', 'CC BY 4.0 · MIT')}
+            {t('footerBottom.license', 'CC BY-NC-ND 4.0')}
             {version ? ` · ${version}` : ''}
           </span>
         </div>

@@ -8,9 +8,8 @@ official records.
 ## About this project
 
 GOV.PH is developed through a community collaboration partnership between
-eGov Philippines and citizen contributors. The portal is open source and its
-code is dedicated to the public domain, so any national agency, local
-government unit, or civic project may reuse it.
+eGov Philippines and citizen contributors. The work happens in the open, and
+the code is published under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0).
 
 Goals:
 
@@ -28,7 +27,7 @@ project, a volunteer-led civic-tech initiative that set out to make
 Philippine government information easier to find, read, and use. Its code,
 design system, and data pipelines became the foundation of GOV.PH, and the
 hundreds of citizen volunteers who built it are gratefully acknowledged.
-Their contributions remain in the public domain.
+Their contributions were released under CC0 and remain in the public domain.
 
 ## Features
 
@@ -359,6 +358,8 @@ Thanks to all the people who already contributed!
 
 ## License
 
-This project is released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication. This means the work is dedicated to the public domain and can be freely used by anyone for any purpose without restriction under copyright law.
+This project is published under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license (CC BY-NC-ND 4.0). You may copy and share it unchanged, for non-commercial purposes, with appropriate credit. Sharing an adapted version needs separate permission. See [LICENSE](LICENSE) for the full terms.
+
+Work released earlier under CC0 1.0, including the BetterGov.ph code that GOV.PH builds on, remains in the public domain.
 
 ---

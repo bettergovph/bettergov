@@ -89,8 +89,7 @@ const OTHER_PAGES: Omit<SitePage, 'objectID' | 'type'>[] = [
     name: 'Terms of Service',
     url: '/terms-of-service',
     section: 'GOV.PH',
-    description:
-      'Public domain content, disclaimers, and user responsibilities.',
+    description: 'Content licensing, disclaimers, and user responsibilities.',
   },
   {
     name: 'Government websites',
