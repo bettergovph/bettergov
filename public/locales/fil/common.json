@@ -78,12 +78,12 @@
   },
   "footerAbout": {
     "description": "Ang opisyal na portal ng Republika ng Pilipinas, na binuo sa pamamagitan ng pakikipagtulungan ng pamahalaan at komunidad upang mapadali ang paghahanap, pagbasa, at paggamit ng impormasyon at serbisyo ng pamahalaan.",
-    "openSource": "Built in the open",
+    "openSource": "Open Source",
     "builtBy": "Ginawa ng eGov, BetterGov, at daan-daang mamamayang boluntaryo."
   },
   "footerBottom": {
     "copyright": "Republika ng Pilipinas · Nakalaan ang lahat ng karapatan",
-    "license": "CC BY-NC-ND 4.0"
+    "license": "CC BY-NC-ND 4.0 · MIT"
   },
   "comingSoon": "Malapit na"
 }

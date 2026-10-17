@@ -87,12 +87,12 @@
   },
   "footerAbout": {
     "description": "The official portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.",
-    "openSource": "Built in the open",
+    "openSource": "Open Source",
     "builtBy": "Built by eGov, BetterGov, and hundreds of citizen volunteers."
   },
   "footerBottom": {
     "copyright": "Republic of the Philippines · All rights reserved",
-    "license": "CC BY-NC-ND 4.0"
+    "license": "CC BY-NC-ND 4.0 · MIT"
   },
   "data": {
     "title": "Real-Time Data Services",

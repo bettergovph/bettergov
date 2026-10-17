@@ -44,19 +44,22 @@ const TermsOfService: FC = () => (
             <p>
               GOV.PH is the official portal of the Republic of the Philippines.
               Unless otherwise noted, the information, data, documents, and
-              materials on this website, and the portal&rsquo;s source code, are
-              published under the Creative Commons
+              materials on this website are published under the Creative Commons
               Attribution-NonCommercial-NoDerivatives 4.0 International license
-              (CC BY-NC-ND 4.0).
+              (CC BY-NC-ND 4.0), and the portal&rsquo;s source code is released
+              under the MIT License.
             </p>
             <p>
-              You may copy and share this material unchanged, for non-commercial
+              You may copy and share this content unchanged, for non-commercial
               purposes, if you give appropriate credit and link to the license.
-              Sharing an adapted version needs separate permission. Third-party
-              content, including material republished from government agencies
-              and other sources, retains its original license and should be
-              checked before reuse. Work released earlier under the CC0 1.0
-              public domain dedication remains in the public domain.
+              Sharing an adapted version needs separate permission. The source
+              code may be used, changed, and shared under the terms of the MIT
+              License. Neither license covers the GOV.PH name or the Coat of
+              Arms of the Republic of the Philippines. Third-party content,
+              including material republished from government agencies and other
+              sources, retains its original license and should be checked before
+              reuse. Work released earlier under the CC0 1.0 public domain
+              dedication remains in the public domain.
             </p>
           </div>
         </div>

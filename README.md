@@ -8,8 +8,9 @@ official records.
 ## About this project
 
 GOV.PH is developed through a community collaboration partnership between
-eGov Philippines and citizen contributors. The work happens in the open, and
-the code is published under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0).
+eGov Philippines and citizen contributors. The work happens in the open: the
+code is open source under the MIT License, and the content is published under
+the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0).
 
 Goals:
 
@@ -358,8 +359,13 @@ Thanks to all the people who already contributed!
 
 ## License
 
-This project is published under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license (CC BY-NC-ND 4.0). You may copy and share it unchanged, for non-commercial purposes, with appropriate credit. Sharing an adapted version needs separate permission. See [LICENSE](LICENSE) for the full terms.
+GOV.PH is dual-licensed:
 
-Work released earlier under CC0 1.0, including the BetterGov.ph code that GOV.PH builds on, remains in the public domain.
+- **Code** is released under the [MIT License](LICENSE). This covers the source code, including the design system's components and styles.
+- **Content** is published under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license (CC BY-NC-ND 4.0); see [LICENSE-CONTENT](LICENSE-CONTENT). Content means the text, data, translations, images and documents that make up the information on GOV.PH, wherever they sit in the repository: for example the guides in `src/data/guides/`, the data files in `src/data/`, the translations in `public/locales/`, and the written design guidelines. You may copy and share content unchanged, for non-commercial purposes, with appropriate credit. Sharing an adapted version needs separate permission.
+
+As an additional permission, you may fork this repository and share modified copies on GitHub solely to propose changes to GOV.PH through pull requests. See [Licensing of contributions](CONTRIBUTING.md#licensing-of-contributions).
+
+Neither license covers the GOV.PH name and wordmark, the Coat of Arms of the Republic of the Philippines, or the Bagong Pilipinas, eGovPH and BetterGov.ph logos. Third-party material keeps its own license, as credited where it appears. Work released earlier under CC0 1.0, including the BetterGov.ph code that GOV.PH builds on, remains in the public domain.
 
 ---

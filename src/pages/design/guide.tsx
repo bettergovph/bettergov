@@ -247,8 +247,9 @@ const BrandGuidePage: FC = () => {
                 the task someone came to finish.
               </p>
               <p>
-                Everything in this guide ships as code in the GOV.PH design
-                system, published under the CC BY-NC-ND 4.0 license.
+                Everything in this guide ships as open-source code in the GOV.PH
+                design system, released under the MIT License. Any agency, LGU,
+                or civic project may take it and use it.
               </p>
             </div>
           </div>
@@ -579,11 +580,11 @@ const BrandGuidePage: FC = () => {
             Start building
           </div>
           <p className='mt-6 max-w-4xl font-serif-ed text-[clamp(34px,5vw,64px)] font-bold leading-[1.02] tracking-[-0.02em]'>
-            Built in the open, with citizen volunteers.
+            Open source. Volunteer-built. Take it, use it, improve it.
           </p>
           <p className='mt-6 max-w-2xl font-sans-ed text-lg leading-relaxed text-white/85'>
             Every style, component, and pattern in this guide is documented in
-            full and published as code under CC BY-NC-ND 4.0. Read the
+            full and ships as open-source code under the MIT License. Read the
             guidelines, then build your service on them.
           </p>
           <div className='mt-10 flex flex-wrap items-center gap-4'>
