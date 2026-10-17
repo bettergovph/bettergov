@@ -86,6 +86,13 @@ const MastheadTop: FC = () => {
         className='ml-auto flex shrink-0 items-center gap-4'
       >
         <Link
+          to='/philippines/hotlines'
+          className='text-ed-ink-3 no-underline hover:text-ed-navy'
+        >
+          {t('masthead.hotlines', 'Hotlines')}
+        </Link>
+        <span className='text-ed-rule-strong'>|</span>
+        <Link
           to='/contact'
           className='text-ed-ink-3 no-underline hover:text-ed-navy'
         >

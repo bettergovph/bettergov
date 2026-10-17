@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
   InstantSearch,
   Highlight,
@@ -12,7 +12,15 @@ import {
 } from 'react-instantsearch';
 import type { Hit } from 'instantsearch.js';
 import { createSearchClient } from '../lib/search';
+import {
+  resolveHitLink,
+  typeFacetLabel,
+  typeFlagLabel,
+} from '../lib/searchResults';
+import { withSitePages } from '../lib/siteSearch';
+import { buildSitePages } from '../lib/sitePages';
 import { Helmet } from 'react-helmet-async';
+import { Link, useSearchParams } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 
 import Container from '../components/v2/ui/Container';
@@ -23,9 +31,9 @@ import FilterSection from '../components/v2/ui/FilterSection';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 import { cn } from '../lib/utils';
 
-// ─── Meilisearch client ───────────────────────────────────────────────────────
+// ─── Meilisearch client, plus GOV.PH's own pages (see siteSearch.ts) ─────────
 
-const { searchClient } = createSearchClient({
+const { searchClient: indexClient } = createSearchClient({
   primaryKey: 'slug',
   keepZeroFacets: true,
   meiliSearchParams: {
@@ -36,6 +44,9 @@ const { searchClient } = createSearchClient({
       'service',
       'description',
     ],
+    // Services store category and subcategory as { name, slug } objects;
+    // Meilisearch only searches their names when the nested paths are
+    // listed. Without them "weather" found 1 service instead of 10.
     attributesToSearchOn: [
       'name',
       'office_name',
@@ -44,11 +55,15 @@ const { searchClient } = createSearchClient({
       'website',
       'description',
       'category',
+      'category.name',
       'subcategory',
+      'subcategory.name',
       'address',
     ],
   },
 });
+
+const searchClient = withSitePages(indexClient, buildSitePages);
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -71,13 +86,39 @@ type SearchHit = {
 
 // ─── BigSearch wired to InstantSearch's search box ───────────────────────────
 
+/**
+ * `?q=` is the source of truth for the query: the header search box links
+ * here with it, and typing on this page rewrites it (replacing the history
+ * entry), so a results page can be shared or reloaded.
+ */
 const SearchBoxBridge: FC = () => {
   const { query, refine } = useSearchBox();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlQuery = searchParams.get('q') ?? '';
   const [localQuery, setLocalQuery] = useState(query);
+
+  // A new ?q= while this page is open — e.g. a second search from the header.
+  useEffect(() => {
+    if (urlQuery !== query) refine(urlQuery);
+    // Only a URL change should push into InstantSearch; typing goes the
+    // other way through handleChange.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlQuery]);
+
+  useEffect(() => setLocalQuery(query), [query]);
 
   const handleChange = (v: string) => {
     setLocalQuery(v);
     refine(v);
+    setSearchParams(
+      prev => {
+        const next = new URLSearchParams(prev);
+        if (v) next.set('q', v);
+        else next.delete('q');
+        return next;
+      },
+      { replace: true }
+    );
   };
 
   return (
@@ -95,15 +136,19 @@ const SearchBoxBridge: FC = () => {
 
 // ─── Left-rail refinement list ────────────────────────────────────────────────
 
-const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
-  attribute,
-  label,
-}) => {
-  const { items, refine } = useRefinementList({
+const EditorialRefinementList: FC<{
+  attribute: string;
+  label: string;
+  formatLabel?: (value: string) => string;
+}> = ({ attribute, label, formatLabel }) => {
+  const { items: allItems, refine } = useRefinementList({
     attribute,
     limit: 20,
     sortBy: ['count:desc'],
   });
+  // keepZeroFacets lists every value, mostly at 0. Show only values with
+  // matches, plus a selected one so it can still be cleared.
+  const items = allItems.filter(item => item.count > 0 || item.isRefined);
 
   if (items.length === 0) return null;
 
@@ -120,7 +165,7 @@ const EditorialRefinementList: FC<{ attribute: string; label: string }> = ({
               item.isRefined ? 'font-semibold text-ed-ink' : 'text-ed-ink-2'
             )}
           >
-            <span>{item.label}</span>
+            <span>{formatLabel ? formatLabel(item.value) : item.label}</span>
             <span className='font-mono-ed text-[11px] text-ed-ink-4'>
               {item.count}
             </span>
@@ -219,43 +264,53 @@ const EditorialHits: FC = () => {
               ? 'office_name'
               : 'office';
 
-        const link =
-          (hit.url as string | undefined) ||
-          (hit.slug ? `/directory/${hit.slug}` : '#');
+        const { href, external } = resolveHitLink(hit);
 
+        // Site pages name their section ("Philippines", "Department").
         const categoryName =
           hit.category != null && typeof hit.category === 'object'
             ? (hit.category as { name: string }).name
-            : (hit.category as string | undefined);
+            : ((hit.category as string | undefined) ??
+              (hit.section as string | undefined));
 
         const typeName = hit.type as string | undefined;
-        const sourceUrl =
-          (hit.website as string | undefined) ||
-          (hit.url as string | undefined);
+        const sourceUrl = external
+          ? (hit.website as string | undefined) ||
+            (hit.url as string | undefined)
+          : `www.gov.ph${href}`;
 
-        return (
-          <li key={hit.objectID} role='listitem'>
-            <a
-              href={link}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5'
-            >
-              <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
-                {String(i + 1).padStart(2, '0')}
+        const rowClass =
+          'grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5';
+        const row = (
+          <>
+            <div className='pt-1 font-mono-ed text-[11px] tracking-[0.14em] text-ed-ink-4'>
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <div>
+              <div className='flex flex-wrap items-baseline gap-3'>
+                {typeName && (
+                  <Flag variant='navy'>{typeFlagLabel(typeName)}</Flag>
+                )}
+                {categoryName && (
+                  <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                    {categoryName}
+                  </span>
+                )}
               </div>
-              <div>
-                <div className='flex flex-wrap items-baseline gap-3'>
-                  {typeName && <Flag variant='navy'>{typeName}</Flag>}
-                  {categoryName && (
-                    <span className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
-                      {categoryName}
-                    </span>
-                  )}
-                </div>
-                <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:text-[18px]'>
-                  <Highlight
-                    attribute={titleAttr}
+              <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:text-[18px]'>
+                <Highlight
+                  attribute={titleAttr}
+                  hit={hit as unknown as Hit<Record<string, string>>}
+                  classNames={{
+                    highlighted: 'bg-ed-navy-tint text-ed-navy-ink not-italic',
+                    nonHighlighted: '',
+                  }}
+                />
+              </h3>
+              {hit.description && (
+                <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 [&_mark]:bg-ed-navy-tint [&_mark]:text-ed-navy-ink'>
+                  <Snippet
+                    attribute='description'
                     hit={hit as unknown as Hit<Record<string, string>>}
                     classNames={{
                       highlighted:
@@ -263,27 +318,33 @@ const EditorialHits: FC = () => {
                       nonHighlighted: '',
                     }}
                   />
-                </h3>
-                {hit.description && (
-                  <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 [&_mark]:bg-ed-navy-tint [&_mark]:text-ed-navy-ink'>
-                    <Snippet
-                      attribute='description'
-                      hit={hit as unknown as Hit<Record<string, string>>}
-                      classNames={{
-                        highlighted:
-                          'bg-ed-navy-tint text-ed-navy-ink not-italic',
-                        nonHighlighted: '',
-                      }}
-                    />
-                  </p>
-                )}
-                {sourceUrl && (
-                  <p className='mt-2 break-all font-mono-ed text-[11px] tracking-[0.04em] text-ed-ink-4'>
-                    {sourceUrl}
-                  </p>
-                )}
-              </div>
-            </a>
+                </p>
+              )}
+              {sourceUrl && (
+                <p className='mt-2 break-all font-mono-ed text-[11px] tracking-[0.04em] text-ed-ink-4'>
+                  {sourceUrl}
+                </p>
+              )}
+            </div>
+          </>
+        );
+
+        return (
+          <li key={hit.objectID} role='listitem'>
+            {external ? (
+              <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={rowClass}
+              >
+                {row}
+              </a>
+            ) : (
+              <Link to={href} className={rowClass}>
+                {row}
+              </Link>
+            )}
           </li>
         );
       })}
@@ -364,6 +425,10 @@ const EditorialPagination: FC = () => {
 
 const SearchPage: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  // Read once: InstantSearch only applies initialUiState on mount, and
+  // SearchBoxBridge follows later ?q= changes itself.
+  const [initialQuery] = useState(() => searchParams.get('q') ?? '');
 
   return (
     <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
@@ -375,7 +440,11 @@ const SearchPage: FC = () => {
         />
       </Helmet>
 
-      <InstantSearch searchClient={searchClient} indexName='bettergov'>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName='bettergov'
+        initialUiState={{ bettergov: { query: initialQuery } }}
+      >
         {/* Navy-gradient masthead with BigSearch */}
         <PageMasthead
           title='Search GOV.PH'
@@ -419,13 +488,19 @@ const SearchPage: FC = () => {
                   <ClearAllButton className='text-[10px]' />
                 </div>
 
-                <EditorialRefinementList attribute='type' label='Type' />
                 <EditorialRefinementList
-                  attribute='category'
+                  attribute='type'
+                  label='Type'
+                  formatLabel={typeFacetLabel}
+                />
+                {/* Nested paths: a facet on the { name, slug } object itself
+                    is always empty, which hid both lists. */}
+                <EditorialRefinementList
+                  attribute='category.name'
                   label='Category'
                 />
                 <EditorialRefinementList
-                  attribute='subcategory'
+                  attribute='subcategory.name'
                   label='Subcategory'
                 />
               </aside>

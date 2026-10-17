@@ -72,6 +72,13 @@ const MobileMenu: FC<Props> = ({ onClose }) => {
           className='mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-ed-rule pt-4 font-sans-ed text-sm text-ed-ink-2'
         >
           <Link
+            to='/philippines/hotlines'
+            onClick={onClose}
+            className='text-ed-ink-2 no-underline hover:text-ed-navy'
+          >
+            {t('masthead.hotlines', 'Hotlines')}
+          </Link>
+          <Link
             to='/contact'
             onClick={onClose}
             className='text-ed-ink-2 no-underline hover:text-ed-navy'

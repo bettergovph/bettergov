@@ -164,6 +164,12 @@ export const mainNavigation: NavigationItem[] = [
         blurb: 'DBM Compass — national budget allocations and releases.',
       },
       {
+        label: "People's Budget Portal",
+        href: 'https://budget.bettergov.ph',
+        target: '_blank',
+        blurb: 'The national budget by department, program, and region.',
+      },
+      {
         label: 'DPWH Transparency',
         href: 'https://transparency.dpwh.gov.ph',
         target: '_blank',
