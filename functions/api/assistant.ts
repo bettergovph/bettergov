@@ -1,4 +1,10 @@
 import { Env } from '../types';
+import { readJsonRequest } from '../lib/request-body';
+import {
+  boundedEventStream,
+  createDeadline,
+  readBoundedText,
+} from '../lib/bounded-io';
 
 /**
  * Server-side proxy for the eGovAI "govph" engine.
@@ -22,6 +28,10 @@ export const MAX_QUESTION_LENGTH = 4000;
 const MAX_SESSION_ID_LENGTH = 200;
 const MAX_TOKEN_LENGTH = 1000;
 const JSON_UPSTREAM_TIMEOUT_MS = 90_000;
+export const STREAM_UPSTREAM_TIMEOUT_MS = 180_000;
+export const STREAM_IDLE_TIMEOUT_MS = 60_000;
+const MAX_UPSTREAM_JSON_BYTES = 2 * 1024 * 1024;
+const MAX_UPSTREAM_STREAM_BYTES = 4 * 1024 * 1024;
 // Workers' fetch sends no User-Agent by default and the eGovAI edge answers
 // an empty one with a bare 403, so always identify ourselves.
 export const UPSTREAM_USER_AGENT = 'GOVPH-Chatbot/1.0 (+https://www.gov.ph)';
@@ -73,7 +83,14 @@ export function resolveEgovAiBaseUrl(raw: string | undefined): string | null {
   } catch {
     return null;
   }
-  if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+  if (
+    url.protocol !== 'https:' ||
+    url.username ||
+    url.password ||
+    url.search ||
+    url.hash
+  )
+    return null;
 
   const path = url.pathname
     .replace(/\/api\/v1\/engines\/generate(?:_stream)?\/?$/, '')
@@ -184,7 +201,7 @@ const UNAVAILABLE = 'The assistant is temporarily unavailable.';
  * Map an upstream failure to what the browser should see. Validation and
  * rate-limit responses pass through with their message; anything that points
  * at our own configuration (bad key, unknown engine, wrong base URL) or an
- * upstream outage becomes a generic 502 — the detail is logged server-side.
+ * upstream outage becomes a generic 502; logs record status without bodies.
  */
 export function mapUpstreamError(
   status: number,
@@ -209,8 +226,12 @@ export function mapUpstreamError(
   return { status: 502, error: 'Assistant unavailable', message: UNAVAILABLE };
 }
 
-async function readUpstreamBody(response: Response): Promise<unknown> {
-  const text = await response.text();
+async function readUpstreamBody(
+  response: Response,
+  signal: AbortSignal,
+  maxBytes = MAX_UPSTREAM_JSON_BYTES
+): Promise<unknown> {
+  const text = await readBoundedText(response.body, maxBytes, signal);
   try {
     return text ? JSON.parse(text) : null;
   } catch {
@@ -230,33 +251,9 @@ async function handle(
     });
   }
 
-  const contentType = request.headers.get('content-type');
-  if (!contentType || !contentType.includes('application/json')) {
-    return json(
-      {
-        error: 'Unsupported Media Type. Content-Type must be application/json',
-      },
-      415
-    );
-  }
-
-  let raw: unknown;
-  try {
-    raw = await request.json();
-  } catch (parseError) {
-    return json(
-      {
-        error: 'Invalid JSON in request body',
-        message:
-          parseError instanceof Error
-            ? parseError.message
-            : 'JSON parse failed',
-      },
-      400
-    );
-  }
-
-  const parsed = parseAssistantRequest(raw);
+  const input = await readJsonRequest(request);
+  if (!input.ok) return input.response;
+  const parsed = parseAssistantRequest(input.value);
   if (!parsed.ok) {
     return json({ error: parsed.error }, 400);
   }
@@ -278,9 +275,14 @@ async function handle(
   const endpoint = mode === 'stream' ? 'generate_stream' : 'generate';
   const upstreamUrl = `${config.baseUrl}/api/v1/engines/${endpoint}`;
 
-  let upstream: Response;
+  const deadline = createDeadline(
+    request.signal,
+    mode === 'json' ? JSON_UPSTREAM_TIMEOUT_MS : STREAM_UPSTREAM_TIMEOUT_MS
+  );
+  let streaming = false;
   try {
-    upstream = await fetch(upstreamUrl, {
+    if (deadline.signal.aborted) throw new Error('Request interrupted');
+    const upstream = await fetch(upstreamUrl, {
       method: 'POST',
       headers: {
         'X-EGOVAI-API-KEY': config.apiKey,
@@ -291,60 +293,74 @@ async function handle(
         'User-Agent': UPSTREAM_USER_AGENT,
       },
       body: JSON.stringify(parsed.value),
-      // A streamed answer can legitimately run long; only the JSON route
-      // gets a hard ceiling.
-      signal:
-        mode === 'json' ? AbortSignal.timeout(JSON_UPSTREAM_TIMEOUT_MS) : null,
+      redirect: 'manual',
+      signal: deadline.signal,
     });
-  } catch (fetchError) {
-    console.error(
-      `[assistant] upstream ${endpoint} request failed:`,
-      fetchError instanceof Error ? fetchError.message : fetchError
-    );
-    return json({ error: 'Assistant unavailable', message: UNAVAILABLE }, 502);
-  }
 
-  if (!upstream.ok) {
-    const body = await readUpstreamBody(upstream);
-    console.error(
-      `[assistant] upstream ${endpoint} responded ${upstream.status}:`,
-      extractUpstreamMessage(body) ??
-        (typeof body === 'string' ? body.slice(0, 500) : 'no message')
-    );
-    const mapped = mapUpstreamError(upstream.status, body);
-    return json(
-      { error: mapped.error, message: mapped.message },
-      mapped.status,
-      mapped.status === 429
-        ? { 'Retry-After': upstream.headers.get('Retry-After') || '60' }
-        : undefined
-    );
-  }
-
-  if (mode === 'stream') {
-    const upstreamType = upstream.headers.get('content-type') ?? '';
-    if (!upstreamType.includes('text/event-stream')) {
-      // The engine answered without streaming; hand the JSON back as-is so
-      // the client can still read the answer.
-      const body = await readUpstreamBody(upstream);
-      return json(body);
+    if (!upstream.ok) {
+      // Do not follow redirects, log provider bodies, or expose arbitrary errors.
+      console.error(
+        `[assistant] upstream ${endpoint} responded ${upstream.status}`
+      );
+      let body: unknown = null;
+      if (upstream.status === 422 || upstream.status === 429) {
+        body = await readUpstreamBody(upstream, deadline.signal, 64 * 1024);
+      } else {
+        void upstream.body?.cancel().catch(() => {});
+      }
+      const mapped = mapUpstreamError(upstream.status, body);
+      return json(
+        { error: mapped.error, message: mapped.message },
+        mapped.status,
+        mapped.status === 429
+          ? { 'Retry-After': upstream.headers.get('Retry-After') || '60' }
+          : undefined
+      );
     }
-    return new Response(upstream.body, {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/event-stream; charset=utf-8',
-        'Cache-Control': 'no-cache, no-transform',
-        'X-Accel-Buffering': 'no',
-      },
-    });
-  }
 
-  const body = await readUpstreamBody(upstream);
-  if (!isRecord(body)) {
-    console.error('[assistant] upstream generate returned a non-object body');
+    const upstreamType = upstream.headers
+      .get('content-type')
+      ?.split(';')[0]
+      .trim()
+      .toLowerCase();
+    if (
+      mode === 'stream' &&
+      upstreamType === 'text/event-stream' &&
+      upstream.body
+    ) {
+      const body = boundedEventStream(
+        upstream.body,
+        deadline,
+        MAX_UPSTREAM_STREAM_BYTES,
+        STREAM_IDLE_TIMEOUT_MS
+      );
+      streaming = true;
+      return new Response(body, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/event-stream; charset=utf-8',
+          'Cache-Control': 'no-cache, no-transform',
+          'X-Accel-Buffering': 'no',
+        },
+      });
+    }
+
+    if (upstreamType !== 'application/json') {
+      void upstream.body?.cancel().catch(() => {});
+      throw new Error('Invalid upstream response');
+    }
+    // Also supports an engine that returns JSON on the streaming endpoint.
+    const body = await readUpstreamBody(upstream, deadline.signal);
+    if (!isRecord(body)) throw new Error('Invalid upstream response');
+    return json(body);
+  } catch {
+    deadline.abort();
+    console.error(`[assistant] upstream ${endpoint} request failed`);
     return json({ error: 'Assistant unavailable', message: UNAVAILABLE }, 502);
+  } finally {
+    // For SSE the stream owns cleanup until EOF, cancellation, or a limit.
+    if (!streaming) deadline.dispose();
   }
-  return json(body);
 }
 
 /** `POST /api/assistant` — single JSON answer. */

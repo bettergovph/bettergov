@@ -1,0 +1,574 @@
+{
+  "observedAt": "2026-10-16T23:53:00Z",
+  "note": "Counts are affected package entries, including transitive effects; they are not confirmed exploitable application vulnerabilities.",
+  "root": {
+    "info": 0,
+    "low": 4,
+    "moderate": 12,
+    "high": 28,
+    "critical": 2,
+    "total": 46
+  },
+  "rootOmitDev": {
+    "info": 0,
+    "low": 3,
+    "moderate": 5,
+    "high": 7,
+    "critical": 0,
+    "total": 15
+  },
+  "dataTools": {
+    "info": 0,
+    "low": 0,
+    "moderate": 1,
+    "high": 0,
+    "critical": 0,
+    "total": 1
+  },
+  "packages": [
+    {
+      "name": "@babel/core",
+      "severity": "low",
+      "direct": false,
+      "versions": ["7.29.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-4x5r-pxfx-6jf8"],
+      "fixAvailable": true
+    },
+    {
+      "name": "@remix-run/router",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["1.23.2"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-2j2x-hqr9-3h42"],
+      "fixAvailable": true
+    },
+    {
+      "name": "@semantic-release/changelog",
+      "severity": "high",
+      "direct": true,
+      "versions": ["6.0.3"],
+      "viaPackages": ["semantic-release"],
+      "advisories": [],
+      "fixAvailable": {
+        "name": "@semantic-release/changelog",
+        "version": "5.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "@semantic-release/commit-analyzer",
+      "severity": "high",
+      "direct": false,
+      "versions": ["13.0.1"],
+      "viaPackages": ["micromatch", "semantic-release"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "@semantic-release/git",
+      "severity": "high",
+      "direct": true,
+      "versions": ["10.0.1"],
+      "viaPackages": ["micromatch", "semantic-release"],
+      "advisories": [],
+      "fixAvailable": false
+    },
+    {
+      "name": "@semantic-release/github",
+      "severity": "high",
+      "direct": false,
+      "versions": ["12.0.8"],
+      "viaPackages": ["semantic-release"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "@semantic-release/npm",
+      "severity": "high",
+      "direct": false,
+      "versions": ["13.1.5"],
+      "viaPackages": ["semantic-release"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "@semantic-release/release-notes-generator",
+      "severity": "high",
+      "direct": false,
+      "versions": ["14.1.1"],
+      "viaPackages": ["semantic-release"],
+      "advisories": [],
+      "fixAvailable": {
+        "name": "@semantic-release/changelog",
+        "version": "5.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "@sigstore/core",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["3.2.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-jfc7-64v2-mr8c"],
+      "fixAvailable": true
+    },
+    {
+      "name": "@sigstore/verify",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["3.1.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-xgjw-pm74-86q4"],
+      "fixAvailable": true
+    },
+    {
+      "name": "@vitest/mocker",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["4.1.6"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-82fw-gwwq-j7x9"],
+      "fixAvailable": true
+    },
+    {
+      "name": "baseline-browser-mapping",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["2.10.31"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-w5vr-8v7q-w6rv"],
+      "fixAvailable": true
+    },
+    {
+      "name": "brace-expansion",
+      "severity": "high",
+      "direct": false,
+      "versions": ["1.1.14", "2.1.0", "5.0.5", "5.0.6"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-jxxr-4gwj-5jf2",
+        "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+        "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "braces",
+      "severity": "high",
+      "direct": false,
+      "versions": ["3.0.3"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"],
+      "fixAvailable": {
+        "name": "@semantic-release/changelog",
+        "version": "5.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "browserslist",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.28.2"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+        "https://github.com/advisories/GHSA-73wf-gq98-2v4g"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "dompurify",
+      "severity": "low",
+      "direct": true,
+      "versions": ["3.4.13"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-p98j-92pf-mc4p",
+        "https://github.com/advisories/GHSA-6688-9rhm-gjv2"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "esbuild",
+      "severity": "low",
+      "direct": false,
+      "versions": ["0.27.3", "0.27.7", "0.28.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-g7r4-m6w7-qqqr"],
+      "fixAvailable": true
+    },
+    {
+      "name": "fast-uri",
+      "severity": "high",
+      "direct": false,
+      "versions": ["3.1.2"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
+        "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
+        "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
+        "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
+        "https://github.com/advisories/GHSA-jqff-g426-hqxp",
+        "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
+        "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
+        "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "handlebars",
+      "severity": "critical",
+      "direct": false,
+      "versions": ["4.7.9"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-xw65-4hp5-5hc7",
+        "https://github.com/advisories/GHSA-8r5x-fm3f-whwj",
+        "https://github.com/advisories/GHSA-p8wg-vrv2-v86f"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "http-cache-semantics",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.2.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-ch52-4w7c-c8xp"],
+      "fixAvailable": true
+    },
+    {
+      "name": "i18next-http-backend",
+      "severity": "low",
+      "direct": true,
+      "versions": ["3.0.6"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-xvq9-wjp8-hwqf"],
+      "fixAvailable": {
+        "name": "i18next-http-backend",
+        "version": "4.0.3",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "ip-address",
+      "severity": "high",
+      "direct": false,
+      "versions": ["10.1.1"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-mwp4-54f8-5fhr",
+        "https://github.com/advisories/GHSA-4xrf-jv44-h6hh",
+        "https://github.com/advisories/GHSA-22jq-vg5j-6vgg",
+        "https://github.com/advisories/GHSA-rpw4-54j3-4h4q",
+        "https://github.com/advisories/GHSA-j6r3-76f7-8jcv",
+        "https://github.com/advisories/GHSA-h3mg-xc3c-68pw"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "js-yaml",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.1.1"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+        "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+        "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+        "https://github.com/advisories/GHSA-2883-xcg3-v3hh"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "jsdom",
+      "severity": "high",
+      "direct": true,
+      "versions": ["26.1.0"],
+      "viaPackages": ["ws"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "micromatch",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.0.8"],
+      "viaPackages": ["braces"],
+      "advisories": [],
+      "fixAvailable": {
+        "name": "@semantic-release/changelog",
+        "version": "5.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "miniflare",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.20260518.0"],
+      "viaPackages": ["sharp", "undici", "ws"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "nanoid",
+      "severity": "high",
+      "direct": false,
+      "versions": ["3.3.12"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
+        "https://github.com/advisories/GHSA-2v37-7h3g-55p8"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "npm",
+      "severity": "high",
+      "direct": false,
+      "versions": ["11.14.1"],
+      "viaPackages": ["pacote", "tar"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "pacote",
+      "severity": "high",
+      "direct": false,
+      "versions": ["21.5.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-w4pp-8pjf-rmxw"],
+      "fixAvailable": true
+    },
+    {
+      "name": "postcss",
+      "severity": "high",
+      "direct": false,
+      "versions": ["8.5.15"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
+        "https://github.com/advisories/GHSA-r28c-9q8g-f849"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "postcss-selector-parser",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["7.1.1"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-w9m9-85wc-3x92",
+        "https://github.com/advisories/GHSA-rj75-hqrm-r3gf"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "qs",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["6.15.2"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-x5fp-wj9c-mxmx",
+        "https://github.com/advisories/GHSA-4mjr-xmp4-gh2g"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "react-router",
+      "severity": "moderate",
+      "direct": false,
+      "versions": ["6.30.3"],
+      "viaPackages": ["@remix-run/router"],
+      "advisories": [
+        "https://github.com/advisories/GHSA-wrjc-x8rr-h8h6",
+        "https://github.com/advisories/GHSA-337j-9hxr-rhxg",
+        "https://github.com/advisories/GHSA-2j2x-hqr9-3h42"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "react-router-dom",
+      "severity": "moderate",
+      "direct": true,
+      "versions": ["6.30.3"],
+      "viaPackages": ["@remix-run/router", "react-router"],
+      "advisories": ["https://github.com/advisories/GHSA-jjmj-jmhj-qwj2"],
+      "fixAvailable": true
+    },
+    {
+      "name": "semantic-release",
+      "severity": "high",
+      "direct": true,
+      "versions": ["25.0.3"],
+      "viaPackages": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/github",
+        "@semantic-release/npm",
+        "@semantic-release/release-notes-generator",
+        "micromatch"
+      ],
+      "advisories": [],
+      "fixAvailable": {
+        "name": "@semantic-release/changelog",
+        "version": "5.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "sharp",
+      "severity": "high",
+      "direct": false,
+      "versions": ["0.34.5"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
+        "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+        "https://github.com/advisories/GHSA-wq5f-xc86-pv6w"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "sigstore",
+      "severity": "high",
+      "direct": false,
+      "versions": ["4.1.0"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-52v5-jr5w-gjxr"],
+      "fixAvailable": true
+    },
+    {
+      "name": "source-map-js",
+      "severity": "high",
+      "direct": false,
+      "versions": ["1.2.1"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-68fv-2mgg-jv7q"],
+      "fixAvailable": true
+    },
+    {
+      "name": "svgo",
+      "severity": "high",
+      "direct": false,
+      "versions": ["3.3.3"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-2p49-hgcm-8545",
+        "https://github.com/advisories/GHSA-w27v-7q3p-w38r",
+        "https://github.com/advisories/GHSA-4vpr-x523-8j87"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "tar",
+      "severity": "critical",
+      "direct": false,
+      "versions": ["7.5.13"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-vmf3-w455-68vh",
+        "https://github.com/advisories/GHSA-w8wr-v893-vjvp",
+        "https://github.com/advisories/GHSA-23hp-3jrh-7fpw",
+        "https://github.com/advisories/GHSA-8x88-c5mf-7j5w",
+        "https://github.com/advisories/GHSA-gvwx-54wh-qm9j",
+        "https://github.com/advisories/GHSA-r292-9mhp-454m"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "undici",
+      "severity": "high",
+      "direct": false,
+      "versions": ["6.25.0", "7.24.8", "7.25.0"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-vmh5-mc38-953g",
+        "https://github.com/advisories/GHSA-p88m-4jfj-68fv",
+        "https://github.com/advisories/GHSA-vxpw-j846-p89q",
+        "https://github.com/advisories/GHSA-hm92-r4w5-c3mj",
+        "https://github.com/advisories/GHSA-g8m3-5g58-fq7m",
+        "https://github.com/advisories/GHSA-pr7r-676h-xcf6",
+        "https://github.com/advisories/GHSA-8xcm-r25x-g524",
+        "https://github.com/advisories/GHSA-4cwx-7wf7-3272",
+        "https://github.com/advisories/GHSA-m8rv-5g2x-5cg5",
+        "https://github.com/advisories/GHSA-jr45-8vmc-qm54",
+        "https://github.com/advisories/GHSA-v3r7-h72x-cjcm",
+        "https://github.com/advisories/GHSA-35p6-xmwp-9g52",
+        "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
+        "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
+        "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
+        "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
+        "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
+        "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
+        "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
+        "https://github.com/advisories/GHSA-w293-vg96-wgc3",
+        "https://github.com/advisories/GHSA-8436-99hf-9mmv",
+        "https://github.com/advisories/GHSA-rx4f-c7p8-82vq"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "uuid",
+      "severity": "moderate",
+      "direct": true,
+      "versions": ["9.0.1"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-w5hq-g745-h8pq"],
+      "fixAvailable": {
+        "name": "uuid",
+        "version": "14.0.3",
+        "isSemVerMajor": true
+      }
+    },
+    {
+      "name": "vite",
+      "severity": "high",
+      "direct": true,
+      "versions": ["7.3.3"],
+      "viaPackages": [],
+      "advisories": [
+        "https://github.com/advisories/GHSA-v6wh-96g9-6wx3",
+        "https://github.com/advisories/GHSA-fx2h-pf6j-xcff"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "vitest",
+      "severity": "moderate",
+      "direct": true,
+      "versions": ["4.1.6"],
+      "viaPackages": ["@vitest/mocker"],
+      "advisories": ["https://github.com/advisories/GHSA-82fw-gwwq-j7x9"],
+      "fixAvailable": true
+    },
+    {
+      "name": "wrangler",
+      "severity": "moderate",
+      "direct": true,
+      "versions": ["4.93.0"],
+      "viaPackages": ["esbuild", "miniflare"],
+      "advisories": [],
+      "fixAvailable": true
+    },
+    {
+      "name": "ws",
+      "severity": "high",
+      "direct": false,
+      "versions": ["8.20.1"],
+      "viaPackages": [],
+      "advisories": ["https://github.com/advisories/GHSA-96hv-2xvq-fx4p"],
+      "fixAvailable": true
+    }
+  ]
+}

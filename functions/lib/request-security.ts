@@ -69,6 +69,7 @@ function secureResponse(
   headers.set('Vary', [...vary].join(', '));
   // Rate limits and credentialed responses must not be cached across clients.
   headers.set('Cache-Control', 'no-store, no-transform');
+  headers.set('X-Content-Type-Options', 'nosniff');
   if (origin && isAllowedOrigin(origin)) {
     headers.set('Access-Control-Allow-Origin', origin);
     headers.set('Access-Control-Allow-Credentials', 'true');

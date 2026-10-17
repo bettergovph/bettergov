@@ -1,0 +1,61 @@
+src/components/__tests__/NewsAndHolidays.test.tsx(141,51): error TS2345: Argument of type 'null' is not assignable to parameter of type 'NewsArticleDetail'.
+src/components/home/InfoWidgets.tsx(22,20): error TS2604: JSX element type 'Icon' does not have any construct or call signatures.
+src/components/home/InfoWidgets.tsx(22,20): error TS2786: 'Icon' cannot be used as a JSX component.
+  Its type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> | ForwardRefExoticComponent<...> | ((iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<...>) | typeof index' is not a valid JSX element type.
+    Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ElementType'.
+      Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+        Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/components/home/InfoWidgets.tsx(117,50): error TS2339: Property 'icon' does not exist on type 'WeatherData'.
+src/components/home/NewsSection.tsx(29,29): error TS2339: Property 'id' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(30,36): error TS2339: Property 'imageUrl' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(34,27): error TS2339: Property 'category' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(35,28): error TS2339: Property 'category' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(38,47): error TS2339: Property 'date' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(45,38): error TS2339: Property 'excerpt' does not exist on type 'NewsItem'.
+src/components/home/NewsSection.tsx(48,39): error TS2339: Property 'id' does not exist on type 'NewsItem'.
+src/components/home/ServicesSection.tsx(28,20): error TS2604: JSX element type 'Icon' does not have any construct or call signatures.
+src/components/home/ServicesSection.tsx(28,20): error TS2786: 'Icon' cannot be used as a JSX component.
+  Its type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> | ForwardRefExoticComponent<...> | ((iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<...>) | typeof index' is not a valid JSX element type.
+    Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ElementType'.
+      Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+        Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/components/search/MeilisearchInstantSearch.tsx(115,46): error TS2322: Type 'SearchHit' is not assignable to type 'Hit<BaseHit>'.
+  Property '__position' is missing in type 'SearchHit' but required in type '{ __position: number; __queryID?: string | undefined; }'.
+src/components/search/MeilisearchInstantSearch.tsx(122,42): error TS2339: Property 'name' does not exist on type 'string | { name: string; slug: string; }'.
+  Property 'name' does not exist on type 'string'.
+src/components/search/MeilisearchInstantSearch.tsx(123,17): error TS2322: Type 'SearchHit' is not assignable to type 'Hit<BaseHit>'.
+  Property '__position' is missing in type 'SearchHit' but required in type '{ __position: number; __queryID?: string | undefined; }'.
+src/components/search/MeilisearchInstantSearch.tsx(132,36): error TS2339: Property 'name' does not exist on type 'string | { name: string; slug: string; }'.
+  Property 'name' does not exist on type 'string'.
+src/components/search/MeilisearchInstantSearch.tsx(134,17): error TS2322: Type 'SearchHit' is not assignable to type 'Hit<BaseHit>'.
+  Property '__position' is missing in type 'SearchHit' but required in type '{ __position: number; __queryID?: string | undefined; }'.
+src/components/search/MeilisearchInstantSearch.tsx(140,46): error TS2322: Type 'SearchHit' is not assignable to type 'Hit<BaseHit>'.
+  Property '__position' is missing in type 'SearchHit' but required in type '{ __position: number; __queryID?: string | undefined; }'.
+src/components/ui/Breadcrumb.tsx(15,39): error TS2552: Cannot find name 'LiHTMLAttributes'. Did you mean 'HTMLAttributes'?
+src/components/ui/Breadcrumb.tsx(20,39): error TS2552: Cannot find name 'AnchorHTMLAttributes'. Did you mean 'HTMLAttributes'?
+src/data/news.ts(5,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/data/news.ts(17,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/data/news.ts(29,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/data/news.ts(41,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/data/news.ts(53,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/data/news.ts(65,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'NewsItem'.
+src/lib/weather.ts(42,9): error TS2322: Type '{ location: string; temperature: number; condition: any; icon: string; humidity: any; windSpeed: any; pressure: any; visibility: number; }[]' is not assignable to type 'WeatherData[]'.
+  Property 'description' is missing in type '{ location: string; temperature: number; condition: any; icon: string; humidity: any; windSpeed: any; pressure: any; visibility: number; }' but required in type 'WeatherData'.
+src/pages/data/weather.tsx(24,6): error TS2604: JSX element type 'Icon' does not have any construct or call signatures.
+src/pages/data/weather.tsx(24,6): error TS2786: 'Icon' cannot be used as a JSX component.
+  Its type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> | ForwardRefExoticComponent<...> | ((iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<...>) | typeof index' is not a valid JSX element type.
+    Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ElementType'.
+      Type '(iconName: string, iconNode: IconNode) => ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+        Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/pages/flood-control-projects/table.tsx(357,34): error TS2345: Argument of type '{}' is not assignable to parameter of type 'string'.
+src/pages/flood-control-projects/table.tsx(358,34): error TS2345: Argument of type '{}' is not assignable to parameter of type 'string'.
+src/pages/government/departments/components/DepartmentsSidebar.tsx(36,60): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | number | boolean'.
+src/pages/government/departments/components/DepartmentsSidebar.tsx(56,21): error TS2322: Type 'unknown' is not assignable to type 'Key | null | undefined'.
+src/pages/government/executive/_ExecutiveOfficePage.tsx(158,17): error TS2322: Type '{ num: string; label: string; meta: string; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'num' does not exist on type 'IntrinsicAttributes & Props'.
+src/pages/government/local/components/LocalLayout.tsx(9,53): error TS2322: Type '{ currentRegion: string | undefined; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'currentRegion' does not exist on type 'IntrinsicAttributes'.
+src/pages/sitemap/index.tsx(175,15): error TS2322: Type '{ num: string; label: string; meta: string; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'num' does not exist on type 'IntrinsicAttributes & Props'.
+src/pages/travel/communicating/index.tsx(164,21): error TS2322: Type '{ num: string; label: string; meta: string; }' is not assignable to type 'IntrinsicAttributes & Props'.
+  Property 'num' does not exist on type 'IntrinsicAttributes & Props'.

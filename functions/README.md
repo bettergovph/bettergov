@@ -57,6 +57,60 @@ Cloudflare's edge protections/WAF. Static assets (including `/api/projects.json`
 stay on Cloudflare's asset-serving path and do not consume Worker API quotas.
 Other Workers outside this repository need the same policy applied separately.
 
+### Assistant and report request boundaries
+
+`/api/assistant`, `/api/assistant/stream`, and `/api/report-hotline` require
+`application/json`, accept at most 64 KiB measured from the body stream, and
+allow 15 seconds to receive it. Missing or false `Content-Length` values do not
+bypass the byte limit. Rejections return `415`, `413`, `408`, or `400` without
+calling a provider. All dynamic responses include `X-Content-Type-Options: nosniff`.
+
+Assistant JSON responses are limited to 2 MiB and 90 seconds. SSE responses
+remain streamed, with a 4 MiB cap, 180-second total deadline, and 60-second idle
+deadline after response headers. Disconnects cancel upstream work;
+`enable_request_signal` enables the incoming disconnect signal in Workers.
+Only HTTPS upstream URLs are accepted, and redirects are never followed with
+credentials. Logs omit provider response bodies.
+
+Hotline reports require a name (200 characters maximum) and issue (4,000), with
+optional corrected information (4,000) and an HTTP(S) source URL (2,048).
+Unknown fields and non-string values are rejected. Older open tabs may send
+`reporterEmail` (up to 254 characters); it is discarded and never forwarded to
+GitHub. The current form does not collect it. Free-text reports must contain no
+private information. GitHub calls have an 8-second timeout, a 256 KiB response
+cap, and no redirects or automatic retries. A timeout can occur after an issue
+was created, so users should check the issue list before retrying.
+
+These limits preserve the existing per-IP quotas and need no database migration
+or additional binding. They do not impose a global provider spending cap or
+prevent direct use of previously exposed credentials.
+
+### Launch hardening rollout
+
+The October 17 API hardening patch is prepared locally; it is not a record of a
+production deployment. Validate the frontend build and both Worker environments
+with the checks below, then smoke-test staging with its own provider configuration.
+Check ordinary search/chat flows and invalid-report rejection; do not create a
+real GitHub issue as a health check. Verify that the configured assistant URL is
+HTTPS and does not redirect before promotion.
+
+Record the current production version for rollback and preserve its static
+security headers. `public/_headers` now records the six header values observed
+on production on October 17; the build copies them to `dist/_headers`.
+Test both an already-open page and a fresh page. Cloudflare
+[gradual deployments](https://developers.cloudflare.com/workers/versions-and-deployments/gradual-deployments/)
+can split traffic between old and new versions while the site keeps serving.
+Start with a small percentage, compare errors, latency, rate-limit rejections,
+and assistant completion rates, then promote or restore the prior version.
+No maintenance window is required by this patch; staging and production smoke
+checks are still necessary. Old versions remain unprotected during a split.
+Hashed frontend assets also require version affinity or matching asset sets
+while traffic is split; never split two frontend versions blindly. The existing
+Git-connected production build performs a single-version deployment. It can
+publish a tested release without a local production API token; a Git revert
+through that pipeline provides a fallback rollback if dashboard/API access is
+unavailable.
+
 ## Same-origin data and search
 
 The browser uses relative URLs, so a site served on `www.gov.ph` makes requests
@@ -241,7 +295,7 @@ API key and secret are attached here and never reach the bundle.
   - Returns `503` when the three required variables are not all set.
   - Upstream `422` and `429` pass through with their message; any other
     upstream failure (bad key, unknown engine, wrong base URL, 5xx, network)
-    becomes a generic `502` and the detail is logged server-side only. Upstream
+    becomes a generic `502` and only the status is logged server-side. Upstream
     stack traces are never forwarded.
   - When the engine replies with `pending_confirmation`, the client shows an
     approval prompt and, on approval, resends the same question and

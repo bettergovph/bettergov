@@ -233,11 +233,6 @@ export default {
                     required: false,
                     description: 'Link to official source',
                   },
-                  {
-                    name: 'reporterEmail',
-                    required: false,
-                    description: 'Contact email of the reporter',
-                  },
                 ],
               },
               {

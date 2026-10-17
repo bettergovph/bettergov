@@ -17,9 +17,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
     issue: '',
     correctInfo: '',
     source: '',
-    reporterEmail: '',
   });
-  const [emailConsent, setEmailConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -142,11 +140,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          // Only include email if consent is given
-          reporterEmail: emailConsent ? formData.reporterEmail : '',
-        }),
+        body: JSON.stringify(formData),
         signal: controller.signal,
       });
 
@@ -170,9 +164,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
           issue: '',
           correctInfo: '',
           source: '',
-          reporterEmail: '',
         });
-        setEmailConsent(false);
       } else {
         setSubmitStatus({
           type: 'error',
@@ -296,6 +288,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                   <input
                     type='text'
                     required
+                    maxLength={200}
                     value={formData.hotlineName}
                     onChange={e =>
                       setFormData({ ...formData, hotlineName: e.target.value })
@@ -311,6 +304,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                   </label>
                   <textarea
                     required
+                    maxLength={4000}
                     value={formData.issue}
                     onChange={e =>
                       setFormData({ ...formData, issue: e.target.value })
@@ -326,6 +320,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                     What should it be? (optional)
                   </label>
                   <textarea
+                    maxLength={4000}
                     value={formData.correctInfo}
                     onChange={e =>
                       setFormData({ ...formData, correctInfo: e.target.value })
@@ -342,6 +337,7 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                   </label>
                   <input
                     type='url'
+                    maxLength={2048}
                     value={formData.source}
                     onChange={e =>
                       setFormData({ ...formData, source: e.target.value })
@@ -349,46 +345,6 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
                     className='w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Link to official source confirming the correct information'
                   />
-                </div>
-
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Your Email (optional)
-                  </label>
-                  <input
-                    type='email'
-                    value={formData.reporterEmail}
-                    onChange={e =>
-                      setFormData({
-                        ...formData,
-                        reporterEmail: e.target.value,
-                      })
-                    }
-                    className='w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500'
-                    placeholder='your.email@example.com'
-                    disabled={!emailConsent}
-                  />
-                  <div className='mt-2'>
-                    <label className='flex items-start'>
-                      <input
-                        type='checkbox'
-                        checked={emailConsent}
-                        onChange={e => {
-                          setEmailConsent(e.target.checked);
-                          if (!e.target.checked) {
-                            setFormData({ ...formData, reporterEmail: '' });
-                          }
-                        }}
-                        className='mt-1 mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
-                      />
-                      <span className='text-xs text-gray-600'>
-                        I consent to sharing my email address. It will be
-                        visible only to maintainers (not in the public GitHub
-                        issue) so they can contact me for clarification if
-                        needed.
-                      </span>
-                    </label>
-                  </div>
                 </div>
 
                 <div className='flex gap-3 pt-4'>
@@ -403,9 +359,8 @@ const ReportHotlineModal: FC<ReportHotlineModalProps> = ({
               </form>
 
               <p className='text-xs text-gray-500 mt-4 text-center'>
-                Your report will be publicly visible on GitHub. Your email (if
-                provided) will only be visible to maintainers in a private
-                comment.
+                Your report will be publicly visible on GitHub. Do not include
+                personal contact details or other private information.
               </p>
             </>
           )}

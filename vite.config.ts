@@ -9,6 +9,20 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5125,
     strictPort: true,
+    fs: {
+      // Keep Vite's default secret-file protections and also block Wrangler's
+      // runtime secrets/state, which must never be served by the web preview.
+      deny: [
+        '.env',
+        '.env.*',
+        '*.{crt,pem}',
+        '**/.git/**',
+        '**/.dev.vars',
+        '**/.dev.vars.*',
+        '**/.wrangler/**',
+        '**/.worktrees/**',
+      ],
+    },
     // Dynamic APIs use the Worker on 127.0.0.1:5525 during development.
     // Static files such as /api/projects.json stay served by Vite.
     proxy: {

@@ -7,6 +7,7 @@
   "name": "govph-dev",
   "account_id": "aad322f46c1fe4bdd854d8b1367b1d7f",
   "compatibility_date": "2025-11-17",
+  "compatibility_flags": ["enable_request_signal"],
   "main": "functions/index.ts",
   "workers_dev": true,
   "keep_vars": true,

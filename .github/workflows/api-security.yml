@@ -7,6 +7,8 @@ on:
       - 'functions/**'
       - 'src/lib/**'
       - 'src/components/search/**'
+      - 'src/components/ReportHotlineModal.tsx'
+      - 'public/_headers'
       - 'src/pages/Search.tsx'
       - 'src/pages/flood-control-projects/**'
       - 'vite.config.ts'
@@ -19,6 +21,8 @@ on:
       - 'functions/**'
       - 'src/lib/**'
       - 'src/components/search/**'
+      - 'src/components/ReportHotlineModal.tsx'
+      - 'public/_headers'
       - 'src/pages/Search.tsx'
       - 'src/pages/flood-control-projects/**'
       - 'vite.config.ts'
@@ -51,6 +55,9 @@ jobs:
           functions/__tests__/api-proxy.test.ts
           functions/__tests__/native-data.test.ts
           functions/__tests__/assistant.test.ts
+          functions/__tests__/api-hardening.test.ts
+          functions/__tests__/request-body.test.ts
+          functions/__tests__/bounded-io.test.ts
           src/lib/__tests__/same-origin-api.test.ts
           src/lib/__tests__/assistant.test.ts
       - name: Build frontend without deployment secrets
