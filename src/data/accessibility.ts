@@ -6,8 +6,8 @@ export const ACCESSIBILITY_REVIEW = {
 };
 
 export const ACCESSIBILITY_SAMPLE = [
-  { path: '/', label: 'Coming soon', title: 'GOV.PH' },
-  { path: '/home', label: 'Home', title: 'GOV.PH' },
+  { path: '/', label: 'Home', title: 'GOV.PH' },
+  { path: '/coming-soon', label: 'Coming soon', title: 'GOV.PH' },
   { path: '/services', label: 'Services', title: 'Government Services' },
   {
     path: '/government',

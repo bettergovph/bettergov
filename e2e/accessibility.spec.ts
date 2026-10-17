@@ -107,7 +107,7 @@ test.describe('Accessibility audit', () => {
   });
 
   test('keyboard users can skip the repeated navigation', async ({ page }) => {
-    await openPage(page, '/home');
+    await openPage(page, '/');
     await page.keyboard.press('Tab');
     const skip = page.getByRole('link', { name: /skip to (main )?content/i });
     await expect(skip).toBeFocused();
@@ -155,7 +155,7 @@ test.describe('Accessibility audit', () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await openPage(page, '/home');
+    await openPage(page, '/');
     const toggle = page.getByRole('button', { name: 'Toggle menu' });
     await toggle.focus();
     await page.keyboard.press('Enter');
@@ -168,7 +168,7 @@ test.describe('Accessibility audit', () => {
 
   test('home entrance animations respect reduced motion', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await openPage(page, '/home');
+    await openPage(page, '/');
     const animations = page.locator('.animate-fade-in, .animate-slide-in');
     expect(await animations.count()).toBeGreaterThan(0);
     const active = await animations.evaluateAll(elements =>

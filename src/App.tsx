@@ -105,10 +105,10 @@ import SalaryGradePage from './pages/government/salary-grade/index';
 import GovPhChatbot from './components/ui/GovPhChatbot';
 import NotFound from './pages/NotFound';
 
-/** Site header, footer and assistant — kept off the full-bleed landing. */
+/** Site header, footer and assistant — kept off the full-bleed coming-soon page. */
 function SiteChrome({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
-  return pathname === '/' ? null : <>{children}</>;
+  return pathname === '/coming-soon' ? null : <>{children}</>;
 }
 
 function App() {
@@ -125,11 +125,10 @@ function App() {
             <GovPhChatbot />
           </SiteChrome>
           <Routes>
-            {/* Coming-soon page until launch; the portal home page lives at
-                /home meanwhile. To restore it, route `/` back to <Home /> and
-                drop SiteChrome. */}
-            <Route path='/' element={<ComingSoon />} />
-            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Home />} />
+            {/* The pre-launch landing, kept for future use. The Worker serves
+                its own placeholder on the public domain until launch. */}
+            <Route path='/coming-soon' element={<ComingSoon />} />
             <Route path='/design'>
               {/* The brand guide presentation is the front door — full
                   bleed, outside the sidebar layout on purpose. */}

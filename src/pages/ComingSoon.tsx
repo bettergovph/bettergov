@@ -4,8 +4,8 @@ import Eyebrow from '../components/v2/ui/Eyebrow';
 import { COAT_OF_ARMS_ALT, COAT_OF_ARMS_SRC, SITE_NAME } from '../lib/brand';
 
 /**
- * Full-bleed coming-soon landing, shown on `/` until launch. App.tsx keeps the
- * site header, footer and assistant off this route.
+ * Full-bleed coming-soon landing at `/coming-soon`, kept for future use.
+ * App.tsx keeps the site header, footer and assistant off this route.
  *
  * From `sm` up, the lockup is a 1920×1080 title card scaled to fit the
  * viewport: each `min(Xvw,Ysvh)` pair is one pixel size on that card (seal
