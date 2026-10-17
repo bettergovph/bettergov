@@ -52,6 +52,10 @@
     "contactUs": "Contact us",
     "searchPlaceholder": "Search services, agencies, and more"
   },
+  "phaseBanner": {
+    "tag": "Beta",
+    "text": "GOV.PH is in beta and under community and security review. We invite you to take part by submitting issues at <tracker>{{url}}</tracker>."
+  },
   "footerNav": {
     "servicesHeading": "Services",
     "governmentHeading": "Government",

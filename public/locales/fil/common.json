@@ -45,6 +45,10 @@
     "contactUs": "Makipag-ugnayan",
     "searchPlaceholder": "Maghanap ng serbisyo, ahensya, at iba pa"
   },
+  "phaseBanner": {
+    "tag": "Beta",
+    "text": "Nasa beta pa ang GOV.PH at kasalukuyang sumasailalim sa pagsusuri ng komunidad at pagsusuring pangseguridad. Inaanyayahan namin kayong makilahok sa pamamagitan ng pagsusumite ng isyu sa <tracker>{{url}}</tracker>."
+  },
   "footerNav": {
     "servicesHeading": "Mga Serbisyo",
     "governmentHeading": "Pamahalaan",
