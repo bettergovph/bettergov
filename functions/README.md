@@ -310,6 +310,33 @@ localhost or development-IP exceptions. Direct Worker calls with an unapproved
 Origin will return `403`. Because the Worker serves `./dist` as static assets, run
 `npm run build` once first if you want the full site from the Worker port.
 
+### 5. Pre-launch gate (`coming-soon.ts`)
+
+Until the launch, the public domain shows a "coming soon" page instead of
+the site, so nothing leaks early. The Worker runs first for every request
+(`assets.run_worker_first: true` in `wrangler.jsonc`) and decides by
+hostname:
+
+- **`www.gov.ph` and `gov.ph`:** every page and asset path returns the
+  placeholder page (`200`, `noindex`, `no-store`, no scripts); `/robots.txt`
+  disallows crawling; only the brand assets the page itself needs
+  (`/coat-of-arms.svg`, `/coat-of-arms-480.png`, the touch icon and the
+  social card) are served from static assets. **The API routes are not
+  gated** — `/api/*`, `/weather` and `/forex` keep working on every
+  hostname.
+- **Any other hostname** (the staging and preview Workers on
+  `*.workers.dev`, local development): untouched. Pages and assets are
+  handed straight to the `ASSETS` binding, which keeps the
+  single-page-application fallback.
+
+**Launch-day switch.** Set the Worker variable `COMING_SOON` to `off` to
+open the public domain without a code change; `wrangler.jsonc` has
+`keep_vars: true`, so a variable set in the dashboard survives later
+deploys (`wrangler secret put COMING_SOON` works too). `on` forces the page
+on any hostname, which is how to preview it on staging. Once the site is
+open for good, delete the gate from `functions/index.ts` and
+`functions/coming-soon.ts`.
+
 ### Web Crawler Architecture
 
 The web crawler is designed with a flexible abstraction layer that allows for multiple crawler implementations:

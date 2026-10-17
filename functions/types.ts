@@ -13,6 +13,14 @@ export interface Env {
   // D1 Database
   BETTERGOV_DB: D1Database;
 
+  // Static assets (wrangler.jsonc `assets.binding`). The Worker runs first
+  // for every request and hands non-API paths to this binding.
+  ASSETS?: Fetcher;
+
+  // Pre-launch gate switch: `off` opens the public domain, `on` forces the
+  // coming-soon page on any hostname. See functions/coming-soon.ts.
+  COMING_SOON?: string;
+
   // Environment variables
   WEATHER_API_KEY?: string;
   OPENWEATHERMAP_API_KEY?: string; // Added this to match the code

@@ -5,6 +5,8 @@ import type { Env } from '../types';
 
 const limiter = { limit: async () => ({ success: true }) };
 const env = {
+  // These suites exercise the launched site, not the pre-launch gate.
+  COMING_SOON: 'off',
   API_RATE_LIMITER: limiter,
   ASSISTANT_RATE_LIMITER: limiter,
   CRAWL_RATE_LIMITER: limiter,

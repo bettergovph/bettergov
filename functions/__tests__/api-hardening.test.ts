@@ -11,6 +11,8 @@ import { MAX_API_BODY_BYTES } from '../lib/request-body';
 
 const limiter = { limit: async () => ({ success: true }) };
 const env = {
+  // These suites exercise the launched site, not the pre-launch gate.
+  COMING_SOON: 'off',
   API_RATE_LIMITER: limiter,
   ASSISTANT_RATE_LIMITER: limiter,
   REPORT_RATE_LIMITER: limiter,

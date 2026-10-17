@@ -339,9 +339,16 @@ describe('native rate limiting', () => {
       namespaces.add(configured.namespace_id);
     }
     expect(namespaces.size).toBe(4);
-    expect(config.assets.run_worker_first).toEqual(
-      expect.arrayContaining(['/api/*', '/weather', '/forex'])
-    );
+    // The Worker must see every API request. Since the pre-launch gate it
+    // sees every request (`true`); an explicit list must still cover the API.
+    const runFirst = config.assets.run_worker_first;
+    expect(
+      runFirst === true ||
+        (Array.isArray(runFirst) &&
+          ['/api/*', '/weather', '/forex'].every(path =>
+            runFirst.includes(path)
+          ))
+    ).toBe(true);
   });
 });
 

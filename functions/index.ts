@@ -18,6 +18,13 @@ import {
 import { Env } from './types';
 import { withRequestSecurity } from './lib/request-security';
 import { onRequest as searchRequest } from './api/search';
+import { comingSoonResponse } from './coming-soon';
+
+// Paths the Worker answers itself. Everything else is a static asset (or the
+// single-page-application fallback) and is handed to the ASSETS binding
+// without touching rate limits or API headers.
+const isWorkerRoute = (path: string): boolean =>
+  path.startsWith('/api/') || path === '/weather' || path === '/forex';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
@@ -72,6 +79,14 @@ export default {
   ): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
+
+    // Pre-launch: the public domain serves only the coming-soon page.
+    const gated = await comingSoonResponse(request, env);
+    if (gated) return gated;
+
+    // The Worker runs first for every request (wrangler.jsonc
+    // `run_worker_first`), so pass pages and assets straight through.
+    if (!isWorkerRoute(path) && env.ASSETS) return env.ASSETS.fetch(request);
 
     return withRequestSecurity(request, env, async () => {
       if (path === '/api/search' || path.startsWith('/api/search/')) {

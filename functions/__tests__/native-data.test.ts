@@ -33,6 +33,8 @@ const weatherKV = { get: vi.fn(), put: vi.fn() };
 const forexKV = { get: vi.fn(), put: vi.fn() };
 const fetchMock = vi.fn<typeof fetch>();
 const env = {
+  // These suites exercise the launched site, not the pre-launch gate.
+  COMING_SOON: 'off',
   API_RATE_LIMITER: limiter,
   WEATHER_KV: weatherKV,
   FOREX_KV: forexKV,
