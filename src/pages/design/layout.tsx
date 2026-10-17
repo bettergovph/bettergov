@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ArrowUpRightIcon } from 'lucide-react';
 import Container from '../../components/v2/ui/Container';
+import { ISSUES_URL } from '../../lib/brand';
 import { cn } from '../../lib/utils';
 import { DESIGN_SECTIONS, SectionDef } from './sections';
 
@@ -122,7 +123,7 @@ const DesignSystemLayout: FC = () => {
                   Brand guide presentation →
                 </NavLink>
                 <a
-                  href='https://github.com/govph/govph-2026/issues'
+                  href={ISSUES_URL}
                   target='_blank'
                   rel='noreferrer'
                   className='inline-flex items-center gap-1.5 font-sans-ed text-[13px] text-ed-ink-2 no-underline transition-colors hover:text-ed-navy'

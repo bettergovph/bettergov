@@ -12,6 +12,7 @@ import BigSearch from '../../components/v2/ui/BigSearch';
 import {
   COAT_OF_ARMS_ALT,
   COAT_OF_ARMS_SRC,
+  REPO_URL,
   SITE_NAME,
   SITE_OWNER,
 } from '../../lib/brand';
@@ -594,7 +595,7 @@ const BrandGuidePage: FC = () => {
               Read the full guidelines <ArrowRightIcon size={15} aria-hidden />
             </Link>
             <a
-              href='https://github.com/govph/govph-2026'
+              href={REPO_URL}
               target='_blank'
               rel='noreferrer'
               className='inline-flex h-11 items-center justify-center gap-2.5 border border-white px-6 font-sans-ed text-sm font-semibold text-white no-underline transition-colors hover:bg-white hover:text-ed-navy-ink'

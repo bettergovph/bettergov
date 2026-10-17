@@ -486,7 +486,7 @@ ${sitemap.join('\n')}
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- Source code and issue tracker: https://github.com/govph/govph-2026
+- Source code and issue tracker: https://github.com/govph/govph
 - Contribution guidelines available at the repository
 - Citizen inquiries: Contact Center ng Bayan — https://contactcenterngbayan.gov.ph (hotline 8888)
 

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SectionHeader from '../../components/v2/ui/SectionHeader';
 import Card from '../../components/v2/ui/Card';
 import ArrowLink from '../../components/v2/ui/ArrowLink';
+import { REPO_URL } from '../../lib/brand';
 import Eyebrow from '../../components/v2/ui/Eyebrow';
 import { DocSection, PageHeader, PagerNav, Prose } from './shared';
 
@@ -137,7 +138,7 @@ const DesignSystemHome: FC = () => (
             style, component, and pattern documented here ships as code in the
             open-source GOV.PH repository.
           </p>
-          <ArrowLink to='https://github.com/govph/govph-2026' external>
+          <ArrowLink to={REPO_URL} external>
             View the source on GitHub
           </ArrowLink>
         </Prose>
