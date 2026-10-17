@@ -176,14 +176,14 @@ module goes through its `serviceCategories`, `criticalHotlines`, and
 services) for the hotlines page; `critical_hotlines.json` is only the short
 list on the home page.
 
-### Refreshing from TalaCMS (optional)
+### Refreshing from eGovCMS (optional)
 
-These files were imported from TalaCMS, and `npm run cms:fetch` can still
-pull TalaCMS's current copy into them. The repository is the source of
+These files were imported from eGovCMS, and `npm run cms:fetch` can still
+pull eGovCMS's current copy into them. The repository is the source of
 truth, though: a fetch overwrites the files wholesale, so it undoes any edit
-made here that wasn't also made in TalaCMS. Review `git diff` and commit only
-the changes you mean to take. The TalaCMS token is read-only; nothing is
-written back to TalaCMS.
+made here that wasn't also made in eGovCMS. Review `git diff` and commit only
+the changes you mean to take. The eGovCMS token is read-only; nothing is
+written back to eGovCMS.
 
 Put credentials in a local `.env` (see `.env.example`), then:
 
@@ -197,7 +197,7 @@ npm run cms:fetch -- --only=hotlines
 
 Exit codes: `0` success, `1` failure, `3` drift detected (`--dry-run` only).
 
-The script fails without writing anything if TalaCMS is unreachable, returns
+The script fails without writing anything if eGovCMS is unreachable, returns
 an incomplete result, or would produce a file that violates its JSON Schema.
 Writes are atomic per file but not across files: if the write phase is
 interrupted, check `git status`.
@@ -208,7 +208,7 @@ interrupted, check `git status`.
 |---|---|
 | syncing everything, or unsure | `npm run cms:fetch` |
 | **renaming a category or subcategory** | `npm run cms:fetch` — **full sync required**; both isolated modes will fail the name-agreement gate |
-| adding or retiring a category in TalaCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
+| adding or retiring a category in eGovCMS | `npm run cms:fetch` — only a full sync sees taxonomy file churn |
 | editing service content only (titles, URLs) | `--only=services` is safe **if** no display name changed |
 | editing taxonomy display names only | `npm run cms:fetch` — see the rename row |
 
@@ -224,11 +224,11 @@ committed records still carry the old name, and `--only=services` fails
 because the committed taxonomy still carries it. That is correct fail-closed
 behavior, not a false positive.
 
-`--only=services` **cannot** detect a category added or removed in TalaCMS —
+`--only=services` **cannot** detect a category added or removed in eGovCMS —
 it validates against the committed taxonomy by design. Run a full sync to
 surface taxonomy file churn.
 
-For an unselected dataset the sync never queries TalaCMS, never prepares an
+For an unselected dataset the sync never queries eGovCMS, never prepares an
 output, never reports it as changed, and never writes it. It may read a
 committed file as a documented cross-validation input.
 
@@ -236,9 +236,9 @@ committed file as a documented cross-validation input.
 
 Adding a category means adding it to `service_categories.json` together with
 its `src/data/services/<slug>.json` file; retiring one means removing both.
-A full TalaCMS sync does the same for categories added or retired in
-TalaCMS: it writes the new file, and after a successful write deletes any
-`src/data/services/*.json` file whose category TalaCMS no longer has — never
+A full eGovCMS sync does the same for categories added or retired in
+eGovCMS: it writes the new file, and after a successful write deletes any
+`src/data/services/*.json` file whose category eGovCMS no longer has — never
 `src/data/services/schema/**`. Commit the result.
 
 Either way, a handful of places curate the taxonomy by hand. Check each row
@@ -287,10 +287,9 @@ Missing credentials, an unreachable CMS, an HTTP/GraphQL error, a malformed
 response, or a failed validation gate — any of these fails `npm run
 cms:fetch` before it writes anything, so a failed fetch never leaves a
 partial or schema-invalid dataset behind. `npm run build` never contacts
-TalaCMS and has no failure mode tied to it, and no Dockerfile target needs
-CMS credentials. Keep `TALACMS_API_URL`, `TALACMS_API_TOKEN` and the
-optional `TALACMS_ENVIRONMENT` in your local `.env`, never in the
-repository.
+eGovCMS and has no failure mode tied to it, and no Dockerfile target needs
+CMS credentials. Keep the eGovCMS credentials listed in `.env.example` in
+your local `.env`, never in the repository.
 
 ### Required checks before opening a PR that changes the sync pipeline
 
