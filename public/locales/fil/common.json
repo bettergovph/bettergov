@@ -15,9 +15,6 @@
   "news": {
     "title": "Pinakabagong Balita at Updates"
   },
-  "footer": {
-    "copyright": "2025 GOV.PH - Lahat ng nilalaman ay public domain maliban kung iba ang nakasaad."
-  },
   "navbar": {
     "home": "Tahanan",
     "philippines": "Pilipinas",
@@ -44,6 +41,10 @@
     "close": "Isara",
     "contactUs": "Makipag-ugnayan",
     "searchPlaceholder": "Maghanap ng serbisyo, ahensya, at iba pa"
+  },
+  "phaseBanner": {
+    "tag": "Beta",
+    "text": "Nasa beta pa ang GOV.PH at kasalukuyang sumasailalim sa pagsusuri ng komunidad at pagsusuring pangseguridad. Inaanyayahan namin kayong makilahok sa pamamagitan ng pagsusumite ng isyu sa <tracker>{{url}}</tracker>."
   },
   "footerNav": {
     "servicesHeading": "Mga Serbisyo",
@@ -82,7 +83,7 @@
   },
   "footerBottom": {
     "copyright": "Republika ng Pilipinas · Nakalaan ang lahat ng karapatan",
-    "license": "CC BY 4.0 · MIT"
+    "license": "CC BY-NC-ND 4.0 · MIT"
   },
   "comingSoon": "Malapit na"
 }

@@ -29,8 +29,8 @@ export const SITE_URL = 'https://www.gov.ph';
 /** Social-card image, served from `public/`. */
 export const DEFAULT_OG_IMAGE = '/og-image.png';
 
-/** Source repository for this portal. */
-export const REPO_URL = 'https://github.com/govph/govph-2026';
+/** Public repository and issue tracker for this portal. */
+export const REPO_URL = 'https://github.com/govph/govph';
 export const ISSUES_URL = `${REPO_URL}/issues`;
 export const NEW_ISSUE_URL = `${REPO_URL}/issues/new`;
 

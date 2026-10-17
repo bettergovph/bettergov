@@ -261,6 +261,17 @@ If you encounter issues as you set up your environment, refer to the following:
 
 Read our {name and link to your style guide} to understand our guidelines for writing and formatting documents. The purpose of our style guide is to ensure consistency in the tone, voice, and structure of our documentation. -->
 
+## Licensing of contributions
+
+GOV.PH is dual-licensed (see the [License section of the README](README.md#license)):
+
+- **Code** you contribute is released under the [MIT License](LICENSE), like the rest of the code.
+- **Content** you contribute — text, data, translations, images — is published under [CC BY-NC-ND 4.0](LICENSE-CONTENT). That license does not allow sharing adapted versions, so two extra terms make content contributions possible:
+  - You may fork this repository and share modified copies on GitHub solely to propose changes to GOV.PH through pull requests.
+  - By submitting a content contribution, you confirm that you have the right to submit it, and you grant the GOV.PH project a perpetual, worldwide, royalty-free permission to use, edit and publish it under the project's licenses.
+
+The GOV.PH name and wordmark and the Coat of Arms of the Republic of the Philippines are not covered by either license.
+
 ## Contribution workflow
 
 Official Github Docs on [Forking a repository][forking]

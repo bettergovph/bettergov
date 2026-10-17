@@ -22,9 +22,6 @@
   "news": {
     "title": "Latest News & Updates"
   },
-  "footer": {
-    "copyright": "2025 GOV.PH - All content is public domain unless otherwise specified."
-  },
   "navbar": {
     "home": "Home",
     "philippines": "Philippines",
@@ -51,6 +48,10 @@
     "close": "Close",
     "contactUs": "Contact us",
     "searchPlaceholder": "Search services, agencies, and more"
+  },
+  "phaseBanner": {
+    "tag": "Beta",
+    "text": "GOV.PH is in beta and under community and security review. We invite you to take part by submitting issues at <tracker>{{url}}</tracker>."
   },
   "footerNav": {
     "servicesHeading": "Services",
@@ -91,7 +92,7 @@
   },
   "footerBottom": {
     "copyright": "Republic of the Philippines · All rights reserved",
-    "license": "CC BY 4.0 · MIT"
+    "license": "CC BY-NC-ND 4.0 · MIT"
   },
   "data": {
     "title": "Real-Time Data Services",

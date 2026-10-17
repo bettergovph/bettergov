@@ -240,7 +240,7 @@ const Footer: FC = () => {
             )}
           </span>
           <span>
-            {t('footerBottom.license', 'CC BY 4.0 · MIT')}
+            {t('footerBottom.license', 'CC BY-NC-ND 4.0 · MIT')}
             {version ? ` · ${version}` : ''}
           </span>
         </div>

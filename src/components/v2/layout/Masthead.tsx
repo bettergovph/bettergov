@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import Container from '../ui/Container';
 import MastheadTop from './MastheadTop';
+import PhaseBanner from './PhaseBanner';
 import LogoRow from './LogoRow';
 import PrimaryNav from './PrimaryNav';
 import MobileMenu from './MobileMenu';
@@ -13,6 +14,7 @@ const Masthead: FC = () => {
 
   return (
     <header className='bg-white font-sans-ed text-ed-ink antialiased border-b border-b-2 border-b-blue-950 shadow-md'>
+      <PhaseBanner />
       <Container>
         <MastheadTop />
         <LogoRow isMobileOpen={mobileOpen} onToggleMobile={toggleMobile} />

@@ -64,8 +64,11 @@ const AboutPage: FC = () => (
             <p className='font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
               GOV.PH is developed through a community collaboration partnership
               between eGov Philippines and citizen contributors. The code is
-              open source and released into the public domain, so any national
-              agency, local government unit, or civic project may reuse it.
+              open source under the MIT License, so any national agency, local
+              government unit, or civic project may reuse it. The content is
+              published under the Creative Commons
+              Attribution-NonCommercial-NoDerivatives 4.0 license (CC BY-NC-ND
+              4.0).
             </p>
             <p className='mt-5 max-md:mt-3.5 font-sans-ed text-[18px] leading-[1.6] text-ed-ink-2 max-md:text-[15px] max-md:leading-[1.5]'>
               Content is drawn from official records and government
@@ -119,7 +122,7 @@ const AboutPage: FC = () => (
             <GithubIcon size={10} />
             Open source
           </Flag>
-          <Flag variant='outline'>CC0 1.0 Public Domain</Flag>
+          <Flag variant='outline'>MIT · CC BY-NC-ND 4.0</Flag>
           <Flag variant='outline'>Republic of the Philippines</Flag>
           <div className='flex-1 flex justify-end max-sm:justify-start'>
             <ArrowLink to={REPO_URL} external>
