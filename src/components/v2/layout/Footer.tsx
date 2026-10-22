@@ -10,8 +10,6 @@ import {
   BAGONG_PILIPINAS_SRC,
   BETTERGOV_LOGO_ALT,
   BETTERGOV_LOGO_SRC,
-  COAT_OF_ARMS_ALT,
-  COAT_OF_ARMS_SRC,
   EGOV_LOGO_ALT,
   EGOV_LOGO_SRC,
   ISSUES_URL,
@@ -149,19 +147,12 @@ const Footer: FC = () => {
       <Container>
         <div className='grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10 border-b border-white/10 pb-12 max-lg:grid-cols-[1fr_1fr_1fr] max-md:grid-cols-[1fr_1fr] max-md:gap-7 max-md:pb-8 max-[480px]:grid-cols-1'>
           <div className='max-md:col-span-full'>
-            <div className='flex items-center gap-3'>
-              <img
-                src={COAT_OF_ARMS_SRC}
-                alt={COAT_OF_ARMS_ALT}
-                className='block h-12 w-auto'
-              />
-              <span className='block'>
-                <span className='block font-serif-ed text-xl font-bold leading-none text-white'>
-                  {SITE_NAME}
-                </span>
-                <span className='mt-1 block text-[11px] leading-tight text-white/60'>
-                  {SITE_OWNER}
-                </span>
+            <div>
+              <span className='block font-serif-ed text-xl font-bold leading-none text-white'>
+                {SITE_NAME}
+              </span>
+              <span className='mt-1 block text-[11px] leading-tight text-white/60'>
+                {SITE_OWNER}
               </span>
             </div>
             <p className='mt-4 max-w-[340px] leading-relaxed text-white/60'>

@@ -10,7 +10,7 @@ export const COAT_OF_ARMS_SRC = '/coat-of-arms.svg';
 export const COAT_OF_ARMS_ALT =
   'Coat of Arms of the Republic of the Philippines';
 
-/** Wordmark shown beside the coat of arms in the header and footer. */
+/** Wordmark shown in the header and footer. */
 export const SITE_NAME = 'GOV.PH';
 
 /** Sub-label rendered under the wordmark. */

@@ -3,12 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MailIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import Button from '../ui/Button';
-import {
-  COAT_OF_ARMS_ALT,
-  COAT_OF_ARMS_SRC,
-  SITE_NAME,
-  SITE_OWNER,
-} from '../../../lib/brand';
+import { SITE_NAME, SITE_OWNER } from '../../../lib/brand';
 
 type Props = {
   isMobileOpen: boolean;
@@ -32,13 +27,8 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
       <Link
         to='/'
         aria-label={`${SITE_NAME} home`}
-        className='inline-flex items-center gap-3 no-underline'
+        className='inline-flex items-center no-underline'
       >
-        <img
-          src={COAT_OF_ARMS_SRC}
-          alt={COAT_OF_ARMS_ALT}
-          className='block h-14 w-auto max-md:h-10'
-        />
         <span className='block'>
           <span className='block font-serif-ed text-2xl font-bold leading-none text-ed-navy-ink max-md:text-xl'>
             {SITE_NAME}
