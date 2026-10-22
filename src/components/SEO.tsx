@@ -129,7 +129,7 @@ export default function SEO({
   // Default values
   const defaultTitle = `${SITE_NAME} | ${SITE_TAGLINE}`;
   const defaultDescription =
-    'The official portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+    'The proposed portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
   const defaultCanonical = location.pathname + location.search;
 
   useEffect(() => {

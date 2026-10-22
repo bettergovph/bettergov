@@ -42,7 +42,7 @@ const TermsOfService: FC = () => (
           <SectionHeader label='Content and License' />
           <div className='max-w-2xl space-y-5 font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
             <p>
-              GOV.PH is the official portal of the Republic of the Philippines.
+              GOV.PH is the proposed portal of the Republic of the Philippines.
               Unless otherwise noted, the information, data, documents, and
               materials on this website are published under the Creative Commons
               Attribution-NonCommercial-NoDerivatives 4.0 International license

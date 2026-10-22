@@ -1,43 +1,43 @@
 {
   "/": {
-    "title": "GOV.PH | The Official Portal of the Republic of the Philippines",
-    "description": "The official portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+    "title": "GOV.PH | The Proposed Portal of the Republic of the Philippines",
+    "description": "The proposed portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/about": {
-    "title": "GOV.PH | The Official Portal of the Republic of the Philippines",
-    "description": "About GOV.PH, the official portal of the Republic of the Philippines, and the partnership behind it."
+    "title": "GOV.PH | The Proposed Portal of the Republic of the Philippines",
+    "description": "About GOV.PH, the proposed portal of the Republic of the Philippines, and the partnership behind it."
   },
   "/accessibility": {
     "title": "Accessibility Statement | GOV.PH",
-    "description": "Find important information about Accessibility Statement on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Accessibility Statement on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/data/forex": {
     "title": "Forex: Currency Converter | GOV.PH",
-    "description": "Find important information about Forex: Currency Converter on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Forex: Currency Converter on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/data/weather": {
-    "title": "GOV.PH | The Official Portal of the Republic of the Philippines",
-    "description": "The official portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+    "title": "GOV.PH | The Proposed Portal of the Republic of the Philippines",
+    "description": "The proposed portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/flood-control-projects": {
     "title": "Flood Control Projects in Philippines | GOV.PH",
-    "description": "Find important information about Flood Control Projects in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Flood Control Projects in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/flood-control-projects/contractors": {
     "title": "Flood Control Project Contractors in Philippines | GOV.PH",
-    "description": "Find important information about Flood Control Project Contractors in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Flood Control Project Contractors in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/flood-control-projects/map": {
     "title": "Flood Control Projects Map in Philippines | GOV.PH",
-    "description": "Find important information about Flood Control Projects Map in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Flood Control Projects Map in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/flood-control-projects/table": {
     "title": "Flood Control Projects Information in Philippines | GOV.PH",
-    "description": "Find important information about Flood Control Projects Information in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Flood Control Projects Information in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government": {
     "title": "The Philippine Government: Learn More | GOV.PH",
-    "description": "Find important information about The Philippine Government: Learn More on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about The Philippine Government: Learn More on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/overview": {
     "title": "Government at a Glance | GOV.PH",
@@ -134,19 +134,19 @@
   },
   "/government/diplomatic": {
     "title": "Diplomatic Missions in the Philippines | GOV.PH",
-    "description": "Find important information about Diplomatic Missions in the Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Diplomatic Missions in the Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/diplomatic/consulates": {
     "title": "Consulates in the Philippines | GOV.PH",
-    "description": "Find important information about consulates in the Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about consulates in the Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/diplomatic/missions": {
     "title": "Diplomatic Missions in Philippines | GOV.PH",
-    "description": "Find important information about the different Diplomatic Missions in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the different Diplomatic Missions in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/diplomatic/organizations": {
     "title": "International Organizations in the Philippines | GOV.PH",
-    "description": "Find important information about International Organizations in the Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about International Organizations in the Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/executive": {
     "title": "Executive Branch in the Philippines: The President | GOV.PH",
@@ -194,95 +194,95 @@
   },
   "/government/local": {
     "title": "Local Government Units in Philippines | GOV.PH",
-    "description": "Find important information about Local Government Units in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Local Government Units in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/bangsamoro-autonomous-region-in-muslim-mindanao": {
     "title": "Mayor and Vice Mayors in Bangsamoro Mindinao Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Bangsamoro Mindinao Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Bangsamoro Mindinao Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/cordillera-administrative-region": {
     "title": "Mayor and Vice Mayors in the Cordilleras Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in the Cordilleras Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in the Cordilleras Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/mimaropa-region": {
     "title": "Mayor and Vice Mayors in Mimaropa Region Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Mimaropa Region Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Mimaropa Region Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/national-capital-region": {
     "title": "Mayor and Vice Mayors in the National Capital Region (NCR) Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in the National Capital Region (NCR) Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in the National Capital Region (NCR) Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/negros-island-region": {
     "title": "Mayor and Vice Mayors in Negros Island Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Negros Island Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Negros Island Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-i-ilocos-region": {
     "title": "Mayor and Vice Mayors in Ilocos Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Ilocos Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Ilocos Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-ii-cagayan-valley": {
     "title": "Mayor and Vice Mayors in Cagayan Valley Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Cagayan Valley Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Cagayan Valley Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-iii-central-luzon": {
     "title": "Mayor and Vice Mayors in Central Luzon Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Central Luzon Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Central Luzon Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-iva-calabarzon": {
     "title": "Mayor and Vice Mayors in Calabarzon Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Calabarzon Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Calabarzon Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-ix-zamboanga-peninsula": {
     "title": "Mayor and Vice Mayors in Zamboanga Peninsula Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Zamboanga Peninsula Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Zamboanga Peninsula Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-v-bicol-region": {
     "title": "Mayor and Vice Mayors in Bicol Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Bicol Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Bicol Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-vi-western-visayas": {
     "title": "Mayor and Vice Mayors in Western Visayas Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Western Visayas Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Western Visayas Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-vii-central-visayas": {
     "title": "Mayor and Vice Mayors in Region VII: Central Visayas Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Central Visayas Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Central Visayas Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-viii-eastern-visayas": {
     "title": "Mayor and Vice Mayors in Eastern Visayas Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Eastern Visayas Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Eastern Visayas Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-x-northern-mindanao": {
     "title": "Mayor and Vice Mayors in Northern Mindinao Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Northern Mindinao Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Northern Mindinao Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-xi-davao-region": {
     "title": "Mayor and Vice Mayors in Davao Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Davao Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Davao Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-xii-soccsksargen": {
     "title": "Mayor and Vice Mayors in Soccsksargen Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Soccsksargen Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Soccsksargen Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/region-xiiicaraga": {
     "title": "Mayor and Vice Mayors in Caraga Philippines | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in Caraga Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in Caraga Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/local/special-geographic-area": {
     "title": "Special Geographic Area - Local Government Units | GOV.PH",
-    "description": "Find important information about the Mayor and Vice Mayors in other areas of the Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about the Mayor and Vice Mayors in other areas of the Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/government/salary-grade": {
     "title": "Government Salary | GOV.PH",
-    "description": "Find important information about Government Salary on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Government Salary on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/not-found": {
     "title": "Page Not Found! | GOV.PH",
-    "description": "Find important information about Page Not Found! on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Page Not Found! on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/philippines": {
-    "title": "GOV.PH | The Official Portal of the Republic of the Philippines",
-    "description": "The official portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+    "title": "GOV.PH | The Proposed Portal of the Republic of the Philippines",
+    "description": "The proposed portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/philippines/about": {
     "title": "About the Philippines | GOV.PH",
@@ -298,15 +298,15 @@
   },
   "/philippines/hotlines": {
     "title": "Philippines Emergency Hotlines | GOV.PH",
-    "description": "Find important information about Philippines Emergency Hotlines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Philippines Emergency Hotlines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/philippines/map": {
     "title": "Philippines Map | GOV.PH",
-    "description": "Find important information about Philippines Map on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Philippines Map on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/philippines/regions": {
     "title": "Local Government Units (LGUs) in Philippines | GOV.PH",
-    "description": "Find important information about Local Government Units (LGUs) in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Local Government Units (LGUs) in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/services": {
     "_default": {
@@ -418,60 +418,60 @@
     },
     "category=social-services&subcategory=file-complaints": {
       "title": "Social Services: File Complaints in Philippines | GOV.PH",
-      "description": "Find important information about Social Services: File Complaints in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Social Services: File Complaints in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=social-services&subcategory=salary-loans": {
       "title": "Social Service Salary Loans in Philippines | GOV.PH",
-      "description": "Find important information about Social Service Salary Loans in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Social Service Salary Loans in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=tax": {
       "title": "Government Tax Services in Philippines | GOV.PH",
-      "description": "Find important information about Government Tax Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Government Tax Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=calculator": {
       "title": "Tax Calculators in Philippines | GOV.PH",
-      "description": "Find important information about Tax Calculators in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Tax Calculators in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=certificates": {
       "title": "Tax Certificate Services in Philippines | GOV.PH",
-      "description": "Find important information about Tax Certificate Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Tax Certificate Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=register": {
       "title": "Tax Registration Services in Philippines | GOV.PH",
-      "description": "Find important information about Tax Registration Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Tax Registration Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=transport-driving": {
       "title": "Government Transport and Driving Services in Philippines | GOV.PH",
-      "description": "Find important information about Government Transport and Driving Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Government Transport and Driving Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=financial-assistance": {
       "title": "Transport and Driving Financial Assistance Services in Philippines | GOV.PH",
-      "description": "Find important information about Transport and Driving Financial Assistance Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Transport and Driving Financial Assistance Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=license": {
       "title": "Transport and Driving License Services in Philippines | GOV.PH",
-      "description": "Find important information about Transport and Driving License Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Transport and Driving License Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=transport-complaints": {
       "title": "Transport and Driving Complaints Services in Philippines | GOV.PH",
-      "description": "Find important information about Transport and Driving Complaints Services in Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+      "description": "Find important information about Transport and Driving Complaints Services in Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
     }
   },
   "/services/websites": {
     "title": "Government Websites Directory | GOV.PH",
-    "description": "Find important information about Government Websites Directory on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Government Websites Directory on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/terms-of-service": {
     "title": "Terms of Service | GOV.PH",
-    "description": "Find important information about Terms of Service on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Terms of Service on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/travel": {
-    "title": "GOV.PH | The Official Portal of the Republic of the Philippines",
-    "description": "The official portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+    "title": "GOV.PH | The Proposed Portal of the Republic of the Philippines",
+    "description": "The proposed portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/travel/communicating": {
     "title": "Travel Phrasebook in the Philippines | GOV.PH",
-    "description": "Find important information about Travel Phrasebook in the Philippines on GOV.PH, the official portal of the Republic of the Philippines."
+    "description": "Find important information about Travel Phrasebook in the Philippines on GOV.PH, the proposed portal of the Republic of the Philippines."
   },
   "/travel/visa": {
     "title": "Visa Requirements by Country | GOV.PH",

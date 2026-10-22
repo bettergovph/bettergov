@@ -17,7 +17,7 @@ import {
 } from '../../lib/brand';
 
 const DESCRIPTION =
-  'GOV.PH is the official portal of the Republic of the Philippines — one place to find government services, agencies, hotlines, and information.';
+  'GOV.PH is the proposed portal of the Republic of the Philippines — one place to find government services, agencies, hotlines, and information.';
 
 const AboutPage: FC = () => (
   <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>

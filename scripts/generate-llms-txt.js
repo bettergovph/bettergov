@@ -417,7 +417,7 @@ function generateLlmsContent(
   const siteName = 'GOV.PH';
   const siteUrl = 'https://www.gov.ph';
   const description =
-    'The official portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership';
+    'The proposed portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership';
 
   const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);

@@ -64,7 +64,7 @@ const OTHER_PAGES: Omit<SitePage, 'objectID' | 'type'>[] = [
     url: '/about',
     section: 'GOV.PH',
     description:
-      'GOV.PH is the official portal of the Republic of the Philippines — one place to find government services, agencies, hotlines, and information.',
+      'GOV.PH is the proposed portal of the Republic of the Philippines — one place to find government services, agencies, hotlines, and information.',
   },
   {
     name: 'Contact',

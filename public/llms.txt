@@ -1,7 +1,7 @@
 # GOV.PH
 
 ## About
-The official portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership
+The proposed portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership
 
 GOV.PH is developed by eGov Philippines together with citizen contributors. It builds on the open-source BetterGov.ph portal created by volunteers, and the partnership is making public information and services easier to find, read, and use.
 

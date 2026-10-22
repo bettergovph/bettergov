@@ -1,5 +1,5 @@
 /**
- * Official branding for GOV.PH — the website of the Republic of the Philippines.
+ * Branding for GOV.PH, the proposed portal of the Republic of the Philippines.
  *
  * The coat of arms lives in `public/`, so it is served from the site root and
  * needs no bundler import. Keep every logo reference pointed at these constants
@@ -18,7 +18,7 @@ export const SITE_OWNER = 'Republic of the Philippines';
 
 /** One-line description used in page titles and social cards. */
 export const SITE_TAGLINE =
-  'The Official Portal of the Republic of the Philippines';
+  'The Proposed Portal of the Republic of the Philippines';
 
 /**
  * Canonical origin for absolute URLs (canonical links, Open Graph, sitemap,

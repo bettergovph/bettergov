@@ -158,7 +158,7 @@ const Footer: FC = () => {
             <p className='mt-4 max-w-[340px] leading-relaxed text-white/60'>
               {t(
                 'footerAbout.description',
-                'The official portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.'
+                'The proposed portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.'
               )}
             </p>
             <p className='mt-3 max-w-[340px] leading-relaxed text-white/60'>

@@ -44,7 +44,7 @@ const LogoRow: FC<Props> = ({ isMobileOpen, onToggleMobile }) => {
       <div className='border-l border-ed-rule pl-6 font-mono-ed text-[10px] uppercase leading-tight tracking-[0.16em] text-ed-ink-3 max-w-[320px] max-xl:hidden'>
         {t(
           'masthead.tagline',
-          'The official portal of the Republic of the Philippines'
+          'The proposed portal of the Republic of the Philippines'
         )}
       </div>
 

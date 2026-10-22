@@ -1,6 +1,6 @@
 # GOV.PH Portal
 
-Source code of **GOV.PH**, the official portal of the Republic of the
+Source code of **GOV.PH**, the proposed portal of the Republic of the
 Philippines — one place to find government services, agencies, hotlines,
 holidays, news, and travel information, written plainly and sourced from
 official records.

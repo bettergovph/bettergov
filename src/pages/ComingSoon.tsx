@@ -29,7 +29,7 @@ const ComingSoon: FC = () => {
       <p className='mt-4 text-balance font-sans-ed text-base leading-snug text-white/85 sm:mt-[min(1.77vw,3.15svh)] sm:text-[max(1rem,min(2.08vw,3.7svh))] sm:leading-none'>
         {t(
           'masthead.tagline',
-          'The official portal of the Republic of the Philippines'
+          'The proposed portal of the Republic of the Philippines'
         )}
       </p>
       <Eyebrow

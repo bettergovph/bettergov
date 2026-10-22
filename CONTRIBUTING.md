@@ -61,7 +61,7 @@ Here are the types of contributions we currently accept and where to learn more 
 
 ## Project overview
 
-GOV.PH is the official portal of the Republic of the Philippines, developed through a community collaboration partnership between eGov Philippines and citizen contributors.
+GOV.PH is the proposed portal of the Republic of the Philippines, developed through a community collaboration partnership between eGov Philippines and citizen contributors.
 It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration, and it builds on the volunteer-built BetterGov.ph portal.
 To learn more about our purpose and goals, please read the [README](./README.md).
 

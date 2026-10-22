@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Welcome to GOV.PH",
-    "subtitle": "The official portal of the Republic of the Philippines, built through a community collaboration partnership. Find information, access government services, and stay updated with the latest news about the Philippines.",
+    "subtitle": "The proposed portal of the Republic of the Philippines, built through a community collaboration partnership. Find information, access government services, and stay updated with the latest news about the Philippines.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
@@ -41,7 +41,7 @@
     "contact": "Contact",
     "accessibility": "Accessibility",
     "about": "About",
-    "tagline": "The official portal of the Republic of the Philippines",
+    "tagline": "The proposed portal of the Republic of the Philippines",
     "search": "Search",
     "signIn": "Sign in",
     "menu": "Menu",
@@ -86,7 +86,7 @@
     "reportBug": "Report a bug"
   },
   "footerAbout": {
-    "description": "The official portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.",
+    "description": "The proposed portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.",
     "openSource": "Open Source",
     "builtBy": "Built by eGov, BetterGov, and hundreds of citizen volunteers."
   },

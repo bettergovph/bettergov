@@ -61,7 +61,7 @@ export const COMING_SOON_HTML = `<!doctype html>
     <link rel="icon" type="image/svg+xml" href="/coat-of-arms.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/logos/png/apple-touch-icon.png" />
     <meta property="og:title" content="GOV.PH — Coming soon" />
-    <meta property="og:description" content="The official portal of the Republic of the Philippines is being prepared for launch." />
+    <meta property="og:description" content="The proposed portal of the Republic of the Philippines is being prepared for launch." />
     <meta property="og:image" content="/og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -105,7 +105,7 @@ export const COMING_SOON_HTML = `<!doctype html>
       <img src="/coat-of-arms-480.png" alt="Coat of Arms of the Republic of the Philippines" width="160" height="160" />
       <p class="eyebrow">Republic of the Philippines</p>
       <h1>GOV.PH</h1>
-      <p class="lede">The official portal of the Republic of the Philippines is being prepared for launch.</p>
+      <p class="lede">The proposed portal of the Republic of the Philippines is being prepared for launch.</p>
       <p>Government services, agencies, hotlines, and information will be available here soon.</p>
       <p>For government concerns in the meantime, call the Contact Center ng Bayan at <strong>8888</strong>, or visit the <a href="https://www.officialgazette.gov.ph">Official Gazette</a>.</p>
     </main>
