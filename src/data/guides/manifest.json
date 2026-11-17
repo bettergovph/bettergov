@@ -1,0 +1,212 @@
+[
+  {
+    "id": "passport",
+    "title": "Getting a Philippine passport",
+    "agency": "DFA",
+    "cat": "Travel & ID",
+    "lede": "Appointments, requirements, fees and release times for first applications, renewals, children, and lost or damaged passports.",
+    "steps": 10,
+    "time": "5 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81618f41db768d78e15c",
+    "featured": "primary"
+  },
+  {
+    "id": "nbi",
+    "title": "Apply for NBI Clearance online",
+    "agency": "NBI",
+    "cat": "Travel & ID",
+    "lede": "Prepare your IDs, book and pay online, and understand what happens if your application has a name match or “hit”.",
+    "steps": 10,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f819bad1df24d35907414"
+  },
+  {
+    "id": "tin",
+    "title": "Getting your TIN for the first time",
+    "agency": "BIR",
+    "cat": "Taxes",
+    "lede": "Choose the right registration route for employment, self-employment, mixed income, or a one-time transaction.",
+    "steps": 16,
+    "time": "5 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81f6884dcd7a5841a4df"
+  },
+  {
+    "id": "umid",
+    "title": "Applying for a MySSS Card (UMID replacement)",
+    "agency": "SSS",
+    "cat": "Travel & ID",
+    "lede": "The MySSS Card replaces new UMID applications. Check eligibility, verify your identity, and apply through a partner bank.",
+    "steps": 8,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81d2be6ce873435f3298"
+  },
+  {
+    "id": "psa",
+    "title": "Requesting a PSA Birth Certificate",
+    "agency": "PSA",
+    "cat": "Civil Registry",
+    "lede": "Compare a PSA outlet visit with online delivery, prepare the required identification, and handle missing or incorrect records.",
+    "steps": 10,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f812a994dfabfa74f95f2"
+  },
+  {
+    "id": "drivers",
+    "title": "Renewing your driver's license",
+    "agency": "LTO",
+    "cat": "Travel & ID",
+    "lede": "Check five- or ten-year eligibility, renewal requirements and fees, and prepare for your LTO appointment.",
+    "steps": 6,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81c6a8ddd612e458e078"
+  },
+  {
+    "id": "itr",
+    "title": "Filing your Annual ITR (BIR Form 1700)",
+    "agency": "BIR",
+    "cat": "Taxes",
+    "lede": "Find out whether you need to file, collect your Forms 2316, and work through filing, payment and proof of submission.",
+    "steps": 8,
+    "time": "5 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f812b9f5dd9c944ff5d44"
+  },
+  {
+    "id": "bir-1701",
+    "title": "Filing BIR Form 1701A (self-employed)",
+    "agency": "BIR",
+    "cat": "Taxes",
+    "lede": "For purely self-employed earners using the 8% option or graduated rates with OSD. Includes the eBIRForms filing steps.",
+    "steps": 9,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81ef9c49c40ee771c624"
+  },
+  {
+    "id": "vat",
+    "title": "Registering as a VAT taxpayer",
+    "agency": "BIR",
+    "cat": "Business",
+    "lede": "Check when VAT registration is required, update your BIR registration, and understand the changes to invoices and returns.",
+    "steps": 8,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81148975d0088687bcd6"
+  },
+  {
+    "id": "philhealth",
+    "title": "PhilHealth Member Registration",
+    "agency": "PhilHealth",
+    "cat": "Health",
+    "lede": "Get your PhilHealth Identification Number and understand direct and indirect membership, contributions, and dependents.",
+    "steps": 10,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81f89f29dde3337bb806"
+  },
+  {
+    "id": "sss-claim",
+    "title": "Claiming your SSS pension",
+    "agency": "SSS",
+    "cat": "Benefits",
+    "lede": "Eligibility, documents and application routes for retirement, disability, and death or survivor benefits.",
+    "steps": 11,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f818ea8f3f36505f4a90d"
+  },
+  {
+    "id": "pagibig",
+    "title": "Pag-IBIG Fund Membership",
+    "agency": "Pag-IBIG",
+    "cat": "Benefits",
+    "lede": "Register for a MID number, set up Virtual Pag-IBIG, and understand member savings and employer contributions.",
+    "steps": 6,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81d3ad2ae6942b329499"
+  },
+  {
+    "id": "dti",
+    "title": "Registering a sole proprietorship (DTI)",
+    "agency": "DTI",
+    "cat": "Business",
+    "lede": "Choose a business name and territorial scope, pay through BNRS, and download your certificate before the next registrations.",
+    "steps": 9,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f8108adfdd446599dfeca"
+  },
+  {
+    "id": "sec",
+    "title": "Registering a corporation (SEC)",
+    "agency": "SEC",
+    "cat": "Business",
+    "lede": "Choose the eSPARC route for a corporation or partnership, prepare the documents, and complete registration and payment.",
+    "steps": 8,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f8147b0b0cd152a43d519"
+  },
+  {
+    "id": "mayors",
+    "title": "Getting your Mayor's Permit",
+    "agency": "LGU",
+    "cat": "Business",
+    "lede": "Prepare your business permit application, with Quezon City as a worked example and guidance on fees that vary by LGU.",
+    "steps": 9,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81dab7b2cbc3cfd855be"
+  },
+  {
+    "id": "title-transfer",
+    "title": "Transferring a land title",
+    "agency": "LRA · BIR",
+    "cat": "Property",
+    "lede": "Follow a capital-asset sale from the deed and tax payments to the eCAR, Registry of Deeds, and updated tax declaration.",
+    "steps": 10,
+    "time": "6 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f817f8789f78a7d6d5200"
+  },
+  {
+    "id": "amilyar",
+    "title": "Paying your real property tax (amilyar)",
+    "agency": "LGU",
+    "cat": "Property",
+    "lede": "Understand assessed value, payment deadlines and penalties, with a Quezon City online payment walkthrough.",
+    "steps": 6,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f816baf53d53c3517d517"
+  },
+  {
+    "id": "marriage",
+    "title": "Getting married in the Philippines",
+    "agency": "PSA · LGU",
+    "cat": "Civil Registry",
+    "lede": "Prepare for a marriage licence, the posting period, a civil or religious ceremony, and registration of the marriage.",
+    "steps": 10,
+    "time": "4 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81bfa55fcd4f8e3dbd0b"
+  },
+  {
+    "id": "cenomar",
+    "title": "Requesting a CENOMAR",
+    "agency": "PSA",
+    "cat": "Civil Registry",
+    "lede": "Request a Certificate of No Marriage Record at an outlet or online, and check the receiving office’s recency requirements.",
+    "steps": 9,
+    "time": "3 min read",
+    "reviewedAt": "2026-10-09",
+    "sourceUrl": "https://app.notion.com/p/3f4e4ba4b72f81b8b271d6507f8d70c3"
+  }
+]

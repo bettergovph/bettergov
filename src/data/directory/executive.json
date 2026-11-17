@@ -14,8 +14,8 @@
         "office_division": "Office of the Executive Secretary",
         "personnel": [
           {
-            "name": "LUCAS P. BERSAMIN",
-            "role": "Executive Secretary",
+            "name": "RALPH G. RECTO",
+            "role": "Acting Executive Secretary",
             "contact": "loc. 8410"
           },
           {
@@ -44,6 +44,15 @@
             "contact": "loc. 8410"
           }
         ]
+      },
+      {
+        "personnel": [
+          {
+            "name": "BENJAMIN C. ABALOS JR.",
+            "role": "Cabinet Secretary"
+          }
+        ],
+        "office_division": "Office of the Cabinet Secretary"
       },
       {
         "office_division": "Office of the Special Assistant to the President",
@@ -153,11 +162,6 @@
       {
         "office_division": "Office of the Presidential Adviser for Investment and Economic Affairs",
         "personnel": [
-          {
-            "name": "FREDERICK D. GO",
-            "role": "Presidential Adviser",
-            "contact": "loc. 220"
-          },
           {
             "name": "JOSE EDWINIEL C. GUILAS",
             "role": "Undersecretary",
@@ -380,7 +384,7 @@
     "website": "www.ovp.gov.ph",
     "officials": [
       {
-        "name": "SARA Z. DUTERTE-CARPIO",
+        "name": "SARA Z. DUTERTE",
         "role": "Vice President",
         "email": "vp@ovp.gov.ph"
       },
@@ -455,8 +459,8 @@
     "website": "www.pco.gov.ph",
     "officials": [
       {
-        "name": "CESAR B. CHAVEZ",
-        "role": "Acting Secretary",
+        "name": "LINO CAYETANO",
+        "role": "Secretary",
         "contact": "loc. 213"
       },
       {
@@ -483,6 +487,10 @@
             "role": "OIC-Undersecretary",
             "other_office": "Strategic Communications",
             "contact": "loc. 218"
+          },
+          {
+            "name": "CLAIRE CASTRO",
+            "role": "Palace Press Officer"
           }
         ]
       },

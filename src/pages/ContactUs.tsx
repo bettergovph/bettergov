@@ -1,248 +1,189 @@
+import { FC } from 'react';
 import {
-  MailIcon,
-  UsersIcon,
-  GlobeIcon,
-  ArrowRightIcon,
-  HeartHandshakeIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
+  AccessibilityIcon,
+  FileTextIcon,
+  GithubIcon,
+  PhoneCallIcon,
+  PhoneIcon,
+  type LucideIcon,
 } from 'lucide-react';
-import { SiDiscord } from '@icons-pack/react-simple-icons';
-import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import Container from '../components/v2/ui/Container';
+import PageMasthead from '../components/v2/layout/PageMasthead';
+import SectionHeader from '../components/v2/ui/SectionHeader';
+import ArrowLink from '../components/v2/ui/ArrowLink';
+import { ABOUT_URL, ISSUES_URL, SITE_NAME, SITE_URL } from '../lib/brand';
 
-const ContactUs: FC = () => {
-  const contactMethods = [
-    {
-      icon: <MailIcon className='h-8 w-8' />,
-      title: 'Email Us',
-      description:
-        'Send us an email for general inquiries and collaboration opportunities',
-      contact: 'volunteers@bettergov.ph',
-      action: 'mailto:volunteers@bettergov.ph',
-      color: 'bg-blue-100 text-blue-600',
-    },
-    {
-      icon: <SiDiscord className='h-8 w-8' />,
-      title: 'Discord Community',
-      description:
-        'Join our volunteer community for real-time discussions and support',
-      contact: 'discord.gg/bettergov',
-      action: 'https://discord.gg/mHtThpN8bT',
-      color: 'bg-blue-100 text-blue-600',
-    },
-    {
-      icon: <UsersIcon className='h-8 w-8' />,
-      title: 'Volunteer With Us',
-      description: 'Help us build better digital services for Filipinos',
-      contact: 'Become a Volunteer',
-      action: '/join-us',
-      color: 'bg-blue-100 text-blue-600',
-    },
-    {
-      icon: <GlobeIcon className='h-8 w-8' />,
-      title: 'Report Issues',
-      description: 'Found a bug or have a suggestion? Open an issue on GitHub',
-      contact: 'GitHub Issues',
-      action: 'https://github.com/bettergovph/bettergov/issues',
-      color: 'bg-blue-100 text-blue-600',
-    },
-  ];
+const DESCRIPTION =
+  'Official channels for reaching the Philippine government: the 8888 Citizens’ Complaint Hotline, emergency numbers, Freedom of Information, and feedback for this website.';
 
-  const faqs = [
-    {
-      question: 'How can I volunteer for BetterGov?',
-      answer:
-        'We welcome volunteers with various skills! Check out our Join Us page to see current opportunities and fill out our volunteer form.',
-      link: { text: 'Join Us page', href: '/join-us' },
-    },
-    {
-      question: 'Is BetterGov affiliated with the Philippine government?',
-      answer:
-        'No, BetterGov is an independent volunteer-led initiative. We work alongside government agencies but are not officially part of the Philippine government.',
-    },
-    {
-      question: 'How do I report a bug or request a feature?',
-      answer:
-        'The best way is to open an issue on our GitHub repository. This helps us track and prioritize all requests.',
-      link: {
-        text: 'GitHub repository',
-        href: 'https://github.com/bettergovph/bettergov/issues',
-      },
-    },
-    {
-      question: 'Can I use BetterGov content for my project?',
-      answer:
-        'Yes! BetterGov is released under Creative Commons CC0, meaning our content is in the public domain and can be used freely for any purpose.',
-    },
-    {
-      question: 'Where does the data on BetterGov come from?',
-      answer:
-        'Our data is aggregated from various publicly available government sources. We use custom scripts and tools to collect, process, and display this information in a way that is easy for citizens to access and understand.',
-    },
-  ];
+interface Channel {
+  icon: LucideIcon;
+  label: string;
+  title: string;
+  href: string;
+  external?: boolean;
+  blurb: string;
+}
 
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+const GOVERNMENT_CHANNELS: Channel[] = [
+  {
+    icon: PhoneIcon,
+    label: 'Complaints and inquiries',
+    title: 'Contact Center ng Bayan · 8888',
+    href: 'https://contactcenterngbayan.gov.ph',
+    external: true,
+    blurb:
+      'The national hotline for complaints, requests, and questions about any government agency, office, or service. Dial 8888 from any phone, or file online.',
+  },
+  {
+    icon: PhoneCallIcon,
+    label: 'Emergencies',
+    title: 'Emergency hotline · 911',
+    href: '/philippines/hotlines',
+    blurb:
+      'For police, fire, and medical emergencies dial 911. Disaster, health, and agency-specific numbers are listed on the hotlines page.',
+  },
+  {
+    icon: FileTextIcon,
+    label: 'Freedom of Information',
+    title: 'eFOI portal',
+    href: 'https://www.foi.gov.ph',
+    external: true,
+    blurb:
+      'Request records and documents from national government agencies under the Freedom of Information programme.',
+  },
+];
+
+const WEBSITE_CHANNELS: Channel[] = [
+  {
+    icon: GithubIcon,
+    label: 'Website feedback',
+    title: 'Report a problem with this site',
+    href: ISSUES_URL,
+    external: true,
+    blurb:
+      'Found a broken link, outdated information, or a bug? Open an issue and the portal team will review it against the official source.',
+  },
+  {
+    icon: AccessibilityIcon,
+    label: 'Accessibility',
+    title: 'Accessibility statement',
+    href: '/accessibility',
+    blurb:
+      'How this site supports assistive technology, and how to tell us about a barrier you encountered.',
+  },
+];
+
+const ChannelCard: FC<{ channel: Channel }> = ({ channel }) => {
+  const Icon = channel.icon;
+  const inner = (
+    <>
+      <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-0.5'>
+        {channel.label}
+      </div>
+      <span className='font-sans-ed text-sm font-medium text-ed-navy group-hover:underline'>
+        {channel.title}
+      </span>
+      <p className='mt-1 text-[12px] text-ed-ink-3 leading-normal'>
+        {channel.blurb}
+      </p>
+    </>
+  );
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      <Helmet>
-        <title>Contact Us | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
-        />
-        <meta
-          name='keywords'
-          content='contact, bettergov, volunteer, feedback, support, philippines government'
-        />
-        <link rel='canonical' href='https://bettergov.ph/contact' />
-        <meta property='og:title' content='Contact Us | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/contact' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
-      </Helmet>
-
-      <div className='container mx-auto px-4 py-6 md:py-8'>
-        {/* Header Section */}
-        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-16 mt-4'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <div className='flex justify-center mb-6'>
-              <div className='p-4 bg-blue-100 rounded-full'>
-                <HeartHandshakeIcon className='h-12 w-12 text-blue-600' />
-              </div>
-            </div>
-            <h1 className='text-3xl md:text-5xl font-bold text-gray-900 mb-6'>
-              Connect with Us
-            </h1>
-            <p className='text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8'>
-              We&apos;re a passionate community of volunteers, developers, and
-              designers dedicated to improving digital public services in the
-              Philippines. Whether you have a question, a suggestion, or want to
-              join our mission, we&apos;d love to hear from you.
-            </p>
-          </div>
-        </div>
-
-        {/* Contact Methods Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8'>
-          {contactMethods.map((method, index) => (
-            <div
-              key={index}
-              className='bg-white rounded-lg border shadow-xs hover:shadow-md transition-shadow p-6'
-            >
-              <div className={`${method.color} rounded-lg p-3 w-fit mb-4`}>
-                {method.icon}
-              </div>
-              <h3 className='text-lg font-semibold text-gray-900 mb-2'>
-                {method.title}
-              </h3>
-              <p className='text-gray-600 text-sm mb-4'>{method.description}</p>
-              <a
-                href={method.action}
-                className='text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center group'
-                target={method.action.startsWith('http') ? '_blank' : '_self'}
-                rel={
-                  method.action.startsWith('http')
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
-              >
-                {method.contact}
-                <ArrowRightIcon className='w-4 h-4 ml-1 transition-transform group-hover:translate-x-1' />
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {/* FAQ Section */}
-        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 mt-8'>
-          <div className='max-w-4xl mx-auto'>
-            <div className='text-center mb-8'>
-              <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
-                Frequently Asked Questions
-              </h2>
-              <p className='text-gray-600'>
-                Find answers to common questions about BetterGov
-              </p>
-            </div>
-
-            <div className='space-y-4'>
-              {faqs.map((faq, index) => (
-                <div key={index} className='border rounded-lg'>
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className='w-full flex justify-between items-center p-4 text-left'
-                  >
-                    <h3 className='font-semibold text-gray-800 flex-1'>
-                      {faq.question}
-                    </h3>
-                    {openFaq === index ? (
-                      <ChevronUpIcon className='h-5 w-5 text-gray-500' />
-                    ) : (
-                      <ChevronDownIcon className='h-5 w-5 text-gray-500' />
-                    )}
-                  </button>
-                  {openFaq === index && (
-                    <div className='p-4 pt-0 text-gray-600 text-sm leading-relaxed'>
-                      <p>
-                        {faq.answer}
-                        {faq.link && (
-                          <>
-                            {' '}
-                            <Link
-                              to={faq.link.href}
-                              className='text-blue-600 hover:text-blue-800 font-medium'
-                              target={
-                                faq.link.href.startsWith('http')
-                                  ? '_blank'
-                                  : '_self'
-                              }
-                              rel={
-                                faq.link.href.startsWith('http')
-                                  ? 'noopener noreferrer'
-                                  : undefined
-                              }
-                            >
-                              {faq.link.text}
-                            </Link>
-                            .
-                          </>
-                        )}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className='bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 mt-8 text-center'>
-          <h3 className='text-2xl font-bold text-white mb-4'>
-            Ready to Make a Difference?
-          </h3>
-          <p className='text-blue-100 mb-6 max-w-2xl mx-auto'>
-            Join our community of volunteers building better digital services
-            for the Philippines.
-          </p>
-          <Link
-            to='/join-us'
-            className='inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'
+    <div className='flex gap-4 p-5'>
+      <div className='mt-0.5 shrink-0 text-ed-navy'>
+        <Icon size={18} />
+      </div>
+      <div className='group min-w-0'>
+        {channel.external ? (
+          <a
+            href={channel.href}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='block no-underline'
           >
-            Become a Volunteer
-            <ArrowRightIcon className='w-5 h-5 ml-2' />
+            {inner}
+          </a>
+        ) : (
+          <Link to={channel.href} className='block no-underline'>
+            {inner}
           </Link>
-        </div>
+        )}
       </div>
     </div>
   );
 };
+
+const ContactUs: FC = () => (
+  <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+    <Helmet>
+      <title>Contact | {SITE_NAME}</title>
+      <meta name='description' content={DESCRIPTION} />
+      <meta
+        name='keywords'
+        content='contact, 8888, hotline, complaint, freedom of information, feedback, philippines government'
+      />
+      <link rel='canonical' href={`${SITE_URL}/contact`} />
+      <meta property='og:title' content={`Contact | ${SITE_NAME}`} />
+      <meta property='og:description' content={DESCRIPTION} />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content={`${SITE_URL}/contact`} />
+      <meta property='og:image' content={`${SITE_URL}/og-image.png`} />
+    </Helmet>
+
+    <PageMasthead
+      variant='light'
+      title='Get in touch'
+      lede='Reach the right office for your concern. These are the official channels for government inquiries and for feedback about this website.'
+    />
+
+    <section className='py-14 max-md:py-6'>
+      <Container>
+        <div className='grid grid-cols-[1fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10'>
+          <div>
+            <SectionHeader label='Government services and concerns' />
+            <div className='divide-y divide-ed-rule border border-ed-rule'>
+              {GOVERNMENT_CHANNELS.map(channel => (
+                <ChannelCard key={channel.title} channel={channel} />
+              ))}
+            </div>
+            <p className='mt-4 text-[13px] leading-relaxed text-ed-ink-3'>
+              For a specific agency, the{' '}
+              <Link to='/government/departments' className='text-ed-navy'>
+                departments directory
+              </Link>{' '}
+              lists official addresses, trunk lines, and websites.
+            </p>
+          </div>
+
+          <div className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-10'>
+            <SectionHeader label='About this website' />
+            <div className='divide-y divide-ed-rule border border-ed-rule'>
+              {WEBSITE_CHANNELS.map(channel => (
+                <ChannelCard key={channel.title} channel={channel} />
+              ))}
+            </div>
+
+            <div className='mt-6 border border-ed-rule bg-ed-paper-2 p-5'>
+              <div className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3 mb-2'>
+                Open source
+              </div>
+              <p className='font-sans-ed text-[17px] leading-snug text-ed-ink-2'>
+                This portal is built in the open. Corrections and improvements
+                are welcome as pull requests.
+              </p>
+              <ArrowLink to={ABOUT_URL} external className='mt-3'>
+                Learn more about BetterGov
+              </ArrowLink>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+);
 
 export default ContactUs;

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bettergov.ph/schemas/population-2020.schema.json",
+  "$id": "https://www.gov.ph/schemas/population-2020.schema.json",
   "title": "Philippines Population 2020",
   "description": "Schema for 2020 Philippine census population data by region and province/HUC",
   "type": "object",

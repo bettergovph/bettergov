@@ -1,0 +1,51 @@
+{
+  "revision": "f50fe0edde2952d9344f440e90df96c6e831e602",
+  "unitTests": {
+    "filesPassed": 39,
+    "testsPassed": 619
+  },
+  "build": "passed",
+  "lint": "passed",
+  "workerProductionDryRun": "passed",
+  "frontendTypeErrors": 38,
+  "workerTypeErrors": 27,
+  "devSecretExposure": {
+    "before": {
+      "publicAddressStatus": 200,
+      "bodyMatchedLocalFile": true
+    },
+    "after": {
+      "secretFile": 403,
+      "rawQuery": 403,
+      "urlQuery": 403,
+      "fsPath": 403,
+      "envFile": 403,
+      "gitConfig": 403,
+      "homepage": 200
+    },
+    "secretValuesRecorded": false
+  },
+  "httpTransport": [
+    {
+      "url": "http://www.gov.ph/",
+      "status": 200,
+      "redirect": false,
+      "servedSPA": true
+    },
+    {
+      "url": "http://www.gov.ph/api/status",
+      "status": 200,
+      "redirect": false,
+      "apiOnline": true
+    }
+  ],
+  "csvProbe": {
+    "syntheticCell": "=1+1",
+    "formulaNeutralized": false
+  },
+  "storageProbe": {
+    "scope": "Fresh local browser context; synthetic sessionStorage tampering",
+    "handlerExecuted": true,
+    "crossOriginAttackDemonstrated": false
+  }
+}

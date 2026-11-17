@@ -27,7 +27,7 @@ async function createSearchKey() {
   console.log('Attempting to create a new search-only API key...');
   try {
     const newKey = await client.createKey({
-      description: 'Public search-only key for BetterGov frontend',
+      description: 'Search-only key for the GOV.PH Worker proxy',
       actions: ['search'], // Only allows search action
       indexes: ['bettergov', 'bettergov_flood_control', 'contractors'], // Restricted to the 'bettergov' indices only.
       expiresAt: null, // Key does not expire
@@ -43,7 +43,7 @@ async function createSearchKey() {
     console.log('Created At:', newKey.createdAt);
     console.log('Updated At:', newKey.updatedAt);
     console.log(
-      '\nIMPORTANT: API Key Value (use this in your .env for VITE_MEILISEARCH_SEARCH_API_KEY):'
+      '\nIMPORTANT: API Key Value (store as Worker secret MEILISEARCH_SEARCH_API_KEY and in gitignored .dev.vars):'
     );
     console.log('******************************************');
     console.log(newKey.key);

@@ -1,4 +1,5 @@
 import { Env } from '../types';
+import { validateDataRequest } from '../lib/data-request';
 
 // Interface for Philippine city coordinates
 interface CityCoordinates {
@@ -89,10 +90,7 @@ const CITY_COORDINATES: CityCoordinatesMap = PHILIPPINE_CITIES.reduce(
 );
 
 // Core function to fetch weather data using OpenWeatherMap API
-async function fetchWeatherData(
-  env: Env,
-  specificCity: string | null = null
-): Promise<WeatherResponseData> {
+async function fetchWeatherData(env: Env): Promise<WeatherResponseData> {
   // Get API key from environment variable
   const apiKey = env.OPENWEATHERMAP_API_KEY;
   if (!apiKey) {
@@ -102,9 +100,7 @@ async function fetchWeatherData(
   }
 
   // Determine which cities to fetch
-  const citiesToFetch = specificCity
-    ? [specificCity.toLowerCase()].filter(city => CITY_COORDINATES[city])
-    : PHILIPPINE_CITIES.map(city => city.name.toLowerCase());
+  const citiesToFetch = PHILIPPINE_CITIES.map(city => city.name.toLowerCase());
 
   // Fetch weather data for cities
   const weatherData: WeatherResponseData = {};
@@ -119,10 +115,12 @@ async function fetchWeatherData(
 
       // Use the standard weather API with coordinates
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&units=metric&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&units=metric&appid=${apiKey}`,
+        { redirect: 'manual', signal: AbortSignal.timeout(15_000) }
       );
 
       if (!response.ok) {
+        await response.body?.cancel();
         console.error(
           `Failed to fetch weather data for ${cityName}: ${response.statusText}`
         );
@@ -130,20 +128,16 @@ async function fetchWeatherData(
       }
 
       const data = (await response.json()) as OpenWeatherMapResponse;
+      if (!data.main || !Number.isFinite(data.main.temp)) {
+        throw new Error('Weather provider returned invalid data');
+      }
 
       // Format the response data based on the example format
       weatherData[cityName] = {
         city: data.name || cityName.charAt(0).toUpperCase() + cityName.slice(1),
         coordinates: data.coord || { lat: coords.lat, lon: coords.lon },
         weather: data.weather || [],
-        main: data.main || {
-          temp: 0,
-          feels_like: 0,
-          temp_min: 0,
-          temp_max: 0,
-          pressure: 0,
-          humidity: 0,
-        },
+        main: data.main,
         visibility: data.visibility || 0,
         wind: data.wind || { speed: 0, deg: 0 },
         clouds: data.clouds || { all: 0 },
@@ -159,159 +153,70 @@ async function fetchWeatherData(
       if (citiesToFetch.length > 1) {
         await new Promise(resolve => setTimeout(resolve, 100));
       }
-    } catch (cityError) {
-      console.error(`Error fetching data for ${cityName}:`, cityError);
+    } catch {
+      // A fetch error may contain the URL, including the provider API key.
+      console.error(`Error fetching weather for ${cityName}`);
     }
   }
 
+  if (Object.keys(weatherData).length === 0) {
+    throw new Error('Weather provider returned no data');
+  }
   return weatherData;
 }
 
-// Handler for direct HTTP requests
+// Cache reads stay within this Worker's account. Only a cold cache calls the
+// provider during an HTTP request; the hourly scheduled handler refreshes it.
 export async function onRequest(context: {
   request: Request;
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
+  const invalid = validateDataRequest(context.request, 'city');
+  if (invalid) return invalid;
+  const city = new URL(context.request.url).searchParams
+    .get('city')
+    ?.toLowerCase();
+  if (city && !Object.hasOwn(CITY_COORDINATES, city)) {
+    return Response.json(
+      { error: 'Unknown city', availableCities: Object.keys(CITY_COORDINATES) },
+      { status: 404 }
+    );
+  }
   try {
-    const url = new URL(context.request.url);
-    const cityParam = url.searchParams.get('city');
-    const forceUpdate = url.searchParams.get('update') === 'true';
-
-    // Always fetch fresh data if update=true is specified
-    if (forceUpdate) {
-      // Fetch fresh data for all cities
-      const weatherData = await fetchWeatherData(context.env, cityParam);
-
-      // Store the data in KV regardless of whether a specific city was requested
-      if (!cityParam) {
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(weatherData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
-        );
-      } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
-        // If a specific city was requested and found, update just that city in the KV store
-        const existingData =
-          ((await context.env.WEATHER_KV.get('philippines_weather', {
-            type: 'json',
-          })) as WeatherResponseData) || {};
-        existingData[cityParam.toLowerCase()] =
-          weatherData[cityParam.toLowerCase()];
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(existingData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
-        );
-      }
-
-      // Return the fresh data
-      return new Response(
-        JSON.stringify(
-          cityParam ? weatherData[cityParam.toLowerCase()] || {} : weatherData
-        ),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Cache-Control': 'max-age=3600',
-          },
-        }
-      );
-    }
-
-    // Check if data exists in KV and is not expired
-    const cachedData = (await context.env.WEATHER_KV.get(
+    let data = await context.env.WEATHER_KV.get<WeatherResponseData>(
       'philippines_weather',
       { type: 'json' }
-    )) as WeatherResponseData | null;
-
-    // If city parameter is provided, filter the data
-    if (cityParam && cachedData) {
-      const cityKey = cityParam.toLowerCase();
-      if (cachedData[cityKey]) {
-        return new Response(
-          JSON.stringify({ [cityKey]: cachedData[cityKey] }),
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Cache-Control': 'max-age=3600',
-            },
-          }
+    );
+    if (!data) {
+      if (!context.env.OPENWEATHERMAP_API_KEY) {
+        return Response.json(
+          { error: 'Weather is not configured' },
+          { status: 503 }
         );
       }
-    }
-
-    // If we have cached data for all cities and no specific city is requested, return it
-    if (cachedData && !cityParam) {
-      return new Response(JSON.stringify(cachedData), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
-        },
-      });
-    }
-
-    // If we reach here, either:
-    // 1. No cached data exists
-    // 2. A specific city was requested that wasn't in the cache
-    // 3. The cached data has expired
-    // So we fetch fresh data
-    const weatherData = await fetchWeatherData(context.env, cityParam);
-
-    // Store the data in KV
-    if (!cityParam) {
+      data = await fetchWeatherData(context.env);
       await context.env.WEATHER_KV.put(
         'philippines_weather',
-        JSON.stringify(weatherData),
+        JSON.stringify(data),
         {
-          expirationTtl: 3600, // Expire after 1 hour
-        }
-      );
-    } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
-      // If a specific city was requested and found, update just that city in the KV store
-      const existingData =
-        ((await context.env.WEATHER_KV.get('philippines_weather', {
-          type: 'json',
-        })) as WeatherResponseData) || {};
-      existingData[cityParam.toLowerCase()] =
-        weatherData[cityParam.toLowerCase()];
-      await context.env.WEATHER_KV.put(
-        'philippines_weather',
-        JSON.stringify(existingData),
-        {
-          expirationTtl: 3600, // Expire after 1 hour
+          expirationTtl: 3600 * 6,
         }
       );
     }
-
-    // Return the response
-    return new Response(
-      JSON.stringify(
-        cityParam ? weatherData[cityParam.toLowerCase()] || {} : weatherData
-      ),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
-        },
-      }
+    if (city && !data[city]) {
+      return Response.json(
+        { error: 'Weather temporarily unavailable for this city' },
+        { status: 503 }
+      );
+    }
+    return Response.json(city ? { [city]: data[city] } : data);
+  } catch {
+    console.error('[weather] Unable to load weather data');
+    return Response.json(
+      { error: 'Weather service temporarily unavailable' },
+      { status: 502 }
     );
-  } catch (error) {
-    return new Response(JSON.stringify({ error: (error as Error).message }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
   }
 }
 
@@ -319,11 +224,15 @@ export async function scheduled(controller: ScheduledController, env: Env) {
   try {
     // Fetch weather data for all cities
     const weatherData = await fetchWeatherData(env);
+    const cachedData = await env.WEATHER_KV.get<WeatherResponseData>(
+      'philippines_weather',
+      { type: 'json' }
+    );
 
     // Store the data in Cloudflare KV
     await env.WEATHER_KV.put(
       'philippines_weather',
-      JSON.stringify(weatherData),
+      JSON.stringify({ ...cachedData, ...weatherData }),
       {
         expirationTtl: 3600 * 6, // Expire after 6 hours
       }
@@ -334,11 +243,11 @@ export async function scheduled(controller: ScheduledController, env: Env) {
       message: `Weather data updated for ${Object.keys(weatherData).length} Philippine cities`,
       timestamp: new Date().toISOString(),
     };
-  } catch (error) {
-    console.error('Error in weather scheduled function:', error);
+  } catch {
+    console.error('[weather] Scheduled refresh failed');
     return {
       success: false,
-      error: (error as Error).message,
+      error: 'Weather refresh failed',
     };
   }
 }

@@ -1,13 +1,10 @@
-import {
-  ArrowUpDownIcon,
-  ExternalLinkIcon,
-  FilterIcon,
-  GlobeIcon,
-  SearchIcon,
-} from 'lucide-react';
 import { ChangeEvent, FC, useMemo, useState } from 'react';
-import Button from '../../../components/ui/Button';
+import { ExternalLinkIcon, SearchIcon, XIcon } from 'lucide-react';
+import Container from '../../../components/v2/ui/Container';
+import Flag from '../../../components/v2/ui/Flag';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import websitesData from '../../../data/websites.json';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
 
 interface Website {
   name: string;
@@ -17,313 +14,283 @@ interface Website {
   address: string | null;
   contact: string | null;
   type: string;
+  parent_department: string | null;
 }
 
-const WebsitesDirectory: FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'name' | 'type'>('name');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+const TYPE_LABELS: Record<string, string> = {
+  departments: 'Department',
+  executive: 'Executive Office',
+  legislative: 'Legislative',
+  constitutional: 'Constitutional / SUC',
+  bureau: 'Bureau',
+  'attached-agencies': 'Attached Agency',
+  diplomatic: 'Diplomatic',
+  'foreign-service': 'Foreign Service',
+  'regional-office': 'Regional Office',
+  'under-administrative_supervision': 'Admin. Supervision',
+  'under-supervision_and_control': 'Supervision & Control',
+};
 
-  // Extract unique types for filtering
-  const websiteTypes = useMemo(() => {
-    const types = new Set<string>();
-    websitesData.forEach((website: Website) => {
-      if (website.type) types.add(website.type);
-    });
-    return Array.from(types).sort();
+const TOP_TYPES = [
+  'departments',
+  'executive',
+  'constitutional',
+  'bureau',
+  'attached-agencies',
+  'legislative',
+];
+
+const formatUrl = (url: string | null) => {
+  if (!url) return null;
+  return url.startsWith('http') ? url : `https://${url}`;
+};
+
+const typeLabel = (t: string) => TYPE_LABELS[t] ?? t.replace(/-/g, ' ');
+
+const WebsitesDirectory: FC = () => {
+  const [search, setSearch] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+
+  const allTypes = useMemo(() => {
+    const set = new Set<string>();
+    (websitesData as Website[]).forEach(w => set.add(w.type));
+    return Array.from(set).sort();
   }, []);
 
-  // Filter and sort websites
-  const filteredWebsites = useMemo(() => {
-    return websitesData
-      .filter((website: Website) => {
-        const matchesSearch =
-          website.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (website.website &&
-            website.website.toLowerCase().includes(searchQuery.toLowerCase()));
-        const matchesType =
-          selectedType === '' || website.type === selectedType;
-        return matchesSearch && matchesType;
-      })
-      .sort((a: Website, b: Website) => {
-        if (sortBy === 'name') {
-          return sortDirection === 'asc'
-            ? a.name.localeCompare(b.name)
-            : b.name.localeCompare(a.name);
-        } else {
-          // Sort by type then by name
-          const typeComparison =
-            sortDirection === 'asc'
-              ? a.type.localeCompare(b.type)
-              : b.type.localeCompare(a.type);
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase();
+    return (websitesData as Website[]).filter(w => {
+      const matchSearch =
+        !q ||
+        w.name.toLowerCase().includes(q) ||
+        (w.website && w.website.toLowerCase().includes(q)) ||
+        (w.parent_department && w.parent_department.toLowerCase().includes(q));
+      const matchType = !selectedType || w.type === selectedType;
+      return matchSearch && matchType;
+    });
+  }, [search, selectedType]);
 
-          return typeComparison !== 0
-            ? typeComparison
-            : a.name.localeCompare(b.name);
-        }
-      });
-  }, [searchQuery, selectedType, sortBy, sortDirection]);
-
-  // Format website URL
-  const formatUrl = (url: string | null) => {
-    if (!url) return null;
-    return url.startsWith('http') ? url : `https://${url}`;
-  };
-
-  // Toggle sort direction
-  const toggleSort = (field: 'name' | 'type') => {
-    if (sortBy === field) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortBy(field);
-      setSortDirection('asc');
-    }
-  };
+  const typeCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    (websitesData as Website[]).forEach(w => {
+      map[w.type] = (map[w.type] ?? 0) + 1;
+    });
+    return map;
+  }, []);
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      {/* <SEO
-        title="Government Websites Directory | BetterGov.ph"
-        description="Comprehensive directory of Philippine government websites, agencies, and services."
-        keywords="philippines government websites, philippine agencies online, government directory"
-      /> */}
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <PageMasthead
+        variant='hero'
+        title='Government Websites'
+        lede='Official online presence of Philippine government agencies, bureaus, SUCs, and diplomatic posts.'
+      />
 
-      <div className='bg-linear-to-r from-primary-700 to-primary-900 text-white py-16'>
-        <div className='container mx-auto px-4'>
-          <div className='flex items-center mb-4'>
-            <GlobeIcon className='h-8 w-8 mr-3' />
-            <h1 className='text-3xl md:text-4xl font-bold'>
-              Government Websites Directory
-            </h1>
-          </div>
-          <p className='text-lg md:text-xl opacity-90 max-w-3xl'>
-            Access official websites of Philippine government agencies, local
-            government units, and other public institutions.
-          </p>
-        </div>
-      </div>
-
-      <div className='container mx-auto px-4 py-8'>
-        {/* Search and Filter Section */}
-        <div className='bg-white rounded-lg shadow-md p-6 mb-8'>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-            <div className='col-span-1 md:col-span-2'>
-              <div className='relative'>
-                <SearchIcon
-                  className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'
-                  size={18}
-                />
-                <input
-                  type='text'
-                  placeholder='Search by name or website...'
-                  value={searchQuery}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setSearchQuery(e.target.value)
-                  }
-                  className='pl-10 w-full'
-                />
-              </div>
-            </div>
-            <div>
-              <div className='relative'>
-                <FilterIcon
-                  className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'
-                  size={18}
-                />
-                <select
-                  value={selectedType}
-                  onChange={e => setSelectedType(e.target.value)}
-                  className='pl-10 w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-hidden focus:ring-2 focus:ring-primary-500'
-                >
-                  <option value=''>All Categories</option>
-                  {websiteTypes.map(type => (
-                    <option key={type} value={type}>
-                      {type.charAt(0).toUpperCase() + type.slice(1)}
-                    </option>
+      <section className='py-14 max-md:py-6'>
+        <Container>
+          <div className='grid grid-cols-[220px_1fr] gap-10 max-lg:grid-cols-1'>
+            {/* Sidebar: category filter */}
+            <aside className='max-lg:order-last'>
+              <div className='sticky top-6'>
+                <SectionHeader label='Filter by type' />
+                <div className='space-y-0.5'>
+                  <button
+                    onClick={() => setSelectedType('')}
+                    className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors ${
+                      selectedType === ''
+                        ? 'bg-ed-navy text-white'
+                        : 'text-ed-ink hover:bg-ed-paper-2'
+                    }`}
+                  >
+                    <span>All agencies</span>
+                    <span
+                      className={`font-mono-ed text-[10px] ${selectedType === '' ? 'text-white/70' : 'text-ed-ink-3'}`}
+                    >
+                      {(websitesData as Website[]).length}
+                    </span>
+                  </button>
+                  {allTypes.map(t => (
+                    <button
+                      key={t}
+                      onClick={() => setSelectedType(t)}
+                      className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors ${
+                        selectedType === t
+                          ? 'bg-ed-navy text-white'
+                          : 'text-ed-ink hover:bg-ed-paper-2'
+                      }`}
+                    >
+                      <span>{typeLabel(t)}</span>
+                      <span
+                        className={`font-mono-ed text-[10px] ${selectedType === t ? 'text-white/70' : 'text-ed-ink-3'}`}
+                      >
+                        {typeCounts[t] ?? 0}
+                      </span>
+                    </button>
                   ))}
-                </select>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </aside>
 
-        {/* Results Section */}
-        <div className='bg-white rounded-lg shadow-md overflow-hidden'>
-          <div className='p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center'>
-            <div className='text-sm text-gray-800'>
-              Showing {filteredWebsites.length} of {websitesData.length}{' '}
-              websites
-            </div>
-            <div className='flex space-x-2'>
-              <Button
-                variant='ghost'
-                size='sm'
-                onClick={() => toggleSort('name')}
-                className='flex items-center text-sm'
-              >
-                Sort by Name
-                {sortBy === 'name' && (
-                  <ArrowUpDownIcon className='ml-1 h-4 w-4' />
-                )}
-              </Button>
-              <Button
-                variant='ghost'
-                size='sm'
-                onClick={() => toggleSort('type')}
-                className='flex items-center text-sm'
-              >
-                Sort by Category
-                {sortBy === 'type' && (
-                  <ArrowUpDownIcon className='ml-1 h-4 w-4' />
-                )}
-              </Button>
-            </div>
-          </div>
+            {/* Main: search + listing */}
+            <div>
+              {/* Search bar */}
+              <div className='mb-6 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start'>
+                <div className='relative flex-1 max-w-md'>
+                  <SearchIcon
+                    size={14}
+                    className='absolute left-3 top-1/2 -translate-y-1/2 text-ed-ink-3'
+                  />
+                  <input
+                    type='text'
+                    placeholder='Search agencies or websites…'
+                    value={search}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setSearch(e.target.value)
+                    }
+                    className='w-full border border-ed-rule bg-white py-2.5 pl-8 pr-8 font-sans-ed text-sm text-ed-ink placeholder:text-ed-ink-4 focus:border-ed-ink focus:outline-none'
+                  />
+                  {search && (
+                    <button
+                      onClick={() => setSearch('')}
+                      className='absolute right-3 top-1/2 -translate-y-1/2 text-ed-ink-3 hover:text-ed-ink'
+                    >
+                      <XIcon size={13} />
+                    </button>
+                  )}
+                </div>
+                <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                  {filtered.length} result{filtered.length !== 1 ? 's' : ''}
+                </div>
+              </div>
 
-          <div className='divide-y divide-gray-200'>
-            {filteredWebsites.length > 0 ? (
-              filteredWebsites.map((website: Website, index: number) => (
-                <div
-                  key={`${website.slug}-${index}`}
-                  className='p-6 hover:bg-gray-50 transition-colors'
-                >
-                  <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-4'>
-                    <div className='flex-1'>
-                      <div className='flex items-center'>
-                        <h2 className='text-lg font-semibold text-gray-900'>
-                          {website.name}
-                        </h2>
-                        {/* <span className="ml-3 capitalize text-xs bg-green-100 rounded-full px-2 py-1">
-                          {website.type}
-                        </span> */}
-                      </div>
-
-                      {website.address && (
-                        <p className='text-gray-800 mt-1 text-sm'>
-                          {website.address}
-                        </p>
-                      )}
-                      {website.website && (
-                        <div className='mt-2'>
-                          <span className='text-sm font-medium text-gray-800'>
-                            Website:{' '}
-                          </span>
-                          <a
-                            href={formatUrl(website.website) as string}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='text-sm text-primary-600'
-                          >
-                            {website.website}
-                          </a>
-                        </div>
-                      )}
-
-                      {website.email && (
-                        <div className='mt-2'>
-                          <span className='text-sm font-medium text-gray-800'>
-                            Email:{' '}
-                          </span>
-                          <span className='text-sm text-primary-600'>
-                            {Array.isArray(website.email)
-                              ? website.email.join(', ')
-                              : website.email}
-                          </span>
-                        </div>
-                      )}
-
-                      {website.contact && (
-                        <div className='mt-1'>
-                          <span className='text-sm font-medium text-gray-800'>
-                            Contact:{' '}
-                          </span>
-                          <span className='text-sm text-gray-800'>
-                            {Array.isArray(website.contact)
-                              ? website.contact.join(', ')
-                              : website.contact}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {website.website && (
-                      <div className='shrink-0'>
-                        <a
-                          href={formatUrl(website.website) as string}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-xs text-white bg-primary-600 hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500'
-                        >
-                          Visit Website
-                          <ExternalLinkIcon className='ml-2 h-4 w-4' />
-                        </a>
-                      </div>
-                    )}
+              {/* Table header */}
+              <div className='grid grid-cols-[1fr_180px_120px] border-b border-ed-rule pb-2 max-md:hidden'>
+                {['Agency', 'Website', 'Type'].map(h => (
+                  <div
+                    key={h}
+                    className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'
+                  >
+                    {h}
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className='p-8 text-center'>
-                <div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4'>
-                  <SearchIcon className='h-8 w-8 text-gray-400' />
-                </div>
-                <h3 className='text-lg font-medium text-gray-900'>
-                  No websites found
-                </h3>
-                <p className='mt-1 text-gray-800'>
-                  Try adjusting your search or filter to find what you&apos;re
-                  looking for.
-                </p>
+                ))}
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Information Section */}
-        <div className='mt-8 bg-white rounded-lg shadow-md p-6'>
-          <h2 className='text-xl font-bold mb-4 text-gray-800'>
-            About This Directory
-          </h2>
-          <p className='text-gray-800 mb-4'>
-            This comprehensive directory provides access to official websites of
-            various Philippine government institutions, agencies, and local
-            government units. The information is regularly updated to ensure
-            accuracy and reliability.
-          </p>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
-                Categories
-              </h3>
-              <p className='text-gray-800'>
-                Websites are categorized by type of institution (executive,
-                judicial, legislative, constitutional, diplomatic, and local
-                government units) to help you find the right government service
-                quickly.
-              </p>
-            </div>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
-                Reporting Issues
-              </h3>
-              <p className='text-gray-800'>
-                If you find any broken links, outdated information, or have
-                suggestions for improvement, please contact us through our
-                feedback form or email at
-                <a
-                  href='mailto:info@bettergov.ph'
-                  className='text-primary-600 hover:underline ml-1'
-                >
-                  info@bettergov.ph
-                </a>
-                .
-              </p>
+              {filtered.length === 0 ? (
+                <div className='py-16 text-center'>
+                  <p className='text-sm text-ed-ink-3'>
+                    No agencies match{' '}
+                    {search ? <>&ldquo;{search}&rdquo;</> : 'this filter'}.
+                  </p>
+                  {(search || selectedType) && (
+                    <button
+                      onClick={() => {
+                        setSearch('');
+                        setSelectedType('');
+                      }}
+                      className='mt-3 text-[13px] font-medium text-ed-navy hover:underline'
+                    >
+                      Clear filters
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className='divide-y divide-ed-rule'>
+                  {filtered.map((w, i) => {
+                    const url = formatUrl(w.website);
+                    return (
+                      <div
+                        key={`${w.slug}-${i}`}
+                        className='grid grid-cols-[1fr_180px_120px] items-center py-3.5 max-md:grid-cols-1 max-md:gap-1 max-md:py-4'
+                      >
+                        {/* Agency name */}
+                        <div>
+                          <div className='text-[14px] font-medium leading-snug text-ed-ink'>
+                            {w.name
+                              .split(' ')
+                              .map(
+                                word =>
+                                  word.charAt(0).toUpperCase() +
+                                  word.slice(1).toLowerCase()
+                              )
+                              .join(' ')}
+                          </div>
+                          {w.parent_department && (
+                            <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.1em] text-ed-ink-3'>
+                              {w.parent_department
+                                .split(' ')
+                                .map(
+                                  word =>
+                                    word.charAt(0).toUpperCase() +
+                                    word.slice(1).toLowerCase()
+                                )
+                                .join(' ')}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Website */}
+                        <div className='max-md:hidden'>
+                          {url ? (
+                            <a
+                              href={url}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='inline-flex items-center gap-1 font-mono-ed text-[11px] text-ed-navy hover:underline'
+                            >
+                              {w.website}
+                              <ExternalLinkIcon size={10} />
+                            </a>
+                          ) : (
+                            <span className='font-mono-ed text-[10px] text-ed-ink-4'>
+                              —
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Type flag */}
+                        <div className='max-md:hidden'>
+                          <Flag
+                            variant={
+                              TOP_TYPES.includes(w.type) ? 'navy' : 'default'
+                            }
+                          >
+                            {typeLabel(w.type)}
+                          </Flag>
+                        </div>
+
+                        {/* Mobile summary */}
+                        <div className='md:hidden'>
+                          <div className='flex items-center gap-2'>
+                            <Flag
+                              variant={
+                                TOP_TYPES.includes(w.type) ? 'navy' : 'default'
+                              }
+                            >
+                              {typeLabel(w.type)}
+                            </Flag>
+                            {url && (
+                              <a
+                                href={url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='inline-flex items-center gap-1 font-mono-ed text-[10px] text-ed-navy hover:underline'
+                              >
+                                {w.website}
+                                <ExternalLinkIcon size={10} />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </section>
+    </main>
   );
 };
 

@@ -47,6 +47,12 @@ const config = {
   'src/data/services/*.json': buildValidateCommand(
     'src/data/services/schema/services.schema.json'
   ),
+  'src/data/service_categories.json': buildValidateCommand(
+    'src/data/schema/service_categories.schema.json'
+  ),
+  'src/data/critical_hotlines.json': buildValidateCommand(
+    'src/data/schema/critical_hotlines.schema.json'
+  ),
   'src/data/philippines-regions.json': buildValidateCommand(
     'src/data/schema/GeoJSON.json'
   ),
@@ -62,9 +68,6 @@ const config = {
   'src/data/seo-metadata.json': buildValidateCommand(
     'src/data/schema/seo-metadata.schema.json'
   ),
-  'src/data/service_categories.json': buildValidateCommand(
-    'src/data/schema/service_categories.schema.json'
-  ),
   'src/data/websites.json': buildValidateCommand(
     'src/data/schema/websites.schema.json'
   ),
@@ -77,11 +80,6 @@ const config = {
   'src/data/visa/philippines_visa_types.json': buildValidateCommand(
     'src/data/visa/schema/philippines_visa_types.schema.json'
   ),
-
-  // JSON schema validation for the project registry
-  'public/api/projects.json': [
-    'node scripts/validate-json-schema.js src/data/schema/projects.schema.json',
-  ],
 };
 
 export default config;

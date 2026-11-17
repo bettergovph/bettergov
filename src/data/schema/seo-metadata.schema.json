@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bettergov.ph/schemas/seo-metadata.schema.json",
+  "$id": "https://www.gov.ph/schemas/seo-metadata.schema.json",
   "title": "SEO Metadata",
   "description": "Schema for SEO metadata including page titles and descriptions",
   "type": "object",

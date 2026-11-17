@@ -23,24 +23,24 @@ export async function navigate(
 
   // For mobile
   if (isMobile) {
-    const mobileNavigation = page.getByRole('navigation').first();
+    const sidebarContainer = page.locator('div.block > div.container').first();
     if (hamburger) {
-      await mobileNavigation
+      await page
         .getByRole('button', { name: 'Open main menu' })
         .first()
         .click();
     }
 
     if (option) {
-      await mobileNavigation
-        .getByRole('button', { name: `Toggle ${option} submenu` })
+      await sidebarContainer
+        .getByRole('link', { name: option })
         .first()
         .click();
     }
 
     if (subOption) {
-      await mobileNavigation
-        .getByRole('link', { name: subOption, exact: true })
+      await sidebarContainer
+        .getByRole('link', { name: subOption })
         .first()
         .click();
     }

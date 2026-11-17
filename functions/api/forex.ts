@@ -1,4 +1,5 @@
 import { Env } from '../types';
+import { validateDataRequest } from '../lib/data-request';
 
 // BSP API endpoint for exchange rates
 const BSP_URL =
@@ -48,19 +49,25 @@ async function fetchForexData(): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
+      redirect: 'manual',
+      signal: AbortSignal.timeout(15_000),
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: 'application/json;odata=nometadata',
+        'User-Agent': 'GOVPH-API/1.0 (+https://www.gov.ph)',
       },
     });
 
     if (!response.ok) {
+      await response.body?.cancel();
       throw new Error(
         `Failed to fetch BSP data: ${response.status} ${response.statusText}`
       );
     }
 
     const data = (await response.json()) as BSPApiResponse;
+    if (!Array.isArray(data.value) || data.value.length === 0) {
+      throw new Error('BSP returned no exchange rates');
+    }
 
     // Process the data to make it more usable
     const processedData: ProcessedForexData = {
@@ -88,154 +95,45 @@ async function fetchForexData(): Promise<ProcessedForexData> {
   }
 }
 
-// Function for direct API access
+// Read this deployment's KV; fill an empty cache directly from BSP.
 export async function onRequest(context: {
   request: Request;
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
   const { request, env } = context;
-  const url = new URL(request.url);
-  const symbol = url.searchParams.get('symbol');
-  const forceUpdate = url.searchParams.get('update') === 'true';
-
+  const invalid = validateDataRequest(request, 'symbol');
+  if (invalid) return invalid;
+  const symbol = new URL(request.url).searchParams.get('symbol')?.toUpperCase();
   try {
-    // Always fetch fresh data if update=true is specified
-    if (forceUpdate) {
-      // Fetch fresh forex data
-      const forexData = await fetchForexData();
-
-      // Store the data in KV
-      await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
-        expirationTtl: 3600, // Expire after 1 hour
-      });
-
-      // Filter by symbol if specified
-      if (symbol) {
-        const upperSymbol = symbol.toUpperCase();
-        const filteredRates = forexData.rates.filter(
-          rate => rate.symbol.toUpperCase() === upperSymbol
-        );
-
-        if (filteredRates.length > 0) {
-          return new Response(
-            JSON.stringify({
-              metadata: forexData.metadata,
-              rates: filteredRates,
-            }),
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Cache-Control': 'max-age=3600',
-              },
-            }
-          );
-        }
-      }
-
-      // Return all data if no symbol specified or no match found
-      return new Response(JSON.stringify(forexData), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
-        },
+    let data = await env.FOREX_KV.get<ProcessedForexData>(
+      'bsp_exchange_rates',
+      { type: 'json' }
+    );
+    if (!data) {
+      data = await fetchForexData();
+      await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(data), {
+        expirationTtl: 3600 * 6,
       });
     }
-
-    // Try to get cached data first
-    const cachedData = await env.FOREX_KV.get('bsp_exchange_rates');
-
-    if (cachedData) {
-      const parsedData = JSON.parse(cachedData) as ProcessedForexData;
-
-      // If a specific currency symbol is requested, filter the data
-      if (symbol) {
-        const upperSymbol = symbol.toUpperCase();
-        const filteredRates = parsedData.rates.filter(
-          rate => rate.symbol.toUpperCase() === upperSymbol
-        );
-
-        if (filteredRates.length > 0) {
-          return new Response(
-            JSON.stringify({
-              metadata: parsedData.metadata,
-              rates: filteredRates,
-            }),
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Cache-Control': 'max-age=3600',
-              },
-            }
-          );
-        }
-      }
-
-      // Return all data if no symbol specified or no match found
-      return new Response(cachedData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
+    const rates = symbol
+      ? data.rates.filter(rate => rate.symbol.toUpperCase() === symbol)
+      : data.rates;
+    if (!rates.length) {
+      return Response.json(
+        {
+          error: 'Unknown currency symbol',
+          availableSymbols: data.rates.map(rate => rate.symbol),
         },
-      });
-    }
-
-    // If no cached data, fetch fresh data
-    const forexData = await fetchForexData();
-
-    // Store the data in KV
-    await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
-      expirationTtl: 3600, // Expire after 1 hour
-    });
-
-    // Filter by symbol if specified
-    if (symbol) {
-      const upperSymbol = symbol.toUpperCase();
-      const filteredRates = forexData.rates.filter(
-        rate => rate.symbol.toUpperCase() === upperSymbol
+        { status: 404 }
       );
-
-      if (filteredRates.length > 0) {
-        return new Response(
-          JSON.stringify({
-            metadata: forexData.metadata,
-            rates: filteredRates,
-          }),
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Cache-Control': 'max-age=3600',
-            },
-          }
-        );
-      }
     }
-
-    return new Response(JSON.stringify(forexData), {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'max-age=3600',
-      },
-    });
-  } catch (error) {
-    return new Response(
-      JSON.stringify({
-        success: false,
-        error: (error as Error).message,
-      }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      }
+    return Response.json({ metadata: data.metadata, rates });
+  } catch {
+    console.error('[forex] Unable to load exchange rates');
+    return Response.json(
+      { error: 'Exchange rate service temporarily unavailable' },
+      { status: 502 }
     );
   }
 }

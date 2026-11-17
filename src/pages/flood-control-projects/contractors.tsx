@@ -7,7 +7,7 @@ import {
   useHits,
   useInstantSearch,
 } from 'react-instantsearch';
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import { createSearchClient } from '../../lib/search';
 import 'instantsearch.css/themes/satellite.css';
 import { exportMeilisearchData } from '../../lib/exportData';
 import { useTranslation } from 'react-i18next';
@@ -44,22 +44,12 @@ const createSlug = (name: string): string => {
 };
 
 // Meilisearch configuration
-const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_SEARCH_API_KEY =
-  import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here';
 
 // Create search client with proper type casting
-const meiliSearchInstance = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'GlobalID',
-    keepZeroFacets: true,
-  }
-);
+const meiliSearchInstance = createSearchClient({
+  primaryKey: 'GlobalID',
+  keepZeroFacets: true,
+});
 
 // Extract the searchClient from meiliSearchInstance
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -580,9 +570,6 @@ const FloodControlProjectsContractors: FC = () => {
     const searchTerm = selectedContractor || '';
     try {
       await exportMeilisearchData({
-        host: MEILISEARCH_HOST,
-        port: MEILISEARCH_PORT,
-        apiKey: MEILISEARCH_SEARCH_API_KEY,
         indexName: 'bettergov_flood_control',
         filters: filterString,
         searchTerm: searchTerm,
@@ -606,7 +593,7 @@ const FloodControlProjectsContractors: FC = () => {
   return (
     <div className='min-h-screen bg-gray-50'>
       <Helmet>
-        <title>Flood Control Projects Contractors | BetterGov.ph</title>
+        <title>Flood Control Projects Contractors | BETTERGOV.PH</title>
         <meta
           name='description'
           content='Explore flood control projects by contractor'

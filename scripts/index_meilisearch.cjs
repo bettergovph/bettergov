@@ -2,6 +2,7 @@
 require('dotenv').config(); // To load .env file
 
 const { MeiliSearch } = require('meilisearch');
+const { Ajv } = require('ajv');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -22,6 +23,17 @@ const client = new MeiliSearch({
 
 const SINGLE_INDEX_NAME = 'bettergov';
 
+/**
+ * Thrown for any problem with a `requireNonEmpty` data source: missing
+ * directory, zero files, an unreadable/malformed file, an invalid record
+ * shape, or zero records combined. Always fatal — never caught and
+ * downgraded to a log line.
+ */
+class FatalIndexingError extends Error {}
+
+/** Thrown when a Meilisearch task finishes in any state other than `succeeded`. */
+class MeilisearchTaskError extends Error {}
+
 // dataBasePath will always be relative to the 'scripts' directory
 // __dirname (in CommonJS) is the directory of the current module.
 // So, path.join(__dirname, '..', 'src', 'data') correctly points from 'scripts' to 'src/data'.
@@ -31,6 +43,22 @@ const DATA_SOURCES = [
   {
     dataType: 'service',
     dataPath: path.join(dataBasePath, 'services'),
+    // src/data/services/*.json is committed, but a deleted or broken file set
+    // must never be indexed. Unlike the other sources, an empty or invalid
+    // result here must fail the whole run — and fail it BEFORE any
+    // Meilisearch index is touched — rather than being skipped: addDocuments
+    // never deletes, so indexing zero "service" documents on top of an
+    // existing index would leave stale entries searchable, and --reset would
+    // wipe real service search data and never repopulate it.
+    requireNonEmpty: true,
+    // The tracked contract every services file must satisfy — reused as-is
+    // rather than re-encoding a second, hand-maintained partial validator.
+    schemaPath: path.join(
+      dataBasePath,
+      'services',
+      'schema',
+      'services.schema.json'
+    ),
   },
   {
     dataType: 'directory_item',
@@ -84,284 +112,457 @@ const COMMON_INDEX_SETTINGS = {
 console.log(
   RESET_INDEX
     ? 'Running with --reset flag: Will recreate the index from scratch.'
-    : 'Running in update mode: Will add/update documents in the existing index.'
+    : 'Running in update mode: Will add/update documents in the existing index, then remove stale service documents.'
 );
 
-async function main() {
-  console.log(
-    `Starting Meilisearch indexing script for the a single index: ${SINGLE_INDEX_NAME}`
-  );
+/**
+ * Derives a Meilisearch document from a raw record, generating a slug from
+ * name/title/service when one isn't present. Shared by both the required
+ * and best-effort loaders so the slug-derivation logic exists exactly once.
+ */
+function buildDocument(doc, baseNameForFile, docIndex, totalInFile, dataType) {
+  let itemSlug = doc.slug;
+  const itemIdentifierLog =
+    totalInFile > 1 ? `${baseNameForFile}[${docIndex}]` : baseNameForFile;
 
-  try {
-    const health = await client.health();
-    console.log('Meilisearch server is healthy:', health);
-  } catch (e) {
-    console.error('Could not connect to Meilisearch.', e);
-    return;
-  }
-
-  // Check if the index exists, create it if it doesn't, or reset if requested
-  try {
-    let indexExists = false;
-
-    try {
-      await client.getIndex(SINGLE_INDEX_NAME);
-      indexExists = true;
-    } catch (e) {
-      if (e.code === 'index_not_found') {
-        indexExists = false;
-      } else {
-        throw e; // Re-throw if it's a different error
-      }
-    }
-
-    if (indexExists) {
-      if (RESET_INDEX) {
-        console.log(
-          `Index '${SINGLE_INDEX_NAME}' exists and --reset flag was provided. Deleting index...`
-        );
-        await client.deleteIndex(SINGLE_INDEX_NAME);
-        console.log(`Index '${SINGLE_INDEX_NAME}' deleted successfully.`);
-
-        // Create a new index
-        const task = await client.createIndex(SINGLE_INDEX_NAME, {
-          primaryKey: 'slug',
-        });
-        console.log(`Index '${SINGLE_INDEX_NAME}' recreated successfully.`);
-        const settingsTask = await client
-          .index(SINGLE_INDEX_NAME)
-          .updateSettings(COMMON_INDEX_SETTINGS);
-        console.log(`Settings updated for new index '${SINGLE_INDEX_NAME}'.`);
-      } else {
-        console.log(
-          `Index '${SINGLE_INDEX_NAME}' already exists. Updating settings.`
-        );
-        // const task = await client.index(SINGLE_INDEX_NAME).updateSettings(COMMON_INDEX_SETTINGS);
+  if (!itemSlug) {
+    const slugSource = doc.name || doc.title || doc.service || baseNameForFile;
+    if (slugSource) {
+      itemSlug = slugSource
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '')
+        .replace(/--+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+      if (totalInFile > 1 && !doc.name && !doc.title && !doc.service) {
+        itemSlug = `${itemSlug}-${docIndex}`;
       }
     } else {
-      console.log(`Index '${SINGLE_INDEX_NAME}' not found. Creating...`);
-      try {
-        const task = await client.createIndex(SINGLE_INDEX_NAME, {
-          primaryKey: 'slug',
-        });
-        console.log(`Index '${SINGLE_INDEX_NAME}' created successfully.`);
-        const settingsTask = await client
-          .index(SINGLE_INDEX_NAME)
-          .updateSettings(COMMON_INDEX_SETTINGS);
-        console.log(`Settings updated for index '${SINGLE_INDEX_NAME}'.`);
-      } catch (createError) {
-        console.error(
-          `Error creating index '${SINGLE_INDEX_NAME}':`,
-          createError
-        );
-        return;
-      }
+      itemSlug = `${baseNameForFile}${totalInFile > 1 ? `-${docIndex}` : ''}`;
     }
+    console.log(
+      `Document from ${itemIdentifierLog} missing 'slug'. Generated slug: ${itemSlug}`
+    );
+  }
+
+  return { ...doc, id: doc.id || itemSlug, slug: itemSlug, type: dataType };
+}
+
+/**
+ * Loads and compiles a data source's tracked JSON Schema once, so every file
+ * in that source is validated against the exact same compiled validator
+ * instead of re-parsing/re-compiling per file. A schema that fails to read,
+ * parse, or compile is fatal — it's the contract; a broken contract can't be
+ * silently skipped.
+ */
+async function compileRequiredSchema(schemaPath) {
+  let schema;
+  try {
+    schema = JSON.parse(await fs.readFile(schemaPath, 'utf-8'));
   } catch (error) {
-    console.error(`Error managing index '${SINGLE_INDEX_NAME}':`, error);
-    return;
-  }
-
-  const allDocumentsToIndex = [];
-
-  for (const dataSource of DATA_SOURCES) {
-    console.log(
-      `Processing data source type: ${dataSource.dataType} from ${dataSource.dataPath}`
+    throw new FatalIndexingError(
+      `Failed to read or parse the required schema ${schemaPath}: ${error.message}`
     );
-    try {
-      // Handle single file case (like websites.json)
-      if (dataSource.isFile) {
-        try {
-          const filePath = dataSource.dataPath;
-          const baseNameForFile = path.basename(filePath, '.json');
-          const fileContent = await fs.readFile(filePath, 'utf-8');
-          const parsedJson = JSON.parse(fileContent);
-          const documentsFromFile = Array.isArray(parsedJson)
-            ? parsedJson
-            : [parsedJson];
-          let docIndex = 0;
-
-          console.log(
-            `Processing single file ${filePath} with ${documentsFromFile.length} items.`
-          );
-
-          for (const doc of documentsFromFile) {
-            let itemSlug = doc.slug;
-            const itemIdentifierLog =
-              documentsFromFile.length > 1
-                ? `${baseNameForFile}[${docIndex}]`
-                : baseNameForFile;
-
-            if (!itemSlug) {
-              const slugSource =
-                doc.name || doc.title || doc.service || baseNameForFile;
-              if (slugSource) {
-                itemSlug = slugSource
-                  .toString()
-                  .toLowerCase()
-                  .replace(/\s+/g, '-')
-                  .replace(/[^\w-]+/g, '')
-                  .replace(/--+/g, '-')
-                  .replace(/^-+/, '')
-                  .replace(/-+$/, '');
-                if (
-                  documentsFromFile.length > 1 &&
-                  !doc.name &&
-                  !doc.title &&
-                  !doc.service
-                ) {
-                  itemSlug = `${itemSlug}-${docIndex}`;
-                }
-              } else {
-                itemSlug = `${baseNameForFile}${documentsFromFile.length > 1 ? `-${docIndex}` : ''}`;
-              }
-              console.log(
-                `Document from ${baseNameForFile} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`
-              );
-            }
-
-            const documentData = {
-              ...doc,
-              id: doc.id || itemSlug,
-              slug: itemSlug,
-              type: dataSource.dataType,
-            };
-            allDocumentsToIndex.push(documentData);
-            docIndex++;
-          }
-        } catch (fileReadOrParseError) {
-          console.error(
-            `Error processing file ${dataSource.dataPath}:`,
-            fileReadOrParseError
-          );
-        }
-        continue;
-      }
-
-      // Handle directory case (original code)
-      const filesInDir = await fs.readdir(dataSource.dataPath);
-      const jsonFiles = filesInDir.filter(
-        f => path.extname(f).toLowerCase() === '.json'
-      );
-
-      if (jsonFiles.length === 0) {
-        console.log(
-          `No JSON files found in ${dataSource.dataPath} for type ${dataSource.dataType}. Skipping.`
-        );
-        continue;
-      }
-      console.log(
-        `Found ${jsonFiles.length} JSON files in ${dataSource.dataPath}.`
-      );
-
-      for (const fileName of jsonFiles) {
-        const filePath = path.join(dataSource.dataPath, fileName);
-        const baseNameForFile = path.basename(fileName, '.json');
-        try {
-          const fileContent = await fs.readFile(filePath, 'utf-8');
-          const parsedJson = JSON.parse(fileContent);
-          const documentsFromFile = Array.isArray(parsedJson)
-            ? parsedJson
-            : [parsedJson];
-          let docIndex = 0;
-
-          for (const doc of documentsFromFile) {
-            let itemSlug = doc.slug;
-            const itemIdentifierLog =
-              documentsFromFile.length > 1
-                ? `${baseNameForFile}[${docIndex}]`
-                : baseNameForFile;
-
-            if (!itemSlug) {
-              const slugSource =
-                doc.name || doc.title || doc.service || baseNameForFile;
-              if (slugSource) {
-                itemSlug = slugSource
-                  .toString()
-                  .toLowerCase()
-                  .replace(/\s+/g, '-')
-                  .replace(/[^\w-]+/g, '')
-                  .replace(/--+/g, '-')
-                  .replace(/^-+/, '')
-                  .replace(/-+$/, '');
-                if (
-                  documentsFromFile.length > 1 &&
-                  !doc.name &&
-                  !doc.title &&
-                  !doc.service
-                ) {
-                  itemSlug = `${itemSlug}-${docIndex}`;
-                }
-              } else {
-                itemSlug = `${baseNameForFile}${
-                  documentsFromFile.length > 1 ? `-${docIndex}` : ''
-                }`;
-              }
-              console.log(
-                `Document from ${fileName} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`
-              );
-            }
-
-            const documentData = {
-              ...doc,
-              id: doc.id || itemSlug,
-              slug: itemSlug,
-              type: dataSource.dataType,
-            };
-            allDocumentsToIndex.push(documentData);
-            docIndex++;
-          }
-        } catch (fileReadOrParseError) {
-          console.error(
-            `Error processing file ${fileName} (path: ${filePath}):`,
-            fileReadOrParseError
-          );
-        }
-      }
-    } catch (dirReadError) {
-      if (dirReadError.code === 'ENOENT') {
-        console.warn(
-          `Data directory ${dataSource.dataPath} not found for type ${dataSource.dataType}. Skipping.`
-        );
-      } else {
-        console.error(
-          `Error reading from directory ${dataSource.dataPath}:`,
-          dirReadError
-        );
-      }
-    }
   }
-
-  if (allDocumentsToIndex.length > 0) {
-    console.log(
-      `Attempting to index ${allDocumentsToIndex.length} documents into '${SINGLE_INDEX_NAME}'...`
+  const ajv = new Ajv({ allErrors: true, strict: false });
+  try {
+    return ajv.compile(schema);
+  } catch (error) {
+    throw new FatalIndexingError(
+      `Failed to compile the required schema ${schemaPath}: ${error.message}`
     );
-    try {
-      // Get a reference to the index
-      const index = client.index(SINGLE_INDEX_NAME);
-
-      const _task = await index.addDocuments(allDocumentsToIndex, {
-        primaryKey: 'slug',
-      });
-      console.log(
-        `${allDocumentsToIndex.length} documents successfully processed for index '${SINGLE_INDEX_NAME}'. Task ID: ${_task.taskUid}`,
-        _task
-      );
-    } catch (indexError) {
-      console.error(`An error occurred while indexing documents:`, indexError);
-    }
-  } else {
-    console.log(`No documents to index for '${SINGLE_INDEX_NAME}'.`);
   }
+}
 
-  console.log(
-    `Meilisearch indexing script for '${SINGLE_INDEX_NAME}' finished.`
+/**
+ * Validates an entire parsed file's contents against the source's compiled
+ * schema in one shot — the schema itself is an array schema
+ * (`services.schema.json`'s `type: "array"`, `items: {...}`), so this
+ * checks every record's complete shape (all required fields, slug/URL
+ * patterns, no unknown properties) in the same pass the sync pipeline's own
+ * write.ts uses, not a hand-maintained partial re-implementation of it. A
+ * syntactically valid but schema-invalid record — e.g. one carrying only
+ * `service` and `slug` — fails here, before any Meilisearch contact.
+ */
+function assertSatisfiesSchema(validate, parsed, filePath, schemaPath) {
+  if (validate(parsed)) return;
+  const detail = (validate.errors ?? [])
+    .map(e => `${e.instancePath || '/'} ${e.message}`)
+    .join('; ');
+  throw new FatalIndexingError(
+    `Required file ${filePath} does not satisfy ${schemaPath}: ${detail}`
   );
 }
 
-main().catch(error => {
-  console.error(
-    'An unexpected error occurred during Meilisearch indexing:',
-    error
+/**
+ * Loads, parses, and validates every file for a `requireNonEmpty` data
+ * source. ANY problem is fatal: a missing directory, zero files, a file
+ * that fails to read or parse, a record with an invalid shape, or zero
+ * records combined. Nothing is logged-and-skipped here — that behavior is
+ * exactly what let an empty or malformed generated snapshot through before.
+ *
+ * Called during preflight, before Meilisearch is contacted at all, so a bad
+ * snapshot can never reach deleteIndex/createIndex/updateSettings/
+ * addDocuments/deleteDocuments.
+ */
+async function loadRequiredDocuments(dataSource) {
+  let filesInDir;
+  try {
+    filesInDir = await fs.readdir(dataSource.dataPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      throw new FatalIndexingError(
+        `Data directory ${dataSource.dataPath} not found for type ` +
+          `"${dataSource.dataType}". This data is generated by the CMS sync ` +
+          'script (see package.json) and never committed — run it before indexing.'
+      );
+    }
+    throw new FatalIndexingError(
+      `Failed to read ${dataSource.dataPath}: ${error.message}`
+    );
+  }
+
+  const jsonFiles = filesInDir
+    .filter(f => path.extname(f).toLowerCase() === '.json')
+    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+
+  if (jsonFiles.length === 0) {
+    throw new FatalIndexingError(
+      `No generated "${dataSource.dataType}" JSON files found in ${dataSource.dataPath}. ` +
+        'This data is generated by the CMS sync script (see package.json) and never ' +
+        'committed — run it before indexing.'
+    );
+  }
+
+  // Compiled once, reused for every file in this source — see
+  // compileRequiredSchema's own comment for why a missing/invalid schema is
+  // itself fatal rather than silently skipped.
+  const validate = dataSource.schemaPath
+    ? await compileRequiredSchema(dataSource.schemaPath)
+    : null;
+
+  const documents = [];
+  for (const fileName of jsonFiles) {
+    const filePath = path.join(dataSource.dataPath, fileName);
+    let parsed;
+    try {
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      parsed = JSON.parse(fileContent);
+    } catch (error) {
+      throw new FatalIndexingError(
+        `Failed to read or parse required file ${filePath}: ${error.message}`
+      );
+    }
+    if (!Array.isArray(parsed)) {
+      throw new FatalIndexingError(
+        `Required file ${filePath} must contain a JSON array, got ${typeof parsed}.`
+      );
+    }
+    if (validate) {
+      assertSatisfiesSchema(validate, parsed, filePath, dataSource.schemaPath);
+    }
+
+    const baseNameForFile = path.basename(fileName, '.json');
+    parsed.forEach((doc, i) => {
+      documents.push(
+        buildDocument(
+          doc,
+          baseNameForFile,
+          i,
+          parsed.length,
+          dataSource.dataType
+        )
+      );
+    });
+  }
+
+  if (documents.length === 0) {
+    throw new FatalIndexingError(
+      `Generated "${dataSource.dataType}" files in ${dataSource.dataPath} contain zero ` +
+        'records combined. Refusing to index: this is indistinguishable from a ' +
+        'corrupted or partial snapshot.'
+    );
+  }
+
+  console.log(
+    `Preflight OK for "${dataSource.dataType}": ${jsonFiles.length} file(s), ` +
+      `${documents.length} record(s).`
   );
-});
+  return documents;
+}
+
+/**
+ * Best-effort loader for a data source that's allowed to be legitimately
+ * absent or empty (directory listings, the single websites.json file). A
+ * read/parse failure for one file is logged and that file is skipped — the
+ * same tolerant behavior this script has always had for these sources.
+ */
+async function loadOptionalDocuments(dataSource) {
+  const documents = [];
+
+  if (dataSource.isFile) {
+    try {
+      const filePath = dataSource.dataPath;
+      const baseNameForFile = path.basename(filePath, '.json');
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      const parsedJson = JSON.parse(fileContent);
+      const documentsFromFile = Array.isArray(parsedJson)
+        ? parsedJson
+        : [parsedJson];
+      console.log(
+        `Processing single file ${filePath} with ${documentsFromFile.length} items.`
+      );
+      documentsFromFile.forEach((doc, i) => {
+        documents.push(
+          buildDocument(
+            doc,
+            baseNameForFile,
+            i,
+            documentsFromFile.length,
+            dataSource.dataType
+          )
+        );
+      });
+    } catch (error) {
+      console.error(`Error processing file ${dataSource.dataPath}:`, error);
+    }
+    return documents;
+  }
+
+  let filesInDir;
+  try {
+    filesInDir = await fs.readdir(dataSource.dataPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.warn(
+        `Data directory ${dataSource.dataPath} not found for type ${dataSource.dataType}. Skipping.`
+      );
+    } else {
+      console.error(
+        `Error reading from directory ${dataSource.dataPath}:`,
+        error
+      );
+    }
+    return documents;
+  }
+
+  const jsonFiles = filesInDir.filter(
+    f => path.extname(f).toLowerCase() === '.json'
+  );
+  if (jsonFiles.length === 0) {
+    console.log(
+      `No JSON files found in ${dataSource.dataPath} for type ${dataSource.dataType}. Skipping.`
+    );
+    return documents;
+  }
+  console.log(
+    `Found ${jsonFiles.length} JSON files in ${dataSource.dataPath}.`
+  );
+
+  for (const fileName of jsonFiles) {
+    const filePath = path.join(dataSource.dataPath, fileName);
+    const baseNameForFile = path.basename(fileName, '.json');
+    try {
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      const parsedJson = JSON.parse(fileContent);
+      const documentsFromFile = Array.isArray(parsedJson)
+        ? parsedJson
+        : [parsedJson];
+      documentsFromFile.forEach((doc, i) => {
+        documents.push(
+          buildDocument(
+            doc,
+            baseNameForFile,
+            i,
+            documentsFromFile.length,
+            dataSource.dataType
+          )
+        );
+      });
+    } catch (error) {
+      console.error(
+        `Error processing file ${fileName} (path: ${filePath}):`,
+        error
+      );
+    }
+  }
+  return documents;
+}
+
+/**
+ * Awaits a Meilisearch task-returning call and verifies the task actually
+ * finished `succeeded` — a request that's merely *accepted* (enqueued) is
+ * not proof the mutation happened. Any other terminal status, or a
+ * synchronous request failure, propagates as a thrown error: nothing in
+ * this script may catch a required Meilisearch failure and continue.
+ */
+async function waitForSuccess(taskPromise, label) {
+  const task = await taskPromise;
+  const result = await client.tasks.waitForTask(task.taskUid);
+  if (result.status !== 'succeeded') {
+    const detail = result.error ? ` — ${result.error.message}` : '';
+    throw new MeilisearchTaskError(
+      `${label} did not succeed: task ${task.taskUid} ended with status "${result.status}"${detail}`
+    );
+  }
+  console.log(`${label} succeeded (task ${task.taskUid}).`);
+  return result;
+}
+
+/**
+ * After successfully indexing the current service documents, removes any
+ * previously-indexed "service"-type document whose slug is no longer in the
+ * current generated set — a category retired or a service removed/renamed
+ * in the CMS. Scoped strictly to `type = service`: a non-service document
+ * can never be a candidate for removal here, by construction of the filter.
+ *
+ * Only meaningful in update mode against a pre-existing index: a freshly
+ * created index (first run, or just recreated by --reset) cannot have any
+ * stale documents in it.
+ */
+async function reconcileStaleServiceDocuments(index, currentServiceDocuments) {
+  const currentSlugs = new Set(currentServiceDocuments.map(d => d.slug));
+  const staleSlugs = [];
+  const pageSize = 1000;
+  let offset = 0;
+
+  for (;;) {
+    const page = await index.getDocuments({
+      filter: 'type = service',
+      fields: ['slug'],
+      limit: pageSize,
+      offset,
+    });
+    for (const doc of page.results) {
+      if (!currentSlugs.has(doc.slug)) staleSlugs.push(doc.slug);
+    }
+    offset += page.results.length;
+    if (page.results.length === 0 || offset >= page.total) break;
+  }
+
+  if (staleSlugs.length === 0) {
+    console.log('No stale service documents to remove.');
+    return;
+  }
+
+  console.log(
+    `Removing ${staleSlugs.length} stale service document(s): ${staleSlugs.join(', ')}`
+  );
+  await waitForSuccess(
+    index.deleteDocuments(staleSlugs),
+    'Stale service document removal'
+  );
+}
+
+async function main() {
+  console.log(
+    `Starting Meilisearch indexing script for the single index: ${SINGLE_INDEX_NAME}`
+  );
+
+  // ---- Preflight: load and validate every data source, with ZERO contact
+  // with Meilisearch. A required source's failure throws here and nothing
+  // below this block ever runs. ----
+  const requiredDocuments = [];
+  for (const dataSource of DATA_SOURCES.filter(s => s.requireNonEmpty)) {
+    console.log(
+      `Preflighting required data source "${dataSource.dataType}" from ${dataSource.dataPath}`
+    );
+    requiredDocuments.push(...(await loadRequiredDocuments(dataSource)));
+  }
+
+  const optionalDocuments = [];
+  for (const dataSource of DATA_SOURCES.filter(s => !s.requireNonEmpty)) {
+    optionalDocuments.push(...(await loadOptionalDocuments(dataSource)));
+  }
+
+  const allDocumentsToIndex = [...requiredDocuments, ...optionalDocuments];
+  console.log(
+    `Preflight complete: ${allDocumentsToIndex.length} total document(s) ready to index.`
+  );
+
+  // ---- From here on, every Meilisearch call either succeeds or throws.
+  // Nothing below catches a required failure and returns normally. ----
+  const health = await client.health();
+  console.log('Meilisearch server is healthy:', health);
+
+  let indexExistedBefore = true;
+  try {
+    await client.getIndex(SINGLE_INDEX_NAME);
+  } catch (error) {
+    if (error.cause && error.cause.code === 'index_not_found') {
+      indexExistedBefore = false;
+    } else {
+      throw error;
+    }
+  }
+
+  if (indexExistedBefore && RESET_INDEX) {
+    console.log(
+      `Index '${SINGLE_INDEX_NAME}' exists and --reset flag was provided. Deleting index...`
+    );
+    await waitForSuccess(
+      client.deleteIndex(SINGLE_INDEX_NAME),
+      'Index deletion'
+    );
+  }
+
+  const indexIsFresh = !indexExistedBefore || RESET_INDEX;
+
+  if (indexIsFresh) {
+    console.log(`Creating index '${SINGLE_INDEX_NAME}'...`);
+    await waitForSuccess(
+      client.createIndex(SINGLE_INDEX_NAME, { primaryKey: 'slug' }),
+      'Index creation'
+    );
+  } else {
+    console.log(
+      `Index '${SINGLE_INDEX_NAME}' already exists. Updating settings.`
+    );
+  }
+
+  const index = client.index(SINGLE_INDEX_NAME);
+  await waitForSuccess(
+    index.updateSettings(COMMON_INDEX_SETTINGS),
+    'Settings update'
+  );
+
+  console.log(
+    `Indexing ${allDocumentsToIndex.length} document(s) into '${SINGLE_INDEX_NAME}'...`
+  );
+  await waitForSuccess(
+    index.addDocuments(allDocumentsToIndex, { primaryKey: 'slug' }),
+    'Document addition'
+  );
+
+  // A fresh index (just created, or just recreated by --reset) cannot have
+  // any stale documents — only a pre-existing index in update mode can.
+  if (!indexIsFresh) {
+    await reconcileStaleServiceDocuments(index, requiredDocuments);
+  }
+
+  console.log(
+    `Meilisearch indexing script for '${SINGLE_INDEX_NAME}' finished successfully.`
+  );
+}
+
+// Only runs when executed directly, never when required by a test — the
+// same guard scripts/sync-talacms.ts uses for its ESM equivalent.
+if (require.main === module) {
+  main().catch(error => {
+    console.error('Meilisearch indexing failed:', error);
+    process.exitCode = 1;
+  });
+}
+
+// Exported for direct unit testing of the preflight phase only. None of
+// these touch `client` — that's the property this exists to make testable
+// without a Meilisearch instance.
+module.exports = {
+  FatalIndexingError,
+  MeilisearchTaskError,
+  loadRequiredDocuments,
+  compileRequiredSchema,
+  assertSatisfiesSchema,
+};

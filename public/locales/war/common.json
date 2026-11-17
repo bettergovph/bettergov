@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Maupay nga Pag-abot ha BetterGov.ph",
+    "title": "Maupay nga Pag-abot ha BETTERGOV.PH",
     "subtitle": "An volunteer-run portal han Republika han Pilipinas. Pamiling hin impormasyon, pag-access han mga serbisyo han gobyerno, magpabilin nga updated ha pinakaurhi nga balita tungod han Pilipinas."
   },
   "services": {
@@ -14,9 +14,6 @@
   },
   "news": {
     "title": "Pinakaurhi nga Balita ngan Updates"
-  },
-  "footer": {
-    "copyright": "2025 BetterGov.ph - Ngatanan nga sulod in public domain labot la kun may iba nga ginsiring."
   },
   "navbar": {
     "philippines": "Pilipinas",

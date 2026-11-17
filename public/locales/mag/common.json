@@ -7,7 +7,7 @@
     "flood control projects": "Proyekto sa Kapagadil sa Kagkadalem"
   },
   "hero": {
-    "title": "Talus Kanu sa BetterGov.ph",
+    "title": "Talus Kanu sa BETTERGOV.PH",
     "subtitle": "Niya ba su volunteer run a portal nu Republiko nu Pilipinas. Siya ba kantuntulan su impormasyon, serbisyo, endu kanu latest a balita pantag sa Pilipinas."
   },
   "services": {
@@ -21,9 +21,6 @@
   },
   "news": {
     "title": "Pinakabago a Balita endu Updates"
-  },
-  "footer": {
-    "copyright": "2025 BetterGov.ph - All content is public domain unless otherwise specified."
   },
   "hotline": {
     "title": "Katawagan sa Emergency"
