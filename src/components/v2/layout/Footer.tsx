@@ -174,7 +174,7 @@ const Footer: FC = () => {
             <p className='mt-3 max-w-[340px] leading-relaxed text-white/60'>
               {t(
                 'footerAbout.builtBy',
-                'Built by eGov, BetterGov, and hundreds of citizen volunteers.'
+                'Built by BetterGov and hundreds of citizen volunteers.'
               )}
             </p>
             {SHOW_GOVERNMENT_MARKS && (
