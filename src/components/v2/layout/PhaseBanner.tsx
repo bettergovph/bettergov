@@ -30,7 +30,7 @@ const PhaseBanner: FC = () => {
                   href={ABOUT_URL}
                   target='_blank'
                   rel='noreferrer'
-                  className='font-semibold text-white underline underline-offset-2 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
+                  className='ml-1 inline-block whitespace-nowrap bg-ed-navy-ink px-2 py-0.5 font-semibold text-white no-underline hover:underline hover:underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
                 />
               ),
             }}

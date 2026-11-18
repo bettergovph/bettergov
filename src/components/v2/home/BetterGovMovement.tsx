@@ -72,7 +72,13 @@ const BetterGovMovement: FC = () => {
               )}
             </p>
             <div className='mt-6 flex flex-wrap gap-3 max-md:mt-4'>
-              <Button as='a' href={ABOUT_URL} target='_blank' rel='noreferrer'>
+              <Button
+                as='a'
+                href={ABOUT_URL}
+                target='_blank'
+                rel='noreferrer'
+                className='border-ed-navy-ink bg-ed-navy-ink hover:border-ed-navy hover:bg-ed-navy'
+              >
                 <span>
                   {t('movement.learnMore', 'Learn more about BetterGov')}
                 </span>
