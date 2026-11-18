@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRightIcon, DownloadIcon } from 'lucide-react';
+import { ArrowUpRightIcon, DownloadIcon } from 'lucide-react';
 import Container from '../ui/Container';
 import SectionHeader from '../ui/SectionHeader';
 import Eyebrow from '../ui/Eyebrow';
 import Button from '../ui/Button';
 import { BUDGET_2026 } from './data';
+import { BUDGET_URL } from '../../../lib/brand';
 
 const TransparencyStrip: FC = () => {
   const { t } = useTranslation('home');
@@ -19,12 +19,14 @@ const TransparencyStrip: FC = () => {
           <SectionHeader
             label={t('transparency.label')}
             meta={
-              <Link
-                to='/flood-control-projects'
+              <a
+                href={BUDGET_URL}
+                target='_blank'
+                rel='noreferrer'
                 className='no-underline text-ed-navy hover:text-ed-red'
               >
                 {t('transparency.portal')}
-              </Link>
+              </a>
             }
           />
         </div>
@@ -43,8 +45,8 @@ const TransparencyStrip: FC = () => {
               {t('transparency.description')}
             </p>
             <div className='mt-6 flex flex-wrap gap-3 max-md:mt-4'>
-              <Button as={Link} to='/flood-control-projects'>
-                <ArrowRightIcon size={14} />
+              <Button as='a' href={BUDGET_URL} target='_blank' rel='noreferrer'>
+                <ArrowUpRightIcon size={14} />
                 <span>{t('transparency.explore')}</span>
               </Button>
               <Button as='a' href='#' variant='ghost'>

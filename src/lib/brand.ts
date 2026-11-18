@@ -58,6 +58,9 @@ export const DEFAULT_OG_IMAGE = '/og-image.png';
  */
 export const ABOUT_URL = 'https://about.bettergov.ph';
 
+/** BetterGov.ph's People's Budget Portal: the national budget, line by line. */
+export const BUDGET_URL = 'https://budget.bettergov.ph';
+
 /** Where new volunteers join the BetterGov.ph movement. */
 export const VOLUNTEER_URL = 'https://about.bettergov.ph/volunteer';
 
