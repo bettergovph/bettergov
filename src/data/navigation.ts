@@ -1,5 +1,6 @@
 import { NavigationItem } from '../types';
 import { serviceCategories, type Category } from './cms';
+import { BUDGET_URL } from '../lib/brand';
 
 export const mainNavigation: NavigationItem[] = [
   {
@@ -158,16 +159,16 @@ export const mainNavigation: NavigationItem[] = [
     href: '',
     children: [
       {
+        label: "People's Budget Portal",
+        href: BUDGET_URL,
+        target: '_blank',
+        blurb: 'The national budget by department, program, and region.',
+      },
+      {
         label: 'Budget Transparency',
         href: 'https://compass.dbm.gov.ph',
         target: '_blank',
         blurb: 'DBM Compass — national budget allocations and releases.',
-      },
-      {
-        label: "People's Budget Portal",
-        href: 'https://budget.bettergov.ph',
-        target: '_blank',
-        blurb: 'The national budget by department, program, and region.',
       },
       {
         label: 'DPWH Transparency',
