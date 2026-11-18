@@ -414,7 +414,7 @@ This gives Node 4GB of memory to work with.
 If you run into issues or have questions:
 
 1. Check the troubleshooting section above
-2. Search existing [GitHub issues](https://github.com/govph/govph-2026/issues)
+2. Search existing [GitHub issues](https://github.com/bettergovph/bettergov/issues)
 3. Open a new issue if you've found a bug
 
 Happy coding! Together, we're making government services more accessible for everyone.

@@ -37,7 +37,10 @@ const call = (path: string, body: unknown, headers: HeadersInit = {}) =>
   );
 const issue = () =>
   Response.json(
-    { number: 12, html_url: 'https://github.com/govph/govph-2026/issues/12' },
+    {
+      number: 12,
+      html_url: 'https://github.com/bettergovph/bettergov/issues/12',
+    },
     { status: 201 }
   );
 
@@ -108,7 +111,9 @@ describe('Worker API protection', () => {
         issueNumber: 12,
       });
       const [url, init] = fetchMock.mock.calls.at(-1)!;
-      expect(url).toBe('https://api.github.com/repos/govph/govph-2026/issues');
+      expect(url).toBe(
+        'https://api.github.com/repos/bettergovph/bettergov/issues'
+      );
       expect(init?.redirect).toBe('manual');
       expect(init?.signal).toBeDefined();
       expect(String(init?.body)).not.toContain('private@example.invalid');

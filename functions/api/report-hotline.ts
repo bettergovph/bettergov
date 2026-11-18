@@ -99,7 +99,7 @@ Timestamp: ${new Date().toISOString()}`;
     if (deadline.signal.aborted) throw new Error('Request interrupted');
     // Do not retry a write automatically: a timed-out request may have succeeded.
     const response = await fetch(
-      'https://api.github.com/repos/govph/govph-2026/issues',
+      'https://api.github.com/repos/bettergovph/bettergov/issues',
       {
         method: 'POST',
         redirect: 'manual',
@@ -151,7 +151,7 @@ Timestamp: ${new Date().toISOString()}`;
       typeof number !== 'number' ||
       !Number.isSafeInteger(number) ||
       number <= 0 ||
-      issueUrl !== `https://github.com/govph/govph-2026/issues/${number}`
+      issueUrl !== `https://github.com/bettergovph/bettergov/issues/${number}`
     )
       throw new Error('Invalid response');
     return Response.json(

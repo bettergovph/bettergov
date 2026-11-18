@@ -2,7 +2,7 @@
 
 ## Reporting Vulnerabilities
 
-If you discover a security vulnerability in GOV.PH, please report it responsibly through the repository's [private vulnerability reporting form](https://github.com/govph/govph-2026/security/advisories/new). Do not open a public issue for security reports.
+If you discover a security vulnerability in GOV.PH, please report it responsibly through the repository's [private vulnerability reporting form](https://github.com/bettergovph/bettergov/security/advisories/new). Do not open a public issue for security reports.
 
 When reporting, please include:
 
@@ -75,4 +75,4 @@ We will not take legal action against you if you:
 
 ## Contact
 
-For any security-related inquiries, use the [private vulnerability reporting form](https://github.com/govph/govph-2026/security/advisories/new).
+For any security-related inquiries, use the [private vulnerability reporting form](https://github.com/bettergovph/bettergov/security/advisories/new).

@@ -89,7 +89,7 @@ npm run functions:dev
 
 You may use GitHub Codespaces for an instant development environment with dependencies automatically installed for you.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/govph/govph-2026?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/bettergovph/bettergov?quickstart=1)
 
 ## Docker
 
@@ -352,8 +352,8 @@ with today's date on **every** build) and `src/version.json` (commit hash).
 
 Thanks to all the people who already contributed!
 
-<a href="https://github.com/govph/govph-2026/graphs/contributors">
-    <img src="https://contributors-img.web.app/image?repo=govph/govph-2026&max=750&columns=20" />
+<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
 </a>
 
 ## License

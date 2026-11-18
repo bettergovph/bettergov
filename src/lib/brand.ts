@@ -65,7 +65,7 @@ export const BUDGET_URL = 'https://budget.bettergov.ph';
 export const VOLUNTEER_URL = 'https://about.bettergov.ph/volunteer';
 
 /** Public repository and issue tracker for this portal. */
-export const REPO_URL = 'https://github.com/govph/govph';
+export const REPO_URL = 'https://github.com/bettergovph/bettergov';
 export const ISSUES_URL = `${REPO_URL}/issues`;
 export const NEW_ISSUE_URL = `${REPO_URL}/issues/new`;
 

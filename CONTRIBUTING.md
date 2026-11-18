@@ -280,20 +280,20 @@ Official Github Docs on [Forking a repository][forking]
 
 **Fork the Repository on GitHub**
 
-- Go to the main project repository (`github.com/govph/govph-2026`).
+- Go to the main project repository (`github.com/bettergovph/bettergov`).
 - Click the **"Fork"** button to create a copy under your Github account.
 
 **Clone the Forked Repository to Local Machine**
 
 ```sh
-git clone https://github.com/<your-username>/govph-2026.git
-cd govph-2026
+git clone https://github.com/<your-username>/bettergov.git
+cd bettergov
 ```
 
 **Add the Original Repository as an Upstream**
 
 ```sh
-git remote add upstream https://github.com/govph/govph-2026.git
+git remote add upstream https://github.com/bettergovph/bettergov.git
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -426,8 +426,8 @@ git push
 <!-- Urls -->
 
 [commits]: https://www.conventionalcommits.org/en/v1.0.0/
-[issues]: https://github.com/govph/govph-2026/issues/new
+[issues]: https://github.com/bettergovph/bettergov/issues/new
 [forking]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
-[issue-list]: https://github.com/govph/govph-2026/issues
-[pulls]: https://github.com/govph/govph-2026/pulls
-[ideas]: https://github.com/govph/govph-2026/issues/new?template=share-your-idea.md
+[issue-list]: https://github.com/bettergovph/bettergov/issues
+[pulls]: https://github.com/bettergovph/bettergov/pulls
+[ideas]: https://github.com/bettergovph/bettergov/issues/new?template=share-your-idea.md
