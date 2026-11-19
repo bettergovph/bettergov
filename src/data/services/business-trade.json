@@ -11,7 +11,7 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
@@ -29,17 +29,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-11-26T21:20:00.000Z"
   },
   {
-    "service": "Apply for DDB Certification (non-controlled) and Exemption (with controlled chemicals)",
-    "url": "https://ddb.gov.ph/regulatory-control/",
+    "service": "Apply for PDEA Certification for Non-Controlled Chemicals or a Certificate of Exemption",
+    "url": "https://oaceis.pdea.gov.ph/",
     "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
-    "slug": "apply-for-ddb-certification-non-controlled-and-exemption-with-controlled-chemicals",
+    "slug": "apply-for-pdea-certification-for-non-controlled-chemicals-or-a-certificate-of-exemption",
     "published": true,
     "featured": false,
     "category": {
@@ -47,11 +47,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
-      "slug": "business-copyright-trademark-patent"
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-11-26T21:21:00.000Z"
+    "updatedAt": "2025-11-26T21:21:00.000Z",
+    "agency": "Philippine Drug Enforcement Agency (PDEA)",
+    "endpointType": "Authenticated application portal",
+    "description": "Apply through PDEA OACEIS for the specified non-controlled-chemical certifications or exemption certificates.",
+    "scope": "The verified transfer covers specified certifications/exemptions only; it does not establish that controlled-chemical permits moved to OACEIS.",
+    "officialGuidanceUrl": "https://ddb.gov.ph/official-transfer-ddb-hands-over-regulatory-control-systems-to-pdea/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Request for a Grant of a Philippine Patent",
@@ -65,7 +71,7 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
@@ -83,7 +89,7 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
@@ -126,10 +132,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Register a Sole Proprietorship Business",
+    "service": "Submit a BIR New Business Registration Application (Head Office or Branch)",
     "url": "https://web-services.bir.gov.ph/newbizreg/",
     "id": "94c1e669-d8a2-4895-a6fe-da89960fcc08",
-    "slug": "register-a-sole-proprietorship-business",
+    "slug": "submit-a-bir-new-business-registration-application-head-office-or-branch",
     "published": true,
     "featured": false,
     "category": {
@@ -137,11 +143,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-11-26T21:26:00.000Z"
+    "updatedAt": "2025-11-26T21:26:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "endpointType": "Application portal",
+    "description": "Submit a BIR new-business registration application for a head office or branch.",
+    "scope": "BIR tax registration is separate from DTI business-name registration; requirements depend on taxpayer and business type.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Request for Renewal of Business Name",
@@ -198,10 +210,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Submit your Company’s General Information Sheet and/or Audited Financial Statements Online to SEC",
-    "url": "https://www.sec.gov.ph/online-services/sec-express-system/",
+    "service": "Submit SEC General Information Sheet (GIS) or Audited Financial Statements (AFS) through eFAST",
+    "url": "https://efast.sec.gov.ph/user/login",
     "id": "1a1dc798-a76f-4b00-88c5-49a7d3ad39c4",
-    "slug": "submit-your-companys-general-information-sheet-andor-audited-financial-statements-online-to-sec",
+    "slug": "submit-sec-general-information-sheet-gis-or-audited-financial-statements-afs-through-efast",
     "published": true,
     "featured": false,
     "category": {
@@ -209,17 +221,23 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Securities and Exchange Commission (SEC)",
+    "endpointType": "Authenticated filing portal",
+    "description": "File covered corporate GIS and AFS submissions through SEC eFAST.",
+    "scope": "Requires corporate enrollment/account access and eSECURE linkage; eFAST coverage depends on entity and report type.",
+    "officialGuidanceUrl": "https://www.sec.gov.ph/online-services/sec-efast/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Update Information of your Application for a Business Name",
-    "url": "https://bnrs.dti.gov.ph/update-information",
+    "service": "Find How to Update DTI Business Name Registration Information",
+    "url": "https://bnrs.dti.gov.ph/faq",
     "id": "97ba2171-c0ae-4e67-90c8-dec9793b668c",
-    "slug": "update-information-of-your-application-for-a-business-name",
+    "slug": "find-how-to-update-dti-business-name-registration-information",
     "published": true,
     "featured": false,
     "category": {
@@ -227,17 +245,23 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Department of Trade and Industry (DTI)",
+    "endpointType": "Official guidance",
+    "description": "Read DTI BNRS instructions for correcting or updating business-name registration information.",
+    "scope": "This is guidance, not a self-service update form. Some address and owner-name changes require an in-person DTI office visit; confirm the location and checklist with DTI.",
+    "officialGuidanceUrl": "https://bnrs.dti.gov.ph/faq",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "File Complaints on Consumer Affair Service",
-    "url": "https://fairtrade.dti.gov.ph/faq/how-to-file-a-consumer-complaint/",
+    "service": "File a Consumer Complaint with DTI (Metro Manila Online Filing)",
+    "url": "https://consumercare.dti.gov.ph/",
     "id": "f94add98-a78c-435f-9552-a181cfaeb43d",
-    "slug": "file-complaints-on-consumer-affair-service",
+    "slug": "file-a-consumer-complaint-with-dti-metro-manila-online-filing",
     "published": true,
     "featured": false,
     "category": {
@@ -249,13 +273,19 @@
       "slug": "complaints"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-11-26T21:28:00.000Z"
+    "updatedAt": "2025-11-26T21:28:00.000Z",
+    "agency": "Department of Trade and Industry (DTI)",
+    "endpointType": "Online complaint filing",
+    "description": "Submit and follow up a consumer complaint through DTI Consumer CARe.",
+    "scope": "The cited online filing route is for Metro Manila; consumers elsewhere should follow the relevant DTI regional procedure.",
+    "officialGuidanceUrl": "https://fairtrade.dti.gov.ph/faq/how-to-file-a-consumer-complaint/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Know more About Business or Investment-related Assistance",
-    "url": "http://boi.gov.ph/boi-own/",
+    "service": "Request Business or Investment Assistance from BOI-OWN",
+    "url": "https://investor.boiown.gov.ph/",
     "id": "79002068-fbf9-4427-a7c0-f20adf26fd6f",
-    "slug": "know-more-about-business-or-investment-related-assistance",
+    "slug": "request-business-or-investment-assistance-from-boi-own",
     "published": true,
     "featured": false,
     "category": {
@@ -263,11 +293,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Complaints",
-      "slug": "complaints"
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Board of Investments (BOI)",
+    "endpointType": "Information and assistance portal",
+    "description": "Access BOI-OWN business and investment assistance information.",
+    "scope": "This is an assistance portal, not a substitute for specialist registrations, permits, or local government approvals.",
+    "officialGuidanceUrl": "https://business.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Apply Online for Advance Rulings on Tariff Classification and Tariff Classification Dispute Rulings",
@@ -306,10 +342,10 @@
     "updatedAt": "2025-11-26T21:39:00.000Z"
   },
   {
-    "service": "Apply for Certificate of Conformity",
-    "url": "https://opms.emb.gov.ph/https",
+    "service": "Apply for a New Motor Vehicle Certificate of Conformity (COC)",
+    "url": "https://opms.emb.gov.ph/accounts/login/",
     "id": "d1c49abc-dcf9-4e61-9398-bfb47befec82",
-    "slug": "apply-for-certificate-of-conformity",
+    "slug": "apply-for-a-new-motor-vehicle-certificate-of-conformity-coc",
     "published": true,
     "featured": false,
     "category": {
@@ -317,11 +353,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Environmental Management Bureau (EMB)",
+    "endpointType": "Authenticated application portal",
+    "description": "Apply for an EMB Certificate of Conformity for eligible new motor-vehicle types.",
+    "scope": "Not a general product-conformity certificate. Eligible applicant and vehicle types are limited; company registration/account linkage is required.",
+    "officialGuidanceUrl": "https://air.emb.gov.ph/services/certificate-of-conformity-coc-online/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Status of ECC Application Online",
@@ -414,10 +456,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Apply for ERC Certificate of Compliance",
-    "url": "https://evoss.ph/Home/Download/302963",
+    "service": "Apply for an ERC Certificate of Compliance through EVOSS",
+    "url": "https://evoss.ph/Account/ProponentLogin",
     "id": "0653afb9-dc97-4cbf-b992-0f80ac3ba778",
-    "slug": "apply-for-erc-certificate-of-compliance",
+    "slug": "apply-for-an-erc-certificate-of-compliance-through-evoss",
     "published": true,
     "featured": false,
     "category": {
@@ -425,11 +467,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Registration, Certificates and Compliance",
-      "slug": "business-registration"
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Energy Regulatory Commission (ERC)",
+    "endpointType": "Authenticated application portal",
+    "description": "Start the applicable Certificate of Compliance filing in the EVOSS proponent portal.",
+    "scope": "Published EVOSS workflows specifically describe GenCo and MGSP; process and availability vary by facility and applicant, and a project must be associated with the company.",
+    "officialGuidanceUrl": "https://www.erc.gov.ph/Content-Singular/316",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Search Patent Availability",
@@ -443,7 +491,7 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
@@ -461,7 +509,7 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Business Copyright, Trademark and Patent",
+      "name": "Intellectual Property",
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
@@ -558,10 +606,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Apply for Registration as Ecozone Enterprise or Ecozone Developer",
-    "url": "http://ears.peza.gov.ph/#/input",
+    "service": "Apply for PEZA Registration as an Ecozone Enterprise or Ecozone Developer via BERMS",
+    "url": "https://ptops.ph/",
     "id": "1869dd35-7719-44e3-8c03-45025b06411d",
-    "slug": "apply-for-registration-as-ecozone-enterprise-or-ecozone-developer",
+    "slug": "apply-for-peza-registration-as-an-ecozone-enterprise-or-ecozone-developer-via-berms",
     "published": true,
     "featured": false,
     "category": {
@@ -569,11 +617,17 @@
       "slug": "business-trade"
     },
     "subcategory": {
-      "name": "Import and Export",
-      "slug": "import-export"
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-06-06T11:30:06.320Z",
+    "agency": "Philippine Economic Zone Authority (PEZA)",
+    "endpointType": "Authenticated application portal",
+    "description": "Access PEZA’s registration platform, where BERMS handles covered ecozone enterprise/developer applications.",
+    "scope": "PEZA Circular 2025-021 describes BERMS Phase 1 for specified new and expansion projects, not every PEZA application; account or migration steps may apply.",
+    "officialGuidanceUrl": "https://www.peza.gov.ph/sites/default/files/mc2025021.pdf",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Status of CNC Application Online",
@@ -682,5 +736,365 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-11-26T21:54:00.000Z"
+  },
+  {
+    "service": "Register a Non-CSF Cooperative Online through CDA e-CoopRIS",
+    "url": "https://cs.cda.gov.ph/ecoopris/users/login",
+    "id": "2ce8d835-050b-5740-9cf0-5569832de02f",
+    "slug": "register-a-non-csf-cooperative-online-through-cda-ecoopris",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Cooperatives",
+      "slug": "cooperatives"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Cooperative Development Authority (CDA)",
+    "description": "Start the online registration process for a non-Credit Surety Fund (non-CSF) cooperative.",
+    "endpointType": "Authenticated registration portal",
+    "scope": "CSF cooperative procedures are separate; the cited process includes hard-copy steps after online approval. Confirm current CDA instructions.",
+    "officialGuidanceUrl": "https://cs.cda.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Submit Cooperative Annual Compliance Reports and Apply for a Certificate of Compliance (CAIS)",
+    "url": "https://cs.cda.gov.ph/cais/users/login",
+    "id": "416f0260-087a-55c7-bb20-a4cb4f999ff2",
+    "slug": "submit-cooperative-annual-compliance-reports-through-cais",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Cooperatives",
+      "slug": "cooperatives"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Cooperative Development Authority (CDA)",
+    "description": "Submit cooperative compliance reports and apply for a Certificate of Compliance through CDA CAIS.",
+    "endpointType": "Authenticated reporting portal",
+    "scope": "Required reports depend on cooperative type/status. Availability and reporting years can vary; verify current instructions with CDA.",
+    "officialGuidanceUrl": "https://cs.cda.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Register a Corporation or Partnership Online through SEC eSPARC",
+    "url": "https://esparc.sec.gov.ph/application",
+    "id": "46368a11-cf20-5f2d-815f-7d284e1e2e87",
+    "slug": "register-a-corporation-or-partnership-online-through-esparc",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Securities and Exchange Commission (SEC)",
+    "description": "Start an SEC eSPARC application to register a domestic corporation or partnership.",
+    "endpointType": "Online registration application",
+    "scope": "Domestic entity registration and foreign-corporation licensing follow different processes; requirements vary by entity type.",
+    "officialGuidanceUrl": "https://learn-esparc.sec.gov.ph/application/overview",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply Online for an EMB Certificate of Non-Coverage (CNC)",
+    "url": "https://cnconline.emb.gov.ph/live/",
+    "id": "4b26530e-abfe-568f-b3e5-55d662623816",
+    "slug": "apply-online-for-an-emb-certificate-of-non-coverage-cnc",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Environmental Management Bureau (EMB)",
+    "description": "Use the EMB CNC portal to request a Certificate of Non-Coverage for a qualifying project.",
+    "endpointType": "Online environmental application",
+    "scope": "Online CNC coverage is limited to qualifying Category D projects under specified conditions; screening and regional rules apply.",
+    "officialGuidanceUrl": "https://cnconline.emb.gov.ph/projectchecker/emb%20mc%202015-003%20cnc%20online.pdf",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for DTI-BPS PS Product Certification License or Import Commodity Clearance (ICC)",
+    "url": "https://qualityproducts.dti.gov.ph/MainPage/Home",
+    "id": "520f2669-ce25-51d6-a727-fa16733a9bf5",
+    "slug": "apply-for-dti-bps-ps-product-certification-license-or-icc",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Trade and Industry – Bureau of Philippine Standards (DTI-BPS)",
+    "description": "Use PCIMS to apply for a Philippine Standard (PS) certification license or an Import Commodity Clearance.",
+    "endpointType": "Online product-certification application",
+    "scope": "PS and ICC have different requirements; ICC applies according to the current mandatory-certification list, and account/document review steps apply.",
+    "officialGuidanceUrl": "https://bps.dti.gov.ph/product-certification/product-certification-information-management-system-pcims",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for IPOPHL Copyright Registration or Deposit",
+    "url": "https://www.ipophil.gov.ph/deposit/",
+    "id": "6601d42f-638e-5785-a6bd-e273e1ebae77",
+    "slug": "apply-for-ipophl-copyright-registration-or-deposit",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Intellectual Property",
+      "slug": "business-copyright-trademark-patent"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Intellectual Property Office of the Philippines (IPOPHL)",
+    "description": "Follow IPOPHL instructions to file a single-work application through CORDS or use the limited bulk-submission route.",
+    "endpointType": "Official filing guidance",
+    "scope": "The linked page is a guide, not the form itself. Registration/deposit is voluntary; copyright protection arises automatically on creation. Bulk filing has specific limits.",
+    "officialGuidanceUrl": "https://www.ipophil.gov.ph/deposit/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Register as a PhilGEPS Supplier",
+    "url": "https://philgeps.gov.ph/Suppliers/add",
+    "id": "72a8f131-4714-5b9f-9932-a24619ef56de",
+    "slug": "register-as-a-philgeps-supplier",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Government Procurement",
+      "slug": "government-procurement"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Philippine Government Electronic Procurement System (PhilGEPS)",
+    "description": "Create a merchant account and register as a supplier in PhilGEPS.",
+    "endpointType": "Supplier registration portal",
+    "scope": "Registration tiers have different requirements and fees; this does not guarantee eligibility for every procurement or mean all bids are submitted online.",
+    "officialGuidanceUrl": "https://philgeps.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "File SEC Corporate or Partnership Amendments through eAMEND",
+    "url": "https://eamend.sec.gov.ph/",
+    "id": "85a9c08e-c621-5fbb-b667-fab90aa18919",
+    "slug": "file-sec-corporate-or-partnership-amendments-through-eamend",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Securities and Exchange Commission (SEC)",
+    "description": "Submit covered domestic corporation and partnership amendments through SEC eAMEND.",
+    "endpointType": "Authenticated filing portal",
+    "scope": "Requires eSECURE access; only specified entity types and amendment categories are covered. Foreign-corporation license changes are outside stated coverage.",
+    "officialGuidanceUrl": "https://eamend.sec.gov.ph/site/coverage",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Search Public PhilGEPS Procurement Opportunities",
+    "url": "https://notices.philgeps.gov.ph/GEPSNONPILOT/Tender/SplashOpenOpportunitiesUI.aspx?ClickFrom=OpenOpp&menuIndex=3",
+    "id": "8cd6f5ce-c09c-5556-bc50-e40785ce500d",
+    "slug": "search-public-philgeps-procurement-opportunities",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Government Procurement",
+      "slug": "government-procurement"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Philippine Government Electronic Procurement System (PhilGEPS)",
+    "description": "Browse published government procurement opportunities on PhilGEPS.",
+    "endpointType": "Public opportunity search",
+    "scope": "Opportunity search is distinct from supplier registration; each tender sets its own eligibility, documents, and bid-submission route.",
+    "officialGuidanceUrl": "https://philgeps.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Learn about DBP WATER Infrastructure Project Financing",
+    "url": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
+    "id": "9d0d0565-4ac0-4385-9dcf-3ec927accc33",
+    "slug": "learn-about-dbp-water-infrastructure-project-financing",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Financial Assistance",
+      "slug": "financial-assistance"
+    },
+    "createdAt": "2025-06-06T11:30:06.318Z",
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Development Bank of the Philippines (DBP)",
+    "endpointType": "Institutional financing information",
+    "description": "Review DBP’s Water for Every Resident (WATER) Program for water-infrastructure project financing.",
+    "scope": "Institutional/project financing information, not individual household assistance.",
+    "officialGuidanceUrl": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Find Business Registration Services through the Philippine Business Hub",
+    "url": "https://business.gov.ph/",
+    "id": "9da5e56a-a6de-53fd-a376-3dad9472bdd0",
+    "slug": "find-business-registration-services-through-the-philippine-business-hub",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Philippine Business Hub (PBH)",
+    "description": "Use PBH to find and start relevant national business-registration services.",
+    "endpointType": "Service discovery portal",
+    "scope": "A discovery/access portal, not a replacement for specialist agency transactions or a universal LGU permit application.",
+    "officialGuidanceUrl": "https://business.gov.ph/how-to-apply",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply Online for an EMB Environmental Compliance Certificate (ECC)",
+    "url": "https://ecconline.emb.gov.ph/live/",
+    "id": "a0e19523-716d-5482-a648-e9fd22d3e793",
+    "slug": "apply-online-for-an-emb-environmental-compliance-certificate-ecc",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Product and Environmental Compliance",
+      "slug": "product-environmental-compliance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Environmental Management Bureau (EMB)",
+    "description": "Start an online ECC application for projects covered by the current EMB process.",
+    "endpointType": "Online environmental application",
+    "scope": "Eligibility, project screening, exclusions, and regional rules apply; some project types must use another process.",
+    "officialGuidanceUrl": "https://ecconline.emb.gov.ph/live/Help/ApplicantGuide2026.pdf",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for BFAR SPS Import Clearance for Covered Wet-Market Fishery Products",
+    "url": "https://www.intercommerce.com.ph/",
+    "id": "dbc0597f-a61d-58cd-b708-9dbc523564fe",
+    "slug": "apply-for-bfar-sps-import-clearance-for-wet-market-fishery-products",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Import and Export",
+      "slug": "import-export"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Fisheries and Aquatic Resources (BFAR)",
+    "description": "Access the DA InterCommerce route for the covered sanitary and phytosanitary import-clearance process.",
+    "endpointType": "Partner-portal application",
+    "scope": "The cited Citizen’s Charter describes a narrow service for PFDA-accredited importers using an InterCommerce account; not all BFAR import/export permits.",
+    "officialGuidanceUrl": "https://www.bfar.da.gov.ph/wp-content/uploads/2024/04/BFAR_CC_02292024-1.pdf",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "File a Beneficial Ownership Declaration through SEC HARBOR",
+    "url": "https://harbor.sec.gov.ph/",
+    "id": "df029190-8a14-52cb-b6a2-bf19fb1efd0b",
+    "slug": "file-a-beneficial-ownership-declaration-through-sec-harbor",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Business Formation and Filings",
+      "slug": "business-formation-filings"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Securities and Exchange Commission (SEC)",
+    "description": "Submit covered beneficial-ownership declarations through SEC HARBOR.",
+    "endpointType": "Authenticated reportorial filing",
+    "scope": "Requires eSECURE access; entity coverage and responsible filer depend on entity type and reportorial requirements.",
+    "officialGuidanceUrl": "https://www.sec.gov.ph/reportorial-requirements/corporations-with-primary-licenses/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for an SB Corp RISE UP Multi-Purpose Loan",
+    "url": "https://app.sbcorp.ph/",
+    "id": "f1ffd166-1c01-5385-8d39-a13a2d1e5182",
+    "slug": "apply-for-an-sb-corp-rise-up-multi-purpose-loan",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Business and Trade",
+      "slug": "business-trade"
+    },
+    "subcategory": {
+      "name": "Financial Assistance",
+      "slug": "financial-assistance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Small Business Corporation (SB Corp)",
+    "description": "Check the SB Corp portal for the current RISE UP Multi-Purpose Loan application route.",
+    "endpointType": "Authenticated loan application portal",
+    "scope": "Eligibility, terms, rates, loan limits, and fund availability may change; confirm current details with SB Corp before applying.",
+    "officialGuidanceUrl": "https://sbcorp.gov.ph/riseupmultipurpose/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

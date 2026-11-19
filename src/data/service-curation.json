@@ -1,0 +1,1698 @@
+{
+  "taxonomy": {
+    "renameSubcategories": [
+      {
+        "categorySlug": "business-trade",
+        "subcategorySlug": "business-copyright-trademark-patent",
+        "name": "Intellectual Property"
+      },
+      {
+        "categorySlug": "transport-driving",
+        "subcategorySlug": "transport-complaints",
+        "name": "Traffic Violations and Adjudication"
+      }
+    ],
+    "addSubcategories": [
+      {
+        "categorySlug": "business-trade",
+        "name": "Business Formation and Filings",
+        "slug": "business-formation-filings"
+      },
+      {
+        "categorySlug": "business-trade",
+        "name": "Cooperatives",
+        "slug": "cooperatives"
+      },
+      {
+        "categorySlug": "business-trade",
+        "name": "Government Procurement",
+        "slug": "government-procurement"
+      },
+      {
+        "categorySlug": "business-trade",
+        "name": "Product and Environmental Compliance",
+        "slug": "product-environmental-compliance"
+      },
+      {
+        "categorySlug": "contributions",
+        "name": "Contributions and Payments",
+        "slug": "contributions-payments"
+      },
+      {
+        "categorySlug": "contributions",
+        "name": "Member Self-Service",
+        "slug": "member-self-service"
+      },
+      {
+        "categorySlug": "contributions",
+        "name": "Loans",
+        "slug": "loans"
+      },
+      {
+        "categorySlug": "contributions",
+        "name": "Savings",
+        "slug": "savings"
+      },
+      {
+        "categorySlug": "employment",
+        "name": "Job Search",
+        "slug": "job-search"
+      },
+      {
+        "categorySlug": "employment",
+        "name": "Labor Assistance",
+        "slug": "labor-assistance"
+      },
+      {
+        "categorySlug": "housing",
+        "name": "Housing Programs",
+        "slug": "housing-programs"
+      },
+      {
+        "categorySlug": "transport-driving",
+        "name": "Vehicle Registration",
+        "slug": "vehicle-registration"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "id": "94c1e669-d8a2-4895-a6fe-da89960fcc08",
+      "fields": {
+        "service": "Submit a BIR New Business Registration Application (Head Office or Branch)",
+        "slug": "submit-a-bir-new-business-registration-application-head-office-or-branch",
+        "agency": "Bureau of Internal Revenue (BIR)",
+        "endpointType": "Application portal",
+        "description": "Submit a BIR new-business registration application for a head office or branch.",
+        "scope": "BIR tax registration is separate from DTI business-name registration; requirements depend on taxpayer and business type.",
+        "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        }
+      }
+    },
+    {
+      "id": "f94add98-a78c-435f-9552-a181cfaeb43d",
+      "fields": {
+        "service": "File a Consumer Complaint with DTI (Metro Manila Online Filing)",
+        "slug": "file-a-consumer-complaint-with-dti-metro-manila-online-filing",
+        "url": "https://consumercare.dti.gov.ph/",
+        "agency": "Department of Trade and Industry (DTI)",
+        "endpointType": "Online complaint filing",
+        "description": "Submit and follow up a consumer complaint through DTI Consumer CARe.",
+        "scope": "The cited online filing route is for Metro Manila; consumers elsewhere should follow the relevant DTI regional procedure.",
+        "officialGuidanceUrl": "https://fairtrade.dti.gov.ph/faq/how-to-file-a-consumer-complaint/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "79002068-fbf9-4427-a7c0-f20adf26fd6f",
+      "fields": {
+        "service": "Request Business or Investment Assistance from BOI-OWN",
+        "slug": "request-business-or-investment-assistance-from-boi-own",
+        "url": "https://investor.boiown.gov.ph/",
+        "agency": "Board of Investments (BOI)",
+        "endpointType": "Information and assistance portal",
+        "description": "Access BOI-OWN business and investment assistance information.",
+        "scope": "This is an assistance portal, not a substitute for specialist registrations, permits, or local government approvals.",
+        "officialGuidanceUrl": "https://business.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "category": {
+          "name": "Business and Trade",
+          "slug": "business-trade"
+        },
+        "subcategory": {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        }
+      }
+    },
+    {
+      "id": "1a1dc798-a76f-4b00-88c5-49a7d3ad39c4",
+      "fields": {
+        "service": "Submit SEC General Information Sheet (GIS) or Audited Financial Statements (AFS) through eFAST",
+        "slug": "submit-sec-general-information-sheet-gis-or-audited-financial-statements-afs-through-efast",
+        "url": "https://efast.sec.gov.ph/user/login",
+        "agency": "Securities and Exchange Commission (SEC)",
+        "endpointType": "Authenticated filing portal",
+        "description": "File covered corporate GIS and AFS submissions through SEC eFAST.",
+        "scope": "Requires corporate enrollment/account access and eSECURE linkage; eFAST coverage depends on entity and report type.",
+        "officialGuidanceUrl": "https://www.sec.gov.ph/online-services/sec-efast/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        }
+      }
+    },
+    {
+      "id": "97ba2171-c0ae-4e67-90c8-dec9793b668c",
+      "fields": {
+        "service": "Find How to Update DTI Business Name Registration Information",
+        "slug": "find-how-to-update-dti-business-name-registration-information",
+        "url": "https://bnrs.dti.gov.ph/faq",
+        "agency": "Department of Trade and Industry (DTI)",
+        "endpointType": "Official guidance",
+        "description": "Read DTI BNRS instructions for correcting or updating business-name registration information.",
+        "scope": "This is guidance, not a self-service update form. Some address and owner-name changes require an in-person DTI office visit; confirm the location and checklist with DTI.",
+        "officialGuidanceUrl": "https://bnrs.dti.gov.ph/faq",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        }
+      }
+    },
+    {
+      "id": "d1c49abc-dcf9-4e61-9398-bfb47befec82",
+      "fields": {
+        "service": "Apply for a New Motor Vehicle Certificate of Conformity (COC)",
+        "slug": "apply-for-a-new-motor-vehicle-certificate-of-conformity-coc",
+        "url": "https://opms.emb.gov.ph/accounts/login/",
+        "agency": "Environmental Management Bureau (EMB)",
+        "endpointType": "Authenticated application portal",
+        "description": "Apply for an EMB Certificate of Conformity for eligible new motor-vehicle types.",
+        "scope": "Not a general product-conformity certificate. Eligible applicant and vehicle types are limited; company registration/account linkage is required.",
+        "officialGuidanceUrl": "https://air.emb.gov.ph/services/certificate-of-conformity-coc-online/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Product and Environmental Compliance",
+          "slug": "product-environmental-compliance"
+        }
+      }
+    },
+    {
+      "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
+      "fields": {
+        "service": "Apply for PDEA Certification for Non-Controlled Chemicals or a Certificate of Exemption",
+        "slug": "apply-for-pdea-certification-for-non-controlled-chemicals-or-a-certificate-of-exemption",
+        "url": "https://oaceis.pdea.gov.ph/",
+        "agency": "Philippine Drug Enforcement Agency (PDEA)",
+        "endpointType": "Authenticated application portal",
+        "description": "Apply through PDEA OACEIS for the specified non-controlled-chemical certifications or exemption certificates.",
+        "scope": "The verified transfer covers specified certifications/exemptions only; it does not establish that controlled-chemical permits moved to OACEIS.",
+        "officialGuidanceUrl": "https://ddb.gov.ph/official-transfer-ddb-hands-over-regulatory-control-systems-to-pdea/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "category": {
+          "name": "Business and Trade",
+          "slug": "business-trade"
+        },
+        "subcategory": {
+          "name": "Product and Environmental Compliance",
+          "slug": "product-environmental-compliance"
+        }
+      }
+    },
+    {
+      "id": "0653afb9-dc97-4cbf-b992-0f80ac3ba778",
+      "fields": {
+        "service": "Apply for an ERC Certificate of Compliance through EVOSS",
+        "slug": "apply-for-an-erc-certificate-of-compliance-through-evoss",
+        "url": "https://evoss.ph/Account/ProponentLogin",
+        "agency": "Energy Regulatory Commission (ERC)",
+        "endpointType": "Authenticated application portal",
+        "description": "Start the applicable Certificate of Compliance filing in the EVOSS proponent portal.",
+        "scope": "Published EVOSS workflows specifically describe GenCo and MGSP; process and availability vary by facility and applicant, and a project must be associated with the company.",
+        "officialGuidanceUrl": "https://www.erc.gov.ph/Content-Singular/316",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Product and Environmental Compliance",
+          "slug": "product-environmental-compliance"
+        }
+      }
+    },
+    {
+      "id": "1869dd35-7719-44e3-8c03-45025b06411d",
+      "fields": {
+        "service": "Apply for PEZA Registration as an Ecozone Enterprise or Ecozone Developer via BERMS",
+        "slug": "apply-for-peza-registration-as-an-ecozone-enterprise-or-ecozone-developer-via-berms",
+        "url": "https://ptops.ph/",
+        "agency": "Philippine Economic Zone Authority (PEZA)",
+        "endpointType": "Authenticated application portal",
+        "description": "Access PEZA’s registration platform, where BERMS handles covered ecozone enterprise/developer applications.",
+        "scope": "PEZA Circular 2025-021 describes BERMS Phase 1 for specified new and expansion projects, not every PEZA application; account or migration steps may apply.",
+        "officialGuidanceUrl": "https://www.peza.gov.ph/sites/default/files/mc2025021.pdf",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        }
+      }
+    },
+    {
+      "id": "387e8805-4277-4a21-bf1b-116bea0586cb",
+      "fields": {
+        "service": "Register or Update BIR Taxpayer Information Online (ORUS)",
+        "slug": "register-or-update-bir-taxpayer-information-online-orus",
+        "agency": "Bureau of Internal Revenue (BIR)",
+        "endpointType": "Authenticated self-service portal",
+        "description": "Use ORUS for the taxpayer registration and information-update transactions currently supported for your taxpayer type.",
+        "scope": "Available transactions and account requirements depend on taxpayer type and current BIR portal rules; distinct from NewBizReg and DTI BNRS.",
+        "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "361bf4c9-5792-46f3-a198-4dab1663ad22",
+      "fields": {
+        "service": "Apply for a Postal ID in Person",
+        "slug": "apply-for-a-postal-id-in-person",
+        "url": "https://phlpost.gov.ph/news_and_updates/postal-id-application-form/",
+        "agency": "Philippine Postal Corporation (PHLPost)",
+        "endpointType": "Guidance and application form",
+        "description": "Review PHLPost’s current Postal ID requirements and application form before applying.",
+        "scope": "Application is made in person; this is not an online issuance service.",
+        "officialGuidanceUrl": "https://phlpost.gov.ph/cpt-press-releases/phlpost-simplifies-postal-id-application-for-all/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "942f1e2e-64c7-48da-b961-3a16494a020c",
+      "fields": {
+        "service": "Apply for a Solo Parent ID through your City or Municipal Social Welfare Office",
+        "slug": "apply-for-a-solo-parent-id-through-your-city-or-municipal-social-welfare-office",
+        "url": "https://old.dswd.gov.ph/faqs/how-to-secure-solo-parent-i-d/",
+        "agency": "Department of Social Welfare and Development (DSWD)",
+        "endpointType": "Local application guidance",
+        "description": "Read DSWD guidance for applying for a Solo Parent ID through the local social welfare office.",
+        "scope": "The application is handled by the city/municipal LGU, not through a single national online transaction.",
+        "officialGuidanceUrl": "https://www.dswd.gov.ph/dswd-led-body-urges-solo-parents-to-register-with-lgus-to-avail-of-benefits/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "956f8318-5ef8-4f37-bba0-a8f50b3b7080",
+      "fields": {
+        "service": "View your GSIS Membership Record through GSIS Touch",
+        "slug": "view-your-gsis-membership-record-through-gsis-touch",
+        "url": "https://www.gsis.gov.ph/ginhawa-for-all/gsis-touch/",
+        "agency": "Government Service Insurance System (GSIS)",
+        "endpointType": "Member self-service app information",
+        "description": "Find the official GSIS Touch app route for checking membership records.",
+        "scope": "The cited page describes an app-based member service; account access and app availability apply.",
+        "officialGuidanceUrl": "https://www.gsis.gov.ph/ginhawa-for-all/gsis-touch/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "b135f92d-b632-458a-a232-0f07172da657",
+      "fields": {
+        "service": "Submit SSS Loans Collection List and Remit Loan Payments",
+        "slug": "submit-sss-loans-collection-list-and-remit-loan-payments",
+        "url": "https://employer.sss.gov.ph/employer/?logtype=er",
+        "agency": "Social Security System (SSS)",
+        "endpointType": "Employer portal",
+        "description": "Submit employee SSS loan collection information and handle employer loan remittance.",
+        "scope": "For registered SSS employers; employer account access is required.",
+        "officialGuidanceUrl": "https://www.sss.gov.ph/employer-er/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "b74a0ddb-d36c-4691-bd55-c120da866638",
+      "fields": {
+        "url": "https://eprs01.philhealth.gov.ph/",
+        "agency": "Philippine Health Insurance Corporation (PhilHealth)",
+        "endpointType": "Employer contribution portal",
+        "description": "Report employee premiums and remit employer contributions using PhilHealth EPRS.",
+        "scope": "EPRS is for employers and is distinct from PhilHealth member self-service.",
+        "officialGuidanceUrl": "https://www.philhealth.gov.ph/partners/employers/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "d0a43a7d-7d29-40f6-b5dc-633c97b9947d",
+      "fields": {
+        "service": "Find TESDA Scholarship Programs and Application Requirements",
+        "slug": "find-tesda-scholarship-programs-and-application-requirements",
+        "url": "https://www.tesda.gov.ph/about/tesda/1279",
+        "agency": "Technical Education and Skills Development Authority (TESDA)",
+        "endpointType": "Program guidance",
+        "description": "Review official TESDA scholarship information and follow the application instructions for a specific program.",
+        "scope": "Scholarship availability and application windows vary by program and cycle; this is separate from TESDA Online Program enrollment.",
+        "officialGuidanceUrl": "https://www.tesda.gov.ph/Barangay",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "a94fadce-3770-4555-9a2e-840df721db09",
+      "fields": {
+        "service": "Verify Registered Enterprise-Based Unions",
+        "slug": "verify-registered-enterprise-based-unions",
+        "agency": "Department of Labor and Employment (DOLE), Bureau of Labor Relations",
+        "endpointType": "Public lookup",
+        "description": "Check DOLE’s enterprise-based union verification service.",
+        "scope": "Verification only; this is not union registration.",
+        "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "884081d9-f4f4-4abf-b871-479e407ceafc",
+      "fields": {
+        "service": "Apply for Union or Workers’ Association Registration Online",
+        "slug": "apply-for-union-or-workers-association-registration-online",
+        "url": "https://blr-ours.dole.gov.ph/",
+        "agency": "Department of Labor and Employment (DOLE), Bureau of Labor Relations",
+        "endpointType": "Online registration portal",
+        "description": "Start a union or workers’ association registration request through DOLE’s OURS portal.",
+        "scope": "Original documents may still be required; confirm the current requirements with DOLE.",
+        "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "005ed20b-840d-48d9-8627-8b9b68dcba2f",
+      "fields": {
+        "service": "Download PRC Oath Form (Legacy PDF; Check Current Instructions)",
+        "slug": "download-prc-oath-form-legacy-pdf-check-current-instructions",
+        "agency": "Professional Regulation Commission (PRC)",
+        "endpointType": "Legacy form download",
+        "description": "This older PDF contains in-person instructions and is not a current online licensing transaction.",
+        "scope": "Check the current PRC Online Services page for active examination and initial-registration procedures.",
+        "officialGuidanceUrl": "https://online.prc.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "175c33be-c6f7-4c5a-8925-7e6bf615df03",
+      "fields": {
+        "service": "View DSWD Disaster Situation Reports (DROMIC)",
+        "slug": "view-dswd-disaster-situation-reports-dromic",
+        "agency": "Department of Social Welfare and Development (DSWD)",
+        "endpointType": "Situation-report dashboard",
+        "description": "View DSWD Disaster Response Operations Monitoring and Information Center reports.",
+        "scope": "Information and monitoring only; this is not a preparedness application or emergency dispatch service.",
+        "officialGuidanceUrl": "https://dromic.dswd.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "48424831-e361-4ac1-9a14-929e873fcba1",
+      "fields": {
+        "service": "View Real-Time Rainfall and Water-Level Monitoring via PhilSensors",
+        "slug": "view-real-time-rainfall-and-water-level-monitoring-via-philsensors",
+        "agency": "Department of Science and Technology – Advanced Science and Technology Institute (DOST-ASTI)",
+        "endpointType": "Monitoring dashboard",
+        "description": "View rainfall and water-level monitoring stations and observations on PhilSensors.",
+        "scope": "Monitoring information is not a substitute for official emergency warnings or local instructions.",
+        "officialGuidanceUrl": "https://philsensors.asti.dost.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "1efccadd-8e74-4085-9cbc-7064665994ba",
+      "fields": {
+        "service": "Assess Flood, Landslide, and Storm-Surge Hazards with UP NOAH",
+        "slug": "assess-flood-landslide-and-storm-surge-hazards-with-up-noah",
+        "agency": "University of the Philippines (UP) Nationwide Operational Assessment of Hazards (NOAH)",
+        "endpointType": "Hazard information and mapping",
+        "description": "Explore UP NOAH hazard assessment information for flood, landslide, and storm-surge risks.",
+        "scope": "Do not treat beta weather information as an operational warning or emergency alert.",
+        "officialGuidanceUrl": "https://noah.up.edu.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "77e064ec-f4a1-49f6-b4ba-df0535712c86",
+      "fields": {
+        "service": "Read about the OLTrap Dengue Early-Warning Project",
+        "slug": "read-about-the-oltrap-dengue-early-warning-project",
+        "url": "https://www.pchrd.dost.gov.ph/ongoing_projects/development-of-iot-based-ol-trap-and-community-dengue-early-warning-system-c-dews-for-cauayan-city-isabela/",
+        "agency": "Philippine Council for Health Research and Development (PCHRD)",
+        "endpointType": "Project information",
+        "description": "Read about a specific IoT-based OL Trap and community dengue early-warning project.",
+        "scope": "This is project information, not a general dengue information service or a confirmed nationwide public transaction.",
+        "officialGuidanceUrl": "https://www.pchrd.dost.gov.ph/heartnovation/lot-based-orvicidal-larvicidal-ol-trap-and-community-dengue-early-warning-system-c-dews/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "0e30d0a3-4b7c-4dca-adf2-26d38a572d23",
+      "fields": {
+        "service": "Search the Philippine Health Research Registry",
+        "slug": "search-the-philippine-health-research-registry",
+        "url": "https://registry.healthresearch.ph/",
+        "agency": "Philippine Health Research Registry",
+        "endpointType": "Research registry",
+        "description": "Search registered Philippine health research studies using the current registry portal.",
+        "scope": "Study registration is distinct from ethics clearance and proposal submission.",
+        "officialGuidanceUrl": "https://www.herdin.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "448fe3f4-7273-495b-83e2-7634264ab332",
+      "fields": {
+        "service": "Apply for PCSO Medical Assistance Program (MAP) Online",
+        "slug": "apply-for-pcso-medical-assistance-program-map-online",
+        "url": "https://onlinemap.pcso.gov.ph/",
+        "agency": "Philippine Charity Sweepstakes Office (PCSO)",
+        "endpointType": "Online assistance application",
+        "description": "Submit an application through PCSO’s current Online MAP service.",
+        "scope": "Assistance is subject to PCSO program requirements and review; the older OLAPP appointment page is not the application route.",
+        "officialGuidanceUrl": "https://www.pcso.gov.ph/ProgramsAndServices/CAD/MedicalAccessProgram.aspx",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "82f41298-4a38-4036-9f27-a7fc95d7a48d",
+      "fields": {
+        "service": "Submit a Grievance, Inquiry, Assistance Request, or Feedback to DSWD",
+        "slug": "submit-a-grievance-inquiry-assistance-request-or-feedback-to-dswd",
+        "agency": "Department of Social Welfare and Development (DSWD)",
+        "endpointType": "Online grievance and feedback form",
+        "description": "Use DSWD IGRMS for grievances, inquiries, assistance requests, and feedback.",
+        "scope": "The system is broader than disaster-initiative complaints; response handling depends on the issue and responsible office.",
+        "officialGuidanceUrl": "https://ereklamo.dswd.gov.ph/index.php",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "9d0d0565-4ac0-4385-9dcf-3ec927accc33",
+      "fields": {
+        "service": "Learn about DBP WATER Infrastructure Project Financing",
+        "slug": "learn-about-dbp-water-infrastructure-project-financing",
+        "agency": "Development Bank of the Philippines (DBP)",
+        "endpointType": "Institutional financing information",
+        "description": "Review DBP’s Water for Every Resident (WATER) Program for water-infrastructure project financing.",
+        "scope": "Institutional/project financing information, not individual household assistance.",
+        "officialGuidanceUrl": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "category": {
+          "name": "Business and Trade",
+          "slug": "business-trade"
+        },
+        "subcategory": {
+          "name": "Financial Assistance",
+          "slug": "financial-assistance"
+        }
+      }
+    },
+    {
+      "id": "ff58e081-8d77-4941-b01e-6a58302072af",
+      "fields": {
+        "service": "Read NACC Adoption Application Steps",
+        "slug": "read-nacc-adoption-application-steps",
+        "agency": "National Authority for Child Care (NACC)",
+        "endpointType": "Application guidance",
+        "description": "Read NACC guidance on the steps for prospective adoptive parents.",
+        "scope": "This source describes adoption steps; it does not verify an online expression-of-interest or foster application.",
+        "officialGuidanceUrl": "https://www.nacc.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "75c532cb-2d5a-4d3d-b444-edffade5c524",
+      "fields": {
+        "service": "Learn about SSS Retirement Benefits (Technical Retirement)",
+        "slug": "learn-about-sss-retirement-benefits-technical-retirement",
+        "agency": "Social Security System (SSS)",
+        "endpointType": "Benefit information",
+        "description": "Review SSS retirement benefit information relevant to the technical-retirement service record.",
+        "scope": "The page is benefit guidance; use My.SSS or SSS instructions for the applicable transaction.",
+        "officialGuidanceUrl": "https://sso.sss.gov.ph/sso/auth/redirect",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "category": {
+          "name": "Contributions",
+          "slug": "contributions"
+        },
+        "subcategory": {
+          "name": "Benefits Registration",
+          "slug": "benefits-registration"
+        }
+      }
+    },
+    {
+      "id": "3402681d-862c-4d58-a22e-755d3a11482d",
+      "fields": {
+        "service": "File and Pay Taxes Online through eFPS",
+        "slug": "file-and-pay-taxes-online-through-efps",
+        "agency": "Bureau of Internal Revenue (BIR)",
+        "endpointType": "Authenticated tax filing portal",
+        "description": "File and pay taxes online through BIR eFPS when your taxpayer and return are eligible for that system.",
+        "scope": "eFPS is not the universal filing route; some taxpayers use eBIRForms or other BIR eServices.",
+        "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "cd1fc9bf-8428-43e4-b1be-6775627ab8cc",
+      "fields": {
+        "service": "Apply for a BIR Tax Clearance Certificate through eTCS",
+        "slug": "apply-for-a-bir-tax-clearance-certificate-through-etcs",
+        "agency": "Bureau of Internal Revenue (BIR)",
+        "endpointType": "Authenticated certificate application",
+        "description": "Use eTCS to apply for eligible BIR tax-clearance certificates.",
+        "scope": "Eligibility and exclusions depend on the clearance purpose; bidding-purpose clearance uses a separate eTCBP-TCVC route.",
+        "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "608751b3-2353-4485-978f-027a6c7c5f64",
+      "fields": {
+        "service": "Find the LTO Driver’s License Renewal Process (eGovPH)",
+        "slug": "find-the-lto-drivers-license-renewal-process-egovph",
+        "url": "https://lto.gov.ph/news/digital-drivers-license-renewal-now-in-egovph-app-lto-urges-clients-to-avail-of-the-online-service/",
+        "agency": "Land Transportation Office (LTO)",
+        "endpointType": "Official renewal guidance",
+        "description": "Read LTO’s instructions for driver’s-license renewal through the eGovPH app.",
+        "scope": "The link is guidance, not a renewal form; actual workflow, eligibility, and required steps are handled through eGovPH/LTO.",
+        "officialGuidanceUrl": "https://lto.gov.ph/drivers-license/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "82d3c19f-5862-4ffd-8bd2-f72ef1c1e47b",
+      "fields": {
+        "service": "Convert a Foreign Driver’s License in the Philippines",
+        "slug": "convert-a-foreign-drivers-license-in-the-philippines",
+        "url": "https://portal.lto.gov.ph/",
+        "agency": "Land Transportation Office (LTO)",
+        "endpointType": "Portal entry and in-person procedure",
+        "description": "Start by reviewing LTO’s current foreign-license conversion requirements and LTMS portal.",
+        "scope": "Do not assume the conversion is wholly online; supporting documents and an LTO office visit may be required.",
+        "officialGuidanceUrl": "https://lto.gov.ph/wp-content/uploads/2025/09/LTO-CC-2025-External-v2.pdf",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "327c5ae2-1b1c-4227-9546-9e1967872ff8",
+      "fields": {
+        "service": "Check MMDA Traffic Violations by Plate Number",
+        "slug": "check-mmda-traffic-violations-by-plate-number",
+        "url": "https://mayhulika.mmda.gov.ph/vehicle-portal",
+        "agency": "Metropolitan Manila Development Authority (MMDA)",
+        "endpointType": "Traffic-violation lookup",
+        "description": "Check whether a vehicle has an MMDA traffic violation and access related adjudication steps.",
+        "scope": "Use the linked MMDA vehicle portal; payment and e-contest are separate steps within the system.",
+        "officialGuidanceUrl": "https://mayhulika.mmda.gov.ph/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+        "subcategory": {
+          "name": "Traffic Violations and Adjudication",
+          "slug": "transport-complaints"
+        }
+      }
+    },
+    {
+      "id": "4f39d93f-70a4-41f7-b87f-05b471aed19c",
+      "fields": {
+        "service": "Pay a Pag-IBIG Calamity Loan Online",
+        "slug": "pay-a-pag-ibig-calamity-loan-online",
+        "category": {
+          "name": "Contributions",
+          "slug": "contributions"
+        },
+        "subcategory": {
+          "name": "Loans",
+          "slug": "loans"
+        },
+        "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+        "endpointType": "Online loan payment",
+        "description": "Pay an existing Pag-IBIG calamity loan through Virtual Pag-IBIG.",
+        "scope": "Payment only; this is not an application for a new calamity loan.",
+        "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_cashloans_calamity.html",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "21009162-d106-4c3b-87b2-a8fddae497ce",
+      "fields": {
+        "service": "Pay a Pag-IBIG Multi-Purpose Loan Online",
+        "slug": "pay-a-pag-ibig-multi-purpose-loan-online",
+        "category": {
+          "name": "Contributions",
+          "slug": "contributions"
+        },
+        "subcategory": {
+          "name": "Loans",
+          "slug": "loans"
+        },
+        "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+        "endpointType": "Online loan payment",
+        "description": "Pay an existing Pag-IBIG Multi-Purpose Loan through Virtual Pag-IBIG.",
+        "scope": "Payment only; this is not a loan application.",
+        "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_cashloans_mpl.html",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "2ae2126b-76ba-469a-9487-f1fb8ef301ca",
+      "fields": {
+        "service": "Pay Pag-IBIG MP2 Voluntary Savings Online",
+        "slug": "pay-pag-ibig-mp2-voluntary-savings-online",
+        "category": {
+          "name": "Contributions",
+          "slug": "contributions"
+        },
+        "subcategory": {
+          "name": "Savings",
+          "slug": "savings"
+        },
+        "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+        "endpointType": "Online savings payment",
+        "description": "Remit Pag-IBIG MP2 voluntary savings through Virtual Pag-IBIG.",
+        "scope": "Savings contribution/payment, not a housing-loan payment.",
+        "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_savings_mp2.html",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "05f5d7ff-0c7f-417d-b2ef-5e1fb874af43",
+      "fields": {
+        "service": "Pay Pag-IBIG Regular Savings Contributions Online",
+        "slug": "pay-pag-ibig-regular-savings-contributions-online",
+        "category": {
+          "name": "Contributions",
+          "slug": "contributions"
+        },
+        "subcategory": {
+          "name": "Savings",
+          "slug": "savings"
+        },
+        "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+        "endpointType": "Online contribution payment",
+        "description": "Pay mandatory Pag-IBIG regular savings contributions through Virtual Pag-IBIG.",
+        "scope": "Member savings/contribution payment, not a housing-loan payment.",
+        "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/Membership_RegularSavings.html",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "c6d55f86-1764-4bd0-9ec3-ae5450ce4ac6",
+      "fields": {
+        "service": "Learn about the DBP Digital Banking Portal",
+        "slug": "learn-about-the-dbp-digital-banking-portal",
+        "agency": "Development Bank of the Philippines (DBP)",
+        "endpointType": "Service information",
+        "description": "Read about DBP’s Digital Banking Portal and how an eligible customer can access it.",
+        "scope": "This page is not itself a verified sign-in destination.",
+        "officialGuidanceUrl": "https://www.dbp.ph/corporate-and-institutional-banking/digital-banking-portal/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    },
+    {
+      "id": "6a5e93b0-9f5d-4993-a113-d080e9f33229",
+      "fields": {
+        "service": "View requirements for Accredited Official of Foreign Government Visa (9E)",
+        "slug": "view-requirements-for-accredited-official-of-foreign-government-visa-9e",
+        "agency": "Bureau of Immigration (BI)",
+        "endpointType": "Official visa requirements",
+        "description": "Review the Bureau of Immigration’s requirements for an Accredited Official of a Foreign Government Visa (9E).",
+        "scope": "The linked page provides visa information, not a verified online application transaction. Use BI’s current instructions for application steps.",
+        "officialGuidanceUrl": "https://immigration.gov.ph/visas/",
+        "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+      }
+    }
+  ],
+  "removeIds": ["1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b"],
+  "additions": [
+    {
+      "service": "Register a Corporation or Partnership Online through SEC eSPARC",
+      "url": "https://esparc.sec.gov.ph/application",
+      "id": "46368a11-cf20-5f2d-815f-7d284e1e2e87",
+      "slug": "register-a-corporation-or-partnership-online-through-esparc",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Business Formation and Filings",
+        "slug": "business-formation-filings"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Securities and Exchange Commission (SEC)",
+      "description": "Start an SEC eSPARC application to register a domestic corporation or partnership.",
+      "endpointType": "Online registration application",
+      "scope": "Domestic entity registration and foreign-corporation licensing follow different processes; requirements vary by entity type.",
+      "officialGuidanceUrl": "https://learn-esparc.sec.gov.ph/application/overview",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Find Business Registration Services through the Philippine Business Hub",
+      "url": "https://business.gov.ph/",
+      "id": "9da5e56a-a6de-53fd-a376-3dad9472bdd0",
+      "slug": "find-business-registration-services-through-the-philippine-business-hub",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Business Formation and Filings",
+        "slug": "business-formation-filings"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine Business Hub (PBH)",
+      "description": "Use PBH to find and start relevant national business-registration services.",
+      "endpointType": "Service discovery portal",
+      "scope": "A discovery/access portal, not a replacement for specialist agency transactions or a universal LGU permit application.",
+      "officialGuidanceUrl": "https://business.gov.ph/how-to-apply",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "File SEC Corporate or Partnership Amendments through eAMEND",
+      "url": "https://eamend.sec.gov.ph/",
+      "id": "85a9c08e-c621-5fbb-b667-fab90aa18919",
+      "slug": "file-sec-corporate-or-partnership-amendments-through-eamend",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Business Formation and Filings",
+        "slug": "business-formation-filings"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Securities and Exchange Commission (SEC)",
+      "description": "Submit covered domestic corporation and partnership amendments through SEC eAMEND.",
+      "endpointType": "Authenticated filing portal",
+      "scope": "Requires eSECURE access; only specified entity types and amendment categories are covered. Foreign-corporation license changes are outside stated coverage.",
+      "officialGuidanceUrl": "https://eamend.sec.gov.ph/site/coverage",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "File a Beneficial Ownership Declaration through SEC HARBOR",
+      "url": "https://harbor.sec.gov.ph/",
+      "id": "df029190-8a14-52cb-b6a2-bf19fb1efd0b",
+      "slug": "file-a-beneficial-ownership-declaration-through-sec-harbor",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Business Formation and Filings",
+        "slug": "business-formation-filings"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Securities and Exchange Commission (SEC)",
+      "description": "Submit covered beneficial-ownership declarations through SEC HARBOR.",
+      "endpointType": "Authenticated reportorial filing",
+      "scope": "Requires eSECURE access; entity coverage and responsible filer depend on entity type and reportorial requirements.",
+      "officialGuidanceUrl": "https://www.sec.gov.ph/reportorial-requirements/corporations-with-primary-licenses/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Register a Non-CSF Cooperative Online through CDA e-CoopRIS",
+      "url": "https://cs.cda.gov.ph/ecoopris/users/login",
+      "id": "2ce8d835-050b-5740-9cf0-5569832de02f",
+      "slug": "register-a-non-csf-cooperative-online-through-cda-ecoopris",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Cooperatives",
+        "slug": "cooperatives"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Cooperative Development Authority (CDA)",
+      "description": "Start the online registration process for a non-Credit Surety Fund (non-CSF) cooperative.",
+      "endpointType": "Authenticated registration portal",
+      "scope": "CSF cooperative procedures are separate; the cited process includes hard-copy steps after online approval. Confirm current CDA instructions.",
+      "officialGuidanceUrl": "https://cs.cda.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Submit Cooperative Annual Compliance Reports and Apply for a Certificate of Compliance (CAIS)",
+      "url": "https://cs.cda.gov.ph/cais/users/login",
+      "id": "416f0260-087a-55c7-bb20-a4cb4f999ff2",
+      "slug": "submit-cooperative-annual-compliance-reports-through-cais",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Cooperatives",
+        "slug": "cooperatives"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Cooperative Development Authority (CDA)",
+      "description": "Submit cooperative compliance reports and apply for a Certificate of Compliance through CDA CAIS.",
+      "endpointType": "Authenticated reporting portal",
+      "scope": "Required reports depend on cooperative type/status. Availability and reporting years can vary; verify current instructions with CDA.",
+      "officialGuidanceUrl": "https://cs.cda.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Register as a PhilGEPS Supplier",
+      "url": "https://philgeps.gov.ph/Suppliers/add",
+      "id": "72a8f131-4714-5b9f-9932-a24619ef56de",
+      "slug": "register-as-a-philgeps-supplier",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Government Procurement",
+        "slug": "government-procurement"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine Government Electronic Procurement System (PhilGEPS)",
+      "description": "Create a merchant account and register as a supplier in PhilGEPS.",
+      "endpointType": "Supplier registration portal",
+      "scope": "Registration tiers have different requirements and fees; this does not guarantee eligibility for every procurement or mean all bids are submitted online.",
+      "officialGuidanceUrl": "https://philgeps.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Search Public PhilGEPS Procurement Opportunities",
+      "url": "https://notices.philgeps.gov.ph/GEPSNONPILOT/Tender/SplashOpenOpportunitiesUI.aspx?ClickFrom=OpenOpp&menuIndex=3",
+      "id": "8cd6f5ce-c09c-5556-bc50-e40785ce500d",
+      "slug": "search-public-philgeps-procurement-opportunities",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Government Procurement",
+        "slug": "government-procurement"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine Government Electronic Procurement System (PhilGEPS)",
+      "description": "Browse published government procurement opportunities on PhilGEPS.",
+      "endpointType": "Public opportunity search",
+      "scope": "Opportunity search is distinct from supplier registration; each tender sets its own eligibility, documents, and bid-submission route.",
+      "officialGuidanceUrl": "https://philgeps.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for DTI-BPS PS Product Certification License or Import Commodity Clearance (ICC)",
+      "url": "https://qualityproducts.dti.gov.ph/MainPage/Home",
+      "id": "520f2669-ce25-51d6-a727-fa16733a9bf5",
+      "slug": "apply-for-dti-bps-ps-product-certification-license-or-icc",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Product and Environmental Compliance",
+        "slug": "product-environmental-compliance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Trade and Industry – Bureau of Philippine Standards (DTI-BPS)",
+      "description": "Use PCIMS to apply for a Philippine Standard (PS) certification license or an Import Commodity Clearance.",
+      "endpointType": "Online product-certification application",
+      "scope": "PS and ICC have different requirements; ICC applies according to the current mandatory-certification list, and account/document review steps apply.",
+      "officialGuidanceUrl": "https://bps.dti.gov.ph/product-certification/product-certification-information-management-system-pcims",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for IPOPHL Copyright Registration or Deposit",
+      "url": "https://www.ipophil.gov.ph/deposit/",
+      "id": "6601d42f-638e-5785-a6bd-e273e1ebae77",
+      "slug": "apply-for-ipophl-copyright-registration-or-deposit",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Intellectual Property",
+        "slug": "business-copyright-trademark-patent"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Intellectual Property Office of the Philippines (IPOPHL)",
+      "description": "Follow IPOPHL instructions to file a single-work application through CORDS or use the limited bulk-submission route.",
+      "endpointType": "Official filing guidance",
+      "scope": "The linked page is a guide, not the form itself. Registration/deposit is voluntary; copyright protection arises automatically on creation. Bulk filing has specific limits.",
+      "officialGuidanceUrl": "https://www.ipophil.gov.ph/deposit/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply Online for an EMB Environmental Compliance Certificate (ECC)",
+      "url": "https://ecconline.emb.gov.ph/live/",
+      "id": "a0e19523-716d-5482-a648-e9fd22d3e793",
+      "slug": "apply-online-for-an-emb-environmental-compliance-certificate-ecc",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Product and Environmental Compliance",
+        "slug": "product-environmental-compliance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Environmental Management Bureau (EMB)",
+      "description": "Start an online ECC application for projects covered by the current EMB process.",
+      "endpointType": "Online environmental application",
+      "scope": "Eligibility, project screening, exclusions, and regional rules apply; some project types must use another process.",
+      "officialGuidanceUrl": "https://ecconline.emb.gov.ph/live/Help/ApplicantGuide2026.pdf",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply Online for an EMB Certificate of Non-Coverage (CNC)",
+      "url": "https://cnconline.emb.gov.ph/live/",
+      "id": "4b26530e-abfe-568f-b3e5-55d662623816",
+      "slug": "apply-online-for-an-emb-certificate-of-non-coverage-cnc",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Product and Environmental Compliance",
+        "slug": "product-environmental-compliance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Environmental Management Bureau (EMB)",
+      "description": "Use the EMB CNC portal to request a Certificate of Non-Coverage for a qualifying project.",
+      "endpointType": "Online environmental application",
+      "scope": "Online CNC coverage is limited to qualifying Category D projects under specified conditions; screening and regional rules apply.",
+      "officialGuidanceUrl": "https://cnconline.emb.gov.ph/projectchecker/emb%20mc%202015-003%20cnc%20online.pdf",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for BFAR SPS Import Clearance for Covered Wet-Market Fishery Products",
+      "url": "https://www.intercommerce.com.ph/",
+      "id": "dbc0597f-a61d-58cd-b708-9dbc523564fe",
+      "slug": "apply-for-bfar-sps-import-clearance-for-wet-market-fishery-products",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Import and Export",
+        "slug": "import-export"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Fisheries and Aquatic Resources (BFAR)",
+      "description": "Access the DA InterCommerce route for the covered sanitary and phytosanitary import-clearance process.",
+      "endpointType": "Partner-portal application",
+      "scope": "The cited Citizen’s Charter describes a narrow service for PFDA-accredited importers using an InterCommerce account; not all BFAR import/export permits.",
+      "officialGuidanceUrl": "https://www.bfar.da.gov.ph/wp-content/uploads/2024/04/BFAR_CC_02292024-1.pdf",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for an SB Corp RISE UP Multi-Purpose Loan",
+      "url": "https://app.sbcorp.ph/",
+      "id": "f1ffd166-1c01-5385-8d39-a13a2d1e5182",
+      "slug": "apply-for-an-sb-corp-rise-up-multi-purpose-loan",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Business and Trade",
+        "slug": "business-trade"
+      },
+      "subcategory": {
+        "name": "Financial Assistance",
+        "slug": "financial-assistance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Small Business Corporation (SB Corp)",
+      "description": "Check the SB Corp portal for the current RISE UP Multi-Purpose Loan application route.",
+      "endpointType": "Authenticated loan application portal",
+      "scope": "Eligibility, terms, rates, loan limits, and fund availability may change; confirm current details with SB Corp before applying.",
+      "officialGuidanceUrl": "https://sbcorp.gov.ph/riseupmultipurpose/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Pay SSS Contributions Online",
+      "url": "https://www.sss.gov.ph/pay-contribution/",
+      "id": "449c11e4-d90a-5941-ac85-4cb239122398",
+      "slug": "pay-sss-contributions-online",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Contributions",
+        "slug": "contributions"
+      },
+      "subcategory": {
+        "name": "Contributions and Payments",
+        "slug": "contributions-payments"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Social Security System (SSS)",
+      "description": "Review SSS contribution payment options and continue through an authorized payment channel or My.SSS.",
+      "endpointType": "Contribution payment guidance",
+      "scope": "The guidance page is not itself a payment processor; payment methods and applicable schedules depend on member type.",
+      "officialGuidanceUrl": "https://sso.sss.gov.ph/wsso/logtype",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Access PhilHealth Member Records and Self-Service",
+      "url": "https://memberinquiry.philhealth.gov.ph/member",
+      "id": "98dc745d-c9b9-53ad-9a9e-6d90d5f3c4ae",
+      "slug": "access-philhealth-member-records-and-self-service",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Contributions",
+        "slug": "contributions"
+      },
+      "subcategory": {
+        "name": "Member Self-Service",
+        "slug": "member-self-service"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine Health Insurance Corporation (PhilHealth)",
+      "description": "Access member information and available PhilHealth self-service functions, including records and contribution information.",
+      "endpointType": "Member self-service portal",
+      "scope": "Member portal only; employer premium reporting is handled separately through EPRS. Available tasks depend on account access.",
+      "officialGuidanceUrl": "https://www.philhealth.gov.ph/services/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Find National Emergency and Disaster-Response Hotlines",
+      "url": "https://ehotlines.e.gov.ph/",
+      "id": "a2114fce-e247-521b-875d-28b17589baa8",
+      "slug": "find-national-emergency-and-disaster-hotlines",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Disaster and Weather",
+        "slug": "disaster-weather"
+      },
+      "subcategory": {
+        "name": "Disaster-prone Areas",
+        "slug": "disaster-prone-areas"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "eGovPH / Department of Information and Communications Technology (DICT)",
+      "description": "Find government emergency and disaster-response contact numbers.",
+      "endpointType": "Hotline directory",
+      "scope": "A contact directory, not incident dispatch or case filing; check the listed agency channel before relying on it.",
+      "officialGuidanceUrl": "https://dict.gov.ph/egov-digital-platforms",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Check PAGASA Flood Information and River-Basin Status",
+      "url": "https://pagasa.dost.gov.ph/flood",
+      "id": "0c12fde3-5c5d-5782-a47c-91fe3c9d760a",
+      "slug": "check-pagasa-flood-information-and-river-basin-status",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Disaster and Weather",
+        "slug": "disaster-weather"
+      },
+      "subcategory": {
+        "name": "Weather",
+        "slug": "weather"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA)",
+      "description": "Review PAGASA flood information and river-basin monitoring updates.",
+      "endpointType": "Flood information dashboard",
+      "scope": "Monitoring information; follow current PAGASA advisories and local emergency instructions.",
+      "officialGuidanceUrl": "https://pagasa.dost.gov.ph/flood",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for TESDA Competency Assessment and National Certificate or Certificate of Competency",
+      "url": "https://www.tesda.gov.ph/About/TESDA/46",
+      "id": "6aeaf882-e60a-584f-a481-dafdd8ee235c",
+      "slug": "apply-for-tesda-competency-assessment-and-national-certificate",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Education",
+        "slug": "education"
+      },
+      "subcategory": {
+        "name": "Training",
+        "slug": "training"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Technical Education and Skills Development Authority (TESDA)",
+      "description": "Review TESDA’s competency-assessment procedure and find the appropriate assessment route.",
+      "endpointType": "Assessment procedure and center referral",
+      "scope": "Assessment is not wholly online; schedule, fees, and requirements depend on the qualification and accredited assessment center.",
+      "officialGuidanceUrl": "https://www.tesda.gov.ph/About/TESDA/25",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Search Jobs and Create a Jobseeker Account on PhilJobNet",
+      "url": "https://philjobnet.gov.ph/",
+      "id": "4c95d6a4-075e-5601-ab9c-372aaa9ed99a",
+      "slug": "search-jobs-and-create-a-jobseeker-account-on-philjobnet",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Employment",
+        "slug": "employment"
+      },
+      "subcategory": {
+        "name": "Job Search",
+        "slug": "job-search"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Labor and Employment (DOLE)",
+      "description": "Search job vacancies and create a jobseeker profile on the PhilJobNet platform.",
+      "endpointType": "Job-matching portal",
+      "scope": "Free job matching/search; hiring decisions and vacancy availability are controlled by employers.",
+      "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "File and Track a DOLE SEnA Request for Assistance",
+      "url": "https://arms.dole.gov.ph/",
+      "id": "b3c1ff9a-7b72-5f5d-9a83-a705efe734c3",
+      "slug": "file-and-track-a-dole-sena-request-for-assistance",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Employment",
+        "slug": "employment"
+      },
+      "subcategory": {
+        "name": "Labor Assistance",
+        "slug": "labor-assistance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Labor and Employment (DOLE)",
+      "description": "Submit and track a Request for Assistance under DOLE’s Single Entry Approach (SEnA).",
+      "endpointType": "Online assistance request and tracking",
+      "scope": "Case handling and eligibility follow DOLE rules; electronic filing does not guarantee resolution online.",
+      "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Create or Update a DMW e-Registration Profile for Overseas Employment",
+      "url": "https://onlineservices.dmw.gov.ph/",
+      "id": "ee410502-8fba-5d50-8e6c-68992a348fa3",
+      "slug": "create-or-update-a-dmw-e-registration-profile",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Employment",
+        "slug": "employment"
+      },
+      "subcategory": {
+        "name": "Overseas Jobs",
+        "slug": "overseas-jobs"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Migrant Workers (DMW)",
+      "description": "Create or update a DMW e-Registration profile used for applicable overseas-employment services.",
+      "endpointType": "Authenticated profile portal",
+      "scope": "The profile is only one step in overseas employment processes; requirements vary by worker, agency, and service.",
+      "officialGuidanceUrl": "https://dmw.gov.ph/online-services",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for a PRC Licensure Examination or Initial Professional Registration Online",
+      "url": "https://online.prc.gov.ph/",
+      "id": "af6bf3fd-f3a5-503a-9d6e-964bb4d96696",
+      "slug": "apply-for-a-prc-licensure-examination-or-initial-registration-online",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Employment",
+        "slug": "employment"
+      },
+      "subcategory": {
+        "name": "Professionals",
+        "slug": "professionals"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Professional Regulation Commission (PRC)",
+      "description": "Access PRC Online Services for covered licensure examination applications and initial professional registration.",
+      "endpointType": "Authenticated licensing portal",
+      "scope": "Different professions and transaction types have distinct schedules, documentary requirements, and eligibility rules.",
+      "officialGuidanceUrl": "https://www.prc.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Register for the Expanded 4PH Socialized-Housing Program",
+      "url": "https://www.pagibigfundservices.com/MagpalistaSa4PH/",
+      "id": "bb11356b-5f56-5402-9e35-209301b8f27f",
+      "slug": "register-for-expanded-four-ph-socialized-housing-program",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Housing",
+        "slug": "housing"
+      },
+      "subcategory": {
+        "name": "Housing Programs",
+        "slug": "housing-programs"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Human Settlements and Urban Development (DHSUD) / Pag-IBIG Fund",
+      "description": "Register interest in the Expanded Pambansang Pabahay para sa Pilipino (4PH) program through the Pag-IBIG route.",
+      "endpointType": "Program registration portal",
+      "scope": "Registration is not a housing-loan approval or guarantee of a unit; project availability, eligibility, and financing conditions apply.",
+      "officialGuidanceUrl": "https://dhsud.gov.ph/buyer/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for a Pag-IBIG Short-Term Loan for Home Improvement",
+      "url": "https://www.pagibigfund.gov.ph/HomeImprovementLoan.html",
+      "id": "2892152f-7cd0-5a9d-a183-e9979aae05fe",
+      "slug": "apply-for-pag-ibig-short-term-loan-for-home-improvement",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Housing",
+        "slug": "housing"
+      },
+      "subcategory": {
+        "name": "Housing Loans",
+        "slug": "housing-loans"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+      "description": "Review Pag-IBIG’s home-improvement loan requirements and application procedure.",
+      "endpointType": "Loan guidance and branch application",
+      "scope": "The cited guide describes a branch-submitted application, not an online loan filing; eligibility and loan terms apply.",
+      "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/HomeImprovementLoan.html",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "View and Buy Pag-IBIG Acquired Assets (Foreclosed Properties)",
+      "url": "https://www.pagibigfund.gov.ph/acquiredassets.html",
+      "id": "84cfc006-cff7-5038-9c42-c3ec3c5f6c95",
+      "slug": "view-and-buy-pag-ibig-acquired-assets",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Housing",
+        "slug": "housing"
+      },
+      "subcategory": {
+        "name": "Housing Programs",
+        "slug": "housing-programs"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+      "description": "Browse Pag-IBIG acquired assets and review the current purchase or bidding instructions.",
+      "endpointType": "Property inventory and purchase guidance",
+      "scope": "This page provides inventory/instructions, not itself a bid submission; property listings and sale conditions change.",
+      "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/acquiredassets.html",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply through the SHFC Community Mortgage Program",
+      "url": "https://shfc.gov.ph/community-mortgage-program/",
+      "id": "05b1381b-ef67-5324-95c0-43ba70920e35",
+      "slug": "apply-through-the-shfc-community-mortgage-program",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Housing",
+        "slug": "housing"
+      },
+      "subcategory": {
+        "name": "Housing Programs",
+        "slug": "housing-programs"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Social Housing Finance Corporation (SHFC)",
+      "description": "Review how an eligible community association can proceed with the Community Mortgage Program.",
+      "endpointType": "Community-based program guidance",
+      "scope": "Community/association-based process, not an individual online application; eligibility and project steps apply.",
+      "officialGuidanceUrl": "https://dhsud.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Register or Update a Philippine eTravel Declaration",
+      "url": "https://etravel.gov.ph/",
+      "id": "7eb5e667-2988-572f-8e93-dc3f32f79e22",
+      "slug": "register-or-update-a-philippine-etravel-declaration",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Passport and Travel",
+        "slug": "passport-travel"
+      },
+      "subcategory": {
+        "name": "Travel",
+        "slug": "travel"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Philippine eTravel",
+      "description": "Complete or update the eTravel declaration before covered travel.",
+      "endpointType": "Online travel declaration",
+      "scope": "The official FAQ states registration is free; covered travelers should register/update within the allowed pre-departure window and check current rules.",
+      "officialGuidanceUrl": "https://etravel.gov.ph/frequently-asked-questions",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for a Tourist Visa Extension Online",
+      "url": "https://e-services.immigration.gov.ph/TouristVisaExtension",
+      "id": "32610483-6229-58d5-ac31-2b92247d9473",
+      "slug": "apply-for-a-tourist-visa-extension-online",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Passport and Travel",
+        "slug": "passport-travel"
+      },
+      "subcategory": {
+        "name": "Visa and Citizenship",
+        "slug": "visa-citizenship"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Immigration (BI)",
+      "description": "Use BI eServices to apply for an eligible tourist visa extension.",
+      "endpointType": "Authenticated visa transaction",
+      "scope": "Eligibility, stay conditions, and account requirements apply; check BI instructions for the traveler’s status.",
+      "officialGuidanceUrl": "https://immigration.gov.ph/visas/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for an Emigration Clearance Certificate (ECC-B)",
+      "url": "https://e-services.immigration.gov.ph/EmigrationClearanceCertificateB",
+      "id": "ef4d0c68-921e-57e8-ba61-6f70b10dbd64",
+      "slug": "apply-for-emigration-clearance-certificate-ecc-b",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Passport and Travel",
+        "slug": "passport-travel"
+      },
+      "subcategory": {
+        "name": "Visa and Citizenship",
+        "slug": "visa-citizenship"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Immigration (BI)",
+      "description": "Apply online for ECC-B through BI eServices when eligible.",
+      "endpointType": "Authenticated clearance application",
+      "scope": "The online route is for eligible foreign ACR I-Card holders temporarily departing the Philippines; other travelers may use a different ECC process.",
+      "officialGuidanceUrl": "https://e-services.immigration.gov.ph/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Find DSWD AICS Assistance Requirements and Service Points",
+      "url": "https://aics.dswd.gov.ph/services/",
+      "id": "0e0ed245-7307-58a2-a817-64ae48ea8c80",
+      "slug": "find-dswd-aics-assistance-requirements-and-service-points",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Social Services",
+        "slug": "social-services"
+      },
+      "subcategory": {
+        "name": "Financial Assistance",
+        "slug": "financial-assistance"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Social Welfare and Development (DSWD)",
+      "description": "Review Assistance to Individuals in Crisis Situations (AICS) services and how to seek help.",
+      "endpointType": "Program information and referral",
+      "scope": "The sources do not establish one nationwide online application form; assessment and service points depend on location and case.",
+      "officialGuidanceUrl": "https://aics.dswd.gov.ph/aics-program/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Learn about the Pantawid Pamilyang Pilipino Program (4Ps)",
+      "url": "https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/",
+      "id": "d45d912f-a3d8-587b-8e31-fdc601606278",
+      "slug": "learn-about-the-pantawid-pamilyang-pilipino-program-fourps",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Social Services",
+        "slug": "social-services"
+      },
+      "subcategory": {
+        "name": "Benefits Registration",
+        "slug": "benefits-registration"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Social Welfare and Development (DSWD)",
+      "description": "Read about the 4Ps program and its eligibility and implementation.",
+      "endpointType": "Program and eligibility guidance",
+      "scope": "Information only; this source does not establish a national online application form.",
+      "officialGuidanceUrl": "https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Check DSWD Social Pension Eligibility and Local Access",
+      "url": "https://www.dswd.gov.ph/social-pension/",
+      "id": "a16b0d26-5a41-54a0-9679-b22b68d7cb7d",
+      "slug": "check-dswd-social-pension-eligibility-and-local-access",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Social Services",
+        "slug": "social-services"
+      },
+      "subcategory": {
+        "name": "Benefits Registration",
+        "slug": "benefits-registration"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Social Welfare and Development (DSWD)",
+      "description": "Review Social Pension for Indigent Senior Citizens eligibility and how to ask about local access.",
+      "endpointType": "Program information and referral",
+      "scope": "Information/referral, not a national online application; local validation and program rules apply.",
+      "officialGuidanceUrl": "https://www.dswd.gov.ph/social-pension/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Prepare and File Tax Returns Using eBIRForms",
+      "url": "https://www.bir.gov.ph/ebirforms",
+      "id": "b62b396d-830d-5f34-8057-e29bd294ac88",
+      "slug": "prepare-and-file-tax-returns-using-ebirforms",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Tax",
+        "slug": "tax"
+      },
+      "subcategory": {
+        "name": "File Taxes",
+        "slug": "file-taxes"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Internal Revenue (BIR)",
+      "description": "Use BIR eBIRForms for covered return preparation and filing.",
+      "endpointType": "Tax return preparation and filing",
+      "scope": "A separate route from eFPS; return eligibility and filing/payment requirements vary by taxpayer.",
+      "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Transact One-Time Tax Obligations for Property Sales or Donations through eONETT",
+      "url": "https://eonett.bir.gov.ph/",
+      "id": "55bf9bff-9224-5933-9de1-bf5dc9f29f79",
+      "slug": "transact-one-time-tax-obligations-for-property-sales-or-donations-through-eonett",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Tax",
+        "slug": "tax"
+      },
+      "subcategory": {
+        "name": "File Taxes",
+        "slug": "file-taxes"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Internal Revenue (BIR)",
+      "description": "Access eONETT for applicable one-time tax transactions involving property sales or donations.",
+      "endpointType": "Online one-time tax transaction",
+      "scope": "Use only for covered transactions; filing steps, documents, and tax obligations depend on the case.",
+      "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Register, File, and Pay VAT on Digital Services for Nonresident Providers",
+      "url": "https://vds.bir.gov.ph/",
+      "id": "72c350a4-0a34-5869-aa56-141b3473857d",
+      "slug": "register-file-and-pay-vat-on-digital-services-for-nonresident-providers",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Tax",
+        "slug": "tax"
+      },
+      "subcategory": {
+        "name": "Register",
+        "slug": "register"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Internal Revenue (BIR)",
+      "description": "Use the BIR VAT on Digital Services system for covered nonresident digital-service providers.",
+      "endpointType": "Authenticated tax portal",
+      "scope": "Explicitly limited to nonresident providers within the rules; not a general VAT service for all businesses.",
+      "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Calculate Withholding Tax Using the BIR Calculator",
+      "url": "https://web-services.bir.gov.ph/tax_calculator/wt_calculator.html",
+      "id": "92d0e915-f13c-5475-aefe-402b3eed7fb0",
+      "slug": "calculate-withholding-tax-using-bir-calculator",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Tax",
+        "slug": "tax"
+      },
+      "subcategory": {
+        "name": "Calculators",
+        "slug": "calculator"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Internal Revenue (BIR)",
+      "description": "Estimate withholding tax using BIR’s online calculator.",
+      "endpointType": "Tax calculator",
+      "scope": "A calculation aid, not a tax return, filing, or payment transaction.",
+      "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Apply for Electronic Tax Clearance for Bidding Purposes (eTCBP-TCVC)",
+      "url": "https://web-services.bir.gov.ph/eTCBP-TCVC/index.html",
+      "id": "869163e7-963c-5c4a-96d7-4debe941b029",
+      "slug": "apply-for-electronic-tax-clearance-for-bidding-purposes-etcbp-tcvc",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Tax",
+        "slug": "tax"
+      },
+      "subcategory": {
+        "name": "Certificates",
+        "slug": "certificates"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Bureau of Internal Revenue (BIR)",
+      "description": "Use the dedicated eTCBP-TCVC route for bidding-purpose tax clearance and tax compliance verification.",
+      "endpointType": "Authenticated certificate application",
+      "scope": "Distinct from general eTCS tax clearance; eligibility and procurement-related requirements apply.",
+      "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Renew Motor-Vehicle Registration through LTO Online Services",
+      "url": "https://portal.lto.gov.ph/",
+      "id": "bfa7d287-0690-5564-ad6c-00a0d7a21e80",
+      "slug": "renew-motor-vehicle-registration-through-lto-online-services",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Transport and Driving",
+        "slug": "transport-driving"
+      },
+      "subcategory": {
+        "name": "Vehicle Registration",
+        "slug": "vehicle-registration"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Land Transportation Office (LTO)",
+      "description": "Start from the official LTMS portal and review LTO motor-vehicle registration requirements.",
+      "endpointType": "Portal entry and transaction guidance",
+      "scope": "The checked sources did not confirm a direct renewal form at this URL; vehicle eligibility, inspection, and in-person steps may apply.",
+      "officialGuidanceUrl": "https://lto.gov.ph/motor-vehicle/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Access Government Services through eGovPH",
+      "url": "https://e.gov.ph/",
+      "id": "1d566832-98a0-59d9-927c-2be38fd67803",
+      "slug": "access-government-services-through-egovph",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      },
+      "subcategory": {
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "Department of Information and Communications Technology (DICT) / eGovPH",
+      "description": "Find government services and digital platforms available through eGovPH.",
+      "endpointType": "Service discovery platform",
+      "scope": "Discovery/mobile platform; not every service can be completed on this website.",
+      "officialGuidanceUrl": "https://dict.gov.ph/egov-digital-platforms",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    },
+    {
+      "service": "Learn How to Contact the 8888 Citizens’ Complaint Center",
+      "url": "https://pco.gov.ph/PCO-content/on-text-8888/",
+      "id": "64c280ef-eae2-5baf-9829-ce040a1479a5",
+      "slug": "learn-how-to-contact-the-8888-citizens-complaint-center",
+      "published": true,
+      "featured": false,
+      "category": {
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      },
+      "subcategory": {
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      },
+      "createdAt": "2026-11-19T09:53:00.000Z",
+      "updatedAt": "2026-11-19T09:53:00.000Z",
+      "agency": "8888 Citizens’ Complaint Center / Presidential Communications Office",
+      "description": "Read the government’s information about reaching the 8888 Citizens’ Complaint Center.",
+      "endpointType": "Official contact-channel information",
+      "scope": "The cited source documents a specific text channel; confirm currently supported contact methods before sending a complaint.",
+      "officialGuidanceUrl": "https://pco.gov.ph/PCO-content/on-text-8888/",
+      "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+    }
+  ]
+}

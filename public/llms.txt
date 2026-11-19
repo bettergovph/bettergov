@@ -70,12 +70,16 @@ BETTERGOV.PH provides detailed information about all branches of the Philippine 
 ### Services Directory
 Our comprehensive services are organized into the following categories:
 - Business and Trade (https://bettergov.ph/services?category=business-trade)
-  - Business Copyright, Trademark and Patent (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
+  - Intellectual Property (https://bettergov.ph/services?category=business-trade&subcategory=business-copyright-trademark-patent)
   - Business Registration, Certificates and Compliance (https://bettergov.ph/services?category=business-trade&subcategory=business-registration)
   - Complaints (https://bettergov.ph/services?category=business-trade&subcategory=complaints)
   - Import and Export (https://bettergov.ph/services?category=business-trade&subcategory=import-export)
   - Price Control Monitoring (https://bettergov.ph/services?category=business-trade&subcategory=price-control)
   - Financial Assistance (https://bettergov.ph/services?category=business-trade&subcategory=financial-assistance)
+  - Business Formation and Filings (https://bettergov.ph/services?category=business-trade&subcategory=business-formation-filings)
+  - Cooperatives (https://bettergov.ph/services?category=business-trade&subcategory=cooperatives)
+  - Government Procurement (https://bettergov.ph/services?category=business-trade&subcategory=government-procurement)
+  - Product and Environmental Compliance (https://bettergov.ph/services?category=business-trade&subcategory=product-environmental-compliance)
 - Certificates and IDs (https://bettergov.ph/services?category=certificates-ids)
   - Certificates (https://bettergov.ph/services?category=certificates-ids&subcategory=certificates)
   - Clearances (https://bettergov.ph/services?category=certificates-ids&subcategory=clearances)
@@ -84,6 +88,10 @@ Our comprehensive services are organized into the following categories:
 - Contributions (https://bettergov.ph/services?category=contributions)
   - Benefits Registration (https://bettergov.ph/services?category=contributions&subcategory=benefits-registration)
   - Salary Loans (https://bettergov.ph/services?category=contributions&subcategory=salary-loans)
+  - Contributions and Payments (https://bettergov.ph/services?category=contributions&subcategory=contributions-payments)
+  - Member Self-Service (https://bettergov.ph/services?category=contributions&subcategory=member-self-service)
+  - Loans (https://bettergov.ph/services?category=contributions&subcategory=loans)
+  - Savings (https://bettergov.ph/services?category=contributions&subcategory=savings)
 - Disaster and Weather (https://bettergov.ph/services?category=disaster-weather)
   - Disaster-prone Areas (https://bettergov.ph/services?category=disaster-weather&subcategory=disaster-prone-areas)
   - Weather (https://bettergov.ph/services?category=disaster-weather&subcategory=weather)
@@ -99,6 +107,8 @@ Our comprehensive services are organized into the following categories:
   - Salary Loans (https://bettergov.ph/services?category=employment&subcategory=salary-loans)
   - Union Association (https://bettergov.ph/services?category=employment&subcategory=union-association)
   - Overseas Jobs (https://bettergov.ph/services?category=employment&subcategory=overseas-jobs)
+  - Job Search (https://bettergov.ph/services?category=employment&subcategory=job-search)
+  - Labor Assistance (https://bettergov.ph/services?category=employment&subcategory=labor-assistance)
 - Health (https://bettergov.ph/services?category=health)
   - Financial Assistance (https://bettergov.ph/services?category=health&subcategory=financial-assistance)
   - Health Programs (https://bettergov.ph/services?category=health&subcategory=health-programs)
@@ -106,6 +116,7 @@ Our comprehensive services are organized into the following categories:
 - Housing (https://bettergov.ph/services?category=housing)
   - Housing Loans (https://bettergov.ph/services?category=housing&subcategory=housing-loans)
   - Land Titles (https://bettergov.ph/services?category=housing&subcategory=land-titles)
+  - Housing Programs (https://bettergov.ph/services?category=housing&subcategory=housing-programs)
 - Passport and Travel (https://bettergov.ph/services?category=passport-travel)
   - Travel (https://bettergov.ph/services?category=passport-travel&subcategory=travel)
   - Visa and Citizenship (https://bettergov.ph/services?category=passport-travel&subcategory=visa-citizenship)
@@ -125,7 +136,8 @@ Our comprehensive services are organized into the following categories:
 - Transport and Driving (https://bettergov.ph/services?category=transport-driving)
   - Financial Assistance (https://bettergov.ph/services?category=transport-driving&subcategory=financial-assistance)
   - License (https://bettergov.ph/services?category=transport-driving&subcategory=license)
-  - Transport Complains (https://bettergov.ph/services?category=transport-driving&subcategory=transport-complaints)
+  - Traffic Violations and Adjudication (https://bettergov.ph/services?category=transport-driving&subcategory=transport-complaints)
+  - Vehicle Registration (https://bettergov.ph/services?category=transport-driving&subcategory=vehicle-registration)
 - Uncategorized (https://bettergov.ph/services?category=uncategorized)
   - Uncategorized (https://bettergov.ph/services?category=uncategorized&subcategory=uncategorized)
 
@@ -286,7 +298,7 @@ This portal organizes Philippine government information and services. When refer
 5. Check the stated source and license before reusing data or images
 
 ## Last Updated
-2026-11-17
+2026-11-19
 
 ## License
 This project is open source. Third-party content retains its original source and license.

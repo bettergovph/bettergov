@@ -162,10 +162,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Apply for TESDA Scholarship",
-    "url": "https://tesdaonlineprogram.com/how-to-apply-for-a-scholarship-in-tesda/",
+    "service": "Find TESDA Scholarship Programs and Application Requirements",
+    "url": "https://www.tesda.gov.ph/about/tesda/1279",
     "id": "d0a43a7d-7d29-40f6-b5dc-633c97b9947d",
-    "slug": "apply-for-tesda-scholarship",
+    "slug": "find-tesda-scholarship-programs-and-application-requirements",
     "published": true,
     "featured": false,
     "category": {
@@ -177,7 +177,13 @@
       "slug": "scholarships-grants"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Technical Education and Skills Development Authority (TESDA)",
+    "endpointType": "Program guidance",
+    "description": "Review official TESDA scholarship information and follow the application instructions for a specific program.",
+    "scope": "Scholarship availability and application windows vary by program and cycle; this is separate from TESDA Online Program enrollment.",
+    "officialGuidanceUrl": "https://www.tesda.gov.ph/Barangay",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Apply Online for SHS Voucher Program",
@@ -214,5 +220,29 @@
     },
     "createdAt": "2025-10-16T00:00:00.000Z",
     "updatedAt": "2025-10-16T00:00:00.000Z"
+  },
+  {
+    "service": "Apply for TESDA Competency Assessment and National Certificate or Certificate of Competency",
+    "url": "https://www.tesda.gov.ph/About/TESDA/46",
+    "id": "6aeaf882-e60a-584f-a481-dafdd8ee235c",
+    "slug": "apply-for-tesda-competency-assessment-and-national-certificate",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Education",
+      "slug": "education"
+    },
+    "subcategory": {
+      "name": "Training",
+      "slug": "training"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Technical Education and Skills Development Authority (TESDA)",
+    "description": "Review TESDA’s competency-assessment procedure and find the appropriate assessment route.",
+    "endpointType": "Assessment procedure and center referral",
+    "scope": "Assessment is not wholly online; schedule, fees, and requirements depend on the qualification and accredited assessment center.",
+    "officialGuidanceUrl": "https://www.tesda.gov.ph/About/TESDA/25",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

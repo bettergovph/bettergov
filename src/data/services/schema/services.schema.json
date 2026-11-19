@@ -96,6 +96,33 @@
         "type": "string",
         "description": "ISO 8601 timestamp when the service was last updated",
         "format": "date-time"
+      },
+      "description": {
+        "type": "string",
+        "description": "Plain-language explanation of the service"
+      },
+      "agency": {
+        "type": "string",
+        "description": "Government agency responsible for the service"
+      },
+      "endpointType": {
+        "type": "string",
+        "description": "Whether the link is a portal, application, guidance page, or another endpoint"
+      },
+      "scope": {
+        "type": "string",
+        "description": "Important eligibility, geographic, process, or coverage caveat"
+      },
+      "officialGuidanceUrl": {
+        "type": "string",
+        "description": "Official supporting guidance or requirements source",
+        "format": "uri",
+        "pattern": "^https?://"
+      },
+      "lastVerifiedAt": {
+        "type": "string",
+        "description": "Date the destination and supporting official information were last reviewed",
+        "format": "date-time"
       }
     },
     "additionalProperties": false

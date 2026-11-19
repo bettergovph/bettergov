@@ -5,7 +5,7 @@
       "slug": "business-trade",
       "subcategories": [
         {
-          "name": "Business Copyright, Trademark and Patent",
+          "name": "Intellectual Property",
           "slug": "business-copyright-trademark-patent"
         },
         {
@@ -27,6 +27,22 @@
         {
           "name": "Financial Assistance",
           "slug": "financial-assistance"
+        },
+        {
+          "name": "Business Formation and Filings",
+          "slug": "business-formation-filings"
+        },
+        {
+          "name": "Cooperatives",
+          "slug": "cooperatives"
+        },
+        {
+          "name": "Government Procurement",
+          "slug": "government-procurement"
+        },
+        {
+          "name": "Product and Environmental Compliance",
+          "slug": "product-environmental-compliance"
         }
       ]
     },
@@ -63,6 +79,22 @@
         {
           "name": "Salary Loans",
           "slug": "salary-loans"
+        },
+        {
+          "name": "Contributions and Payments",
+          "slug": "contributions-payments"
+        },
+        {
+          "name": "Member Self-Service",
+          "slug": "member-self-service"
+        },
+        {
+          "name": "Loans",
+          "slug": "loans"
+        },
+        {
+          "name": "Savings",
+          "slug": "savings"
         }
       ]
     },
@@ -129,6 +161,14 @@
         {
           "name": "Overseas Jobs",
           "slug": "overseas-jobs"
+        },
+        {
+          "name": "Job Search",
+          "slug": "job-search"
+        },
+        {
+          "name": "Labor Assistance",
+          "slug": "labor-assistance"
         }
       ]
     },
@@ -161,6 +201,10 @@
         {
           "name": "Land Titles",
           "slug": "land-titles"
+        },
+        {
+          "name": "Housing Programs",
+          "slug": "housing-programs"
         }
       ]
     },
@@ -247,8 +291,12 @@
           "slug": "license"
         },
         {
-          "name": "Transport Complains",
+          "name": "Traffic Violations and Adjudication",
           "slug": "transport-complaints"
+        },
+        {
+          "name": "Vehicle Registration",
+          "slug": "vehicle-registration"
         }
       ]
     },

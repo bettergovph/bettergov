@@ -18,10 +18,10 @@
     "updatedAt": "2025-09-22T11:30:06.318Z"
   },
   {
-    "service": "Apply for BIR Tax Clearance Certificate",
+    "service": "Apply for a BIR Tax Clearance Certificate through eTCS",
     "url": "https://tcsfo.bir.gov.ph/",
     "id": "cd1fc9bf-8428-43e4-b1be-6775627ab8cc",
-    "slug": "apply-for-bir-tax-clearance-certificate",
+    "slug": "apply-for-a-bir-tax-clearance-certificate-through-etcs",
     "published": true,
     "featured": false,
     "category": {
@@ -33,13 +33,19 @@
       "slug": "certificates"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "endpointType": "Authenticated certificate application",
+    "description": "Use eTCS to apply for eligible BIR tax-clearance certificates.",
+    "scope": "Eligibility and exclusions depend on the clearance purpose; bidding-purpose clearance uses a separate eTCBP-TCVC route.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "File Tax Returns and Pay Taxes Online",
+    "service": "File and Pay Taxes Online through eFPS",
     "url": "https://efps.bir.gov.ph/",
     "id": "3402681d-862c-4d58-a22e-755d3a11482d",
-    "slug": "file-tax-returns-and-pay-taxes-online",
+    "slug": "file-and-pay-taxes-online-through-efps",
     "published": true,
     "featured": false,
     "category": {
@@ -51,13 +57,19 @@
       "slug": "register"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "endpointType": "Authenticated tax filing portal",
+    "description": "File and pay taxes online through BIR eFPS when your taxpayer and return are eligible for that system.",
+    "scope": "eFPS is not the universal filing route; some taxpayers use eBIRForms or other BIR eServices.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Register for a Taxpayer Identification Number (TIN)",
+    "service": "Register or Update BIR Taxpayer Information Online (ORUS)",
     "url": "https://orus.bir.gov.ph/",
     "id": "387e8805-4277-4a21-bf1b-116bea0586cb",
-    "slug": "register-for-a-taxpayer-identification-number-tin",
+    "slug": "register-or-update-bir-taxpayer-information-online-orus",
     "published": true,
     "featured": false,
     "category": {
@@ -69,7 +81,13 @@
       "slug": "register"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "endpointType": "Authenticated self-service portal",
+    "description": "Use ORUS for the taxpayer registration and information-update transactions currently supported for your taxpayer type.",
+    "scope": "Available transactions and account requirements depend on taxpayer type and current BIR portal rules; distinct from NewBizReg and DTI BNRS.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Report Gross Monthly Sales of Business Taxpayers",
@@ -196,5 +214,125 @@
     },
     "createdAt": "2025-09-29T14:40:55.544Z",
     "updatedAt": "2025-09-29T14:40:55.544Z"
+  },
+  {
+    "service": "Transact One-Time Tax Obligations for Property Sales or Donations through eONETT",
+    "url": "https://eonett.bir.gov.ph/",
+    "id": "55bf9bff-9224-5933-9de1-bf5dc9f29f79",
+    "slug": "transact-one-time-tax-obligations-for-property-sales-or-donations-through-eonett",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "File Taxes",
+      "slug": "file-taxes"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "description": "Access eONETT for applicable one-time tax transactions involving property sales or donations.",
+    "endpointType": "Online one-time tax transaction",
+    "scope": "Use only for covered transactions; filing steps, documents, and tax obligations depend on the case.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Register, File, and Pay VAT on Digital Services for Nonresident Providers",
+    "url": "https://vds.bir.gov.ph/",
+    "id": "72c350a4-0a34-5869-aa56-141b3473857d",
+    "slug": "register-file-and-pay-vat-on-digital-services-for-nonresident-providers",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Register",
+      "slug": "register"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "description": "Use the BIR VAT on Digital Services system for covered nonresident digital-service providers.",
+    "endpointType": "Authenticated tax portal",
+    "scope": "Explicitly limited to nonresident providers within the rules; not a general VAT service for all businesses.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for Electronic Tax Clearance for Bidding Purposes (eTCBP-TCVC)",
+    "url": "https://web-services.bir.gov.ph/eTCBP-TCVC/index.html",
+    "id": "869163e7-963c-5c4a-96d7-4debe941b029",
+    "slug": "apply-for-electronic-tax-clearance-for-bidding-purposes-etcbp-tcvc",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Certificates",
+      "slug": "certificates"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "description": "Use the dedicated eTCBP-TCVC route for bidding-purpose tax clearance and tax compliance verification.",
+    "endpointType": "Authenticated certificate application",
+    "scope": "Distinct from general eTCS tax clearance; eligibility and procurement-related requirements apply.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Calculate Withholding Tax Using the BIR Calculator",
+    "url": "https://web-services.bir.gov.ph/tax_calculator/wt_calculator.html",
+    "id": "92d0e915-f13c-5475-aefe-402b3eed7fb0",
+    "slug": "calculate-withholding-tax-using-bir-calculator",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "Calculators",
+      "slug": "calculator"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "description": "Estimate withholding tax using BIR’s online calculator.",
+    "endpointType": "Tax calculator",
+    "scope": "A calculation aid, not a tax return, filing, or payment transaction.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Prepare and File Tax Returns Using eBIRForms",
+    "url": "https://www.bir.gov.ph/ebirforms",
+    "id": "b62b396d-830d-5f34-8057-e29bd294ac88",
+    "slug": "prepare-and-file-tax-returns-using-ebirforms",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Tax",
+      "slug": "tax"
+    },
+    "subcategory": {
+      "name": "File Taxes",
+      "slug": "file-taxes"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Bureau of Internal Revenue (BIR)",
+    "description": "Use BIR eBIRForms for covered return preparation and filing.",
+    "endpointType": "Tax return preparation and filing",
+    "scope": "A separate route from eFPS; return eligibility and filing/payment requirements vary by taxpayer.",
+    "officialGuidanceUrl": "https://www.bir.gov.ph/eServices",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

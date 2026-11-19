@@ -18,10 +18,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "File Complaints on DSWD Disaster-related initiatives",
+    "service": "Submit a Grievance, Inquiry, Assistance Request, or Feedback to DSWD",
     "url": "https://ereklamo.dswd.gov.ph/index.php",
     "id": "82f41298-4a38-4036-9f27-a7fc95d7a48d",
-    "slug": "file-complaints-on-dswd-disaster-related-initiatives",
+    "slug": "submit-a-grievance-inquiry-assistance-request-or-feedback-to-dswd",
     "published": true,
     "featured": false,
     "category": {
@@ -33,7 +33,13 @@
       "slug": "file-complaints"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "endpointType": "Online grievance and feedback form",
+    "description": "Use DSWD IGRMS for grievances, inquiries, assistance requests, and feedback.",
+    "scope": "The system is broader than disaster-initiative complaints; response handling depends on the issue and responsible office.",
+    "officialGuidanceUrl": "https://ereklamo.dswd.gov.ph/index.php",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Apply for SSS Salary Loan",
@@ -54,42 +60,6 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Apply for DBP Water for Every Resident (WATER) Program",
-    "url": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
-    "id": "9d0d0565-4ac0-4385-9dcf-3ec927accc33",
-    "slug": "apply-for-dbp-water-for-every-resident-water-program",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Social Services",
-      "slug": "social-services"
-    },
-    "subcategory": {
-      "name": "Financial Assistance",
-      "slug": "financial-assistance"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Apply for Technical Retirement",
-    "url": "https://www.sss.gov.ph/retirement-benefit/",
-    "id": "75c532cb-2d5a-4d3d-b444-edffade5c524",
-    "slug": "apply-for-technical-retirement",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Social Services",
-      "slug": "social-services"
-    },
-    "subcategory": {
-      "name": "Contributions",
-      "slug": "contributions"
-    },
-    "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
-  },
-  {
     "service": "Check PhilHealth Rate for Specific Cases of Illness/Surgical Procedure",
     "url": "https://crs.philhealth.gov.ph/",
     "id": "91ed97ed-e79c-4b7d-bf2c-6b648b06cd34",
@@ -108,10 +78,10 @@
     "updatedAt": "2025-06-06T11:30:06.319Z"
   },
   {
-    "service": "Express Interest to Adopt or Foster",
+    "service": "Read NACC Adoption Application Steps",
     "url": "https://www.nacc.gov.ph/adoptive-parents/",
     "id": "ff58e081-8d77-4941-b01e-6a58302072af",
-    "slug": "express-interest-to-adopt-or-foster",
+    "slug": "read-nacc-adoption-application-steps",
     "published": true,
     "featured": false,
     "category": {
@@ -123,7 +93,13 @@
       "slug": "register"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "National Authority for Child Care (NACC)",
+    "endpointType": "Application guidance",
+    "description": "Read NACC guidance on the steps for prospective adoptive parents.",
+    "scope": "This source describes adoption steps; it does not verify an online expression-of-interest or foster application.",
+    "officialGuidanceUrl": "https://www.nacc.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Patient's PhilHealth Eligibility Status upon Admission",
@@ -178,5 +154,77 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-06-06T11:30:06.320Z"
+  },
+  {
+    "service": "Find DSWD AICS Assistance Requirements and Service Points",
+    "url": "https://aics.dswd.gov.ph/services/",
+    "id": "0e0ed245-7307-58a2-a817-64ae48ea8c80",
+    "slug": "find-dswd-aics-assistance-requirements-and-service-points",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "subcategory": {
+      "name": "Financial Assistance",
+      "slug": "financial-assistance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "description": "Review Assistance to Individuals in Crisis Situations (AICS) services and how to seek help.",
+    "endpointType": "Program information and referral",
+    "scope": "The sources do not establish one nationwide online application form; assessment and service points depend on location and case.",
+    "officialGuidanceUrl": "https://aics.dswd.gov.ph/aics-program/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Check DSWD Social Pension Eligibility and Local Access",
+    "url": "https://www.dswd.gov.ph/social-pension/",
+    "id": "a16b0d26-5a41-54a0-9679-b22b68d7cb7d",
+    "slug": "check-dswd-social-pension-eligibility-and-local-access",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "subcategory": {
+      "name": "Benefits Registration",
+      "slug": "benefits-registration"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "description": "Review Social Pension for Indigent Senior Citizens eligibility and how to ask about local access.",
+    "endpointType": "Program information and referral",
+    "scope": "Information/referral, not a national online application; local validation and program rules apply.",
+    "officialGuidanceUrl": "https://www.dswd.gov.ph/social-pension/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Learn about the Pantawid Pamilyang Pilipino Program (4Ps)",
+    "url": "https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/",
+    "id": "d45d912f-a3d8-587b-8e31-fdc601606278",
+    "slug": "learn-about-the-pantawid-pamilyang-pilipino-program-fourps",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "subcategory": {
+      "name": "Benefits Registration",
+      "slug": "benefits-registration"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "description": "Read about the 4Ps program and its eligibility and implementation.",
+    "endpointType": "Program and eligibility guidance",
+    "scope": "Information only; this source does not establish a national online application form.",
+    "officialGuidanceUrl": "https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

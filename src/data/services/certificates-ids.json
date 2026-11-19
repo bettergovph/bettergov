@@ -216,10 +216,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Get a Postal ID",
-    "url": "https://www.postalidph.com/how-to-apply.html",
+    "service": "Apply for a Postal ID in Person",
+    "url": "https://phlpost.gov.ph/news_and_updates/postal-id-application-form/",
     "id": "361bf4c9-5792-46f3-a198-4dab1663ad22",
-    "slug": "get-a-postal-id",
+    "slug": "apply-for-a-postal-id-in-person",
     "published": true,
     "featured": false,
     "category": {
@@ -231,7 +231,13 @@
       "slug": "id"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Philippine Postal Corporation (PHLPost)",
+    "endpointType": "Guidance and application form",
+    "description": "Review PHLPost’s current Postal ID requirements and application form before applying.",
+    "scope": "Application is made in person; this is not an online issuance service.",
+    "officialGuidanceUrl": "https://phlpost.gov.ph/cpt-press-releases/phlpost-simplifies-postal-id-application-for-all/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Get a PWD ID",
@@ -342,10 +348,10 @@
     "updatedAt": "2025-06-06T11:30:06.320Z"
   },
   {
-    "service": "Get a Solo Parent ID",
-    "url": "https://psahelpline.ph/blogs/a-simple-guide-to-obtaining-a-solo-parent-id-from-the-dswd",
+    "service": "Apply for a Solo Parent ID through your City or Municipal Social Welfare Office",
+    "url": "https://old.dswd.gov.ph/faqs/how-to-secure-solo-parent-i-d/",
     "id": "942f1e2e-64c7-48da-b961-3a16494a020c",
-    "slug": "get-a-solo-parent-id",
+    "slug": "apply-for-a-solo-parent-id-through-your-city-or-municipal-social-welfare-office",
     "published": true,
     "featured": false,
     "category": {
@@ -357,6 +363,12 @@
       "slug": "id"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-06-06T11:30:06.320Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "endpointType": "Local application guidance",
+    "description": "Read DSWD guidance for applying for a Solo Parent ID through the local social welfare office.",
+    "scope": "The application is handled by the city/municipal LGU, not through a single national online transaction.",
+    "officialGuidanceUrl": "https://www.dswd.gov.ph/dswd-led-body-urges-solo-parents-to-register-with-lgus-to-avail-of-benefits/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]
