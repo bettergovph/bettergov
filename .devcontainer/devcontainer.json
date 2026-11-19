@@ -1,5 +1,5 @@
 {
-  "name": "GOV.PH Devcontainer",
+  "name": "BetterGov.ph Devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [

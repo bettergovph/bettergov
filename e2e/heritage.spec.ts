@@ -42,7 +42,7 @@ test.describe('Culture and history', () => {
       if (built) {
         await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
           'href',
-          `https://www.gov.ph/philippines/${route}`
+          `https://bettergov.ph/philippines/${route}`
         );
         await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
           'content',

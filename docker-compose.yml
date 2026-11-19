@@ -12,5 +12,5 @@ services:
       - ./vite.config.ts:/app/vite.config.ts
       - ./tsconfig.json:/app/tsconfig.json
     command: npm run dev
-    container_name: govph-dev
+    container_name: bettergov-dev
     restart: unless-stopped

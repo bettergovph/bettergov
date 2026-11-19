@@ -260,7 +260,7 @@ after a category is added or retired:
    new category, or remove orphans for a retired one. Nothing detects this.
 7. **Meilisearch** — see below.
 
-The GovPH Chatbot widget is not on this list: it answers through the
+The BetterGov Chatbot widget is not on this list: it answers through the
 eGovAI engine (see `functions/README.md`), not from the service taxonomy.
 
 Navigation, the XML sitemap, `llms.txt`, and `/services` all derive from the

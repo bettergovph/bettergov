@@ -1,3 +1,5 @@
+import { SITE_URL } from '../lib/brand';
+
 // SEO data generators for government pages
 
 export interface GovernmentSEOData {
@@ -62,7 +64,7 @@ export function getExecutiveSEOData(officeName?: string): GovernmentSEOData {
       '@context': 'https://schema.org',
       '@type': 'GovernmentOrganization',
       name: officeName || 'Philippine Executive Branch',
-      url: `https://gov.ph/government/executive${
+      url: `${SITE_URL}/government/executive${
         officeName
           ? `/${encodeURIComponent(
               officeName.toLowerCase().replace(/\s+/g, '-')
@@ -124,7 +126,7 @@ export function getDepartmentsSEOData(
       '@context': 'https://schema.org',
       '@type': 'GovernmentOrganization',
       name: departmentName || 'Philippine Government Departments',
-      url: `https://gov.ph/government/departments${
+      url: `${SITE_URL}/government/departments${
         departmentName ? `/${encodeURIComponent(departmentName)}` : ''
       }`,
       description: departmentName
@@ -180,7 +182,7 @@ export function getConstitutionalSEOData(
       '@context': 'https://schema.org',
       '@type': 'GovernmentOrganization',
       name: officeName || 'Philippine Constitutional Bodies',
-      url: `https://gov.ph/government/constitutional${
+      url: `${SITE_URL}/government/constitutional${
         officeName ? `/${encodeURIComponent(officeName)}` : ''
       }`,
       description: officeName
@@ -228,7 +230,7 @@ export function getLegislativeSEOData(chamberName?: string): GovernmentSEOData {
       '@context': 'https://schema.org',
       '@type': 'GovernmentOrganization',
       name: chamberName || 'Philippine Legislative Branch',
-      url: `https://gov.ph/government/legislative${
+      url: `${SITE_URL}/government/legislative${
         chamberName ? `/${encodeURIComponent(chamberName)}` : ''
       }`,
       description: chamberName
@@ -278,7 +280,7 @@ export function getDiplomaticSEOData(category?: string): GovernmentSEOData {
       name: category
         ? `Philippine ${category}`
         : 'Philippine Diplomatic Missions',
-      url: `https://gov.ph/government/diplomatic${
+      url: `${SITE_URL}/government/diplomatic${
         category ? `/${category.toLowerCase()}` : ''
       }`,
       description: category
@@ -336,7 +338,7 @@ export function getLocalGovSEOData(regionName?: string): GovernmentSEOData {
       '@context': 'https://schema.org',
       '@type': 'AdministrativeArea',
       name: regionName || 'Philippine Local Government Units',
-      url: `https://gov.ph/government/local${regionName ? `/${encodeURIComponent(slugify(regionName))}` : ''}`,
+      url: `${SITE_URL}/government/local${regionName ? `/${encodeURIComponent(slugify(regionName))}` : ''}`,
       description: regionName
         ? `Local Government Units in ${regionName}`
         : 'A directory of Philippine Local Government Units',
@@ -386,7 +388,7 @@ export function getJudicialSEOData(courtName?: string): GovernmentSEOData {
       '@context': 'https://schema.org',
       '@type': 'GovernmentOrganization',
       name: courtName || 'Philippine Judicial Branch',
-      url: `https://gov.ph/government/judicial${
+      url: `${SITE_URL}/government/judicial${
         courtName ? `/${encodeURIComponent(courtName)}` : ''
       }`,
       description: courtName

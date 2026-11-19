@@ -27,7 +27,7 @@ async function createSearchKey() {
   console.log('Attempting to create a new search-only API key...');
   try {
     const newKey = await client.createKey({
-      description: 'Search-only key for the GOV.PH Worker proxy',
+      description: 'Search-only key for the BetterGov.ph Worker proxy',
       actions: ['search'], // Only allows search action
       indexes: ['bettergov', 'bettergov_flood_control', 'contractors'], // Restricted to the 'bettergov' indices only.
       expiresAt: null, // Key does not expire

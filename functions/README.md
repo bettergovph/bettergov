@@ -1,6 +1,6 @@
-# GOV.PH Cloudflare Functions
+# BetterGov.ph Cloudflare Functions
 
-This folder contains Cloudflare Functions that run on a schedule to fetch and store data for the GOV.PH portal. The functions are written in TypeScript for improved type safety and developer experience.
+This folder contains Cloudflare Functions that run on a schedule to fetch and store data for the BetterGov.ph portal. The functions are written in TypeScript for improved type safety and developer experience.
 
 ## HTTP security
 
@@ -8,10 +8,11 @@ Every dynamic route in this repository's single Worker passes through
 `lib/request-security.ts`, including both assistant endpoints, `/api/status`,
 the `/weather` and `/forex` aliases, and error/404 responses.
 
-- Only `https://www.gov.ph` and HTTPS subdomains of `govph.workers.dev` and
-  `oueg.workers.dev` are approved browser origins. The bare `govph.workers.dev`
-  and `oueg.workers.dev`, other `gov.ph`
-  subdomains, HTTP origins, custom ports, and `null` origins are rejected with
+- Only `https://bettergov.ph`, `https://www.bettergov.ph`, `https://www.gov.ph`
+  and HTTPS subdomains of `bettergov.workers.dev`, `govph.workers.dev` and
+  `oueg.workers.dev` are approved browser origins. The bare `workers.dev`
+  subdomains, other `bettergov.ph` and `gov.ph` subdomains, HTTP origins,
+  custom ports, and `null` origins are rejected with
   `403` before a handler runs. Version-preview subdomains are supported.
 - Approved origins receive their exact `Access-Control-Allow-Origin` and
   `Access-Control-Allow-Credentials: true`. Preflights permit `GET`, `POST`,
@@ -113,11 +114,11 @@ unavailable.
 
 ## Same-origin data and search
 
-The browser uses relative URLs, so a site served on `www.gov.ph` makes requests
-to `https://www.gov.ph/api/weather`, `/api/forex` and `/api/search`. Preview
+The browser uses relative URLs, so a site served on `bettergov.ph` makes requests
+to `https://bettergov.ph/api/weather`, `/api/forex` and `/api/search`. Preview
 deployments use their own origin. The existing `/api/*` Worker routing already
 covers these paths; no separate backend deployment or browser CORS exception is
-needed. The deployment serving `www.gov.ph` must receive this code and its bindings.
+needed. The deployment serving `bettergov.ph` must receive this code and its bindings.
 
 ### Weather and forex
 
@@ -258,7 +259,7 @@ Fetches currency exchange rates directly from Bangko Sentral ng Pilipinas (BSP) 
   - `/api/forex` - Fetches from API if needed
   - `/forex` - Reads only from KV store
 
-### 4. GovPH Chatbot proxy (`api/assistant.ts`)
+### 4. BetterGov Chatbot proxy (`api/assistant.ts`)
 
 Server-side proxy for the eGovAI "govph" engine that powers the site's GovPH Chatbot widget (`src/components/ui/GovPhChatbot.tsx`, client in
 `src/lib/assistant.ts`). The browser only ever talks to this Worker; the eGovAI

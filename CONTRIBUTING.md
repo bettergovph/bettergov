@@ -1,4 +1,4 @@
-# GOV.PH Portal Contributing Guide
+# BetterGov.ph Contributing Guide
 
 <a id="readme-top"></a>
 
@@ -44,7 +44,7 @@
 
 ## Welcome
 
-Welcome to the GOV.PH Portal Contributing Guide and thank you for your interest in supporting the project!
+Welcome to the BetterGov.ph Contributing Guide and thank you for your interest in supporting the project!
 
 We welcome contributions of all kinds. Whether you are a developer, designer, writer, or just someone with a great idea, there’s a place for you here.
 
@@ -61,8 +61,8 @@ Here are the types of contributions we currently accept and where to learn more 
 
 ## Project overview
 
-GOV.PH is the proposed portal of the Republic of the Philippines, developed through a community collaboration partnership between eGov Philippines and citizen contributors.
-It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration, and it builds on the volunteer-built BetterGov.ph portal.
+BetterGov.ph is the volunteer run portal of the Republic of the Philippines, built by volunteers of the BetterGov.ph movement.
+It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration.
 To learn more about our purpose and goals, please read the [README](./README.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -263,14 +263,14 @@ Read our {name and link to your style guide} to understand our guidelines for wr
 
 ## Licensing of contributions
 
-GOV.PH is dual-licensed (see the [License section of the README](README.md#license)):
+BetterGov.ph is dual-licensed (see the [License section of the README](README.md#license)):
 
 - **Code** you contribute is released under the [MIT License](LICENSE), like the rest of the code.
 - **Content** you contribute — text, data, translations, images — is published under [CC BY-NC-ND 4.0](LICENSE-CONTENT). That license does not allow sharing adapted versions, so two extra terms make content contributions possible:
-  - You may fork this repository and share modified copies on GitHub solely to propose changes to GOV.PH through pull requests.
-  - By submitting a content contribution, you confirm that you have the right to submit it, and you grant the GOV.PH project a perpetual, worldwide, royalty-free permission to use, edit and publish it under the project's licenses.
+  - You may fork this repository and share modified copies on GitHub solely to propose changes to BetterGov.ph through pull requests.
+  - By submitting a content contribution, you confirm that you have the right to submit it, and you grant the BetterGov.ph project a perpetual, worldwide, royalty-free permission to use, edit and publish it under the project's licenses.
 
-The GOV.PH name and wordmark and the Coat of Arms of the Republic of the Philippines are not covered by either license.
+The BetterGov.ph name and logos are not covered by either license.
 
 ## Contribution workflow
 

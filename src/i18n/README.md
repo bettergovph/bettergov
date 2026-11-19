@@ -1,4 +1,4 @@
-# Translations for GOV.PH
+# Translations for BetterGov.ph
 
 ## How it works
 

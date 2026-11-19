@@ -30,6 +30,10 @@ import Flag from '../components/v2/ui/Flag';
 import FilterSection from '../components/v2/ui/FilterSection';
 import PageMasthead from '../components/v2/layout/PageMasthead';
 import { cn } from '../lib/utils';
+import { SITE_URL } from '../lib/brand';
+
+/** This site's host, shown as the address of its own pages in results. */
+const SITE_HOST = SITE_URL.replace(/^https?:\/\//, '');
 
 // ─── Meilisearch client, plus BETTERGOV.PH's own pages (see siteSearch.ts) ─────────
 
@@ -277,7 +281,7 @@ const EditorialHits: FC = () => {
         const sourceUrl = external
           ? (hit.website as string | undefined) ||
             (hit.url as string | undefined)
-          : `www.gov.ph${href}`;
+          : `${SITE_HOST}${href}`;
 
         const rowClass =
           'grid grid-cols-[48px_1fr] gap-6 py-7 text-ed-ink no-underline hover:bg-ed-paper-2/50 max-md:gap-4 max-md:py-5';
