@@ -1,16 +1,18 @@
-# GOV.PH Portal
+# BetterGov.ph
 
-Source code of **GOV.PH**, the proposed portal of the Republic of the
-Philippines — one place to find government services, agencies, hotlines,
-holidays, news, and travel information, written plainly and sourced from
-official records.
+Source code of **[BetterGov.ph](https://bettergov.ph)**, the volunteer run
+portal of the Republic of the Philippines — one place to find government
+services, agencies, hotlines, holidays, news, and travel information, written
+plainly and sourced from official records.
 
 ## About this project
 
-GOV.PH is developed through a community collaboration partnership between
-eGov Philippines and citizen contributors. The work happens in the open: the
-code is open source under the MIT License, and the content is published under
-the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0).
+BetterGov.ph is built by volunteers of the BetterGov.ph movement, a civic
+technology and open-source movement making Philippine government data
+accessible, understandable, and actionable. Learn more about it at
+[about.bettergov.ph](https://about.bettergov.ph). The work happens in the
+open: the code is open source under the MIT License, and the content is
+published under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0).
 
 Goals:
 
@@ -23,10 +25,10 @@ Goals:
 
 ## Origins and attribution
 
-This portal builds on the open-source [BetterGov.ph](https://bettergov.ph)
-project, a volunteer-led civic-tech initiative that set out to make
-Philippine government information easier to find, read, and use. Its code,
-design system, and data pipelines became the foundation of GOV.PH, and the
+This is the second version of BetterGov.ph. The first version, a
+volunteer-led civic-tech project started in 2025, set out to make Philippine
+government information easier to find, read, and use. Its code, design
+system, and data pipelines are the foundation of this version, and the
 hundreds of citizen volunteers who built it are gratefully acknowledged.
 Their contributions were released under CC0 and remain in the public domain.
 
@@ -99,13 +101,13 @@ This project includes Docker support for easy deployment and consistent environm
 
 ```bash
 # Build the Docker image
-docker build -t govph .
+docker build -t bettergov .
 
 # Run the container
-docker run -p 8080:80 govph
+docker run -p 8080:80 bettergov
 
 # Run in detached mode
-docker run -d -p 8080:80 --name govph govph
+docker run -d -p 8080:80 --name bettergov bettergov
 ```
 
 **Access the application at:** `http://localhost:8080`
@@ -358,13 +360,13 @@ Thanks to all the people who already contributed!
 
 ## License
 
-GOV.PH is dual-licensed:
+BetterGov.ph is dual-licensed:
 
 - **Code** is released under the [MIT License](LICENSE). This covers the source code, including the design system's components and styles.
-- **Content** is published under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license (CC BY-NC-ND 4.0); see [LICENSE-CONTENT](LICENSE-CONTENT). Content means the text, data, translations, images and documents that make up the information on GOV.PH, wherever they sit in the repository: for example the guides in `src/data/guides/`, the data files in `src/data/`, the translations in `public/locales/`, and the written design guidelines. You may copy and share content unchanged, for non-commercial purposes, with appropriate credit. Sharing an adapted version needs separate permission.
+- **Content** is published under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license (CC BY-NC-ND 4.0); see [LICENSE-CONTENT](LICENSE-CONTENT). Content means the text, data, translations, images and documents that make up the information on BetterGov.ph, wherever they sit in the repository: for example the guides in `src/data/guides/`, the data files in `src/data/`, the translations in `public/locales/`, and the written design guidelines. You may copy and share content unchanged, for non-commercial purposes, with appropriate credit. Sharing an adapted version needs separate permission.
 
-As an additional permission, you may fork this repository and share modified copies on GitHub solely to propose changes to GOV.PH through pull requests. See [Licensing of contributions](CONTRIBUTING.md#licensing-of-contributions).
+As an additional permission, you may fork this repository and share modified copies on GitHub solely to propose changes to BetterGov.ph through pull requests. See [Licensing of contributions](CONTRIBUTING.md#licensing-of-contributions).
 
-Neither license covers the GOV.PH name and wordmark, the Coat of Arms of the Republic of the Philippines, or the Bagong Pilipinas, eGovPH and BetterGov.ph logos. Third-party material keeps its own license, as credited where it appears. Work released earlier under CC0 1.0, including the BetterGov.ph code that GOV.PH builds on, remains in the public domain.
+Neither license covers the BetterGov.ph name and logos, or the Bagong Pilipinas and eGovPH logos. Third-party material keeps its own license, as credited where it appears. Work released earlier under CC0 1.0, including the code of the first version of BetterGov.ph, remains in the public domain.
 
 ---
