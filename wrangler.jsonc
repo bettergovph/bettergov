@@ -1,19 +1,76 @@
+// BetterGov.ph: the bettergovph Worker on the BetterGov Cloudflare account,
+// serving bettergov.ph and www.bettergov.ph. The Workers Build connected to
+// github.com/bettergovph/bettergov deploys `main` with this configuration.
+// The KV namespaces are the BetterGov account's own; BROWSER_KV is not
+// provisioned there, so the routes that need it answer 503.
 {
   "name": "bettergovph",
   "account_id": "cd41784b73cc20f93b3137292f818ff6",
   "compatibility_date": "2025-11-17",
+  "compatibility_flags": ["enable_request_signal"],
+  "main": "functions/index.ts",
+  "workers_dev": true,
+  "keep_vars": true,
+  "routes": [
+    {
+      "pattern": "bettergov.ph",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.bettergov.ph",
+      "custom_domain": true,
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "FOREX_KV",
+      "id": "a1151781bef24f3092aa3ddefe86aac5",
+    },
+    {
+      "binding": "WEATHER_KV",
+      "id": "7e1c950bb42d4282b13e3e9524ce5335",
+    },
+  ],
+  "triggers": {
+    "crons": ["0 * * * *"],
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "!/api/projects.json", "/weather", "/forex"],
   },
-  "kv_namespaces": [
+  "ratelimits": [
     {
-      "id": "a1151781bef24f3092aa3ddefe86aac5",
-      "binding": "FOREX_KV",
+      "name": "API_RATE_LIMITER",
+      "namespace_id": "2026101401",
+      "simple": {
+        "limit": 120,
+        "period": 60,
+      },
     },
     {
-      "id": "7e1c950bb42d4282b13e3e9524ce5335",
-      "binding": "WEATHER_KV",
+      "name": "ASSISTANT_RATE_LIMITER",
+      "namespace_id": "2026101402",
+      "simple": {
+        "limit": 20,
+        "period": 60,
+      },
+    },
+    {
+      "name": "CRAWL_RATE_LIMITER",
+      "namespace_id": "2026101403",
+      "simple": {
+        "limit": 10,
+        "period": 60,
+      },
+    },
+    {
+      "name": "REPORT_RATE_LIMITER",
+      "namespace_id": "2026101404",
+      "simple": {
+        "limit": 5,
+        "period": 60,
+      },
     },
   ],
 }

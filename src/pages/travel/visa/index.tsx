@@ -1,16 +1,9 @@
 import { useState, useEffect, useRef, FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  CompassIcon,
-  GlobeIcon,
-  SearchIcon,
-  Grid3x3Icon,
-  ListIcon,
-} from 'lucide-react';
+import { ArrowRightIcon, GlobeIcon, SearchIcon } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_policy.json';
 import Flag from 'react-world-flags';
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa';
-import Button from '../../../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { useQueryState } from 'nuqs';
 import {
@@ -21,6 +14,12 @@ import {
   DialogFooter,
 } from '../../../components/ui/Dialog';
 import VisaRequirementDetails from '../../../components/travel/VisaRequirementDetails';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import Button from '../../../components/v2/ui/Button';
+import Flag2 from '../../../components/v2/ui/Flag';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import { cn } from '../../../lib/utils';
 
 // Direct country name to ISO2 code mapping for flags
 const COUNTRY_TO_ISO2: Record<string, string> = {
@@ -413,142 +412,140 @@ const VisaPage: FC = () => {
     });
   };
 
-  const getStatusBadge = (type: string, duration?: string) => {
-    switch (type) {
-      case 'visa-free':
-        return (
-          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
-            {duration || 'Visa Free'}
-          </span>
-        );
-      case 'visa-required':
-        return (
-          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
-            Visa Required
-          </span>
-        );
-      case 'special-condition':
-        return (
-          <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800'>
-            Special Conditions
-          </span>
-        );
-      default:
-        return null;
-    }
+  const statusVariant = (
+    type: string
+  ): 'navy' | 'red' | 'outline' | 'default' => {
+    if (type === 'visa-free') return 'navy';
+    if (type === 'visa-required') return 'red';
+    if (type === 'special-condition') return 'outline';
+    return 'default';
   };
 
+  const statusLabel = (type: string, duration?: string) => {
+    if (type === 'visa-free') return duration || 'Visa-free';
+    if (type === 'visa-required') return 'Visa required';
+    if (type === 'special-condition') return 'Special conditions';
+    return type;
+  };
+
+  const isGrid = viewMode !== 'list';
+
   return (
-    <div className='bg-gray-50'>
-      {/* Hero Section */}
-      <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-16 px-4'>
-        <div className='container mx-auto max-w-6xl'>
-          <div className='flex flex-col md:flex-row items-center justify-between'>
-            <div className='md:w-1/2 mb-8 md:mb-0'>
-              <h1 className='text-4xl md:text-5xl font-bold mb-4'>
-                {t('hero.title')}
-              </h1>
-              <p className='text-xl opacity-90 mb-6'>{t('hero.subtitle')}</p>
-              <div className='flex items-center space-x-2 text-sm'>
-                <GlobeIcon className='h-4 w-4' />
-                <span>{t('hero.dataSource')}</span>
-              </div>
-              <Link to='/travel/visa-types'>
-                <Button className='cursor-default text-xl bg-blue-800 py-8 px-8 mt-6 hover:cursor-pointer'>
-                  {t('hero.checkVisaTypes')}
-                </Button>
-              </Link>
-            </div>
-            <div className='self-start md:w-1/3'>
-              <div className='bg-white rounded-lg shadow-lg p-6 text-gray-800'>
-                <h2 className='text-xl font-semibold mb-4 flex items-center'>
-                  <CompassIcon className='mr-2 h-5 w-5 text-blue-600' />
-                  {t('quickCheck.title')}
-                </h2>
-                <p className='text-sm text-gray-800 mb-4'>
-                  {t('quickCheck.description')}
-                </p>
-                <Button
-                  onClick={handleCheckVisaRequirements}
-                  className='cursor-default w-full bg-blue-600 hover:bg-blue-700 text-white hover:cursor-pointer'
-                >
-                  Check Visa Requirements
-                </Button>
-              </div>
-            </div>
-          </div>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <PageMasthead
+        variant='hero'
+        title={t('hero.title')}
+        lede={t('hero.subtitle')}
+      >
+        <div className='mt-3 flex flex-wrap items-center gap-4 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-white/70'>
+          <span className='inline-flex items-center gap-2'>
+            <GlobeIcon size={14} />
+            {t('hero.dataSource')}
+          </span>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className='container mx-auto max-w-6xl py-4 md:py-12 px-4'>
-        {/* View Toggle and Search Bar */}
-        <div className='bg-white rounded-lg shadow-md p-4 mb-6'>
-          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-            <div className='relative w-full md:w-96'>
-              <SearchIcon className='absolute left-3 top-3 h-5 w-5 text-gray-400' />
-              <input
-                ref={searchInputRef}
-                type='text'
-                placeholder={t('quickCheck.searchPlaceholder')}
-                className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500'
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                aria-label={t('quickCheck.searchAriaLabel')}
-              />
-            </div>
-            <div className='flex items-center gap-2'>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
-                  viewMode === 'grid' || !viewMode
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-                aria-pressed={viewMode === 'grid' || !viewMode}
-                aria-label='Switch to grid view'
-              >
-                <Grid3x3Icon className='h-4 w-4' />
-                Grid View
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors cursor-pointer ${
-                  viewMode === 'list'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-                aria-pressed={viewMode === 'list'}
-                aria-label='Switch to detail view'
-              >
-                <ListIcon className='h-4 w-4' />
-                Detail View
-              </button>
-            </div>
-          </div>
+        <div className='mt-6 flex flex-wrap gap-3'>
+          <Button
+            as='button'
+            onClick={handleCheckVisaRequirements}
+            variant='solid'
+            className='!border-white !bg-white !text-ed-navy-ink hover:!bg-transparent hover:!text-white'
+          >
+            <SearchIcon size={14} />
+            <span>Check visa requirements</span>
+          </Button>
+          <Button
+            as={Link}
+            to='/travel/visa-types'
+            variant='ghost'
+            className='!border-white !text-white hover:!bg-white hover:!text-ed-navy-ink'
+          >
+            <span>{t('hero.checkVisaTypes')}</span>
+            <ArrowRightIcon size={14} />
+          </Button>
         </div>
+      </PageMasthead>
 
-        {/* Grid View */}
-        {(viewMode === 'grid' || !viewMode) && (
-          <div className='bg-white rounded-lg shadow-md p-6'>
-            <h2 className='text-2xl font-semibold mb-6'>
-              Visa Requirements by Country
-            </h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-              {filteredCountries.map(country => {
-                const requirement = countryRequirements.get(country);
-                const iso2 = getCountryIso2(country);
-                return (
-                  <div
-                    key={country}
-                    className='border border-gray-200 rounded-lg transition-shadow cursor-pointer bg-white overflow-hidden hover:shadow-lg'
-                  >
+      {/* Search + view toggle */}
+      <section className='border-b border-ed-rule bg-white'>
+        <Container className='grid grid-cols-[1fr_auto] items-center gap-4 py-5 max-lg:grid-cols-1 max-lg:gap-3'>
+          <div className='relative'>
+            <SearchIcon
+              size={16}
+              className='pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ed-ink-4'
+            />
+            <input
+              ref={searchInputRef}
+              type='search'
+              placeholder={t('quickCheck.searchPlaceholder')}
+              aria-label={t('quickCheck.searchAriaLabel')}
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className='block w-full border border-ed-ink bg-white py-3 pl-10 pr-4 font-sans-ed text-[15px] text-ed-ink outline-none placeholder:text-ed-ink-4'
+            />
+          </div>
+          <div className='inline-flex border border-ed-ink'>
+            <button
+              type='button'
+              onClick={() => setViewMode('grid')}
+              aria-pressed={isGrid}
+              className={cn(
+                'px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.1em] transition-colors',
+                isGrid
+                  ? 'bg-ed-ink text-white'
+                  : 'bg-white text-ed-ink hover:bg-ed-paper-2'
+              )}
+            >
+              Grid
+            </button>
+            <button
+              type='button'
+              onClick={() => setViewMode('list')}
+              aria-pressed={viewMode === 'list'}
+              className={cn(
+                'border-l border-ed-ink px-4 py-3 font-mono-ed text-[11px] uppercase tracking-[0.1em] transition-colors',
+                viewMode === 'list'
+                  ? 'bg-ed-ink text-white'
+                  : 'bg-white text-ed-ink hover:bg-ed-paper-2'
+              )}
+            >
+              Detail
+            </button>
+          </div>
+        </Container>
+      </section>
+
+      <section className='py-10 max-md:py-6'>
+        <Container>
+          <div className='mb-6 flex items-center justify-between'>
+            <Eyebrow>
+              {filteredCountries.length} of {allCountries.length} countries
+            </Eyebrow>
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className='font-mono-ed text-[11px] uppercase tracking-[0.1em] text-ed-navy no-underline hover:text-ed-red'
+              >
+                Clear search
+              </button>
+            )}
+          </div>
+
+          {isGrid ? (
+            filteredCountries.length === 0 ? (
+              <EmptyState />
+            ) : (
+              <div className='grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
+                {filteredCountries.map(country => {
+                  const requirement = countryRequirements.get(country);
+                  const iso2 = getCountryIso2(country);
+                  return (
                     <button
+                      key={country}
+                      type='button'
                       onClick={() => openDetailsDialog(country)}
-                      className='group w-full flex items-stretch cursor-pointer h-24 md:h-28'
+                      className='group flex items-stretch border border-ed-rule bg-white text-left transition-colors hover:border-ed-ink'
                     >
-                      {/* Flag */}
-                      <div className='relative w-0 group-hover:w-2/5 h-full bg-white rounded-l-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
+                      <div className='h-24 w-20 shrink-0 overflow-hidden border-r border-ed-rule bg-ed-paper-2'>
                         {iso2 && (
                           <Flag
                             code={iso2}
@@ -556,124 +553,109 @@ const VisaPage: FC = () => {
                             alt={country}
                             loading='lazy'
                             draggable={false}
-                            className='block w-full h-full object-cover transform -translate-x-6 opacity-100 transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)] delay-75 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-[1.02] will-change-transform motion-reduce:transition-none motion-reduce:transform-none'
+                            className='block h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105'
                           />
                         )}
                       </div>
-
-                      {/* Right: Details */}
-                      <div className='w-full group-hover:w-3/5 px-5 md:px-6 py-3 flex flex-col justify-center text-left transition-all duration-700 ease-[cubic-bezier(.22,.61,.36,1)]'>
-                        <h3 className='font-medium text-lg leading-tight mb-1 text-gray-900'>
+                      <div className='flex flex-1 flex-col justify-center px-4 py-3'>
+                        <h3 className='font-serif-ed text-base font-semibold leading-tight text-ed-navy-ink'>
                           {country}
                         </h3>
                         {requirement && (
-                          <div className='mt-1 flex items-start gap-2'>
-                            {getStatusBadge(
-                              requirement.type,
-                              requirement.duration
-                            )}
+                          <div className='mt-2'>
+                            <Flag2 variant={statusVariant(requirement.type)}>
+                              {statusLabel(
+                                requirement.type,
+                                requirement.duration
+                              )}
+                            </Flag2>
                           </div>
                         )}
                       </div>
                     </button>
-                  </div>
-                );
-              })}
-            </div>
-            {filteredCountries.length === 0 && (
-              <div className='text-center py-12 text-gray-500'>
-                <SearchIcon className='mx-auto h-12 w-12 mb-4 opacity-50' />
-                <p className='text-lg'>
-                  No countries found matching your search.
-                </p>
+                  );
+                })}
               </div>
-            )}
-          </div>
-        )}
-
-        {/* Detail View */}
-        {viewMode === 'list' && (
-          <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
-            {/* Left Column - Country List */}
-            <div className='xl:col-span-1'>
-              <div className='bg-white rounded-lg shadow-md p-6'>
-                <h2 className='text-xl font-semibold mb-4'>
-                  {t('countryList.title')}
-                </h2>
+            )
+          ) : (
+            <div className='grid grid-cols-[minmax(260px,340px)_1fr] gap-10 max-lg:grid-cols-1 max-lg:gap-6'>
+              <aside>
+                <div className='mb-3'>
+                  <Eyebrow>{t('countryList.title')}</Eyebrow>
+                </div>
                 <div
-                  className='max-h-[400px] xl:max-h-[800px] overflow-y-auto pr-2'
                   role='listbox'
                   aria-label={t('countryList.ariaLabel')}
+                  className='max-h-[70vh] overflow-y-auto border border-ed-rule bg-white'
                 >
                   {filteredCountries.length > 0 ? (
                     filteredCountries.map(country => (
                       <button
                         key={country}
-                        className={`w-full text-left px-4 py-3 rounded-md mb-1 transition-colors cursor-pointer ${
-                          selectedCountry === country
-                            ? 'bg-blue-100 text-blue-800 font-medium'
-                            : 'hover:bg-gray-100'
-                        }`}
-                        onClick={() => checkVisaRequirement(country)}
                         role='option'
                         aria-selected={selectedCountry === country}
+                        onClick={() => checkVisaRequirement(country)}
+                        className={cn(
+                          'flex w-full items-center justify-between border-b border-ed-rule px-4 py-2.5 text-left font-serif-ed text-[15px] last:border-b-0 transition-colors',
+                          selectedCountry === country
+                            ? 'bg-ed-navy text-white'
+                            : 'text-ed-ink hover:bg-ed-navy-tint'
+                        )}
                       >
-                        {country}
+                        <span>{country}</span>
                       </button>
                     ))
                   ) : (
-                    <div className='text-center py-8 text-gray-800'>
-                      <SearchIcon className='mx-auto h-8 w-8 mb-2 opacity-50' />
-                      <p>{t('countryList.noResults')}</p>
+                    <div className='p-6 text-center text-ed-ink-3'>
+                      <SearchIcon
+                        size={24}
+                        className='mx-auto mb-2 opacity-60'
+                      />
+                      <p className='text-sm'>{t('countryList.noResults')}</p>
                     </div>
                   )}
                 </div>
-              </div>
-            </div>
+              </aside>
 
-            {/* Right Column - Visa Requirements */}
-            <div className='xl:col-span-2'>
-              {selectedCountry ? (
-                <div className='bg-white rounded-lg shadow-md p-6'>
-                  <h2 className='text-2xl font-semibold mb-2'>
-                    {t('requirements.title', { country: selectedCountry })}
-                  </h2>
-
-                  {visaRequirement && (
+              <div>
+                {selectedCountry && visaRequirement ? (
+                  <>
+                    <h2 className='mb-5 border-b border-ed-navy pb-3 font-serif-ed text-[32px] font-semibold leading-tight text-ed-navy-ink max-md:mb-3 max-md:text-[24px]'>
+                      {t('requirements.title', { country: selectedCountry })}
+                    </h2>
                     <VisaRequirementDetails
                       country={selectedCountry}
                       visaRequirement={visaRequirement}
                     />
-                  )}
-                </div>
-              ) : (
-                <div className='bg-white rounded-lg shadow-md p-6 h-full'>
-                  <div className='flex flex-col items-center justify-center h-full py-12 text-center'>
-                    <div className='bg-blue-100 p-4 rounded-full mb-4'>
-                      <GlobeIcon className='h-12 w-12 text-blue-600' />
-                    </div>
-                    <h2 className='text-2xl font-semibold mb-2'>
+                  </>
+                ) : (
+                  <div className='flex min-h-[280px] flex-col items-center justify-center border border-dashed border-ed-rule p-10 text-center'>
+                    <GlobeIcon
+                      size={40}
+                      className='mb-4 text-ed-ink-3'
+                      aria-hidden
+                    />
+                    <h2 className='font-serif-ed text-[24px] font-semibold text-ed-navy-ink max-md:text-[21px]'>
                       {t('defaultMessage.title')}
                     </h2>
-                    <p className='text-gray-800 max-w-md mx-auto'>
+                    <p className='mt-2 max-w-md text-sm text-ed-ink-2'>
                       {t('defaultMessage.description')}
                     </p>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </Container>
+      </section>
 
-      {/* Visa Details Dialog */}
       <Dialog
         open={dialogOpen}
         onOpenChange={open => !open && closeDetailsDialog()}
       >
-        <DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto'>
+        <DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto font-sans-ed'>
           <DialogHeader>
-            <DialogTitle className='text-2xl'>
+            <DialogTitle className='font-serif-ed text-[26px] font-semibold text-ed-navy-ink'>
               {dialogCountry &&
                 t('requirements.title', { country: dialogCountry })}
             </DialogTitle>
@@ -682,21 +664,28 @@ const VisaPage: FC = () => {
             <VisaRequirementDetails
               country={dialogCountry}
               visaRequirement={visaRequirement}
-              isDialog={true}
+              isDialog
             />
           )}
           <DialogFooter>
-            <Button
-              onClick={closeDetailsDialog}
-              className='cursor-default bg-blue-600 hover:bg-blue-700 text-white hover:cursor-pointer'
-            >
+            <Button as='button' onClick={closeDetailsDialog}>
               Close
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </main>
   );
 };
+
+const EmptyState: FC = () => (
+  <div className='border border-dashed border-ed-rule py-16 text-center text-ed-ink-3'>
+    <SearchIcon size={28} className='mx-auto mb-3 opacity-60' />
+    <div className='font-serif-ed text-[22px] text-ed-ink-2'>
+      No countries match.
+    </div>
+    <p className='mt-1 text-sm'>Try a different term.</p>
+  </div>
+);
 
 export default VisaPage;

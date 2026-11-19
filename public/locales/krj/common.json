@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Mabuhay sa BetterGov.ph",
+    "title": "Mabuhay sa BETTERGOV.PH",
     "subtitle": "Ang volunteer-run nga portal kang Republika kang Pilipinas. Pangita-a ang impormasyon, ma-access ang mga government services, kag mag-update sa pinakabag-o nga balita bahin sa Pilipinas.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
@@ -22,28 +22,12 @@
   "news": {
     "title": "Pinakabag-o nga Balita kag Updates"
   },
-  "footer": {
-    "copyright": "© 2025 BetterGov. Ang tanan nga content ay public domain kon wara gin-specify."
-  },
   "navbar": {
     "philippines": "Pilipinas",
     "services": "Services",
     "travel": "Travel",
     "government": "Government",
     "flood control projects": "Flood Control Projects"
-  },
-  "joinUs": {
-    "stripTitle": "🚀 Mag-intra sa #CivicTech Revolution",
-    "stripSubtitle": "Bulig sa pagtukod kang buwasdamlag kang Pilipinas kag governance paagi sa teknolohiya",
-    "joinNow": "Mag-intra Tulad",
-    "discord": "Discord",
-    "bannerTitle": "Mag-intra sa #CivicTech Revolution",
-    "bannerSubtitle": "Bulig sa pagtukod kang buwasdamlag kang Pilipinas kag governance paagi sa teknolohiya.",
-    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
-    "joinMovement": "Mag-intra sa Amon nga Hilikuton",
-    "or": "o",
-    "joinDiscord": "Mag-intra sa Discord",
-    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
   },
   "data": {
     "title": "Real-Time Data Services",

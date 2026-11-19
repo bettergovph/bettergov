@@ -3,13 +3,13 @@
     "slug": "senate-of-the-philippines-20th-congress",
     "branch": "Legislative Branch",
     "chamber": "Senate of the Philippines (20th Congress)",
-    "address": "GSIS Building, Financial Center Roxas Blvd., 1300 Pasay City",
+    "address": "GSIS Building, Financial Center, J.W. Diokno Blvd., 1300 Pasay City",
     "trunkline": "(632) 8552-6601 to 70",
     "website": "www.senate.gov.ph",
     "officials": [
       {
         "role": "Senate President",
-        "name": "SHERWIN GATCHALIAN",
+        "name": "WIN GATCHALIAN",
         "contact": "local nos. 5710, 8622"
       },
       {
@@ -28,6 +28,21 @@
         "contact": "local nos. 8526 and 2539"
       },
       {
+        "role": "Senior Deputy Majority Leader",
+        "name": "JOSEPH VICTOR G. EJERCITO",
+        "contact": "local no. 5851"
+      },
+      {
+        "role": "Deputy Majority Leader",
+        "name": "JOEL VILLANUEVA",
+        "contact": "local no. 4675"
+      },
+      {
+        "role": "Deputy Minority Leader",
+        "name": "IMEE R. MARCOS",
+        "contact": "local nos. 5707, 5755, 5776, 5777"
+      },
+      {
         "role": "Senator",
         "name": "BAM AQUINO",
         "contact": "local no. 6518"
@@ -41,11 +56,6 @@
         "role": "Senator",
         "name": "RONALD DELA ROSA",
         "contact": "local nos. 5614 / 5615 / 5617 / 8611"
-      },
-      {
-        "role": "Senator",
-        "name": "JOSEPH VICTOR G. EJERCITO",
-        "contact": "local no. 5851"
       },
       {
         "role": "Senator",
@@ -89,11 +99,6 @@
       },
       {
         "role": "Senator",
-        "name": "IMEE R. MARCOS",
-        "contact": "local nos. 5707, 5755, 5776, 5777"
-      },
-      {
-        "role": "Senator",
         "name": "ROBINHOOD C. PADILLA",
         "contact": "local nos. 5843, 5844, 8624"
       },
@@ -114,11 +119,6 @@
       },
       {
         "role": "Senator",
-        "name": "JOEL VILLANUEVA",
-        "contact": "local no. 4675"
-      },
-      {
-        "role": "Senator",
         "name": "CAMILLE A. VILLAR",
         "contact": "local nos. 6508, 6509"
       },
@@ -131,11 +131,11 @@
     "permanent_committees": [
       {
         "committee": "Accountability of Public Officers and Investigations (Blue Ribbon)",
-        "chairperson": "PANFILO M. LACSON"
+        "chairperson": "ERWIN T. TULFO"
       },
       {
         "committee": "Accounts",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Agriculture, Food and Agrarian Reform",
@@ -143,7 +143,7 @@
       },
       {
         "committee": "Banks, Financial Institutions and Currencies",
-        "chairperson": "JOEL VILLANUEVA"
+        "chairperson": "MARK A. VILLAR"
       },
       {
         "committee": "Basic Education",
@@ -151,7 +151,7 @@
       },
       {
         "committee": "Civil Service, Government Reorganization and Professional Regulation",
-        "chairperson": "RONALD DELA ROSA"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Constitutional Amendments and Revision of Codes",
@@ -159,7 +159,7 @@
       },
       {
         "committee": "Cooperatives",
-        "chairperson": "MANUEL M. LAPID"
+        "chairperson": "IMEE R. MARCOS"
       },
       {
         "committee": "Cultural Communities and Muslim Affairs",
@@ -171,39 +171,39 @@
       },
       {
         "committee": "Economic Affairs",
-        "chairperson": "CAMILLE A. VILLAR"
+        "chairperson": "RISA HONTIVEROS"
       },
       {
         "committee": "Electoral Reforms and People's Participation",
-        "chairperson": "PANFILO M. LACSON"
+        "chairperson": "JINGGOY EJERCITO ESTRADA"
       },
       {
         "committee": "Energy",
-        "chairperson": "PIA S. CAYETANO"
-      },
-      {
-        "committee": "Environment, Natural Resources and Climate Change",
-        "chairperson": "CAMILLE A. VILLAR"
-      },
-      {
-        "committee": "Ethics and Privileges",
-        "chairperson": "VACANT"
-      },
-      {
-        "committee": "Finance",
-        "chairperson": "SHERWIN GATCHALIAN"
-      },
-      {
-        "committee": "Foreign Relations",
-        "chairperson": "IMEE R. MARCOS"
-      },
-      {
-        "committee": "Games and Amusement",
         "chairperson": "ERWIN T. TULFO"
       },
       {
+        "committee": "Environment, Natural Resources and Climate Change",
+        "chairperson": "RAFFY T. TULFO"
+      },
+      {
+        "committee": "Ethics and Privileges",
+        "chairperson": "VICENTE C. SOTTO III"
+      },
+      {
+        "committee": "Finance",
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+      },
+      {
+        "committee": "Foreign Relations",
+        "chairperson": "JUAN MIGUEL F. ZUBIRI"
+      },
+      {
+        "committee": "Games and Amusement",
+        "chairperson": "MANUEL M. LAPID"
+      },
+      {
         "committee": "Government Corporations and Public Enterprises",
-        "chairperson": "MARK A. VILLAR"
+        "chairperson": "CAMILLE A. VILLAR"
       },
       {
         "committee": "Health and Demography",
@@ -211,7 +211,7 @@
       },
       {
         "committee": "Higher, Technical and Vocational Education",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "JOEL VILLANUEVA"
       },
       {
         "committee": "Justice and Human Rights",
@@ -219,11 +219,11 @@
       },
       {
         "committee": "Labor, Employment and Human Resources Development",
-        "chairperson": "RAFFY T. TULFO"
+        "chairperson": "JOEL VILLANUEVA"
       },
       {
         "committee": "Local Government",
-        "chairperson": "JINGGOY EJERCITO ESTRADA"
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
       },
       {
         "committee": "Migrant Workers",
@@ -231,7 +231,7 @@
       },
       {
         "committee": "National Defense and Security, Peace, Unification and Reconciliation",
-        "chairperson": "LOREN LEGARDA"
+        "chairperson": "VICENTE C. SOTTO III"
       },
       {
         "committee": "Public Information and Mass Media",
@@ -239,7 +239,7 @@
       },
       {
         "committee": "Public Order and Dangerous Drugs",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Public Services",
@@ -271,11 +271,11 @@
       },
       {
         "committee": "Tourism",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "chairperson": "RODANTE D. MARCOLETA"
       },
       {
         "committee": "Trade, Commerce and Entrepreneurship",
-        "chairperson": "RODANTE D. MARCOLETA"
+        "chairperson": "BAM AQUINO"
       },
       {
         "committee": "Urban Planning, Housing and Resettlement",
@@ -283,7 +283,7 @@
       },
       {
         "committee": "Ways and Means",
-        "chairperson": "PIA S. CAYETANO"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Women, Children, Family Relations and Gender Equality",
@@ -377,6 +377,12 @@
           "contact": "8952-2232; local 7242"
         }
       },
+      "senior_deputy_speaker": {
+        "name": "HERNANDEZ, FERDINAND L.",
+        "contact": {
+          "contact": "8442-4131; local 7986/7987"
+        }
+      },
       "deputy_speakers": [
         {
           "name": "GARIN, JANETTE L.",
@@ -394,12 +400,6 @@
           "name": "ORTEGA, FRANCISCO PAOLO P., V",
           "contact": {
             "contact": "8931-5350; local 7382"
-          }
-        },
-        {
-          "name": "SINGSON-MEEHAN, KRISTINE",
-          "contact": {
-            "contact": "loc. 7573; 8931-5926"
           }
         },
         {
@@ -431,6 +431,36 @@
           "contact": {
             "contact": "8951-3011; local 7265"
           }
+        },
+        {
+          "name": "SUAREZ, DAVID \"JAY-JAY\" C.",
+          "contact": {
+            "contact": "8931-5956; local 7367"
+          }
+        },
+        {
+          "name": "ARENAS, MARIA RACHEL J.",
+          "contact": {
+            "contact": "8931-5667; local 7236"
+          }
+        },
+        {
+          "name": "FRASCO, VINCENT FRANCO \"DUKE\" D.",
+          "contact": {
+            "contact": "8952-6032; local 7712"
+          }
+        },
+        {
+          "name": "BENITEZ, ALFREDO \"ALBEE\" B.",
+          "contact": {
+            "contact": "8283-8926; local 7906"
+          }
+        },
+        {
+          "name": "ALVAREZ, MERCEDES K.",
+          "contact": {
+            "contact": "8931-6640; local 7211"
+          }
         }
       ],
       "majority_floor_leader": {
@@ -452,9 +482,9 @@
         }
       },
       "senior_deputy_minority_floor_leader": {
-        "name": "ERICE, EDGAR R.",
+        "name": "DE LIMA, LEILA M.",
         "contact": {
-          "contact": "8931-6615; local 7300"
+          "contact": "8931-6074; local 7343"
         }
       }
     },
@@ -467,9 +497,8 @@
       },
       {
         "province_city": "City of Antipolo",
-        "name": "ACOP, ROMEO M.",
-        "district": "2nd District",
-        "contact": "8442-4034; local 7974"
+        "name": "ACOP, PHILIP CONRAD M.",
+        "district": "2nd District"
       },
       {
         "province_city": "Palawan",
@@ -659,9 +688,8 @@
       },
       {
         "province_city": "Cavite",
-        "name": "BARZAGA, FRANCISCO \"KIKO\" A.",
-        "district": "4th District",
-        "contact": "8951-8881; local 7003"
+        "name": "BARZAGA, JENNIFER \"JENNY\" A.",
+        "district": "4th District"
       },
       {
         "province_city": "Agusan Del Sur",
@@ -1097,9 +1125,9 @@
       },
       {
         "province_city": "Batanes",
-        "name": "GATO, CIRIACO B., JR., MD, FPSO-HNS",
+        "name": "VACANT",
         "district": "Lone",
-        "contact": "8931-7327; local 7270"
+        "vacancy": "Vacant since the death of Rep. Ciriaco B. Gato Jr. on 21 September 2026. COMELEC has set a special election for 28 November 2026."
       },
       {
         "province_city": "Isabela",
@@ -2041,14 +2069,17 @@
         "contact": "8951-8891; local 7011"
       },
       {
+        "party_list": "1TAHANAN",
+        "name": "CATULPOS, ELMER V."
+      },
+      {
         "party_list": "AKBAYAN",
         "name": "CENDAÑA, PERCIVAL \"PERCI\"",
         "contact": "8931-6730; local 7288"
       },
       {
         "party_list": "AKO BICOL",
-        "name": "CO, ELIZALDY S.",
-        "contact": "-; local 7787"
+        "name": "CHAN, JAN FRANZ NORBERT JOSELITO A."
       },
       {
         "party_list": "KABATAAN",
@@ -2071,6 +2102,10 @@
         "contact": "8931-6074; local 7343"
       },
       {
+        "party_list": "ANG PROBINSYANO",
+        "name": "DELOS SANTOS, ALFRED C."
+      },
+      {
         "party_list": "AKBAYAN",
         "name": "DIOKNO, JOSE MANUEL TADEO \"CHEL\" I.",
         "contact": "8931-6313; local 7280"
@@ -2084,6 +2119,10 @@
         "party_list": "COOP NATCCO",
         "name": "ESPARES, FELIMON M.",
         "contact": "8931-6229; local 7273"
+      },
+      {
+        "party_list": "ABONO",
+        "name": "ESTRELLA, ROBERT RAYMUND \"ESKIMO\" M."
       },
       {
         "party_list": "AKO BICOL",
@@ -2127,8 +2166,7 @@
       },
       {
         "party_list": "PINOY WORKERS",
-        "name": "LEGAZPI, FRANZ VINCENT F.",
-        "contact": "__; local __"
+        "name": "LEGAZPI, KARL FERNANDEZ"
       },
       {
         "party_list": "4PS",
@@ -2174,11 +2212,6 @@
         "party_list": "ASENSO PINOY",
         "name": "OAMINAL, HENRY \"INDY\" F. JR.",
         "contact": "8931-5116; local 7320"
-      },
-      {
-        "party_list": "1TAHANAN",
-        "name": "ODUCADO, NATHANIEL M.",
-        "contact": "8931-4709; local 7396"
       },
       {
         "party_list": "SENIOR CITIZENS PARTYLIST",
@@ -2231,6 +2264,10 @@
         "contact": "8931-8534; local 7216"
       },
       {
+        "party_list": "ACT-CIS",
+        "name": "SORIANO, JEFFREY"
+      },
+      {
         "party_list": "KUSUG TAUSUG",
         "name": "TAN, AIMAN T.",
         "contact": "8931-3488; local 7434"
@@ -2276,9 +2313,8 @@
         "contact": "8931-5442; local 7356"
       },
       {
-        "party_list": "ACT-CIS",
-        "name": "YAP, EDVIC G.",
-        "contact": "8931-6317; local 7234"
+        "party_list": "MURANG KURYENTE",
+        "name": "YAP, ARTHUR C."
       },
       {
         "party_list": "NANAY",
@@ -2327,7 +2363,7 @@
         },
         {
           "committee": "Climate Change",
-          "name": "ANIELA TOLENTINO"
+          "name": "ANNA VICTORIA VELOSO-TUAZON"
         },
         {
           "committee": "Constitutional Amendments",
@@ -2347,11 +2383,11 @@
         },
         {
           "committee": "Ecology",
-          "name": "VANVAN AUMENTADO"
+          "name": "ANIELA TOLENTINO"
         },
         {
           "committee": "Economic Affairs",
-          "name": "ANTONIO LEGARDA JR."
+          "name": "JULES LEDESMA"
         },
         {
           "committee": "Energy",
@@ -2363,7 +2399,7 @@
         },
         {
           "committee": "Flagship Programs and Projects",
-          "name": "JOSE ARTURO GARCIA JR."
+          "name": "KENNETH GATCHALIAN"
         },
         {
           "committee": "Foreign Affairs",
@@ -2387,7 +2423,7 @@
         },
         {
           "committee": "Health",
-          "name": "JUN GATO"
+          "name": "GISELLE MACEDA"
         },
         {
           "committee": "Higher and Technical Education",
@@ -2491,7 +2527,7 @@
         },
         {
           "committee": "Revision of Laws",
-          "name": "DINO TANJUATCO"
+          "name": "KING COLLANTES"
         },
         {
           "committee": "Rules",
@@ -2503,7 +2539,7 @@
         },
         {
           "committee": "Science and Technology",
-          "name": "JULES LEDESMA"
+          "name": "JESS MARQUEZ"
         },
         {
           "committee": "Senior Citizens",
@@ -2519,7 +2555,7 @@
         },
         {
           "committee": "Sustainable Development Goals",
-          "name": "JOSE MANUEL ALBA"
+          "name": "PHILIP CONRAD ACOP"
         },
         {
           "committee": "Tourism",
@@ -2582,7 +2618,7 @@
       },
       {
         "committee": "Globalization and WTO",
-        "chairperson": "ALEXIE TUTOR"
+        "chairperson": "QUEENIE GONZALES"
       },
       {
         "committee": "Land Use",
@@ -2598,7 +2634,7 @@
       },
       {
         "committee": "Persons with Disabilities",
-        "chairperson": "ALFEL BASCUG"
+        "chairperson": "DIMSZAR SALI"
       },
       {
         "committee": "Reforestation",
@@ -2620,7 +2656,7 @@
     "secretariat_officials": [
       {
         "role": "Secretary General",
-        "name": "REGINALD S. VELASCO",
+        "name": "CHELOY E. VELICARIA-GARAFIL",
         "office": "Office of the Secretary General",
         "contact": "loc. 7459, 7498, 7762; 8931-6216; 8931-6298",
         "email": "secretary-general@house.gov.ph"
@@ -2634,7 +2670,7 @@
       },
       {
         "role": "Sergeant-at-Arms",
-        "name": "PMGEN. NAPOLEON C. TAAS",
+        "name": "BGEN. FERDINAND MELCHOR C. DE LA CRUZ (RET.)",
         "office": "Office of the Sergeant-at-Arms",
         "contact": "loc. 7511, 7537; 8931-5808; 8931-6137",
         "email": "osaa@house.gov.ph"

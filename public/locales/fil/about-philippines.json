@@ -1,8 +1,33 @@
 {
   "about": {
     "hero": {
+      "eyebrow": "Pilipinas · Panimula",
       "title": "Tungkol sa Pilipinas",
-      "description": "Tuklasin ang Perlas ng Silanganan, isang bansang mayaman sa kultura, kasaysayan, at likas na yaman na kumalat sa libu-libong isla."
+      "description": "Isang kapuluang bansa ng 7,641 isla sa Timog-Silangang Asya, na itinatag ng Saligang Batas ng 1987 bilang isang demokratiko at republikang Estado."
+    },
+    "factbox": {
+      "items": {
+        "islands": {
+          "num": "7,641",
+          "sub": "Isla",
+          "desc": "Nahahati sa tatlong pangunahing pangkat: Luzon, Visayas, at Mindanao."
+        },
+        "population": {
+          "num": "112.7M",
+          "sub": "Populasyon · Senso 2024",
+          "desc": "Ang opisyal na bilang noong 1 Hulyo 2024 ay 112,729,484 katao."
+        },
+        "area": {
+          "num": "300,000",
+          "sub": "km² na sukat",
+          "desc": "Tinatayang kabuuang lawak ng lupain ayon sa Philippine Statistics Authority."
+        },
+        "languages": {
+          "num": "2",
+          "sub": "Mga opisyal na wika",
+          "desc": "Itinatakda ng Saligang Batas ang Filipino at Ingles bilang mga opisyal na wika."
+        }
+      }
     },
     "facts": {
       "title": "Nakakamanghang Katotohanan",
@@ -30,11 +55,17 @@
       }
     },
     "overview": {
-      "title": "Buod",
+      "title": "Ano ang Pilipinas",
+      "meta": "Heograpiya · Mamamayan · Saligang Batas",
+      "pullquote": {
+        "body": "Ang Pilipinas ay hindi iisang bansa sa iisang isla — ito ay isang usapang kalat sa tatlong libong isla, sa walumpu't higit pang wika, at tinuldikan ng mga habagat.",
+        "source": "— Sanaysay, Komisyon sa Wikang Filipino · 2023"
+      },
       "paragraphs": [
-        "Ang Pilipinas ay isang soberanong kapuluang bansa na matatagpuan sa Timog-Silangang Asya, na binubuo ng mahigit 7,641 isla. Pinangalanan ayon kay Haring Felipe II ng Espanya, ang bansa ay may mayamang kasaysayan na umabot sa libu-libong taon, mula sa sinaunang katutubo kultura hanggang sa panahon ng pananakop ng mga Espanyol at Amerikano, na humantong sa kalayaan nito noong 1946.",
-        "Sa kasalukuyan, ang Pilipinas ay isa sa mga pinaka-dynamic na ekonomiya sa Timog-Silangang Asya, na pinagsasama ang tradisyonal na pagpapahalaga sa modernong pag-unlad. Kilala ang bansa sa malugod na pagtanggap sa kapwa, magkakaibang pamana sa kultura, kahanga-hangang likas na tanawin, at masigla na demokrasya.",
-        "Ang kulturang Pilipino ay isang natatanging paghahalo ng impluwensyang katutubo, Asyano, Europeo, at Amerikano, na makikita sa sining, musika, pagluluto, at mga tradisyon. Ang mga iba't ibang natatanging uri ng hayop at kapaligiran ay isa sa mga dahilan kung bakit ang Pilipinas ay isa sa mga pinaka-importanteng bansa sa mundo."
+        "Ang Pilipinas ay isang soberanong kapuluang bansa sa Timog-Silangang Asya. Ang 7,641 isla nito ay nahahati sa tatlong pangunahing pangkat: Luzon, Visayas, at Mindanao. Maynila ang kabisera, at ang Pambansang Punong Rehiyon ang sentro ng pamahalaan.",
+        "Binilang ng Philippine Statistics Authority ang 112,729,484 katao sa Senso ng Populasyon noong 2024. Saklaw ng bilang ang 18 administratibong rehiyon at kabilang ang mga Pilipino sa mga embahada, konsulado, at misyon sa ibang bansa.",
+        "Ipinahayag ng Pilipinas ang kalayaan mula sa Espanya noong 12 Hunyo 1898. Kinilala ng Estados Unidos ang kalayaan ng Pilipinas noong 4 Hulyo 1946. Itinakda naman ng Batas Republika Blg. 4166 ang 12 Hunyo bilang Araw ng Kalayaan.",
+        "Itinatakda ng Saligang Batas ng 1987 na ang Pilipinas ay isang demokratiko at republikang Estado. Filipino ang pambansang wika, at Filipino at Ingles ang mga opisyal na wika para sa komunikasyon at pagtuturo."
       ]
     },
     "keyInformation": {
@@ -70,13 +101,31 @@
         "regions": "Mga Rehiyon",
         "tourism": "Turismo"
       }
+    },
+    "symbols": {
+      "title": "Mga pambansang simbolo",
+      "meta": "Itinatag ng Batas Republika 8491 at Mga Proklamasyon"
+    },
+    "government": {
+      "title": "Pamahalaan sa isang sulyap",
+      "directoryCta": "Silipin ang Direktoryo ng Ahensya →"
+    },
+    "explore": {
+      "title": "Tuklasin ang Pilipinas"
     }
   },
   "history": {
     "hero": {
+      "eyebrow": "Pilipinas · Timeline",
       "title": "Kasaysayan ng Pilipinas",
-      "description": "Maglakbay sa panahon at tuklasin ang mga nakakamanghang pangyayari, tao, at kilusang bumuo sa bansang Pilipinas.",
+      "description": "Mula sa mga unang bakas ng tao hanggang sa mga pamayanang pandagat, panahon ng kolonyalismo, at malayang republika: tuklasin ang mga pangyayaring humubog sa Pilipinas.",
       "photoCredit": "Photo credit"
+    },
+    "entriesSectionLabel": "Mga piniling pangyayari",
+    "entriesSectionMeta": "17 sandali · prehistoriko hanggang makabago",
+    "scholarNote": {
+      "title": "Pagbasa sa mga tala ng kasaysayan",
+      "body": "Tinatayang petsa ang ginagamit para sa mga sinaunang tuklas. Iba’t ibang uri ng ebidensiya ang ibinibigay ng mga dokumento, bagay at tradisyong pasalita. Maaaring magbago ang mga interpretasyon habang umuunlad ang pananaliksik."
     },
     "timeline": {
       "title": "Timeline ng Kasaysayan",

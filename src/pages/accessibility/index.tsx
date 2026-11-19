@@ -1,407 +1,251 @@
-import {
-  AlertCircleIcon,
-  CheckCircleIcon,
-  EyeIcon,
-  GlobeIcon,
-  InfoIcon,
-  KeyboardIcon,
-  MailIcon,
-  MousePointerIcon,
-  PhoneIcon,
-  SmartphoneIcon,
-  Volume2Icon,
-} from 'lucide-react';
 import { FC } from 'react';
-import SEO from '../../components/SEO';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { CheckIcon, MinusIcon } from 'lucide-react';
+import PageMasthead from '../../components/v2/layout/PageMasthead';
+import Container from '../../components/v2/ui/Container';
+import SectionHeader from '../../components/v2/ui/SectionHeader';
+import ArrowLink from '../../components/v2/ui/ArrowLink';
+import { ISSUES_URL, SITE_NAME, SITE_URL } from '../../lib/brand';
+import {
+  ACCESSIBILITY_CHECKLIST,
+  ACCESSIBILITY_REVIEW,
+  ACCESSIBILITY_SAMPLE,
+  AccessibilityStatus,
+} from '../../data/accessibility';
 
-const AccessibilityPage: FC = () => {
-  const accessibilityFeatures = [
-    {
-      icon: <EyeIcon className='h-6 w-6' />,
-      title: 'Visual Accessibility',
-      features: [
-        'High contrast color schemes',
-        'Scalable text and UI elements',
-        'Alternative text for all images',
-        'Clear visual hierarchy and layout',
-        'Support for screen readers',
-      ],
-    },
-    {
-      icon: <KeyboardIcon className='h-6 w-6' />,
-      title: 'Keyboard Navigation',
-      features: [
-        'Full keyboard navigation support',
-        'Visible focus indicators',
-        'Logical tab order',
-        'Skip links for main content',
-        'Keyboard shortcuts for common actions',
-      ],
-    },
-    {
-      icon: <Volume2Icon className='h-6 w-6' />,
-      title: 'Audio & Screen Reader Support',
-      features: [
-        'Compatible with NVDA, JAWS, and VoiceOver',
-        'Proper heading structure',
-        'Descriptive link text',
-        'Form labels and instructions',
-        'Live region announcements',
-      ],
-    },
-    {
-      icon: <MousePointerIcon className='h-6 w-6' />,
-      title: 'Motor Accessibility',
-      features: [
-        'Large click targets (minimum 44px)',
-        'Drag and drop alternatives',
-        'Timeout extensions available',
-        'Error prevention and correction',
-        'Multiple ways to complete tasks',
-      ],
-    },
-    {
-      icon: <SmartphoneIcon className='h-6 w-6' />,
-      title: 'Mobile Accessibility',
-      features: [
-        'Responsive design for all devices',
-        'Touch-friendly interface',
-        'Zoom support up to 200%',
-        'Portrait and landscape orientation',
-        'Voice input compatibility',
-      ],
-    },
-    {
-      icon: <GlobeIcon className='h-6 w-6' />,
-      title: 'Language & Cognitive Support',
-      features: [
-        'Clear and simple language',
-        'Consistent navigation patterns',
-        'Multiple language support',
-        'Content structure with headings',
-        'Help and documentation available',
-      ],
-    },
-  ];
-
-  const wcagCompliance = [
-    {
-      level: 'WCAG 2.1 Level AA',
-      status: 'compliant',
-      description:
-        'We strive to meet WCAG 2.1 Level AA standards for web accessibility.',
-    },
-    {
-      level: 'Section 508',
-      status: 'compliant',
-      description:
-        'Our website follows Section 508 guidelines for federal accessibility requirements.',
-    },
-    {
-      level: 'EN 301 549',
-      status: 'partial',
-      description:
-        'We are working towards full compliance with European accessibility standards.',
-    },
-  ];
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'compliant':
-        return <CheckCircleIcon className='h-5 w-5 text-green-600' />;
-      case 'partial':
-        return <AlertCircleIcon className='h-5 w-5 text-yellow-600' />;
-      default:
-        return <InfoIcon className='h-5 w-5 text-blue-600' />;
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'compliant':
-        return 'bg-green-50 border-green-200';
-      case 'partial':
-        return 'bg-yellow-50 border-yellow-200';
-      default:
-        return 'bg-blue-50 border-blue-200';
-    }
-  };
-
-  return (
-    <div className='min-h-screen bg-gray-50 py-12'>
-      <SEO
-        title='Accessibility Statement | BetterGov.ph'
-        description="Learn about BetterGov.ph's commitment to web accessibility, including WCAG compliance, accessibility features, and how to request assistance."
-        keywords={[
-          'accessibility',
-          'WCAG',
-          'screen reader',
-          'keyboard navigation',
-          'inclusive design',
-          'disability support',
-        ]}
-      />
-
-      <div className='container mx-auto px-4'>
-        <div className='max-w-4xl mx-auto'>
-          {/* Header */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8 border-b border-gray-200'>
-              <h1 className='text-3xl font-bold text-gray-900 mb-4'>
-                Accessibility Statement
-              </h1>
-              <p className='text-lg text-gray-800'>
-                BetterGov.ph is committed to ensuring digital accessibility for
-                people with disabilities. We are continually improving the user
-                experience for everyone and applying the relevant accessibility
-                standards.
-              </p>
-            </div>
-          </div>
-
-          {/* Commitment Section */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
-                Our Commitment
-              </h2>
-              <div className='prose prose-lg text-gray-800'>
-                <p>
-                  We believe that everyone should have equal access to
-                  government information and services. Our website is designed
-                  to be accessible to all users, including those who rely on
-                  assistive technologies such as screen readers, voice
-                  recognition software, and keyboard navigation.
-                </p>
-                <p>
-                  We are committed to providing an inclusive experience that
-                  allows all users to access Philippine government information,
-                  services, and resources with ease and independence.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Accessibility Features */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
-                Accessibility Features
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                {accessibilityFeatures.map((feature, index) => (
-                  <div
-                    key={index}
-                    className='border border-gray-200 rounded-lg p-6'
-                  >
-                    <div className='flex items-center mb-4'>
-                      <div className='p-2 rounded-md bg-primary-50 text-primary-600 mr-3'>
-                        {feature.icon}
-                      </div>
-                      <h3 className='text-lg font-semibold text-gray-900'>
-                        {feature.title}
-                      </h3>
-                    </div>
-                    <ul className='space-y-2'>
-                      {feature.features.map((item, itemIndex) => (
-                        <li key={itemIndex} className='flex items-start'>
-                          <CheckCircleIcon className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
-                          <span className='text-sm text-gray-800'>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Standards Compliance */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
-                Standards Compliance
-              </h2>
-              <div className='space-y-4'>
-                {wcagCompliance.map((standard, index) => (
-                  <div
-                    key={index}
-                    className={`border rounded-lg p-4 ${getStatusColor(
-                      standard.status
-                    )}`}
-                  >
-                    <div className='flex items-center mb-2'>
-                      {getStatusIcon(standard.status)}
-                      <h3 className='text-lg font-semibold text-gray-900 ml-2'>
-                        {standard.level}
-                      </h3>
-                    </div>
-                    <p className='text-gray-800'>{standard.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Keyboard Shortcuts */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
-                Keyboard Shortcuts
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div className='space-y-3'>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>
-                      Skip to main content
-                    </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Tab
-                    </kbd>
-                  </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>
-                      Navigate links
-                    </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Tab / Shift+Tab
-                    </kbd>
-                  </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>
-                      Activate link/button
-                    </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Enter / Space
-                    </kbd>
-                  </div>
-                </div>
-                <div className='space-y-3'>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>Search</span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Ctrl+K
-                    </kbd>
-                  </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>
-                      Close modal/menu
-                    </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Escape
-                    </kbd>
-                  </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
-                    <span className='font-medium text-gray-900'>
-                      Navigate menu items
-                    </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
-                      Arrow Keys
-                    </kbd>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Feedback and Support */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
-                Feedback and Support
-              </h2>
-              <div className='prose prose-lg text-gray-800 mb-6'>
-                <p>
-                  We welcome your feedback on the accessibility of BetterGov.ph.
-                  If you encounter accessibility barriers or have suggestions
-                  for improvement, please let us know.
-                </p>
-              </div>
-
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <div className='border border-gray-200 rounded-lg p-6'>
-                  <div className='flex items-center mb-4'>
-                    <MailIcon className='h-6 w-6 text-primary-600 mr-3' />
-                    <h3 className='text-lg font-semibold text-gray-900'>
-                      Email Support
-                    </h3>
-                  </div>
-                  <p className='text-gray-800 mb-3'>
-                    Send us your accessibility feedback or request assistance.
-                  </p>
-                  <a
-                    href='mailto:accessibility@bettergov.ph'
-                    className='text-primary-600 hover:text-primary-700 font-medium'
-                  >
-                    accessibility@bettergov.ph
-                  </a>
-                </div>
-
-                <div className='border border-gray-200 rounded-lg p-6'>
-                  <div className='flex items-center mb-4'>
-                    <PhoneIcon className='h-6 w-6 text-primary-600 mr-3' />
-                    <h3 className='text-lg font-semibold text-gray-900'>
-                      Phone Support
-                    </h3>
-                  </div>
-                  <p className='text-gray-800 mb-3'>
-                    Call us for immediate accessibility assistance.
-                  </p>
-                  <a
-                    href='tel:+63-2-8888-1000'
-                    className='text-primary-600 hover:text-primary-700 font-medium'
-                  >
-                    +63 (2) 8888-1000
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Alternative Formats */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
-                Alternative Formats
-              </h2>
-              <div className='prose prose-lg text-gray-800'>
-                <p>
-                  If you need information from this website in an alternative
-                  format, such as:
-                </p>
-                <ul>
-                  <li>Large print documents</li>
-                  <li>Audio recordings</li>
-                  <li>Braille format</li>
-                  <li>Easy-read versions</li>
-                  <li>Different language translations</li>
-                </ul>
-                <p>
-                  Please contact us using the information above, and we will
-                  work to provide the content in a format that meets your needs
-                  within a reasonable timeframe.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Last Updated */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
-            <div className='p-6 md:p-8 text-center'>
-              <p className='text-sm text-gray-800'>
-                This accessibility statement was last updated on{' '}
-                <time dateTime='2025-09-08'>September 8, 2025</time>.
-              </p>
-              <p className='text-sm text-gray-800 mt-2'>
-                We review and update this statement regularly to ensure it
-                remains accurate and current.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+const STATUS: Record<AccessibilityStatus, { label: string; style: string }> = {
+  supported: {
+    label: 'Supported',
+    style: 'border-ed-sage bg-ed-sage text-white',
+  },
+  improve: {
+    label: 'Needs improvement',
+    style: 'border-ed-red-ink text-ed-red-ink',
+  },
+  unverified: {
+    label: 'Not yet verified',
+    style: 'border-ed-ink-3 text-ed-ink-3',
+  },
 };
+
+const AccessibilityPage: FC = () => (
+  <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+    <Helmet>
+      <title>Accessibility Checklist | {SITE_NAME}</title>
+      <meta
+        name='description'
+        content='Our accessibility checklist: what BETTERGOV.PH supports in tested pages, known barriers, and the work still needed towards WCAG 2.2 Level AA.'
+      />
+      <link rel='canonical' href={`${SITE_URL}/accessibility`} />
+    </Helmet>
+
+    <PageMasthead
+      title='Accessibility checklist'
+      lede='Government information should be usable by everyone. Here is what we have checked, where barriers remain, and what we want to achieve.'
+    />
+
+    <Container narrow className='py-10 md:py-14'>
+      <section aria-labelledby='commitment-heading'>
+        <p className='mb-3 font-mono-ed text-xs text-ed-ink-2'>
+          Last reviewed{' '}
+          <time dateTime={ACCESSIBILITY_REVIEW.date}>
+            {ACCESSIBILITY_REVIEW.label}
+          </time>
+        </p>
+        <h2
+          id='commitment-heading'
+          className='font-serif-ed text-2xl font-semibold'
+        >
+          Our goal: {ACCESSIBILITY_REVIEW.target}
+        </h2>
+        <p className='mt-4 max-w-3xl text-base leading-relaxed text-ed-ink-2'>
+          We are working towards the{' '}
+          <a
+            className='text-ed-navy underline underline-offset-4'
+            href='https://www.w3.org/TR/WCAG22/'
+          >
+            Web Content Accessibility Guidelines
+          </a>
+          . We have not yet established full conformance. A checked item means
+          the specific check passed within the review scope below; it is not a
+          certification of the whole website.
+        </p>
+
+        <dl className='mt-8 grid divide-y divide-ed-rule border-y border-ed-rule sm:grid-cols-3 sm:divide-x sm:divide-y-0'>
+          {ACCESSIBILITY_CHECKLIST.map(group => (
+            <div
+              key={group.id}
+              className='flex items-baseline gap-3 py-5 sm:block sm:px-5 first:sm:pl-0'
+            >
+              <dt className='order-2 text-sm text-ed-ink-2 sm:mb-2'>
+                {STATUS[group.id].label}
+              </dt>
+              <dd className='font-serif-ed text-3xl font-semibold tabular-nums'>
+                {group.items.length}
+                <span className='ml-2 font-sans-ed text-xs font-normal text-ed-ink-2'>
+                  items
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className='mt-3 text-sm text-ed-ink-2'>
+          These counts track this checklist, not a percentage of WCAG
+          compliance.
+        </p>
+      </section>
+
+      <nav
+        aria-label='Accessibility checklist sections'
+        className='my-8 flex flex-wrap gap-x-6 gap-y-3 text-sm'
+      >
+        <a
+          className='text-ed-navy underline underline-offset-4'
+          href='#supported'
+        >
+          Supported
+        </a>
+        <a
+          className='text-ed-navy underline underline-offset-4'
+          href='#improve'
+        >
+          Needs improvement
+        </a>
+        <a
+          className='text-ed-navy underline underline-offset-4'
+          href='#unverified'
+        >
+          Still to verify
+        </a>
+        <a className='text-ed-navy underline underline-offset-4' href='#review'>
+          Review scope
+        </a>
+      </nav>
+
+      <div className='space-y-14'>
+        {ACCESSIBILITY_CHECKLIST.map(group => (
+          <section key={group.id} id={group.id} className='scroll-mt-6'>
+            <SectionHeader label={group.label} />
+            <p className='mb-6 max-w-3xl text-[15px] leading-relaxed text-ed-ink-2'>
+              {group.description}
+            </p>
+            <ul className='divide-y divide-ed-rule border-y border-ed-rule'>
+              {group.items.map(item => (
+                <li
+                  key={item.id}
+                  id={item.id}
+                  className='flex scroll-mt-6 gap-4 py-6 md:gap-5'
+                >
+                  <span
+                    aria-hidden='true'
+                    className={`mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border-2 ${STATUS[group.id].style}`}
+                  >
+                    {group.id === 'supported' && (
+                      <CheckIcon size={16} strokeWidth={3} />
+                    )}
+                    {group.id === 'improve' && <MinusIcon size={14} />}
+                  </span>
+                  <div className='min-w-0 max-w-3xl'>
+                    <p className='mb-1 text-xs font-semibold uppercase tracking-wide text-ed-ink-2'>
+                      {STATUS[group.id].label}
+                    </p>
+                    <h3 className='font-serif-ed text-lg font-semibold leading-snug'>
+                      {item.title}
+                    </h3>
+                    <p className='mt-2 text-[15px] leading-relaxed text-ed-ink-2'>
+                      {item.detail}
+                    </p>
+                    {item.next && (
+                      <p className='mt-3 text-[15px] leading-relaxed text-ed-ink-2'>
+                        <strong className='font-semibold text-ed-ink'>
+                          Next step:{' '}
+                        </strong>
+                        {item.next}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+      <section
+        id='review'
+        className='mt-14 scroll-mt-6 border-t-2 border-ed-ink pt-8'
+      >
+        <SectionHeader label='What this review covers' />
+        <div className='max-w-3xl space-y-4 text-[15px] leading-relaxed text-ed-ink-2'>
+          <p>
+            On {ACCESSIBILITY_REVIEW.label}, we tested nine pages in the local
+            development build using Chromium, Playwright, and axe-core.
+            Automated scans covered desktop (1440 × 1000) and mobile-sized (390
+            × 844) viewports, with separate layout checks at 320 and 720 CSS
+            pixels. These are browser simulations, not tests on physical phones.
+          </p>
+          <p>
+            The review checks default page states, page titles, image markup,
+            search labels, and selected keyboard and motion behaviours.
+            Automated checks still find barriers on Home, Services, Government
+            directory, Search, and Contact. The Coming soon, Accessibility,
+            Design accessibility, and About pages have no detected axe
+            violations in these default states.
+          </p>
+          <p>
+            Weather, currency, and search data were unavailable in the local
+            review. Their fully loaded states still need testing.
+          </p>
+        </div>
+        <ul
+          className='mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm'
+          aria-label='Pages included in the review'
+        >
+          {ACCESSIBILITY_SAMPLE.map(sample => (
+            <li key={sample.path}>
+              <Link
+                className='text-ed-navy underline underline-offset-4'
+                to={sample.path}
+              >
+                {sample.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className='mt-6 max-w-3xl text-[15px] leading-relaxed text-ed-ink-2'>
+          Automated tools cannot establish accessibility on their own. Some
+          contrast checks, including off-screen directory cells, require human
+          review. We have not completed screen-reader testing, a full WCAG
+          evaluation, or testing of linked agency sites, documents, and every
+          interactive state. A live site may differ from this build.
+        </p>
+        <div className='mt-5'>
+          <ArrowLink to='/design/accessibility'>
+            Testing guidance for contributors
+          </ArrowLink>
+        </div>
+      </section>
+
+      <section className='mt-14 border-t border-ed-rule pt-8'>
+        <SectionHeader label='Report a barrier or ask for help' />
+        <p className='max-w-3xl text-[15px] leading-relaxed text-ed-ink-2'>
+          Tell us which page you were using, what you were trying to do, and
+          what got in the way. Include your browser and assistive technology if
+          you can. Please leave personal or sensitive information out of public
+          reports.
+        </p>
+        <div className='mt-5 flex flex-col items-start gap-4'>
+          <ArrowLink to={ISSUES_URL} external>
+            Report an accessibility barrier on GitHub
+          </ArrowLink>
+          <ArrowLink to='/contact'>
+            Find contact and assistance options
+          </ArrowLink>
+        </div>
+      </section>
+    </Container>
+  </main>
+);
 
 export default AccessibilityPage;

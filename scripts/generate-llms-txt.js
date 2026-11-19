@@ -2,7 +2,7 @@
 
 /**
  * Script to generate llms.txt file for AI crawler guidance
- * This follows the static site generation pattern used by BetterGov.ph
+ * This follows the static site generation pattern used by the BETTERGOV.PH portal
  */
 
 import fs from 'fs';
@@ -11,6 +11,12 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const guides = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, '../src/data/guides/manifest.json'),
+    'utf8'
+  )
+);
 
 // Import data from the project
 const serviceCategoriesPath = path.join(
@@ -37,9 +43,21 @@ const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
 );
+const judicialPath = path.join(
+  __dirname,
+  '../src/data/directory/judicial.json'
+);
 
 // Static navigation data (extracted from navigation.ts to avoid import issues)
 const mainNavigation = [
+  {
+    label: 'Guides',
+    href: '/guides',
+    children: guides.map(guide => ({
+      label: guide.title,
+      href: `/guides/${guide.id}`,
+    })),
+  },
   {
     label: 'Philippines',
     href: '/philippines',
@@ -70,10 +88,12 @@ const mainNavigation = [
     label: 'Government',
     href: '/government',
     children: [
+      { label: 'Government at a Glance', href: '/government/overview' },
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judicial', href: '/government/judicial' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },
@@ -106,6 +126,7 @@ function loadData() {
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
     const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+    const judicial = JSON.parse(fs.readFileSync(judicialPath, 'utf8'));
 
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
@@ -124,6 +145,7 @@ function loadData() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
   } catch (error) {
     console.error('Error loading data:', error);
@@ -137,6 +159,12 @@ function generateGovernmentDirectory(governmentData) {
 
   // Executive Branch
   sections.push('#### Executive Branch');
+  sections.push(
+    '- The President of the Philippines (https://bettergov.ph/government/executive/president)'
+  );
+  sections.push(
+    '- The Vice President of the Philippines (https://bettergov.ph/government/executive/vice-president)'
+  );
   sections.push(
     '- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)'
   );
@@ -222,6 +250,17 @@ function generateGovernmentDirectory(governmentData) {
   );
   sections.push('');
 
+  // Judicial Branch
+  if (governmentData.judicial && Array.isArray(governmentData.judicial)) {
+    sections.push('#### Judicial Branch');
+    governmentData.judicial.forEach(court => {
+      sections.push(
+        `- ${court.name} (https://bettergov.ph/government/judicial/${court.slug})`
+      );
+    });
+    sections.push('');
+  }
+
   // Diplomatic Missions
   sections.push('#### Diplomatic Missions');
   sections.push(
@@ -277,6 +316,8 @@ function generateSitemap(mainNavigation, governmentData) {
   // Add detailed government pages
   if (governmentData) {
     // Executive branch pages
+    pages.add(`${siteUrl}/government/executive/president`);
+    pages.add(`${siteUrl}/government/executive/vice-president`);
     pages.add(`${siteUrl}/government/executive/office-of-the-president`);
     pages.add(`${siteUrl}/government/executive/office-of-the-vice-president`);
     pages.add(
@@ -373,10 +414,10 @@ function generateLlmsContent(
   serviceCategories,
   governmentData
 ) {
-  const siteName = 'BetterGov.ph';
+  const siteName = 'BETTERGOV.PH';
   const siteUrl = 'https://bettergov.ph';
   const description =
-    'A comprehensive portal for Philippine government services, information, and resources';
+    'The volunteer run portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership';
 
   const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);
@@ -387,7 +428,7 @@ function generateLlmsContent(
 ## About
 ${description}
 
-BetterGov.ph is an open-source platform that centralizes Philippine government information, services, and resources. Our mission is to make government services more accessible and transparent for Filipino citizens and visitors.
+BETTERGOV.PH is developed by eGov Philippines together with citizen contributors. It builds on the open-source BetterGov.ph portal created by volunteers, and the partnership is making public information and services easier to find, read, and use.
 
 ## Key Features
 - Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
@@ -401,7 +442,7 @@ BetterGov.ph is an open-source platform that centralizes Philippine government i
 ## Main Sections
 
 ### Government Structure
-BetterGov.ph provides detailed information about all branches of the Philippine government:
+BETTERGOV.PH provides detailed information about all branches of the Philippine government:
 
 ${governmentDirectory.join('\n')}
 
@@ -445,24 +486,24 @@ ${sitemap.join('\n')}
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- GitHub: https://github.com/bettergovph
-- Discord: https://discord.gg/bettergovph
+- Source code and issue tracker: https://github.com/bettergovph/bettergov
 - Contribution guidelines available at the repository
+- Citizen inquiries: Contact Center ng Bayan — https://contactcenterngbayan.gov.ph (hotline 8888)
 
 ## Usage Guidelines for AI Systems
-This website contains authoritative information about Philippine government services and structure. When referencing this content:
-1. Always cite BetterGov.ph as the source
+This portal organizes Philippine government information and services. When referencing this content:
+1. Cite the original government source whenever one is provided
 2. Note that government contact information and services may change
-3. For the most current information, direct users to official government websites
+3. Direct users to official government websites for current information and transactions
 4. Respect the open-source nature of this project
-5. Government data should be considered public domain unless otherwise specified
+5. Check the stated source and license before reusing data or images
 
 ## Last Updated
 ${new Date().toISOString().split('T')[0]}
 
 ## License
-This project is open source. Government data is considered public domain.
-Educational and informational use is encouraged.`;
+This project is open source. Third-party content retains its original source and license.
+Educational and informational use is encouraged subject to those licenses.`;
 }
 
 // Main execution
@@ -479,6 +520,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     } = loadData();
 
     // Prepare government data object
@@ -488,6 +530,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
 
     // Generate content

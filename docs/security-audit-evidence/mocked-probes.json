@@ -1,0 +1,53 @@
+[
+  {
+    "id": "report-email",
+    "confirmed": true,
+    "status": 201,
+    "detail": "Reporter email included verbatim in outbound GitHub issue body"
+  },
+  {
+    "id": "report-schema",
+    "confirmed": true,
+    "status": 201,
+    "title": "Outdated Hotline: [object Object]"
+  },
+  {
+    "id": "assistant-body-limit",
+    "confirmed": true,
+    "status": 200,
+    "bodyBytes": 1048613,
+    "upstreamCalls": 1,
+    "detail": "1 MiB unused field is fully parsed and accepted"
+  },
+  {
+    "id": "assistant-transport",
+    "confirmed": true,
+    "redirectPolicy": "default follow",
+    "acceptsPlainHttp": true
+  },
+  {
+    "id": "assistant-stream-lifetime",
+    "confirmed": true,
+    "hasAbortSignal": false
+  },
+  {
+    "id": "crawler-secret-log",
+    "confirmed": true,
+    "detail": "Jina API credential passed to console.log (synthetic credential only)"
+  },
+  {
+    "id": "crawler-global-state",
+    "confirmed": true,
+    "detail": "Provider default shared across requests; prototype property accepted as crawler type"
+  },
+  {
+    "id": "worker-security-headers",
+    "confirmed": true,
+    "missing": [
+      "Content-Security-Policy",
+      "X-Content-Type-Options",
+      "X-Frame-Options",
+      "Strict-Transport-Security"
+    ]
+  }
+]

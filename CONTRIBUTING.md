@@ -1,4 +1,4 @@
-# Better Gov Contributing Guide
+# GOV.PH Portal Contributing Guide
 
 <a id="readme-top"></a>
 
@@ -9,7 +9,7 @@
       <a href="#welcome">Welcome</a>
     </li>
     <li>
-      <a href="#better-gov-overview">Better Gov Overview</a>
+      <a href="#project-overview">Project overview</a>
     </li>
     <li>
       <a href="#ground-rules">Ground Rules</a>
@@ -44,7 +44,7 @@
 
 ## Welcome
 
-Welcome to the Better Gov Contributing Guide and thank you for your interest in supporting the project!
+Welcome to the GOV.PH Portal Contributing Guide and thank you for your interest in supporting the project!
 
 We welcome contributions of all kinds. Whether you are a developer, designer, writer, or just someone with a great idea, there’s a place for you here.
 
@@ -59,10 +59,10 @@ Here are the types of contributions we currently accept and where to learn more 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Better Gov overview
+## Project overview
 
-Better Gov is a community-led initiative to create a better and more usable Philippine national government website.
-It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration.
+GOV.PH is the proposed portal of the Republic of the Philippines, developed through a community collaboration partnership between eGov Philippines and citizen contributors.
+It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration, and it builds on the volunteer-built BetterGov.ph portal.
 To learn more about our purpose and goals, please read the [README](./README.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -75,9 +75,10 @@ Before contributing, read our [CODE OF CONDUCT](./CODE_OF_CONDUCT.md) to learn m
 
 ## Community engagement
 
-Refer to the following channels to connect with fellow contributors or to stay up-to-date with news about the Better Gov:
+Work on the portal happens in the open on GitHub:
 
-- Join our project contributors on [Discord][discord].
+- Follow and discuss changes in [pull requests][pulls].
+- Track and report problems in [issues][issue-list].
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,9 +86,7 @@ Refer to the following channels to connect with fellow contributors or to stay u
 
 To share your new ideas for the project, perform the following actions:
 
-1. Reach out via email [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph)
-2. Discord Ideas Forum: ⁠[ideas](https://discord.com/channels/1415670958710325270/1418544879717318826)
-3. Submit ideas in [Github Discussions][discussions]
+1. Open an issue using the [Share your Idea][ideas] template.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,7 +148,7 @@ To set up your environment, perform the following actions:
 
 ### Setting up Search (Meilisearch)
 
-BetterGov uses Meilisearch to power its search functionality. To set up search for local development:
+The portal uses Meilisearch to power its search functionality. To set up search for local development:
 
 1. **Install and configure Meilisearch** - Follow the detailed setup guide in [docs/Meilisearch.md](./docs/Meilisearch.md#getting-started-with-meilisearch)
 2. **Index your data** - Load government services and directory data into the search engine
@@ -217,7 +216,15 @@ node scripts/validate-json-schema.js \
 node scripts/validate-json-schema.js \
   src/data/directory/lgu/schema/lgu-region.schema.json \
   "src/data/directory/lgu/region-vi-western-visayas.json"
+
+# Validate the government services files
+node scripts/validate-json-schema.js \
+  src/data/services/schema/services.schema.json \
+  "src/data/services/*.json"
 ```
+
+The services, categories and critical hotlines data is described in the
+[README](./README.md#services-categories-and-hotlines-data).
 
 Schema validation runs automatically in CI/CD when changes are made to:
 - JSON data files (`src/data/**/*.json`)
@@ -253,6 +260,17 @@ If you encounter issues as you set up your environment, refer to the following:
 ## Content style guide
 
 Read our {name and link to your style guide} to understand our guidelines for writing and formatting documents. The purpose of our style guide is to ensure consistency in the tone, voice, and structure of our documentation. -->
+
+## Licensing of contributions
+
+GOV.PH is dual-licensed (see the [License section of the README](README.md#license)):
+
+- **Code** you contribute is released under the [MIT License](LICENSE), like the rest of the code.
+- **Content** you contribute — text, data, translations, images — is published under [CC BY-NC-ND 4.0](LICENSE-CONTENT). That license does not allow sharing adapted versions, so two extra terms make content contributions possible:
+  - You may fork this repository and share modified copies on GitHub solely to propose changes to GOV.PH through pull requests.
+  - By submitting a content contribution, you confirm that you have the right to submit it, and you grant the GOV.PH project a perpetual, worldwide, royalty-free permission to use, edit and publish it under the project's licenses.
+
+The GOV.PH name and wordmark and the Coat of Arms of the Republic of the Philippines are not covered by either license.
 
 ## Contribution workflow
 
@@ -410,5 +428,6 @@ git push
 [commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [issues]: https://github.com/bettergovph/bettergov/issues/new
 [forking]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
-[discord]: https://discord.gg/mHtThpN8bT
-[discussions]: https://github.com/orgs/bettergovph/discussions
+[issue-list]: https://github.com/bettergovph/bettergov/issues
+[pulls]: https://github.com/bettergovph/bettergov/pulls
+[ideas]: https://github.com/bettergovph/bettergov/issues/new?template=share-your-idea.md

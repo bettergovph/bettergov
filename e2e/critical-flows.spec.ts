@@ -63,7 +63,7 @@ test.describe('Critical User Flows', () => {
 
     // Verify language changed (check for Filipino text)
     await expect(
-      page.getByText('Maligayang Pagdating sa BetterGov.ph')
+      page.getByText('Maligayang pagdating sa BETTERGOV.PH')
     ).toBeVisible();
 
     // Switch back to English
@@ -71,7 +71,7 @@ test.describe('Critical User Flows', () => {
     await languageSwitcher.selectOption('en');
 
     // Verify back to English
-    await expect(page.getByText('Welcome to BetterGov.ph')).toBeVisible();
+    await expect(page.getByText('Welcome to BETTERGOV.PH')).toBeVisible();
   });
 
   test('hotlines page should display emergency numbers', async ({ page }) => {

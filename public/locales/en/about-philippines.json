@@ -1,41 +1,115 @@
 {
   "about": {
     "hero": {
+      "eyebrow": "Philippines · An introduction",
       "title": "About the Philippines",
-      "description": "Discover the Pearl of the Orient Seas, a nation of vibrant culture, rich history, and natural wonders spread across thousands of islands."
+      "description": "An archipelagic country of 7,641 islands in Southeast Asia, organized under the 1987 Constitution as a democratic and republican State."
     },
-    "facts": {
-      "title": "Quick Facts",
+    "factbox": {
       "items": {
-        "geography": {
-          "title": "Geography",
-          "description": "An archipelago of over 7,641 islands located in Southeast Asia"
+        "islands": {
+          "num": "7,641",
+          "sub": "Islands",
+          "desc": "Grouped geographically into Luzon, Visayas, and Mindanao."
         },
         "population": {
-          "title": "Population",
-          "description": "Home to over 110 million people across diverse ethnic groups"
+          "num": "112.7M",
+          "sub": "Population · 2024 census",
+          "desc": "The official count as of 1 July 2024 was 112,729,484 people."
         },
-        "capital": {
-          "title": "Capital",
-          "description": "Manila serves as the capital, with Metro Manila as the economic center"
+        "area": {
+          "num": "300,000",
+          "sub": "km² total area",
+          "desc": "Approximate total land area reported by the Philippine Statistics Authority."
         },
-        "landscape": {
-          "title": "Landscape",
-          "description": "Features mountains, volcanoes, tropical rainforests, and beautiful beaches"
-        },
-        "climate": {
-          "title": "Climate",
-          "description": "Tropical maritime climate with three distinct seasons"
+        "languages": {
+          "num": "2",
+          "sub": "Official languages",
+          "desc": "The Constitution names Filipino and English as the official languages."
         }
       }
     },
     "overview": {
-      "title": "Overview",
+      "title": "What is the Philippines",
+      "meta": "Geography · People · Constitution",
       "paragraphs": [
-        "The Philippines is a sovereign archipelagic country located in Southeast Asia, comprising over 7,641 islands. Named after King Philip II of Spain, the country has a rich history spanning thousands of years, from ancient indigenous cultures to colonial periods under Spanish and American rule, leading to its independence in 1946.",
-        "Today, the Philippines stands as one of Southeast Asia's most dynamic economies, blending traditional values with modern development. The country is known for its warm hospitality, diverse cultural heritage, stunning natural landscapes, and vibrant democracy.",
-        "Filipino culture is a unique fusion of indigenous, Asian, European, and American influences, reflected in its art, music, cuisine, and traditions. The nation's biodiversity, featuring unique species and ecosystems, makes it one of the world's most environmentally significant countries."
+        "The Philippines is a sovereign archipelagic country in Southeast Asia. Its 7,641 islands are grouped geographically into Luzon, Visayas, and Mindanao. Manila is the capital, and the National Capital Region is the country's center of government.",
+        "The Philippine Statistics Authority counted 112,729,484 people in the 2024 Census of Population. The count covers the country's 18 administrative regions and includes Filipinos in Philippine embassies, consulates, and missions abroad.",
+        "The Philippines proclaimed independence from Spain on 12 June 1898. The United States recognized Philippine independence on 4 July 1946. Republic Act No. 4166 later designated 12 June as Philippine Independence Day.",
+        "The 1987 Constitution defines the Philippines as a democratic and republican State. It establishes Filipino as the national language and names Filipino and English as the official languages for communication and instruction."
       ]
+    },
+    "symbols": {
+      "title": "National symbols",
+      "meta": "Established by Republic Act 8491 & Presidential Proclamations",
+      "items": {
+        "flag": {
+          "label": "Flag",
+          "title": "Pambansang Watawat",
+          "desc": "The national flag has blue, white, and red fields, a golden-yellow sun with eight rays, and three five-pointed stars. Its design and proper use are set by Republic Act No. 8491.",
+          "imageAlt": "The national flag of the Philippines"
+        },
+        "anthem": {
+          "label": "National anthem",
+          "title": "Lupang Hinirang",
+          "desc": "Julián Felipe composed the music in 1898. The Filipino lyrics are based on José Palma's Spanish poem “Filipinas,” and Republic Act No. 8491 prescribes the anthem's official form.",
+          "imageAlt": "Vocal sheet music for the Philippine national anthem, Lupang Hinirang"
+        },
+        "seal": {
+          "label": "Coat of arms",
+          "title": "Coat of arms of the Philippines",
+          "desc": "Republic Act No. 8491 prescribes the coat of arms and the Great Seal. The Great Seal is used on commissions signed by the President and on other official documents when required.",
+          "imageAlt": "The coat of arms of the Republic of the Philippines"
+        },
+        "bird": {
+          "label": "National bird",
+          "title": "Pithecophaga jefferyi",
+          "desc": "Proclamation No. 615 declared the endemic Philippine eagle the national bird in 1995 and directed government agencies to support its conservation and protection.",
+          "imageAlt": "A Philippine eagle perched against a soft green background"
+        },
+        "tree": {
+          "label": "National tree",
+          "title": "Pterocarpus indicus",
+          "desc": "Proclamation No. 652 declared the narra the national tree in 1934. It is a native hardwood species found in the Philippines and elsewhere in Southeast Asia.",
+          "imageAlt": "The leafy canopy and trunk of a mature narra tree"
+        },
+        "flower": {
+          "label": "National flower",
+          "title": "Jasminum sambac",
+          "desc": "Proclamation No. 652 declared the sampaguita the national flower in 1934. The small white jasmine is widely cultivated for its fragrant blossoms.",
+          "imageAlt": "White sampaguita flowers among glossy green leaves"
+        }
+      }
+    },
+    "explore": {
+      "title": "Explore the Philippines",
+      "items": {
+        "history": {
+          "title": "History",
+          "desc": "From Tabon Man to the Third Republic — a 700,000-year timeline.",
+          "href": "/philippines/history"
+        },
+        "culture": {
+          "title": "Culture",
+          "desc": "Languages, fiestas, food, faith, and craft across the islands.",
+          "href": "/philippines/culture"
+        },
+        "regions": {
+          "title": "Regions",
+          "desc": "18 administrative regions: from Ilocos to BARMM.",
+          "href": "/philippines/regions"
+        },
+        "map": {
+          "title": "Map",
+          "desc": "The archipelago at a glance — major islands, seas, and cities.",
+          "href": "/philippines/map"
+        },
+        "government": {
+          "title": "Government",
+          "desc": "Understand the three branches, constitutional commissions, and local government.",
+          "href": "/government/overview"
+        }
+      }
     },
     "keyInformation": {
       "title": "Key Information",
@@ -74,9 +148,245 @@
   },
   "history": {
     "hero": {
+      "eyebrow": "Philippines · A timeline",
       "title": "History of the Philippines",
-      "description": "Journey through time and discover the rich tapestry of events, people, and movements that shaped the Philippine nation.",
-      "photoCredit": "Photo credit"
+      "description": "From the earliest traces of human activity to maritime communities, colonial encounters and an independent republic: explore the events that shaped the Philippines.",
+      "photoCredit": "Photo credit",
+      "cta": "Explore the timeline"
+    },
+    "eras": [
+      {
+        "id": "early-peoples",
+        "yr": "Before 900 CE",
+        "title": "Early peoples",
+        "blurb": "Archaeological evidence of life in the archipelago."
+      },
+      {
+        "id": "maritime-societies",
+        "yr": "900–1565",
+        "title": "Maritime societies",
+        "blurb": "Trade, local communities and encounters across the seas."
+      },
+      {
+        "id": "colonial-period",
+        "yr": "1565–1898",
+        "title": "Colonial rule & revolution",
+        "blurb": "Spanish administration and the movement for independence."
+      },
+      {
+        "id": "war-and-commonwealth",
+        "yr": "1898–1946",
+        "title": "War & Commonwealth",
+        "blurb": "American rule, the Commonwealth and the Second World War."
+      },
+      {
+        "id": "independent-republic",
+        "yr": "1946–1986",
+        "title": "An independent republic",
+        "blurb": "Postwar independence, martial law and political transition."
+      },
+      {
+        "id": "contemporary-philippines",
+        "yr": "1987–present",
+        "title": "Contemporary Philippines",
+        "blurb": "Constitutional government, local governance and regional autonomy."
+      }
+    ],
+    "entriesSectionLabel": "Selected entries",
+    "entriesSectionMeta": "17 selected events",
+    "scholarNote": {
+      "title": "Reading the historical record",
+      "body": "Dates for prehistoric finds are approximate. Written accounts, objects and oral traditions offer different kinds of evidence, and interpretations can change as research develops."
+    },
+    "entries": [
+      {
+        "id": "early-human-presence",
+        "chapter": "early-peoples",
+        "yr": "About 709,000 years ago",
+        "title": "Early human activity",
+        "body": "Stone tools and rhinoceros bones bearing cut marks, excavated in Kalinga, provide evidence of early hominin activity in Luzon. The species responsible has not been identified.",
+        "sources": [
+          "archaeology"
+        ]
+      },
+      {
+        "id": "tabon",
+        "chapter": "early-peoples",
+        "yr": "Tens of thousands of years ago",
+        "title": "The Tabon Cave discoveries",
+        "body": "Excavations at the Tabon Cave Complex in Palawan uncovered early Homo sapiens remains and evidence of toolmaking and burial practices. Finds from different periods help researchers study the long human history of the islands.",
+        "sources": [
+          "archaeology"
+        ]
+      },
+      {
+        "id": "copperplate",
+        "chapter": "maritime-societies",
+        "yr": "900 CE",
+        "title": "Laguna Copperplate Inscription",
+        "body": "This copperplate records the settlement of a debt. Its language and script show connections between communities in the archipelago and the wider trading world of Southeast Asia.",
+        "sources": [
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "islam",
+        "chapter": "maritime-societies",
+        "yr": "14th–15th centuries",
+        "title": "Islam and the southern sultanates",
+        "body": "Islam spread through trade and religious networks in the southern islands. Muslim communities and, later, sultanates became important centers of political, commercial and religious life.",
+        "sources": [
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "mactan",
+        "chapter": "maritime-societies",
+        "yr": "1521",
+        "title": "Magellan’s expedition and Mactan",
+        "body": "The expedition led by Ferdinand Magellan reached the archipelago while sailing for Spain. Magellan died at Mactan in a battle with forces led by Lapulapu. Permanent Spanish settlement began decades later.",
+        "sources": [
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "spanish-settlement",
+        "chapter": "colonial-period",
+        "yr": "1565–1571",
+        "title": "Spanish settlement and administration",
+        "body": "Miguel López de Legazpi established a Spanish settlement in Cebu in 1565. Manila became the colonial capital in 1571. Spanish administration expanded unevenly across the islands, alongside communities that maintained their independence.",
+        "sources": [
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "revolution",
+        "chapter": "colonial-period",
+        "yr": "1896",
+        "title": "Philippine Revolution",
+        "body": "The Katipunan, founded in 1892 with Andrés Bonifacio among its organizers, began an armed revolution against Spanish colonial rule. The conflict led to revolutionary governments and the declaration of independence in 1898.",
+        "sources": [
+          "independence",
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "independence-declared",
+        "chapter": "colonial-period",
+        "yr": "12 June 1898",
+        "title": "Declaration of independence",
+        "body": "Philippine independence was proclaimed at Emilio Aguinaldo’s home in Kawit, Cavite. The Philippine flag was displayed and Julián Felipe’s march, which became the national anthem, was performed.",
+        "sources": [
+          "independence"
+        ]
+      },
+      {
+        "id": "treaty-of-paris",
+        "chapter": "war-and-commonwealth",
+        "yr": "1898–1902",
+        "title": "Treaty of Paris and the Philippine-American War",
+        "body": "Under the Treaty of Paris, Spain ceded the Philippines to the United States. Filipino forces contested American sovereignty, and war began in 1899. Although the United States declared the war ended in 1902, armed resistance continued in some areas.",
+        "sources": [
+          "american"
+        ]
+      },
+      {
+        "id": "commonwealth",
+        "chapter": "war-and-commonwealth",
+        "yr": "15 November 1935",
+        "title": "Commonwealth inaugurated",
+        "body": "Following the 1934 Tydings–McDuffie Act, the Commonwealth was inaugurated as a transitional government toward independence. Manuel L. Quezon served as its first president.",
+        "sources": [
+          "american"
+        ]
+      },
+      {
+        "id": "world-war-two",
+        "chapter": "war-and-commonwealth",
+        "yr": "1941–1945",
+        "title": "War and Japanese occupation",
+        "body": "Japan invaded in December 1941. The occupation brought widespread loss of life and destruction, including the Bataan Death March and the Battle of Manila. Filipino guerrillas and Allied forces fought in the campaign to end the occupation.",
+        "sources": [
+          "american",
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "independence-recognized",
+        "chapter": "independent-republic",
+        "yr": "4 July 1946",
+        "title": "Independence recognized",
+        "body": "The United States recognized Philippine independence, and Manuel Roxas became president of the Third Republic. The annual Independence Day observance later shifted to June 12 to commemorate the 1898 declaration.",
+        "sources": [
+          "american"
+        ]
+      },
+      {
+        "id": "martial-law",
+        "chapter": "independent-republic",
+        "yr": "1972–1981",
+        "title": "Declaration of martial law",
+        "body": "President Ferdinand E. Marcos placed the Philippines under martial law through Proclamation No. 1081, dated 21 September 1972, citing rebellion and threats to public order. The period brought expanded presidential powers, restrictions on the press and civil liberties, and documented human rights violations. Martial law was formally lifted on 17 January 1981 through Proclamation No. 2045; Marcos remained president until February 1986.",
+        "sources": [
+          "proclamation1081",
+          "proclamation2045",
+          "recognition"
+        ]
+      },
+      {
+        "id": "edsa",
+        "chapter": "independent-republic",
+        "yr": "22–25 February 1986",
+        "title": "EDSA People Power Revolution",
+        "body": "Large civilian demonstrations, following a disputed presidential election and the withdrawal of support by key military officials, led to a change in government. Corazon C. Aquino took office on February 25, and Ferdinand E. Marcos left the country.",
+        "sources": [
+          "sourcebook"
+        ]
+      },
+      {
+        "id": "constitution",
+        "chapter": "contemporary-philippines",
+        "yr": "1987",
+        "title": "The 1987 Constitution",
+        "body": "Ratified in a national plebiscite, the Constitution established the framework for the present presidential system. It provides for a Bill of Rights, three branches of government, constitutional commissions and limits on the exercise of public power.",
+        "sources": [
+          "constitution"
+        ]
+      },
+      {
+        "id": "local-government",
+        "chapter": "contemporary-philippines",
+        "yr": "1991",
+        "title": "Local Government Code",
+        "body": "Republic Act No. 7160 transferred specified functions, responsibilities and resources to local governments. It remains a central framework for how provinces, cities, municipalities and barangays deliver public services.",
+        "sources": [
+          "localGovernment"
+        ]
+      },
+      {
+        "id": "bangsamoro",
+        "chapter": "contemporary-philippines",
+        "yr": "2019",
+        "title": "Establishment of BARMM",
+        "body": "Following plebiscites on the Bangsamoro Organic Law, the Bangsamoro Autonomous Region in Muslim Mindanao replaced the ARMM. The law provides for a parliamentary regional government within the Philippine constitutional system.",
+        "sources": [
+          "bangsamoro"
+        ]
+      }
+    ],
+    "nextCards": {
+      "culture": {
+        "eyebrow": "Continue exploring · Culture",
+        "title": "History lives on.",
+        "desc": "Discover the languages, food, celebrations and creative traditions carried into the present.",
+        "cta": "Explore culture"
+      },
+      "regions": {
+        "eyebrow": "Also see · Regions",
+        "title": "18 regions across three island groups",
+        "desc": "From Ilocos Norte to BARMM — how the archipelago is organized today.",
+        "cta": "Browse regions"
+      }
     },
     "timeline": {
       "title": "Historical Timeline",
@@ -161,7 +471,21 @@
         "regions": "Regions",
         "tourism": "Tourism"
       }
-    }
+    },
+    "navigationLabel": "Historical eras",
+    "intro": {
+      "eyebrow": "The past, in perspective",
+      "title": "Many communities. An interconnected history.",
+      "body": "The history of the Philippines reaches far beyond the founding of the republic. Archaeology, written records and community traditions reveal different experiences across the archipelago. This timeline introduces selected events and links to records for further reading."
+    },
+    "milestones": {
+      "eyebrow": "Two dates in context",
+      "title": "Declaration and recognition of independence",
+      "declaration": "On 12 June 1898, independence was proclaimed in Kawit, Cavite. June 12 is observed as Philippine Independence Day.",
+      "recognition": "On 4 July 1946, the United States formally recognized the independence of the Republic of the Philippines."
+    },
+    "sourcesTitle": "Sources & further reading",
+    "sourcesDescription": "Selected institutional references and primary documents. Dates and events are presented as an introduction to a wider historical record."
   },
   "regions": {
     "hero": {

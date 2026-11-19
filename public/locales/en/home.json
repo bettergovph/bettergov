@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "eyebrow": "BETTERGOV.PH",
+    "eyebrowEst": "Est. 2024",
+    "title": "Welcome to BETTERGOV.PH",
+    "lede": "The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.",
+    "startHere": "Start here",
+    "prompt": "What do you need from the government?",
+    "placeholder": "e.g. renew my passport",
+    "searchCta": "Search",
+    "popular": "Popular",
+    "statsServices": "services indexed",
+    "statsAgencies": "agencies tracked"
+  },
+  "categories": {
+    "label": "Services by category",
+    "meta": "{{count}} services · across {{domains}} domains",
+    "explore": "Explore",
+    "items": [
+      {
+        "id": "travel",
+        "label": "Travel & Identification",
+        "count": 14,
+        "desc": "Passports, visas, NBI clearance, driver's license."
+      },
+      {
+        "id": "tax",
+        "label": "Taxes & Revenue",
+        "count": 22,
+        "desc": "BIR filing, TIN, business permits, customs."
+      },
+      {
+        "id": "health",
+        "label": "Health & Welfare",
+        "count": 18,
+        "desc": "PhilHealth, DOH programs, vaccines, hospitals."
+      },
+      {
+        "id": "social",
+        "label": "Social Security",
+        "count": 11,
+        "desc": "SSS, GSIS, Pag-IBIG, pensions and benefits."
+      },
+      {
+        "id": "education",
+        "label": "Education",
+        "count": 16,
+        "desc": "DepEd, CHED, TESDA, scholarships, school forms."
+      },
+      {
+        "id": "business",
+        "label": "Business & Trade",
+        "count": 19,
+        "desc": "DTI, SEC, registration, licenses, exports."
+      },
+      {
+        "id": "justice",
+        "label": "Justice & Legal",
+        "count": 9,
+        "desc": "Courts, notarization, barangay certificates."
+      },
+      {
+        "id": "labor",
+        "label": "Labor & Employment",
+        "count": 12,
+        "desc": "DOLE, OWWA, POEA, work permits, OFW."
+      }
+    ]
+  },
+  "movement": {
+    "label": "The BetterGov movement",
+    "eyebrow": "Volunteer-run · Open source",
+    "title": "Built by volunteers, in the open",
+    "lede": "BetterGov.ph is a volunteer-driven civic technology and open-source movement making Philippine government data accessible, understandable, and actionable.",
+    "body": "Developers, researchers and organizers build this portal and other free public tools in the open, and anyone can join.",
+    "learnMore": "Learn more about BetterGov",
+    "volunteer": "Join the movement",
+    "stats": {
+      "discord": "members in the BetterGov Discord",
+      "contributors": "contributors: developers, researchers, organizers and more",
+      "tools": "free public tools, from the budget portal to Juris.ph"
+    },
+    "source": "Figures from about.bettergov.ph, as of 16 October 2026"
+  },
+  "mostRequested": {
+    "label": "Most requested this week",
+    "updatedLabel": "Updated",
+    "mostSearched": "Most Searched",
+    "featureAgency": "Department of Foreign Affairs",
+    "featureMeta": "14-step guide",
+    "featureTitle": "Renew or apply for a Philippine passport.",
+    "featureImageAlt": "A burgundy Philippine passport with gold lettering on a light stone surface",
+    "featureLede": "The plain-language walkthrough for every passport situation — first-time, renewal, lost, minor, senior, and OFW. Updated April 2026.",
+    "featureTime": "10–15 days",
+    "featureFee": "₱950 base fee",
+    "featureAppointment": "Appointment required",
+    "alsoTrending": "Also trending",
+    "browseAll": "Browse all 486 services"
+  },
+  "newsAndHolidays": {
+    "label": "News, advisories & the calendar",
+    "newsroom": "Full newsroom →",
+    "holidaysEyebrow": "The Calendar",
+    "holidaysTitle": "Upcoming holidays",
+    "seeAllHolidays": "See all {{count}} holidays",
+    "hotlinesEyebrow": "Hotlines",
+    "hotlinesTitle": "When you need help now",
+    "hotlinesAll": "All national hotlines",
+    "unavailable": "Latest news is unavailable right now.",
+    "readTime_one": "{{count}} min read",
+    "readTime_other": "{{count}} min read"
+  },
+  "transparency": {
+    "label": "Where public money goes",
+    "portal": "People's Budget Portal ↗",
+    "eyebrow": "FY 2026 · General Appropriations Act",
+    "totalSuffix": "billion",
+    "description": "The national budget, plainly broken down by department. Every peso accounted for, sourced from the DBM's official publication.",
+    "explore": "Explore the budget",
+    "download": "CSV"
+  },
+  "egovApp": {
+    "badge": "Available on iOS, Android & App Gallery",
+    "title": "Start Using eGovPH Today",
+    "lede": "Used by millions of Filipinos nationwide. Join them and experience government services like never before."
+  }
+}

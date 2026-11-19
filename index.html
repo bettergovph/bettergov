@@ -17,18 +17,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Link previews. Crawlers (Facebook, X, LinkedIn, Slack, Viber) don't
+         run JavaScript, so these site-wide defaults are all they see.
+         data-rh hands each tag to react-helmet, which swaps in the per-page
+         version in the browser instead of duplicating it. No og:url here: a
+         static one would point every shared page at the home page. -->
+    <title>
+      BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines
+    </title>
+    <meta
+      name="description"
+      content="The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+      data-rh="true"
+    />
+    <meta property="og:site_name" content="BETTERGOV.PH" data-rh="true" />
+    <meta property="og:type" content="website" data-rh="true" />
+    <meta
+      property="og:title"
+      content="BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines"
+      data-rh="true"
+    />
+    <meta
+      property="og:description"
+      content="The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
+      data-rh="true"
+    />
     <meta
       property="og:image"
-      content="/logos/jpg/BetterGov_Vertical-White.jpg"
+      content="https://bettergov.ph/og-image.png"
+      data-rh="true"
     />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="768" />
-    <meta property="og:image:height" content="768" />
-    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The BetterGov.ph logo above the line: The volunteer run portal of the Republic of the Philippines"
+    />
+    <meta name="twitter:card" content="summary_large_image" data-rh="true" />
   </head>
 
   <body>

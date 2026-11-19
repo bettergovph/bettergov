@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "eyebrow": "BETTERGOV.PH",
+    "eyebrowEst": "Itinatag noong 2024",
+    "title": "Maligayang pagdating sa BETTERGOV.PH",
+    "lede": "Ang volunteer-run portal ng Republika ng Pilipinas. Maghanap ng impormasyon, ma-access ang mga serbisyo ng pamahalaan, at manatiling updated sa pinakabagong balita tungkol sa Pilipinas.",
+    "startHere": "Simula",
+    "prompt": "Ano ang kailangan mo sa pamahalaan?",
+    "placeholder": "hal. mag-renew ng pasaporte",
+    "searchCta": "Hanapin",
+    "popular": "Sikat",
+    "statsServices": "serbisyo",
+    "statsAgencies": "ahensya"
+  },
+  "categories": {
+    "label": "Mga serbisyo sa kategorya",
+    "meta": "{{count}} serbisyo · sa {{domains}} kategorya",
+    "explore": "Tuklasin",
+    "items": [
+      {
+        "id": "travel",
+        "label": "Biyahe at Pagkakakilanlan",
+        "count": 14,
+        "desc": "Pasaporte, visa, NBI clearance, lisensya sa pagmamaneho."
+      },
+      {
+        "id": "tax",
+        "label": "Buwis at Kita",
+        "count": 22,
+        "desc": "BIR, TIN, permit sa negosyo, customs."
+      },
+      {
+        "id": "health",
+        "label": "Kalusugan at Kapakanan",
+        "count": 18,
+        "desc": "PhilHealth, DOH, bakuna, ospital."
+      },
+      {
+        "id": "social",
+        "label": "Social Security",
+        "count": 11,
+        "desc": "SSS, GSIS, Pag-IBIG, pensiyon at benepisyo."
+      },
+      {
+        "id": "education",
+        "label": "Edukasyon",
+        "count": 16,
+        "desc": "DepEd, CHED, TESDA, iskolarship, porma sa eskwela."
+      },
+      {
+        "id": "business",
+        "label": "Negosyo at Kalakalan",
+        "count": 19,
+        "desc": "DTI, SEC, rehistro, lisensya, export."
+      },
+      {
+        "id": "justice",
+        "label": "Hustisya at Legal",
+        "count": 9,
+        "desc": "Korte, notaryo, sertipiko ng barangay."
+      },
+      {
+        "id": "labor",
+        "label": "Paggawa at Empleyo",
+        "count": 12,
+        "desc": "DOLE, OWWA, POEA, work permit, OFW."
+      }
+    ]
+  },
+  "movement": {
+    "label": "Ang kilusang BetterGov",
+    "eyebrow": "Pinapatakbo ng mga boluntaryo · Open source",
+    "title": "Binuo ng mga boluntaryo, bukas sa lahat",
+    "lede": "Ang BetterGov.ph ay isang kilusan ng mga boluntaryo para sa civic technology at open source na naglalayong gawing abot-kamay, madaling maunawaan, at kapaki-pakinabang ang datos ng pamahalaan ng Pilipinas.",
+    "body": "Mga developer, researcher, at organizer ang bumubuo sa portal na ito at sa iba pang libreng pampublikong tool, nang bukas sa lahat. Puwedeng sumali ang kahit sino.",
+    "learnMore": "Alamin ang tungkol sa BetterGov",
+    "volunteer": "Sumali sa kilusan",
+    "stats": {
+      "discord": "miyembro sa Discord ng BetterGov",
+      "contributors": "contributor: mga developer, researcher, organizer, at iba pa",
+      "tools": "libreng pampublikong tool, mula sa budget portal hanggang Juris.ph"
+    },
+    "source": "Mga bilang mula sa about.bettergov.ph, noong 16 Oktubre 2026"
+  },
+  "mostRequested": {
+    "label": "Pinakahinihiling ngayong linggo",
+    "updatedLabel": "Na-update",
+    "mostSearched": "Pinakahahanap",
+    "featureAgency": "Department of Foreign Affairs",
+    "featureMeta": "14-hakbang na gabay",
+    "featureTitle": "Mag-renew o mag-apply ng Philippine passport.",
+    "featureImageAlt": "Kulay burgundy na pasaporte ng Pilipinas na may gintong mga titik sa ibabaw ng mapusyaw na bato",
+    "featureLede": "Ang malinaw na gabay sa bawat sitwasyon ng pasaporte — unang beses, renewal, nawala, menor de edad, senior, at OFW.",
+    "featureTime": "10–15 araw",
+    "featureFee": "₱950 base fee",
+    "featureAppointment": "Kinakailangan ng appointment",
+    "alsoTrending": "Iba pang sikat",
+    "browseAll": "Silipin ang lahat ng 486 na serbisyo"
+  },
+  "newsAndHolidays": {
+    "label": "Balita, abiso at kalendaryo",
+    "newsroom": "Buong newsroom →",
+    "holidaysEyebrow": "Ang Kalendaryo",
+    "holidaysTitle": "Mga darating na pista opisyal",
+    "seeAllHolidays": "Tingnan ang lahat ng {{count}} holidays",
+    "hotlinesEyebrow": "Hotline",
+    "hotlinesTitle": "Kapag kailangan mo ng tulong ngayon",
+    "hotlinesAll": "Lahat ng hotline",
+    "unavailable": "Hindi available ang pinakabagong balita sa ngayon.",
+    "readTime_one": "{{count}} minutong basa",
+    "readTime_other": "{{count}} minutong basa"
+  },
+  "transparency": {
+    "label": "Saan napupunta ang pera ng bayan",
+    "portal": "People's Budget Portal ↗",
+    "eyebrow": "FY 2026 · General Appropriations Act",
+    "totalSuffix": "bilyon",
+    "description": "Ang pambansang badyet, nilinaw ayon sa departamento. Bawat piso may pinagmulan, galing sa opisyal na dokumento ng DBM.",
+    "explore": "Silipin ang badyet",
+    "download": "CSV"
+  },
+  "egovApp": {
+    "badge": "Available sa iOS, Android at App Gallery",
+    "title": "Simulan ang Paggamit ng eGovPH Ngayon",
+    "lede": "Ginagamit ng milyun-milyong Pilipino sa buong bansa. Sumali at maranasan ang serbisyo ng pamahalaan na hindi mo pa naranasan."
+  }
+}

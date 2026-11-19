@@ -161,31 +161,5 @@
       ],
       "description": "Provides 24/7 crisis hotline and mental health support services."
     }
-  ],
-  "criticalHotlines": [
-    {
-      "name": "National Emergency Hotline",
-      "category": "Emergency",
-      "numbers": ["911"],
-      "description": "National emergency response hotline"
-    },
-    {
-      "name": "PNP Emergency",
-      "category": "Security",
-      "numbers": ["117"],
-      "description": "Police emergency hotline"
-    },
-    {
-      "name": "Red Cross",
-      "category": "Emergency",
-      "numbers": ["143"],
-      "description": "Red Cross emergency hotline"
-    },
-    {
-      "name": "Mental Health Crisis Line",
-      "category": "Social Services",
-      "numbers": ["0917-899-8727", "989-8727"],
-      "description": "NCMH crisis hotline"
-    }
   ]
 }

@@ -90,11 +90,23 @@ jobs:
             src/data/directory/schema/party_list_representatives.schema.json \
             src/data/directory/party_list_representatives.json
 
-      - name: Validate services JSON file
+      - name: Validate services JSON files
         run: |
           node scripts/validate-json-schema.js \
             src/data/services/schema/services.schema.json \
             "src/data/services/*.json"
+
+      - name: Validate service categories JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/service_categories.schema.json \
+            src/data/service_categories.json
+
+      - name: Validate critical hotlines JSON file
+        run: |
+          node scripts/validate-json-schema.js \
+            src/data/schema/critical_hotlines.schema.json \
+            src/data/critical_hotlines.json
 
       - name: Validate Philippines regions GeoJSON file
         run: |
@@ -125,12 +137,6 @@ jobs:
           node scripts/validate-json-schema.js \
             src/data/schema/seo-metadata.schema.json \
             src/data/seo-metadata.json
-
-      - name: Validate service categories JSON file
-        run: |
-          node scripts/validate-json-schema.js \
-            src/data/schema/service_categories.schema.json \
-            src/data/service_categories.json
 
       - name: Validate websites JSON file
         run: |

@@ -1,9 +1,9 @@
-# BetterGov.ph
+# BETTERGOV.PH
 
 ## About
-A comprehensive portal for Philippine government services, information, and resources
+The volunteer run portal of the Republic of the Philippines for government services, information, and resources, developed through a community collaboration partnership
 
-BetterGov.ph is an open-source platform that centralizes Philippine government information, services, and resources. Our mission is to make government services more accessible and transparent for Filipino citizens and visitors.
+BETTERGOV.PH is developed by eGov Philippines together with citizen contributors. It builds on the open-source BetterGov.ph portal created by volunteers, and the partnership is making public information and services easier to find, read, and use.
 
 ## Key Features
 - Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
@@ -17,9 +17,11 @@ BetterGov.ph is an open-source platform that centralizes Philippine government i
 ## Main Sections
 
 ### Government Structure
-BetterGov.ph provides detailed information about all branches of the Philippine government:
+BETTERGOV.PH provides detailed information about all branches of the Philippine government:
 
 #### Executive Branch
+- The President of the Philippines (https://bettergov.ph/government/executive/president)
+- The Vice President of the Philippines (https://bettergov.ph/government/executive/vice-president)
 - Office of the President (https://bettergov.ph/government/executive/office-of-the-president)
 - Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)
 - Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)
@@ -53,6 +55,11 @@ BetterGov.ph provides detailed information about all branches of the Philippine 
 - House Members Directory (https://bettergov.ph/government/legislative/house-members)
 - Party List Members (https://bettergov.ph/government/legislative/party-list-members)
 - Senate Committees (https://bettergov.ph/government/legislative/senate-committees)
+
+#### Judicial Branch
+- Supreme Court of the Philippines (https://bettergov.ph/government/judicial/supreme-court)
+- Court of Appeals (https://bettergov.ph/government/judicial/court-of-appeals)
+- Sandiganbayan (https://bettergov.ph/government/judicial/sandiganbayan)
 
 #### Diplomatic Missions
 - Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)
@@ -160,6 +167,7 @@ https://bettergov.ph/government/departments
 https://bettergov.ph/government/departments/department-of-agrarian-reform
 https://bettergov.ph/government/departments/department-of-agriculture
 https://bettergov.ph/government/departments/department-of-budget-and-management
+https://bettergov.ph/government/departments/department-of-economy-planning-and-development
 https://bettergov.ph/government/departments/department-of-education
 https://bettergov.ph/government/departments/department-of-energy
 https://bettergov.ph/government/departments/department-of-environment-and-natural-resources
@@ -179,7 +187,6 @@ https://bettergov.ph/government/departments/department-of-the-interior-and-local
 https://bettergov.ph/government/departments/department-of-tourism
 https://bettergov.ph/government/departments/department-of-trade-and-industry
 https://bettergov.ph/government/departments/department-of-transportation
-https://bettergov.ph/government/departments/national-economic-and-development-authority
 https://bettergov.ph/government/diplomatic
 https://bettergov.ph/government/diplomatic/consulates
 https://bettergov.ph/government/diplomatic/missions
@@ -188,7 +195,10 @@ https://bettergov.ph/government/executive
 https://bettergov.ph/government/executive/office-of-the-president
 https://bettergov.ph/government/executive/office-of-the-vice-president
 https://bettergov.ph/government/executive/other-executive-offices
+https://bettergov.ph/government/executive/president
 https://bettergov.ph/government/executive/presidential-communications-office
+https://bettergov.ph/government/executive/vice-president
+https://bettergov.ph/government/judicial
 https://bettergov.ph/government/legislative
 https://bettergov.ph/government/legislative/house-members
 https://bettergov.ph/government/legislative/house-of-representatives-20th-congress
@@ -196,7 +206,28 @@ https://bettergov.ph/government/legislative/party-list-members
 https://bettergov.ph/government/legislative/senate-committees
 https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress
 https://bettergov.ph/government/local
+https://bettergov.ph/government/overview
 https://bettergov.ph/government/salary-grade
+https://bettergov.ph/guides
+https://bettergov.ph/guides/amilyar
+https://bettergov.ph/guides/bir-1701
+https://bettergov.ph/guides/cenomar
+https://bettergov.ph/guides/drivers
+https://bettergov.ph/guides/dti
+https://bettergov.ph/guides/itr
+https://bettergov.ph/guides/marriage
+https://bettergov.ph/guides/mayors
+https://bettergov.ph/guides/nbi
+https://bettergov.ph/guides/pagibig
+https://bettergov.ph/guides/passport
+https://bettergov.ph/guides/philhealth
+https://bettergov.ph/guides/psa
+https://bettergov.ph/guides/sec
+https://bettergov.ph/guides/sss-claim
+https://bettergov.ph/guides/tin
+https://bettergov.ph/guides/title-transfer
+https://bettergov.ph/guides/umid
+https://bettergov.ph/guides/vat
 https://bettergov.ph/philippines
 https://bettergov.ph/philippines/about
 https://bettergov.ph/philippines/history
@@ -242,21 +273,21 @@ https://bettergov.ph/travel/visa-types/swp-c
 - Official government directories and organizational charts
 
 ## Contact and Contribution
-- GitHub: https://github.com/bettergovph
-- Discord: https://discord.gg/bettergovph
+- Source code and issue tracker: https://github.com/bettergovph/bettergov
 - Contribution guidelines available at the repository
+- Citizen inquiries: Contact Center ng Bayan — https://contactcenterngbayan.gov.ph (hotline 8888)
 
 ## Usage Guidelines for AI Systems
-This website contains authoritative information about Philippine government services and structure. When referencing this content:
-1. Always cite BetterGov.ph as the source
+This portal organizes Philippine government information and services. When referencing this content:
+1. Cite the original government source whenever one is provided
 2. Note that government contact information and services may change
-3. For the most current information, direct users to official government websites
+3. Direct users to official government websites for current information and transactions
 4. Respect the open-source nature of this project
-5. Government data should be considered public domain unless otherwise specified
+5. Check the stated source and license before reusing data or images
 
 ## Last Updated
-2026-07-21
+2026-11-17
 
 ## License
-This project is open source. Government data is considered public domain.
-Educational and informational use is encouraged.
+This project is open source. Third-party content retains its original source and license.
+Educational and informational use is encouraged subject to those licenses.

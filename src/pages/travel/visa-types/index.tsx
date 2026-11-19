@@ -1,227 +1,250 @@
-import { AlertCircleIcon, ChevronRightIcon, SearchIcon } from 'lucide-react';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { AlertCircleIcon, ArrowRightIcon, SearchIcon } from 'lucide-react';
 import visaData from '../../../data/visa/philippines_visa_types.json';
 import { VisaType } from '@/types/visa.ts';
 import { getCategoryIcon } from './visa.util';
+import Container from '../../../components/v2/ui/Container';
+import Eyebrow from '../../../components/v2/ui/Eyebrow';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import { cn } from '../../../lib/utils';
 
-interface VisaCategory {
+type VisaCategory = {
   id: string;
   name: string;
   description: string;
   icon: ReactNode;
   visaTypes: VisaType[];
-}
+};
 
 const VisaTypesPage: FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [q, setQ] = useState('');
   const [selectedCategory, setSelectedCategory] =
     useState<string>('non-immigrant');
 
-  // Use the categories from the consolidated JSON file
-  const visaCategories: VisaCategory[] = visaData.categories.map(category => ({
-    id: category.id,
-    name: category.name,
-    description: category.description,
-    icon: getCategoryIcon(category.id),
-    visaTypes: category.visaTypes,
-  }));
+  const categories: VisaCategory[] = useMemo(
+    () =>
+      visaData.categories.map(category => ({
+        id: category.id,
+        name: category.name,
+        description: category.description,
+        icon: getCategoryIcon(category.id),
+        visaTypes: category.visaTypes,
+      })),
+    []
+  );
 
-  // Handle category selection
-  const handleCategoryClick = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-  };
+  const filteredCategories = useMemo(() => {
+    if (!q.trim()) return categories;
+    const n = q.toLowerCase();
+    return categories
+      .map(c => ({
+        ...c,
+        visaTypes: c.visaTypes.filter(
+          v =>
+            v.name.toLowerCase().includes(n) ||
+            v.description.toLowerCase().includes(n)
+        ),
+      }))
+      .filter(c => c.visaTypes.length > 0);
+  }, [categories, q]);
 
-  // Filter visa types based on search term
-  const filteredCategories =
-    searchTerm.trim() === ''
-      ? visaCategories
-      : visaCategories
-          .map(category => ({
-            ...category,
-            visaTypes: category.visaTypes.filter(
-              visa =>
-                visa.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                visa.description
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-            ),
-          }))
-          .filter(category => category.visaTypes.length > 0);
-
-  // Get all visa types across categories for search results display
-  const allVisaTypes =
-    searchTerm.trim() !== ''
-      ? filteredCategories.flatMap(category => category.visaTypes)
-      : [];
+  const isSearching = q.trim().length > 0;
+  const allResults = isSearching
+    ? filteredCategories.flatMap(c => c.visaTypes)
+    : [];
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      {/* Hero Section */}
-      <div className='bg-linear-to-r from-blue-600 to-indigo-700 text-white py-12'>
-        <div className='container mx-auto max-w-6xl px-4'>
-          <h1 className='text-3xl md:text-4xl font-bold mb-2'>
-            Philippines Visa Types
-          </h1>
-          <p className='text-xl opacity-90 mb-6'>
-            Explore different types of visas available for travel to the
-            Philippines
-          </p>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <Helmet>
+        <title>Philippine Visa Types | BETTERGOV.PH</title>
+        <meta
+          name='description'
+          content='Visa categories for travel to the Philippines — tourist, non-immigrant, immigrant, and special visas.'
+        />
+      </Helmet>
 
-          {/* Search Box */}
-          <div className='max-w-lg bg-white rounded-lg shadow-md flex items-center p-2'>
-            <SearchIcon className='h-5 w-5 text-gray-400 ml-2' />
+      <PageMasthead
+        variant='hero'
+        title='Philippine visa types'
+        lede='Explore the different types of visas available for travel to the Philippines — grouped by category, each linking to the specific requirements, fees, and validity.'
+      />
+
+      {/* Search bar */}
+      <section className='border-b border-ed-rule bg-white'>
+        <Container className='py-5'>
+          <div className='relative max-w-xl'>
+            <SearchIcon
+              size={16}
+              className='pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ed-ink-4'
+            />
             <input
-              type='text'
-              placeholder='Search visa types...'
-              className='flex-1 p-2 outline-hidden text-gray-800'
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
+              type='search'
+              aria-label='Search visa types'
+              placeholder='Search visa types…'
+              value={q}
+              onChange={e => setQ(e.target.value)}
+              className='block w-full border border-ed-ink bg-white py-3 pl-10 pr-4 font-sans-ed text-[15px] text-ed-ink outline-none placeholder:text-ed-ink-4'
             />
           </div>
-        </div>
-      </div>
+        </Container>
+      </section>
 
-      <div className='container mx-auto max-w-6xl px-4 py-8'>
-        {/* Search Results Display */}
-        {searchTerm.trim() !== '' && (
-          <div className='mb-6'>
-            <h2 className='text-xl font-semibold text-gray-700 mb-4'>
-              Showing results for: &ldquo;{searchTerm}&rdquo;
-            </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              {allVisaTypes.map(visa => (
-                <Link
-                  to={`/travel/visa-types/${visa.id}`}
-                  key={visa.id}
-                  className='bg-white rounded-lg shadow-xs border border-gray-200 hover:shadow-md transition-shadow duration-200'
-                >
-                  <div className='p-4'>
-                    <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
-                      {visa.name}
-                      <ChevronRightIcon className='h-5 w-5 text-blue-500' />
-                    </h3>
-                    <p className='text-gray-800 text-sm mb-3 line-clamp-2'>
-                      {visa.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Main Content with Sidebar */}
-        {(searchTerm.trim() === '' || filteredCategories.length > 0) && (
-          <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
-            {/* Sidebar */}
-            <div className='md:col-span-1'>
-              <div className='bg-white rounded-lg shadow-xs border border-gray-200 md:sticky top-32 mb-8'>
-                <div className='p-4 border-b border-gray-200'>
-                  <h2 className='font-semibold text-lg text-gray-800'>
-                    Visa Categories
-                  </h2>
-                </div>
-                <nav className='p-2'>
-                  {visaCategories.map(category => (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategoryClick(category.id)}
-                      className={`w-full text-left flex items-center p-3 rounded-md transition-colors cursor-pointer ${
-                        selectedCategory === category.id
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      <span className='mr-3'>{category.icon}</span>
-                      <span>{category.name}</span>
-                    </button>
-                  ))}
-                </nav>
+      <section className='py-10 max-md:py-6'>
+        <Container>
+          {isSearching ? (
+            <>
+              <div className='mb-6'>
+                <Eyebrow>
+                  {allResults.length} results for &ldquo;{q}&rdquo;
+                </Eyebrow>
               </div>
-            </div>
+              {allResults.length === 0 ? (
+                <div className='border border-dashed border-ed-rule py-16 text-center font-serif-ed text-lg text-ed-ink-3'>
+                  No visa types match. Try another term.
+                </div>
+              ) : (
+                <div className='grid grid-cols-3 gap-0 border-t-2 border-ed-navy max-lg:grid-cols-2 max-sm:grid-cols-1'>
+                  {allResults.map(v => (
+                    <VisaCard key={v.id} visa={v} />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className='grid grid-cols-[260px_1fr] gap-12 max-lg:grid-cols-1 max-lg:gap-6'>
+              {/* Sidebar categories */}
+              <aside>
+                <div className='mb-3'>
+                  <Eyebrow>Categories</Eyebrow>
+                </div>
+                <nav className='flex flex-col border border-ed-rule bg-white max-lg:flex-row max-lg:flex-wrap max-lg:border-0'>
+                  {categories.map(c => {
+                    const active = c.id === selectedCategory;
+                    return (
+                      <button
+                        key={c.id}
+                        type='button'
+                        onClick={() => setSelectedCategory(c.id)}
+                        className={cn(
+                          'flex items-center gap-3 border-b border-ed-rule px-4 py-3 text-left font-serif-ed text-[15px] transition-colors last:border-b-0 max-lg:border-b-0 max-lg:border-r max-lg:last:border-r-0',
+                          active
+                            ? 'bg-ed-navy text-white'
+                            : 'text-ed-ink hover:bg-ed-navy-tint'
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            'shrink-0',
+                            active ? 'text-white' : 'text-ed-navy'
+                          )}
+                          aria-hidden
+                        >
+                          {c.icon}
+                        </span>
+                        <span>{c.name}</span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </aside>
 
-            {/* Main Content */}
-            <div className='md:col-span-3'>
-              {filteredCategories.map(
-                category =>
-                  (searchTerm.trim() !== '' ||
-                    category.id === selectedCategory) && (
-                    <div key={category.id} className='mb-8'>
-                      <div className='flex items-center mb-4'>
-                        <span className='mr-2'>{category.icon}</span>
-                        <h2 className='text-2xl font-bold text-gray-800'>
-                          {category.name}
-                        </h2>
+              {/* Category panel */}
+              <div>
+                {categories
+                  .filter(c => c.id === selectedCategory)
+                  .map(c => (
+                    <div key={c.id}>
+                      <div className='border-b border-ed-navy pb-3'>
+                        <div className='flex items-center gap-3'>
+                          <span className='text-ed-navy' aria-hidden>
+                            {c.icon}
+                          </span>
+                          <h2 className='m-0 font-serif-ed text-[32px] font-semibold leading-tight tracking-[-0.01em] text-ed-navy-ink max-md:text-[24px]'>
+                            {c.name}
+                          </h2>
+                        </div>
+                        <p className='mt-3 max-w-2xl font-sans-ed text-[17px] leading-relaxed text-ed-ink-2'>
+                          {c.description}
+                        </p>
                       </div>
-                      <p className='text-gray-800 mb-6'>
-                        {category.description}
-                      </p>
-
-                      {/* Visa Types Grid */}
-                      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        {category.visaTypes.map(visa => (
-                          <Link
-                            to={`/travel/visa-types/${visa.id}`}
-                            key={visa.id}
-                            className='bg-white rounded-lg shadow-xs border border-gray-200 hover:shadow-md transition-shadow duration-200'
-                          >
-                            <div className='p-4'>
-                              <h3 className='font-semibold text-lg text-gray-800 mb-2 flex items-center justify-between'>
-                                {visa.name}
-                                <ChevronRightIcon className='h-5 w-5 text-blue-500' />
-                              </h3>
-                              <p className='text-gray-800 text-sm mb-3'>
-                                {visa.description}
-                              </p>
-                            </div>
-                          </Link>
+                      <div className='mt-6 grid grid-cols-2 gap-0 max-sm:grid-cols-1'>
+                        {c.visaTypes.map(v => (
+                          <VisaCard key={v.id} visa={v} />
                         ))}
                       </div>
                     </div>
-                  )
-              )}
+                  ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <div className='mt-10 bg-blue-50 border border-blue-200 rounded-lg p-4'>
-          <div className='flex items-start'>
-            <AlertCircleIcon className='h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0' />
-            <div>
-              <h3 className='font-medium text-blue-800'>Important Notice</h3>
-              <p className='text-sm text-blue-700 mt-1'>
-                This information is provided for reference only. For the most
-                accurate and up-to-date visa requirements, please consult the
-                official{' '}
-                <a
-                  href='https://immigration.gov.ph/visas/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='underline hover:text-blue-900'
-                >
-                  Philippine Bureau of Immigration
-                </a>{' '}
-                or{' '}
-                <a
-                  href='https://dfa.gov.ph/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='underline hover:text-blue-900'
-                >
-                  Department of Foreign Affairs
-                </a>{' '}
-                website.
-              </p>
-              <p className='text-sm text-blue-700 mt-2'>
-                Last updated: {visaData.sourceInfo.lastUpdated}
-              </p>
+          {/* Source notice */}
+          <aside className='mt-12 border border-ed-rule-strong bg-ed-paper-2 p-7'>
+            <div className='flex items-start gap-3'>
+              <AlertCircleIcon
+                size={18}
+                className='mt-0.5 shrink-0 text-ed-navy'
+                aria-hidden
+              />
+              <div>
+                <div className='font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy'>
+                  Source note
+                </div>
+                <p className='mt-1.5 text-sm leading-relaxed text-ed-ink-2'>
+                  This information is provided for reference only. For the most
+                  accurate and up-to-date visa requirements, consult the
+                  official{' '}
+                  <a
+                    href='https://immigration.gov.ph/visas/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='border-b border-ed-navy pb-0.5 text-ed-navy no-underline hover:border-ed-red hover:text-ed-red'
+                  >
+                    Philippine Bureau of Immigration
+                  </a>{' '}
+                  or{' '}
+                  <a
+                    href='https://dfa.gov.ph/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='border-b border-ed-navy pb-0.5 text-ed-navy no-underline hover:border-ed-red hover:text-ed-red'
+                  >
+                    Department of Foreign Affairs
+                  </a>
+                  .
+                </p>
+                <p className='mt-2 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                  Last updated · {visaData.sourceInfo.lastUpdated}
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </aside>
+        </Container>
+      </section>
+    </main>
   );
 };
+
+const VisaCard: FC<{ visa: VisaType }> = ({ visa }) => (
+  <Link
+    to={`/travel/visa-types/${visa.id}`}
+    className='group block border border-ed-rule bg-white p-5 text-ed-ink no-underline transition-colors hover:border-ed-ink [.grid-cols-2_&]:border-r-0 [.grid-cols-2_&:nth-child(odd)]:border-r [.grid-cols-2_&:not(:last-child):not(:nth-last-child(2))]:border-b [.grid-cols-2_&]:last:border-b-0 [.grid-cols-3_&]:border-r-0 [.grid-cols-3_&:not(:nth-child(3n))]:border-r [.grid-cols-3_&:not(:nth-last-child(-n+3))]:border-b'
+  >
+    <div className='flex items-start justify-between gap-3'>
+      <h3 className='font-serif-ed text-[18px] font-semibold leading-tight text-ed-navy-ink'>
+        {visa.name}
+      </h3>
+      <ArrowRightIcon
+        size={14}
+        className='mt-1 shrink-0 text-ed-navy transition-transform group-hover:translate-x-1'
+      />
+    </div>
+    <p className='mt-2 line-clamp-3 text-sm leading-normal text-ed-ink-2'>
+      {visa.description}
+    </p>
+  </Link>
+);
 
 export default VisaTypesPage;

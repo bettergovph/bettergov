@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run generate:metadata && tsx ./scripts/write-ver-to-json.ts && vite build",
+    "build": "npm run generate:metadata && npm run build:app",
+    "build:app": "tsc && tsx ./scripts/write-ver-to-json.ts && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
+    "test:a11y": "playwright test --config playwright.a11y.config.ts",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
@@ -18,9 +20,9 @@
     "wrangler": "wrangler",
     "preview": "vite preview",
     "prepare": "husky",
-    "functions:dev": "wrangler dev ./functions/index.ts",
+    "functions:dev": "wrangler dev ./functions/index.ts --ip 127.0.0.1 --port 5525",
     "functions:build": "tsc -p ./functions/tsconfig.json",
-    "functions:deploy": "wrangler deploy ./functions/index.ts",
+    "functions:deploy": "wrangler deploy ./functions/index.ts --env \"\"",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",
     "index:meilisearch:reset": "node ./scripts/index_meilisearch.cjs --reset",
     "index:flood-control:arcgis": "node ./scripts/index_flood_control_arcgis.js",
@@ -32,7 +34,10 @@
     "fetch:contractor-profiles": "node ./scripts/fetch_contractor_profiles.cjs",
     "generate:llms-txt": "node ./scripts/generate-llms-txt.js",
     "generate:sitemap": "node ./scripts/generate-sitemap.js",
-    "generate:metadata": "npm run generate:llms-txt && npm run generate:sitemap"
+    "generate:metadata": "npm run generate:llms-txt && npm run generate:sitemap",
+    "cms:fetch": "npm run sync:talacms",
+    "sync:talacms": "tsx ./scripts/sync-talacms.ts",
+    "typecheck:scripts": "tsc --noEmit -p tsconfig.node.json"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.7.0",
@@ -45,6 +50,7 @@
     "clsx": "^2.1.0",
     "csv-parser": "^3.2.0",
     "date-fns": "^3.3.1",
+    "dompurify": "^3.4.13",
     "dotenv": "^16.5.0",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",
@@ -62,9 +68,11 @@
     "react-instantsearch": "^7.15.8",
     "react-leaflet": "^5.0.0",
     "react-leaflet-cluster": "^4.0.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^6.22.2",
     "react-world-flags": "^1.6.0",
     "recharts": "^2.15.3",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.2.1",
     "wrangler": "^4.19.1",
     "zod": "^4.1.11"
@@ -87,6 +95,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "ajv": "^8.20.0",
     "commander": "^13.1.0",
     "eslint": "^9.9.1",
     "eslint-config-prettier": "^10.1.8",
@@ -105,8 +114,8 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "uuid": "^9.0.1",
-    "vitest": "^4.1.4",
-    "vite": "^7.3.3"
+    "vite": "^7.3.3",
+    "vitest": "^4.1.4"
   },
   "overrides": {
     "ws": "8.20.1",

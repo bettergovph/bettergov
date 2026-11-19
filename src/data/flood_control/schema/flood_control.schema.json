@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bettergov.ph/schemas/flood_control.schema.json",
+  "$id": "https://www.gov.ph/schemas/flood_control.schema.json",
   "title": "Flood Control Projects",
   "description": "Schema for DPWH flood control infrastructure projects data from ArcGIS",
   "type": "object",

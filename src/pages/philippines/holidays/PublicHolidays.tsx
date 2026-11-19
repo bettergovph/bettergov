@@ -1,189 +1,250 @@
-import { FC } from 'react';
-import { Card, CardContent, CardHeader } from '../../../components/ui/Card';
-import { CalendarIcon } from 'lucide-react';
+import { FC, useMemo, useState } from 'react';
+import Container from '../../../components/v2/ui/Container';
+import Flag from '../../../components/v2/ui/Flag';
+import PageMasthead from '../../../components/v2/layout/PageMasthead';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import {
+  HOLIDAY_PAY,
+  HOLIDAY_TYPE_LABEL,
+  HOLIDAY_YEARS,
+  HOLIDAYS_VERIFIED_ON,
+  holidayParts,
+  isDayOff,
+  manilaToday,
+  type Holiday,
+  type HolidayType,
+} from '../../../data/holidays';
 
-interface Holiday {
-  event: string;
-  date: string;
-  day: string;
-}
+const FLAG_VARIANT: Record<HolidayType, 'navy' | 'default' | 'outline'> = {
+  regular: 'navy',
+  'special-non-working': 'default',
+  'special-working': 'outline',
+};
 
-const REGULAR_HOLIDAYS: Holiday[] = [
-  { event: "New Year's Day", date: 'January 1', day: 'Thursday' },
-  { event: 'Maundy Thursday', date: 'April 2', day: 'Thursday' },
-  { event: 'Good Friday', date: 'April 3', day: 'Friday' },
-  { event: 'Araw ng Kagitingan', date: 'April 9', day: 'Thursday' },
-  { event: 'Labor Day', date: 'May 1', day: 'Friday' },
-  { event: 'Independence Day', date: 'June 12', day: 'Friday' },
-  { event: 'National Heroes Day', date: 'August 31', day: 'Monday' },
-  { event: 'Bonifacio Day', date: 'November 30', day: 'Monday' },
-  { event: 'Christmas Day', date: 'December 25', day: 'Friday' },
-  { event: 'Rizal Day', date: 'December 30', day: 'Wednesday' },
-];
-
-const SPECIAL_HOLIDAYS: Holiday[] = [
-  { event: 'Chinese New Year', date: 'February 17', day: 'Tuesday' },
-  { event: 'Black Saturday', date: 'April 4', day: 'Saturday' },
-  { event: 'Ninoy Aquino Day', date: 'August 21', day: 'Friday' },
-  { event: "All Saints' Day", date: 'November 1', day: 'Sunday' },
-  { event: "All Souls' Day", date: 'November 2', day: 'Monday' },
-  {
-    event: 'Feast of the Immaculate Conception of Mary',
-    date: 'December 8',
-    day: 'Tuesday',
-  },
-  { event: 'Christmas Eve', date: 'December 24', day: 'Thursday' },
-  { event: 'Last Day of the Year', date: 'December 31', day: 'Thursday' },
-];
-
-function getHolidayWithDynamicDay(
-  holiday: Holiday,
-  currentYear: number
-): Holiday {
-  const fullDate = new Date(`${holiday.date} ${currentYear}`);
-
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-  const dayName = days[fullDate.getDay()];
-
-  return {
-    ...holiday,
-    day: dayName,
-  };
-}
-
-const HolidayTable = ({
-  holidays,
-  title,
-}: {
-  holidays: Holiday[];
-  title: string;
-}) => (
-  <div className='mb-8'>
-    <h2 className='text-2xl font-bold text-gray-800 mb-4 flex items-center'>
-      <CalendarIcon className='mr-2 h-6 w-6 text-blue-600' />
-      {title}
-    </h2>
-    <Card className='overflow-hidden'>
-      <CardHeader className='bg-blue-50 border-b border-blue-100'>
-        <h3 className='text-lg font-semibold text-blue-800'>
-          {title} ({holidays.length})
-        </h3>
-      </CardHeader>
-      <CardContent className='p-0'>
-        <div className='overflow-x-auto'>
-          <table className='min-w-full divide-y divide-gray-200'>
-            <thead className='bg-gray-50'>
-              <tr>
-                <th
-                  scope='col'
-                  className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'
-                >
-                  Event
-                </th>
-                <th
-                  scope='col'
-                  className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'
-                >
-                  Date
-                </th>
-                <th
-                  scope='col'
-                  className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'
-                >
-                  Day
-                </th>
-              </tr>
-            </thead>
-            <tbody className='bg-white divide-y divide-gray-200'>
-              {holidays.map((holiday, index) => (
-                <tr key={index} className='hover:bg-gray-50'>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <div className='text-sm font-medium text-gray-900'>
-                      {holiday.event}
-                    </div>
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <div className='text-sm text-gray-900'>{holiday.date}</div>
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800'>
-                      {holiday.day}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </CardContent>
-    </Card>
-  </div>
+const TypeFlag: FC<{ type: HolidayType }> = ({ type }) => (
+  <Flag variant={FLAG_VARIANT[type]}>{HOLIDAY_TYPE_LABEL[type]}</Flag>
 );
 
-const PublicHolidays: FC = () => {
-  const currentYear = new Date().getFullYear();
+const formatVerified = (iso: string) =>
+  new Date(`${iso}T00:00:00+08:00`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Asia/Manila',
+  });
 
-  const regularHolidays = REGULAR_HOLIDAYS.map(holiday =>
-    getHolidayWithDynamicDay(holiday, currentYear)
+const PublicHolidays: FC = () => {
+  const today = useMemo(() => manilaToday(), []);
+  const currentYear = Number(today.slice(0, 4));
+  const years = HOLIDAY_YEARS.map(y => y.year);
+  const [year, setYear] = useState(
+    years.includes(currentYear) ? currentYear : years[years.length - 1]
   );
-  const specialHolidays = SPECIAL_HOLIDAYS.map(holiday =>
-    getHolidayWithDynamicDay(holiday, currentYear)
+  const entry = HOLIDAY_YEARS.find(y => y.year === year)!;
+
+  const upcoming = useMemo(
+    () =>
+      year === currentYear
+        ? entry.holidays.filter(h => h.date >= today && isDayOff(h)).slice(0, 4)
+        : [],
+    [entry, year, currentYear, today]
   );
+
+  const byMonth = useMemo(() => {
+    const map = new Map<string, Holiday[]>();
+    for (const h of entry.holidays) {
+      const { month } = holidayParts(h);
+      if (!map.has(month)) map.set(month, []);
+      map.get(month)!.push(h);
+    }
+    return [...map.entries()];
+  }, [entry]);
+
+  const count = (type: HolidayType) =>
+    entry.holidays.filter(h => h.type === type).length;
 
   return (
-    <div className='max-w-6xl px-4 py-8 sm:mx-auto sm:px-6 lg:px-8'>
-      <div className='text-center mb-12'>
-        <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
-          Philippine Public Holidays {currentYear}
-        </h1>
-        <p className='mt-3 max-w-2xl mx-auto text-xl text-gray-800 sm:mt-4'>
-          Official non-working holidays in the Philippines
-        </p>
-      </div>
-
-      <div className='mb-6 p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-md'>
-        <div className='flex'>
-          <div className='shrink-0'>
-            <svg
-              className='h-5 w-5 text-yellow-400'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 20 20'
-              fill='currentColor'
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <PageMasthead
+        variant='hero'
+        title={`Public holidays ${year}`}
+        lede='Regular holidays and special days declared nationwide under Republic Act No. 9492 and the proclamations of the Office of the President.'
+      >
+        <div className='flex items-center gap-2'>
+          {years.map(y => (
+            <button
+              key={y}
+              type='button'
+              aria-pressed={y === year}
+              onClick={() => setYear(y)}
+              className={
+                y === year
+                  ? 'border border-white bg-white px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-navy-ink'
+                  : 'border border-white/40 px-3 py-1.5 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-white/70 transition-colors hover:border-white hover:text-white'
+              }
             >
-              <path
-                fillRule='evenodd'
-                d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
-                clipRule='evenodd'
-              />
-            </svg>
-          </div>
-          <div className='ml-3'>
-            <p className='text-sm text-yellow-700'>
-              Note: This list is based on the official holidays declared by the
-              Philippine government for the year 2026. Dates may be subject to
-              change based on official announcements.
-            </p>
-          </div>
+              {y}
+            </button>
+          ))}
         </div>
-      </div>
+      </PageMasthead>
 
-      <div className='space-y-12'>
-        <HolidayTable title='A. Regular Holidays' holidays={regularHolidays} />
+      <section className='py-14 max-md:py-6'>
+        <Container>
+          <div className='grid grid-cols-[1fr_300px] gap-12 max-lg:grid-cols-1'>
+            <div>
+              {entry.note && (
+                <p className='mb-10 border-l-4 border-ed-navy bg-ed-navy-tint px-5 py-4 text-[14px] leading-relaxed text-ed-ink-2'>
+                  {entry.note}
+                </p>
+              )}
 
-        <HolidayTable
-          title='B. Special (Non-Working) Holidays'
-          holidays={specialHolidays}
-        />
-      </div>
-    </div>
+              {upcoming.length > 0 && (
+                <div className='mb-10'>
+                  <SectionHeader label='Upcoming' />
+                  <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1'>
+                    {upcoming.map(h => {
+                      const p = holidayParts(h);
+                      return (
+                        <div
+                          key={h.date + h.name}
+                          className='border border-ed-rule bg-ed-paper-2 p-4'
+                        >
+                          <div className='mb-1.5'>
+                            <TypeFlag type={h.type} />
+                          </div>
+                          <div className='font-serif-ed text-[17px] font-semibold leading-snug text-ed-ink'>
+                            {h.name}
+                          </div>
+                          <div className='mt-1 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                            {p.month} {p.day} · {p.weekday}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <SectionHeader label={`Full calendar · ${year}`} />
+
+              <div className='grid grid-cols-[100px_60px_60px_1fr_150px] border-b border-ed-rule pb-2 max-sm:hidden'>
+                {['Month', 'Date', 'Day', 'Holiday', 'Type'].map(h => (
+                  <div
+                    key={h}
+                    className='font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'
+                  >
+                    {h}
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                {byMonth.map(([month, list]) => (
+                  <div key={month}>
+                    {list.map((h, i) => {
+                      const p = holidayParts(h);
+                      return (
+                        <div
+                          key={h.date + h.name}
+                          className='grid grid-cols-[100px_60px_60px_1fr_150px] items-baseline border-b border-ed-rule py-3 max-sm:grid-cols-1 max-sm:gap-0.5 max-sm:py-4'
+                        >
+                          <div className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3 max-sm:hidden'>
+                            {i === 0 ? month : ''}
+                          </div>
+                          <div className='font-serif-ed text-[17px] font-semibold text-ed-ink max-sm:hidden'>
+                            {p.day}
+                          </div>
+                          <div className='text-[12px] text-ed-ink-3 max-sm:hidden'>
+                            {p.weekday.slice(0, 3)}
+                          </div>
+                          <div>
+                            <div className='font-serif-ed text-[16px] font-semibold leading-snug text-ed-ink max-sm:text-[15px]'>
+                              {h.name}
+                            </div>
+                            <div className='mt-0.5 text-[12px] leading-snug text-ed-ink-3'>
+                              {h.basis}
+                              {h.note && ` · ${h.note}`}
+                            </div>
+                          </div>
+                          <div className='max-sm:hidden'>
+                            <TypeFlag type={h.type} />
+                          </div>
+                          <div className='font-mono-ed text-[10px] uppercase tracking-[0.1em] text-ed-ink-3 sm:hidden'>
+                            {p.month} {p.day} · {p.weekday.slice(0, 3)} ·{' '}
+                            {HOLIDAY_TYPE_LABEL[h.type]}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <aside className='max-lg:border-t max-lg:border-ed-rule max-lg:pt-8'>
+              <div className='mb-8'>
+                <SectionHeader label='Pay rules' />
+                <div className='space-y-3'>
+                  {(Object.keys(HOLIDAY_PAY) as HolidayType[]).map(type => (
+                    <div key={type} className='flex items-start gap-3'>
+                      <span className='w-[136px] shrink-0'>
+                        <TypeFlag type={type} />
+                      </span>
+                      <p className='text-[12px] leading-normal text-ed-ink-2'>
+                        {HOLIDAY_PAY[type]}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className='border border-ed-rule p-5'>
+                <div className='mb-3 font-mono-ed text-[10px] uppercase tracking-[0.14em] text-ed-ink-3'>
+                  Sources · {year}
+                </div>
+                <ul className='space-y-2.5 text-[12px] leading-normal text-ed-ink-2'>
+                  {entry.sources.map(s => (
+                    <li key={s.url}>
+                      <a
+                        href={s.url}
+                        target='_blank'
+                        rel='noreferrer'
+                        className='text-ed-navy underline decoration-ed-rule-strong underline-offset-2 hover:decoration-ed-navy'
+                      >
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className='mt-4 text-[11px] text-ed-ink-3'>
+                  Last checked {formatVerified(HOLIDAYS_VERIFIED_ON)}.
+                </p>
+              </div>
+
+              <div className='mt-6 grid grid-cols-2 divide-x divide-ed-rule border border-ed-rule'>
+                <div className='p-4'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
+                    {count('regular')}
+                  </div>
+                  <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                    Regular
+                  </div>
+                </div>
+                <div className='p-4'>
+                  <div className='font-serif-ed text-[28px] font-semibold text-ed-ink'>
+                    {count('special-non-working')}
+                  </div>
+                  <div className='mt-0.5 font-mono-ed text-[10px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                    Special non-working
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </section>
+    </main>
   );
 };
 

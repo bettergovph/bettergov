@@ -1,20 +1,9 @@
 import { FC } from 'react';
 import * as LucideIcons from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
-import serviceCategories from '../../data/service_categories.json';
+import { serviceCategories, type Category } from '../../data/cms';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-interface Subcategory {
-  name: string;
-  slug: string;
-}
-
-interface Category {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
-}
 
 const ServicesSection: FC = () => {
   const { t } = useTranslation('common');

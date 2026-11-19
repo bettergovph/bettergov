@@ -11,6 +11,12 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const guides = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, '../src/data/guides/manifest.json'),
+    'utf8'
+  )
+);
 
 // Import data from the project
 const serviceCategoriesPath = path.join(
@@ -37,9 +43,21 @@ const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
 );
+const judicialPath = path.join(
+  __dirname,
+  '../src/data/directory/judicial.json'
+);
 
 // Static navigation data (same as in generate-llms-txt.js to maintain consistency)
 const mainNavigation = [
+  {
+    label: 'Guides',
+    href: '/guides',
+    children: guides.map(guide => ({
+      label: guide.title,
+      href: `/guides/${guide.id}`,
+    })),
+  },
   {
     label: 'Philippines',
     href: '/philippines',
@@ -70,10 +88,12 @@ const mainNavigation = [
     label: 'Government',
     href: '/government',
     children: [
+      { label: 'Government at a Glance', href: '/government/overview' },
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Judicial', href: '/government/judicial' },
       { label: 'Local Government', href: '/government/local' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Salary Grades', href: '/government/salary-grade' },
@@ -106,6 +126,7 @@ function loadData() {
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
     const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
+    const judicial = JSON.parse(fs.readFileSync(judicialPath, 'utf8'));
 
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
@@ -124,6 +145,7 @@ function loadData() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
   } catch (error) {
     console.error('Error loading data:', error);
@@ -137,6 +159,16 @@ function generateGovernmentUrls(siteUrl, governmentData) {
 
   // Executive branch specific pages
   const executivePages = [
+    {
+      url: `${siteUrl}/government/executive/president`,
+      priority: '0.8',
+      changefreq: 'monthly',
+    },
+    {
+      url: `${siteUrl}/government/executive/vice-president`,
+      priority: '0.8',
+      changefreq: 'monthly',
+    },
     {
       url: `${siteUrl}/government/executive/office-of-the-president`,
       priority: '0.8',
@@ -245,6 +277,19 @@ function generateGovernmentUrls(siteUrl, governmentData) {
     });
   }
 
+  // Courts of the judicial branch
+  if (governmentData.judicial && Array.isArray(governmentData.judicial)) {
+    governmentData.judicial.forEach(court => {
+      if (court.slug) {
+        urls.add({
+          url: `${siteUrl}/government/judicial/${encodeURIComponent(court.slug)}`,
+          priority: '0.7',
+          changefreq: 'monthly',
+        });
+      }
+    });
+  }
+
   // Diplomatic missions specific pages
   const diplomaticPages = [
     {
@@ -278,7 +323,6 @@ function generateSiteUrls(mainNavigation, governmentData) {
   const mainPages = [
     { url: `${siteUrl}/`, priority: '1.0', changefreq: 'daily' },
     { url: `${siteUrl}/about`, priority: '0.8', changefreq: 'monthly' },
-    { url: `${siteUrl}/contribute`, priority: '0.7', changefreq: 'monthly' },
     { url: `${siteUrl}/search`, priority: '0.9', changefreq: 'weekly' },
     { url: `${siteUrl}/services`, priority: '0.9', changefreq: 'weekly' },
     { url: `${siteUrl}/sitemap`, priority: '0.5', changefreq: 'monthly' },
@@ -286,10 +330,39 @@ function generateSiteUrls(mainNavigation, governmentData) {
 
   mainPages.forEach(page => urls.add(page));
 
+  // Add design system pages
+  const designPages = [
+    '/design',
+    '/design/overview',
+    '/design/styles',
+    '/design/components',
+    '/design/patterns',
+    '/design/accessibility',
+  ].map(path => ({
+    url: `${siteUrl}${path}`,
+    priority: '0.5',
+    changefreq: 'monthly',
+  }));
+
+  designPages.forEach(page => urls.add(page));
+
   // Add data pages
   const dataPages = [
     { url: `${siteUrl}/data/weather`, priority: '0.7', changefreq: 'hourly' },
     { url: `${siteUrl}/data/forex`, priority: '0.7', changefreq: 'daily' },
+    // Article pages are fetched live from the e.gov.ph API at runtime, so
+    // only the listing (and its category views) can be enumerated here.
+    { url: `${siteUrl}/news`, priority: '0.8', changefreq: 'daily' },
+    {
+      url: `${siteUrl}/news?category=circular`,
+      priority: '0.6',
+      changefreq: 'daily',
+    },
+    {
+      url: `${siteUrl}/news?category=press-release`,
+      priority: '0.6',
+      changefreq: 'daily',
+    },
   ];
 
   dataPages.forEach(page => urls.add(page));
@@ -413,6 +486,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     } = loadData();
 
     // Prepare government data object
@@ -422,6 +496,7 @@ function main() {
       legislative,
       diplomatic,
       executive,
+      judicial,
     };
 
     // Generate URLs

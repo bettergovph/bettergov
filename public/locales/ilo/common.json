@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Naragsak nga Isasangbay iti BetterGov.ph",
+    "title": "Naragsak nga Isasangbay iti BETTERGOV.PH",
     "subtitle": "Ti volunteer-run portal ti Republika ti Pilipinas. Agsapul iti impormasion, makastrek kadagiti serbisio ti gobierno, agtalinaed a nabarbaro kadagiti kabaruan a damag maipapan iti Pilipinas."
   },
   "services": {
@@ -14,9 +14,6 @@
   },
   "news": {
     "title": "Kabaruan a Damag ken Updates"
-  },
-  "footer": {
-    "copyright": "2025 BetterGov.ph - Amin a linaon ket public domain malaksid no adda sabali a naibaga."
   },
   "navbar": {
     "philippines": "Pilipinas",

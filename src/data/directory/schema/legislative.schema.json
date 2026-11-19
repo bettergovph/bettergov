@@ -116,6 +116,24 @@
               }
             }
           },
+          "senior_deputy_speaker": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the Senior Deputy Speaker"
+              },
+              "contact": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "string",
+                    "description": "Contact information"
+                  }
+                }
+              }
+            }
+          },
           "deputy_speakers": {
             "type": "array",
             "items": {
@@ -228,6 +246,10 @@
             "district": {
               "type": "string",
               "description": "District represented"
+            },
+            "vacancy": {
+              "type": "string",
+              "description": "Set when the seat is vacant: why, since when, and how it will be filled. `name` is then \"VACANT\"."
             },
             "contact": {
               "type": "string",

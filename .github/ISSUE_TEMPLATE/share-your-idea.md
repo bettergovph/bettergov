@@ -1,6 +1,6 @@
 ---
 name: Share your Idea
-about: Share your ideas for BetterGov
+about: Share your ideas for GOV.PH
 title: "[IDEA]: "
 labels: idea
 assignees: ''

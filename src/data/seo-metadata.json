@@ -1,63 +1,63 @@
 {
   "/": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines",
+    "description": "The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/about": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Learn more about BetterGov.ph, the official community-powered portal promoting transparency and civic engagement in the Philippines."
+    "title": "BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines",
+    "description": "About BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines, and the partnership behind it."
   },
   "/accessibility": {
-    "title": "Accessibility Statement | BetterGov.ph | BetterGov.ph",
-    "description": "Find important information about Accessibility Statement through BetterGov.ph, the Philippines\u2019 civic information portal."
-  },
-  "/contribute": {
-    "title": "Contribute | BetterGov.ph",
-    "description": "Every way to contribute to BetterGov.ph, ordered from easiest to hardest: join the Discord, report a problem, share an idea, fix data, write code, review pull requests, or list your own civic tech project."
+    "title": "Accessibility Statement | BETTERGOV.PH",
+    "description": "Find important information about Accessibility Statement on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/data/forex": {
-    "title": "Forex: Currency Converter - BetterGov.ph",
-    "description": "Find important information about Forex: Currency Converter through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Forex: Currency Converter | BETTERGOV.PH",
+    "description": "Find important information about Forex: Currency Converter on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/data/weather": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines",
+    "description": "The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/flood-control-projects": {
-    "title": "Flood Control Projects in Philippines | BetterGov.ph",
-    "description": "Find important information about Flood Control Projects in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Flood Control Projects in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Flood Control Projects in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/flood-control-projects/contractors": {
-    "title": "Flood Control Project Contractors in Philippines | BetterGov.ph",
-    "description": "Find important information about Flood Control Project Contractors in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Flood Control Project Contractors in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Flood Control Project Contractors in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/flood-control-projects/map": {
-    "title": "Flood Control Projects Map in Philippines | BetterGov.ph",
-    "description": "Find important information about Flood Control Projects Map in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Flood Control Projects Map in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Flood Control Projects Map in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/flood-control-projects/table": {
-    "title": "Flood Control Projects Information in Philippines | BetterGov.ph",
-    "description": "Find important information about Flood Control Projects Information in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Flood Control Projects Information in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Flood Control Projects Information in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government": {
-    "title": "The Philippine Government: Learn More - BetterGov.ph",
-    "description": "Find important information about The Philippine Government: Learn More through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "The Philippine Government: Learn More | BETTERGOV.PH",
+    "description": "Find important information about The Philippine Government: Learn More on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
+  },
+  "/government/overview": {
+    "title": "Government at a Glance | BETTERGOV.PH",
+    "description": "Understand the three branches, constitutional commissions, and local government structure of the Philippines."
   },
   "/government/constitutional": {
-    "title": "Civil Service Commission (CSC) in Philippines | BetterGov.ph",
-    "description": "Understand the Philippine Constitution\u2014its guiding principles, structure, and role in ensuring good governance at BetterGov.ph."
+    "title": "Civil Service Commission (CSC) in Philippines | BETTERGOV.PH",
+    "description": "Understand the Philippine Constitution—its guiding principles, structure, and role in ensuring good governance on BETTERGOV.PH."
   },
   "/government/constitutional/civil-service-commission-csc": {
-    "title": "Civil Service Commission (CSC) in the Philippines | BetterGov.ph",
-    "description": "Find important information about the Civil Service Commission (CSC) in the Philippines.  Contact information and more at BetterGov.ph."
+    "title": "Civil Service Commission (CSC) in the Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Civil Service Commission (CSC) in the Philippines.  Contact information and more on BETTERGOV.PH."
   },
   "/government/constitutional/goccs": {
-    "title": "Government-Owned and Controlled Corporations in Philippines - BetterGov.ph",
-    "description": "Learn about the different Government-Owned and Controlled Corporations in the Philippines.  Contact information and more on BetterGov.ph."
+    "title": "Government-Owned and Controlled Corporations in Philippines | BETTERGOV.PH",
+    "description": "Learn about the different Government-Owned and Controlled Corporations in the Philippines.  Contact information and more on BETTERGOV.PH."
   },
   "/government/constitutional/sucs": {
-    "title": "State Universities and Colleges in Philippines - BetterGov.ph",
-    "description": "Learn about the different State Universities and Colleges in the Philippines.  Contact information and more on BetterGov.ph."
+    "title": "State Universities and Colleges in Philippines | BETTERGOV.PH",
+    "description": "Learn about the different State Universities and Colleges in the Philippines.  Contact information and more on BETTERGOV.PH."
   },
   "/government/departments": {
     "subject": "Government Departments in Philippines"
@@ -117,8 +117,8 @@
     "subject": "Department of Social Welfare and Development in Philippines"
   },
   "/government/departments/department-of-the-interior-and-local-government": {
-    "title": "Department of the Interior and Local Government in Philippines - BetterGov.ph",
-    "description": "Find resources on local government units, responsibilities, and programs that connect communities across the Philippines on BetterGov.ph."
+    "title": "Department of the Interior and Local Government in Philippines | BETTERGOV.PH",
+    "description": "Find resources on local government units, responsibilities, and programs that connect communities across the Philippines on BETTERGOV.PH."
   },
   "/government/departments/department-of-tourism": {
     "subject": "Department of Tourism in Philippines"
@@ -129,188 +129,184 @@
   "/government/departments/department-of-transportation": {
     "subject": "Department of Transportation in Philippines"
   },
-  "/government/departments/national-economic-and-development-authority": {
-    "subject": "National Economic and Development Authority in Philippines"
+  "/government/departments/department-of-economy-planning-and-development": {
+    "subject": "Department of Economy, Planning, and Development in Philippines"
   },
   "/government/diplomatic": {
-    "title": "Diplomatic Missions in the Philippines - BetterGov.ph",
-    "description": "Find important information about Diplomatic Missions in the Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Diplomatic Missions in the Philippines | BETTERGOV.PH",
+    "description": "Find important information about Diplomatic Missions in the Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/diplomatic/consulates": {
-    "title": "Consulates in the Philippines - BetterGov.ph",
-    "description": "Find important information about consulates in the Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Consulates in the Philippines | BETTERGOV.PH",
+    "description": "Find important information about consulates in the Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/diplomatic/missions": {
-    "title": "Diplomatic Missions in Philippines - BetterGov.ph",
-    "description": "Find important information about the different Diplomatic Missions in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Diplomatic Missions in Philippines | BETTERGOV.PH",
+    "description": "Find important information about the different Diplomatic Missions in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/diplomatic/organizations": {
-    "title": "International Organizations in the Philippines - BetterGov.ph",
-    "description": "Find important information about International Organizations in the Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "International Organizations in the Philippines | BETTERGOV.PH",
+    "description": "Find important information about International Organizations in the Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/executive": {
-    "title": "Executive Branch in the Philippines: The President | BetterGov.ph",
-    "description": "Explore the executive branch of the Philippines government\u2014its leaders, offices, and national duties at BetterGov.ph."
+    "title": "Executive Branch in the Philippines: The President | BETTERGOV.PH",
+    "description": "Explore the executive branch of the Philippines government—its leaders, offices, and national duties on BETTERGOV.PH."
   },
   "/government/executive/office-of-the-president": {
-    "title": "Office of the President in the Philippines | BetterGov.ph",
-    "description": "Explore information about the office of the President of the Philippines government\u2014its leaders, offices, and national duties at BetterGov.ph."
+    "title": "Office of the President in the Philippines | BETTERGOV.PH",
+    "description": "Explore information about the office of the President of the Philippines government—its leaders, offices, and national duties on BETTERGOV.PH."
   },
   "/government/executive/office-of-the-vice-president": {
-    "title": "Office of the Vice President in the Philippines - BetterGov.ph",
-    "description": "Explore the executive branch of the Philippines government\u2014its leaders, offices, and national duties at BetterGov.ph."
+    "title": "Office of the Vice President in the Philippines | BETTERGOV.PH",
+    "description": "Explore the executive branch of the Philippines government—its leaders, offices, and national duties on BETTERGOV.PH."
   },
   "/government/executive/other-executive-offices": {
-    "title": "Other Executive Offices in the Philippines - BetterGov.ph",
-    "description": "Explore information about other executive branches of the Philippines government\u2014its leaders, offices, and national duties at BetterGov.ph."
+    "title": "Other Executive Offices in the Philippines | BETTERGOV.PH",
+    "description": "Explore information about other executive branches of the Philippines government—its leaders, offices, and national duties on BETTERGOV.PH."
   },
   "/government/executive/presidential-communications-office": {
-    "title": "Presidential Communications Offices in the Philippines - BetterGov.ph",
-    "description": "Explore information about the Presidential communications offices  of the Philippines government\u2014its leaders, offices, and national duties at BetterGov.ph."
+    "title": "Presidential Communications Offices in the Philippines | BETTERGOV.PH",
+    "description": "Explore information about the Presidential communications offices  of the Philippines government—its leaders, offices, and national duties on BETTERGOV.PH."
   },
   "/government/legislative": {
-    "title": "Legislative Branch of the Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "Legislative Branch of the Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/legislative/house-members": {
-    "title": "Legislative House Members in Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "Legislative House Members in Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/legislative/house-of-representatives-20th-congress": {
-    "title": "House of Representatives: 20th Congress in Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "House of Representatives: 20th Congress in Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/legislative/party-list-members": {
-    "title": "Legislative Party List Members in Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "Legislative Party List Members in Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/legislative/senate-committees": {
-    "title": "Senate Committees in Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "Senate Committees in Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/legislative/senate-of-the-philippines-20th-congress": {
-    "title": "Senate of the Philippines: 20th Congress in Philippines - BetterGov.ph",
-    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BetterGov.ph."
+    "title": "Senate of the Philippines: 20th Congress in Philippines | BETTERGOV.PH",
+    "description": "Learn about the legislative branch of the Philippines, its key roles, members, and how it shapes national policies on BETTERGOV.PH."
   },
   "/government/local": {
-    "title": "Local Government Units in Philippines | BetterGov.ph",
-    "description": "Find important information about Local Government Units in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Local Government Units in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Local Government Units in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/bangsamoro-autonomous-region-in-muslim-mindanao": {
-    "title": "Mayor and Vice Mayors in Bangsamoro Mindinao Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Bangsamoro Mindinao Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Bangsamoro Mindinao Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Bangsamoro Mindinao Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/cordillera-administrative-region": {
-    "title": "Mayor and Vice Mayors in the Cordilleras Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in the Cordilleras Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in the Cordilleras Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in the Cordilleras Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/mimaropa-region": {
-    "title": "Mayor and Vice Mayors in Mimaropa Region Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Mimaropa Region Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Mimaropa Region Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Mimaropa Region Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/national-capital-region": {
-    "title": "Mayor and Vice Mayors in the National Capital Region (NCR) Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in the National Capital Region (NCR) Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in the National Capital Region (NCR) Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in the National Capital Region (NCR) Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/negros-island-region": {
-    "title": "Mayor and Vice Mayors in Negros Island Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Negros Island Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Negros Island Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Negros Island Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-i-ilocos-region": {
-    "title": "Mayor and Vice Mayors in Ilocos Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Ilocos Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Ilocos Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Ilocos Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-ii-cagayan-valley": {
-    "title": "Mayor and Vice Mayors in Cagayan Valley Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Cagayan Valley Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Cagayan Valley Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Cagayan Valley Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-iii-central-luzon": {
-    "title": "Mayor and Vice Mayors in Central Luzon Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Central Luzon Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Central Luzon Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Central Luzon Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-iva-calabarzon": {
-    "title": "Mayor and Vice Mayors in Calabarzon Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Calabarzon Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Calabarzon Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Calabarzon Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-ix-zamboanga-peninsula": {
-    "title": "Mayor and Vice Mayors in Zamboanga Peninsula Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Zamboanga Peninsula Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Zamboanga Peninsula Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Zamboanga Peninsula Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-v-bicol-region": {
-    "title": "Mayor and Vice Mayors in Bicol Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Bicol Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Bicol Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Bicol Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-vi-western-visayas": {
-    "title": "Mayor and Vice Mayors in Western Visayas Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Western Visayas Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Western Visayas Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Western Visayas Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-vii-central-visayas": {
-    "title": "Mayor and Vice Mayors in Region VII: Central Visayas Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Central Visayas Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Region VII: Central Visayas Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Central Visayas Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-viii-eastern-visayas": {
-    "title": "Mayor and Vice Mayors in Eastern Visayas Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Eastern Visayas Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Eastern Visayas Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Eastern Visayas Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-x-northern-mindanao": {
-    "title": "Mayor and Vice Mayors in Northern Mindinao Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Northern Mindinao Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Northern Mindinao Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Northern Mindinao Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-xi-davao-region": {
-    "title": "Mayor and Vice Mayors in Davao Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Davao Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Davao Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Davao Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-xii-soccsksargen": {
-    "title": "Mayor and Vice Mayors in Soccsksargen Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Soccsksargen Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Soccsksargen Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Soccsksargen Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/region-xiiicaraga": {
-    "title": "Mayor and Vice Mayors in Caraga Philippines | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in Caraga Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Mayor and Vice Mayors in Caraga Philippines | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in Caraga Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/local/special-geographic-area": {
-    "title": "Special Geographic Area - Local Government Units | BetterGov.ph",
-    "description": "Find important information about the Mayor and Vice Mayors in other areas of the Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Special Geographic Area - Local Government Units | BETTERGOV.PH",
+    "description": "Find important information about the Mayor and Vice Mayors in other areas of the Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/government/salary-grade": {
-    "title": "Government Salary - BetterGov.ph",
-    "description": "Find important information about Government Salary through BetterGov.ph, the Philippines\u2019 civic information portal."
-  },
-  "/ideas": {
-    "title": "Project Ideas | BetterGov.ph",
-    "description": "Find important information about Project Ideas through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Government Salary | BETTERGOV.PH",
+    "description": "Find important information about Government Salary on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/not-found": {
-    "title": "Page Not Found! | BetterGov.ph",
-    "description": "Find important information about Page Not Found! through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Page Not Found! | BETTERGOV.PH",
+    "description": "Find important information about Page Not Found! on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/philippines": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines",
+    "description": "The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/philippines/about": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Learn more about BetterGov.ph, the official community-powered portal promoting transparency and civic engagement in the Philippines."
+    "title": "About the Philippines | BETTERGOV.PH",
+    "description": "A source-backed introduction to Philippine geography, population, national symbols, history, culture, and regions."
   },
   "/philippines/culture": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Culture of the Philippines | BETTERGOV.PH",
+    "description": "Explore Philippine languages, festivals, food, living arts and beliefs, with credited photography and cultural references."
   },
   "/philippines/history": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "History of the Philippines | BETTERGOV.PH",
+    "description": "Explore Philippine history through a sourced timeline, from early human activity and maritime societies to colonial encounters and an independent republic."
   },
   "/philippines/hotlines": {
-    "title": "Philippines Emergency Hotlines - BetterGov.ph",
-    "description": "Find important information about Philippines Emergency Hotlines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Philippines Emergency Hotlines | BETTERGOV.PH",
+    "description": "Find important information about Philippines Emergency Hotlines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/philippines/map": {
-    "title": "Philippines Map - BetterGov.ph",
-    "description": "Find important information about Philippines Map through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Philippines Map | BETTERGOV.PH",
+    "description": "Find important information about Philippines Map on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/philippines/regions": {
-    "title": "Local Government Units (LGUs) in Philippines | BetterGov.ph",
-    "description": "Find important information about Local Government Units (LGUs) in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Local Government Units (LGUs) in Philippines | BETTERGOV.PH",
+    "description": "Find important information about Local Government Units (LGUs) in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/services": {
     "_default": {
@@ -389,7 +385,7 @@
       "subject": "Government Financial Assistance Services in Philippines"
     },
     "category=health&subcategory=health-programs": {
-      "title": "Government Health Programs in Philippines | BetterGov.ph",
+      "title": "Government Health Programs in Philippines | BETTERGOV.PH",
       "description": "Explore government programs, public initiatives, and opportunities designed to support citizens and communities nationwide."
     },
     "category=health&subcategory=health-research": {
@@ -411,8 +407,8 @@
       "subject": "Government Passport and Travel Services in Philippines"
     },
     "category=passport-travel&subcategory=visa-citizenship": {
-      "title": "Passport and Travel: Visa and Citizenship Services in Philippines | BetterGov.ph",
-      "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services at BetterGov.ph."
+      "title": "Passport and Travel: Visa and Citizenship Services in Philippines | BETTERGOV.PH",
+      "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services on BETTERGOV.PH."
     },
     "category=social-services": {
       "subject": "Social Services in Philippines"
@@ -421,104 +417,104 @@
       "subject": "Social Services: Benefits Registration in Philippines"
     },
     "category=social-services&subcategory=file-complaints": {
-      "title": "Social Services: File Complaints in Philippines | BetterGov.ph",
-      "description": "Find important information about Social Services: File Complaints in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Social Services: File Complaints in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Social Services: File Complaints in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=social-services&subcategory=salary-loans": {
-      "title": "Social Service Salary Loans in Philippines | BetterGov.ph",
-      "description": "Find important information about Social Service Salary Loans in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Social Service Salary Loans in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Social Service Salary Loans in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=tax": {
-      "title": "Government Tax Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Government Tax Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Government Tax Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Government Tax Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=calculator": {
-      "title": "Tax Calculators in Philippines | BetterGov.ph",
-      "description": "Find important information about Tax Calculators in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Tax Calculators in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Tax Calculators in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=certificates": {
-      "title": "Tax Certificate Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Tax Certificate Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Tax Certificate Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Tax Certificate Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=tax&subcategory=register": {
-      "title": "Tax Registration Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Tax Registration Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Tax Registration Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Tax Registration Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=transport-driving": {
-      "title": "Government Transport and Driving Services in Philippines - BetterGov.ph",
-      "description": "Find important information about Government Transport and Driving Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Government Transport and Driving Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Government Transport and Driving Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=financial-assistance": {
-      "title": "Transport and Driving Financial Assistance Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Transport and Driving Financial Assistance Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Transport and Driving Financial Assistance Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Transport and Driving Financial Assistance Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=license": {
-      "title": "Transport and Driving License Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Transport and Driving License Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Transport and Driving License Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Transport and Driving License Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     },
     "category=transport-driving&subcategory=transport-complaints": {
-      "title": "Transport and Driving Complaints Services in Philippines | BetterGov.ph",
-      "description": "Find important information about Transport and Driving Complaints Services in Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+      "title": "Transport and Driving Complaints Services in Philippines | BETTERGOV.PH",
+      "description": "Find important information about Transport and Driving Complaints Services in Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
     }
   },
   "/services/websites": {
-    "title": "Government Websites Directory - BetterGov.ph",
-    "description": "Find important information about Government Websites Directory through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Government Websites Directory | BETTERGOV.PH",
+    "description": "Find important information about Government Websites Directory on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/terms-of-service": {
-    "title": "Terms of Service | BetterGov.ph",
-    "description": "Find important information about Terms of Service through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Terms of Service | BETTERGOV.PH",
+    "description": "Find important information about Terms of Service on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/travel": {
-    "title": "BetterGov.ph | Republic of the Philippines | Community Powered Government Portal",
-    "description": "Find important information about BetterGov.ph through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "BETTERGOV.PH | The Volunteer Run Portal of the Republic of the Philippines",
+    "description": "The volunteer run portal of the Republic of the Philippines: government services, agencies, news, and information in one place."
   },
   "/travel/communicating": {
-    "title": "Travel Phrasebook in the Philippines - BetterGov.ph",
-    "description": "Find important information about Travel Phrasebook in the Philippines through BetterGov.ph, the Philippines\u2019 civic information portal."
+    "title": "Travel Phrasebook in the Philippines | BETTERGOV.PH",
+    "description": "Find important information about Travel Phrasebook in the Philippines on BETTERGOV.PH, the volunteer run portal of the Republic of the Philippines."
   },
   "/travel/visa": {
-    "title": "Visa Requirements by Country - BetterGov.ph",
-    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services at BetterGov.ph."
+    "title": "Visa Requirements by Country | BETTERGOV.PH",
+    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services on BETTERGOV.PH."
   },
   "/travel/visa-types": {
-    "title": "Travel: Visa Types - BetterGov.ph",
-    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services at BetterGov.ph."
+    "title": "Travel: Visa Types | BETTERGOV.PH",
+    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services on BETTERGOV.PH."
   },
   "/travel/visa-types/9a": {
-    "title": "Non Immigrant Visa: Temporary Visitor in the Philippines - BetterGov.ph",
-    "description": "Access clear information about temporary visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Temporary Visitor in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about temporary visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9b": {
-    "title": "Non Immigrant Visa: Treaty Trader or Treaty Investor in the Philippines - BetterGov.ph",
-    "description": "Access clear information about treaty trader or treaty investor visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Treaty Trader or Treaty Investor in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about treaty trader or treaty investor visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9c": {
-    "title": "Non Immigrant Visa: Seaman in the Philippines - BetterGov.ph",
-    "description": "Access clear information about seaman visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Seaman in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about seaman visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9d": {
-    "title": "Non Immigrant Visa: Treaty Trader or Treaty Investor in Philippines - BetterGov.ph",
-    "description": "Access clear information about treaty trader or treaty investor visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Treaty Trader or Treaty Investor in Philippines | BETTERGOV.PH",
+    "description": "Access clear information about treaty trader or treaty investor visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9e": {
-    "title": "Non Immigrant Visa: Accredited Official of Foreign Government in Philippines - BetterGov.ph",
-    "description": "Access clear information about the accredited official of foreign government visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Accredited Official of Foreign Government in Philippines | BETTERGOV.PH",
+    "description": "Access clear information about the accredited official of foreign government visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9f": {
-    "title": "Non Immigrant Visa: Student in the Philippines - BetterGov.ph",
-    "description": "Access clear information about the student visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Student in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about the student visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/9g": {
-    "title": "Non Immigrant Visa: Pre-arranged Employment in the Philippines - BetterGov.ph",
-    "description": "Access clear information about pre-arranged employment visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Pre-arranged Employment in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about pre-arranged employment visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   },
   "/travel/visa-types/swp-c": {
-    "title": "Special Work Permit (Commercial) in Philippines - Travel Visa Types - BetterGov.ph",
-    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services at BetterGov.ph."
+    "title": "Special Work Permit (Commercial) in Philippines - Travel Visa Types | BETTERGOV.PH",
+    "description": "Access clear information about Philippine visa requirements, travel policies, and immigration services on BETTERGOV.PH."
   },
   "/travel/visa-types/trv": {
-    "title": "Non Immigrant Visa: Temporary Resident in the Philippines - BetterGov.ph",
-    "description": "Access clear information about temporary resident visa requirements, travel policies, and non-immigration services in the Philippines at BetterGov.ph."
+    "title": "Non Immigrant Visa: Temporary Resident in the Philippines | BETTERGOV.PH",
+    "description": "Access clear information about temporary resident visa requirements, travel policies, and non-immigration services in the Philippines on BETTERGOV.PH."
   }
 }

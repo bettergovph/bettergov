@@ -1,0 +1,176 @@
+.guide-body {
+  color: var(--color-ed-ink-2);
+  font-size: 1rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.guide-body p {
+  margin: 1rem 0;
+}
+.guide-body > :first-child {
+  margin-top: 0;
+}
+.guide-body > :last-child {
+  margin-bottom: 0;
+}
+.guide-body strong {
+  font-weight: 650;
+}
+.guide-body a {
+  color: var(--color-ed-navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.guide-body a:hover {
+  color: var(--color-ed-ink);
+}
+.guide-body h3 {
+  margin: 2rem 0 1rem;
+  font-family: var(--font-serif-ed);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-ed-ink);
+}
+.guide-body ul,
+.guide-body ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.guide-body ul {
+  list-style: disc;
+}
+.guide-body ol {
+  list-style: decimal;
+}
+.guide-body li {
+  margin: 0.75rem 0;
+  padding-left: 0.25rem;
+}
+.guide-body li::marker {
+  color: var(--color-ed-navy);
+  font-weight: 600;
+}
+.guide-body .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.guide-body .task-list-item {
+  padding-left: 1.75rem;
+  position: relative;
+}
+.guide-checkbox {
+  position: absolute;
+  left: 0;
+  color: var(--color-ed-navy);
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+.guide-body blockquote {
+  border-left: 3px solid var(--color-ed-navy);
+  background: var(--color-ed-paper-2);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.guide-body blockquote > :first-child {
+  margin-top: 0;
+}
+.guide-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+.guide-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.guide-table:focus-visible {
+  outline: 2px solid var(--color-ed-navy);
+  outline-offset: 4px;
+}
+.guide-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.guide-table th,
+.guide-table td {
+  min-width: 140px;
+  padding: 0.875rem;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--color-ed-rule);
+}
+.guide-table th {
+  background: var(--color-ed-navy);
+  color: white;
+  font-weight: 600;
+}
+.guide-table tr:nth-child(even) td {
+  background: var(--color-ed-paper-2);
+}
+
+.guide-body.guide-references {
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+.guide-references ol {
+  padding-left: 1.25rem;
+}
+.guide-references li {
+  margin: 0.625rem 0;
+  padding-left: 0.125rem;
+}
+
+@media (max-width: 767px) {
+  .guide-body {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  .guide-body p {
+    margin: 0.75rem 0;
+  }
+  .guide-body h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.125rem;
+  }
+  .guide-body ul,
+  .guide-body ol {
+    margin: 1rem 0;
+    padding-left: 1.25rem;
+  }
+  .guide-body li {
+    margin: 0.625rem 0;
+  }
+  .guide-body .contains-task-list {
+    padding-left: 0;
+  }
+  .guide-body blockquote {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .guide-table table {
+    font-size: 0.8125rem;
+  }
+  .guide-table th,
+  .guide-table td {
+    min-width: 120px;
+    padding: 0.625rem;
+  }
+  .guide-body.guide-references {
+    font-size: 0.75rem;
+  }
+}
+
+@media print {
+  .guide-body a {
+    color: inherit;
+  }
+  .guide-table {
+    overflow: visible;
+  }
+  .guide-table th,
+  .guide-table td {
+    min-width: 0;
+  }
+}

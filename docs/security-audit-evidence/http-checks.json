@@ -1,0 +1,168 @@
+[
+  {
+    "url": "https://www.gov.ph/",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://egov-cdn.e.gov.ph https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org; connect-src 'self' https://api.bettergov.ph https://search2.bettergov.ph https://ws.e.gov.ph https://en.wikipedia.org; frame-src https://www.google.com/maps/ https://maps.google.com https://www.openstreetmap.org/export/embed; media-src 'self'; worker-src 'none'; manifest-src 'self'",
+      "x-frame-options": "DENY",
+      "x-content-type-options": "nosniff",
+      "strict-transport-security": "max-age=31536000",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "body": null,
+    "looksLikeSPA": true,
+    "bytesRead": 2671
+  },
+  {
+    "url": "https://www.gov.ph/api/status",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "120"
+    },
+    "looksLikeSPA": false,
+    "bytesRead": 2921
+  },
+  {
+    "url": "https://www.gov.ph/api/crawl?url=https%3A%2F%2Fwww.gov.ph",
+    "foreignOrigin": false,
+    "status": 503,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "10"
+    },
+    "body": "{\"error\":\"Not configured\",\"message\":\"This route needs the BETTERGOV_DB binding, which is not declared for this deployment. See functions/README.md.\",\"missingBindings\":[\"BETTERGOV_DB\"]}",
+    "looksLikeSPA": false,
+    "bytesRead": 184
+  },
+  {
+    "url": "https://www.gov.ph/api/report-hotline",
+    "foreignOrigin": false,
+    "status": 405,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "5"
+    },
+    "body": "{\"error\":\"Method not allowed. Use POST.\"}",
+    "looksLikeSPA": false,
+    "bytesRead": 41
+  },
+  {
+    "url": "https://www.gov.ph/api/assistant",
+    "foreignOrigin": false,
+    "status": 400,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "20"
+    },
+    "body": "{\"error\":\"Missing required field: question\"}",
+    "looksLikeSPA": false,
+    "bytesRead": 44
+  },
+  {
+    "url": "https://www.gov.ph/api/status",
+    "foreignOrigin": true,
+    "status": 403,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "no-store, no-transform"
+    },
+    "looksLikeSPA": false,
+    "bytesRead": 30
+  },
+  {
+    "url": "https://www.gov.ph/.env",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://egov-cdn.e.gov.ph https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org; connect-src 'self' https://api.bettergov.ph https://search2.bettergov.ph https://ws.e.gov.ph https://en.wikipedia.org; frame-src https://www.google.com/maps/ https://maps.google.com https://www.openstreetmap.org/export/embed; media-src 'self'; worker-src 'none'; manifest-src 'self'",
+      "x-frame-options": "DENY",
+      "x-content-type-options": "nosniff",
+      "strict-transport-security": "max-age=31536000",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "body": null,
+    "looksLikeSPA": true,
+    "bytesRead": 2671
+  },
+  {
+    "url": "https://www.gov.ph/.git/config",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://egov-cdn.e.gov.ph https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org; connect-src 'self' https://api.bettergov.ph https://search2.bettergov.ph https://ws.e.gov.ph https://en.wikipedia.org; frame-src https://www.google.com/maps/ https://maps.google.com https://www.openstreetmap.org/export/embed; media-src 'self'; worker-src 'none'; manifest-src 'self'",
+      "x-frame-options": "DENY",
+      "x-content-type-options": "nosniff",
+      "strict-transport-security": "max-age=31536000",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "body": null,
+    "looksLikeSPA": true,
+    "bytesRead": 2671
+  },
+  {
+    "url": "https://www.gov.ph/api/search/indexes/keys/search",
+    "foreignOrigin": false,
+    "status": 404,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "120"
+    },
+    "body": "{\"error\":\"Search route not found\",\"message\":\"Search route not found\"}",
+    "looksLikeSPA": false,
+    "bytesRead": 69
+  },
+  {
+    "url": "https://www.gov.ph/api/search/indexes/bettergov/search",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "120"
+    },
+    "body": "{\"hits\":[{\"id\":\"6312f5dc-baca-4c2c-98f7-cc833bd0f886\"}],\"query\":\"passport\",\"processingTimeMs\":0,\"limit\":1,\"offset\":0,\"estimatedTotalHits\":26,\"requestUid\":\"01a14724-ddd0-78b2-b67e-acb099f14ac3\"}",
+    "looksLikeSPA": false,
+    "bytesRead": 193
+  },
+  {
+    "url": "https://govph-dev.oueg.workers.dev/api/status",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-store, no-transform",
+      "ratelimit-limit": "120"
+    },
+    "looksLikeSPA": false,
+    "bytesRead": 2921
+  },
+  {
+    "url": "https://govph-dev.govph.workers.dev/",
+    "foreignOrigin": false,
+    "status": 200,
+    "headers": {
+      "content-type": "text/html",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "body": null,
+    "looksLikeSPA": true,
+    "bytesRead": 1244
+  }
+]

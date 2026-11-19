@@ -1,187 +1,240 @@
-import {
-  ExternalLinkIcon,
-  MailIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from 'lucide-react';
+import { FC, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import departmentsData from '../../../data/directory/departments.json';
-import { cn } from '../../../lib/utils';
+import Container from '../../../components/v2/ui/Container';
+import SectionHeader from '../../../components/v2/ui/SectionHeader';
+import DetailHeader from '../../../components/v2/directory/DetailHeader';
+import OfficialsTable, {
+  type OfficialRow,
+} from '../../../components/v2/directory/OfficialsTable';
+import { titleCase } from '../../../lib/directory';
 
-interface Department {
+type Secretary = {
+  name?: string;
+  /** Set when the title isn't plain "Secretary", e.g. "Acting Secretary". */
+  role?: string;
+  contact?: string;
+  email?: string;
+};
+
+type Undersecretary = OfficialRow;
+
+/** Where the undersecretary and assistant secretary lists were last checked. */
+type OfficialsSource = {
+  url: string;
+  checked: string;
+  /** Date the source itself states its list is current as of. */
+  as_of?: string;
+  /** Set when the source isn't the department's own live list. */
+  label?: string;
+};
+
+const formatDay = (iso: string) =>
+  new Date(`${iso}T00:00:00+08:00`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Asia/Manila',
+  });
+
+type Department = {
+  slug: string;
   office_name: string;
   address?: string;
   trunkline?: string;
   website?: string;
   email?: string;
+  secretary?: Secretary;
+  undersecretaries?: Undersecretary[];
+  officials_source?: OfficialsSource;
+  /** Fallback bucket for anything else the JSON happens to carry. */
   [key: string]: unknown;
-}
+};
 
-// Recursive component to render nested department details
-function DepartmentDetailSection({
-  data,
-  level = 0,
-}: {
-  data: unknown;
-  level?: number;
-}) {
-  if (data === null || typeof data !== 'object') {
-    return <span className='text-gray-700'>{String(data)}</span>;
-  }
+const humanKey = (k: string) =>
+  k
+    .split('_')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
 
-  if (Array.isArray(data)) {
+/**
+ * Render an arbitrary value — used for the long tail of keys below
+ * the known secretary/undersecretaries. Arrays of {name,role,...}
+ * turn into an OfficialsTable; scalars become a short text row.
+ */
+const RenderValue: FC<{ value: unknown; label: string }> = ({
+  value,
+  label,
+}) => {
+  if (value === null || value === undefined) return null;
+
+  if (Array.isArray(value)) {
+    const allObj = value.every(v => v && typeof v === 'object');
+    if (allObj) {
+      return (
+        <OfficialsTable
+          officials={value as OfficialRow[]}
+          groupLabel={`${label} · ${value.length}`}
+        />
+      );
+    }
     return (
-      <div className='space-y-2'>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={`${
-              level > 0
-                ? 'ml-4 border-l border-neutral-100  border-b pl-3 p-2'
-                : ''
-            }`}
-          >
-            <DepartmentDetailSection data={item} level={level + 1} />
-          </div>
-        ))}
+      <div className='mb-8'>
+        <div className='mb-2 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-2'>
+          {label}
+        </div>
+        <ul className='ml-6 list-disc text-[15px] text-ed-ink-2'>
+          {value.map((v, i) => (
+            <li key={i}>{String(v)}</li>
+          ))}
+        </ul>
       </div>
     );
   }
 
-  // Check if this is a simple key-value object with no nested objects
-  const isSimpleObject = Object.values(data).every(
-    value => value === null || typeof value !== 'object'
-  );
-
-  if (isSimpleObject) {
+  if (typeof value === 'object') {
     return (
-      <div
-        className={cn(
-          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
-          level === 1 && 'rounded-2xl font-bold text-lg'
-        )}
-      >
-        {Object.entries(data).map(([key, value]) => {
-          if (key === 'office_name' || value === undefined) return null;
-          if (key === 'slug' || value === undefined) return null;
-
-          return (
-            <div key={key} className='text-sm'>
-              <span className='text-gray-800 leading-relaxed'>
-                {String(value)}
-              </span>
-            </div>
-          );
-        })}
+      <div className='mb-8'>
+        <div className='mb-2 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-ink-2'>
+          {label}
+        </div>
+        <dl className='grid grid-cols-[180px_1fr] gap-x-4 gap-y-1 text-sm max-md:grid-cols-1'>
+          {Object.entries(value as Record<string, unknown>).map(([k, v]) => (
+            <Fragment key={k}>
+              <dt className='font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+                {humanKey(k)}
+              </dt>
+              <dd className='text-ed-ink-2'>{String(v)}</dd>
+            </Fragment>
+          ))}
+        </dl>
       </div>
     );
   }
 
   return (
-    <div className='@container space-y-4'>
-      {Object.entries(data).map(([key, value]) => {
-        if (key === 'office_name' || value === undefined) return null;
-        if (key === 'slug' || value === undefined) return null;
-
-        const label = key
-          .split('_')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-
-        const isArray = Array.isArray(value);
-
-        return (
-          <div key={key} className='pb-4'>
-            <div className='flex items-center mb-1 align-middle gap-1'>
-              <h3
-                className={`font-medium text-gray-900 ${
-                  level === 0 ? 'text-xl' : 'text-base'
-                }`}
-              >
-                {label}
-              </h3>
-              {isArray && (
-                <div className='text-xs text-primary-600 font-medium mr-2'>
-                  ({Array.isArray(value) ? value.length : 0})
-                </div>
-              )}
-            </div>
-            <div className={`${level > 0 ? 'ml-2 mt-4' : 'mt-4'}`}>
-              <DepartmentDetailSection data={value} level={level + 1} />
-            </div>
-          </div>
-        );
-      })}
+    <div className='mb-4 text-sm text-ed-ink-2'>
+      <span className='mr-3 font-mono-ed text-[11px] uppercase tracking-[0.12em] text-ed-ink-3'>
+        {label}
+      </span>
+      {String(value)}
     </div>
   );
-}
+};
 
-export default function DepartmentDetail() {
-  const { department: departmentName } = useParams<{ department: string }>();
+const DepartmentDetail: FC = () => {
+  const { department: param } = useParams<{ department: string }>();
   const department = (departmentsData as Department[]).find(
-    d => d.slug === decodeURIComponent(departmentName || '')
+    d => d.slug === decodeURIComponent(param || '')
   );
 
   if (!department) {
     return (
-      <div className='bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
-        <h2 className='text-2xl font-semibold mb-4'>Department not found</h2>
-        <p className='text-gray-800'>
-          Please select a department from the sidebar.
-        </p>
-      </div>
+      <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+        <DetailHeader
+          breadcrumbs={[
+            { label: 'Directory', to: '/government' },
+            { label: 'Departments', to: '/government/departments' },
+            { label: 'Not found' },
+          ]}
+          title='Department not found.'
+          lede='Please pick a department from the directory.'
+        />
+      </main>
     );
   }
 
-  // Extract top-level details
-  const { office_name, address, trunkline, website, email, ...details } =
-    department;
-  const displayName = office_name;
+  const {
+    office_name,
+    address,
+    trunkline,
+    website,
+    email,
+    secretary,
+    undersecretaries,
+    officials_source: officialsSource,
+    slug,
+    ...rest
+  } = department;
+  void slug;
+
+  const displayName = titleCase(office_name);
+  const secretaryRow: OfficialRow[] = secretary?.name
+    ? [
+        {
+          role: secretary.role ?? 'Secretary',
+          name: secretary.name,
+          contact: secretary.contact,
+          email: secretary.email,
+        },
+      ]
+    : [];
 
   return (
-    <div className='@container space-y-4'>
-      {/* Department Header */}
-      <div className='border-b pb-4'>
-        <div className='space-y-2'>
-          <h2 className='text-xl font-bold text-gray-900'>{displayName}</h2>
-          {address && (
-            <p className='mt-1 text-gray-800 flex items-start text-sm'>
-              <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
-              <span>{address}</span>
+    <main className='min-h-screen bg-white font-sans-ed text-ed-ink antialiased'>
+      <DetailHeader
+        breadcrumbs={[
+          { label: 'Directory', to: '/government' },
+          { label: 'Departments', to: '/government/departments' },
+          { label: displayName },
+        ]}
+        title={displayName}
+        address={address}
+        trunkline={trunkline}
+        website={website}
+        email={email}
+      />
+
+      <section className='py-12 max-md:py-6'>
+        <Container>
+          {secretaryRow.length > 0 && (
+            <>
+              <SectionHeader label='Head of department' />
+              <OfficialsTable officials={secretaryRow} />
+            </>
+          )}
+
+          {officialsSource && (
+            <p className='mb-8 max-w-3xl border-l-2 border-ed-rule pl-4 text-[13px] leading-relaxed text-ed-ink-2 max-md:mb-6'>
+              Undersecretaries and assistant secretaries were checked on{' '}
+              {formatDay(officialsSource.checked)} against{' '}
+              <a
+                href={officialsSource.url}
+                target='_blank'
+                rel='noreferrer'
+                className='text-ed-navy underline decoration-ed-rule-strong underline-offset-2 hover:decoration-ed-navy'
+              >
+                {officialsSource.label ?? 'the department’s list of officials'}
+              </a>
+              {officialsSource.as_of &&
+                !officialsSource.label?.includes('data as of') &&
+                `, dated ${formatDay(officialsSource.as_of)}`}
+              .
             </p>
           )}
-          {website && (
-            <a
-              href={website.startsWith('http') ? website : `https://${website}`}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex items-center text-primary-600 hover:text-primary-800 text-sm'
-            >
-              <ExternalLinkIcon className='h-4 w-4 mr-1' />
-              <span>{website}</span>
-            </a>
+
+          {undersecretaries && undersecretaries.length > 0 && (
+            <>
+              <SectionHeader
+                label='Undersecretaries'
+                meta={`${undersecretaries.length} officials`}
+              />
+              <OfficialsTable officials={undersecretaries} />
+            </>
           )}
-          {trunkline && (
-            <div className='flex items-center text-gray-800 text-sm'>
-              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
-              <span>{trunkline}</span>
+
+          {Object.entries(rest).map(([key, value]) => (
+            <div key={key} className='mt-10 first:mt-0'>
+              <h2 className='mb-5 border-b border-ed-navy pb-2 font-serif-ed text-[26px] font-semibold text-ed-navy-ink max-md:mb-3 max-md:text-[21px]'>
+                {humanKey(key)}
+              </h2>
+              <RenderValue value={value} label={humanKey(key)} />
             </div>
-          )}
-          {email && (
-            <a
-              href={`mailto:${email}`}
-              className='flex items-center text-gray-800 hover:text-primary-600 text-sm'
-            >
-              <MailIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
-              <span>{email}</span>
-            </a>
-          )}
-        </div>
-      </div>
-      {/* Department Details */}
-      <div>
-        <DepartmentDetailSection data={details} />
-      </div>
-    </div>
+          ))}
+        </Container>
+      </section>
+    </main>
   );
-}
+};
+
+export default DepartmentDetail;

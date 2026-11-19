@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Welcome to BetterGov.ph",
-    "subtitle": "The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.",
+    "title": "Welcome to BETTERGOV.PH",
+    "subtitle": "The volunteer run portal of the Republic of the Philippines, built through a community collaboration partnership. Find information, access government services, and stay updated with the latest news about the Philippines.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
@@ -22,30 +22,76 @@
   "news": {
     "title": "Latest News & Updates"
   },
-  "footer": {
-    "copyright": "2025 BetterGov.ph - All content is public domain unless otherwise specified."
-  },
   "navbar": {
+    "home": "Home",
     "philippines": "Philippines",
     "services": "Services",
+    "guides": "Guides",
     "travel": "Travel",
-    "government": "Government",
-    "flood control projects": "Flood Control Projects",
-    "our projects": "Our Projects"
+    "directory": "Directory",
+    "flood control projects": "Flood Control Projects"
   },
-  "joinUs": {
-    "stripTitle": "🚀 Join the #CivicTech Revolution",
-    "stripSubtitle": "Help build the future of the Philippines and governance through technology",
-    "joinNow": "Join Now",
-    "discord": "Discord",
-    "bannerTitle": "Join the #CivicTech Revolution",
-    "bannerSubtitle": "Help build the future of the Philippines and governance through technology.",
-    "bannerHighlight": "Volunteer-led. Open source. Community-driven.",
-    "joinMovement": "Join Our Movement",
-    "or": "or",
-    "joinDiscord": "Join Discord",
-    "findWayToContribute": "Find a Way to Contribute",
-    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
+  "masthead": {
+    "advisory": "Advisory",
+    "advisoryText": "Class suspensions & typhoon updates live from PAGASA & NDRRMC",
+    "viewAdvisories": "View all advisories →",
+    "volume": "Vol. IV · No. 112",
+    "manila": "Manila",
+    "hotlines": "Hotlines",
+    "contact": "Contact",
+    "accessibility": "Accessibility",
+    "about": "About",
+    "tagline": "The volunteer run portal of the Republic of the Philippines",
+    "search": "Search",
+    "signIn": "Sign in",
+    "menu": "Menu",
+    "close": "Close",
+    "contactUs": "Contact us",
+    "searchPlaceholder": "Search services, agencies, and more"
+  },
+  "phaseBanner": {
+    "tag": "Beta",
+    "text": "BETTERGOV.PH is built by volunteers of BetterGov.ph, a civic technology and open-source movement. <about>Learn more about BetterGov</about>"
+  },
+  "footerNav": {
+    "servicesHeading": "Services",
+    "governmentHeading": "Government",
+    "resourcesHeading": "Resources",
+    "aboutHeading": "About",
+    "passportTravel": "Passport & Travel",
+    "taxesBir": "Taxes & BIR",
+    "healthPhilhealth": "Health & PhilHealth",
+    "socialSecurity": "Social Security",
+    "education": "Education",
+    "business": "Business",
+    "allAgencies": "All Agencies",
+    "executive": "Executive",
+    "legislative": "Legislative",
+    "judicial": "Judicial",
+    "constitutional": "Constitutional",
+    "lguDirectory": "LGU Directory",
+    "floodControl": "Flood Control",
+    "holidays": "Holidays",
+    "hotlines": "Hotlines",
+    "forex": "Forex",
+    "weather": "Weather",
+    "pna": "Philippine News Agency",
+    "officialGazette": "Official Gazette",
+    "mission": "Mission",
+    "contributors": "Contributors",
+    "designGuideline": "Design Guideline",
+    "github": "GitHub",
+    "terms": "Terms of Use",
+    "contact": "Contact",
+    "reportBug": "Report a bug"
+  },
+  "footerAbout": {
+    "description": "The volunteer run portal of the Republic of the Philippines, developed through a community collaboration partnership to make government information and services easier to find, read, and use.",
+    "openSource": "Open Source",
+    "builtBy": "Built by BetterGov and hundreds of citizen volunteers."
+  },
+  "footerBottom": {
+    "license": "CC BY-NC-ND 4.0 · MIT"
   },
   "data": {
     "title": "Real-Time Data Services",
@@ -84,5 +130,6 @@
     "directoryTitle": "Official Directory",
     "directoryDescription": "Find contact information for government officials, agencies, and offices at national and local levels.",
     "viewDirectory": "View Directory"
-  }
+  },
+  "comingSoon": "Coming soon"
 }

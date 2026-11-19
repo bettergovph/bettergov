@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Simple manual security test for BetterGov.ph crawl endpoint
+ * Simple manual security test for GOV.PH crawl endpoint
  * This tests individual scenarios manually without overwhelming the server
  */
 
@@ -134,7 +134,7 @@ async function testMethodValidation() {
 }
 
 async function main() {
-  console.log('🔒 BetterGov.ph Manual Security Test');
+  console.log('🔒 GOV.PH Manual Security Test');
   console.log('=====================================');
   console.log(`Base URL: ${BASE_URL}\n`);
 

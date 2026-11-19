@@ -6,9 +6,10 @@
     "trunkline": "(632) 8657-3300",
     "website": "www.dbm.gov.ph",
     "secretary": {
-      "name": "ROLANDO U. TOLEDO",
+      "name": "KIM ROBERT C. DE LEON",
       "contact": "loc. 2601, 3310; 8735-4936 F",
-      "email": "osec@dbm.gov.ph"
+      "email": "osec@dbm.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -18,69 +19,23 @@
         "email": "jabuel@dbm.gov.ph"
       },
       {
-        "name": "MARGAUX MARIE V. SALCEDO",
-        "role": "Advocacy, Capacity Development, Economic Affairs, and Stakeholder Relations Group",
-        "contact": "loc. 2528; 2527",
-        "email": "msalcedo@dbm.gov.ph"
-      },
-      {
-        "name": "ROLANDO U. TOLEDO",
-        "role": "Budget Preparation and Execution Group",
-        "contact": "loc. 3315, 2606",
-        "email": "rtoledo@dbm.gov.ph"
-      },
-      {
-        "name": "MARIA FRANCESCA M. DEL ROSARIO",
-        "role": "Chief Information Officer, Information and Communications Technology Group",
-        "contact": "loc. 2513",
-        "email": "mdelrosario@dbm.gov.ph"
-      },
-      {
         "name": "WILFORD WILL L. WONG",
-        "role": "Local Government and Regional Operations Group; Concurrent Head of the Organization and Systems Improvement Group; and Supervision of the Department Liaison Unit",
-        "contact": "loc. 2501, 2667",
-        "email": "wwong@dbm.gov.ph; dlu@dbm.gov.ph"
+        "role": "Supervision of the Republic of the Philippines - Open Government Partnership Project Management Office (no longer listed for LGRO/OSIG)"
       },
       {
         "name": "GODDES HOPE O. LIBIRAN",
-        "role": "Supervising Senior Official of the Media Affairs and Community Relations Office",
-        "contact": "loc. 2522",
-        "email": "glibiran@dbm.gov.ph"
+        "role": "Functional Group Head, Communications and Public Relations Group; supervises BITS and MACRO"
       },
       {
-        "name": "LEO ANGELO M. LARCIA",
-        "role": "Chief of Staff, Adviser to the Internal Management Group; DBM Focal Person for Presidential Directives",
-        "email": "llarcia@dbm.gov.ph"
+        "name": "MARY ANNE Z. DELA VEGA",
+        "role": "Functional Group Head, Budget Preparation and Execution Group; supervises BMBs A-F and Budget Technical Bureau"
       },
       {
-        "name": "MARIO D. SANTOS",
-        "role": "Deputy Chief of Staff",
-        "email": "mdsantos@dbm.gov.ph"
-      },
-      {
-        "name": "JOSELITO R. BASILLO",
-        "role": "Principal Economist, Adviser to the Budget Policy and Strategy Group",
-        "email": "jbasilio@dbm.gov.ph"
+        "name": "RYAN S. LITA",
+        "role": "Functional Group Head, Local Government and Regional Operations; Chief of Staff; DBM Focal Person for Presidential Directives"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "MARY ANNE Z. DELA VEGA",
-        "role": "Budget Preparation and Execution Group",
-        "contact": "loc. 2651",
-        "email": "mdelavega@dbm.gov.ph"
-      },
-      {
-        "name": "LEONIDO J. PULIDO II",
-        "role": "Organization and Systems Improvement Group",
-        "email": "lpulido@dbm.gov.ph"
-      },
-      {
-        "name": "DIANA C. CAMACHO-MERCADO",
-        "role": "Advocacy, Capacity Development, Economic Affairs, and Stakeholder Relations Group",
-        "contact": "loc. 1104, 1105; 8736-2773 TF",
-        "email": "dcamacho@dbm.gov.ph"
-      },
       {
         "name": "ROMEO MATTHEW T. BALANQUIT",
         "role": "Budget Policy and Strategy Group",
@@ -88,22 +43,22 @@
         "email": "rbalanquit@dbm.gov.ph"
       },
       {
-        "name": "RAMON VICENTE B. ASUNCION",
-        "role": "Internal Management Group",
-        "contact": "loc. 2319, 2363; 8735-4926 TF",
-        "email": "rasuncion@dbm.gov.ph"
-      },
-      {
-        "name": "CLARITO ALEJANDRO D. MAGSINO",
-        "role": "Supervising Senior Official of the Internal Audit Service",
-        "contact": "loc. 2305; 8735-4874",
-        "email": "cmagsino@dbm.gov.ph"
-      },
-      {
         "name": "GERARDO E. MAULA",
         "role": "Information and Communications Technology Group",
         "contact": "loc. 2514",
         "email": "gmaula@dbm.gov.ph"
+      },
+      {
+        "name": "GERALD R. JANDA",
+        "role": "Functional Group Head, Organization and Systems Improvement Group (OPCCB and SPIB)"
+      },
+      {
+        "name": "DANTE B. DE CHAVEZ",
+        "role": "Functional Group Head, Internal Management Group (Administrative, Finance, Corporate Planning and Management Services)"
+      },
+      {
+        "name": "ANDREA CELENE M. MAGTALAS",
+        "role": "Legal and Legislative Group; supervises Legal Service; concurrent Director of BILLS incl. DLU"
       }
     ],
     "bureaus_and_services": [
@@ -410,7 +365,11 @@
         "email": "agency@ps-philgeps.gov.ph",
         "website": "www.philgeps.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/index.php/dbm-central-office-directory",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-agriculture",
@@ -424,10 +383,6 @@
       "email": "sec.kiko@da.gov.ph"
     },
     "undersecretaries": [
-      {
-        "name": "DEOGRACIAS VICTOR B. SAVELLANO",
-        "role": "Chief of Staff"
-      },
       {
         "name": "ROGER V. NAVARRO",
         "role": "Operations and Agri-Fisheries Mechanization",
@@ -471,108 +426,98 @@
         "email": "ousci@da.gov.ph"
       },
       {
-        "name": "AGNES CATHERINE T. MIRANDA",
-        "role": "Attached Agencies and Corporations",
-        "contact": "8928-1275; 8927-6156",
-        "email": "agnescatherinem@da.gov.ph"
-      },
-      {
         "name": "JEROME V. OLIVEROS",
-        "role": "Livestock",
-        "contact": "loc. 2807; 8332-2257",
-        "email": "kabsatdv@da.gov.ph"
+        "role": "Special Concerns and Official Development Assistance (ODA) - Foreign Aid/Grants"
       },
       {
         "name": "CHERYL MARIE NATIVIDAD-CABALLERO",
-        "role": "Special Concerns and Official Development Assistance-Foreign Aid/Grant",
-        "contact": "8273-2474",
-        "email": "jerome.oliveros@da.gov.ph"
+        "role": "High Value Crops"
       },
       {
-        "name": "ALVIN JOHN BALAGBAG",
-        "role": "High Value Crops",
-        "contact": "8928-8741 to 64",
-        "email": "usecc.n.caballero@da.gov.ph"
+        "name": "ALVIN JOHN F. BALAGBAG",
+        "role": "Undersecretary and Chief of Staff"
+      },
+      {
+        "name": "CONSTANTE J. PALABRICA",
+        "role": "Livestock"
+      },
+      {
+        "name": "CARLOS C. CARAG",
+        "role": "Inspectorate and Enforcement"
+      },
+      {
+        "name": "PHILIP C. YOUNG",
+        "role": "Identified High-Value Export Crops and Agri-Fishery Export Development and Promotion"
+      },
+      {
+        "name": "ARREY A. PEREZ",
+        "role": "Agro-Marine Industrial Systems"
       }
     ],
     "assistant_secretaries": [
       {
         "name": "PAZ J. BENAVIDEZ II",
-        "role": "DA Inspectorate and Enforcement",
-        "contact": "8273-2474 loc. 2210",
-        "email": "alvin.balagbag@da.gov.ph"
+        "role": "Policy and Regulations"
       },
       {
         "name": "ALLEN KRISTOPHER A. ANARNA",
-        "role": "Policy and Regulations",
-        "contact": "loc. 2822; 8352-1378"
+        "role": "Administration"
       },
       {
         "name": "TELMA C. TOLENTINO",
-        "role": "Administration",
-        "contact": "loc. 2404, 2409; 8929-7267"
+        "role": "Finance"
       },
       {
         "name": "GENEVIEVE E. VELICARIA-GUEVARRA",
-        "role": "Finance",
-        "contact": "loc. 2330; 8920-1837 TF",
-        "email": "telma.tolentino@da.gov.ph"
+        "role": "Agribusiness, Marketing, and Consumer Affairs; Legislative Affairs and Department Legislative Liaison Officer"
       },
       {
         "name": "NOEL A. PADRE",
-        "role": "Agribusiness, Marketing, and Consumer Affairs/Legislative Affairs and Department Legislative Liaison Officer",
-        "contact": "loc. 2214; 8928-8741 to 64"
+        "role": "Planning and Project Development"
       },
       {
-        "name": "CONSTANTE DE JESUS PALABRICA",
-        "role": "Planning and Project Development",
-        "contact": "loc. 2317, 2319; 8926-7439; 8928-0590 F"
-      },
-      {
-        "name": "BENJAMIN CALONIA ALBARECE",
-        "role": "Swine and Poultry",
-        "contact": "loc. 2137; 8520",
-        "email": "dantepalabrica@da.gov.ph"
+        "name": "BENJAMIN C. ALBARECE",
+        "role": "Ruminant Livestock"
       },
       {
         "name": "DANIEL ALFONSO N. ATAYDE",
-        "role": "Ruminant Livestock",
-        "contact": "(083) 8528-2240",
-        "email": "daasecforruminantlivestock@da.gov.ph"
-      },
-      {
-        "name": "CARLOS C. CARAG",
-        "role": "Logistics",
-        "contact": "(083) 8928-8741 to 64",
-        "email": "oaslogistics@mail.da.gov.ph"
+        "role": "Logistics"
       },
       {
         "name": "JOYCEL R. PANLILIO",
-        "role": "DA Inspectorate and Enforcement",
-        "contact": "loc. 2317, 2319; 8928-8741 to 64",
-        "email": "daie2024@da.gov.ph"
+        "role": "High Value Crops, Sagip Saka, and Intellectual Property; DA Deputy Spokesperson"
       },
       {
         "name": "ARNEL V. DE MESA",
-        "role": "High Value Crops; and Sagip Saka and Intellectual Property",
-        "contact": "loc. 2317, 2319; 8928-8741 to 64"
-      },
-      {
-        "name": "PHILIP C. YOUNG",
-        "role": "Special Concerns; Official Development Assistance; and DA Spokesperson",
-        "contact": "loc. 2317, 2319; 8926-9172",
-        "email": "da.spokesperson@mail.da.gov.ph"
+        "role": "Special Concerns and Official Development Assistance (ODA); DA Spokesperson"
       },
       {
         "name": "JAMES A. LAYUG",
-        "role": "Special Assistant for Export Development",
-        "contact": "loc. 2317, 2319; 8928-8741 to 64"
+        "role": "Implementation of Executive Order No. 70, s. 2018 and National Task Force for West Philippine Sea"
       },
       {
         "name": "U-NICHOLS A. MANALO",
-        "role": "Implementation of Executive Order No. 70, Series of 2018 and National Task Force for the West Philippine Sea",
-        "contact": "loc. 2380, 8927-7416",
-        "email": "ntfwps@mail.da.gov.ph"
+        "role": "Operations"
+      },
+      {
+        "name": "MICHAEL J. GARCIA",
+        "role": "Swine and Poultry"
+      },
+      {
+        "name": "WILLIE ANN M. ANGSIY",
+        "role": "Legal Service"
+      },
+      {
+        "name": "ERNESTO C. ENRIQUEZ",
+        "role": "Internal Audit"
+      },
+      {
+        "name": "EDUARDO E. DESTURA",
+        "role": "Agro-Marine Industrial Systems - Rural Infrastructure"
+      },
+      {
+        "name": "BRANDO C. AGUILERA",
+        "role": "Agro-Marine Industrial Systems - National and Regional Infrastructure"
       }
     ],
     "bureaus": [
@@ -784,7 +729,11 @@
         "contact": "8928-8756 loc. 2650",
         "website": "www.philfida.da.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.da.gov.ph/directory-of-officials/",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-agrarian-reform",
@@ -801,15 +750,11 @@
     "undersecretaries": [
       {
         "name": "LANI C. DE LEON",
-        "role": "Finance, Management and Administration Office",
-        "contact": "8426-7486",
-        "email": "usec.fmao@dar.gov.ph"
+        "role": "Policy, Planning & Research Office (PPRO)"
       },
       {
         "name": "ROWENA NIÑA O. TADURAN",
-        "role": "Support Services Office",
-        "contact": "8925-4125",
-        "email": "usec.sso@dar.gov.ph"
+        "role": "Special Concerns Office (SCO); External Affairs & Communications Operations Office (EACOO)"
       },
       {
         "name": "KAZEL C. CELESTE",
@@ -824,28 +769,18 @@
         "email": "usec.lao@dar.gov.ph"
       },
       {
-        "name": "LUIS MEINRADO C. PAÑGULAYAN",
-        "role": "Policy, Planning and Research Office",
-        "contact": "8928-6325",
-        "email": "usec.ppro@dar.gov.ph"
-      },
-      {
         "name": "JESRY T. PALMARES",
         "role": "Foreign Assisted and Special Projects Office",
         "contact": "8920-4287",
         "email": "usec.faspo@dar.gov.ph"
       },
       {
-        "name": "MARILYN B. BARUA-YAP",
-        "role": "Special Concerns Office/ External Affairs and Communications Operations Office",
-        "contact": "8426-7467",
-        "email": "usec.specialconcern@dar.gov.ph"
+        "name": "AMIHILDA J. SANGCOPAN",
+        "role": "Finance, Management & Administration Office (FMAO); Office for Mindanao Affairs (OMA)"
       },
       {
-        "name": "AMIHILDA J. SANGCOPAN",
-        "role": "Office for Mindanao Affairs",
-        "contact": "8928-6268",
-        "email": "usecmard.secretariat@dar.gov.ph"
+        "name": "JOSEF ANGELO S. MARTIRES",
+        "role": "Support Services Office (SSO)"
       }
     ],
     "assistant_secretaries": [
@@ -863,9 +798,7 @@
       },
       {
         "name": "UBALDO R. SADIARIN JR.",
-        "role": "Support Services Office",
-        "contact": "8928-6586",
-        "email": "asec.sso@dar.gov.ph"
+        "role": "Policy, Planning and Research Office (PPRO)"
       },
       {
         "name": "MARJORIE P. AYSON",
@@ -874,20 +807,8 @@
         "email": "asec.foo@dar.gov.ph"
       },
       {
-        "name": "EUGENE P. FOLLANTE",
-        "role": "Legal Affairs Office",
-        "contact": "8929-3460",
-        "email": "asec.lao@dar.gov.ph"
-      },
-      {
         "name": "VIRGILIO L. MENDEZ",
         "role": "Legal Affairs Office as an ex-officio member of the DARAB in Adjudication of Agrarian Reform Cases"
-      },
-      {
-        "name": "JOSEF ANGELO S. MARTIRES",
-        "role": "Foreign Assisted and Special Projects Office",
-        "contact": "8920-4287",
-        "email": "asec.faspo@dar.gov.ph"
       },
       {
         "name": "RENE E. COLOCAR",
@@ -896,10 +817,32 @@
         "email": "asec.rec007@dar.gov.ph"
       },
       {
-        "name": "VACANT",
-        "role": "Policy, Planning and Research Office",
-        "contact": "8426-9288",
-        "email": "asec.ppro@dar.gov.ph"
+        "name": "JAMES ARSENIO O. PONCE",
+        "role": "Support Services Office (SSO)"
+      },
+      {
+        "name": "RODOLFO D. CASTIL JR.",
+        "role": "Special Concerns Office (SCO)"
+      },
+      {
+        "name": "JOSE JENIL C. DEMORITO",
+        "role": "External Affairs and Communications Operations Office (EACOO)"
+      },
+      {
+        "name": "FACUNDO O. PALAFOX V",
+        "role": "Legal Affairs Office (LAO) for ALI-ALA"
+      },
+      {
+        "name": "ROLANDO S. CUA",
+        "role": "DARAB Board Member III"
+      },
+      {
+        "name": "JIM G. COLETO",
+        "role": "DARAB Board Member III"
+      },
+      {
+        "name": "MCDONALD M. GALIT",
+        "role": "DARAB Board Member III"
       }
     ],
     "bureaus": [
@@ -1007,6 +950,12 @@
       "officer_in_charge_director": "JOSE JENIL C. DEMORITO",
       "office": "Public Assistance and Media Relations Service",
       "email": "director.pamrs@dar.gov.ph"
+    },
+    "officials_source": {
+      "url": "https://web.archive.org/web/20260307154647/https://www.dar.gov.ph/officials",
+      "checked": "2026-10-15",
+      "as_of": "2026-03-07",
+      "label": "an archived copy of the department’s own list"
     }
   },
   {
@@ -1028,15 +977,7 @@
       },
       {
         "name": "PETER IRVING C. CORVERA",
-        "role": "Head of Procuring Entity (HOPE), Senior Personnel Oversight; Internal Audit Service",
-        "contact": "8687-2922; 8636-4876; 8636-4995",
-        "email": "osec@deped.gov.ph"
-      },
-      {
-        "name": "TRYGVE L. OLAIVAR",
-        "role": "Government Relations; Field Operations and Infrastructure Oversight",
-        "contact": "8633-7208; 8633-7228; 8687-2922",
-        "email": "osec@deped.gov.ph"
+        "role": "Senior Personnel Oversight; Head of the Procuring Entity; Government Relations and Infrastructure Oversight"
       },
       {
         "name": "ROWENA CANDICE M. RUIZ",
@@ -1055,28 +996,10 @@
         "email": "usecforadministration@deped.gov.ph"
       },
       {
-        "name": "REVSEE A. ESCOBEDO",
-        "role": "Operations",
-        "contact": "8620-8492; 8633-5313",
-        "email": "revsee.escobedo@deped.gov.ph"
-      },
-      {
         "name": "WILFREDO E. CABRAL",
         "role": "Officer-in-Charge, Human Resource and Organizational Development",
         "contact": "8633-7206",
         "email": "usec.hrod@deped.gov.ph"
-      },
-      {
-        "name": "ANNALYN M. SEVILLA",
-        "role": "Finance",
-        "contact": "8633-9342; 8638-3703",
-        "email": "anne.sevilla@deped.gov.ph; usec.financebpm@deped.gov.ph"
-      },
-      {
-        "name": "GINA O. GONONG",
-        "role": "Curriculum and Teaching",
-        "contact": "8631-5057; 8633-7202; 8636-4879",
-        "email": "usecforadministration@deped.gov.ph"
       },
       {
         "name": "FILEMON RAY L. JAVIER",
@@ -1085,24 +1008,34 @@
         "email": "oula@deped.gov.ph"
       },
       {
-        "name": "GERARD L. CHAN",
-        "role": "Procurement",
-        "contact": "8633-1940; 8635-3761",
-        "email": "gerard.chan@deped.gov.ph"
+        "name": "GERARD CHAN",
+        "role": "Support to the Implementation of Public-Private Partnerships"
+      },
+      {
+        "name": "MARCELINO VELOSO III",
+        "role": "Information and Communications Technology"
+      },
+      {
+        "name": "MALCOLM S. GARMA",
+        "role": "Governance and Operations"
+      },
+      {
+        "name": "RAFAELITA M. ALDABA",
+        "role": "PQF, Planning Service and ECAIR"
+      },
+      {
+        "name": "CARMELA C. ORACION",
+        "role": "Learning Systems"
+      },
+      {
+        "name": "EDSON BYRON K. SY",
+        "role": "Finance"
       }
     ],
     "assistant_secretaries": [
       {
-        "name": "GEORGINA ANN H. YANG",
-        "role": "External Partnerships Service",
-        "contact": "8637-6463",
-        "email": "georgina.yang@deped.gov.ph; external.partnerships@deped.gov.ph"
-      },
-      {
         "name": "CILETTE LIBORO CO",
-        "role": "Public Affairs Service",
-        "contact": "8631-8493",
-        "email": "cillette.liboroco@deped.gov.ph"
+        "role": "Public Affairs and External Partnerships"
       },
       {
         "name": "NILO L. ROSAS",
@@ -1111,27 +1044,12 @@
         "email": "osec@deped.gov.ph"
       },
       {
-        "name": "MARCELINO G. VELOSO III",
-        "role": "Information and Communications",
-        "email": "marcelino.veloso@deped.gov.ph"
-      },
-      {
         "name": "ROGER B. MASAPOL",
-        "role": "Strategic Management",
-        "contact": "8687-2744",
-        "email": "roger.masapol@deped.gov.ph"
+        "role": "Governance and Operations - Education Governance-Support Services"
       },
       {
         "name": "DEXTER A. GALBAN",
-        "role": "Operations",
-        "contact": "8632-1368; 8633-7213",
-        "email": "dexter.galvan@deped.gov.ph"
-      },
-      {
-        "name": "MALCOLM S. GARMA",
-        "role": "Operations",
-        "contact": "8635-3761",
-        "email": "malcolm.garma@deped.gov.ph"
+        "role": "Strategic Management"
       },
       {
         "name": "JANIR T. DATUKAN",
@@ -1140,10 +1058,20 @@
         "email": "janir.datukan@deped.gov.ph"
       },
       {
-        "name": "ALMA RUBY C. TORIO",
-        "role": "Curriculum and Teaching",
-        "contact": "8633-7258; 8633-5429",
-        "email": "oasci@deped.gov.ph"
+        "name": "JOCELYN DR ANDAYA",
+        "role": "Operations"
+      },
+      {
+        "name": "AURELIO PAULO \"AP\" BARTOLOME",
+        "role": "Human Resource and Organizational Development and Infrastructure"
+      },
+      {
+        "name": "JEROME T. BUENVIAJE",
+        "role": "Learning Systems Strand"
+      },
+      {
+        "name": "DELFIN STEPHEN D. VILLAFUERTE",
+        "role": "Education and Workforce Development Group"
       }
     ],
     "bureaus": [
@@ -1341,7 +1269,11 @@
         "email": "directors.office@phsa.edu.ph",
         "website": "www.phsa.edu.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.deped.gov.ph/about-deped/deped-executive-committee/",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-energy",
@@ -1350,9 +1282,8 @@
     "trunkline": "(632) 8479-2900",
     "website": "www.doe.gov.ph",
     "secretary": {
-      "name": "RAPHAEL PERPETUO M. LOTILLA",
-      "contact": "8840-2008; 8840-2134",
-      "email": "rlotilla@doe.gov.ph"
+      "name": "SHARON S. GARIN",
+      "contact": "8840-2008; 8840-2134"
     },
     "undersecretaries": [
       {
@@ -1366,11 +1297,6 @@
         "email": "repwimpy.fuentebella@doe.gov.ph"
       },
       {
-        "name": "SHARON S. GARIN",
-        "contact": "8840-2074",
-        "email": "sgarin@doe.gov.ph"
-      },
-      {
         "name": "ROWENA CRISTINA L. GUEVARA",
         "contact": "8817-8603",
         "email": "ousecrclg@doe.gov.ph"
@@ -1379,23 +1305,35 @@
         "name": "ALESSANDRO O. SALES",
         "contact": "8840-2236",
         "email": "aosales@doe.gov.ph"
+      },
+      {
+        "name": "RONALD V. CONQUILLA"
+      },
+      {
+        "name": "MARIO C. MARASIGAN"
+      },
+      {
+        "name": "RIOLITA C. INOCENCIO"
+      },
+      {
+        "name": "MARIA FRANCESCA M. DEL ROSARIO"
       }
     ],
     "assistant_secretaries": [
       {
-        "name": "MYLENE C. CAPONGCOL",
-        "contact": "8812-6194",
-        "email": "mycaps@doe.gov.ph"
+        "name": "AGUSTUS CESAR A. NAVARRO"
       },
       {
-        "name": "RONALD V. CONQUILLA",
-        "contact": "8840-2008",
-        "email": "rconquilla@doe.gov.ph"
+        "name": "MYRA FIERA F. ROA"
       },
       {
-        "name": "MARIO C. MARASIGAN",
-        "contact": "8892-7880",
-        "email": "mcmarasigan@doe.gov.ph"
+        "name": "EDEN C. BRION-BAKILAN"
+      },
+      {
+        "name": "MARIA LETHEL C. ALBURO-MEJIA"
+      },
+      {
+        "name": "SABINE MARIE B. ROMERO"
       }
     ],
     "bureaus": [
@@ -1455,7 +1393,11 @@
         "contact": "(082) 224-2231",
         "email": "ngeroche@doe.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://d24qbtp4vooyzi.cloudfront.net/api/media/file/DOE%20Organizational%20Chart%20as%20of%2001%20Aug%202026.pdf?prefix=dev%2Fmedia",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-environment-and-natural-resources",
@@ -1464,9 +1406,10 @@
     "trunkline": "(632) 8929-6626/IP Phone Trunkline No. 8248-3367",
     "website": "www.denr.gov.ph",
     "secretary": {
-      "name": "MARIA ANTONIA YULO-LOYZAGA",
+      "name": "JUAN MIGUEL T. CUNA",
       "contact": "loc. 2295, 2013; 8925-8277; 8920-4301",
-      "email": "osec@denr.gov.ph"
+      "email": "osec@denr.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -1487,11 +1430,6 @@
         "name": "JONAS R. LEONES",
         "role": "Legal and Administration",
         "contact": "loc. 2232; 8920-2213"
-      },
-      {
-        "name": "JUAN MIGUEL T. CUNA",
-        "role": "Policy, Planning, and International Affairs",
-        "contact": "loc. 2286, 2289; 8928-1186; 8928-1195"
       },
       {
         "name": "JOSELIN MARCUS E. FRAGADA",
@@ -1729,22 +1667,14 @@
     "website": "www.dof.gov.ph",
     "email": "helpdesk@dof.gov.ph",
     "secretary": {
-      "name": "RALPH G. RECTO",
+      "name": "FREDERICK D. GO",
       "contact": "8523-9215",
       "email": "secfin@dof.gov.ph"
     },
     "undersecretaries": [
       {
-        "name": "MARIA LUWALHATI C. DOROTAN-TIUSECO",
-        "role": "Chief of Staff, Information Management Service, Political and Legislative Liaison Group, and Climate Finance Policy Group",
-        "contact": "loc. 1121, 1122",
-        "email": "mdorotantiuseco@dof.gov.ph"
-      },
-      {
         "name": "BAYANI H. AGABIN",
-        "role": "Legal Services and Local Finance Group",
-        "contact": "loc. 1211",
-        "email": "bagabin@dof.gov.ph"
+        "role": "Extractive Industries and Bangsamoro Affairs"
       },
       {
         "name": "NIÑO RAYMOND B. ALVINA",
@@ -1765,49 +1695,29 @@
         "email": "ppg@dof.gov.ph"
       },
       {
-        "name": "CHARLITO MARTIN R. MENDOZA",
-        "role": "Revenue Operations Group and Revenue Integrity Protection Service",
-        "contact": "loc. 1241",
-        "email": "cmendoza@dof.gov.ph"
-      },
-      {
-        "name": "RENATO E. RESIDE JR.",
-        "role": "Tax Research and Expenditure Monitoring",
-        "contact": "loc. 1203",
-        "email": "rreside@dof.gov.ph"
-      },
-      {
         "name": "MARIA EDITA Z. TAN",
         "role": "Special Concerns and Oversight, and Internal Audit Service",
         "contact": "loc. 1251",
         "email": "meztan@dof.gov.ph"
       },
       {
-        "name": "ROLANDO G. TUNGPALAN",
-        "role": "Corporate Sector and Strategic Infrastructure Group",
-        "contact": "loc. 1231",
-        "email": "rtungpalan@dof.gov.ph"
+        "name": "KARLO FERMIN S. ADRIANO",
+        "role": "Fiscal Policy and Monitoring Group"
       },
       {
-        "name": "DOMINI SD. VELASQUEZ",
-        "role": "Office of the Chief Economist",
-        "contact": "loc. 4517",
-        "email": "oce@dof.gov.ph"
+        "name": "ROLANDO LIGON JR.",
+        "role": "Revenue Operations Group; Supervising Undersecretary, Revenue Integrity Protection Service"
+      },
+      {
+        "name": "MA. ANGELA E. IGNACIO",
+        "role": "Government Corporations and Investments Group"
+      },
+      {
+        "name": "KRYSTAL LYN T. UY",
+        "role": "Legal Services and Local Finance Group"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "KARLO FERMIN S. ADRIANO",
-        "role": "Fiscal Policy and Monitoring Group",
-        "contact": "loc. 1304",
-        "email": "kadriano@dof.gov.ph"
-      },
-      {
-        "name": "EUFROCINIO M. BERNABE JR.",
-        "role": "Corporate Sector and Strategic Infrastructure Group",
-        "contact": "loc. 1317",
-        "email": "ebernabe@dof.gov.ph"
-      },
       {
         "name": "NEIL ADRIAN S. CABILES",
         "role": "Office of the Chief Economist",
@@ -1815,34 +1725,8 @@
         "email": "ncabiles@dof.gov.ph"
       },
       {
-        "name": "DANIELLE MARIE S. RIEZA-CULANGEN",
-        "role": "Legal Services and Local Finance Group",
-        "contact": "loc. 1311",
-        "email": "drieza@dof.gov.ph"
-      },
-      {
-        "name": "DONALYN U. MINIMO",
-        "role": "International Finance Group",
-        "contact": "loc. 1312",
-        "email": "dminimo@dof.gov.ph"
-      },
-      {
-        "name": "DAKILA ELTEEN M. NAΡΑΟ",
-        "role": "Revenue Operations Group",
-        "contact": "loc. 1311",
-        "email": "dnapao@dof.gov.ph"
-      },
-      {
-        "name": "GERALD ALAN A. QUEBRAL",
-        "role": "Revenue Operations Group",
-        "contact": "loc. 1311",
-        "email": "gquebral@dof.gov.ph"
-      },
-      {
-        "name": "GLENDA R. RUMOHR-FIGUEROA",
-        "role": "Privatization and Partnerships Group",
-        "contact": "loc. 1303",
-        "email": "grumohr@dof.gov.ph"
+        "name": "DAKILA ELTEEN M. NAPAO",
+        "role": "Revenue Operations Group, as FIRB Secretariat Head"
       },
       {
         "name": "ANGELICA I. SARMIENTO",
@@ -1851,10 +1735,20 @@
         "email": "asarmiento@dof.gov.ph"
       },
       {
-        "name": "JUVY C. DANOFRATA",
-        "role": "Fiscal Incentives Review Board",
-        "contact": "loc. 1301",
-        "email": "jdanofrata@dof.gov.ph"
+        "name": "EUVIMIL NINA R. ASUNCION",
+        "role": "Revenue Operations Group"
+      },
+      {
+        "name": "CARLYN A. DIAZ",
+        "role": "OIC-Assistant Secretary, International Finance Group"
+      },
+      {
+        "name": "JOEMYL J. BALORO",
+        "role": "Legal Services and Local Finance Group"
+      },
+      {
+        "name": "KRISTINE JOY D. DIAZ-TESTON",
+        "role": "Policy Development and Management Services Group; Central Administration Office; Central Financial Management Office"
       }
     ],
     "bureaus": [
@@ -1932,7 +1826,12 @@
         "email": "info@ntrc.gov.ph",
         "website": "www.ntrc.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dof.gov.ph/about/structure-and-leadership/",
+      "checked": "2026-10-15",
+      "as_of": "2026-03-23"
+    }
   },
   {
     "slug": "department-of-foreign-affairs",
@@ -1941,7 +1840,7 @@
     "trunkline": "(632) 8834-4000",
     "website": "www.dfa.gov.ph",
     "secretary": {
-      "name": "ENRIQUE A. MANALO",
+      "name": "MA. THERESA P. LAZARO",
       "contact": "8834-4881; 8832-1597 F",
       "email": "osec@dfa.gov.ph"
     },
@@ -1952,28 +1851,8 @@
     },
     "undersecretaries": [
       {
-        "name": "MA. THERESA P. LAZARO",
-        "role": "Bilateral Relations and ASEAN Affairs",
-        "contact": "8834-4037; 8832-0664 F",
-        "email": "ubraa@dfa.gov.ph"
-      },
-      {
         "name": "MA. HELLEN B. DE LA VEGA",
-        "role": "Administration",
-        "contact": "8834-3050; 8831-9584 F",
-        "email": "oua@dfa.gov.ph"
-      },
-      {
-        "name": "JESUS S. DOMINGO",
-        "role": "Civilian Security and Consular Affairs",
-        "contact": "8834-3979; 8832-8364 F",
-        "email": "oucsca@dfa.gov.ph"
-      },
-      {
-        "name": "EDUARDO JOSE A. DE VEGA",
-        "role": "Migration Affairs",
-        "contact": "8834-4238",
-        "email": "oumwa@dfa.gov.ph"
+        "role": "Policy"
       },
       {
         "name": "CHARLES C. JOSE",
@@ -1982,10 +1861,12 @@
         "email": "oumaier@dfa.gov.ph"
       },
       {
-        "name": "JESUS S. DOMINGO",
-        "role": "Chairperson, OVS, Overseas Absentee Voting Secretariat",
-        "contact": "8834-4361; 8833-0915 F",
-        "email": "ovs@dfa.gov.ph"
+        "name": "MARIA THERESA B. DIZON-DE VEGA",
+        "role": "Administration"
+      },
+      {
+        "name": "LEO M. HERRERA-LIM",
+        "role": "Migration Affairs"
       }
     ],
     "assistant_secretaries": [
@@ -1996,28 +1877,10 @@
         "email": "ias@dfa.gov.ph"
       },
       {
-        "name": "ADRIAN BERNIE C. CANDOLADA",
-        "role": "Department Legislative Liaison Unit",
-        "contact": "8834-4203; 8834-4088 F",
-        "email": "dllu@dfa.gov.ph"
-      },
-      {
-        "name": "ARVIN R. DE LEON",
-        "role": "Office of Public Diplomacy",
-        "contact": "8832-1508; 8832-3307 F",
-        "email": "opcd@dfa.gov.ph"
-      },
-      {
         "name": "CELIA ANNA M. FERIA",
         "role": "Office of Cultural Diplomacy",
         "contact": "8834-3983",
         "email": "ocd@dfa.gov.ph"
-      },
-      {
-        "name": "PATRICK A. CHUASOTO",
-        "role": "Office of Policy Planning and Coordination",
-        "contact": "8831-4505; 8834-4328",
-        "email": "oppc@dfa.gov.ph"
       },
       {
         "name": "MARIA AGNES M. CERVANTES",
@@ -2038,81 +1901,14 @@
         "email": "oumaier@dfa.gov.ph"
       },
       {
-        "name": "PAUL VINCENT L. UY",
-        "role": "Office of the International Economic Relations",
-        "contact": "8834-3013; 8834-1451 F",
-        "email": "oumaier@dfa.gov.ph"
-      },
-      {
-        "name": "ROBERT O. FERRER JR.",
-        "role": "Office of Migration Affairs",
-        "contact": "8834-4994; 8834-3385",
-        "email": "ouma@dfa.gov.ph"
-      },
-      {
         "name": "MARSHALL LOUIS M. ALFEREZ",
-        "role": "Maritime and Ocean Affairs Office",
-        "contact": "8834-3300; 8831-4767 F",
-        "email": "moao@dfa.gov.ph"
-      },
-      {
-        "name": "ALAN L. DENIEGA",
-        "role": "Office of the Civilian Security",
-        "contact": "8834-3980",
-        "email": "ocs@dfa.gov.ph"
-      },
-      {
-        "name": "JOSE VICTOR V. CHAN-GONZAGA",
-        "role": "Office of American Affairs",
-        "contact": "8834-4644; 8831-8894 F",
-        "email": "oaa@dfa.gov.ph"
-      },
-      {
-        "name": "DANIEL R. ESPIRITU",
-        "role": "Office of ASEAN Affairs",
-        "contact": "8834-7127; 8832-1667 F",
-        "email": "asean@dfa.gov.ph"
-      },
-      {
-        "name": "AILEEN S. MENDIOLA-RAU",
-        "role": "Office of Asian and Pacific Affairs",
-        "contact": "8834-4776; 8833-3998 F",
-        "email": "aspac@dfa.gov.ph"
-      },
-      {
-        "name": "ADELIO ANGELITO S. CRUZ",
-        "role": "Office of Consular Affairs",
-        "contact": "8651-9402; 8651-9405",
-        "email": "oca@dfa.gov.ph"
-      },
-      {
-        "name": "MARIA ELENA P. ALGABRE",
-        "role": "Office of European Affairs",
-        "contact": "8834-3194; 8831-4422 F"
+        "role": "Office of Asian and Pacific Affairs"
       },
       {
         "name": "EMILIO T. FERNANDEZ",
         "role": "Office of Financial Management Services",
         "contact": "8834-3649; 8834-4713 F",
         "email": "ofms@dfa.gov.ph"
-      },
-      {
-        "name": "PAULO V. SARET",
-        "role": "Officer-in-Charge, Office of Treaties and Legal Affairs",
-        "contact": "8834-3836; 8832-5339 F",
-        "email": "ola@dfa.gov.ph"
-      },
-      {
-        "name": "MARDOMEL CELO D. MELICOR",
-        "role": "Office of Middle East and African Affairs",
-        "contact": "8834-4146; 8551-6879 F",
-        "email": "omeaa@dfa.gov.ph"
-      },
-      {
-        "name": "CHRISTOPHER B. MONTERO",
-        "role": "Human Resources Management Office",
-        "contact": "8834-4391; 8832-3264 F",
-        "email": "hrmo@dfa.gov.ph"
       },
       {
         "name": "PATRICK JOHN U. HILADO",
@@ -2131,6 +1927,54 @@
         "role": "United Nations and International Organizations",
         "contact": "8834-4890; 8832-3245 F",
         "email": "unio@dfa.gov.ph"
+      },
+      {
+        "name": "ANGELICA C. ESCALONA",
+        "role": "Office of Public Diplomacy"
+      },
+      {
+        "name": "ROBESPIERRE L. BOLIVAR",
+        "role": "Office of Policy Planning and Coordination"
+      },
+      {
+        "name": "RHENITA B. RODRIGUEZ",
+        "role": "Office of the International Economic Relations"
+      },
+      {
+        "name": "EZZEDIN H. TAGO",
+        "role": "Office of Migration Affairs"
+      },
+      {
+        "name": "EMMANUEL DONATO K. GUZMAN",
+        "role": "Maritime and Ocean Affairs Office"
+      },
+      {
+        "name": "ELMER G. CATO",
+        "role": "Office of Intelligence and Security Services"
+      },
+      {
+        "name": "RAQUEL R. SOLANO",
+        "role": "Office of American Affairs"
+      },
+      {
+        "name": "ANA MARIE L. HERNANDO",
+        "role": "Office of ASEAN Affairs"
+      },
+      {
+        "name": "ANNE J. LOUIS",
+        "role": "Office of Consular Affairs"
+      },
+      {
+        "name": "DEENA JOY D. AMATONG",
+        "role": "Office of European Affairs"
+      },
+      {
+        "name": "GERMINIA V. AGUILAR-USUDAN",
+        "role": "Office of Middle East and African Affairs"
+      },
+      {
+        "name": "MARFORD M. ANGELES",
+        "role": "Human Resources Management Office"
       }
     ],
     "public_assistance_desk": {
@@ -3041,7 +2885,12 @@
         "contact": "8834-3719; 8834-4177 F",
         "email": "tccp@dfa.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://web.archive.org/web/20251111231309/https://dfa.gov.ph/images/2025/Officers_Directory_in_the_Home_Office_as_of_23_October_2025docx.pdf",
+      "checked": "2026-10-15",
+      "label": "an archived copy of the department’s own list"
+    }
   },
   {
     "slug": "department-of-health",
@@ -3050,9 +2899,10 @@
     "trunkline": "(632) 8651-7800; 8711-6744 F",
     "website": "www.doh.gov.ph",
     "secretary": {
-      "name": "TEODORO J. HERBOSA",
+      "name": "EDWIN M. MERCADO",
       "contact": "loc. 1112, 1114",
-      "email": "dohosec@doh.gov.ph"
+      "email": "dohosec@doh.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -3425,7 +3275,7 @@
     "email": "info@dhsud.gov.ph",
     "website": "www.dhsud.gov.ph",
     "secretary": {
-      "name": "JOSE RIZALINO L. ACUZAR",
+      "name": "JOSE RAMON P. ALILING",
       "email": "osec@dhsud.gov.ph"
     },
     "undersecretaries": [
@@ -3613,9 +3463,8 @@
     "trunkline": "(02) 8920-0101",
     "website": "www.dict.gov.ph",
     "secretary": {
-      "name": "HENRY RHOEL R. AGUDA",
-      "contact": "loc. 1009/1005/1001",
-      "email": "henry.aguda@dict.gov.ph"
+      "name": "ROBERT JOSEPH M. DE CLARO",
+      "contact": "loc. 1009/1005/1001"
     },
     "undersecretaries": [
       {
@@ -4041,30 +3890,32 @@
         "role": "Peace and Order"
       },
       {
-        "name": "LORD A. VILLANUEVA",
-        "role": "Operations",
-        "contact": "loc. 2201 to 2203",
-        "email": "lavillanueva@dilg.gov.ph"
-      },
-      {
-        "name": "SERAFIN P. BARRETTO JR.",
-        "role": "Public Safety",
-        "contact": "loc. 2701, 2702",
-        "email": "spbarrettojr@dilg.gov.ph"
-      },
-      {
-        "name": "ODILON L. PASARABA",
-        "role": "Project Development Management",
-        "contact": "loc. 3701; 8876-3454",
-        "email": "olpasaraba@dilg.gov.ph"
-      },
-      {
         "name": "HUBERT V. GERVACIO",
-        "role": "Plans and Programs"
+        "role": "Undersecretary / Chief of Staff of the Secretary"
       },
       {
         "name": "JON PAULO V. SALVAHAN",
         "role": "Plans and Programs"
+      },
+      {
+        "name": "ROLANDO C. PUNO",
+        "role": "Public Affairs and Communications"
+      },
+      {
+        "name": "ROMEO P. BENITEZ",
+        "role": "External, Legal and Legislative Affairs"
+      },
+      {
+        "name": "JED PATRICK E. MABILOG",
+        "role": "Public Safety"
+      },
+      {
+        "name": "OMAR ALEXANDER V. ROMERO",
+        "role": "Operations"
+      },
+      {
+        "name": "TEDDY SANDY S. RAVAL",
+        "role": "Special Concerns"
       }
     ],
     "assistant_secretaries": [
@@ -4093,37 +3944,31 @@
         "email": "Imdeleon@dilg.gov.ph"
       },
       {
-        "name": "ROLANDO C. PUNO",
-        "role": "Communications and External Affairs",
-        "contact": "loc. 3402"
-      },
-      {
-        "name": "ROMEO P. BENITEZ",
-        "role": "Legal and Legislative Affairs",
-        "contact": "loc. 5401"
-      },
-      {
-        "name": "FLORENCIO M. BERNABE JR.",
-        "role": "Public Safety",
-        "contact": "loc. 3201, 3203",
-        "email": "fmbernabe@dilg.gov.ph"
-      },
-      {
         "name": "ELIZABETH N. LOPEZ DE LEON",
         "role": "Community Participation",
         "contact": "loc. 3501 to 3502",
         "email": "enlopezdeleon@dilg.gov.ph"
       },
       {
-        "name": "JUABILLY P. RACHO",
-        "role": "Peace & Order",
-        "contact": "loc. 6233; 8723-0401 loc 6233",
-        "email": "jpracho@dilg.gov.ph"
-      },
-      {
         "name": "JESI HOWARD S. LANETE",
         "role": "Local Government",
         "email": "jslanete@dilg.gov.ph"
+      },
+      {
+        "name": "BRIAN MEY R. TOMAS",
+        "role": "Legal and Legislative Affairs"
+      },
+      {
+        "name": "MARIA LIAVEL C. BADILLO-CRISOSTOMO",
+        "role": "Communications and External Affairs"
+      },
+      {
+        "name": "RICHARD THOMAS F. JOSON",
+        "role": "Public Safety"
+      },
+      {
+        "name": "JOEL MA. T. ALVAREZ",
+        "role": "Peace and Order"
       }
     ],
     "bureaus": [
@@ -4326,7 +4171,11 @@
         "email": "ovceo@napolcom.gov.ph",
         "website": "www.napolcom.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dilg.gov.ph/key-officials",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-justice",
@@ -4335,16 +4184,12 @@
     "trunkline": "(632) 8523-8481 to 98",
     "website": "www.doj.gov.ph",
     "secretary": {
-      "name": "JESUS CRISPIN C. REMULLA",
+      "name": "FREDDERICK A. VIDA",
       "contact": "loc. 217; 8521-8348",
-      "email": "osec@doj.gov.ph"
+      "email": "osec@doj.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
-      {
-        "name": "JESSE HERMOGENES T. ANDRES",
-        "contact": "loc. 300; 8524-6304",
-        "email": "jhtandres@doj.gov.ph"
-      },
       {
         "name": "JOSE R. CADIZ JR.",
         "contact": "loc. 220",
@@ -4371,21 +4216,16 @@
         "email": "rtvasquez@doj.gov.ph"
       },
       {
-        "name": "FREDDERICK A. VIDA",
-        "contact": "loc. 212; 8525-6798",
-        "email": "favida@doj.gov.ph"
+        "name": "MAJKEN ANIKA S. GRAN-ONG"
+      },
+      {
+        "name": "GARNEY M. CANDELARIA"
+      },
+      {
+        "name": "IAN NORMAN E. DATO"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "JOSE DOMINIC F. CLAVANO IV",
-        "contact": "loc. 214; 8521-1908",
-        "email": "jdfclavano@doj.gov.ph"
-      },
-      {
-        "name": "ELISEO DC. CRUZ",
-        "contact": "loc. 225; 8525-1638"
-      },
       {
         "name": "MICHELLE ANNE S. LAPUZ",
         "contact": "loc. 207; 8524-9364",
@@ -4394,11 +4234,6 @@
       {
         "name": "JOSE ARTURO R. MALVAR",
         "contact": "loc. 374"
-      },
-      {
-        "name": "MAJKEN ANIKA S. GRAN-ONG",
-        "contact": "loc. 223, 409; 8524-8930",
-        "email": "msgran-ong@doj.gov.ph"
       },
       {
         "name": "RANDOLPH A. PASCASIO",
@@ -4412,9 +4247,13 @@
       },
       {
         "name": "MARIA ELISA B. GERMAR",
-        "role": "OIC-Assistant Secretary",
-        "contact": "loc. 254; 8536-0445",
-        "email": "finance@doj.gov.ph"
+        "role": "OIC-Assistant Secretary"
+      },
+      {
+        "name": "JOSE MARIANO C. BERNARDEZ"
+      },
+      {
+        "name": "MARIA CHARINA V. BUENA-DY PO"
       }
     ],
     "national_prosecution_service": [
@@ -4650,7 +4489,13 @@
         "contact": "5310-4720",
         "email": "oed@oadr.doj.gov.ph; madandaman@oadr.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   },
   {
     "slug": "department-of-labor-and-employment",
@@ -4659,9 +4504,10 @@
     "trunkline": "(632) 8527-3000",
     "website": "www.dole.gov.ph",
     "secretary": {
-      "name": "BIENVENIDO E. LAGUESMA",
+      "name": "FRANCIS N. TOLENTINO",
       "contact": "loc. 728; 8527-5523; 8527-3494 F",
-      "email": "belaguesma@dole.gov.ph; osec@dole.gov.ph"
+      "email": "osec@dole.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -4671,12 +4517,6 @@
         "email": "usec.employment@dole.gov.ph"
       },
       {
-        "name": "BENJO SANTOS M. BENAVIDEZ",
-        "role": "Workers' Welfare and Protection",
-        "contact": "loc. 720-722; 8527-3559",
-        "email": "usec.workerswelfare@dole.gov.ph"
-      },
-      {
         "name": "BENEDICTO ERNESTO R. BITONIO JR.",
         "role": "Labor Relations, Policy, and International Affairs; Regional Operations",
         "contact": "loc. 726",
@@ -4684,18 +4524,14 @@
       },
       {
         "name": "FELIPE N. EGARGO JR.",
-        "role": "Legislative Liaison and Legal Affairs",
-        "contact": "loc.. 713; 8527-3566",
-        "email": "usec.legislative@dole.gov.ph"
+        "role": "Legislative Liaison and Legal Affairs; Workers' Welfare and Protection"
+      },
+      {
+        "name": "WARREN M. MICLAT",
+        "role": "General Administration"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "PAUL VINCENT W. AÑOVER",
-        "role": "Employment and Human Resource Development",
-        "contact": "loc. 724, 727",
-        "email": "asec.employment@dole.gov.ph"
-      },
       {
         "name": "LENNARD CONSTANTINE C. SERRANO",
         "role": "Labor Relations, Policy and International Affairs Cluster; Regional Operations",
@@ -4703,16 +4539,22 @@
         "email": "asec.laborrelations@dole.gov.ph"
       },
       {
-        "name": "WARREN M. MICLAT",
-        "role": "General Administration",
-        "contact": "loc. 723",
-        "email": "asec.genad@dole.gov.ph"
-      },
-      {
         "name": "AMUERFINA R. REYES",
         "role": "Workers' Welfare and Protection",
         "contact": "loc. 444; 8527-3489",
         "email": "asec.workerswelfare@dole.gov.ph"
+      },
+      {
+        "name": "MARIA CONSUELO S. BACAY",
+        "role": "Labor Relations, Policy, and International Affairs"
+      },
+      {
+        "name": "JOEL M. GONZALES",
+        "role": "Employment and Human Resource Development"
+      },
+      {
+        "name": "ADELINE T. DE CASTRO",
+        "role": "Legislative Liaison and Legal Affairs"
       }
     ],
     "bureaus": [
@@ -4901,14 +4743,20 @@
         "email": "odg@tesda.gov.ph",
         "website": "www.tesda.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   },
   {
     "slug": "department-of-migrant-workers",
     "office_name": "DEPARTMENT OF MIGRANT WORKERS",
     "address": "Blas F. Ople Bldg., Ortigas Ave. cor. EDSA Ave., Mandaluyong City",
     "trunkline": "(632) 8722-1144; 8722-1155",
-    "website": "www.dmw.gov.ph",
+    "website": "dmw.gov.ph",
     "secretary": {
       "name": "HANS LEO J. CACDAC",
       "contact": "8727-7771",
@@ -4917,36 +4765,28 @@
     "undersecretaries": [
       {
         "name": "BERNARD P. OLALIA",
-        "role": "Licensing and Adjudication Services",
-        "contact": "8722-1153; 8722-1159",
-        "email": "oulas.concerns@dmw.gov.ph"
+        "role": "Adjudication Services and Regional Operations"
       },
       {
         "name": "FELICITAS Q. BAY",
-        "role": "OIC-Undersecretary, Foreign Employment and Welfare Services",
-        "contact": "8722-1167",
-        "email": "felicitas.bay@dmw.gov.ph"
+        "role": "Foreign Employment and Welfare Services - Asia-Pacific, Americas, and European Affairs"
       },
       {
-        "name": "PATRICIA YVONNE M. CAUNAN",
-        "role": "Policy and International Cooperation",
-        "contact": "8721-9481",
-        "email": "policy@dmw.gov.ph"
-      },
-      {
-        "name": "DOMINIQUE R. TUTAY",
+        "name": "DOMINIQUE RUBIA-TUTAY",
         "role": "Finance and Internal Management",
         "contact": "8722-1179; 8727-77-75",
         "email": "oufim@dmw.gov.ph"
+      },
+      {
+        "name": "JAINAL T. RASUL, JR.",
+        "role": "Policy and International Cooperation; concurrently Foreign Employment and Welfare Services - Middle East and African Affairs"
+      },
+      {
+        "name": "DARLENE R. PAJARITO",
+        "role": "Licensing and Anti-Trafficking-in-Persons"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "JEROME T. PAMPOLINA",
-        "role": "Sea-based OFW Concerns",
-        "contact": "8721-9498",
-        "email": "jpampolina@dmw.gov.ph"
-      },
       {
         "name": "VENECIO V. LEGASPI",
         "role": "Land-based Services",
@@ -4955,21 +4795,15 @@
       },
       {
         "name": "LEVINSON C. ALCANTARA",
-        "role": "Pre-Employment Services",
-        "contact": "8722-1150; 8727-7779",
-        "email": "psodirector@dmw.gov.ph"
+        "role": "Policy and International Cooperation"
       },
       {
         "name": "JEROME A. ALCANTARA",
-        "role": "Licensing and Adjudication Services; Regional Operations",
-        "contact": "8727-7772",
-        "email": "jalcantara@dmw.gov.ph"
+        "role": "Adjudication Services and Regional Operations"
       },
       {
         "name": "MARIA REGINA ANGELA G. GALIAS",
-        "role": "OIC-Assistant Secretary, Migrant Workers Welfare Services",
-        "contact": "8722-1161",
-        "email": "ma.galias@dmw.gov.ph"
+        "role": "Migrant Workers Welfare Services"
       },
       {
         "name": "FRANCIS RON C. DE GUZMAN",
@@ -4977,15 +4811,22 @@
         "contact": "8526-2392"
       },
       {
-        "name": "MARIO PERPETUO SOCORRO T. ZINAMPAN",
-        "role": "Policy and International Cooperation",
-        "contact": "8721-9481; 8726-8953"
-      },
-      {
         "name": "VIOLETA D. ILLESCAS",
         "role": "Finance and Internal Management",
         "contact": "8722-1197",
         "email": "oasfim@dmw.gov.ph"
+      },
+      {
+        "name": "AUGUSTO B. SAN DIEGO III",
+        "role": "OIC-Assistant Secretary, Sea-based OFW Concerns"
+      },
+      {
+        "name": "JULYN S. AMBITO-FERMIN",
+        "role": "Pre-Employment Services"
+      },
+      {
+        "name": "MARY GRACE L. RIGUER-TEODOSIO",
+        "role": "Licensing and Procurement"
       }
     ],
     "bureaus": [
@@ -5427,7 +5268,12 @@
         "contact": "(4207) 220-13349; (4202)444-01147",
         "email": "mwo_prague@dmw.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://dmw.gov.ph/archives/v1/resources/dsms/DMW/DMW-Directory-as-of-26-August-2026.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2026-08-26"
+    }
   },
   {
     "slug": "department-of-national-defense",
@@ -5457,40 +5303,34 @@
       },
       {
         "name": "ANGELITO M. DE LEON",
-        "role": "Capability Assessment and Development",
-        "contact": "8982-5619"
+        "role": "Defense Affairs"
       },
       {
         "name": "SALVADOR MELCHOR B. MISON JR.",
         "role": "Acquisition and Resource Management",
         "contact": "8982-5606"
+      },
+      {
+        "name": "GAVIN D. EDJAWAN",
+        "role": "Administration"
+      },
+      {
+        "name": "FERDINAND B. CUI JR.",
+        "role": "Special Concerns"
+      },
+      {
+        "name": "RENE S. DIAZ",
+        "role": "Defense Technology Research and Industry Development"
       }
     ],
     "assistant_secretaries": [
       {
-        "name": "HENRY A. ROBINSON JR.",
-        "role": "Plans and Programs",
-        "contact": "8982-5610"
-      },
-      {
         "name": "MARITA I. YORO",
-        "role": "Strategic Assessment and International Affairs",
-        "contact": "8982-5654"
+        "role": "International Affairs"
       },
       {
         "name": "ARSENIO R. ANDOLONG",
-        "role": "Officer-in-Charge, Human Resource",
-        "contact": "8982-5609"
-      },
-      {
-        "name": "GAVIN D. EDJAWAN",
-        "role": "Financial Management",
-        "contact": "8982-5608"
-      },
-      {
-        "name": "JOSELITO B. RAMOS",
-        "role": "Logistics, Acquisitions, and Self-Reliant Defense Posture",
-        "contact": "8982-5607"
+        "role": "Defense Communications"
       },
       {
         "name": "EMMANUEL ANTHONY V. RAMOS",
@@ -5501,6 +5341,30 @@
         "name": "ERIK LAWRENCE S. DY",
         "role": "Legal and Legislative Affairs",
         "contact": "8982-5612"
+      },
+      {
+        "name": "DICK P. DIOLOLA",
+        "role": "Human Resource"
+      },
+      {
+        "name": "ROMEO N. DELA CRUZ",
+        "role": "Financial Management"
+      },
+      {
+        "name": "RENE RAOUL ROMMEL DC HONASAN",
+        "role": "Logistics and Acquisitions"
+      },
+      {
+        "name": "AUGUSTO V. GAITE",
+        "role": "Defense Technology Research and Industry Development"
+      },
+      {
+        "name": "KATHERINE B. LINGAN",
+        "role": "Policy Management"
+      },
+      {
+        "name": "JEFFREY C. HECHANOVA",
+        "role": "Strategy and Policy"
       }
     ],
     "public_assistance_desk": {
@@ -5576,7 +5440,13 @@
         "contact": "8912-6675; 8912-2424",
         "email": "ocda@ocd.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   },
   {
     "slug": "department-of-public-works-and-highways",
@@ -5587,105 +5457,88 @@
     "secretary": {
       "name": "VIVENCIO \"VINCE\" B. DIZON",
       "contact": "5304-3300",
-      "email": "osec@dpwh.gov.ph"
+      "email": "osec@dpwh.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
-      {
-        "name": "CARLOS G. MUTUC",
-        "role": "Chief of Staff, Special Concerns",
-        "contact": "5304-2936",
-        "email": "mutuc.carlos@dpwh.gov.ph"
-      },
       {
         "name": "EMIL K. SADAIN",
         "role": "Senior Undersecretary",
         "contact": "5304-3555; 5304-3372"
       },
       {
-        "name": "ROBERTO R. BERNARDO",
-        "role": "Regional Operations in NCR, Regions III, IV-A, MIMAROPA, V, VI, VII, and VIII",
-        "contact": "5304-3415",
-        "email": "bernardo.roberto@dpwh.gov.ph"
-      },
-      {
-        "name": "EUGENIO R. PIPO JR.",
-        "role": "Regional Operations in CAR, Regions I, II, IX, X, XI, XII, and XIII",
-        "contact": "5304-3468",
-        "email": "pipo.eugenio@dpwh.gov.ph"
-      },
-      {
-        "name": "MARICHU A. PALAFOX",
-        "role": "Support Services",
-        "contact": "5304-3535",
-        "email": "palafox.marichu@dpwh.gov.ph"
-      },
-      {
-        "name": "MARIA CATALINA E. CABRAL",
-        "role": "Planning and Public-Private Partnership Services",
-        "contact": "5304-3319",
-        "email": "cabral.ma_catalina@dpwh.gov.ph"
-      },
-      {
-        "name": "ANNE SHARLYNE G. LAPUZ",
-        "role": "Legal Services",
-        "contact": "5304-3214",
-        "email": "lapuz.anne_sharlyne@dpwh.gov.ph"
-      },
-      {
         "name": "ADOR G. CANLAS",
-        "role": "Technical Services and Information Management Service",
-        "contact": "5304-3528; 5304-3302",
-        "email": "canlas.ador@dpwh.gov.ph"
+        "role": "Regional Operations in Visayas and Mindanao"
       },
       {
-        "name": "ERIC AYAPΑΝΑ",
-        "role": "Operations in Charge of Convergence Projects",
-        "contact": "5304-2925",
-        "email": "ayapana.eric@dpwh.gov.ph"
+        "name": "ARTHUR V. BISNAR",
+        "role": "Regional Operations in Luzon"
+      },
+      {
+        "name": "LARA MARISSE I. ESQUIBIL",
+        "role": "OIC-Undersecretary, Technical Services and Operations for External Convergence Projects"
+      },
+      {
+        "name": "NICASIO A. CONTI",
+        "role": "Planning Service, Public-Private Partnership Service, and National Building Code Development Office"
+      },
+      {
+        "name": "CHARLES T. CALIMA",
+        "role": "Special Concerns"
+      },
+      {
+        "name": "RIO T. ESPIRITU",
+        "role": "Support Services"
+      },
+      {
+        "name": "SAMUEL RUFINO J. TURGANO",
+        "role": "Legal Services"
+      },
+      {
+        "name": "RICARDO P. BERNABE III",
+        "role": "Office of the Secretary, Information Management Service, Stakeholders Relations Service and Legislative Liaison Office"
       }
     ],
     "assistant_secretaries": [
       {
         "name": "NERIE D. BUENO",
-        "role": "Regional Operations in NCR, Regions III, IV-A, MIMAROPA, V, VI, VII, and VIII",
-        "contact": "5304-2919",
-        "email": "bueno.nerie@dpwh.gov.ph"
-      },
-      {
-        "name": "REY PETER B. GILLE",
-        "role": "Regional Operations in CAR, Regions I, II, IX, X, XI, XII and XIII",
-        "contact": "5304-3234",
-        "email": "gille.rey_peter@dpwh.gov.ph"
+        "role": "Regional Operations in Visayas and Mindanao"
       },
       {
         "name": "MICHAEL S. VILLAFRANCA",
-        "role": "Officer-in-Charge, Support Services",
-        "contact": "5304-3242",
-        "email": "villafranca.michael@dpwh.gov.ph"
+        "role": "OIC-Assistant Secretary, Internal Audit Service"
       },
       {
-        "name": "CONSTANTE A. LLANES JR.",
-        "role": "Planning Service",
-        "contact": "5304-3099",
-        "email": "Ilanes.constante@dpwh.gov.ph"
+        "name": "MELODY ANNE E. CALO-VILLAR",
+        "role": "Legal Services"
       },
       {
-        "name": "JOY M. MANGINSAY",
-        "role": "Special Concerns",
-        "contact": "5304-3229",
-        "email": "manginsay.joy@dpwh.gov.ph"
+        "name": "ROMMEL K. TELLO",
+        "role": "Regional Operations in Luzon"
       },
       {
-        "name": "MEDMIER G. MALIG",
-        "role": "Technical Services and Information Management Service",
-        "contact": "5304-3582; 5304-3580",
-        "email": "malig.medmier@dpwh.gov.ph"
+        "name": "CARLO JAUHARO G. CASTRO",
+        "role": "Planning Service, Public-Private Partnership Service, and National Building Code Development Office"
       },
       {
-        "name": "VACANT",
-        "role": "Legal Services",
-        "contact": "5304-3232",
-        "email": "versoza.mel_john@dpwh.gov.ph"
+        "name": "GENEVIEVE E. CUARESMA",
+        "role": "Support Services"
+      },
+      {
+        "name": "MICHELLE S. DE VERA",
+        "role": "Stakeholders Relations Service and Communications"
+      },
+      {
+        "name": "MICHELLE MAE V. VIVO",
+        "role": "Legislative Liaison Office"
+      },
+      {
+        "name": "SUZANNE MARIE R. LIWANAG",
+        "role": "Office of the Secretary"
+      },
+      {
+        "name": "ANGELO G. NUESTRO",
+        "role": "Information Management Service"
       }
     ],
     "bureaus": [
@@ -5834,6 +5687,10 @@
       "office": "Stakeholders Relations Service",
       "contact": "5304-3532",
       "email": "delrosario.randy@dpwh.gov.ph"
+    },
+    "officials_source": {
+      "url": "https://www.dpwh.gov.ph/dpwh/directory/index",
+      "checked": "2026-10-15"
     }
   },
   {
@@ -5881,16 +5738,20 @@
         "email": "oasec.ala@dost.gov.ph; dlig@dost.gov.ph"
       },
       {
-        "name": "RODOLFO J. CALZADO JR.",
+        "name": "RODOLFO J. CALZADO, JR.",
         "role": "Development Cooperation",
         "contact": "loc. 3030",
         "email": "oasecdc@dost.gov.ph"
       },
       {
-        "name": "NAPOLEON K. JUANILLO JR.",
+        "name": "NAPOLEON K. JUANILLO, JR.",
         "role": "Technology Transfer, Communications, and Commercialization",
         "contact": "loc. 3010",
         "email": "oasecnkj@dost.gov.ph"
+      },
+      {
+        "name": "MARIA TERESA BIEN DE GUZMAN",
+        "role": "Countryside Development"
       }
     ],
     "regional_offices": [
@@ -6136,7 +5997,11 @@
         "contact": "8837-1168; 8838-1122",
         "email": "info@tapi.dost.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dost.gov.ph/transparency/about-dost/executive-officials.html",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-social-welfare-and-development",
@@ -6175,22 +6040,12 @@
         "email": "ousppg@dswd.gov.ph"
       },
       {
-        "name": "DENISE FLORENCE BERNOS-BRAGAS",
-        "role": "Standards and Capacity Building Group",
-        "contact": "loc. 10341",
-        "email": "ousscbg@dswd.gov.ph"
-      },
-      {
-        "name": "VILMA B. CABRERA",
-        "role": "National Household Targeting System and Pantawid Pamilyang Pilipino Program",
-        "contact": "loc. 10326",
-        "email": "ous_nhts4ps@dswd.gov.ph"
+        "name": "DENISE FLORENCE B. BRAGAS",
+        "role": "Regulatory Services and Institutional Development Group (RSIDG)"
       },
       {
         "name": "ALAN A. TANJUSAY",
-        "role": "Inclusive, Sustainable Peace and Special Concerns",
-        "contact": "loc. 10034",
-        "email": "ousispsc@dswd.gov.ph"
+        "role": "Peace and Development Group (PDG)"
       },
       {
         "name": "EDUARDO M. PUNAY",
@@ -6205,10 +6060,12 @@
         "email": "ousla@dswd.gov.ph"
       },
       {
-        "name": "EMMELINE A. VILLAR",
-        "role": "International Affairs, and Attached and Supervised Agencies",
-        "contact": "loc. 10028; 8951-7121",
-        "email": "ouasa@dswd.gov.ph"
+        "name": "ELAINE F. FALLARCUNA",
+        "role": "Support to Operations and New Initiatives, Conditional Cash Transfer Group (CCTG); OIC, Office of the Undersecretary for CCTG"
+      },
+      {
+        "name": "EVELYN C. ARIBON",
+        "role": "Chief-of-Staff and Concurrent Cluster Head, Office of the Secretary Group (OSEC)"
       }
     ],
     "assistant_secretaries": [
@@ -6225,58 +6082,22 @@
         "email": "oasppg@dswd.gov.ph"
       },
       {
-        "name": "CLARISSA LARA A. DURAN",
-        "role": "Officer-in-Charge, Strategic Communications",
-        "contact": "loc. 10358, 8931-8172",
-        "email": "oassc@dswd.gov.ph"
-      },
-      {
         "name": "JUAN CARLO V. MARQUEZ",
-        "role": "External Assistance and Development",
-        "contact": "loc. 10022, 10068",
-        "email": "oasead@dswd.gov.ph"
-      },
-      {
-        "name": "GINA V. WENCESLAO",
-        "role": "Administration and Support Services Group",
-        "contact": "loc. 10317",
-        "email": "oasfinance@dswd.gov.ph"
+        "role": "Policy and Planning"
       },
       {
         "name": "JANET P. ARMAS",
-        "role": "Standards and Capacity Building Group",
-        "contact": "loc. 10317; 8931-6146",
-        "email": "oasscb@dswd.gov.ph"
-      },
-      {
-        "name": "FLORENTINO Y. LOYOLA JR.",
-        "role": "Specialized Programs",
-        "contact": "loc. 10327",
-        "email": "oasspep@dswd.gov.ph"
+        "role": "Regulatory Services and Institutional Development Group (RSIDG)"
       },
       {
         "name": "ADA A. COLICO",
-        "role": "Statutory Programs",
-        "contact": "loc. 10271; 8709-1467",
-        "email": "oasstp@dswd.gov.ph"
+        "role": "Protective Programs, Operations Group"
       },
       {
         "name": "PAUL D. LEDESMA",
         "role": "Regional Operations",
         "contact": "loc. 10002",
         "email": "oasro@dswd.gov.ph"
-      },
-      {
-        "name": "MARITES M. MARISTELA",
-        "role": "National Household Targeting System",
-        "contact": "loc. 10227",
-        "email": "oas_4ps@dswd.gov.ph; oasnhts@dswd.gov.ph"
-      },
-      {
-        "name": "ARNEL B. GARCIA",
-        "role": "Inclusive-Sustainable Peace and Special Concerns",
-        "contact": "loc. 10318",
-        "email": "oasispsc@dswd.gov.ph"
       },
       {
         "name": "ULYSSES HERMOGENES C. AGUILAR",
@@ -6291,33 +6112,36 @@
         "email": "oasi@dswd.gov.ph"
       },
       {
-        "name": "MARCELO NICOMEDES J. CASTILLO",
-        "role": "Special Assistant to the Secretary for Innovations",
-        "email": "mnjcastillo@dswd.gov.ph; stb@dswd.gov.ph"
-      },
-      {
-        "name": "JULIUS EXEQUEL B. GOROSPE",
-        "role": "Chief Information Officer, e-Governance and Information Technology Concerns",
-        "contact": "loc. 10347",
-        "email": "cio@dswd.gov.ph"
-      },
-      {
-        "name": "ELAINE F. FALLARCUNA",
-        "role": "International Affairs, and Attached and Supervised Agencies",
-        "contact": "loc. 10324, 10325; 8931-9135",
-        "email": "oasiasa.osec@dswd.gov.ph"
-      },
-      {
         "name": "LEO L. QUINTILLA",
-        "role": "Special Assistant to the Secretary for Disaster Response Management Group",
-        "contact": "loc. 10166; 8851-2681",
-        "email": "nrimb@dswd.gov.ph"
+        "role": "Resource and Logistics Management (OASRLM)"
       },
       {
-        "name": "ANA MARIA PAZ B. RAFAEL",
-        "role": "Partnerships Building and Resource Mobilization",
-        "contact": "loc. 10027",
-        "email": "partnerships@clswd.gov.ph"
+        "name": "JOHANNES PAULUS B. ACUÑA",
+        "role": "Information and Communications Technology (ICT); Chief Information Officer"
+      },
+      {
+        "name": "EDMON B. MONTEVERDE",
+        "role": "Promotive Programs, Operations Group"
+      },
+      {
+        "name": "VEA GYPSY M. ABANTE",
+        "role": "Administrative and Financial Services, General Administration and Support Services Group"
+      },
+      {
+        "name": "ZABEDIN M. AZIS",
+        "role": "Legislative and Intergovernmental Affairs Group (LIAG)"
+      },
+      {
+        "name": "MAR ANGELO DG. DELOS SANTOS",
+        "role": "Human Resource and Legal Service, General Administration and Support Services Group"
+      },
+      {
+        "name": "RAYMOND JAY L. MAZO",
+        "role": "Special Committee on LGBTQIA+ Affairs, Diversity and Inclusion Committee"
+      },
+      {
+        "name": "JEZREEL KIEL M. MARISTELA",
+        "role": "Special Committee on LGBTQIA+ Affairs, Diversity and Inclusion Committee"
       }
     ],
     "bureaus": [
@@ -6504,7 +6328,11 @@
         "email": "secretariat@jjwc.gov.ph",
         "website": "www.jjwc.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dswd.gov.ph/dswd-directory-central-office-2/",
+      "checked": "2026-10-15"
+    }
   },
   {
     "slug": "department-of-tourism",
@@ -6513,22 +6341,16 @@
     "trunkline": "(632) 8459-5200 to 30",
     "website": "www.tourism.gov.ph",
     "secretary": {
-      "name": "MA. ESPERANZA CHRISTINA GARCIA FRASCO",
+      "name": "DITA ANGARA-MATHAY",
       "contact": "loc. 604/605",
       "email": "dot.osec@tourism.gov.ph"
     },
     "undersecretaries": [
       {
-        "name": "SHAHLIMAR H. TAMANO",
+        "name": "SHAHLIMAR HOFER TAMANO",
         "role": "Chief of Staff, Tourism Regulation Coordination & Resource Generation",
         "contact": "loc. 603, 202",
         "email": "ousec_tamano@tourism.gov.ph"
-      },
-      {
-        "name": "SHEREEN GAIL C. YU-PAMINTUAN",
-        "role": "Administration and Finance",
-        "contact": "loc. 615",
-        "email": "usecfinance@tourism.gov.ph"
       },
       {
         "name": "FERDINAND C. JUMAPAO",
@@ -6553,6 +6375,10 @@
         "role": "Tourism Standards, Regulations, and Human Capital Development",
         "contact": "loc. 208",
         "email": "ousec.rcbueno@tourism.gov.ph"
+      },
+      {
+        "name": "MILAGROS Y. SAY",
+        "role": "Administration and Finance"
       }
     ],
     "assistant_secretaries": [
@@ -6561,12 +6387,6 @@
         "role": "Strategic Communications and Public Affairs",
         "contact": "loc. 305",
         "email": "czloyola@tourism.gov.ph; opaa.director@tourism.gov.ph"
-      },
-      {
-        "name": "GISSELLA MARIE ROMUALDEZ-QUISUMBING",
-        "role": "Branding and Marketing Communications",
-        "contact": "loc. 302",
-        "email": "grquisumbing@tourism.gov.ph; pdotbranding@tourism.gov.ph"
       },
       {
         "name": "CHRISTINE JOY E. CARI",
@@ -6581,7 +6401,7 @@
         "email": "oasec_rms@tourism.gov.ph"
       },
       {
-        "name": "SHARLENE Z. BATIN",
+        "name": "SHARLENE ZABALA-BATIN",
         "role": "Tourism Digitalization and Resource Generation",
         "email": "oasecszb@tourism.gov.ph"
       },
@@ -6592,10 +6412,8 @@
         "email": "rpconopio@tourism.gov.ph"
       },
       {
-        "name": "EDEN C. BRION-BAKILAN",
-        "role": "Administration and Finance",
-        "contact": "loc. 406",
-        "email": "oasecaf@tourism.gov.ph"
+        "name": "JOHN BENEDICT T. TIGSON",
+        "role": "OIC-Assistant Secretary, Administration and Finance"
       }
     ],
     "regional_offices": [
@@ -6716,7 +6534,13 @@
         "contact": "8459-5200 to 30 loc. 102",
         "email": "pcssd@tourism.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   },
   {
     "slug": "department-of-trade-and-industry",
@@ -6731,22 +6555,8 @@
     },
     "undersecretaries": [
       {
-        "name": "AMANDA MARIE F. NOGRALES",
-        "role": "Legal Services",
-        "contact": "7791-3146",
-        "email": "AmandaNograles@dti.gov.ph; OULPS@dti.gov.ph"
-      },
-      {
-        "name": "RAFAELITA M. ALDABA",
-        "role": "Competitiveness and Innovation",
-        "contact": "7791-3277; 7791.3278",
-        "email": "RafaelitaAldaba@dti.gov.ph; OUCIG@dti.gov.ph"
-      },
-      {
         "name": "MARY JEAN T. PACHECO",
-        "role": "E-Commerce",
-        "contact": "7791-3280",
-        "email": "MaryJeanPacheco@dti.gov.ph; ECG@dti.gov.ph"
+        "role": "Supply Chain and Logistics Group (SCLG)"
       },
       {
         "name": "CEFERINO S. RODOLFO",
@@ -6764,19 +6574,16 @@
         "role": "Regional Operations Group",
         "contact": "7791.3273",
         "email": "BlesilaLantayona@dti.gov.ph; ROG@dti.gov.ph"
+      },
+      {
+        "name": "JOSE EDWINIEL C. GUILAS",
+        "role": "Office of the Secretary"
       }
     ],
     "assistant_secretaries": [
       {
         "name": "LEONILA T. BALUYUT",
-        "role": "Competitiveness and Innovation",
-        "email": "LenyBaluyut@dti.gov.ph"
-      },
-      {
-        "name": "AGATON TEODORO O. UVERO",
-        "role": "Fair Trade",
-        "contact": "7791-3242",
-        "email": "AgatonTeodoroUvero@dti.gov.ph; OASFTG@dti.gov.ph"
+        "role": "Regional Operations Group; also Acting Regional Director, National Capital Regional Office"
       },
       {
         "name": "MICHEL KRISTIAN R. ABLAN",
@@ -6788,6 +6595,34 @@
         "name": "GRACE F. BALUYAN",
         "role": "Regional Operations",
         "email": "GraceBaluyan@dti.gov.ph; OAS_GFB@dti.gov.ph"
+      },
+      {
+        "name": "M. MARCUS N. VALDEZ II",
+        "role": "Supervising Head, E-Commerce Bureau and Office for the Special Mandate on Vaporized Nicotine and Non-Nicotine Products (OSMV)"
+      },
+      {
+        "name": "MAY NIÑA CELYNNE P. LAYUG",
+        "role": "Supervising Head, Special Task Force Office (STFO)"
+      },
+      {
+        "name": "AL MODESTO M. VALENCIANO",
+        "role": "Supervising Head, CITEM and Design Center of the Philippines"
+      },
+      {
+        "name": "REGINO D. MALLARI, JR.",
+        "role": "Fair Trade Group, Supervising Head; Alternate Chairperson and Supervising Head, CIAP"
+      },
+      {
+        "name": "NYLAH RIZZA D. BAUTISTA",
+        "role": "Competitiveness and Innovation Group, Supervising Head"
+      },
+      {
+        "name": "KENNETH T. YAP",
+        "role": "Foreign Trade Service Corps Coordinating Office"
+      },
+      {
+        "name": "DOMINGO R. TOLENTINO, JR.",
+        "role": "Regional Operations Group"
       }
     ],
     "bureaus": [
@@ -7006,7 +6841,12 @@
         "email": "Rowel.Barba@ipophil.gov.ph",
         "website": "www.ipophil.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://dtiwebfiles.s3.ap-southeast-1.amazonaws.com/Directory/DTI+Directory+of+Key+Officials+as+of+September+10+2026.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2026-09-10"
+    }
   },
   {
     "slug": "department-of-transportation",
@@ -7016,9 +6856,10 @@
     "trunkline": "(632) 8790-8300; 8790-8400",
     "website": "www.dotr.gov.ph",
     "secretary": {
-      "name": "JAIME J. BAUTISTA",
+      "name": "GIOVANNI Z. LOPEZ",
       "contact": "loc. 9001, 9002",
-      "email": "jaime.bautista@dotr.gov.ph; osec@dotr.gov.ph"
+      "email": "osec@dotr.gov.ph",
+      "role": "Acting Secretary"
     },
     "undersecretaries": [
       {
@@ -7028,34 +6869,8 @@
         "email": "oula@dotr.gov.ph"
       },
       {
-        "name": "JESUS NATHANIEL MARTIN B. GONZALES",
-        "role": "Administration, Finance, and Procurement",
-        "contact": "loc. 9006",
-        "email": "ouaf@dotr.gov.ph"
-      },
-      {
         "name": "TIMOTHY JOHN R. BATAN",
-        "role": "Planning and Project Development",
-        "contact": "loc. 1002, 1003",
-        "email": "ouppd@dotr.gov.ph"
-      },
-      {
-        "name": "ROBERTO CECILIO O. LIM",
-        "role": "Aviation and Airports",
-        "contact": "loc. 1201",
-        "email": "ouaa@dotr.gov.ph"
-      },
-      {
-        "name": "ELMER FRANCISCO U. SARMIENTO",
-        "role": "Maritime",
-        "contact": "loc. 1205",
-        "email": "oum@dotr.gov.ph"
-      },
-      {
-        "name": "JEREMY S. REGINO",
-        "role": "Railways",
-        "contact": "loc. 1210",
-        "email": "our@dotr.gov.ph"
+        "role": "Railways"
       },
       {
         "name": "ANNELI R. LONTOC",
@@ -7064,25 +6879,31 @@
         "email": "oupri@dotr.gov.ph"
       },
       {
-        "name": "JESUS FERDINAND D. ORTEGA",
-        "role": "Road Transport and Infrastructure",
-        "contact": "loc. 1216",
-        "email": "ourti@dotr.gov.ph"
+        "name": "RICARDO E. ALFONSO JR.",
+        "role": "Internal Audit and Special Concerns"
+      },
+      {
+        "name": "MARINEL M. RAMOS",
+        "role": "Administration, Finance, and Procurement"
+      },
+      {
+        "name": "TEODORICO JOSE R. DELFIN",
+        "role": "Planning and Project Development"
+      },
+      {
+        "name": "JIM C. SYDIONGCO",
+        "role": "Aviation and Airports"
+      },
+      {
+        "name": "MARK STEVEN C. PASTOR",
+        "role": "Road Transport and Infrastructure"
+      },
+      {
+        "name": "RAMON G. REYES",
+        "role": "Road Transport and Non-Infrastructure"
       }
     ],
     "assistant_secretaries": [
-      {
-        "name": "HECTOR A. VILLACORTA",
-        "role": "Communications and Commuter Affairs",
-        "contact": "loc. 1008",
-        "email": "oacca@dotr.gov.ph"
-      },
-      {
-        "name": "RICARDO E. ALFONSO JR.",
-        "role": "Internal Audit and Special Concerns",
-        "contact": "loc. 1771",
-        "email": "oaiasc@dotr.gov.ph"
-      },
       {
         "name": "MARIE FRANCE C. TIATCO",
         "role": "Legal Affairs",
@@ -7090,52 +6911,44 @@
         "email": "oala@dotr.gov.ph"
       },
       {
-        "name": "MARIA PAULA B. DOMINGO-TORDESILLAS",
-        "role": "Management and Procurement",
-        "contact": "loc. 9008, 9009",
-        "email": "oamp@dotr.gov.ph"
-      },
-      {
-        "name": "MARLO V. TAGLE",
-        "role": "Administration and Finance",
-        "contact": "loc. 9011",
-        "email": "oafm@dotr.gov.ph"
-      },
-      {
-        "name": "LEONEL CRAY P. DE VELEZ",
-        "role": "Planning and Project Development",
-        "contact": "loc. 1004",
-        "email": "oappd@dotr.gov.ph"
-      },
-      {
-        "name": "ENRIQUE ANTONIO J. ESQUIVEL III",
-        "role": "Aviation and Airports",
-        "contact": "loc. 1203",
-        "email": "oaaa@dotr.gov.ph"
-      },
-      {
-        "name": "JULIUS A. YANO",
-        "role": "Maritime",
-        "contact": "loc. 1207",
-        "email": "oam@dotr.gov.ph"
-      },
-      {
-        "name": "JORJETTE B. AQUINO",
-        "role": "Railways",
-        "contact": "loc. 1211",
-        "email": "oar@dotr.gov.ph"
-      },
-      {
-        "name": "JAMES ANDRES B. MELAD",
-        "role": "Road Transport Infrastructure",
-        "contact": "loc. 1213",
-        "email": "oarti@dotr.gov.ph"
-      },
-      {
         "name": "JOSE F. LIM IV",
-        "role": "Road Transport Non-Infrastructure and Special Action and Intelligence Committee for Transportation",
-        "contact": "loc. 1012",
-        "email": "oartnisaict@dotr.gov.ph"
+        "role": "Special Action and Intelligence Committee for Transportation"
+      },
+      {
+        "name": "MANUEL G. CABOCHAN III",
+        "role": "Special Concerns"
+      },
+      {
+        "name": "ZENAIDA B. BAUTISTA",
+        "role": "Administration and Procurement"
+      },
+      {
+        "name": "CECILIA E. BIEN",
+        "role": "Management and Finance"
+      },
+      {
+        "name": "EDWIN P. SANTIAGO",
+        "role": "Planning and Project Development"
+      },
+      {
+        "name": "DONALDO A. MENDOZA",
+        "role": "Aviation and Airports"
+      },
+      {
+        "name": "VILLAMOR VENTURA S. PLAN",
+        "role": "Maritime"
+      },
+      {
+        "name": "EDUARDO DANILO F. MACABULOS",
+        "role": "Railways"
+      },
+      {
+        "name": "IRISH C. CALAGUAS",
+        "role": "Right-of-Way and Site Acquisition"
+      },
+      {
+        "name": "DIOSCORO T. REYES",
+        "role": "Road Transport and Non-Infrastructure"
       }
     ],
     "regional_offices": [
@@ -7225,14 +7038,20 @@
         "email": "records@trb.gov.ph",
         "website": "www.trb.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   },
   {
-    "slug": "national-economic-and-development-authority",
-    "office_name": "NATIONAL ECONOMIC AND DEVELOPMENT AUTHORITY",
+    "slug": "department-of-economy-planning-and-development",
+    "office_name": "DEPARTMENT OF ECONOMY, PLANNING, AND DEVELOPMENT",
     "address": "12 Escriva Drive, Ortigas Center, 1605 Pasig City",
     "trunkline": "(632) 8631-0945 to 68",
-    "website": "www.neda.gov.ph",
+    "website": "depdev.gov.ph",
     "secretary": {
       "name": "ARSENIO M. BALISACAN",
       "contact": "8631-0946; 8631-0952 loc. 28603",
@@ -7264,16 +7083,12 @@
         "email": "rgedillon@neda.gov.ph"
       },
       {
-        "name": "KRYSTAL LYN T. UY",
-        "role": "Legislative Affairs",
-        "contact": "loc. 21107",
-        "email": "ktuy@neda.gov.ph"
+        "name": "MA. MONICA P. PAGUNSAN",
+        "role": "Corporate Affairs Group"
       },
       {
-        "name": "MA. MONICA P. PAGUNSAN",
-        "role": "OIC–Undersecretary, Corporate Affairs Group",
-        "contact": "loc. 21221, 21219, 21218",
-        "email": "mppagunsan@neda.gov.ph"
+        "name": "GLENDA R. RUMOHR",
+        "role": "Legislative Affairs; Supervising Undersecretary, Legislative Liaison Office"
       }
     ],
     "assistant_secretaries": [
@@ -7290,22 +7105,20 @@
         "email": "rmplanta@neda.gov.ph"
       },
       {
-        "name": "FLORANTE G. IGTIBEN",
-        "role": "Policy and Planning Group; Corporate Affairs Group(OIC)",
-        "contact": "loc. 21301",
-        "email": "fgigtiben@neda.gov.ph"
-      },
-      {
         "name": "REYNALDO R. CANCIO",
         "role": "Sectoral Policy and Planning",
         "contact": "loc. 21421",
         "email": "rrcancio@neda.gov.ph"
       },
       {
-        "name": "AGNES E. TOLENTINO",
+        "name": "AGNES M. ESPINAS-TOLENTINO",
         "role": "Regional Development Group",
         "contact": "loc. 29072",
         "email": "AEtolentino@neda.gov.ph"
+      },
+      {
+        "name": "DANILO D. BARRAMEDA",
+        "role": "OIC-Assistant Secretary, Corporate Affairs Group"
       }
     ],
     "staff": [
@@ -7539,6 +7352,12 @@
         "email": "info@tariffcommission.gov.ph",
         "website": "www.tariffcommission.gov.ph"
       }
-    ]
+    ],
+    "officials_source": {
+      "url": "https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/2026-Government-Directory.pdf",
+      "checked": "2026-10-15",
+      "as_of": "2025-12-31",
+      "label": "the DBM Government Directory 2026 (data as of 31 December 2025)"
+    }
   }
 ]

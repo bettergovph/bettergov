@@ -17,7 +17,7 @@ const baseKeywords = [
   'Philippine Government',
   'Government Services',
   'Republic of the Philippines',
-  'Official Government Portal',
+  'Volunteer Run Portal',
 ];
 
 export function getExecutiveSEOData(officeName?: string): GovernmentSEOData {

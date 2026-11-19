@@ -27,5 +27,10 @@ jobs:
       - name: Run Meilisearch indexing script
         run: node scripts/index_meilisearch.cjs
         env:
-          MEILISEARCH_HOST: 'https://search.bettergov.ph' # Or your Meilisearch host
+          # The script (like every other admin script in scripts/) reads
+          # VITE_MEILISEARCH_HOST/_PORT, not MEILISEARCH_HOST — the previous
+          # name here didn't match, so the script silently fell back to its
+          # http://localhost:7700 default instead of the real host.
+          VITE_MEILISEARCH_HOST: 'https://search.bettergov.ph' # Or your Meilisearch host
+          VITE_MEILISEARCH_PORT: '443'
           MEILISEARCH_MASTER_KEY: ${{ secrets.MEILISEARCH_MASTER_KEY }}

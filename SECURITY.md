@@ -2,7 +2,7 @@
 
 ## Reporting Vulnerabilities
 
-If you discover a security vulnerability in BetterGov.ph, please report it responsibly by emailing [security@bettergov.ph](mailto:security@bettergov.ph).
+If you discover a security vulnerability in GOV.PH, please report it responsibly through the repository's [private vulnerability reporting form](https://github.com/bettergovph/bettergov/security/advisories/new). Do not open a public issue for security reports.
 
 When reporting, please include:
 
@@ -15,12 +15,12 @@ We will acknowledge your report within 48 hours and provide a more detailed resp
 
 ## Scope
 
-This security policy applies to the BetterGov.ph website, its associated services, and any related infrastructure.
+This security policy applies to the GOV.PH website, its associated services, and any related infrastructure.
 
 
 ### Out of Scope
 The following issues are considered out of scope for security reports:
-- Scam & phishing attempts involving BetterGovPh services
+- Scam & phishing attempts involving GOV.PH services
 - Physical security vulnerabilities
 - Social engineering attacks
 - Functional, UI, and UX bugs including:
@@ -38,7 +38,7 @@ The following issues are considered out of scope for security reports:
 
 ### Reporting Process
 1. **Initial Report**:
-   - Submit your vulnerability report via email
+   - Submit your vulnerability report through the private reporting form
    - Include all necessary details and proof of concept
    - Our team will confirm receipt of your report
 
@@ -75,4 +75,4 @@ We will not take legal action against you if you:
 
 ## Contact
 
-For any security-related inquiries, contact us at [security@bettergov.ph](mailto:security@bettergov.ph).
+For any security-related inquiries, use the [private vulnerability reporting form](https://github.com/bettergovph/bettergov/security/advisories/new).

@@ -9,7 +9,7 @@ import { fetchWithCache } from './api';
 export const fetchForexData = async (
   filterSymbols?: string[]
 ): Promise<ForexRate[]> => {
-  const data = await fetchWithCache('https://api.bettergov.ph/forex');
+  const data = await fetchWithCache('/api/forex');
 
   // Transform API data to match our ForexRate type
   let transformedData: ForexRate[] = data.rates.map(

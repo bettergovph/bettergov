@@ -28,6 +28,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.dev.vars
 .windsurf/
 .claude/
 
@@ -42,3 +43,7 @@ wrangler.toml
 
 # Dev
 .cursor/*
+.redesign-guide/
+
+# Git worktrees
+.worktrees/

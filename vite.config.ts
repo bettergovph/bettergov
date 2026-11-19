@@ -5,6 +5,54 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    port: 5125,
+    strictPort: true,
+    fs: {
+      // Keep Vite's default secret-file protections and also block Wrangler's
+      // runtime secrets/state, which must never be served by the web preview.
+      deny: [
+        '.env',
+        '.env.*',
+        '*.{crt,pem}',
+        '**/.git/**',
+        '**/.dev.vars',
+        '**/.dev.vars.*',
+        '**/.wrangler/**',
+        '**/.worktrees/**',
+      ],
+    },
+    // Dynamic APIs use the Worker on 127.0.0.1:5525 during development.
+    // Static files such as /api/projects.json stay served by Vite.
+    proxy: {
+      '^/api/(assistant(?:/stream)?|weather|forex|search(?:/.*)?)(?:\\?|$)': {
+        target: 'http://127.0.0.1:5525',
+        changeOrigin: true,
+        configure(proxy) {
+          proxy.on('proxyReq', (proxyRequest, request) => {
+            const origin = request.headers.origin;
+            if (!origin) return;
+            try {
+              // Keep the production allowlist strict while supporting the
+              // existing same-origin Vite preview. Foreign origins pass
+              // through unchanged and are rejected by the Worker.
+              const url = new URL(origin);
+              if (
+                (url.protocol === 'http:' || url.protocol === 'https:') &&
+                url.origin === origin &&
+                url.host === request.headers.host
+              ) {
+                proxyRequest.setHeader('Origin', 'https://bettergov.ph');
+              }
+            } catch {
+              // Malformed origins are rejected by the Worker.
+            }
+          });
+        },
+      },
+    },
+  },
   build: {
     outDir: 'dist',
   },

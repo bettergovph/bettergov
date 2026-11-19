@@ -1,3 +1,5 @@
+import { SEARCH_PROXY_PATH } from './search';
+
 /**
  * Utility functions for exporting data from the application
  */
@@ -87,9 +89,6 @@ export function createExportFilename(baseName: string): string {
  * Options for exporting Meilisearch data
  */
 export interface ExportMeilisearchOptions {
-  host: string;
-  port: string;
-  apiKey: string;
   indexName: string;
   filters: string;
   searchTerm?: string;
@@ -98,16 +97,13 @@ export interface ExportMeilisearchOptions {
 
 /**
  * Fetches data from Meilisearch based on current filters and exports it
- * @param options Export options including host, port, apiKey, indexName, filters, searchTerm, and filename
+ * @param options Export options including indexName, filters, searchTerm, and filename
  */
 export async function exportMeilisearchData(
   options: ExportMeilisearchOptions
 ): Promise<void> {
   try {
     const {
-      host,
-      port,
-      apiKey,
       indexName,
       filters,
       searchTerm = '',
@@ -116,12 +112,11 @@ export async function exportMeilisearchData(
 
     // Fetch data from Meilisearch
     const response = await fetch(
-      `${host}:${port}/indexes/${indexName}/search`,
+      `${SEARCH_PROXY_PATH}/indexes/${encodeURIComponent(indexName)}/search`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           q: searchTerm,

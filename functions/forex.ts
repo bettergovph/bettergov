@@ -4,6 +4,7 @@
  */
 
 import { Env } from './types';
+import { validateDataRequest } from './lib/data-request';
 
 interface RateItem {
   symbol: string;
@@ -22,6 +23,8 @@ export async function onRequest(context: {
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
+  const invalid = validateDataRequest(context.request, 'symbol');
+  if (invalid) return invalid;
   try {
     const url = new URL(context.request.url);
     const symbolParam = url.searchParams.get('symbol');
@@ -36,13 +39,12 @@ export async function onRequest(context: {
         JSON.stringify({
           error: 'No forex data found in KV store',
           message:
-            'Try calling /api/forex?update=true to fetch and store fresh data',
+            'Exchange rates are refreshed automatically; try /api/forex to initialize an empty cache',
         }),
         {
           status: 404,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
           },
         }
       );
@@ -64,7 +66,6 @@ export async function onRequest(context: {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
               'Cache-Control': 'max-age=3600',
             },
           }
@@ -79,7 +80,6 @@ export async function onRequest(context: {
             status: 404,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
             },
           }
         );
@@ -90,21 +90,18 @@ export async function onRequest(context: {
     return new Response(JSON.stringify(cachedData), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'max-age=3600',
       },
     });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({
-        error: (error as Error).message,
-        stack: (error as Error).stack,
+        error: 'Exchange rate service temporarily unavailable',
       }),
       {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         },
       }
     );

@@ -1,0 +1,8 @@
+# Preserve the browser security policy observed on production, 2026-10-17.
+/*
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://egov-cdn.e.gov.ph https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org; connect-src 'self' https://api.bettergov.ph https://search2.bettergov.ph https://ws.e.gov.ph https://en.wikipedia.org; frame-src https://www.google.com/maps/ https://maps.google.com https://www.openstreetmap.org/export/embed; media-src 'self'; worker-src 'none'; manifest-src 'self'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY

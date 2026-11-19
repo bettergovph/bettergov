@@ -1,6 +1,6 @@
 # Meilisearch Setup and Data Processing
 
-Welcome! This guide covers setting up Meilisearch for BetterGov's search functionality and documents all the data processing scripts. Whether you're setting up search for the first time or maintaining existing data, you'll find everything you need here.
+Welcome! This guide covers setting up Meilisearch for the portal's search functionality and documents all the data processing scripts. Whether you're setting up search for the first time or maintaining existing data, you'll find everything you need here.
 
 ## What's Inside
 
@@ -12,7 +12,13 @@ Welcome! This guide covers setting up Meilisearch for BetterGov's search functio
 
 ## Getting Started with Meilisearch
 
-Think of Meilisearch as the brain behind BetterGov's search feature. It helps users quickly find government services, offices, and information they need. Here's how to get it running on your machine.
+The website searches through its same-origin `/api/search` Worker proxy. The
+proxy reads its target from the Worker runtime variable `MEILISEARCH_ORIGIN`,
+limits access to the three public
+indexes, and keeps the search-only key server-side. See
+[`functions/README.md`](../functions/README.md#meilisearch) for the runtime origin, secret
+and deployment setup. The self-hosting steps below are for maintaining/indexing
+a Meilisearch server; changing script host variables does not redirect the browser.
 
 ### What You'll Need
 
@@ -108,9 +114,6 @@ VITE_MEILISEARCH_PORT=7700
 # Example: aSampleMasterKey
 MEILISEARCH_MASTER_KEY=aSampleMasterKey
 
-# Search key for the frontend (we'll generate this in Step 4)
-VITE_MEILISEARCH_SEARCH_API_KEY=your_search_api_key_here
-
 # Perplexity API key (required for contractor data processing)
 # Get your key at: https://www.perplexity.ai/settings/api
 PERPLEXITY_API_KEY=your_perplexity_api_key_here
@@ -176,19 +179,26 @@ npm run index:contractor-profiles
 
 #### Step 5: Generate Your Search Key
 
-Now we need to create a special key that the website will use for searching. In a new terminal window, run:
+Create a search-only key for the Worker's target Meilisearch server. The key must allow `search` on `bettergov`, `bettergov_flood_control` and `contractors`. In a new terminal window, run:
 
 ```bash
 npm run index:create-key
 ```
 
-This will show you a new API key. Copy it and update your `.env` file:
+Store the server's HTTPS origin and generated key in gitignored `.dev.vars`
+for local Worker development:
 
 ```env
-VITE_MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
+MEILISEARCH_ORIGIN=https://search.example.com
+MEILISEARCH_SEARCH_API_KEY=<paste_your_generated_key_here>
 ```
 
-This key can only search - it can't modify data, making it safe to use in the browser
+For deployment, set `MEILISEARCH_ORIGIN` in the Worker's Variables & Secrets
+settings and set the key with `npx wrangler secret put MEILISEARCH_SEARCH_API_KEY`.
+The origin must use HTTPS and have no path, query, fragment
+or credentials. The frontend no longer needs a
+`VITE_MEILISEARCH_SEARCH_API_KEY`; the key stays in the Worker. Create the key on
+the same Meilisearch server selected by `MEILISEARCH_ORIGIN`.
 
 #### Step 6: Verify Everything Works
 
@@ -397,7 +407,7 @@ This gives Node 4GB of memory to work with.
 
 - **[Meilisearch Docs](https://www.meilisearch.com/docs)** - Everything about Meilisearch
 - **[JavaScript SDK Guide](https://github.com/meilisearch/meilisearch-js)** - How we integrate with Meilisearch
-- **[Contributing to BetterGov](../CONTRIBUTING.md)** - Join us in improving government services!
+- **[Contributing](../CONTRIBUTING.md)** - How to propose and land changes
 
 ## Questions?
 
@@ -405,7 +415,6 @@ If you run into issues or have questions:
 
 1. Check the troubleshooting section above
 2. Search existing [GitHub issues](https://github.com/bettergovph/bettergov/issues)
-3. Ask in our [Discord community](https://discord.gg/mHtThpN8bT)
-4. Open a new issue if you've found a bug
+3. Open a new issue if you've found a bug
 
 Happy coding! Together, we're making government services more accessible for everyone.
