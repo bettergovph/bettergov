@@ -52,7 +52,13 @@ const symbolMedia: Record<(typeof symbolIds)[number], SymbolMedia | null> = {
     source:
       'https://commons.wikimedia.org/wiki/File:Lupang_Hinirang_Vocal_Sheet.png',
   },
-  seal: null,
+  seal: {
+    src: '/assets/philippines/coat-of-arms-of-the-philippines.webp',
+    credit: 'Galo Ocampo · Public domain',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_the_Philippines.svg',
+    fit: 'contain',
+  },
   bird: {
     src: '/assets/philippines/philippine-eagle.webp',
     credit: 'Shankar S. · CC BY 2.0',
@@ -192,7 +198,7 @@ const AboutPhilippines: FC = () => {
                         className={cn(
                           'h-full w-full',
                           media.fit === 'contain'
-                            ? 'object-contain p-4'
+                            ? 'object-contain p-6'
                             : 'object-cover'
                         )}
                       />
