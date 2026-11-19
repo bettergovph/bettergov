@@ -90,24 +90,6 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Pay Pag-IBIG Calamity Loan Online",
-    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=CL",
-    "id": "4f39d93f-70a4-41f7-b87f-05b471aed19c",
-    "slug": "pay-pag-ibig-calamity-loan-online",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Housing",
-      "slug": "housing"
-    },
-    "subcategory": {
-      "name": "Housing Loans",
-      "slug": "housing-loans"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
     "service": "Pay Pag-IBIG Housing Loan Online",
     "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=HL",
     "id": "7e96e670-976b-437d-9f1b-332565d35bb2",
@@ -130,60 +112,6 @@
     "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=HF",
     "id": "4bffa1d7-b2b2-4262-ad15-d853b9806b2f",
     "slug": "pay-pag-ibig-housing-loan-processing-fee-online",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Housing",
-      "slug": "housing"
-    },
-    "subcategory": {
-      "name": "Housing Loans",
-      "slug": "housing-loans"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Pay Pag-IBIG MP2 Savings (Voluntary Savings) Online",
-    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=M2",
-    "id": "2ae2126b-76ba-469a-9487-f1fb8ef301ca",
-    "slug": "pay-pag-ibig-mp2-savings-voluntary-savings-online",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Housing",
-      "slug": "housing"
-    },
-    "subcategory": {
-      "name": "Housing Loans",
-      "slug": "housing-loans"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Pay Pag-IBIG Multi-Purpose Loan Online",
-    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=ST",
-    "id": "21009162-d106-4c3b-87b2-a8fddae497ce",
-    "slug": "pay-pag-ibig-multi-purpose-loan-online",
-    "published": true,
-    "featured": false,
-    "category": {
-      "name": "Housing",
-      "slug": "housing"
-    },
-    "subcategory": {
-      "name": "Housing Loans",
-      "slug": "housing-loans"
-    },
-    "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
-  },
-  {
-    "service": "Pay Pag-IBIG Regular Savings (Mandatory Contribution) Online",
-    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=MC",
-    "id": "05f5d7ff-0c7f-417d-b2ef-5e1fb874af43",
-    "slug": "pay-pag-ibig-regular-savings-mandatory-contribution-online",
     "published": true,
     "featured": false,
     "category": {
@@ -268,5 +196,101 @@
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
     "updatedAt": "2025-06-06T11:30:06.318Z"
+  },
+  {
+    "service": "Apply through the SHFC Community Mortgage Program",
+    "url": "https://shfc.gov.ph/community-mortgage-program/",
+    "id": "05b1381b-ef67-5324-95c0-43ba70920e35",
+    "slug": "apply-through-the-shfc-community-mortgage-program",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Housing",
+      "slug": "housing"
+    },
+    "subcategory": {
+      "name": "Housing Programs",
+      "slug": "housing-programs"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Social Housing Finance Corporation (SHFC)",
+    "description": "Review how an eligible community association can proceed with the Community Mortgage Program.",
+    "endpointType": "Community-based program guidance",
+    "scope": "Community/association-based process, not an individual online application; eligibility and project steps apply.",
+    "officialGuidanceUrl": "https://dhsud.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for a Pag-IBIG Short-Term Loan for Home Improvement",
+    "url": "https://www.pagibigfund.gov.ph/HomeImprovementLoan.html",
+    "id": "2892152f-7cd0-5a9d-a183-e9979aae05fe",
+    "slug": "apply-for-pag-ibig-short-term-loan-for-home-improvement",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Housing",
+      "slug": "housing"
+    },
+    "subcategory": {
+      "name": "Housing Loans",
+      "slug": "housing-loans"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "description": "Review Pag-IBIG’s home-improvement loan requirements and application procedure.",
+    "endpointType": "Loan guidance and branch application",
+    "scope": "The cited guide describes a branch-submitted application, not an online loan filing; eligibility and loan terms apply.",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/HomeImprovementLoan.html",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "View and Buy Pag-IBIG Acquired Assets (Foreclosed Properties)",
+    "url": "https://www.pagibigfund.gov.ph/acquiredassets.html",
+    "id": "84cfc006-cff7-5038-9c42-c3ec3c5f6c95",
+    "slug": "view-and-buy-pag-ibig-acquired-assets",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Housing",
+      "slug": "housing"
+    },
+    "subcategory": {
+      "name": "Housing Programs",
+      "slug": "housing-programs"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "description": "Browse Pag-IBIG acquired assets and review the current purchase or bidding instructions.",
+    "endpointType": "Property inventory and purchase guidance",
+    "scope": "This page provides inventory/instructions, not itself a bid submission; property listings and sale conditions change.",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/acquiredassets.html",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Register for the Expanded 4PH Socialized-Housing Program",
+    "url": "https://www.pagibigfundservices.com/MagpalistaSa4PH/",
+    "id": "bb11356b-5f56-5402-9e35-209301b8f27f",
+    "slug": "register-for-expanded-four-ph-socialized-housing-program",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Housing",
+      "slug": "housing"
+    },
+    "subcategory": {
+      "name": "Housing Programs",
+      "slug": "housing-programs"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Human Settlements and Urban Development (DHSUD) / Pag-IBIG Fund",
+    "description": "Register interest in the Expanded Pambansang Pabahay para sa Pilipino (4PH) program through the Pag-IBIG route.",
+    "endpointType": "Program registration portal",
+    "scope": "Registration is not a housing-loan approval or guarantee of a unit; project availability, eligibility, and financing conditions apply.",
+    "officialGuidanceUrl": "https://dhsud.gov.ph/buyer/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

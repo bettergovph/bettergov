@@ -82,6 +82,12 @@ export interface Service {
   };
   createdAt: string;
   updatedAt: string;
+  description?: string;
+  agency?: string;
+  endpointType?: string;
+  scope?: string;
+  officialGuidanceUrl?: string;
+  lastVerifiedAt?: string;
 }
 
 export interface WeatherData {

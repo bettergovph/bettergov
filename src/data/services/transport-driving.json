@@ -36,10 +36,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Renew your Driver's License",
-    "url": "https://ltoexam.com/drivers-license-renewal/",
+    "service": "Find the LTO Driver’s License Renewal Process (eGovPH)",
+    "url": "https://lto.gov.ph/news/digital-drivers-license-renewal-now-in-egovph-app-lto-urges-clients-to-avail-of-the-online-service/",
     "id": "608751b3-2353-4485-978f-027a6c7c5f64",
-    "slug": "renew-your-drivers-license",
+    "slug": "find-the-lto-drivers-license-renewal-process-egovph",
     "published": true,
     "featured": false,
     "category": {
@@ -51,13 +51,19 @@
       "slug": "license"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Land Transportation Office (LTO)",
+    "endpointType": "Official renewal guidance",
+    "description": "Read LTO’s instructions for driver’s-license renewal through the eGovPH app.",
+    "scope": "The link is guidance, not a renewal form; actual workflow, eligibility, and required steps are handled through eGovPH/LTO.",
+    "officialGuidanceUrl": "https://lto.gov.ph/drivers-license/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Check if one has committed a Traffic Violation",
-    "url": "https://mayhulika.mmda.gov.ph",
+    "service": "Check MMDA Traffic Violations by Plate Number",
+    "url": "https://mayhulika.mmda.gov.ph/vehicle-portal",
     "id": "327c5ae2-1b1c-4227-9546-9e1967872ff8",
-    "slug": "check-if-one-has-committed-a-traffic-violation",
+    "slug": "check-mmda-traffic-violations-by-plate-number",
     "published": true,
     "featured": false,
     "category": {
@@ -65,17 +71,23 @@
       "slug": "transport-driving"
     },
     "subcategory": {
-      "name": "Transport Complains",
+      "name": "Traffic Violations and Adjudication",
       "slug": "transport-complaints"
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
-    "updatedAt": "2025-06-06T11:30:06.320Z"
+    "updatedAt": "2025-06-06T11:30:06.320Z",
+    "agency": "Metropolitan Manila Development Authority (MMDA)",
+    "endpointType": "Traffic-violation lookup",
+    "description": "Check whether a vehicle has an MMDA traffic violation and access related adjudication steps.",
+    "scope": "Use the linked MMDA vehicle portal; payment and e-contest are separate steps within the system.",
+    "officialGuidanceUrl": "https://mayhulika.mmda.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Foreign Driver's License Conversion",
-    "url": "https://ltoportal.ph/convert-foreign-drivers-license-philippines/",
+    "service": "Convert a Foreign Driver’s License in the Philippines",
+    "url": "https://portal.lto.gov.ph/",
     "id": "82d3c19f-5862-4ffd-8bd2-f72ef1c1e47b",
-    "slug": "foreign-license-conversion-philippines",
+    "slug": "convert-a-foreign-drivers-license-in-the-philippines",
     "published": true,
     "featured": false,
     "category": {
@@ -87,6 +99,36 @@
       "slug": "license"
     },
     "createdAt": "2025-09-19T09:32:00.000Z",
-    "updatedAt": "2025-09-19T09:32:00.000Z"
+    "updatedAt": "2025-09-19T09:32:00.000Z",
+    "agency": "Land Transportation Office (LTO)",
+    "endpointType": "Portal entry and in-person procedure",
+    "description": "Start by reviewing LTO’s current foreign-license conversion requirements and LTMS portal.",
+    "scope": "Do not assume the conversion is wholly online; supporting documents and an LTO office visit may be required.",
+    "officialGuidanceUrl": "https://lto.gov.ph/wp-content/uploads/2025/09/LTO-CC-2025-External-v2.pdf",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Renew Motor-Vehicle Registration through LTO Online Services",
+    "url": "https://portal.lto.gov.ph/",
+    "id": "bfa7d287-0690-5564-ad6c-00a0d7a21e80",
+    "slug": "renew-motor-vehicle-registration-through-lto-online-services",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Transport and Driving",
+      "slug": "transport-driving"
+    },
+    "subcategory": {
+      "name": "Vehicle Registration",
+      "slug": "vehicle-registration"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Land Transportation Office (LTO)",
+    "description": "Start from the official LTMS portal and review LTO motor-vehicle registration requirements.",
+    "endpointType": "Portal entry and transaction guidance",
+    "scope": "The checked sources did not confirm a direct renewal form at this URL; vehicle eligibility, inspection, and in-person steps may apply.",
+    "officialGuidanceUrl": "https://lto.gov.ph/motor-vehicle/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

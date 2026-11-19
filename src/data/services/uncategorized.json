@@ -36,10 +36,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Sign in for DBP Digital Banking Portal",
+    "service": "Learn about the DBP Digital Banking Portal",
     "url": "https://www.dbp.ph/corporate-and-institutional-banking/digital-banking-portal/",
     "id": "c6d55f86-1764-4bd0-9ec3-ae5450ce4ac6",
-    "slug": "sign-in-for-dbp-digital-banking-portal",
+    "slug": "learn-about-the-dbp-digital-banking-portal",
     "published": true,
     "featured": false,
     "category": {
@@ -51,7 +51,13 @@
       "slug": "uncategorized"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Development Bank of the Philippines (DBP)",
+    "endpointType": "Service information",
+    "description": "Read about DBP’s Digital Banking Portal and how an eligible customer can access it.",
+    "scope": "This page is not itself a verified sign-in destination.",
+    "officialGuidanceUrl": "https://www.dbp.ph/corporate-and-institutional-banking/digital-banking-portal/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Request and Access Government Records",
@@ -322,5 +328,53 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-11-27T20:56:00.000Z"
+  },
+  {
+    "service": "Access Government Services through eGovPH",
+    "url": "https://e.gov.ph/",
+    "id": "1d566832-98a0-59d9-927c-2be38fd67803",
+    "slug": "access-government-services-through-egovph",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Uncategorized",
+      "slug": "uncategorized"
+    },
+    "subcategory": {
+      "name": "Uncategorized",
+      "slug": "uncategorized"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Information and Communications Technology (DICT) / eGovPH",
+    "description": "Find government services and digital platforms available through eGovPH.",
+    "endpointType": "Service discovery platform",
+    "scope": "Discovery/mobile platform; not every service can be completed on this website.",
+    "officialGuidanceUrl": "https://dict.gov.ph/egov-digital-platforms",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Learn How to Contact the 8888 Citizens’ Complaint Center",
+    "url": "https://pco.gov.ph/PCO-content/on-text-8888/",
+    "id": "64c280ef-eae2-5baf-9829-ce040a1479a5",
+    "slug": "learn-how-to-contact-the-8888-citizens-complaint-center",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Uncategorized",
+      "slug": "uncategorized"
+    },
+    "subcategory": {
+      "name": "Uncategorized",
+      "slug": "uncategorized"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "8888 Citizens’ Complaint Center / Presidential Communications Office",
+    "description": "Read the government’s information about reaching the 8888 Citizens’ Complaint Center.",
+    "endpointType": "Official contact-channel information",
+    "scope": "The cited source documents a specific text channel; confirm currently supported contact methods before sending a complaint.",
+    "officialGuidanceUrl": "https://pco.gov.ph/PCO-content/on-text-8888/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

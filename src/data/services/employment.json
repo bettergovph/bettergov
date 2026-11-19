@@ -1,9 +1,9 @@
 [
   {
-    "service": "Download PRC Oath Form",
+    "service": "Download PRC Oath Form (Legacy PDF; Check Current Instructions)",
     "url": "https://www.prc.gov.ph/uploaded/documents/rd%20oath%20form.pdf",
     "id": "005ed20b-840d-48d9-8627-8b9b68dcba2f",
-    "slug": "download-prc-oath-form",
+    "slug": "download-prc-oath-form-legacy-pdf-check-current-instructions",
     "published": true,
     "featured": false,
     "category": {
@@ -15,7 +15,13 @@
       "slug": "professionals"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Professional Regulation Commission (PRC)",
+    "endpointType": "Legacy form download",
+    "description": "This older PDF contains in-person instructions and is not a current online licensing transaction.",
+    "scope": "Check the current PRC Online Services page for active examination and initial-registration procedures.",
+    "officialGuidanceUrl": "https://online.prc.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Apply for EC Credit Salary Loan",
@@ -72,10 +78,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Verify Enterprised-based Union",
+    "service": "Verify Registered Enterprise-Based Unions",
     "url": "https://blr.dole.gov.ph/2019/02/12/ouvp/",
     "id": "a94fadce-3770-4555-9a2e-840df721db09",
-    "slug": "verify-enterprised-based-union",
+    "slug": "verify-registered-enterprise-based-unions",
     "published": true,
     "featured": false,
     "category": {
@@ -87,13 +93,19 @@
       "slug": "union-association"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Department of Labor and Employment (DOLE), Bureau of Labor Relations",
+    "endpointType": "Public lookup",
+    "description": "Check DOLE’s enterprise-based union verification service.",
+    "scope": "Verification only; this is not union registration.",
+    "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Register Enterprised-based Union",
-    "url": "https://ours.dole.gov.ph/",
+    "service": "Apply for Union or Workers’ Association Registration Online",
+    "url": "https://blr-ours.dole.gov.ph/",
     "id": "884081d9-f4f4-4abf-b871-479e407ceafc",
-    "slug": "register-enterprised-based-union",
+    "slug": "apply-for-union-or-workers-association-registration-online",
     "published": true,
     "featured": false,
     "category": {
@@ -105,7 +117,13 @@
       "slug": "union-association"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Department of Labor and Employment (DOLE), Bureau of Labor Relations",
+    "endpointType": "Online registration portal",
+    "description": "Start a union or workers’ association registration request through DOLE’s OURS portal.",
+    "scope": "Original documents may still be required; confirm the current requirements with DOLE.",
+    "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Find Examination Location and Room Assignment (PRC Licensure Examination)",
@@ -214,5 +232,101 @@
     },
     "createdAt": "2025-06-06T11:30:06.320Z",
     "updatedAt": "2025-06-06T11:30:06.320Z"
+  },
+  {
+    "service": "Search Jobs and Create a Jobseeker Account on PhilJobNet",
+    "url": "https://philjobnet.gov.ph/",
+    "id": "4c95d6a4-075e-5601-ab9c-372aaa9ed99a",
+    "slug": "search-jobs-and-create-a-jobseeker-account-on-philjobnet",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Employment",
+      "slug": "employment"
+    },
+    "subcategory": {
+      "name": "Job Search",
+      "slug": "job-search"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Labor and Employment (DOLE)",
+    "description": "Search job vacancies and create a jobseeker profile on the PhilJobNet platform.",
+    "endpointType": "Job-matching portal",
+    "scope": "Free job matching/search; hiring decisions and vacancy availability are controlled by employers.",
+    "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Apply for a PRC Licensure Examination or Initial Professional Registration Online",
+    "url": "https://online.prc.gov.ph/",
+    "id": "af6bf3fd-f3a5-503a-9d6e-964bb4d96696",
+    "slug": "apply-for-a-prc-licensure-examination-or-initial-registration-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Employment",
+      "slug": "employment"
+    },
+    "subcategory": {
+      "name": "Professionals",
+      "slug": "professionals"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Professional Regulation Commission (PRC)",
+    "description": "Access PRC Online Services for covered licensure examination applications and initial professional registration.",
+    "endpointType": "Authenticated licensing portal",
+    "scope": "Different professions and transaction types have distinct schedules, documentary requirements, and eligibility rules.",
+    "officialGuidanceUrl": "https://www.prc.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "File and Track a DOLE SEnA Request for Assistance",
+    "url": "https://arms.dole.gov.ph/",
+    "id": "b3c1ff9a-7b72-5f5d-9a83-a705efe734c3",
+    "slug": "file-and-track-a-dole-sena-request-for-assistance",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Employment",
+      "slug": "employment"
+    },
+    "subcategory": {
+      "name": "Labor Assistance",
+      "slug": "labor-assistance"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Labor and Employment (DOLE)",
+    "description": "Submit and track a Request for Assistance under DOLE’s Single Entry Approach (SEnA).",
+    "endpointType": "Online assistance request and tracking",
+    "scope": "Case handling and eligibility follow DOLE rules; electronic filing does not guarantee resolution online.",
+    "officialGuidanceUrl": "https://dole.gov.ph/e-services/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Create or Update a DMW e-Registration Profile for Overseas Employment",
+    "url": "https://onlineservices.dmw.gov.ph/",
+    "id": "ee410502-8fba-5d50-8e6c-68992a348fa3",
+    "slug": "create-or-update-a-dmw-e-registration-profile",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Employment",
+      "slug": "employment"
+    },
+    "subcategory": {
+      "name": "Overseas Jobs",
+      "slug": "overseas-jobs"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Department of Migrant Workers (DMW)",
+    "description": "Create or update a DMW e-Registration profile used for applicable overseas-employment services.",
+    "endpointType": "Authenticated profile portal",
+    "scope": "The profile is only one step in overseas employment processes; requirements vary by worker, agency, and service.",
+    "officialGuidanceUrl": "https://dmw.gov.ph/online-services",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

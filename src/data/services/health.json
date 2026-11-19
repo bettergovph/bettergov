@@ -18,10 +18,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Look for Dengue Information",
-    "url": "http://oltrap.pchrd.dost.gov.ph/",
+    "service": "Read about the OLTrap Dengue Early-Warning Project",
+    "url": "https://www.pchrd.dost.gov.ph/ongoing_projects/development-of-iot-based-ol-trap-and-community-dengue-early-warning-system-c-dews-for-cauayan-city-isabela/",
     "id": "77e064ec-f4a1-49f6-b4ba-df0535712c86",
-    "slug": "look-for-dengue-information",
+    "slug": "read-about-the-oltrap-dengue-early-warning-project",
     "published": true,
     "featured": false,
     "category": {
@@ -33,7 +33,13 @@
       "slug": "health-programs"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Philippine Council for Health Research and Development (PCHRD)",
+    "endpointType": "Project information",
+    "description": "Read about a specific IoT-based OL Trap and community dengue early-warning project.",
+    "scope": "This is project information, not a general dengue information service or a confirmed nationwide public transaction.",
+    "officialGuidanceUrl": "https://www.pchrd.dost.gov.ph/heartnovation/lot-based-orvicidal-larvicidal-ol-trap-and-community-dengue-early-warning-system-c-dews/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Access Health and Health Related Research Information",
@@ -72,10 +78,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Look for Newly-approved Health Researches from Year 2012 Onwards",
-    "url": "http://registry.healthresearch.ph/",
+    "service": "Search the Philippine Health Research Registry",
+    "url": "https://registry.healthresearch.ph/",
     "id": "0e30d0a3-4b7c-4dca-adf2-26d38a572d23",
-    "slug": "look-for-newly-approved-health-researches-from-year-2012-onwards",
+    "slug": "search-the-philippine-health-research-registry",
     "published": true,
     "featured": false,
     "category": {
@@ -87,7 +93,13 @@
       "slug": "health-research"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Philippine Health Research Registry",
+    "endpointType": "Research registry",
+    "description": "Search registered Philippine health research studies using the current registry portal.",
+    "scope": "Study registration is distinct from ethics clearance and proposal submission.",
+    "officialGuidanceUrl": "https://www.herdin.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Search for Completed National Health Researches",
@@ -108,10 +120,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Schedule for an Individual Medical Assistance Program (IMAP) Online Appointment",
-    "url": "https://www.pcso.gov.ph/webapps/OLAPP.aspx",
+    "service": "Apply for PCSO Medical Assistance Program (MAP) Online",
+    "url": "https://onlinemap.pcso.gov.ph/",
     "id": "448fe3f4-7273-495b-83e2-7634264ab332",
-    "slug": "schedule-for-an-individual-medical-assistance-program-imap-online-appointment",
+    "slug": "apply-for-pcso-medical-assistance-program-map-online",
     "published": true,
     "featured": false,
     "category": {
@@ -123,7 +135,13 @@
       "slug": "financial-assistance"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-06-06T11:30:06.319Z"
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Philippine Charity Sweepstakes Office (PCSO)",
+    "endpointType": "Online assistance application",
+    "description": "Submit an application through PCSO’s current Online MAP service.",
+    "scope": "Assistance is subject to PCSO program requirements and review; the older OLAPP appointment page is not the application route.",
+    "officialGuidanceUrl": "https://www.pcso.gov.ph/ProgramsAndServices/CAD/MedicalAccessProgram.aspx",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Responsible Parenthood and Family Planning Program",

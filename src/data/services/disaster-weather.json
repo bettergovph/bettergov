@@ -1,9 +1,9 @@
 [
   {
-    "service": "Check DSWD Preparedness Response Online",
+    "service": "View DSWD Disaster Situation Reports (DROMIC)",
     "url": "https://dromic.dswd.gov.ph/",
     "id": "175c33be-c6f7-4c5a-8925-7e6bf615df03",
-    "slug": "check-dswd-preparedness-response-online",
+    "slug": "view-dswd-disaster-situation-reports-dromic",
     "published": true,
     "featured": false,
     "category": {
@@ -15,7 +15,13 @@
       "slug": "disaster-prone-areas"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Department of Social Welfare and Development (DSWD)",
+    "endpointType": "Situation-report dashboard",
+    "description": "View DSWD Disaster Response Operations Monitoring and Information Center reports.",
+    "scope": "Information and monitoring only; this is not a preparedness application or emergency dispatch service.",
+    "officialGuidanceUrl": "https://dromic.dswd.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Earthquake Information",
@@ -108,10 +114,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Access Hydrometeorological Monitoring (e.g., rain, rivers, flood levels) via PHILSENSORS",
+    "service": "View Real-Time Rainfall and Water-Level Monitoring via PhilSensors",
     "url": "https://philsensors.asti.dost.gov.ph/",
     "id": "48424831-e361-4ac1-9a14-929e873fcba1",
-    "slug": "access-weather-data-via-philsensors",
+    "slug": "view-real-time-rainfall-and-water-level-monitoring-via-philsensors",
     "published": true,
     "featured": false,
     "category": {
@@ -123,13 +129,19 @@
       "slug": "weather"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Department of Science and Technology – Advanced Science and Technology Institute (DOST-ASTI)",
+    "endpointType": "Monitoring dashboard",
+    "description": "View rainfall and water-level monitoring stations and observations on PhilSensors.",
+    "scope": "Monitoring information is not a substitute for official emergency warnings or local instructions.",
+    "officialGuidanceUrl": "https://philsensors.asti.dost.gov.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "View High-Resolution Hazard Maps on Flooding, Storm Surge, and Landslides via Project NOAH",
+    "service": "Assess Flood, Landslide, and Storm-Surge Hazards with UP NOAH",
     "url": "https://noah.up.edu.ph/",
     "id": "1efccadd-8e74-4085-9cbc-7064665994ba",
-    "slug": "view-real-time-information-on-hazards-via-project-noah",
+    "slug": "assess-flood-landslide-and-storm-surge-hazards-with-up-noah",
     "published": true,
     "featured": false,
     "category": {
@@ -141,7 +153,13 @@
       "slug": "weather"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "University of the Philippines (UP) Nationwide Operational Assessment of Hazards (NOAH)",
+    "endpointType": "Hazard information and mapping",
+    "description": "Explore UP NOAH hazard assessment information for flood, landslide, and storm-surge risks.",
+    "scope": "Do not treat beta weather information as an operational warning or emergency alert.",
+    "officialGuidanceUrl": "https://noah.up.edu.ph/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Check Volcanic Eruptions, Earthquakes, Tsunami and other related Geotectonic Phenomena",
@@ -178,5 +196,53 @@
     },
     "createdAt": "2025-11-24T00:00:00.000Z",
     "updatedAt": "2025-11-24T00:00:00.000Z"
+  },
+  {
+    "service": "Check PAGASA Flood Information and River-Basin Status",
+    "url": "https://pagasa.dost.gov.ph/flood",
+    "id": "0c12fde3-5c5d-5782-a47c-91fe3c9d760a",
+    "slug": "check-pagasa-flood-information-and-river-basin-status",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Disaster and Weather",
+      "slug": "disaster-weather"
+    },
+    "subcategory": {
+      "name": "Weather",
+      "slug": "weather"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA)",
+    "description": "Review PAGASA flood information and river-basin monitoring updates.",
+    "endpointType": "Flood information dashboard",
+    "scope": "Monitoring information; follow current PAGASA advisories and local emergency instructions.",
+    "officialGuidanceUrl": "https://pagasa.dost.gov.ph/flood",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Find National Emergency and Disaster-Response Hotlines",
+    "url": "https://ehotlines.e.gov.ph/",
+    "id": "a2114fce-e247-521b-875d-28b17589baa8",
+    "slug": "find-national-emergency-and-disaster-hotlines",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Disaster and Weather",
+      "slug": "disaster-weather"
+    },
+    "subcategory": {
+      "name": "Disaster-prone Areas",
+      "slug": "disaster-prone-areas"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "eGovPH / Department of Information and Communications Technology (DICT)",
+    "description": "Find government emergency and disaster-response contact numbers.",
+    "endpointType": "Hotline directory",
+    "scope": "A contact directory, not incident dispatch or case filing; check the listed agency channel before relying on it.",
+    "officialGuidanceUrl": "https://dict.gov.ph/egov-digital-platforms",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

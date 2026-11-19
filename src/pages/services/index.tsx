@@ -74,11 +74,17 @@ export default function ServicesPage() {
 
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        service =>
-          service.service.toLowerCase().includes(q) ||
-          service.category.name.toLowerCase().includes(q) ||
-          service.subcategory.name.toLowerCase().includes(q)
+      filtered = filtered.filter(service =>
+        [
+          service.service,
+          service.url,
+          service.description,
+          service.agency,
+          service.endpointType,
+          service.scope,
+          service.category.name,
+          service.subcategory.name,
+        ].some(value => value?.toLowerCase().includes(q))
       );
     }
 
@@ -405,6 +411,23 @@ export default function ServicesPage() {
                           <h3 className='mt-2.5 font-serif-ed text-[22px] font-semibold leading-tight tracking-[-0.005em] text-ed-ink max-md:mt-1.5 max-md:text-[18px]'>
                             {service.service}
                           </h3>
+                          {service.description && (
+                            <p className='mt-1.5 max-w-[620px] text-sm leading-normal text-ed-ink-2 max-md:mt-1 max-md:text-xs'>
+                              {service.description}
+                            </p>
+                          )}
+                          {(service.agency || service.endpointType) && (
+                            <p className='mt-2 font-mono-ed text-[10px] uppercase tracking-[0.08em] text-ed-ink-3'>
+                              {[service.agency, service.endpointType]
+                                .filter(Boolean)
+                                .join(' · ')}
+                            </p>
+                          )}
+                          {service.scope && (
+                            <p className='mt-2 max-w-[620px] text-xs leading-normal text-ed-ink-3'>
+                              <strong>Note:</strong> {service.scope}
+                            </p>
+                          )}
                           <p className='mt-1.5 max-w-[620px] break-all text-sm leading-normal text-ed-ink-3 max-md:mt-1 max-md:text-xs'>
                             {service.url}
                           </p>
@@ -416,6 +439,23 @@ export default function ServicesPage() {
                           </div>
                         </div>
                       </a>
+                      {service.officialGuidanceUrl && (
+                        <div className='pb-4 max-md:pb-3'>
+                          <a
+                            href={service.officialGuidanceUrl}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='text-xs text-ed-navy underline underline-offset-2 hover:text-ed-red'
+                          >
+                            Official guidance and requirements
+                          </a>
+                          {service.lastVerifiedAt && (
+                            <span className='ml-2 font-mono-ed text-[10px] text-ed-ink-4'>
+                              Reviewed {service.lastVerifiedAt.slice(0, 10)}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>

@@ -90,10 +90,10 @@
     "updatedAt": "2025-11-25T10:59:00.000Z"
   },
   {
-    "service": "View your GSIS Membership Record",
-    "url": "https://gsismo.e.gov.ph/login",
+    "service": "View your GSIS Membership Record through GSIS Touch",
+    "url": "https://www.gsis.gov.ph/ginhawa-for-all/gsis-touch/",
     "id": "956f8318-5ef8-4f37-bba0-a8f50b3b7080",
-    "slug": "view-your-gsis-membership-record",
+    "slug": "view-your-gsis-membership-record-through-gsis-touch",
     "published": true,
     "featured": false,
     "category": {
@@ -105,13 +105,19 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-11-25T11:01:00.000Z"
+    "updatedAt": "2025-11-25T11:01:00.000Z",
+    "agency": "Government Service Insurance System (GSIS)",
+    "endpointType": "Member self-service app information",
+    "description": "Find the official GSIS Touch app route for checking membership records.",
+    "scope": "The cited page describes an app-based member service; account access and app availability apply.",
+    "officialGuidanceUrl": "https://www.gsis.gov.ph/ginhawa-for-all/gsis-touch/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
-    "service": "Submit Loan Collection List for Employers",
-    "url": "https://sssguides.com/employers-guide-creating-electronic-contribution-collection-list-e-ccl-sss//",
+    "service": "Submit SSS Loans Collection List and Remit Loan Payments",
+    "url": "https://employer.sss.gov.ph/employer/?logtype=er",
     "id": "b135f92d-b632-458a-a232-0f07172da657",
-    "slug": "submit-loan-collection-list-for-employers",
+    "slug": "submit-sss-loans-collection-list-and-remit-loan-payments",
     "published": true,
     "featured": false,
     "category": {
@@ -123,11 +129,17 @@
       "slug": "salary-loans"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-11-25T11:03:00.000Z"
+    "updatedAt": "2025-11-25T11:03:00.000Z",
+    "agency": "Social Security System (SSS)",
+    "endpointType": "Employer portal",
+    "description": "Submit employee SSS loan collection information and handle employer loan remittance.",
+    "scope": "For registered SSS employers; employer account access is required.",
+    "officialGuidanceUrl": "https://www.sss.gov.ph/employer-er/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   },
   {
     "service": "Report PhilHealth Premium Contributions of your Employees",
-    "url": "https://www.philhealth.gov.ph/partners/employers/pay_procedures.php",
+    "url": "https://eprs01.philhealth.gov.ph/",
     "id": "b74a0ddb-d36c-4691-bd55-c120da866638",
     "slug": "report-philhealth-premium-contributions-of-your-employees",
     "published": true,
@@ -141,6 +153,180 @@
       "slug": "benefits-registration"
     },
     "createdAt": "2025-06-06T11:30:06.319Z",
-    "updatedAt": "2025-11-25T11:04:00.000Z"
+    "updatedAt": "2025-11-25T11:04:00.000Z",
+    "agency": "Philippine Health Insurance Corporation (PhilHealth)",
+    "endpointType": "Employer contribution portal",
+    "description": "Report employee premiums and remit employer contributions using PhilHealth EPRS.",
+    "scope": "EPRS is for employers and is distinct from PhilHealth member self-service.",
+    "officialGuidanceUrl": "https://www.philhealth.gov.ph/partners/employers/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Pay Pag-IBIG Regular Savings Contributions Online",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=MC",
+    "id": "05f5d7ff-0c7f-417d-b2ef-5e1fb874af43",
+    "slug": "pay-pag-ibig-regular-savings-contributions-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Savings",
+      "slug": "savings"
+    },
+    "createdAt": "2025-06-06T11:30:06.318Z",
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "endpointType": "Online contribution payment",
+    "description": "Pay mandatory Pag-IBIG regular savings contributions through Virtual Pag-IBIG.",
+    "scope": "Member savings/contribution payment, not a housing-loan payment.",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/Membership_RegularSavings.html"
+  },
+  {
+    "service": "Pay a Pag-IBIG Multi-Purpose Loan Online",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=ST",
+    "id": "21009162-d106-4c3b-87b2-a8fddae497ce",
+    "slug": "pay-a-pag-ibig-multi-purpose-loan-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Loans",
+      "slug": "loans"
+    },
+    "createdAt": "2025-06-06T11:30:06.318Z",
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "endpointType": "Online loan payment",
+    "description": "Pay an existing Pag-IBIG Multi-Purpose Loan through Virtual Pag-IBIG.",
+    "scope": "Payment only; this is not a loan application.",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_cashloans_mpl.html"
+  },
+  {
+    "service": "Pay Pag-IBIG MP2 Voluntary Savings Online",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=M2",
+    "id": "2ae2126b-76ba-469a-9487-f1fb8ef301ca",
+    "slug": "pay-pag-ibig-mp2-voluntary-savings-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Savings",
+      "slug": "savings"
+    },
+    "createdAt": "2025-06-06T11:30:06.318Z",
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "endpointType": "Online savings payment",
+    "description": "Remit Pag-IBIG MP2 voluntary savings through Virtual Pag-IBIG.",
+    "scope": "Savings contribution/payment, not a housing-loan payment.",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_savings_mp2.html"
+  },
+  {
+    "service": "Pay SSS Contributions Online",
+    "url": "https://www.sss.gov.ph/pay-contribution/",
+    "id": "449c11e4-d90a-5941-ac85-4cb239122398",
+    "slug": "pay-sss-contributions-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Contributions and Payments",
+      "slug": "contributions-payments"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Social Security System (SSS)",
+    "description": "Review SSS contribution payment options and continue through an authorized payment channel or My.SSS.",
+    "endpointType": "Contribution payment guidance",
+    "scope": "The guidance page is not itself a payment processor; payment methods and applicable schedules depend on member type.",
+    "officialGuidanceUrl": "https://sso.sss.gov.ph/wsso/logtype",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Pay a Pag-IBIG Calamity Loan Online",
+    "url": "https://www.pagibigfundservices.com/virtualpagibig/OPF.aspx?PT=CL",
+    "id": "4f39d93f-70a4-41f7-b87f-05b471aed19c",
+    "slug": "pay-a-pag-ibig-calamity-loan-online",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Loans",
+      "slug": "loans"
+    },
+    "createdAt": "2025-06-06T11:30:06.318Z",
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "agency": "Home Development Mutual Fund (Pag-IBIG Fund)",
+    "endpointType": "Online loan payment",
+    "description": "Pay an existing Pag-IBIG calamity loan through Virtual Pag-IBIG.",
+    "scope": "Payment only; this is not an application for a new calamity loan.",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z",
+    "officialGuidanceUrl": "https://www.pagibigfund.gov.ph/member_cashloans_calamity.html"
+  },
+  {
+    "service": "Learn about SSS Retirement Benefits (Technical Retirement)",
+    "url": "https://www.sss.gov.ph/retirement-benefit/",
+    "id": "75c532cb-2d5a-4d3d-b444-edffade5c524",
+    "slug": "learn-about-sss-retirement-benefits-technical-retirement",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Benefits Registration",
+      "slug": "benefits-registration"
+    },
+    "createdAt": "2025-06-06T11:30:06.319Z",
+    "updatedAt": "2025-06-06T11:30:06.319Z",
+    "agency": "Social Security System (SSS)",
+    "endpointType": "Benefit information",
+    "description": "Review SSS retirement benefit information relevant to the technical-retirement service record.",
+    "scope": "The page is benefit guidance; use My.SSS or SSS instructions for the applicable transaction.",
+    "officialGuidanceUrl": "https://sso.sss.gov.ph/sso/auth/redirect",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
+  },
+  {
+    "service": "Access PhilHealth Member Records and Self-Service",
+    "url": "https://memberinquiry.philhealth.gov.ph/member",
+    "id": "98dc745d-c9b9-53ad-9a9e-6d90d5f3c4ae",
+    "slug": "access-philhealth-member-records-and-self-service",
+    "published": true,
+    "featured": false,
+    "category": {
+      "name": "Contributions",
+      "slug": "contributions"
+    },
+    "subcategory": {
+      "name": "Member Self-Service",
+      "slug": "member-self-service"
+    },
+    "createdAt": "2026-11-19T09:53:00.000Z",
+    "updatedAt": "2026-11-19T09:53:00.000Z",
+    "agency": "Philippine Health Insurance Corporation (PhilHealth)",
+    "description": "Access member information and available PhilHealth self-service functions, including records and contribution information.",
+    "endpointType": "Member self-service portal",
+    "scope": "Member portal only; employer premium reporting is handled separately through EPRS. Available tasks depend on account access.",
+    "officialGuidanceUrl": "https://www.philhealth.gov.ph/services/",
+    "lastVerifiedAt": "2026-11-19T09:53:00.000Z"
   }
 ]

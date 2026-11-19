@@ -2,6 +2,13 @@ import 'dotenv/config';
 import { pathToFileURL } from 'node:url';
 import { createTalaCmsClient, type TalaCmsClient } from './talacms/client';
 import { fetchCategories, shapeCategories } from './talacms/categories';
+import {
+  applyServiceCuration,
+  curateServiceReferences,
+  curateTaxonomy,
+  readServiceCuration,
+  type ServiceCuration,
+} from './talacms/curation';
 import { buildCriticalHotlines } from './talacms/hotlines';
 import {
   crossValidate,
@@ -31,6 +38,7 @@ interface Deps {
   readServiceRecords: () => ServiceRecordRef[];
   readServiceFileNames: () => string[];
   readTaxonomy: () => Taxonomy;
+  readCuration?: () => ServiceCuration;
   removeStaleServiceFiles: (
     before: string[],
     generated: string[]
@@ -45,6 +53,7 @@ const defaultDeps: Deps = {
   readServiceRecords,
   readServiceFileNames,
   readTaxonomy,
+  readCuration: readServiceCuration,
   removeStaleServiceFiles,
   log: message => console.log(message),
 };
@@ -86,6 +95,8 @@ function parseArgs(argv: string[]): Options {
 const byCodepoint = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
 const toRecordRef = (s: RawService): ServiceRecordRef => ({
+  id: s.sourceId,
+  slug: s.slug,
   category: { name: s.category.category, slug: s.category.slug },
   subcategory: { name: s.subcategory.name, slug: s.subcategory.slug },
 });
@@ -123,7 +134,8 @@ export function assertUniquePaths(candidates: Candidate[]): void {
 async function buildCandidates(
   selected: Set<DatasetName>,
   client: TalaCmsClient,
-  deps: Deps
+  deps: Deps,
+  curation?: ServiceCuration
 ): Promise<Candidate[]> {
   // Stages 1 and 2 — fetch only what this run selected.
   let rawServices = null;
@@ -148,12 +160,18 @@ async function buildCandidates(
   // before either candidate is shaped.
   let taxonomy: Taxonomy | null = null;
   if (rawServices || rawCategories) {
-    taxonomy = rawCategories
+    const sourceTaxonomy = rawCategories
       ? { categories: rawCategories.allServiceCategories }
       : deps.readTaxonomy();
-    const records = rawServices
+    taxonomy = curation
+      ? curateTaxonomy(sourceTaxonomy, curation)
+      : sourceTaxonomy;
+    const sourceRecords = rawServices
       ? rawServices.allGovernmentServices.map(toRecordRef)
       : deps.readServiceRecords();
+    const records = curation
+      ? curateServiceReferences(sourceRecords, taxonomy, curation)
+      : sourceRecords;
 
     crossValidate({
       taxonomy,
@@ -173,7 +191,10 @@ async function buildCandidates(
   // `~ changed / unchanged` status lines and commitFiles' rename order are all
   // reproducible, including under partial failure.
   const candidates: Candidate[] = [];
-  if (rawCategories) candidates.push(shapeCategories(rawCategories));
+  if (rawCategories) {
+    const candidate = shapeCategories(rawCategories);
+    candidates.push({ ...candidate, data: taxonomy ?? candidate.data });
+  }
   if (selected.has('hotlines')) {
     deps.log('  → Fetching critical hotlines...');
     candidates.push(await buildCriticalHotlines(client));
@@ -185,6 +206,21 @@ async function buildCandidates(
         rawServices,
         taxonomy!.categories.map(c => c.slug)
       ).sort((a, b) => byCodepoint(a.path, b.path))
+    );
+  }
+
+  if (curation && taxonomy) {
+    const index = candidates.findIndex(
+      c => c.path === 'src/data/service_categories.json'
+    );
+    if (index >= 0) {
+      // The category candidate uses the same { categories } shape as Taxonomy.
+      candidates[index] = { ...candidates[index], data: taxonomy };
+    }
+    candidates.splice(
+      0,
+      candidates.length,
+      ...applyServiceCuration(candidates, taxonomy, curation)
     );
   }
 
@@ -254,6 +290,9 @@ export async function run(
     // Created first, and it validates configuration eagerly — no local file is
     // opened until the credentials are known to be usable.
     const client = deps.createClient();
+    const curation = options.selected.some(dataset => dataset !== 'hotlines')
+      ? deps.readCuration?.()
+      : undefined;
     // Captured only now (config already validated), and before any fetch or
     // write, so a later failure never influences what "before" meant —
     // cleanup only ever compares real prior state against the newly
@@ -262,7 +301,12 @@ export async function run(
     deps.log(
       `[sync] Selected datasets (${options.selected.length}): ${options.selected.join(', ')}`
     );
-    candidates = await buildCandidates(new Set(options.selected), client, deps);
+    candidates = await buildCandidates(
+      new Set(options.selected),
+      client,
+      deps,
+      curation
+    );
     deps.log(
       `\n[sync] Preparing and formatting ${candidates.length} candidate file(s)...`
     );
