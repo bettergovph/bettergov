@@ -1014,6 +1014,18 @@
     },
     {
       "province": "Samar",
+      "cities": [
+        {
+          "city": "Catbalogan",
+          "zip_code": "6700",
+          "mayor": {
+            "name": "DEXTER UY"
+          },
+          "vice_mayor": {
+            "name": "COEFREDO UY"
+          }
+        }
+      ],
       "municipalities": [
         {
           "municipality": "Almagro",
