@@ -7,6 +7,7 @@ import Eyebrow from '../../components/v2/ui/Eyebrow';
 import Pagination from '../../components/v2/ui/Pagination';
 import PageMasthead from '../../components/v2/layout/PageMasthead';
 import NewsCard from '../../components/v2/news/NewsCard';
+import NewsComingSoon from '../../components/v2/news/NewsComingSoon';
 import {
   DEFAULT_NEWS_PER_PAGE,
   NEWS_CATEGORIES,
@@ -193,16 +194,7 @@ const NewsIndex: FC = () => {
           </div>
 
           {error ? (
-            <div className='border-l-4 border-ed-red bg-ed-paper-2 p-6'>
-              <p className='mb-1 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-red'>
-                News unavailable
-              </p>
-              <p className='text-sm text-ed-ink-2'>{error}</p>
-              <p className='mt-3 text-sm text-ed-ink-3'>
-                The e.gov.ph news service may be temporarily down. Try again in
-                a few minutes.
-              </p>
-            </div>
+            <NewsComingSoon />
           ) : isLoading ? (
             <div
               aria-busy='true'

@@ -131,5 +131,11 @@
     "directoryDescription": "Find contact information for government officials, agencies, and offices at national and local levels.",
     "viewDirectory": "View Directory"
   },
-  "comingSoon": "Coming soon"
+  "comingSoon": "Coming soon",
+  "newsComingSoon": {
+    "tag": "Coming soon",
+    "title": "News is coming soon",
+    "body": "Our news feed is under maintenance while we set it up for BetterGov.ph. In the meantime, you can read the latest government news on the Philippine News Agency website.",
+    "link": "Go to the Philippine News Agency"
+  }
 }

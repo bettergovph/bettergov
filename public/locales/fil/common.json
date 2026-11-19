@@ -84,5 +84,11 @@
   "footerBottom": {
     "license": "CC BY-NC-ND 4.0 · MIT"
   },
-  "comingSoon": "Malapit na"
+  "comingSoon": "Malapit na",
+  "newsComingSoon": {
+    "tag": "Malapit na",
+    "title": "Malapit na ang balita",
+    "body": "Inaayos pa namin ang news feed habang inihahanda ito para sa BetterGov.ph. Habang hinihintay, mababasa ang pinakabagong balita ng pamahalaan sa website ng Philippine News Agency.",
+    "link": "Pumunta sa Philippine News Agency"
+  }
 }

@@ -186,9 +186,9 @@ describe('<NewsAndHolidays /> hotlines card', () => {
       expect(screen.getByText(criticalRows[0].name)).toBeInTheDocument();
     });
     // The two columns fail independently: hotlines rendering doesn't imply
-    // the news column recovered — it should show its own failure state
-    // (the skeleton/unavailable/content branches are mutually exclusive, so
+    // the news column recovered — it should show its "coming soon" notice
+    // (the skeleton/coming-soon/content branches are mutually exclusive, so
     // this also proves the skeleton is no longer showing).
-    expect(screen.getByText('newsAndHolidays.unavailable')).toBeInTheDocument();
+    expect(screen.getByText(/newsComingSoon\.title/)).toBeInTheDocument();
   });
 });

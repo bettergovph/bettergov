@@ -352,6 +352,14 @@ export const fetchNewsList = async (
   };
 };
 
+/** The news feed answered, but has no article with that id. */
+export class NewsArticleNotFoundError extends Error {
+  constructor() {
+    super('Article not found.');
+    this.name = 'NewsArticleNotFoundError';
+  }
+}
+
 export const fetchNewsArticle = async (
   id: number | string
 ): Promise<NewsArticleDetail> => {
@@ -362,7 +370,7 @@ export const fetchNewsArticle = async (
 
   const article = response?.data;
   if (!article || typeof article.id !== 'number') {
-    throw new Error('Article not found.');
+    throw new NewsArticleNotFoundError();
   }
 
   return normalizeDetail(article);

@@ -5,7 +5,12 @@ import SEO from '../../components/SEO';
 import Container from '../../components/v2/ui/Container';
 import Flag from '../../components/v2/ui/Flag';
 import Button from '../../components/v2/ui/Button';
-import { fetchNewsArticle, formatNewsDateLong } from '../../lib/news';
+import NewsComingSoon from '../../components/v2/news/NewsComingSoon';
+import {
+  fetchNewsArticle,
+  formatNewsDateLong,
+  NewsArticleNotFoundError,
+} from '../../lib/news';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { NewsArticleDetail } from '../../types/news';
 
@@ -39,6 +44,7 @@ const NewsArticlePage: FC = () => {
   const [article, setArticle] = useState<NewsArticleDetail | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -46,6 +52,7 @@ const NewsArticlePage: FC = () => {
     let cancelled = false;
     setIsLoading(true);
     setError(null);
+    setNotFound(false);
     setArticle(null);
 
     fetchNewsArticle(id)
@@ -59,6 +66,7 @@ const NewsArticlePage: FC = () => {
         setError(
           err instanceof Error ? err.message : 'Could not load this article.'
         );
+        setNotFound(err instanceof NewsArticleNotFoundError);
         setIsLoading(false);
       });
 
@@ -109,15 +117,16 @@ const NewsArticlePage: FC = () => {
           <BackLink />
         </div>
 
-        {error ? (
+        {error && !notFound ? (
+          <NewsComingSoon />
+        ) : error ? (
           <div className='border-l-4 border-ed-red bg-ed-paper-2 p-6'>
             <p className='mb-1 font-mono-ed text-[11px] uppercase tracking-[0.14em] text-ed-red'>
               Article unavailable
             </p>
             <p className='text-sm text-ed-ink-2'>{error}</p>
             <p className='mt-3 text-sm text-ed-ink-3'>
-              This article may have been removed from e.gov.ph, or the service
-              is temporarily down.
+              This article may have been removed from e.gov.ph.
             </p>
             <div className='mt-6'>
               <Button as={Link} to='/news' size='sm'>

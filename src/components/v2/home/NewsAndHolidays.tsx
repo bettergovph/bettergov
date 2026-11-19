@@ -7,6 +7,7 @@ import Eyebrow from '../ui/Eyebrow';
 import Flag from '../ui/Flag';
 import ArrowLink from '../ui/ArrowLink';
 import Dropcap from '../ui/Dropcap';
+import NewsComingSoon from '../news/NewsComingSoon';
 import {
   fetchNewsArticle,
   fetchNewsList,
@@ -143,16 +144,7 @@ const NewsAndHolidays: FC = () => {
             {isLoading ? (
               <NewsColumnSkeleton />
             ) : failed || !featured ? (
-              <div className='border-y border-ed-rule py-10'>
-                <p className='font-serif-ed text-lg text-ed-ink-3'>
-                  {t('newsAndHolidays.unavailable')}
-                </p>
-                <div className='mt-4'>
-                  <ArrowLink to='/news'>
-                    {t('newsAndHolidays.newsroom')}
-                  </ArrowLink>
-                </div>
-              </div>
+              <NewsComingSoon />
             ) : (
               <>
                 <Link
