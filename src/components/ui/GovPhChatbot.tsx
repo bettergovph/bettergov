@@ -354,8 +354,11 @@ const GovPhChatbot: React.FC = () => {
                 <Bot size={20} aria-hidden='true' />
               </div>
               <div className='leading-tight'>
-                <div className='text-sm font-semibold tracking-tight'>
+                <div className='flex items-center gap-2 text-sm font-semibold tracking-tight'>
                   BetterGov Chatbot
+                  <span className='rounded-sm bg-white px-1.5 py-0.5 text-[9px] font-bold uppercase leading-none tracking-[0.12em] text-primary-700'>
+                    Beta
+                  </span>
                 </div>
                 <div className='text-[11px] text-white/80'>
                   Powered by eGovAI
