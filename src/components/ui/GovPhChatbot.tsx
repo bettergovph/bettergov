@@ -28,7 +28,7 @@ import {
 } from '../../lib/assistant';
 
 /**
- * GovPH Chatbot — a floating chat window backed by the eGovAI "govph"
+ * BetterGov Chatbot — a floating chat window backed by the eGovAI "govph"
  * engine through this site's own Worker (see src/lib/assistant.ts).
  */
 
@@ -336,7 +336,7 @@ const GovPhChatbot: React.FC = () => {
       {isOpen && (
         <section
           role='dialog'
-          aria-label='GovPH Chatbot'
+          aria-label='BetterGov Chatbot'
           aria-modal={isCompact || undefined}
           onKeyDown={event => {
             if (event.key === 'Escape') close();
@@ -355,7 +355,7 @@ const GovPhChatbot: React.FC = () => {
               </div>
               <div className='leading-tight'>
                 <div className='text-sm font-semibold tracking-tight'>
-                  GovPH Chatbot
+                  BetterGov Chatbot
                 </div>
                 <div className='text-[11px] text-white/80'>
                   Powered by eGovAI
@@ -487,7 +487,9 @@ const GovPhChatbot: React.FC = () => {
       <button
         type='button'
         onClick={() => (isOpen ? close() : open())}
-        aria-label={isOpen ? 'Close GovPH Chatbot' : 'Open GovPH Chatbot'}
+        aria-label={
+          isOpen ? 'Close BetterGov Chatbot' : 'Open BetterGov Chatbot'
+        }
         aria-expanded={isOpen}
         className={cn(
           'group flex items-center justify-center rounded-full bg-primary-600 p-4 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-primary-700 active:scale-95',

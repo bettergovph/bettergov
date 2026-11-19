@@ -376,7 +376,7 @@
 }
 
 /*
-  GovPH Chatbot answers come from the eGovAI engine as sanitised HTML
+  BetterGov Chatbot answers come from the eGovAI engine as sanitised HTML
   (text, lists, tables, images, allow-listed map embeds) that carries no
   classes we control. Scoped to .assistant-answer so nothing else is
   affected. The bubble that wraps it is overflow-x: auto, so wide tables

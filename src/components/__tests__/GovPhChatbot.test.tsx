@@ -33,7 +33,9 @@ const answer = (overrides: Partial<AssistantAnswer> = {}): AssistantAnswer => ({
 });
 
 const openWidget = () => {
-  fireEvent.click(screen.getByRole('button', { name: 'Open GovPH Chatbot' }));
+  fireEvent.click(
+    screen.getByRole('button', { name: 'Open BetterGov Chatbot' })
+  );
   return screen.getByLabelText('Ask a question') as HTMLTextAreaElement;
 };
 
@@ -61,7 +63,7 @@ describe('GovPhChatbot', () => {
     openWidget();
 
     expect(
-      screen.getByRole('dialog', { name: 'GovPH Chatbot' })
+      screen.getByRole('dialog', { name: 'BetterGov Chatbot' })
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Ask me about Philippine government services/)
@@ -297,7 +299,7 @@ describe('GovPhChatbot', () => {
 
     openWidget();
     expect(
-      screen.getByRole('dialog', { name: 'GovPH Chatbot' })
+      screen.getByRole('dialog', { name: 'BetterGov Chatbot' })
     ).toHaveAttribute('aria-modal', 'true');
     expect(document.body.style.overflow).toBe('hidden');
 
@@ -323,7 +325,7 @@ describe('GovPhChatbot', () => {
 
     render(<GovPhChatbot />);
     openWidget();
-    const dialog = screen.getByRole('dialog', { name: 'GovPH Chatbot' });
+    const dialog = screen.getByRole('dialog', { name: 'BetterGov Chatbot' });
     expect(dialog.style.height).toBe('800px');
     expect(dialog.style.top).toBe('0px');
 

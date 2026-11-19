@@ -1,7 +1,7 @@
 import DOMPurify from 'dompurify';
 
 /**
- * Browser client for the GovPH Chatbot.
+ * Browser client for the BetterGov Chatbot.
  *
  * Talks only to this site's own Worker (`/api/assistant` and
  * `/api/assistant/stream`, see functions/api/assistant.ts), which holds the
