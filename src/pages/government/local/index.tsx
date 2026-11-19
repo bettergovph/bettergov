@@ -8,6 +8,7 @@ import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import PageMasthead from '../../../components/v2/layout/PageMasthead';
 import { titleCase } from '../../../lib/directory';
+import LguUpdateNotice from './components/LguUpdateNotice';
 
 const modules = import.meta.glob<{ default: RegionLGU }>(
   '../../../data/directory/lgu/*.json',
@@ -74,6 +75,7 @@ const LocalGovernmentIndex: FC = () => {
 
       <section className='py-10 max-md:py-6'>
         <Container>
+          <LguUpdateNotice className='mb-8 max-md:mb-5' />
           <div className='mb-6 flex items-center justify-between gap-4 max-md:flex-col max-md:items-stretch'>
             <Eyebrow>
               {results.length} of {regions.length} regions

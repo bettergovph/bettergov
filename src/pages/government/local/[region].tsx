@@ -14,6 +14,7 @@ import Eyebrow from '../../../components/v2/ui/Eyebrow';
 import Flag from '../../../components/v2/ui/Flag';
 import DetailHeader from '../../../components/v2/directory/DetailHeader';
 import { titleCase } from '../../../lib/directory';
+import LguUpdateNotice from './components/LguUpdateNotice';
 
 type Unit = {
   name: string;
@@ -131,6 +132,7 @@ const RegionalLGUPage: FC = () => {
 
       <section className='py-10 max-md:py-6'>
         <Container>
+          <LguUpdateNotice className='mb-8 max-md:mb-5' />
           <div className='mb-6 flex items-center justify-between gap-4 max-md:flex-col max-md:items-stretch'>
             <Eyebrow>
               {results.length} of {units.length} LGUs
