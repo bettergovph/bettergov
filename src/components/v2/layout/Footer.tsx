@@ -5,6 +5,7 @@ import versionData from '../../../version.json';
 import Container from '../ui/Container';
 import Flag from '../ui/Flag';
 import FooterColumn, { FooterLink } from './FooterColumn';
+import NewsletterSignup from './NewsletterSignup';
 import {
   ABOUT_URL,
   BAGONG_PILIPINAS_ALT,
@@ -24,6 +25,12 @@ type Version = { head_commit: string };
  * to show them under the footer description again.
  */
 const SHOW_GOVERNMENT_MARKS = false;
+
+/**
+ * The newsletter sign-up stays hidden until an email service is connected to
+ * /api/newsletter (see functions/api/newsletter.ts). Set to true to show it.
+ */
+const SHOW_NEWSLETTER = false;
 
 const Footer: FC = () => {
   const { t } = useTranslation('common');
@@ -225,6 +232,7 @@ const Footer: FC = () => {
             links={aboutCol}
           />
         </div>
+        {SHOW_NEWSLETTER && <NewsletterSignup />}
         <div className='pt-6 font-mono-ed text-[11px] uppercase tracking-[0.1em] text-white/70 max-md:text-[10px]'>
           {t('footerBottom.license', 'CC BY-NC-ND 4.0 · MIT')}
           {version ? ` · ${version}` : ''}

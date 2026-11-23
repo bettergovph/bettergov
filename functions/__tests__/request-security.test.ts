@@ -221,6 +221,7 @@ describe('native rate limiting', () => {
     ['/api/assistant/stream', 'ASSISTANT_RATE_LIMITER', '20'],
     ['/api/crawl', 'CRAWL_RATE_LIMITER', '10'],
     ['/api/report-hotline', 'REPORT_RATE_LIMITER', '5'],
+    ['/api/newsletter', 'REPORT_RATE_LIMITER', '5'],
     ['/weather', 'API_RATE_LIMITER', '120'],
     ['/forex', 'API_RATE_LIMITER', '120'],
   ] as const)(

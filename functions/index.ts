@@ -11,6 +11,7 @@ import { onRequest as crawlRequest } from './api/crawl';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
 import { onRequest as reportHotlineRequest } from './api/report-hotline';
+import { onRequest as newsletterRequest } from './api/newsletter';
 import {
   onRequest as assistantRequest,
   onRequestStream as assistantStreamRequest,
@@ -116,6 +117,11 @@ export default {
 
       if (path === '/api/report-hotline') {
         const response = await reportHotlineRequest({ request, env, ctx });
+        return response;
+      }
+
+      if (path === '/api/newsletter') {
+        const response = await newsletterRequest({ request, env, ctx });
         return response;
       }
 
@@ -314,6 +320,7 @@ export default {
             '/api/forex',
             '/api/crawl',
             '/api/report-hotline',
+            '/api/newsletter',
             '/api/assistant',
             '/api/assistant/stream',
             '/weather',

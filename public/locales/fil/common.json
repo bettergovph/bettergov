@@ -81,6 +81,19 @@
     "openSource": "Open Source",
     "builtBy": "Ginawa ng BetterGov at ng daan-daang mamamayang boluntaryo."
   },
+  "newsletter": {
+    "heading": "Newsletter",
+    "description": "Isang maikling email kada buwan: bagong datos, serbisyo at tampok ng BetterGov.",
+    "emailLabel": "Email address",
+    "placeholder": "ikaw@halimbawa.com",
+    "submit": "Mag-subscribe",
+    "sending": "Nagsa-subscribe…",
+    "success": "Salamat. Tingnan ang iyong inbox para kumpirmahin ang subscription.",
+    "unavailable": "Hindi pa bukas ang newsletter. Bumalik po muli mamaya.",
+    "invalid": "Maglagay ng wastong email address.",
+    "failed": "Hindi ka namin ma-subscribe ngayon. Pakisubukang muli.",
+    "privacy": "Gagamitin lang namin ang iyong email para ipadala ang newsletter na ito. Maaari kang mag-unsubscribe anumang oras."
+  },
   "footerBottom": {
     "license": "CC BY-NC-ND 4.0 · MIT"
   },
