@@ -41,7 +41,7 @@ function policiesFor(path: string): Policy[] {
   if (path === '/api/crawl') {
     return [API_POLICY, { binding: 'CRAWL_RATE_LIMITER', limit: 10 }];
   }
-  if (path === '/api/report-hotline') {
+  if (path === '/api/report-hotline' || path === '/api/newsletter') {
     return [API_POLICY, { binding: 'REPORT_RATE_LIMITER', limit: 5 }];
   }
   return [API_POLICY];

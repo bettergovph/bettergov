@@ -90,6 +90,19 @@
     "openSource": "Open Source",
     "builtBy": "Built by BetterGov and hundreds of citizen volunteers."
   },
+  "newsletter": {
+    "heading": "Newsletter",
+    "description": "One short email a month: new government data, services and features on BetterGov.",
+    "emailLabel": "Email address",
+    "placeholder": "you@example.com",
+    "submit": "Subscribe",
+    "sending": "Subscribing…",
+    "success": "Thank you. Check your inbox to confirm your subscription.",
+    "unavailable": "The newsletter is not open yet. Please check back soon.",
+    "invalid": "Enter a valid email address.",
+    "failed": "We could not subscribe you right now. Please try again.",
+    "privacy": "We use your email only to send this newsletter. Unsubscribe anytime."
+  },
   "footerBottom": {
     "license": "CC BY-NC-ND 4.0 · MIT"
   },

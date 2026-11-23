@@ -23,6 +23,7 @@ export interface Env {
   CF_ACCOUNT_ID?: string;
   CF_API_TOKEN?: string;
   GITHUB_TOKEN?: string;
+  NEWSLETTER_WEBHOOK_URL?: string; // HTTPS endpoint of the chosen email service
   NODE_ENV?: string;
 
   // eGovAI assistant (server-side only — never shipped to the browser)
